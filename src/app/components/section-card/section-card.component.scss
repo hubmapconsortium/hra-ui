@@ -1,0 +1,30 @@
+.example-card {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin-bottom: 10px;
+  margin-right: 20%;
+}
+
+.container{
+  margin-left: 20%;
+  margin-right: 20%;
+  display: flex;
+  flex-direction: row;
+  line-height: normal;
+  flex-wrap: wrap;
+  max-width: 50%;
+  justify-content: space-between;
+}
+
+
+.nav-card-title{
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.5%;
+  color: #0A6EBD;
+}
+
+a{
+  text-decoration: none;
+}

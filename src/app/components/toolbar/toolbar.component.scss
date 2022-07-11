@@ -1,0 +1,39 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+.mat-toolbar {
+    background: #444C65;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding-left: 20%;
+    height: 45px;
+  }
+
+.heading {
+  color: #FFFFFF;
+  font-family: 'Impact Regular';
+  font-size: 32px;
+  line-height: 0%;
+}
+
+.hra-header{
+  font-family: 'Inter', sans-serif;
+  font-size: 32px;
+  color: #C2CAE5;
+  font-weight: 300;
+}
+
+::ng-deep .navigation-items {
+  color: #444C65;
+  font-family: 'Inter', 'sans-serif';
+  font-size: 14px;
+  letter-spacing: 0.5%;
+}
+
+::ng-deep .navigation-title{
+  font-family: 'Inter', 'sans-serif';
+  font-size: 14px;
+  color: #FFFFFF;
+}
