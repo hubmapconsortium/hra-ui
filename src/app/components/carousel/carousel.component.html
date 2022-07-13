@@ -1,19 +1,69 @@
-<swiper
-  [spaceBetween]="30"
-  [centeredSlides]="true"
-  [autoplay]="{
-    delay: 2500,
+<swiper [spaceBetween]="30" [centeredSlides]="true" [autoplay]="{
+    delay: 10000,
     disableOnInteraction: false
-  }"
-  [pagination]="{
+  }" [pagination]="{
     clickable: true
-  }"
-  class="mySwiper"
->
-  <ng-template swiperSlide>Slide 1</ng-template>
-  <ng-template swiperSlide>Slide 2</ng-template>
-  <ng-template swiperSlide>Slide 3</ng-template>
-  <ng-template swiperSlide>Slide 4</ng-template>
-  <ng-template swiperSlide>Slide 5</ng-template>
-  <ng-template swiperSlide>Slide 6</ng-template>
+  }" class="mySwiper">
+
+  <ng-template swiperSlide>
+    <div class="left">
+      <div class="content-titles">Map the human body at single cell resolution</div>
+      <div class="content-body">Learn more about the thousands of experts building a Human Reference Atlas.</div>
+      <button mat-stroked-button class="get-button">Get Started</button>
+    </div>
+    <div class="right">
+      <img src="../../../assets/images/slide1.png" />
+    </div>
+  </ng-template>
+  <ng-template swiperSlide>
+    <div class="left">
+      <div class="content-titles">Contribute data to the Human Reference Atlas</div>
+      <div class="content-body">Register your data spatially using the Registration User Interface tool.</div>
+      <button mat-stroked-button class="get-button">Get Started</button>
+    </div>
+    <div class="right">
+      <img src="../../../assets/images/slide2.png" />
+    </div>
+  </ng-template>
+  <ng-template swiperSlide>
+    <div class="left">
+      <div class="content-titles">Compare data to the Human Reference Atlas</div>
+      <div class="content-body">Use the ASCT+B Reporter tool to explore data in the context of the Human Reference
+        Atlas.</div>
+      <button mat-stroked-button class="get-button">Get Started</button>
+    </div>
+    <div class="right">
+      <img src="../../../assets/images/slide3.png" />
+    </div>
+  </ng-template>
+  <ng-template swiperSlide>
+    <div class="left">
+      <div class="content-titles">Search for a cell type, gene, or protein</div>
+      <div class="content-body">Explore cell type populations with via Cell Type Population graph tool.</div>
+      <button mat-stroked-button class="get-button">Get Started</button>
+    </div>
+    <div class="right">
+      <img src="../../../assets/images/slide4.png" />
+    </div>
+  </ng-template>
+  <ng-template swiperSlide>
+    <div class="left">
+      <div class="content-titles">Search for data across levels–from the whole body down to single cells</div>
+      <div class="content-body">Explore Human Reference Atlas data with the Exploration User Interface tool.</div>
+      <button mat-stroked-button class="get-button">Get Started</button>
+    </div>
+    <div class="right">
+      <img src="../../../assets/images/slide5.png" />
+    </div>
+  </ng-template>
+  <ng-template swiperSlide>
+    <div class="left">
+      <div class="content-titles">Learn more about the Human BioMolecular Atlas Program</div>
+      <div class="content-body">Explore HuBMAP data, code, and documentation using the HuBMAP Data Portal.</div>
+      <button mat-stroked-button class="get-button">Get Started</button>
+    </div>
+    <div class="right">
+      <img src="../../../assets/images/slide6.png" />
+    </div>
+  </ng-template>
 </swiper>

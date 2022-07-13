@@ -12,6 +12,7 @@ SwiperCore.use([Autoplay, Pagination, Navigation]);
 })
 export class CarouselComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit(): void {

@@ -1,41 +1,49 @@
 <mat-toolbar color="primary">
-  <span class="heading">HuBMAP</span>
-  <span class="hra-header">&nbsp;HUMAN REFERENCE ATLAS</span>
+  <span class="hubmap-header">HuBMAP</span>
+  <span class="hra-header">&nbsp;HUMAN REFERENCE ATLAS&nbsp;</span>
 
   <button mat-button [matMenuTriggerFor]="dataMenu" class="navigation-title">Data &#9662;</button>
   <mat-menu #dataMenu="matMenu" yPosition="below">
-    <button mat-menu-item class="navigation-items">Overview: HRA Data</button>
-    <button mat-menu-item class="navigation-items">CCF Anatomical Structures, Cell Types + Biomarkers (ASCT+B)
-      Tables</button>
-    <button mat-menu-item class="navigation-items">Anatomical Structures, Cell Types + Biomarkers (ASCT+B) Cell Types
-      Data from Azimuth</button>
-    <button mat-menu-item class="navigation-items">CCF 2D Reference Object Library</button>
-    <button mat-menu-item class="navigation-items">CCF 3D Reference Object Library</button>
-    <button mat-menu-item class="navigation-items">Organ Mapping Antibody Panels (OMAPs)</button>
-    <button mat-menu-item class="navigation-items">HuBMAP Data Portal</button>
+    <div class="navigation-items">
+      <button mat-menu-item>Overview: HRA Data</button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item>CCF Anatomical Structures, Cell Types + Biomarkers (ASCT+B) Tables</button>
+      <button mat-menu-item>Anatomical Structures, Cell Types + Biomarkers (ASCT+B) Cell Types Data from Azimuth</button>
+      <button mat-menu-item>CCF 2D Reference Object Library</button>
+      <button mat-menu-item>CCF 3D Reference Object Library</button>
+      <button mat-menu-item>Organ Mapping Antibody Panels (OMAPs)</button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item>HuBMAP Data Portal</button>
+    </div>
   </mat-menu>
 
   <a mat-button href="https://www.google.com/" target="_blank" class="navigation-title">CCF Ontology</a>
 
   <button mat-button [matMenuTriggerFor]="toolsMenu" class="navigation-title">Tools &#9662;</button>
   <mat-menu #toolsMenu="matMenu" yPosition="below">
-    <button mat-menu-item>Overview: HRA Tools</button>
-    <button mat-menu-item>CCF Anatomical Structures, Cell Types + Biomarkers (ASCT+B) Reporter</button>
-    <button mat-menu-item>CCF Cell Population Graphs</button>
-    <button mat-menu-item>CCF Registration User Interface (RUI)</button>
-    <button mat-menu-item>CCF Exploration User Interface (EUI)</button>
-    <button mat-menu-item>HRA Milletome</button>
-    <button mat-menu-item>HRA Application Programming Interfaces</button>
-    <button mat-menu-item>HRA Usage Metrics</button>
+    <div class="navigation-items">
+      <button mat-menu-item>Overview: HRA Tools</button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item>CCF Anatomical Structures, Cell Types + Biomarkers (ASCT+B) Reporter</button>
+      <button mat-menu-item>CCF Cell Population Graphs</button>
+      <button mat-menu-item>CCF Registration User Interface (RUI)</button>
+      <button mat-menu-item>CCF Exploration User Interface (EUI)</button>
+      <button mat-menu-item>HRA Milletome</button>
+      <button mat-menu-item>HRA Application Programming Interfaces</button>
+      <button mat-menu-item>HRA Usage Metrics</button>
+    </div>
   </mat-menu>
 
   <button mat-button [matMenuTriggerFor]="trainingMenu" class="navigation-title">Training & Outreach &#9662;</button>
   <mat-menu #trainingMenu="matMenu" yPosition="below">
-    <button mat-menu-item>Overview: HRA Training and Outreach</button>
-    <button mat-menu-item>Visible Human Massive Open Online Course</button>
-    <button mat-menu-item>HRA Standard Operating Procedures</button>
-    <button mat-menu-item>Kaggle Competition Awards 2021</button>
-    <button mat-menu-item>Kaggle Competition Awards 2022</button>
+    <div class="navigation-items">
+      <button mat-menu-item>Overview: HRA Training and Outreach</button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item>Visible Human Massive Open Online Course</button>
+      <button mat-menu-item>HRA Standard Operating Procedures</button>
+      <button mat-menu-item>Kaggle Competition Awards 2021</button>
+      <button mat-menu-item>Kaggle Competition Awards 2022</button>
+    </div>
   </mat-menu>
   <a mat-button href="https://www.google.com/" target="_blank" class="navigation-title">About</a>
 </mat-toolbar>

@@ -7,18 +7,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SectionCardComponent implements OnInit {
 
-  public datalist:any[] = [
-    {title: "Data", description: 'Research the data using Human Reference Atlas'},
-    {title: 'CCF Ontology', description: 'Discover the Common Cooordinate Framework Ontology'},
-    {title: "Tools", description: 'Construct, Visualize, and use the tools of the Human Reference Atlas'},
-    {title: "Training and Outreach", description: 'Checkout HuBMAP`s education and engagement efforts'}
+  public datalist: any[] = [
+    {
+      title: "Data", description: 'Research the data using Human Reference Atlas',
+      image: 'src/assets/images/heading_img.JPG'
+    },
+    {
+      title: 'CCF Ontology', description: 'Discover the Common Cooordinate Framework Ontology',
+      image: 'src/assets/images/heading_img.JPG'
+    },
+    {
+      title: "Tools", description: 'Construct, Visualize, and use the tools of the Human Reference Atlas',
+      image: 'src/assets/images/heading_img.JPG'
+    },
+    {
+      title: "Training and Outreach", description: 'Checkout HuBMAP`s education and engagement efforts',
+      image: 'src/assets/images/heading_img.JPG'
+    }
   ];
 
   constructor() {
-   
-   }
+
+  }
   ngOnInit(): void {
   }
-    
+
 
 }

@@ -1,11 +1,11 @@
-
 @import "~swiper/css";
 @import "~swiper/css/pagination";
 @import "~swiper/css/navigation";
+
 .swiper {
   width: 60%;
-  height: 60%;
-  border: 2px solid black;
+  height: 50%;
+  padding-top: 3%;
 }
 
 .swiper-slide {
@@ -13,7 +13,6 @@
   font-size: 18px;
   background: #fff;
 
-  /* Center slide text vertically */
   display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -38,4 +37,61 @@
 .swiper-pagination {
   text-align: left;
   margin-left: 1%;
+}
+
+.left {
+  height: 100%;
+  width: 25%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  left: 0;
+  text-align: left;
+  padding-left: 1px;
+}
+
+.right {
+  width: 75%;
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  right: 0;
+  object-fit: cover;
+}
+
+
+.content-titles {
+  font-family: 'Inter', sans-serif;
+  font-size: 24px;
+  color: #212121;
+  padding-bottom: 5%;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 34px;
+  letter-spacing: 0.005em;
+}
+
+.content-body {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 24px;
+  padding-bottom: 5%;
+  color: #212121;
+  letter-spacing: 0.005em;
+}
+
+.get-button {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  position: absolute;
+  border: 10px solid black;
+  color: black;
+  border: 1px solid #444C65;
+  border-radius: 2px;
 }

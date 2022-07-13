@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
@@ -6,7 +7,8 @@ import { SectionCardComponent } from "./section-card.component";
     declarations: [SectionCardComponent],
     imports: [
         MatCardModule,
-        BrowserModule
+        BrowserModule,
+        BrowserAnimationsModule
     ],
     exports: [SectionCardComponent]
 })
