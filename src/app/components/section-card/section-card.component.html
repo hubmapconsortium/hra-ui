@@ -1,11 +1,10 @@
 <div class="container">
-  <div *ngFor="let data of datalist">
+  <div class="col-md-3 mx-auto my-5" *ngFor="let card of cards">
     <mat-card class="example-card">
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <img mat-card-image [src] = "card.img" alt="Images of Card">
       <mat-card-content>
-          <a class="nav-card-title" href="https://www.google.com/" target="_blank">{{data.title}}</a>
-          <p class="description">{{data.description}}</p>
+          <a class="nav-card-title" href="https://www.google.com/" target="_blank">{{card.title}}</a>
+          <p class="description">{{card.description}}</p>
       </mat-card-content>
     </mat-card>
   </div>
-
