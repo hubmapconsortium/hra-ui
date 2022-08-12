@@ -1,0 +1,12 @@
+<div *ngFor="let link of links" class="sop">
+    <div class="sop-title">
+        {{link.title}}
+    </div>
+    <div class="sop-items">
+        <ul>
+            <li *ngFor="let url of link.urls">
+                <a>{{url}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<span *ngFor="let item of items">
+  <span *ngIf="item.children && item.children.length > 0">
+    <button mat-button [matMenuTriggerFor]="childMenu" [disabled]="item.disabled" [disableRipple]="true"
+      (click)="itemClick.emit(item)" class="navigation-title" #menuTrigger="matMenuTrigger">
+      {{item.menuName}}
+      <mat-icon [class.inverse]="menuTrigger.menuOpen">arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu #childMenu="matMenu" [overlapTrigger]="false" class="foobar">
+      <span *ngFor="let child of item.children">
+        <div class="navigation-items">
+          <button mat-menu-item (click)="itemClick.emit(child)">{{child.menuName}}</button>
+        </div>
+        <mat-divider *ngIf="child.divider"></mat-divider>
+      </span>
+    </mat-menu>
+  </span>
+  <span *ngIf="!item.children || item.children.length === 0">
+    <button mat-button [disableRipple]="true" (click)="itemClick.emit(item)" class="navigation-title">
+      {{item.menuName}}
+    </button>
+  </span>
+</span>

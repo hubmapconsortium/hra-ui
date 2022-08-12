@@ -1,0 +1,44 @@
+::ng-deep .foobar {
+  max-width: 23.25rem !important;
+}
+
+.mat-button-focus-overlay {
+  display: none;
+}
+
+.navigation-title {
+  font-family: 'Inter', 'sans-serif';
+  font-style: normal;
+  font-size: 0.875rem;
+  color: #FFFFFF;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  line-height: 1.5rem;
+}
+
+.navigation-items>button {
+  color: #444C65;
+  font-family: 'Inter', 'sans-serif';
+  letter-spacing: 0.005em;
+  line-height: 1.5rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.5%;
+  word-wrap: normal;
+  line-height: 200%;
+  overflow: visible;
+  height: auto;
+  text-align: left;
+  max-width: 31.25rem;
+  white-space: initial;
+  font-weight: 300;
+  padding-top: 0.313rem;
+}
+
+.inverse {
+  transform: rotate(180deg);
+  display: inline-block;
+}
+
+.mat-button-focus-overlay {
+  display: none;
+}

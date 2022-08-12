@@ -1,0 +1,53 @@
+:host {
+    .header-card {
+        padding-bottom: 1.25rem;
+        padding-top: 3rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .icon {
+        float: left;
+        height: 10rem;
+        background-color: #444A65;
+    }
+
+    .img-cls {
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .body {
+        padding-left: 1.5rem;
+        padding-top: 1.2rem;
+        margin-bottom: 0;
+        overflow-x: hidden;
+    }
+
+    .card-heading {
+        display: flex;
+        flex-direction: column wrap;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 2.25rem;
+        line-height: 2.75rem;
+        letter-spacing: 0.005em;
+        color: #212121;
+    }
+
+    .card-subheading {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        letter-spacing: 0.005em;
+        color: #212121;
+    }
+
+    mat-card {
+        padding: 0rem 1rem 0.063rem 0rem;
+        box-shadow: #212121;
+    }
+}

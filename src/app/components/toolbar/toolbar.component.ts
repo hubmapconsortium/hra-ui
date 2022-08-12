@@ -1,15 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { NavItems } from './nav-items';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { NAVIGATION_ITEMS } from 'src/app/shared/navigation-items';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'ccf-toolbar',
   templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.scss'],
+  styleUrls: ['./toolbar.component.scss']
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  down: boolean = false;
+
+  @Input()
+  navigationItems: NavItems[] = NAVIGATION_ITEMS;
+
+  itemClicked(item: NavItems): void {
+    this.router.navigate([item.route]);
+  }
+
+  toggleArrow() {
+    this.down = !this.down;
   }
 
 }

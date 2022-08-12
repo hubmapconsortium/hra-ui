@@ -1,0 +1,14 @@
+<div class="version-container">
+    <div class="version-label">
+        {{chooseLabel}}
+    </div>
+    <div>
+        <mat-form-field appearance="outline" floatLabel='always'>
+            <mat-select [(value)]="selectedDate" disableOptionCentering="true" disableRipple="true">
+                <mat-option *ngFor="let date of releaseDate" [value]="date.release" class="mat-select-value-text">
+                    {{date.release}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>

@@ -1,38 +1,16 @@
-.main-content {
-  margin-top: 40px;
-  padding-left: 20%;
-  padding-right: 20%;
-}
+:host {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  overflow: auto;
+  align-items: center;
+  margin-top: 3.5rem;
 
-.landing-img {
-  height: 75px;
-  width: 50px;
-  object-fit:contain;
-  border: 1px solid #FFFFFF;
-}
-
-.landing-title {
-  font-family: 'Inter', sans-serif;
-  font-size: 36px;
-  line-height: 34px;
-  color: #212121;
-  font-weight: 300;
-}
-
-.landing-subtitle {
-  font-family: 'Inter', sans-serif;
-  font-style: normal;
-  font-size: 28px;
-  font-weight: 300;
-  color: #444C65;
-  line-height: 34px;
-}
-
-.content-title {
-  font-family: 'Inter', sans-serif;
-  font-size: 36px;
-  color: #212121;
-  padding-left: 20%;
-  font-weight: 300;
-  line-height: 44px;
+  .toolbar-class {
+    position: fixed;
+    top: 0;
+    z-index: 10000000;
+    background-color: #444C65;
+    box-shadow: 0rem 0.063rem 0.188rem 0.063rem rgb(0 0 0 / 40%);
+  }
 }

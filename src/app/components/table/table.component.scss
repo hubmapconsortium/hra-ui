@@ -1,0 +1,41 @@
+:host {
+  table {
+    width: 100%;
+  }
+
+  .table-container {
+    padding-bottom: 2rem;
+  }
+
+  td {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005rem;
+    color: #212121;
+  }
+
+  .table-title {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005em;
+    color: #212121;
+  }
+
+  tr td:nth-child(1) {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005rem;
+    color: #0A6EBD;
+  }
+}
+
+

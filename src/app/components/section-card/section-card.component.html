@@ -1,10 +1,10 @@
-<div class="container">
-  <div class="col-md-3 mx-auto my-5" *ngFor="let card of cards">
-    <mat-card class="example-card">
-      <img mat-card-image [src] = "card.img" alt="Images of Card">
-      <mat-card-content>
-          <a class="nav-card-title" href="https://www.google.com/" target="_blank">{{card.title}}</a>
-          <p class="description">{{card.description}}</p>
-      </mat-card-content>
-    </mat-card>
+<mat-card *ngFor="let card of cards" class="card-button">
+  <div class="image-container">
+    <img [src]="card.image" alt="Images of Card" class="static">
+    <img [src]="card.gif" alt="Images of Card" class="gif">
   </div>
+  <mat-card-content>
+    <a class="nav-card-title" href="https://www.google.com/" target="_blank">{{card.title}}</a>
+    <p class="description">{{card.description}}</p>
+  </mat-card-content>
+</mat-card>

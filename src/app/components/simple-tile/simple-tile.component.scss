@@ -1,21 +1,23 @@
-.card {
-    padding-left: 20%;
-    padding-right: 20%;
-    padding-bottom: 5px;
-}
+:host {
+    .card {
+        // padding-left: 20%;
+        // padding-right: 20%;
+        padding-bottom: 0.313rem;
+    }
 
-mat-card {
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    letter-spacing: 0.5%;
-    font-weight: 300;
-    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.16);
-    border-radius: 4px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 16px;
-    letter-spacing: 0.005em;
-    
+    .mat-card {
+        font-family: 'Inter', sans-serif;
+        font-style: normal;
+        font-size: 1rem;
+        font-weight: 300;
+        box-shadow: 0rem 0.125rem 0.063rem rgba(0, 0, 0, 0.16);
+        border-radius: 0.25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        letter-spacing: 0.005em;
+        line-height: 1.5rem;
+    }
 }

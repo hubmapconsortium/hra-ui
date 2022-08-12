@@ -5,11 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './bottom-toolbar.component.html',
   styleUrls: ['./bottom-toolbar.component.scss']
 })
-export class BottomToolbarComponent implements OnInit {
+export class BottomToolbarComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

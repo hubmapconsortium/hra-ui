@@ -1,0 +1,67 @@
+:host {
+    .version-container {
+        display: flex;
+        padding-top: 0rem;
+    }
+
+    .version-label {
+        padding-top: 1rem;
+        padding-right: 1rem;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        letter-spacing: 0.005rem;
+    }
+
+    ::ng-deep .mat-select-value {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.875rem;
+        line-height: 1.4202rem;
+        letter-spacing: 0.005rem;
+        color: #444C65;
+
+    }
+
+    ::ng-deep .mat-form-field-outline {
+        border: 1px solid #444C65;
+    }
+
+    ::ng-deep .mat-form-field-flex {
+        box-sizing: unset;
+    }
+
+    ::ng-deep .mat-form-field-infix {
+        border: unset;
+    }
+
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+        padding: 1.5em 0 1em 0;
+    }
+
+}
+
+::ng-deep .mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple) {
+    background: unset;
+}
+
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: #444A65;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-disabled .mat-form-field-outline {
+    opacity: 0;
+}
+
+.mat-select-value-text {
+    font-family: 'Inter' !important;
+    font-style: normal !important;
+    font-weight: 300;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005rem;
+    color: #444A65;
+}

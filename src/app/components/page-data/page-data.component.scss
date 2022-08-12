@@ -1,0 +1,23 @@
+:host {
+    .body-title {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 1.5rem;
+        line-height: 142.02%;
+        letter-spacing: 0.005em;
+        color: #000000;
+    }
+
+    .body-description {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        letter-spacing: 0.005em;
+        color: #000000;
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+    }
+}

@@ -1,6 +1,6 @@
-<div *ngFor="let def of definition">
+<div *ngFor="let definition of definitions">
     <div class="card">
-        <mat-card>{{def.lines}}</mat-card>
+        <markdown [data]="definition.title" class="mat-card"></markdown>
     </div>
 </div>
 

@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import SwiperCore, { Autoplay, Pagination, Navigation, Swiper } from "swiper";
+import { Component, Input, ViewEncapsulation } from '@angular/core';
+import SwiperCore, { Autoplay, Pagination, Navigation, SwiperOptions, EffectFade } from "swiper";
+import { SliderItems } from './slider-items';
 
-SwiperCore.use([Autoplay, Pagination, Navigation]);
+SwiperCore.use([Autoplay, Pagination, Navigation, EffectFade]);
 
 
 @Component({
@@ -10,14 +11,25 @@ SwiperCore.use([Autoplay, Pagination, Navigation]);
   styleUrls: ['./carousel.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class CarouselComponent implements OnInit {
+export class CarouselComponent {
 
+  @Input()
+  carouselInfo: SliderItems[] = []
+
+  config: SwiperOptions = {
+    autoplay: {
+      delay: 80000000,
+      disableOnInteraction: true
+    },
+    navigation: {
+      enabled: true
+    },
+    pagination: {
+      clickable: true
+    },
+    effect: 'fade'
+  };
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
-
 
 }
