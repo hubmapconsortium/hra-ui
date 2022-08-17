@@ -1,3 +1,5 @@
-export interface ChooseVersion{
-    release: string
+export interface ChooseVersion {
+  release: string;
+  file: string;
 }
+

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CcfTablePageComponent } from './ccf-table-page.component';
+import { CcfTablePageComponent } from './ccf-asctb-table-page.component';
 
 describe('CcfTablePageComponent', () => {
   let component: CcfTablePageComponent;

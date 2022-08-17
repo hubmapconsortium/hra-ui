@@ -1,5 +1,5 @@
 import { NavItems } from './nav-items';
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NAVIGATION_ITEMS } from 'src/app/shared/navigation-items';
 import { Router } from '@angular/router';
 

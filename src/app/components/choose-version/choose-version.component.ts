@@ -1,23 +1,22 @@
-import { Component,  } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ChooseVersion } from './choose-version';
 
 @Component({
   selector: 'ccf-choose-version',
   templateUrl: './choose-version.component.html',
-  styleUrls: ['./choose-version.component.scss']
+  styleUrls: ['./choose-version.component.scss'],
 })
 export class ChooseVersionComponent {
+  @Input()
+  releaseDate: ChooseVersion[] = [];
 
+  @Input()
+  selectedDate: string = '';
 
-  releaseDate: ChooseVersion[] = [
-    {release: '1st Release, March 2021'},
-    {release: '2nd Release, December 2021'}
-  ];
+  @Output()
+  selectedVersion = new EventEmitter<ChooseVersion>;
 
-
-  selectedDate = this.releaseDate[0].release;
   chooseLabel = 'Choose Version of ASCT+B datasets:';
 
-  constructor() { }
-
+  constructor() {}
 }

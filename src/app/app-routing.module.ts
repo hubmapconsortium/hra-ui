@@ -1,4 +1,4 @@
-import { CcfTablePageComponent } from './pages/ccf-table-page/ccf-table-page.component';
+import { CcfTablePageComponent } from './pages/ccf-asctb-table-page/ccf-asctb-table-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';

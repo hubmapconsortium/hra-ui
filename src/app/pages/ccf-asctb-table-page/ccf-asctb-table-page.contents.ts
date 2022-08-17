@@ -1,7 +1,9 @@
-import { ChooseVersion } from './../../components/choose-version/choose-version';
-import { SopLinks } from './../../components/sop-links/sop-links';
-import { PageDataItems } from './../../components/page-data/page-data';
-import { PageHeaderItems } from './../../components/page-header/page-header-items';
+import { HeaderData } from '../../components/table/header';
+import { ChooseVersion } from '../../components/choose-version/choose-version';
+import { TableData } from '../../components/table/table';
+import { SopLinks } from '../../components/sop-links/sop-links';
+import { PageDataItems } from '../../components/page-data/page-data';
+import { PageHeaderItems } from '../../components/page-header/page-header-items';
 
 export const headerCardDetails: PageHeaderItems[] = [
     {
@@ -23,6 +25,12 @@ export const existingTablesData: PageDataItems[] = [
         descriptions: 'The below table lists for each organ the number of anatomical structures (#AS), the number of cell types (#CT), the number of biomarkers (#B), the number of part_of relationships between AS, the number of located_in links between CT and AS, and the number of CT and B, i.e., which B characterize a CT.'
     }
 ]
+
+export const versionData: ChooseVersion[] = [
+  { release: '1st Release, March 2021', file: 'release1.json' },
+  { release: '2nd Release, December 2021', file: 'release2.json' },
+]
+
 export const exploreTablesData: PageDataItems[] = [
     {
         heading: 'Explore Tables Visually',
@@ -48,4 +56,54 @@ export const sopLinksData: SopLinks[] = [
             ]
     }
 ]
+
+export const headerInfo: HeaderData[] = [
+  {
+    columnDef: 'organ',
+    header: 'Organ',
+    cell: (element: TableData) => `${element['organ']}`
+  },
+  {
+    columnDef: 'as',
+    header: '#AS',
+    cell: (element: TableData) => `${element['as']}`
+  },
+  {
+    columnDef: 'ct',
+    header: '#CT',
+    cell: (element: TableData) => `${element['ct']}`
+  },
+  {
+    columnDef: 'bTotal',
+    header: '#B Total',
+    cell: (element: TableData) => `${element['bTotal']}`
+  },
+  {
+    columnDef: 'bg',
+    header: '#BG',
+    cell: (element: TableData) => `${element['bg']}`
+  },
+  {
+    columnDef: 'bp',
+    header: '#BP',
+    cell: (element: TableData) => `${element['bp']}`
+  },
+  {
+    columnDef: 'asas',
+    header: '#AS-AS',
+    cell: (element: TableData) => `${element['asas']}`
+  },
+  {
+    columnDef: 'asct',
+    header: 'AS-CT',
+    cell: (element: TableData) => `${element['asct']}`
+  },
+  {
+    columnDef: 'ctb',
+    header: '#CT-B',
+    cell: (element: TableData) => `${element['ctb']}`,
+  }
+];
+
+export const displayedColumnsData = headerInfo.map(h => h.columnDef);
 

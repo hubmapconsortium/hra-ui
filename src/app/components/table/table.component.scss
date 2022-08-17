@@ -27,7 +27,7 @@
     color: #212121;
   }
 
-  tr td:nth-child(1) {
+  td:nth-child(1) {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
@@ -35,7 +35,21 @@
     line-height: 1.5rem;
     letter-spacing: 0.005rem;
     color: #0A6EBD;
+
+    &:hover {
+      transform: scale(1.03);
+      text-decoration: underline;
+    }
+  }
+
+  .table-footer {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005rem;
+    color: #212121;
+
   }
 }
-
-

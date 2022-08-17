@@ -10,8 +10,9 @@ export class NavbarComponent {
 
   @Input() items: NavItems[];
   @Output() itemClick = new EventEmitter<NavItems>;
- 
-  @ViewChild('childMenu') public childMenu: any;
+
+  @ViewChild('childMenu')
+  public childMenu: any;
 
   constructor() { }
 
