@@ -1,7 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { HeaderData } from './header';
 import { TableData } from './table';
-
 
 @Component({
   selector: 'ccf-table',
@@ -10,24 +12,29 @@ import { TableData } from './table';
 })
 
 export class TableComponent {
+  @ViewChild(MatSort, { static: true })
+  set sort(value: MatSort) {
+    this.dataSource.sort = value;
+  }
 
   @Input()
-  public typeCount: TableData[] = [];
+  set typeCount(data: TableData[]) {
+    this.dataSource.data = data;
+  }
 
-  @Input()
-  displayedColumns: string[] = [];
+  @Input() displayedColumns: string[] = [];
 
-  @Input()
-  columns: HeaderData[] = [];
+  @Input() columns: HeaderData[] = [];
 
-  @Input()
-  isTotal: boolean
+  @Input() isTotal: boolean
+
+  readonly dataSource = new MatTableDataSource<TableData>([]);
 
   getTotal(id: string) {
-    return this.typeCount.reduce((acc, entry) => acc + (entry[id] as number),0);
+    return this.dataSource.data.reduce((acc, entry) => acc + (entry[id] as number), 0);
   }
 
   isNumericColumn(column: string): boolean {
-    return typeof this.typeCount[0]?.[column] === 'number';
+    return typeof this.dataSource.data[0]?.[column] === 'number';
   }
 }

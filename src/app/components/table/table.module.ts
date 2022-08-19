@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import {MatTableModule} from '@angular/material/table';
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
-        MatTableModule
+        MatTableModule,
+        MatSortModule
     ],
     exports: [TableComponent]
 })

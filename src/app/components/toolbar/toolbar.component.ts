@@ -22,8 +22,4 @@ export class ToolbarComponent {
     this.router.navigate([item.route]);
   }
 
-  toggleArrow() {
-    this.down = !this.down;
-  }
-
 }

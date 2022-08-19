@@ -27,7 +27,18 @@
     color: #212121;
   }
 
-  td:nth-child(1) {
+  .table-footer {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005rem;
+    color: #212121;
+
+  }
+
+  ::ng-deep table>tbody>tr>td:nth-child(1) {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
@@ -42,14 +53,30 @@
     }
   }
 
-  .table-footer {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 0.875rem;
-    line-height: 1.5rem;
-    letter-spacing: 0.005rem;
-    color: #212121;
-
+  table {
+    width: 100%;
+    table-layout: fixed;
+    background-color: #FFFFFF;
   }
+
+  th,td {
+    overflow: hidden;
+    width: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mat-column-organ {
+    width: 191px;
+  }
+
+  ::ng-deep .mat-sort-header-container:not(.mat-sort-header-sorted) .mat-sort-header-arrow {
+    opacity: 0.54 !important;
+    transform: translateY(0px) !important;
+    color: #212121;
+    &:hover{
+      transform: rotate(180deg) !important;
+    }
+  }
+
 }
