@@ -11,6 +11,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { TableDataService } from './services/table-data/tabledata.service';
 import { HttpClientModule } from '@angular/common/http';
+import { TwoDimRefPageModule } from './pages/two-dim-ref-page/two-dim-ref-page.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     CcfTablePageModule,
     PageDataModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    TwoDimRefPageModule
   ],
   providers: [TableDataService],
   bootstrap: [AppComponent]

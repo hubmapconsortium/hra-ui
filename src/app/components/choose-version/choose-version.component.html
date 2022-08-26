@@ -4,17 +4,9 @@
   </div>
   <div>
     <mat-form-field appearance="outline" floatLabel="always">
-      <mat-select
-        [(value)]="selectedDate"
-        disableOptionCentering="true"
-        disableRipple="true"
-      >
-        <mat-option
-          *ngFor="let date of releaseDate"
-          [value]="date.release"
-          class="mat-select-value-text"
-          (click)="selectedVersion.emit(date)"
-        >
+      <mat-select [(value)]="selectedDate" disableOptionCentering="true" disableRipple="true">
+        <mat-option *ngFor="let date of releaseDate" [value]="date.release" class="mat-select-value-text"
+          (click)="selectedVersion.emit(date)">
           {{ date.release }}
         </mat-option>
       </mat-select>

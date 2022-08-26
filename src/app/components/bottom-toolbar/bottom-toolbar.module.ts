@@ -1,19 +1,20 @@
 import { BottomToolbarComponent } from './bottom-toolbar.component';
-import { NgModule } from '@angular/core';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { NgModule } from '@angular/core';
 
 
 @NgModule({
     declarations: [BottomToolbarComponent],
     imports: [
         MatToolbarModule,
-        MatButtonModule
+        MatButtonModule,
+        MatIconModule
     ],
     exports: [
-        BottomToolbarComponent,
-        MatButtonModule
+        BottomToolbarComponent
     ]
 })
 
-export class BottomToolbarModule{}
+export class BottomToolbarModule { }

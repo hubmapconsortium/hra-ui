@@ -19,5 +19,12 @@
         color: #000000;
         padding-top: 1rem;
         padding-bottom: 2rem;
+        text-decoration: none;
+    }
+
+    ::ng-deep a:-webkit-any-link {
+        color: unset;
+        cursor: pointer;
+        text-decoration: none;
     }
 }

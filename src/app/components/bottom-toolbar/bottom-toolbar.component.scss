@@ -32,11 +32,23 @@
         font-weight: 400;
         line-height: 1.063rem;
         color: #212121;
+        display: flex;
+        flex-direction: row;
     }
 
     mat-toolbar {
         background-color: #C2CAE5;
         max-width: 77rem;
         position: sticky;
+        height: 89px;
+        padding: unset;
+    }
+
+    ::ng-deep span>mat-icon{
+        font-size: 21px;
+    }
+
+    p{
+        margin-top: 0.1rem;
     }
 }

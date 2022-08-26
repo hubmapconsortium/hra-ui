@@ -1,18 +1,18 @@
 <div class="table-container">
-  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 demo-table"> 
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 demo-table">
     <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
       <th mat-header-cell *matHeaderCellDef class="table-title" mat-sort-header>
-        {{ column.header }}
+        {{column.header}}
       </th>
       <td mat-cell *matCellDef="let row">
-          {{ column.cell(row) }}
+        {{ column.cell(row) }}
       </td>
-        <td mat-footer-cell *matFooterCellDef class="table-footer">
-          <ng-container *ngIf="isNumericColumn(column.columnDef); else totalLabel">
-            {{ getTotal(column.columnDef) }}
-          </ng-container>
-          <ng-template #totalLabel>Totals</ng-template>
-        </td>
+      <td mat-footer-cell *matFooterCellDef class="table-footer">
+        <ng-container *ngIf="isNumericColumn(column.columnDef); else totalLabel">
+          {{ getTotal(column.columnDef) }}
+        </ng-container>
+        <ng-template #totalLabel>Totals</ng-template>
+      </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <div class="first-column">

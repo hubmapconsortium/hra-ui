@@ -28,6 +28,10 @@
 
     ::ng-deep .mat-form-field-outline {
         border: 1px solid #444C65;
+
+        &>* {
+            border: unset !important;
+        }
     }
 
     ::ng-deep .mat-form-field-flex {
@@ -39,9 +43,8 @@
     }
 
     ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
-        padding: 1.5em 0 1em 0;
+        padding: 1.5rem 0 1rem 0;
     }
-
 }
 
 ::ng-deep .mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple) {
@@ -59,7 +62,7 @@
 .mat-select-value-text {
     font-family: 'Inter' !important;
     font-style: normal !important;
-    font-weight: 300;
+    font-weight: 300 !important;
     font-size: 0.875rem;
     line-height: 1.5rem;
     letter-spacing: 0.005rem;

@@ -1,6 +1,5 @@
-import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
-import { MatSort, Sort } from '@angular/material/sort';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { HeaderData } from './header';
 import { TableData } from './table';
@@ -12,6 +11,7 @@ import { TableData } from './table';
 })
 
 export class TableComponent {
+
   @ViewChild(MatSort, { static: true })
   set sort(value: MatSort) {
     this.dataSource.sort = value;

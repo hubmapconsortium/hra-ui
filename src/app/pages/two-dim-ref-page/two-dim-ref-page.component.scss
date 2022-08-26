@@ -1,0 +1,15 @@
+:host {
+    max-width: 77rem;
+
+    .example-small-box {
+        height: 100px;
+        width: 100px;
+        margin-bottom: 4rem;
+        margin-right: 3rem;
+    }
+
+    .tabs-container{
+        display: flex;
+        flex-direction: row;
+    }
+}

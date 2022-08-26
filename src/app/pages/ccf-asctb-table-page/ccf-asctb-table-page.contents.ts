@@ -27,8 +27,8 @@ export const existingTablesData: PageDataItems[] = [
 ]
 
 export const versionData: ChooseVersion[] = [
-  { release: '1st Release, March 2021', file: 'release1.json' },
-  { release: '2nd Release, December 2021', file: 'release2.json' },
+  { release: '1st Release, March 2021', file: 'release1.csv' },
+  { release: '2nd Release, December 2021', file: 'release2.csv' },
 ]
 
 export const exploreTablesData: PageDataItems[] = [
@@ -42,7 +42,7 @@ export const exploreTablesData: PageDataItems[] = [
     },
     {
         heading: 'Acknowledgments',
-        descriptions: 'The very first ASCT+B table was published for the kidney by the Kidney Precision Medicine Project (KPMP) in "A Multimodal and Integrated Approach to Interrogate Human Kidney Biopsies with Rigor and Reproducibility: The Kidney Precision Medicine Project". Katy Börner (HuBMAP, KPMP), Peter Hunter (SPARC), and James Gee (BICCN) organized a CCF session at the 2020 Joint NIH-HCA Meeting that brought together experts from multiple consortia to develop ASCT+B tables in an effort to create a Human Reference Atlas. Mark Musen, Chris Mungall, and David Osumi-Sutherland provided expert guidance on linking ASCT+B tables to existing ontologies.'
+        descriptions: 'The very first ASCT+B table was published for the kidney by the Kidney Precision Medicine Project (KPMP) in "A Multimodal and Integrated Approach to Interrogate Human Kidney Biopsies with Rigor and Reproducibility: The Kidney Precision Medicine Project".Katy Börner (HuBMAP, KPMP), Peter Hunter (SPARC), and James Gee (BICCN) organized a CCF session at the 2020 Joint NIH-HCA Meeting that brought together experts from multiple consortia to develop ASCT+B tables in an effort to create a Human Reference Atlas. Mark Musen, Chris Mungall, and David Osumi-Sutherland provided expert guidance on linking ASCT+B tables to existing ontologies.'
     }
 ]
 
