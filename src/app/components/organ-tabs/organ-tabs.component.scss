@@ -1,0 +1,42 @@
+:host {
+
+    .tabs-container {
+        padding-bottom: 2rem;
+    }
+
+    ::ng-deep .mat-tab-label {
+        height: 9rem;
+        opacity: 1;
+        border-bottom: unset;
+        min-width: 0 !important;
+        padding: 0.1875rem !important;
+        margin: 0.1875rem !important;
+    }
+
+    ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar,
+    .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+        background-color: #444C65;
+        height: 0.5rem;
+    }
+
+    .organ-image {
+        mix-blend-mode: multiply;
+    }
+
+    ::ng-deep .mat-tab-label-active {
+        background: rgba(0, 0, 0, .04);
+    }
+
+    ::ng-deep .mat-ink-bar {
+        width: 168px;
+        transition: unset;
+    }
+
+    ::ng-deep .mat-tab-header {
+        border-bottom: unset;
+    }
+
+    .body-class:hover {
+        border: 1px solid red;
+    }
+}

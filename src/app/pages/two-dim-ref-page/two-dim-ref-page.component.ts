@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { overviewData, sopData, termsOfUseData, twoDimHeaderCardDetails } from './two-dim-ref-page.contents';
+import { overviewData, sopData, tabsImages, termsOfUseData, kidneyTissueInfo, twoDimHeaderCardDetails } from './two-dim-ref-page.contents';
 
 @Component({
   selector: 'ccf-2d-route',
@@ -12,6 +12,9 @@ export class TwoDimRefPageComponent {
   overviewData=overviewData
   sopData = sopData
   termsOfUseData = termsOfUseData
+  tabsImages = tabsImages
+  cardTitle = "Kidney Function Tissue Units";
+  kidneyTissueInfo=kidneyTissueInfo
 
   constructor() { }
 

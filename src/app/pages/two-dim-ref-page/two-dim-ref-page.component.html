@@ -1,27 +1,6 @@
 <ccf-page-header [headerCard]="twoDimHeaderCardDetails"></ccf-page-header>
 <ccf-page-data [data]="overviewData"></ccf-page-data>
 <ccf-sop-links [links]="sopData"></ccf-sop-links>
-<div class="tabs-container">
-    <div class="example-small-box">
-        <img src="../../../assets/images/kidney.jpg">
-    </div>
-    <div class="example-small-box">
-        <img src="../../../assets/images/large_intestine.jpg">
-    </div>
-    <div class="example-small-box">
-        <img src="../../../assets/images/liver.jpg">
-    </div>
-    <div class="example-small-box">
-        <img src="../../../assets/images/lungs.jpg">
-    </div>
-    <div class="example-small-box">
-        <img src="../../../assets/images/pancreas.jpg">
-    </div>
-    <div class="example-small-box">
-        <img src="../../../assets/images/prostate.jpg">
-    </div>
-    <div class="example-small-box">
-        <img src="../../../assets/images/thymus.jpg">
-    </div>
-</div>
+<ccf-organ-tabs [tabs]="tabsImages"></ccf-organ-tabs>
+<ccf-two-dim-image [cardTitle]="cardTitle" [tissueData]="kidneyTissueInfo"></ccf-two-dim-image>
 <ccf-page-data [data]="termsOfUseData"></ccf-page-data>

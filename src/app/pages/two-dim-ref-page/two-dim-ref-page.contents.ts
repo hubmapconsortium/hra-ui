@@ -1,6 +1,8 @@
+import { organTabs } from "src/app/components/organ-tabs/organ-tabs";
 import { PageDataItems } from "src/app/components/page-data/page-data";
 import { PageHeaderItems } from "src/app/components/page-header/page-header-items";
 import { SopLinks } from "src/app/components/sop-links/sop-links";
+import { TissueDetails } from "src/app/components/two-dim-image/two-dim-image";
 
 export const twoDimHeaderCardDetails: PageHeaderItems[] = [
     {
@@ -48,5 +50,54 @@ export const termsOfUseData: PageDataItems[] = [
     {
         heading: 'Acknowledgments',
         descriptions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    }
+]
+
+export const tabsImages:organTabs[] = [
+    {
+        organName: 'Kidney',
+        imgUrl:'../../../assets/images/kidney.jpg',
+        disabled: false
+    },
+    {
+        organName: 'Large Intestine',
+        imgUrl:'../../../assets/images/large_intestine.jpg',
+        disabled:true
+    },
+    {
+        organName: 'Liver',
+        imgUrl:'../../../assets/images/liver.jpg',
+        disabled: false
+    },
+    {
+        organName: 'Lungs',
+        imgUrl:'../../../assets/images/lungs.jpg',
+        disabled:true
+    },
+    {
+        organName: 'Pancreas',
+        imgUrl:'../../../assets/images/pancreas.jpg',
+        disabled:true
+    },
+    {
+        organName: 'Prostate',
+        imgUrl:'../../../assets/images/prostate.jpg',
+        disabled:true
+    },
+    {
+        organName: 'Thymus',
+        imgUrl:'../../../assets/images/thymus.jpg',
+        disabled:true
+    }
+]
+
+export const kidneyTissueInfo:TissueDetails[] = [
+    {
+        tissueName:'Nephron',
+        tissueImage: '../../../assets/images/nephron.png'
+    },
+    {
+        tissueName:'Renal Corpuscle',
+        tissueImage: '../../../assets/images/renal_corpuscle.png'
     }
 ]
