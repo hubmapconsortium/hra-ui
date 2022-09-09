@@ -6,6 +6,7 @@ import { OverviewDataComponent } from './pages/overview-data/overview-data.compo
 import { TwoDimRefPageComponent } from './pages/two-dim-ref-page/two-dim-ref-page.component';
 import { CcfOntologyComponent } from './pages/ccf-ontology/ccf-ontology.component';
 import { OverviewToolsComponent } from './pages/overview-tools/overview-tools.component';
+import { CellPopulationGraphsComponent } from './pages/cell-population-graphs/cell-population-graphs.component';
 
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'ccf-2d-reference-library', component: TwoDimRefPageComponent },
   { path: 'ccf-overview-tools', component: OverviewToolsComponent },
   { path: 'ccf-ontology', component: CcfOntologyComponent },
+  { path: 'ccf-cell-population-graphs', component: CellPopulationGraphsComponent },
   { path: '', redirectTo: 'landing-page', pathMatch: 'full' },
   { path: '**', pathMatch: 'full', component: LandingPageComponent }
 ];

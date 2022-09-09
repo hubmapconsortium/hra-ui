@@ -1,0 +1,22 @@
+:host {
+  max-width: 77rem;
+
+  p {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005rem;
+    padding-top: 1rem;
+  }
+
+  a{
+    text-decoration: none;
+    color: #0A6EBD;
+  }
+
+  .image-container{
+    padding-bottom: 2rem;
+  }
+}

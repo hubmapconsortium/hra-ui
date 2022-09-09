@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TwoDimRefPageModule } from './pages/two-dim-ref-page/two-dim-ref-page.module';
 import { CcfOntologyModule } from './pages/ccf-ontology/ccf-ontology.module';
 import { OverviewToolsModule } from './pages/overview-tools/overview-tools.module';
+import { CellPopulationGraphsModule } from './pages/cell-population-graphs/cell-population-graphs.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { OverviewToolsModule } from './pages/overview-tools/overview-tools.modul
     HttpClientModule,
     TwoDimRefPageModule,
     CcfOntologyModule,
-    OverviewToolsModule
+    OverviewToolsModule,
+    CellPopulationGraphsModule
   ],
   providers: [TableDataService],
   bootstrap: [AppComponent]

@@ -7,7 +7,7 @@ import { OrganData } from "src/app/components/two-dim-image/two-dim-image";
 
 export const twoDimHeaderCardDetails: PageHeaderItems[] = [
     {
-        image: '../../../assets/images/2dheader.png',
+        image: 'assets/images/2dheader.png',
         title: 'CCF 2D Reference Object Library',
         subtitle: 'Open source 2D illustrations of Functional Tissue Units (FTUs) crosswalked to ASCT+B tables used for single cell data exploration'
     }
@@ -69,37 +69,37 @@ export const termsOfUseData: PageDataItems[] = [
 export const tabsImages: organTabs[] = [
     {
         organName: 'Kidney',
-        imgUrl: '../../../assets/images/kidney.jpg',
+        imgUrl: 'assets/images/kidney.jpg',
         disabled: false
     },
     {
         organName: 'Large Intestine',
-        imgUrl: '../../../assets/images/large_intestine.jpg',
+        imgUrl: 'assets/images/large_intestine.jpg',
         disabled: true
     },
     {
         organName: 'Liver',
-        imgUrl: '../../../assets/images/liver.jpg',
+        imgUrl: 'assets/images/liver.jpg',
         disabled: false
     },
     {
         organName: 'Lungs',
-        imgUrl: '../../../assets/images/lungs.jpg',
+        imgUrl: 'assets/images/lungs.jpg',
         disabled: true
     },
     {
         organName: 'Pancreas',
-        imgUrl: '../../../assets/images/pancreas.jpg',
+        imgUrl: 'assets/images/pancreas.jpg',
         disabled: true
     },
     {
         organName: 'Prostate',
-        imgUrl: '../../../assets/images/prostate.jpg',
+        imgUrl: 'assets/images/prostate.jpg',
         disabled: true
     },
     {
         organName: 'Thymus',
-        imgUrl: '../../../assets/images/thymus.jpg',
+        imgUrl: 'assets/images/thymus.jpg',
         disabled: true
     }
 ]
@@ -110,11 +110,11 @@ export const organInfo: OrganData[] = [
         tissueData: [
             {
                 tissueName: 'Nephron',
-                tissueImage: '../../../assets/images/nephron.png'
+                tissueImage: 'assets/images/nephron.png'
             },
             {
                 tissueName: 'Renal Corpuscle',
-                tissueImage: '../../../assets/images/renal_corpuscle.png'
+                tissueImage: 'assets/images/renal_corpuscle.png'
             }
         ]
     },
@@ -122,7 +122,7 @@ export const organInfo: OrganData[] = [
         organName: 'Liver',
         tissueData: [{
             tissueName: 'Liver Lobule',
-            tissueImage: '../../../assets/images/liver_lobule.png'
+            tissueImage: 'assets/images/liver_lobule.png'
         }]
     }
 ]

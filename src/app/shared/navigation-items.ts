@@ -65,7 +65,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         },
         {
           menuName: 'CCF Cell Population Graphs',
-          route: 'ccf-cell-route',
+          route: 'ccf-cell-population-graphs',
           disabled: true
         },
         {

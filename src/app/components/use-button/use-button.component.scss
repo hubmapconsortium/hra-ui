@@ -1,0 +1,18 @@
+:host {
+  .button-container {
+    padding-bottom: 2rem;
+  }
+
+  .mat-raised-button {
+    background-color: #fafafa;
+    border: 1px solid #444c65;
+    border-radius: 2px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0.005rem;
+    color: #444c65;
+    box-shadow: unset;
+  }
+}

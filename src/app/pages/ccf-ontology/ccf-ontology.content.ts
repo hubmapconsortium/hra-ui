@@ -15,7 +15,7 @@ export const ccfKnowledgeData: ImageData[] = [
     {
         title: 'Common Coordinate Framework Knowledge Architecture',
         description: '<b>Figure 1.</b> Tissue samples and datasets are annotated using the CCF Clinical, CCF Semantic, and CCF Spatial Ontologies.',
-        image: '../../../assets/images/ontology.png'
+        image: 'assets/images/ontology.png'
     }
 ]
 
@@ -24,13 +24,13 @@ export const spatialOntologyData: ImageData[] = [
         title: 'Spatial Ontology',
         description: `<b>Figure 2.</b> Spatial placement of anatomical structures in relation to the HuBMAP Atlas reference system. 
         Note that spatial entities can use different coordinate systems that are “mapped” into the common reference system.`,
-        image: '../../../assets/images/spatial_ontology.png'
+        image: 'assets/images/spatial_ontology.png'
     }
 ]
 
 export const relatedToolsData: LongCard[] = [
     {
-        icon: '../../../assets/images/related_tools.png',
+        icon: 'assets/images/related_tools.png',
         title: 'Human Reference Atlas Application Programming Interfaces',
         body: 'Query and interact with the HRA using Python, JavaScript, SPARQL, REST, and more'
     }
@@ -38,13 +38,13 @@ export const relatedToolsData: LongCard[] = [
 
 export const ontologyWebData: LongCard[] = [
     {
-        icon: '../../../assets/images/ontology_lookup_service.png',
+        icon: 'assets/images/ontology_lookup_service.png',
         title: 'Ontology Lookup Service (OLS)',
         body: 'Repository for biomedical ontologies that aims to provide a single point of access to the latest ontology versions',
         externalLink: "www/google.com"
     },
     {
-        icon: '../../../assets/images/bio_portal.png',
+        icon: 'assets/images/bio_portal.png',
         title: 'BioPortal',
         body: `The world's most comprehensive repository of biomedical ontologies`,
         externalLink: "www/google.com"
