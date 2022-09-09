@@ -7,6 +7,7 @@ import { PageDataModule } from 'src/app/components/page-data/page-data.module';
 import { SopLinksModule } from 'src/app/components/sop-links/sop-links.module'
 import { OrganTabsModule } from 'src/app/components/organ-tabs/organ-tabs.module';
 import { TwoDimImageModule } from 'src/app/components/two-dim-image/two-dim-image.module';
+import { ChooseVersionModule } from 'src/app/components/choose-version/choose-version.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TwoDimImageModule } from 'src/app/components/two-dim-image/two-dim-imag
     PageDataModule,
     SopLinksModule,
     OrganTabsModule,
-    TwoDimImageModule
+    TwoDimImageModule,
+    ChooseVersionModule
 
   ],
   providers: [],

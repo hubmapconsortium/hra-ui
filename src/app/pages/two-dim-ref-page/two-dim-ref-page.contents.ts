@@ -1,8 +1,9 @@
+import { ChooseVersion } from "src/app/components/choose-version/choose-version";
 import { organTabs } from "src/app/components/organ-tabs/organ-tabs";
 import { PageDataItems } from "src/app/components/page-data/page-data";
 import { PageHeaderItems } from "src/app/components/page-header/page-header-items";
 import { SopLinks } from "src/app/components/sop-links/sop-links";
-import { TissueDetails } from "src/app/components/two-dim-image/two-dim-image";
+import { OrganData } from "src/app/components/two-dim-image/two-dim-image";
 
 export const twoDimHeaderCardDetails: PageHeaderItems[] = [
     {
@@ -25,9 +26,15 @@ export const overviewData: PageDataItems[] = [
 export const sopData: SopLinks[] = [
     {
         title: 'Standard Operating Procedures (SOP)',
-        urls: [' Style Guide: HuBMAP 2D Functional Tissue Unit (FTU) Illustrations']
+        urls: [' Style Guide: HuBMAP 2D Functional Tissue Unit (FTU) Illustrations'],
+        href: ["https://drive.google.com/file/d/1KoJCEGMTbpX-LOLNoAZhQgSWNYCPTh41/view"]
     }
 ]
+
+export const versionData: ChooseVersion[] = [
+    { release: '1st Release, March 2021'},
+    { release: '2nd Release, December 2021'},
+  ]
 
 export const termsOfUseData: PageDataItems[] = [
     {
@@ -37,15 +44,21 @@ export const termsOfUseData: PageDataItems[] = [
     },
     {
         heading: 'License',
-        descriptions: 'All CCF 2D functional tissue units files are released under <a href=https://creativecommons.org/licenses/by/4.0/ target=_blank> Attribution 4.0 International (CC BY 4.0)</a>.'
+        descriptions: 'All CCF 2D functional tissue units files are released under <font color="#3d72bf"><a href="https://creativecommons.org/licenses/by/4.0/" target=_blank> Attribution 4.0 International (CC BY 4.0)</a>.</font>'
     },
     {
         heading: 'Citation',
         descriptions: `If you use the data files v1.0 release, please cite this effort as follows:
         <br><br> Browne, K., Cross, L. E., Herr II, B. W., Record, L, Quardokus, E, Bueckle, A., Börner, K. (2021). HuBMAP CCF 3D Reference Object Library.
-        https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html. Accessed on March 12, 2021.
-        <br><br> Browne, K., Cross, L. E., Herr II, B. W., Record, L, Quardokus, E, Bueckle, A., Börner, K. (2021). HuBMAP CCF 3D Reference Object Library. 
-        https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html. Accessed on December 1, 2021.`
+        <font color = "#3d72bf">
+        <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html" target="_blank">
+        https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html.</a></font>
+        Accessed on March 12, 2021.
+        <br><br>If you use the data files v1.1 release, please cite this effort as follows:
+        <br><br>Browne, K., Cross, L. E., Herr II, B. W., Record, L, Quardokus, E, Bueckle, A., Börner, K. (2021). HuBMAP CCF 3D Reference Object Library. 
+        <font color = "#3d72bf">
+        <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html" target="_blank">
+        https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html.</a></font> Accessed on December 1, 2021.`
     },
     {
         heading: 'Acknowledgments',
@@ -53,51 +66,63 @@ export const termsOfUseData: PageDataItems[] = [
     }
 ]
 
-export const tabsImages:organTabs[] = [
+export const tabsImages: organTabs[] = [
     {
         organName: 'Kidney',
-        imgUrl:'../../../assets/images/kidney.jpg',
+        imgUrl: '../../../assets/images/kidney.jpg',
         disabled: false
     },
     {
         organName: 'Large Intestine',
-        imgUrl:'../../../assets/images/large_intestine.jpg',
-        disabled:true
+        imgUrl: '../../../assets/images/large_intestine.jpg',
+        disabled: true
     },
     {
         organName: 'Liver',
-        imgUrl:'../../../assets/images/liver.jpg',
+        imgUrl: '../../../assets/images/liver.jpg',
         disabled: false
     },
     {
         organName: 'Lungs',
-        imgUrl:'../../../assets/images/lungs.jpg',
-        disabled:true
+        imgUrl: '../../../assets/images/lungs.jpg',
+        disabled: true
     },
     {
         organName: 'Pancreas',
-        imgUrl:'../../../assets/images/pancreas.jpg',
-        disabled:true
+        imgUrl: '../../../assets/images/pancreas.jpg',
+        disabled: true
     },
     {
         organName: 'Prostate',
-        imgUrl:'../../../assets/images/prostate.jpg',
-        disabled:true
+        imgUrl: '../../../assets/images/prostate.jpg',
+        disabled: true
     },
     {
         organName: 'Thymus',
-        imgUrl:'../../../assets/images/thymus.jpg',
-        disabled:true
+        imgUrl: '../../../assets/images/thymus.jpg',
+        disabled: true
     }
 ]
 
-export const kidneyTissueInfo:TissueDetails[] = [
+export const organInfo: OrganData[] = [
     {
-        tissueName:'Nephron',
-        tissueImage: '../../../assets/images/nephron.png'
+        organName: 'Kidney',
+        tissueData: [
+            {
+                tissueName: 'Nephron',
+                tissueImage: '../../../assets/images/nephron.png'
+            },
+            {
+                tissueName: 'Renal Corpuscle',
+                tissueImage: '../../../assets/images/renal_corpuscle.png'
+            }
+        ]
     },
     {
-        tissueName:'Renal Corpuscle',
-        tissueImage: '../../../assets/images/renal_corpuscle.png'
+        organName: 'Liver',
+        tissueData: [{
+            tissueName: 'Liver Lobule',
+            tissueImage: '../../../assets/images/liver_lobule.png'
+        }]
     }
 ]

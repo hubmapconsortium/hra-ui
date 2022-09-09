@@ -5,7 +5,7 @@
     <div class="sop-items">
         <ul>
             <li *ngFor="let url of link.urls">
-                <a>{{url}}</a>
+                <a href={{link.href}} target="_blank">{{url}}</a>
             </li>
         </ul>
     </div>

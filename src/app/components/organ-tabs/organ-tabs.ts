@@ -1,5 +1,5 @@
 export interface organTabs {
-    organName: string;
+    organName?: string;
     imgUrl: string;
     disabled: boolean;
 }

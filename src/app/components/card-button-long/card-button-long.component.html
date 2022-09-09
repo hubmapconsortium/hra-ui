@@ -4,10 +4,10 @@
       <img [src]="longButton.icon" class="img-cls"/>
     </div>
     <div class="body">
-      <div class="nav-card-title">
+      <div class="nav-card-title" (click)="cardRoutes.emit(longButton)">
         {{longButton.title}}
         <div *ngIf="longButton.externalLink">
-          <a href="https://portal.hubmapconsortium.org/" target="_blank"><mat-icon>open_in_new</mat-icon></a>
+          <a href={{longButton.externalLink}} target="_blank"><mat-icon>open_in_new</mat-icon></a>
         </div>
       </div>
       <div class="nav-card-description">

@@ -1,20 +1,26 @@
 <div class="card-container">
-    <mat-card >
+    <mat-card>
         <mat-card-title class="card-title">{{cardTitle}}</mat-card-title>
         <mat-divider></mat-divider>
-        <mat-card-actions *ngFor="let tissue of tissueData">
-            <div class="units-container">
-                {{tissue.tissueName}}
-                <button mat-stroked-button disableRipple="true">
-                    Info
-                    <mat-icon>info</mat-icon>
-                </button>
-                <button mat-stroked-button disableRipple="true">
-                    Download
-                    <mat-icon>download</mat-icon>
-                </button>
-            </div>
-            <img src={{tissue.tissueImage}} />
-        </mat-card-actions>
+        <ng-container *ngFor="let tissues of tissueData">
+            <mat-card-actions *ngFor="let tissue of tissues.tissueData; last as last">
+                <div class="units-container">
+                    {{tissue.tissueName}}
+                    <button mat-stroked-button disableRipple="true">
+                        Info
+                        <mat-icon>info</mat-icon>
+                    </button>
+                    <button mat-stroked-button disableRipple="true">
+                        Download
+                        <mat-icon>download</mat-icon>
+                    </button>
+                </div>
+                <div class="image-container">
+                    <img src={{tissue.tissueImage}} />
+                </div>
+
+                <mat-divider *ngIf="!last"></mat-divider>
+            </mat-card-actions>
+        </ng-container>
     </mat-card>
 </div>

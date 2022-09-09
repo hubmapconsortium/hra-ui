@@ -18,7 +18,7 @@ export class CarouselComponent {
 
   config: SwiperOptions = {
     autoplay: {
-      delay: 80000000,
+      delay: 10000,
       disableOnInteraction: true
     },
     navigation: {

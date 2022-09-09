@@ -10,7 +10,7 @@ export class OrganTabsComponent {
 
   @Input() tabs: organTabs[] = []
 
-  @Output() organName = new EventEmitter<organTabs>;
+  @Output() organName = new EventEmitter<string>;
 
   constructor() { }
 

@@ -13,7 +13,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         },
         {
           menuName: 'CCF Anatomical Structures, Cell Types + Biomarkers (ASCT+B) Tables',
-          route: 'ccf-table-page',
+          route: 'ccf-anatomical-structures',
           disabled: true
         },
         {
@@ -23,12 +23,12 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         },
         {
           menuName: 'CCF 2D Reference Object Library',
-          route: 'ccf-2d-route',
+          route: 'ccf-2d-reference-library',
           disabled: true
         },
         {
           menuName: 'CCF 3D Reference Object Library',
-          route: 'ccf-3d-route',
+          route: 'ccf-3d-reference-library',
           disabled: true
         },
         {
@@ -39,14 +39,14 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         },
         {
           menuName: 'HuBMAP Data Portal',
-          route: 'hubmap-route',
+          route: 'hubmap-portal',
           disabled: true
         }
       ]
     },
     {
       menuName: 'CCF Ontology',
-      route: 'ontology-route',
+      route: 'ccf-ontology',
       disabled: true,
     },
     {
@@ -54,7 +54,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
       children: [
         {
           menuName: 'Overview: HRA Tools',
-          route: 'tools-route',
+          route: 'ccf-overview-tools',
           disabled: true,
           divider: true
         },

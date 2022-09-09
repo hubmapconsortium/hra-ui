@@ -1,5 +1,5 @@
 import { LongCard } from './long-card';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'ccf-card-button-long',
@@ -11,6 +11,6 @@ export class CardButtonLongComponent {
   @Input()
   longButtonItems: LongCard[];
 
-  constructor() { }
+  @Output() cardRoutes = new EventEmitter<LongCard>;
 
 }

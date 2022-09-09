@@ -1,6 +1,8 @@
 import { TILE_DEFINITION } from './../../shared/simple-tile-items';
 import { Component, OnInit } from '@angular/core';
 import { longButtonItems, pageTitle } from './overview-data.content';
+import { Router } from '@angular/router';
+import { LongCard } from 'src/app/components/card-button-long/long-card';
 
 @Component({
   selector: 'ccf-overview-data',
@@ -15,5 +17,9 @@ export class OverviewDataComponent{
 
   longButtonItems = longButtonItems
 
-  constructor() { }
+  constructor(private router: Router) { }
+
+  clicked(card: LongCard): void {
+    this.router.navigate([card.route])
+  }
 }

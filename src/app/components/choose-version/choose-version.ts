@@ -1,5 +1,5 @@
 export interface ChooseVersion {
   release: string;
-  file: string;
+  file?: string;
 }
 

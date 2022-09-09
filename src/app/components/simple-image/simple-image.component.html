@@ -1,0 +1,24 @@
+<div class="image-card-container">
+    <mat-card *ngFor="let image of imageInfo">
+        <mat-card-header>
+            {{image.title}}
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <div class="description">
+            <markdown>{{image.description}}</markdown>
+        </div>
+        <mat-card-actions>
+            <img [src]=image.image (click)="openImageViewer(imageViewerContent)">
+            <ng-template #imageViewerContent class="image-dialog">
+                <div class="dialog-header">
+                    <span mat-dialog-title>{{image.title}}</span>
+                    <div style="flex-grow:1;"></div>
+                    <button mat-dialog-close mat-button [disableRipple]="true">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+                <img [src]="image.image">
+            </ng-template>
+        </mat-card-actions>
+    </mat-card>
+</div>

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { TissueDetails } from './two-dim-image';
+import { OrganData, TissueDetails } from './two-dim-image';
 
 @Component({
   selector: 'ccf-two-dim-image',
@@ -9,7 +9,7 @@ import { TissueDetails } from './two-dim-image';
 export class TwoDimImageComponent {
 
   @Input() cardTitle: string
-  @Input() tissueData: TissueDetails[] = []
+  @Input() tissueData: OrganData[] = [];
 
   constructor() { }
 

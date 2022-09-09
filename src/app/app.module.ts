@@ -12,6 +12,8 @@ import { AppComponent } from './app.component';
 import { TableDataService } from './services/table-data/tabledata.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TwoDimRefPageModule } from './pages/two-dim-ref-page/two-dim-ref-page.module';
+import { CcfOntologyModule } from './pages/ccf-ontology/ccf-ontology.module';
+import { OverviewToolsModule } from './pages/overview-tools/overview-tools.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { TwoDimRefPageModule } from './pages/two-dim-ref-page/two-dim-ref-page.m
     PageDataModule,
     AppRoutingModule,
     HttpClientModule,
-    TwoDimRefPageModule
+    TwoDimRefPageModule,
+    CcfOntologyModule,
+    OverviewToolsModule
   ],
   providers: [TableDataService],
   bootstrap: [AppComponent]

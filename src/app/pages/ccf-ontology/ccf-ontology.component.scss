@@ -1,0 +1,34 @@
+:host {
+  max-width: 77rem;
+
+  .page-title {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 2.25rem;
+    line-height: 2.75rem;
+    letter-spacing: 0.005rem;
+    color: #212121;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  .ontology-definitions {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005rem;
+    padding-bottom: 1rem;
+  }
+
+  .long-card-container>p {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 142.02%;
+    letter-spacing: 0.005em;
+  }
+}

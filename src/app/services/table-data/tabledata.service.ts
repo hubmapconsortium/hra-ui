@@ -12,7 +12,7 @@ export class TableDataService {
 
   constructor(private http: HttpClient) { }
 
-  getData(file: string): Observable<TableData[]> {
+  getData(file: string | undefined): Observable<TableData[]> {
     return this.http.get(`/assets/table-data/${file}`, { responseType: 'text' }).pipe(
       map(data => parse<TableData>(data, {
         header: true, dynamicTyping: true, skipEmptyLines: 'greedy'
