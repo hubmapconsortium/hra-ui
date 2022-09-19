@@ -14,10 +14,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { TwoDimRefPageModule } from './pages/two-dim-ref-page/two-dim-ref-page.module';
 import { CcfOntologyModule } from './pages/ccf-ontology/ccf-ontology.module';
 import { OverviewToolsModule } from './pages/overview-tools/overview-tools.module';
+import { CcfReporterPageModule } from './pages/ccf-asctb-reporter-page/ccf-asctb-reporter-page.module';
+import { YoutubeModelModule } from './components/youtube-model/youtube-model.module';
+import { CcfExplorationUserInterfaceComponent } from './pages/ccf-exploration-user-interface/ccf-exploration-user-interface.component';
+import { HraMillitomeComponent } from './pages/hra-millitome/hra-millitome.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CcfExplorationUserInterfaceComponent,
+    HraMillitomeComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +38,9 @@ import { OverviewToolsModule } from './pages/overview-tools/overview-tools.modul
     HttpClientModule,
     TwoDimRefPageModule,
     CcfOntologyModule,
-    OverviewToolsModule
+    OverviewToolsModule,
+    CcfReporterPageModule,
+    YoutubeModelModule
   ],
   providers: [TableDataService],
   bootstrap: [AppComponent]

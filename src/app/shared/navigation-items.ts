@@ -60,7 +60,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         },
         {
           menuName: 'CCF Anatomical Structures, Cell Types + Biomarkers (ASCT+B) Reporter',
-          route: 'ccf-reporter-route',
+          route: 'ccf-asctb-reporter',
           disabled: true
         },
         {
@@ -75,12 +75,12 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         },
         {
           menuName: 'CCF Exploration User Interface (EUI)',
-          route: 'ccf-eui-route',
+          route: 'ccf-exploration-user-interface',
           disabled: true
         },
         {
           menuName: 'HRA Milletome',
-          route: 'hra-route',
+          route: 'ccf-hra-millitome',
           disabled: true
         },
         {
