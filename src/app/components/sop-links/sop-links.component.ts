@@ -11,6 +11,4 @@ export class SopLinksComponent {
   @Input()
   links: SopLinks[] = [];
 
-  constructor() { }
-
 }

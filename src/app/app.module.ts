@@ -18,6 +18,10 @@ import { CcfReporterPageModule } from './pages/ccf-asctb-reporter-page/ccf-asctb
 import { YoutubeModelModule } from './components/youtube-model/youtube-model.module';
 import { CcfExplorationUserInterfaceComponent } from './pages/ccf-exploration-user-interface/ccf-exploration-user-interface.component';
 import { HraMillitomeComponent } from './pages/hra-millitome/hra-millitome.component';
+import { CellPopulationGraphsModule } from './pages/cell-population-graphs/cell-population-graphs.module';
+import { HraApiModule } from './pages/hra-api/hra-api.module';
+import { AboutModule } from './pages/about/about.module';
+import { OverviewTrainingOutreachModule } from './pages/overview-training-outreach/overview-training-outreach.module';
 
 @NgModule({
   declarations: [
@@ -41,6 +45,10 @@ import { HraMillitomeComponent } from './pages/hra-millitome/hra-millitome.compo
     OverviewToolsModule,
     CcfReporterPageModule,
     YoutubeModelModule
+    CellPopulationGraphsModule,
+    HraApiModule,
+    AboutModule,
+    OverviewTrainingOutreachModule
   ],
   providers: [TableDataService],
   bootstrap: [AppComponent]

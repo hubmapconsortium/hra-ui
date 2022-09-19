@@ -1,54 +1,54 @@
 :host {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  background-color: #c2cae5;
+
+  .bottom-button {
+    position: absolute;
+    right: 0;
+    border: 0.063rem solid #444c65;
+    border-radius: 0.125rem;
+    background-color: #fafafa;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.4202rem;
+    letter-spacing: 0.005em;
+    color: #444c65;
     display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    background-color: #C2CAE5;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+  }
 
-    .bottom-button {
-        position: absolute;
-        right: 0;
-        border: 0.063rem solid #444C65;
-        border-radius: 0.125rem;
-        background-color: #FAFAFA;
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 0.875rem;
-        line-height: 142.02%;
-        letter-spacing: 0.005em;
-        color: #444C65;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        padding: 0.5rem 1rem;
-        gap: 0.5rem;
-    }
+  .bottom-bar {
+    font-size: 0.875rem;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.063rem;
+    color: #212121;
+    display: flex;
+    flex-direction: row;
+  }
 
-    .bottom-bar {
-        font-size: 0.875rem;
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 400;
-        line-height: 1.063rem;
-        color: #212121;
-        display: flex;
-        flex-direction: row;
-    }
+  mat-toolbar {
+    background-color: #c2cae5;
+    max-width: 77rem;
+    position: sticky;
+    height: 5.563rem;
+    padding: unset;
+  }
 
-    mat-toolbar {
-        background-color: #C2CAE5;
-        max-width: 77rem;
-        position: sticky;
-        height: 89px;
-        padding: unset;
-    }
+  ::ng-deep span > mat-icon {
+    font-size: 1.313rem;
+  }
 
-    ::ng-deep span>mat-icon{
-        font-size: 21px;
-    }
-
-    p{
-        margin-top: 0.1rem;
-    }
+  p {
+    margin-top: 0.1rem;
+  }
 }

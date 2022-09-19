@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'ccf-bottom-toolbar',
@@ -6,7 +6,5 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bottom-toolbar.component.scss']
 })
 export class BottomToolbarComponent {
-
-  constructor() { }
 
 }

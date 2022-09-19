@@ -3,7 +3,12 @@
     <div class="left">
       <div class="content-titles">{{info.title}}</div>
       <div class="content-body">{{info.body}}</div>
-      <button mat-stroked-button class="get-button">{{info.button}}</button>
+      <div *ngIf="info.url; else route">
+        <a mat-stroked-button class="get-button" href={{info.url}} target="_blank">Get Started</a>
+      </div>
+      <ng-template #route>
+        <button mat-stroked-button class="get-button" (click)="buttonRoute.emit(info)">Get Started</button>
+      </ng-template>
     </div>
     <div class="right">
       <img [src]="info.image" />

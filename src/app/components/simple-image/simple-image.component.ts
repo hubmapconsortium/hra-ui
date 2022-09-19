@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, TemplateRef } from '@angular/core';
 import { ImageData } from './simple-image';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -13,7 +13,7 @@ export class SimpleImageComponent {
   constructor(private dialog: MatDialog) { }
 
   openImageViewer(content: TemplateRef<unknown>): void {
-    this.dialog.open(content, {panelClass:'custom-modal'})
+    this.dialog.open(content, { panelClass: 'custom-modal' })
   }
 
 }

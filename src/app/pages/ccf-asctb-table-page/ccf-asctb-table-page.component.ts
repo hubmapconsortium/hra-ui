@@ -10,16 +10,16 @@ import { EMPTY, Observable } from 'rxjs';
   templateUrl: './ccf-asctb-table-page.component.html',
   styleUrls: ['./ccf-asctb-table-page.component.scss']
 })
-export class CcfTablePageComponent implements OnInit{
+export class CcfTablePageComponent implements OnInit {
 
   headerCardDetails = headerCardDetails;
   overviewData = overviewData;
-  existingTablesData=existingTablesData;
-  exploreTablesData=exploreTablesData;
+  existingTablesData = existingTablesData;
+  exploreTablesData = exploreTablesData;
   sopLinksData = sopLinksData
-  displayedColumnsData=displayedColumnsData
-  headerInfo=headerInfo
-  versionData=versionData
+  displayedColumnsData = displayedColumnsData
+  headerInfo = headerInfo
+  versionData = versionData
   placeholderDate = versionData[0].release
 
   tableData: Observable<TableData[]> = EMPTY;
@@ -30,7 +30,7 @@ export class CcfTablePageComponent implements OnInit{
     this.tableData = this.dataService.getData(version.file);
   }
 
-  ngOnInit():void{
+  ngOnInit(): void {
     this.setData(versionData[0]);
   }
 }

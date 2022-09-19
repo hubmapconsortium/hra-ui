@@ -7,18 +7,35 @@
                 <div class="units-container">
                     {{tissue.tissueName}}
                     <button mat-stroked-button disableRipple="true">
-                        Info
-                        <mat-icon>info</mat-icon>
-                    </button>
-                    <button mat-stroked-button disableRipple="true">
                         Download
                         <mat-icon>download</mat-icon>
                     </button>
+                    <button mat-stroked-button disableRipple="true">
+                        Info
+                        <mat-icon>info</mat-icon>
+                    </button>
                 </div>
                 <div class="image-container">
-                    <img src={{tissue.tissueImage}} />
+                    <img [src]="tissue.tissueImage" (click)="openImageViewer(imageContent)">
+                    <ng-template #imageContent>
+                        <div class="dialog-header">
+                            <span mat-dialog-title>{{tissue.tissueName}}</span>
+                            <div style="flex-grow:1;"></div>
+                            <button mat-dialog-close mat-stroked-button [disableRipple]="true">
+                                Info
+                                <mat-icon>info</mat-icon>
+                            </button>
+                            <button mat-dialog-close mat-stroked-button [disableRipple]="true">
+                                Download
+                                <mat-icon>download</mat-icon>
+                            </button>
+                            <button mat-dialog-close mat-button [disableRipple]="true">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </div>
+                        <img [src]="tissue.dialog_image">
+                    </ng-template>
                 </div>
-
                 <mat-divider *ngIf="!last"></mat-divider>
             </mat-card-actions>
         </ng-container>

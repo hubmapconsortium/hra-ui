@@ -13,8 +13,6 @@ export class ToolbarComponent {
 
   constructor(private router: Router) { }
 
-  down: boolean = false;
-
   @Input()
   navigationItems: NavItems[] = NAVIGATION_ITEMS;
 

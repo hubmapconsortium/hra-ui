@@ -13,4 +13,4 @@ import { NgModule } from '@angular/core';
     exports: [PageHeaderComponent]
 })
 
-export class PageHeaderModule{}
+export class PageHeaderModule { }
