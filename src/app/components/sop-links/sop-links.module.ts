@@ -15,4 +15,4 @@ import { NgModule } from '@angular/core';
     exports: [SopLinksComponent]
 })
 
-export class SopLinksModule{}
+export class SopLinksModule { }

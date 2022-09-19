@@ -17,4 +17,4 @@ import { SwiperModule } from "swiper/angular";
     ]
 })
 
-export class CarouselModule{}
+export class CarouselModule { }

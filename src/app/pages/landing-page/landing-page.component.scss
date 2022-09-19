@@ -1,6 +1,10 @@
 :host {
   max-width: 77rem;
 
+  .hubmap-title {
+    float: left;
+  }
+
   .main-content {
     margin-top: 2.5rem;
     padding-bottom: 1rem;
@@ -10,11 +14,11 @@
     height: 4.375rem;
     width: 3.125rem;
     object-fit: contain;
-    border: 0.063rem solid #FFFFFF;
+    border: 0.063rem solid #ffffff;
   }
 
   .landing-title {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 2.25rem;
     line-height: 2.125rem;
     color: #212121;
@@ -22,16 +26,16 @@
   }
 
   .landing-subtitle {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-style: normal;
     font-size: 1.75rem;
     font-weight: 300;
-    color: #444C65;
+    color: #444c65;
     line-height: 2.125rem;
   }
 
   .content-title {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 2.25rem;
     color: #212121;
     font-weight: 300;

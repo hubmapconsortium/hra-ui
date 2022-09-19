@@ -15,7 +15,8 @@ export const ccfKnowledgeData: ImageData[] = [
     {
         title: 'Common Coordinate Framework Knowledge Architecture',
         description: '<b>Figure 1.</b> Tissue samples and datasets are annotated using the CCF Clinical, CCF Semantic, and CCF Spatial Ontologies.',
-        image: 'assets/images/ontology.png'
+        image: 'assets/images/ontology_resize.png',
+        image_dialog: 'assets/images/ontology.png'
     }
 ]
 
@@ -24,7 +25,8 @@ export const spatialOntologyData: ImageData[] = [
         title: 'Spatial Ontology',
         description: `<b>Figure 2.</b> Spatial placement of anatomical structures in relation to the HuBMAP Atlas reference system. 
         Note that spatial entities can use different coordinate systems that are “mapped” into the common reference system.`,
-        image: 'assets/images/spatial_ontology.png'
+        image: 'assets/images/spatial_ontology.png',
+        image_dialog: 'assets/images/spatial_ontology.png'
     }
 ]
 
@@ -32,7 +34,8 @@ export const relatedToolsData: LongCard[] = [
     {
         icon: 'assets/images/related_tools.png',
         title: 'Human Reference Atlas Application Programming Interfaces',
-        body: 'Query and interact with the HRA using Python, JavaScript, SPARQL, REST, and more'
+        body: 'Query and interact with the HRA using Python, JavaScript, SPARQL, REST, and more',
+        route: 'ccf-hra-api'
     }
 ]
 

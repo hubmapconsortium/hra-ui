@@ -8,7 +8,7 @@ import { acknowledgmentsData, buttonData, headerCardData, overviewData } from '.
 })
 export class CellPopulationGraphsComponent {
   headerCardData = headerCardData;
-  overviewData=overviewData
-  acknowledgmentsData=acknowledgmentsData
+  overviewData = overviewData
+  acknowledgmentsData = acknowledgmentsData
   buttonData = buttonData
 }

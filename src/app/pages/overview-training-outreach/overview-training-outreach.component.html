@@ -1,0 +1,6 @@
+<div class="title">{{title}}</div>
+<ccf-simple-tile [definitions]="TILE_DEFINITION"></ccf-simple-tile>
+<div class="container" *ngFor="let longCard of longCardData">
+    <div class="heading">{{longCard.heading}}</div>
+    <ccf-card-button-long [longButtonItems]="longCard.cardData"></ccf-card-button-long>
+</div>

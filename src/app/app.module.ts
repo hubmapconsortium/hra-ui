@@ -15,6 +15,9 @@ import { TwoDimRefPageModule } from './pages/two-dim-ref-page/two-dim-ref-page.m
 import { CcfOntologyModule } from './pages/ccf-ontology/ccf-ontology.module';
 import { OverviewToolsModule } from './pages/overview-tools/overview-tools.module';
 import { CellPopulationGraphsModule } from './pages/cell-population-graphs/cell-population-graphs.module';
+import { HraApiModule } from './pages/hra-api/hra-api.module';
+import { AboutModule } from './pages/about/about.module';
+import { OverviewTrainingOutreachModule } from './pages/overview-training-outreach/overview-training-outreach.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { CellPopulationGraphsModule } from './pages/cell-population-graphs/cell-
     TwoDimRefPageModule,
     CcfOntologyModule,
     OverviewToolsModule,
-    CellPopulationGraphsModule
+    CellPopulationGraphsModule,
+    HraApiModule,
+    AboutModule,
+    OverviewTrainingOutreachModule
   ],
   providers: [TableDataService],
   bootstrap: [AppComponent]

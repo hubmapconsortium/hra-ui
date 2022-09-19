@@ -1,6 +1,8 @@
 import { TILE_DEFINITION } from './../../shared/simple-tile-items';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { title, subtitle, cardsHeading, carouselInfo, cards } from './landing-page.content';
+import { SectionCardItems } from 'src/app/components/section-card/section-card-items';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ccf-landing-page',
@@ -8,6 +10,8 @@ import { title, subtitle, cardsHeading, carouselInfo, cards } from './landing-pa
   styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent {
+
+  constructor(private router: Router) { }
 
   title = title;
   subtitle = subtitle
@@ -17,6 +21,8 @@ export class LandingPageComponent {
   carouselInfo = carouselInfo
   cards = cards
 
-  constructor() { }
+  routeTo(card: any): void {
+    this.router.navigate([card.route])
+  }
 
 }

@@ -1,4 +1,4 @@
-<div class="page-title">Common Coordinate Framework Ontology</div>
+<div class="page-title">{{title}}</div>
 <ccf-simple-tile [definitions]="description"></ccf-simple-tile>
 <ccf-page-data [data]="overviewData"></ccf-page-data>
 <ccf-simple-image [imageInfo]="ccfKnowledgeData"></ccf-simple-image>
@@ -10,7 +10,7 @@
 <ccf-simple-image [imageInfo]="spatialOntologyData"></ccf-simple-image>
 <div class="long-card-container">
     <p>Related Tools</p>
-    <ccf-card-button-long [longButtonItems]="relatedToolsData"></ccf-card-button-long>
+    <ccf-card-button-long [longButtonItems]="relatedToolsData" (cardRoutes)="cardClicked($event)"></ccf-card-button-long>
 </div>
 <div class="long-card-container">
     <p>CCF Ontology on the Web</p>

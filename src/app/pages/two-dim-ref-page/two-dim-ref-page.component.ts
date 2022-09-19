@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { organTabs } from 'src/app/components/organ-tabs/organ-tabs';
 import { OrganData } from 'src/app/components/two-dim-image/two-dim-image';
 import { overviewData, sopData, tabsImages, termsOfUseData, twoDimHeaderCardDetails, organInfo, versionData } from './two-dim-ref-page.contents';
 
@@ -18,8 +17,6 @@ export class TwoDimRefPageComponent {
   cardTitle = "Kidney Function Tissue Units";
   versionData = versionData
   placeholderDate = versionData[0].release
-
-
   organData: OrganData[];
 
   constructor() {
@@ -29,4 +26,5 @@ export class TwoDimRefPageComponent {
   setOrgan(organ: string | undefined): void {
     this.organData = organInfo.filter(item => item.organName === organ)
   }
+
 }

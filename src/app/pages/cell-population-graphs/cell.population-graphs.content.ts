@@ -19,7 +19,7 @@ export const overviewData: PageDataItems[] = [
     }
 ]
 
-export const acknowledgmentsData : PageDataItems[] = [
+export const acknowledgmentsData: PageDataItems[] = [
     {
         heading: "Acknowledgments",
         descriptions: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
@@ -29,8 +29,8 @@ export const acknowledgmentsData : PageDataItems[] = [
     }
 ]
 
-export const buttonData: UseButton = 
-    {
-        text: "Use the Cell Population Graphs",
-        url: "https://hubmapconsortium.github.io/tissue-bar-graphs/"
-    }
+export const buttonData: UseButton =
+{
+    text: "Use the Cell Population Graphs",
+    url: "https://hubmapconsortium.github.io/tissue-bar-graphs/"
+}

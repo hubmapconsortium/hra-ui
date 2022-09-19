@@ -1,5 +1,5 @@
 import { SectionCardItems } from './section-card-items';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'ccf-section-card',
@@ -11,6 +11,6 @@ export class SectionCardComponent {
   @Input()
   public cards: SectionCardItems[] = [];
 
-  constructor() {
-  }
+  @Output() cardRoutes = new EventEmitter<SectionCardItems>;
+
 }

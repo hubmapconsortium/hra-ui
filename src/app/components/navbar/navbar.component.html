@@ -1,7 +1,7 @@
 <span *ngFor="let item of items">
   <span *ngIf="item.children?.length">
     <button mat-button [matMenuTriggerFor]="childMenu" [disabled]="item.disabled" [disableRipple]="true"
-        class="navigation-title" #menuTrigger="matMenuTrigger">
+      class="navigation-title" #menuTrigger="matMenuTrigger">
       {{item.menuName}}
       <mat-icon [class.inverse]="menuTrigger.menuOpen">arrow_drop_down</mat-icon>
     </button>

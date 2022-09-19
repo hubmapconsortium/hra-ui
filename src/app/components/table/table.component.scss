@@ -8,7 +8,7 @@
   }
 
   td {
-    font-family: 'Inter';
+    font-family: "Inter";
     font-style: normal;
     font-weight: 300;
     font-size: 0.875rem;
@@ -18,7 +18,7 @@
   }
 
   .table-title {
-    font-family: 'Inter';
+    font-family: "Inter";
     font-style: normal;
     font-weight: 500;
     font-size: 0.875rem;
@@ -28,24 +28,23 @@
   }
 
   .table-footer {
-    font-family: 'Inter';
+    font-family: "Inter";
     font-style: normal;
     font-weight: 500;
     font-size: 0.875rem;
     line-height: 1.5rem;
     letter-spacing: 0.005rem;
     color: #212121;
-
   }
 
-  ::ng-deep table>tbody>tr>td:nth-child(1) {
-    font-family: 'Inter';
+  ::ng-deep table > tbody > tr > td:nth-child(1) {
+    font-family: "Inter";
     font-style: normal;
     font-weight: 500;
     font-size: 0.875rem;
     line-height: 1.5rem;
     letter-spacing: 0.005rem;
-    color: #0A6EBD;
+    color: #0a6ebd;
 
     &:hover {
       transform: scale(1.03);
@@ -56,9 +55,9 @@
   table {
     width: 100%;
     table-layout: fixed;
-    background-color: #FFFFFF;
-    border: 1px solid #E0E0E0;
-    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.16);
+    background-color: #ffffff;
+    border: 0.063rem solid #e0e0e0;
+    box-shadow: 0rem 0.125rem 0.063rem rgba(0, 0, 0, 0.16);
   }
 
   th,
@@ -70,21 +69,23 @@
   }
 
   .mat-column-organ {
-    width: 191px;
+    width: 11.938rem;
   }
 
-  ::ng-deep table>thead>tr>th:nth-child(1) .mat-sort-header-arrow {
+  ::ng-deep table > thead > tr > th:nth-child(1) .mat-sort-header-arrow {
     color: #212121 !important;
     &:hover {
       transform: rotate(360deg) !important;
-      color: #EBEBEB !important;
+      color: #ebebeb !important;
     }
   }
 
-  ::ng-deep .mat-sort-header-container:not(.mat-sort-header-sorted) .mat-sort-header-arrow {
+  ::ng-deep
+    .mat-sort-header-container:not(.mat-sort-header-sorted)
+    .mat-sort-header-arrow {
     opacity: 0.54 !important;
     transform: rotate(180deg) !important;
-    color: #EBEBEB;
+    color: #ebebeb;
     size: 3rem;
   }
 }

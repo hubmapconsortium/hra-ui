@@ -12,6 +12,4 @@ export class OrganTabsComponent {
 
   @Output() organName = new EventEmitter<string>;
 
-  constructor() { }
-
 }

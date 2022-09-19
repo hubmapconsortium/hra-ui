@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NavItems } from '../toolbar/nav-items';
 
 @Component({
@@ -10,7 +10,5 @@ export class NavbarComponent {
 
   @Input() items: NavItems[];
   @Output() itemClick = new EventEmitter<NavItems>;
-
-  constructor() { }
 
 }

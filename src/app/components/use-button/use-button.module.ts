@@ -16,4 +16,4 @@ import { MatButtonModule } from '@angular/material/button';
     exports: [UseButtonComponent]
 })
 
-export class UseButtonModule{}
+export class UseButtonModule { }

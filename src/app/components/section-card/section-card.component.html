@@ -1,10 +1,10 @@
 <mat-card *ngFor="let card of cards" class="card-button">
-  <div class="image-container">
+  <div class="image-container" (click)="cardRoutes.emit(card)">
     <img [src]="card.image" alt="Images of Card" class="static">
     <img [src]="card.gif" alt="Images of Card" class="gif">
-  </div>
-  <mat-card-content>
-    <a class="nav-card-title" href="https://www.google.com/" target="_blank">{{card.title}}</a>
+    <mat-card-content>
+    <p class="nav-card-title">{{card.title}}</p>
     <p class="description">{{card.description}}</p>
   </mat-card-content>
+  </div>
 </mat-card>
