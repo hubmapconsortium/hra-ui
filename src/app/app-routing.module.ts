@@ -10,6 +10,11 @@ import { CellPopulationGraphsComponent } from './pages/cell-population-graphs/ce
 import { HraApiComponent } from './pages/hra-api/hra-api.component';
 import { AboutComponent } from './pages/about/about.component';
 import { OverviewTrainingOutreachComponent } from './pages/overview-training-outreach/overview-training-outreach.component';
+import { TissueInfoPageComponent } from './pages/tissue-info-page/tissue-info-page.component';
+import { TissueInfoResolverService } from './services/tissue-info/tissue-info-resolver.service';
+import { HraSopComponent } from './pages/hra-sop/hra-sop.component';
+import { OmapsComponent } from './pages/omaps/omaps.component';
+import { ThreeDimRefPageComponent } from './pages/three-dim-ref-page/three-dim-ref-page.component';
 
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
@@ -22,6 +27,15 @@ const routes: Routes = [
   { path: 'ccf-hra-api', component: HraApiComponent },
   { path: 'ccf-about', component: AboutComponent },
   { path: 'ccf-overview-training-outreach', component: OverviewTrainingOutreachComponent },
+  { path: 'ccf-omaps', component: OmapsComponent },
+  { path: 'ccf-3d-reference-library', component: ThreeDimRefPageComponent },
+  {
+    path: 'ccf-tissue-info-page/:organ', component: TissueInfoPageComponent,
+    resolve: {
+      data: TissueInfoResolverService
+    }
+  },
+  { path: 'ccf-hra-sop', component: HraSopComponent },
   { path: '', redirectTo: 'landing-page', pathMatch: 'full' },
   { path: '**', pathMatch: 'full', component: LandingPageComponent }
 ];

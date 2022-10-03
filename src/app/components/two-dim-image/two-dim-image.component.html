@@ -5,26 +5,26 @@
         <ng-container *ngFor="let tissues of tissueData">
             <mat-card-actions *ngFor="let tissue of tissues.tissueData; last as last">
                 <div class="units-container">
-                    {{tissue.tissueName}}
+                    {{tissue.name}}
                     <button mat-stroked-button disableRipple="true">
                         Download
                         <mat-icon>download</mat-icon>
                     </button>
-                    <button mat-stroked-button disableRipple="true">
+                     <a mat-stroked-button disableRipple="true" href="{{tissue.url}}" style="float: right;">
                         Info
                         <mat-icon>info</mat-icon>
-                    </button>
+                    </a>
                 </div>
                 <div class="image-container">
-                    <img [src]="tissue.tissueImage" (click)="openImageViewer(imageContent)">
+                    <img [src]="tissue.image" (click)="openImageViewer(imageContent)">
                     <ng-template #imageContent>
                         <div class="dialog-header">
-                            <span mat-dialog-title>{{tissue.tissueName}}</span>
+                            <span mat-dialog-title>{{tissue.name}}</span>
                             <div style="flex-grow:1;"></div>
-                            <button mat-dialog-close mat-stroked-button [disableRipple]="true">
+                            <a mat-dialog-close mat-stroked-button [disableRipple]="true" href="{{tissue.url}}">
                                 Info
                                 <mat-icon>info</mat-icon>
-                            </button>
+                            </a>
                             <button mat-dialog-close mat-stroked-button [disableRipple]="true">
                                 Download
                                 <mat-icon>download</mat-icon>
@@ -33,7 +33,7 @@
                                 <mat-icon>close</mat-icon>
                             </button>
                         </div>
-                        <img [src]="tissue.dialog_image">
+                        <img [src]="tissue.expandedImage">
                     </ng-template>
                 </div>
                 <mat-divider *ngIf="!last"></mat-divider>

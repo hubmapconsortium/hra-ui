@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { TissueInfoTableComponent } from './tissue-info-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MarkdownModule } from 'ngx-markdown';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
     declarations: [TissueInfoTableComponent],
@@ -12,6 +13,7 @@ import { MarkdownModule } from 'ngx-markdown';
         BrowserModule,
         BrowserAnimationsModule,
         MatTableModule,
+        MatSortModule,
         MarkdownModule.forChild()
     ],
     exports: [TissueInfoTableComponent]

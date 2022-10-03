@@ -18,6 +18,10 @@ import { CellPopulationGraphsModule } from './pages/cell-population-graphs/cell-
 import { HraApiModule } from './pages/hra-api/hra-api.module';
 import { AboutModule } from './pages/about/about.module';
 import { OverviewTrainingOutreachModule } from './pages/overview-training-outreach/overview-training-outreach.module';
+import { TissueInfoPageModule } from './pages/tissue-info-page/tissue-info-page.module';
+import { HraSopModule } from './pages/hra-sop/hra-sop.module';
+import { OmapsModule } from './pages/omaps/omaps.module';
+import { ThreeDimRefPageModule } from './pages/three-dim-ref-page/three-dim-ref-page.module';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,11 @@ import { OverviewTrainingOutreachModule } from './pages/overview-training-outrea
     CellPopulationGraphsModule,
     HraApiModule,
     AboutModule,
-    OverviewTrainingOutreachModule
+    OverviewTrainingOutreachModule,
+    TissueInfoPageModule,
+    HraSopModule,
+    OmapsModule,
+    ThreeDimRefPageModule
   ],
   providers: [TableDataService],
   bootstrap: [AppComponent]

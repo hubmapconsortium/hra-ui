@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { organTabs } from './organ-tabs';
+import { OrganData } from '../two-dim-image/two-dim-image';
 
 @Component({
   selector: 'ccf-organ-tabs',
@@ -8,7 +8,14 @@ import { organTabs } from './organ-tabs';
 })
 export class OrganTabsComponent {
 
-  @Input() tabs: organTabs[] = []
+  @Input() tabs: OrganData[]
+
+  @Input() currentOrgan : string;
+
+  get selectedIndex(): number {
+    const index = this.tabs.findIndex(item => item.name === this.currentOrgan);
+    return index >= 0 ? index : 0;
+  }
 
   @Output() organName = new EventEmitter<string>;
 

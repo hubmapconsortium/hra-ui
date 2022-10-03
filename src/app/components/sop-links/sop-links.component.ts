@@ -8,6 +8,8 @@ import { SopLinks } from './sop-links';
 })
 export class SopLinksComponent {
 
+  title = "Standard Operating Procedures (SOP)"
+
   @Input()
   links: SopLinks[] = [];
 

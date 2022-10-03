@@ -1,10 +1,17 @@
-export interface TissueDetails {
-    tissueName: string
-    tissueImage: string
-    dialog_image?: string
+export interface TissueData {
+    name: string
+    image: string
+    expandedImage?: string
+    url: string
 }
 
 export interface OrganData {
-    organName: string,
-    tissueData: TissueDetails[]
+    name: string,
+    image: string,
+    tissueData: TissueData[]
+}
+
+export interface VersionOrgans {
+    version: string,
+    organData: OrganData[]
 }

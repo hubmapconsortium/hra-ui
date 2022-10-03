@@ -1,13 +1,8 @@
 <div class="tabs-container">
-    <mat-tab-group mat-align-tabs="start" [disableRipple]="true">
-        <mat-tab disabled={{tab.disabled}} *ngFor="let tab of tabs">
+    <mat-tab-group mat-align-tabs="start" [disableRipple]="true" [selectedIndex]="selectedIndex">
+        <mat-tab *ngFor="let tab of tabs">
             <ng-template mat-tab-label>
-                <div *ngIf="tab.disabled; else disabled">
-                    <img [src]="tab.imgUrl" class="organ-image">
-                </div>
-                <ng-template #disabled>
-                    <img [src]="tab.imgUrl" class="organ-image" (click)="organName.emit(tab.organName)">
-                </ng-template>
+                <img [src]="tab.image" class="organ-image" (click)="organName.emit(tab.name)">
             </ng-template>
         </mat-tab>
     </mat-tab-group>

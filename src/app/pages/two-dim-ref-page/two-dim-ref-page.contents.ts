@@ -3,7 +3,7 @@ import { organTabs } from "src/app/components/organ-tabs/organ-tabs";
 import { PageDataItems } from "src/app/components/page-data/page-data";
 import { PageHeaderItems } from "src/app/components/page-header/page-header-items";
 import { SopLinks } from "src/app/components/sop-links/sop-links";
-import { OrganData } from "src/app/components/two-dim-image/two-dim-image";
+import { OrganData, VersionOrgans } from "src/app/components/two-dim-image/two-dim-image";
 
 export const twoDimHeaderCardDetails: PageHeaderItems[] = [
     {
@@ -25,15 +25,14 @@ export const overviewData: PageDataItems[] = [
 
 export const sopData: SopLinks[] = [
     {
-        title: 'Standard Operating Procedures (SOP)',
-        urls: [' Style Guide: HuBMAP 2D Functional Tissue Unit (FTU) Illustrations'],
-        href: ["https://drive.google.com/file/d/1KoJCEGMTbpX-LOLNoAZhQgSWNYCPTh41/view"]
+        urls: ' Style Guide: HuBMAP 2D Functional Tissue Unit (FTU) Illustrations',
+        href: "https://drive.google.com/file/d/1KoJCEGMTbpX-LOLNoAZhQgSWNYCPTh41/view"
     }
 ]
 
 export const versionData: ChooseVersion[] = [
-    { release: '1st Release, March 2021' },
-    { release: '2nd Release, December 2021' },
+    { release: '1st Release, March 2021', version: '1' },
+    { release: '2nd Release, December 2021', version: '2' },
 ]
 
 export const termsOfUseData: PageDataItems[] = [
@@ -64,65 +63,121 @@ export const termsOfUseData: PageDataItems[] = [
     }
 ]
 
-export const tabsImages: organTabs[] = [
+export const organInfo: VersionOrgans[] = [
     {
-        organName: 'Kidney',
-        imgUrl: 'assets/images/kidney.jpg',
-        disabled: false
-    },
-    {
-        organName: 'Large Intestine',
-        imgUrl: 'assets/images/large_intestine.jpg',
-        disabled: true
-    },
-    {
-        organName: 'Liver',
-        imgUrl: 'assets/images/liver.jpg',
-        disabled: false
-    },
-    {
-        organName: 'Lungs',
-        imgUrl: 'assets/images/lungs.jpg',
-        disabled: true
-    },
-    {
-        organName: 'Pancreas',
-        imgUrl: 'assets/images/pancreas.jpg',
-        disabled: true
-    },
-    {
-        organName: 'Prostate',
-        imgUrl: 'assets/images/prostate.jpg',
-        disabled: true
-    },
-    {
-        organName: 'Thymus',
-        imgUrl: 'assets/images/thymus.jpg',
-        disabled: true
-    }
-]
-
-export const organInfo: OrganData[] = [
-    {
-        organName: 'Kidney',
-        tissueData: [
+        version: '1',
+        organData: [
             {
-                tissueName: 'Nephron',
-                tissueImage: 'assets/images/nephron.png',
-                dialog_image: 'assets/images/nephron_dialog.png'
+                name: 'Kidney',
+                image: 'assets/images/kidney.jpg',
+                tissueData: [
+                    {
+                        name: 'Nephron',
+                        image: 'assets/images/nephron.png',
+                        expandedImage: 'assets/images/nephron_dialog.png',
+                        url: 'https://doi.org/10.48539/HBM489.SGQZ.655'
+                    },
+                    {
+                        name: 'Renal Corpuscle',
+                        image: 'assets/images/renal_corpuscle.png',
+                        expandedImage: 'assets/images/renal_corpuscle.png',
+                        url: 'https://doi.org/10.48539/HBM395.LVFN.656'
+                    }
+                ]
             },
             {
-                tissueName: 'Renal Corpuscle',
-                tissueImage: 'assets/images/renal_corpuscle.png',
-                dialog_image: 'assets/images/renal_corpuscle.png'
+                name: 'Liver',
+                image: 'assets/images/liver.jpg',
+                tissueData: [{
+                    name: 'Liver Lobule',
+                    image: 'assets/images/liver_lobule.png',
+                    expandedImage: 'assets/images/liver_lobule.png',
+                    url: 'https://doi.org/10.48539/HBM692.KXMT.939'
+                }]
+            },
+            {
+                name: 'Large Intestine',
+                image: 'assets/images/large_intestine.jpg',
+                tissueData: [{
+                    name: 'Crypt of Lieberkuhn',
+                    image: 'assets/images/crypt_lieberkuhn_large_intestine.png',
+                    expandedImage: 'assets/images/crypt_lieberkuhn_large_intestine.png',
+                    url: 'https://doi.org/10.48539/HBM373.JRGS.542'
+                }]
+            },
+            {
+                name: 'Lungs',
+                image: 'assets/images/lungs.jpg',
+                tissueData: [{
+                    name: 'Pulmonary Alveolus',
+                    image: 'assets/images/pulmonary_alveolus_lung.png',
+                    expandedImage: 'assets/images/pulmonary_alveolus_lung.png',
+                    url: 'https://doi.org/10.48539/HBM626.KZVN.453'
+                }]
+            },
+            {
+                name: 'Pancreas',
+                image: 'assets/images/pancreas.jpg',
+                tissueData: [{
+                    name: 'Islets of Langerhans',
+                    image: 'assets/images/islets_langerhans_pancreas.png',
+                    expandedImage: 'assets/images/islets_langerhans_pancreas.png',
+                    url: 'https://doi.org/10.48539/HBM344.CNNH.639'
+                }]
+            },
+            {
+                name: 'Prostate',
+                image: 'assets/images/prostate.jpg',
+                tissueData: [{
+                    name: 'Prostate Glandular Acinus',
+                    image: 'assets/images/prostate_glandular_acinus_prostate.png',
+                    expandedImage: 'assets/images/prostate_glandular_acinus_prostate.png',
+                    url: 'https://doi.org/10.48539/HBM523.TDCH.662'
+                }]
+            },
+            {
+                name: 'Thymus',
+                image: 'assets/images/thymus.jpg',
+                tissueData: [{
+                    name: 'Thymus Lobule',
+                    image: 'assets/images/thymus_lobule_thymus.png',
+                    expandedImage: 'assets/images/thymus_lobule_thymus.png',
+                    url: 'https://doi.org/10.48539/HBM794.PKVD.274'
+                }]
             }
         ]
     },
     {
-        organName: 'Liver',
-        tissueData: [{
-            tissueName: 'Liver Lobule',
-            tissueImage: 'assets/images/liver_lobule.png'
-        }]
+        version: '2',
+        organData: [
+            {
+                name: 'Kidney',
+                image: 'assets/images/kidney.jpg',
+                tissueData: [
+                    {
+                        name: 'Nephron',
+                        image: 'assets/images/nephron.png',
+                        expandedImage: 'assets/images/nephron_dialog.png',
+                        url: 'https://doi.org/10.48539/HBM489.SGQZ.655'
+                    },
+                    {
+                        name: 'Renal Corpuscle',
+                        image: 'assets/images/renal_corpuscle.png',
+                        expandedImage: 'assets/images/renal_corpuscle.png',
+                        url: 'https://doi.org/10.48539/HBM395.LVFN.656'
+                    }
+                ]
+            },
+            {
+                name: 'Liver',
+                image: 'assets/images/liver.jpg',
+                tissueData: [{
+                    name: 'Liver Lobule',
+                    image: 'assets/images/liver_lobule.png',
+                    expandedImage: 'assets/images/liver_lobule.png',
+                    url: 'https://doi.org/10.48539/HBM692.KXMT.939'
+                }]
+            }
+        ]
     }
 ]

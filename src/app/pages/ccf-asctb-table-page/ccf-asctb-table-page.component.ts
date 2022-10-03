@@ -20,7 +20,7 @@ export class CcfTablePageComponent implements OnInit {
   displayedColumnsData = displayedColumnsData
   headerInfo = headerInfo
   versionData = versionData
-  placeholderDate = versionData[0].release
+  release: ChooseVersion;
 
   tableData: Observable<TableData[]> = EMPTY;
 
@@ -32,5 +32,6 @@ export class CcfTablePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.setData(versionData[0]);
+    this.release = versionData[0];
   }
 }

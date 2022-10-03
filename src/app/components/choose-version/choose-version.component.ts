@@ -11,12 +11,10 @@ export class ChooseVersionComponent {
   releaseDate: ChooseVersion[] = [];
 
   @Input()
-  selectedDate: string;
+  selectedDate: ChooseVersion;
 
   @Output()
   selectedVersion = new EventEmitter<ChooseVersion>;
 
   chooseLabel = 'Choose Version of ASCT+B datasets:';
-
-  constructor() { }
 }

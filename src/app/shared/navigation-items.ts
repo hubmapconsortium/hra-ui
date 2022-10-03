@@ -33,14 +33,15 @@ export const NAVIGATION_ITEMS: NavItems[] = [
       },
       {
         menuName: 'Organ Mapping Antibody Panels (OMAPs)',
-        route: 'omap-route',
+        route: 'ccf-omaps',
         disabled: true,
         divider: true
       },
       {
         menuName: 'HuBMAP Data Portal',
         route: 'hubmap-portal',
-        disabled: true
+        disabled: true,
+        url: 'https://portal.hubmapconsortium.org/'
       }
     ]
   },
@@ -112,7 +113,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
       },
       {
         menuName: 'HRA Standard Operating Procedures',
-        route: 'sop-route',
+        route: 'ccf-hra-sop',
         disabled: true
       },
       {

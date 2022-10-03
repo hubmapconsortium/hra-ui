@@ -4,6 +4,7 @@ import { TableData } from '../../components/table/table';
 import { SopLinks } from '../../components/sop-links/sop-links';
 import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
+import { CellPopulationGraphsComponent } from '../cell-population-graphs/cell-population-graphs.component';
 
 export const headerCardDetails: PageHeaderItems[] = [
   {
@@ -27,8 +28,8 @@ export const existingTablesData: PageDataItems[] = [
 ]
 
 export const versionData: ChooseVersion[] = [
-  { release: '1st Release, March 2021', file: 'release1.csv' },
-  { release: '2nd Release, December 2021', file: 'release2.csv' },
+  { release: '1st Release, March 2021', file: 'release1.csv', version: '1' },
+  { release: '2nd Release, December 2021', file: 'release2.csv', version: '2' },
 ]
 
 export const exploreTablesData: PageDataItems[] = [
@@ -49,17 +50,13 @@ export const exploreTablesData: PageDataItems[] = [
 
 export const sopLinksData: SopLinks[] = [
   {
-    title: 'Standard Operating Procedures (SOP)',
-    urls:
-      [
-        'SOP: Authoring ASCT+B Tables',
-        'SOP: ASCT+B Table Communications'
-      ],
-    href:
-      [
-        'www.google.com',
-        'www.google.com'
-      ]
+    urls: 'SOP: Authoring ASCT+B Tables',
+    href: 'www.google.com',
+
+  },
+  {
+    urls: 'SOP: ASCT+B Table Communications',
+    href: 'www.google.com'
   }
 ]
 
@@ -67,7 +64,7 @@ export const headerInfo: HeaderData[] = [
   {
     columnDef: 'organ',
     header: 'Organ',
-    cell: (element: TableData) => `${element['organ']}`
+    cell: (element: TableData) => `<a href="${element['url'] || 'TODO:Please add a url column to this .csv!'}">${element['organ']}</a>`
   },
   {
     columnDef: 'as',
