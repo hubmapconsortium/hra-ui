@@ -19,7 +19,7 @@ export const headerInfo: HeaderData[] = [
     {
       columnDef: 'doi',
       header: 'Persistent DOI',
-      cell: (element: TableData) => `<a href="${element['url'] || 'TODO:Please add a url column to this .csv!'}">${element['doi']}`
+      cell: (element: TableData) => `<a href="${element['url'] || 'TODO:Please add a url column to this .csv!'}">${element['doi']}</a>`
     },
     {
       columnDef: 'version',

@@ -33,7 +33,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         },
         {
           menuName: 'Organ Mapping Antibody Panels (OMAPs)',
-          route: 'omap-route',
+          route: 'ccf-omaps',
           disabled: true,
           divider: true
         },
@@ -65,7 +65,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         },
         {
           menuName: 'CCF Cell Population Graphs',
-          route: 'ccf-cell-route',
+          route: 'ccf-cell-population-graphs',
           disabled: true
         },
         {
@@ -85,7 +85,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         },
         {
           menuName: 'HRA Application Programming Interfaces',
-          route: 'api-route',
+          route: 'ccf-hra-api',
           disabled: true
         },
         {
@@ -100,18 +100,18 @@ export const NAVIGATION_ITEMS: NavItems[] = [
       children: [
         {
           menuName: 'Overview: HRA Training and Outreach',
-          route: 'training-route',
+          route: 'ccf-overview-training-outreach',
           disabled: true,
           divider: true
         },
         {
           menuName: 'Visible Human Massive Open Online Course',
-          route: 'mooc-route',
+          route: 'ccf-vhmooc',
           disabled: true
         },
         {
           menuName: 'HRA Standard Operating Procedures',
-          route: 'sop-route',
+          route: 'ccf-hra-sop',
           disabled: true
         },
         {
