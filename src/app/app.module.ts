@@ -14,6 +14,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { TwoDimRefPageModule } from './pages/two-dim-ref-page/two-dim-ref-page.module';
 import { CcfOntologyModule } from './pages/ccf-ontology/ccf-ontology.module';
 import { OverviewToolsModule } from './pages/overview-tools/overview-tools.module';
+import { CcfReporterPageModule } from './pages/ccf-asctb-reporter-page/ccf-asctb-reporter-page.module';
+import { YoutubeModelModule } from './components/youtube-model/youtube-model.module';
+import { HraMillitomeModule } from './pages/hra-millitome/hra-millitome.module';
+import { CcfExplorationUserInterfaceModule } from './pages/ccf-exploration-user-interface/ccf-exploration-user-interface.module';
+import { RegistrationUserInterfaceModule } from './pages/registration-user-interface/registration-user-interface.module';
 import { CellPopulationGraphsModule } from './pages/cell-population-graphs/cell-population-graphs.module';
 import { HraApiModule } from './pages/hra-api/hra-api.module';
 import { AboutModule } from './pages/about/about.module';
@@ -25,7 +30,7 @@ import { ThreeDimRefPageModule } from './pages/three-dim-ref-page/three-dim-ref-
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +46,12 @@ import { ThreeDimRefPageModule } from './pages/three-dim-ref-page/three-dim-ref-
     TwoDimRefPageModule,
     CcfOntologyModule,
     OverviewToolsModule,
+    CcfReporterPageModule,
+    YoutubeModelModule,
+    HraMillitomeModule,
+    CcfExplorationUserInterfaceModule,
+    RegistrationUserInterfaceModule,
+    YoutubeModelModule,
     CellPopulationGraphsModule,
     HraApiModule,
     AboutModule,

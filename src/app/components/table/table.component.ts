@@ -28,7 +28,7 @@ export class TableComponent {
 
   @Input() columns: HeaderData[] = [];
 
-  @Input() isTotal: boolean
+  @Input() isTotal: boolean = false;
 
   readonly dataSource = new MatTableDataSource<TableData>([]);
 
@@ -39,4 +39,9 @@ export class TableComponent {
   isNumericColumn(column: string): boolean {
     return typeof this.dataSource.data[0]?.[column] === 'number';
   }
+
+  isTotalRequired(column: any):boolean{
+    return column.isTotalRequired
+  }
+
 }
