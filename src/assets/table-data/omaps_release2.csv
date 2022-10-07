@@ -1,2 +1,2 @@
-organ,tissuePreservationMethod,imagingMethod,as,ct,bp
-Lymph Node,Fixed Frozen,IBEX,29,31,40
+organ,tissuePreservationMethod,imagingMethod,as,ct,bp,url
+Lymph Node,Fixed Frozen,IBEX,29,31,40,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-ln-ibex.html

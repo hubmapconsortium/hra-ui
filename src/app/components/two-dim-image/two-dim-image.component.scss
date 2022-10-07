@@ -26,7 +26,8 @@
     border-radius: 0rem;
   }
 
-  a,button {
+  a,
+  button {
     float: right;
   }
 
@@ -51,10 +52,23 @@
     justify-content: center;
   }
 
+  .multirow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   .units-container {
     padding-top: 1rem;
     padding-right: 1rem;
-    padding-left: 0.5rem;
+    padding-left: 1rem;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.5rem;
+    line-height: 1.4202rem;
+    letter-spacing: 0.005rem;
+    color: #212121;
   }
 
   .mat-card-actions > .mat-divider {
@@ -71,7 +85,7 @@
     justify-content: space-between;
   }
 
-  .mat-dialog-container{
+  .mat-dialog-container {
     display: flex;
     flex-direction: column;
     align-items: center;

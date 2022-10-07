@@ -8,7 +8,7 @@ export interface TissueData {
 export interface OrganData {
     name: string,
     image: string,
-    tissueData: TissueData[]
+    tissueData?: TissueData[]
 }
 
 export interface VersionOrgans {

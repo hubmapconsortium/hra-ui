@@ -4,6 +4,7 @@ import { AppRoutingModule } from '../../app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HraSopComponent } from './hra-sop.component';
 import { PageHeaderModule } from 'src/app/components/page-header/page-header.module';
+import { TableModule } from 'src/app/components/table/table.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { PageHeaderModule } from 'src/app/components/page-header/page-header.mod
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    PageHeaderModule
+    PageHeaderModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [HraSopComponent]

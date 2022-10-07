@@ -21,7 +21,7 @@ export class TwoDimRefPageComponent implements OnInit {
   sopData = sopData
   termsOfUseData = termsOfUseData
   filterImages: OrganData[]
-  cardTitle = "Kidney Function Tissue Units";
+  cardTitle = "";
   versionData = versionData
   placeholderDate = versionData[0].release
   organData: OrganData[];
@@ -56,6 +56,7 @@ export class TwoDimRefPageComponent implements OnInit {
       this.setOrgan(organData[0].name);
     } else {
       this.organData = data;
+      this.cardTitle = data[0].name+" Functional Tissue Units";
       this.updateQueryParams({ version, organ });
     }
   }

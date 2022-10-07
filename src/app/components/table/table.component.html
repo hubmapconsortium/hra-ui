@@ -4,7 +4,7 @@
       <th mat-header-cell *matHeaderCellDef class="table-title" mat-sort-header>
         {{column.header}}
       </th>
-      <td mat-cell *matCellDef="let row" [innerHtml]="column.cell(row)"></td>
+      <td mat-cell *matCellDef="let row" [innerHtml]="column.cell(row)" [class.transform]="isOrgan"></td>
       <td mat-footer-cell *matFooterCellDef class="table-footer">
         <ng-container *ngIf="isNumericColumn(column.columnDef); else totalLabel">
           {{ getTotal(column.columnDef) }}

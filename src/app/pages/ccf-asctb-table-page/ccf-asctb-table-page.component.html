@@ -3,5 +3,5 @@
 <ccf-sop-links [links]="sopLinksData"></ccf-sop-links>
 <ccf-page-data [data]="existingTablesData"></ccf-page-data>
 <ccf-choose-version [releaseDate]="versionData" [selectedDate]="release" (selectedVersion)="setData($event)"></ccf-choose-version>
-<ccf-table [typeCount]="(tableData | async) ?? []" [displayedColumns]="displayedColumnsData" [columns]="headerInfo" [isTotal]="true"></ccf-table>
+<ccf-table [typeCount]="(tableData | async) ?? []" [displayedColumns]="displayedColumnsData" [columns]="headerInfo" [isTotal]="true" [isOrgan]="true"></ccf-table>
 <ccf-page-data [data]="exploreTablesData"></ccf-page-data>

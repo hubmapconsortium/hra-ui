@@ -218,5 +218,121 @@ export const threeDimOrganInfo: VersionOrgans[] = [
                 }]
             }
         ]
+    },
+    {
+        version: '3',
+        organData:[
+            {
+                name: 'Allen Brain',
+                image:'assets/images/allen_brain.png',
+                tissueData: [{
+                    name: 'Female',
+                    image: 'assets/images/allen_brain_female.png',
+                    expandedImage: 'assets/images/allen_brain_female.png',
+                    url: 'https://doi.org/10.48539/HBM692.KXMT.939'
+                },{
+                    name: 'Male',
+                    image: 'assets/images/allen_brain_male.png',
+                    expandedImage: 'assets/images/allen_brain_male.png',
+                    url: 'https://doi.org/10.48539/HBM692.KXMT.939'
+                }]
+            },
+            {
+                name: 'Blood Vasculature',
+                image: 'assets/images/blood_vasculature.png',
+            },
+            {
+                name: 'Bone Marrow',
+                image: 'assets/images/bone_marrow.png'
+            },
+            {
+                name: 'Eye',
+                image: 'assets/images/eye.png'
+            },
+            {
+                name: 'Fallopian Tube',
+                image: 'assets/images/fallopian_tube.png'
+            },
+            {
+                name: 'Heart',
+                image: 'assets/images/heart.png'
+            },
+            {
+                name: 'Kidney',
+                image: 'assets/images/kidney.jpg'
+            },
+            {
+                name: 'Knee',
+                image: 'assets/images/knee.png'
+            },
+            {
+                name: 'Large Intestine',
+                image: 'assets/images/large_intestine.jpg'
+            },
+            {
+                name: 'Liver',
+                image: 'assets/images/liver.jpg'
+            },
+            {
+                name: 'Lungs',
+                image: 'assets/images/lungs.jpg'
+            },
+            {
+                name: 'Lymph Node',
+                image: 'assets/images/lymph_node.png'
+            },
+            {
+                name: 'Ovary',
+                image: 'assets/images/ovary.png'
+            },
+            {
+                name: 'Pancreas',
+                image: 'assets/images/pancreas.png'
+            },
+            {
+                name: 'Placenta',
+                image: 'assets/images/placenta.png'
+            },
+            {
+                name: 'Prostate',
+                image: 'assets/images/prostate.png'
+            },
+            {
+                name: 'Skin',
+                image: 'assets/images/skin.png'
+            },
+            {
+                name: 'Small Intestine',
+                image: 'assets/images/small_intestine.png'
+            },
+            {
+                name: 'Spinal Cord',
+                image: 'assets/images/spinal_cord.png'
+            },
+            {
+                name: 'Spleen',
+                image: 'assets/images/spleen.png'
+            },
+            {
+                name: 'Thymus',
+                image: 'assets/images/thymus.jpg'
+            },
+            {
+                name: 'Ureter',
+                image: 'assets/images/ureter.png'
+            },
+            {
+                name: 'Urinary Bladder',
+                image: 'assets/images/urinary_bladder.png'
+            },
+            {
+                name: 'Uterus',
+                image: 'assets/images/uterus.png'
+            },
+            {
+                name: 'All Organs',
+                image: 'assets/images/all_organs.png'
+            }
+        ]
     }
 ]

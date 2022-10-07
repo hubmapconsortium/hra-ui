@@ -4,7 +4,6 @@ import { TableData } from '../../components/table/table';
 import { SopLinks } from '../../components/sop-links/sop-links';
 import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
-import { CellPopulationGraphsComponent } from '../cell-population-graphs/cell-population-graphs.component';
 
 export const headerCardDetails: PageHeaderItems[] = [
   {
@@ -64,7 +63,7 @@ export const headerInfo: HeaderData[] = [
   {
     columnDef: 'organ',
     header: 'Organ',
-    cell: (element: TableData) => `<a href="${element['url'] || 'TODO:Please add a url column to this .csv!'}">${element['organ']}</a>`
+    cell: (element: TableData) => `<a class="cell-link" href="${element['url'] || 'TODO:Please add a url column to this .csv!'}">${element['organ']}</a>`
   },
   {
     columnDef: 'as',
