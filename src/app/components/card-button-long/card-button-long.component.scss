@@ -41,7 +41,7 @@
     font-style: normal;
     font-weight: 400;
     font-size: 1.25rem;
-    line-height: 142.02%;
+    line-height: 1.4202rem;
     letter-spacing: 0.005em;
     color: #0a6ebd;
   }
@@ -55,5 +55,14 @@
     line-height: 1.5rem;
     letter-spacing: 0.005em;
     color: #212121;
+  }
+
+  a {
+    text-decoration: none;
+    color: #0a6ebd;
+  }
+
+  .mat-icon{
+    height: 1.313rem;
   }
 }

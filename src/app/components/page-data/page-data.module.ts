@@ -13,4 +13,4 @@ import { NgModule } from '@angular/core';
     exports: [PageDataComponent]
 })
 
-export class PageDataModule{}
+export class PageDataModule { }

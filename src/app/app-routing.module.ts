@@ -10,6 +10,11 @@ import { CcfReporterPageComponent } from './pages/ccf-asctb-reporter-page/ccf-as
 import { CcfExplorationUserInterfaceComponent } from './pages/ccf-exploration-user-interface/ccf-exploration-user-interface.component';
 import { HraMillitomeComponent } from './pages/hra-millitome/hra-millitome.component';
 import { RegistrationUserInterfaceComponent } from './pages/registration-user-interface/registration-user-interface.component';
+import { CellPopulationGraphsComponent } from './pages/cell-population-graphs/cell-population-graphs.component';
+import { HraApiComponent } from './pages/hra-api/hra-api.component';
+import { AboutComponent } from './pages/about/about.component';
+import { OverviewTrainingOutreachComponent } from './pages/overview-training-outreach/overview-training-outreach.component';
+
 
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
@@ -22,6 +27,10 @@ const routes: Routes = [
   { path: 'ccf-exploration-user-interface', component: CcfExplorationUserInterfaceComponent},
   { path: 'ccf-hra-millitome', component: HraMillitomeComponent },
   { path: 'ccf-registration-user-interface', component: RegistrationUserInterfaceComponent},
+  { path: 'ccf-cell-population-graphs', component: CellPopulationGraphsComponent },
+  { path: 'ccf-hra-api', component: HraApiComponent },
+  { path: 'ccf-about', component: AboutComponent },
+  { path: 'ccf-overview-training-outreach', component: OverviewTrainingOutreachComponent },
   { path: '', redirectTo: 'landing-page', pathMatch: 'full' },
   { path: '**', pathMatch: 'full', component: LandingPageComponent }
 ];

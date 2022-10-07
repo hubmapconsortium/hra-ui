@@ -7,23 +7,23 @@
     font-family: "Inter";
     font-style: normal;
     font-weight: 300;
-    font-size: 24px;
-    line-height: 142.02%;
-
+    font-size: 1.5rem;
+    line-height: 1.4202rem;
     letter-spacing: 0.005em;
+    padding-left: 0.5rem;
   }
 
   .mat-stroked-button {
-    border: 1px solid #444c65;
-    padding: 0 15px;
-    line-height: 34px;
+    border: 0.063rem solid #444c65;
+    padding: 0 0.938rem;
+    line-height: 2.125rem;
     color: #444c65;
     font-family: "Inter";
     font-style: normal;
     font-weight: 400;
     font-size: 0.875rem;
-
     letter-spacing: 0.005em;
+    border-radius: 0rem;
   }
 
   button {
@@ -37,8 +37,8 @@
     font-family: "Inter";
     font-style: normal;
     font-weight: 300;
-    font-size: 24px;
-    line-height: 142.02%;
+    font-size: 1.5rem;
+    line-height: 1.4202rem;
 
     letter-spacing: 0.005em;
 
@@ -55,5 +55,52 @@
     padding-top: 1rem;
     padding-right: 1rem;
     padding-left: 0.5rem;
+  }
+
+  .mat-card-actions > .mat-divider {
+    margin: 0.5rem -0.5rem 0rem -1rem;
+  }
+}
+
+::ng-deep .two-dim-image-modal {
+  .dialog-header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mat-dialog-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mat-dialog-title {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.5rem;
+    line-height: 1.4202rem;
+    letter-spacing: 0.005rem;
+    color: #212121;
+    margin: unset;
+    margin-right: 0.5rem;
+  }
+
+  .mat-stroked-button {
+    border: 0.063rem solid #444c65;
+    line-height: 2.125rem;
+    color: #444c65;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.875rem;
+    letter-spacing: 0.005em;
+    margin-right: 0.5rem;
+    border-radius: 0.125rem;
+    height: 40px;
+    width: 128px;
   }
 }

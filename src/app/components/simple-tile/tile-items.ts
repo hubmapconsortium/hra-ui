@@ -1,3 +1,3 @@
-export interface TileItems{
+export interface TileItems {
     title: string;
 }

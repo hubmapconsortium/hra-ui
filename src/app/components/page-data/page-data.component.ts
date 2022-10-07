@@ -11,5 +11,4 @@ export class PageDataComponent {
   @Input()
   public data: PageDataItems[] = []
 
-  constructor() { }
 }

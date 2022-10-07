@@ -13,4 +13,4 @@ import { MatTabsModule } from '@angular/material/tabs';
     exports: [OrganTabsComponent]
 })
 
-export class OrganTabsModule{}
+export class OrganTabsModule { }

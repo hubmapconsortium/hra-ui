@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { SimpleTileComponent } from "./simple-tile.component";
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MarkdownModule } from 'ngx-markdown';
 @NgModule({
     declarations: [SimpleTileComponent],
@@ -13,4 +13,4 @@ import { MarkdownModule } from 'ngx-markdown';
     exports: [SimpleTileComponent]
 })
 
-export class SimpleTileModule{}
+export class SimpleTileModule { }

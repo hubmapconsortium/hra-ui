@@ -8,9 +8,9 @@ describe('BottomToolbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BottomToolbarComponent ]
+      declarations: [BottomToolbarComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(BottomToolbarComponent);
     component = fixture.componentInstance;

@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -17,9 +18,10 @@ import { MatIconModule } from '@angular/material/icon';
         MatCardModule,
         MatDividerModule,
         MatButtonModule,
-        MatIconModule
+        MatIconModule,
+        MatDialogModule
     ],
     exports: [TwoDimImageComponent]
 })
 
-export class TwoDimImageModule{}
+export class TwoDimImageModule { }

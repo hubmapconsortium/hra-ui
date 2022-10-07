@@ -1,6 +1,7 @@
-export interface SectionCardItems{
+export interface SectionCardItems {
     title: string;
     description: string;
     image: string
-    gif:string
+    gif: string
+    route: string;
 }

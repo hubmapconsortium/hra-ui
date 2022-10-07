@@ -19,6 +19,10 @@ import { YoutubeModelModule } from './components/youtube-model/youtube-model.mod
 import { HraMillitomeModule } from './pages/hra-millitome/hra-millitome.module';
 import { CcfExplorationUserInterfaceModule } from './pages/ccf-exploration-user-interface/ccf-exploration-user-interface.module';
 import { RegistrationUserInterfaceModule } from './pages/registration-user-interface/registration-user-interface.module';
+import { CellPopulationGraphsModule } from './pages/cell-population-graphs/cell-population-graphs.module';
+import { HraApiModule } from './pages/hra-api/hra-api.module';
+import { AboutModule } from './pages/about/about.module';
+import { OverviewTrainingOutreachModule } from './pages/overview-training-outreach/overview-training-outreach.module';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,12 @@ import { RegistrationUserInterfaceModule } from './pages/registration-user-inter
     YoutubeModelModule,
     HraMillitomeModule,
     CcfExplorationUserInterfaceModule,
-    RegistrationUserInterfaceModule
+    RegistrationUserInterfaceModule,
+    YoutubeModelModule,
+    CellPopulationGraphsModule,
+    HraApiModule,
+    AboutModule,
+    OverviewTrainingOutreachModule
   ],
   providers: [TableDataService],
   bootstrap: [AppComponent]

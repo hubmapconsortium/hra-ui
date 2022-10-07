@@ -8,9 +8,9 @@ describe('CardButtonLongComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CardButtonLongComponent ]
+      declarations: [CardButtonLongComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CardButtonLongComponent);
     component = fixture.componentInstance;

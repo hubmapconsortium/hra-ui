@@ -18,4 +18,4 @@ import { MatRippleModule } from '@angular/material/core';
     ]
 })
 
-export class CardButtonLongModule{}
+export class CardButtonLongModule { }

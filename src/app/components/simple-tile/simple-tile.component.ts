@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { TileItems } from './tile-items';
 @Component({
   selector: 'ccf-simple-tile',
   templateUrl: './simple-tile.component.html',
@@ -6,9 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SimpleTileComponent {
 
-  @Input()
-  definitions: any[] = [];
-
-  constructor() { }
+  @Input() definitions: TileItems[] = [];
 
 }

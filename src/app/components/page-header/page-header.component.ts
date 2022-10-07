@@ -1,5 +1,5 @@
 import { PageHeaderItems } from './page-header-items';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ccf-page-header',
@@ -9,8 +9,6 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PageHeaderComponent {
 
   @Input()
-  headerCard : PageHeaderItems[] = []
-
-  constructor() { }
+  headerCard: PageHeaderItems[] = []
 
 }
