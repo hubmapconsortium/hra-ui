@@ -70,7 +70,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         },
         {
           menuName: 'CCF Registration User Interface (RUI)',
-          route: 'ccf-rui-route',
+          route: 'ccf-registration-user-interface',
           disabled: true
         },
         {

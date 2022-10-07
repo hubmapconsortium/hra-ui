@@ -16,14 +16,13 @@ import { CcfOntologyModule } from './pages/ccf-ontology/ccf-ontology.module';
 import { OverviewToolsModule } from './pages/overview-tools/overview-tools.module';
 import { CcfReporterPageModule } from './pages/ccf-asctb-reporter-page/ccf-asctb-reporter-page.module';
 import { YoutubeModelModule } from './components/youtube-model/youtube-model.module';
-import { CcfExplorationUserInterfaceComponent } from './pages/ccf-exploration-user-interface/ccf-exploration-user-interface.component';
-import { HraMillitomeComponent } from './pages/hra-millitome/hra-millitome.component';
+import { HraMillitomeModule } from './pages/hra-millitome/hra-millitome.module';
+import { CcfExplorationUserInterfaceModule } from './pages/ccf-exploration-user-interface/ccf-exploration-user-interface.module';
+import { RegistrationUserInterfaceModule } from './pages/registration-user-interface/registration-user-interface.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CcfExplorationUserInterfaceComponent,
-    HraMillitomeComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +39,10 @@ import { HraMillitomeComponent } from './pages/hra-millitome/hra-millitome.compo
     CcfOntologyModule,
     OverviewToolsModule,
     CcfReporterPageModule,
-    YoutubeModelModule
+    YoutubeModelModule,
+    HraMillitomeModule,
+    CcfExplorationUserInterfaceModule,
+    RegistrationUserInterfaceModule
   ],
   providers: [TableDataService],
   bootstrap: [AppComponent]

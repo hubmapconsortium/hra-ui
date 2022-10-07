@@ -9,6 +9,7 @@ import { OverviewToolsComponent } from './pages/overview-tools/overview-tools.co
 import { CcfReporterPageComponent } from './pages/ccf-asctb-reporter-page/ccf-asctb-reporter-page.component';
 import { CcfExplorationUserInterfaceComponent } from './pages/ccf-exploration-user-interface/ccf-exploration-user-interface.component';
 import { HraMillitomeComponent } from './pages/hra-millitome/hra-millitome.component';
+import { RegistrationUserInterfaceComponent } from './pages/registration-user-interface/registration-user-interface.component';
 
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'ccf-asctb-reporter', component: CcfReporterPageComponent  },
   { path: 'ccf-exploration-user-interface', component: CcfExplorationUserInterfaceComponent},
   { path: 'ccf-hra-millitome', component: HraMillitomeComponent },
+  { path: 'ccf-registration-user-interface', component: RegistrationUserInterfaceComponent},
   { path: '', redirectTo: 'landing-page', pathMatch: 'full' },
   { path: '**', pathMatch: 'full', component: LandingPageComponent }
 ];

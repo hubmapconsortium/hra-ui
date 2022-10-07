@@ -25,8 +25,7 @@ import { HraMillitomeComponent } from './hra-millitome.component';
     SopLinksModule,
     ChooseVersionModule,
     TableModule,
-    MarkdownModule.forRoot(),
-    HraMillitomeComponent
+    MarkdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [HraMillitomeComponent]

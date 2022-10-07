@@ -61,7 +61,8 @@ export const headerInfo: HeaderData[] = [
   {
     columnDef: 'organ',
     header: 'Organ',
-    cell: (element: TableData) => `${element['organ']}`
+    cell: (element: TableData) => `${element['organ']}`,
+    isTotalRequired: true
   },
   {
     columnDef: 'as',

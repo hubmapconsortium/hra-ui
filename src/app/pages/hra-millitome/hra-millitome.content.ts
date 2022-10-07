@@ -1,3 +1,6 @@
+import { SopLinks } from 'src/app/components/sop-links/sop-links';
+import { HeaderData } from 'src/app/components/table/header';
+import { TableData } from 'src/app/components/table/table';
 import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
 
@@ -27,3 +30,48 @@ export const overviewData: PageDataItems[] = [
     }
 ]
 
+export const sopLinksData: SopLinks[] = [
+    {
+        title: 'Standard Operating Procedures (SOP)',
+        urls:
+            [
+                'SOP: Authoring ASCT+B Tables',
+                'SOP: ASCT+B Table Communications'
+            ]
+    }
+]
+
+
+export const standardOperatingProcedure: PageDataItems[] = [
+    {
+        heading: `Standard Operating Procedure (SOP)`,
+        descriptions:`<ul><li><a href="#">SOP: Millitome SOP 1</a></li><li><a href="#">SOP: Millitome SOP 2</a></li></ul>`
+    }
+]
+
+export const headerInfo: HeaderData[] = [
+    {
+      columnDef: 'organ',
+      header: 'Organ',
+      cell: (element: TableData) => `${element['organ']}`
+    },
+    {
+      columnDef: 'sex',
+      header: 'Sex',
+      cell: (element: TableData) => `${element['sex']}`
+    },
+    {
+      columnDef: 'left/right',
+      header: 'Left/Right',
+      cell: (element: TableData) => `${element['left/right']}`
+    }
+  ];
+
+export const tableName: PageDataItems[] = [
+    {
+        heading: `Millitome Catalog`,
+        descriptions: ``
+    }
+]
+
+export const displayedColumnsData = headerInfo.map(h => h.columnDef);

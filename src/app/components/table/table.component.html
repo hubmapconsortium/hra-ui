@@ -7,12 +7,17 @@
       <td mat-cell *matCellDef="let row">
         {{ column.cell(row) }}
       </td>
+    <ng-container *ngIf="isTotal">
       <td mat-footer-cell *matFooterCellDef class="table-footer">
         <ng-container *ngIf="isNumericColumn(column.columnDef); else totalLabel">
           {{ getTotal(column.columnDef) }}
         </ng-container>
-        <ng-template #totalLabel>Totals</ng-template>
+        <ng-template #totalLabel>
+          <ng-container *ngIf="column.isTotalRequired; else blank">Totals</ng-container>
+        </ng-template>
+        <ng-template #blank></ng-template>
       </td>
+    </ng-container>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <div class="first-column">

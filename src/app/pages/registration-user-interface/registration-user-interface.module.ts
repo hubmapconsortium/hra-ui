@@ -5,7 +5,7 @@ import { PageDataModule } from '../../components/page-data/page-data.module';
 import { BottomToolbarModule } from '../../components/bottom-toolbar/bottom-toolbar.module';
 import { PageHeaderModule } from '../../components/page-header/page-header.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CcfExplorationUserInterfaceComponent } from './ccf-exploration-user-interface.component';
+import { RegistrationUserInterfaceComponent } from './registration-user-interface.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MarkdownModule } from 'ngx-markdown';
@@ -15,7 +15,7 @@ import { YoutubeModelModule } from '../../components/youtube-model/youtube-model
 
 @NgModule({
   declarations: [
-    CcfExplorationUserInterfaceComponent
+    RegistrationUserInterfaceComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +30,6 @@ import { YoutubeModelModule } from '../../components/youtube-model/youtube-model
     YoutubeModelModule
   ],
   providers: [],
-  bootstrap: [CcfExplorationUserInterfaceComponent]
+  bootstrap: [RegistrationUserInterfaceComponent]
 })
-export class CcfExplorationUserInterfaceModule { }
+export class RegistrationUserInterfaceModule { }
