@@ -12,6 +12,9 @@ import { Router } from '@angular/router';
 export class ToolbarComponent {
 
   constructor(private router: Router) { }
+  hubmapHeader = "HuBMAP"
+  hraHeader = "HUMAN REFERENCE ATLAS"
+
 
   @Input()
   navigationItems: NavItems[] = NAVIGATION_ITEMS;

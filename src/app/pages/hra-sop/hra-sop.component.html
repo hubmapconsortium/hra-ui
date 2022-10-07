@@ -1,0 +1,5 @@
+<ccf-page-header [headerCard]="pageHeader"></ccf-page-header>
+<div class="table-title">
+    {{tableTitle}}
+</div>
+<ccf-table [typeCount]="(tableData|async)??[]" [displayedColumns]="displayedColumnsData" [columns]="headerInfo" [isOrgan]="false"></ccf-table>

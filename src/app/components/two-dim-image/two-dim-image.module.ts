@@ -8,6 +8,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
+        RouterModule,
         MatCardModule,
         MatDividerModule,
         MatButtonModule,

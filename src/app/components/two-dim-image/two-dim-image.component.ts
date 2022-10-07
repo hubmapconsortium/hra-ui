@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { OrganData } from './two-dim-image';
 
@@ -13,9 +13,10 @@ export class TwoDimImageComponent {
 
   @Input() cardTitle: string
   @Input() tissueData: OrganData[] = [];
+  @Input() isMultirow: boolean;
+  @Output() infoRoute = new EventEmitter<OrganData>;
 
   openImageViewer(content: TemplateRef<unknown>): void {
     this.dialog.open(content, { panelClass: 'two-dim-image-modal' })
   }
-
 }

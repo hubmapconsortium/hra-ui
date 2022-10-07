@@ -17,6 +17,8 @@ export class TableComponent {
     this.dataSource.sort = value;
   }
 
+  @Input() isOrgan : boolean
+
   @Input()
   set typeCount(data: TableData[]) {
     this.dataSource.data = data;

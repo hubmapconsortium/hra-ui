@@ -1,8 +1,8 @@
-organ,as,ct,bTotal,bg,bp,asas,asct,ctb
-Blood,1,2,9,7,1,1,30,506
-Blood Vasculature,841,2,1,1,0,869,30,5
-Bone Marrow,1,2,2,2,47,1,5,2
-Brain,1,2,9,5,2,1,5,506
-Eye,1,2,7,2,47,1,30,62
-Fallopian Tube,1,2,2,112,9,1,30,506
-Heart,1,30,11,5,2,1,30,2
+organ,as,ct,bTotal,bg,bp,asas,asct,ctb,url
+Blood,1,2,9,7,1,1,30,506,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/asct-b/blood-pelvis.html
+Blood Vasculature,841,2,1,1,0,869,30,5,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/asct-b/blood-vasculature.html
+Bone Marrow,1,2,2,2,47,1,5,2,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/asct-b/bone-marrow-pelvis.html
+Brain,1,2,9,5,2,1,5,506,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/asct-b/brain.html
+Eye,1,2,7,2,47,1,30,62,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/asct-b/eye.html
+Fallopian Tube,1,2,2,112,9,1,30,506,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/asct-b/fallopian-tube.html
+Heart,1,30,11,5,2,1,30,2,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/asct-b/heart.html
