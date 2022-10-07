@@ -63,7 +63,7 @@ export const headerInfo: HeaderData[] = [
   {
     columnDef: 'organ',
     header: 'Organ',
-    cell: (element: TableData) => `<a class="cell-link" href="${element['url'] || 'TODO:Please add a url column to this .csv!'}">${element['organ']}</a>`
+    cell: (element: TableData) => `<a class="cell-link" href="${element['url'] || 'TODO:Please add a url column to this .csv!'}">${element['organ']}</a>`,
     isTotalRequired: true
   },
   {

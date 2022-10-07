@@ -32,14 +32,15 @@ export const overviewData: PageDataItems[] = [
 
 export const sopLinksData: SopLinks[] = [
     {
-        title: 'Standard Operating Procedures (SOP)',
-        urls:
-            [
-                'SOP: Authoring ASCT+B Tables',
-                'SOP: ASCT+B Table Communications'
-            ]
+      urls: 'SOP: Millitome SOP 1',
+      href: 'www.google.com',
+  
+    },
+    {
+      urls: 'SOP: Millitome SOP 2',
+      href: 'www.google.com'
     }
-]
+  ]
 
 
 export const standardOperatingProcedure: PageDataItems[] = [

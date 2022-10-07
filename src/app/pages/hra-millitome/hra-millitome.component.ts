@@ -12,7 +12,7 @@ import { ChooseVersion } from 'src/app/components/choose-version/choose-version'
 })
 export class HraMillitomeComponent implements OnInit {
 
-  version: ChooseVersion = {release: 'hra-millitome.csv'};
+  version: ChooseVersion = {release: 'hra-millitome.csv', version:''};
   headerCardDetails = headerCardDetails;
   overViewData = overviewData;
   sopLinksData = sopLinksData;
