@@ -1,7 +1,7 @@
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TwoDimImageComponent } from './two-dim-image.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -23,7 +23,9 @@ import { RouterModule } from '@angular/router';
         MatIconModule,
         MatDialogModule
     ],
-    exports: [TwoDimImageComponent]
+    exports: [TwoDimImageComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA,
+        NO_ERRORS_SCHEMA]
 })
 
 export class TwoDimImageModule { }

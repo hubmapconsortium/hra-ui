@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { headerCardDetails, overviewData, acknowledgeData, tutorialData, interfacedata } from './registration-user-interface.content';
+import { headerCardDetails, overviewData, acknowledgeData, interfacedata, useRuiButton, ruiSopData } from './registration-user-interface.content';
 
 @Component({
   selector: 'ccf-registration-user-interface',
@@ -12,8 +12,9 @@ export class RegistrationUserInterfaceComponent{
   headerCardDetails = headerCardDetails;
   overviewData = overviewData;
   acknowledgeData = acknowledgeData;
-  tutorialData = tutorialData;
   interfacedata = interfacedata;
+  useRuiButton = useRuiButton;
+  ruiSopData = ruiSopData;
   height = 584;
   width = 1232;
   title = "Overview";

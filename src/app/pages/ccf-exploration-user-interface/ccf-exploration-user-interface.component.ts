@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { headerCardDetails, overviewData, acknowledgeData, tutorialData, interfacedata } from './ccf-exploration-user-interface.content';
+import { headerCardDetails, overviewData, acknowledgeData, tutorialData, interfacedata, useEuiButton } from './ccf-exploration-user-interface.content';
 @Component({
   selector: 'ccf-exploration-user-interface',
   templateUrl: './ccf-exploration-user-interface.component.html',
@@ -12,6 +12,7 @@ export class CcfExplorationUserInterfaceComponent{
   acknowledgeData = acknowledgeData;
   tutorialData = tutorialData;
   interfacedata = interfacedata;
+  useEuiButton = useEuiButton
   height = 584;
   width = 1232;
   title = "Overview";

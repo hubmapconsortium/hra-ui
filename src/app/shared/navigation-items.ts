@@ -128,7 +128,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
     },
     {
       menuName: 'About',
-      route: 'about-route',
+      route: 'ccf-about',
       disabled: true
     }
   ];

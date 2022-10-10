@@ -1,5 +1,5 @@
 import { SimpleTileModule } from './../../components/simple-tile/simple-tile.module';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ThreeDimRefPageComponent } from './three-dim-ref-page.component';
 import { PageHeaderModule } from 'src/app/components/page-header/page-header.module';
@@ -25,6 +25,7 @@ import { TwoDimImageModule } from 'src/app/components/two-dim-image/two-dim-imag
         TwoDimImageModule
     ],
     providers: [],
-    bootstrap: [ThreeDimRefPageComponent]
+    bootstrap: [ThreeDimRefPageComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ThreeDimRefPageModule { }

@@ -1,8 +1,9 @@
 :host {
   .long-card {
-    padding-bottom: 2%;
+    padding-bottom: 2rem;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
   }
 
   .symbol {
@@ -62,7 +63,7 @@
     color: #0a6ebd;
   }
 
-  .mat-icon{
+  .mat-icon {
     height: 1.313rem;
   }
 }

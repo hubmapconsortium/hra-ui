@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { headerCardDetails, overviewData, sopLinksData, tableName, displayedColumnsData, headerInfo} from './hra-millitome.content';
+import { headerCardDetails, overviewData, sopLinksData, displayedColumnsData, headerInfo} from './hra-millitome.content';
 import { EMPTY, Observable } from 'rxjs';
 import { TableDataService } from '../../services/table-data/tabledata.service';
 import { TableData } from '../../components/table/table';
@@ -16,7 +16,7 @@ export class HraMillitomeComponent implements OnInit {
   headerCardDetails = headerCardDetails;
   overViewData = overviewData;
   sopLinksData = sopLinksData;
-  tableName = tableName;
+  tableTitle = 'Milletome Catalog'
   displayedColumnsData = displayedColumnsData;
   headerInfo = headerInfo;
 

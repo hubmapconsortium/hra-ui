@@ -1,9 +1,8 @@
 import { ChooseVersion } from "src/app/components/choose-version/choose-version";
-import { organTabs } from "src/app/components/organ-tabs/organ-tabs";
 import { PageDataItems } from "src/app/components/page-data/page-data";
 import { PageHeaderItems } from "src/app/components/page-header/page-header-items";
 import { SopLinks } from "src/app/components/sop-links/sop-links";
-import { OrganData, VersionOrgans } from "src/app/components/two-dim-image/two-dim-image";
+import { VersionOrgans } from "src/app/components/two-dim-image/two-dim-image";
 
 export const twoDimHeaderCardDetails: PageHeaderItems[] = [
     {
@@ -31,8 +30,7 @@ export const sopData: SopLinks[] = [
 ]
 
 export const versionData: ChooseVersion[] = [
-    { release: '1st Release, March 2021', version: '1' },
-    { release: '2nd Release, December 2021', version: '2' },
+    { release: '3rd Release, March 2021', version: '1.2' }
 ]
 
 export const termsOfUseData: PageDataItems[] = [
@@ -65,7 +63,7 @@ export const termsOfUseData: PageDataItems[] = [
 
 export const organInfo: VersionOrgans[] = [
     {
-        version: '1',
+        version: '1.2',
         organData: [
             {
                 name: 'Kidney',
@@ -86,16 +84,6 @@ export const organInfo: VersionOrgans[] = [
                 ]
             },
             {
-                name: 'Liver',
-                image: 'assets/images/liver.jpg',
-                tissueData: [{
-                    name: 'Liver Lobule',
-                    image: 'assets/images/liver_lobule.png',
-                    expandedImage: 'assets/images/liver_lobule.png',
-                    url: 'https://doi.org/10.48539/HBM692.KXMT.939'
-                }]
-            },
-            {
                 name: 'Large Intestine',
                 image: 'assets/images/large_intestine.jpg',
                 tissueData: [{
@@ -103,6 +91,16 @@ export const organInfo: VersionOrgans[] = [
                     image: 'assets/images/crypt_lieberkuhn_large_intestine.png',
                     expandedImage: 'assets/images/crypt_lieberkuhn_large_intestine.png',
                     url: 'https://doi.org/10.48539/HBM373.JRGS.542'
+                }]
+            },
+            {
+                name: 'Liver',
+                image: 'assets/images/liver.jpg',
+                tissueData: [{
+                    name: 'Liver Lobule',
+                    image: 'assets/images/liver_lobule.png',
+                    expandedImage: 'assets/images/liver_lobule.png',
+                    url: 'https://doi.org/10.48539/HBM692.KXMT.939'
                 }]
             },
             {
@@ -127,7 +125,7 @@ export const organInfo: VersionOrgans[] = [
             },
             {
                 name: 'Prostate',
-                image: 'assets/images/prostate.jpg',
+                image: 'assets/images/prostate.png',
                 tissueData: [{
                     name: 'Prostate Glandular Acinus',
                     image: 'assets/images/prostate_glandular_acinus_prostate.png',
@@ -143,39 +141,6 @@ export const organInfo: VersionOrgans[] = [
                     image: 'assets/images/thymus_lobule_thymus.png',
                     expandedImage: 'assets/images/thymus_lobule_thymus.png',
                     url: 'https://doi.org/10.48539/HBM794.PKVD.274'
-                }]
-            }
-        ]
-    },
-    {
-        version: '2',
-        organData: [
-            {
-                name: 'Kidney',
-                image: 'assets/images/kidney.jpg',
-                tissueData: [
-                    {
-                        name: 'Nephron',
-                        image: 'assets/images/nephron.png',
-                        expandedImage: 'assets/images/nephron_dialog.png',
-                        url: 'https://doi.org/10.48539/HBM489.SGQZ.655'
-                    },
-                    {
-                        name: 'Renal Corpuscle',
-                        image: 'assets/images/renal_corpuscle.png',
-                        expandedImage: 'assets/images/renal_corpuscle.png',
-                        url: 'https://doi.org/10.48539/HBM395.LVFN.656'
-                    }
-                ]
-            },
-            {
-                name: 'Liver',
-                image: 'assets/images/liver.jpg',
-                tissueData: [{
-                    name: 'Liver Lobule',
-                    image: 'assets/images/liver_lobule.png',
-                    expandedImage: 'assets/images/liver_lobule.png',
-                    url: 'https://doi.org/10.48539/HBM692.KXMT.939'
                 }]
             }
         ]

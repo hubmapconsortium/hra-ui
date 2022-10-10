@@ -3,7 +3,7 @@
         <mat-card-title class="card-title">{{cardTitle}}</mat-card-title>
         <mat-divider></mat-divider>
         <ng-container *ngFor="let tissues of tissueData">
-            <span [class.multirow]="isMultirow===false">
+            <span [class.multirow]="!isMultirow">
                 <mat-card-actions *ngFor="let tissue of tissues.tissueData; last as last">
                     <div class="units-container">
                         {{tissue.name}}
@@ -16,7 +16,7 @@
                             <mat-icon>info</mat-icon>
                         </a>
                     </div>
-                    <div class="image-container">
+                    <div class="image-container" *ngIf="tissue.image; else: threeDimensionContainer">
                         <img [src]="tissue.image" (click)="openImageViewer(imageContent)">
                         <ng-template #imageContent>
                             <div class="dialog-header">
@@ -37,7 +37,13 @@
                             <img [src]="tissue.expandedImage">
                         </ng-template>
                     </div>
-                    <mat-divider *ngIf="!last"></mat-divider>
+                    <ng-template #threeDimensionContainer>
+                        <model-viewer class="model-viewer-div" alt="{{tissue.alt}}"
+                            src="{{tissue.threeDimImage}}"
+                            shadow-intensity="1" camera-controls auto-rotate style="height: 400px;">
+                        </model-viewer>
+                    </ng-template>
+                    <mat-divider *ngIf="isMultirow && !last"></mat-divider>
                 </mat-card-actions>
             </span>
 

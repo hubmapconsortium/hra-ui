@@ -25,13 +25,13 @@ export const longButtonItems: LongCard[] = [
         icon: 'assets/images/three_dim_library.png',
         title: 'CCF 3D Reference Object Library',
         body: 'Open source 3D organs crosswalked to ASCT+B tables used for tissue registration and exploration',
-        route: 'ccf-landing-page'
+        route: 'ccf-3d-reference-library'
     },
     {
         icon: 'assets/images/omaps.png',
         title: 'Organ Mapping Antibody Panels (OMAPs)',
         body: 'Spatial mapping using the anatomical structures and cell types present in diverse organs using multiplexed antibody-based imaging',
-        route: 'ccf-landing-page'
+        route: 'ccf-omaps'
     },
     {
         icon: 'assets/images/hubmap_data_portal.png',

@@ -9,8 +9,8 @@ import { RegistrationUserInterfaceComponent } from './registration-user-interfac
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MarkdownModule } from 'ngx-markdown';
-// import { YouTubePlayerModule } from '@angular/youtube-player';
 import { YoutubeModelModule } from '../../components/youtube-model/youtube-model.module';
+import { UseButtonModule } from 'src/app/components/use-button/use-button.module';
 
 
 @NgModule({
@@ -26,6 +26,7 @@ import { YoutubeModelModule } from '../../components/youtube-model/youtube-model
     SopLinksModule,
     ChooseVersionModule,
     TableModule,
+    UseButtonModule,
     MarkdownModule.forRoot(),
     YoutubeModelModule
   ],

@@ -24,9 +24,7 @@ export const overviewData: PageDataItems[] = [
         Specific download packages are accessed by selecting the organ (i.e. VH_F_Kidney_L = female kidney, left). Each organ folder contains three compressed download packages, distinguished by block size (i.e. VH_F_Kidney_L_20 = female kidney, left, 20mm block size).
         <br>
         <br>
-        Each package contains three 3D-printable .STL files, one each for “small”, “medium” and “large” organ sizes to cover a wide range of variations (i.e. VH_F_Kidney_L_20_Medium = female kidney, left, 20mm block size, medium size). Also included in each package is a .CSV file to record data about the sample blocks taken from the organ.
-        <br>
-        <br>`
+        Each package contains three 3D-printable .STL files, one each for “small”, “medium” and “large” organ sizes to cover a wide range of variations (i.e. VH_F_Kidney_L_20_Medium = female kidney, left, 20mm block size, medium size). Also included in each package is a .CSV file to record data about the sample blocks taken from the organ.`
     }
 ]
 

@@ -1,3 +1,4 @@
+import { UseButton } from 'src/app/components/use-button/use-button';
 import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
 
@@ -20,14 +21,12 @@ export const overviewData: PageDataItems[] = [
 
 export const acknowledgeData: PageDataItems[] = [
     {
-        heading: 'Acknowledge',
+        heading: 'Acknowledgments',
         descriptions: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
     }
 ]
 
-export const tutorialData: PageDataItems[] = [
-    {
-        heading: 'Tutorial',
-        descriptions: ''
-    }
-]
+export const useButtonData: UseButton = {
+    text: 'Use the ASCT+B Table Reporter',
+    url: ''
+}

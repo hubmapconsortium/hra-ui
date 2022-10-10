@@ -1,7 +1,9 @@
 export interface TissueData {
     name: string
-    image: string
+    image?: string
     expandedImage?: string
+    threeDimImage?: string,
+    alt?: string
     url: string
 }
 
