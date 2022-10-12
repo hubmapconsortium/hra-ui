@@ -1,6 +1,6 @@
 :host {
-  .card-container {
-    padding-bottom: 2rem;
+  .mat-card {
+    margin-bottom: 2rem;
   }
 
   .card-title {
@@ -56,6 +56,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .split {
+    width: 50%;
   }
 
   .units-container {
@@ -69,10 +74,17 @@
     line-height: 1.4202rem;
     letter-spacing: 0.005rem;
     color: #212121;
+    display: flex;
+    
   }
 
   .mat-card-actions > .mat-divider {
-    margin: 0.5rem -0.5rem 0rem -1rem;
+    margin: 0.5rem -0.5rem 0rem -0.5rem;
+  }
+
+  .model-container {
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -89,6 +101,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 55rem;
+    width: 55rem;
+    object-fit: contain;
   }
 
   .mat-dialog-title {
@@ -116,5 +131,11 @@
     border-radius: 0.125rem;
     height: 40px;
     width: 128px;
+  }
+
+  .dialog-image{
+    // object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
   }
 }

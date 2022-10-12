@@ -1,52 +1,52 @@
-<div class="card-container">
-    <mat-card>
-        <mat-card-title class="card-title">{{cardTitle}}</mat-card-title>
-        <mat-divider></mat-divider>
-        <ng-container *ngFor="let tissues of tissueData">
-            <span [class.multirow]="!isMultirow">
-                <mat-card-actions *ngFor="let tissue of tissues.tissueData; last as last">
-                    <div class="units-container">
-                        {{tissue.name}}
-                        <button mat-stroked-button disableRipple="true">
-                            Download
-                            <mat-icon>download</mat-icon>
-                        </button>
-                        <a mat-stroked-button disableRipple="true" href="{{tissue.url}}" style="float: right;">
-                            Info
-                            <mat-icon>info</mat-icon>
-                        </a>
-                    </div>
-                    <div class="image-container" *ngIf="tissue.image; else: threeDimensionContainer">
-                        <img [src]="tissue.image" (click)="openImageViewer(imageContent)">
-                        <ng-template #imageContent>
-                            <div class="dialog-header">
-                                <span mat-dialog-title>{{tissue.name}}</span>
-                                <div style="flex-grow:1;"></div>
-                                <a mat-dialog-close mat-stroked-button [disableRipple]="true" href="{{tissue.url}}">
-                                    Info
-                                    <mat-icon>info</mat-icon>
-                                </a>
-                                <button mat-dialog-close mat-stroked-button [disableRipple]="true">
-                                    Download
-                                    <mat-icon>download</mat-icon>
-                                </button>
-                                <button mat-dialog-close mat-button [disableRipple]="true">
-                                    <mat-icon>close</mat-icon>
-                                </button>
-                            </div>
-                            <img [src]="tissue.expandedImage">
-                        </ng-template>
-                    </div>
-                    <ng-template #threeDimensionContainer>
-                        <model-viewer class="model-viewer-div" alt="{{tissue.alt}}"
-                            src="{{tissue.threeDimImage}}"
+<mat-card>
+    <mat-card-title class="card-title">{{cardTitle}}</mat-card-title>
+    <mat-divider></mat-divider>
+    <span *ngFor="let tissues of tissueData" [class.multirow]="!isMultirow">
+        <ng-container *ngFor="let tissue of tissues.tissueData; even as even; last as last;">
+            <mat-card-actions [class.split]="!isMultirow">
+                <div class="units-container">
+                    {{tissue.name}}
+                    <div style="flex-grow: 1;"></div>
+                    <a mat-stroked-button disableRipple="true" href="{{tissue.url}}" style="float: right;">
+                        Info
+                        <mat-icon>info</mat-icon>
+                    </a>
+                    <button mat-stroked-button disableRipple="true">
+                        Download
+                        <mat-icon>download</mat-icon>
+                    </button>
+                </div>
+                <mat-divider *ngIf="!isMultirow"></mat-divider>
+                <div class="image-container" *ngIf="tissue.image; else: threeDimensionContainer">
+                    <img [src]="tissue.image" (click)="openImageViewer(imageContent)">
+                    <ng-template #imageContent>
+                        <div class="dialog-header">
+                            <span mat-dialog-title>{{tissue.name}}</span>
+                            <div style="flex-grow:1;"></div>
+                            <a mat-dialog-close mat-stroked-button [disableRipple]="true" href="{{tissue.url}}">
+                                Info
+                                <mat-icon>info</mat-icon>
+                            </a>
+                            <button mat-dialog-close mat-stroked-button [disableRipple]="true">
+                                Download
+                                <mat-icon>download</mat-icon>
+                            </button>
+                            <button mat-dialog-close mat-button [disableRipple]="true">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </div>
+                        <img [src]="tissue.expandedImage" class="dialog-image">
+                    </ng-template>
+                </div>
+                <ng-template #threeDimensionContainer>
+                    <div class="model-container">
+                        <model-viewer class="model-viewer" alt="{{tissue.alt}}" src="{{tissue.threeDimImage}}"
                             shadow-intensity="1" camera-controls auto-rotate style="height: 400px;">
                         </model-viewer>
-                    </ng-template>
-                    <mat-divider *ngIf="isMultirow && !last"></mat-divider>
-                </mat-card-actions>
-            </span>
-
+                    </div>
+                </ng-template>
+            </mat-card-actions>
+            <mat-divider [vertical]="!isMultirow" *ngIf="isMultirow && !last || even"></mat-divider>
         </ng-container>
-    </mat-card>
-</div>
+    </span>
+</mat-card>

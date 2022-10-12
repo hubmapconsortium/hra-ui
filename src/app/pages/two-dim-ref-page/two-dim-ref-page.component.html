@@ -3,5 +3,5 @@
 <ccf-sop-links [links]="sopData"></ccf-sop-links>
 <ccf-choose-version [releaseDate]="versionData" [selectedDate]="version" (selectedVersion)="setVersion($event.version)"></ccf-choose-version>
 <ccf-organ-tabs [tabs]="filterImages" [currentOrgan]="organData[0].name" (organName)="setOrgan($event)"></ccf-organ-tabs>
-<ccf-two-dim-image [cardTitle]="cardTitle" [tissueData]="organData"></ccf-two-dim-image>
+<ccf-two-dim-image [cardTitle]="cardTitle" [tissueData]="organData" [isMultirow]="true"></ccf-two-dim-image>
 <ccf-page-data [data]="termsOfUseData"></ccf-page-data>
