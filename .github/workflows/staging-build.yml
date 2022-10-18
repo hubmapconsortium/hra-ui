@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [16.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -28,7 +28,7 @@ jobs:
             ${{ runner.os }}-node-
       - run: npm ci
       - name: Build HRA Portal
-        run: npm run build -- --output-hashing=none --base-href=/ccf/
+        run: npm run build -- --output-hashing=none --base-href=/
       - name: Setup Netlify files
         run: |
           echo '/* /index.html 200' > dist/ccf/_redirects
