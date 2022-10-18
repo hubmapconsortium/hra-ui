@@ -1,0 +1,69 @@
+:host {
+  .long-card {
+    padding-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+
+  .symbol {
+    float: left;
+    height: 8rem;
+    width: 8rem;
+  }
+
+  .img-cls {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+
+  mat-card {
+    padding: 0rem 1rem 0.063rem 0rem;
+    box-shadow: #212121;
+    margin-bottom: 0.063rem;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+  }
+
+  .body {
+    padding-left: 1rem;
+    padding-top: 2rem;
+    margin-bottom: 0;
+    overflow-x: hidden;
+  }
+
+  .nav-card-title {
+    display: flex;
+    flex-direction: column wrap;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 1.4202rem;
+    letter-spacing: 0.005em;
+    color: #0a6ebd;
+  }
+
+  .nav-card-description {
+    padding-top: 0.5rem;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005em;
+    color: #212121;
+  }
+
+  a {
+    text-decoration: none;
+    color: #0a6ebd;
+  }
+
+  .mat-icon {
+    height: 1.313rem;
+  }
+}

@@ -1,0 +1,6 @@
+<mat-toolbar class="mat-toolbar">
+  <div class="hubmap-header">{{hubmapHeader}}</div>
+  <div class="hra-header">{{hraHeader}}</div>
+  <div style="flex-grow:1;"></div>
+  <ccf-navbar [items]="navigationItems" (itemClick)="itemClicked($event)"></ccf-navbar>
+</mat-toolbar>

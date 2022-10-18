@@ -1,0 +1,9 @@
+<div class="tabs-container">
+    <mat-tab-group mat-align-tabs="start" [disableRipple]="true" [selectedIndex]="selectedIndex">
+        <mat-tab *ngFor="let tab of tabs">
+            <ng-template mat-tab-label>
+                <img [src]="tab.image" class="organ-image" (click)="organName.emit(tab.name)">
+            </ng-template>
+        </mat-tab>
+    </mat-tab-group>
+</div>

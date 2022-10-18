@@ -1,0 +1,53 @@
+:host {
+  .demo-table {
+    width: 100%;
+  }
+
+  .table-container {
+    padding-bottom: 2rem;
+  }
+
+  ::ng-deep table > tbody > tr > td:nth-child(1) {
+    width: 447px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005rem;
+    color: #212121;
+  }
+
+  ::ng-deep td:nth-child(2) {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005rem;
+    color: #212121;
+  }
+
+  ::ng-deep th.mat-header-cell {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005em;
+    color: #212121;
+  }
+
+  ::ng-deep table > thead > tr > th:nth-child(1) .mat-sort-header-arrow {
+    color: #ebebeb !important;
+  }
+
+  ::ng-deep
+    .mat-sort-header-container:not(.mat-sort-header-sorted)
+    .mat-sort-header-arrow {
+    opacity: 0.54 !important;
+    transform: rotate(180deg) !important;
+    color: #ebebeb;
+  }
+
+}

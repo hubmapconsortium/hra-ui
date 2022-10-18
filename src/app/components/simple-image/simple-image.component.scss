@@ -1,0 +1,76 @@
+:host {
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    margin-top: 1rem;
+  }
+
+  .description {
+    padding-top: 1rem;
+    padding-left: 2rem;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005em;
+  }
+
+  mat-card-header {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.5rem;
+    line-height: 1.4202rem;
+    letter-spacing: 0.005rem;
+    padding-bottom: 1rem;
+  }
+
+  .image-card-container {
+    padding-bottom: 2rem;
+  }
+
+  .image-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+  }
+
+  mat-card-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+::ng-deep .custom-modal {
+  mat-dialog-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mat-icon {
+    padding-bottom: 0.625rem;
+    height: 1.75rem;
+  }
+
+  .dialog-header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .mat-button-toggle-focus-overlay {
+    display: none;
+  }
+
+  .mat-dialog-title {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.5rem;
+    line-height: 1.4202rem;
+    letter-spacing: 0.005rem;
+    margin: unset;
+  }
+}

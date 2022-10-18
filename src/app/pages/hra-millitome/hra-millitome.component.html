@@ -1,0 +1,5 @@
+<ccf-page-header [headerCard]="headerCardDetails"></ccf-page-header>
+<ccf-page-data [data]="overViewData"></ccf-page-data>
+<ccf-sop-links [links]="sopLinksData"></ccf-sop-links>
+<div class="table-title">{{tableTitle}}</div>
+<ccf-table [typeCount]="(tableData | async) ?? []" [displayedColumns]="displayedColumnsData" [columns]="headerInfo" [isTotal]="false"></ccf-table>

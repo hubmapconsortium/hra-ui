@@ -1,0 +1,11 @@
+<div class="main-content">
+    <div class="hubmap-title">
+        <img src="assets/images/heading_img.JPG" class="landing-img">
+    </div>
+    <div class="landing-title">{{title}}</div>
+    <div class="landing-subtitle">{{subtitle}}</div>
+</div>
+<ccf-simple-tile [definitions]="definitions"></ccf-simple-tile>
+<ccf-carousel [carouselInfo]="carouselInfo" (buttonRoute)="routeTo($event)"></ccf-carousel>
+<div class="content-title">{{cardsHeading}}</div>
+<ccf-section-card [cards]="cards" (cardRoutes)="routeTo($event)"></ccf-section-card>

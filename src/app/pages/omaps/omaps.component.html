@@ -1,0 +1,6 @@
+<ccf-page-header [headerCard]="omapsHeading"></ccf-page-header>
+<ccf-page-data [data]="overviewData"></ccf-page-data>
+<ccf-sop-links [links]="sopData"></ccf-sop-links>
+<ccf-choose-version [releaseDate]="omapsVersionData" [selectedDate]="placeholderDate" (selectedVersion)="setOmapsData($event)"></ccf-choose-version>
+<ccf-table [typeCount]="(tableData|async) ?? []" [displayedColumns]="displayedColumnsData" [columns]="columnHeaders"></ccf-table>
+<ccf-page-data [data]="acknowledgementsData"></ccf-page-data>

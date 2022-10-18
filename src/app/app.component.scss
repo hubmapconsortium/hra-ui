@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  overflow: auto;
+  align-items: center;
+  margin-top: 3.5rem;
+
+  .toolbar-class {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    background-color: #444c65;
+    box-shadow: 0rem 0.063rem 0.188rem 0.063rem rgb(0 0 0 / 40%);
+  }
+}

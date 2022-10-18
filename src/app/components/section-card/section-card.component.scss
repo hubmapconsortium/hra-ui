@@ -1,0 +1,71 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  line-height: normal;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  mat-card {
+    padding: 0rem;
+  }
+
+  mat-card-content {
+    padding: 1rem 1rem;
+  }
+
+  .card-button {
+    flex-direction: column;
+    margin-bottom: 0.625rem;
+
+    &:hover {
+      box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2),
+        0 0.375rem 1.25rem 0 rgba(0, 0, 0, 0.19);
+    }
+
+    display: flex;
+    height: 24rem;
+    width: 35rem;
+  }
+
+  .nav-card-title {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-size: 1.125rem;
+    letter-spacing: 0.5%;
+    color: #0a6ebd;
+    font-weight: 400;
+    line-height: 1.4202rem;
+    text-decoration: none;
+  }
+
+  .description {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.4202rem;
+    color: #212121;
+  }
+
+  .image-container {
+    .static,
+    .gif {
+      width: 35rem;
+      height: 18rem;
+    }
+
+    .gif {
+      display: none;
+    }
+
+    &:hover {
+      .static {
+        display: none;
+      }
+
+      .gif {
+        display: unset;
+      }
+    }
+  }
+}

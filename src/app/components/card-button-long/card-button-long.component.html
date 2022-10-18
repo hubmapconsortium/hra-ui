@@ -1,0 +1,23 @@
+<div class="long-card">
+  <mat-card *ngFor="let longButton of longButtonItems" (click)="cardRoutes.emit(longButton)">
+    <div class="symbol">
+      <img [src]="longButton.icon" class="img-cls" />
+    </div>
+    <div class="body">
+      <div class="nav-card-title">
+        <div *ngIf="longButton.externalLink; else route">
+          <a href={{longButton.externalLink}} target="_blank">
+            {{longButton.title}}
+            <mat-icon>open_in_new</mat-icon>
+          </a>
+        </div>
+        <ng-template #route>
+          {{longButton.title}}
+        </ng-template>
+      </div>
+      <div class="nav-card-description">
+        {{longButton.body}}
+      </div>
+    </div>
+  </mat-card>
+</div>

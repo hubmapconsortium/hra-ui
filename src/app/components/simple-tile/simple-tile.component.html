@@ -1,0 +1,7 @@
+<div class="card-container">
+    <div *ngFor="let definition of definitions">
+        <div class="card">
+            <markdown [data]="definition.title" class="mat-card"></markdown>
+        </div>
+    </div>
+</div>

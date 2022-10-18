@@ -1,0 +1,110 @@
+:host {
+  table {
+    width: 100%;
+  }
+
+  .table-container {
+    padding-bottom: 2rem;
+  }
+
+  td {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005rem;
+    color: #212121;
+  }
+
+  .table-title {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005em;
+    color: #212121;
+  }
+
+  .table-footer {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005rem;
+    color: #212121;
+  }
+
+  ::ng-deep table > tbody > tr > td:nth-child(0) {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.005em;
+    color: #212121;
+  }
+
+  table {
+    width: 100%;
+    table-layout: fixed;
+    background-color: #ffffff;
+    border: 0.063rem solid #e0e0e0;
+    box-shadow: 0rem 0.125rem 0.063rem rgba(0, 0, 0, 0.16);
+  }
+
+  th,
+  td {
+    overflow: hidden;
+    width: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mat-column-organ {
+    width: 11.938rem;
+  }
+
+  .mat-column-imagingMethod {
+    width: 23rem;
+  }
+
+  .mat-column-tissuePreservationMethod {
+    width: 15rem;
+  }
+
+  ::ng-deep table > thead > tr > th:nth-child(1) .mat-sort-header-arrow {
+    color: #212121 !important;
+    &:hover {
+      transform: rotate(360deg) !important;
+      color: #ebebeb !important;
+    }
+  }
+
+  ::ng-deep
+    .mat-sort-header-container:not(.mat-sort-header-sorted)
+    .mat-sort-header-arrow {
+    opacity: 0.54 !important;
+    transform: rotate(180deg) !important;
+    color: #ebebeb;
+    size: 3rem;
+  }
+
+  ::ng-deep .demo-table a {
+    text-decoration: none;
+    color: #0a6ebd;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005rem;
+
+    &:hover {
+      transform: scale(1.5);
+      text-decoration: underline;
+    }
+  }
+}
