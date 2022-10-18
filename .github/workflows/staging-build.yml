@@ -30,7 +30,6 @@ jobs:
       - name: Build HRA Portal
         run: npm run build -- --output-hashing=none --base-href=/ccf/
       - name: Setup Netlify files
-        working-directory: website
         run: |
           echo '/* /index.html 200' > dist/ccf/_redirects
 
