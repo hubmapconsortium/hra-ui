@@ -47,18 +47,18 @@
   .swiper-button-prev {
     top: 97.6%;
     color: #444a65;
-    left: 1.0625rem;
+    left: 0.0625rem;
   }
 
   .swiper-button-next {
     top: 97.6%;
-    left: 14.5%;
+    left: 20.5%;
     color: #444a65;
   }
 
-  .left {
+  .carousel-left {
     height: 100%;
-    width: 25%;
+    width: 384px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -68,8 +68,8 @@
     padding-left: 0.063rem;
   }
 
-  .right {
-    width: 75%;
+  .carousel-right {
+    width: 840px;
     height: 100%;
     position: fixed;
     z-index: 1;
@@ -126,5 +126,9 @@
     height: 1rem;
     background: unset;
     opacity: unset;
+  }
+
+  .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet{
+    margin-right: 1rem;
   }
 }

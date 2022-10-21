@@ -19,6 +19,6 @@ import { AboutComponent } from './about.component';
     PageDataModule
   ],
   providers: [],
-  bootstrap: [AboutComponent]
+  bootstrap: []
 })
 export class AboutModule { }

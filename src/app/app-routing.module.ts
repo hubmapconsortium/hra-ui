@@ -19,6 +19,11 @@ import { TissueInfoResolverService } from './services/tissue-info/tissue-info-re
 import { HraSopComponent } from './pages/hra-sop/hra-sop.component';
 import { OmapsComponent } from './pages/omaps/omaps.component';
 import { ThreeDimRefPageComponent } from './pages/three-dim-ref-page/three-dim-ref-page.component';
+import { CcfAsctbAzimuthComponent } from './pages/ccf-asctb-azimuth/ccf-asctb-azimuth.component';
+import { HraUsageMetricsComponent } from './pages/hra-usage-metrics/hra-usage-metrics.component';
+import { KaggleTwentyoneComponent } from './pages/kaggle-twentyone/kaggle-twentyone.component';
+import { KaggleTwoModule } from './pages/kaggle-two/kaggle-two.module';
+import { KaggleTwoComponent } from './pages/kaggle-two/kaggle-two.component';
 
 
 const routes: Routes = [
@@ -28,16 +33,18 @@ const routes: Routes = [
   { path: 'ccf-2d-reference-library', component: TwoDimRefPageComponent },
   { path: 'ccf-overview-tools', component: OverviewToolsComponent },
   { path: 'ccf-ontology', component: CcfOntologyComponent },
-  { path: 'ccf-asctb-reporter', component: CcfReporterPageComponent  },
-  { path: 'ccf-exploration-user-interface', component: CcfExplorationUserInterfaceComponent},
+  { path: 'ccf-asctb-reporter', component: CcfReporterPageComponent },
+  { path: 'ccf-exploration-user-interface', component: CcfExplorationUserInterfaceComponent },
   { path: 'ccf-hra-millitome', component: HraMillitomeComponent },
-  { path: 'ccf-registration-user-interface', component: RegistrationUserInterfaceComponent},
+  { path: 'ccf-registration-user-interface', component: RegistrationUserInterfaceComponent },
   { path: 'ccf-cell-population-graphs', component: CellPopulationGraphsComponent },
   { path: 'ccf-hra-api', component: HraApiComponent },
   { path: 'ccf-about', component: AboutComponent },
   { path: 'ccf-overview-training-outreach', component: OverviewTrainingOutreachComponent },
   { path: 'ccf-omaps', component: OmapsComponent },
   { path: 'ccf-3d-reference-library', component: ThreeDimRefPageComponent },
+  { path: 'ccf-asctb-azimuth', component: CcfAsctbAzimuthComponent },
+  { path: 'ccf-hra-usage-metrics', component: HraUsageMetricsComponent },
   {
     path: 'ccf-tissue-info-page/:organ', component: TissueInfoPageComponent,
     resolve: {
@@ -45,6 +52,8 @@ const routes: Routes = [
     }
   },
   { path: 'ccf-hra-sop', component: HraSopComponent },
+  { path: 'ccf-kaggle-twentyone', component: KaggleTwentyoneComponent },
+  { path: 'ccf-kaggle-two', component: KaggleTwoComponent},
   { path: '', redirectTo: 'landing-page', pathMatch: 'full' },
   { path: '**', pathMatch: 'full', component: LandingPageComponent }
 ];

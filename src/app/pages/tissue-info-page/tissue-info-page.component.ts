@@ -17,14 +17,4 @@ export class TissueInfoPageComponent {
   constructor(route: ActivatedRoute) {
     this.data = route.snapshot.data['data'];
   }
-
-  // Resolver service
-  // constructor(private readonly router: Router) { }
-  
-  // resolve(route: ActivatedRouteSnapshot): TissueTableInfo | void {
-  //   const organName = route.paramMap.get('organ')?.toLowerCase();
-  //   const data = tissueData.find(data => data.tissueName?.toLowerCase() === organName);
-
-  //   return data || void (this.router.navigateByUrl('/'))
-  // }
 }

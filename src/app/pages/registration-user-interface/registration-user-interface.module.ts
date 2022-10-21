@@ -31,6 +31,6 @@ import { UseButtonModule } from 'src/app/components/use-button/use-button.module
     YoutubeModelModule
   ],
   providers: [],
-  bootstrap: [RegistrationUserInterfaceComponent]
+  bootstrap: []
 })
 export class RegistrationUserInterfaceModule { }

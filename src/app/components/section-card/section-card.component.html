@@ -1,5 +1,5 @@
 <mat-card *ngFor="let card of cards" class="card-button">
-  <div class="image-container" (click)="cardRoutes.emit(card)">
+  <div class="image-container" [routerLink]="['',card.route]">
     <img [src]="card.image" alt="Images of Card" class="static">
     <img [src]="card.gif" alt="Images of Card" class="gif">
     <mat-card-content>

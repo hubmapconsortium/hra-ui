@@ -15,6 +15,6 @@ import { CardButtonLongModule } from 'src/app/components/card-button-long/card-b
     CardButtonLongModule
   ],
   providers: [],
-  bootstrap: [OverviewTrainingOutreachComponent]
+  bootstrap: []
 })
 export class OverviewTrainingOutreachModule { }

@@ -4,18 +4,38 @@
     <span *ngFor="let tissues of tissueData" [class.multirow]="!isMultirow">
         <ng-container *ngFor="let tissue of tissues.tissueData; even as even; last as last;">
             <mat-card-actions [class.split]="!isMultirow">
-                <div class="units-container">
+                <div class="units-container" *ngIf="isMultirow; else: downloadGlb">
                     {{tissue.name}}
                     <div style="flex-grow: 1;"></div>
                     <a mat-stroked-button disableRipple="true" href="{{tissue.url}}" style="float: right;">
                         Info
                         <mat-icon>info</mat-icon>
                     </a>
-                    <button mat-stroked-button disableRipple="true">
-                        Download
+                    <a mat-stroked-button disableRipple="true" [href]="tissue.image" download>
+                        Download .png
                         <mat-icon>download</mat-icon>
-                    </button>
+                    </a>
+                    <a [href]="tissue.svg" mat-stroked-button disableRipple="true" download>
+                        Download .svg
+                        <mat-icon>download</mat-icon>
+                    </a>
                 </div>
+                <ng-template #downloadGlb>
+                    <div class="units-container">
+                        {{tissue.name}}
+                        <div style="flex-grow: 1;"></div>
+                        <div>
+                            <a [href]="tissue.threeDimImage" download mat-stroked-button disableRipple="true">
+                                Download .glb
+                                <mat-icon>download</mat-icon>
+                            </a>
+                            <a mat-stroked-button disableRipple="true" href="{{tissue.url}}">
+                                Info
+                                <mat-icon>info</mat-icon>
+                            </a>
+                        </div>
+                    </div>
+                </ng-template>
                 <mat-divider *ngIf="!isMultirow"></mat-divider>
                 <div class="image-container" *ngIf="tissue.image; else: threeDimensionContainer">
                     <img [src]="tissue.image" (click)="openImageViewer(imageContent)">
@@ -27,15 +47,21 @@
                                 Info
                                 <mat-icon>info</mat-icon>
                             </a>
-                            <button mat-dialog-close mat-stroked-button [disableRipple]="true">
-                                Download
+                            <a mat-stroked-button disableRipple="true" [href]="tissue.image" download>
+                                Download .png
                                 <mat-icon>download</mat-icon>
-                            </button>
+                            </a>
+                            <a [href]="tissue.svg" mat-stroked-button disableRipple="true" download>
+                                Download .svg
+                                <mat-icon>download</mat-icon>
+                            </a>
                             <button mat-dialog-close mat-button [disableRipple]="true">
                                 <mat-icon>close</mat-icon>
                             </button>
                         </div>
-                        <img [src]="tissue.expandedImage" class="dialog-image">
+                        <div class="img-container">
+                            <img [src]="tissue.expandedImage" class="dialog-image">
+                        </div>
                     </ng-template>
                 </div>
                 <ng-template #threeDimensionContainer>
@@ -46,7 +72,7 @@
                     </div>
                 </ng-template>
             </mat-card-actions>
-            <mat-divider [vertical]="!isMultirow" *ngIf="isMultirow && !last || even"></mat-divider>
+            <mat-divider [vertical]="!isMultirow" *ngIf="isMultirow && last || even"></mat-divider>
         </ng-container>
     </span>
 </mat-card>

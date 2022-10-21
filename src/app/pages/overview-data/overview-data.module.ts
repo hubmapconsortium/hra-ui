@@ -15,6 +15,6 @@ import { BrowserModule } from '@angular/platform-browser';
     CardButtonLongModule
   ],
   providers: [],
-  bootstrap: [OverviewDataComponent]
+  bootstrap: []
 })
 export class OverviewDataModule { }

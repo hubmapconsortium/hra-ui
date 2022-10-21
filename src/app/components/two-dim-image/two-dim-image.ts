@@ -5,6 +5,7 @@ export interface TissueData {
     threeDimImage?: string,
     alt?: string
     url: string
+    svg?: string
 }
 
 export interface OrganData {

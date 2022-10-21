@@ -1,10 +1,10 @@
 import { LongCard } from "src/app/components/card-button-long/long-card";
 
-export interface abc {
+export interface CardBlock {
     heading: string;
     cardData: LongCard[]
 }
-export const longCardData: abc[] = [
+export const longCardData: CardBlock[] = [
     {
         heading: "Training",
         cardData: [
@@ -17,7 +17,8 @@ export const longCardData: abc[] = [
             {
                 icon: "assets/images/hra-sop.png",
                 title: "Human Reference Atlas Standard Operating Procedures",
-                body: "Standard operating procedures for Human Reference Atlas construction, visualization, and usage"
+                body: "Standard operating procedures for Human Reference Atlas construction, visualization, and usage",
+                route: 'ccf-hra-sop'
             }
         ]
     },
@@ -26,13 +27,15 @@ export const longCardData: abc[] = [
         cardData: [
             {
                 icon: "assets/images/kaggle.png",
-                title: "Kaggle Competition and Awards 2021",
+                title: "Kaggle #1: HuBMAP - Hacking the Kidney",
                 body: "Algorithm development challenges that engage teams from around the globe to develop code for Human Reference Atlas construction",
+                route: 'ccf-kaggle-twentyone'
             },
             {
                 icon: "assets/images/kaggle.png",
-                title: "Kaggle Competition and Awards 2022",
-                body: "Algorithm development challenges that engage teams from around the globe to develop code for Human Reference Atlas construction"
+                title: "Kaggle #2: HuBMAP + HPA - Hacking the Human Body",
+                body: "Algorithm development challenges that engage teams from around the globe to develop code for Human Reference Atlas construction",
+                route: 'ccf-kaggle-two'
             }
         ]
     }

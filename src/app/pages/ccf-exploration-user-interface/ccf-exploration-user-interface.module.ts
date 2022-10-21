@@ -31,6 +31,6 @@ import { UseButtonModule } from 'src/app/components/use-button/use-button.module
     YoutubeModelModule
   ],
   providers: [],
-  bootstrap: [CcfExplorationUserInterfaceComponent]
+  bootstrap: []
 })
 export class CcfExplorationUserInterfaceModule { }

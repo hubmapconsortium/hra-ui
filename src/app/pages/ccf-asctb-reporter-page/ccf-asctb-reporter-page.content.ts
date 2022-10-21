@@ -28,5 +28,5 @@ export const acknowledgeData: PageDataItems[] = [
 
 export const useButtonData: UseButton = {
     text: 'Use the ASCT+B Table Reporter',
-    url: ''
+    url: 'https://hubmapconsortium.github.io/ccf-asct-reporter/'
 }

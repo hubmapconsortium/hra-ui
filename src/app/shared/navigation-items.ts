@@ -18,7 +18,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         },
         {
           menuName: 'Anatomical Structures, Cell Types + Biomarkers (ASCT+B) Cell Types Data from Azimuth',
-          route: 'azimuth-route',
+          route: 'ccf-asctb-azimuth',
           disabled: true
         },
         {
@@ -39,8 +39,8 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         },
         {
           menuName: 'HuBMAP Data Portal',
-          route: 'hubmap-portal',
-          disabled: true
+          disabled: true,
+          url: "https://portal.hubmapconsortium.org/"
         }
       ]
     },
@@ -79,7 +79,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
           disabled: true
         },
         {
-          menuName: 'HRA Milletome',
+          menuName: 'HRA Millitome',
           route: 'ccf-hra-millitome',
           disabled: true
         },
@@ -90,13 +90,13 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         },
         {
           menuName: 'HRA Usage Metrics',
-          route: 'usage-route',
+          route: 'ccf-hra-usage-metrics',
           disabled: true
         }
       ]
     },
     {
-      menuName: 'Training and Outreach',
+      menuName: 'Training & Outreach',
       children: [
         {
           menuName: 'Overview: HRA Training and Outreach',
@@ -106,7 +106,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         },
         {
           menuName: 'Visible Human Massive Open Online Course',
-          route: 'ccf-vhmooc',
+          url: 'https://expand.iu.edu/browse/sice/cns/courses/hubmap-visible-human-mooc',
           disabled: true
         },
         {
@@ -115,13 +115,13 @@ export const NAVIGATION_ITEMS: NavItems[] = [
           disabled: true
         },
         {
-          menuName: 'Kaggle Competition Awards 2021',
-          route: 'kaggle-2021-route',
+          menuName: 'Kaggle #1: HuBMAP - Hacking the Kidney',
+          route: 'ccf-kaggle-twentyone',
           disabled: true
         },
         {
-          menuName: 'Kaggle Competition Awards 2022',
-          route: 'kaggle-2022-route',
+          menuName: 'Kaggle #2: HuBMAP + HPA - Hacking the Human Body',
+          route: 'ccf-kaggle-two',
           disabled: true
         }
       ]

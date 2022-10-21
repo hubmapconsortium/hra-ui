@@ -1,4 +1,4 @@
-import { TILE_DEFINITION } from './../../shared/simple-tile-items';
+import { TileDefinition } from './../../shared/simple-tile-items';
 import { Component } from '@angular/core';
 import { title, subtitle, cardsHeading, carouselInfo, cards } from './landing-page.content';
 import { Router } from '@angular/router';
@@ -16,12 +16,8 @@ export class LandingPageComponent {
   subtitle = subtitle
   cardsHeading = cardsHeading
 
-  definitions = TILE_DEFINITION
+  definitions = TileDefinition
   carouselInfo = carouselInfo
   cards = cards
-
-  routeTo(card: any): void {
-    this.router.navigate([card.route])
-  }
 
 }

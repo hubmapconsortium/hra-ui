@@ -17,6 +17,6 @@ import { TissueInfoTableModule } from 'src/app/components/tissue-info-table/tiss
     TissueInfoTableModule
   ],
   providers: [],
-  bootstrap: [OverviewToolsComponent]
+  bootstrap: []
 })
 export class OverviewToolsModule { }

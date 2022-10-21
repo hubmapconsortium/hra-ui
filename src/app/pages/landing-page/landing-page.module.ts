@@ -24,6 +24,6 @@ import { LandingPageComponent } from '../../pages/landing-page/landing-page.comp
     BottomToolbarModule,
   ],
   providers: [],
-  bootstrap: [LandingPageComponent]
+  bootstrap: []
 })
 export class LandingPageModule { }

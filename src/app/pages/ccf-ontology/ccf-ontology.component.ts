@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LongCard } from 'src/app/components/card-button-long/long-card';
-import { TILE_DEFINITION } from 'src/app/shared/simple-tile-items';
+import { TileDefinition } from 'src/app/shared/simple-tile-items';
 import { ccfKnowledgeData, markdownData, ontologyWebData, overviewData, referencesData, relatedToolsData, spatialOntologyData } from './ccf-ontology.content';
 
 @Component({
@@ -14,7 +14,7 @@ export class CcfOntologyComponent {
   constructor(private router: Router){}
 
   title = "Common Coordinate Framework Ontology"
-  description = TILE_DEFINITION
+  description = TileDefinition
   overviewData = overviewData
   ccfKnowledgeData = ccfKnowledgeData
   spatialOntologyData = spatialOntologyData

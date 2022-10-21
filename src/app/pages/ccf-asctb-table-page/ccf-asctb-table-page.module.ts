@@ -26,6 +26,6 @@ import { MarkdownModule } from 'ngx-markdown';
     MarkdownModule.forRoot()
   ],
   providers: [],
-  bootstrap: [CcfTablePageComponent]
+  bootstrap: []
 })
 export class CcfTablePageModule { }

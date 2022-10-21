@@ -1,16 +1,15 @@
 <swiper [config]="config" class="carousel">
   <ng-template swiperSlide *ngFor="let info of carouselInfo">
-    <div class="left">
+    <div class="carousel-left">
       <div class="content-titles">{{info.title}}</div>
       <div class="content-body">{{info.body}}</div>
-      <div *ngIf="info.url; else route">
-        <a mat-stroked-button class="get-button" href={{info.url}} target="_blank">Get Started</a>
-      </div>
+      <a *ngIf="info.url; else route" mat-stroked-button class="get-button" [href]="info.url" target="_blank">Get
+        Started</a>
       <ng-template #route>
-        <button mat-stroked-button class="get-button" (click)="buttonRoute.emit(info)">Get Started</button>
+        <a mat-stroked-button class="get-button" [routerLink]="['',info.route]">Get Started</a>
       </ng-template>
     </div>
-    <div class="right">
+    <div class="carousel-right">
       <img [src]="info.image" />
     </div>
   </ng-template>

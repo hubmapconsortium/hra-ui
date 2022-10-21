@@ -1,0 +1,24 @@
+:host {
+  max-width: 77rem;
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .image-title {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.5rem;
+    letter-spacing: 0.005em;
+    color: #000000;
+    padding-bottom: 2rem;
+  }
+
+  .request-image{
+    height: 100%;
+    width: 70%;
+    padding-bottom: 3.5rem;
+  }
+}

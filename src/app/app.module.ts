@@ -9,7 +9,6 @@ import { LandingPageModule } from './pages/landing-page/landing-page.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { TableDataService } from './services/table-data/tabledata.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TwoDimRefPageModule } from './pages/two-dim-ref-page/two-dim-ref-page.module';
 import { CcfOntologyModule } from './pages/ccf-ontology/ccf-ontology.module';
@@ -27,10 +26,14 @@ import { TissueInfoPageModule } from './pages/tissue-info-page/tissue-info-page.
 import { HraSopModule } from './pages/hra-sop/hra-sop.module';
 import { OmapsModule } from './pages/omaps/omaps.module';
 import { ThreeDimRefPageModule } from './pages/three-dim-ref-page/three-dim-ref-page.module';
+import { CcfAsctbAzimuthModule } from './pages/ccf-asctb-azimuth/ccf-asctb-azimuth.module';
+import { HraUsageMetricsModule } from './pages/hra-usage-metrics/hra-usage-metrics.module';
+import { KaggleTwentyoneModule } from './pages/kaggle-twentyone/kaggle-twentyone.module';
+import { KaggleTwoModule } from './pages/kaggle-two/kaggle-two.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -59,9 +62,13 @@ import { ThreeDimRefPageModule } from './pages/three-dim-ref-page/three-dim-ref-
     TissueInfoPageModule,
     HraSopModule,
     OmapsModule,
-    ThreeDimRefPageModule
+    ThreeDimRefPageModule,
+    CcfAsctbAzimuthModule,
+    HraUsageMetricsModule,
+    KaggleTwentyoneModule,
+    KaggleTwoModule
   ],
-  providers: [TableDataService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

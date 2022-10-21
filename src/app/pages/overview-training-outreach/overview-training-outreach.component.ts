@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { TILE_DEFINITION } from 'src/app/shared/simple-tile-items';
+import { Router } from '@angular/router';
+import { LongCard } from 'src/app/components/card-button-long/long-card';
+import { TileDefinition } from 'src/app/shared/simple-tile-items';
 import { longCardData } from './overview-training-outreach.content';
 
 @Component({
@@ -9,8 +11,14 @@ import { longCardData } from './overview-training-outreach.content';
 })
 export class OverviewTrainingOutreachComponent {
 
+  constructor(private router: Router) { }
+
   title = "Human Reference Atlas Training & Outreach";
-  TILE_DEFINITION = TILE_DEFINITION
+  TileDefinition = TileDefinition
   longCardData = longCardData
+
+  route(card:LongCard):void{
+    this.router.navigate([card.route])
+  }
   
 }

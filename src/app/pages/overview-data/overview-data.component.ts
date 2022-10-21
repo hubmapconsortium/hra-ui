@@ -1,4 +1,4 @@
-import { TILE_DEFINITION } from './../../shared/simple-tile-items';
+import { TileDefinition } from './../../shared/simple-tile-items';
 import { Component } from '@angular/core';
 import { longButtonItems, pageTitle } from './overview-data.content';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ export class OverviewDataComponent {
 
   constructor(private router: Router) { }
   pageTitle = pageTitle;
-  description = TILE_DEFINITION
+  description = TileDefinition
   longButtonItems = longButtonItems
 
   clicked(card: LongCard): void {

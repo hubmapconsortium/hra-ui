@@ -1,16 +1,18 @@
 :host {
   .mat-card {
     margin-bottom: 2rem;
+    padding: unset;
   }
 
-  .card-title {
+  .mat-card-title {
     font-family: "Inter";
     font-style: normal;
     font-weight: 300;
     font-size: 1.5rem;
     line-height: 1.4202rem;
     letter-spacing: 0.005em;
-    padding-left: 0.5rem;
+    padding: 1rem;
+    margin-bottom: unset;
   }
 
   .mat-stroked-button {
@@ -46,6 +48,12 @@
     color: #212121;
   }
 
+  .mat-card-actions {
+    margin-left: 0.01rem;
+    margin-right: unset;
+    margin-bottom: unset;
+  }
+
   .image-container {
     display: flex;
     width: 100%;
@@ -55,12 +63,11 @@
   .multirow {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     flex-wrap: wrap;
   }
 
   .split {
-    width: 50%;
+    width: 49%;
   }
 
   .units-container {
@@ -75,11 +82,11 @@
     letter-spacing: 0.005rem;
     color: #212121;
     display: flex;
-    
   }
 
   .mat-card-actions > .mat-divider {
-    margin: 0.5rem -0.5rem 0rem -0.5rem;
+    margin-top: 0.5rem;
+    width: 39rem;
   }
 
   .model-container {
@@ -129,13 +136,15 @@
     letter-spacing: 0.005em;
     margin-right: 0.5rem;
     border-radius: 0.125rem;
-    height: 40px;
-    width: 128px;
   }
 
-  .dialog-image{
-    // object-fit: cover;
-    max-width: 100%;
-    max-height: 100%;
+  .dialog-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .img-container {
+    width: 664px;
+    height: 792px;
   }
 }

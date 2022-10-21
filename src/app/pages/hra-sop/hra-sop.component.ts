@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EMPTY, Observable } from 'rxjs';
 import { TableData } from 'src/app/components/table/table';
 import { TableDataService } from 'src/app/services/table-data/tabledata.service';
-import { displayedColumnsData, headerInfo, pageHeader } from './hra-sop.content';
+import { displayedColumnsData, headerInfo, overviewData, pageHeader } from './hra-sop.content';
 
 @Component({
   selector: 'ccf-hra-sop',
@@ -15,6 +15,7 @@ export class HraSopComponent implements OnInit {
   tableFile = "hra-sop.csv";
   displayedColumnsData = displayedColumnsData
   headerInfo = headerInfo
+  overviewData = overviewData
 
   tableData: Observable<TableData[]> = EMPTY;
   constructor(private readonly dataService: TableDataService) { }

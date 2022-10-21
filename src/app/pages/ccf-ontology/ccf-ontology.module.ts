@@ -25,6 +25,6 @@ import { MarkdownModule } from 'ngx-markdown';
     MarkdownModule.forChild()
   ],
   providers: [],
-  bootstrap: [CcfOntologyComponent]
+  bootstrap: []
 })
 export class CcfOntologyModule { }
