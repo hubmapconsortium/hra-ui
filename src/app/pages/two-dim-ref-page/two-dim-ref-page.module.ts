@@ -25,6 +25,6 @@ import { ChooseVersionModule } from 'src/app/components/choose-version/choose-ve
 
   ],
   providers: [],
-  bootstrap: [TwoDimRefPageComponent]
+  bootstrap: []
 })
 export class TwoDimRefPageModule { }

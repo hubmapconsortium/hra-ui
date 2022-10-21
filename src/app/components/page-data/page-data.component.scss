@@ -27,5 +27,14 @@
     cursor: pointer;
     text-decoration: none;
     font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+    }
+  }
+
+  ::ng-deep h2 {
+    margin: 0 0 0px;
   }
 }

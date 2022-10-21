@@ -16,7 +16,7 @@ export class HraMillitomeComponent implements OnInit {
   headerCardDetails = headerCardDetails;
   overViewData = overviewData;
   sopLinksData = sopLinksData;
-  tableTitle = 'Milletome Catalog'
+  tableTitle = 'Millitome Catalog'
   displayedColumnsData = displayedColumnsData;
   headerInfo = headerInfo;
 

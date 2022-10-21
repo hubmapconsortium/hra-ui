@@ -57,7 +57,7 @@ export const termsOfUseData: PageDataItems[] = [
     },
     {
         heading: 'Acknowledgments',
-        descriptions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        descriptions: 'The 2D Functional Tissue Unit Library files were created by Rachel Bajema on the MC-IU team. This research has been funded in part by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671 and the NIDDK Kidney Precision Medicine Project grant U2CDK114886.'
     }
 ]
 
@@ -67,80 +67,88 @@ export const organInfo: VersionOrgans[] = [
         organData: [
             {
                 name: 'Kidney',
-                image: 'assets/images/kidney.jpg',
+                image: 'assets/images/kidney.svg',
                 tissueData: [
                     {
                         name: 'Nephron',
                         image: 'assets/images/nephron.png',
                         expandedImage: 'assets/images/nephron_dialog.png',
-                        url: 'https://doi.org/10.48539/HBM489.SGQZ.655'
+                        url: 'https://doi.org/10.48539/HBM489.SGQZ.655',
+                        svg: 'assets/images/nephron.svg'
                     },
                     {
                         name: 'Renal Corpuscle',
                         image: 'assets/images/renal_corpuscle.png',
                         expandedImage: 'assets/images/renal_corpuscle.png',
-                        url: 'https://doi.org/10.48539/HBM395.LVFN.656'
+                        url: 'https://doi.org/10.48539/HBM395.LVFN.656',
+                        svg: 'assets/images/renal_corpuscle.svg'
                     }
                 ]
             },
             {
                 name: 'Large Intestine',
-                image: 'assets/images/large_intestine.jpg',
+                image: 'assets/images/large_intestine.svg',
                 tissueData: [{
                     name: 'Crypt of Lieberkuhn',
                     image: 'assets/images/crypt_lieberkuhn_large_intestine.png',
                     expandedImage: 'assets/images/crypt_lieberkuhn_large_intestine.png',
-                    url: 'https://doi.org/10.48539/HBM373.JRGS.542'
+                    url: 'https://doi.org/10.48539/HBM373.JRGS.542',
+                    svg: 'assets/images/crypt_lieberkuhn_large_intestine.svg'
                 }]
             },
             {
                 name: 'Liver',
-                image: 'assets/images/liver.jpg',
+                image: 'assets/images/liver.svg',
                 tissueData: [{
                     name: 'Liver Lobule',
                     image: 'assets/images/liver_lobule.png',
                     expandedImage: 'assets/images/liver_lobule.png',
-                    url: 'https://doi.org/10.48539/HBM692.KXMT.939'
+                    url: 'https://doi.org/10.48539/HBM692.KXMT.939',
+                    svg: 'assets/images/liver_lobule.svg',
                 }]
             },
             {
                 name: 'Lungs',
-                image: 'assets/images/lungs.jpg',
+                image: 'assets/images/lungs.svg',
                 tissueData: [{
                     name: 'Pulmonary Alveolus',
                     image: 'assets/images/pulmonary_alveolus_lung.png',
                     expandedImage: 'assets/images/pulmonary_alveolus_lung.png',
-                    url: 'https://doi.org/10.48539/HBM626.KZVN.453'
+                    url: 'https://doi.org/10.48539/HBM626.KZVN.453',
+                    svg: 'assets/images/pulmonary_alveolus_lung.svg',
                 }]
             },
             {
                 name: 'Pancreas',
-                image: 'assets/images/pancreas.jpg',
+                image: 'assets/images/pancreas.svg',
                 tissueData: [{
                     name: 'Islets of Langerhans',
                     image: 'assets/images/islets_langerhans_pancreas.png',
                     expandedImage: 'assets/images/islets_langerhans_pancreas.png',
-                    url: 'https://doi.org/10.48539/HBM344.CNNH.639'
+                    url: 'https://doi.org/10.48539/HBM344.CNNH.639',
+                    svg: 'assets/images/islets_langerhans_pancreas.svg',
                 }]
             },
             {
                 name: 'Prostate',
-                image: 'assets/images/prostate.png',
+                image: 'assets/images/prostate.svg',
                 tissueData: [{
                     name: 'Prostate Glandular Acinus',
                     image: 'assets/images/prostate_glandular_acinus_prostate.png',
                     expandedImage: 'assets/images/prostate_glandular_acinus_prostate.png',
-                    url: 'https://doi.org/10.48539/HBM523.TDCH.662'
+                    url: 'https://doi.org/10.48539/HBM523.TDCH.662',
+                    svg: 'assets/images/prostate_glandular_acinus_prostate.svg',
                 }]
             },
             {
                 name: 'Thymus',
-                image: 'assets/images/thymus.jpg',
+                image: 'assets/images/thymus.svg',
                 tissueData: [{
                     name: 'Thymus Lobule',
                     image: 'assets/images/thymus_lobule_thymus.png',
                     expandedImage: 'assets/images/thymus_lobule_thymus.png',
-                    url: 'https://doi.org/10.48539/HBM794.PKVD.274'
+                    url: 'https://doi.org/10.48539/HBM794.PKVD.274',
+                    svg: 'assets/images/thymus_lobule_thymus.svg',
                 }]
             }
         ]

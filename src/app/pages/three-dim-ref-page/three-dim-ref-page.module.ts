@@ -25,7 +25,7 @@ import { TwoDimImageModule } from 'src/app/components/two-dim-image/two-dim-imag
         TwoDimImageModule
     ],
     providers: [],
-    bootstrap: [ThreeDimRefPageComponent],
+    bootstrap: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ThreeDimRefPageModule { }

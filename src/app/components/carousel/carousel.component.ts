@@ -31,7 +31,4 @@ export class CarouselComponent {
     },
     effect: 'fade'
   };
-
-  constructor() { }
-
 }

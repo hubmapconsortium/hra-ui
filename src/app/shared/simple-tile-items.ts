@@ -1,5 +1,5 @@
 import { TileItems } from './../components/simple-tile/tile-items';
-export const TILE_DEFINITION: TileItems[] = [
+export const TileDefinition: TileItems[] = [
     {
         title: 'A <b>Common Coordinate Framework (CCF)</b> for a human body provides a unique address for each cell in the human body. It is similar to the latitude-longtitude system used to navigate a world map.'
     },

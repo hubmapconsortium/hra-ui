@@ -10,34 +10,37 @@ export const carouselInfo: SliderItems[] = [
     {
         title: "Map the human body at single cell resolution",
         body: "Learn more about the thousands of experts building a Human Reference Atlas.",
-        image: "assets/images/slide1.png",
+        image: "assets/images/carousel1.svg",
         url: "https://www.biorxiv.org/content/10.1101/2021.05.31.446440v2"
     },
     {
         title: "Contribute data to the Human Reference Atlas",
         body: "Register your data spatially using the Registration User Interface tool.",
-        image: "assets/images/slide2.png",
+        image: "assets/images/carousel2.svg",
+        route: 'ccf-registration-user-interface'
     },
     {
         title: "Compare data to the Human Reference Atlas",
         body: "Use the ASCT+B Reporter tool to explore data in the context of the Human Reference Atlas",
-        image: "assets/images/slide3.png"
+        image: "assets/images/carousel3.svg",
+        route: 'ccf-asctb-reporter'
     },
     {
         title: "Search for a cell type, gene, or protein",
         body: "Explore cell type populations with via Cell Type Population graph tool.",
-        image: "assets/images/slide4.png",
+        image: "assets/images/carousel4.svg",
         route: "ccf-cell-population-graphs"
     },
     {
-        title: "Search for data across levels–from the whole body down to single cells",
+        title: "Search for data across levels-from the whole body down to single cells",
         body: "Explore Human Reference Atlas data with the Exploration User Interface tool.",
-        image: "assets/images/slide5.png"
+        image: "assets/images/carousel5.svg",
+        route: 'ccf-exploration-user-interface'
     },
     {
         title: "Learn more about the Human BioMolecular Atlas Program",
         body: "Explore HuBMAP data, code, and documentation using the HuBMAP Data Portal.",
-        image: "assets/images/slide6.png",
+        image: "assets/images/carousel6.svg",
         url: "https://portal.hubmapconsortium.org/"
     }
 ]

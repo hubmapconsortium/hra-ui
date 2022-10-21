@@ -35,12 +35,12 @@ export const versionData: ChooseVersion[] = [
 export const exploreTablesData: PageDataItems[] = [
   {
     heading: 'Explore Tables Visually',
-    descriptions: 'The CCF ASCT+B Reporter makes it possible to explore tables visually—per organ or across all organs in support of table authoring and review. It combines two different types of Angular visualizations: A partonomy tree of anatomical structures and bimodal networks that link anatomical structures to cell types and cell types to biomarkers.'
+    descriptions: 'The <a href="https://hubmapconsortium.github.io/ccf-asct-reporter/" target="_blank">CCF ASCT+B Reporter</a> makes it possible to explore tables visually—per organ or across all organs in support of table authoring and review. It combines two different types of Angular visualizations: A partonomy tree of anatomical structures and bimodal networks that link anatomical structures to cell types and cell types to biomarkers.'
   },
   {
     heading: 'Tables Under Development',
-    descriptions: `The initial release of ASCT+B table (v1.0) included 11 organs. As part of the next phase, we plan to publish another 14 tables by the end of 2021 bringing the total to 25. 
-    If you are interested in contributing to this effort, please complete this online form to receive relevant information and meeting invites. For questions, email infoccf@indiana.edu.`
+    descriptions: `The initial release of ASCT+B table (v1.0) included 11 organs. In the 2nd release, 14 additional tables were published bringing the total to 25. In the 3rd release, several tables were updated and placenta was added resulting in 26 tables. 
+    If you are interested in contributing to this effort, please complete this <a href="https://iu.co1.qualtrics.com/jfe/form/SV_bpaBhIr8XfdiNRH" target="_blank">online form</a> to receive relevant information and meeting invites. For questions, email infoccf@indiana.edu.`
   },
   {
     heading: 'Acknowledgments',
@@ -51,12 +51,12 @@ export const exploreTablesData: PageDataItems[] = [
 export const sopLinksData: SopLinks[] = [
   {
     urls: 'SOP: Authoring ASCT+B Tables',
-    href: 'www.google.com',
+    href: 'https://doi.org/10.5281/zenodo.5944386',
 
   },
   {
     urls: 'SOP: ASCT+B Table Communications',
-    href: 'www.google.com'
+    href: 'https://doi.org/10.5281/zenodo.5639623'
   }
 ]
 

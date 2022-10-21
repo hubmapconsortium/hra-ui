@@ -16,6 +16,6 @@ import { PageDataModule } from 'src/app/components/page-data/page-data.module';
     PageDataModule
   ],
   providers: [],
-  bootstrap: [TissueInfoPageComponent]
+  bootstrap: []
 })
 export class TissueInfoPageModule { }

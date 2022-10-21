@@ -6,7 +6,7 @@ import { PageHeaderItems } from '../../components/page-header/page-header-items'
 
 export const headerCardDetails: PageHeaderItems[] = [
     {
-        image: 'assets/images/hra_milletome.png',
+        image: 'assets/images/hra_millitome.png',
         title: 'Human Reference Atlas Millitome',
         subtitle: 'A unique 3D printed tool and standard operating procedure for the uniform sectioning of organs'
     }

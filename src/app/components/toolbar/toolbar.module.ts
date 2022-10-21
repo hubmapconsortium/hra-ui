@@ -11,6 +11,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { MatNativeDateModule } from '@angular/material/core';
         FormsModule,
         HttpClientModule,
         MatNativeDateModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        RouterModule
     ],
     exports: [
         ToolbarComponent

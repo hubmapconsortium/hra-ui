@@ -1,4 +1,4 @@
-::ng-deep .foobar {
+::ng-deep .menu-container {
   max-width: 23.25rem !important;
 }
 
@@ -16,7 +16,8 @@
   line-height: 1.5rem;
 }
 
-.navigation-items > button{
+.navigation-items > button,
+a {
   color: #444c65;
   font-family: "Inter", "sans-serif";
   letter-spacing: 0.005em;
@@ -32,6 +33,16 @@
   white-space: initial;
   font-weight: 300;
   padding-top: 0.313rem;
+  text-decoration: none;
+}
+
+.external-link > a {
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  &:hover{
+    background: rgba(0,0,0,.04);
+  }
 }
 
 .inverse {

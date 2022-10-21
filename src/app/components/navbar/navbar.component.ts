@@ -11,4 +11,11 @@ export class NavbarComponent {
   @Input() items: NavItems[];
   @Output() itemClick = new EventEmitter<NavItems>;
 
+  externalWindow(url: string): void {
+    window.open(
+      url,
+      '_blank'
+    );
+  }
+
 }

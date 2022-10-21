@@ -1,10 +1,15 @@
 :host {
   display: flex;
   width: 100%;
+  min-height: calc(100% - 3.5rem);
   flex-direction: column;
-  overflow: auto;
   align-items: center;
-  margin-top: 3.5rem;
+  padding-top: 3.5rem;
+  overflow: auto;
+
+  .filler {
+    flex-grow: 1;
+  }
 
   .toolbar-class {
     position: fixed;

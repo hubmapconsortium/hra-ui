@@ -1,6 +1,6 @@
 <mat-toolbar class="mat-toolbar">
-  <div class="hubmap-header">{{hubmapHeader}}</div>
-  <div class="hra-header">{{hraHeader}}</div>
+  <a class="hubmap-header" [routerLink]="['/ccf-landing-page']">HuBMAP</a>
+  <a class="hra-header" [routerLink]="['/ccf-landing-page']">HUMAN REFERENCE ATLAS</a>
   <div style="flex-grow:1;"></div>
-  <ccf-navbar [items]="navigationItems" (itemClick)="itemClicked($event)"></ccf-navbar>
+  <ccf-navbar [items]="navigationItems"></ccf-navbar>
 </mat-toolbar>

@@ -24,6 +24,6 @@ import { ChooseVersionModule } from 'src/app/components/choose-version/choose-ve
     ChooseVersionModule
   ],
   providers: [],
-  bootstrap: [OmapsComponent]
+  bootstrap: []
 })
 export class OmapsModule { }

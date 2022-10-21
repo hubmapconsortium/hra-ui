@@ -26,7 +26,7 @@ export const longButtonItems: LongCard[] = [
         route: 'ccf-exploration-user-interface'
     },
     {
-        icon: 'assets/images/hra_milletome.png',
+        icon: 'assets/images/hra_millitome.png',
         title: 'Human Reference Atlas Millitome',
         body: 'A unique 3D printed tool and standard operating procedure for the uniform sectioning of organs',
         route: 'ccf-hra-millitome'
@@ -41,6 +41,6 @@ export const longButtonItems: LongCard[] = [
         icon: 'assets/images/hra_usage.png',
         title: 'Human Reference Atlas Usage Metrics',
         body: 'Data and statistics on which tools and consortia are using the Human Reference Atlas',
-        route: ''
+        route: 'ccf-hra-usage-metrics'
     }
 ]

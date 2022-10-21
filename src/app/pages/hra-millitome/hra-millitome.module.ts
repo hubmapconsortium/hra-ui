@@ -28,6 +28,6 @@ import { HraMillitomeComponent } from './hra-millitome.component';
     MarkdownModule.forRoot()
   ],
   providers: [],
-  bootstrap: [HraMillitomeComponent]
+  bootstrap: []
 })
 export class HraMillitomeModule { }

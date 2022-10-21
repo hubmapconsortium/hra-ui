@@ -1,7 +1,4 @@
 :host {
-  .card {
-    padding-bottom: 0.313rem;
-  }
 
   .mat-card {
     font-family: "Inter", sans-serif;
@@ -9,17 +6,16 @@
     font-size: 1rem;
     font-weight: 300;
     box-shadow: 0rem 0.125rem 0.063rem rgba(0, 0, 0, 0.16);
-    border-radius: 0.25rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
     letter-spacing: 0.005em;
     line-height: 1.5rem;
+    margin-bottom: 0.5rem;
   }
 
   .card-container {
-    padding-bottom: 2rem;
+    padding-bottom: 3.563rem;
   }
+
+  ::ng-deep p {
+    margin: 0 0 0px;
+}
 }

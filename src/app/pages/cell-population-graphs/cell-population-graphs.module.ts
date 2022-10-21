@@ -21,6 +21,6 @@ import { UseButtonModule } from 'src/app/components/use-button/use-button.module
     UseButtonModule
   ],
   providers: [],
-  bootstrap: [CellPopulationGraphsComponent]
+  bootstrap: []
 })
 export class CellPopulationGraphsModule { }

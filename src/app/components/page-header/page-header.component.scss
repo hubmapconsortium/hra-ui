@@ -8,21 +8,17 @@
   }
 
   .icon {
-    float: left;
     height: 10rem;
     background-color: #444a65;
   }
 
-  .img-cls {
+  .card-image {
     height: 100%;
-    object-fit: contain;
   }
 
   .body {
     padding-left: 1.5rem;
-    padding-top: 1.2rem;
-    margin-bottom: 0;
-    overflow-x: hidden;
+    align-self: center;
   }
 
   .card-heading {
@@ -48,7 +44,9 @@
   }
 
   mat-card {
-    padding: 0rem 1rem 0.063rem 0rem;
-    box-shadow: #212121;
+    padding: 0rem 1rem 0rem 0rem;
+    flex-direction: row;
+    display: flex;
+    overflow: hidden;
   }
 }

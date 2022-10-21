@@ -21,6 +21,6 @@ import { HraApiComponent } from './hra-api.component';
     UseButtonModule
   ],
   providers: [],
-  bootstrap: [HraApiComponent]
+  bootstrap: []
 })
 export class HraApiModule { }
