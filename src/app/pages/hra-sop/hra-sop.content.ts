@@ -5,7 +5,7 @@ import { TableData } from "src/app/components/table/table";
 
 export const pageHeader: PageHeaderItems[] = [
   {
-    image: 'assets/images/hra-sop.png',
+    image: 'assets/images/hra-sop.svg',
     title: 'Human Reference Atlas Standard Operating Procedures',
     subtitle: 'Standard operating procedures for Human Reference Atlas construction, visualization, and usage'
   }

@@ -3,9 +3,9 @@ import { PageHeaderItems } from "src/app/components/page-header/page-header-item
 
 export const kaggle2021Header: PageHeaderItems[] = [
     {
-        title: 'HuBMAP - Hacking the Kidney',
-        subtitle: 'Algorithm development challenges that engage teams from around the globe to develop code for HRA construction.',
-        image: 'assets/images/kaggle.png'
+        title: 'Kaggle #1: HuBMAP - Hacking the Kidney',
+        subtitle: 'Algorithm development challenges that engage teams from around the globe to develop code for HRA construction',
+        image: 'assets/images/kaggle.svg'
 
     }
 ]

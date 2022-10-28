@@ -30,6 +30,8 @@ import { CcfAsctbAzimuthModule } from './pages/ccf-asctb-azimuth/ccf-asctb-azimu
 import { HraUsageMetricsModule } from './pages/hra-usage-metrics/hra-usage-metrics.module';
 import { KaggleTwentyoneModule } from './pages/kaggle-twentyone/kaggle-twentyone.module';
 import { KaggleTwoModule } from './pages/kaggle-two/kaggle-two.module';
+import { HraEditorialBoardModule } from './pages/hra-editorial-board/hra-editorial-board.module';
+import { CcfOrganVrGalleryModule } from './pages/ccf-organ-vr-gallery/ccf-organ-vr-gallery.module';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { KaggleTwoModule } from './pages/kaggle-two/kaggle-two.module';
     CcfAsctbAzimuthModule,
     HraUsageMetricsModule,
     KaggleTwentyoneModule,
-    KaggleTwoModule
+    KaggleTwoModule,
+    HraEditorialBoardModule,
+    CcfOrganVrGalleryModule
   ],
   providers: [],
   bootstrap: [AppComponent]

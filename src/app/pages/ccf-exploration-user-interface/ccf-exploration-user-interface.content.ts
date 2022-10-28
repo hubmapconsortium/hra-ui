@@ -4,7 +4,7 @@ import { PageHeaderItems } from '../../components/page-header/page-header-items'
 
 export const headerCardDetails: PageHeaderItems[] = [
     {
-        image: 'assets/images/eui.png',
+        image: 'assets/images/eui.svg',
         title: 'CCF Exploration User Interface (EUI)',
         subtitle: 'An interactive tool for exploring and validating spatially registered tissue blocks and cell type populations'
     }

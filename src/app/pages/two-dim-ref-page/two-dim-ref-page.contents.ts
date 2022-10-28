@@ -6,7 +6,7 @@ import { VersionOrgans } from "src/app/components/two-dim-image/two-dim-image";
 
 export const twoDimHeaderCardDetails: PageHeaderItems[] = [
     {
-        image: 'assets/images/two_dim_library.png',
+        image: 'assets/images/two_dim_header.svg',
         title: 'CCF 2D Reference Object Library',
         subtitle: 'Open source 2D illustrations of Functional Tissue Units (FTUs) crosswalked to ASCT+B tables used for single cell data exploration'
     }
@@ -25,7 +25,7 @@ export const overviewData: PageDataItems[] = [
 export const sopData: SopLinks[] = [
     {
         urls: ' Style Guide: HuBMAP 2D Functional Tissue Unit (FTU) Illustrations',
-        href: "https://drive.google.com/file/d/1KoJCEGMTbpX-LOLNoAZhQgSWNYCPTh41/view"
+        href: "https://zenodo.org/record/6703108/files/SOP_%20Creating%202D%20Illustrations%20for%20Functional%20Tissue%20Units.pdf"
     }
 ]
 

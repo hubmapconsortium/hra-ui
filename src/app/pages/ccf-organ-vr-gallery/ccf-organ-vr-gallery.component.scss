@@ -1,0 +1,18 @@
+:host{
+    max-width: 77rem;
+    
+    ::ng-deep .overview-image{
+        text-align: center;
+    }
+
+    p {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        letter-spacing: 0.005rem;
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+      }
+}

@@ -1,3 +1,8 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
 ::ng-deep .menu-container {
   max-width: 23.25rem !important;
 }
@@ -7,6 +12,7 @@
 }
 
 .navigation-title {
+  height: 100%;
   font-family: "Inter", "sans-serif";
   font-style: normal;
   font-size: 0.875rem;

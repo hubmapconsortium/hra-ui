@@ -17,7 +17,7 @@ export class CcfReporterPageComponent {
   width = 1232;
   title = "Overview";
   videoId = "pzUFmDhQEO8";
-
+  playerTitle = "Tutorial"
 
 
 }

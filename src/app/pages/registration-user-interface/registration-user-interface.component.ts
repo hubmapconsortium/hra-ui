@@ -19,4 +19,5 @@ export class RegistrationUserInterfaceComponent{
   width = 1232;
   title = "Overview";
   videoId = "gY3_-LIoKaU";
+  playerTitle = "Tutorial"
 }

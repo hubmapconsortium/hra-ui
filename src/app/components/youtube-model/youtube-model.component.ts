@@ -31,5 +31,7 @@ export class YoutubeModelComponent implements OnInit {
 
   @Input() title: string;
 
+  @Input() playerTitle: string;
+
 
 }

@@ -7,7 +7,7 @@ import { VersionOrgans } from "src/app/components/two-dim-image/two-dim-image";
 
 export const headerData: PageHeaderItems[] = [
     {
-        image: 'assets/images/three_dim_library.png',
+        image: 'assets/images/three_dim_library.svg',
         title: 'CCF 3D Reference Object Library',
         subtitle: 'Open source 3D organs crosswalked to ASCT+B tables used for tissue registration and exploration'
     }
@@ -24,9 +24,9 @@ export const overviewData: PageDataItems[] = [
 ]
 
 export const versionData: ChooseVersion[] = [
-    { release: '3nd HRA Release (v1.2), June 2022', version: '1.2' },
-    { release: '2nd HRA Release (v1.1), December 2021', version: '1.1' },
-    { release: '1st HRA Release (v1.0), March 2021', version: '1.0' },
+    { release: '3nd Release, June 2022', version: '1.2' },
+    { release: '2nd Release, December 2021', version: '1.1' },
+    { release: '1st Release, March 2021', version: '1.0' },
 ]
 
 export const sopData: SopLinks[] = [
@@ -397,7 +397,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             },
             {
                 name: 'Placenta',
-                image: 'assets/images/placenta.png',
+                image: 'assets/images/placenta.svg',
                 tissueData: [{
                     name: 'Female',
                     image: '',
@@ -409,7 +409,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             },
             {
                 name: 'Prostate',
-                image: 'assets/images/prostate.png',
+                image: 'assets/images/prostate.svg',
                 tissueData: [{
                     name: 'Male',
                     image: '',
@@ -421,7 +421,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             },
             {
                 name: 'Skin',
-                image: 'assets/images/skin.png',
+                image: 'assets/images/skin.svg',
                 tissueData: [{
                     name: 'Female',
                     image: '',
@@ -440,7 +440,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             },
             {
                 name: 'Small Intestine',
-                image: 'assets/images/small_intestine.png',
+                image: 'assets/images/small_intestine.svg',
                 tissueData: [{
                     name: 'Female',
                     image: '',
@@ -459,7 +459,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             },
             {
                 name: 'Spinal Cord',
-                image: 'assets/images/spinal_cord.png',
+                image: 'assets/images/spinal_cord.svg',
                 tissueData: [{
                     name: 'Female',
                     image: '',
@@ -478,7 +478,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             },
             {
                 name: 'Spleen',
-                image: 'assets/images/spleen.png',
+                image: 'assets/images/spleen.svg',
                 tissueData: [{
                     name: 'Female',
                     image: '',
@@ -517,7 +517,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             // TO DO THIS.
             {
                 name: 'Ureter',
-                image: 'assets/images/ureter.png',
+                image: 'assets/images/ureter.svg',
                 tissueData: [{
                     name: 'Female L',
                     image: '',
@@ -552,7 +552,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             // TILL HERE.
             {
                 name: 'Urinary Bladder',
-                image: 'assets/images/urinary_bladder.png',
+                image: 'assets/images/urinary_bladder.svg',
                 tissueData: [{
                     name: 'Female',
                     image: '',
@@ -571,7 +571,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             },
             {
                 name: 'Uterus',
-                image: 'assets/images/uterus.png',
+                image: 'assets/images/uterus.svg',
                 tissueData: [{
                     name: 'Female',
                     image: '',
@@ -583,7 +583,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             },
             {
                 name: 'All Organs',
-                image: 'assets/images/all_organs.png',
+                image: 'assets/images/all_organs.svg',
                 tissueData: [{
                     name: 'Female',
                     image: '',

@@ -5,7 +5,7 @@ export const pageHeaderData: PageHeaderItems[] = [
     {
         title: "About",
         subtitle: "Learn about the HuBMAP Infrastructure, Visualization, & Engagement (HIVE) Mapping Component Indiana University (MC-IU) Team",
-        image: 'assets/images/about.png'
+        image: 'assets/images/about.svg'
     }
 ]
 

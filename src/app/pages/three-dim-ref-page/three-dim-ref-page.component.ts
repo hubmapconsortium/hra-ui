@@ -64,7 +64,7 @@ export class ThreeDimRefPageComponent implements OnInit {
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
       queryParams: params,
-      queryParamsHandling: 'merge'
+      queryParamsHandling: 'merge',
     });
   }
 

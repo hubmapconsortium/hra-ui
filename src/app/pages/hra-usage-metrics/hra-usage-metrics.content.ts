@@ -3,7 +3,7 @@ import { PageHeaderItems } from "src/app/components/page-header/page-header-item
 
 export const hraUsageHeading: PageHeaderItems[] = [
     {
-        image: 'assets/images/hra_usage.png',
+        image: 'assets/images/hra_usage.svg',
         title: 'Human Reference Atlas Usage Metrics',
         subtitle: 'Data and statistics on which tools and consortia are using the Human Reference Atlas'
     }

@@ -1,8 +1,8 @@
 :host {
-    padding-bottom: 2rem;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
 
   .symbol {
     float: left;
@@ -17,25 +17,33 @@
   }
 
   mat-card {
-    padding: 0rem 1rem 0.063rem 0rem;
+    padding: 0rem 1rem 0rem 0rem;
     box-shadow: #212121;
     margin-bottom: 0.063rem;
+    display: flex;
+    overflow: hidden;
 
     &:hover {
       background: rgba(0, 0, 0, 0.04);
     }
   }
 
-  .body {
-    padding-left: 1rem;
-    padding-top: 2rem;
-    margin-bottom: 0;
+  a {
+    width: 100%;
+    display: flex;
+  }
+
+  .body,
+  a > .body {
+    margin-left: 1.5rem;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
   }
 
   .nav-card-title {
     display: flex;
-    flex-direction: column wrap;
     font-family: "Inter";
     font-style: normal;
     font-weight: 400;
@@ -59,6 +67,7 @@
   a {
     text-decoration: none;
     color: #0a6ebd;
+    font-weight: unset;
   }
 
   .mat-icon {

@@ -11,7 +11,7 @@
     font-size: 1.5rem;
     line-height: 1.4202rem;
     letter-spacing: 0.005em;
-    padding: 1rem;
+    padding: 1rem 2rem;
     margin-bottom: unset;
   }
 
@@ -25,7 +25,8 @@
     font-weight: 400;
     font-size: 0.875rem;
     letter-spacing: 0.005em;
-    border-radius: 0rem;
+    border-radius: 0.125rem;
+    width: 10rem;
   }
 
   a,
@@ -71,9 +72,7 @@
   }
 
   .units-container {
-    padding-top: 1rem;
-    padding-right: 1rem;
-    padding-left: 1rem;
+    padding: 1rem 2rem;
     font-family: "Inter";
     font-style: normal;
     font-weight: 300;
@@ -92,6 +91,10 @@
   .model-container {
     display: flex;
     justify-content: center;
+  }
+
+  a:-webkit-any-link{
+    text-decoration: unset !important;
   }
 }
 

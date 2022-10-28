@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MarkdownModule } from 'ngx-markdown';
-// import { YouTubePlayerModule } from '@angular/youtube-player';
 import { HraMillitomeComponent } from './hra-millitome.component';
 
 

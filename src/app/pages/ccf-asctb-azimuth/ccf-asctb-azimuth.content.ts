@@ -3,7 +3,7 @@ import { PageHeaderItems } from "src/app/components/page-header/page-header-item
 
 export const azimuthHeader:PageHeaderItems[] = [
     {
-        image: 'assets/images/azimuth.png',
+        image: 'assets/images/asctb_azimuth.svg',
         title: 'ASCT+B Cell Types Data from Azimuth Reference Data with Summaries',
         subtitle: 'Crosswalks from Azimuth cell annotation tool to ASCT+B tables will cell population data'
     }

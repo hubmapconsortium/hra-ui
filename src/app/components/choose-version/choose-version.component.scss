@@ -1,70 +1,65 @@
 :host {
-  .version-container {
-    display: flex;
-    padding-top: 0rem;
-  }
+  display: flex;
+  align-items: center;
+  padding-bottom: 40px;
 
   .version-label {
-    padding-top: 1rem;
-    padding-right: 1rem;
     font-family: "Inter";
     font-style: normal;
     font-weight: 300;
     font-size: 1rem;
     line-height: 1.5rem;
     letter-spacing: 0.005rem;
+    padding-right: 2rem;
   }
 
-  ::ng-deep .mat-select-value {
+  .versions {
+    width: 248px;
+    height: 40px;
     font-family: "Inter";
     font-style: normal;
     font-weight: 400;
-    font-size: 0.875rem;
+    font-size: 14px;
     line-height: 1.4202rem;
     letter-spacing: 0.005rem;
     color: #444c65;
-  }
+    border: 1px solid #444c65;
+    border-radius: 2px;
 
-  ::ng-deep {
-    .mat-form-field-outline {
-      border: 0.063rem solid #444c65;
+    ::ng-deep .mat-select-trigger {
+      height: 100%;
+      justify-content: center;
 
-      & > * {
-        border: unset !important;
+      .mat-select-value {
+        width: unset;
       }
     }
 
-    .mat-form-field-flex {
-      box-sizing: unset;
-    }
-    .mat-form-field-infix {
-      border: unset;
-    }
-    .mat-form-field-appearance-outline .mat-form-field-infix {
-      padding: 1.5rem 0 1rem 0;
+    ::ng-deep .mat-select-arrow-wrapper {
+      padding-left: 12px;
     }
   }
+
+  
+}
+
+::ng-deep .mat-option-text {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.005rem;
+  color: #444a65;
+}
+
+::ng-deep .versions-panel {
+  position: relative;
+  top: 41px;
+  left: 1rem;
+  min-width: unset !important;
 }
 
 ::ng-deep .mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple) {
-  background: unset;
-}
-
-::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
-  color: #444a65;
-}
-
-::ng-deep .mat-form-field-appearance-outline.mat-form-field-disabled
-  .mat-form-field-outline {
-  opacity: 0;
-}
-
-.mat-select-value-text {
-  font-family: "Inter" !important;
-  font-style: normal !important;
-  font-weight: 300 !important;
-  font-size: 0.875rem;
-  line-height: 1.5rem;
-  letter-spacing: 0.005rem;
-  color: #444a65;
+  background-color: unset;
 }

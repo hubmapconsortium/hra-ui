@@ -1,0 +1,11 @@
+<div class="member-container">
+    <p class="members-title">Board Members</p>
+    <div class="member" *ngFor="let data of membersData">
+        <div class="image">
+            <img [src]="data.image" />
+        </div>
+        <div class="about">
+            <markdown>{{data.description}}</markdown>
+        </div>
+    </div>
+</div>

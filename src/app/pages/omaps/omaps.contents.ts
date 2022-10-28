@@ -7,7 +7,7 @@ import { TableData } from "src/app/components/table/table";
 
 export const omapsHeading: PageHeaderItems[] = [
     {
-        image: "assets/images/omaps.png",
+        image: "assets/images/omaps.svg",
         title: "Organ Mapping Antibody Panels (OMAPs)",
         subtitle: ""
     }

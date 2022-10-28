@@ -21,7 +21,7 @@ export const carouselInfo: SliderItems[] = [
     },
     {
         title: "Compare data to the Human Reference Atlas",
-        body: "Use the ASCT+B Reporter tool to explore data in the context of the Human Reference Atlas",
+        body: "Use the ASCT+B Reporter tool to explore data in the context of the Human Reference Atlas.",
         image: "assets/images/carousel3.svg",
         route: 'ccf-asctb-reporter'
     },
@@ -46,27 +46,27 @@ export const carouselInfo: SliderItems[] = [
 ]
 export const cards: SectionCardItems[] = [
     {
-        title: "Data", description: 'Research the data using Human Reference Atlas',
-        image: 'assets/images/data_png.png',
+        title: "Data", description: 'Research the data constructing Human Reference Atlas',
+        image: 'assets/images/data_svg.svg',
         gif: 'assets/images/data_gif.gif',
         route: 'ccf-overview-data'
 
     },
     {
-        title: 'CCF Ontology', description: 'Discover the Common Cooordinate Framework Ontology',
-        image: 'assets/images/ontology_png.png',
+        title: 'CCF Ontology', description: 'Discover the Common Coordinate Framework Ontology',
+        image: 'assets/images/ontology_svg.svg',
         gif: 'assets/images/ontology_gif.gif',
         route: 'ccf-ontology'
     },
     {
-        title: "Tools", description: 'Construct, Visualize, and use the tools of the Human Reference Atlas',
-        image: 'assets/images/tools_png.png',
+        title: "Tools", description: 'Construct, visualize, and use the tools of the Human Reference Atlas',
+        image: 'assets/images/tools_svg.svg',
         gif: 'assets/images/tools_gif.gif',
         route: 'ccf-overview-tools'
     },
     {
-        title: "Training and Outreach", description: 'Checkout HuBMAP`s education and engagement efforts',
-        image: 'assets/images/training-outreach_png.png',
+        title: "Training and Outreach", description: "Check out HuBMAP’s education and engagement efforts",
+        image: 'assets/images/training_outreach_svg.svg',
         gif: 'assets/images/training-outreach.gif',
         route: 'ccf-overview-training-outreach'
     }

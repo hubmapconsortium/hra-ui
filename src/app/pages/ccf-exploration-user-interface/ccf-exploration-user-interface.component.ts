@@ -17,4 +17,5 @@ export class CcfExplorationUserInterfaceComponent{
   width = 1232;
   title = "Overview";
   videoId = "YAHJqvD3Q_8";
+  playerTitle = "Tutorial"
 }

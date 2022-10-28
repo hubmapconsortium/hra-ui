@@ -5,7 +5,7 @@ import { PageHeaderItems } from '../../components/page-header/page-header-items'
 
 export const headerCardDetails: PageHeaderItems[] = [
     {
-        image: 'assets/images/rui.png',
+        image: 'assets/images/rui.svg',
         title: 'CCF Registration User Interface (RUI)',
         subtitle: 'An interactive tool for registering tissue blocks spatially and annotating them semantically using ASCT+B Table terms'
     }
@@ -40,8 +40,8 @@ export const acknowledgeData: PageDataItems[] = [
     {
         heading: 'Acknowledge',
         descriptions: `The CCF and associated user interfaces are developed by the MC-IU team within the HuBMAP HIVE. The MC-IU team includes Katy Börner, Lisel Record, Bruce Herr II, Leonard Cross, Ellen Quardokus, and Andreas Bueckle, Indiana University, Bloomington, IN and Griffin Weber, Harvard Medical School, Boston, MA. Former members of the team are Paul Macklin, Randy Heiland, and Jim Sluka at Indiana University, Bloomington, IN and Samuel Friedman, Opto-Knowledge Systems, Inc. We acknowledge expert input from Jeffrey Spraggins, Sanjay Jain, and Clive Wasserfall and their teams as well as the overall HuBMAP consortium.
-        <br><br>The 3D reference organs were designed by Kristen Browne, U.S. National Library of Medicine using data from the <a href="https://www.nlm.nih.gov/research/visible/visible_human.html" target="_blank"><u>Visible Human Project</u></a>.
-        <br><br>The work is funded by NIH Award <a href="https://reporter.nih.gov/project-details/9687220" target="_blank"><u>OT2OD026671</u></a>.`
+        <br><br>The 3D reference organs were designed by Kristen Browne, U.S. National Library of Medicine using data from the <a href="https://www.nlm.nih.gov/research/visible/visible_human.html" target="_blank">Visible Human Project</a>.
+        <br><br>The work is funded by NIH Award <a href="https://reporter.nih.gov/project-details/9687220" target="_blank">OT2OD026671</a>.`
     }
 ]
 

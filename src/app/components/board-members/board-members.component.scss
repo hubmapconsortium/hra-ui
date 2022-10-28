@@ -1,0 +1,30 @@
+:host {
+  .member {
+    display: flex;
+    align-items: center;
+    padding-top: 1rem;
+  }
+
+  .members-title {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.5rem;
+    line-height: 1.4202rem;
+    letter-spacing: 0.005em;
+  }
+
+  .member-container {
+    padding-bottom: 2.5rem;
+  }
+
+  .about {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005rem;
+    margin-left: 2.5rem;
+  }
+}

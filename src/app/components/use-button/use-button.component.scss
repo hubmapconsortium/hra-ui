@@ -15,4 +15,9 @@
     color: #444c65;
     box-shadow: unset;
   }
+
+  a:-webkit-any-link{
+    text-decoration: unset !important;
+  }
+
 }

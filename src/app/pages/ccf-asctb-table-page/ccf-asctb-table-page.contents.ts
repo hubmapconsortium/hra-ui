@@ -7,7 +7,7 @@ import { PageHeaderItems } from '../../components/page-header/page-header-items'
 
 export const headerCardDetails: PageHeaderItems[] = [
   {
-    image: 'assets/images/asctb_table.png',
+    image: 'assets/images/asctb_table.svg',
     title: 'CCF Anatomical Structures, Cell Types and Biomarkers (ASCT+B) Tables',
     subtitle: 'Data tables containing hierarchical anatomical structures, cell types and biomarkers from the Cell Ontology'
   }

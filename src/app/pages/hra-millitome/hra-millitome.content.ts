@@ -6,7 +6,7 @@ import { PageHeaderItems } from '../../components/page-header/page-header-items'
 
 export const headerCardDetails: PageHeaderItems[] = [
     {
-        image: 'assets/images/hra_millitome.png',
+        image: 'assets/images/hra_milletome.svg',
         title: 'Human Reference Atlas Millitome',
         subtitle: 'A unique 3D printed tool and standard operating procedure for the uniform sectioning of organs'
     }
@@ -27,19 +27,6 @@ export const overviewData: PageDataItems[] = [
         Each package contains three 3D-printable .STL files, one each for “small”, “medium” and “large” organ sizes to cover a wide range of variations (i.e. VH_F_Kidney_L_20_Medium = female kidney, left, 20mm block size, medium size). Also included in each package is a .CSV file to record data about the sample blocks taken from the organ.`
     }
 ]
-
-export const sopLinksData: SopLinks[] = [
-    {
-      urls: 'SOP: Millitome SOP 1',
-      href: 'www.google.com',
-  
-    },
-    {
-      urls: 'SOP: Millitome SOP 2',
-      href: 'www.google.com'
-    }
-  ]
-
 
 export const standardOperatingProcedure: PageDataItems[] = [
     {
