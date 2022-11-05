@@ -10,7 +10,7 @@ function iCaseEquals(str1: string, str2: string): boolean {
 }
 
 @Component({
-  selector: 'ccf-2d-reference-library',
+  selector: 'ccf-2d-ftu',
   templateUrl: './two-dim-ref-page.component.html',
   styleUrls: ['./two-dim-ref-page.component.scss']
 })

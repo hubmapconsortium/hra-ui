@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { acknowledgmentsData, kaggle2021Header, overviewData } from './kaggle-twentyone.content';
+import { accuracyPrizeData, acknowledgmentsData, datasetsData, judgesPrizeData, kaggle2021Header, kudosData, overviewData } from './kaggle-twentyone.content';
 
 @Component({
   selector: 'ccf-kaggle-twentyone',
@@ -10,4 +10,8 @@ export class KaggleTwentyoneComponent {
   kaggle2021Header = kaggle2021Header
   overviewData = overviewData
   acknowledgmentsData = acknowledgmentsData
+  accuracyPrizeData = accuracyPrizeData
+  judgesPrizeData = judgesPrizeData
+  kudosData = kudosData
+  datasetsData = datasetsData
 }

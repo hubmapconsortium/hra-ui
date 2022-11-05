@@ -17,9 +17,9 @@ export const longButtonItems: LongCard[] = [
     },
     {
         icon: 'assets/images/two_dim_library.svg',
-        title: 'CCF 2D Reference Object Library',
+        title: 'CCF 2D Functional Tissue Unit (FTU) Illustrations',
         body: 'Open source 2D illustrations of Functional Tissue Units (FTUs) crosswalked to ASCT+B tables used for single cell data exploration',
-        route: 'ccf-2d-reference-library'
+        route: 'ccf-2d-ftu'
     },
     {
         icon: 'assets/images/three_dim_library.svg',

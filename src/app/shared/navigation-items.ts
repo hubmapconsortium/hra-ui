@@ -22,8 +22,8 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         disabled: true
       },
       {
-        menuName: 'CCF 2D Reference Object Library',
-        route: 'ccf-2d-reference-library',
+        menuName: 'CCF 2D Functional Tissue Unit (FTU) Illustrations',
+        route: 'ccf-2d-ftu',
         disabled: true
       },
       {

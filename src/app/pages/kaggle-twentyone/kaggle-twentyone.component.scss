@@ -1,3 +1,30 @@
-:host{
-    max-width: 77rem;
+:host {
+  max-width: 77rem;
+
+  .prize-title {
+    padding-bottom: 1rem;
+  }
+
+  mat-card{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .datasets-container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding-bottom: 2.5rem;
+  }
+
+  a{
+    font-size: 1rem;
+    line-height: 0.5rem;
+    flex-basis: 0%;
+    padding-bottom: 2rem;
+    min-width: 200px;
+    letter-spacing: 0.005rem;
+    flex-grow: 1;
+  }
 }

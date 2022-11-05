@@ -11,7 +11,7 @@
     font-size: 1.5rem;
     line-height: 1.4202rem;
     letter-spacing: 0.005em;
-    padding: 1rem 2rem;
+    padding: 1.688rem 2rem;
     margin-bottom: unset;
   }
 
@@ -43,9 +43,7 @@
     font-weight: 300;
     font-size: 1.5rem;
     line-height: 1.4202rem;
-
     letter-spacing: 0.005em;
-
     color: #212121;
   }
 
@@ -53,6 +51,7 @@
     margin-left: 0.01rem;
     margin-right: unset;
     margin-bottom: unset;
+    padding: unset;
   }
 
   .image-container {
@@ -72,7 +71,7 @@
   }
 
   .units-container {
-    padding: 1rem 2rem;
+    padding: 1.688rem 2rem;
     font-family: "Inter";
     font-style: normal;
     font-weight: 300;
@@ -81,10 +80,10 @@
     letter-spacing: 0.005rem;
     color: #212121;
     display: flex;
+    align-items: center;
   }
 
   .mat-card-actions > .mat-divider {
-    margin-top: 0.5rem;
     width: 39rem;
   }
 
@@ -139,6 +138,7 @@
     letter-spacing: 0.005em;
     margin-right: 0.5rem;
     border-radius: 0.125rem;
+    width: 10rem;
   }
 
   .dialog-image {

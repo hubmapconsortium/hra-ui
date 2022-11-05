@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
   { path: 'ccf-overview-data', component: OverviewDataComponent },
   { path: 'ccf-anatomical-structures', component: CcfTablePageComponent },
-  { path: 'ccf-2d-reference-library', component: TwoDimRefPageComponent },
+  { path: 'ccf-2d-ftu', component: TwoDimRefPageComponent },
   { path: 'ccf-overview-tools', component: OverviewToolsComponent },
   { path: 'ccf-ontology', component: CcfOntologyComponent },
   { path: 'ccf-asctb-reporter', component: CcfReporterPageComponent },
@@ -62,7 +62,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

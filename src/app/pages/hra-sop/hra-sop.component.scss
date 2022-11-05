@@ -8,6 +8,29 @@
     font-size: 1.5rem;
     line-height: 1.4202rem;
     letter-spacing: 0.005rem;
+    padding-bottom: 2rem;
+  }
+
+  a:-webkit-any-link {
+    font-size: 1rem;
+  }
+
+  li {
+    list-style: none !important;
+  }
+
+  .main {
+    margin-block-start: unset;
+    margin-block-end: unset;
+    padding-inline-start: unset;
+  }
+
+  .main-item {
+    padding-bottom: 2rem;
+  }
+
+  li> a {
+    display: inline-block;
     padding-bottom: 1rem;
   }
 }

@@ -1,1 +1,13 @@
 <ccf-page-header [headerCard]="kaggle2022Header"></ccf-page-header>
+<ccf-page-data [data]="overviewData"></ccf-page-data>
+<div class="content-title">Winning Teams</div>
+<div class="accuracy-prizes">Accuracy Prizes</div>
+<div style="padding-bottom: 1rem;">
+    <mat-card>
+        <img src="assets/images/accuracy_prizes.svg" class="prize-image">
+    </mat-card>
+</div>
+<ccf-prize-card [prizeCard]="accuracyPrizeData"></ccf-prize-card>
+<div class="accuracy-prizes">Judges Prizes</div>
+<ccf-prize-card [prizeCard]="judgesPrizesData"></ccf-prize-card>
+<ccf-page-data [data]="acknowledgmentsData"></ccf-page-data>

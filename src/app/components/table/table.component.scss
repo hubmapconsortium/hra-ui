@@ -101,10 +101,23 @@
     font-size: 0.875rem;
     line-height: 1.5rem;
     letter-spacing: 0.005rem;
+    display: block;
 
     &:hover {
-      transform: scale(1.5);
-      text-decoration: underline;
+      transform: scale(1.1) !important;
+      text-decoration: underline !important;
     }
+  }
+
+  table td{
+    text-align: right;
+  }
+
+  table td:first-child{
+    text-align: left;
+  }
+
+  ::ng-deep .mat-sort-header-container:not(th:first-child>.mat-sort-header-container){
+    justify-content: end;
   }
 }

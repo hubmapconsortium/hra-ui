@@ -5,9 +5,9 @@
         <ng-container *ngFor="let tissue of tissues.tissueData; even as even; last as last;">
             <mat-card-actions [class.split]="!isMultirow">
                 <div class="units-container" *ngIf="isMultirow; else: downloadGlb">
-                    {{tissue.name}}
+                    <div>{{tissue.name}}</div>
                     <div style="flex-grow: 1;"></div>
-                    <a mat-stroked-button disableRipple="true" href="{{tissue.url}}" style="float: right;">
+                    <a mat-stroked-button disableRipple="true" href="{{tissue.url}}">
                         Info
                         <mat-icon>info</mat-icon>
                     </a>
@@ -22,7 +22,7 @@
                 </div>
                 <ng-template #downloadGlb>
                     <div class="units-container">
-                        {{tissue.name}}
+                        <div>{{tissue.name}}</div>
                         <div style="flex-grow: 1;"></div>
                         <div>
                             <a [href]="tissue.threeDimImage" download mat-stroked-button disableRipple="true">
@@ -41,7 +41,7 @@
                     <img [src]="tissue.image" (click)="openImageViewer(imageContent)">
                     <ng-template #imageContent>
                         <div class="dialog-header">
-                            <span mat-dialog-title>{{tissue.name}}</span>
+                            <div mat-dialog-title>{{tissue.name}}</div>
                             <div style="flex-grow:1;"></div>
                             <a mat-dialog-close mat-stroked-button [disableRipple]="true" href="{{tissue.url}}">
                                 Info

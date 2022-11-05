@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { kaggle2022Header } from './kaggle-two.content';
+import { accuracyPrizeData, acknowledgmentsData, judgesPrizesData, kaggle2022Header, overviewData } from './kaggle-two.content';
 
 @Component({
   selector: 'ccf-kaggle-two',
@@ -8,4 +8,8 @@ import { kaggle2022Header } from './kaggle-two.content';
 })
 export class KaggleTwoComponent {
   kaggle2022Header = kaggle2022Header
+  overviewData = overviewData
+  accuracyPrizeData = accuracyPrizeData
+  acknowledgmentsData = acknowledgmentsData
+  judgesPrizesData = judgesPrizesData
 }

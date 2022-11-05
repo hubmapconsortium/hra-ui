@@ -24,7 +24,7 @@ export const overviewData: PageDataItems[] = [
 ]
 
 export const versionData: ChooseVersion[] = [
-    { release: '3nd Release, June 2022', version: '1.2' },
+    { release: '3rd Release, June 2022', version: '1.2' },
     { release: '2nd Release, December 2021', version: '1.1' },
     { release: '1st Release, March 2021', version: '1.0' },
 ]
@@ -62,10 +62,10 @@ export const termsOfUseData: PageDataItems[] = [
     {
         heading: 'Citation',
         descriptions: `If you use the data files v1.0 release, please cite this effort as follows:
-        Browne, K., Cross, L. E., Herr II, B. W., Record, L, Quardokus, E, Bueckle, A., Börner, K. (2021). HuBMAP CCF 3D Reference Object Library. https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html. Accessed on March 12, 2021.
+        <br><br>Browne, K., Cross, L. E., Herr II, B. W., Record, L, Quardokus, E, Bueckle, A., Börner, K. (2021). HuBMAP CCF 3D Reference Object Library. https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html. Accessed on March 12, 2021.
         <br><br>
         If you use the data files v1.1 release, please cite this effort as follows:
-        Browne, K., Cross, L. E., Herr II, B. W., Record, L, Quardokus, E, Bueckle, A., Börner, K. (2021). HuBMAP CCF 3D Reference Object Library. https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html. Accessed on December 1, 2021.`
+        <br><br>Browne, K., Cross, L. E., Herr II, B. W., Record, L, Quardokus, E, Bueckle, A., Börner, K. (2021). HuBMAP CCF 3D Reference Object Library. https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html. Accessed on December 1, 2021.`
     },
     {
         heading: 'Acknowledgements',

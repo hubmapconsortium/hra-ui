@@ -51,4 +51,8 @@
   p {
     margin-top: 0.1rem;
   }
+  
+  a:-webkit-any-link {
+    text-decoration: unset !important;
+  }
 }

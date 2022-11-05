@@ -7,8 +7,8 @@ import { VersionOrgans } from "src/app/components/two-dim-image/two-dim-image";
 export const twoDimHeaderCardDetails: PageHeaderItems[] = [
     {
         image: 'assets/images/two_dim_header.svg',
-        title: 'CCF 2D Reference Object Library',
-        subtitle: 'Open source 2D illustrations of Functional Tissue Units (FTUs) crosswalked to ASCT+B tables used for single cell data exploration'
+        title: 'CCF 2D Functional Tissue Unit (FTU) Illustrations',
+        subtitle: 'Open source 2D reference illustrations of Functional Tissue Units (FTUs) mapped to ASCT+B tables used for single cell data exploration'
     }
 ]
 
@@ -45,15 +45,9 @@ export const termsOfUseData: PageDataItems[] = [
     },
     {
         heading: 'Citation',
-        descriptions: `If you use the data files v1.0 release, please cite this effort as follows:
-        <br><br> Browne, K., Cross, L. E., Herr II, B. W., Record, L, Quardokus, E, Bueckle, A., Börner, K. (2021). HuBMAP CCF 3D Reference Object Library.
-        <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html" target="_blank">
-        https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html.</a>
-        Accessed on March 12, 2021.
-        <br><br>If you use the data files v1.1 release, please cite this effort as follows:
-        <br><br>Browne, K., Cross, L. E., Herr II, B. W., Record, L, Quardokus, E, Bueckle, A., Börner, K. (2021). HuBMAP CCF 3D Reference Object Library. 
-        <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html" target="_blank">
-        https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html.</a> Accessed on December 1, 2021.`
+        descriptions: `If you use the 2D data files in v1.2 release, please cite this effort as follows:
+        <br><br> Bajema, R., Bidanta, S., Quardokus, E., Herr II, B. W., Börner, K. 2022. 
+        <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-2d-reference-library.html/" target="_blank">HuBMAP CCF 2D Reference Object Library</a>. Accessed on May 6, 2022.`
     },
     {
         heading: 'Acknowledgments',

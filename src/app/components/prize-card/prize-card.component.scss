@@ -1,0 +1,82 @@
+:host {
+  mat-card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .content {
+    width: 20rem;
+    font-family: "Inter";
+    font-style: normal;
+  }
+
+  .presented-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: inherit;
+  }
+
+  .presented {
+    max-width: 8.438rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    font-weight: 300;
+    font-size: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .winner {
+    padding-top: 1rem;
+    gap: 8px;
+    font-size: 1rem;
+    max-width: 20rem;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .prize-place {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.4202rem;
+    letter-spacing: 0.005rem;
+    padding-bottom: 1rem;
+  }
+
+  .solution-button {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    color: #444c65;
+    border: 0.063rem solid #444c65;
+    border-radius: 0.125rem;
+    margin-top: 1rem;
+    margin-right: 1rem;
+  }
+
+  .users {
+    padding-left: 3rem;
+  }
+
+  .user-image{
+    padding-right: 1rem;
+  }
+
+  a:-webkit-any-link {
+    text-decoration: none;
+  }
+
+  ::ng-deep p{
+    margin-block-start: unset;
+    margin-block-end: unset;
+    margin-inline-start: unset;
+    margin-inline-end: unset;
+  }
+}

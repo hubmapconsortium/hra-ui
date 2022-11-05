@@ -12,7 +12,7 @@ export const azimuthHeader:PageHeaderItems[] = [
 export const overviewAzimuthData: PageDataItems[] = [
     {
         heading: 'Overview',
-        descriptions: `Among others, <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-anatomical-structures.html" target="_blank">ASCT+B tables</a> represent cell by gene (CxG) relationships that are also captured in the organ-specific HuBMAP <a href="https://azimuth.hubmapconsortium.org/" target="_blank">Azimuth references</a>. 
+        descriptions: `<a href="https://hubmapconsortium.github.io/ccf/pages/ccf-anatomical-structures.html" target="_blank">ASCT+B tables</a> represent cell by gene (CxG) relationships that are also captured in the organ-specific HuBMAP <a href="https://azimuth.hubmapconsortium.org/" target="_blank">Azimuth references</a>. 
         This site provides (1) cell type typology data from Azimuth that can be visualized in the <a href="https://hubmapconsortium.github.io/ccf-asct-reporter/" target="_blank">ASCT+B Reporter</a>; (2) results for comparing CxG in ASCT+B vs. CxG in Azimuth at the organ level; 
         (3) ASCT+B to Azimuth crosswalks.
         In May 2022, Azimuth supports single-cell RNA-seq data exclusively [1]. 

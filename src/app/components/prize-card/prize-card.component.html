@@ -1,0 +1,27 @@
+<mat-card *ngFor="let prize of prizeCard">
+    <div class="content">
+        <div class="prize-place">{{prize.title}}</div>
+        <div *ngIf="prize.presentedBy" class="presented-container">
+            <div class="presented">
+                <b>Presented by:</b> {{prize.presentedBy}}
+            </div>
+            <div>
+                <img [src]="prize.orgImage">
+            </div>
+        </div>
+        <mat-divider *ngIf="prize.matDivider"></mat-divider>
+        <div class="winner" *ngFor="let win of prize.winner">
+            <div>
+                <markdown><b>Winner: </b>{{win.winner}}</markdown>
+            </div>
+            <div><markdown>{{win.kaggleId}}</markdown></div>
+            <div *ngIf="win.button">
+                <a mat-stroked-button class="solution-button" *ngFor="let button of win.button"
+                    [href]="button.link" target="_blank">{{button.label}}</a>
+            </div>
+        </div>
+    </div>
+    <div class="users" *ngIf="prize.userImage">
+        <img [src]="image" *ngFor="let image of prize.userImage" class="user-image">
+    </div>
+</mat-card>

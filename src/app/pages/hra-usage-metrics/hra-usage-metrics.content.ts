@@ -60,7 +60,7 @@ export const trainingMaterials: PageDataItems[] = [
     {
         heading: 'Licenses',
         descriptions: `<b>ASCT+B Working Group</b>: All meeting <a href="https://drive.google.com/drive/u/1/folders/1dwXw8oSvBIIIygHwMHNiYVPWB9adyUW_" target="_blank">slides</a> are freely available and meeting video recordings are on this <a href="https://www.youtube.com/playlist?list=PL-CUnYVIy7DNJc1FhqPsFPzDmd-bQD1jf" target="_blank">YouTube channel</a>. Anyone is welcome to join this effort-please register <a href="https://iu.co1.qualtrics.com/jfe/form/SV_bpaBhIr8XfdiNRH" target="_blank">here</a> to receive meeting invites and updates.
-        <b>Data</b>: All Creative Commons Attribution 4.0 International (CC BY 4.0).
+        <br><br><b>Data</b>: All Creative Commons Attribution 4.0 International (CC BY 4.0).
         3D Brain has a different license and we are in the process of identifying an alternative 3D reference.
         <br><br><b>Code</b>: MIT License (no restrictions on commercial use) for all CCF user interfaces (UI), e.g., ASCT+B Reporter, Registration UI, Exploration UI, Cell Type Population bar graphs.
         <br><br><b>Training Materials</b>: The Visible Human MOOC is freely available to anyone. All publications are freely available on arxiv or bioarxiv.`

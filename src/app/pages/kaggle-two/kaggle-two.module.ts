@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageHeaderModule } from 'src/app/components/page-header/page-header.module';
 import { PageDataModule } from 'src/app/components/page-data/page-data.module';
 import { KaggleTwoComponent } from './kaggle-two.component';
+import { MatCardModule } from '@angular/material/card';
+import { PrizeCardModule } from 'src/app/components/prize-card/prize-card.module';
 
 @NgModule({
     declarations: [
@@ -15,7 +17,9 @@ import { KaggleTwoComponent } from './kaggle-two.component';
         AppRoutingModule,
         BrowserAnimationsModule,
         PageHeaderModule,
-        PageDataModule
+        PageDataModule,
+        MatCardModule,
+        PrizeCardModule
     ],
     providers: [],
     bootstrap: []

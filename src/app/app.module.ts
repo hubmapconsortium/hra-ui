@@ -32,6 +32,8 @@ import { KaggleTwentyoneModule } from './pages/kaggle-twentyone/kaggle-twentyone
 import { KaggleTwoModule } from './pages/kaggle-two/kaggle-two.module';
 import { HraEditorialBoardModule } from './pages/hra-editorial-board/hra-editorial-board.module';
 import { CcfOrganVrGalleryModule } from './pages/ccf-organ-vr-gallery/ccf-organ-vr-gallery.module';
+import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-google-analytics';
+import { PrizeCardComponent } from './components/prize-card/prize-card.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import { CcfOrganVrGalleryModule } from './pages/ccf-organ-vr-gallery/ccf-organ-
     KaggleTwentyoneModule,
     KaggleTwoModule,
     HraEditorialBoardModule,
-    CcfOrganVrGalleryModule
+    CcfOrganVrGalleryModule,
+    NgxGoogleAnalyticsModule.forRoot('traking-code'),
+    NgxGoogleAnalyticsRouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

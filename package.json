@@ -23,6 +23,7 @@
     "@angular/router": "^14.0.0",
     "@angular/youtube-player": "^14.2.1",
     "@google/model-viewer": "^2.0.2",
+    "ngx-google-analytics": "^14.0.1",
     "ngx-markdown": "^14.0.1",
     "papaparse": "^5.3.2",
     "rxjs": "~7.5.0",

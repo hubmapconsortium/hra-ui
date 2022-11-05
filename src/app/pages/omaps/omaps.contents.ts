@@ -9,7 +9,7 @@ export const omapsHeading: PageHeaderItems[] = [
     {
         image: "assets/images/omaps.svg",
         title: "Organ Mapping Antibody Panels (OMAPs)",
-        subtitle: ""
+        subtitle: "Validated panels for diverse organs to run multiplexed antibody-based imaging that generates semantic ASCT+B table term annotations"
     }
 ]
 
@@ -67,8 +67,8 @@ export const acknowledgementsData: PageDataItems[] = [
 ]
 
 export const omapsVersionData: ChooseVersion[] = [
-    { release: '3rd HRA Release (v1.2), June 2022', file: 'omaps_release3.csv', version: '3' },
-    { release: '2rd HRA Release (v1.1), December 2021', file: 'omaps_release2.csv', version: '2' }
+    { release: '3rd Release, June 2022', file: 'omaps_release3.csv', version: '3' },
+    { release: '2nd Release, December 2021', file: 'omaps_release2.csv', version: '2' }
 ]
 
 export const columnHeaders: HeaderData[] = [
