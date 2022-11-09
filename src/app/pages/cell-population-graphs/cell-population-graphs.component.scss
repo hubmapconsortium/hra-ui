@@ -19,4 +19,9 @@
   .image-container {
     padding-bottom: 2rem;
   }
+
+  a:-webkit-any-link:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
 }

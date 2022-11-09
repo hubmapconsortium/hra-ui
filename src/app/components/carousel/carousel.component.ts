@@ -19,7 +19,6 @@ export class CarouselComponent {
   @Output() buttonRoute = new EventEmitter<SliderItems>;
 
   config: SwiperOptions = {
-    loop: true,
     autoplay: {
       delay: 10000,
       disableOnInteraction: false

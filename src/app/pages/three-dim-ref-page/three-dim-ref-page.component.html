@@ -1,7 +1,7 @@
 <ccf-page-header [headerCard]="headerData"></ccf-page-header>
 <ccf-page-data [data]="overviewData"></ccf-page-data>
 <ccf-sop-links [links]="sopData"></ccf-sop-links>
-<ccf-choose-version [releaseDate]="versionData" [selectedDate]="placeholderDate" (selectedVersion)="setVersion($event.version)"></ccf-choose-version>
+<ccf-choose-version [releaseDate]="versionData" [selectedDate]="placeholderDate" (selectedVersion)="setVersion($event.version)" [label]="label"></ccf-choose-version>
 <ccf-organ-tabs [tabs]="tabsImages" [currentOrgan]="organData[0].name" (organName)="setOrgan($event)"></ccf-organ-tabs>
 <ccf-two-dim-image [cardTitle]="cardTitle" [tissueData]="organData" [isMultirow]="false"></ccf-two-dim-image>
 <ccf-page-data [data]="termsOfUseData"></ccf-page-data>
