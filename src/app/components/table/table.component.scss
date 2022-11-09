@@ -102,9 +102,10 @@
     line-height: 1.5rem;
     letter-spacing: 0.005rem;
     display: block;
+    width: fit-content;
 
     &:hover {
-      transform: scale(1.1) !important;
+      transform: scale(1.09) !important;
       text-decoration: underline !important;
     }
   }

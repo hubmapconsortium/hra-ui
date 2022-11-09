@@ -47,7 +47,7 @@ export const acknowledgeData: PageDataItems[] = [
 
 export const useRuiButton: UseButton = {
     text: 'Use the Registration User Interface',
-    url: ''
+    url: 'https://hubmapconsortium.github.io/ccf-ui/rui/'
 }
 
 export const ruiSopData: SopLinks[] = [

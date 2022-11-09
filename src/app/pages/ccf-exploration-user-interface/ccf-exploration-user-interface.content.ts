@@ -47,5 +47,5 @@ export const tutorialData: PageDataItems[] = [
 
 export const useEuiButton: UseButton = {
     text: 'Use the Exploration User Interface',
-    url: ''
+    url: 'https://portal.hubmapconsortium.org/ccf-eui'
 }

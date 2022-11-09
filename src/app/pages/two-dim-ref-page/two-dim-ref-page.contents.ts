@@ -66,14 +66,14 @@ export const organInfo: VersionOrgans[] = [
                     {
                         name: 'Nephron',
                         image: 'assets/images/nephron.png',
-                        expandedImage: 'assets/images/nephron_dialog.png',
+                        expandedImage: 'assets/images/nephron.svg',
                         url: 'https://doi.org/10.48539/HBM489.SGQZ.655',
                         svg: 'assets/images/nephron.svg'
                     },
                     {
                         name: 'Renal Corpuscle',
                         image: 'assets/images/renal_corpuscle.png',
-                        expandedImage: 'assets/images/renal_corpuscle.png',
+                        expandedImage: 'assets/images/renal_corpuscle.svg',
                         url: 'https://doi.org/10.48539/HBM395.LVFN.656',
                         svg: 'assets/images/renal_corpuscle.svg'
                     }
@@ -85,7 +85,7 @@ export const organInfo: VersionOrgans[] = [
                 tissueData: [{
                     name: 'Crypt of Lieberkuhn',
                     image: 'assets/images/crypt_lieberkuhn_large_intestine.png',
-                    expandedImage: 'assets/images/crypt_lieberkuhn_large_intestine.png',
+                    expandedImage: 'assets/images/crypt_lieberkuhn_large_intestine.svg',
                     url: 'https://doi.org/10.48539/HBM373.JRGS.542',
                     svg: 'assets/images/crypt_lieberkuhn_large_intestine.svg'
                 }]
@@ -96,7 +96,7 @@ export const organInfo: VersionOrgans[] = [
                 tissueData: [{
                     name: 'Liver Lobule',
                     image: 'assets/images/liver_lobule.png',
-                    expandedImage: 'assets/images/liver_lobule.png',
+                    expandedImage: 'assets/images/liver_lobule.svg',
                     url: 'https://doi.org/10.48539/HBM692.KXMT.939',
                     svg: 'assets/images/liver_lobule.svg',
                 }]
@@ -107,7 +107,7 @@ export const organInfo: VersionOrgans[] = [
                 tissueData: [{
                     name: 'Pulmonary Alveolus',
                     image: 'assets/images/pulmonary_alveolus_lung.png',
-                    expandedImage: 'assets/images/pulmonary_alveolus_lung.png',
+                    expandedImage: 'assets/images/pulmonary_alveolus_lung.svg',
                     url: 'https://doi.org/10.48539/HBM626.KZVN.453',
                     svg: 'assets/images/pulmonary_alveolus_lung.svg',
                 }]
@@ -118,7 +118,7 @@ export const organInfo: VersionOrgans[] = [
                 tissueData: [{
                     name: 'Islets of Langerhans',
                     image: 'assets/images/islets_langerhans_pancreas.png',
-                    expandedImage: 'assets/images/islets_langerhans_pancreas.png',
+                    expandedImage: 'assets/images/islets_langerhans_pancreas.svg',
                     url: 'https://doi.org/10.48539/HBM344.CNNH.639',
                     svg: 'assets/images/islets_langerhans_pancreas.svg',
                 }]
@@ -129,7 +129,7 @@ export const organInfo: VersionOrgans[] = [
                 tissueData: [{
                     name: 'Prostate Glandular Acinus',
                     image: 'assets/images/prostate_glandular_acinus_prostate.png',
-                    expandedImage: 'assets/images/prostate_glandular_acinus_prostate.png',
+                    expandedImage: 'assets/images/prostate_glandular_acinus_prostate.svg',
                     url: 'https://doi.org/10.48539/HBM523.TDCH.662',
                     svg: 'assets/images/prostate_glandular_acinus_prostate.svg',
                 }]
@@ -140,7 +140,7 @@ export const organInfo: VersionOrgans[] = [
                 tissueData: [{
                     name: 'Thymus Lobule',
                     image: 'assets/images/thymus_lobule_thymus.png',
-                    expandedImage: 'assets/images/thymus_lobule_thymus.png',
+                    expandedImage: 'assets/images/thymus_lobule_thymus.svg',
                     url: 'https://doi.org/10.48539/HBM794.PKVD.274',
                     svg: 'assets/images/thymus_lobule_thymus.svg',
                 }]
