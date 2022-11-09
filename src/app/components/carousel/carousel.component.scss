@@ -12,6 +12,7 @@
   height: 29.5rem;
   margin-bottom: 1rem;
 
+
   .swiper-slide {
     text-align: center;
     font-size: 1.125rem;
@@ -110,6 +111,7 @@
     color: black;
     border: 0.063rem solid #444c65;
     border-radius: 0.125rem;
+    
   }
 
   .swiper-pagination-bullet-active {
@@ -128,6 +130,14 @@
     opacity: unset;
   }
 
+  .swiper-pagination-bullet:hover{
+    background-color: #cad5d5 !important;
+  }
+
+  .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet{
+    margin-right: 1rem;
+  }
+}
   .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
   .swiper-pagination-horizontal.swiper-pagination-bullets
     .swiper-pagination-bullet {

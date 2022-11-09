@@ -2,8 +2,8 @@
     <mat-card-title class="card-title">{{cardTitle}}</mat-card-title>
     <mat-divider></mat-divider>
     <span *ngFor="let tissues of tissueData" [class.multirow]="!isMultirow">
-        <ng-container *ngFor="let tissue of tissues.tissueData; even as even; last as last;">
-            <mat-card-actions [class.split]="!isMultirow">
+        <ng-container *ngFor="let tissue of tissues.tissueData let i = index; even as even; last as last;">
+            <mat-card-actions [class.split]="!isMultirow && tissues.tissueData?.length != 1" [class.no-split]="tissues.tissueData?.length === 1">
                 <div class="units-container" *ngIf="isMultirow; else: downloadGlb">
                     <div>{{tissue.name}}</div>
                     <div style="flex-grow: 1;"></div>
@@ -20,7 +20,9 @@
                         <mat-icon>download</mat-icon>
                     </a>
                 </div>
+                
                 <ng-template #downloadGlb>
+                    <mat-divider *ngIf = "i != 0 && i != 1"></mat-divider>
                     <div class="units-container">
                         <div>{{tissue.name}}</div>
                         <div style="flex-grow: 1;"></div>
@@ -36,7 +38,7 @@
                         </div>
                     </div>
                 </ng-template>
-                <mat-divider *ngIf="!isMultirow"></mat-divider>
+                <mat-divider [class.no-split-divider]="tissues.tissueData?.length === 1" *ngIf="!isMultirow"></mat-divider>
                 <div class="image-container" *ngIf="tissue.image; else: threeDimensionContainer">
                     <img [src]="tissue.image" (click)="openImageViewer(imageContent)">
                     <ng-template #imageContent>

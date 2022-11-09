@@ -24,6 +24,10 @@
     color: #0a6ebd;
   }
 
+  .text:hover{
+    text-decoration: underline;
+  }
+
   a {
     text-decoration: none;
     &:visited {
@@ -34,4 +38,5 @@
       color: #3d72bf;
     }
   }
+  
 }

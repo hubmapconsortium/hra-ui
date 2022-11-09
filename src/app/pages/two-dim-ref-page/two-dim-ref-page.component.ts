@@ -30,10 +30,13 @@ export class TwoDimRefPageComponent implements OnInit {
 
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
+  label: string;
+
 
   ngOnInit(): void {
     const [{ version: defaultVersion, organData: [{ name: defaultOrgan }] }] = organInfo;
     const { version = defaultVersion, organ = defaultOrgan } = this.activatedRoute.snapshot.queryParams;
+    this.label = "Choose version of HRA release"
 
     this.setVersion(`${version}`, `${organ}`);
   }

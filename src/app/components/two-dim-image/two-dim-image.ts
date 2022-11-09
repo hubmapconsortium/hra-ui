@@ -3,8 +3,8 @@ export interface TissueData {
     image?: string
     expandedImage?: string
     threeDimImage?: string,
-    alt?: string
-    url: string
+    alt?: string,
+    url: string,
     svg?: string
 }
 

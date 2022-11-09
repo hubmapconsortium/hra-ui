@@ -29,6 +29,7 @@ export class CarouselComponent {
     pagination: {
       clickable: true
     },
-    effect: 'fade'
+    effect: 'fade',
+    rewind: true
   };
 }

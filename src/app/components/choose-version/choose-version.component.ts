@@ -16,4 +16,7 @@ export class ChooseVersionComponent {
   @Output()
   selectedVersion = new EventEmitter<ChooseVersion>;
 
+  @Input()
+  label: string = 'Choose Version of ASCT+B datasets'
+
 }

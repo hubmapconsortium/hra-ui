@@ -1,5 +1,5 @@
 <div class="version-label">
-  Choose Version of ASCT+B datasets:
+  {{ label }}
 </div>
 <mat-select class="versions" panelClass="versions-panel" [(value)]="selectedDate" disableOptionCentering disableRipple>
   <mat-option *ngFor="let date of releaseDate" [value]="date" class="mat-select-value-text"
