@@ -1,19 +1,9 @@
 <svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="128" height="128" fill="#444A65"/>
-<path d="M44.7114 28.8291H65.1514" stroke="white" stroke-width="0.75" stroke-miterlimit="10"/>
-<path d="M35.3779 37.665H77.6735" stroke="white" stroke-width="0.75" stroke-miterlimit="10"/>
-<path d="M32.0024 46.5H84.4247" stroke="white" stroke-width="0.75" stroke-miterlimit="10"/>
-<path d="M33.7759 55.3359H89.5892" stroke="white" stroke-width="0.75" stroke-miterlimit="10"/>
-<path d="M44.7114 64.1709H91.9692" stroke="white" stroke-width="0.75" stroke-miterlimit="10"/>
-<path d="M47.6826 73.0225H93.9604" stroke="white" stroke-width="0.75" stroke-miterlimit="10"/>
-<path d="M54.8379 81.8574H93.9601" stroke="white" stroke-width="0.75" stroke-miterlimit="10"/>
-<path d="M52.6445 90.6934H91.969" stroke="white" stroke-width="0.75" stroke-miterlimit="10"/>
-<path d="M57.0156 99.5293H84.6267" stroke="white" stroke-width="0.75" stroke-miterlimit="10"/>
-<path d="M36.9648 35.7822V58.0267" stroke="white" stroke-width="0.75" stroke-miterlimit="10"/>
-<path d="M45.6914 29.0312V64.3735" stroke="white" stroke-width="0.75" stroke-miterlimit="10"/>
-<path d="M54.4336 26.8379V95.9512" stroke="white" stroke-width="0.75" stroke-miterlimit="10"/>
-<path d="M63.1758 28.0361V103.901" stroke="white" stroke-width="0.75" stroke-miterlimit="10"/>
-<path d="M71.918 32.7959V106.28" stroke="white" stroke-width="0.75" stroke-miterlimit="10"/>
-<path d="M80.6445 40.9473V102.112" stroke="white" stroke-width="0.75" stroke-miterlimit="10"/>
-<path d="M89.3867 54.8379V94.5668" stroke="white" stroke-width="0.75" stroke-miterlimit="10"/>
+<mask id="mask0_2805_4804" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="40" y="40" width="48" height="48">
+<rect x="40" y="40" width="48" height="48" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_2805_4804)">
+<path d="M72.9 55.6V49H55.1V55.6H52.1V46H75.9V55.6H72.9ZM76.95 63.35C77.35 63.35 77.7 63.2 78 62.9C78.3 62.6 78.45 62.25 78.45 61.85C78.45 61.45 78.3 61.1 78 60.8C77.7 60.5 77.35 60.35 76.95 60.35C76.55 60.35 76.2 60.5 75.9 60.8C75.6 61.1 75.45 61.45 75.45 61.85C75.45 62.25 75.6 62.6 75.9 62.9C76.2 63.2 76.55 63.35 76.95 63.35ZM72.9 79V69.4H55.1V79H72.9ZM75.9 82H52.1V73.2H44V60.9C44 59.4 44.5083 58.1417 45.525 57.125C46.5417 56.1083 47.8 55.6 49.3 55.6H78.7C80.2 55.6 81.4583 56.1083 82.475 57.125C83.4917 58.1417 84 59.4 84 60.9V73.2H75.9V82ZM81 70.2V60.9C81 60.2333 80.7833 59.6833 80.35 59.25C79.9167 58.8167 79.3667 58.6 78.7 58.6H49.3C48.6333 58.6 48.0833 58.8167 47.65 59.25C47.2167 59.6833 47 60.2333 47 60.9V70.2H52.1V66.4H75.9V70.2H81Z" fill="white"/>
+</g>
 </svg>

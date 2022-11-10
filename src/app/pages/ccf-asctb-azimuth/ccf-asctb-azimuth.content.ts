@@ -1,7 +1,9 @@
 import { PageDataItems } from "src/app/components/page-data/page-data";
 import { PageHeaderItems } from "src/app/components/page-header/page-header-items";
+import { HeaderData } from "src/app/components/table/header";
+import { TableData } from "src/app/components/table/table";
 
-export const azimuthHeader:PageHeaderItems[] = [
+export const azimuthHeader: PageHeaderItems[] = [
     {
         image: 'assets/images/asctb_azimuth.svg',
         title: 'ASCT+B Cell Types Data from Azimuth Reference Data with Summaries',
@@ -13,25 +15,24 @@ export const overviewAzimuthData: PageDataItems[] = [
     {
         heading: 'Overview',
         descriptions: `<a href="https://hubmapconsortium.github.io/ccf/pages/ccf-anatomical-structures.html" target="_blank">ASCT+B tables</a> represent cell by gene (CxG) relationships that are also captured in the organ-specific HuBMAP <a href="https://azimuth.hubmapconsortium.org/" target="_blank">Azimuth references</a>. 
-        This site provides (1) cell type typology data from Azimuth that can be visualized in the <a href="https://hubmapconsortium.github.io/ccf-asct-reporter/" target="_blank">ASCT+B Reporter</a>; (2) results for comparing CxG in ASCT+B vs. CxG in Azimuth at the organ level; 
-        (3) ASCT+B to Azimuth crosswalks.
-        In May 2022, Azimuth supports single-cell RNA-seq data exclusively [1]. 
-        However, we look forward to add other biomarker types in the future (e.g., using multi-omit 'bridge' datasets that map ATAC-seq, methylation, CUT&Tag or CyTOF profiles onto scRNA-seq references [2]).
+        This site provides cell type typology data from Azimuth that can be visualized in the <a href="https://hubmapconsortium.github.io/ccf-asct-reporter/" target="_blank">ASCT+B Reporter</a>.
+        <br><br>
+        We also provide easy access to results for comparing CxG in ASCT+B vs. CxG in Azimuth. In Jan 2022, Azimuth supports single-cell RNA-seq data exclusively. As more experimental data becomes available and additional types of data are supported (e.g., proteins, lipids, metabolites), data differences will decrease.
         `
     },
     {
-        heading: 'Azimuth Cell Type Typologies and Cell Populations',
-        descriptions: `In May 2022, nine scRNA-seq reference maps for human are available via Azimuth. 
-        For each, we parsed the data available at <a href="https://github.com/satijalab/azimuth_website" target="_blank">https://github.com/satijalab/azimuth_website</a> to compute a cell type typology in a format that can be visualized in the <a href="https://hubmapconsortium.github.io/ccf-asct-reporter/" target="_blank">ASCT+B Reporter</a> together. 
-        In addition, we compiled a table that lists the annotation level and the number of cell types for each unique cell for display in the <a href="https://hubmapconsortium.github.io/tissue-bar-graphs/" target="_blank">HRA Cell Populations</a> bar graph visualization 
-        in the organ-specific Azimuth reference. Both datasets are given in Table 1. Code is available on <a href="https://github.com/hubmapconsortium/asctb-azimuth-data-comparison" target="_blank">GitHub</a>.`
+        heading: 'Azimuth Cell Type Typologies and Counts',
+        descriptions: `In Jan 2022, eight molecular reference maps for human are available via Azimuth. For each we provide the cell type typology as a file that can be visualized in the ASCT+B Reporter together with a table that lists the annotation level and the number of cell types 
+        for each unique cell in the organ-specific Azimuth reference, see Table 1.
+        `
     }
 ]
 
 export const TermsOfUseData: PageDataItems[] = [
     {
-        heading: 'Crosswalk',
-        descriptions: '<b>Text to be inserted</b>'
+        heading: 'Azimuth CT Counts',
+        descriptions: `Data from <a href="https://github.com/satijalab/azimuth_website" target="_blank">https://github.com/satijalab/azimuth_website</a> has been parsed to derive cell type counts:
+        <br><br> Code is available on <a href="https://github.com/hubmapconsortium/asctb-azimuth-data-comparison" target="_blank">GitHub</a>`
     },
     {
         heading: 'Code on Github',
@@ -53,27 +54,92 @@ export const TermsOfUseData: PageDataItems[] = [
     },
     {
         heading: 'Acknowledgements',
-        descriptions: 'This code and data was compiled by the HuBMAP MC-IU team in close collaboration with the MC-NYGC team. This research has been funded in part by the NIH Director under award OT2OD026671 and 1OT2OD026673.'
+        descriptions: 'This code and data was compiled by the HuBMAP MC-IU team in close collaboration with the MC-NYGC team.'
     },
     {
         heading: 'References',
-        descriptions: `<a href="https://cns.iu.edu/current_team/bio/katy_borner.html" target="_blank">Börner, Katy</a>, Sarah A Teichmann, <a href="https://cns.iu.edu/current_team/bio/ellen-quardokus.html" target="_blank">Ellen M Quardokus</a>, et al. 2021. "<a href="https://cns.iu.edu/docs/publications/2021-Borner-ASCT+B_of_the_HRA.pdf" target="_blank">
-        Anatomical structures, cell types and biomarkers of the Human Reference Atlas"</a>. Nature Cell Biology 23: 1117-1128. doi: 10.1038/s41556-021-00788-6.
+        descriptions: `Börner, Katy<, Sarah A Teichmann, Ellen M Quardokus, et al. 2021. "<a href="https://cns.iu.edu/docs/publications/2021-Borner-ASCT+B_of_the_HRA.pdf" target="_blank">
+        Anatomical structures, cell types and biomarkers of the Human Reference Atlas"</a>. <i>Nature Cell Biology</i> 23: 1117-1128. doi: 10.1038/s41556-021-00788-6.
         <br><br>
-        Hao, Yuhan, Stephanie Hao, Erica Andersen-Nissen, et al. 2021. “<a href="https://doi.org/10.1016/j.cell.2021.04.048" target="_blank">Integrated Analysis of Multimodal Single-Cell Data</a>.” Cell 184 (13): 3573-3587.e29.`
+        Hao Y, Hao S, Andersen-Nissen E, Mauck WM 3rd, Zheng S, Butler A, Lee MJ, Wilk AJ, Darby C, Zager M, Hoffman P, Stoeckius M, Papalexi E, Mimitou EP, Jain J, Srivastava A, Stuart T, Fleming LM, Yeung B, Rogers AJ, McElrath JM, Blish CA, Gottardo R, Smibert P, Satija R. 2021.
+        “<a href="https://doi.org/10.1016/j.cell.2021.04.048" target="_blank">Integrated Analysis of Multimodal Single-Cell Data</a>.” <i>Cell.</i> 184 (13): 3573-3587.e29. doi: 10.1016/j.cell.2021.04.048`
     }
 ]
 
 export const comparisonAsctbVsAzimuth: PageDataItems[] = [
     {
         heading: 'Comparison of CxG in ASCT+B vs. Azimuth',
-        descriptions: `Aligning (or cross-walking) the CxG matrices in ASCT+B tables to relevant organ-specific CxG matrices in Azimuth is non-trivial. 
-        The ASCT+B tables capture expert identified cell types that are critically important for the function of an organ plus biomarkers commonly used to characterize these cell types with a focus on entities available in major ontologies (Uberon/FMA and Cell Ontology respectively). 
-        Azimuth covers experimentally derived data at rather different levels of resolution; it provides Cell Ontology IDs in a separate file here <b>need link here</b> and uses labels for genes that match the labels in HGNC. 
-        Note that not all Azimuth cell types have CL IDs; in these cases, matching is done based on cell type names.
+        descriptions: `Table 3 shows the comparison of the CxG matrix in ASCT+B tables vs. CxG matrix in Azimuth for each organ in Jan 2022. An automatically generated, up-to-date comparison is available 
+        <a href="https://hubmapconsortium.github.io/asctb-azimuth-data-comparison/Azimuth_vs_ASCTB.summaries.xlsx" target="_blank">here</a>; this xls also contains separate sheets with cell 
+        types that are not (yet) covered in the ASCT+B tables. Details on how the comparison is calculated are on <a href="https://github.com/hubmapconsortium/asctb-azimuth-data-comparison" target="_blank">GitHub</a>. Note that not all Azimuth cell types have CL IDs; 
+        in these cases, matching is done based on cell type names.
         <br><br>
-        An automatically generated, up-to-date comparison with the most recent release of the ASCT+B tables is available as an XLS file <a href="https://hubmapconsortium.github.io/asctb-azimuth-data-comparison/Azimuth_vs_ASCTB.summaries.xlsx" download>here</a> and shown in <b>Table 2</b>. 
-        The XLS file also contains separate sheets with lists of cell types and biomarkers that are not (yet) covered in the ASCT+B tables so table authors can be alerted and encouraged to add these to the ASCT+B tables--increasing matching scores in future releases. 
-        Details on how the comparison is calculated are on <a href="https://github.com/hubmapconsortium/asctb-azimuth-data-comparison" target="_blank">GitHub</a>.`
+        Data from <a href="https://github.com/satijalab/azimuth_website" target="_blank">https://github.com/satijalab/azimuth_website</a> has been parsed to derive cell type typologies:`
     }
 ]
+
+export const headerInfo: HeaderData[] = [
+    {
+      columnDef: 'organ',
+      header: 'Organ',
+      cell: (element: TableData) => `<a class="cell-link" href="${element['url'] || 'TODO:Please add a url column to this .csv!'}">${element['organ']}</a>`,
+      isTotalRequired: true
+    },
+    {
+      columnDef: 'uniqueName',
+      header: 'Unique Names',
+      cell: (element: TableData) => `${element['uniqueName']}`
+    },
+    {
+      columnDef: 'uniqueId',
+      header: 'Unique IDs',
+      cell: (element: TableData) => `${element['uniqueId']}`
+    },
+    {
+      columnDef: 'uName',
+      header: 'Unique Names',
+      cell: (element: TableData) => `${element['uName']}`
+    },
+    {
+      columnDef: 'uId',
+      header: 'Unique IDs',
+      cell: (element: TableData) => `${element['uId']}`
+    },
+    {
+      columnDef: 'usingId',
+      header: 'UsingIDs',
+      cell: (element: TableData) => `${element['usingId']}`
+    },
+    {
+      columnDef: 'usingLabels',
+      header: 'Using Labels',
+      cell: (element: TableData) => `${element['usingLabels']}`
+    },
+    {
+      columnDef: 'a',
+      header: '',
+      cell: (element: TableData) => `${element['a']}`
+    },
+    {
+      columnDef: 'b',
+      header: '',
+      cell: (element: TableData) => `${element['b']}`,
+    },
+    {
+        columnDef: 'c',
+        header: '',
+        cell: (element: TableData) => `${element['c']}`
+      },
+      {
+        columnDef: 'd',
+        header: '',
+        cell: (element: TableData) => `${element['d']}`,
+      },
+      {
+        columnDef: 'e',
+        header: '',
+        cell: (element: TableData) => `${element['e']}`,
+      }
+  ];
+  
+  export const displayedColumnsData = headerInfo.map(h => h.columnDef);

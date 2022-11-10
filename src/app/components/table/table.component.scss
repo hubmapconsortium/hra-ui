@@ -121,4 +121,8 @@
   ::ng-deep .mat-sort-header-container:not(th:first-child>.mat-sort-header-container){
     justify-content: end;
   }
+
+  ::ng-deep .mat-sort-header-content{
+    white-space: break-spaces;
+  }
 }

@@ -30,7 +30,7 @@ export const sopData: SopLinks[] = [
 ]
 
 export const versionData: ChooseVersion[] = [
-    { release: '3rd Release, March 2021', version: '1.2' }
+    { release: '3rd Release, June 2021', version: '1.2' }
 ]
 
 export const termsOfUseData: PageDataItems[] = [

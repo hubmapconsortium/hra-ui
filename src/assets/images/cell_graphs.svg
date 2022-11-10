@@ -1,15 +1,9 @@
 <svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="128" height="128" fill="#444A65"/>
-<path d="M50.4091 34H31V47.8636H50.4091V34Z" fill="white"/>
-<path d="M50.4091 51.5605H31V71.8939H50.4091V51.5605Z" fill="white"/>
-<path d="M50.4091 82.9844H31V94.9995H50.4091V82.9844Z" fill="white"/>
-<path d="M50.4091 74.667H31V79.2882H50.4091V74.667Z" fill="white"/>
-<path d="M73.5155 95H54.1064V81.3433H73.5155V95Z" fill="white"/>
-<path d="M73.5155 77.7021H54.1064V57.6723H73.5155V77.7021Z" fill="white"/>
-<path d="M73.5155 45.8359H54.1064V34.0001H73.5155V45.8359Z" fill="white"/>
-<path d="M73.5155 54.0303H54.1064V49.478H73.5155V54.0303Z" fill="white"/>
-<path d="M96.6205 95H77.2114V83.9091H96.6205V95Z" fill="white"/>
-<path d="M96.6205 80.2119H77.2114V70.9695H96.6205V80.2119Z" fill="white"/>
-<path d="M96.6205 37.6973H77.2114V34.0003H96.6205V37.6973Z" fill="white"/>
-<path d="M96.6205 67.2734H77.2114V41.3946H96.6205V67.2734Z" fill="white"/>
+<mask id="mask0_2805_4789" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="40" y="40" width="48" height="48">
+<rect x="40" y="40" width="48" height="48" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_2805_4789)">
+<path d="M48 80V58H55V80H48ZM60.5 80V48H67.5V80H60.5ZM73 80V66H80V80H73Z" fill="white"/>
+</g>
 </svg>

@@ -32,7 +32,7 @@ export const spatialOntologyData: ImageData[] = [
 
 export const relatedToolsData: LongCard[] = [
     {
-        icon: 'assets/images/related_tools.svg',
+        icon: 'assets/images/hra_api.svg',
         title: 'Human Reference Atlas Application Programming Interfaces',
         body: 'Query and interact with the HRA using Python, JavaScript, SPARQL, REST, and more',
         route: 'ccf-hra-api'

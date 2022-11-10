@@ -6,7 +6,7 @@ export const pageHeaderData: PageHeaderItems[] = [
     {
         title: 'Human Reference Atlas Application Programming Interfaces',
         subtitle: 'Query and interact with the HRA using Python, JavaScript, SPARQL, REST, and more',
-        image: 'assets/images/related_tools.svg'
+        image: 'assets/images/hra_api.svg'
     }
 ]
 
