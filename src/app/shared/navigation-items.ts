@@ -7,33 +7,33 @@ export const NAVIGATION_ITEMS: NavItems[] = [
     children: [
       {
         menuName: 'Overview: HRA Data',
-        route: 'ccf-overview-data',
+        route: 'overview-data',
         disabled: false,
         divider: true
       },
       {
-        menuName: 'CCF Anatomical Structures, Cell Types + Biomarkers (ASCT+B) Tables',
-        route: 'ccf-anatomical-structures',
+        menuName: 'Anatomical Structures, Cell Types + Biomarkers (ASCT+B) Tables',
+        route: 'asctb-tables',
         disabled: true
       },
       {
         menuName: 'Anatomical Structures, Cell Types + Biomarkers (ASCT+B) Cell Types Data from Azimuth',
-        route: 'ccf-asctb-azimuth',
+        route: 'asctb-azimuth',
         disabled: true
       },
       {
-        menuName: 'CCF 2D Functional Tissue Unit (FTU) Illustrations',
+        menuName: '2D Functional Tissue Unit (FTU) Illustrations',
         route: 'ccf-2d-ftu',
         disabled: true
       },
       {
-        menuName: 'CCF 3D Reference Object Library',
+        menuName: '3D Reference Object Library',
         route: 'ccf-3d-reference-library',
         disabled: true
       },
       {
         menuName: 'Organ Mapping Antibody Panels (OMAPs)',
-        route: 'ccf-omaps',
+        route: 'omap',
         disabled: true,
         divider: true
       },
@@ -54,37 +54,37 @@ export const NAVIGATION_ITEMS: NavItems[] = [
     children: [
       {
         menuName: 'Overview: HRA Tools',
-        route: 'ccf-overview-tools',
+        route: 'overview-tools',
         disabled: true,
         divider: true
       },
       {
-        menuName: 'CCF Anatomical Structures, Cell Types + Biomarkers (ASCT+B) Reporter',
-        route: 'ccf-asctb-reporter',
+        menuName: 'Anatomical Structures, Cell Types + Biomarkers (ASCT+B) Reporter',
+        route: 'asctb-reporter',
         disabled: true
       },
       {
-        menuName: 'CCF Cell Population Graphs',
-        route: 'ccf-cell-population-graphs',
+        menuName: 'Cell Population Graphs',
+        route: 'cell-population-graphs',
         disabled: true
       },
       {
-        menuName: 'CCF Registration User Interface (RUI)',
-        route: 'ccf-registration-user-interface',
+        menuName: 'Registration User Interface (RUI)',
+        route: 'registration-user-interface',
         disabled: true
       },
       {
-        menuName: 'CCF Exploration User Interface (EUI)',
-        route: 'ccf-exploration-user-interface',
+        menuName: 'Exploration User Interface (EUI)',
+        route: 'exploration-user-interface',
         disabled: true
       },
       {
         menuName: 'CCF Organ VR Gallery',
-        route: 'ccf-organ-vr-gallery'
+        route: 'organ-vr-gallery'
       },
       {
         menuName: 'HRA Millitome',
-        route: 'ccf-hra-millitome',
+        route: 'hra-millitome',
         disabled: true
       },
       {
@@ -94,7 +94,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
       },
       {
         menuName: 'HRA Usage Metrics',
-        route: 'ccf-hra-usage-metrics',
+        route: 'usage-metrics',
         disabled: true
       }
     ]
@@ -104,7 +104,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
     children: [
       {
         menuName: 'Overview: HRA Training and Outreach',
-        route: 'ccf-overview-training-outreach',
+        route: 'overview-training-outreach',
         disabled: true,
         divider: true
       },
@@ -115,19 +115,28 @@ export const NAVIGATION_ITEMS: NavItems[] = [
       },
       {
         menuName: 'HRA Standard Operating Procedures',
-        route: 'ccf-hra-sop',
+        route: 'standard-operating-procedures',
         disabled: true
       },
       {
         menuName: 'Kaggle #1: HuBMAP - Hacking the Kidney',
-        route: 'ccf-kaggle-twentyone',
+        route: 'kaggle-one',
         disabled: true
       },
       {
         menuName: 'Kaggle #2: HuBMAP + HPA - Hacking the Human Body',
-        route: 'ccf-kaggle-two',
+        route: 'kaggle-two',
         disabled: true
+      },
+      {
+        menuName: 'Scrollytelling Series',
+        route: 'scrollytelling-series'
+      },
+      {
+        menuName: '24 Hour Human Reference Atlas Event',
+        route: '24-hr-hra-event'
       }
+
     ]
   },
   {
@@ -135,11 +144,11 @@ export const NAVIGATION_ITEMS: NavItems[] = [
     children: [
       {
         menuName: 'About MC-IU',
-        route: 'ccf-about'
+        route: 'about-mc-iu'
       },
       {
         menuName: 'HRA Editorial Board',
-        route: 'ccf-hra-editorial-board'
+        route: 'editorial-board'
       }
     ]
   }

@@ -16,7 +16,7 @@ export const overviewData: PageDataItems[] = [
     {
         heading: 'Overview',
         descriptions: `The 2D Functional Tissue Unit Library provides anatomically correct illustrations of functional tissue units (FTUs). The illustrations are developed by a specialist in 2D medical illustration and approved by organ experts.
-    <br><br>Illustrations are created using terms from the Anatomical Structures, Cell Types, and Biomarker (ASCT+B) table for each organ. Subject matter experts collaborate on a list of anatomical structures and/or cell types to be included in each FTU. Histology atlases and data sets are consulted for visual reference, and research is undertaken to determine if cell sizes and their relative number and distribution is known for a given FTU. Reasonable estimates are made when placing cells in the illustration and relating them to a scale bar. 
+    <br><br>Illustrations are created using terms from the Anatomical Structures, Cell Types, and Biomarker (ASCT+B) table for each organ. Subject matter experts collaborate on a list of anatomical structures and/or cell types to be included in each FTU. Histology atlases and data sets are consulted for visual reference, and research is undertaken to determine if cell sizes and their relative number and distribution is known for a given FTU. Reasonable estimates are made when placing cells in the illustration and relating them to a scale bar.
     <br><br>A crosswalk table is then created for each FTU illustration, linking the terms in the ASCT+B table to the individual cells in the illustration. This provides an opportunity to add interactive functionality and extends the potential uses for each FTU.
     <br><br>On June, 2022, a total of 8 2D FTUs became available in SVG format. Each illustration can be downloaded and edited using Adobe Illustrator. We encourage users to create additional FTU illustrations using these templates, or to use and share them as desired.`
     }
@@ -30,7 +30,8 @@ export const sopData: SopLinks[] = [
 ]
 
 export const versionData: ChooseVersion[] = [
-    { release: '3rd Release, June 2021', version: '1.2' }
+    { release: '4th HRA Release (v1.3), December 2022', version: '1.2' },
+    { release: '3rd HRA Release (v1.2), June 2022', version: '1.2' }
 ]
 
 export const termsOfUseData: PageDataItems[] = [
@@ -46,7 +47,7 @@ export const termsOfUseData: PageDataItems[] = [
     {
         heading: 'Citation',
         descriptions: `If you use the 2D data files in v1.2 release, please cite this effort as follows:
-        <br><br> Bajema, R., Bidanta, S., Quardokus, E., Herr II, B. W., Börner, K. 2022. 
+        <br><br> Bajema, R., Bidanta, S., Quardokus, E., Herr II, B. W., Börner, K. 2022.
         <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-2d-reference-library.html/" target="_blank">HuBMAP CCF 2D Reference Object Library</a>. Accessed on May 6, 2022.`
     },
     {

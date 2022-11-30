@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { backgroundData, dataVisualizations, organVrHeader, overviewData, referencesData, testingAndFeedback } from './ccf-organ-vr-gallery.content';
 
 @Component({
-  selector: 'ccf-organ-vr-gallery',
+  selector: 'organ-vr-gallery',
   templateUrl: './ccf-organ-vr-gallery.component.html',
   styleUrls: ['./ccf-organ-vr-gallery.component.scss']
 })

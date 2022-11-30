@@ -1,5 +1,5 @@
 <ccf-page-header [headerCard]="azimuthHeader"></ccf-page-header>
 <ccf-page-data [data]="overviewAzimuthData"></ccf-page-data>
 <ccf-page-data [data]="comparisonAsctbVsAzimuth"></ccf-page-data>
-<ccf-table [typeCount]="(tableData | async) ?? []" [displayedColumns]="displayedColumnsData" [columns]="headerInfo" [isOrgan]="true"></ccf-table>
+<ccf-table [typeCount]="(tableData | async) ?? []" [displayedColumns]="displayedColumnsData" [columns]="headerInfo" [isOrgan]="true" [additionalHeaders]="additionalHeaders" [additionalColumnsData]="additionalColumnsData" [cellHeaders]="cellData" [cellHeadersData]="cellHeaders"></ccf-table>
 <ccf-page-data [data]="TermsOfUseData"></ccf-page-data>

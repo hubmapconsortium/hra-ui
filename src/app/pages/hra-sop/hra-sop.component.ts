@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { acknowledgmentsData, overviewData, pageHeader } from './hra-sop.content';
 
 @Component({
-  selector: 'ccf-hra-sop',
+  selector: 'standard-operating-procedures',
   templateUrl: './hra-sop.component.html',
   styleUrls: ['./hra-sop.component.scss']
 })

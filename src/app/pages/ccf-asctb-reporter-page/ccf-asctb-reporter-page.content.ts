@@ -5,7 +5,7 @@ import { PageHeaderItems } from '../../components/page-header/page-header-items'
 export const headerCardDetails: PageHeaderItems[] = [
     {
         image: 'assets/images/asctb_reporter.svg',
-        title: 'CCF Anatomical Structures, Cell Types and Biomarkers (ASCT+B) Reporter',
+        title: 'Anatomical Structures, Cell Types and Biomarkers (ASCT+B) Reporter',
         subtitle: 'A visualization tool for human organ experts to explore and compare Anatomical Structures, Cell Types and Biomarkers (ASCT+B)  Tables'
     }
 ]
@@ -22,9 +22,9 @@ export const overviewData: PageDataItems[] = [
 export const acknowledgeData: PageDataItems[] = [
     {
         heading: 'Acknowledgments',
-        descriptions: `The CCF work is under active development by the Indiana University Mapping Component as part of the HuBMAP HIVE effort with expert input by the HuBMAP team. 
-        Data was provided by the HuBMAP Tissue Mapping Centers. This research is funded by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under award 
-        <a href="https://reporter.nih.gov/project-details/9687220" target="_blank">OT2OD026671</a>, 
+        descriptions: `The CCF work is under active development by the Indiana University Mapping Component as part of the HuBMAP HIVE effort with expert input by the HuBMAP team.
+        Data was provided by the HuBMAP Tissue Mapping Centers. This research is funded by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under award
+        <a href="https://reporter.nih.gov/project-details/9687220" target="_blank">OT2OD026671</a>,
         by the NIDDK Kidney Precision Medicine Project grant U2CDK114886, and the NIH National Institute of Allergy and Infectious Diseases (NIAID), Department of Health and Human Services under BCBB Support Services Contract HHSN316201300006W/HHSN27200002.`
     }
 ]

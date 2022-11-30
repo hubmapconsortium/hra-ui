@@ -28,13 +28,11 @@ export class ThreeDimRefPageComponent implements OnInit {
   placeholderDate: ChooseVersion;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
-  label: string;
-  
+
   ngOnInit(): void {
     this.placeholderDate = versionData[0];
     const [{ version: defaultVersion, organData: [{ name: defaultOrgan }] }] = threeDimOrganInfo;
     const { version = defaultVersion, organ = defaultOrgan } = this.activatedRoute.snapshot.queryParams;
-    this.label = "Choose version of HRA release"
     this.setVersion(`${version}`, `${organ}`);
   }
 

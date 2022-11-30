@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { LongCard } from 'src/app/components/card-button-long/long-card';
 
 @Component({
-  selector: 'ccf-overview-data',
+  selector: 'overview-data',
   templateUrl: './overview-data.component.html',
   styleUrls: ['./overview-data.component.scss']
 })

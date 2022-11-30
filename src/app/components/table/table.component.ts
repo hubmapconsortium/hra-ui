@@ -1,7 +1,7 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { HeaderData } from './header';
+import { ExtraHeader, HeaderData } from './header';
 import { TableData } from './table';
 
 @Component({
@@ -17,7 +17,7 @@ export class TableComponent {
     this.dataSource.sort = value;
   }
 
-  @Input() isOrgan : boolean
+  @Input() isOrgan: boolean
 
   @Input()
   set typeCount(data: TableData[]) {
@@ -30,6 +30,14 @@ export class TableComponent {
 
   @Input() isTotal: boolean = false;
 
+  @Input() additionalHeaders?: ExtraHeader[];
+
+  @Input() additionalColumnsData?: string[];
+
+  @Input() cellHeaders?: ExtraHeader[];
+
+  @Input() cellHeadersData?: string[];
+
   readonly dataSource = new MatTableDataSource<TableData>([]);
 
   getTotal(id: string) {
@@ -40,7 +48,7 @@ export class TableComponent {
     return typeof this.dataSource.data[0]?.[column] === 'number';
   }
 
-  isTotalRequired(column: any):boolean{
+  isTotalRequired(column: any): boolean {
     return column.isTotalRequired
   }
 

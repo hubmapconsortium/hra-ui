@@ -5,7 +5,7 @@ import { TileDefinition } from 'src/app/shared/simple-tile-items';
 import { longCardData } from './overview-training-outreach.content';
 
 @Component({
-  selector: 'ccf-overview-training-outreach',
+  selector: 'overview-training-outreach',
   templateUrl: './overview-training-outreach.component.html',
   styleUrls: ['./overview-training-outreach.component.scss']
 })
@@ -20,5 +20,5 @@ export class OverviewTrainingOutreachComponent {
   route(card:LongCard):void{
     this.router.navigate([card.route])
   }
-  
+
 }

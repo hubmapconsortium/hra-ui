@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { accuracyPrizeData, acknowledgmentsData, judgesPrizesData, kaggle2022Header, overviewData } from './kaggle-two.content';
 
 @Component({
-  selector: 'ccf-kaggle-two',
+  selector: 'kaggle-two',
   templateUrl: './kaggle-two.component.html',
   styleUrls: ['./kaggle-two.component.scss']
 })

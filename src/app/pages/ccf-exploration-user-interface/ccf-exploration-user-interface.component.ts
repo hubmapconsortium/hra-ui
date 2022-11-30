@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { headerCardDetails, overviewData, acknowledgeData, tutorialData, interfacedata, useEuiButton } from './ccf-exploration-user-interface.content';
 @Component({
-  selector: 'ccf-exploration-user-interface',
+  selector: 'exploration-user-interface',
   templateUrl: './ccf-exploration-user-interface.component.html',
   styleUrls: ['./ccf-exploration-user-interface.component.scss']
 })

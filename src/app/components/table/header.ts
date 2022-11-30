@@ -5,4 +5,12 @@ export interface HeaderData {
   columnDef: string;
   cell: (element: TableData) => string;
   isTotalRequired?: boolean;
+  sorting?: boolean;
+}
+
+export interface ExtraHeader {
+  columnDef: string;
+  header: string;
+  colspan?: number;
+  rowspan?: number;
 }

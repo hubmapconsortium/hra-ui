@@ -1,6 +1,3 @@
-<div class="version-label">
-  {{ label }}
-</div>
 <mat-select class="versions" panelClass="versions-panel" [(value)]="selectedDate" disableOptionCentering disableRipple>
   <mat-option *ngFor="let date of releaseDate" [value]="date" class="mat-select-value-text"
     (click)="selectedVersion.emit(date)">

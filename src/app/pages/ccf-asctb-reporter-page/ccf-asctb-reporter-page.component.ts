@@ -4,7 +4,7 @@ import { headerCardDetails, overviewData, acknowledgeData, useButtonData } from 
 let apiLoaded = false;
 
 @Component({
-  selector: 'ccf-asctb-reporter',
+  selector: 'asctb-reporter',
   templateUrl: './ccf-asctb-reporter-page.component.html',
   styleUrls: ['./ccf-asctb-reporter-page.component.scss']
 })

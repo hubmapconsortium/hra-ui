@@ -14,7 +14,7 @@
   }
 
   .versions {
-    width: 17rem;
+    width: 21rem;
     height: 2.5rem;
     font-family: "Inter";
     font-style: normal;
@@ -25,6 +25,10 @@
     color: #444c65;
     border: 1px solid #444c65;
     border-radius: 2px;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
 
     ::ng-deep .mat-select-trigger {
       height: 100%;
@@ -40,7 +44,7 @@
     }
   }
 
-  
+
 }
 
 ::ng-deep .mat-option-text {
@@ -62,4 +66,8 @@
 
 ::ng-deep .mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple) {
   background-color: unset;
+}
+
+::ng-deep .mat-select-panel{
+  max-width: unset !important;
 }

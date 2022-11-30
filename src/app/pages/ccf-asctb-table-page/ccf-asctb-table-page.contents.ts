@@ -8,7 +8,7 @@ import { PageHeaderItems } from '../../components/page-header/page-header-items'
 export const headerCardDetails: PageHeaderItems[] = [
   {
     image: 'assets/images/asctb_table.svg',
-    title: 'CCF Anatomical Structures, Cell Types and Biomarkers (ASCT+B) Tables',
+    title: 'Anatomical Structures, Cell Types and Biomarkers (ASCT+B) Tables',
     subtitle: 'Data tables containing hierarchical anatomical structures, cell types and biomarkers from the Cell Ontology'
   }
 ]
@@ -27,9 +27,11 @@ export const existingTablesData: PageDataItems[] = [
 ]
 
 export const versionData: ChooseVersion[] = [
-  { release: '2nd Release, December 2021', file: 'release2.csv', version: '2' },
-  { release: '1st Release, March 2021', file: 'release1.csv', version: '1' }
-  
+  { release: '4th HRA Release (v1.3), December 2022', file: 'release2.csv', version: '4'},
+  { release: '3rd HRA Release (v1.2), June 2022', file: 'release2.csv', version: '3'},
+  { release: '2nd HRA Release (v1.1), December 2021', file: 'release2.csv', version: '2' },
+  { release: '1st HRA Release (v1.0), March 2021', file: 'release1.csv', version: '1' }
+
 ]
 
 export const exploreTablesData: PageDataItems[] = [
@@ -39,7 +41,7 @@ export const exploreTablesData: PageDataItems[] = [
   },
   {
     heading: 'Tables Under Development',
-    descriptions: `The initial release of ASCT+B table (v1.0) included 11 organs. In the 2nd release, 14 additional tables were published bringing the total to 25. In the 3rd release, several tables were updated and placenta was added resulting in 26 tables. 
+    descriptions: `The initial release of ASCT+B table (v1.0) included 11 organs. In the 2nd release, 14 additional tables were published bringing the total to 25. In the 3rd release, several tables were updated and placenta was added resulting in 26 tables.
     If you are interested in contributing to this effort, please complete this <a href="https://iu.co1.qualtrics.com/jfe/form/SV_bpaBhIr8XfdiNRH" target="_blank">online form</a> to receive relevant information and meeting invites. For questions, email infoccf@indiana.edu.`
   },
   {

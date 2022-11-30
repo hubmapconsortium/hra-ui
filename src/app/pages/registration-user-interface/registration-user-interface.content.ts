@@ -6,7 +6,7 @@ import { PageHeaderItems } from '../../components/page-header/page-header-items'
 export const headerCardDetails: PageHeaderItems[] = [
     {
         image: 'assets/images/rui.svg',
-        title: 'CCF Registration User Interface (RUI)',
+        title: 'Registration User Interface (RUI)',
         subtitle: 'An interactive tool for registering tissue blocks spatially and annotating them semantically using ASCT+B Table terms'
     }
 ]

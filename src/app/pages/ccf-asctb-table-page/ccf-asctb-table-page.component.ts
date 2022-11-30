@@ -6,7 +6,7 @@ import { headerCardDetails, overviewData, existingTablesData, exploreTablesData,
 import { EMPTY, Observable } from 'rxjs';
 
 @Component({
-  selector: 'ccf-anatomical-structures',
+  selector: 'asctb-tables',
   templateUrl: './ccf-asctb-table-page.component.html',
   styleUrls: ['./ccf-asctb-table-page.component.scss']
 })

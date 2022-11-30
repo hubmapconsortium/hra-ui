@@ -5,7 +5,7 @@ import { BoardMemberItems } from 'src/app/components/board-members/board-members
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'ccf-hra-editorial-board',
+  selector: 'editorial-board',
   templateUrl: './hra-editorial-board.component.html',
   styleUrls: ['./hra-editorial-board.component.scss']
 })

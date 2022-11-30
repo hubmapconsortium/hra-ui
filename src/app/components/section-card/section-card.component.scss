@@ -51,10 +51,11 @@
   .image-container {
     .static,
     .gif {
-      width: 99.99%;
+      width: 99.7%;
       height: 20rem;
       border: solid 1px #E0E0E0;
-      border-radius: 0.25rem;
+      border-top-left-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
     }
 
     .gif {

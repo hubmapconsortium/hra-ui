@@ -6,7 +6,7 @@ import { TableDataService } from 'src/app/services/table-data/tabledata.service'
 import { acknowledgementsData, columnHeaders, displayedColumnsData, omapsHeading, omapsVersionData, overviewData, sopData } from './omaps.contents';
 
 @Component({
-  selector: 'ccf-omaps',
+  selector: 'omap',
   templateUrl: './omaps.component.html',
   styleUrls: ['./omaps.component.scss']
 })

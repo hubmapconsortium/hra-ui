@@ -30,19 +30,21 @@ import { HraEditorialBoardResolver } from './pages/hra-editorial-board/hra-edito
 import { HraMillitomeResolver } from './pages/hra-millitome/hra-millitome-resolver.service';
 
 const routes: Routes = [
-  { path: 'landing-page', component: LandingPageComponent },
-  { path: 'ccf-overview-data', component: OverviewDataComponent },
-  { path: 'ccf-anatomical-structures', component: CcfTablePageComponent },
+  { path: '', component: LandingPageComponent },
+  { path: 'overview-data', component: OverviewDataComponent },
+  { path: 'asctb-tables', component: CcfTablePageComponent },
   { path: 'ccf-2d-ftu', component: TwoDimRefPageComponent },
-  { path: 'ccf-overview-tools', component: OverviewToolsComponent },
+  { path: 'overview-tools', component: OverviewToolsComponent },
   { path: 'ccf-ontology', component: CcfOntologyComponent },
-  { path: 'ccf-asctb-reporter', component: CcfReporterPageComponent },
+  { path: 'asctb-reporter', component: CcfReporterPageComponent },
+  { path: 'exploration-user-interface', component: CcfExplorationUserInterfaceComponent },
+  { path: 'registration-user-interface', component: RegistrationUserInterfaceComponent },
+  { path: 'cell-population-graphs', component: CellPopulationGraphsComponent },
+  { path: 'about-mc-iu', component: AboutComponent },
+  { path: 'overview-training-outreach', component: OverviewTrainingOutreachComponent },
+  { path: 'omap', component: OmapsComponent },
   {
-    path: 'ccf-exploration-user-interface',
-    component: CcfExplorationUserInterfaceComponent,
-  },
-  {
-    path: 'ccf-hra-millitome',
+    path: 'hra-millitome',
     component: HraMillitomeComponent,
     data: {
       contentFile: 'hra-millitome.content',
@@ -50,14 +52,6 @@ const routes: Routes = [
     resolve: {
       hraMillitome: HraMillitomeResolver,
     },
-  },
-  {
-    path: 'ccf-registration-user-interface',
-    component: RegistrationUserInterfaceComponent,
-  },
-  {
-    path: 'ccf-cell-population-graphs',
-    component: CellPopulationGraphsComponent,
   },
   {
     path: 'ccf-hra-api',
@@ -69,15 +63,9 @@ const routes: Routes = [
       hraInfo: HraApiResolver,
     },
   },
-  { path: 'ccf-about', component: AboutComponent },
-  {
-    path: 'ccf-overview-training-outreach',
-    component: OverviewTrainingOutreachComponent,
-  },
-  { path: 'ccf-omaps', component: OmapsComponent },
   { path: 'ccf-3d-reference-library', component: ThreeDimRefPageComponent },
-  { path: 'ccf-asctb-azimuth', component: CcfAsctbAzimuthComponent },
-  { path: 'ccf-hra-usage-metrics', component: HraUsageMetricsComponent },
+  { path: 'asctb-azimuth', component: CcfAsctbAzimuthComponent },
+  { path: 'usage-metrics', component: HraUsageMetricsComponent },
   {
     path: 'ccf-tissue-info-page/:organ',
     component: TissueInfoPageComponent,
@@ -85,11 +73,14 @@ const routes: Routes = [
       data: TissueInfoResolverService,
     },
   },
-  { path: 'ccf-hra-sop', component: HraSopComponent },
-  { path: 'ccf-kaggle-twentyone', component: KaggleTwentyoneComponent },
-  { path: 'ccf-kaggle-two', component: KaggleTwoComponent },
+  { path: 'standard-operating-procedures', component: HraSopComponent },
+  { path: 'kaggle-one', component: KaggleTwentyoneComponent },
+  { path: 'kaggle-two', component: KaggleTwoComponent },
+  { path: 'organ-vr-gallery', component: CcfOrganVrGalleryComponent },
+  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '**', pathMatch: 'full', component: LandingPageComponent }
   {
-    path: 'ccf-hra-editorial-board',
+    path: 'editorial-board',
     component: HraEditorialBoardComponent,
     data: {
       contentFile: 'hra-editorial-board.content',
@@ -98,9 +89,6 @@ const routes: Routes = [
       hraEditorialBoard: HraEditorialBoardResolver,
     },
   },
-  { path: 'ccf-organ-vr-gallery', component: CcfOrganVrGalleryComponent },
-  { path: '', redirectTo: 'landing-page', pathMatch: 'full' },
-  { path: '**', pathMatch: 'full', component: LandingPageComponent },
 ];
 
 @NgModule({

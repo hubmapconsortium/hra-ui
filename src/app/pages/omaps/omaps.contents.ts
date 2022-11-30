@@ -16,15 +16,15 @@ export const omapsHeading: PageHeaderItems[] = [
 export const overviewData: PageDataItems[] = [
     {
         heading: "Overview",
-        descriptions: `Organ Mapping Antibody Panels (OMAPs) are collections of antibodies that allow spatial mapping of the anatomical structures and cell types present in diverse organs using multiplexed antibody-based imaging (<a href="https://www.nature.com/articles/s41592-021-01316-y" target="_blank">Hickey et al, 2021</a>). 
-        The construction of an OMAP is an iterative, resource intensive process that requires domain expertise in tissue biology, spatial proteomics, and multiplexed imaging (<a href="https://www.nature.com/articles/s41596-019-0206-y" target="_blank">Du et al. 2019</a>, <a href="https://www.nature.com/articles/s41596-021-00644-9" target="_blank">Radtke et al. 2022</a>). 
-        To overcome these challenges, the Human BioMolecular Atlas Program (HuBMAP) is authoring and publishing OMAPs. 
-        These community-validated resources directly parallel efforts in the field of flow cytometry to publish Optimized Multicolor Immunofluorescence Panels (OMIPs) (<a href="https://onlinelibrary.wiley.com/doi/10.1002/cyto.a.20916" target="_blank">Mahnke, Chattopadhyay, and Roederer 2010</a>, 
-        <a href="https://onlinelibrary.wiley.com/doi/10.1002/cyto.a.20959" target="_blank">Roederer and Tárnok 2010</a>). In contrast to existing antibody validation resources such as the 
-        <a href="https://avr.hubmapconsortium.org/" target="_blank">HuBMAP Antibody Validation Report</a> and <a href="https://www.proteinatlas.org/humanproteome/tissue" target="_blank">Human Protein Atlas</a>, OMAPs additionally provide experimental details relevant for their successful application, e.g., tissue preservation method, imaging method, antigen retrieval conditions, and antibody cycling order. 
-        The end result is an assembly of expertly curated antibodies that work together in a single tissue section. To facilitate tissue mapping efforts within and beyond the HuBMAP community, OMAPs are designed for integration with the ASCT+B Reporter 
+        descriptions: `Organ Mapping Antibody Panels (OMAPs) are collections of antibodies that allow spatial mapping of the anatomical structures and cell types present in diverse organs using multiplexed antibody-based imaging (<a href="https://www.nature.com/articles/s41592-021-01316-y" target="_blank">Hickey et al, 2021</a>).
+        The construction of an OMAP is an iterative, resource intensive process that requires domain expertise in tissue biology, spatial proteomics, and multiplexed imaging (<a href="https://www.nature.com/articles/s41596-019-0206-y" target="_blank">Du et al. 2019</a>, <a href="https://www.nature.com/articles/s41596-021-00644-9" target="_blank">Radtke et al. 2022</a>).
+        To overcome these challenges, the Human BioMolecular Atlas Program (HuBMAP) is authoring and publishing OMAPs.
+        These community-validated resources directly parallel efforts in the field of flow cytometry to publish Optimized Multicolor Immunofluorescence Panels (OMIPs) (<a href="https://onlinelibrary.wiley.com/doi/10.1002/cyto.a.20916" target="_blank">Mahnke, Chattopadhyay, and Roederer 2010</a>,
+        <a href="https://onlinelibrary.wiley.com/doi/10.1002/cyto.a.20959" target="_blank">Roederer and Tárnok 2010</a>). In contrast to existing antibody validation resources such as the
+        <a href="https://avr.hubmapconsortium.org/" target="_blank">HuBMAP Antibody Validation Report</a> and <a href="https://www.proteinatlas.org/humanproteome/tissue" target="_blank">Human Protein Atlas</a>, OMAPs additionally provide experimental details relevant for their successful application, e.g., tissue preservation method, imaging method, antigen retrieval conditions, and antibody cycling order.
+        The end result is an assembly of expertly curated antibodies that work together in a single tissue section. To facilitate tissue mapping efforts within and beyond the HuBMAP community, OMAPs are designed for integration with the ASCT+B Reporter
         (<a href="https://www.nature.com/articles/s41556-021-00788-6" target="_blank">Börner et al. 2021</a>), a state-of-the-art visualization tool <a href="https://hubmapconsortium.github.io/ccf-asct-reporter" target="_blank">https://hubmapconsortium.github.io/ccf-asct-reporter</a>.
-        We strongly encourage inclusion of blood endothelial markers to empower construction of a human reference atlas using the vasculature common coordinate framework (VCCF), originally proposed by Dr. Zorina Galis 
+        We strongly encourage inclusion of blood endothelial markers to empower construction of a human reference atlas using the vasculature common coordinate framework (VCCF), originally proposed by Dr. Zorina Galis
         (<a href="https://www.youtube.com/watch?v=ZGYU_dsb0j4&ab_channel=CyberinfrastructureforNetworkScienceCenter%28CNS%29" target="_blank">Galis 2019</a>) and expanded upon here (
             <a href="https://www.frontiersin.org/articles/10.3389/fcvm.2020.00029/full" target="_blank">Weber, Ju, and Börner 2020</a>).`
     }
@@ -39,9 +39,9 @@ export const sopData: SopLinks[] = [
 
 export const acknowledgementsData: PageDataItems[] = [
     {
-        heading: "Acknowledgements",
-        descriptions: `We are grateful for engaging and thoughtful discussions from the Affinity Reagent Imaging and Validation and ASCT+B working groups, HuBMAP Consortium. 
-        This work was supported, in part, by the Intramural Research Program of the NIH, National Institute of Allergy and Infectious Disease and National Cancer Institute. 
+        heading: "Acknowledgments",
+        descriptions: `We are grateful for engaging and thoughtful discussions from the Affinity Reagent Imaging and Validation and ASCT+B working groups, HuBMAP Consortium.
+        This work was supported, in part, by the Intramural Research Program of the NIH, National Institute of Allergy and Infectious Disease and National Cancer Institute.
         This work was also supported by NIH Awards UH3 CA246635 and 1OT2OD026671.`
     },
     {
@@ -49,7 +49,7 @@ export const acknowledgementsData: PageDataItems[] = [
         descriptions: `Börner, Katy, Sarah A. Teichmann, Ellen M. Quardokus, James C. Gee, Kristen Browne, David Osumi-Sutherland, Bruce W. Herr, et al. 2021.
         "<a href="https://doi.org/10.1038/s41556-021-00788-6" target="_blank">Anatomical Structures, Cell Types and Biomarkers of the Human Reference Atlas.</a>" Nature Cell Biology 23 (11): 1117–28.
         <br><br>
-        Du, Ziming, Jia-Ren Lin, Rumana Rashid, Zoltan Maliga, Shu Wang, Jon C. Aster, Benjamin Izar, Peter K. Sorger, and Sandro Santagata. 2019. 
+        Du, Ziming, Jia-Ren Lin, Rumana Rashid, Zoltan Maliga, Shu Wang, Jon C. Aster, Benjamin Izar, Peter K. Sorger, and Sandro Santagata. 2019.
         “<a href="https://doi.org/10.1038/s41596-019-0206-y" target="_blank">Qualifying Antibodies for Image-Based Immune Profiling and Multiplexed Tissue Imaging.</a>” Nature Protocols 14 (10): 2900–2930.
         <br><br>
         Galis, Zorina S. 2019. <a href="https://www.youtube.com/watch?v=ZGYU_dsb0j4" target="_blank">Common Coordinate Framework (CCF) Workshop Anatomical Mapping: Using the Vasculature for CCF</a>. Indiana University.

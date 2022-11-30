@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { headerCardDetails, overviewData, acknowledgeData, interfacedata, useRuiButton, ruiSopData } from './registration-user-interface.content';
 
 @Component({
-  selector: 'ccf-registration-user-interface',
+  selector: 'registration-user-interface',
   templateUrl: './registration-user-interface.component.html',
   styleUrls: ['./registration-user-interface.component.scss']
 })
