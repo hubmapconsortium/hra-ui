@@ -78,7 +78,7 @@ const routes: Routes = [
   { path: 'kaggle-two', component: KaggleTwoComponent },
   { path: 'organ-vr-gallery', component: CcfOrganVrGalleryComponent },
   { path: '', redirectTo: '', pathMatch: 'full' },
-  { path: '**', pathMatch: 'full', component: LandingPageComponent }
+  { path: '**', pathMatch: 'full', component: LandingPageComponent },
   {
     path: 'editorial-board',
     component: HraEditorialBoardComponent,
