@@ -11,7 +11,6 @@ export class TwoDimImageComponent implements OnInit {
 
   constructor(private dialog: MatDialog) { }
   ngOnInit(): void {
-    console.log(this.tissueData[0].tissueData?.length)
   }
 
   @Input() cardTitle: string

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { acknowledgmentsData, boardHeader, boardMembersData, overviewData } from './hra-editorial-board.content';
+import { PageDataItems } from 'src/app/components/page-data/page-data';
+import { PageHeaderItems } from 'src/app/components/page-header/page-header-items';
+import { BoardMemberItems } from 'src/app/components/board-members/board-members';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ccf-hra-editorial-board',
@@ -8,8 +11,23 @@ import { acknowledgmentsData, boardHeader, boardMembersData, overviewData } from
 })
 
 export class HraEditorialBoardComponent {
-  boardHeader = boardHeader;
-  overviewData = overviewData
-  boardMembersData = boardMembersData
-  acknowledgmentsData = acknowledgmentsData
+
+
+  overviewData: PageDataItems[];
+  boardHeader: PageHeaderItems[];
+  boardMembersData: BoardMemberItems[];
+  acknowledgmentsData: PageDataItems[];
+
+  constructor(route: ActivatedRoute){
+    const data = route.snapshot.data['hraEditorialBoard'];
+    this.overviewData=[data.overviewData]
+    this.boardHeader = [data.boardHeader]
+    this.acknowledgmentsData = [data.acknowledgmentsData]
+    this.boardMembersData = data.boardMembersData
+  }
+
+
+
+  
 }
+

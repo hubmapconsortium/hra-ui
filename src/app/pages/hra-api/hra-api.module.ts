@@ -18,9 +18,8 @@ import { HraApiComponent } from './hra-api.component';
     BrowserAnimationsModule,
     PageHeaderModule,
     PageDataModule,
-    UseButtonModule
+    UseButtonModule,
   ],
-  providers: [],
-  bootstrap: []
+  providers: []
 })
 export class HraApiModule { }
