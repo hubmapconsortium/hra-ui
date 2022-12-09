@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { UseButtonComponent } from './use-button.component';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
-        MatButtonModule
+        MatButtonModule,
+        RouterModule
     ],
     exports: [UseButtonComponent]
 })

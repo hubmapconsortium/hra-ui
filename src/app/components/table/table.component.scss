@@ -1,5 +1,4 @@
 :host {
-
   .table-container {
     padding-bottom: 2rem;
   }
@@ -63,8 +62,8 @@
     width: 12rem;
   }
 
-  .mat-column-Name{
-    width:10rem;
+  .mat-column-Name {
+    width: 10rem;
   }
 
   ::ng-deep table > thead > tr > th:nth-child(1) .mat-sort-header-arrow {
@@ -84,12 +83,16 @@
     size: 3rem;
   }
 
-  .additional-header{
+  .additional-header {
     text-align: center;
   }
 
-  .row-one>th{
+  .row-one > th {
     text-align: center;
+  }
+
+  th.mat-header-cell:last-of-type {
+    padding-right: 1rem;
   }
 
   ::ng-deep .demo-table a {
@@ -105,21 +108,24 @@
     width: fit-content;
   }
 
-  table td{
+  table td {
     text-align: right;
   }
 
-  table td:first-child{
+  table td:first-child {
     text-align: left;
     overflow: visible;
     white-space: break-spaces;
   }
 
-  ::ng-deep .mat-sort-header-container:not(th:first-child>.mat-sort-header-container){
+  ::ng-deep
+    .mat-sort-header-container:not(
+      th:first-child > .mat-sort-header-container
+    ) {
     justify-content: end;
   }
 
-  ::ng-deep .mat-sort-header-content{
+  ::ng-deep .mat-sort-header-content {
     white-space: break-spaces;
     text-align: right;
   }

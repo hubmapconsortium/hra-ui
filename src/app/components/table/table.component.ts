@@ -51,5 +51,4 @@ export class TableComponent {
   isTotalRequired(column: any): boolean {
     return column.isTotalRequired
   }
-
 }

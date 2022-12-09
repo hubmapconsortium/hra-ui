@@ -1,0 +1,45 @@
+twoDimHeaderCardDetails: 
+- image: assets/images/two_dim_header.svg
+  title: CCF 2D Functional Tissue Unit (FTU) Illustrations
+  subtitle: Open source 2D reference illustrations of Functional Tissue Units (FTUs) mapped to ASCT+B tables used for single cell data exploration
+
+overviewData:
+- heading: Overview
+  descriptions: |
+    The 2D Functional Tissue Unit Library provides anatomically correct illustrations of functional tissue units (FTUs). The illustrations are developed by a specialist in 2D medical illustration and approved by organ experts.
+
+    Illustrations are created using terms from the Anatomical Structures, Cell Types, and Biomarker (ASCT+B) table for each organ. Subject matter experts collaborate on a list of anatomical structures and/or cell types to be included in each FTU. Histology atlases and data sets are consulted for visual reference, and research is undertaken to determine if cell sizes and their relative number and distribution is known for a given FTU. Reasonable estimates are made when placing cells in the illustration and relating them to a scale bar.
+
+    A crosswalk table is then created for each FTU illustration, linking the terms in the ASCT+B table to the individual cells in the illustration. This provides an opportunity to add interactive functionality and extends the potential uses for each FTU.
+
+    On June, 2022, a total of 8 2D FTUs became available in SVG format. Each illustration can be downloaded and edited using Adobe Illustrator. We encourage users to create additional FTU illustrations using these templates, or to use and share them as desired.
+
+sopData:
+- urls: Style Guide: HuBMAP 2D Functional Tissue Unit (FTU) Illustrations
+  href: https://zenodo.org/record/6703108/files/SOP_%20Creating%202D%20Illustrations%20for%20Functional%20Tissue%20Units.pdf
+
+versionData:
+- release: 4th HRA Release (v1.3), December 2022
+  version: 1.2
+- release: 3rd HRA Release (v1.2), June 2022
+  version: 1.2
+
+termsOfUse:
+- heading: Terms of Use
+  descriptions: HuBMAP data are supplied with no warranties, expressed or implied, including without limitation, any warranty of merchantability or fitness for a particular purpose or non-infringement. No warranty with respect to the HuBMAP infrastructure is provided, including without limitation, any uptime warranty. The Parties make no representations that the use of the data will not infringe any patent or proprietary rights of third parties.
+
+license:
+- heading: License
+  descriptions: |
+   All CCF 2D functional tissue units files are released under <a href="https://creativecommons.org/licenses/by/4.0/"> Attribution 4.0 International (CC BY 4.0)</a>
+
+# citation:
+# - heading: 'Citation'
+#   descriptions: |
+#   If you use the 2D data files in v1.2 release, please cite this effort as follows:
+  
+#   Bajema, R., Bidanta, S., Quardokus, E., Herr II, B. W., Börner, K. 2022. <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-2d-reference-library.html/" target="_blank">HuBMAP CCF 2D Reference Object Library</a>. Accessed on May 6, 2022.
+
+# acknowledgments:
+# - heading: Acknowledgments
+#   descriptions: The 2D Functional Tissue Unit Library files were created by Rachel Bajema on the MC-IU team. This research has been funded in part by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671 and the NIDDK Kidney Precision Medicine Project grant U2CDK114886.

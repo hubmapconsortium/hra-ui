@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { EMPTY, Observable } from 'rxjs';
+import { EMPTY, map, Observable } from 'rxjs';
 import { ChooseVersion } from 'src/app/components/choose-version/choose-version';
 import { TableData } from 'src/app/components/table/table';
 import { TableDataService } from 'src/app/services/table-data/tabledata.service';
-import { acknowledgementsData, columnHeaders, displayedColumnsData, omapsHeading, omapsVersionData, overviewData, sopData } from './omaps.contents';
+import { acknowledgementsData, columnHeaders, displayedColumnsData, goalsForOmaps, omapsHeading, omapsVersionData, overviewData, sopData } from './omaps.contents';
 
 @Component({
   selector: 'omap',
@@ -19,12 +19,16 @@ export class OmapsComponent {
   omapsVersionData = omapsVersionData
   displayedColumnsData = displayedColumnsData
   columnHeaders = columnHeaders
+  goalsForOmaps = goalsForOmaps
   placeholderDate: ChooseVersion
   tableData: Observable<TableData[]> = EMPTY
+  columns: Observable<string[]> = EMPTY;
   constructor(private readonly dataService: TableDataService) { }
 
   setOmapsData(version: ChooseVersion): void {
-    this.tableData = this.dataService.getData(version.file);
+    const data = this.dataService.getData(version.file, displayedColumnsData);
+    this.tableData = data.pipe(map(result => result.data));
+    this.columns = data.pipe(map(result => result.columns));
   }
   ngOnInit(): void {
     this.setOmapsData(omapsVersionData[0]);

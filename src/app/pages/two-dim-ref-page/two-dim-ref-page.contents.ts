@@ -30,7 +30,7 @@ export const sopData: SopLinks[] = [
 ]
 
 export const versionData: ChooseVersion[] = [
-    { release: '4th HRA Release (v1.3), December 2022', version: '1.2' },
+    { release: '4th HRA Release (v1.3), December 2022', version: '1.3' },
     { release: '3rd HRA Release (v1.2), June 2022', version: '1.2' }
 ]
 
@@ -56,7 +56,220 @@ export const termsOfUseData: PageDataItems[] = [
     }
 ]
 
+export const license: PageDataItems[] = [
+    {
+        heading: 'License',
+        descriptions: 'All CCF 2D functional tissue units files are released under <a href="https://creativecommons.org/licenses/by/4.0/" target=_blank> Attribution 4.0 International (CC BY 4.0)</a>.'
+    }
+]
+
 export const organInfo: VersionOrgans[] = [
+    {
+        //please update new doi links, pngs when available
+        version: '1.3',
+        organData: [
+            {
+                name: 'Kidney',
+                image: 'assets/images/kidney.svg',
+                tissueData: [
+                    {
+                        name: 'Ascending thin loop of henle',
+                        image: 'assets/images/ascending-thin-loop-of-henle.svg',
+                        expandedImage: 'assets/images/ascending-thin-loop-of-henle.svg',
+                        url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.html',
+                        svg: 'assets/images/ascending-thin-loop-of-henle.svg',
+                        ai: 'assets/images/ascending-thin-loop-of-henle.ai'
+                    },
+                    {
+                        name: 'Cortical Collecting Duct',
+                        image: 'assets/images/cortical-collecting-duct.svg',
+                        expandedImage: 'assets/images/cortical-collecting-duct.svg',
+                        url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.html',
+                        svg: 'assets/images/cortical-collecting-duct.svg',
+                        ai: 'assets/images/cortical-collecting-duct.ai'
+                    },
+                    {
+                        name: 'Descending thin loop of henle',
+                        image: 'assets/images/descending-thin-loop-of-henle.svg',
+                        expandedImage: 'assets/images/descending-thin-loop-of-henle.svg',
+                        url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.html',
+                        svg: 'assets/images/descending-thin-loop-of-henle.svg',
+                        ai: 'assets/images/descending-thin-loop-of-henle.ai'
+                    },
+                    {
+                        name: 'Inner Medullary collecting duct',
+                        image: 'assets/images/inner-medullary-collecting-duct.svg',
+                        expandedImage: 'assets/images/inner-medullary-collecting-duct.svg',
+                        url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.html',
+                        svg: 'assets/images/inner-medullary-collecting-duct.svg',
+                        ai: 'assets/images/inner-medullary-collecting-duct.ai'
+                    },
+                    {
+                        name: 'Nephron',
+                        image: 'assets/images/nephron_1.3.svg',
+                        expandedImage: 'assets/images/nephron_1.3.svg',
+                        url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-nephron.html',
+                        svg: 'assets/images/nephron_1.3.svg',
+                        ai: 'assets/images/nephron.ai'
+                    },
+                    {
+                        name: 'Outer Medullary Collecting Duct',
+                        image: 'assets/images/outer-medullary-collecting-duct.svg',
+                        expandedImage: 'assets/images/outer-medullary-collecting-duct.svg',
+                        url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.html',
+                        svg: 'assets/images/nephron_1.3.svg',
+                        ai: 'assets/images/outer-medullary-collecting-duct.ai'
+                    },
+                    {
+                        name: 'Renal Corpuscle',
+                        image: 'assets/images/renal-corpuscle.svg',
+                        expandedImage: 'assets/images/renal-corpuscle.svg',
+                        url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-renal-corpuscle.html',
+                        svg: 'assets/images/renal-corpuscle.svg',
+                        ai: 'assets/images/renal-corpuscle.ai'
+                    },
+                    {
+                        name: 'Thick Ascending Loop Of Henle',
+                        image: 'assets/images/thick-ascending-loop-of-henle.svg',
+                        expandedImage: 'assets/images/thick-ascending-loop-of-henle.svg',
+                        url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.html',
+                        svg: 'assets/images/thick-ascending-loop-of-henle.svg',
+                        ai: 'assets/images/thick-ascending-loop-of-henle.ai'
+                    }
+                ]
+            },
+            {
+                name: 'Large Intestine',
+                image: 'assets/images/large_intestine.svg',
+                tissueData: [
+                    {
+                        name: 'Crypt Lieberkuhn',
+                        image: 'assets/images/crypt-lieberkuhn.svg',
+                        expandedImage: 'assets/images/crypt-lieberkuhn.svg',
+                        url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.html',
+                        svg: 'assets/images/crypt-lieberkuhn.svg',
+                        ai: 'assets/images/crypt-lieberkuhn.ai'
+                    }
+                ]
+            },
+            {
+                name: 'Liver',
+                image: 'assets/images/liver.svg',
+                tissueData: [
+                    {
+                        name: 'Liver Lobule',
+                        image: 'assets/images/liver_lobule_1.3.svg',
+                        expandedImage: 'assets/images/liver_lobule_1.3.svg',
+                        url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-liver-liver-lobule.html',
+                        svg: 'assets/images/liver_lobule_1.3.svg',
+                        ai: 'assets/images/liver_lobule.ai'
+                    }
+                ]
+            },
+            {
+                name: 'Lung',
+                image: 'assets/images/lungs.svg',
+                tissueData: [
+                    {
+                        name: 'Bronchial Submucosal Gland',
+                        image: 'assets/images/bronchial-submucosal-gland.svg',
+                        expandedImage: 'assets/images/bronchial-submucosal-gland.svg',
+                        url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-lung-bronchial-submucosal-gland.html',
+                        svg: 'assets/images/bronchial-submucosal-gland.svg',
+                        ai: 'assets/images/bronchial-submucosal-gland.ai'
+                    },
+                    {
+                        name: 'Pulmonary Alveolus',
+                        image: 'assets/images/pulmonary_alveolus_1.3.svg',
+                        expandedImage: 'assets/images/pulmonary_alveolus_1.3.svg',
+                        url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-lung-pulmonary-alveolus.html',
+                        svg: 'assets/images/pulmonary_alveolus_1.3.svg',
+                        ai: 'assets/images/pulmonary_alveolus_1.3.ai'
+                    }
+                ]
+            },
+            {
+                name: "Pancreas",
+                image: 'assets/images/pancreas.svg',
+                tissueData: [
+                    {
+                        name: 'Intercalated Duct',
+                        image: 'assets/images/2d-ftu-pancreas-intercalated-duct.svg',
+                        expandedImage: 'assets/images/2d-ftu-pancreas-intercalated-duct.svg',
+                        url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-pancreas-intercalated-duct.html',
+                        svg: 'assets/images/2d-ftu-pancreas-intercalated-duct.svg',
+                        ai: 'assets/images/2d-ftu-pancreas-intercalated-duct.ai'
+                    },
+                    {
+                        name: 'Pancreatic Acinus',
+                        image: 'assets/images/2d-ftu-pancreas-pancreatic-acinus.svg',
+                        expandedImage: 'assets/images/2d-ftu-pancreas-pancreatic-acinus.svg',
+                        url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-pancreas-pancreatic-acinus.html',
+                        svg: 'assets/images/2d-ftu-pancreas-pancreatic-acinus.svg',
+                        ai: 'assets/images/2d-ftu-pancreas-pancreatic-acinus.ai'
+                    },
+                    {
+                        name: 'Islets Of Langerhans Pancreas',
+                        image: 'assets/images/islets_of_langerhans_pancreas.svg',
+                        expandedImage: 'assets/images/islets_of_langerhans_pancreas.svg',
+                        url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-pancreas-islets-langerhans.html',
+                        svg: 'assets/images/islets_of_langerhans_pancreas.svg',
+                        ai: 'assets/images/islets_of_langerhans_pancreas.ai'
+                    }
+                ]
+            },
+            {
+                name: "Prostate",
+                image: 'assets/images/prostate.svg',
+                tissueData: [
+                    {
+                        name: 'Prostate Glandular Acinus',
+                        image: 'assets/images/2d-ftu-prostate-prostate-glandular-acinus.svg',
+                        expandedImage: 'assets/images/2d-ftu-prostate-prostate-glandular-acinus.svg',
+                        url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.html',
+                        svg: 'assets/images/2d-ftu-prostate-prostate-glandular-acinus.svg',
+                        ai: 'assets/images/2d-ftu-prostate-prostate-glandular-acinus.ai'
+                    }
+                ]
+            },
+            {
+                name: "Skin",
+                image: 'assets/images/skin.svg',
+                tissueData: [
+                    {
+                        name: 'Dermal Papilla',
+                        image: 'assets/images/2d-ftu-skin-dermal-papilla.svg',
+                        expandedImage: 'assets/images/2d-ftu-skin-dermal-papilla.svg',
+                        url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-skin-dermal-papilla.html',
+                        svg: 'assets/images/2d-ftu-skin-dermal-papilla.svg',
+                        ai: 'assets/images/2d-ftu-skin-dermal-papilla.ai'
+                    },
+                    {
+                        name: 'Epidermal Ridge',
+                        image: 'assets/images/2d-ftu-skin-epidermal-ridge.svg',
+                        expandedImage: 'assets/images/2d-ftu-skin-epidermal-ridge.svg',
+                        url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-skin-epidermal-ridge.html',
+                        svg: 'assets/images/2d-ftu-skin-epidermal-ridge.svg',
+                        ai: 'assets/images/2d-ftu-skin-epidermal-ridge.ai'
+                    }
+                ]
+            },
+            {
+                name: "Thymus",
+                image: 'assets/images/thymus.svg',
+                tissueData: [
+                    {
+                        name: '2d-ftu-thymus-thymus-lobule',
+                        image: 'assets/images/2d-ftu-thymus-thymus-lobule.svg',
+                        expandedImage: 'assets/images/2d-ftu-thymus-thymus-lobule.svg',
+                        url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-thymus-thymus-lobule.html',
+                        svg: 'assets/images/2d-ftu-thymus-thymus-lobule.svg',
+                        ai: 'assets/images/2d-ftu-thymus-thymus-lobule.ai'
+                    }
+                ]
+            }
+        ]
+    },
     {
         version: '1.2',
         organData: [

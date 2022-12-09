@@ -27,8 +27,8 @@ export const existingTablesData: PageDataItems[] = [
 ]
 
 export const versionData: ChooseVersion[] = [
-  { release: '4th HRA Release (v1.3), December 2022', file: 'release2.csv', version: '4'},
-  { release: '3rd HRA Release (v1.2), June 2022', file: 'release2.csv', version: '3'},
+  { release: '4th HRA Release (v1.3), December 2022', file: 'c13.csv', version: '4'},
+  { release: '3rd HRA Release (v1.2), June 2022', file: 'c12.csv', version: '3'},
   { release: '2nd HRA Release (v1.1), December 2021', file: 'release2.csv', version: '2' },
   { release: '1st HRA Release (v1.0), March 2021', file: 'release1.csv', version: '1' }
 
@@ -64,50 +64,90 @@ export const sopLinksData: SopLinks[] = [
 
 export const headerInfo: HeaderData[] = [
   {
-    columnDef: 'organ',
+    columnDef: 'Organ',
     header: 'Organ',
-    cell: (element: TableData) => `<a class="cell-link" href="${element['url'] || 'TODO:Please add a url column to this .csv!'}">${element['organ']}</a>`,
+    cell: (element: TableData) => `<a class="cell-link" href="${element['url'] || 'TODO:Please add a url column to this .csv!'}">${element['Organ']}</a>`,
     isTotalRequired: true
   },
   {
-    columnDef: 'as',
+    columnDef: 'AS',
     header: '#AS',
-    cell: (element: TableData) => `${element['as']}`
+    cell: (element: TableData) => `${element['AS']}`
   },
   {
-    columnDef: 'ct',
+    columnDef: 'CT',
     header: '#CT',
-    cell: (element: TableData) => `${element['ct']}`
+    cell: (element: TableData) => `${element['CT']}`
   },
   {
-    columnDef: 'bTotal',
+    columnDef: 'B_Total',
     header: '#B Total',
-    cell: (element: TableData) => `${element['bTotal']}`
+    cell: (element: TableData) => `${element['B_Total']}`
   },
   {
-    columnDef: 'bg',
+    columnDef: 'BG',
     header: '#BG',
-    cell: (element: TableData) => `${element['bg']}`
+    cell: (element: TableData) => `${element['BG']}`
   },
   {
-    columnDef: 'bp',
+    columnDef: 'BP',
     header: '#BP',
-    cell: (element: TableData) => `${element['bp']}`
+    cell: (element: TableData) => `${element['BP']}`
   },
   {
-    columnDef: 'asas',
+    columnDef: 'BM',
+    header: '#BM',
+    cell: (element: TableData) => `${element['BM']}`
+  },
+  {
+    columnDef: 'BF',
+    header: '#BF',
+    cell: (element: TableData) => `${element['BF']}`
+  },
+  {
+    columnDef: 'BL',
+    header: '#BL',
+    cell: (element: TableData) => `${element['BL']}`
+  },
+  {
+    columnDef: 'ASWithNoLink',
+    header: '#AS With NoLink',
+    cell: (element: TableData) => `${element['ASWithNoLink']}`
+  },
+  {
+    columnDef: 'CTWithNoLink',
+    header: '#CT With NoLink',
+    cell: (element: TableData) => `${element['CTWithNoLink']}`
+  },
+  {
+    columnDef: 'BWithNoLink',
+    header: '#B With NoLink',
+    cell: (element: TableData) => `${element['BWithNoLink']}`
+  },
+  {
+    columnDef: 'ASWithNoCT',
+    header: '#AS With NoCT',
+    cell: (element: TableData) => `${element['ASWithNoCT']}`
+  },
+  {
+    columnDef: 'CTWithNoB',
+    header: '#CT With NoB',
+    cell: (element: TableData) => `${element['CTWithNoB']}`
+  },
+  {
+    columnDef: 'AS_AS',
     header: '#AS-AS',
-    cell: (element: TableData) => `${element['asas']}`
+    cell: (element: TableData) => `${element['AS_AS']}`
   },
   {
-    columnDef: 'asct',
-    header: 'AS-CT',
-    cell: (element: TableData) => `${element['asct']}`
+    columnDef: 'AS_CT',
+    header: '#AS-CT',
+    cell: (element: TableData) => `${element['AS_CT']}`
   },
   {
-    columnDef: 'ctb',
-    header: '#CT-B',
-    cell: (element: TableData) => `${element['ctb']}`,
+    columnDef: 'CT_BM',
+    header: '#CT-BM',
+    cell: (element: TableData) => `${element['CT_BM']}`,
   }
 ];
 

@@ -32,7 +32,7 @@ export class HraMillitomeComponent implements OnInit {
   }
 
   setData(version: ChooseVersion): void {
-    this.tableData = this.dataService.getData(version.release);
+    // this.tableData = this.dataService.getData(version.release);
   }
 
   ngOnInit(): void {

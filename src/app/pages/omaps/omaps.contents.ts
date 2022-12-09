@@ -22,11 +22,28 @@ export const overviewData: PageDataItems[] = [
         These community-validated resources directly parallel efforts in the field of flow cytometry to publish Optimized Multicolor Immunofluorescence Panels (OMIPs) (<a href="https://onlinelibrary.wiley.com/doi/10.1002/cyto.a.20916" target="_blank">Mahnke, Chattopadhyay, and Roederer 2010</a>,
         <a href="https://onlinelibrary.wiley.com/doi/10.1002/cyto.a.20959" target="_blank">Roederer and Tárnok 2010</a>). In contrast to existing antibody validation resources such as the
         <a href="https://avr.hubmapconsortium.org/" target="_blank">HuBMAP Antibody Validation Report</a> and <a href="https://www.proteinatlas.org/humanproteome/tissue" target="_blank">Human Protein Atlas</a>, OMAPs additionally provide experimental details relevant for their successful application, e.g., tissue preservation method, imaging method, antigen retrieval conditions, and antibody cycling order.
-        The end result is an assembly of expertly curated antibodies that work together in a single tissue section. To facilitate tissue mapping efforts within and beyond the HuBMAP community, OMAPs are designed for integration with the ASCT+B Reporter
+        The end result is an assembly of expertly curated antibodies that work together in a single tissue section. The panels presented here are authored and reviewed by experts in pathology, tissue biology, and multiplexed imaging. Information on antibody lots and recommended concentrations vary across experiments and, in the case of antibody dilutions, must be empirically determined. 
+        <br><br>To facilitate tissue mapping efforts within and beyond the HuBMAP community, OMAPs are designed for integration with the ASCT+B Reporter
         (<a href="https://www.nature.com/articles/s41556-021-00788-6" target="_blank">Börner et al. 2021</a>), a state-of-the-art visualization tool <a href="https://hubmapconsortium.github.io/ccf-asct-reporter" target="_blank">https://hubmapconsortium.github.io/ccf-asct-reporter</a>.
         We strongly encourage inclusion of blood endothelial markers to empower construction of a human reference atlas using the vasculature common coordinate framework (VCCF), originally proposed by Dr. Zorina Galis
-        (<a href="https://www.youtube.com/watch?v=ZGYU_dsb0j4&ab_channel=CyberinfrastructureforNetworkScienceCenter%28CNS%29" target="_blank">Galis 2019</a>) and expanded upon here (
-            <a href="https://www.frontiersin.org/articles/10.3389/fcvm.2020.00029/full" target="_blank">Weber, Ju, and Börner 2020</a>).`
+        (<a href="https://www.youtube.com/watch?v=ZGYU_dsb0j4&ab_channel=CyberinfrastructureforNetworkScienceCenter%28CNS%29" target="_blank">Galis 2019</a>) and expanded upon here (<a href="https://www.frontiersin.org/articles/10.3389/fcvm.2020.00029/full" target="_blank">Weber, Ju, and Börner 2020</a>) (<a href="https://doi.org/10.1101/2022.02.28.482302" target="_blank">Boppana et al., 2022</a>). 
+            We additionally recommend the inclusion of antibodies directed against one or more lymphatic endothelial markers to further our understanding of the “yet to be charted” human lymphatic system 
+            (<a href="http://biorxiv.org/content/early/2022/06/05/2022.06.03.494716.abstract" target="_blank">Radtke, Lukacs et al, 2022</a>), 
+            <a href="https://www.nhlbi.nih.gov/events/2021/yet-be-charted-mapping-lymphatic-system-across-body-scales-and-expertise-domains" target="_blank">NHLBI, NIH 2021</a>), 
+            <a href="https://www.niddk.nih.gov/news/meetings-workshops/2022/yet-to-be-charted-lymphatic-system-in-health-and-disease" target="_blank">National Heart, Lung, and Blood Institute (NHLBI), and National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK), 2022</a>).`
+    }
+]
+
+export const goalsForOmaps: PageDataItems[] = [
+    {
+        heading: 'Goals for OMAPs',
+        descriptions: `<ul>
+        <li>Offset the considerable time (6-8 months) and cost (~$30-60,000 in 2022 USD) associated with creating such resources de novo</li>
+        <li>Standardize data acquisition for multiplexed tissue imaging studies</li>
+        <li>Empower construction of atlases from healthy and diseased human tissues</li>
+        <li>Support the spatial biology community by aggregating highly cited antibody clones</li>
+        <li>Identify essential markers for anatomical structures and cell types in diverse human organs</li>
+        </ul>`
     }
 ]
 
@@ -36,6 +53,11 @@ export const sopData: SopLinks[] = [
         href: 'https://doi.org/10.5281/zenodo.5749883'
     }
 ]
+
+export const omapsFaq: SopLinks = {
+    urls: '',
+    href: ''
+}
 
 export const acknowledgementsData: PageDataItems[] = [
     {
@@ -67,8 +89,9 @@ export const acknowledgementsData: PageDataItems[] = [
 ]
 
 export const omapsVersionData: ChooseVersion[] = [
-    { release: '3rd Release, June 2022', file: 'omaps_release3.csv', version: '3' },
-    { release: '2nd Release, December 2021', file: 'omaps_release2.csv', version: '2' }
+    { release: '4th HRA Release (v1.3), December 2022', file: 'omaps_release3.csv', version: '4' },
+    { release: '3rd HRA Release (v1.2), June 2022', file: 'omaps_release3.csv', version: '3' },
+    { release: '2nd HRA Release (v1.1), December 2021', file: 'omaps_release2.csv', version: '2' }
 ]
 
 export const columnHeaders: HeaderData[] = [
@@ -86,6 +109,12 @@ export const columnHeaders: HeaderData[] = [
         columnDef: 'imagingMethod',
         header: 'Multiplexed antibody-based imaging method',
         cell: (element: TableData) => `${element['imagingMethod']}`
+    },
+    {
+        columnDef: 'download',
+        header: 'Download',
+        cell: (element: TableData) => `<a class="cell-link" href="${element['download'] || 'TODO:Please add a url column to this .csv!'}">CSV</a> |<a class="cell-link" href="${element['download'] || 'TODO:Please add a url column to this .csv!'}">XLSX</a>`,
+        sorting: false
     },
     {
         columnDef: 'as',

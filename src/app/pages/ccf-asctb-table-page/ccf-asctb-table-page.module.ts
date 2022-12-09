@@ -23,7 +23,7 @@ import { MarkdownModule } from 'ngx-markdown';
     SopLinksModule,
     ChooseVersionModule,
     TableModule,
-    MarkdownModule.forRoot()
+    MarkdownModule
   ],
   providers: [],
   bootstrap: []

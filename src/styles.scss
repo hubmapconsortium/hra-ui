@@ -41,3 +41,18 @@ a:-webkit-any-link {
   padding-bottom: 1rem;
   padding-top: 1.5rem;
 }
+
+.list-links {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.005rem;
+  color: #0a6ebd;
+
+  &:hover{
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+}

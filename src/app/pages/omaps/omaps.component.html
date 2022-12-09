@@ -1,6 +1,22 @@
 <ccf-page-header [headerCard]="omapsHeading"></ccf-page-header>
 <ccf-page-data [data]="overviewData"></ccf-page-data>
+<ccf-page-data [data]="goalsForOmaps"></ccf-page-data>
 <ccf-sop-links [links]="sopData"></ccf-sop-links>
+<div style="padding-bottom: 2rem;">
+    <div class="content-title faq">
+        Frequently Asked Questions (FAQs)
+    </div>
+    <div class="list-links">
+        <ul>
+            <li>
+                <a [routerLink]="['','omap-faq']">Frequently Asked Questions (FAQs) for OMAPs</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="content-title existing-omaps">
+    Existing OMAPs
+</div>
 <ccf-choose-version [releaseDate]="omapsVersionData" [selectedDate]="placeholderDate" (selectedVersion)="setOmapsData($event)"></ccf-choose-version>
-<ccf-table [typeCount]="(tableData|async) ?? []" [displayedColumns]="displayedColumnsData" [columns]="columnHeaders" [isTotal]="true"></ccf-table>
+<ccf-table [typeCount]="(tableData|async) ?? []" [displayedColumns]="(columns | async) ?? []" [columns]="columnHeaders" [isTotal]="true"></ccf-table>
 <ccf-page-data [data]="acknowledgementsData"></ccf-page-data>

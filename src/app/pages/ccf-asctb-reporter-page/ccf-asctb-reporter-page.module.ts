@@ -27,7 +27,7 @@ import { UseButtonModule } from 'src/app/components/use-button/use-button.module
     ChooseVersionModule,
     TableModule,
     UseButtonModule,
-    MarkdownModule.forRoot(),
+    MarkdownModule,
     YoutubeModelModule
   ],
   providers: [],

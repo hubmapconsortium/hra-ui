@@ -6,7 +6,7 @@ import { OverviewDataModule } from './pages/overview-data/overview-data.module';
 import { BottomToolbarModule } from './components/bottom-toolbar/bottom-toolbar.module';
 import { ToolbarModule } from './components/toolbar/toolbar.module';
 import { LandingPageModule } from './pages/landing-page/landing-page.module';
-import { NgModule } from '@angular/core';
+import { NgModule, SecurityContext } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -33,7 +33,8 @@ import { KaggleTwoModule } from './pages/kaggle-two/kaggle-two.module';
 import { HraEditorialBoardModule } from './pages/hra-editorial-board/hra-editorial-board.module';
 import { CcfOrganVrGalleryModule } from './pages/ccf-organ-vr-gallery/ccf-organ-vr-gallery.module';
 import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-google-analytics';
-import { PrizeCardComponent } from './components/prize-card/prize-card.component';
+import { OmapFaqModule } from './pages/omap-faq/omap-faq.module';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,9 @@ import { PrizeCardComponent } from './components/prize-card/prize-card.component
     HraEditorialBoardModule,
     CcfOrganVrGalleryModule,
     NgxGoogleAnalyticsModule.forRoot('traking-code'),
-    NgxGoogleAnalyticsRouterModule
+    NgxGoogleAnalyticsRouterModule,
+    OmapFaqModule,
+    MarkdownModule.forRoot({ sanitize: SecurityContext.NONE })
   ],
   providers: [],
   bootstrap: [AppComponent]

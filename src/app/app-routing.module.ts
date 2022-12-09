@@ -28,12 +28,31 @@ import { CcfOrganVrGalleryComponent } from './pages/ccf-organ-vr-gallery/ccf-org
 import { HraApiResolver } from './pages/hra-api/hra-api-resolver.service';
 import { HraEditorialBoardResolver } from './pages/hra-editorial-board/hra-editorial-board-resolver.service';
 import { HraMillitomeResolver } from './pages/hra-millitome/hra-millitome-resolver.service';
+import { OverviewDataResolver } from './pages/overview-data/overview-data-resolver.service';
+import { OmapFaqComponent } from './pages/omap-faq/omap-faq.component';
+import { TwoDimensionResolver } from './pages/two-dim-ref-page/two-dim-resolver.service';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
-  { path: 'overview-data', component: OverviewDataComponent },
+  {
+    path: 'overview-data', component: OverviewDataComponent,
+    data: {
+      contentFile: 'overview-data.content'
+    },
+    resolve: {
+      overviewData: OverviewDataResolver
+    }
+  },
   { path: 'asctb-tables', component: CcfTablePageComponent },
-  { path: 'ccf-2d-ftu', component: TwoDimRefPageComponent },
+  {
+    path: 'ccf-2d-ftu', component: TwoDimRefPageComponent,
+    data: {
+      contentFile: '2d-ftu.content'
+    },
+    resolve: {
+      twoDimFtu: TwoDimensionResolver
+    }
+  },
   { path: 'overview-tools', component: OverviewToolsComponent },
   { path: 'ccf-ontology', component: CcfOntologyComponent },
   { path: 'asctb-reporter', component: CcfReporterPageComponent },
@@ -78,7 +97,6 @@ const routes: Routes = [
   { path: 'kaggle-two', component: KaggleTwoComponent },
   { path: 'organ-vr-gallery', component: CcfOrganVrGalleryComponent },
   { path: '', redirectTo: '', pathMatch: 'full' },
-  { path: '**', pathMatch: 'full', component: LandingPageComponent },
   {
     path: 'editorial-board',
     component: HraEditorialBoardComponent,
@@ -89,10 +107,12 @@ const routes: Routes = [
       hraEditorialBoard: HraEditorialBoardResolver,
     },
   },
+  { path: 'omap-faq', component: OmapFaqComponent },
+  { path: '**', pathMatch: 'full', component: LandingPageComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

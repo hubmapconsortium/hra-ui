@@ -8,6 +8,7 @@ import { PageDataModule } from 'src/app/components/page-data/page-data.module';
 import { SopLinksModule } from 'src/app/components/sop-links/sop-links.module';
 import { TableModule } from 'src/app/components/table/table.module';
 import { ChooseVersionModule } from 'src/app/components/choose-version/choose-version.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ChooseVersionModule } from 'src/app/components/choose-version/choose-ve
     PageDataModule,
     SopLinksModule,
     TableModule,
-    ChooseVersionModule
+    ChooseVersionModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: []

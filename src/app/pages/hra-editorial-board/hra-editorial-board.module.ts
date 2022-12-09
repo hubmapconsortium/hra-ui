@@ -19,7 +19,7 @@ import { BoardMembersModule } from 'src/app/components/board-members/board-membe
     PageHeaderModule,
     BoardMembersModule,
     PageDataModule,
-    MarkdownModule.forRoot()
+    MarkdownModule
   ],
   providers: [],
   bootstrap: []

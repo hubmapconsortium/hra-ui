@@ -8,16 +8,20 @@
                     <div>{{tissue.name}}</div>
                     <div style="flex-grow: 1;"></div>
                     <a mat-stroked-button disableRipple="true" href="{{tissue.url}}">
-                        Info
-                        <mat-icon>info</mat-icon>
+                        Metadata
+                        <span class="material-symbols-outlined">info</span>
                     </a>
                     <a mat-stroked-button disableRipple="true" [href]="tissue.image" download>
-                        Download .png
-                        <mat-icon>download</mat-icon>
+                        Download PNG
+                        <span class="material-symbols-outlined">download</span>
                     </a>
                     <a [href]="tissue.svg" mat-stroked-button disableRipple="true" download>
-                        Download .svg
-                        <mat-icon>download</mat-icon>
+                        Download SVG
+                        <span class="material-symbols-outlined">download</span>
+                    </a>
+                    <a [href]="tissue.ai" mat-stroked-button disableRipple="true" download>
+                        Download AI
+                        <span class="material-symbols-outlined">download</span>
                     </a>
                 </div>
                 
@@ -28,12 +32,12 @@
                         <div style="flex-grow: 1;"></div>
                         <div>
                             <a [href]="tissue.threeDimImage" download mat-stroked-button disableRipple="true">
-                                Download .glb
-                                <mat-icon>download</mat-icon>
+                                <span class="material-symbols-outlined">download</span>
+                                Download GLB
                             </a>
                             <a mat-stroked-button disableRipple="true" href="{{tissue.url}}">
-                                Info
-                                <mat-icon>info</mat-icon>
+                                <span class="material-symbols-outlined">info</span>
+                                Metadata
                             </a>
                         </div>
                     </div>
@@ -46,16 +50,16 @@
                             <div mat-dialog-title>{{tissue.name}}</div>
                             <div style="flex-grow:1;"></div>
                             <a mat-dialog-close mat-stroked-button [disableRipple]="true" href="{{tissue.url}}">
-                                Info
-                                <mat-icon>info</mat-icon>
+                                Metadata
+                                <span class="material-symbols-outlined">info</span>
                             </a>
                             <a mat-stroked-button disableRipple="true" [href]="tissue.image" download>
-                                Download .png
-                                <mat-icon>download</mat-icon>
+                                Download PNG
+                                <span class="material-symbols-outlined">download</span>
                             </a>
                             <a [href]="tissue.svg" mat-stroked-button disableRipple="true" download>
-                                Download .svg
-                                <mat-icon>download</mat-icon>
+                                Download SVG
+                                <span class="material-symbols-outlined">download</span>
                             </a>
                             <button mat-dialog-close mat-button [disableRipple]="true">
                                 <mat-icon>close</mat-icon>

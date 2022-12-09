@@ -6,6 +6,7 @@ export interface TissueData {
     alt?: string,
     url: string,
     svg?: string
+    ai?: string
 }
 
 export interface OrganData {

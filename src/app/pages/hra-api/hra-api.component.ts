@@ -3,7 +3,6 @@ import { PageDataItems } from 'src/app/components/page-data/page-data';
 import { PageHeaderItems } from 'src/app/components/page-header/page-header-items';
 import { UseButton } from 'src/app/components/use-button/use-button';;
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'ccf-hra-api',
@@ -12,7 +11,6 @@ import { Subscription } from 'rxjs';
 })
 export class HraApiComponent {
 
-  dataSubscription?: Subscription;
   pageHeaderData: PageHeaderItems[];
   useButtonData: UseButton;
   overviewData: PageDataItems[];

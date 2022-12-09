@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ChooseVersion } from 'src/app/components/choose-version/choose-version';
+import { PageDataItems } from 'src/app/components/page-data/page-data';
+import { PageHeaderItems } from 'src/app/components/page-header/page-header-items';
+import { SopLinks } from 'src/app/components/sop-links/sop-links';
 import { OrganData, VersionOrgans } from 'src/app/components/two-dim-image/two-dim-image';
 import { overviewData, sopData, termsOfUseData, twoDimHeaderCardDetails, organInfo, versionData } from './two-dim-ref-page.contents';
 
@@ -16,22 +19,36 @@ function iCaseEquals(str1: string, str2: string): boolean {
 })
 export class TwoDimRefPageComponent implements OnInit {
 
-  twoDimHeaderCardDetails = twoDimHeaderCardDetails
-  overviewData = overviewData
-  sopData = sopData
-  termsOfUseData = termsOfUseData
+  twoDimHeaderCardDetails = twoDimHeaderCardDetails;
+  overviewData = overviewData;
+  sopData =sopData;
+  termsOfUseData = termsOfUseData;
   filterImages: OrganData[]
   cardTitle = "";
-  versionData = versionData
-  placeholderDate = versionData[0].release
+  versionData = versionData;
+  placeholderDate = versionData[0].release;
   organData: OrganData[];
   info: VersionOrgans;
   version: ChooseVersion;
+  license: PageDataItems[];
+  acknowledgments: PageDataItems[]
 
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    // const data = activatedRoute.snapshot.data['twoDimFtu'];
+    // console.log(data);
+    // this.twoDimHeaderCardDetails = data.twoDimHeaderCardDetails
+    // this.overviewData = data.overviewData
+    // this.sopData = data.sopData
+    // this.versionData = data.versionData
+    // this.placeholderDate = data.versionData[0].release
+    // this.termsOfUseData = data.termsOfUse
+    // this.acknowledgments = data.acknowledgments
+    // this.license = data.license
+  }
+
+
   label: string;
-
 
   ngOnInit(): void {
     const [{ version: defaultVersion, organData: [{ name: defaultOrgan }] }] = organInfo;
@@ -59,7 +76,7 @@ export class TwoDimRefPageComponent implements OnInit {
       this.setOrgan(organData[0].name);
     } else {
       this.organData = data;
-      this.cardTitle = data[0].name+" Functional Tissue Units";
+      this.cardTitle = data[0].name + " Functional Tissue Units";
       this.updateQueryParams({ version, organ });
     }
   }
