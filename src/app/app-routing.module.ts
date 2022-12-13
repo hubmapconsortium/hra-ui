@@ -37,7 +37,6 @@ import { LandingPageResolver } from './pages/landing-page/landing-page-resolver.
 import { KaggleTwentyoneResolver } from './pages/kaggle-twentyone/kaggle-twentyone-resolver.service';
 import { KaggleTwoResolver } from './pages/kaggle-two/kaggle-two-resolver.service';
 import { OmapsResolver } from './pages/omaps/omaps-resolver.service';
-import { OverviewDataResolver } from './pages/overview-data/overview-data-resolver.service';
 import { OverviewToolsResolver } from './pages/overview-tools/overview-tools-resovler.service';
 import { OverviewTrainingOutreachResolver } from './pages/overview-training-outreach/overview-training-outreach-resolver.service';
 import { RegistrationUserInterfaceResolver } from './pages/registration-user-interface/registration-user-interface-resolver.service';

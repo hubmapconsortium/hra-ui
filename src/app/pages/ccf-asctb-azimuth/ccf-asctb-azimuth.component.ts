@@ -29,7 +29,6 @@ export class CcfAsctbAzimuthComponent {
   comparisonAsctbVsAzimuth: PageDataItems[]
   headerInfo= headerInfo
   displayedColumnsData= displayedColumnsData
-  tableData = this.dataService.getData('azimuth.csv');
   additionalHeaders = additionalHeaders
   additionalColumnsData = additionalColumnsData;
   cellData = cellData
