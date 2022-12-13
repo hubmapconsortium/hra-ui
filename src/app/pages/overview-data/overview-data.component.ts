@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { longButtonItems, pageTitle } from './overview-data.content';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LongCard } from 'src/app/components/card-button-long/long-card';
+import { TileItems } from 'src/app/components/simple-tile/tile-items';
 
 @Component({
   selector: 'overview-data',
@@ -11,15 +12,17 @@ import { LongCard } from 'src/app/components/card-button-long/long-card';
 })
 export class OverviewDataComponent {
 
-  pageTitle: string;
+  pageTitle: string
+  description: TileItems[]
   longButtonItems: LongCard[]
 
-  constructor(private router: Router, route: ActivatedRoute) {
-    const data = route.snapshot.data['overviewData'];
-    this.pageTitle = data.pageTitle;
-    this.longButtonItems = data.longButtonItems;
+
+  constructor(private router: Router, private route: ActivatedRoute) { 
+    const data = route.snapshot.data['overViewData']
+    this.pageTitle = data.pageTitle
+    this.description = data.description
+    this.longButtonItems = data.longButtonItems
   }
-  description = TileDefinition
 
   clicked(card: LongCard): void {
     this.router.navigate([card.route])

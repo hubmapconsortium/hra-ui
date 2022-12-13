@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { PageDataItems } from 'src/app/components/page-data/page-data';
+import { PageHeaderItems } from 'src/app/components/page-header/page-header-items';
 import { pageData, pageHeaderData } from './about.content';
 
 @Component({
@@ -7,6 +10,12 @@ import { pageData, pageHeaderData } from './about.content';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent {
-  pageHeaderData = pageHeaderData
-  pageData = pageData
+  pageHeaderData: PageHeaderItems[]
+  pageData: PageDataItems[]
+
+  constructor (private route: ActivatedRoute){
+    const data = route.snapshot.data['about']
+    this.pageHeaderData = data.pageHeaderData
+    this.pageData = data.pageData
+  }
 }

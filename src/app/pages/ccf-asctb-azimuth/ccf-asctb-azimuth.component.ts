@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { EMPTY, map, Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { EMPTY, Observable, map } from 'rxjs';
+import { PageDataItems } from 'src/app/components/page-data/page-data';
+import { PageHeaderItems } from 'src/app/components/page-header/page-header-items';
 import { ChooseVersion } from 'src/app/components/choose-version/choose-version';
 import { TableData } from 'src/app/components/table/table';
 import { TableDataService } from 'src/app/services/table-data/tabledata.service';
@@ -12,14 +15,21 @@ import { additionalHeaders, additionalColumnsData, azimuthHeader, comparisonAsct
 })
 export class CcfAsctbAzimuthComponent {
 
-  constructor(private readonly dataService: TableDataService) { }
+  constructor(private readonly dataService: TableDataService, private route: ActivatedRoute) { 
+    const data = route.snapshot.data['ccfAsctbAzimuth']
+    this.azimuthHeader = data.azimuthHeader
+    this.overviewAzimuthData = data.overviewAzimuthData
+    this.TermsOfUseData = data.TermsOfUseData
+    this.comparisonAsctbVsAzimuth = data.comparisonAsctbVsAzimuth
+  }
 
-  azimuthHeader = azimuthHeader
-  overviewAzimuthData = overviewAzimuthData
-  TermsOfUseData = TermsOfUseData
-  comparisonAsctbVsAzimuth = comparisonAsctbVsAzimuth
-  headerInfo = headerInfo
-  displayedColumnsData = displayedColumnsData
+  azimuthHeader: PageHeaderItems[]
+  overviewAzimuthData: PageDataItems[]
+  TermsOfUseData: PageDataItems[]
+  comparisonAsctbVsAzimuth: PageDataItems[]
+  headerInfo= headerInfo
+  displayedColumnsData= displayedColumnsData
+  tableData = this.dataService.getData('azimuth.csv');
   additionalHeaders = additionalHeaders
   additionalColumnsData = additionalColumnsData;
   cellData = cellData

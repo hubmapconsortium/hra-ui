@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LongCard } from 'src/app/components/card-button-long/long-card';
 import { TileDefinition } from 'src/app/shared/simple-tile-items';
-import { longCardData } from './overview-training-outreach.content';
+import { CardBlock, longCardData } from './overview-training-outreach.content';
 
 @Component({
   selector: 'overview-training-outreach',
@@ -11,11 +11,15 @@ import { longCardData } from './overview-training-outreach.content';
 })
 export class OverviewTrainingOutreachComponent {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private _route: ActivatedRoute) { 
+    const data = _route.snapshot.data['overviewTrainingOutreach']
+    this.title = data.title
+    this.longCardData = data.longCardData
+  }
 
-  title = "Human Reference Atlas Training & Outreach";
+  title: string;
   TileDefinition = TileDefinition
-  longCardData = longCardData
+  longCardData: CardBlock[]
 
   route(card:LongCard):void{
     this.router.navigate([card.route])

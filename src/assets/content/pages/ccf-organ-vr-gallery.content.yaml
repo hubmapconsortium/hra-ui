@@ -1,0 +1,67 @@
+organVrHeader:
+- title: CCF Organ VR Gallery
+  subtitle: An immersive application that allows users to explore 3D reference organs, anatomical structures, and cell types in virtual reality
+  image: assets/images/vr_gallery.svg
+
+overviewData:
+- heading: Overview
+  descriptions: The CCF Organ VR Gallery is an immersive application that allows users to view, explore, and analyze 3D reference organs, anatomical structures, and cell types, in an integrated virtual reality (VR) environment[1], see Figure 1.
+
+backgroundData:
+- heading: Background
+  descriptions: |
+    The Human Reference Atlas (HRA), developed by the Human Biomolecular Atlas Program (HuBMAP)[2] in close collaboration with 17 international consortia, aims to create a spatial reference of the healthy adult human body at single-cell resolution. Anatomical Structures and Cell Types plus Biomarkers (ASCT+B) tables are compiled by experts to detail the cell types typically found in structures in human organs [3]. As of April 2022, there exist 50 3D reference organs [4], 
+    modeled after the Visible Human Project data [5], that can be used to register human tissue into a common coordinate framework (CCF) across diverse individual donors spanning different age ranges, sexes, and BMIs. The resulting spatial, specimen, and biological structure data define the HRA.`
+- heading: Why VR?
+  descriptions: |
+    If viewed in desktop applications, the spatiality and dimensionality of the 3D reference organs is lost while viewing the biological structure and specimen data is easily possible via information visualization. However, virtual reality (VR) 
+    provides a unique method of visualizing and interacting with these diverse types of data in a unified environment. In addition, if viewed in VR, the spatiality of the organs is preserved and empowered through immersion, 
+    see Figure 2. The CCF Organ VR Gallery also builds on and implements Bowman et al.'s concept of Information-Rich Virtual Environments (IRVEs)[2].
+
+dataVisualizations:
+- heading: Data Visualizations (planned)
+  descriptions: |
+    The CCF Organ VR Gallery will feature interactive stacked bar graphs, which users will be able to use to view tissue blocks in their spatial and anatomical context, select cell types across anatomical structures, and get cell type distributions, 
+    see Figure 3. Techniques such as brush-and-linking, highlighting, and hovering will be implemented for VR controllers to allow users to interact with the data. 
+    The CCF Organ VR Gallery presents a tested implementation of classic 2D visualizations within a 3D virtual environment, ultimately enriching the analysis experience with presence and immersion while preserving the spatiality of biological data.`
+
+testingAndFeedback:
+- heading:  User Testing and Feedback'
+  descriptions: |
+    The CCF Organ VR Gallery application is not yet available for public download. However, if you would like to experience the gallery for yourself, please email abueckle@iu.edu.
+    For more information and guidance on getting started with the application, click <a href="https://www.figma.com/proto/TopdFvriKNcV9Af2Hgo8aK/Documentation-Organ?node-id=12%3A6&scaling=scale-down&page-id=0%3A" target="">here</a> to view the documentation. 
+    After using the app, please take a couple of minutes to complete this brief <a href="https://forms.gle/136vKQNmMMhvFWHa7" target="">feedback form</a>. 
+    We will take your feedback into consideration when improving and iterating on the app.
+- heading: Video Demo
+  descriptions:
+
+referencesData:
+- heading: Reference
+  descriptions: |
+    [1] A. Bueckle, K. M. Browne, B. W. Herr II, and K. Börner, “The Common Coordinate Framework (CCF) Organ VR Gallery.” OSF. 
+    <a href="https://www.researchgate.net/publication/357787965_The_Common_Coordinate_Framework_CCF_Organ_VR_Gallery" target="_blank">doi: 10.31219/osf.io/z9gm3</a>.
+    
+
+
+    [2] D. A. Bowman, C. North, J. Chen, N. F. Polys, P. S. Pyla, and U. Yilmaz, “Information-rich virtual environments: Theory, tools, and research agenda,” New York City, NY, 2003, pp. 81-90.
+    <a href="https://dl.acm.org/doi/10.1145/1008653.1008669" target="_blank">doi: 10.1145/1008653.1008669</a>.
+
+
+    [3] K. Börner et al., “Anatomical structures, cell types and biomarkers of the Human Reference Atlas,” Nature Cell Biology, vol. 23, no. 11, pp. 1117-1128, Nov. 2021, 
+    <a href="https://www.nature.com/articles/s41556-021-00788-6" target="">doi: 10.1038/s41556-021-00788-6</a>.
+
+
+
+    [4] K. Browne et al., “HuBMAP CCF 3D Reference Object Library,” 2021. <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html" target="">
+    https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html</a>.
+
+
+
+    [5] V. Spitzer, M. J. Ackerman, A. L. Scherzinger, and D. Whitlock, “The visible human male: a technical report,” J Am Med Inform Assoc, vol. 3, no. 2, pp. 118-130, Mar. 1996, 
+    <a href="https://academic.oup.com/jamia/article/3/2/118/708716" target="">doi: 10.1136/jamia.1996.96236280</a>.`
+
+height: 584
+width: 1232
+title: Overview
+videoId: S9pBOlSfsnc
+playerTitle: Please view the video below for a demo of the CCF Organ VR Gallery

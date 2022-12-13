@@ -1,0 +1,43 @@
+azimuthHeader:
+- image: assets/images/asctb_azimuth.svg
+  title: ASCT+B Cell Types Data from Azimuth Reference Data with Summaries
+  subtitle: Crosswalks from Azimuth cell annotation tool to ASCT+B tables will cell population data
+
+overviewAzimuthData:
+- heading: Overview
+  descriptions: |
+    <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-anatomical-structures.html" target="">ASCT+B tables</a> represent cell by gene (CxG) relationships that are also captured in the organ-specific HuBMAP <a href="https://azimuth.hubmapconsortium.org/" target="_blank">Azimuth references</a>.
+    This site provides cell type typology data from Azimuth that can be visualized in the <a href="https://hubmapconsortium.github.io/ccf-asct-reporter/" target="">ASCT+B Reporter</a>.
+
+
+    We also provide easy access to results for comparing CxG in ASCT+B vs. CxG in Azimuth. In Jan 2022, Azimuth supports single-cell RNA-seq data exclusively. As more experimental data becomes available and additional types of data are supported (e.g., proteins, lipids, metabolites), data differences will decrease.
+- heading: Azimuth Cell Type Typologies and Counts
+  descriptions: In Jan 2022, eight molecular reference maps for human are available via Azimuth. For each we provide the cell type typology as a file that can be visualized in the ASCT+B Reporter together with a table that lists the annotation level and the number of cell types for each unique cell in the organ-specific Azimuth reference, see Table 1.
+
+TermsOfUseData:
+- heading: Azimuth CT Counts
+  descriptions: |
+    Data from <a href="https://github.com/satijalab/azimuth_website" target="">https://github.com/satijalab/azimuth_website</a> has been parsed to derive cell type counts:
+    
+    
+    Code is available on <a href="https://github.com/hubmapconsortium/asctb-azimuth-data-comparison" target="">GitHub</a>
+- heading: Code on Github
+  descriptions: |
+    All code is freely available on <a href="https://github.com/hubmapconsortium/asctb-azimuth-data-comparison" target="_blank">GitHub</a>.
+- heading: Terms of Use
+  descriptions: HuBMAP data are supplied with no warranties, expressed or implied, including without limitation, any warranty of merchantability or fitness for a particular purpose or non-infringement. No warranty with respect to the HuBMAP infrastructure is provided, including without limitation, any uptime warranty. The Parties make no representations that the use of the data will not infringe any patent or proprietary rights of third parties.
+- heading: License
+  descriptions: All CCF 3D reference objects are released under <a href="" target="">Attribution 4.0 International (CC BY 4.0)</a>.
+- heading: Citation
+  descriptions: 'If you use the data files v1.0 release, please cite this effort as follows:'
+- heading: Acknowledgements
+  descriptions: This code and data was compiled by the HuBMAP MC-IU team in close collaboration with the MC-NYGC team.
+- heading: References
+  descriptions: |
+    Börner, Katy<, Sarah A Teichmann, Ellen M Quardokus, et al. 2021. "<a href="https://cns.iu.edu/docs/publications/2021-Borner-ASCT+B_of_the_HRA.pdf" target="">
+    Anatomical structures, cell types and biomarkers of the Human Reference Atlas"</a>. <i>Nature Cell Biology</i> 23: 1117-1128. doi: 10.1038/s41556-021-00788-6.
+    
+
+
+    Hao Y, Hao S, Andersen-Nissen E, Mauck WM 3rd, Zheng S, Butler A, Lee MJ, Wilk AJ, Darby C, Zager M, Hoffman P, Stoeckius M, Papalexi E, Mimitou EP, Jain J, Srivastava A, Stuart T, Fleming LM, Yeung B, Rogers AJ, McElrath JM, Blish CA, Gottardo R, Smibert P, Satija R. 2021.
+    <a href="https://doi.org/10.1016/j.cell.2021.04.048" target="">Integrated Analysis of Multimodal Single-Cell Data</a>. <i>Cell.</i> 184 (13): 3573-3587.e29. doi: 10.1016/j.cell.2021.04.048

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { hraUsageHeading, hubmapGteMetricsData, trainingMaterials } from './hra-usage-metrics.content';
+import { ActivatedRoute } from '@angular/router';
+import { PageDataItems } from 'src/app/components/page-data/page-data';
+import { PageHeaderItems } from 'src/app/components/page-header/page-header-items';
 
 @Component({
   selector: 'usage-metrics',
@@ -7,8 +9,17 @@ import { hraUsageHeading, hubmapGteMetricsData, trainingMaterials } from './hra-
   styleUrls: ['./hra-usage-metrics.component.scss']
 })
 export class HraUsageMetricsComponent {
-  hraUsageHeading = hraUsageHeading
-  hubmapMetricsData = hubmapGteMetricsData
-  trainingMaterials = trainingMaterials
+  hraUsageHeading: PageHeaderItems[]
+  hubmapMetricsData: PageDataItems[]
+  trainingMaterials: PageDataItems[]
+  
 
+
+  constructor (private route: ActivatedRoute){
+    const data = route.snapshot.data['hraUsageMetrics']
+    this.hraUsageHeading = data.hraUsageHeading
+    this.hubmapMetricsData = data.hubmapGteMetricsData
+    this.trainingMaterials = data.trainingMaterials
+    
+  }
 }

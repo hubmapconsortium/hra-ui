@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LongCard } from 'src/app/components/card-button-long/long-card';
 import { TileDefinition } from 'src/app/shared/simple-tile-items';
 import { longButtonItems } from './overview-tools.content';
@@ -11,11 +11,16 @@ import { longButtonItems } from './overview-tools.content';
 })
 export class OverviewToolsComponent {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private route: ActivatedRoute) { 
+    const data = route.snapshot.data['overviewTools']
+    this.pageTitle = data.pageTitle
+    this.descriptions = data.descriptions
+    this.longButtonItems = data.longButtonItems
+  }
 
-  pageTitle = 'Human Reference Atlas Tools'
+  pageTitle: string
   descriptions = TileDefinition;
-  longButtonItems = longButtonItems
+  longButtonItems: LongCard[];
 
   clicked(card: LongCard): void {
     this.router.navigate([card.route])
