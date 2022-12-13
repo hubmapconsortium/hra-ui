@@ -9,7 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class ContentService {
   constructor(private http: HttpClient) {}
-  public getContent<T = any>(fileName: string): Observable<T> {
+
+  getContent<T = object>(fileName: string): Observable<T> {
     return this.http
       .get(`assets/content/pages/${fileName}.yaml`, {
         observe: 'body',
