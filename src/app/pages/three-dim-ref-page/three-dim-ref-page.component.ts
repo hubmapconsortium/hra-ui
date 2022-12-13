@@ -3,8 +3,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ChooseVersion } from 'src/app/components/choose-version/choose-version';
 import { PageDataItems } from 'src/app/components/page-data/page-data';
 import { PageHeaderItems } from 'src/app/components/page-header/page-header-items';
+import { SopLinks } from 'src/app/components/sop-links/sop-links';
 import { OrganData, VersionOrgans } from 'src/app/components/two-dim-image/two-dim-image';
-import { headerData, overviewData, sopData, termsOfUseData, threeDimOrganInfo, versionData } from './three-dim-ref-page.content';
 
 function iCaseEquals(str1: string, str2: string): boolean {
   return str1.toLowerCase() === str2.toLowerCase();
@@ -17,12 +17,12 @@ function iCaseEquals(str1: string, str2: string): boolean {
 })
 export class ThreeDimRefPageComponent implements OnInit {
 
-  headerData = headerData
-  overviewData = overviewData
-  versionData = versionData
-  sopData = sopData;
-  termsOfUseData = termsOfUseData
-  threeDimOrganInfo=threeDimOrganInfo
+  headerData: PageHeaderItems[];
+  overviewData: PageDataItems[];
+  versionData: ChooseVersion[];
+  sopData:SopLinks[];
+  termsOfUseData: PageDataItems[];
+  threeDimOrganInfo: VersionOrgans[]
   cardTitle="";
   tabsImages:OrganData[]
   organData: OrganData[];
@@ -30,23 +30,25 @@ export class ThreeDimRefPageComponent implements OnInit {
   placeholderDate: ChooseVersion;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
-    // const data = activatedRoute.snapshot.data['threeDim'];
-    // this.headerData = data.headerData
-    // this.termsOfUseData = data.termsOfUseData
-    // this.referencesData = data.referencesData
-    // this.acknowledgmentsData = data.acknowledgmentsData
+    const data = activatedRoute.snapshot.data['threeDim'];
+    console.log(data)
+    this.headerData = data.headerData
+    this.termsOfUseData = [data.termsOfUseData[0], data.licenseData[0], data.citationData[0], data.acknowledgmentsData[0], data.referencesData[0]]
+    this.versionData = data.versionData
+    this.sopData = data.sopData
+    this.threeDimOrganInfo = data.threeDimOrganInfo
   }
 
   ngOnInit(): void {
-    this.placeholderDate = versionData[0];
-    const [{ version: defaultVersion, organData: [{ name: defaultOrgan }] }] = threeDimOrganInfo;
+    this.placeholderDate = this.versionData[0];
+    const [{ version: defaultVersion, organData: [{ name: defaultOrgan }] }] = this.threeDimOrganInfo;
     const { version = defaultVersion, organ = defaultOrgan } = this.activatedRoute.snapshot.queryParams;
     this.setVersion(`${version}`, `${organ}`);
   }
 
   setVersion(version: string, organ?: string): void {
-    const info = threeDimOrganInfo.find(item => iCaseEquals(item.version, version)) ?? threeDimOrganInfo[0];
-    const choose = versionData.find(item => item.version === info.version)!;
+    const info = this.threeDimOrganInfo.find(item => iCaseEquals(item.version, version)) ?? this.threeDimOrganInfo[0];
+    const choose = this.versionData.find(item => item.version === info.version)!;
 
     this.information = info;
     this.placeholderDate = choose;
