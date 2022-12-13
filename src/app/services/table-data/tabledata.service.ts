@@ -1,15 +1,14 @@
-import { Injectable } from '@angular/core';
-import { TableData } from 'src/app/components/table/table';
-import { map, Observable, shareReplay } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { parse, ParseResult } from 'papaparse';
+import { Injectable } from '@angular/core';
+import { parse } from 'papaparse';
+import { map, Observable, shareReplay } from 'rxjs';
+import { TableData } from 'src/app/components/table/table';
 
 
 export interface TableDataWithColumns {
   columns: string[];
   data: TableData[];
 }
-
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +23,7 @@ export class TableDataService {
       dynamicTyping: true,
       skipEmptyLines: 'greedy'
     } as const;
-    const raw = this.http.get(`/assets/table-data/${file}`, { responseType: 'text' });
+    const raw = this.http.get(`assets/table-data/${file}`, { responseType: 'text' });
     const parsed = raw.pipe(map(data => parse<TableData>(data, parseOptions)));
     const withColumns = parsed.pipe(map(result => ({
       columns: this.filterColumns(result.meta.fields ?? [], validColumns),

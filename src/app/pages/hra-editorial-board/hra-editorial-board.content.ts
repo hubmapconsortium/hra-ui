@@ -6,7 +6,7 @@ export const boardHeader: PageHeaderItems[] = [
   {
     title: 'Human Reference Atlas Editorial Board',
     subtitle: 'A panel of interdisciplinary experts advises on Human Reference Atlas policies, extensions, and applications',
-    image: '/assets/images/editorial_board.svg'
+    image: 'assets/images/editorial_board.svg'
   }
 ]
 

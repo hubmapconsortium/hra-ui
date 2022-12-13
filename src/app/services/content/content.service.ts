@@ -3,6 +3,7 @@ import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -17,17 +18,3 @@ export class ContentService {
       .pipe(map((yamlString) => parse(yamlString)));
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
