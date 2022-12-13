@@ -1,0 +1,17 @@
+:host {
+  max-width: 77rem;
+
+  .contact-button {
+    border: 0.063rem solid #444c65;
+    border-radius: 0.125rem;
+    background-color: #fafafa;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.4202rem;
+    letter-spacing: 0.005em;
+    color: #444c65;
+    height: 2.5rem;
+  }
+}

@@ -36,7 +36,7 @@ const routes: Routes = [
     resolve: { landingPage: ContentResolver },
   },
   {
-    path: 'ccf-overview-data',
+    path: 'overview-data',
     component: OverviewDataComponent,
     data: { contentFile: 'overview-data.content' },
     resolve: {
@@ -44,7 +44,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'ccf-anatomical-structures',
+    path: 'asctb-tables',
     component: CcfTablePageComponent,
     data: {
       contentFile: 'ccf-anatomical-structures.content',
@@ -64,7 +64,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'ccf-overview-tools',
+    path: 'overview-tools',
     component: OverviewToolsComponent,
     data: { contentFile: 'overview-tools.content' },
     resolve: {
@@ -82,7 +82,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'ccf-asctb-reporter',
+    path: 'asctb-reporter',
     component: CcfReporterPageComponent,
     data: {
       contentFile: 'ccf-asctb-reporter.content',
@@ -92,7 +92,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'ccf-exploration-user-interface',
+    path: 'exploration-user-interface',
     component: CcfExplorationUserInterfaceComponent,
     data: {
       contentFile: 'ccf-exploration-user-interface.content',
@@ -102,7 +102,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'ccf-hra-millitome',
+    path: 'hra-millitome',
     component: HraMillitomeComponent,
     data: {
       contentFile: 'hra-millitome.content',
@@ -112,7 +112,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'ccf-registration-user-interface',
+    path: 'registration-user-interface',
     component: RegistrationUserInterfaceComponent,
     data: {
       contentFile: 'registrationUserInterface.content',
@@ -122,7 +122,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'ccf-cell-population-graphs',
+    path: 'cell-population-graphs',
     component: CellPopulationGraphsComponent,
     data: {
       contentFile: 'ccf-cell-population-graphs.content',
@@ -132,7 +132,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'ccf-hra-api',
+    path: 'hra-api',
     component: HraApiComponent,
     data: {
       contentFile: 'hra-api.content',
@@ -142,13 +142,13 @@ const routes: Routes = [
     },
   },
   {
-    path: 'ccf-about',
+    path: 'about-mc-iu',
     component: AboutComponent,
     data: { contentFile: 'about.content' },
     resolve: { about: ContentResolver },
   },
   {
-    path: 'ccf-overview-training-outreach',
+    path: 'overview-training-outreach',
     component: OverviewTrainingOutreachComponent,
     data: {
       contentFile: 'overviewTrainingOutreach.content',
@@ -158,14 +158,14 @@ const routes: Routes = [
     },
   },
   {
-    path: 'ccf-omaps',
+    path: 'omap',
     component: OmapsComponent,
     data: { contentFile: 'omaps.content' },
     resolve: { omaps: ContentResolver },
   },
-  { path: 'ccf-3d-reference-library', component: ThreeDimRefPageComponent },
+  { path: '3d-reference-library', component: ThreeDimRefPageComponent },
   {
-    path: 'ccf-asctb-azimuth',
+    path: 'asctb-azimuth',
     component: CcfAsctbAzimuthComponent,
     data: {
       contentFile: 'ccfAsctbAzimuth.content',
@@ -173,7 +173,7 @@ const routes: Routes = [
     resolve: { ccfAsctbAzimuth: ContentResolver },
   },
   {
-    path: 'ccf-hra-usage-metrics',
+    path: 'usage-metrics',
     component: HraUsageMetricsComponent,
     data: {
       contentFile: 'hra-usage-metrics.content',
@@ -190,7 +190,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'ccf-hra-sop',
+    path: 'standard-operating-procedures',
     component: HraSopComponent,
     data: {
       contentFile: 'hra-sop.content',
@@ -200,7 +200,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'ccf-kaggle-twentyone',
+    path: 'kaggle-one',
     component: KaggleTwentyoneComponent,
     data: {
       contentFile: 'kaggle-twentyone.content',
@@ -210,7 +210,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'ccf-kaggle-two',
+    path: 'kaggle-two',
     component: KaggleTwoComponent,
     data: {
       contentFile: 'kaggle-two.content',
@@ -220,7 +220,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'ccf-organ-vr-gallery',
+    path: 'organ-vr-gallery',
     component: CcfOrganVrGalleryComponent,
     data: {
       contentFile: 'ccf-organ-vr-gallery.content',
@@ -254,4 +254,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

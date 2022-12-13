@@ -35,6 +35,8 @@ import { CcfOrganVrGalleryModule } from './pages/ccf-organ-vr-gallery/ccf-organ-
 import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-google-analytics';
 import { OmapFaqModule } from './pages/omap-faq/omap-faq.module';
 import { MarkdownModule } from 'ngx-markdown';
+import { FourthReleaseNotesModule } from './pages/fourth-release-notes/fourth-release-notes.module';
+import { ContactCardModule } from './components/contact-card/contact-card.module';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,7 @@ import { MarkdownModule } from 'ngx-markdown';
     NgxGoogleAnalyticsModule.forRoot('traking-code'),
     NgxGoogleAnalyticsRouterModule,
     OmapFaqModule,
+    FourthReleaseNotesModule,
     MarkdownModule.forRoot({ sanitize: SecurityContext.NONE })
   ],
   providers: [],

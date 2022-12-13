@@ -51,4 +51,8 @@ export class TableComponent {
   isTotalRequired(column: any): boolean {
     return column.isTotalRequired
   }
+
+  getAlignmentClass(column: HeaderData): string {
+    return `alignment-${column.alignment ?? 'default'}`;
+  }
 }

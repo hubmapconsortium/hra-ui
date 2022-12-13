@@ -98,7 +98,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             expandedImage: '',
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/3d-vh-f-mammary-gland-l.html',
             alt: 'The Mammary Gland, female, Left',
-            threeDimImage: 'assets/models/3d-vh-f-mammary-gland-l.glb'
+            threeDimImage: 'https://ccf-ontology.hubmapconsortium.org/objects/v1.3/3d-vh-f-mammary-gland-l.glb'
           },
           {
             name: 'Female R',
@@ -106,7 +106,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             expandedImage: '',
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/3d-vh-f-mammary-gland-r.html',
             alt: 'The Mammary Gland, female, Right',
-            threeDimImage: 'assets/models/3d-vh-f-mammary-gland-r.glb',
+            threeDimImage: 'https://ccf-ontology.hubmapconsortium.org/objects/v1.3/3d-vh-f-mammary-gland-r.glb',
           },
         ],
       },
@@ -121,7 +121,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             //update url
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/ref-organs/brain-female.html',
             alt: 'The skin, female',
-            threeDimImage: 'assets/models/3d-vh-f-skin.glb',
+            threeDimImage: 'https://ccf-ontology.hubmapconsortium.org/objects/v1.3/3d-vh-f-skin.glb',
           },
           {
             name: 'Skin United',
@@ -130,7 +130,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             //update url
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/ref-organs/brain-female.html',
             alt: 'The skin, female',
-            threeDimImage: 'assets/models/3d-vh-f-united.glb',
+            threeDimImage: 'https://ccf-ontology.hubmapconsortium.org/objects/v1.3/3d-vh-f-united.glb',
           }
         ],
       },
@@ -145,7 +145,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/brain-female.html',
             alt: 'The Allen brain, female',
             threeDimImage:
-              'assets/models/Allen_F_Brain.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/Allen_F_Brain.glb',
           },
           {
             name: 'Male',
@@ -154,7 +154,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/brain-male.html',
             alt: 'The Allen brain, male',
             threeDimImage:
-              'assets/models/Allen_M_Brain.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/Allen_M_Brain.glb',
           },
         ],
       },
@@ -169,7 +169,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/blood-vasculature-female.html',
             alt: 'The Vasculature, blood, female',
             threeDimImage:
-              'assets/models/VH_F_Blood_Vasculature.glb'
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Blood_Vasculature.glb'
           },
           {
             name: 'Male',
@@ -178,7 +178,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/blood-vasculature-male.html',
             alt: 'The Vasculature, blood, male',
             threeDimImage:
-            'assets/models/VH_M_Blood_Vasculature.glb',
+            'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Blood_Vasculature.glb',
           },
         ],
       },
@@ -193,7 +193,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/pelvis-female.html',
             alt: 'The pelvis, female',
             threeDimImage:
-              'assets/models/VH_F_Pelvis.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Pelvis.glb',
           },
           {
             name: 'Male',
@@ -202,7 +202,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/pelvis-male.html',
             alt: 'The pelvis, male',
             threeDimImage:
-              'assets/models/VH_M_Pelvis.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Pelvis.glb',
           },
         ],
       },
@@ -217,7 +217,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/eye-female-left.html',
             alt: 'Eye, Female, L',
             threeDimImage:
-              'assets/models/VH_F_Eye_L.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Eye_L.glb',
           },
           {
             name: 'Female, R',
@@ -226,7 +226,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/eye-female-right.html',
             alt: 'Eye, Female, R',
             threeDimImage:
-              'assets/models/VH_F_Eye_R.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Eye_R.glb',
           },
           {
             name: 'Male, L',
@@ -235,7 +235,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/eye-male-left.html',
             alt: 'Eye, Male, L',
             threeDimImage:
-              'assets/models/VH_M_Eye_L.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Eye_L.glb',
           },
           {
             name: 'Male, R',
@@ -244,7 +244,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/eye-male-right.html',
             alt: 'Eye, Male, R',
             threeDimImage:
-              'assets/models/VH_M_Eye_R.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Eye_R.glb',
           },
         ],
       },
@@ -259,7 +259,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/fallopian-tube-female-left.html',
             alt: 'Fallopian tube, female, left',
             threeDimImage:
-              'assets/models/VH_F_Fallopian_Tube_L.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Fallopian_Tube_L.glb',
           },
           {
             name: 'Female, R',
@@ -268,7 +268,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/fallopian-tube-female-right.html',
             alt: 'Fallopian tube, female, left',
             threeDimImage:
-              'assets/models/VH_F_Fallopian_Tube_R.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Fallopian_Tube_R.glb',
           },
         ],
       },
@@ -283,7 +283,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/heart-female.html',
             alt: 'The heart, female',
             threeDimImage:
-              'assets/models/VH_F_Heart.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Heart.glb',
           },
           {
             name: 'Male',
@@ -292,7 +292,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/heart-male.html',
             alt: 'The heart, male',
             threeDimImage:
-              'assets/models/VH_M_Heart.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Heart.glb',
           },
         ],
       },
@@ -307,17 +307,18 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/kidney-female-left.html',
             alt: 'The kidney, left, female',
             threeDimImage:
-              'assets/models/VH_F_Kidney_L.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Kidney_L.glb',
           },
           {
             name: 'Female, R',
             image: '',
             expandedImage: '',
             //fix url
+            //fix url
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/ref-organs/kidney-female-right.html',
             alt: 'The kidney, right, female',
             threeDimImage:
-              'assets/models/VH_F_Kidney_R.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Kidney_R.glb',
           },
           {
             name: 'Male, L',
@@ -326,7 +327,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/kidney-male-left.html',
             alt: 'The kidney, left, male',
             threeDimImage:
-              'assets/models/VH_M_Kidney_L.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Kidney_L.glb',
           },
           {
             name: 'Male, R',
@@ -335,7 +336,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/kidney-male-right.html',
             alt: 'The kidney, right, male',
             threeDimImage:
-              'assets/models/VH_M_Kidney_R.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Kidney_R.glb',
           },
         ],
       },
@@ -350,7 +351,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/knee-female-left.html',
             alt: 'The knee, left, female',
             threeDimImage:
-              'assets/models/VH_F_Knee_L.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Knee_L.glb',
           },
           {
             name: 'Female, R',
@@ -359,7 +360,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/knee-female-right.html',
             alt: 'The knee, right, female',
             threeDimImage:
-              'assets/models/VH_F_Knee_R.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Knee_R.glb',
           },
           {
             name: 'Male, L',
@@ -368,7 +369,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/knee-male-left.html',
             alt: 'The knee, left, male',
             threeDimImage:
-              'assets/models/VH_M_Knee_L.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Knee_L.glb',
           },
           {
             name: 'Male, R',
@@ -377,7 +378,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/knee-male-right.html',
             alt: 'The knee, right, male',
             threeDimImage:
-              'assets/models/VH_M_Knee_R.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Knee_R.glb',
           },
         ],
       },
@@ -392,7 +393,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/large-intestine-female.html',
             alt: 'The large intestine, female',
             threeDimImage:
-              'assets/models/SBU_F_Intestine_Large.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/SBU_F_Intestine_Large.glb',
           },
           {
             name: 'Male',
@@ -401,7 +402,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/large-intestine-male.html',
             alt: 'The large intestine, male',
             threeDimImage:
-              'assets/models/SBU_M_Intestine_Large.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/SBU_M_Intestine_Large.glb',
           },
         ],
       },
@@ -416,7 +417,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/liver-female.html',
             alt: 'Liver, female',
             threeDimImage:
-              'assets/models/VH_F_Liver.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Liver.glb',
           },
           {
             name: 'Male',
@@ -425,7 +426,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/liver-male.html',
             alt: 'Liver, male',
             threeDimImage:
-              'assets/models/VH_M_Liver.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Liver.glb',
           },
         ],
       },
@@ -440,7 +441,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/lung-female.html',
             alt: 'The Lungs, female',
             threeDimImage:
-              'assets/models/VH_F_Lung.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Lung.glb',
           },
           {
             name: 'Male',
@@ -449,7 +450,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/lung-male.html',
             alt: 'The Lungs, male',
             threeDimImage:
-              'assets/models/VH_M_Lung.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Lung.glb',
           },
         ],
       },
@@ -464,7 +465,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/lymph-node-female.html',
             alt: 'The lymph nodes, female',
             threeDimImage:
-              'assets/models/NIH_F_Lymph_Node.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/NIH_F_Lymph_Node.glb',
           },
           {
             name: 'Male',
@@ -473,7 +474,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/lymph-node-male.html',
             alt: 'The lymph nodes, male',
             threeDimImage:
-              'assets/models/NIH_M_Lymph_Node.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/NIH_M_Lymph_Node.glb',
           },
         ],
       },
@@ -488,7 +489,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/ovary-female-left.html',
             alt: 'The ovary, female, left',
             threeDimImage:
-              'assets/models/VH_F_Ovary_L.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Ovary_L.glb',
           },
           {
             name: 'Female R',
@@ -497,7 +498,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/ovary-female-right.html',
             alt: 'The ovary, female, right',
             threeDimImage:
-              'assets/models/VH_F_Ovary_R.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Ovary_R.glb',
           },
         ],
       },
@@ -512,7 +513,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/pancreas-female.html',
             alt: 'The pancreas, female',
             threeDimImage:
-              'assets/models/VH_F_Pancreas.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Pancreas.glb',
           },
           {
             name: 'Male',
@@ -521,7 +522,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/pancreas-male.html',
             alt: 'The pancreas, male',
             threeDimImage:
-              'assets/models/VH_M_Pancreas.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Pancreas.glb',
           },
         ],
       },
@@ -536,7 +537,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/placenta-full-term-female.html',
             alt: 'The placenta, female',
             threeDimImage:
-              'assets/models/VH_F_Placenta.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Placenta.glb',
           },
         ],
       },
@@ -551,7 +552,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/prostate-male.html',
             alt: 'The prostate, male',
             threeDimImage:
-              'assets/models/VH_M_Prostate.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Prostate.glb',
           },
         ],
       },
@@ -566,7 +567,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/small-intestine-female.html',
             alt: 'The small intestine, female',
             threeDimImage:
-              'assets/models/VH_F_Small_Intestine.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Small_Intestine.glb',
           },
           {
             name: 'Male',
@@ -575,7 +576,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/small-intestine-male.html',
             alt: 'The small intestine, male',
             threeDimImage:
-              'assets/models/VH_M_Small_Intestine.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Small_Intestine.glb',
           },
         ],
       },
@@ -590,7 +591,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/spinal-cord-female.html',
             alt: 'The spinal cord, female',
             threeDimImage:
-              'assets/models/VH_F_Spinal_Cord.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Spinal_Cord.glb',
           },
           {
             name: 'Male',
@@ -599,7 +600,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/spinal-cord-male.html',
             alt: 'The spinal cord, male',
             threeDimImage:
-              'assets/models/VH_M_Spinal_Cord.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Spinal_Cord.glb',
           },
         ],
       },
@@ -614,7 +615,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/spleen-female.html',
             alt: 'The spleen, female',
             threeDimImage:
-              'assets/models/VH_F_Spleen.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Spleen.glb',
           },
           {
             name: 'Male',
@@ -623,7 +624,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/spleen-male.html',
             alt: 'The spleen, male',
             threeDimImage:
-              'assets/models/VH_M_Spleen.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Spleen.glb',
           },
         ],
       },
@@ -638,7 +639,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/thymus-female.html',
             alt: 'The thymus, female',
             threeDimImage:
-              'assets/models/VH_F_Thymus.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Thymus.glb',
           },
           {
             name: 'Male',
@@ -647,7 +648,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/thymus-male.html',
             alt: 'The thymus, male',
             threeDimImage:
-              'assets/models/VH_M_Thymus.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Thymus.glb',
           },
         ],
       },
@@ -663,7 +664,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/ureter-female-left.html',
             alt: 'The ureter, left, female',
             threeDimImage:
-              'assets/models/VH_F_Ureter_L.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Ureter_L.glb',
           },
           {
             name: 'Female R',
@@ -672,7 +673,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/ureter-female-right.html',
             alt: 'The ureter, right, female',
             threeDimImage:
-              'assets/models/VH_F_Ureter_R.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Ureter_R.glb',
           },
           {
             name: 'Male L',
@@ -681,7 +682,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/ureter-male-left.html',
             alt: 'The ureter, left, male',
             threeDimImage:
-              'assets/models/VH_M_Ureter_L.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Ureter_L.glb',
           },
           {
             name: 'Male R',
@@ -690,7 +691,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/ureter-male-right.html',
             alt: 'The ureter, right, male',
             threeDimImage:
-              'assets/models/VH_M_Ureter_R.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Ureter_R.glb',
           },
         ],
       },
@@ -706,7 +707,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/urinary-bladder-female.html',
             alt: 'The urinary bladder, female',
             threeDimImage:
-              'assets/models/VH_F_Urinary_Bladder.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Urinary_Bladder.glb',
           },
           {
             name: 'Male',
@@ -715,7 +716,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/urinary-bladder-male.html',
             alt: 'The urinary bladder, male',
             threeDimImage:
-              'assets/models/VH_M_Urinary_Bladder.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Urinary_Bladder.glb',
           },
         ],
       },
@@ -730,7 +731,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/uterus-female.html',
             alt: 'The uterus, female',
             threeDimImage:
-              'assets/models/VH_F_Uterus.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Uterus.glb',
           },
         ],
       },
@@ -745,7 +746,7 @@ export const threeDimOrganInfo: VersionOrgans[] = [
             url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/3d-vh-f-united.html',
             alt: 'All organs, female',
             threeDimImage:
-              'assets/models/3d-vh-f-united.glb',
+              'https://ccf-ontology.hubmapconsortium.org/objects/v1.3/3d-vh-f-united.glb',
           },
           {
             name: 'Male',

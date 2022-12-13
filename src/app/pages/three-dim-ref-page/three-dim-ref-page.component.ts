@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ChooseVersion } from 'src/app/components/choose-version/choose-version';
+import { PageDataItems } from 'src/app/components/page-data/page-data';
+import { PageHeaderItems } from 'src/app/components/page-header/page-header-items';
 import { OrganData, VersionOrgans } from 'src/app/components/two-dim-image/two-dim-image';
 import { headerData, overviewData, sopData, termsOfUseData, threeDimOrganInfo, versionData } from './three-dim-ref-page.content';
 
@@ -27,7 +29,13 @@ export class ThreeDimRefPageComponent implements OnInit {
   information: VersionOrgans;
   placeholderDate: ChooseVersion;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    // const data = activatedRoute.snapshot.data['threeDim'];
+    // this.headerData = data.headerData
+    // this.termsOfUseData = data.termsOfUseData
+    // this.referencesData = data.referencesData
+    // this.acknowledgmentsData = data.acknowledgmentsData
+  }
 
   ngOnInit(): void {
     this.placeholderDate = versionData[0];

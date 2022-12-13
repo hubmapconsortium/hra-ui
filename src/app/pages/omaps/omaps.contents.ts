@@ -89,47 +89,60 @@ export const acknowledgementsData: PageDataItems[] = [
 ]
 
 export const omapsVersionData: ChooseVersion[] = [
-    { release: '4th HRA Release (v1.3), December 2022', file: 'omaps_release3.csv', version: '4' },
+    { release: '4th HRA Release (v1.3), December 2022', file: 'omaps_release4.csv', version: '4' },
     { release: '3rd HRA Release (v1.2), June 2022', file: 'omaps_release3.csv', version: '3' },
     { release: '2nd HRA Release (v1.1), December 2021', file: 'omaps_release2.csv', version: '2' }
 ]
 
 export const columnHeaders: HeaderData[] = [
     {
+        columnDef: 'omapId',
+        header: 'OMAP ID',
+        cell: (element: TableData) => `${element['omapId']}`,
+        alignment: "left"
+    },
+    {
         columnDef: 'organ',
         header: 'Organ',
-        cell: (element: TableData) => `<a class="cell-link" href="${element['url'] || 'TODO:Please add a url column to this .csv!'}">${element['organ']}</a>`
+        cell: (element: TableData) => `<a class="cell-link" href="${element['url'] || 'TODO:Please add a url column to this .csv!'}">${element['organ']}</a>`,
+        alignment: "start"
     },
     {
         columnDef: 'tissuePreservationMethod',
         header: 'Tissue Preservation Method',
-        cell: (element: TableData) => `${element['tissuePreservationMethod']}`
+        cell: (element: TableData) => `${element['tissuePreservationMethod']}`,
+        alignment: "start"
     },
     {
         columnDef: 'imagingMethod',
         header: 'Multiplexed antibody-based imaging method',
-        cell: (element: TableData) => `${element['imagingMethod']}`
+        cell: (element: TableData) => `${element['imagingMethod']}`,
+        alignment: "start"
     },
     {
-        columnDef: 'download',
-        header: 'Download',
-        cell: (element: TableData) => `<a class="cell-link" href="${element['download'] || 'TODO:Please add a url column to this .csv!'}">CSV</a> |<a class="cell-link" href="${element['download'] || 'TODO:Please add a url column to this .csv!'}">XLSX</a>`,
-        sorting: false
+        columnDef: 'csv',
+        header: `Download`,
+        cell: (element: TableData) => `<a class="cell-link" href="${element['csv'] || 'TODO:Please add a url column to this .csv!'}">CSV</a> | <a class="cell-link" href="${element['xlsx'] || 'TODO:Please add a url column to this .csv!'}">XLSX</a>`,
+        sorting: false,
+        isTotalRequired: true
     },
     {
         columnDef: 'as',
         header: '#AS',
-        cell: (element: TableData) => `${element['as']}`
+        cell: (element: TableData) => `${element['as']}`,
+        alignment: "end"
     },
     {
         columnDef: 'ct',
         header: '#CT',
-        cell: (element: TableData) => `${element['ct']}`
+        cell: (element: TableData) => `${element['ct']}`,
+        alignment: "end"
     },
     {
         columnDef: 'bp',
         header: '#BP',
-        cell: (element: TableData) => `${element['bp']}`
+        cell: (element: TableData) => `${element['bp']}`,
+        alignment: "end"
     },
 ];
 

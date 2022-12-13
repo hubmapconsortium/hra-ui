@@ -6,6 +6,8 @@ export interface HeaderData {
   cell: (element: TableData) => string;
   isTotalRequired?: boolean;
   sorting?: boolean;
+  alignment?: string;
+  justifyContent?: string;
 }
 
 export interface ExtraHeader {

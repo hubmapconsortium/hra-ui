@@ -23,30 +23,30 @@ export const tableOfContents: PageDataItems[] = [
         descriptions: `<ol>
         <li>General Questions</li>
         <ol type="a">
-            <li><a href="omap-faq#what-is-an-omap">What is an OMAP?</a></li>
-            <li><a href="omap-faq#how-are-omaps-different-from-other-validated-antibody-resources">How are OMAPs different from other validated antibody resources?</a></li>
-            <li><a href="omap-faq#which-multiplexed-antibody-based-imaging-techniques-are-supported">Which multiplexed antibody-based imaging techniques are supported?</a></li>
-            <li><a href="omap-faq#are-omaps-just-for-healthy-human-tissues">Are OMAPs just for healthy human tissues?</a></li>
-            <li><a href="omap-faq#how-many-antibodies-are-included-in-an-omap">How many antibodies are included in an OMAP?</a></li>
-            <li><a href="omap-faq#how-do-i-cite-an-existing-omap">How do I cite an existing OMAP?</a></li>
-            <li><a href="omap-faq#how-do-i-cite-omaps-overall">How do I cite OMAPs overall?</a></li>
+            <li><a href="faq/omap#what-is-an-omap">What is an OMAP?</a></li>
+            <li><a href="faq/omap#how-are-omaps-different-from-other-validated-antibody-resources">How are OMAPs different from other validated antibody resources?</a></li>
+            <li><a href="faq/omap#which-multiplexed-antibody-based-imaging-techniques-are-supported">Which multiplexed antibody-based imaging techniques are supported?</a></li>
+            <li><a href="faq/omap#are-omaps-just-for-healthy-human-tissues">Are OMAPs just for healthy human tissues?</a></li>
+            <li><a href="faq/omap#how-many-antibodies-are-included-in-an-omap">How many antibodies are included in an OMAP?</a></li>
+            <li><a href="faq/omap#how-do-i-cite-an-existing-omap">How do I cite an existing OMAP?</a></li>
+            <li><a href="faq/omap#how-do-i-cite-omaps-overall">How do I cite OMAPs overall?</a></li>
         </ol>
         <li>Authoring OMAPs</li>
         <ol type="a">
-            <li><a href="omap-faq#how-do-i-author-an-omap">How do I author an OMAP?</a></li>
-            <li><a href="omap-faq#must-i-be-a-member-of-the-human-biomolecular-atlas-program-hubmap-to-author-an-omap">Must I be a member of the Human Biomolecular Atlas Program (HuBMAP) to author an OMAP?</a></li>
-            <li><a href="omap-faq#is-there-a-working-group-i-may-join-to-support-authoring-an-omap">Is there a working group I may join to support authoring an OMAP?</a></li>
-            <li><a href="omap-faq#how-do-i-report-imaging-methods-that-employ-oligo-conjugated-antibodies-and-fluorescent-reporters-for-marker-detection">How do I report imaging methods that employ oligo-conjugated antibodies and fluorescent reporters for marker detection?</a></li>
-            <li><a href="omap-faq#should-i-include-antigen-retrieval-conditions-for-omaps-designed-for-formalin-fixed-paraffin-embedded-ffpe-specimens">Should I include antigen retrieval conditions for OMAPs designed for Formalin Fixed Paraffin Embedded (FFPE) specimens?</a></li>
-            <li><a href="omap-faq#how-do-i-report-the-use-of-unconjugated-primaries-detected-with-secondary-antibodies">How do I report the use of unconjugated primaries detected with secondary antibodies?</a></li>
-            <li><a href="omap-faq#how-do-i-report-antibodies-used-for-non-cyclic-non-fluorescent-based-methods-such-as-imaging-mass-cytometry">How do I report antibodies used for non-cyclic, non-fluorescent based methods such as imaging mass cytometry?</a></li>
-            <li><a href="omap-faq#how-do-i-report-the-use-of-custom-reagents-conjugated-in-house-or-purchased-from-a-vendor">How do I report the use of custom reagents conjugated in house or purchased from a vendor?</a></li>
-            <li><a href="omap-faq#should-i-include-an-omap-in-my-manuscript-that-uses-multiplexed-antibody-based-imaging">Should I include an OMAP in my manuscript that uses multiplexed antibody-based imaging?</a></li>
-            <li><a href="omap-faq#as-an-omap-author-who-has-published-my-omap-with-a-peer-reviewed-journal-why-should-i-also-publish-my-omap-on-the-hubmap-hra-portal">As an OMAP author who has published my OMAP with a peer reviewed journal, why should I also publish my OMAP on the HuBMAP HRA Portal?</a></li>
-            <li><a href="omap-faq#do-omaps-need-to-accompany-published-work-featuring-multiplexed-antibody-based-imaging">Do OMAPs need to accompany published work featuring multiplexed antibody-based imaging?</a></li>
-            <li><a href="omap-faq#can-i-make-changes-to-an-existing-omap">Can I make changes to an existing OMAP?</a></li>
-            <li><a href="omap-faq#can-i-expand-upon-an-existing-omap">Can I expand upon an existing OMAP?</a></li>
-            <li><a href="omap-faq#are-omap-revisions-versioned">Are OMAP revisions versioned?</a></li>
+            <li><a href="faq/omap#how-do-i-author-an-omap">How do I author an OMAP?</a></li>
+            <li><a href="faq/omap#must-i-be-a-member-of-the-human-biomolecular-atlas-program-hubmap-to-author-an-omap">Must I be a member of the Human Biomolecular Atlas Program (HuBMAP) to author an OMAP?</a></li>
+            <li><a href="faq/omap#is-there-a-working-group-i-may-join-to-support-authoring-an-omap">Is there a working group I may join to support authoring an OMAP?</a></li>
+            <li><a href="faq/omap#how-do-i-report-imaging-methods-that-employ-oligo-conjugated-antibodies-and-fluorescent-reporters-for-marker-detection">How do I report imaging methods that employ oligo-conjugated antibodies and fluorescent reporters for marker detection?</a></li>
+            <li><a href="faq/omap#should-i-include-antigen-retrieval-conditions-for-omaps-designed-for-formalin-fixed-paraffin-embedded-ffpe-specimens">Should I include antigen retrieval conditions for OMAPs designed for Formalin Fixed Paraffin Embedded (FFPE) specimens?</a></li>
+            <li><a href="faq/omap#how-do-i-report-the-use-of-unconjugated-primaries-detected-with-secondary-antibodies">How do I report the use of unconjugated primaries detected with secondary antibodies?</a></li>
+            <li><a href="faq/omap#how-do-i-report-antibodies-used-for-non-cyclic-non-fluorescent-based-methods-such-as-imaging-mass-cytometry">How do I report antibodies used for non-cyclic, non-fluorescent based methods such as imaging mass cytometry?</a></li>
+            <li><a href="faq/omap#how-do-i-report-the-use-of-custom-reagents-conjugated-in-house-or-purchased-from-a-vendor">How do I report the use of custom reagents conjugated in house or purchased from a vendor?</a></li>
+            <li><a href="faq/omap#should-i-include-an-omap-in-my-manuscript-that-uses-multiplexed-antibody-based-imaging">Should I include an OMAP in my manuscript that uses multiplexed antibody-based imaging?</a></li>
+            <li><a href="faq/omap#as-an-omap-author-who-has-published-my-omap-with-a-peer-reviewed-journal-why-should-i-also-publish-my-omap-on-the-hubmap-hra-portal">As an OMAP author who has published my OMAP with a peer reviewed journal, why should I also publish my OMAP on the HuBMAP HRA Portal?</a></li>
+            <li><a href="faq/omap#do-omaps-need-to-accompany-published-work-featuring-multiplexed-antibody-based-imaging">Do OMAPs need to accompany published work featuring multiplexed antibody-based imaging?</a></li>
+            <li><a href="faq/omap#can-i-make-changes-to-an-existing-omap">Can I make changes to an existing OMAP?</a></li>
+            <li><a href="faq/omap#can-i-expand-upon-an-existing-omap">Can I expand upon an existing OMAP?</a></li>
+            <li><a href="faq/omap#are-omap-revisions-versioned">Are OMAP revisions versioned?</a></li>
          </ol>
         </ol>`
     }

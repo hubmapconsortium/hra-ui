@@ -32,7 +32,6 @@ export class TwoDimRefPageComponent implements OnInit {
   version: ChooseVersion;
   organInfo: VersionOrgans[];
 
-
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     const data = activatedRoute.snapshot.data['twoDimRefPage']
     this.twoDimHeaderCardDetails = data.twoDimHeaderCardDetails

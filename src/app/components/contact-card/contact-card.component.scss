@@ -1,0 +1,17 @@
+:host {
+  ::ng-deep .mat-card-image {
+    width: unset;
+  }
+
+  .contact-card {
+    height: 417px;
+    width: 280px;
+    padding: 2rem;
+    display: flex;
+  }
+
+  .mat-card-image{
+    height: 168px;
+    width: 168px;
+  }
+}

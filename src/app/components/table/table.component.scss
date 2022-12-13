@@ -31,6 +31,7 @@
     line-height: 1.5rem;
     letter-spacing: 0.005rem;
     color: #212121;
+    text-align: right;
   }
 
   ::ng-deep table > tbody > tr > td:nth-child(0) {
@@ -60,6 +61,7 @@
 
   .mat-column-organ {
     width: 12rem;
+    justify-content: left !important;
   }
 
   .mat-column-Name {
@@ -108,25 +110,33 @@
     width: fit-content;
   }
 
-  table td {
-    text-align: right;
-  }
-
   table td:first-child {
     text-align: left;
     overflow: visible;
     white-space: break-spaces;
   }
 
-  ::ng-deep
-    .mat-sort-header-container:not(
-      th:first-child > .mat-sort-header-container
-    ) {
+  .alignment-end{
+    text-align: end;
+  }
+
+  .alignment-default{
+    text-align: right;
+  }
+
+  ::ng-deep .alignment-end > .mat-sort-header-container{
     justify-content: end;
   }
 
   ::ng-deep .mat-sort-header-content {
     white-space: break-spaces;
-    text-align: right;
+    text-align: left;
+  }
+
+  ::ng-deep .mat-column-csv{
+    height: inherit;
+    display: flex;
+    padding: 0.5rem;
+    align-items: center;
   }
 }
