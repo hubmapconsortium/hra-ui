@@ -32,6 +32,10 @@ jobs:
       - name: Setup Netlify files
         run: |
           echo '/* /index.html 200' > dist/ccf/_redirects
+      - name: Setup GitHub Pages files
+        run: |
+          cp dist/ccf/index.html dist/ccf/404.html
+          touch dist/ccf/.nojekyll
 
       - uses: peaceiris/actions-gh-pages@v3
         with:
