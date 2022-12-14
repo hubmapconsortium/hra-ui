@@ -246,7 +246,7 @@ resolve:{
       hraEditorialBoard: ContentResolver,
     },
   },
-  { path: 'omap-faq', component: OmapFaqComponent },
+  { path: 'faq/omap', component: OmapFaqComponent },
   { path: '', redirectTo: '', pathMatch: 'full' },
   {
     path: '**',
