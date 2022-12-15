@@ -8,6 +8,7 @@ import { SopLinksModule } from 'src/app/components/sop-links/sop-links.module'
 import { OrganTabsModule } from 'src/app/components/organ-tabs/organ-tabs.module';
 import { TwoDimImageModule } from 'src/app/components/two-dim-image/two-dim-image.module';
 import { ChooseVersionModule } from 'src/app/components/choose-version/choose-version.module';
+import { AnnouncementCardModule } from 'src/app/components/announcement-card/announcement-card.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ChooseVersionModule } from 'src/app/components/choose-version/choose-ve
     SopLinksModule,
     OrganTabsModule,
     TwoDimImageModule,
-    ChooseVersionModule
+    ChooseVersionModule,
+    AnnouncementCardModule
 
   ],
   providers: [],

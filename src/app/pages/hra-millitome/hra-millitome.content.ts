@@ -44,12 +44,14 @@ export const headerInfo: HeaderData[] = [
     {
       columnDef: 'sex',
       header: 'Sex',
-      cell: (element: TableData) => `${element['sex']}`
+      cell: (element: TableData) => `${element['sex']}`,
+      alignment: "left"
     },
     {
       columnDef: 'left/right',
       header: 'Left/Right',
-      cell: (element: TableData) => `${element['left/right']}`
+      cell: (element: TableData) => `${element['left/right']}`,
+      alignment: "left"
     }
   ];
 

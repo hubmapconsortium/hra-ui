@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { PageDataModule } from 'src/app/components/page-data/page-data.module';
 import { HraUsageMetricsComponent } from './hra-usage-metrics.component';
+import { AnnouncementCardModule } from 'src/app/components/announcement-card/announcement-card.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { HraUsageMetricsComponent } from './hra-usage-metrics.component';
     BrowserModule,
     BrowserAnimationsModule,
     PageHeaderModule,
-    PageDataModule
+    PageDataModule,
+    AnnouncementCardModule
   ],
   providers: [],
   bootstrap: []

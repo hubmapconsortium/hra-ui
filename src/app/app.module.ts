@@ -36,7 +36,7 @@ import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-go
 import { OmapFaqModule } from './pages/omap-faq/omap-faq.module';
 import { MarkdownModule } from 'ngx-markdown';
 import { FourthReleaseNotesModule } from './pages/fourth-release-notes/fourth-release-notes.module';
-import { ContactCardModule } from './components/contact-card/contact-card.module';
+import { AnnouncementCardModule } from './components/announcement-card/announcement-card.module';
 
 @NgModule({
   declarations: [
@@ -80,7 +80,8 @@ import { ContactCardModule } from './components/contact-card/contact-card.module
     NgxGoogleAnalyticsRouterModule,
     OmapFaqModule,
     FourthReleaseNotesModule,
-    MarkdownModule.forRoot({ sanitize: SecurityContext.NONE })
+    MarkdownModule.forRoot({ sanitize: SecurityContext.NONE }),
+    AnnouncementCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

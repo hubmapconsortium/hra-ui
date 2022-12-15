@@ -9,6 +9,7 @@ import { CcfTablePageComponent } from './ccf-asctb-table-page.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MarkdownModule } from 'ngx-markdown';
+import { AnnouncementCardModule } from 'src/app/components/announcement-card/announcement-card.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MarkdownModule } from 'ngx-markdown';
     SopLinksModule,
     ChooseVersionModule,
     TableModule,
-    MarkdownModule
+    MarkdownModule,
+    AnnouncementCardModule
   ],
   providers: [],
   bootstrap: []

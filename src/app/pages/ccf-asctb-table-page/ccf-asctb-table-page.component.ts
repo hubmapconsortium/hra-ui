@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PageHeaderItems } from 'src/app/components/page-header/page-header-items';
 import { PageDataItems } from 'src/app/components/page-data/page-data';
 import { SopLinks } from 'src/app/components/sop-links/sop-links';
+import { tissueData } from '../tissue-info-page/tissue-info-page.contents';
 
 @Component({
   selector: 'asctb-tables',
@@ -20,6 +21,8 @@ export class CcfTablePageComponent implements OnInit {
   overviewData: PageDataItems[];
   existingTablesData: PageDataItems[];
   exploreTablesData: PageDataItems[];
+  tablesUnderDevelopmentData: PageDataItems[];
+  acknowledgmentsData: PageDataItems[];
   sopLinksData: SopLinks[]
   displayedColumnsData = displayedColumnsData
   headerInfo = headerInfo
@@ -29,7 +32,7 @@ export class CcfTablePageComponent implements OnInit {
   tableData: Observable<TableData[]> = EMPTY;
   columns: Observable<string[]> = EMPTY;
 
-  constructor(private readonly dataService: TableDataService, private readonly route: ActivatedRoute) { 
+  constructor(private readonly dataService: TableDataService, private readonly route: ActivatedRoute) {
     const data = route.snapshot.data['ccfTablePage']
     this.headerCardDetails = data.headerCardDetails
     this.overviewData = data.overviewData
@@ -37,6 +40,8 @@ export class CcfTablePageComponent implements OnInit {
     this.exploreTablesData = data.exploreTablesData
     this.sopLinksData = data.sopLinksData
     this.versionData = data.versionData
+    this.tablesUnderDevelopmentData = data.tablesUnderDevelopmentData
+    this.acknowledgmentsData = data.acknowledgmentsData
   }
 
   setData(version: ChooseVersion): void {

@@ -1,7 +1,15 @@
 <ccf-page-header [headerCard]="headerData"></ccf-page-header>
-<ccf-page-data [data]="overviewData"></ccf-page-data>
-<ccf-sop-links [links]="sopData"></ccf-sop-links>
-<ccf-choose-version [releaseDate]="versionData" [selectedDate]="placeholderDate" (selectedVersion)="setVersion($event.version)"></ccf-choose-version>
+<announcement-card class="description"></announcement-card>
+<ccf-page-data [data]="overviewData" class="description"></ccf-page-data>
+<ccf-sop-links [links]="sopData" class="description"></ccf-sop-links>
+<ccf-choose-version [releaseDate]="versionData" [selectedDate]="placeholderDate" (selectedVersion)="setVersion($event.version)" class="description"></ccf-choose-version>
 <ccf-organ-tabs [tabs]="tabsImages" [currentOrgan]="organData[0].name" (organName)="setOrgan($event)"></ccf-organ-tabs>
 <ccf-two-dim-image [cardTitle]="cardTitle" [tissueData]="organData" [isMultirow]="false"></ccf-two-dim-image>
-<ccf-page-data [data]="termsOfUseData"></ccf-page-data>
+<ccf-page-data [data]="termsOfUseData" class="description"></ccf-page-data>
+<ccf-page-data [data]="licenseData" class="description"></ccf-page-data>
+<ccf-page-data [data]="citationData" class="description"></ccf-page-data>
+<ccf-page-data [data]="referenceOrgans" class="description"></ccf-page-data>
+<ccf-page-data [data]="acknowledgmentsData" class="description"></ccf-page-data>
+<ccf-page-data [data]="referencesData" class="description"></ccf-page-data>
+
+

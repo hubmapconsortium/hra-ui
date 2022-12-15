@@ -7,6 +7,7 @@ import { PageDataModule } from 'src/app/components/page-data/page-data.module';
 import { KaggleTwoComponent } from './kaggle-two.component';
 import { MatCardModule } from '@angular/material/card';
 import { PrizeCardModule } from 'src/app/components/prize-card/prize-card.module';
+import { AnnouncementCardModule } from 'src/app/components/announcement-card/announcement-card.module';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import { PrizeCardModule } from 'src/app/components/prize-card/prize-card.module
         PageHeaderModule,
         PageDataModule,
         MatCardModule,
-        PrizeCardModule
+        PrizeCardModule,
+        AnnouncementCardModule
     ],
     providers: [],
     bootstrap: []

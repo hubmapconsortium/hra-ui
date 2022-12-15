@@ -12,10 +12,16 @@ existingTablesData:
   descriptions: The below table lists for each organ the number of anatomical structures (#AS), the number of cell types (#CT), the number of biomarkers (#B), the number of part_of relationships between AS, the number of located_in links between CT and AS, and the number of CT and B, i.e., which B characterize a CT.
 
 versionData:
-- release: 2nd Release, December 2021
+- release: 4th HRA Release (v1.3), December 2022
+  file: release4.csv
+  release: 4
+- release: 3rd HRA Release (v1.2), June 2022
+  file: release3.csv
+  release: 3
+- release: 2nd HRA Release (v1.1), December 2021
   file: release2.csv
   version: 2
-- release: 1st Release, March 2021 
+- release: 1st HRA Release (v1.0), March 2021
   file: release1.csv
   version: 1
 
@@ -23,10 +29,12 @@ exploreTablesData:
 - heading: Explore Tables Visually
   descriptions: |
     The <a href="https://hubmapconsortium.github.io/ccf-asct-reporter/" target="">CCF ASCT+B Reporter</a> makes it possible to explore tables visually—per organ or across all organs in support of table authoring and review. It combines two different types of Angular visualizations: A partonomy tree of anatomical structures and bimodal networks that link anatomical structures to cell types and cell types to biomarkers.
+tablesUnderDevelopmentData:
 - heading: Tables Under Development
   descriptions: |
     The initial release of ASCT+B table (v1.0) included 11 organs. In the 2nd release, 14 additional tables were published bringing the total to 25. In the 3rd release, several tables were updated and placenta was added resulting in 26 tables. 
     If you are interested in contributing to this effort, please complete this <a href="https://iu.co1.qualtrics.com/jfe/form/SV_bpaBhIr8XfdiNRH" target="">online form</a> to receive relevant information and meeting invites. For questions, email infoccf@indiana.edu.
+acknowledgmentsData:
 - heading: Acknowledgments
   descriptions: |
     The very first ASCT+B table was published for the kidney by the Kidney Precision Medicine Project (KPMP) in "<a href="https://biorxiv.org/cgi/content/short/828665v1" target="_blank">A Multimodal and Integrated Approach to Interrogate Human Kidney Biopsies with Rigor and Reproducibility: The Kidney Precision Medicine Project</a>". Katy Börner (HuBMAP, KPMP), Peter Hunter (SPARC), and James Gee (BICCN) organized a CCF session at the 2020 Joint NIH-HCA Meeting that brought together experts from multiple consortia to develop ASCT+B tables in an effort to create a Human Reference Atlas. Mark Musen, Chris Mungall, and David Osumi-Sutherland provided expert guidance on linking ASCT+B tables to existing ontologies

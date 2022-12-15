@@ -23,6 +23,10 @@ export class TwoDimRefPageComponent implements OnInit {
   overviewData: PageDataItems[];
   sopData: SopLinks[];
   termsOfUseData: PageDataItems[];
+  licenseData: PageDataItems[];
+  citationData: PageDataItems[];
+  acknowledgmentsData: PageDataItems[]
+  twoDimFtuLibObjects: PageDataItems[]
   filterImages: OrganData[]
   cardTitle = "";
   versionData: ChooseVersion[]
@@ -41,7 +45,11 @@ export class TwoDimRefPageComponent implements OnInit {
     this.versionData = data.versionData
     this.placeholderDate = this.versionData[0].release
     this.organInfo = data.organInfo
-   }
+    this.licenseData = data.licenseData
+    this.citationData = data.citationData
+    this.acknowledgmentsData = data.acknowledgmentsData
+    this.twoDimFtuLibObjects = data.twoDimFtuLibObjects
+  }
 
   label: string;
 

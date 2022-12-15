@@ -1,12 +1,10 @@
-<div class="sop">
-    <div class="sop-title">
-        {{title}}
-    </div>
-    <div class="sop-items">
-        <ul>
-            <li *ngFor="let link of links">
-                <a class="text" href={{link.href}} target="_blank">{{link.urls}}</a>
-            </li>
-        </ul>
-    </div>
+<div class="sop-title">
+    {{title}}
+</div>
+<div class="sop-items">
+    <ul>
+        <li *ngFor="let link of links">
+            <a class="text" href={{link.href}} target="_blank">{{link.urls}}</a>
+        </li>
+    </ul>
 </div>

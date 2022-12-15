@@ -13,5 +13,56 @@
     letter-spacing: 0.005em;
     color: #444c65;
     height: 2.5rem;
+    align-items: center;
+    display: inline-flex;
+  }
+
+  .contact-card-container {
+    margin: 2rem 0rem;
+  }
+
+  .page-body {
+    flex-direction: row;
+  }
+
+  .mat-drawer {
+    background-color: #fafafa;
+  }
+
+  .mat-drawer-side {
+    border-right: unset;
+    padding-right: 3.5rem;
+  }
+
+  ul {
+    list-style: none;
+    margin: unset;
+    padding: unset;
+  }
+
+  .intro-gif {
+    padding-bottom: 2rem;
+    height: 336px;
+    width: 344px;
+  }
+
+  .three-dim-gif {
+    height: 335px;
+    width: 888px;
+    padding-bottom: 1rem;
+  }
+
+  .rui-gif {
+    width: 888px;
+    height: 509px;
+    padding-bottom: 1rem;
+  }
+
+  .date{
+    padding-bottom: 1rem;
+  }
+
+  .section {
+    padding: 1rem 0rem;
   }
 }

@@ -24,7 +24,8 @@ export class CcfOrganVrGalleryComponent {
     this.title = data.title                
     this.videoId = data.videoId                
     this.playerTitle = data.playerTitle     
-    this.referencesData = data.referencesData       
+    this.referencesData = data.referencesData      
+    this.whyVrData = data.whyVrData 
 
   }
   organVrHeader: PageHeaderItems[];
@@ -32,6 +33,7 @@ export class CcfOrganVrGalleryComponent {
   backgroundData: PageDataItems[];
   dataVisualizations: PageDataItems[];
   testingAndFeedback: PageDataItems[];
+  whyVrData: PageDataItems[];
   height: number;
   width: number;
   title: string;

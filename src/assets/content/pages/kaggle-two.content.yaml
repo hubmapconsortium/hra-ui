@@ -18,23 +18,27 @@ overviewData:
     In this competition, participants aimed to identify and segment functional tissue units (FTUs) across five human organs. They built their models using a dataset of tissue section images, with the best submissions segmenting FTUs as accurately as possible.
 
 
-    If successful, they'll help accelerate the world’s understanding of the relationships between cell and tissue organization. With a better idea of the relationship of cells, researchers will have more insight into the function of cells that impact human health. Furthermore, the Human Reference Atlas constructed by HuBMAP will be freely available for use by researchers and pharmaceutical companies alike, potentially improving and prolonging human life.
+    If successful, they'll help accelerate the world's understanding of the relationships between cell and tissue organization. With a better idea of the relationship of cells, researchers will have more insight into the function of cells that impact human health. Furthermore, the Human Reference Atlas constructed by HuBMAP will be freely available for use by researchers and pharmaceutical companies alike, potentially improving and prolonging human life.
 
 
     Please see <a href="https://www.kaggle.com/competitions/hubmap-organ-segmentation" target="">https://www.kaggle.com/competitions/hubmap-organ-segmentation</a> for competition details.`
+
+awardsCeremony:
 - heading: Awards Ceremony
   descriptions: |
     Judges announced winning teams at the annual HubMAP All-Hands Meeting and the HuBMAP Awards: Hacking the Human Body Kaggle ceremony. 
     A recording link of the event and competitor presentations will be posted at the 
     <a href="https://www.youtube.com/channel/UCbSvPJ9dXASL14KoDeutMFg" target="">HuBMAP Consortium YouTube channel</a>.
 
-acknowledgmentsData:
-- headging: Datasets
+datasets:
+- heading: Datasets
   descriptions: |
     All data used in the competition will be made publicly 
     available as part of the scientific paper showcasing the results of the competition using the GitHub repository located at 
     <a href="https://github.com/cns-iu/ccf-research-kaggle-2022" target="">
     https://github.com/cns-iu/ccf-research-kaggle-2022</a>.
+
+acknowledgments:
 - heading: Acknowledgments
   descriptions: |
     We would like to thank the many individuals that made this competition possible including:

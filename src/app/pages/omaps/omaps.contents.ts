@@ -54,11 +54,6 @@ export const sopData: SopLinks[] = [
     }
 ]
 
-export const omapsFaq: SopLinks = {
-    urls: '',
-    href: ''
-}
-
 export const acknowledgementsData: PageDataItems[] = [
     {
         heading: "Acknowledgments",

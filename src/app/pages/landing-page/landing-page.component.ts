@@ -1,9 +1,9 @@
 import { TileDefinition } from './../../shared/simple-tile-items';
 import { Component } from '@angular/core';
-import { title, subtitle, cardsHeading, carouselInfo, cards } from './landing-page.content';
 import { ActivatedRoute } from '@angular/router';
 import { SliderItems } from 'src/app/components/carousel/slider-items';
 import { SectionCardItems } from 'src/app/components/section-card/section-card-items';
+import { Announcement } from 'src/app/components/announcement-card/announcement-card';
 
 @Component({
   selector: 'ccf-landing-page',
@@ -17,6 +17,7 @@ export class LandingPageComponent {
   definitions = TileDefinition
   carouselInfo: SliderItems[]
   cards: SectionCardItems[]
+  messages: Announcement[];
 
   constructor(private route: ActivatedRoute) { 
     const data = route.snapshot.data['landingPage']
@@ -25,6 +26,7 @@ export class LandingPageComponent {
     this.cardsHeading = data.cardsHeading
     this.carouselInfo = data.carouselInfo
     this.cards = data.cards
+    this.messages = data.messages
   }
 
 }

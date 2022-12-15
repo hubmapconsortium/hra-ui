@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MarkdownModule } from 'ngx-markdown';
 import { HraMillitomeComponent } from './hra-millitome.component';
+import { AnnouncementCardModule } from 'src/app/components/announcement-card/announcement-card.module';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { HraMillitomeComponent } from './hra-millitome.component';
     SopLinksModule,
     ChooseVersionModule,
     TableModule,
-    MarkdownModule
+    MarkdownModule,
+    AnnouncementCardModule
   ],
   providers: [],
   bootstrap: []

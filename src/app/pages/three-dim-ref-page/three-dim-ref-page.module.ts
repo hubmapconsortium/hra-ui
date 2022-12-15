@@ -8,6 +8,7 @@ import { ChooseVersionModule } from 'src/app/components/choose-version/choose-ve
 import { OrganTabsModule } from 'src/app/components/organ-tabs/organ-tabs.module';
 import { SopLinksModule } from 'src/app/components/sop-links/sop-links.module';
 import { TwoDimImageModule } from 'src/app/components/two-dim-image/two-dim-image.module';
+import { AnnouncementCardModule } from 'src/app/components/announcement-card/announcement-card.module';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { TwoDimImageModule } from 'src/app/components/two-dim-image/two-dim-imag
         ChooseVersionModule,
         OrganTabsModule,
         SopLinksModule,
-        TwoDimImageModule
+        TwoDimImageModule,
+        AnnouncementCardModule
     ],
     providers: [],
     bootstrap: [],

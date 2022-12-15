@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LongCard } from 'src/app/components/card-button-long/long-card';
-import { TileDefinition } from 'src/app/shared/simple-tile-items';
-import { longButtonItems } from './overview-tools.content';
+import { TileItems } from 'src/app/components/simple-tile/tile-items';
 
 @Component({
   selector: 'overview-tools',
@@ -14,12 +13,12 @@ export class OverviewToolsComponent {
   constructor(private router: Router, private route: ActivatedRoute) { 
     const data = route.snapshot.data['overviewTools']
     this.pageTitle = data.pageTitle
-    this.descriptions = data.descriptions
+    this.description = data.description
     this.longButtonItems = data.longButtonItems
   }
 
   pageTitle: string
-  descriptions = TileDefinition;
+  description: TileItems[];
   longButtonItems: LongCard[];
 
   clicked(card: LongCard): void {

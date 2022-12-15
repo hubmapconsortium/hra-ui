@@ -1,8 +1,9 @@
-organ,sex,left/right
-Kidney,Female,Left
-Kidney,Female,Right
-Kidney,Male,Left
-Kidney,Male,Right
-Pancreas,Female,N/A
-Pancreas,Male,N/A
-Spleen,Female,N/A
+organ,sex,left/right,url
+Kidney,Female,Left,https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Kidney_L/
+Kidney,Female,Right,https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Kidney_R/
+Kidney,Male,Left,https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_M_Kidney_L/
+Kidney,Male,Right,https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_M_Kidney_R/
+Pancreas,Female,N/A,https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Pancreas/
+Pancreas,Male,N/A,https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_M_Pancreas/
+Spleen,Female,N/A,https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Spleen/
+Spleen,Male,N/A,https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_M_Spleen/

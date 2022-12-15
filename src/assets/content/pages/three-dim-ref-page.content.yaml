@@ -53,6 +53,48 @@ citationData:
     
     Browne, K., Cross, L. E., Herr II, B. W., Record, L, Quardokus, E, Bueckle, A., Börner, K. (2021). HuBMAP CCF 3D Reference Object Library. https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html. Accessed on December 1, 2021.
 
+    If you use the data files v1.2 release, please cite this effort as follows:
+
+    Browne,K., Schlehlein, H., Herr II, B. W., Quardokus, E, Bueckle, A., Börner, K. (2022). HuBMAP CCF 3D Reference Object Library. https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html. Accessed on May 06, 2022. 
+
+    If you use the data files v1.3 release, please cite this effort as follows:
+
+    Browne,K., Schlehlein, H., Herr II, B. W., Quardokus, E, Bueckle, A., Börner, K. (2022). HuBMAP CCF 3D Reference Object Library. https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html. Accessed on December 15, 2022
+
+referenceOrgans:
+- heading: Reference Organs
+- descriptions: |
+    <a href="https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.3/models" target="_blank">Download v1.3 organs</a> in GLB format.
+
+    <a href="https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/models" target="_blank">Download v1.2 organs</a> in GLB format.
+
+    <a href="https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.1/models" target="_blank">Download v1.1 organs</a> in GLB format.
+
+    <a href="https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.0/models" target="_blank">Download v1.0 organs</a> in GLB format.
+
+    <a href="" target="_blank">Download v1.3 extraction sites for female</a> in GLB and FBX format.
+
+    <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.2/Extraction%20Sites" target="_blank">Download v1.2 extraction sites for female</a> in GLB and FBX format.
+
+    <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.1/Extraction%20Sites" target="_blank">Download v1.1 extraction sites for female</a> in GLB and FBX format.
+
+    <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.0/Extraction%20Sites" target="_blank">Download v1.0 extraction sites for female</a> in GLB and FBX format.
+
+    <a href="" target="_blank">Download v1.3 extraction sites for male</a> in GLB and FBX format.
+
+    <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.2/Extraction%20Sites" target="_blank">Download v1.3 extraction sites for male</a> in GLB and FBX format.
+
+    <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.1/Extraction%20Sites" target="_blank">Download v1.3 extraction sites for male</a> in GLB and FBX format.
+
+    <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1/Extraction%20Sites" target="_blank">Download v1.3 extraction sites for male</a> in GLB and FBX format.
+
+    <a href="https://doi.org/10.48539/HBM858.DNFV.736" target="_blank">ASCT-B 3D models mapping v1.2</a> in CSV format.
+
+    <a href="https://doi.org/10.48539/HBM263.FWKR.367" target="_blank">ASCT-B 3D models mapping v1.1</a> in CSV format.
+
+    <a href="https://doi.org/10.48539/HBM527.RCXM.366" target="_blank">ASCT-B 3D models mapping v1.0</a> in CSV format.
+
+
 acknowledgmentsData:
 - heading: Acknowledgments
   descriptions: |
@@ -60,16 +102,16 @@ acknowledgmentsData:
 
     The male colon is from a white 55-year-old and was provided by Arie Kaufman, Stony Brook University.
     
-    The brain is from a 34-year-old female donor and was published by the Allen Human Reference Atlas–3D, 2020. Jim Gee, University of Pennsylvania converted the NII file into GLB. Amy Bernard, Allen Institute assisted in mapping the 141 anatomical structures to the brain ASCT+B table.
+    The brain is from a 34-year-old female donor and was published by the Allen Human Reference Atlas-3D, 2020. Jim Gee, University of Pennsylvania converted the NII file into GLB. Amy Bernard, Allen Institute assisted in mapping the 141 anatomical structures to the brain ASCT+B table.
 
 referencesData:
 - heading: References
   descriptions: |
-    Börner, Katy, Sarah A. Teichmann, Ellen M. Quardokus, James C. Gee, Kristen Browne, David Osumi-Sutherland, Bruce W. Herr, et al. 2021. “<a href="https://doi.org/10.1038/s41556-021-00788-6" target="_blank">Anatomical Structures, Cell Types and Biomarkers of the Human Reference Atlas.</a>” Nature Cell Biology 23 (11): 1117-28.
+    Börner, Katy, Sarah A. Teichmann, Ellen M. Quardokus, James C. Gee, Kristen Browne, David Osumi-Sutherland, Bruce W. Herr, et al. 2021. “Anatomical Structures, Cell Types and Biomarkers of the Human Reference Atlas.” Nature Cell Biology 23 (11): 1117-28. <a href="https://doi.org/10.1038/s41556-021-00788-6" target="_blank">https://doi.org/10.1038/s41556-021-00788-6</a>
     
     Ding, Song-Lin, Joshua J. Royall, Susan M. Sunkin, Lydia Ng, Benjamin A. C. Facer, Phil Lesnar, Angie Guillozet-Bongaarts, Bergen McMurray, Aaron Szafer, Tim A. Dolbeare, Allison Stevens, Lee Tirrell, Thomas Benner, Shiella Caldejon, Rachel A. Dalley, Nick Dee, Christopher Lau, Julie Nyhus, Melissa Reding, Zackery L. Riley, David Sandman, Elaine Shen, Andre van der Kouwe, Ani Varjabedian, Michelle Wright, Lilla Zöllei, Chinh Dang, James A. Knowles, Christof Koch, John W. Phillips, Nenad Sestan, Paul Wohnoutka, H. Ronald Zielke, John G. Hohrmann, Allan R. Jones, Amy Bernard, Michael J. Hawrylycz, Patrick R. Hof, Bruce Fischl, and Ed S. Lein. 2016. "<a href="https://pubmed.ncbi.nlm.nih.gov/27418273/" target="_blank">Comprehensive Cellular-Resolution Atlas of the Adult Human Brain.</a>" Journal of Comparative Neurology 524 (16): 3127-348. doi:10.1002/cne.24080.
 
-    Ding, Song-Lin, Joshua J. Royall, Susan M. Sunkin, Benjamin A.C. Facer, Phil Lesnar, Amy Bernard, Lydia Ng, and Ed S. Lein. 2020. <a href="https://community.brain-map.org/t/allen-human-reference-atlas-3d-2020-new/405" target="_blank">Allen Human Reference Atlas - 3D, 2020</a>. RRID:SCR_017764, version 1.0.0.
+    Ding, Song-Lin, Joshua J. Royall, Susan M. Sunkin, Benjamin A.C. Facer, Phil Lesnar, Amy Bernard, Lydia Ng, and Ed S. Lein. 2020. <a href="https://community.brain-map.org/t/allen-human-reference-atlas-3d-2020-new/405" target="_blank"><i>Allen Human Reference Atlas - 3D, 2020</i></a>. RRID:SCR_017764, version 1.0.0.
     
     U.S. National Library of Medicine. 2021. <a href="https://www.nlm.nih.gov/databases/download/vhp.html" target="_blank"><i>Visible Human Project Data</i></a>.
 

@@ -23,6 +23,8 @@ overviewData:
 
 
     Please see <a href="https://www.kaggle.com/c/hubmap-kidney-segmentation" target="">https://www.kaggle.com/c/hubmap-kidney-segmentation</a> for competition details.
+
+awardsCeremony:
 - heading: Awards Ceremony
   descriptions: |
     On May 21, 2021, Judges announced winning teams at the annual HubMAP All-Hands Meeting and the HuBMAP Awards: Hacking the Kidney on Kaggle ceremony. 

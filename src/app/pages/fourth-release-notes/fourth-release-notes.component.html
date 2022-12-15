@@ -1,83 +1,133 @@
 <ccf-page-header [headerCard]="headerData"></ccf-page-header>
-<ccf-page-data [data]="fourthReleaseIntro"></ccf-page-data>
-<img src="assets/images/4th_release_intro.svg" style="padding-bottom: 2rem;">
-<mat-divider></mat-divider>
-<contact-card></contact-card>
-<ccf-page-data [data]="fourthReleaseStats"></ccf-page-data>
-<mat-divider></mat-divider>
-<ccf-page-data [data]="hraHourEvent"></ccf-page-data>
-<ccf-use-button [buttonData]="hourEventUseButton"></ccf-use-button>
-<mat-divider></mat-divider>
-<ccf-page-data [data]="asctbTables"></ccf-page-data>
-<ccf-use-button [buttonData]="asctbTablesButton"></ccf-use-button>
-<img src="assets/images/4th_release_asctb_table.svg" style="padding-bottom: 2rem;">
-<p class="page-data">
-    <strong>Fig 1.</strong>
-    Processes, anatomical structures, cell types, biomarkers and disease relevant for understanding proteinuria, in kidney. 
-    The example shows how the ASCT+B tables help link clinicopathology information and ontology data. 
-    Read more at <a href="https://www.nature.com/articles/s41556-021-00788-6" target="_blank">
-    Anatomical structures, cell types and biomarkers of the Human Reference Atlas</a>
-</p>
-<mat-divider></mat-divider>
-<ccf-page-data [data]="asctbReporter"></ccf-page-data>
-<ccf-use-button [buttonData]="asctbReporterButton"></ccf-use-button>
-<img src="assets/images/4th_release_asctb_reporter.svg" style="padding-bottom: 2rem;">
-<p class="page-data">
-    <strong>Fig 2.</strong>
-    An exemplary ASCT+B table showing anatomical structures (AS) and cell types (CT) and some biomarkers (B) for the glomerulus in the kidneys, 
-    annotated with the names of the three entity types (anatomical structures, cell types and biomarkers) and four 
-    relationship types (part_of, is_a, located_in and characterize). Note that the is_a relationship exists for cell types and biomarkers. 
-    <a href="https://www.nature.com/articles/s41556-021-00788-6" target="_blank">
-    Anatomical structures, cell types and biomarkers of the Human Reference Atlas</a>.
-</p>
-<mat-divider></mat-divider>
-<ccf-page-data [data]="ontologyValidations"></ccf-page-data>
-<ccf-use-button [buttonData]="ontologyValidationsButton"></ccf-use-button>
-<mat-divider></mat-divider>
-<ccf-page-data [data]="threeDimRefObjects"></ccf-page-data>
-<ccf-use-button [buttonData]="threeDimRefObjectsButton"></ccf-use-button>
-<img src="assets/images/4th_release_asctb_reporter.svg" style="padding-bottom: 2rem;">
-<p class="page-data">
-    <strong>Fig 3.</strong>
-    Fig. 3. A user interacts with a 3D Reference Object in the HRA Portal.
-</p>
-<mat-divider></mat-divider>
-<ccf-page-data [data]="explorationUserInterface"></ccf-page-data>
-<ccf-use-button [buttonData]="explorationUserInterfaceButton"></ccf-use-button>
-<img src="assets/images/4th_release_eui.svg" style="padding-bottom: 2rem;">
-<p class="page-data">
-    <strong>Fig 4.</strong>
-    3D Reference Objects featured within the Exploration User Interface.
-</p>
-<mat-divider></mat-divider>
-<ccf-page-data [data]="registrationUserInterface"></ccf-page-data>
-<ccf-use-button [buttonData]="registrationUserInterfaceButton"></ccf-use-button>
-<img src="assets/images/4th_release_rui.svg" style="padding-bottom: 2rem;">
-<mat-divider></mat-divider>
-<ccf-page-data [data]="vrOrganGallary"></ccf-page-data>
-<ccf-use-button [buttonData]="vrOrganGallaryButton"></ccf-use-button>
-<img src="assets/images/ccf-og-1.png" style="padding-bottom: 2rem;">
-<p class="page-data">
-    <strong>Previews</strong>
-    <br><br>
-    Here are some things coming down the pipe! <br><br>
-    First, Tissue Block annotation provides even better collision detection when registering with the RUI.
-</p>
-<ccf-use-button [buttonData]="previewButton1"></ccf-use-button>
-<p class="page-data">Second, the 3D engine used by HRA is being replaced by Unity.</p>
-<ccf-use-button [buttonData]="previewButton2"></ccf-use-button>
-<mat-divider></mat-divider>
-<p class="page-data">
-    <strong>Contact Us</strong>
-    <br><br>
-    Interested in contributing or using the HRA?
-    <a href="mailto:infoccf@indiana.edu" mat-button class="contact-button"><mat-icon>mail_outline</mat-icon>Contact MC-IU</a>
-</p>
-<mat-divider></mat-divider>
-<p class="page-data">
-    <strong>Outro</strong>
-    <br><br>
-    Every six months, a new version of Human Reference Atlas data is released together with user interfaces that make it possible to visually explore the atlas or programmatically access the data. 
-    The 5th release is in May. Thanks for reading!
-</p>
-<img src="assets/images/4th_release_outro.svg" style="padding-bottom: 2rem;">
+<mat-sidenav-container class="page-body">
+    <!-- <mat-sidenav #drawer mode="side" opened style="border: solid 1px red;">
+        <ul>
+            <li>Intro</li>
+            <li><mat-divider></mat-divider></li>
+            <li>Stats</li>
+        </ul>
+    </mat-sidenav> -->
+    <div class="release-data">
+        <div class="content-title date">December 15th, 2022</div>
+        <ccf-page-data [data]="fourthReleaseIntro"></ccf-page-data>
+        <img src="assets/images/intro_gif.gif" class="intro-gif">
+        <mat-divider></mat-divider>
+        <ccf-page-data [data]="fourthReleaseStats" class="section"></ccf-page-data>
+        <mat-divider></mat-divider>
+        <ccf-page-data [data]="hraHourEvent"></ccf-page-data>
+        <ccf-use-button [buttonData]="hourEventUseButton" class="button-container"></ccf-use-button>
+        <mat-divider></mat-divider>
+        <div class="section">
+            <ccf-page-data [data]="asctbTables"></ccf-page-data>
+            <ccf-use-button [buttonData]="asctbTablesButton" class="button-container"></ccf-use-button>
+            <img src="assets/images/4th_release_asctb_table.svg" style="padding-bottom: 2rem;">
+            <p class="page-data">
+                <strong>Fig 1.</strong>
+                Processes, anatomical structures, cell types, biomarkers and disease relevant for understanding
+                proteinuria,
+                in kidney.
+                The example shows how the ASCT+B tables help link clinicopathology information and ontology data.
+                Read more at <a href="https://www.nature.com/articles/s41556-021-00788-6" target="_blank">
+                    Anatomical structures, cell types and biomarkers of the Human Reference Atlas</a>
+            </p>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="section">
+            <ccf-page-data [data]="asctbReporter"></ccf-page-data>
+            <ccf-use-button [buttonData]="asctbReporterButton" class="button-container"></ccf-use-button>
+            <img src="assets/images/4th_release_asctb_reporter.svg" style="padding-bottom: 2rem;">
+            <p class="page-data">
+                <strong>Fig 2.</strong>
+                An exemplary ASCT+B table showing anatomical structures (AS) and cell types (CT) and some biomarkers (B)
+                for
+                the glomerulus in the kidneys,
+                annotated with the names of the three entity types (anatomical structures, cell types and biomarkers)
+                and
+                four
+                relationship types (part_of, is_a, located_in and characterize). Note that the is_a relationship exists
+                for
+                cell types and biomarkers.
+                <a href="https://www.nature.com/articles/s41556-021-00788-6" target="_blank">
+                    Anatomical structures, cell types and biomarkers of the Human Reference Atlas</a>.
+            </p>
+        </div>
+
+        <mat-divider></mat-divider>
+        <ccf-page-data [data]="ontologyValidations"></ccf-page-data>
+        <ccf-use-button [buttonData]="ontologyValidationsButton" class="button-container"></ccf-use-button>
+        <mat-divider></mat-divider>
+        <div class="section">
+            <ccf-page-data [data]="threeDimRefObjects"></ccf-page-data>
+            <ccf-use-button [buttonData]="threeDimRefObjectsButton"></ccf-use-button>
+            <img src="assets/images/4th_release_3d.gif" class="three-dim-gif">
+            <p class="page-data">
+                <strong>Fig 3.</strong>
+                Fig. 3. A user interacts with a 3D Reference Object in the HRA Portal.
+            </p>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="section">
+            <ccf-page-data [data]="explorationUserInterface"></ccf-page-data>
+            <ccf-use-button [buttonData]="explorationUserInterfaceButton" class="button-container"></ccf-use-button>
+            <img src="assets/images/4th_release_eui.svg" style="padding-bottom: 2rem;">
+            <p class="page-data">
+                <strong>Fig 4.</strong>
+                3D Reference Objects featured within the Exploration User Interface.
+            </p>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="section">
+            <ccf-page-data [data]="registrationUserInterface"></ccf-page-data>
+            <ccf-use-button [buttonData]="registrationUserInterfaceButton" class="button-container"></ccf-use-button>
+            <img src="assets/images/4th_release_rui_gif.gif" class="rui-gif">
+            <p class="page-data">
+                <strong>Fig 5.</strong>
+                A user registers a tissue block within a 3D Reference Object of the heart in the Registration User
+                Interface.
+            </p>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="section">
+            <ccf-page-data [data]="vrOrganGallary"></ccf-page-data>
+        <ccf-use-button [buttonData]="vrOrganGallaryButton" class="button-container"></ccf-use-button>
+        <img src="assets/images/ccf-og-1.png" style="padding-bottom: 2rem;">
+        <p class="page-data">
+            <strong>Fig 6.</strong>
+            Three stages. Top left: the whole body is visible. Top right: a gallery of individual organs. Bottom left
+            and center:
+            A user explodes an organ into individual anatomical structures. Bottom right: a user explores cells around a
+            kidney in a virtual box.
+        </p>
+        </div>
+        <mat-divider></mat-divider>
+        <p class="page-data">
+            <strong>Previews</strong>
+            <br><br>
+            Here are some things coming down the pipe! <br><br>
+            First, Tissue Block annotation provides even better collision detection when registering with the RUI.
+        </p>
+        <ccf-use-button [buttonData]="previewButton1" class="button-container"></ccf-use-button>
+        <p class="page-data">Second, the 3D engine used by HRA is being replaced by Unity.</p>
+        <ccf-use-button [buttonData]="previewButton2" class="button-container"></ccf-use-button>
+        <mat-divider></mat-divider>
+        <p class="page-data section">
+            <strong>Contact Us</strong>
+            <br><br>
+            Interested in contributing or using the HRA? &nbsp;
+            <a href="mailto:infoccf@indiana.edu" mat-button class="contact-button">
+                <mat-icon>mail_outline</mat-icon>Contact MC-IU
+            </a>
+        </p>
+        <contact-card [contactCard]="contactCardData" class="contact-card-container"></contact-card>
+        <mat-divider></mat-divider>
+        <p class="page-data section">
+            <strong>Outro</strong>
+            <br><br>
+            Every six months, a new version of Human Reference Atlas data is released together with user interfaces that
+            make it possible to visually explore the atlas or programmatically access the data.
+            The 5th release is in May. Thanks for reading!
+        </p>
+        <img src="assets/images/4th_release_outro.svg" style="padding-bottom: 2rem;">
+
+    </div>
+</mat-sidenav-container>

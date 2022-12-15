@@ -1,4 +1,6 @@
 :host {
+  display: block;
+
   .body-title {
     font-family: "Inter";
     font-style: normal;
@@ -7,6 +9,7 @@
     line-height: 1.4202rem;
     letter-spacing: 0.005em;
     color: #000000;
+    padding-bottom: 1rem;
   }
 
   .body-description {
@@ -17,8 +20,8 @@
     line-height: 1.5rem;
     letter-spacing: 0.005em;
     color: #000000;
-    padding-top: 1rem;
-    padding-bottom: 2.5rem;
+    // padding-top: 1rem;
+    // padding-bottom: 2.5rem;
     text-decoration: none;
   }
 

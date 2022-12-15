@@ -8,6 +8,7 @@ import { CcfExplorationUserInterfaceComponent } from './pages/ccf-exploration-us
 import { CcfOntologyComponent } from './pages/ccf-ontology/ccf-ontology.component';
 import { CcfOrganVrGalleryComponent } from './pages/ccf-organ-vr-gallery/ccf-organ-vr-gallery.component';
 import { CellPopulationGraphsComponent } from './pages/cell-population-graphs/cell-population-graphs.component';
+import { FourthReleaseNotesComponent } from './pages/fourth-release-notes/fourth-release-notes.component';
 import { HraApiComponent } from './pages/hra-api/hra-api.component';
 import { HraEditorialBoardComponent } from './pages/hra-editorial-board/hra-editorial-board.component';
 import { HraMillitomeComponent } from './pages/hra-millitome/hra-millitome.component';
@@ -247,6 +248,7 @@ resolve:{
     },
   },
   { path: 'faq/omap', component: OmapFaqComponent },
+  { path: 'release-notes/v1.3', component: FourthReleaseNotesComponent},
   { path: '', redirectTo: '', pathMatch: 'full' },
   {
     path: '**',

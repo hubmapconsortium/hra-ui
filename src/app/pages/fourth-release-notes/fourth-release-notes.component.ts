@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { headerData, fourthReleaseIntro, fourthReleaseStats, hraHourEvent, hourEventUseButton, asctbTables, asctbTablesButton, asctbReporter, asctbReporterButton, ontologyValidations, ontologyValidationsButton, threeDimRefObjects, threeDimRefObjectsButton, eui, euiButton, rui, ruiButton, vrOrganGallary, vrOrganGallaryButton, previewButton1, previewButton2 } from './fourth-release-notes.content';
+import { Component } from '@angular/core';
+import { headerData, fourthReleaseIntro, fourthReleaseStats, hraHourEvent, hourEventUseButton, asctbTables, asctbTablesButton, asctbReporter, asctbReporterButton, ontologyValidations, ontologyValidationsButton, threeDimRefObjects, threeDimRefObjectsButton, eui, euiButton, rui, ruiButton, vrOrganGallary, vrOrganGallaryButton, previewButton1, previewButton2, contactCardData } from './fourth-release-notes.content';
 
 @Component({
   selector: 'fourth-release-notes',
@@ -29,4 +29,5 @@ export class FourthReleaseNotesComponent  {
   vrOrganGallaryButton = vrOrganGallaryButton
   previewButton1 = previewButton1
   previewButton2 = previewButton2
+  contactCardData = contactCardData
 }

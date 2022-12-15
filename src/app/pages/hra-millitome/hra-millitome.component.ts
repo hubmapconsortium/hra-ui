@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { headerCardDetails, overviewData, displayedColumnsData, headerInfo} from './hra-millitome.content';
-import { EMPTY, Observable } from 'rxjs';
+import { EMPTY, map, Observable } from 'rxjs';
 import { TableDataService } from '../../services/table-data/tabledata.service';
 import { TableData } from '../../components/table/table';
 import { ChooseVersion } from 'src/app/components/choose-version/choose-version';
@@ -23,6 +23,7 @@ export class HraMillitomeComponent implements OnInit {
   headerInfo = headerInfo;
 
   tableData: Observable<TableData[]> = EMPTY;
+  columns: Observable<string[]> = EMPTY;
 
   constructor(private readonly dataService: TableDataService, route: ActivatedRoute) { 
     const data = route.snapshot.data['hraMillitome'];
@@ -31,12 +32,14 @@ export class HraMillitomeComponent implements OnInit {
     this.tableTitle = data.tableTitle
   }
 
-  setData(version: ChooseVersion): void {
-    // this.tableData = this.dataService.getData(version.release);
+  setData(): void {
+    const data = this.dataService.getData('hra-millitome.csv', displayedColumnsData);
+    this.tableData = data.pipe(map(result => result.data));
+    console.log(data)
   }
 
   ngOnInit(): void {
-    this.setData(this.version);
+    this.setData();
   }
 
 }

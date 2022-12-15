@@ -33,24 +33,37 @@ termsOfUseData:
   descriptions: |
     HuBMAP data are supplied with no warranties, expressed or implied, including without limitation, any warranty of merchantability or fitness for a particular purpose or non-infringement. No warranty with respect to the HuBMAP infrastructure is provided, including without limitation, any uptime warranty.
     The Parties make no representations that the use of the data will not infringe any patent or proprietary rights of third parties.
+licenseData:
 - heading: License
   descriptions: |
     All CCF 2D functional tissue units files are released under <a href="https://creativecommons.org/licenses/by/4.0/" target=""> Attribution 4.0 International (CC BY 4.0)</a>.
+citationData:
 - heading: Citation
   descriptions: |
     If you use the 2D data files in v1.2 release, please cite this effort as follows:
     
-    
      Bajema, R., Bidanta, S., Quardokus, E., Herr II, B. W., Börner, K. 2022.
-    <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-2d-reference-library.html/" target="">HuBMAP CCF 2D Reference Object Library</a>. Accessed on May 6, 2022.
+    <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-2d-reference-library.html" target="">HuBMAP CCF 2D Reference Object Library</a>. Accessed on May 6, 2022.
+
+    If you use the 2D data files in v1.3 release, please cite this effort as follows:
+    
+    Bajema, R., Bidanta, S., Quardokus, E., Herr II, B. W., Börner, K. 2022. <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-2d-reference-library.html">HuBMAP CCF 2D Reference Object Library</a>. Accessed on December 15, 2022.
+acknowledgmentsData:
 - heading: Acknowledgments
   descriptions: |
     The 2D Functional Tissue Unit Library files were created by Rachel Bajema on the MC-IU team. This research has been funded in part by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671 and the NIDDK Kidney Precision Medicine Project grant U2CDK114886.'
 
-license:
-- heading: License
-  descriptions: |
-    All CCF 2D functional tissue units files are released under <a href="https://creativecommons.org/licenses/by/4.0/" target=""> Attribution 4.0 International (CC BY 4.0)</a>.
+twoDimFtuLibObjects:
+- heading: 2D Reference Functional Tissue Unit (FTU) Library Objects
+- descriptions: |
+    <a href="https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu">Download v1.0 FTUs</a> in SVG format.
+
+    Download v1.1 FTUs in SVG format. SVG files may be programmatically linked to data sets and used interactively. They may be edited using a combination of illustration and text editor software programs. SVG files may not display correctly until viewed in a browser window.
+    
+    Download v1.1 FTUs in AI Format. AI files may be edited in Adobe Illustrator, where users can change labels, colors, and illustration components as desired. <a href="https://doi.org/10.48539/HBM984.MZSG.873" target="_blank">ASCT-B to 2D FTU mapping v1.0</a> in CSV format.
+    
+    ASCT-B to 2D FTU mapping v1.1 in CSV format.
+
 
 organInfo:
 - version: "1.3"

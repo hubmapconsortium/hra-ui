@@ -32,8 +32,8 @@ a:-webkit-any-link {
   letter-spacing: 0.005rem;
 }
 
-.page-data{
-  font-family: 'Inter';
+.page-data {
+  font-family: "Inter";
   font-style: normal;
   font-weight: 300;
   font-size: 1rem;
@@ -60,8 +60,13 @@ a:-webkit-any-link {
   letter-spacing: 0.005rem;
   color: #0a6ebd;
 
-  &:hover{
+  &:hover {
     text-decoration: underline;
     text-decoration-thickness: 2px;
   }
+}
+
+.description,
+.button-container {
+  padding-bottom: 2.5rem;
 }

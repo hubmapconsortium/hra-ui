@@ -11,8 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class HraEditorialBoardComponent {
-
-
+  
   overviewData: PageDataItems[];
   boardHeader: PageHeaderItems[];
   boardMembersData: BoardMemberItems[];

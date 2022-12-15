@@ -1,5 +1,6 @@
 <ccf-page-header [headerCard]="organVrHeader"></ccf-page-header>
-<ccf-page-data [data]="overviewData"></ccf-page-data>
+<announcement-card class="description"></announcement-card>
+<ccf-page-data [data]="overviewData" class="description"></ccf-page-data>
 <div class="overview-image">
     <img src="assets/images/ccf-og-1.png" />
 </div>
@@ -9,14 +10,16 @@
     A user explodes an organ into individual anatomical structures.
     Bottom right: a user explores cells around a kidney in a virtual box.
 </p>
-<ccf-page-data [data]="backgroundData"></ccf-page-data>
+<ccf-page-data [data]="backgroundData" class="description"></ccf-page-data>
+<ccf-page-data [data]="whyVrData" class="description"></ccf-page-data>
+
 <div class="overview-image">
     <img src="assets/images/whyVr.png" />
 </div>
 <p><strong>Figure 2.</strong>
     3D heart model in the CCF Organ VR Gallery.
 </p>
-<ccf-page-data [data]="dataVisualizations"></ccf-page-data>
+<ccf-page-data [data]="dataVisualizations" class="description"></ccf-page-data>
 <div class="overview-image">
     <img src="assets/images/cell_pop_body_image.svg">
 </div>
@@ -25,6 +28,7 @@
     Organ VR gallery. This series of bar graphs showing cell type counts for tissue blocks of the human body can be
     explored at <a href="https://hubmapconsortium.github.io/tissue-bar-graphs/" target="_blank">https://hubmapconsortium.github.io/tissue-bar-graphs/</a>
 </p>
-<ccf-page-data [data]="testingAndFeedback"></ccf-page-data>
+<ccf-page-data [data]="testingAndFeedback" class="description"></ccf-page-data>
+<div class="content-title description">Video Demo</div>
 <youtube-model [height]="height" [width]="width" [title]="title" [playerTitle]="playerTitle" [videoId]="videoId"></youtube-model>
-<ccf-page-data [data]="referencesData"></ccf-page-data>
+<ccf-page-data [data]="referencesData" class="description"></ccf-page-data>

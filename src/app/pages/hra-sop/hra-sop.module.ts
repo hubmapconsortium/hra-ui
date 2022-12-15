@@ -6,6 +6,7 @@ import { HraSopComponent } from './hra-sop.component';
 import { PageHeaderModule } from 'src/app/components/page-header/page-header.module';
 import { TableModule } from 'src/app/components/table/table.module';
 import { PageDataModule } from 'src/app/components/page-data/page-data.module';
+import { AnnouncementCardModule } from 'src/app/components/announcement-card/announcement-card.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PageDataModule } from 'src/app/components/page-data/page-data.module';
     BrowserAnimationsModule,
     PageHeaderModule,
     TableModule,
-    PageDataModule
+    PageDataModule,
+    AnnouncementCardModule
   ],
   providers: [],
   bootstrap: []

@@ -1,12 +1,17 @@
-<mat-card class="contact-card">
-    <mat-card-header>
-      <img mat-card-image src="assets/images/katy_borner.svg" alt="Photo of Katy Borner">
-    </mat-card-header>
+<mat-card class="contact-card" *ngFor="let card of contactCard">
+    <div class="image-container">
+      <img mat-card-image [src]="card.image">
+    </div>
     <mat-card-content>
-      <p>Research</p>
-      <p>Katy Börner</p>
-      <p>
-        MC-IU PI, CNS Director
+      <p class="work-field">{{card.field}}</p>
+      <p class="contact-name">{{card.name}}</p>
+      <mat-divider></mat-divider>
+      <p class="designation">
+        {{card.role}}
+      </p>
+      <p class="contact-email">
+        <span class="material-symbols-outlined">email</span>&nbsp;
+        <a href="mailto:katy@indiana.edu">{{card.email}}</a>
       </p>
     </mat-card-content>
   </mat-card>

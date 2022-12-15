@@ -27,8 +27,8 @@ export const existingTablesData: PageDataItems[] = [
 ]
 
 export const versionData: ChooseVersion[] = [
-  { release: '4th HRA Release (v1.3), December 2022', file: 'c13.csv', version: '4'},
-  { release: '3rd HRA Release (v1.2), June 2022', file: 'c12.csv', version: '3'},
+  { release: '4th HRA Release (v1.3), December 2022', file: 'release4.csv', version: '4'},
+  { release: '3rd HRA Release (v1.2), June 2022', file: 'release3.csv', version: '3'},
   { release: '2nd HRA Release (v1.1), December 2021', file: 'release2.csv', version: '2' },
   { release: '1st HRA Release (v1.0), March 2021', file: 'release1.csv', version: '1' }
 

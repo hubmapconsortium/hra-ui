@@ -8,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../../app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingPageComponent } from '../../pages/landing-page/landing-page.component';
+import { AnnouncementCardModule } from 'src/app/components/announcement-card/announcement-card.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { LandingPageComponent } from '../../pages/landing-page/landing-page.comp
     CarouselModule,
     SectionCardModule,
     BottomToolbarModule,
+    AnnouncementCardModule
   ],
   providers: [],
   bootstrap: []

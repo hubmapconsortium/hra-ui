@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CcfAsctbAzimuthComponent } from './ccf-asctb-azimuth.component';
 import { PageDataModule } from 'src/app/components/page-data/page-data.module';
 import { TableModule } from 'src/app/components/table/table.module';
+import { AnnouncementCardModule } from 'src/app/components/announcement-card/announcement-card.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { TableModule } from 'src/app/components/table/table.module';
     BrowserAnimationsModule,
     PageHeaderModule,
     PageDataModule,
-    TableModule
+    TableModule,
+    AnnouncementCardModule
   ],
   providers: [],
   bootstrap: []

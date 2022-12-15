@@ -12,7 +12,9 @@ export class HraUsageMetricsComponent {
   hraUsageHeading: PageHeaderItems[]
   hubmapMetricsData: PageDataItems[]
   trainingMaterials: PageDataItems[]
-  
+  gtexMetrics: PageDataItems[]
+  softwareData: PageDataItems[]
+  licenses: PageDataItems[]
 
 
   constructor (private route: ActivatedRoute){
@@ -20,6 +22,9 @@ export class HraUsageMetricsComponent {
     this.hraUsageHeading = data.hraUsageHeading
     this.hubmapMetricsData = data.hubmapGteMetricsData
     this.trainingMaterials = data.trainingMaterials
+    this.gtexMetrics = data.gtexMetrics
+    this.softwareData = data.softwareData
+    this.licenses = data.licenses
     
   }
 }

@@ -6,6 +6,7 @@ import { PageHeaderModule } from 'src/app/components/page-header/page-header.mod
 import { PageDataModule } from 'src/app/components/page-data/page-data.module';
 import { UseButtonModule } from 'src/app/components/use-button/use-button.module';
 import { HraApiComponent } from './hra-api.component';
+import { AnnouncementCardModule } from 'src/app/components/announcement-card/announcement-card.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { HraApiComponent } from './hra-api.component';
     PageHeaderModule,
     PageDataModule,
     UseButtonModule,
+    AnnouncementCardModule
   ],
   providers: []
 })

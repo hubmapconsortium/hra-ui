@@ -1,8 +1,5 @@
 :host {
-  .sop {
-    margin-bottom: 2rem;
-  }
-
+  display: block;
   .sop-title {
     font-family: "Inter";
     font-style: normal;
@@ -11,7 +8,7 @@
     line-height: 1.4202rem;
     letter-spacing: 0.005rem;
     color: #000000;
-    margin-bottom: 1rem;
+    // margin-bottom: 1rem;
   }
 
   .sop-items {

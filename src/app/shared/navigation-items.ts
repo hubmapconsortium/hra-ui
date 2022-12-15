@@ -34,7 +34,11 @@ export const NAVIGATION_ITEMS: NavItems[] = [
       {
         menuName: 'Organ Mapping Antibody Panels (OMAPs)',
         route: 'omap',
-        disabled: true,
+        disabled: true
+      },
+      {
+        menuName: '4th Release Notes',
+        route: 'release-notes/v1.3',
         divider: true
       },
       {
@@ -128,14 +132,14 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         route: 'kaggle-two',
         disabled: true
       },
-      {
-        menuName: 'Scrollytelling Series',
-        route: 'scrollytelling-series'
-      },
-      {
-        menuName: '24 Hour Human Reference Atlas Event',
-        route: '24-hr-hra-event'
-      }
+      // {
+      //   menuName: 'Scrollytelling Series',
+      //   route: 'scrollytelling-series'
+      // },
+      // {
+      //   menuName: '24 Hour Human Reference Atlas Event',
+      //   route: '24-hr-hra-event'
+      // }
 
     ]
   },

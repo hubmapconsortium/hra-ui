@@ -24,7 +24,7 @@ export class TableDataService {
       dynamicTyping: true,
       skipEmptyLines: 'greedy'
     } as const;
-    const raw = this.http.get(`/assets/table-data/${file}`, { responseType: 'text' });
+    const raw = this.http.get(`assets/table-data/${file}`, { responseType: 'text' });
     const parsed = raw.pipe(map(data => parse<TableData>(data, parseOptions)));
     const withColumns = parsed.pipe(map(result => ({
       columns: this.filterColumns(result.meta.fields ?? [], validColumns),

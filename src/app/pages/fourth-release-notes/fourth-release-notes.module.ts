@@ -10,6 +10,8 @@ import { UseButtonModule } from 'src/app/components/use-button/use-button.module
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ContactCardModule } from 'src/app/components/contact-card/contact-card.module';
+import { MatCardModule } from '@angular/material/card';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { ContactCardModule } from 'src/app/components/contact-card/contact-card.
     UseButtonModule,
     MatIconModule,
     MatButtonModule,
-    ContactCardModule
+    ContactCardModule,
+    MatCardModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: []

@@ -7,6 +7,8 @@ hubmapGteMetricsData:
 - heading: HuBMAP Metrics
   descriptions: |
     The RUI is deployed in the HuBMAP Ingest Portal and used to add standardized spatial and biological structure (ASCT+B aligned) annotations. The EUI is available via Data Portal. ASCT+B terms are used by Vitessce to assign ontology-aligned cell type annotations for Azimuth cell by gene annotations and soon CODEX cell type annotations.
+
+gtexMetrics:
 - heading: GTEx Metrics
   descriptions: |
     **Monthly users, if applicable (based on one or more of the following: monthly downloads from websites, monthly downloads from package managers, monthly unique requests for updates, etc.)** 
@@ -22,6 +24,8 @@ hubmapGteMetricsData:
 
     **Monthly visitors to project's website, discussion forum (e.g., Stack Overflow)**
     The number of monthly visitors to the web site is 20,000, based on Google Analytics data.
+
+softwareData:
 - heading: Software
   descriptions: |
     ## CCF UI (RUI + EUI + WCs) Requests for May
@@ -31,22 +35,36 @@ hubmapGteMetricsData:
 trainingMaterials:
 - heading: Training Materials
   descriptions: |
-    Videos, including the main video have been accessed xx times. In June 2022, the Visible Human MOOC has welcomed more than 160 students.
+    Videos, including the main video have been accessed xx times. 
+    
+    In June 2022, the Visible Human MOOC has welcomed more than 160 students.
+    
     Here are current view numbers for select videos via YouTube (<a href="https://www.youtube.com/playlist?list=PLuJUUASr8daNUIGpZRgp1bVC12kODL6pv">https://www.youtube.com/playlist?list=PLuJUUASr8daNUIGpZRgp1bVC12kODL6pv</a>):
+    
     HuBMAP Overview: 3,624
+
     Intro Ontologies: 406
+    
     ASCT+B for Collision Detection in RUI and Semantic Search in EUI by Bruce W. Herr II: 10
+    
     The HuBMAP Common Coordinate Framework (CCF): 157
+    
     HuBMAP Portal Design and Usage: Data and Code in 1st Portal Release: 91
+    
     Jeff Spraggins Presents TMC-VU: 75
+    
     Introduction to Data Harmonization with Seurat (feat. Rahul Satija): 741
+    
     Introduction to Anatomical Structures and Cell Types plus Biomarkers (ASCT+B) Tables: 103
+    
     CODEX Data on HuBMAP Portal: 88
+    
     Vitessce and Data Portal (2021): 21
 
 
     The playlist itself has been visited 164 times.
 
+licenses:
 - heading: Licenses
   descriptions: |
     **ASCT+B Working Group**: All meeting <a href="https://drive.google.com/drive/u/1/folders/1dwXw8oSvBIIIygHwMHNiYVPWB9adyUW_">slides</a> are freely available and meeting video recordings are on this <a href="https://www.youtube.com/playlist?list=PL-CUnYVIy7DNJc1FhqPsFPzDmd-bQD1jf">YouTube channel</a>. Anyone is welcome to join this effort-please register <a href="https://iu.co1.qualtrics.com/jfe/form/SV_bpaBhIr8XfdiNRH" >here</a> to receive meeting invites and updates.

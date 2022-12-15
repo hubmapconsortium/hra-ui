@@ -11,6 +11,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MarkdownModule } from 'ngx-markdown';
 import { YoutubeModelModule } from '../../components/youtube-model/youtube-model.module';
 import { UseButtonModule } from 'src/app/components/use-button/use-button.module';
+import { AnnouncementCardModule } from 'src/app/components/announcement-card/announcement-card.module';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { UseButtonModule } from 'src/app/components/use-button/use-button.module
     TableModule,
     UseButtonModule,
     MarkdownModule,
-    YoutubeModelModule
+    YoutubeModelModule,
+    AnnouncementCardModule
   ],
   providers: [],
   bootstrap: []

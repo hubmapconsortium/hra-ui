@@ -1,3 +1,4 @@
+import { ContactCard } from "src/app/components/contact-card/contact-card";
 import { PageDataItems } from "src/app/components/page-data/page-data";
 import { PageHeaderItems } from "src/app/components/page-header/page-header-items";
 import { UseButton } from "src/app/components/use-button/use-button";
@@ -12,7 +13,7 @@ export const headerData: PageHeaderItems[] = [
 
 export const fourthReleaseIntro: PageDataItems[] = [
     {
-        heading: 'December 15th, 2022',
+        heading: '',
         descriptions: `
         <b>Intro</b>
         <br><br>
@@ -153,7 +154,7 @@ export const vrOrganGallary: PageDataItems[] = [
         heading: '',
         descriptions: `<b>VR Organ Gallery</b>
         <br><br>
-        Lorem Ipsum
+        Want to explore 3D organs in virtual reality?! Check out the VR Organ Gallery.
         `
     }
 ]
@@ -175,3 +176,27 @@ export const previewButton2: UseButton =
     text: '<Title> Demo Page',
     url: 'https://www.google.com/'
 }
+
+export const contactCardData: ContactCard[] = [
+    {
+        image: 'assets/images/katy_borner.svg',
+        name: 'Katy Börner',
+        field: 'Research',
+        role: 'MC-IU PI, CNS Director',
+        email: 'katy@indiana.edu'
+    },
+    {
+        image: 'assets/images/bruce_herr.svg',
+        name: 'Bruce Herr II ',
+        field: 'Development',
+        role: 'Sr. Systems Architect, PM',
+        email: 'bherr@indiana.edu'
+    },
+    {
+        image: 'assets/images/andreas_buckle.svg',
+        name: 'Andreas Bueckle ',
+        field: 'Research',
+        role: 'Research Scientist',
+        email: 'abueckle@iu.edu'
+    }
+]

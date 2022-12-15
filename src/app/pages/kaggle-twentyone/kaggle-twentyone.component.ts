@@ -18,6 +18,7 @@ export class KaggleTwentyoneComponent {
   accuracyPrizeData: PrizeCard[]
   judgesPrizeData: PrizeCard[]
   kudosData: PrizeCard[]
+  awardsCeremony: PageDataItems[]
 
   constructor(private route: ActivatedRoute){
     const data = route.snapshot.data['kaggleTwentyOne']
@@ -27,5 +28,7 @@ export class KaggleTwentyoneComponent {
     this.datasetsData = data.datasetsData
     this.accuracyPrizeData = data.accuracyPrizeData
     this.kudosData = data.kudosData
+    this.awardsCeremony = data.awardsCeremony
+    this.judgesPrizeData = data.judgesPrizeData
   }
 }

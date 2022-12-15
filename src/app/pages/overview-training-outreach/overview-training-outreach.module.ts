@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { OverviewTrainingOutreachComponent } from './overview-training-outreach.component';
 import { CardButtonLongModule } from 'src/app/components/card-button-long/card-button-long.module';
+import { AnnouncementCardModule } from 'src/app/components/announcement-card/announcement-card.module';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { CardButtonLongModule } from 'src/app/components/card-button-long/card-b
   imports: [
     BrowserModule,
     SimpleTileModule,
-    CardButtonLongModule
+    CardButtonLongModule,
+    AnnouncementCardModule
   ],
   providers: [],
   bootstrap: []

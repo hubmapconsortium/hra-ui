@@ -22,7 +22,12 @@ export class ThreeDimRefPageComponent implements OnInit {
   versionData: ChooseVersion[];
   sopData:SopLinks[];
   termsOfUseData: PageDataItems[];
-  threeDimOrganInfo: VersionOrgans[]
+  licenseData: PageDataItems[];
+  citationData: PageDataItems[];
+  acknowledgmentsData: PageDataItems[];
+  referencesData: PageDataItems[];
+  referenceOrgans: PageDataItems[];
+  threeDimOrganInfo: VersionOrgans[];
   cardTitle="";
   tabsImages:OrganData[]
   organData: OrganData[];
@@ -31,12 +36,18 @@ export class ThreeDimRefPageComponent implements OnInit {
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     const data = activatedRoute.snapshot.data['threeDim'];
-    console.log(data)
+    this.overviewData = data.overviewData
     this.headerData = data.headerData
-    this.termsOfUseData = [data.termsOfUseData[0], data.licenseData[0], data.citationData[0], data.acknowledgmentsData[0], data.referencesData[0]]
+    this.termsOfUseData = data.termsOfUseData
     this.versionData = data.versionData
     this.sopData = data.sopData
     this.threeDimOrganInfo = data.threeDimOrganInfo
+    this.licenseData = data.licenseData
+    this.citationData = data.citationData
+    this.acknowledgmentsData = data.acknowledgmentsData
+    this.referencesData = data.referencesData
+    this.referenceOrgans = data.referenceOrgans
+  
   }
 
   ngOnInit(): void {

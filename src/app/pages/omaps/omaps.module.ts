@@ -9,6 +9,7 @@ import { SopLinksModule } from 'src/app/components/sop-links/sop-links.module';
 import { TableModule } from 'src/app/components/table/table.module';
 import { ChooseVersionModule } from 'src/app/components/choose-version/choose-version.module';
 import { RouterModule } from '@angular/router';
+import { AnnouncementCardModule } from 'src/app/components/announcement-card/announcement-card.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { RouterModule } from '@angular/router';
     SopLinksModule,
     TableModule,
     ChooseVersionModule,
-    RouterModule
+    RouterModule,
+    AnnouncementCardModule
   ],
   providers: [],
   bootstrap: []

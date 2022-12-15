@@ -9,14 +9,14 @@ longCardData:
   - icon: assets/images/hra-sop.svg
     title: Human Reference Atlas Standard Operating Procedures
     body: Standard operating procedures for Human Reference Atlas construction, visualization, and usage
-    route: ccf-hra-sop
+    route: standard-operating-procedures
 - heading: Outreach
   cardData:
   - icon: assets/images/kaggle.svg
     title: 'Kaggle #1: HuBMAP - Hacking the Kidney'
     body: Algorithm development challenges that engage teams from around the globe to develop code for Human Reference Atlas construction
-    route: ccf-kaggle-twentyone
+    route: kaggle-one
   - icon: assets/images/kaggle.svg
     title: 'Kaggle #2: HuBMAP + HPA - Hacking the Human Body'
     body: Algorithm development challenges that engage teams from around the globe to develop code for Human Reference Atlas construction
-    route: ccf-kaggle-two
+    route: kaggle-two

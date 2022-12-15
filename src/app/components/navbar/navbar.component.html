@@ -9,7 +9,7 @@
     <mat-menu #childMenu="matMenu" class="menu-container">
       <ng-container *ngFor="let child of item.children">
         <div class="navigation-items" *ngIf="child.route; else: externalUrl">
-          <button mat-menu-item [routerLink]="['',child.route]">{{child.menuName}}</button>
+          <button mat-menu-item [routerLink]="[child.route]">{{child.menuName}}</button>
         </div>
         <ng-template #externalUrl>
           <label class="navigation-items">

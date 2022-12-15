@@ -14,16 +14,19 @@ export class KaggleTwoComponent {
   kaggle2022Header: PageHeaderItems[]
   overviewData: PageDataItems[]
   accuracyPrizeData: PrizeCard[]
-  acknowledgmentsData: PageDataItems[]
-  judgesPrizesData: PrizeCard[]
-
+  acknowledgments: PageDataItems[]
+  judgesPrizeData: PrizeCard[]
+  awardsCeremony: PageDataItems[]
+  datasets: PageDataItems[]
 
   constructor (private route: ActivatedRoute){
     const data = route.snapshot.data['kaggleTwo']
     this.kaggle2022Header = data.kaggle2022Header
     this.overviewData = data.overviewData
     this.accuracyPrizeData = data.accuracyPrizeData
-    this.acknowledgmentsData = data.acknowledgmentsData
-    this.judgesPrizesData = data.judgesPrizesData
+    this.acknowledgments = data.acknowledgments
+    this.judgesPrizeData = data.judgesPrizeData
+    this.awardsCeremony = data.awardsCeremony
+    this.datasets = data.datasets
   }
 }

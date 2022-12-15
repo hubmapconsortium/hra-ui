@@ -1,8 +1,8 @@
 omapId,organ,tissuePreservationMethod,imagingMethod,as,ct,bp,url
-OMAP-1,Intestines,Fresh Frozen,CODEX,42,29,51,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-intestines-codex.html
-OMAP-2,Kidney,Fresh Frozen,CODEX,42,29,51,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-kidney-codex.html
-OMAP-3,Liver,Fresh Frozen,SIMS,42,29,51,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-liver-sim.html
-OMAP-4,Lymph Node,Fresh Frozen,IBEX,42,29,51,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-lymph-node-ibex.html
-OMAP-5,Lung,Fresh FFPE,Cell DIVE,42,29,51,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-lung-celldive.html
-OMAP-6,Pancreas,FFPE Frozen,CODEX,42,29,51,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-pancreas-codex.html
-OMAP-7,Skin,Fresh FFPE,Cell DIVE,42,29,51,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-skin-celldive.html
+OMAP-1,Lymph Node,Fixed Frozen,IBEX,29,31,40,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-lymph-node-ibex.html
+OMAP-2,Intestines,Fresh Frozen,CODEX,42,29,51,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-intestines-codex.html
+OMAP-3,Kidney,Fresh Frozen,CODEX,30,27,26,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-kidney-codex.html
+OMAP-4,Skin,FFPE,Cell DIVE,16,15,18,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-skin-celldive.html
+OMAP-5,Liver,Fresh Frozen,SIMS,17,16,20,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-liver-sim.html
+OMAP-6,Pancreas,FFPE,CODEX,3,9,12,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-pancreas-codex.html
+OMAP-7,Lung,FFPE,Cell DIVE,50,42,30,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-lung-celldive.html

@@ -20,13 +20,29 @@ export class CcfAsctbAzimuthComponent {
     this.azimuthHeader = data.azimuthHeader
     this.overviewAzimuthData = data.overviewAzimuthData
     this.TermsOfUseData = data.TermsOfUseData
-    this.comparisonAsctbVsAzimuth = data.comparisonAsctbVsAzimuth
+    this.azimuthCtandCount = data.azimuthCtandCount
+    this.comparisonOfCXG = data.comparisonOfCXG
+    this.AzimuthCTCounts = data.azimuthCTCounts
+    this.CodeOnGitHub = data.codeOnGitHub
+    this.TermsOfUse = data.termsOfUse
+    this.License = data.license
+    this.Citation = data.citation
+    this.Acknowledgements = data.acknowledgements
+    this.References = data.references
   }
 
   azimuthHeader: PageHeaderItems[]
   overviewAzimuthData: PageDataItems[]
   TermsOfUseData: PageDataItems[]
-  comparisonAsctbVsAzimuth: PageDataItems[]
+  azimuthCtandCount: PageDataItems[]
+  comparisonOfCXG: PageDataItems[]
+  AzimuthCTCounts: PageDataItems[]
+  CodeOnGitHub: PageDataItems[]
+  TermsOfUse: PageDataItems[]
+  License: PageDataItems[]
+  Citation: PageDataItems[]
+  Acknowledgements: PageDataItems[]
+  References: PageDataItems[]
   headerInfo= headerInfo
   displayedColumnsData= displayedColumnsData
   additionalHeaders = additionalHeaders
