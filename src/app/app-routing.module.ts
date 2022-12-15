@@ -228,7 +228,7 @@ resolve:{
     },
   },
   {
-    path: 'organ-vr-gallery',
+    path: 'vr-organ-gallery',
     component: CcfOrganVrGalleryComponent,
     data: {
       contentFile: 'ccf-organ-vr-gallery.content',

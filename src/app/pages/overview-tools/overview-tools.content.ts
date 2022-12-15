@@ -29,7 +29,7 @@ export const longButtonItems: LongCard[] = [
         icon: 'assets/images/vr_gallery.svg',
         title: 'CCF Organ VR Gallery',
         body: 'An immersive application that allows users to explore 3D reference organs, anatomical structures, and cell types in virtual reality',
-        route: 'organ-vr-gallery'
+        route: 'vr-organ-gallery'
     },
     {
         icon: 'assets/images/hra_milletome.svg',
