@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
-import { PageDataItems } from 'src/app/components/page-data/page-data';
-import { PageHeaderItems } from 'src/app/components/page-header/page-header-items';
-import { BoardMemberItems } from 'src/app/components/board-members/board-members';
 import { ActivatedRoute } from '@angular/router';
+import { BoardMemberItems } from '../../components/board-members/board-members';
+import { PageDataItems } from '../../components/page-data/page-data';
+import { PageHeaderItems } from '../../components/page-header/page-header-items';
+
 
 @Component({
   selector: 'editorial-board',
   templateUrl: './hra-editorial-board.component.html',
   styleUrls: ['./hra-editorial-board.component.scss']
 })
-
 export class HraEditorialBoardComponent {
-  
   overviewData: PageDataItems[];
   boardHeader: PageHeaderItems[];
   boardMembersData: BoardMemberItems[];
@@ -19,14 +18,9 @@ export class HraEditorialBoardComponent {
 
   constructor(route: ActivatedRoute){
     const data = route.snapshot.data['hraEditorialBoard'];
-    this.overviewData=[data.overviewData]
-    this.boardHeader = [data.boardHeader]
-    this.acknowledgmentsData = [data.acknowledgmentsData]
-    this.boardMembersData = data.boardMembersData
+    this.overviewData=[data.overviewData];
+    this.boardHeader = [data.boardHeader];
+    this.acknowledgmentsData = [data.acknowledgmentsData];
+    this.boardMembersData = data.boardMembersData;
   }
-
-
-
-  
 }
-

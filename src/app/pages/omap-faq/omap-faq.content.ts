@@ -1,6 +1,6 @@
-import { PageDataItems } from "src/app/components/page-data/page-data";
-import { PageHeaderItems } from "src/app/components/page-header/page-header-items";
-import { UseButton } from "src/app/components/use-button/use-button";
+import { PageDataItems } from '../../components/page-data/page-data';
+import { PageHeaderItems } from '../../components/page-header/page-header-items';
+import { UseButton } from '../../components/use-button/use-button';
 
 export const backButton: UseButton = 
     {

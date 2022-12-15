@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router } from '@angular/router';
 import { EMPTY, Observable, of } from 'rxjs';
-import { TissueTableInfo } from 'src/app/components/tissue-info-table/tissue-info-table';
-import { tissueData } from 'src/app/pages/tissue-info-page/tissue-info-page.contents';
+import { TissueTableInfo } from '../../components/tissue-info-table/tissue-info-table';
+import { tissueData } from '../../pages/tissue-info-page/tissue-info-page.content';
 
 @Injectable({
   providedIn: 'root'

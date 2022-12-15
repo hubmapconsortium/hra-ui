@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PageDataItems } from 'src/app/components/page-data/page-data';
-import { PageHeaderItems } from 'src/app/components/page-header/page-header-items';
-import { PrizeCard } from 'src/app/components/prize-card/prize-card';
-import { accuracyPrizeData, acknowledgmentsData, judgesPrizesData, kaggle2022Header, overviewData } from './kaggle-two.content';
+import { PageDataItems } from '../../components/page-data/page-data';
+import { PageHeaderItems } from '../../components/page-header/page-header-items';
+import { PrizeCard } from '../../components/prize-card/prize-card';
+
 
 @Component({
   selector: 'kaggle-two',
@@ -11,22 +11,22 @@ import { accuracyPrizeData, acknowledgmentsData, judgesPrizesData, kaggle2022Hea
   styleUrls: ['./kaggle-two.component.scss']
 })
 export class KaggleTwoComponent {
-  kaggle2022Header: PageHeaderItems[]
-  overviewData: PageDataItems[]
-  accuracyPrizeData: PrizeCard[]
-  acknowledgments: PageDataItems[]
-  judgesPrizeData: PrizeCard[]
-  awardsCeremony: PageDataItems[]
-  datasets: PageDataItems[]
+  kaggle2022Header: PageHeaderItems[];
+  overviewData: PageDataItems[];
+  accuracyPrizeData: PrizeCard[];
+  acknowledgments: PageDataItems[];
+  judgesPrizeData: PrizeCard[];
+  awardsCeremony: PageDataItems[];
+  datasets: PageDataItems[];
 
-  constructor (private route: ActivatedRoute){
-    const data = route.snapshot.data['kaggleTwo']
-    this.kaggle2022Header = data.kaggle2022Header
-    this.overviewData = data.overviewData
-    this.accuracyPrizeData = data.accuracyPrizeData
-    this.acknowledgments = data.acknowledgments
-    this.judgesPrizeData = data.judgesPrizeData
-    this.awardsCeremony = data.awardsCeremony
-    this.datasets = data.datasets
+  constructor(route: ActivatedRoute) {
+    const data = route.snapshot.data['kaggleTwo'];
+    this.kaggle2022Header = data.kaggle2022Header;
+    this.overviewData = data.overviewData;
+    this.accuracyPrizeData = data.accuracyPrizeData;
+    this.acknowledgments = data.acknowledgments;
+    this.judgesPrizeData = data.judgesPrizeData;
+    this.awardsCeremony = data.awardsCeremony;
+    this.datasets = data.datasets;
   }
 }

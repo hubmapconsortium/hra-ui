@@ -23,7 +23,6 @@ import { OverviewDataComponent } from './pages/overview-data/overview-data.compo
 import { OverviewToolsComponent } from './pages/overview-tools/overview-tools.component';
 import { OverviewTrainingOutreachComponent } from './pages/overview-training-outreach/overview-training-outreach.component';
 import { RegistrationUserInterfaceComponent } from './pages/registration-user-interface/registration-user-interface.component';
-import { ThreeDimRefPageResolver } from './pages/three-dim-ref-page/three-dim-ref-page-resolver.service';
 import { ThreeDimRefPageComponent } from './pages/three-dim-ref-page/three-dim-ref-page.component';
 import { TissueInfoPageComponent } from './pages/tissue-info-page/tissue-info-page.component';
 import { TwoDimRefPageComponent } from './pages/two-dim-ref-page/two-dim-ref-page.component';
@@ -170,7 +169,7 @@ const routes: Routes = [
     contentFile: 'three-dim-ref-page.content'
   },
 resolve:{
-  threeDim: ThreeDimRefPageResolver
+  threeDim: ContentResolver
 } },
   {
     path: 'asctb-azimuth',
