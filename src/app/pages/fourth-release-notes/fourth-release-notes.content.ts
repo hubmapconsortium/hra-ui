@@ -6,7 +6,7 @@ import { UseButton } from '../../components/use-button/use-button';
 export const headerData: PageHeaderItems[] = [
     {
         image: 'assets/images/4th_release.svg',
-        title: '4th Release Notes',
+        title: 'Release Notes',
         subtitle: `See what's new in the 4th Release (v1.3) of the Human Reference Atlas`
     }
 ]
