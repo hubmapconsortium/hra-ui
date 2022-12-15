@@ -63,7 +63,7 @@ export const asctbTables: PageDataItems[] = [
 export const asctbTablesButton: UseButton =
 {
     text: 'Use the ASCT+B Tables',
-    url: 'https://www.google.com/'
+    url: 'https://humanatlas.io/asctb-tables'
 }
 
 export const asctbReporter: PageDataItems[] = [
@@ -159,7 +159,7 @@ export const vrOrganGallary: PageDataItems[] = [
 
 export const vrOrganGallaryButton: UseButton =
 {
-    text: 'VR Organ Gallery Download',
+    text: 'VR Organ Gallery',
     url: 'https://humanatlas.io/vr-organ-gallery'
 }
 
