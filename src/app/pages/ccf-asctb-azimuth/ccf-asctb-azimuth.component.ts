@@ -37,7 +37,7 @@ export class CcfAsctbAzimuthComponent implements OnInit {
   columns: Observable<string[]> = EMPTY;
 
   constructor(private readonly dataService: TableDataService, route: ActivatedRoute) { 
-    const data = route.snapshot.data['ccfAsctbAzimuth'];
+    const data = route.snapshot.data['content'];
     this.azimuthHeader = data.azimuthHeader;
     this.overviewAzimuthData = data.overviewAzimuthData;
     this.TermsOfUseData = data.TermsOfUseData;

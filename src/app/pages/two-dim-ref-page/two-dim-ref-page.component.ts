@@ -36,25 +36,24 @@ export class TwoDimRefPageComponent implements OnInit {
   organInfo: VersionOrgans[];
   label: string;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
-    const data = activatedRoute.snapshot.data['twoDimRefPage']
-    this.twoDimHeaderCardDetails = data.twoDimHeaderCardDetails
-    this.overviewData = data.overviewData
-    this.sopData = data.sopData
-    this.termsOfUseData = data.termsOfUseData
-    this.versionData = data.versionData
-    this.placeholderDate = this.versionData[0].release
-    this.organInfo = data.organInfo
-    this.licenseData = data.licenseData
-    this.citationData = data.citationData
-    this.disclaimer = data.disclaimer
-    this.acknowledgmentsData = data.acknowledgmentsData
-    this.twoDimFtuLibObjects = data.twoDimFtuLibObjects
+  constructor(private router: Router, private readonly route: ActivatedRoute) {
+    const data = route.snapshot.data['content'];
+    this.twoDimHeaderCardDetails = data.twoDimHeaderCardDetails;
+    this.overviewData = data.overviewData;
+    this.sopData = data.sopData;
+    this.termsOfUseData = data.termsOfUseData;
+    this.versionData = data.versionData;
+    this.placeholderDate = this.versionData[0].release;
+    this.organInfo = data.organInfo;
+    this.licenseData = data.licenseData;
+    this.citationData = data.citationData;
+    this.acknowledgmentsData = data.acknowledgmentsData;
+    this.twoDimFtuLibObjects = data.twoDimFtuLibObjects;
   }
 
   ngOnInit(): void {
     const [{ version: defaultVersion, organData: [{ name: defaultOrgan }] }] = this.organInfo;
-    const { version = defaultVersion, organ = defaultOrgan } = this.activatedRoute.snapshot.queryParams;
+    const { version = defaultVersion, organ = defaultOrgan } = this.route.snapshot.queryParams;
     this.label = 'Choose version of HRA release';
 
     this.setVersion(`${version}`, `${organ}`);
@@ -84,7 +83,7 @@ export class TwoDimRefPageComponent implements OnInit {
 
   updateQueryParams(params: Params): void {
     this.router.navigate([], {
-      relativeTo: this.activatedRoute,
+      relativeTo: this.route,
       queryParams: params,
       queryParamsHandling: 'merge'
     });

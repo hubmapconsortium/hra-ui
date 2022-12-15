@@ -28,21 +28,20 @@ import { TissueInfoPageComponent } from './pages/tissue-info-page/tissue-info-pa
 import { TwoDimRefPageComponent } from './pages/two-dim-ref-page/two-dim-ref-page.component';
 import { ContentResolver } from './services/content-resolver/conent-resolver.service';
 
+
 const routes: Routes = [
   {
     path: '',
     component: LandingPageComponent,
     pathMatch: 'full',
     data: { contentFile: 'landing-page.content' },
-    resolve: { landingPage: ContentResolver },
+    resolve: { content: ContentResolver },
   },
   {
     path: 'overview-data',
     component: OverviewDataComponent,
     data: { contentFile: 'overview-data.content' },
-    resolve: {
-      overViewData: ContentResolver,
-    },
+    resolve: { content: ContentResolver },
   },
   {
     path: 'asctb-tables',
@@ -50,9 +49,7 @@ const routes: Routes = [
     data: {
       contentFile: 'ccf-anatomical-structures.content',
     },
-    resolve: {
-      ccfTablePage: ContentResolver,
-    },
+    resolve: { content: ContentResolver },
   },
   {
     path: '2d-ftu-illustrations',
@@ -60,17 +57,13 @@ const routes: Routes = [
     data: {
       contentFile: 'ccf-2d-ftu.content',
     },
-    resolve: {
-      twoDimRefPage: ContentResolver,
-    },
+    resolve: { content: ContentResolver },
   },
   {
     path: 'overview-tools',
     component: OverviewToolsComponent,
     data: { contentFile: 'overview-tools.content' },
-    resolve: {
-      overviewTools: ContentResolver,
-    },
+    resolve: { content: ContentResolver },
   },
   {
     path: 'ccf-ontology',
@@ -78,9 +71,7 @@ const routes: Routes = [
     data: {
       contentFile: 'ccf-ontology.content',
     },
-    resolve: {
-      ccfOntology: ContentResolver,
-    },
+    resolve: { content: ContentResolver },
   },
   {
     path: 'asctb-reporter',
@@ -88,9 +79,7 @@ const routes: Routes = [
     data: {
       contentFile: 'ccf-asctb-reporter.content',
     },
-    resolve: {
-      ccfReporterPage: ContentResolver,
-    },
+    resolve: { content: ContentResolver },
   },
   {
     path: 'exploration-user-interface',
@@ -98,9 +87,7 @@ const routes: Routes = [
     data: {
       contentFile: 'ccf-exploration-user-interface.content',
     },
-    resolve: {
-      ccfExplorationUserInterface: ContentResolver,
-    },
+    resolve: { content: ContentResolver },
   },
   {
     path: 'hra-millitome',
@@ -108,9 +95,7 @@ const routes: Routes = [
     data: {
       contentFile: 'hra-millitome.content',
     },
-    resolve: {
-      hraMillitome: ContentResolver,
-    },
+    resolve: { content: ContentResolver },
   },
   {
     path: 'registration-user-interface',
@@ -118,9 +103,7 @@ const routes: Routes = [
     data: {
       contentFile: 'registrationUserInterface.content',
     },
-    resolve: {
-      registrationUserInterface: ContentResolver,
-    },
+    resolve: { content: ContentResolver },
   },
   {
     path: 'cell-population-graphs',
@@ -128,9 +111,7 @@ const routes: Routes = [
     data: {
       contentFile: 'ccf-cell-population-graphs.content',
     },
-    resolve: {
-      cellPopulationGraphs: ContentResolver,
-    },
+    resolve: { content: ContentResolver },
   },
   {
     path: 'api',
@@ -138,15 +119,13 @@ const routes: Routes = [
     data: {
       contentFile: 'hra-api.content',
     },
-    resolve: {
-      hraInfo: ContentResolver,
-    },
+    resolve: { content: ContentResolver },
   },
   {
     path: 'about-mc-iu',
     component: AboutComponent,
     data: { contentFile: 'about.content' },
-    resolve: { about: ContentResolver },
+    resolve: { content: ContentResolver },
   },
   {
     path: 'overview-training-outreach',
@@ -154,30 +133,29 @@ const routes: Routes = [
     data: {
       contentFile: 'overviewTrainingOutreach.content',
     },
-    resolve: {
-      overviewTrainingOutreach: ContentResolver,
-    },
+    resolve: { content: ContentResolver },
   },
   {
     path: 'omap',
     component: OmapsComponent,
     data: { contentFile: 'omaps.content' },
-    resolve: { omaps: ContentResolver },
+    resolve: { content: ContentResolver },
   },
-  { path: '3d-reference-library', component: ThreeDimRefPageComponent,
-  data:{
-    contentFile: 'three-dim-ref-page.content'
+  {
+    path: '3d-reference-library',
+    component: ThreeDimRefPageComponent,
+    data: {
+      contentFile: 'three-dim-ref-page.content',
+    },
+    resolve: { content: ContentResolver },
   },
-resolve:{
-  threeDim: ContentResolver
-} },
   {
     path: 'asctb-azimuth',
     component: CcfAsctbAzimuthComponent,
     data: {
       contentFile: 'ccfAsctbAzimuth.content',
     },
-    resolve: { ccfAsctbAzimuth: ContentResolver },
+    resolve: { content: ContentResolver },
   },
   {
     path: 'usage-metrics',
@@ -185,16 +163,12 @@ resolve:{
     data: {
       contentFile: 'hra-usage-metrics.content',
     },
-    resolve: {
-      hraUsageMetrics: ContentResolver,
-    },
+    resolve: { content: ContentResolver },
   },
   {
     path: 'ccf-tissue-info-page/:organ',
     component: TissueInfoPageComponent,
-    resolve: {
-      data: ContentResolver,
-    },
+    resolve: { content: ContentResolver },
   },
   {
     path: 'standard-operating-procedures',
@@ -202,9 +176,7 @@ resolve:{
     data: {
       contentFile: 'hra-sop.content',
     },
-    resolve: {
-      hraSop: ContentResolver,
-    },
+    resolve: { content: ContentResolver },
   },
   {
     path: 'kaggle-one',
@@ -212,9 +184,7 @@ resolve:{
     data: {
       contentFile: 'kaggle-twentyone.content',
     },
-    resolve: {
-      kaggleTwentyOne: ContentResolver,
-    },
+    resolve: { content: ContentResolver },
   },
   {
     path: 'kaggle-two',
@@ -222,9 +192,7 @@ resolve:{
     data: {
       contentFile: 'kaggle-two.content',
     },
-    resolve: {
-      kaggleTwo: ContentResolver,
-    },
+    resolve: { content: ContentResolver },
   },
   {
     path: 'vr-organ-gallery',
@@ -232,9 +200,7 @@ resolve:{
     data: {
       contentFile: 'ccf-organ-vr-gallery.content',
     },
-    resolve: {
-      ccfOrganVrGallery: ContentResolver,
-    },
+    resolve: { content: ContentResolver },
   },
   {
     path: 'editorial-board',
@@ -242,19 +208,17 @@ resolve:{
     data: {
       contentFile: 'hra-editorial-board.content',
     },
-    resolve: {
-      hraEditorialBoard: ContentResolver,
-    },
+    resolve: { content: ContentResolver },
   },
   { path: 'faq/omap', component: OmapFaqComponent },
-  { path: 'release-notes/v1.3', component: FourthReleaseNotesComponent},
+  { path: 'release-notes/v1.3', component: FourthReleaseNotesComponent },
   { path: '', redirectTo: '', pathMatch: 'full' },
   {
     path: '**',
     pathMatch: 'full',
     component: LandingPageComponent,
     data: { contentFile: 'landing-page.content' },
-    resolve: { landingPage: ContentResolver },
+    resolve: { content: ContentResolver },
   },
 ];
 
@@ -262,4 +226,4 @@ resolve:{
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

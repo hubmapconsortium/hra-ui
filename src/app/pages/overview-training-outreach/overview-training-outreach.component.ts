@@ -14,8 +14,8 @@ export class OverviewTrainingOutreachComponent {
   TileDefinition = TileDefinition;
   longCardData: CardBlock[];
 
-  constructor(private router: Router,  route: ActivatedRoute) { 
-    const data = route.snapshot.data['overviewTrainingOutreach'];
+  constructor(private router: Router, route: ActivatedRoute) { 
+    const data = route.snapshot.data['content'];
     this.title = data.title;
     this.longCardData = data.longCardData;
   }

@@ -21,7 +21,7 @@ export class LandingPageComponent {
   messages: Announcement[];
 
   constructor(route: ActivatedRoute) { 
-    const data = route.snapshot.data['landingPage'];
+    const data = route.snapshot.data['content'];
     this.title = data.title;
     this.subtitle = data.subtitle;
     this.cardsHeading = data.cardsHeading;

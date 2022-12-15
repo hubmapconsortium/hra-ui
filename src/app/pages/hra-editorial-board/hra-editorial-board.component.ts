@@ -17,7 +17,7 @@ export class HraEditorialBoardComponent {
   acknowledgmentsData: PageDataItems[];
 
   constructor(route: ActivatedRoute){
-    const data = route.snapshot.data['hraEditorialBoard'];
+    const data = route.snapshot.data['content'];
     this.overviewData=[data.overviewData];
     this.boardHeader = [data.boardHeader];
     this.acknowledgmentsData = [data.acknowledgmentsData];

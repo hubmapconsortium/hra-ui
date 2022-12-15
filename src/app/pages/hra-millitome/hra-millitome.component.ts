@@ -26,7 +26,7 @@ export class HraMillitomeComponent implements OnInit {
   columns: Observable<string[]> = EMPTY;
 
   constructor(private readonly dataService: TableDataService, route: ActivatedRoute) { 
-    const data = route.snapshot.data['hraMillitome'];
+    const data = route.snapshot.data['content'];
     this.headerCardDetails = [data.headerCardDetails];
     this.overViewData = [data.overViewData];
     this.tableTitle = data.tableTitle;

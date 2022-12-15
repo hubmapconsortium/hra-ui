@@ -23,8 +23,8 @@ export class CcfOrganVrGalleryComponent {
   playerTitle: string;
   referencesData: PageDataItems[];
 
-  constructor(private readonly route: ActivatedRoute){
-    const data = route.snapshot.data['ccfOrganVrGallery'];
+  constructor(route: ActivatedRoute){
+    const data = route.snapshot.data['content'];
     this.organVrHeader = data.organVrHeader;
     this.overviewData  = data.overviewData;
     this.backgroundData = data.backgroundData;

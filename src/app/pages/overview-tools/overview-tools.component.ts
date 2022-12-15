@@ -15,7 +15,7 @@ export class OverviewToolsComponent {
   longButtonItems: LongCard[];
 
   constructor(private router: Router, route: ActivatedRoute) { 
-    const data = route.snapshot.data['overviewTools'];
+    const data = route.snapshot.data['content'];
     this.pageTitle = data.pageTitle;
     this.description = data.description;
     this.longButtonItems = data.longButtonItems;

@@ -18,15 +18,13 @@ export class HraUsageMetricsComponent {
   licenses: PageDataItems[]
   hraMetrics: PageDataItems[]
 
-
-  constructor (private route: ActivatedRoute){
-    const data = route.snapshot.data['hraUsageMetrics']
-    this.hraUsageHeading = data.hraUsageHeading
-    this.hubmapMetricsData = data.hubmapGteMetricsData
-    this.trainingMaterials = data.trainingMaterials
-    this.gtexMetrics = data.gtexMetrics
-    this.softwareData = data.softwareData
-    this.licenses = data.licenses
-    this.hraMetrics = data.hraMetrics
+  constructor (route: ActivatedRoute){
+    const data = route.snapshot.data['content'];
+    this.hraUsageHeading = data.hraUsageHeading;
+    this.hubmapMetricsData = data.hubmapGteMetricsData;
+    this.trainingMaterials = data.trainingMaterials;
+    this.gtexMetrics = data.gtexMetrics;
+    this.softwareData = data.softwareData;
+    this.licenses = data.licenses;
   }
 }

@@ -21,7 +21,7 @@ export class KaggleTwentyoneComponent {
   awardsCeremony: PageDataItems[];
 
   constructor(route: ActivatedRoute){
-    const data = route.snapshot.data['kaggleTwentyOne'];
+    const data = route.snapshot.data['content'];
     this.kaggle2021Header = data.kaggle2021Header;
     this.overviewData = data.overviewData;
     this.acknowledgmentsData = data.acknowledgmentsData;

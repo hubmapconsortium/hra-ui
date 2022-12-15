@@ -20,7 +20,7 @@ export class KaggleTwoComponent {
   datasets: PageDataItems[];
 
   constructor(route: ActivatedRoute) {
-    const data = route.snapshot.data['kaggleTwo'];
+    const data = route.snapshot.data['content'];
     this.kaggle2022Header = data.kaggle2022Header;
     this.overviewData = data.overviewData;
     this.accuracyPrizeData = data.accuracyPrizeData;
