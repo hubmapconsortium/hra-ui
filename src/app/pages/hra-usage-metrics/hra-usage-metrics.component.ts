@@ -18,7 +18,7 @@ export class HraUsageMetricsComponent {
   licenses: PageDataItems[];
 
   constructor (route: ActivatedRoute){
-    const data = route.snapshot.data['hraUsageMetrics'];
+    const data = route.snapshot.data['content'];
     this.hraUsageHeading = data.hraUsageHeading;
     this.hubmapMetricsData = data.hubmapGteMetricsData;
     this.trainingMaterials = data.trainingMaterials;

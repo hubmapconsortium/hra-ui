@@ -17,7 +17,7 @@ export class CellPopulationGraphsComponent {
   buttonData: UseButton;
 
   constructor (route: ActivatedRoute){
-    const data = route.snapshot.data['cellPopulationGraphs'];
+    const data = route.snapshot.data['content'];
     this.headerCardData = data.headerCardData;
     this.overviewData = data.overviewData;
     this.acknowledgmentsData = data.acknowledgmentsData;

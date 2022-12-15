@@ -21,8 +21,8 @@ export class CcfReporterPageComponent {
   videoId: string;
   playerTitle: string;
 
-  constructor (private route: ActivatedRoute){
-    const data = route.snapshot.data['ccfReporterPage'];
+  constructor (route: ActivatedRoute){
+    const data = route.snapshot.data['content'];
     this.headerCardDetails = data.headerCardDetails;
     this.overviewData = data.overviewData;
     this.acknowledgeData = data.acknowledgeData;

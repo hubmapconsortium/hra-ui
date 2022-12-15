@@ -16,7 +16,7 @@ export class HraSopComponent {
   acknowledgmentsData: PageDataItems[];
 
   constructor(route: ActivatedRoute){
-    const data = route.snapshot.data['hraSop'];
+    const data = route.snapshot.data['content'];
     this.tableTitle = data.tableTitle;
     this.pageHeader = [data.pageHeader];
     this.overviewData = [data.overviewData];

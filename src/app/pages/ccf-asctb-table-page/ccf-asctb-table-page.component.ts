@@ -30,8 +30,8 @@ export class CcfTablePageComponent implements OnInit {
   tableData: Observable<TableData[]> = EMPTY;
   columns: Observable<string[]> = EMPTY;
 
-  constructor(private readonly dataService: TableDataService, private readonly route: ActivatedRoute) {
-    const data = route.snapshot.data['ccfTablePage'];
+  constructor(private readonly dataService: TableDataService, route: ActivatedRoute) {
+    const data = route.snapshot.data['content'];
     this.headerCardDetails = data.headerCardDetails;
     this.overviewData = data.overviewData;
     this.existingTablesData = data.existingTablesData;

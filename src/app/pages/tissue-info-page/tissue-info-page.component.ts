@@ -15,6 +15,6 @@ export class TissueInfoPageComponent {
   readonly data: TissueTableInfo;
 
   constructor(route: ActivatedRoute) {
-    this.data = route.snapshot.data['data'];
+    this.data = route.snapshot.data['content'];
   }
 }

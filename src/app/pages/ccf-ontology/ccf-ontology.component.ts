@@ -22,8 +22,8 @@ export class CcfOntologyComponent {
   referencesData: PageDataItems[];
   markdownData: string[];
 
-  constructor(private router: Router, private readonly route: ActivatedRoute){
-    const data = route.snapshot.data['ccfOntology'];
+  constructor(private router: Router, route: ActivatedRoute){
+    const data = route.snapshot.data['content'];
     this.title = data.title;
     this.description = data.description;
     this.overviewData = data.overviewData;

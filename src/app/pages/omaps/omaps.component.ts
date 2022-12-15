@@ -30,7 +30,7 @@ export class OmapsComponent implements OnInit {
   tableData: Observable<TableData[]> = EMPTY;
   
   constructor(private readonly dataService: TableDataService, readonly route: ActivatedRoute) { 
-    const data = route.snapshot.data['omaps'];
+    const data = route.snapshot.data['content'];
     this.omapsHeading = data.omapsHeading;
     this.overviewData = data.overviewData;
     this.sopData = data.sopData;

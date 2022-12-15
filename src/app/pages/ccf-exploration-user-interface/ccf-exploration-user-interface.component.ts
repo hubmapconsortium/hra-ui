@@ -24,7 +24,7 @@ export class CcfExplorationUserInterfaceComponent{
   playerTitle: string;
 
   constructor (route: ActivatedRoute){
-    const data = route.snapshot.data['ccfExplorationUserInterface'];
+    const data = route.snapshot.data['content'];
     this.headerCardDetails = data.headerCardDetails;
     this.overviewData = data.overviewData;
     this.acknowledgeData = data.acknowledgeData;

@@ -14,8 +14,8 @@ export class OverviewDataComponent {
   description: TileItems[];
   longButtonItems: LongCard[];
 
-  constructor(private router: Router, private route: ActivatedRoute) { 
-    const data = route.snapshot.data['overViewData'];
+  constructor(private router: Router, route: ActivatedRoute) { 
+    const data = route.snapshot.data['content'];
     this.pageTitle = data.pageTitle;
     this.description = data.description;
     this.longButtonItems = data.longButtonItems;

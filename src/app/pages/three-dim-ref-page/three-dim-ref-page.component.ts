@@ -34,8 +34,8 @@ export class ThreeDimRefPageComponent implements OnInit {
   information: VersionOrgans;
   placeholderDate: ChooseVersion;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
-    const data = activatedRoute.snapshot.data['threeDim'];
+  constructor(private router: Router, private route: ActivatedRoute) {
+    const data = route.snapshot.data['content'];
     this.overviewData = data.overviewData;
     this.headerData = data.headerData;
     this.termsOfUseData = data.termsOfUseData;
@@ -52,7 +52,7 @@ export class ThreeDimRefPageComponent implements OnInit {
   ngOnInit(): void {
     this.placeholderDate = this.versionData[0];
     const [{ version: defaultVersion, organData: [{ name: defaultOrgan }] }] = this.threeDimOrganInfo;
-    const { version = defaultVersion, organ = defaultOrgan } = this.activatedRoute.snapshot.queryParams;
+    const { version = defaultVersion, organ = defaultOrgan } = this.route.snapshot.queryParams;
     this.setVersion(`${version}`, `${organ}`);
   }
 
@@ -81,7 +81,7 @@ export class ThreeDimRefPageComponent implements OnInit {
 
   updateQueryParams(params: Params): void {
     this.router.navigate([], {
-      relativeTo: this.activatedRoute,
+      relativeTo: this.route,
       queryParams: params,
       queryParamsHandling: 'merge',
     });

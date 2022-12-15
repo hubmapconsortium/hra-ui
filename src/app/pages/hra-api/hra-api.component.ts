@@ -17,7 +17,7 @@ export class HraApiComponent {
   acknowledgmentsData: PageDataItems[];  
 
   constructor(route: ActivatedRoute) {
-    const data = route.snapshot.data['hraInfo'];
+    const data = route.snapshot.data['content'];
     this.pageHeaderData = [data.pageHeaderData];
     this.useButtonData = data.useButtonData;
     this.overviewData = [data.overviewData];
