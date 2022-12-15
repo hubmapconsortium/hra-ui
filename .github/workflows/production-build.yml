@@ -29,13 +29,15 @@ jobs:
       - run: npm ci
       - name: Build HRA Portal
         run: npm run build -- --output-hashing=none --base-href=/
-      - name: Setup GitHub Pages files
+      - name: Setup additional pages
         run: |
+          cp -r static/* dist/ccf/
           cp dist/ccf/index.html dist/ccf/404.html
-          touch dist/ccf/.nojekyll
 
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: dist/ccf
+          cname: humanatlas.io
+          enable_jekyll: false
           commit_message: "Production deploy -- ${{ github.event.head_commit.message }}"

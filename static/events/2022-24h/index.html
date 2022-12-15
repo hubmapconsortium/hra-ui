@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>24 Hour Human Reference Atlas Event</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+        rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H5FEBMK0QE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-H5FEBMK0QE');
+    </script>
+    <script>
+        var end = new Date('12/10/2022 12:00 PM EST');
+
+        var _second = 1000;
+        var _minute = _second * 60;
+        var _hour = _minute * 60;
+        var _day = _hour * 24;
+        var timer;
+
+        function getESTOffset() {
+            return new Date().getTimezoneOffset() - (end.getTimezoneOffset())
+        }
+
+        function showRemaining() {
+            var now = new Date();
+            var distance = end - now - getESTOffset() * _hour;
+            if (distance < 0) {
+
+                clearInterval(timer);
+                document.getElementById('countdown').innerHTML = ''; //Event Ended';
+
+                return;
+            }
+            var days = Math.floor(distance / _day);
+            var hours = Math.floor((distance % _day) / _hour);
+            var minutes = Math.floor((distance % _hour) / _minute);
+            var seconds = Math.floor((distance % _minute) / _second);
+
+            document.getElementById("countdown").innerHTML = "Starting in <span style='color:;'>" + days + "</span>d <span style='color:;'>" + hours +
+                "</span>h <span style='color:;'>" + minutes + "</span>m";
+        }
+
+        timer = setInterval(showRemaining, 1000);
+    </script>
+</head>
+
+<body id="page-top">
+    <!-- Navigation-->
+    <!-- <nav class="navbar-light navbar-custom fixed-top">
+        <div class="container px-5">
+            <a class="countdowns navbar-brand" style="display: table;margin: 0 auto; " id="countdown"
+                href="#page-top"></a>
+        </div>
+        </div>
+    </nav> -->
+    <!-- Header-->
+    <header class="masthead text-center text-white">
+        <div class="masthead-content">
+            <div class="container px-5">
+                <h1 class="masthead-heading mb-2">24 Hour Human Reference Atlas Event</h1>
+                <h2 class="masthead-subheading mb-0">Let's map the human body at single-cell resolution! </h2>
+                <div id="particles-js"></div>
+                <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">View event schedule</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content sections-->
+
+    <div class=holder3 id="scroll">
+        <div class="px-4 pb-2">
+            <h1 class="pt-5 pb-3" style="margin:auto; text-align:center;">Connect</h1>
+            <p style="margin:auto; text-align:left; max-width: 700px;">
+                To join virtually use this zoom link: <a href="https://iu.zoom.us/j/84865289237"
+                    style="color:#006298; text-decoration: none;" target="_blank">https://iu.zoom.us/j/84865289237</a>
+        </div>
+    </div>
+
+    <div class=holder3 id="scroll">
+        <div class="px-4 pb-2">
+            <h1 class="pt-5 pb-3" style="margin:auto; text-align:center;">About</h1>
+            <p style="margin:auto; text-align:left; max-width: 700px;">
+                Over the course of 24 hours, scholars and practitioners from around the globe will present and discuss
+                their work in a fun and accessible style. We will feature behind-the-scenes videos, demonstrate valuable
+                tools and methodologies, and have fun exploring the human body “landscape” across scale!
+                </br></br>We hope the event will help kickoff the holiday season, create ever more excitement for the
+                power and value of science, share the pleasures of scientific discovery, and give good energy to all on
+                this planet who have been affected by the ongoing pandemic.
+        </div>
+    </div>
+
+    <h1 class="pt-5 pb-4" style="margin:auto; background-color:#FFF7F8; text-align:center;">Saturday, Dec 10th 2022
+        </br> <span style="font-size: 18px; opacity: 0.6;">Main times are in EST (GMT-5)</span></h1>
+
+    <div class=holder>
+        <div class="timeline">
+            <div class="container2 left">
+                <div class="content">
+                    <img class="rounded-circle imgtimeline" src="assets/img/12pm.png" alt="..." />
+                    <h2>12PM</h2>
+                    <h6>5PM in London (GMT), 2AM in Tokyo (GMT+9) </h6>
+                    <h4>Welcome</h4>
+                    <p>With Katy Börner and Andreas Bueckle <i>(Indiana University)</i>
+                    </p>
+                    <p>Click <a href="https://www.nature.com/articles/s41556-021-00788-6"
+                            style="color:#006298; text-decoration: none;" target="_blank">here</a> to learn more about
+                        the Human Reference Atlas that experts from 17 consortia are building.</p>
+                        <h4>Trivia</h4>
+                </div>
+            </div>
+            <div class="container2 right">
+                <div class="content">
+                    <img class="rounded-circle imgtimeline" src="assets/img/1pm.png" alt="..." />
+                    <h2>1PM</h2>
+                    <h6>6PM in London (GMT), 3AM in Tokyo (GMT+9) </h6>
+                    <h4>Panel: What is a Human Reference Atlas?</h4>
+                    <p>Moderator: Todd Theriault <i>(Co-Curator, Places & Spaces, Indiana University)</i> with Aviv Regev <i>(Human Cell Atlas)</i>,
+                        <a href="https://nephrology.wustl.edu/people/sanjay-jain-md-phd/"
+                            style="color:#006298; text-decoration: none;" target="_blank">
+                            Sanjay Jain </a><i> (Washington University in St. Louis)</i>,
+                        <a href="https://www.broadinstitute.org/bios/kristin-ardlie"
+                            style="color:#006298; text-decoration: none;" target="_blank">Kristin Ardlie</a>
+                        <i>(Broad Institute of MIT & Harvard)</i>, James C. Gee <i>(University of Pennsylvania)</i>
+                    </p>
+                </div>
+            </div>
+            <div class="container2 left">
+                <div class="content">
+                    <img class="rounded-circle imgtimeline" src="assets/img/2pm.png" alt="..." />
+                    <h2>2PM</h2>
+                    <h6>7PM in London (GMT), 4AM in Tokyo (GMT+9) </h6>
+                    <h4>Panel: Who funds the Atlas?</h4>
+                    <p>Moderator: Katy Börner <i>(Indiana University)</i> with Christian Desaintes <i>(European Commission)</i>, Yong Yao <i>(NIH/NIMH)</i>,
+                            Amy Bernard <i>(Kavli)</i>,
+                            Jonah Cool <i>(Chan Zuckerberg Initiative)</i>
+                    </p>
+                </div>
+            </div>
+            <div class="container2 right">
+                <div class="content">
+                    <img class="rounded-circle imgtimeline" src="assets/img/3p_bg.png" alt="..." />
+                    <h2>3PM</h2>
+                    <h6>8PM in London (GMT), 5AM in Tokyo (GMT+9) </h6>
+                    <h4>Creation of Homo Perfectus</h4>
+                    <p>With <a href="http://www.medillsb.com/artist.aspx?AID=6677"
+                            style="color:#006298; text-decoration: none;" target="_blank">Marie Dauenheimer</a>
+                        <i>(Board Certified Medical Illustrator)</i>
+                    </p>
+                </div>
+            </div>
+            <div class="container2 left">
+                <div class="content">
+                    <img class="rounded-circle imgtimeline" src="assets/img/4pm.png" alt="..." />
+                    <h2>4PM</h2>
+                    <h6>9PM in London (GMT), 6AM in Tokyo (GMT+9) </h6>
+                    <h4>Molecular Landscapes</h4>
+                    <p><a href="https://www.digizyme.com/cst_landscapes.html"
+                        style="color:#006298; text-decoration: none;" target="_blank">Gaël McGill</a> <i>(Digizyme)</i></p>
+                        <h4>Trivia</h4>
+                </div>
+            </div>
+            <div class="container2 right">
+                <div class="content">
+                    <img class="rounded-circle imgtimeline" src="assets/img/5pm.png" alt="..." />
+                    <h2>5PM</h2>
+                    <h6>10PM in London (GMT), 7AM in Tokyo (GMT+9) </h6>
+                    <h4>Panel: Naming Cells Using Validated Antibodies</h4>
+                    <p>Moderator: Andrea Radtke <i>(NIH/NIAID)</i> with industry representatives from BioLegend,
+                        Leica Microsystems, BostonGene, Josh Croteau <i>(BioLegend Inc.)</i>,
+                        Werner Muller <i>(University of Manchester, Miltenyi Biotec)</i>,
+                        Michael Smith <i>(Leica Microsystems)</i>,
+                        Jeremy Fisher <i>(Cell Signaling Technology)</i></p>
+                </div>
+            </div>
+            <div class="container2 left">
+                <div class="content">
+                    <img class="rounded-circle imgtimeline" src="assets/img/6pm.jpg" alt="..." />
+                    <h2>6PM</h2>
+                    <h6>11PM in London (GMT), 8AM in Tokyo (GMT+9) </h6>
+                    <h4>Naming Cells Using Gene Expressions</h4>
+                    <p>CellTypist by <a href="mailto:cx1@sanger.ac.uk"
+                            style="color:#006298; text-decoration: none;">Chuan Xu</a> <i>(Sanger Institute, UK)</i> and
+                        <a href="https://www.youtube.com/watch?v=16JGbOCmKpA"
+                            style="color:#006298; text-decoration: none;" target="_blank">Spatial Transcriptomics
+                            explained</a> by <a href="mailto:jeanfan@jhu.edu"
+                            style="color:#006298; text-decoration: none;">Jean Fan</a>
+                        <i>(Johns Hopkins University)</i>, see also <a href="https://www.youtube.com/jefworks"
+                            target="_blank"
+                            style="color:#006298; text-decoration: none;">https://www.youtube.com/jefworks</a>
+                    </p>
+                </div>
+            </div>
+            <div class="container2 right">
+                <div class="content">
+                    <img class="rounded-circle imgtimeline" src="assets/img/7pm.png" alt="..." />
+                    <h2>7PM</h2>
+                    <h6>12AM in London (GMT), 9AM in Tokyo (GMT+9) </h6>
+                    <h4>Segmenting Hierarchies of Cells</h4>
+                    <p>With John Hickey <i>(Stanford University)</i> and <a href="https://vanvalen.caltech.edu/"
+                            style="color:#006298; text-decoration: none;" target="_blank">David van Valen
+                        </a><i>(California Institute of Technology)</i></p>
+                </div>
+            </div>
+            <div class="container2 left">
+                <div class="content">
+                    <img class="rounded-circle imgtimeline" src="assets/img/8pm.png" alt="..." />
+                    <h2>8PM</h2>
+                    <h6>1AM in London (GMT), 10AM in Tokyo (GMT+9) </h6>
+                    <h4>Panel: Human Atlas Design in Multiple Dimensions</h4>
+                    <p>Moderator: Todd Theriault <i>(Co-Curator, Places & Spaces, Indiana University)</i> with Heidi
+                        Schlehlein
+                        <i>(Owner & Lead Designer, SciSculpt, <a href="https://www.scisculpt.com"
+                                style="color:#006298; text-decoration: none;"
+                                target="_blank">https://www.scisculpt.com</a>,
+                            <a href="https://www.heidischlehlein.com" style="color:#006298; text-decoration: none;"
+                                target="_blank">https://www.heidischlehlein.com</a>)</i>,
+                        Rachel Bajema, <i>(Owner, Principal Medical and Scientific Illustrator/Animator, Bajema Studios,
+                            LLC, <a href="http://www.bajemastudios.com" style="color:#006298; text-decoration: none;"
+                                target="_blank">http://www.bajemastudios.com</a>,
+                            <a href="http://www.rachelbajema.com" style="color:#006298; text-decoration: none;"
+                                target="_blank">http://www.rachelbajema.com</a>)</i>
+                    </p>
+                </div>
+            </div>
+            <div class="container2 right">
+                <div class="content">
+                    <a href="https://3dprint.nih.gov/discover/3DPX-007838" target=”_blank”><img
+                            class="rounded-circle imgtimeline" src="assets/img/9pm.jpeg" alt="..." /><img
+                            class="imglink" src="assets/img/link.svg" alt="link" /></a>
+                    <h2>9PM</h2>
+                    <h6>2AM in London (GMT), 11AM in Tokyo (GMT+9) </h6>
+                    <h4>Panel: Human Body Exhibits</h4>
+                    <p>Moderator: Stephen M. Uzzo <i>(National Museum of Mathematics)</i> with
+                        Yoon Chung Han <i>(San José State University)</i>,
+                        Joe Heimlich <i>(Center of Science and Industry)</i>,
+                        Elizabeth Record <i>(Indiana University)</i>,
+                        Scott Echols <i>(Scarlet Imaging)</i>, Arthur Olson <i>(Scripps Research Institute)</i>, and
+                        Weidi Zhang <i>(Arizona State University)</i>.
+                    </p>
+                </div>
+            </div>
+            <div class="container2 left">
+                <div class="content"><img class="rounded-circle imgtimeline" src="assets/img/10pm.png" alt="..." />
+                    <h2>10PM</h2>
+                    <h6>3AM in London (GMT), 12PM in Tokyo (GMT+9) </h6>
+                    <h4>VR Organ Gallery</h4>
+                    <p>With Andreas Bueckle, Catherine Qing, Shefali Luley, Riley Halloran, Naval Pandey, Yash Kumar
+                        <i>(Indiana University)</i>
+                    </p>
+                </div>
+            </div>
+            <div class="container2 right">
+                <div class="content">
+                    <img class="rounded-circle imgtimeline" src="assets/img/3am.png" alt="..." />
+                    <h2>11PM</h2>
+                    <h6>4AM in London (GMT), 1PM in Tokyo (GMT+9) </h6>
+                    <h4>Predictive Models of Single Cells</h4>
+                    <p>With Paul Macklin & James Glazier <i>(Indiana University)</i></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1 class="py-5" style="margin:auto; text-align:center; color: white; background-color: #990000;">Sunday, Dec 11th
+        2022</h1>
+
+    <div class=holder2>
+        <div class="timeline2">
+            <div class="container2 left">
+                <div class="content">
+                    <img class="rounded-circle imgtimeline" src="assets/img/12am.png" alt="..." />
+                    <h2>12AM</h2>
+                    <h6>5AM in London (GMT), 2PM in Tokyo (GMT+9) </h6>
+                    <h4>Music for Human and Sentient Bodies</h4>
+                    <p>With Miggy Torres and Peter Kienle <i>(Indiana University)</i> and Philip Beesley
+                        <i>(Living Systems
+                            Architecture, University of Toronto)</i>
+                    </p>
+                </div>
+            </div>
+            <div class="container2 right">
+                <div class="content">
+                    <a href="https://www.youtube.com/playlist?list=PLRamhJzkXNbhhYvCyPU2Y5UAqATj-lq_Y"
+                        target=”_blank”><img class="rounded-circle imgtimeline" src="assets/img/1am.png"
+                            alt="..." /><img class="imglink" src="assets/img/link.svg" alt="link" /></a>
+                    <h2>1AM</h2>
+                    <h6>6AM in London (GMT), 3PM in Tokyo (GMT+9) </h6>
+                    <h4>Video: Human Reference Atlas Basics</h4>
+                    <p>
+                    <ul>
+                        <li>
+                            HuBMAP Overview
+                        </li>
+                        <li>
+                            Exploration User Interface <i>(EUI)</i> Demo with Bruce W. Herr II
+                        </li>
+                        <li>
+                            Intro to the Registration User Interface <i>(RUI)</i> with Andreas Bueckle
+                        </li>
+                        <li>
+                            The HuBMAP Common Coordinate Framework <i>(CCF)</i>
+                        </li>
+                        <li>
+                            Open Consent Pitch with Mike Snyder
+                        </li>
+                        <li>
+                            Tissue Data Acquisition and Analysis with Jeffrey Spraggins
+                        </li>
+                        <li>
+                            HuBMAP Portal Design and Usage: Data and Code in the 1st Portal Release
+                        </li>
+                        <li>
+                            Data Harmonization and Seurat with Rahul Satija
+                        </li>
+                        <li>
+                            Introduction to Ontologies with Mark Musen
+                        </li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="container2 left">
+                <div class="content">
+                    <img class="rounded-circle imgtimeline" src="assets/img/2a_new.png" alt="..." />
+                    <h2>2AM</h2>
+                    <h6>7AM in London (GMT), 4PM in Tokyo (GMT+9) </h6>
+                    <h4>Predictive Models of Human Tissue Development and Function</h4>
+                    <p>With Shankar Subramaniam <i>(UCSD)</i>
+                    </p>
+                </div>
+            </div>
+            <div class="container2 right">
+                <div class="content">
+                    <img class="rounded-circle imgtimeline" src="assets/img/2am.png" alt="..." />
+                    <h2>3AM</h2>
+                    <h6>8AM in London (GMT), 5PM in Tokyo (GMT+9) </h6>
+                    <h4>Predictive Models of Human Body</h4>
+                    <p>Peter Hunter <i>(University of Auckland, New Zealand)</i></p>
+                </div>
+            </div>
+            <div class="container2 left">
+                <div class="content">
+                    <img class="rounded-circle imgtimeline" src="assets/img/4am.png" alt="..." />
+                    <h2>4AM</h2>
+                    <h6>9AM in London (GMT), 6PM in Tokyo (GMT+9) </h6>
+                    <h4>Computational Cell Atlas Assembly</h4>
+                    <p>With Chuxi Xiao, Erpai Luo, Yuzhuo Li, Yixin Chen, Jiaqi Li,
+                        <a href="mailto:weilei92@mail.tsinghua.edu.cn" style="color:#006298; text-decoration: none;">Lei
+                            Wei</a>,
+                        <a href="mailto:zhangxg@mail.tsinghua.edu.cn"
+                            style="color:#006298; text-decoration: none;">Xuegong Zhang</a> <i>
+                            (Tsinghua
+                            University, China)
+                        </i>
+                    </p>
+                </div>
+            </div>
+            <div class="container2 right">
+                <div class="content">
+                    <a href="https://www.youtube.com/playlist?list=PLRamhJzkXNbhQQFVVh9PwH5ix-qqFMsUc"
+                        target=”_blank”><img class="rounded-circle imgtimeline" src="assets/img/5am.png"
+                            alt="..." /><img class="imglink" src="assets/img/link.svg" alt="link" /></a>
+                    <h2>5AM</h2>
+                    <h6>10AM in London (GMT), 7PM in Tokyo (GMT+9) </h6>
+                    <h4>Video: Human Reference Atlas Data</h4>
+                    <p>
+                    <ul>
+                        <li>
+                            Intro to Anatomical Structures and Cell Types Plus Biomarkers <i>(ASCT+B)</i> Tables
+                        </li>
+                        <li>
+                            ASCT+B Table Format and Authoring by Ellen M. Quardokus
+                        </li>
+                        <li>
+                            ASCT+B Visualizer Demo
+                        </li>
+                        <li>
+                            Atlas Construction and Usage with Katy Börner
+                        </li>
+                        <li>
+                            ASCT+B for Collision Detection in RUI and Semantic Search in EUI
+                        </li>
+                        <li>
+                            ASCT+B Reporter Demo with Hrishikesh Paul <i>(June 2021)</i>
+                        </li>
+                        <li>
+                            Vitessce and Data Portal with Mark Keller
+                        </li>
+                        <li>
+                            RUI 1.7.0 Demo
+                        </li>
+                        <li>
+                            EUI 1.7.0 Demo
+                        </li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="container2 left">
+                <div class="content">
+                    <a href="https://www.youtube.com/playlist?list=PLRamhJzkXNbgY9cx6K2oBqI6_ErKmYPpS"
+                        target=”_blank”><img class="rounded-circle imgtimeline" src="assets/img/5am.png"
+                            alt="..." /><img class="imglink" src="assets/img/link.svg" alt="link" /></a>
+                    <h2>6AM</h2>
+                    <h6>11AM in London (GMT), 8PM in Tokyo (GMT+9) </h6>
+                    <h4>Video: Human Reference Atlas People</h4>
+                    <p>
+                    <ul>
+                        <li>
+                            HuBMAP Data Portal Overview <i>(2021)</i>
+                        </li>
+                        <li>
+                            CODEX Data on HuBMAP Portal with John Hickey
+                        </li>
+                        <li>
+                            Using the Exploration User interface <i>(EUI)</i> on the GTEx Portal
+                        </li>
+                        <li>
+                            Introduction to the HRA-CCF
+                        </li>
+                        <li>
+                            RUI v3.0 Tutorial with Andreas Bueckle
+                        </li>
+                        <li>
+                            HuBMAP Halfway Point Video
+                        </li>
+                        <li>
+                            How HuBMAP Works with Richard Conroy
+                        </li>
+                        <li>
+                            How to Map Human Intestines with Mike Snyder
+                        </li>
+                        <li>
+                            The Great VHMOOC Blooper Reel
+                        </li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="container2 right">
+                <div class="content">
+                    <a href="https://www.youtube.com/watch?v=llZuT6dxJV0&ab_channel=NIDDKInformationNetwork%28dkNET%29"
+                        target=”_blank”><img class="rounded-circle imgtimeline" src="assets/img/7am.png"
+                            alt="..." /><img class="imglink" src="assets/img/link.svg" alt="link" /></a>
+                    <h2>7AM</h2>
+                    <h6>12PM in London (GMT), 9PM in Tokyo (GMT+9) </h6>
+                    <h4>Video: The Human Biomolecular Atlas</h4>
+                    <p>With Jeff Spraggins <i>(Vanderbilt University)</i> and Katy Börner <i>(Indiana University)</i>
+                    </p>
+                </div>
+            </div>
+            <div class="container2 left">
+                <div class="content">
+                    <img class="rounded-circle imgtimeline" src="assets/img/8am_01.png" alt="..." />
+                    <h2>8AM</h2>
+                    <h6>1PM in London (GMT), 10PM in Tokyo (GMT+9) </h6>
+                    <h4>Mapping Whole Human Organs at High Resolution</h4>
+                    <p>With <a href="http://erturk-lab.com/team/" target="_blank"
+                            style="color:#006298; text-decoration: none;" target="_blank">Ali Erturk</a> <i>(Helmholtz
+                            Institute
+                            Munich, Germany)</i> & <a href="https://mecheng.ucl.ac.uk/hip-ct/"
+                            style="color:#006298; text-decoration: none;" target="_blank" target="_blank">Peter D.
+                            Lee</a> <i>(University College London,
+                            UK)</i>, see also <a href="https://www.youtube.com/watch?v=XvdMgeXxzj4"
+                            style="color:#006298; text-decoration: none;" target="_blank"
+                            target="_blank">https://www.youtube.com/watch?v=XvdMgeXxzj4</a></p>
+                </div>
+            </div>
+            <div class="container2 right">
+                <div class="content">
+                    <a href="" target=”_blank”><img class="rounded-circle imgtimeline" src="assets/img/9am.jpg"
+                            alt="..." /></a>
+                    <h2>9AM</h2>
+                    <h6>2PM in London (GMT), 11PM in Tokyo (GMT+9) </h6>
+                    <h4>Human Vasculature as a Latitude and Longitude System</h4>
+                    <p>With Griffin Weber <i>(Harvard Medical School)</i>, Avinash Boppana <i>(Revala)</i> and Katherine Summers Gustilo <i>(Indiana
+                            University)</i></p>
+                </div>
+            </div>
+            <div class="container2 left">
+                <div class="content">
+                    <img class="rounded-circle imgtimeline" src="assets/img/10am.png" alt="..." />
+                    <h2>10AM</h2>
+                    <h6>3PM in London (GMT), 12AM in Tokyo (GMT+9) </h6>
+                    <h4>Panel: Human Reference Atlas Ecosystem</h4>
+                    <p>Moderator: Katy Börner <i>(Indiana University)</i> with Paulo Czarnewski <i>(Scilifelab,
+                            Sweden)</i>, Brian Aevermann <i>(CZI)</i> & Jason Hilton
+                        <i>(Stanford University)</i>, Nancy George <i>(European Bioinformatics Institute [EMBL-EBI], UK)</i>,  Bruce W. Herr II and Ellen M. Quardokus <i>(Indiana University)</i>
+                    </p>
+                </div>
+            </div>
+            <div class="container2 right">
+                <div class="content">
+                    <img class="rounded-circle imgtimeline" src="assets/img/11am.jpeg" alt="..." />
+                    <h2>11AM</h2>
+                    <h6>4PM in London (GMT), 1AM in Tokyo (GMT+9) </h6>
+                    <h4>Panel: Visions for the Future</h4>
+                    <p>Moderator: Todd Theriault <i>(Co-Curator, Places & Spaces, Indiana University)</i>
+                        with Gary Bader <i>(University of Toronto, Canada)</i>, Zorina Gallis <i>(NIH)</i>, Mike Snyder
+                        <i>(Stanford
+                            University)</i>, Katy Börner <i>(Indiana University)</i>
+                    </p>
+                </div>
+            </div>
+            <div class="container2 left">
+                <div class="content">
+                    <img class="rounded-circle imgtimeline" src="assets/img/12-01pm.png" alt="..." />
+                    <h2>12PM</h2>
+                    <h6>5PM in London (GMT), 2AM in Tokyo (GMT+9)</h6>
+                    <h4>End Of Event</h4>
+                    <p>Thanks for going with us on this journey!</i>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End section-->
+    <div class=holder3>
+        <div class="px-4 pb-4">
+            <h1 class="pt-5 pb-3" style="margin:auto; text-align:center;">We would like to thank</h1>
+            <p>
+            <ul style="margin:auto; text-align:left; max-width: 700px;">
+                <li><b>Todd Theriault</b> - for compiling the video collections.</li>
+                <li><b>Melanie B. Goldstone, Bruce W. Herr II & Bhushan S. Khope</b> - for designing the website.</li>
+                <li><b>Devin Wright</b> - for media support and help coordinating organization of this event.</li>
+                <li><b>Matthew Martindale & Tracey Theriault</b> - for advertising this event.</li>
+                <li><b>Andreas Bueckle & Devin Wright</b> - for making this recorded Zoom event smooth and safe.</li>
+                <li><b>Andreas Bueckle</b> - for the professional media setup.</li>
+                <li><b>Monika Herzig</b> - for providing great music.</li>
+                <li><b>Melina Casadio, Nature and Alex Bannister, Abcam</b> - for social media support.</li>
+                <em><b></br><i>Funding for this event was kindly provided by Murray A. Goldstone and CNS & SICE at
+                            IU.</i></b></em>
+            </ul>
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer-->
+    <footer class="py-5 bg-black">
+        <div class="container px-5">
+            <p class="m-0 text-center text-white small">Copyright &copy; 24hoursciencemap.info 2022</p>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
