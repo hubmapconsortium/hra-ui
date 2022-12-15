@@ -19,7 +19,7 @@ export const longButtonItems: LongCard[] = [
         icon: 'assets/images/two_dim_library.svg',
         title: '2D Functional Tissue Unit (FTU) Illustrations',
         body: 'Open source 2D illustrations of Functional Tissue Units (FTUs) crosswalked to ASCT+B tables used for single cell data exploration',
-        route: 'ccf-2d-ftu'
+        route: '2d-ftu-illustrations'
     },
     {
         icon: 'assets/images/three_dim_library.svg',

@@ -23,7 +23,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
       },
       {
         menuName: '2D Functional Tissue Unit (FTU) Illustrations',
-        route: 'ccf-2d-ftu',
+        route: '2d-ftu-illustrations',
         disabled: true
       },
       {
