@@ -3,6 +3,10 @@ hraUsageHeading:
   title: Human Reference Atlas Usage Metrics
   subtitle: Data and statistics on which tools and consortia are using the Human Reference Atlas
 
+hraMetrics:
+- heading: Human Reference Atlas Usage Metrics
+  descriptions: HRA data and APIs are now used in HuBMAP, SenNet, and GTEx projects and portals
+
 hubmapGteMetricsData:
 - heading: HuBMAP Metrics
   descriptions: |
@@ -13,7 +17,9 @@ gtexMetrics:
   descriptions: |
     **Monthly users, if applicable (based on one or more of the following: monthly downloads from websites, monthly downloads from package managers, monthly unique requests for updates, etc.)** 
     There are about 4,400 papers citing “gtex portal” in Google Scholar. There are 28,000 results in Google Scholar citing “gtex”.
-    We have an average of 20,000 users and 160,000 pageviews per month, based on Google Analytics data. It is difficult for us to track the number of monthly downloads, as our files are stored in Google Cloud Storage (GCS) and it is difficult for us to track downloads from GCS. Our downloads page has approximately 6,500 pageviews per month. Some of those pageviews may result in 0 file downloads while others may result in multiple file downloads.
+    
+    We have an average of 20,000 users and 160,000 pageviews per month, based on Google Analytics data. It is difficult for us to track the number of monthly downloads, as our files are stored in Google Cloud Storage (GCS) and it is difficult for us to track downloads from GCS. Our downloads page has approximately 6,500 pageviews per month. 
+    Some of those pageviews may result in 0 file downloads while others may result in multiple file downloads.
 
 
     **Software Projects that depend on the project**

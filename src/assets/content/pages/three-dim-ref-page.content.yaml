@@ -72,7 +72,7 @@ referenceOrgans:
 
     <a href="https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.0/models" target="_blank">Download v1.0 organs</a> in GLB format.
 
-    <a href="" target="_blank">Download v1.3 extraction sites for female</a> in GLB and FBX format.
+    <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Female/v1.3" target="_blank">Download v1.3 extraction sites for female</a> in GLB and FBX format.
 
     <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.2/Extraction%20Sites" target="_blank">Download v1.2 extraction sites for female</a> in GLB and FBX format.
 
@@ -80,13 +80,13 @@ referenceOrgans:
 
     <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.0/Extraction%20Sites" target="_blank">Download v1.0 extraction sites for female</a> in GLB and FBX format.
 
-    <a href="" target="_blank">Download v1.3 extraction sites for male</a> in GLB and FBX format.
-
     <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.2/Extraction%20Sites" target="_blank">Download v1.3 extraction sites for male</a> in GLB and FBX format.
 
-    <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.1/Extraction%20Sites" target="_blank">Download v1.3 extraction sites for male</a> in GLB and FBX format.
+    <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.2/Extraction%20Sites" target="_blank">Download v1.2 extraction sites for male</a> in GLB and FBX format.
 
-    <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1/Extraction%20Sites" target="_blank">Download v1.3 extraction sites for male</a> in GLB and FBX format.
+    <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.1/Extraction%20Sites" target="_blank">Download v1.1 extraction sites for male</a> in GLB and FBX format.
+
+    <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1/Extraction%20Sites" target="_blank">Download v1.0 extraction sites for male</a> in GLB and FBX format.
 
     <a href="https://doi.org/10.48539/HBM858.DNFV.736" target="_blank">ASCT-B 3D models mapping v1.2</a> in CSV format.
 
@@ -102,7 +102,9 @@ acknowledgmentsData:
 
     The male colon is from a white 55-year-old and was provided by Arie Kaufman, Stony Brook University.
     
-    The brain is from a 34-year-old female donor and was published by the Allen Human Reference Atlas-3D, 2020. Jim Gee, University of Pennsylvania converted the NII file into GLB. Amy Bernard, Allen Institute assisted in mapping the 141 anatomical structures to the brain ASCT+B table.
+    The brain is from a 34-year-old female donor and was published by the Allen Human Reference Atlas-3D, 2020. Jim Gee, University of Pennsylvania converted the NII file into GLB. Amy Bernard, Allen Institute assisted in mapping the 141 anatomical structures to the brain ASCT+B table
+
+    The lymph node models were created using the Clearing-enhanced 3D (Ce3D) method developed by Dr. Weizhe Li, Laboratory of Immune System Biology, National Institute of Allergy and Infectious Diseases, NIH using data documented in https://www.pnas.org/content/114/35/E7321. While the size and cellular composition of mouse and human lymph nodes varies between species, the overall anatomy is well-conserved.
 
 referencesData:
 - heading: References

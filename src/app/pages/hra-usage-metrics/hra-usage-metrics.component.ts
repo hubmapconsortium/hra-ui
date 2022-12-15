@@ -15,6 +15,7 @@ export class HraUsageMetricsComponent {
   gtexMetrics: PageDataItems[]
   softwareData: PageDataItems[]
   licenses: PageDataItems[]
+  hraMetrics: PageDataItems[]
 
 
   constructor (private route: ActivatedRoute){
@@ -25,6 +26,6 @@ export class HraUsageMetricsComponent {
     this.gtexMetrics = data.gtexMetrics
     this.softwareData = data.softwareData
     this.licenses = data.licenses
-    
+    this.hraMetrics = data.hraMetrics
   }
 }

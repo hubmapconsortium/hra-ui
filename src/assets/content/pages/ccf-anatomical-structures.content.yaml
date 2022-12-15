@@ -32,8 +32,8 @@ exploreTablesData:
 tablesUnderDevelopmentData:
 - heading: Tables Under Development
   descriptions: |
-    The initial release of ASCT+B table (v1.0) included 11 organs. In the 2nd release, 14 additional tables were published bringing the total to 25. In the 3rd release, several tables were updated and placenta was added resulting in 26 tables. 
-    If you are interested in contributing to this effort, please complete this <a href="https://iu.co1.qualtrics.com/jfe/form/SV_bpaBhIr8XfdiNRH" target="">online form</a> to receive relevant information and meeting invites. For questions, email infoccf@indiana.edu.
+    The initial release of ASCT+B tables (v1.0) included 11 organs. In the 2nd release, 14 additional tables were published bringing the total to 25. In the 3rd release, several tables were updated and placenta was added resulting in 26 tables. In the 4th release, 13 tables were revised based on external reviews and updated to add ontology mappings where previously absent. If you are interested in contributing to this effort, please complete this 
+    <a href="https://iu.co1.qualtrics.com/jfe/form/SV_bpaBhIr8XfdiNRH" target="_blank">online form</a> to receive relevant information and meeting invites. For questions, email infoccf@indiana.edu.
 acknowledgmentsData:
 - heading: Acknowledgments
   descriptions: |

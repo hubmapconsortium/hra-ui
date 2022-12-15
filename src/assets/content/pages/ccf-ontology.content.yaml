@@ -49,19 +49,16 @@ referencesData:
     <a href="https://arxiv.org/abs/2007.14474" target="">Construction and Usage of a Human Body Common Coordinate Framework Comprising Clinical, Semantic, and Spatial Ontologies</a>. arXiv:2007.14474v1.
     
     
-    Herr, Bruce W., Josef Hardi, Ellen M. Quardokus, Andreas Bueckle, Lu Chen, Fusheng Wang, Anita R. Caron, David Osumi-Sutherland, Mark A. Musen, and Katy Börner. 
-    <a href="https://doi.org/10.1101/2022.09.08.507220" target="">Specimen, Biological Structure, and Spatial Ontologies in Support of a Human Reference Atlas</a>. BioRxiv, January 1, 2022, 2022.09.08.507220.
+    Herr, Bruce W., Josef Hardi, Ellen M. Quardokus, Andreas Bueckle, Lu Chen, Fusheng Wang, Anita R. Caron, David Osumi-Sutherland, Mark A. Musen, and Katy Börner. “Specimen, Biological Structure, and Spatial Ontologies in Support of a Human Reference Atlas.” BioRxiv, January 1, 2022, 2022.09.08.507220. https://doi.org/10.1101/2022.09.08.507220.
     
-    
-    Lubiana, Tiago, Paola Roncaglia, Christopher J. Mungall, Ellen M. Quardokus, Joshua D. Fortriede, David Osumi-Sutherland, and Alexander D. Diehl. 
-    <a href="https://doi.org/10.48550/ARXIV.2204.09673" target="">Guidelines for Reporting Cell Types: The MIRACL Standard</a>. arXiv, 2022
+    Lubiana, Tiago, Paola Roncaglia, Christopher J. Mungall, Ellen M. Quardokus, Joshua D. Fortriede, David Osumi-Sutherland, and Alexander D. Diehl. “Guidelines for Reporting Cell Types: The MIRACL Standard.” arXiv, 2022. https://doi.org/10.48550/ARXIV.2204.09673.
 
 markdownData: |
   **Clinical Ontology.** Captures CCF relevant clinical and other metadata such as donor sex, age, tissue
-  sample author, and technology used.It does not capture all metadata associated with HuBMAP data.,
+  sample author, and technology used.It does not capture all metadata associated with HuBMAP data.
   
   **Semantic Ontology.** Mirrors the ASCT+B tables and includes the CCF Anatomical Structures Partonomy of anatomical structures and the 
-  CCF Cell Types Ontology. Sources of ontology terms are UBERON, FMA, and Cell Ontology (CL).,
+  CCF Cell Types Ontology. Sources of ontology terms are UBERON, FMA, and Cell Ontology (CL).
   
   **Spatial Ontology.** Defines the position, rotation, and size of anatomical structures—at the macro, micro, and 
   single-cell level—in correspondence to the HuBMAP Atlas reference system, shown below in <b>Figure 2. </b>

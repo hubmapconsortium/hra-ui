@@ -27,6 +27,7 @@ export class TwoDimRefPageComponent implements OnInit {
   citationData: PageDataItems[];
   acknowledgmentsData: PageDataItems[]
   twoDimFtuLibObjects: PageDataItems[]
+  disclaimer: PageDataItems[]
   filterImages: OrganData[]
   cardTitle = "";
   versionData: ChooseVersion[]
@@ -47,6 +48,7 @@ export class TwoDimRefPageComponent implements OnInit {
     this.organInfo = data.organInfo
     this.licenseData = data.licenseData
     this.citationData = data.citationData
+    this.disclaimer = data.disclaimer
     this.acknowledgmentsData = data.acknowledgmentsData
     this.twoDimFtuLibObjects = data.twoDimFtuLibObjects
   }
