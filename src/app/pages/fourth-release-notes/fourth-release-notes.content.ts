@@ -7,7 +7,7 @@ export const headerData: PageHeaderItems[] = [
     {
         image: 'assets/images/4th_release.svg',
         title: 'Release Notes',
-        subtitle: `See what's new in the 4th Release (v1.3) of the Human Reference Atlas`
+        subtitle: `See what's new in the 4th Release of the Human Reference Atlas (v1.3)`
     }
 ]
 
@@ -186,8 +186,8 @@ export const previewButton1: UseButton =
 
 export const previewButton2: UseButton =
 {
-    text: '<Title> Demo Page',
-    url: 'https://www.google.com/'
+    text: 'Preview: Comparing Tabula Sapiens to the Human Reference Atlas',
+    url: 'https://hubmapconsortium.github.io/hra-previews/pilots/pilot5.html'
 }
 
 export const contactCardData: ContactCard[] = [
