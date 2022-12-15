@@ -17,9 +17,7 @@ export const fourthReleaseIntro: PageDataItems[] = [
         descriptions: `
         <b>Intro</b>
         <br><br>
-        The Cyberinfrastructure for Network Science Center has published the 4th Release of the Human Reference Atlas (v1.3), 
-        a digital atlas of the human body that let's users query & explore key anatomical structures, cell types, 
-        and biomarkers down to the cellular level.
+        HuBMAP's Indiana University Mapping Component (MC-IU) has published the 4th Release of the Human Reference Atlas (v1.3), a digital atlas of the human body that lets users query & explore key anatomical structures, cell types, and biomarkers down to the cellular level.
         <br>
         
         `
@@ -31,7 +29,7 @@ export const fourthReleaseStats: PageDataItems[] = [
         heading: '',
         descriptions: `<b>Stats</b>
         <br><br>
-        The Human Reference Atlas now includes 57 reference organs, with 2,742 anatomical structures, <count> cell types.
+        The Human Reference Atlas now includes 57 reference organs with 1,588 anatomical structures.
         `
     }
 ]
@@ -49,7 +47,7 @@ export const hraHourEvent: PageDataItems[] = [
 export const hourEventUseButton: UseButton =
 {
     text: 'HRA 24 Hour Event Videos',
-    url: 'https://www.google.com/'
+    url: 'https://humanatlas.io/events/2022-24h/'
 }
 
 export const asctbTables: PageDataItems[] = [
@@ -65,7 +63,7 @@ export const asctbTables: PageDataItems[] = [
 export const asctbTablesButton: UseButton =
 {
     text: 'Use the ASCT+B Tables',
-    url: 'https://www.google.com/'
+    url: 'https://humanatlas.io/asctb-tables'
 }
 
 export const asctbReporter: PageDataItems[] = [
@@ -81,7 +79,7 @@ export const asctbReporter: PageDataItems[] = [
 export const asctbReporterButton: UseButton =
 {
     text: 'Use the ASCT+B Reporter',
-    url: 'https://www.google.com/'
+    url: 'https://hubmapconsortium.github.io/ccf-asct-reporter/'
 }
 
 export const ontologyValidations: PageDataItems[] = [
@@ -98,7 +96,7 @@ export const ontologyValidations: PageDataItems[] = [
 export const ontologyValidationsButton: UseButton =
 {
     text: 'Validation Tools GitHub Repository',
-    url: 'https://www.google.com/'
+    url: 'https://hubmapconsortium.github.io/ccf-validation-tools/'
 }
 
 export const threeDimRefObjects: PageDataItems[] = [
@@ -113,8 +111,8 @@ export const threeDimRefObjects: PageDataItems[] = [
 
 export const threeDimRefObjectsButton: UseButton =
 {
-    text: '3D Reference Object Library',
-    url: 'https://www.google.com/'
+    text: '4th Release 3D Reference Objects',
+    url: 'https://humanatlas.io/3d-reference-library'
 }
 
 export const eui: PageDataItems[] = [
@@ -130,7 +128,7 @@ export const eui: PageDataItems[] = [
 export const euiButton: UseButton =
 {
     text: 'Use the Exploration User Interface',
-    url: 'https://www.google.com/'
+    url: 'https://portal.hubmapconsortium.org/ccf-eui'
 }
 
 export const rui: PageDataItems[] = [
@@ -146,7 +144,7 @@ export const rui: PageDataItems[] = [
 export const ruiButton: UseButton =
 {
     text: 'Use the Registration User Interface',
-    url: 'https://www.google.com/'
+    url: 'https://hubmapconsortium.github.io/ccf-ui/rui/'
 }
 
 export const vrOrganGallary: PageDataItems[] = [
@@ -161,14 +159,14 @@ export const vrOrganGallary: PageDataItems[] = [
 
 export const vrOrganGallaryButton: UseButton =
 {
-    text: 'VR Organ Gallery Download',
-    url: 'https://www.google.com/'
+    text: 'VR Organ Gallery',
+    url: 'https://humanatlas.io/vr-organ-gallery'
 }
 
 export const previewButton1: UseButton =
 {
-    text: '<Title> Demo Page',
-    url: 'https://www.google.com/'
+    text: 'Preview: CCF Tissue Block Annotation: Mesh-Level Collision Detection',
+    url: 'https://hubmapconsortium.github.io/hra-previews/pilots/pilot7.html'
 }
 
 export const previewButton2: UseButton =

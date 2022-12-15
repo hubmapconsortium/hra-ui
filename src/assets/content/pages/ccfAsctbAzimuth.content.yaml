@@ -6,13 +6,13 @@ azimuthHeader:
 overviewAzimuthData:
 - heading: Overview
   descriptions: |
-    <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-anatomical-structures.html" target="">ASCT+B tables</a> represent cell by gene (CxG) relationships that are also captured in the organ-specific HuBMAP <a href="https://azimuth.hubmapconsortium.org/" target="_blank">Azimuth references</a>.
-    This site provides cell type typology data from Azimuth that can be visualized in the <a href="https://hubmapconsortium.github.io/ccf-asct-reporter/" target="">ASCT+B Reporter</a>.
+    <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-anatomical-structures.html" target="">ASCT+B tables</a> represent cell by gene (CxG) relationships that are also captured in the HuBMAP <a href="https://azimuth.hubmapconsortium.org/" target="_blank">Azimuth references</a>.
+    This site provides the cell type typology for all existing Azimuth annotated reference datasets; the Azimuth cell type typology trees can be visualized in the <a href="https://hubmapconsortium.github.io/ccf-asct-reporter/" target="">ASCT+B Reporter</a>.
 
     We also provide easy access to results for comparing CxG in ASCT+B vs. CxG in Azimuth. In Jan 2022, Azimuth supports single-cell RNA-seq data exclusively. As more experimental data becomes available and additional types of data are supported (e.g., proteins, lipids, metabolites), data differences will decrease.
 azimuthCtandCount:
 - heading: Azimuth Cell Type Typologies and Counts
-  descriptions: In Jan 2022, eight molecular reference maps for human are available via Azimuth. For each we provide the cell type typology as a file that can be visualized in the ASCT+B Reporter together with a table that lists the annotation level and the number of cell types for each unique cell in the organ-specific Azimuth reference, see Table 1.
+  descriptions: In Nov 2022, ten Azimuth molecular reference maps for human are available. For each, we provide the cell type typology as a file that can be visualized in the ASCT+B Reporter together with a table that lists the annotation level and the number of cell types for each unique cell in the organ-specific Azimuth reference, see Table 1.
 
 comparisonOfCXG:
 - heading: Comparison of CxG in ASCT+B vs. Azimuth

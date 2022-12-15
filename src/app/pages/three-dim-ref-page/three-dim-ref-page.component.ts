@@ -29,7 +29,7 @@ export class ThreeDimRefPageComponent implements OnInit {
   referenceOrgans: PageDataItems[];
   threeDimOrganInfo: VersionOrgans[];
   cardTitle = '';
-  tabsImages:OrganData[]
+  tabsImages:OrganData[];
   organData: OrganData[];
   information: VersionOrgans;
   placeholderDate: ChooseVersion;

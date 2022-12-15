@@ -123,12 +123,12 @@ export const cellData: ExtraHeader[] = [
   {
     columnDef: 'annotationLevels',
     header: 'Annotation Levels in Azimuth Reference',
-    rowspan: 3,
+    rowspan: 2,
   },
   {
     columnDef: 'totalCellCount',
     header: 'Total Cell Count in Aziumuth Reference',
-    rowspan: 3,
+    rowspan: 2,
   },
   {
     columnDef: 'biomarkers',

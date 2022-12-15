@@ -32,22 +32,21 @@ referencesData:
 - heading: References
   descriptions: |
     Börner, Katy, Sarah A. Teichmann, Ellen M. Quardokus, James C. Gee, Kristen Browne, David Osumi-Sutherland, Bruce W. Herr, et al. 2021.
-    <a href="https://doi.org/10.1038/s41556-021-00788-6" target="">Anatomical Structures, Cell Types and Biomarkers of the Human Reference Atlas.</a> Nature Cell Biology 23 (11): 1117–28.
+    Anatomical Structures, Cell Types and Biomarkers of the Human Reference Atlas. Nature Cell Biology 23 (11): 1117-28. https://doi.org/10.1038/s41556-021-00788-6.
 
-    Du, Ziming, Jia-Ren Lin, Rumana Rashid, Zoltan Maliga, Shu Wang, Jon C. Aster, Benjamin Izar, Peter K. Sorger, and Sandro Santagata. 2019. 
-    <a href="https://doi.org/10.1038/s41596-019-0206-y" target="_blank">Qualifying Antibodies for Image-Based Immune Profiling and Multiplexed Tissue Imaging.</a> Nature Protocols 14 (10): 2900–2930.
+    Du, Ziming, Jia-Ren Lin, Rumana Rashid, Zoltan Maliga, Shu Wang, Jon C. Aster, Benjamin Izar, Peter K. Sorger, and Sandro Santagata. 2019. “Qualifying Antibodies for Image-Based Immune Profiling and Multiplexed Tissue Imaging.” Nature Protocols 14 (10): 2900–2930. https://doi.org/10.1038/s41596-019-0206-y
 
-    Galis, Zorina S. 2019. <a href="https://www.youtube.com/watch?v=ZGYU_dsb0j4" target="_blank">Common Coordinate Framework (CCF) Workshop Anatomical Mapping: Using the Vasculature for CCF</a>. Indiana University.
+    Galis, Zorina S. 2019. Common Coordinate Framework (CCF) Workshop Anatomical Mapping: Using the Vasculature for CCF. Indiana University. https://www.youtube.com/watch?v=ZGYU_dsb0j4.
 
-    Galis, Zorina S. 2020. “<a href="https://doi.org/10.3389/fcvm.2020.00127" target="_blank">Editorial: Where Is Waldo: Contextualizing the Endothelial Cell in the Era of Precision Biology.</a>” Frontiers in Cardiovascular Medicine 7.
+    Galis, Zorina S. 2020. “Editorial: Where Is Waldo: Contextualizing the Endothelial Cell in the Era of Precision Biology.” Frontiers in Cardiovascular Medicine 7. https://doi.org/10.3389/fcvm.2020.00127.
 
-    Mahnke, Yolanda, Pratip Chattopadhyay, and Mario Roederer. 2010. “<a href="https://doi.org/10.1002/cyto.a.20916" target="">Publication of Optimized Multicolor Immunofluorescence Panels.</a>” Cytometry. Part A : The Journal of the International Society for Analytical Cytology 77 (9): 814–18.
+    Mahnke, Yolanda, Pratip Chattopadhyay, and Mario Roederer. 2010. “Publication of Optimized Multicolor Immunofluorescence Panels.” Cytometry. Part A : The Journal of the International Society for Analytical Cytology 77 (9): 814–18. https://doi.org/10.1002/cyto.a.20916.
 
-    Radtke Andrea J., Chu Colin J, Yaniv Ziv, Yao Li, Marr James, Beuschel Rebecca T, Ichise Hiroshi, et al. 2021. <a href="https://doi.org/10.5281/zenodo.5244551" target="">Accompanying Dataset for: ‘IBEX: An Iterative Immunolabeling and Chemical Bleaching Method for High-Content Imaging of Diverse Tissues.</a>’ Zenodo.
+    Radtke Andrea J., Chu Colin J, Yaniv Ziv, Yao Li, Marr James, Beuschel Rebecca T, Ichise Hiroshi, et al. 2021. “Accompanying Dataset for: ‘IBEX: An Iterative Immunolabeling and Chemical Bleaching Method for High-Content Imaging of Diverse Tissues.’” Zenodo. https://doi.org/10.5281/zenodo.5244551.
 
-    Roederer, Mario, and Attila Tárnok. 2010. <a href="https://doi.org/10.1002/cyto.a.20959" target="">OMIPs—Orchestrating Multiplexity in Polychromatic Science.</a> Cytometry Part A 77A (9): 811–12.
+    Roederer, Mario, and Attila Tárnok. 2010. “OMIPs—Orchestrating Multiplexity in Polychromatic Science.” Cytometry Part A 77A (9): 811–12. https://doi.org/10.1002/cyto.a.20959.
 
-    Weber, Griffin M., Yingnan Ju, and Katy Börner. 2020. <a href="https://doi.org/10.3389/fcvm.2020.00029" target="">Considerations for Using the Vasculature as a Coordinate System to Map All the Cells in the Human Body.</a> Frontiers in Cardiovascular Medicine 7: 29.`
+    Weber, Griffin M., Yingnan Ju, and Katy Börner. 2020. “Considerations for Using the Vasculature as a Coordinate System to Map All the Cells in the Human Body.” Frontiers in Cardiovascular Medicine 7: 29. https://doi.org/10.3389/fcvm.2020.00029.
   
 omapsVersionData:
 - release: '4th HRA Release (v1.3), December 2022'

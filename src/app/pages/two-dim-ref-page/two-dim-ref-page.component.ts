@@ -25,8 +25,9 @@ export class TwoDimRefPageComponent implements OnInit {
   citationData: PageDataItems[];
   acknowledgmentsData: PageDataItems[];
   twoDimFtuLibObjects: PageDataItems[];
+  disclaimer: PageDataItems[];
   filterImages: OrganData[];
-  cardTitle = '';
+  cardTitle = "";
   versionData: ChooseVersion[];
   placeholderDate: string;
   organData: OrganData[];

@@ -16,6 +16,7 @@ export class HraUsageMetricsComponent {
   gtexMetrics: PageDataItems[];
   softwareData: PageDataItems[];
   licenses: PageDataItems[];
+  hraMetrics: PageDataItems[];
 
   constructor (route: ActivatedRoute){
     const data = route.snapshot.data['content'];
