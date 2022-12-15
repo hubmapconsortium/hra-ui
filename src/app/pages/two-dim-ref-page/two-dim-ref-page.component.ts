@@ -23,13 +23,13 @@ export class TwoDimRefPageComponent implements OnInit {
   termsOfUseData: PageDataItems[];
   licenseData: PageDataItems[];
   citationData: PageDataItems[];
-  acknowledgmentsData: PageDataItems[]
-  twoDimFtuLibObjects: PageDataItems[]
-  disclaimer: PageDataItems[]
-  filterImages: OrganData[]
+  acknowledgmentsData: PageDataItems[];
+  twoDimFtuLibObjects: PageDataItems[];
+  disclaimer: PageDataItems[];
+  filterImages: OrganData[];
   cardTitle = "";
-  versionData: ChooseVersion[]
-  placeholderDate: string
+  versionData: ChooseVersion[];
+  placeholderDate: string;
   organData: OrganData[];
   info: VersionOrgans;
   version: ChooseVersion;

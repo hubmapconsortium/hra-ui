@@ -96,7 +96,7 @@ export const ontologyValidations: PageDataItems[] = [
 export const ontologyValidationsButton: UseButton =
 {
     text: 'Validation Tools GitHub Repository',
-    url: 'https://github.com/hubmapconsortium/ccf-validation-tools/tree/v2022-11-30/logs'
+    url: 'https://hubmapconsortium.github.io/ccf-validation-tools/'
 }
 
 export const threeDimRefObjects: PageDataItems[] = [

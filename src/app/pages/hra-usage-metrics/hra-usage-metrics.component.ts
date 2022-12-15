@@ -10,13 +10,13 @@ import { PageHeaderItems } from '../../components/page-header/page-header-items'
   styleUrls: ['./hra-usage-metrics.component.scss']
 })
 export class HraUsageMetricsComponent {
-  hraUsageHeading: PageHeaderItems[]
-  hubmapMetricsData: PageDataItems[]
-  trainingMaterials: PageDataItems[]
-  gtexMetrics: PageDataItems[]
-  softwareData: PageDataItems[]
-  licenses: PageDataItems[]
-  hraMetrics: PageDataItems[]
+  hraUsageHeading: PageHeaderItems[];
+  hubmapMetricsData: PageDataItems[];
+  trainingMaterials: PageDataItems[];
+  gtexMetrics: PageDataItems[];
+  softwareData: PageDataItems[];
+  licenses: PageDataItems[];
+  hraMetrics: PageDataItems[];
 
   constructor (route: ActivatedRoute){
     const data = route.snapshot.data['content'];
