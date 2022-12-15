@@ -59,15 +59,18 @@
                                 Metadata
                                 <span class="material-symbols-outlined">info</span>
                             </a>
-                            <a mat-stroked-button disableRipple="true" [href]="tissue.image" download>
+                            <a *ngIf="tissue.png" mat-stroked-button disableRipple="true" [href]="tissue.image" download>
                                 Download PNG
                                 <span class="material-symbols-outlined">download</span>
                             </a>
-                            <a [href]="tissue.svg" mat-stroked-button disableRipple="true" download>
+                            <a *ngIf="tissue.svg" [href]="tissue.svg" mat-stroked-button disableRipple="true" download>
                                 Download SVG
                                 <span class="material-symbols-outlined">download</span>
                             </a>
-                            
+                            <a *ngIf="tissue.ai" [href]="tissue.ai" mat-stroked-button disableRipple="true" download>
+                                Download AI
+                                <span class="material-symbols-outlined">download</span>
+                            </a>
                         </div>
                         <div class="img-container">
                             <img [src]="tissue.expandedImage" class="dialog-image">
