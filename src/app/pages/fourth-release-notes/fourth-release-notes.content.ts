@@ -15,7 +15,7 @@ export const fourthReleaseIntro: PageDataItems[] = [
     {
         heading: '',
         descriptions: `
-        <b>Intro</b>
+        <b>Introduction</b>
         <br><br>
         HuBMAP's Indiana University Mapping Component (MC-IU) has published the 4th Release of the Human Reference Atlas (v1.3), a digital atlas of the human body that lets users query & explore key anatomical structures, cell types, and biomarkers down to the cellular level.
         <br>
@@ -27,10 +27,25 @@ export const fourthReleaseIntro: PageDataItems[] = [
 export const fourthReleaseStats: PageDataItems[] = [
     {
         heading: '',
-        descriptions: `<b>Stats</b>
-        <br><br>
-        The Human Reference Atlas now includes 57 reference organs with 1,588 anatomical structures.
-        `
+        descriptions: `
+**What's New**
+
+* The Human Reference Atlas now includes **57 reference organs** with **1,588 anatomical structures**.
+* **The following reference organs were added:** 
+    * left/right female mammary glands
+    * update to skin to accommodate addition of mammary glands and future skeletal muscle additions in legs
+    * landmark organs added for mammary gland registration user interface (RUI) support: sternum, manubrium, xiphoid process, axillary tail of breast, lower outer quadrant of breast, lower inner quadrant of breast, upper outer quadrant of breast, lower inner quadrant of breast
+* **13 ASCT+B tables were revised:** blood; blood vasculature; bone marrow; brain; eye; heart; large intestine; lymph vasculature; ovary; pancreas; small intestine, spleen; thymus
+* **19 2D functional tissue unit (FTU) reference illustrations were added** to support Functional Tissue Unit (FTU) Explorer.
+    * **kidney:** nephron, renal corpuscle, cortical collecting duct, outer medullary collecting duct, inner medullary collecting duct, thick ascending loop of Henle, thin ascending loop of Henle, thin descending loop of Henle
+    * **large intestine:** crypt of Lieberkuhn
+    * **liver:** liver lobule
+    * **lung:** alveoli, bronchial submucosal gland
+    * **pancreas:** acinus, islets of Langerhans, intercalated duct
+    * **prostate:** prostate glandular acinus
+    * **skin:** epidermal ridge, dermal papilla
+    * **thymus:** thymus lobule
+`
     }
 ]
 
@@ -47,7 +62,7 @@ export const hraHourEvent: PageDataItems[] = [
 export const hourEventUseButton: UseButton =
 {
     text: 'HRA 24 Hour Event Videos',
-    url: 'https://humanatlas.io/events/2022-24h/'
+    url: 'https://www.youtube.com/playlist?list=PL-CUnYVIy7DOVqQbrzhnLEtY8uoVHKXOI'
 }
 
 export const asctbTables: PageDataItems[] = [
@@ -79,7 +94,7 @@ export const asctbReporter: PageDataItems[] = [
 export const asctbReporterButton: UseButton =
 {
     text: 'Use the ASCT+B Reporter',
-    url: 'https://hubmapconsortium.github.io/ccf-asct-reporter/'
+    url: 'https://humanatlas.io/asctb-reporter'
 }
 
 export const ontologyValidations: PageDataItems[] = [
@@ -128,7 +143,7 @@ export const eui: PageDataItems[] = [
 export const euiButton: UseButton =
 {
     text: 'Use the Exploration User Interface',
-    url: 'https://portal.hubmapconsortium.org/ccf-eui'
+    url: 'https://humanatlas.io/exploration-user-interface'
 }
 
 export const rui: PageDataItems[] = [
@@ -144,7 +159,7 @@ export const rui: PageDataItems[] = [
 export const ruiButton: UseButton =
 {
     text: 'Use the Registration User Interface',
-    url: 'https://hubmapconsortium.github.io/ccf-ui/rui/'
+    url: 'https://humanatlas.io/registration-user-interface'
 }
 
 export const vrOrganGallary: PageDataItems[] = [
@@ -197,4 +212,4 @@ export const contactCardData: ContactCard[] = [
         role: 'Research Scientist',
         email: 'abueckle@iu.edu'
     }
-]
+];
