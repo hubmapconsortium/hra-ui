@@ -132,7 +132,7 @@ organInfo:
   - name: Large Intestine
     image: assets/images/large_intestine.svg
     tissueData:
-    - name: Crypt Lieberkuhn
+    - name: Crypt of Lieberkuhn
       image: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.svg
       expandedImage: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.svg
       url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.html

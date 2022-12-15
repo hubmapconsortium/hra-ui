@@ -3,7 +3,7 @@ import { SimpleTileModule } from './../../components/simple-tile/simple-tile.mod
 import { OverviewDataComponent } from './overview-data.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AnnouncementCardModule } from 'src/app/components/announcement-card/announcement-card.module';
+import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
 
 
 @NgModule({

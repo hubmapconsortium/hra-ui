@@ -5,8 +5,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MarkdownModule } from 'ngx-markdown';
 import { HraEditorialBoardComponent } from './hra-editorial-board.component';
-import { BoardMembersModule } from 'src/app/components/board-members/board-members.module';
-import { AnnouncementCardModule } from 'src/app/components/announcement-card/announcement-card.module';
+import { BoardMembersModule } from '../../components/board-members/board-members.module';
+import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
 
 
 @NgModule({

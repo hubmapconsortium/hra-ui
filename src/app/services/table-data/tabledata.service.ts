@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TableData } from 'src/app/components/table/table';
+import { TableData } from '../../components/table/table';
 import { map, Observable, shareReplay } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { parse, ParseResult } from 'papaparse';

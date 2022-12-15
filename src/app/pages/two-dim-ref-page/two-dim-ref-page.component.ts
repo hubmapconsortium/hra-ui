@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ChooseVersion } from 'src/app/components/choose-version/choose-version';
-import { PageDataItems } from 'src/app/components/page-data/page-data';
-import { PageHeaderItems } from 'src/app/components/page-header/page-header-items';
-import { SopLinks } from 'src/app/components/sop-links/sop-links';
-import { OrganData, VersionOrgans } from 'src/app/components/two-dim-image/two-dim-image';
-import { overviewData, sopData, termsOfUseData, twoDimHeaderCardDetails, organInfo, versionData } from './two-dim-ref-page.contents';
+import { ChooseVersion } from '../../components/choose-version/choose-version';
+import { PageDataItems } from '../../components/page-data/page-data';
+import { PageHeaderItems } from '../../components/page-header/page-header-items';
+import { SopLinks } from '../../components/sop-links/sop-links';
+import { OrganData, VersionOrgans } from '../../components/two-dim-image/two-dim-image';
 
 
 function iCaseEquals(str1: string, str2: string): boolean {
@@ -18,7 +17,6 @@ function iCaseEquals(str1: string, str2: string): boolean {
   styleUrls: ['./two-dim-ref-page.component.scss']
 })
 export class TwoDimRefPageComponent implements OnInit {
-
   twoDimHeaderCardDetails: PageHeaderItems[];
   overviewData: PageDataItems[];
   sopData: SopLinks[];
@@ -36,6 +34,7 @@ export class TwoDimRefPageComponent implements OnInit {
   info: VersionOrgans;
   version: ChooseVersion;
   organInfo: VersionOrgans[];
+  label: string;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     const data = activatedRoute.snapshot.data['twoDimRefPage']
@@ -53,12 +52,10 @@ export class TwoDimRefPageComponent implements OnInit {
     this.twoDimFtuLibObjects = data.twoDimFtuLibObjects
   }
 
-  label: string;
-
   ngOnInit(): void {
     const [{ version: defaultVersion, organData: [{ name: defaultOrgan }] }] = this.organInfo;
     const { version = defaultVersion, organ = defaultOrgan } = this.activatedRoute.snapshot.queryParams;
-    this.label = "Choose version of HRA release"
+    this.label = 'Choose version of HRA release';
 
     this.setVersion(`${version}`, `${organ}`);
   }
@@ -66,7 +63,6 @@ export class TwoDimRefPageComponent implements OnInit {
   setVersion(version: string, organ?: string): void {
     const info = this.organInfo.find(item => iCaseEquals(item.version, version)) ?? this.organInfo[0];
     const choose = this.versionData.find(item => item.version === info.version)!;
-    console.log(choose)
     this.info = info;
     this.version = choose;
     this.filterImages = info.organData
@@ -81,7 +77,7 @@ export class TwoDimRefPageComponent implements OnInit {
       this.setOrgan(organData[0].name);
     } else {
       this.organData = data;
-      this.cardTitle = data[0].name + " Functional Tissue Units";
+      this.cardTitle = data[0].name + ' Functional Tissue Units';
       this.updateQueryParams({ version, organ });
     }
   }

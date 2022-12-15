@@ -3,12 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../../app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CcfOntologyComponent } from './ccf-ontology.component';
-import { SimpleTileModule } from 'src/app/components/simple-tile/simple-tile.module';
-import { PageDataModule } from 'src/app/components/page-data/page-data.module';
-import { SimpleImageModule } from 'src/app/components/simple-image/simple-image.module';
-import { CardButtonLongModule } from 'src/app/components/card-button-long/card-button-long.module';
+import { SimpleTileModule } from '../../components/simple-tile/simple-tile.module';
+import { PageDataModule } from '../../components/page-data/page-data.module';
+import { SimpleImageModule } from '../../components/simple-image/simple-image.module';
+import { CardButtonLongModule } from '../../components/card-button-long/card-button-long.module';
 import { MarkdownModule } from 'ngx-markdown';
-import { AnnouncementCardModule } from 'src/app/components/announcement-card/announcement-card.module';
+import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
 
 
 @NgModule({

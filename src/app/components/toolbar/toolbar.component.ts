@@ -1,6 +1,6 @@
 import { NavItems } from './nav-items';
 import { Component, Input } from '@angular/core';
-import { NAVIGATION_ITEMS } from 'src/app/shared/navigation-items';
+import { NAVIGATION_ITEMS } from '../../shared/navigation-items';
 
 
 @Component({

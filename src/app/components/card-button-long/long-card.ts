@@ -5,3 +5,8 @@ export interface LongCard {
     body: string;
     route?: string;
 }
+
+export interface CardBlock {
+    heading: string;
+    cardData: LongCard[];
+}

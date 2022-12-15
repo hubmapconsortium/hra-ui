@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ChooseVersion } from 'src/app/components/choose-version/choose-version';
-import { PageDataItems } from 'src/app/components/page-data/page-data';
-import { PageHeaderItems } from 'src/app/components/page-header/page-header-items';
-import { SopLinks } from 'src/app/components/sop-links/sop-links';
-import { OrganData, VersionOrgans } from 'src/app/components/two-dim-image/two-dim-image';
+import { ChooseVersion } from '../../components/choose-version/choose-version';
+import { PageDataItems } from '../../components/page-data/page-data';
+import { PageHeaderItems } from '../../components/page-header/page-header-items';
+import { SopLinks } from '../../components/sop-links/sop-links';
+import { OrganData, VersionOrgans } from '../../components/two-dim-image/two-dim-image';
+
 
 function iCaseEquals(str1: string, str2: string): boolean {
   return str1.toLowerCase() === str2.toLowerCase();
@@ -16,7 +17,6 @@ function iCaseEquals(str1: string, str2: string): boolean {
   styleUrls: ['./three-dim-ref-page.component.scss']
 })
 export class ThreeDimRefPageComponent implements OnInit {
-
   headerData: PageHeaderItems[];
   overviewData: PageDataItems[];
   versionData: ChooseVersion[];
@@ -28,7 +28,7 @@ export class ThreeDimRefPageComponent implements OnInit {
   referencesData: PageDataItems[];
   referenceOrgans: PageDataItems[];
   threeDimOrganInfo: VersionOrgans[];
-  cardTitle="";
+  cardTitle = '';
   tabsImages:OrganData[]
   organData: OrganData[];
   information: VersionOrgans;
@@ -36,18 +36,17 @@ export class ThreeDimRefPageComponent implements OnInit {
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     const data = activatedRoute.snapshot.data['threeDim'];
-    this.overviewData = data.overviewData
-    this.headerData = data.headerData
-    this.termsOfUseData = data.termsOfUseData
-    this.versionData = data.versionData
-    this.sopData = data.sopData
-    this.threeDimOrganInfo = data.threeDimOrganInfo
-    this.licenseData = data.licenseData
-    this.citationData = data.citationData
-    this.acknowledgmentsData = data.acknowledgmentsData
-    this.referencesData = data.referencesData
-    this.referenceOrgans = data.referenceOrgans
-  
+    this.overviewData = data.overviewData;
+    this.headerData = data.headerData;
+    this.termsOfUseData = data.termsOfUseData;
+    this.versionData = data.versionData;
+    this.sopData = data.sopData;
+    this.threeDimOrganInfo = data.threeDimOrganInfo;
+    this.licenseData = data.licenseData;
+    this.citationData = data.citationData;
+    this.acknowledgmentsData = data.acknowledgmentsData;
+    this.referencesData = data.referencesData;
+    this.referenceOrgans = data.referenceOrgans;
   }
 
   ngOnInit(): void {
@@ -87,5 +86,4 @@ export class ThreeDimRefPageComponent implements OnInit {
       queryParamsHandling: 'merge',
     });
   }
-
 }

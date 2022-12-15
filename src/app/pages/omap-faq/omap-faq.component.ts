@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { authoringOmaps, backButton, faqPageHeader, generalOmapQuestions, tableOfContents } from './omap-faq.content';
+
 
 @Component({
   selector: 'omap-faq',
@@ -7,10 +8,9 @@ import { authoringOmaps, backButton, faqPageHeader, generalOmapQuestions, tableO
   styleUrls: ['./omap-faq.component.scss']
 })
 export class OmapFaqComponent {
-
-  backButton = backButton
-  faqPageHeader = faqPageHeader
-  tableOfContents = tableOfContents
-  generalOmapQuestions = generalOmapQuestions
-  authoringOmaps = authoringOmaps
+  backButton = backButton;
+  faqPageHeader = faqPageHeader;
+  tableOfContents = tableOfContents;
+  generalOmapQuestions = generalOmapQuestions;
+  authoringOmaps = authoringOmaps;
 }

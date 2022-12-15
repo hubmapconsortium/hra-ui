@@ -1,16 +1,16 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { PageDataItems } from 'src/app/components/page-data/page-data';
-import { PageHeaderItems } from 'src/app/components/page-header/page-header-items';
-import { UseButton } from 'src/app/components/use-button/use-button';;
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PageDataItems } from '../../components/page-data/page-data';
+import { PageHeaderItems } from '../../components/page-header/page-header-items';
+import { UseButton } from '../../components/use-button/use-button';
 
+ 
 @Component({
   selector: 'ccf-hra-api',
   templateUrl: './hra-api.component.html',
   styleUrls: ['./hra-api.component.scss']
 })
 export class HraApiComponent {
-
   pageHeaderData: PageHeaderItems[];
   useButtonData: UseButton;
   overviewData: PageDataItems[];
@@ -18,9 +18,9 @@ export class HraApiComponent {
 
   constructor(route: ActivatedRoute) {
     const data = route.snapshot.data['hraInfo'];
-    this.pageHeaderData = [data.pageHeaderData]
-    this.useButtonData = data.useButtonData
-    this.overviewData = [data.overviewData]
-    this.acknowledgmentsData = [data.acknowledgmentsData]
+    this.pageHeaderData = [data.pageHeaderData];
+    this.useButtonData = data.useButtonData;
+    this.overviewData = [data.overviewData];
+    this.acknowledgmentsData = [data.acknowledgmentsData];
   }
 }

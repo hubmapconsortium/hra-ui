@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PageDataItems } from 'src/app/components/page-data/page-data';
-import { PageHeaderItems } from 'src/app/components/page-header/page-header-items';
+import { PageDataItems } from '../../components/page-data/page-data';
+import { PageHeaderItems } from '../../components/page-header/page-header-items';
+
 
 @Component({
   selector: 'usage-metrics',

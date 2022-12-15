@@ -93,7 +93,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
       },
       {
         menuName: 'Application Programming Interfaces',
-        route: 'hra-api',
+        route: 'api',
         disabled: true
       },
       {

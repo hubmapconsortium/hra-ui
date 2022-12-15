@@ -1,5 +1,5 @@
-import { PageDataItems } from "src/app/components/page-data/page-data";
-import { TissueTableInfo } from "src/app/components/tissue-info-table/tissue-info-table";
+import { PageDataItems } from '../../components/page-data/page-data';
+import { TissueTableInfo } from '../../components/tissue-info-table/tissue-info-table';
 
 export const descriptionData: PageDataItems[] = [
     {
