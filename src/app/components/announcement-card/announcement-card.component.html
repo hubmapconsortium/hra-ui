@@ -1,7 +1,7 @@
 <mat-card class="page-data" *ngFor="let msg of messages">
     <ng-template ngIf="msg.route; else: text">
         {{msg.message}}
-    <a [routerLink]="['',msg.route]">{{msg.routeText}}</a>
+    <a [routerLink]="[msg.route]">{{msg.routeText}}</a>
     </ng-template>
     <ng-template #text>
         {{msg.message}}
