@@ -28,7 +28,7 @@ jobs:
             ${{ runner.os }}-node-
       - run: npm ci
       - name: Build HRA Portal
-        run: npm run build -- --output-hashing=none --base-href=/ccf/
+        run: npm run build -- --output-hashing=none --base-href=/
       - name: Setup GitHub Pages files
         run: |
           cp dist/ccf/index.html dist/ccf/404.html
