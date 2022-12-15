@@ -134,7 +134,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'hra-api',
+    path: 'api',
     component: HraApiComponent,
     data: {
       contentFile: 'hra-api.content',
