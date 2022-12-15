@@ -41,7 +41,7 @@ export const longButtonItems: LongCard[] = [
         icon: 'assets/images/hra_api.svg',
         title: 'Human Reference Atlas Application Programming Interfaces',
         body: 'Query and interact with the HRA using Python, JavaScript, SPARQL, REST, and more',
-        route: 'ccf-hra-api'
+        route: 'api'
     },
     {
         icon: 'assets/images/hra_usage.svg',
