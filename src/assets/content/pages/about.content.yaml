@@ -68,5 +68,11 @@ presentations:
 
 acknowledgments:
 - heading: Acknowledgments
-  descriptions: We deeply value close collaborations with the HuBMAP TMCs and other HIVE teams. This research has been funded in part by the NIH Common Fund OTA 20-005 under award OT2 OD030545 and through the Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671,by the NIDDK Kidney Precision Medicine Project grant U2CDK114886, and the NIH NIAID, Department of Health and Human Services under BCBB Support Services Contract HHSN316201300006W/HHSN27200002.The views and conclusions contained in this document are those of the authors and should not be interpreted as representing the official policies, either expressed or implied, of the NIH. 
-
+  descriptions: |
+    We deeply value close collaborations with the HuBMAP TMCs and other HIVE teams.
+    This research has been funded in part by the NIH Common Fund OTA 20-005 under award OT2 OD030545
+    and through the Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671,
+    by the NIDDK Kidney Precision Medicine Project grant U2CDK114886, and the NIH NIAID, Department of
+    Health and Human Services under BCBB Support Services Contract HHSN316201300006W/HHSN27200002. 
+    The views and conclusions contained in this document are those of the authors and should not be
+    interpreted as representing the official policies, either expressed or implied, of the NIH. 
