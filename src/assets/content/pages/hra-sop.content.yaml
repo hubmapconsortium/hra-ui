@@ -5,15 +5,139 @@ pageHeader:
 
 overviewData:
   heading: Overview
-  descriptions: Overview Goes Here
+  descriptions: |
+    [Overview](https://docs.google.com/document/u/0/d/1oMPWB454auN-FTe7XVtxWk7SbJgWFtcS6LvOjgN89wA/edit)
+
+    [Introduction to Standard Operating Procedures](https://docs.google.com/document/u/0/d/1bHi61R2T2GqwgRGH2OtlimWtz2HL_5KyH5tQpzzH898/edit)
+    > Managing SOPs
+
+    >> [Section Overview Template](https://docs.google.com/document/u/0/d/18c9OZ8glq7Avgef9yuf5bzSMQ_p12EuxmPr0vW01Wck/edit)
+
+    >> [SOP Template](https://docs.google.com/document/d/1EFupv_ehdX-kiybceP64T54XZwI0iq-ZqG26s7_ijLY/edit#)
+
+    > [Glossary](https://docs.google.com/document/d/1IBuPOt2mkPOOMF9vUsZk5HQ3vm9M7WjnlW-ZOMG6wSY/edit#)
+
+    > Design Style Guide
+    
+    [3D Tissue Registration](https://docs.google.com/document/u/0/d/1l20H7brenvTh4Vomrns4SPZbqQxRnrnO7sOF3BtN2b4/edit)
+
+    > [Using the CCF Registration User Interface (RUI)](https://doi.org/10.5281/zenodo.5575776)
+    
+    > [Assigning RUI Data to Multiple Tissue Blocks](https://doi.org/10.5281/zenodo.5746143)
+    
+    > Constructing a Millitome and Generating Virtual Tissue Blocks
+    
+    > [Using a Millitome](https://doi.org/10.5281/zenodo.7382703)
+
+    Anatomical Structures and Cell Type Segmentation
+
+    > [Manual Segmentation of Tissue](https://doi.org/10.5281/zenodo.5565027)
+
+    > Running a Kaggle Competition
+
+    Anatomical Structures and Cell Type Annotation
+
+    > Computing Cell Type Populations from Cell by Gene Matrices
+
+    > Computing Cell Type Populations from CODEX Data
+
+    > Using Cell Type Population Data in HRA Interfaces
+
+    VCCF Framework
+
+    > Creating Organ Vessel Maps
+
+    > Connecting Blood Vasculature With FTUs
+
+    > Blood vasculature that does not connect with ASCT+B Tables
+
+    Vasculature Computations
+
+    > Computing Vessel Properties
+
+    > Computing Cell Type to Vasculature Distance Distributions
+
+    [Anatomical Structures, Cell Types, Plus Biomarkers (ASCT+B)](https://docs.google.com/document/d/1oppBW06hfCUifii7LAI2MpaFED78atMx-r6ezyzPTqw/edit#heading=h.6ys5lo962o6b)[Tables](https://docs.google.com/document/d/1oppBW06hfCUifii7LAI2MpaFED78atMx-r6ezyzPTqw/edit#heading=h.6ys5lo962o6b)
+
+    > [Authoring ASCT+B Tables](https://doi.org/10.5281/zenodo.5746152)
+
+    > Authoring ASCT+B Tables Using The ASCT+B Generator Python Script
+
+    > [Construction of Organ Mapping Antibody Panels (OMAPs)](https://doi.org/10.5281/zenodo.5749882)
+
+    >> [FAQ:](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)[Frequently Asked Questions (FAQ) for](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)[Organ Mapping Antibody Panels (](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)[OMAPs](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)[)](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)
+
+    > [Constructing Antibody Validation Reports (AVRs)](https://doi.org/10.5281/zenodo.7418623)
+
+    >> [FAQ: Frequently Asked Questions (FAQ) for Antibody Validation Report (AVR)](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)
+
+    > Creating Crosswalks Between ASCT+B Tables and Azimuth Reference Maps
+
+    > Mapping Experimental Data to the HRA Using OMAPs or Azimuth
+
+    > [ASCT+B Table](https://doi.org/10.5281/zenodo.5639622)[Communications](https://doi.org/10.5281/zenodo.5639622)
+
+    [3D Reference Object Library](https://docs.google.com/document/d/1NOY6PsjGr1GDa39PZaTxoSvr0Ee4L8rW6lyYqNgyBC0/edit#heading=h.6ys5lo962o6b)
+
+    > [Creating 3D Models from Datasets](https://doi.org/10.5281/zenodo.7384275)
+
+    > Creating Crosswalks between ASCT+B Tables and 3D Reference Objects
+
+    > [3D Reference Object Approval](https://doi.org/10.5281/zenodo.5944196)
+
+    > Using 3D Reference Objects
+
+    2D Functional Tissue Unit (FTU) Reference Object Library
+
+    > [Creating 2D Illustrations of Functional Tissue Units](https://doi.org/10.5281/zenodo.6703107)
+
+    > [Style Guide: Human Reference Atlas 2D Functional Tissue Unit (FTU) Illustrations](https://doi.org/10.5281/zenodo.6703376)
+
+    > [Creating a Crosswalk between ASCT+B Tables and 2D Functional Tissue Unit Models](https://doi.org/10.5281/zenodo.5748154)
+
+    HRA Validation and Review
+
+    > Internal Validation of ASCT+B Tables, and 2D and 3D Reference Objects
+
+    > External Review of ASCT+B Tables
+
+    > Validation Checks Performed by the DO-CMS
+
+    > ASCT+B Table Validation with CCF Tools
+
+    > ASCT+B Reporter Validation Checks
+
+    > HRA Editorial Process
+
+    [Human Reference Atlas Tracking and Publication](https://docs.google.com/document/d/1ZlJV61GA60ZtWoCu8HE93fBPOxPootfAe-ggAzipWEM/edit#heading=h.6ys5lo962o6b)
+
+    > Tracking Digital Object Status
+
+    > Maintaining the HRA Portal
+
+    > Designing Organ Icons
+
+    > [Registering Digital Object Identifiers](https://doi.org/10.5281/zenodo.7384461)
+
+    > Publishing CCF.OWL on BioPortal and OLS
+
+    > HRA Release Process
 
 acknowledgmentsData:
   heading: Acknowledgments
-  descriptions: The CCF work is under active development by the Indiana University Mapping Component as part of the HuBMAP HIVE effort with expert input by the HuBMAP team. 
-    Data was provided by the HuBMAP Tissue Mapping Centers. This research is funded by the NIH Common Fund through the 
-    Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671, by the NIDDK Kidney Precision 
-    Medicine Project grant U2CDK114886, and the NIH National Institute of Allergy and Infectious Diseases (NIAID), 
-    Department of Health and Human Services under BCBB Support Services Contract HHSN316201300006W/HHSN27200002
+  descriptions: |
+    The Human Reference Atlas (HRA) is under active development by the Indiana University Mapping
+    Component as part of the HuBMAP HIVE and SenNet CODCC efforts with expert input by the [HRA
+    Editorial Board](https://humanatlas.io/editorial-board) and in close collaboration with experts
+    from more than 15 other consortia. Data was provided by the HIVE and TMC components of HuBMAP.
+    This research has been funded by the NIH Common Fund through the Office of Strategic
+    Coordination/Office of the NIH Director under awards OT2OD033756 and OT2OD026671, by the
+    Cellular Senescence Network (SenNet) Consortium through the Consortium Organization and Data
+    Coordinating Center (CODCC) under award number U24CA268108, by the NIDDK Kidney Precision Medicine
+    Project grant U2CDK114886, and the NIH National Institute of Allergy and Infectious Diseases (NIAID),
+    Department of Health and Human Services under BCBB Support Services Contract HHSN316201300006W/HHSN27200002.
+    The views and conclusions contained in this document are those of the authors and should not be
+    interpreted as representing the official policies, either expressed or implied, of the NIH.
 
 tableTile:
   Standard Operating Procedures
