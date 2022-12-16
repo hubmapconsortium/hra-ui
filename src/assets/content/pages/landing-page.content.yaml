@@ -6,7 +6,7 @@ carouselInfo:
   - title: Map the human body at single cell resolution
     body: Learn more about the thousands of experts building a Human Reference Atlas.
     image: assets/images/carousel1.svg
-    url: https://www.biorxiv.org/content/10.1101/2021.05.31.446440v2
+    url: https://doi.org/10.1038/s41556-021-00788-6
   - title: Contribute data to the Human Reference Atlas
     body: Register your data spatially using the Registration User Interface tool.
     image: assets/images/carousel2.svg
