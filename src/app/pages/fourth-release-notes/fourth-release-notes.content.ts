@@ -6,7 +6,7 @@ import { UseButton } from '../../components/use-button/use-button';
 export const headerData: PageHeaderItems[] = [
     {
         image: 'assets/images/4th_release.svg',
-        title: 'Release Notes',
+        title: '4th Release Notes',
         subtitle: `See what's new in the 4th Release of the Human Reference Atlas (v1.3)`
     }
 ]
@@ -167,7 +167,7 @@ export const vrOrganGallary: PageDataItems[] = [
         heading: '',
         descriptions: `<b>VR Organ Gallery</b>
         <br><br>
-        Want to explore 3D organs in virtual reality?! Check out the VR Organ Gallery.
+        Want to explore 3D organs in virtual reality? Check out the VR Organ Gallery.
         `
     }
 ]

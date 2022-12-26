@@ -26,6 +26,7 @@ import { RegistrationUserInterfaceComponent } from './pages/registration-user-in
 import { ThreeDimRefPageComponent } from './pages/three-dim-ref-page/three-dim-ref-page.component';
 import { TissueInfoPageComponent } from './pages/tissue-info-page/tissue-info-page.component';
 import { TwoDimRefPageComponent } from './pages/two-dim-ref-page/two-dim-ref-page.component';
+import { VccfComponent } from './pages/vccf/vccf.component';
 import { ContentResolver } from './services/content-resolver/conent-resolver.service';
 
 
@@ -212,6 +213,13 @@ const routes: Routes = [
   },
   { path: 'faq/omap', component: OmapFaqComponent },
   { path: 'release-notes/v1.3', component: FourthReleaseNotesComponent },
+  {
+    path: 'vccf', component: VccfComponent,
+    data: {
+      contentFile: 'vccf.content'
+    },
+    resolve: { content: ContentResolver }
+  },
   { path: '', redirectTo: '', pathMatch: 'full' },
   {
     path: '**',
@@ -226,4 +234,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

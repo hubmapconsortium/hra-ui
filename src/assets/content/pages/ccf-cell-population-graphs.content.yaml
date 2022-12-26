@@ -1,6 +1,6 @@
 headerCardData:
-- image: assets/images/cell_population_header.svg
-  title: CCF Cell Population Graphs
+- image: assets/images/cell_graphs.svg
+  title: Cell Population Graphs
   subtitle: An interactive tool for exploring and comparing cell populations
 
 overviewData:

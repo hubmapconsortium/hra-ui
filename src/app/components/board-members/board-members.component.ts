@@ -7,6 +7,5 @@ import { BoardMemberItems } from './board-members';
   styleUrls: ['./board-members.component.scss']
 })
 export class BoardMembersComponent {
-
   @Input() membersData: BoardMemberItems[];
 }

@@ -9,8 +9,15 @@ let apiLoaded = false;
   styleUrls: ['./youtube-model.component.scss']
 })
 export class YoutubeModelComponent implements OnInit {
+  @Input() height: number;
 
-  constructor() { }
+  @Input() width: number;
+
+  @Input() videoId: string;
+
+  @Input() title: string;
+
+  @Input() playerTitle: string;
 
   ngOnInit(): void {
     if (!apiLoaded) {
@@ -22,16 +29,4 @@ export class YoutubeModelComponent implements OnInit {
       apiLoaded = true;
     }
   }
-
-  @Input() height: number;
-
-  @Input() width: number;
-
-  @Input() videoId: string;
-
-  @Input() title: string;
-
-  @Input() playerTitle: string;
-
-
 }

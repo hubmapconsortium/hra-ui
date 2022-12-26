@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
-
+import { TileDefinition } from '../../shared/simple-tile-items';
 
 @Component({
   selector: 'about-mc-iu',
@@ -16,6 +16,7 @@ export class AboutComponent {
   references: PageDataItems[];
   presentations: PageDataItems[];
   acknowledgments: PageDataItems[];
+  tileDefinition = TileDefinition
 
   constructor(route: ActivatedRoute) {
     const data = route.snapshot.data['content'];

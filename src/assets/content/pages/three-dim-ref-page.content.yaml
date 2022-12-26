@@ -337,7 +337,7 @@ threeDimOrganInfo:
       alt: The lymph nodes, male
       threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/NIH_M_Lymph_Node.glb
   - name: Mammary Gland
-    image: assets/images/breast.svg
+    image: assets/images/mammary_gland.svg
     tissueData:
     - name: Female L
       image: 

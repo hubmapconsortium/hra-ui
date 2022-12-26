@@ -7,10 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./section-card.component.scss']
 })
 export class SectionCardComponent {
-
-  @Input()
-  public cards: SectionCardItems[] = [];
+  @Input() public cards: SectionCardItems[] = [];
 
   @Output() cardRoutes = new EventEmitter<SectionCardItems>;
-
 }

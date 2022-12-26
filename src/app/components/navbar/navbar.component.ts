@@ -7,7 +7,6 @@ import { NavItems } from '../toolbar/nav-items';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-
   @Input() items: NavItems[];
   @Output() itemClick = new EventEmitter<NavItems>;
 
@@ -17,5 +16,4 @@ export class NavbarComponent {
       '_blank'
     );
   }
-
 }

@@ -55,4 +55,11 @@
   a:-webkit-any-link {
     text-decoration: unset !important;
   }
+
+  @media(max-width: 428px) {
+    align-items: start;
+    mat-toolbar {
+      width: 428px;
+    }
+  }
 }

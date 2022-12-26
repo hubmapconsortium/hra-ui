@@ -43,4 +43,15 @@
     padding-bottom: 2rem;
     padding-top: 3.5rem;
   }
+
+  @media(max-width: 428px) {
+    .landing-subtitle {
+      width: 32rem;
+    }
+
+    .landing-img {
+      height: 103.39px;
+      width: 38.5px;
+    }
+  }
 }

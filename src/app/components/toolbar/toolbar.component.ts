@@ -9,8 +9,5 @@ import { NAVIGATION_ITEMS } from '../../shared/navigation-items';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent {
-
-  @Input()
-  navigationItems: NavItems[] = NAVIGATION_ITEMS;
-
+  @Input() navigationItems: NavItems[] = NAVIGATION_ITEMS;
 }

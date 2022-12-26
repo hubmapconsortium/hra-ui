@@ -7,17 +7,16 @@ import { OrganData } from './two-dim-image';
   templateUrl: './two-dim-image.component.html',
   styleUrls: ['./two-dim-image.component.scss']
 })
-export class TwoDimImageComponent implements OnInit {
+export class TwoDimImageComponent {
+  @Input() cardTitle: string;
 
-  constructor(private dialog: MatDialog) { }
-  ngOnInit(): void {
-  }
-
-  @Input() cardTitle: string
   @Input() tissueData: OrganData[] = [];
+
   @Input() isMultirow: boolean;
+  
   @Output() infoRoute = new EventEmitter<OrganData>;
   
+  constructor(private dialog: MatDialog) { }
 
   openImageViewer(content: TemplateRef<unknown>): void {
     this.dialog.open(content, { panelClass: 'two-dim-image-modal' })

@@ -7,7 +7,5 @@ import { ContactCard } from './contact-card';
   styleUrls: ['./contact-card.component.scss']
 })
 export class ContactCardComponent {
-
   @Input() contactCard: ContactCard[];
-
 }

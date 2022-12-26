@@ -1,6 +1,13 @@
 :host{
     display: block;
+
     mat-card{
         margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 428px) {
+        mat-card {
+            width: 384px;
+        }
     }
 }

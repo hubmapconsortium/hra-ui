@@ -2,7 +2,7 @@ pageHeaderData:
   title: Human Reference Atlas Application Programming Interfaces
   subtitle: Query and interact with the HRA using Python, JavaScript, SPARQL, REST,
     and more
-  image: assets/images/hra_api.png
+  image: assets/images/hra_api.svg
 overviewData:
   heading: Overview
   descriptions: This API provides programmatic access to data registered to the Common
