@@ -66,4 +66,12 @@
   .section {
     padding: 1rem 0rem;
   }
+
+  @media (max-width: 26.75rem) {
+    padding-left: 1.5rem;
+
+    mat-divider {
+      width: 23.75rem;
+    }
+  }
 }

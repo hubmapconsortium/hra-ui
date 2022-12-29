@@ -80,4 +80,16 @@
     margin-inline-start: unset;
     margin-inline-end: unset;
   }
+
+  @media (max-width: 26.75rem) {
+    mat-card {
+      flex-direction: column;
+      width: 23.75rem;
+    }
+
+    .users {
+      padding-left: unset;
+      padding-top: 3rem;
+    }
+  }
 }

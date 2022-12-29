@@ -8,7 +8,6 @@
     line-height: 1.4202rem;
     letter-spacing: 0.005rem;
     color: #000000;
-    // margin-bottom: 1rem;
   }
 
   .sop-items {
@@ -37,4 +36,11 @@
     }
   }
   
+  @media(max-width: 26.75rem) {
+    width: 23.75rem;
+
+    .sop-title {
+      line-height: 2rem;
+    }
+  }
 }

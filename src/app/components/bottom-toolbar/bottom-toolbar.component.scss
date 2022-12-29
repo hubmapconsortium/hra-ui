@@ -56,10 +56,9 @@
     text-decoration: unset !important;
   }
 
-  @media(max-width: 428px) {
+  @media(max-width: 26.75rem) {
     align-items: start;
-    mat-toolbar {
-      width: 428px;
-    }
+    padding: 0rem 1rem;
+    width: 26.75rem;
   }
 }

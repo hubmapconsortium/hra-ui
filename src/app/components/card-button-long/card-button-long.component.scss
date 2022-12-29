@@ -75,9 +75,9 @@
     padding-left: 10.5px;
   }
 
-  @media(max-width: 428px) {
+  @media(max-width: 26.75rem) {
     mat-card {
-      width: 380px;
+      width: 23.75rem;
     }
 
     img {
@@ -86,7 +86,7 @@
 
     .symbol {
       height: inherit;
-      width: 80px;
+      width: 5rem;
     }
 
     .body {

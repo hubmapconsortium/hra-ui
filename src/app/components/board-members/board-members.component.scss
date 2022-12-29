@@ -27,4 +27,15 @@
     letter-spacing: 0.005rem;
     margin-left: 2.5rem;
   }
+
+  @media (max-width: 26.75rem) {
+    .member {
+      width: 23.75rem;
+      align-items: flex-start;
+    }
+
+    .about {
+      margin-left: 1rem;
+    }
+  }
 }

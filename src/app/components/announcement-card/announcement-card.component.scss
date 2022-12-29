@@ -5,9 +5,9 @@
         margin-bottom: 0.5rem;
     }
 
-    @media (max-width: 428px) {
+    @media only screen and (max-width: 26.75rem) {
         mat-card {
-            width: 384px;
+            width: 23.75rem;
         }
     }
 }
