@@ -56,20 +56,7 @@ export class TwoDimRefPageComponent implements OnInit {
   version = this.data.version;
   organInfo = this.data.organInfo;
 
-  constructor(private router: Router, private readonly route: ActivatedRoute) {
-    // const data = route.snapshot.data['content'];
-    // this.twoDimHeaderCardDetails = data.twoDimHeaderCardDetails;
-    // this.overviewData = data.overviewData;
-    // this.sopData = data.sopData;
-    // this.termsOfUseData = data.termsOfUseData;
-    // this.versionData = data.versionData;
-    // this.placeholderDate = this.versionData[0].release;
-    // this.organInfo = data.organInfo;
-    // this.licenseData = data.licenseData;
-    // this.citationData = data.citationData;
-    // this.acknowledgmentsData = data.acknowledgmentsData;
-    // this.twoDimFtuLibObjects = data.twoDimFtuLibObjects;
-  }
+  constructor(private router: Router, private readonly route: ActivatedRoute) { }
 
   ngOnInit(): void {
     const [{ version: defaultVersion, organData: [{ name: defaultOrgan }] }] = this.organInfo;
