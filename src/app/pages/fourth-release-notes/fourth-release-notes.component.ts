@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { asctbReporter, asctbReporterButton, asctbTables, asctbTablesButton, contactCardData, eui, euiButton, fourthReleaseIntro, fourthReleaseStats, headerData, hourEventUseButton, hraHourEvent, ontologyValidations, ontologyValidationsButton, previewButton1, previewButton2, rui, ruiButton, threeDimRefObjects, threeDimRefObjectsButton, vrOrganGallary, vrOrganGallaryButton } from './fourth-release-notes.content';
-
+import { ActivatedRoute } from '@angular/router';
+import { ContactCard } from 'src/app/components/contact-card/contact-card';
+import { PageDataItems } from 'src/app/components/page-data/page-data';
+import { PageHeaderItems } from 'src/app/components/page-header/page-header-items';
+import { UseButton } from 'src/app/components/use-button/use-button';
 
 @Component({
   selector: 'fourth-release-notes',
@@ -8,26 +11,56 @@ import { asctbReporter, asctbReporterButton, asctbTables, asctbTablesButton, con
   styleUrls: ['./fourth-release-notes.component.scss']
 })
 export class FourthReleaseNotesComponent  {
-  headerData = headerData;
-  fourthReleaseIntro = fourthReleaseIntro;
-  fourthReleaseStats = fourthReleaseStats;
-  hraHourEvent = hraHourEvent;
-  hourEventUseButton = hourEventUseButton;
-  asctbTables = asctbTables;
-  asctbTablesButton = asctbTablesButton;
-  asctbReporter = asctbReporter;
-  asctbReporterButton = asctbReporterButton;
-  ontologyValidations = ontologyValidations;
-  ontologyValidationsButton = ontologyValidationsButton;
-  threeDimRefObjects = threeDimRefObjects;
-  threeDimRefObjectsButton = threeDimRefObjectsButton;
-  explorationUserInterface = eui;
-  explorationUserInterfaceButton = euiButton;
-  registrationUserInterface = rui;
-  registrationUserInterfaceButton = ruiButton;
-  vrOrganGallary = vrOrganGallary;
-  vrOrganGallaryButton = vrOrganGallaryButton;
-  previewButton1 = previewButton1;
-  previewButton2 = previewButton2;
-  contactCardData = contactCardData;
+  headerData: PageHeaderItems[];
+  fourthReleaseIntro: PageDataItems[];
+  fourthReleaseStats: PageDataItems[];
+  hraHourEvent: PageDataItems[];
+  hourEventUseButton: UseButton;
+  asctbTables: PageDataItems[];
+  asctbTablesButton: UseButton;
+  asctbReporter: PageDataItems[];
+  asctbReporterButton: UseButton;
+  ontologyValidations: PageDataItems[];
+  ontologyValidationsButton: UseButton;
+  threeDimRefObjects: PageDataItems[];
+  threeDimRefObjectsButton: UseButton;
+  explorationUserInterface: PageDataItems[];
+  explorationUserInterfaceButton: UseButton;
+  registrationUserInterface: PageDataItems[];
+  registrationUserInterfaceButton: UseButton;
+  vrOrganGallary: PageDataItems[];
+  vrOrganGallaryButton: UseButton;
+  previewScrollytellingButton: UseButton;
+  previewComparingTabula: UseButton;
+  previewFtuSegmentation: UseButton;
+  previewCcfTissueBlock: UseButton;
+  contactCardData: ContactCard[];
+
+  constructor(route: ActivatedRoute){
+    const data = route.snapshot.data['content'];
+    this.headerData = data.headerData;
+    this.fourthReleaseIntro = data.fourthReleaseIntro;
+    this.fourthReleaseStats = data.fourthReleaseStats;
+    this.hraHourEvent = data.hraHourEvent;
+    this.hourEventUseButton = data.hourEventUseButton;
+    this.asctbTables = data.asctbTables;
+    this.asctbTablesButton = data.asctbTablesButton;
+    this.asctbReporter = data.asctbReporter;
+    this.asctbReporterButton = data.asctbReporterButton;
+    this.ontologyValidations = data.ontologyValidations;
+    this.ontologyValidationsButton = data.ontologyValidationsButton;
+    this.threeDimRefObjects = data.threeDimRefObjects
+    this.threeDimRefObjectsButton = data.threeDimRefObjectsButton
+    this.explorationUserInterface = data.eui;
+    this.explorationUserInterfaceButton = data.euiButton;
+    this.registrationUserInterface = data.rui;
+    this.registrationUserInterfaceButton = data.ruiButton;
+    this.vrOrganGallary = data.vrOrganGallary;
+    this.vrOrganGallaryButton = data.vrOrganGallaryButton;
+    this.previewScrollytellingButton = data.previewScrollytellingButton;
+    this.previewComparingTabula = data.previewComparingTabula;
+    this.previewFtuSegmentation = data.previewFtuSegmentation;
+    this.previewCcfTissueBlock = data.previewCcfTissueBlock;
+    this.contactCardData = data.contactCardData
+  }
 }

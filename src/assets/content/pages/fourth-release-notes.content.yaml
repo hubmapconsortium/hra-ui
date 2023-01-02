@@ -1,0 +1,153 @@
+headerData:
+- image: assets/images/4th_release.svg
+  title: 4th Release Notes
+  subtitle: See what's new in the 4th Release of the Human Reference Atlas (v1.3)
+
+fourthReleaseIntro:
+- heading:
+  descriptions: |
+    **Introduction**
+
+    HuBMAP's Indiana University Mapping Component (MC-IU) has published the 4th Release of the Human Reference Atlas (v1.3), a digital atlas of the human body that lets users query & explore key anatomical structures, cell types, and biomarkers down to the cellular level.
+
+fourthReleaseStats:
+- heading:
+  descriptions: |
+    **What's New**
+
+    * The Human Reference Atlas now includes **57 reference organs** with **1,588 anatomical structures**.
+    * **The following reference organs were added:** 
+        * left/right female mammary glands
+        * update to skin to accommodate addition of mammary glands and future skeletal muscle additions in legs
+        * landmark organs added for mammary gland registration user interface (RUI) support: sternum, manubrium, xiphoid process, axillary tail of breast, lower outer quadrant of breast, lower inner quadrant of breast, upper outer quadrant of breast, lower inner quadrant of breast
+    * **13 ASCT+B tables were revised:** blood; blood vasculature; bone marrow; brain; eye; heart; large intestine; lymph vasculature; ovary; pancreas; small intestine, spleen; thymus
+    * **19 2D functional tissue unit (FTU) reference illustrations were added** to support Functional Tissue Unit (FTU) Explorer.
+        * **kidney:** nephron, renal corpuscle, cortical collecting duct, outer medullary collecting duct, inner medullary collecting duct, thick ascending loop of Henle, thin ascending loop of Henle, thin descending loop of Henle
+        * **large intestine:** crypt of Lieberkuhn
+        * **liver:** liver lobule
+        * **lung:** alveoli, bronchial submucosal gland
+        * **pancreas:** acinus, islets of Langerhans, intercalated duct
+        * **prostate:** prostate glandular acinus
+        * **skin:** epidermal ridge, dermal papilla
+        * **thymus:** thymus lobule
+
+hraHourEvent:
+- heading:
+  descriptions: |
+    **HRA 24 Hour Event**
+
+    Check out the videos from our 24 hour live HRA Event that happened on December 9-10, 2022. There is plenty of great content about atlasing.
+
+hourEventUseButton:
+  text: HRA 24 Hour Event Videos
+  url: https://www.youtube.com/playlist?list=PL-CUnYVIy7DOVqQbrzhnLEtY8uoVHKXOI
+
+asctbTables:
+- heading:
+  descriptions: |
+    **ASCT+B Tables**
+
+    What is an ASCT+B table? 26 tables describe human anatomy, connect Anatomical Structures to Cell Types to Biomarkers.
+
+asctbTablesButton:
+  text: Use the ASCT+B Tables
+  url: https://humanatlas.io/asctb-tables
+
+asctbReporter:
+- heading:
+  descriptions: |
+    **ASCTB+Reporter**
+
+    Want to visualize ASCT+B Tables? Check out ASCT+B Reporter to see the interconnectedness.
+
+asctbReporterButton:
+  text: Use the ASCT+B Reporter
+  url: https://humanatlas.io/asctb-reporter
+
+ontologyValidations:
+- heading:
+  descriptions: |
+    **ASCT+B Ontology Validations**
+
+    How are ASCT+B Tables validated? We use Ubergraph to check all relationships experts have asserted in the tables against established ontologies (namely Uberon and Cell Ontology). Check out the results in GitHub.
+
+ontologyValidationsButton:
+  text: Validation Tools GitHub Repository
+  url: https://hubmapconsortium.github.io/ccf-validation-tools/
+
+threeDimRefObjects:
+- heading:
+  descriptions: |
+    **3D Reference Objects**
+
+    3D Reference Objects are models representing human organs registered with real data (tissue blocks) attached to them.
+
+threeDimRefObjectsButton:
+  text: 4th Release 3D Reference Objects
+  url: https://humanatlas.io/3d-reference-library
+
+eui:
+- heading:
+  descriptions: |
+    **Exploration User Interface**
+
+    Check out the Exploration User Interface (EUI) to see our 3D Reference Objects in action.
+
+euiButton:
+  text: Use the Exploration User Interface
+  url: https://humanatlas.io/exploration-user-interface
+
+rui:
+- heading:
+  descriptions: |
+    **Registration User Interface**
+
+    Use the RUI to spatially place your tissue block data.
+
+ruiButton:
+  text: Use the Registration User Interface
+  url: https://humanatlas.io/registration-user-interface
+
+vrOrganGallary:
+- heading: 
+  descriptions: |
+    **VR Organ Gallary**
+
+    Want to explore 3D organs in virtual reality? Check out the VR Organ Gallery.
+
+vrOrganGallaryButton:
+  text: VR Organ Gallery
+  url: https://humanatlas.io/vr-organ-gallery
+
+previewScrollytellingButton:
+  text: 'Preview: Scrollytelling Series'
+  url: https://hubmapconsortium.github.io/hra-previews/pilots/pilot4.html
+
+previewComparingTabula:
+  text: 'Preview: Comparing Tabula Sapiens to the Human Reference Atlas'
+  url: https://hubmapconsortium.github.io/hra-previews/pilots/pilot5.html
+
+previewFtuSegmentation:
+  text: 'Preview: FTU Segmentation'
+  url: https://hubmapconsortium.github.io/hra-previews/pilots/pilot6.html
+
+previewCcfTissueBlock:
+  text: 'Preview: CCF Tissue Block Annotation: Mesh-Level Collision Detection'
+  url: https://hubmapconsortium.github.io/hra-previews/pilots/pilot7.html
+
+contactCardData:
+- image: assets/images/katy_borner.svg
+  name: Katy Börner
+  field: Research
+  role: MC-IU PI, CNS Director
+  email: katy@indiana.edu
+- image: assets/images/bruce_herr.svg
+  name: Bruce Herr II
+  field: Development
+  role: Sr. Systems Architect, PM
+  email: bherr@indiana.edu
+- image: assets/images/andreas_buckle.svg
+  name: Andreas Bueckle
+  field: Research
+  role: Research Scientist
+  email: abueckle@iu.edu

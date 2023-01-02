@@ -212,7 +212,15 @@ const routes: Routes = [
     resolve: { content: ContentResolver },
   },
   { path: 'faq/omap', component: OmapFaqComponent },
-  { path: 'release-notes/v1.3', component: FourthReleaseNotesComponent },
+  {
+    path: 'release-notes/v1.3', component: FourthReleaseNotesComponent,
+    data: {
+      contentFile: 'fourth-release-notes.content'
+    },
+    resolve: {
+      content: ContentResolver
+    }
+  },
   {
     path: 'vccf', component: VccfComponent,
     data: {

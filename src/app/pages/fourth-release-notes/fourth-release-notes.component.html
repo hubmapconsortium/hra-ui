@@ -107,28 +107,22 @@
         <p class="page-data">
             Starting from an accessible overview of the Atlas project, readers will be able to link to the HRA topics, concepts, and practices they wish to explore in more detail.
         </p>
-        <ccf-use-button [buttonData]="{
-            text: 'Preview: Scrollytelling Series',
-            url: 'https://hubmapconsortium.github.io/hra-previews/pilots/pilot4.html'
-        }" class="button-container"></ccf-use-button>
+        <ccf-use-button [buttonData]="previewScrollytellingButton" class="button-container"></ccf-use-button>
         
         <p class="page-data">
             Comparing Tabula Sapiens to the Human Reference Atlas
         </p>
-        <ccf-use-button [buttonData]="previewButton2" class="button-container"></ccf-use-button>
+        <ccf-use-button [buttonData]="previewComparingTabula" class="button-container"></ccf-use-button>
 
         <p class="page-data">
             Kaggle competition results are used to develop and optimize machine learning algorithms that can segment functional tissue units (FTUs)
         </p>
-        <ccf-use-button [buttonData]="{
-            text: 'Preview: FTU Segmentation',
-            url: 'https://hubmapconsortium.github.io/hra-previews/pilots/pilot6.html'
-        }" class="button-container"></ccf-use-button>
+        <ccf-use-button [buttonData]="previewFtuSegmentation" class="button-container"></ccf-use-button>
 
         <p class="page-data">
             Tissue Block annotation provides even better collision detection when registering with the RUI.
         </p>
-        <ccf-use-button [buttonData]="previewButton1" class="button-container"></ccf-use-button>
+        <ccf-use-button [buttonData]="previewCcfTissueBlock" class="button-container"></ccf-use-button>
 
         <mat-divider></mat-divider>
         <p class="page-data section">
