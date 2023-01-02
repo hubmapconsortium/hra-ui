@@ -1,16 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ContactCard } from 'src/app/components/contact-card/contact-card';
 import { PageDataItems } from 'src/app/components/page-data/page-data';
 import { PageHeaderItems } from 'src/app/components/page-header/page-header-items';
 import { UseButton } from 'src/app/components/use-button/use-button';
 
+export interface NavItems {
+  label: string;
+  id: string;
+}
+
 @Component({
   selector: 'fourth-release-notes',
   templateUrl: './fourth-release-notes.component.html',
   styleUrls: ['./fourth-release-notes.component.scss']
 })
-export class FourthReleaseNotesComponent  {
+export class FourthReleaseNotesComponent {
   headerData: PageHeaderItems[];
   fourthReleaseIntro: PageDataItems[];
   fourthReleaseStats: PageDataItems[];
@@ -35,8 +40,22 @@ export class FourthReleaseNotesComponent  {
   previewFtuSegmentation: UseButton;
   previewCcfTissueBlock: UseButton;
   contactCardData: ContactCard[];
+  navigationItems: NavItems[] = [
+    { label: "Intro", id: "intro"}, 
+    { label: 'Stats', id: "stats" },
+    { label: 'HRA 24 Hour Event', id: "24-hr-event" },
+    { label: 'ASCT+B Tables', id: "asctb-tables" },
+    { label: 'ASCT+B Reporter', id: "asctb-reporter" },
+    { label: 'ASCT+B Ontology Validations', id: "asctb-ontology-validations" },
+    { label: '3D Reference Objects', id: '3d-reference-objects' }, 
+    { label: 'Exploration User Interface', id: "exploration-user-interface" },
+    { label: 'Registration User Interface', id: 'registration-user-interface' },
+    { label: 'VR Organ Gallery', id: "vr-organ-gallary" },
+    { label: 'Previews', id: 'previews' }, 
+    { label: 'Contact Us', id: "contact-us" },
+    { label: 'Outro', id: "outro" }];
 
-  constructor(route: ActivatedRoute){
+  constructor(route: ActivatedRoute) {
     const data = route.snapshot.data['content'];
     this.headerData = data.headerData;
     this.fourthReleaseIntro = data.fourthReleaseIntro;
