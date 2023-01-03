@@ -55,4 +55,10 @@
   a:-webkit-any-link {
     text-decoration: unset !important;
   }
+
+  @media(max-width: 26.75rem) {
+    align-items: start;
+    padding: 0rem 1rem;
+    width: 26.75rem;
+  }
 }

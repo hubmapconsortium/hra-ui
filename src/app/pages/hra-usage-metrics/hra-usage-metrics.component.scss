@@ -21,4 +21,13 @@
     width: 70%;
     padding-bottom: 3.5rem;
   }
+
+  @media (max-width: 26.75rem) {
+    padding-left: 1.5rem;
+
+    p {
+      width: 23.75rem;
+      line-height: 2rem;
+    }
+  }
 }

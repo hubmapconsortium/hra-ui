@@ -61,7 +61,7 @@ citationData:
 acknowledgmentsData:
 - heading: Acknowledgments
   descriptions: |
-    The 2D Functional Tissue Unit Library files were created by Rachel Bajema on the MC-IU team. This research has been funded in part by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671 and the NIDDK Kidney Precision Medicine Project grant U2CDK114886.'
+    The 2D Functional Tissue Unit Library files were created by Rachel Bajema on the MC-IU team. This research has been funded in part by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671 and the NIDDK Kidney Precision Medicine Project grant U2CDK114886.
 
 twoDimFtuLibObjects:
 - heading: 2D Reference Functional Tissue Unit (FTU) Library Objects

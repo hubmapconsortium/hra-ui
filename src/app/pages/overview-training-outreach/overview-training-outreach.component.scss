@@ -23,4 +23,12 @@
     color: #212121;
     padding-bottom: 1rem;
   }
+
+  @media (max-width: 26.75rem) {
+    padding-left: 1.5rem;
+
+    .title {
+      width: 23.75rem;
+    }
+  }
 }

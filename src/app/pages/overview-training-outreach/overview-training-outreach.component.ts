@@ -20,7 +20,7 @@ export class OverviewTrainingOutreachComponent {
     this.longCardData = data.longCardData;
   }
 
-  route(card:LongCard):void{
+  clicked(card:LongCard):void{
     this.router.navigate([card.route])
   }
 }

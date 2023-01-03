@@ -8,7 +8,10 @@ import { TableData, TissueTableInfo } from './tissue-info-table';
   templateUrl: './tissue-info-table.component.html',
   styleUrls: ['./tissue-info-table.component.scss']
 })
-export class TissueInfoTableComponent implements AfterViewInit {
+export class TissueInfoTableComponent {
+  @ViewChild(MatSort, { static: true }) set sort(sort: MatSort) {
+    this.dataSource.sort = sort;
+  }
 
   @Input()
   set data(value: TissueTableInfo) {
@@ -16,7 +19,6 @@ export class TissueInfoTableComponent implements AfterViewInit {
   }
 
   readonly dataSource = new MatTableDataSource<TableData>([]);
-  @ViewChild(MatSort) sort: MatSort;
 
   columns = [
     {
@@ -30,10 +32,6 @@ export class TissueInfoTableComponent implements AfterViewInit {
       cell: (element: TableData) => `${element.value}`
     }
   ];
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-  }
 
   displayedColumns = this.columns.map(c => c.columnDef);
 }

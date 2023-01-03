@@ -11,7 +11,6 @@
 
   mat-card-content {
     padding: 2.21875rem 2rem;
-
   }
 
   .card-button {
@@ -54,7 +53,7 @@
     .gif {
       width: 99.7%;
       height: 20rem;
-      border: solid 1px #E0E0E0;
+      border: solid 1px #e0e0e0;
       border-top-left-radius: 0.25rem;
       border-top-right-radius: 0.25rem;
     }
@@ -70,6 +69,39 @@
 
       .gif {
         display: unset;
+      }
+    }
+  }
+
+  @media (max-width: 26.75rem) {
+    flex-direction: column;
+
+    .card-button {
+      width: 24rem;
+      height: 21rem;
+    }
+
+    .image-container {
+      .static,
+      .gif {
+        height: 12rem;
+        border: solid 1px #e0e0e0;
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+      }
+
+      .gif {
+        display: none;
+      }
+
+      &:hover {
+        .static {
+          display: none;
+        }
+
+        .gif {
+          display: unset;
+        }
       }
     }
   }

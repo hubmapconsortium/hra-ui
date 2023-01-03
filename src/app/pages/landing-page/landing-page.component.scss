@@ -43,4 +43,20 @@
     padding-bottom: 2rem;
     padding-top: 3.5rem;
   }
+
+  @media(max-width: 26.75rem) {
+    padding-left: 1.5rem;
+    .landing-subtitle {
+      width: 32rem;
+    }
+
+    .landing-img {
+      height: 103.39px;
+      width: 38.5px;
+    }
+
+    .card-content-title {
+      width: 23.75rem;
+    }
+  }
 }

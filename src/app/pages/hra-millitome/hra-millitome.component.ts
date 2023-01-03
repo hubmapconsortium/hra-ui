@@ -14,7 +14,7 @@ import { displayedColumnsData, headerInfo } from './hra-millitome.content';
   templateUrl: './hra-millitome.component.html',
   styleUrls: ['./hra-millitome.component.scss']
 })
-export class HraMillitomeComponent implements OnInit {
+export class HraMillitomeComponent {
   version: ChooseVersion = {release: 'hra-millitome.csv', version:''};
   headerCardDetails: PageHeaderItems[];
   overViewData: PageDataItems[];
@@ -30,14 +30,11 @@ export class HraMillitomeComponent implements OnInit {
     this.headerCardDetails = [data.headerCardDetails];
     this.overViewData = [data.overViewData];
     this.tableTitle = data.tableTitle;
+    this.setData();
   }
 
   setData(): void {
     const data = this.dataService.getData('hra-millitome.csv', displayedColumnsData);
     this.tableData = data.pipe(map(result => result.data));
-  }
-
-  ngOnInit(): void {
-    this.setData();
   }
 }

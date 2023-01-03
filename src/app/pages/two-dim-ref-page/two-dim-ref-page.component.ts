@@ -7,16 +7,7 @@ import { SopLinks } from '../../components/sop-links/sop-links';
 import { OrganData, VersionOrgans } from '../../components/two-dim-image/two-dim-image';
 
 
-function iCaseEquals(str1: string, str2: string): boolean {
-  return str1.toLowerCase() === str2.toLowerCase();
-}
-
-@Component({
-  selector: 'ccf-2d-ftu',
-  templateUrl: './two-dim-ref-page.component.html',
-  styleUrls: ['./two-dim-ref-page.component.scss']
-})
-export class TwoDimRefPageComponent implements OnInit {
+interface TwoDimensionReference {
   twoDimHeaderCardDetails: PageHeaderItems[];
   overviewData: PageDataItems[];
   sopData: SopLinks[];
@@ -27,34 +18,49 @@ export class TwoDimRefPageComponent implements OnInit {
   twoDimFtuLibObjects: PageDataItems[];
   disclaimer: PageDataItems[];
   filterImages: OrganData[];
-  cardTitle = "";
   versionData: ChooseVersion[];
   placeholderDate: string;
   organData: OrganData[];
   info: VersionOrgans;
   version: ChooseVersion;
   organInfo: VersionOrgans[];
-  label: string;
+}
 
-  constructor(private router: Router, private readonly route: ActivatedRoute) {
-    const data = route.snapshot.data['content'];
-    this.twoDimHeaderCardDetails = data.twoDimHeaderCardDetails;
-    this.overviewData = data.overviewData;
-    this.sopData = data.sopData;
-    this.termsOfUseData = data.termsOfUseData;
-    this.versionData = data.versionData;
-    this.placeholderDate = this.versionData[0].release;
-    this.organInfo = data.organInfo;
-    this.licenseData = data.licenseData;
-    this.citationData = data.citationData;
-    this.acknowledgmentsData = data.acknowledgmentsData;
-    this.twoDimFtuLibObjects = data.twoDimFtuLibObjects;
-  }
+function iCaseEquals(str1: string, str2: string): boolean {
+  return str1.toLowerCase() === str2.toLowerCase();
+}
+
+@Component({
+  selector: 'ccf-2d-ftu',
+  templateUrl: './two-dim-ref-page.component.html',
+  styleUrls: ['./two-dim-ref-page.component.scss']
+})
+export class TwoDimRefPageComponent implements OnInit {
+  data = this.route.snapshot.data['content'] as TwoDimensionReference;
+
+  twoDimHeaderCardDetails = this.data.twoDimHeaderCardDetails;
+  overviewData = this.data.overviewData;
+  sopData = this.data.sopData;
+  termsOfUseData = this.data.termsOfUseData;
+  licenseData = this.data.licenseData;
+  citationData = this.data.citationData;
+  acknowledgmentsData = this.data.acknowledgmentsData;
+  twoDimFtuLibObjects = this.data.twoDimFtuLibObjects;
+  disclaimer = this.data.disclaimer;
+  filterImages = this.data.filterImages;
+  cardTitle = "";
+  versionData = this.data.versionData;
+  placeholderDate = this.data.placeholderDate;
+  organData = this.data.organData;
+  info = this.data.info;
+  version = this.data.version;
+  organInfo = this.data.organInfo;
+
+  constructor(private router: Router, private readonly route: ActivatedRoute) { }
 
   ngOnInit(): void {
     const [{ version: defaultVersion, organData: [{ name: defaultOrgan }] }] = this.organInfo;
     const { version = defaultVersion, organ = defaultOrgan } = this.route.snapshot.queryParams;
-    this.label = 'Choose version of HRA release';
 
     this.setVersion(`${version}`, `${organ}`);
   }

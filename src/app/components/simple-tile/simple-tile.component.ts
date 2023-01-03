@@ -6,7 +6,5 @@ import { TileItems } from './tile-items';
   styleUrls: ['./simple-tile.component.scss']
 })
 export class SimpleTileComponent {
-
   @Input() definitions: TileItems[] = [];
-
 }

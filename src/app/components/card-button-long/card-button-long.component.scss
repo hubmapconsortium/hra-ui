@@ -74,4 +74,23 @@
     height: 1.313rem;
     padding-left: 10.5px;
   }
+
+  @media(max-width: 26.75rem) {
+    mat-card {
+      width: 23.75rem;
+    }
+
+    img {
+      background-color: #444C65;
+    }
+
+    .symbol {
+      height: inherit;
+      width: 5rem;
+    }
+
+    .body {
+      margin: 1rem;
+    }
+  }
 }

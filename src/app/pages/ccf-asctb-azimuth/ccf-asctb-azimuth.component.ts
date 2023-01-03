@@ -13,7 +13,7 @@ import { additionalColumnsData, additionalHeaders, cellData, cellHeaders, displa
   templateUrl: './ccf-asctb-azimuth.component.html',
   styleUrls: ['./ccf-asctb-azimuth.component.scss']
 })
-export class CcfAsctbAzimuthComponent implements OnInit {
+export class CcfAsctbAzimuthComponent {
   azimuthHeader: PageHeaderItems[];
   overviewAzimuthData: PageDataItems[];
   TermsOfUseData: PageDataItems[];
@@ -50,14 +50,11 @@ export class CcfAsctbAzimuthComponent implements OnInit {
     this.Citation = data.citation;
     this.Acknowledgements = data.acknowledgements;
     this.References = data.references;
+    this.setData();
   }
 
   setData(): void {
     const data = this.dataService.getData('azimuth.csv', displayedColumnsData);
     this.tableData = data.pipe(map(result => result.data));
-  }
-
-  ngOnInit(): void {
-    this.setData();
   }
 }

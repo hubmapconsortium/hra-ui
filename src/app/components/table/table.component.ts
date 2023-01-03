@@ -11,7 +11,6 @@ import { TableData } from './table';
 })
 
 export class TableComponent {
-
   @ViewChild(MatSort, { static: true })
   set sort(value: MatSort) {
     this.dataSource.sort = value;
