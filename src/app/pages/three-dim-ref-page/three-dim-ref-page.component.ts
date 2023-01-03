@@ -16,7 +16,7 @@ function iCaseEquals(str1: string, str2: string): boolean {
   templateUrl: './three-dim-ref-page.component.html',
   styleUrls: ['./three-dim-ref-page.component.scss']
 })
-export class ThreeDimRefPageComponent implements OnInit {
+export class ThreeDimRefPageComponent {
   headerData: PageHeaderItems[];
   overviewData: PageDataItems[];
   versionData: ChooseVersion[];
@@ -47,9 +47,6 @@ export class ThreeDimRefPageComponent implements OnInit {
     this.acknowledgmentsData = data.acknowledgmentsData;
     this.referencesData = data.referencesData;
     this.referenceOrgans = data.referenceOrgans;
-  }
-
-  ngOnInit(): void {
     this.placeholderDate = this.versionData[0];
     const [{ version: defaultVersion, organData: [{ name: defaultOrgan }] }] = this.threeDimOrganInfo;
     const { version = defaultVersion, organ = defaultOrgan } = this.route.snapshot.queryParams;

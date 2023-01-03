@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './bottom-toolbar.component.html',
   styleUrls: ['./bottom-toolbar.component.scss']
 })
-export class BottomToolbarComponent {
-
-}
+export class BottomToolbarComponent { }

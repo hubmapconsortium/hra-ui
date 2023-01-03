@@ -7,8 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./page-header.component.scss']
 })
 export class PageHeaderComponent {
-
-  @Input()
-  headerCard: PageHeaderItems[] = []
-
+  @Input() headerCard: PageHeaderItems[] = [];
 }

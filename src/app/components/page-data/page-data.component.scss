@@ -20,8 +20,6 @@
     line-height: 1.5rem;
     letter-spacing: 0.005em;
     color: #000000;
-    // padding-top: 1rem;
-    // padding-bottom: 2.5rem;
     text-decoration: none;
   }
 
@@ -39,5 +37,20 @@
 
   ::ng-deep h2 {
     margin: 0 0 0px;
+  }
+
+  ::ng-deep div::before {
+    display: block;
+    content: " ";
+    margin-top: -3.75rem;
+    height: 3.75rem;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  @media (max-width: 26.75rem) {
+    width: 23.75rem;
+    padding-right: 1rem;
+    padding-bottom: 2.5rem;
   }
 }

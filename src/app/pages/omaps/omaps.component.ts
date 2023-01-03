@@ -15,7 +15,7 @@ import { columnHeaders, displayedColumnsData, goalsForOmaps } from './omaps.cont
   templateUrl: './omaps.component.html',
   styleUrls: ['./omaps.component.scss']
 })
-export class OmapsComponent implements OnInit {
+export class OmapsComponent {
   columns: Observable<string[]> = EMPTY;
   omapsHeading: PageHeaderItems[];
   overviewData: PageDataItems[];
@@ -37,16 +37,13 @@ export class OmapsComponent implements OnInit {
     this.acknowledgementsData = data.acknowledgementsData;
     this.omapsVersionData = data.omapsVersionData;
     this.referencesData = data.referencesData;
+    this.placeholderDate = this.omapsVersionData[0];
+    this.setOmapsData(this.omapsVersionData[0]);
   }
 
   setOmapsData(version: ChooseVersion): void {
     const data = this.dataService.getData(version.file, displayedColumnsData);
     this.tableData = data.pipe(map(result => result.data));
     this.columns = data.pipe(map(result => result.columns));
-  }
-
-  ngOnInit(): void {
-    this.setOmapsData(this.omapsVersionData[0]);
-    this.placeholderDate = this.omapsVersionData[0];
   }
 }

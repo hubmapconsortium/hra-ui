@@ -38,6 +38,7 @@ import { RegistrationUserInterfaceModule } from './pages/registration-user-inter
 import { ThreeDimRefPageModule } from './pages/three-dim-ref-page/three-dim-ref-page.module';
 import { TissueInfoPageModule } from './pages/tissue-info-page/tissue-info-page.module';
 import { TwoDimRefPageModule } from './pages/two-dim-ref-page/two-dim-ref-page.module';
+import { VccfModule } from './pages/vccf/vccf.module';
 
 
 @NgModule({
@@ -83,7 +84,8 @@ import { TwoDimRefPageModule } from './pages/two-dim-ref-page/two-dim-ref-page.m
     OmapFaqModule,
     FourthReleaseNotesModule,
     MarkdownModule.forRoot({ sanitize: SecurityContext.NONE }),
-    AnnouncementCardModule
+    AnnouncementCardModule,
+    VccfModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,7 @@
-:host{
-    max-width: 77rem;
-}
+:host {
+  max-width: 77rem;
 
-.link{
-    color: #0a6ebd;
+  @media (max-width: 26.75rem) {
+    padding-left: 1.5rem;
+  }
 }

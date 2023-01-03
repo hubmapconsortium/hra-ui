@@ -7,10 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./card-button-long.component.scss']
 })
 export class CardButtonLongComponent {
+  @Input() longButtonItems: LongCard[];
 
-  @Input()
-  longButtonItems: LongCard[];
-
-  @Output() cardRoutes = new EventEmitter<LongCard>;
-
+  @Output() readonly cardRoutes = new EventEmitter<LongCard>;
 }

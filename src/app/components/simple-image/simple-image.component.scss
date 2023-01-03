@@ -1,5 +1,7 @@
 :host {
   display: block;
+  padding-bottom: 2rem;
+
   img {
     max-width: 100%;
     max-height: 100%;
@@ -23,10 +25,6 @@
     line-height: 1.4202rem;
     letter-spacing: 0.005rem;
     padding: 1rem 2rem;
-  }
-
-  .image-card-container {
-    padding-bottom: 2rem;
   }
 
   .image-container {
@@ -81,5 +79,11 @@
     line-height: 1.4202rem;
     letter-spacing: 0.005rem;
     margin: unset;
+  }
+
+  @media (max-width: 26.75rem) {
+    .simple-image-card {
+      width: 23.75rem;
+    }
   }
 }

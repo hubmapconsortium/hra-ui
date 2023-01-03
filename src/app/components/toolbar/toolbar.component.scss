@@ -36,4 +36,8 @@
     padding-left: 1rem;
     text-decoration: none;
   }
+
+  @media (max-width: 26.75rem) {
+    padding-left: 1.5rem;
+  }
 }

@@ -49,4 +49,22 @@
     display: flex;
     overflow: hidden;
   }
+
+  @media(max-width: 26.75rem) {
+    .card-image {
+      display: none;
+    }
+
+    .header-card {
+      width: 25.75rem;
+    }
+
+    .card-subheading {
+      line-height: 1.5rem;
+    }
+
+    .body {
+      padding: 1rem 1rem;
+    }
+  }
 }

@@ -7,8 +7,5 @@ import { PageDataItems } from './page-data';
   styleUrls: ['./page-data.component.scss']
 })
 export class PageDataComponent {
-
-  @Input()
-  public data: PageDataItems[] = []
-
+  @Input() data: PageDataItems[] = [];
 }

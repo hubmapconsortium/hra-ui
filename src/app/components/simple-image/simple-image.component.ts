@@ -15,5 +15,4 @@ export class SimpleImageComponent {
   openImageViewer(content: TemplateRef<unknown>): void {
     this.dialog.open(content, { panelClass: 'custom-modal' })
   }
-
 }

@@ -32,7 +32,7 @@
 
   .mat-drawer-side {
     border-right: unset;
-    padding-right: 3.5rem;
+    padding-right: 2.5rem;
   }
 
   ul {
@@ -59,11 +59,54 @@
     padding-bottom: 1rem;
   }
 
-  .date{
+  .date {
     padding-bottom: 1rem;
   }
 
   .section {
     padding: 1rem 0rem;
+  }
+
+  mat-drawer {
+    width: 306px;
+  }
+
+  .mat-list-item {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005rem;
+    color: #0a6ebd;
+    height: 45px;
+  }
+
+  ::ng-deep .mat-list-base .mat-list-item .mat-list-item-content-reverse, .mat-list-base .mat-list-option .mat-list-item-content-reverse {
+    padding: unset;
+    padding-left: 1rem;
+  }
+
+  .mat-list-base {
+    border: #E0E0E0 2px solid;
+    padding-top: unset;
+    position: fixed;
+  }
+
+  ::ng-deep .section::before {
+    display: block;
+    content: " ";
+    margin-top: -3.75rem;
+    height: 3.75rem;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  @media (max-width: 26.75rem) {
+    padding-left: 1.5rem;
+
+    mat-divider {
+      width: 23.75rem;
+    }
   }
 }

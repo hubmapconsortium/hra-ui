@@ -12,13 +12,11 @@ SwiperCore.use([Autoplay, Pagination, Navigation, EffectFade]);
   encapsulation: ViewEncapsulation.None
 })
 export class CarouselComponent {
+  @Input() carouselInfo: SliderItems[] = []
 
-  @Input()
-  carouselInfo: SliderItems[] = []
+  @Output() readonly buttonRoute = new EventEmitter<SliderItems>;
 
-  @Output() buttonRoute = new EventEmitter<SliderItems>;
-
-  config: SwiperOptions = {
+  readonly config: SwiperOptions = {
     autoplay: {
       delay: 10000,
       disableOnInteraction: false

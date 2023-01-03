@@ -7,13 +7,9 @@ import { ChooseVersion } from './choose-version';
   styleUrls: ['./choose-version.component.scss'],
 })
 export class ChooseVersionComponent {
-  @Input()
-  releaseDate: ChooseVersion[] = [];
+  @Input() releaseDate: ChooseVersion[] = [];
 
-  @Input()
-  selectedDate: ChooseVersion;
+  @Input() selectedDate: ChooseVersion;
 
-  @Output()
-  selectedVersion = new EventEmitter<ChooseVersion>;
-
+  @Output() selectedVersion = new EventEmitter<ChooseVersion>;
 }

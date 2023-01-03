@@ -22,6 +22,10 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         disabled: true
       },
       {
+        menuName: 'Vasculature Common Coordinate Framework',
+        route: 'vccf'
+      },
+      {
         menuName: '2D Functional Tissue Unit (FTU) Illustrations',
         route: '2d-ftu-illustrations',
         disabled: true

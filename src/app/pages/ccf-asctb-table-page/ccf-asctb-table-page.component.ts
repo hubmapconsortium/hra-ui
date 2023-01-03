@@ -15,7 +15,7 @@ import { displayedColumnsData, headerInfo } from './ccf-asctb-table-page.content
   templateUrl: './ccf-asctb-table-page.component.html',
   styleUrls: ['./ccf-asctb-table-page.component.scss']
 })
-export class CcfTablePageComponent implements OnInit {
+export class CcfTablePageComponent {
   headerCardDetails: PageHeaderItems[];
   overviewData: PageDataItems[];
   existingTablesData: PageDataItems[];
@@ -40,16 +40,13 @@ export class CcfTablePageComponent implements OnInit {
     this.versionData = data.versionData;
     this.tablesUnderDevelopmentData = data.tablesUnderDevelopmentData;
     this.acknowledgmentsData = data.acknowledgmentsData;
+    this.release = this.versionData[0];
+    this.setData(this.versionData[0]);
   }
 
   setData(version: ChooseVersion): void {
     const data = this.dataService.getData(version.file, displayedColumnsData);
     this.tableData = data.pipe(map(result => result.data));
     this.columns = data.pipe(map(result => result.columns));
-  }
-
-  ngOnInit(): void {
-    this.setData(this.versionData[0]);
-    this.release = this.versionData[0];
   }
 }
