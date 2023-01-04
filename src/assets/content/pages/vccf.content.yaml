@@ -15,7 +15,12 @@ vccfDataFiles:
 
 termsOfUse:
 - heading: Terms Of Use
-  description: HuBMAP data are supplied with no warranties, expressed or implied, including without limitation, any warranty of merchantability or fitness for a particular purpose or non-infringement. No warranty with respect to the HuBMAP infrastructure is provided, including without limitation, any uptime warranty. The Parties make no representations that the use of the data will not infringe any patent or proprietary rights of third parties.
+  descriptions: |
+    HuBMAP data are supplied with no warranties, expressed or implied, including without limitation, 
+    any warranty of merchantability or fitness for a particular purpose or non-infringement. No warranty 
+    with respect to the HuBMAP infrastructure is provided, including without limitation, any uptime warranty.
+    The Parties make no representations that the use of the data will not infringe any patent or proprietary
+    rights of third parties.
 
 license:
 - heading: License
@@ -23,11 +28,20 @@ license:
 
 citation:
 - heading: Citation
-  descriptions: 'If you use the HRA-VCCF, please cite this effort as follows: Boppana A, Lee S, Malhotra R, Halushka M, Quardokus EM, Herr BW II, Börner K, Weber GM. Anatomical structures, cell types, and biomarkers of the healthy human blood vasculature. bioRxiv. March 1, 2022. Doi: 10.1101/2022.02.28.482302.'
+  descriptions: |
+    If you use the HRA-VCCF, please cite this effort as follows:
+    
+    Boppana A, Lee S, Malhotra R, Halushka M, Quardokus EM, Herr BW II, Börner K, Weber GM. Anatomical structures, cell types, and biomarkers of the healthy human blood vasculature. bioRxiv. March 1, 2022. Doi: 10.1101/2022.02.28.482302.'
 
 acknowledgments:
 - heading: Acknowledgments
-  descriptions: This research has been funded by the National Institutes of Health Human BioMolecular Atlas Program (HuBMAP) award OT2OD026671. We thank Zorina Galis for presenting us with the initial idea of using a Vasculature Common Coordinate Framework (VCCF) as a coordinate system for the human body and helpful suggestions and comments on constructing the HRA-VCCF database; Fauzan Isnaini for his contributions to modeling the vasculature in functional tissue units; and, Kristen Browne for creating the 3D reference objects.
+  descriptions: |
+    This research has been funded by the National Institutes of Health Human BioMolecular Atlas Program
+    (HuBMAP) award OT2OD026671. We thank Zorina Galis for presenting us with the initial idea of using a
+    Vasculature Common Coordinate Framework (VCCF) as a coordinate system for the human body and helpful
+    suggestions and comments on constructing the HRA-VCCF database; Fauzan Isnaini for his contributions
+    to modeling the vasculature in functional tissue units; and, Kristen Browne for creating the 3D
+    reference objects.
 
 references:
 - heading: References
@@ -35,4 +49,3 @@ references:
     Weber GM, Ju Y, Börner K. Considerations for Using the Vasculature as a Coordinate System to Map All the Cells in the Human Body. Front Cardiovasc Med. 2020 Mar 13;7:29. doi: 10.3389/fcvm.2020.00029. PMID: 32232057; PMCID: PMC7082726.
 
     Boppana A, Lee S, Malhotra R, Halushka M, Quardokus EM, Herr BW II, Börner K, Weber GM. Anatomical structures, cell types, and biomarkers of the healthy human blood vasculature. bioRxiv. March 1, 2022. Doi: 10.1101/2022.02.28.482302.
-
