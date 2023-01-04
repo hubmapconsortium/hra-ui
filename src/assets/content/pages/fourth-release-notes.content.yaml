@@ -108,14 +108,14 @@ ruiButton:
   text: Use the Registration User Interface
   url: https://humanatlas.io/registration-user-interface
 
-vrOrganGallary:
+vrOrganGallery:
 - heading: 
   descriptions: |
-    **VR Organ Gallary**
+    **VR Organ Gallery**
 
     Want to explore 3D organs in virtual reality? Check out the VR Organ Gallery.
 
-vrOrganGallaryButton:
+vrOrganGalleryButton:
   text: VR Organ Gallery
   url: https://humanatlas.io/vr-organ-gallery
 

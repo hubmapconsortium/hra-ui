@@ -162,7 +162,7 @@ export const ruiButton: UseButton =
     url: 'https://humanatlas.io/registration-user-interface'
 }
 
-export const vrOrganGallary: PageDataItems[] = [
+export const vrOrganGallery: PageDataItems[] = [
     {
         heading: '',
         descriptions: `<b>VR Organ Gallery</b>
@@ -172,7 +172,7 @@ export const vrOrganGallary: PageDataItems[] = [
     }
 ]
 
-export const vrOrganGallaryButton: UseButton =
+export const vrOrganGalleryButton: UseButton =
 {
     text: 'VR Organ Gallery',
     url: 'https://humanatlas.io/vr-organ-gallery'

@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ViewportScroller } from '@angular/common';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ContactCard } from 'src/app/components/contact-card/contact-card';
 import { PageDataItems } from 'src/app/components/page-data/page-data';
 import { PageHeaderItems } from 'src/app/components/page-header/page-header-items';
@@ -15,7 +17,9 @@ export interface NavItems {
   templateUrl: './fourth-release-notes.component.html',
   styleUrls: ['./fourth-release-notes.component.scss']
 })
-export class FourthReleaseNotesComponent {
+export class FourthReleaseNotesComponent implements AfterViewInit, OnDestroy {
+  private subscriptions = new Subscription();
+
   headerData: PageHeaderItems[];
   fourthReleaseIntro: PageDataItems[];
   fourthReleaseStats: PageDataItems[];
@@ -33,8 +37,8 @@ export class FourthReleaseNotesComponent {
   explorationUserInterfaceButton: UseButton;
   registrationUserInterface: PageDataItems[];
   registrationUserInterfaceButton: UseButton;
-  vrOrganGallary: PageDataItems[];
-  vrOrganGallaryButton: UseButton;
+  vrOrganGallery: PageDataItems[];
+  vrOrganGalleryButton: UseButton;
   previewScrollytellingButton: UseButton;
   previewComparingTabula: UseButton;
   previewFtuSegmentation: UseButton;
@@ -50,12 +54,13 @@ export class FourthReleaseNotesComponent {
     { label: '3D Reference Objects', id: '3d-reference-objects' }, 
     { label: 'Exploration User Interface', id: "exploration-user-interface" },
     { label: 'Registration User Interface', id: 'registration-user-interface' },
-    { label: 'VR Organ Gallery', id: "vr-organ-gallary" },
+    { label: 'VR Organ Gallery', id: "vr-organ-gallery" },
     { label: 'Previews', id: 'previews' }, 
     { label: 'Contact Us', id: "contact-us" },
-    { label: 'Outro', id: "outro" }];
+    { label: 'Outro', id: "outro" }
+  ];
 
-  constructor(route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router, private scroller: ViewportScroller) {
     const data = route.snapshot.data['content'];
     this.headerData = data.headerData;
     this.fourthReleaseIntro = data.fourthReleaseIntro;
@@ -74,12 +79,37 @@ export class FourthReleaseNotesComponent {
     this.explorationUserInterfaceButton = data.euiButton;
     this.registrationUserInterface = data.rui;
     this.registrationUserInterfaceButton = data.ruiButton;
-    this.vrOrganGallary = data.vrOrganGallary;
-    this.vrOrganGallaryButton = data.vrOrganGallaryButton;
+    this.vrOrganGallery = data.vrOrganGallery;
+    this.vrOrganGalleryButton = data.vrOrganGalleryButton;
     this.previewScrollytellingButton = data.previewScrollytellingButton;
     this.previewComparingTabula = data.previewComparingTabula;
     this.previewFtuSegmentation = data.previewFtuSegmentation;
     this.previewCcfTissueBlock = data.previewCcfTissueBlock;
-    this.contactCardData = data.contactCardData
+    this.contactCardData = data.contactCardData;
+
+    this.subscriptions.add(this.route.fragment.subscribe((anchor) => {
+      if (anchor) {
+        this.scroller.scrollToAnchor(anchor);
+      }
+    }));
+  }
+  
+  ngAfterViewInit(): void {
+    const anchor = this.route.snapshot.fragment;
+    if (anchor) {
+      this.scroller.scrollToAnchor(anchor);
+      setTimeout(() => {
+        this.scroller.scrollToAnchor(anchor);
+      }, 1000);
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
+
+  scrollTo(id: string): void {
+    this.router.navigate([], { fragment: id });
+    this.scroller.scrollToAnchor(id);
   }
 }
