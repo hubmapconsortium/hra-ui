@@ -104,6 +104,12 @@
   a:-webkit-any-link {
     text-decoration: unset !important;
   }
+
+  @media (max-width: 428px) {
+    .mat-card {
+      width: 380px;
+    }
+  }
 }
 
 ::ng-deep .two-dim-image-modal {

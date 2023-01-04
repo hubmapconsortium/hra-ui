@@ -41,8 +41,8 @@ export class FourthReleaseNotesComponent {
   previewCcfTissueBlock: UseButton;
   contactCardData: ContactCard[];
   navigationItems: NavItems[] = [
-    { label: "Intro", id: "intro"}, 
-    { label: 'Stats', id: "stats" },
+    { label: "Introduction", id: "intro"}, 
+    { label: `What's New`, id: "whats-new" },
     { label: 'HRA 24 Hour Event', id: "24-hr-event" },
     { label: 'ASCT+B Tables', id: "asctb-tables" },
     { label: 'ASCT+B Reporter', id: "asctb-reporter" },

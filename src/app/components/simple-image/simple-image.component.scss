@@ -48,6 +48,10 @@
   ::ng-deep .mat-card-header-text {
     margin: unset !important;
   }
+
+  @media (max-width: 26.75rem) {
+    width: 23.75rem;
+  }
 }
 
 ::ng-deep .custom-modal {
@@ -79,11 +83,5 @@
     line-height: 1.4202rem;
     letter-spacing: 0.005rem;
     margin: unset;
-  }
-
-  @media (max-width: 26.75rem) {
-    .simple-image-card {
-      width: 23.75rem;
-    }
   }
 }
