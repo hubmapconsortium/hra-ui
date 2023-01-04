@@ -64,7 +64,7 @@
   }
 
   .section {
-    padding: 1rem 0rem;
+    margin: 1rem 0rem;
   }
 
   mat-drawer {
@@ -79,7 +79,7 @@
     line-height: 1.5rem;
     letter-spacing: 0.005rem;
     color: #0a6ebd;
-    height: 45px;
+    height: 37px;
   }
 
   ::ng-deep .mat-list-base .mat-list-item .mat-list-item-content-reverse, .mat-list-base .mat-list-option .mat-list-item-content-reverse {
@@ -93,13 +93,25 @@
     position: fixed;
   }
 
-  ::ng-deep .section::before {
+  div::before {
     display: block;
-    content: " ";
+    content: "";
     margin-top: -3.75rem;
     height: 3.75rem;
     visibility: hidden;
     pointer-events: none;
+  }
+
+  .text {
+    padding-bottom: 1rem;
+  }
+
+  .preview-button {
+    padding-bottom: 2rem;
+  }
+
+  .mat-drawer-content {
+    overflow: hidden;
   }
 
   @media (max-width: 26.75rem) {
@@ -107,6 +119,10 @@
 
     mat-divider {
       width: 23.75rem;
+    }
+
+    .mat-drawer {
+      display: none;
     }
   }
 }

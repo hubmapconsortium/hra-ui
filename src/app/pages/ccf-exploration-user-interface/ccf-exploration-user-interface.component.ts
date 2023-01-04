@@ -4,13 +4,7 @@ import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
 import { UseButton } from '../../components/use-button/use-button';
 
-
-@Component({
-  selector: 'exploration-user-interface',
-  templateUrl: './ccf-exploration-user-interface.component.html',
-  styleUrls: ['./ccf-exploration-user-interface.component.scss']
-})
-export class CcfExplorationUserInterfaceComponent{
+interface ExplorationUserInterface {
   headerCardDetails: PageHeaderItems[];
   overviewData: PageDataItems[];
   acknowledgeData: PageDataItems[]
@@ -22,19 +16,26 @@ export class CcfExplorationUserInterfaceComponent{
   title: string;
   videoId: string;
   playerTitle: string;
+}
 
-  constructor (route: ActivatedRoute){
-    const data = route.snapshot.data['content'];
-    this.headerCardDetails = data.headerCardDetails;
-    this.overviewData = data.overviewData;
-    this.acknowledgeData = data.acknowledgeData;
-    this.tutorialData = data.tutorialData;
-    this.interfacedata = data.interfacedata;
-    this.useEuiButton = data.useEuiButton;
-    this.height = data.height;
-    this.width = data.width;
-    this.title = data.title;
-    this.videoId = data.videoId;
-    this.playerTitle = data.playerTitle;
-  }
+@Component({
+  selector: 'exploration-user-interface',
+  templateUrl: './ccf-exploration-user-interface.component.html',
+  styleUrls: ['./ccf-exploration-user-interface.component.scss']
+})
+export class CcfExplorationUserInterfaceComponent {
+  data = this.route.snapshot.data['content'] as ExplorationUserInterface;
+  headerCardDetails = this.data.headerCardDetails;
+  overviewData = this.data.overviewData;
+  acknowledgeData = this.data.acknowledgeData;
+  tutorialData = this.data.tutorialData;
+  interfacedata = this.data.interfacedata;
+  useEuiButton = this.data.useEuiButton;
+  height = this.data.height;
+  width = this.data.width;
+  title = this.data.title;
+  videoId = this.data.videoId;
+  playerTitle = this.data.playerTitle;
+  
+  constructor(private readonly route: ActivatedRoute) { }
 }

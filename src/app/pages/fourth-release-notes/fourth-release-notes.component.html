@@ -1,5 +1,5 @@
 <ccf-page-header [headerCard]="headerData"></ccf-page-header>
-<mat-drawer-container class="example-container">
+<mat-drawer-container class="example-container" [autosize]="true">
     <mat-drawer mode="side" opened>
         <mat-selection-list #shoes [multiple]="false">
             <mat-list-option *ngFor="let items of navigationItems" [value]="items">
@@ -14,12 +14,12 @@
             <ccf-page-data [data]="fourthReleaseIntro" id="intro"></ccf-page-data>
             <img src="assets/images/intro_gif.gif" class="intro-gif">
             <mat-divider></mat-divider>
-            <ccf-page-data [data]="fourthReleaseStats" class="section" id="stats"></ccf-page-data>
+            <ccf-page-data [data]="fourthReleaseStats" id="whats-new"></ccf-page-data>
             <mat-divider></mat-divider>
             <ccf-page-data [data]="hraHourEvent" id="24-hr-event"></ccf-page-data>
             <ccf-use-button [buttonData]="hourEventUseButton" class="button-container"></ccf-use-button>
             <mat-divider></mat-divider>
-            <div class="section" id="asctb-tables">
+            <div id="asctb-tables">
                 <ccf-page-data [data]="asctbTables"></ccf-page-data>
                 <ccf-use-button [buttonData]="asctbTablesButton" class="button-container"></ccf-use-button>
                 <img src="assets/images/4th_release_asctb_table.svg" style="padding-bottom: 2rem;">
@@ -34,7 +34,7 @@
                 </p>
             </div>
             <mat-divider></mat-divider>
-            <div class="section" id="asctb-reporter">
+            <div id="asctb-reporter">
                 <ccf-page-data [data]="asctbReporter"></ccf-page-data>
                 <ccf-use-button [buttonData]="asctbReporterButton" class="button-container"></ccf-use-button>
                 <img src="assets/images/4th_release_asctb_reporter.svg" style="padding-bottom: 2rem;">
@@ -53,7 +53,7 @@
             <ccf-page-data [data]="ontologyValidations" id="asctb-ontology-validations"></ccf-page-data>
             <ccf-use-button [buttonData]="ontologyValidationsButton" class="button-container"></ccf-use-button>
             <mat-divider></mat-divider>
-            <div class="section" id="3d-reference-objects">
+            <div id="3d-reference-objects">
                 <ccf-page-data [data]="threeDimRefObjects"></ccf-page-data>
                 <ccf-use-button [buttonData]="threeDimRefObjectsButton"></ccf-use-button>
                 <img src="assets/images/4th_release_3d.gif" class="three-dim-gif">
@@ -63,7 +63,7 @@
                 </p>
             </div>
             <mat-divider></mat-divider>
-            <div class="section" id="exploration-user-interface">
+            <div id="exploration-user-interface">
                 <ccf-page-data [data]="explorationUserInterface"></ccf-page-data>
                 <ccf-use-button [buttonData]="explorationUserInterfaceButton" class="button-container"></ccf-use-button>
                 <img src="assets/images/4th_release_eui.svg" style="padding-bottom: 2rem;">
@@ -73,7 +73,7 @@
                 </p>
             </div>
             <mat-divider></mat-divider>
-            <div class="section" id="registration-user-interface">
+            <div id="registration-user-interface">
                 <ccf-page-data [data]="registrationUserInterface"></ccf-page-data>
                 <ccf-use-button [buttonData]="registrationUserInterfaceButton" class="button-container">
                 </ccf-use-button>
@@ -85,7 +85,7 @@
                 </p>
             </div>
             <mat-divider></mat-divider>
-            <div class="section" id="vr-organ-gallary">
+            <div id="vr-organ-gallary">
                 <ccf-page-data [data]="vrOrganGallary"></ccf-page-data>
                 <ccf-use-button [buttonData]="vrOrganGallaryButton" class="button-container"></ccf-use-button>
                 <img src="assets/images/ccf-og-1.png" style="padding-bottom: 2rem;">
@@ -100,37 +100,37 @@
                 </p>
             </div>
             <mat-divider></mat-divider>
-            <p class="page-data section" id="previews">
+            <div class="page-data section" id="previews">
                 <strong>Previews</strong>
-            </p>
-            <p class="page-data">
+            </div>
+            <div class="page-data">
                 Starting from an accessible overview of the Atlas project, readers will be able to link to the HRA
                 topics,
                 concepts, and practices they wish to explore in more detail.
-            </p>
-            <ccf-use-button [buttonData]="previewScrollytellingButton" class="button-container"></ccf-use-button>
+            </div>
+            <ccf-use-button [buttonData]="previewScrollytellingButton" class="preview-button"></ccf-use-button>
             <p class="page-data">
                 Comparing Tabula Sapiens to the Human Reference Atlas
             </p>
-            <ccf-use-button [buttonData]="previewComparingTabula" class="button-container"></ccf-use-button>
+            <ccf-use-button [buttonData]="previewComparingTabula" class="preview-button"></ccf-use-button>
             <p class="page-data">
                 Kaggle competition results are used to develop and optimize machine learning algorithms that can segment
                 functional tissue units (FTUs)
             </p>
-            <ccf-use-button [buttonData]="previewFtuSegmentation" class="button-container"></ccf-use-button>
+            <ccf-use-button [buttonData]="previewFtuSegmentation" class="preview-button"></ccf-use-button>
             <p class="page-data">
                 Tissue Block annotation provides even better collision detection when registering with the RUI.
             </p>
-            <ccf-use-button [buttonData]="previewCcfTissueBlock" class="button-container"></ccf-use-button>
+            <ccf-use-button [buttonData]="previewCcfTissueBlock" class="preview-button"></ccf-use-button>
             <mat-divider></mat-divider>
-            <p class="page-data section" id="contact-us">
+            <div class="page-data section" id="contact-us">
                 <strong>Contact Us</strong>
                 <br><br>
                 Interested in contributing or using the HRA? &nbsp;
                 <a href="mailto:infoccf@indiana.edu" mat-button class="contact-button">
                     <mat-icon>mail_outline</mat-icon>Contact MC-IU
                 </a>
-            </p>
+            </div>
             <contact-card [contactCard]="contactCardData" class="contact-card-container"></contact-card>
             <mat-divider></mat-divider>
             <p class="page-data section" id="outro">
@@ -141,7 +141,7 @@
                 make it possible to visually explore the atlas or programmatically access the data.
                 The 5th release is in May. Thanks for reading!
             </p>
-            <img src="assets/images/4th_release_outro.svg" style="padding-bottom: 2rem;">
+            <img src="assets/images/4th_release_outro.svg" style="padding-bottom: 4rem;">
         </div>
     </mat-drawer-content>
 </mat-drawer-container>

@@ -21,6 +21,5 @@ export class HraSopComponent {
     this.pageHeader = [data.pageHeader];
     this.overviewData = [data.overviewData];
     this.acknowledgmentsData = [data.acknowledgmentsData];
-    this.tableTitle = data.tableTitle;
   }
 }

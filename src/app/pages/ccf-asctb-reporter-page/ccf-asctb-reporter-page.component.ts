@@ -4,13 +4,7 @@ import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
 import { UseButton } from '../../components/use-button/use-button';
 
-
-@Component({
-  selector: 'asctb-reporter',
-  templateUrl: './ccf-asctb-reporter-page.component.html',
-  styleUrls: ['./ccf-asctb-reporter-page.component.scss']
-})
-export class CcfReporterPageComponent {
+interface AsctbReporter {
   headerCardDetails: PageHeaderItems[];
   overviewData: PageDataItems[];
   acknowledgeData: PageDataItems[];
@@ -20,17 +14,24 @@ export class CcfReporterPageComponent {
   title: string;
   videoId: string;
   playerTitle: string;
+}
 
-  constructor (route: ActivatedRoute){
-    const data = route.snapshot.data['content'];
-    this.headerCardDetails = data.headerCardDetails;
-    this.overviewData = data.overviewData;
-    this.acknowledgeData = data.acknowledgeData;
-    this.useButtonData = data.useButtonData;
-    this.height = data.height;
-    this.width = data.width;
-    this.title = data.title;
-    this.videoId = data.videoId;
-    this.playerTitle = data.playerTitle;
-  }
+@Component({
+  selector: 'asctb-reporter',
+  templateUrl: './ccf-asctb-reporter-page.component.html',
+  styleUrls: ['./ccf-asctb-reporter-page.component.scss']
+})
+export class CcfReporterPageComponent {
+  data = this.route.snapshot.data['content'] as AsctbReporter;
+  headerCardDetails = this.data.headerCardDetails;
+  overviewData = this.data.overviewData;
+  acknowledgeData = this.data.acknowledgeData;
+  useButtonData = this.data.useButtonData;
+  height = this.data.height;
+  width = this.data.width;
+  title = this.data.title;
+  videoId = this.data.videoId;
+  playerTitle = this.data.playerTitle;
+
+  constructor(private readonly route: ActivatedRoute) { }
 }

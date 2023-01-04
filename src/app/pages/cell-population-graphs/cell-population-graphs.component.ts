@@ -4,6 +4,12 @@ import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
 import { UseButton } from '../../components/use-button/use-button';
 
+export interface CellPopulationGraphs {
+  headerCardData: PageHeaderItems[];
+  overviewData: PageDataItems[];
+  acknowledgmentsData: PageDataItems[];
+  buttonData: UseButton;
+}
 
 @Component({
   selector: 'cell-population-graphs',
@@ -11,16 +17,11 @@ import { UseButton } from '../../components/use-button/use-button';
   styleUrls: ['./cell-population-graphs.component.scss']
 })
 export class CellPopulationGraphsComponent {
-  headerCardData: PageHeaderItems[];
-  overviewData: PageDataItems[];
-  acknowledgmentsData: PageDataItems[];
-  buttonData: UseButton;
+  data = this.route.snapshot.data['content'] as CellPopulationGraphs;
+  headerCardData = this.data.headerCardData;
+  overviewData = this.data.overviewData;
+  acknowledgmentsData = this.data.acknowledgmentsData;
+  buttonData = this.data.buttonData;
 
-  constructor (route: ActivatedRoute){
-    const data = route.snapshot.data['content'];
-    this.headerCardData = data.headerCardData;
-    this.overviewData = data.overviewData;
-    this.acknowledgmentsData = data.acknowledgmentsData;
-    this.buttonData = data.buttonData;
-  }
+  constructor(private readonly route: ActivatedRoute) { }
 }
