@@ -15,9 +15,9 @@ export class AnnouncementCardComponent {
       routeText: '4th Release Notes.',
       emoji: '🎉'
     },
-    {
-      message: "Warning: DOI registration in progress. HRA v1.3 DOI URLs will not work until further notice.",
-      emoji: '⚠️'
-    }
+    // {
+    //   message: "Warning: DOI registration in progress. HRA v1.3 DOI URLs will not work until further notice.",
+    //   emoji: '⚠️'
+    // }
   ]
 }
