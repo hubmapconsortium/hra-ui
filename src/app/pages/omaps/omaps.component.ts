@@ -20,7 +20,6 @@ export class OmapsComponent {
   omapsHeading: PageHeaderItems[];
   overviewData: PageDataItems[];
   sopData: SopLinks[];
-  acknowledgementsData: PageDataItems[];
   omapsVersionData: ChooseVersion[];
   referencesData: PageDataItems[];
   displayedColumnsData = displayedColumnsData;
@@ -34,7 +33,6 @@ export class OmapsComponent {
     this.omapsHeading = data.omapsHeading;
     this.overviewData = data.overviewData;
     this.sopData = data.sopData;
-    this.acknowledgementsData = data.acknowledgementsData;
     this.omapsVersionData = data.omapsVersionData;
     this.referencesData = data.referencesData;
     this.placeholderDate = this.omapsVersionData[0];
