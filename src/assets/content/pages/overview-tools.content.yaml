@@ -17,7 +17,7 @@ longButtonItems:
   body: An interactive tool for exploring and validating spatially registered tissue blocks and cell type populations
   route: exploration-user-interface
 - icon: assets/images/vr_gallery.svg
-  title: CCF Organ VR Gallery
+  title: HRA Organ VR Gallery
   body: An immersive application that allows users to explore 3D reference organs, anatomical structures, and cell types in virtual reality
   route: vr-organ-gallery
 - icon: assets/images/hra_milletome.svg

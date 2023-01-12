@@ -2,15 +2,30 @@
 <announcement-card class="description"></announcement-card>
 <ccf-page-data [data]="overviewData" class="description"></ccf-page-data>
 <ccf-page-data [data]="goalsForOmaps" class="description"></ccf-page-data>
-<ccf-sop-links [links]="sopData" class="description"></ccf-sop-links>
-<div style="padding-bottom: 2.5rem;">
+<ccf-sop-links [links]="sopData" class="list-container"></ccf-sop-links>
+<div class="list-container">
+    <div class="content-title faq">
+        OMAP Construction Templates
+    </div>
+    <div>
+        <ul>
+            <li>
+                <a href="https://hubmapconsortium.github.io/ccf/pages/omap-extras/omap-table-template.xlsx" target="_blank" class="list-links">OMAP Table Template harmonized with Antibody Validation Reports</a>
+            </li>
+            <li>
+                <a href="https://hubmapconsortium.github.io/ccf/pages/omap-extras/omap-description-document-template.docx" target="_blank" class="list-links">OMAP Description Document Template</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="list-container">
     <div class="content-title faq">
         Frequently Asked Questions (FAQs)
     </div>
-    <div class="list-links">
+    <div>
         <ul>
             <li>
-                <a [routerLink]="['/faq/omap']">Frequently Asked Questions (FAQs) for OMAPs</a>
+                <a [routerLink]="['/faq/omap']" class="list-links">Frequently Asked Questions (FAQs) for OMAPs</a>
             </li>
         </ul>
     </div>

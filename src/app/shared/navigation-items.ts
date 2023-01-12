@@ -87,7 +87,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         disabled: true
       },
       {
-        menuName: 'CCF Organ VR Gallery',
+        menuName: 'HRA Organ VR Gallery',
         route: 'vr-organ-gallery'
       },
       {
@@ -103,7 +103,12 @@ export const NAVIGATION_ITEMS: NavItems[] = [
       {
         menuName: 'Usage Metrics',
         route: 'usage-metrics',
-        disabled: true
+        disabled: true,
+        divider: true
+      },
+      {
+        menuName: 'ASCT+B Ontology Validations',
+        url: 'https://hubmapconsortium.github.io/ccf-validation-tools/'
       }
     ]
   },
@@ -140,10 +145,10 @@ export const NAVIGATION_ITEMS: NavItems[] = [
       //   menuName: 'Scrollytelling Series',
       //   route: 'scrollytelling-series'
       // },
-      // {
-      //   menuName: '24 Hour Human Reference Atlas Event',
-      //   route: '24-hr-hra-event'
-      // }
+      {
+        menuName: '24 Hour Human Reference Atlas Event',
+        url: 'https://youtube.com/playlist?list=PL-CUnYVIy7DOVqQbrzhnLEtY8uoVHKXOI'
+      }
 
     ]
   },

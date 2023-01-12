@@ -1,11 +1,11 @@
 organVrHeader:
-- title: CCF Organ VR Gallery
+- title: HRA Organ VR Gallery
   subtitle: An immersive application that allows users to explore 3D reference organs, anatomical structures, and cell types in virtual reality
   image: assets/images/vr_gallery.svg
 
 overviewData:
 - heading: Overview
-  descriptions: The CCF Organ VR Gallery is an immersive application that allows users to view, explore, and analyze 3D reference organs, anatomical structures, and cell types, in an integrated virtual reality (VR) environment[1], see Figure 1.
+  descriptions: The HRA Organ VR Gallery is an immersive application that allows users to view, explore, and analyze 3D reference organs, anatomical structures, and cell types, in an integrated virtual reality (VR) environment[1], see Figure 1.
 
 backgroundData:
 - heading: Background
@@ -18,19 +18,19 @@ whyVrData:
   descriptions: |
     If viewed in desktop applications, the spatiality and dimensionality of the 3D reference organs is lost while viewing the biological structure and specimen data is easily possible via information visualization. However, virtual reality (VR) 
     provides a unique method of visualizing and interacting with these diverse types of data in a unified environment. In addition, if viewed in VR, the spatiality of the organs is preserved and empowered through immersion, 
-    see Figure 2. The CCF Organ VR Gallery also builds on and implements Bowman et al.'s concept of Information-Rich Virtual Environments (IRVEs)[2].
+    see Figure 2. The HRA Organ VR Gallery also builds on and implements Bowman et al.'s concept of Information-Rich Virtual Environments (IRVEs)[2].
 
 dataVisualizations:
 - heading: Data Visualizations (planned)
   descriptions: |
-    The CCF Organ VR Gallery will feature interactive stacked bar graphs, which users will be able to use to view tissue blocks in their spatial and anatomical context, select cell types across anatomical structures, and get cell type distributions, 
+    The HRA Organ VR Gallery will feature interactive stacked bar graphs, which users will be able to use to view tissue blocks in their spatial and anatomical context, select cell types across anatomical structures, and get cell type distributions, 
     see Figure 3. Techniques such as brush-and-linking, highlighting, and hovering will be implemented for VR controllers to allow users to interact with the data. 
-    The CCF Organ VR Gallery presents a tested implementation of classic 2D visualizations within a 3D virtual environment, ultimately enriching the analysis experience with presence and immersion while preserving the spatiality of biological data.
+    The HRA Organ VR Gallery presents a tested implementation of classic 2D visualizations within a 3D virtual environment, ultimately enriching the analysis experience with presence and immersion while preserving the spatiality of biological data.
 
 testingAndFeedback:
 - heading:  User Testing and Feedback'
   descriptions: |
-    The CCF Organ VR Gallery application is not yet available for public download. However, if you would like to experience the gallery for yourself, please email abueckle@iu.edu.
+    The HRA Organ VR Gallery application is not yet available for public download. However, if you would like to experience the gallery for yourself, please email abueckle@iu.edu.
     For more information and guidance on getting started with the application, click <a href="https://www.figma.com/proto/TopdFvriKNcV9Af2Hgo8aK/Documentation-Organ?node-id=12%3A6&scaling=scale-down&page-id=0%3A" target="">here</a> to view the documentation. 
     After using the app, please take a couple of minutes to complete this brief <a href="https://forms.gle/136vKQNmMMhvFWHa7" target="">feedback form</a>. 
     We will take your feedback into consideration when improving and iterating on the app.
@@ -64,4 +64,4 @@ height: 584
 width: 1232
 title: Overview
 videoId: S9pBOlSfsnc
-playerTitle: Please view the video below for a demo of the CCF Organ VR Gallery
+playerTitle: Please view the video below for a demo of the HRA Organ VR Gallery
