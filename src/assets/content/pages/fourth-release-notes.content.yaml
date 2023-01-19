@@ -42,6 +42,10 @@ hourEventUseButton:
   text: HRA 24 Hour Event Videos
   url: https://www.youtube.com/playlist?list=PL-CUnYVIy7DOVqQbrzhnLEtY8uoVHKXOI
 
+hourEventPageButton:
+  text: HRA 24 Hour Event Page
+  url: https://humanatlas.io/events/2022-24h/
+
 asctbTables:
 - heading:
   descriptions: |

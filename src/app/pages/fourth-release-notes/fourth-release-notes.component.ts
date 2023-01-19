@@ -44,6 +44,7 @@ export class FourthReleaseNotesComponent implements AfterViewInit, OnDestroy {
   previewFtuSegmentation: UseButton;
   previewCcfTissueBlock: UseButton;
   contactCardData: ContactCard[];
+  hourEventPageButton: UseButton;
   navigationItems: NavItems[] = [
     { label: "Introduction", id: "intro"}, 
     { label: `What's New`, id: "whats-new" },
@@ -86,6 +87,7 @@ export class FourthReleaseNotesComponent implements AfterViewInit, OnDestroy {
     this.previewFtuSegmentation = data.previewFtuSegmentation;
     this.previewCcfTissueBlock = data.previewCcfTissueBlock;
     this.contactCardData = data.contactCardData;
+    this.hourEventPageButton = data.hourEventPageButton
 
     this.subscriptions.add(this.route.fragment.subscribe((anchor) => {
       if (anchor) {
