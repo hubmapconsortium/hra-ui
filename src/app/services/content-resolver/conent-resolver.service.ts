@@ -6,10 +6,10 @@ import { ContentService } from '../../services/content/content.service';
 @Injectable({
   providedIn: 'root',
 })
-export class ContentResolver<T = object> implements Resolve<T> {
-  constructor(private readonly contentService: ContentService) {}
+export class ContentResolver<T = object> implements Resolve<T | unknown> {
+  constructor(private readonly contentService: ContentService) { }
 
-  resolve(route: ActivatedRouteSnapshot): Observable<T> {
+  resolve(route: ActivatedRouteSnapshot): Observable<T | unknown> {
     const file = route.data['contentFile'];
     return this.contentService.getContent(file);
   }

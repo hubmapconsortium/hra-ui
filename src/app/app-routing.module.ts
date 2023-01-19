@@ -211,7 +211,13 @@ const routes: Routes = [
     },
     resolve: { content: ContentResolver },
   },
-  { path: 'faq/omap', component: OmapFaqComponent },
+  {
+    path: 'faq/omap', component: OmapFaqComponent,
+    data: {
+      contentFile: 'omap-faq.content'
+    },
+    resolve: { content: ContentResolver }
+  },
   {
     path: 'release-notes/v1.3', component: FourthReleaseNotesComponent,
     data: {
@@ -239,10 +245,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    scrollPositionRestoration: 'enabled',
-    anchorScrolling: 'enabled'
-  })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule { }

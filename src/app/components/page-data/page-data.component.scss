@@ -35,11 +35,28 @@
     }
   }
 
-  ::ng-deep h2 {
-    margin: 0 0 0px;
+  ::ng-deep {
+    h2, h4 {
+      margin: 0 0 0px;
+    }
+
+    h4 {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      letter-spacing: 0.005em;
+      color: #000000;
+      text-decoration: none;
+    }
+
+    p {
+      margin: 0 0 1rem;
+    }
   }
 
-  ::ng-deep div::before {
+  ::ng-deep h4::before {
     display: block;
     content: " ";
     margin-top: -3.75rem;
