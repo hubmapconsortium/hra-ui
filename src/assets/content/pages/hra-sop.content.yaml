@@ -4,7 +4,7 @@ pageHeader:
   subtitle: Standard operating procedures for Human Reference Atlas construction, visualization, and usage
 
 overviewData:
-  heading: Overview
+  heading: Table of Contents
   descriptions: |
     [Overview](https://docs.google.com/document/u/0/d/1oMPWB454auN-FTe7XVtxWk7SbJgWFtcS6LvOjgN89wA/edit)
 
@@ -105,7 +105,7 @@ overviewData:
 
     > ASCT+B Reporter Validation Checks
 
-    > HRA Editorial Process
+    > <a href="https://zenodo.org/record/7577521#.Y9R0knbMJmM" target="_blank">HRA Editorial Board Procedures</a>
 
     [Human Reference Atlas Tracking and Publication](https://docs.google.com/document/d/1ZlJV61GA60ZtWoCu8HE93fBPOxPootfAe-ggAzipWEM/edit#heading=h.6ys5lo962o6b)
 
