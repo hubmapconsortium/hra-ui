@@ -8,6 +8,7 @@ import { KaggleTwoComponent } from './kaggle-two.component';
 import { MatCardModule } from '@angular/material/card';
 import { PrizeCardModule } from '../../components/prize-card/prize-card.module';
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
+import { YoutubeModelModule } from 'src/app/components/youtube-model/youtube-model.module';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { AnnouncementCardModule } from '../../components/announcement-card/annou
         PageDataModule,
         MatCardModule,
         PrizeCardModule,
-        AnnouncementCardModule
+        AnnouncementCardModule,
+        YoutubeModelModule
     ],
     providers: [],
     bootstrap: []

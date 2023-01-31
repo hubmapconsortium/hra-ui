@@ -27,8 +27,13 @@ awardsCeremony:
 - heading: Awards Ceremony
   descriptions: |
     Judges announced winning teams at the annual HubMAP All-Hands Meeting and the HuBMAP Awards: Hacking the Human Body Kaggle ceremony. 
-    A recording link of the event and competitor presentations will be posted at the 
-    <a href="https://www.youtube.com/channel/UCbSvPJ9dXASL14KoDeutMFg" target="">HuBMAP Consortium YouTube channel</a>.
+
+awardsYoutube:
+  height: 584
+  width: 1232
+  title:
+  videoId: AF--edMjvss
+  playerTitle: 
 
 datasets:
 - heading: Datasets

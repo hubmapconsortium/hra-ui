@@ -130,6 +130,14 @@
     margin-bottom: 1rem;
   }
 
+  .mat-raised-button:hover{
+    background-color: #e4e9e9;
+  }
+
+  .material-symbols-outlined {
+    padding-right: 0.5rem;
+  }
+
   @media (max-width: 26.75rem) {
     padding-left: 1.5rem;
 
