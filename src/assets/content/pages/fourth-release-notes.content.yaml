@@ -46,6 +46,13 @@ hourEventPageButton:
   text: HRA 24 Hour Event Page
   url: https://humanatlas.io/events/2022-24h/
 
+hraReleaseCalendar:
+- heading:
+  descriptions: |
+    **HRA Release Calendar**
+
+    Download the new HRA Release Calendar to stay on top of deadlines!
+
 asctbTables:
 - heading:
   descriptions: |

@@ -45,10 +45,12 @@ export class FourthReleaseNotesComponent implements AfterViewInit, OnDestroy {
   previewCcfTissueBlock: UseButton;
   contactCardData: ContactCard[];
   hourEventPageButton: UseButton;
+  hraReleaseCalendar: PageDataItems[];
   navigationItems: NavItems[] = [
     { label: "Introduction", id: "intro"}, 
     { label: `What's New`, id: "whats-new" },
     { label: 'HRA 24 Hour Event', id: "24-hr-event" },
+    { label: 'HRA Release Calendar', id: "hra-release-calendar"},
     { label: 'ASCT+B Tables', id: "asctb-tables" },
     { label: 'ASCT+B Reporter', id: "asctb-reporter" },
     { label: 'ASCT+B Ontology Validations', id: "asctb-ontology-validations" },
@@ -88,6 +90,7 @@ export class FourthReleaseNotesComponent implements AfterViewInit, OnDestroy {
     this.previewCcfTissueBlock = data.previewCcfTissueBlock;
     this.contactCardData = data.contactCardData;
     this.hourEventPageButton = data.hourEventPageButton
+    this.hraReleaseCalendar = data.hraReleaseCalendar
 
     this.subscriptions.add(this.route.fragment.subscribe((anchor) => {
       if (anchor) {
