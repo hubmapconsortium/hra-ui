@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { YoutubeModel } from 'src/app/components/youtube-model/youtube-model';
 import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
 import { PrizeCard } from '../../components/prize-card/prize-card';
@@ -18,6 +19,7 @@ export class KaggleTwoComponent {
   judgesPrizeData: PrizeCard[];
   awardsCeremony: PageDataItems[];
   datasets: PageDataItems[];
+  awardsYoutube: YoutubeModel;
 
   constructor(route: ActivatedRoute) {
     const data = route.snapshot.data['content'];
@@ -28,5 +30,6 @@ export class KaggleTwoComponent {
     this.judgesPrizeData = data.judgesPrizeData;
     this.awardsCeremony = data.awardsCeremony;
     this.datasets = data.datasets;
+    this.awardsYoutube = data.awardsYoutube;
   }
 }
