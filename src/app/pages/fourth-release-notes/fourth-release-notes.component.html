@@ -10,57 +10,50 @@
   <mat-drawer-content>
     <div class="release-data">
       <div class="content-title date">December 15th, 2022</div>
-      <ccf-page-data [data]="fourthReleaseIntro" id="intro"></ccf-page-data>
-      <img src="assets/images/intro_gif.gif" class="intro-gif" />
-      <mat-divider></mat-divider>
-      <ccf-page-data [data]="fourthReleaseStats" id="whats-new"></ccf-page-data>
-      <mat-divider></mat-divider>
-      <ccf-page-data [data]="hraHourEvent" id="24-hr-event"></ccf-page-data>
-      <ccf-use-button
-        [buttonData]="hourEventPageButton"
-        class="button-bottom"
-      ></ccf-use-button>
-      <ccf-use-button
-        [buttonData]="hourEventUseButton"
-        class="button-container"
-      ></ccf-use-button>
+      <div id="intro">
+        <ccf-page-data [data]="fourthReleaseIntro"></ccf-page-data>
+        <img src="assets/images/intro_gif.gif" class="intro-gif" />
+        <mat-divider></mat-divider>
+      </div>
+      <div id="whats-new">
+        <ccf-page-data [data]="fourthReleaseStats"></ccf-page-data>
+        <mat-divider></mat-divider>
+      </div>
+      <div id="24-hr-event">
+        <ccf-page-data [data]="hraHourEvent"></ccf-page-data>
+        <ccf-use-button [buttonData]="hourEventPageButton" class="button-bottom"></ccf-use-button>
+        <ccf-use-button [buttonData]="hourEventUseButton" class="button-container"></ccf-use-button>
+        <mat-divider></mat-divider>
+      </div>
+
+      <div id="hra-release-calendar">
+        <ccf-page-data [data]="hraReleaseCalendar"></ccf-page-data>
+        <a mat-raised-button href="assets/images/hra-release-calendar.svg" download class="raised-button">
+          <span class="material-symbols-outlined">download</span>Download JPG
+        </a>
+        <img src="assets/images/hra-release-calendar.svg" style="padding-bottom: 2rem" />
+      </div>
       <mat-divider></mat-divider>
       <div id="asctb-tables">
         <ccf-page-data [data]="asctbTables"></ccf-page-data>
-        <ccf-use-button
-          [buttonData]="asctbTablesButton"
-          class="button-container"
-        ></ccf-use-button>
-        <img
-          src="assets/images/4th_release_asctb_table.svg"
-          style="padding-bottom: 2rem"
-        />
+        <ccf-use-button [buttonData]="asctbTablesButton" class="button-container"></ccf-use-button>
+        <img src="assets/images/4th_release_asctb_table.svg" style="padding-bottom: 2rem" />
         <p class="page-data">
           <strong>Fig 1.</strong>
           Processes, anatomical structures, cell types, biomarkers and disease
           relevant for understanding proteinuria, in kidney. The example shows
           how the ASCT+B tables help link clinicopathology information and
           ontology data. Read more at
-          <a
-            href="https://www.nature.com/articles/s41556-021-00788-6"
-            target="_blank"
-          >
+          <a href="https://www.nature.com/articles/s41556-021-00788-6" target="_blank">
             Anatomical structures, cell types and biomarkers of the Human
-            Reference Atlas</a
-          >
+            Reference Atlas</a>
         </p>
       </div>
       <mat-divider></mat-divider>
       <div id="asctb-reporter">
         <ccf-page-data [data]="asctbReporter"></ccf-page-data>
-        <ccf-use-button
-          [buttonData]="asctbReporterButton"
-          class="button-container"
-        ></ccf-use-button>
-        <img
-          src="assets/images/4th_release_asctb_reporter.svg"
-          style="padding-bottom: 2rem"
-        />
+        <ccf-use-button [buttonData]="asctbReporterButton" class="button-container"></ccf-use-button>
+        <img src="assets/images/4th_release_asctb_reporter.svg" style="padding-bottom: 2rem" />
         <p class="page-data">
           <strong>Fig 2.</strong>
           An exemplary ASCT+B table showing anatomical structures (AS) and cell
@@ -69,30 +62,18 @@
           structures, cell types and biomarkers) and four relationship types
           (part_of, is_a, located_in and characterize). Note that the is_a
           relationship exists for cell types and biomarkers. Read more at
-          <a
-            href="https://www.nature.com/articles/s41556-021-00788-6"
-            target="_blank"
-          >
+          <a href="https://www.nature.com/articles/s41556-021-00788-6" target="_blank">
             Anatomical structures, cell types and biomarkers of the Human
-            Reference Atlas</a
-          >.
+            Reference Atlas</a>.
         </p>
       </div>
       <mat-divider></mat-divider>
-      <ccf-page-data
-        [data]="ontologyValidations"
-        id="asctb-ontology-validations"
-      ></ccf-page-data>
-      <ccf-use-button
-        [buttonData]="ontologyValidationsButton"
-        class="button-container"
-      ></ccf-use-button>
+      <ccf-page-data [data]="ontologyValidations" id="asctb-ontology-validations"></ccf-page-data>
+      <ccf-use-button [buttonData]="ontologyValidationsButton" class="button-container"></ccf-use-button>
       <mat-divider></mat-divider>
       <div id="3d-reference-objects">
         <ccf-page-data [data]="threeDimRefObjects"></ccf-page-data>
-        <ccf-use-button
-          [buttonData]="threeDimRefObjectsButton"
-        ></ccf-use-button>
+        <ccf-use-button [buttonData]="threeDimRefObjectsButton"></ccf-use-button>
         <img src="assets/images/4th_release_3d.gif" class="three-dim-gif" />
         <p class="page-data">
           <strong>Fig 3.</strong>
@@ -102,14 +83,8 @@
       <mat-divider></mat-divider>
       <div id="exploration-user-interface">
         <ccf-page-data [data]="explorationUserInterface"></ccf-page-data>
-        <ccf-use-button
-          [buttonData]="explorationUserInterfaceButton"
-          class="button-container"
-        ></ccf-use-button>
-        <img
-          src="assets/images/4th_release_eui.svg"
-          style="padding-bottom: 2rem"
-        />
+        <ccf-use-button [buttonData]="explorationUserInterfaceButton" class="button-container"></ccf-use-button>
+        <img src="assets/images/4th_release_eui.svg" style="padding-bottom: 2rem" />
         <p class="page-data">
           <strong>Fig 4.</strong>
           3D Reference Objects featured within the Exploration User Interface.
@@ -118,10 +93,7 @@
       <mat-divider></mat-divider>
       <div id="registration-user-interface">
         <ccf-page-data [data]="registrationUserInterface"></ccf-page-data>
-        <ccf-use-button
-          [buttonData]="registrationUserInterfaceButton"
-          class="button-container"
-        >
+        <ccf-use-button [buttonData]="registrationUserInterfaceButton" class="button-container">
         </ccf-use-button>
         <img src="assets/images/4th_release_rui_gif.gif" class="rui-gif" />
         <p class="page-data">
@@ -133,10 +105,7 @@
       <mat-divider></mat-divider>
       <div id="vr-organ-gallery">
         <ccf-page-data [data]="vrOrganGallery"></ccf-page-data>
-        <ccf-use-button
-          [buttonData]="vrOrganGalleryButton"
-          class="button-container"
-        ></ccf-use-button>
+        <ccf-use-button [buttonData]="vrOrganGalleryButton" class="button-container"></ccf-use-button>
         <img src="assets/images/ccf-og-1.png" style="padding-bottom: 2rem" />
         <p class="page-data">
           <strong>Fig 6.</strong>
@@ -155,33 +124,21 @@
         be able to link to the HRA topics, concepts, and practices they wish to
         explore in more detail.
       </div>
-      <ccf-use-button
-        [buttonData]="previewScrollytellingButton"
-        class="preview-button"
-      ></ccf-use-button>
+      <ccf-use-button [buttonData]="previewScrollytellingButton" class="preview-button"></ccf-use-button>
       <p class="page-data">
         Comparing Tabula Sapiens to the Human Reference Atlas
       </p>
-      <ccf-use-button
-        [buttonData]="previewComparingTabula"
-        class="preview-button"
-      ></ccf-use-button>
+      <ccf-use-button [buttonData]="previewComparingTabula" class="preview-button"></ccf-use-button>
       <p class="page-data">
         Kaggle competition results are used to develop and optimize machine
         learning algorithms that can segment functional tissue units (FTUs)
       </p>
-      <ccf-use-button
-        [buttonData]="previewFtuSegmentation"
-        class="preview-button"
-      ></ccf-use-button>
+      <ccf-use-button [buttonData]="previewFtuSegmentation" class="preview-button"></ccf-use-button>
       <p class="page-data">
         Tissue Block annotation provides even better collision detection when
         registering with the RUI.
       </p>
-      <ccf-use-button
-        [buttonData]="previewCcfTissueBlock"
-        class="preview-button"
-      ></ccf-use-button>
+      <ccf-use-button [buttonData]="previewCcfTissueBlock" class="preview-button"></ccf-use-button>
       <mat-divider></mat-divider>
       <div class="page-data section" id="contact-us">
         <strong>Contact Us</strong>
@@ -191,10 +148,7 @@
           <mat-icon>mail_outline</mat-icon>Contact MC-IU
         </a>
       </div>
-      <contact-card
-        [contactCard]="contactCardData"
-        class="contact-card-container"
-      ></contact-card>
+      <contact-card [contactCard]="contactCardData" class="contact-card-container"></contact-card>
       <mat-divider></mat-divider>
       <p class="page-data section" id="outro">
         <strong>Outro</strong>
@@ -204,10 +158,7 @@
         explore the atlas or programmatically access the data. The 5th release
         is in May. Thanks for reading!
       </p>
-      <img
-        src="assets/images/4th_release_outro.svg"
-        style="padding-bottom: 4rem"
-      />
+      <img src="assets/images/4th_release_outro.svg" style="padding-bottom: 4rem" />
     </div>
   </mat-drawer-content>
 </mat-drawer-container>

@@ -4,6 +4,7 @@ html,
 body {
   height: 100%;
   background-color: #fafafa;
+  scroll-behavior: smooth;
 }
 body {
   margin: 0;
@@ -14,7 +15,7 @@ body {
 a:-webkit-any-link {
   color: #3d72bf;
   cursor: pointer;
-  text-decoration: none;
+  text-decoration: none !important;
   font-weight: 500;
 
   &:hover {
