@@ -68,9 +68,12 @@
         </p>
       </div>
       <mat-divider></mat-divider>
-      <ccf-page-data [data]="ontologyValidations" id="asctb-ontology-validations"></ccf-page-data>
-      <ccf-use-button [buttonData]="ontologyValidationsButton" class="button-container"></ccf-use-button>
-      <mat-divider></mat-divider>
+      <div id="asctb-ontology-validations">
+        <ccf-page-data [data]="ontologyValidations"></ccf-page-data>
+        <ccf-use-button [buttonData]="ontologyValidationsButton" class="button-container"></ccf-use-button>
+        <mat-divider></mat-divider>
+      </div>
+
       <div id="3d-reference-objects">
         <ccf-page-data [data]="threeDimRefObjects"></ccf-page-data>
         <ccf-use-button [buttonData]="threeDimRefObjectsButton"></ccf-use-button>
