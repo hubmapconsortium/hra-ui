@@ -1,0 +1,50 @@
+{
+  "name": "components-atoms",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/components/atoms/src",
+  "prefix": "hra",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/components/atoms/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/components/atoms/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/components/atoms/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/components/atoms/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/components/atoms/**/*.ts",
+          "libs/components/atoms/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["components"]
+}

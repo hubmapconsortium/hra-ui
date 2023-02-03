@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@hra-ui/components/atoms": ["libs/components/atoms/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
