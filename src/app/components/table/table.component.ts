@@ -40,11 +40,22 @@ export class TableComponent {
   readonly dataSource = new MatTableDataSource<TableData>([]);
 
   getTotal(id: string) {
-    return this.dataSource.data.reduce((acc, entry) => acc + (entry[id] as number), 0);
+    return this.dataSource.data
+      .filter(entry => typeof entry[id] === 'number')
+      .reduce((acc, entry) => acc + (entry[id] as number), 0);
   }
 
   isNumericColumn(column: string): boolean {
-    return typeof this.dataSource.data[0]?.[column] === 'number';
+    let hasAtLeastOneNumber = false;
+    for (const { [column]: value } of this.dataSource.data) {
+      if (value === null) {
+        continue;
+      } else if (typeof value !== 'number') {
+        return false;
+      }
+      hasAtLeastOneNumber = true;
+    }
+    return hasAtLeastOneNumber;
   }
 
   isTotalRequired(column: any): boolean {
@@ -53,5 +64,9 @@ export class TableComponent {
 
   getAlignmentClass(column: HeaderData): string {
     return `alignment-${column.alignment ?? 'default'}`;
+  }
+
+  formatData(value: unknown): string {
+    return value !== null ? `${value}` : 'no data';
   }
 }

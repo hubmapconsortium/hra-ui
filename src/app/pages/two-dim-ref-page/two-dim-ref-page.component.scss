@@ -1,11 +1,33 @@
 :host {
   max-width: 77rem;
 
-  .example-small-box {
-    height: 6.25rem;
-    width: 6.25rem;
-    margin-bottom: 4rem;
-    margin-right: 3rem;
+  .table-heading-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    align-items: center;
+  }
+
+  .mat-raised-button {
+    background-color: #fafafa;
+    border: 0.063rem solid #444c65;
+    border-radius: 0.125rem;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.875rem;
+    letter-spacing: 0.005rem;
+    color: #444c65;
+    box-shadow: unset;
+  }
+
+  .raised-button {
+    margin-bottom: 1rem;
+  }
+
+  .mat-raised-button:hover {
+    background-color: #e4e9e9;
   }
 
   @media (max-width: 26.75rem) {

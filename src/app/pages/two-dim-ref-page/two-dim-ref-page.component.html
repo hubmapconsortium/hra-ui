@@ -4,8 +4,14 @@
 <ccf-page-data [data]="disclaimer" class="description"></ccf-page-data>
 <ccf-sop-links [links]="sopData" class="description"></ccf-sop-links>
 <ccf-choose-version [releaseDate]="versionData" [selectedDate]="version" (selectedVersion)="setVersion($event.version)" class="description"></ccf-choose-version>
-<ccf-organ-tabs [tabs]="filterImages" [currentOrgan]="organData[0].name" (organName)="setOrgan($event)"></ccf-organ-tabs>
+<ccf-organ-tabs [tabs]="filterImages" [currentOrgan]="organData[0].name" (organName)="setOrgan($event)" (organName)="setFtu($event)"></ccf-organ-tabs>
 <ccf-two-dim-image [cardTitle]="cardTitle" [tissueData]="organData" [isMultirow]="true"></ccf-two-dim-image>
+<div class="table-heading-container">
+    <div class="content-title">{{tableTitle}}</div>
+    <a mat-raised-button href="assets/table-data/ftu-cell-count.csv">
+        <span class="material-symbols-outlined">download</span>Download CSV</a>
+</div>
+<ccf-table [typeCount]="(tableData | async) ?? []" [displayedColumns]="(columns | async) ?? []" [columns]="headerInfo" [isTotal]="true" class="description"></ccf-table>
 <ccf-page-data [data]="twoDimFtuLibObjects" class="description"></ccf-page-data>
 <ccf-page-data [data]="termsOfUseData" class="description"></ccf-page-data>
 <ccf-page-data [data]="licenseData" class="description"></ccf-page-data>

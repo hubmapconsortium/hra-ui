@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { EMPTY, map, Observable } from 'rxjs';
+import { TableData } from 'src/app/components/table/table';
+import { TableDataService } from 'src/app/services/table-data/tabledata.service';
 import { ChooseVersion } from '../../components/choose-version/choose-version';
 import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
 import { SopLinks } from '../../components/sop-links/sop-links';
 import { OrganData, VersionOrgans } from '../../components/two-dim-image/two-dim-image';
+import { displayedColumnsData, headerInfo } from './two-dim-ref-page.content';
 
 
 interface TwoDimensionReference {
@@ -49,20 +53,26 @@ export class TwoDimRefPageComponent implements OnInit {
   disclaimer = this.data.disclaimer;
   filterImages = this.data.filterImages;
   cardTitle = "";
+  tableTitle = ""
   versionData = this.data.versionData;
   placeholderDate = this.data.placeholderDate;
   organData = this.data.organData;
   info = this.data.info;
   version = this.data.version;
   organInfo = this.data.organInfo;
+  headerInfo = headerInfo;
+  displayedColumnsData = displayedColumnsData;
+  tableData: Observable<TableData[]> = EMPTY;
+  columns: Observable<string[]> = EMPTY;
 
-  constructor(private router: Router, private readonly route: ActivatedRoute) { }
+  constructor(private router: Router, private readonly route: ActivatedRoute, private readonly dataService: TableDataService) { }
 
   ngOnInit(): void {
     const [{ version: defaultVersion, organData: [{ name: defaultOrgan }] }] = this.organInfo;
     const { version = defaultVersion, organ = defaultOrgan } = this.route.snapshot.queryParams;
 
     this.setVersion(`${version}`, `${organ}`);
+    this.setFtu(this.organData[0].name);
   }
 
   setVersion(version: string, organ?: string): void {
@@ -93,5 +103,15 @@ export class TwoDimRefPageComponent implements OnInit {
       queryParams: params,
       queryParamsHandling: 'merge'
     });
+  }
+
+  setFtu(organName: OrganData["name"]): void {
+    const data = this.dataService.getData('ftu-cell-count.csv', this.displayedColumnsData);
+    this.tableData = data.pipe(
+      map(result => result.data),
+      map(data => data.filter(record => iCaseEquals(record['Organ'] as string, organName)))
+    );
+    this.columns = data.pipe(map(result => result.columns));
+    this.tableTitle = organName+' Functional Tissue Units: Anatomical Structures & Cell Types'
   }
 }

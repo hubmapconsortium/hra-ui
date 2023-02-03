@@ -9,6 +9,8 @@ import { OrganTabsModule } from '../../components/organ-tabs/organ-tabs.module';
 import { TwoDimImageModule } from '../../components/two-dim-image/two-dim-image.module';
 import { ChooseVersionModule } from '../../components/choose-version/choose-version.module';
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
+import { TableModule } from 'src/app/components/table/table.module';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,9 @@ import { AnnouncementCardModule } from '../../components/announcement-card/annou
     OrganTabsModule,
     TwoDimImageModule,
     ChooseVersionModule,
-    AnnouncementCardModule
-
+    AnnouncementCardModule,
+    TableModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: []
