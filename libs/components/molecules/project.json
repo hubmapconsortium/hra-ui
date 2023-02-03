@@ -1,0 +1,50 @@
+{
+  "name": "components-molecules",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/components/molecules/src",
+  "prefix": "hra",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/components/molecules/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/components/molecules/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/components/molecules/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/components/molecules/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/components/molecules/**/*.ts",
+          "libs/components/molecules/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["components"]
+}
