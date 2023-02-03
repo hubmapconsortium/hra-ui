@@ -14,7 +14,7 @@ overviewData:
     
     For selected organs, 3D extraction site objects are provided. Some extraction sites resemble geometric objects (e.g., cuboids for heart) while others take the shape of one or more whole or partial anatomical structures (e.g., in spleen). The 3D extraction sites do not restrict registration to specific regions, instead they provide “expert defined landmarks” to help guide tissue registration. The extraction site objects are also used for automatic semantic annotation of tissue samples via collision detection during registration.
 
-    A listing of organs and body systems is here: (https://github.com/cns-iu/ccf-organ-vr-gallery/blob/main/CCF3DOrganGallery/Assets/Resources/Body_Systems_List.csv)[https://github.com/cns-iu/ccf-organ-vr-gallery/blob/main/CCF3DOrganGallery/Assets/Resources/Body_Systems_List.csv]
+    A listing of organs and body systems is here: [https://github.com/cns-iu/ccf-organ-vr-gallery/blob/main/CCF3DOrganGallery/Assets/Resources/Body_Systems_List.csv](https://github.com/cns-iu/ccf-organ-vr-gallery/blob/main/CCF3DOrganGallery/Assets/Resources/Body_Systems_List.csv)
 
 versionData:
 - release: 4th HRA Release (v1.3), December 2022
