@@ -41,7 +41,9 @@
       "options": {
         "lintFilePatterns": [
           "libs/shared/utils/**/*.ts",
-          "libs/shared/utils/**/*.html"
+          "libs/shared/utils/**/*.html",
+          "libs/shared/utils/types/**/*.ts",
+          "libs/shared/utils/types/**/*.html"
         ]
       }
     }

@@ -22,7 +22,8 @@
       "@hra-ui/components/organisms": [
         "libs/components/organisms/src/index.ts"
       ],
-      "@hra-ui/utils": ["libs/shared/utils/src/index.ts"]
+      "@hra-ui/utils": ["libs/shared/utils/src/index.ts"],
+      "@hra-ui/utils/types": ["libs/shared/utils/types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
