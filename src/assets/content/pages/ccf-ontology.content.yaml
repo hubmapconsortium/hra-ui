@@ -38,15 +38,15 @@ ontologyWebData:
 referencesData:
 - heading: References
   descriptions: |
-    Herr II, Bruce W., Ellen M. Quardokus, Leonard E. Cross, Elizabeth G. Record, Griffin M. Weber, and Katy Börner. 2020. <a href="https://hubmapconsortium.github.io/hubmap-ontology/ccf.owl" target="">HuBMAP CCF Ontology v1.0.0 (OWL format)</a>.
+    Herr II, Bruce W., Ellen M. Quardokus, Leonard E. Cross, Elizabeth G. Record, Griffin M. Weber, and Katy Börner. 2020. <a href="https://hubmapconsortium.github.io/hubmap-ontology/ccf.owl">HuBMAP CCF Ontology v1.0.0 (OWL format)</a>.
     
     
-    Herr II, Bruce W., Ellen M. Quardokus, Leonard E. Cross, Elizabeth G. Record, Griffin M. Weber, and Katy Börner. 2020. <a href="https://github.com/hubmapconsortium/hubmap-ontology" target="">"HuBMAP CCF Ontology Source Code Repository</a>.
+    Herr II, Bruce W., Ellen M. Quardokus, Leonard E. Cross, Elizabeth G. Record, Griffin M. Weber, and Katy Börner. 2020. <a href="https://github.com/hubmapconsortium/hubmap-ontology">"HuBMAP CCF Ontology Source Code Repository</a>.
     
     
     Börner Katy, Ellen M. Quardokus, Bruce W. Herr II, Leonard E. Cross, Elizabeth G. Record, Yingnan Ju, Andreas D. Bueckle, James P. Sluka, Jonathan C. Silverstein, Kristen M. Browne, 
     Sanjay Jain, Clive H. Wasserfall, Marda L. Jorgensen, Jeffrey M. Spraggins, Nathan H. Patterson, Mark A. Musen, and Griffin M. Weber. 2020. 
-    <a href="https://arxiv.org/abs/2007.14474" target="">Construction and Usage of a Human Body Common Coordinate Framework Comprising Clinical, Semantic, and Spatial Ontologies</a>. arXiv:2007.14474v1.
+    <a href="https://arxiv.org/abs/2007.14474">Construction and Usage of a Human Body Common Coordinate Framework Comprising Clinical, Semantic, and Spatial Ontologies</a>. arXiv:2007.14474v1.
     
     
     Herr, Bruce W., Josef Hardi, Ellen M. Quardokus, Andreas Bueckle, Lu Chen, Fusheng Wang, Anita R. Caron, David Osumi-Sutherland, Mark A. Musen, and Katy Börner. “Specimen, Biological Structure, and Spatial Ontologies in Support of a Human Reference Atlas.” BioRxiv, January 1, 2022, 2022.09.08.507220. https://doi.org/10.1101/2022.09.08.507220.

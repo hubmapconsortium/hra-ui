@@ -46,14 +46,14 @@ termsOfUseData:
 licenseData:
 - heading: License
   descriptions: |
-    All CCF 2D functional tissue units files are released under <a href="https://creativecommons.org/licenses/by/4.0/" target=""> Attribution 4.0 International (CC BY 4.0)</a>.
+    All CCF 2D functional tissue units files are released under <a href="https://creativecommons.org/licenses/by/4.0/"> Attribution 4.0 International (CC BY 4.0)</a>.
 citationData:
 - heading: Citation
   descriptions: |
     If you use the 2D data files in v1.2 release, please cite this effort as follows:
     
      Bajema, R., Bidanta, S., Quardokus, E., Herr II, B. W., Börner, K. 2022.
-    <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-2d-reference-library.html" target="">HuBMAP CCF 2D Reference Object Library</a>. Accessed on May 6, 2022.
+    <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-2d-reference-library.html">HuBMAP CCF 2D Reference Object Library</a>. Accessed on May 6, 2022.
 
     If you use the 2D data files in v1.3 release, please cite this effort as follows:
     

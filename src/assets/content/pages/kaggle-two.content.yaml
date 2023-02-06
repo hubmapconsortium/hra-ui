@@ -9,7 +9,7 @@ overviewData:
     When you think of “life hacks,” normally you’d imagine productivity techniques. But how about the kind that helps you understand your body at a molecular level? It may be possible! Researchers must first determine the function and relationships among the 37 trillion cells that make up the human body. A better understanding of our cellular composition could help people live healthier, longer lives.
 
 
-    A previous <a href="https://www.kaggle.com/c/hubmap-kidney-segmentation" target="">Kaggle competition</a> aimed to segment cell population neighborhoods that perform an organ’s main physiologic function, also called functional tissue units (FTUs). Manually segmenting FTUs (e.g., glomeruli in kidney or alveoli in the lung) is a time-consuming process. In the average kidney, there are over 1 million glomeruli FTUs. While there are existing cell and FTU segmentation methods, we want to push the boundaries by building algorithms that generalize across different organs and are robust across different dataset differences.
+    A previous <a href="https://www.kaggle.com/c/hubmap-kidney-segmentation">Kaggle competition</a> aimed to segment cell population neighborhoods that perform an organ’s main physiologic function, also called functional tissue units (FTUs). Manually segmenting FTUs (e.g., glomeruli in kidney or alveoli in the lung) is a time-consuming process. In the average kidney, there are over 1 million glomeruli FTUs. While there are existing cell and FTU segmentation methods, we want to push the boundaries by building algorithms that generalize across different organs and are robust across different dataset differences.
 
 
     The Human BioMolecular Atlas Program (HuBMAP) is working to create a Human Reference Atlas at the cellular level. Sponsored by the National Institutes of Health (NIH), HuBMAP and Indiana University’s Cyberinfrastructure for Network Science Center (CNS) have partnered with institutions across the globe for this endeavor. A major partner is the Human Protein Atlas (HPA), a Swedish research program aiming to map the protein expression in human cells, tissues, and organs, funded by the Knut and Alice Wallenberg Foundation.
@@ -21,7 +21,7 @@ overviewData:
     If successful, they'll help accelerate the world's understanding of the relationships between cell and tissue organization. With a better idea of the relationship of cells, researchers will have more insight into the function of cells that impact human health. Furthermore, the Human Reference Atlas constructed by HuBMAP will be freely available for use by researchers and pharmaceutical companies alike, potentially improving and prolonging human life.
 
 
-    Please see <a href="https://www.kaggle.com/competitions/hubmap-organ-segmentation" target="">https://www.kaggle.com/competitions/hubmap-organ-segmentation</a> for competition details.
+    Please see <a href="https://www.kaggle.com/competitions/hubmap-organ-segmentation">https://www.kaggle.com/competitions/hubmap-organ-segmentation</a> for competition details.
 
 awardsCeremony:
 - heading: Awards Ceremony
@@ -40,7 +40,7 @@ datasets:
   descriptions: |
     All data used in the competition will be made publicly 
     available as part of the scientific paper showcasing the results of the competition using the GitHub repository located at 
-    <a href="https://github.com/cns-iu/ccf-research-kaggle-2022" target="">
+    <a href="https://github.com/cns-iu/ccf-research-kaggle-2022">
     https://github.com/cns-iu/ccf-research-kaggle-2022</a>.
 
 acknowledgments:
@@ -71,7 +71,7 @@ accuracyPrizeData:
 - title: 'First Prize: (15,000)'
   matDivider: false
   winner:
-  - winner: I need SegFormer - <a href="https://www.kaggle.com/opusen" target="">Opusen</a>
+  - winner: I need SegFormer - <a href="https://www.kaggle.com/opusen">Opusen</a>
     button:
     - label: Discussion Page
       link: https://www.kaggle.com/competitions/hubmap-organ-segmentation/discussion/356201
@@ -80,7 +80,7 @@ accuracyPrizeData:
 - title: Second Prize ($10,000)
   matDivider: false
   winner:
-  - winner: <a href="https://www.kaggle.com/victorsd" target="">Victor Durnov</a>
+  - winner: <a href="https://www.kaggle.com/victorsd">Victor Durnov</a>
     button:
     - label: Code Repository
       link: https://www.kaggle.com/code/victorsd/2nd-place-inference/notebook?scriptVersionId=106240458
@@ -90,11 +90,11 @@ accuracyPrizeData:
   - winner: |
       Human Torus Team
 
-      <a href="https://www.kaggle.com/igorkrashenyi" target="">Igor Krashenyi</a>,
-      <a href="https://www.kaggle.com/sakvaua" target="">Dennis Sakva</a>,
+      <a href="https://www.kaggle.com/igorkrashenyi">Igor Krashenyi</a>,
+      <a href="https://www.kaggle.com/sakvaua">Dennis Sakva</a>,
 
-      <a href="https://www.kaggle.com/alexkirnas" target="">Alexander Zarichkovyi</a>,
-      <a href="https://www.kaggle.com/vladimirsydor" target="">Volodymyr</a>
+      <a href="https://www.kaggle.com/alexkirnas">Alexander Zarichkovyi</a>,
+      <a href="https://www.kaggle.com/vladimirsydor">Volodymyr</a>
     button:
     - label: Code Repository
       link: https://www.kaggle.com/code/vladimirsydor/hubmap-2021-inference-v1/notebook?scriptVersionId=106283407

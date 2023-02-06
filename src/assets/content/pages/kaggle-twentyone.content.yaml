@@ -22,14 +22,14 @@ overviewData:
 
 
 
-    Please see <a href="https://www.kaggle.com/c/hubmap-kidney-segmentation" target="">https://www.kaggle.com/c/hubmap-kidney-segmentation</a> for competition details.
+    Please see <a href="https://www.kaggle.com/c/hubmap-kidney-segmentation">https://www.kaggle.com/c/hubmap-kidney-segmentation</a> for competition details.
 
 awardsCeremony:
 - heading: Awards Ceremony
   descriptions: |
     On May 21, 2021, Judges announced winning teams at the annual HubMAP All-Hands Meeting and the HuBMAP Awards: Hacking the Kidney on Kaggle ceremony. 
-    A <a href="https://www.youtube.com/watch?v=fZebsmQoUEY" target="">recording</a> of the event and competitor presentations will be posted at the 
-    <a href="https://www.youtube.com/channel/UCbSvPJ9dXASL14KoDeutMFg" target="">HuBMAP Consortium YouTube channel</a>.
+    A <a href="https://www.youtube.com/watch?v=fZebsmQoUEY">recording</a> of the event and competitor presentations will be posted at the 
+    <a href="https://www.youtube.com/channel/UCbSvPJ9dXASL14KoDeutMFg">HuBMAP Consortium YouTube channel</a>.
 
 acknowledgmentsData:
 - heading: Acknowledgments
@@ -188,5 +188,5 @@ datasetsData:
 - heading: Datasets
   descriptions: |
     All datasets have been published as a HuBMAP 
-    <a href="https://portal.hubmapconsortium.org/browse/collection/4964d24bbc6668a72c4cbb5e0393a6bc" target="">collection</a>. 
-    Here is the link to the <a href="https://hubmapconsortium.github.io/ccf/dld/kaggle-metadata.csv" target="">metadata file</a> and below are the direct links to all 30 datasets:
+    <a href="https://portal.hubmapconsortium.org/browse/collection/4964d24bbc6668a72c4cbb5e0393a6bc">collection</a>. 
+    Here is the link to the <a href="https://hubmapconsortium.github.io/ccf/dld/kaggle-metadata.csv">metadata file</a> and below are the direct links to all 30 datasets:

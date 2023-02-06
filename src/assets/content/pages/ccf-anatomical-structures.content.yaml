@@ -28,7 +28,7 @@ versionData:
 exploreTablesData:
 - heading: Explore Tables Visually
   descriptions: |
-    The <a href="https://hubmapconsortium.github.io/ccf-asct-reporter/" target="">CCF ASCT+B Reporter</a> makes it possible to explore tables visually—per organ or across all organs in support of table authoring and review. It combines two different types of Angular visualizations: A partonomy tree of anatomical structures and bimodal networks that link anatomical structures to cell types and cell types to biomarkers.
+    The <a href="https://hubmapconsortium.github.io/ccf-asct-reporter/">CCF ASCT+B Reporter</a> makes it possible to explore tables visually—per organ or across all organs in support of table authoring and review. It combines two different types of Angular visualizations: A partonomy tree of anatomical structures and bimodal networks that link anatomical structures to cell types and cell types to biomarkers.
 tablesUnderDevelopmentData:
 - heading: Tables Under Development
   descriptions: |

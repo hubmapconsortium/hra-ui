@@ -5,7 +5,16 @@ headerCardDetails:
 
 overviewData:
 - heading: Overview
-  descriptions: This Registration User Interface (RUI) supports the registration of three-dimensional (3D) tissue blocks within 3D reference organs. A first beta of the CCF RUI became available in October 2020. 3D reference organs are freely available on the HRA Portal in the <a href="https://humanatlas.io/3d-reference-library?version=1.3&organ=Allen%20Brain" target="">3D Reference Object Library</a>, the ontology can be found on <a href="https://bioportal.bioontology.org/ontologies/CCF" target="">BioPortal</a>, and the code is available on href="https://github.com/hubmapconsortium/ccf-ui" target="">GitHub</a>. The registration data is used in current versions of the Common Coordinate Framework and the on href=" https://hubmapconsortium.github.io/ccf-ui/” target="">Exploration User Interface (EUI) </a> developed within HuBMAP.
+  descriptions: |
+    This Registration User Interface (RUI) supports the registration of three-dimensional (3D) tissue blocks within 
+    3D reference organs. A first beta of the CCF RUI became available in October 2020. 3D reference organs are
+    freely available on the HRA Portal in the 
+    <a href="https://humanatlas.io/3d-reference-library">
+    3D Reference Object Library</a>, the ontology can be found on
+    <a href="https://bioportal.bioontology.org/ontologies/CCF">BioPortal</a>, and the code is available on 
+    <a href="https://github.com/hubmapconsortium/ccf-ui">GitHub</a>. The registration data is used in 
+    current versions of the Common Coordinate Framework and the on 
+    <a href="https://hubmapconsortium.github.io/ccf-ui/">Exploration User Interface (EUI)</a> developed within HuBMAP.
 
 interfacedata:
 - heading: How to use the Registration User Interface
@@ -24,9 +33,9 @@ acknowledgeData:
   descriptions: |
     The CCF and associated user interfaces are developed by the MC-IU team within the HuBMAP HIVE. We acknowledge expert input from Jeffrey Spraggins, Sanjay Jain, and Clive Wasserfall and their teams as well as the overall HuBMAP consortium.
 
-    The 3D reference organs were designed by Kristen Browne, U.S. National Library of Medicine using data from the <a href="https://www.nlm.nih.gov/research/visible/visible_human.html" target="">Visible Human Project</a>.
+    The 3D reference organs were designed by Kristen Browne, U.S. National Library of Medicine using data from the <a href="https://www.nlm.nih.gov/research/visible/visible_human.html">Visible Human Project</a>.
     
-    The work is funded by NIH Awards <a href="https://reporter.nih.gov/project-details/9687220" target="">OT2OD033756 and OT2OD026671</a>.
+    The work is funded by NIH Awards <a href="https://reporter.nih.gov/project-details/9687220">OT2OD033756 and OT2OD026671</a>.
 
 useRuiButton:
   text: Use the Registration User Interface
