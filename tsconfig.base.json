@@ -19,7 +19,10 @@
       "@hra-ui/components/molecules": [
         "libs/components/molecules/src/index.ts"
       ],
-      "@hra-ui/components/organisms": ["libs/components/organisms/src/index.ts"]
+      "@hra-ui/components/organisms": [
+        "libs/components/organisms/src/index.ts"
+      ],
+      "@hra-ui/utils": ["libs/shared/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

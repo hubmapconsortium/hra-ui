@@ -14,19 +14,19 @@
             "depConstraints": [
               {
                 "sourceTag": "atoms",
-                "onlyDependOnLibsWithTags": ["util"]
+                "onlyDependOnLibsWithTags": ["utils"]
               },
               {
                 "sourceTag": "molecules",
-                "onlyDependOnLibsWithTags": ["util", "atoms"]
+                "onlyDependOnLibsWithTags": ["utils", "atoms"]
               },
               {
                 "sourceTag": "organisms",
-                "onlyDependOnLibsWithTags": ["util", "atoms", "molecules"]
+                "onlyDependOnLibsWithTags": ["utils", "atoms", "molecules"]
               },
               {
                 "sourceTag": "behavioral",
-                "onlyDependOnLibsWithTags": ["util", "shared", "components"]
+                "onlyDependOnLibsWithTags": ["utils", "shared", "components"]
               }
             ]
           }
