@@ -26,7 +26,7 @@
               },
               {
                 "sourceTag": "behavioral",
-                "onlyDependOnLibsWithTags": ["cdk", "utils", "shared", "components"]
+                "onlyDependOnLibsWithTags": ["cdk", "utils", "shared", "components", "state"]
               }
             ]
           }
