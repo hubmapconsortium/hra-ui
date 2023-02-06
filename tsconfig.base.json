@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@hra-ui/cdk": ["libs/cdk/src/index.ts"],
       "@hra-ui/components/atoms": ["libs/components/atoms/src/index.ts"],
       "@hra-ui/components/molecules": [
         "libs/components/molecules/src/index.ts"
