@@ -1,22 +1,22 @@
 {
-  "name": "components-organisms",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "state",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "sourceRoot": "libs/components/organisms/src",
-  "prefix": "hra",
+  "sourceRoot": "libs/state/src",
+  "prefix": "ftu",
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "libs/components/organisms/ng-package.json"
+        "project": "libs/state/ng-package.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "libs/components/organisms/tsconfig.lib.prod.json"
+          "tsConfig": "libs/state/tsconfig.lib.prod.json"
         },
         "development": {
-          "tsConfig": "libs/components/organisms/tsconfig.lib.json"
+          "tsConfig": "libs/state/tsconfig.lib.json"
         }
       },
       "defaultConfiguration": "production"
@@ -25,7 +25,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/components/organisms/jest.config.ts",
+        "jestConfig": "libs/state/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -39,12 +39,9 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/components/organisms/**/*.ts",
-          "libs/components/organisms/**/*.html"
-        ]
+        "lintFilePatterns": ["libs/state/**/*.ts", "libs/state/**/*.html"]
       }
     }
   },
-  "tags": ["components", "organisms"]
+  "tags": ["state"]
 }

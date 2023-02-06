@@ -13,8 +13,47 @@
             "allow": [],
             "depConstraints": [
               {
-                "sourceTag": "*",
+                "sourceTag": "app",
                 "onlyDependOnLibsWithTags": ["*"]
+              },
+              {
+                "sourceTag": "atoms",
+                "onlyDependOnLibsWithTags": ["cdk", "utils"]
+              },
+              {
+                "sourceTag": "molecules",
+                "onlyDependOnLibsWithTags": ["cdk", "utils", "atoms"]
+              },
+              {
+                "sourceTag": "organisms",
+                "onlyDependOnLibsWithTags": [
+                  "cdk",
+                  "utils",
+                  "atoms",
+                  "molecules"
+                ]
+              },
+              {
+                "sourceTag": "behavioral",
+                "onlyDependOnLibsWithTags": [
+                  "cdk",
+                  "utils",
+                  "shared",
+                  "components",
+                  "state"
+                ]
+              },
+              {
+                "sourceTag": "state",
+                "onlyDependOnLibsWithTags": ["cdk", "utils", "shared"]
+              },
+              {
+                "sourceTag": "cdk",
+                "onlyDependOnLibsWithTags": ["utils", "shared"]
+              },
+              {
+                "sourceTag": "shared",
+                "onlyDependOnLibsWithTags": ["utils", "shared"]
               }
             ]
           }

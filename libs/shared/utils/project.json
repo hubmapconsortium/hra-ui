@@ -1,22 +1,22 @@
 {
-  "name": "components-organisms",
+  "name": "shared-utils",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "sourceRoot": "libs/components/organisms/src",
-  "prefix": "hra",
+  "sourceRoot": "libs/shared/utils/src",
+  "prefix": "ftu",
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "libs/components/organisms/ng-package.json"
+        "project": "libs/shared/utils/ng-package.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "libs/components/organisms/tsconfig.lib.prod.json"
+          "tsConfig": "libs/shared/utils/tsconfig.lib.prod.json"
         },
         "development": {
-          "tsConfig": "libs/components/organisms/tsconfig.lib.json"
+          "tsConfig": "libs/shared/utils/tsconfig.lib.json"
         }
       },
       "defaultConfiguration": "production"
@@ -25,7 +25,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/components/organisms/jest.config.ts",
+        "jestConfig": "libs/shared/utils/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -40,11 +40,13 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/components/organisms/**/*.ts",
-          "libs/components/organisms/**/*.html"
+          "libs/shared/utils/**/*.ts",
+          "libs/shared/utils/**/*.html",
+          "libs/shared/utils/types/**/*.ts",
+          "libs/shared/utils/types/**/*.html"
         ]
       }
     }
   },
-  "tags": ["components", "organisms"]
+  "tags": ["utils"]
 }

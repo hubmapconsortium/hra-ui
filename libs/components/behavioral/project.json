@@ -1,22 +1,22 @@
 {
-  "name": "components-organisms",
+  "name": "components-behavioral",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "sourceRoot": "libs/components/organisms/src",
-  "prefix": "hra",
+  "sourceRoot": "libs/components/behavioral/src",
+  "prefix": "ftu",
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "libs/components/organisms/ng-package.json"
+        "project": "libs/components/behavioral/ng-package.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "libs/components/organisms/tsconfig.lib.prod.json"
+          "tsConfig": "libs/components/behavioral/tsconfig.lib.prod.json"
         },
         "development": {
-          "tsConfig": "libs/components/organisms/tsconfig.lib.json"
+          "tsConfig": "libs/components/behavioral/tsconfig.lib.json"
         }
       },
       "defaultConfiguration": "production"
@@ -25,7 +25,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/components/organisms/jest.config.ts",
+        "jestConfig": "libs/components/behavioral/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -40,11 +40,11 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/components/organisms/**/*.ts",
-          "libs/components/organisms/**/*.html"
+          "libs/components/behavioral/**/*.ts",
+          "libs/components/behavioral/**/*.html"
         ]
       }
     }
   },
-  "tags": ["components", "organisms"]
+  "tags": ["components", "behavioral"]
 }
