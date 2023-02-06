@@ -1,6 +1,6 @@
 import { getGreeting } from '../support/app.po';
 
-describe('hra-ui', () => {
+describe('ftu-ui', () => {
   beforeEach(() => cy.visit('/'));
 
   it('should display welcome message', () => {
@@ -8,6 +8,6 @@ describe('hra-ui', () => {
     cy.login('my-email@something.com', 'myPassword');
 
     // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome hra-ui');
+    getGreeting().contains('Welcome ftu-ui');
   });
 });

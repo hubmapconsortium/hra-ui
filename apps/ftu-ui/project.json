@@ -1,22 +1,22 @@
 {
-  "name": "hra-ui",
+  "name": "ftu-ui",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "apps/hra-ui/src",
-  "prefix": "hra",
+  "sourceRoot": "apps/ftu-ui/src",
+  "prefix": "ftu",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/hra-ui",
-        "index": "apps/hra-ui/src/index.html",
-        "main": "apps/hra-ui/src/main.ts",
+        "outputPath": "dist/apps/ftu-ui",
+        "index": "apps/ftu-ui/src/index.html",
+        "main": "apps/ftu-ui/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "apps/hra-ui/tsconfig.app.json",
+        "tsConfig": "apps/ftu-ui/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/hra-ui/src/favicon.ico", "apps/hra-ui/src/assets"],
-        "styles": ["apps/hra-ui/src/styles.scss"],
+        "assets": ["apps/ftu-ui/src/favicon.ico", "apps/ftu-ui/src/assets"],
+        "styles": ["apps/ftu-ui/src/styles.scss"],
         "scripts": []
       },
       "configurations": {
@@ -50,10 +50,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "hra-ui:build:production"
+          "browserTarget": "ftu-ui:build:production"
         },
         "development": {
-          "browserTarget": "hra-ui:build:development"
+          "browserTarget": "ftu-ui:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -61,21 +61,21 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "hra-ui:build"
+        "browserTarget": "ftu-ui:build"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/hra-ui/**/*.ts", "apps/hra-ui/**/*.html"]
+        "lintFilePatterns": ["apps/ftu-ui/**/*.ts", "apps/ftu-ui/**/*.html"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/hra-ui/jest.config.ts",
+        "jestConfig": "apps/ftu-ui/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -86,5 +86,5 @@
       }
     }
   },
-  "tags": []
+  "tags": ["app"]
 }

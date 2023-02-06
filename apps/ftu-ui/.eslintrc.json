@@ -9,7 +9,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "hra",
+            "prefix": "ftu",
             "style": "camelCase"
           }
         ],
@@ -17,7 +17,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "hra",
+            "prefix": "ftu",
             "style": "kebab-case"
           }
         ]

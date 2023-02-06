@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'hra-ui-root',
+  selector: 'ftu-ui-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'hra-ui';
+  title = 'ftu-ui';
 }
