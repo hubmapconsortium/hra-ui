@@ -13,8 +13,20 @@
             "allow": [],
             "depConstraints": [
               {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": ["*"]
+                "sourceTag": "atoms",
+                "onlyDependOnLibsWithTags": ["util"]
+              },
+              {
+                "sourceTag": "molecules",
+                "onlyDependOnLibsWithTags": ["util", "atoms"]
+              },
+              {
+                "sourceTag": "organisms",
+                "onlyDependOnLibsWithTags": ["util", "atoms", "molecules"]
+              },
+              {
+                "sourceTag": "behavioral",
+                "onlyDependOnLibsWithTags": ["util", "shared", "components"]
               }
             ]
           }
