@@ -8,6 +8,6 @@ export default {
       functions: 85,
       lines: 85,
       statements: 85,
-    }
-  }
+    },
+  },
 };
