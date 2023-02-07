@@ -21,8 +21,6 @@ export type AnyAbstractConstructor = abstract new (...args: Any) => Any;
 /**
  * Extracts the pure function signature from any function with properties.
  */
-export type SignatureOf<Fn extends AnyFunction> = Fn extends (
-  ...args: infer Args
-) => infer Res
+export type SignatureOf<Fn extends AnyFunction> = Fn extends (...args: infer Args) => infer Res
   ? (...args: Args) => Res
   : never;
