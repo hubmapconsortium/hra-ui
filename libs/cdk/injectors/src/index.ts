@@ -1,2 +1,1 @@
-// Remove once other exports are available
-export default {};
+export { injectOnDestroy } from './on-destroy/on-destroy';
