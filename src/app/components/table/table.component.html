@@ -16,14 +16,12 @@
 
   <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
     <ng-container *ngIf="column.sorting ?? true; else: noSortHeader">
-      <th mat-header-cell *matHeaderCellDef class="table-title" mat-sort-header [class]="getAlignmentClass(column)">
-        {{column.header}}
-      </th>
+      <th mat-header-cell *matHeaderCellDef class="table-title" mat-sort-header 
+        [class]="getAlignmentClass(column)">{{ column.header }}</th>
     </ng-container>
     <ng-template #noSortHeader>
-      <th mat-header-cell *matHeaderCellDef class="table-title">
-        {{column.header}}
-      </th>
+      <th mat-header-cell *matHeaderCellDef
+        class="table-title">{{ column.header }}</th>
     </ng-template>
     <td mat-cell *matCellDef="let row" [innerHtml]="formatData(column.cell(row))" [class.transform]="isOrgan"
       [class]="getAlignmentClass(column)"></td>
