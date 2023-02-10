@@ -39,7 +39,47 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/cdk/**/*.ts", "libs/cdk/**/*.html"]
+        "lintFilePatterns": [
+          "libs/cdk/**/*.ts",
+          "libs/cdk/**/*.html",
+          "libs/cdk/injectors/**/*.ts",
+          "libs/cdk/injectors/**/*.html"
+        ]
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "libs/cdk/.storybook",
+        "browserTarget": "cdk:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/cdk",
+        "configDir": "libs/cdk/.storybook",
+        "browserTarget": "cdk:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c libs/cdk/.storybook --url=http://localhost:4400"
       }
     }
   },

@@ -39,10 +39,7 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/shared/testing/**/*.ts",
-          "libs/shared/testing/**/*.html"
-        ]
+        "lintFilePatterns": ["libs/shared/testing/**/*.ts", "libs/shared/testing/**/*.html"]
       }
     }
   },

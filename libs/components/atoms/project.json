@@ -39,10 +39,42 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/components/atoms/**/*.ts",
-          "libs/components/atoms/**/*.html"
-        ]
+        "lintFilePatterns": ["libs/components/atoms/**/*.ts", "libs/components/atoms/**/*.html"]
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "libs/components/atoms/.storybook",
+        "browserTarget": "components-atoms:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/components-atoms",
+        "configDir": "libs/components/atoms/.storybook",
+        "browserTarget": "components-atoms:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c libs/components/atoms/.storybook --url=http://localhost:4400"
       }
     }
   },

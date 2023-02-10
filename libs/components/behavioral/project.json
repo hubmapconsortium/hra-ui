@@ -39,10 +39,42 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/components/behavioral/**/*.ts",
-          "libs/components/behavioral/**/*.html"
-        ]
+        "lintFilePatterns": ["libs/components/behavioral/**/*.ts", "libs/components/behavioral/**/*.html"]
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "libs/components/behavioral/.storybook",
+        "browserTarget": "components-behavioral:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/components-behavioral",
+        "configDir": "libs/components/behavioral/.storybook",
+        "browserTarget": "components-behavioral:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c libs/components/behavioral/.storybook --url=http://localhost:4400"
       }
     }
   },

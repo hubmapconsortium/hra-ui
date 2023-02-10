@@ -26,22 +26,11 @@
               },
               {
                 "sourceTag": "organisms",
-                "onlyDependOnLibsWithTags": [
-                  "cdk",
-                  "utils",
-                  "atoms",
-                  "molecules"
-                ]
+                "onlyDependOnLibsWithTags": ["cdk", "utils", "atoms", "molecules"]
               },
               {
                 "sourceTag": "behavioral",
-                "onlyDependOnLibsWithTags": [
-                  "cdk",
-                  "utils",
-                  "shared",
-                  "components",
-                  "state"
-                ]
+                "onlyDependOnLibsWithTags": ["cdk", "utils", "shared", "components", "state"]
               },
               {
                 "sourceTag": "state",

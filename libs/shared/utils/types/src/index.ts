@@ -1,2 +1,2 @@
-// Remove once other exports are available
-export default {};
+export type { Any } from './lib/any';
+export type { AnyAbstractConstructor, AnyConstructor, AnyFunction, SignatureOf } from './lib/function';
