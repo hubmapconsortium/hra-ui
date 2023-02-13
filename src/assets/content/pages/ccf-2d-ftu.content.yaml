@@ -87,48 +87,56 @@ organInfo:
       url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.html
       svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.svg
       ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.ai
+      png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.png
     - name: Cortical Collecting Duct
       image: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.svg
       expandedImage: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.svg
       url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.html
       svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.svg
       ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.ai
+      png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.png
     - name: Descending Thin Loop Of Henle
       image: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.svg
       expandedImage: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.svg
       url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.html
       svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.svg
       ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.ai
+      png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.png
     - name: Inner Medullary Collecting Duct
       image: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.svg
       expandedImage: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.svg
       url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.html
       svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.svg
       ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.ai
+      png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.png
     - name: Nephron
       image: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-nephron.svg
       expandedImage: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-nephron.svg
       url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-nephron.html
       svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-nephron.svg
       ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-nephron.ai
+      png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-nephron.png
     - name: Outer Medullary Collecting Duct
       image: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.svg
       expandedImage: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.svg
       url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.html
-      svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-nephron_1.3.svg
-      ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-nephron_1.3.svg
+      svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.svg
+      ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.ai
+      png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.png
     - name: Renal Corpuscle
       image: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-renal-corpuscle.svg
       expandedImage: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-renal-corpuscle.svg
       url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-renal-corpuscle.html
       svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-renal-corpuscle.svg
       ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-renal-corpuscle.ai
+      png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-renal-corpuscle.png
     - name: Thick Ascending Loop Of Henle
       image: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.svg
       expandedImage: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.svg
       url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.html
       svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.svg
       ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.ai
+      png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.png
   - name: Large Intestine
     image: assets/images/large_intestine.svg
     tissueData:
@@ -138,6 +146,7 @@ organInfo:
       url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.html
       svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.svg
       ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.ai
+      png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.png
   - name: Liver
     image: assets/images/liver.svg
     tissueData:
@@ -147,6 +156,7 @@ organInfo:
       url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-liver-liver-lobule.html
       svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-liver-liver-lobule.svg
       ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-liver-liver-lobule.ai
+      png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-liver-liver-lobule.png
   - name: Lung
     image: assets/images/lungs.svg
     tissueData:
@@ -156,12 +166,14 @@ organInfo:
       url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-lung-bronchial-submucosal-gland.html
       svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-bronchial-submucosal-gland.svg
       ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-bronchial-submucosal-gland.ai
+      png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-bronchial-submucosal-gland.png
     - name: Pulmonary Alveolus
       image: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-pulmonary-alveolus.svg
       expandedImage: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-pulmonary-alveolus.svg
       url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-lung-pulmonary-alveolus.html
       svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-pulmonary-alveolus.svg
-      ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-pulmonary-alveolus.ai'
+      ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-pulmonary-alveolus.ai
+      png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-pulmonary-alveolus.png
   - name: Pancreas
     image: assets/images/pancreas.svg
     tissueData:
@@ -171,18 +183,21 @@ organInfo:
       url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-pancreas-intercalated-duct.html
       svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-intercalated-duct.svg
       ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-intercalated-duct.ai
+      png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-intercalated-duct.png
     - name: Pancreatic Acinus
       image: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-pancreatic-acinus.svg
       expandedImage: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-pancreatic-acinus.svg
       url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-pancreas-pancreatic-acinus.html
       svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-pancreatic-acinus.svg
       ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-pancreatic-acinus.ai
+      png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-pancreatic-acinus.png
     - name: Islets Of Langerhans Pancreas
       image: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-islets-langerhans.svg
       expandedImage: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-islets-langerhans.svg
       url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-pancreas-islets-langerhans.html
       svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-islets-langerhans.svg
       ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-islets-langerhans.ai
+      png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-islets-langerhans.png
   - name: Prostate
     image: assets/images/prostate.svg
     tissueData:
@@ -192,6 +207,7 @@ organInfo:
       url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.html
       svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.svg
       ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.ai
+      png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.png
   - name: Skin
     image: assets/images/skin.svg
     tissueData:
@@ -201,12 +217,14 @@ organInfo:
       url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-skin-dermal-papilla.html
       svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-dermal-papilla.svg
       ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-dermal-papilla.ai
+      png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-dermal-papilla.png
     - name: Epidermal Ridge
       image: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.svg
       expandedImage: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.svg
       url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-skin-epidermal-ridge.html
       svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.svg
       ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.ai
+      png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.png
   - name: Thymus
     image: assets/images/thymus.svg
     tissueData:
@@ -216,6 +234,7 @@ organInfo:
       url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-thymus-thymus-lobule.html
       svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.svg
       ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.ai
+      png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.png
 - version: "1.2"
   organData: 
   - name: Kidney
