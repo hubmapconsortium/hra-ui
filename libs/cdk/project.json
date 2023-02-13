@@ -53,7 +53,8 @@
         "port": 4400,
         "configDir": "libs/cdk/.storybook",
         "browserTarget": "cdk:build-storybook",
-        "compodoc": false
+        "compodoc": true,
+        "compodocArgs": ["-e", "json", "-d", "dist/compodoc/cdk"]
       },
       "configurations": {
         "ci": {
@@ -68,7 +69,8 @@
         "outputDir": "dist/storybook/cdk",
         "configDir": "libs/cdk/.storybook",
         "browserTarget": "cdk:build-storybook",
-        "compodoc": false,
+        "compodoc": true,
+        "compodocArgs": ["-e", "json", "-d", "dist/compodoc/cdk"],
         "styles": [".storybook/styles.scss"],
         "stylePreprocessorOptions": {
           "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
