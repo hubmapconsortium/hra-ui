@@ -92,5 +92,6 @@
       }
     }
   },
-  "tags": ["app"]
+  "tags": ["app"],
+  "implicitDependencies": ["shared-theming"]
 }
