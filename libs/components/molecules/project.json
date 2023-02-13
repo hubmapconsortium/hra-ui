@@ -9,7 +9,10 @@
       "executor": "@nrwl/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "libs/components/molecules/ng-package.json"
+        "project": "libs/components/molecules/ng-package.json",
+        "stylePreprocessorOptions": {
+          "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
+        }
       },
       "configurations": {
         "production": {
@@ -26,7 +29,10 @@
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "libs/components/molecules/jest.config.ts",
-        "passWithNoTests": true
+        "passWithNoTests": true,
+        "stylePreprocessorOptions": {
+          "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
+        }
       },
       "configurations": {
         "ci": {
