@@ -1,0 +1,45 @@
+:host {
+  display: flex;
+  // flex-direction: row;
+  // align-items: center;
+  // padding: 1rem 2rem;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e7e9;
+  font-family: 'Inter';
+  font-style: normal;
+  justify-content: space-between;
+  // gap: 1.2rem;
+  align-items: center;
+
+  .header-text-1 {
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #990000;
+    margin-right: 1.5rem;
+  }
+
+  .header-text-2 {
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: #243142;
+  }
+
+  .header-text-3 {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #006298;
+    text-decoration: underline;
+  }
+
+  .filler {
+    flex-grow: 1;
+  }
+
+  .logo-image {
+    margin-right: 1rem;
+  }
+
+  .info-image {
+    margin-right: 0.5rem;
+  }
+}
