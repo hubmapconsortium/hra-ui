@@ -48,8 +48,7 @@
         "port": 4400,
         "configDir": "libs/components/behavioral/.storybook",
         "browserTarget": "components-behavioral:build-storybook",
-        "compodoc": true,
-        "compodocArgs": ["-e", "json", "-d", "dist/compodoc/components-behavioral"]
+        "compodoc": false
       },
       "configurations": {
         "ci": {
@@ -64,8 +63,7 @@
         "outputDir": "dist/storybook/components-behavioral",
         "configDir": "libs/components/behavioral/.storybook",
         "browserTarget": "components-behavioral:build-storybook",
-        "compodoc": true,
-        "compodocArgs": ["-e", "json", "-d", "dist/compodoc/components-behavioral"],
+        "compodoc": false,
         "styles": [".storybook/styles.scss"],
         "stylePreprocessorOptions": {
           "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
@@ -81,6 +79,29 @@
       "executor": "nx:run-commands",
       "options": {
         "command": "test-storybook -c libs/components/behavioral/.storybook --url=http://localhost:4400"
+      }
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/components/behavioral/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/components-behavioral"
+      },
+      "configurations": {
+        "watch": {
+          "watch": true,
+          "disableCoverage": false,
+          "disablePrivate": false,
+          "disableInternal": false
+        }
+      }
+    },
+    "compodoc-json": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/components/behavioral/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/components-behavioral",
+        "exportFormat": "json"
       }
     }
   },

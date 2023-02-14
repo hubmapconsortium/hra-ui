@@ -53,8 +53,7 @@
         "port": 4400,
         "configDir": "libs/cdk/.storybook",
         "browserTarget": "cdk:build-storybook",
-        "compodoc": true,
-        "compodocArgs": ["-e", "json", "-d", "dist/compodoc/cdk"]
+        "compodoc": false
       },
       "configurations": {
         "ci": {
@@ -69,8 +68,7 @@
         "outputDir": "dist/storybook/cdk",
         "configDir": "libs/cdk/.storybook",
         "browserTarget": "cdk:build-storybook",
-        "compodoc": true,
-        "compodocArgs": ["-e", "json", "-d", "dist/compodoc/cdk"],
+        "compodoc": false,
         "styles": [".storybook/styles.scss"],
         "stylePreprocessorOptions": {
           "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
@@ -86,6 +84,29 @@
       "executor": "nx:run-commands",
       "options": {
         "command": "test-storybook -c libs/cdk/.storybook --url=http://localhost:4400"
+      }
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/cdk/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/cdk"
+      },
+      "configurations": {
+        "watch": {
+          "watch": true,
+          "disableCoverage": false,
+          "disablePrivate": false,
+          "disableInternal": false
+        }
+      }
+    },
+    "compodoc-json": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/cdk/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/cdk",
+        "exportFormat": "json"
       }
     }
   },

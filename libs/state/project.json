@@ -41,6 +41,29 @@
       "options": {
         "lintFilePatterns": ["libs/state/**/*.ts", "libs/state/**/*.html"]
       }
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/state/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/state"
+      },
+      "configurations": {
+        "watch": {
+          "watch": true,
+          "disableCoverage": false,
+          "disablePrivate": false,
+          "disableInternal": false
+        }
+      }
+    },
+    "compodoc-json": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/state/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/state",
+        "exportFormat": "json"
+      }
     }
   },
   "tags": ["state"]
