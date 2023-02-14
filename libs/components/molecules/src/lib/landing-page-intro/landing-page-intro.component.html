@@ -1,14 +1,14 @@
 <div class="left-block">
-  <h1>Welcome to the Functional Tissue Unit Explorer</h1>
+  <h1>{{ title }}</h1>
   <markdown [data]="description"></markdown>
 
-  <button mat-flat-button color="primary">
-    Explore FTUs
+  <button mat-flat-button color="primary" (click)="moreClick.emit()">
+    {{ moreText }}
     <mat-icon>arrow_right_alt</mat-icon>
   </button>
-  <markdown [data]="thankyouMessage"></markdown>
+  <markdown [data]="partners"></markdown>
 </div>
 
 <div class="right-block">
-  <img [src]="welcomeImg" />
+  <img [src]="img" />
 </div>
