@@ -27,5 +27,5 @@ export class LandingPageIntroComponent {
 <a href='' target='_blank'>Kidney Precision Medicine Project</a> and <a href=''>European Bioinformatics Institute.</a>`;
 
   /** image file */
-  @Input() welcomeImg = '';
+  @Input() welcomeImg = '../../assets/welcome.svg';
 }

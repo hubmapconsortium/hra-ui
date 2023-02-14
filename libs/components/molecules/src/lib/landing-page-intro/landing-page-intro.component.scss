@@ -2,8 +2,15 @@
   display: flex;
   justify-content: space-between;
   margin: 2em;
+  align-items: center;
   .left-block {
     width: 45%;
     margin: 0 5em;
+    button {
+      margin: 1em 0;
+    }
+  }
+  .right-block {
+    width: 45%;
   }
 }
