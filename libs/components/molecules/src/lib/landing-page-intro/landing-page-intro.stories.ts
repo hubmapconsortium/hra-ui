@@ -4,7 +4,7 @@ import { LandingPageIntroComponent } from './landing-page-intro.component';
 
 export default {
   title: 'Molecule/LandingPageIntro',
-  component: LandingPageIntroComponent
+  component: LandingPageIntroComponent,
 } as Meta<LandingPageIntroComponent>;
 
 const Template: Story<LandingPageIntroComponent> = (args) => ({ props: args });

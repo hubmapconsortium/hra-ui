@@ -1,0 +1,5 @@
+@use 'angular-material-css-vars/src/lib/main' as mat-css;
+
+@mixin init($args...) {
+  @include mat-css.init-material-css-vars($args...);
+}
