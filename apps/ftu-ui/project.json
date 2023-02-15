@@ -17,6 +17,9 @@
         "inlineStyleLanguage": "scss",
         "assets": ["apps/ftu-ui/src/favicon.ico", "apps/ftu-ui/src/assets"],
         "styles": ["apps/ftu-ui/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
+        },
         "scripts": []
       },
       "configurations": {
@@ -86,5 +89,6 @@
       }
     }
   },
-  "tags": ["app"]
+  "tags": ["app"],
+  "implicitDependencies": ["shared-theming"]
 }

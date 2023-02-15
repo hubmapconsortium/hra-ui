@@ -63,7 +63,11 @@
         "outputDir": "dist/storybook/components-behavioral",
         "configDir": "libs/components/behavioral/.storybook",
         "browserTarget": "components-behavioral:build-storybook",
-        "compodoc": false
+        "compodoc": false,
+        "styles": [".storybook/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
+        }
       },
       "configurations": {
         "ci": {
