@@ -1,16 +1,12 @@
 :host {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-auto-flow: column;
   margin: 2em;
   align-items: center;
-  .left-block {
-    width: 45%;
+  .intro {
     margin: 0 5em;
     button {
       margin: 1em 0;
     }
-  }
-  .right-block {
-    width: 45%;
   }
 }

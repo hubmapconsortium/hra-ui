@@ -13,23 +13,21 @@ import { MarkdownModule } from 'ngx-markdown';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingPageIntroComponent {
-  /** Input for title */
+  /** Intro title for FTU Explorer */
   @Input() title = '';
 
-  /** Description for FTU */
-  @Input()
-  description = '';
+  /** Description for FTU Explorer */
+  @Input() description = '';
 
-  /** partners */
-  @Input()
-  partners = '';
+  /** Thank you message to partners */
+  @Input() partners = '';
 
-  /** image file */
+  /** Intro Image file url */
   @Input() img = '';
 
-  /** Input for more text */
+  /** Text for more button */
   @Input() moreText = '';
 
-  /** Event emitter for explore button */
+  /** Emits when the more button is clicked */
   @Output() moreClick = new EventEmitter<void>();
 }

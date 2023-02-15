@@ -10,6 +10,6 @@ describe('LandingPageIntroComponent', () => {
   });
 
   it('should create LandingPageIntroComponent', async () => {
-    expect(await shallow.render()).toBeDefined();
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 });
