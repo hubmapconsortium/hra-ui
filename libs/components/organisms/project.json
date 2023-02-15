@@ -88,7 +88,7 @@
         "outputPath": "dist/compodoc/components-organisms"
       },
       "configurations": {
-        "watch": {
+        "serve": {
           "watch": true,
           "disableCoverage": false,
           "disablePrivate": false,

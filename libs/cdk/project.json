@@ -93,7 +93,7 @@
         "outputPath": "dist/compodoc/cdk"
       },
       "configurations": {
-        "watch": {
+        "serve": {
           "watch": true,
           "disableCoverage": false,
           "disablePrivate": false,
