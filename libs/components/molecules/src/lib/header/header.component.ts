@@ -10,6 +10,6 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  @Input() logo = 'assets/icons/logo-icon.svg';
-  @Input() info = 'assets/icons/logo-icon.svg';
+  @Input() logo = '';
+  @Input() info = '';
 }

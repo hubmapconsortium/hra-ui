@@ -2,7 +2,7 @@ import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { HeaderComponent } from './header.component';
 
 export default {
-  title: 'HeaderComponent',
+  title: 'Molecule/HeaderComponent',
   component: HeaderComponent,
   decorators: [
     moduleMetadata({
