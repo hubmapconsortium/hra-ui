@@ -36,7 +36,7 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e", "build-storybook", "compodoc", "compodoc-json"],
+        "cacheableOperations": ["build", "lint", "test", "e2e", "build-storybook", "compodoc", "compodoc-json", "test-doc-coverage"],
         "accessToken": "NWM3NTZiNjktMDcyMS00ZmQ3LWFlNzYtZDZkZmY0OTVjYzU3fHJlYWQtd3JpdGU="
       }
     }

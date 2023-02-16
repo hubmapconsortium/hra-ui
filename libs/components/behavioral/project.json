@@ -104,7 +104,7 @@
         "exportFormat": "json"
       }
     },
-    "test-compodoc": {
+    "test-doc-coverage": {
       "command": "compodoc -p libs/components/behavioral/tsconfig.lib.json -d tmp/doc-coverage -e json --coverageTest --coverageMinimumPerFile 100 --coverageTestShowOnlyFailed -t"
     }
   },
