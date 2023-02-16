@@ -25,6 +25,7 @@
   }
 
   .header-text-3 {
+    cursor: pointer;
     font-weight: 700;
     font-size: 1rem;
     color: #006298;
@@ -41,5 +42,9 @@
 
   .info-image {
     margin-right: 0.5rem;
+  }
+
+  .logo-link{
+    cursor: pointer;
   }
 }
