@@ -1,1 +1,23 @@
-<p>source-list works!</p>
+<!-- <mat-list class="source-list-container" *ngFor="let source of sources; index as i">
+  <mat-list-item class="source-item">
+      <span class="owner-title" matListItemTitle>{{ source.ownerTitle }}</span>
+      <a matListItemLine [href]="source.link" target='_blank'>{{ source.datasetTitle }}</a>
+  </mat-list-item>
+ </mat-list> -->
+
+
+ <table mat-table [dataSource]="sources">
+  <!-- Position Column -->
+  <ng-container matColumnDef="datasetTitle">
+    <td mat-cell *matCellDef="let element; let i = index"> {{i+1}}. </td>
+  </ng-container>
+
+  <!-- Data Column -->
+  <ng-container matColumnDef="ownerTitle">
+    <td mat-cell *matCellDef="let element"> {{element.title}} <br> <a [href]="element.link" target='_blank'>{{element.link}} </a></td>
+  </ng-container>
+
+  <tr mat-row *matRowDef="let row; columns: ['datasetTitle', 'ownerTitle'];"></tr>
+</table>
+
+

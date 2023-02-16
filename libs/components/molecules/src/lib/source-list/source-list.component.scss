@@ -1,3 +1,10 @@
 :host {
-  display: block;
+
+  .mat-mdc-cell {
+    vertical-align: top;
+    border: none;
+    padding: 4px 14px;
+    font-size: 16px;
+  }
+
 }
