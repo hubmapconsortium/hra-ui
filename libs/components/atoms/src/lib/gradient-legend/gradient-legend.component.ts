@@ -17,7 +17,11 @@ export interface GradientPoint {
 })
 export class GradientLegendComponent {
   constructor() {
-    this.gradient = [{ color: '#63B1D3', percentage: 100 }];
+    this.gradient = [
+      { color: '#00385F', percentage: 0 },
+      { color: '#63B1D3', percentage: 49.78 },
+      { color: '#EDFAFD', percentage: 100 },
+    ];
     this.updateGradient();
   }
 
@@ -28,7 +32,7 @@ export class GradientLegendComponent {
 
   private updateGradient(): void {
     const stops = this.gradient.map(({ percentage, color }) => `${color} ${percentage}%`).join(',');
-    this.newGradient = `linear-gradient(to right, ${stops})`;
+    this.newGradient = `linear-gradient(270deg, ${stops})`;
     console.log(this.newGradient);
   }
 }
