@@ -39,6 +39,10 @@ export class TableComponent {
 
   readonly dataSource = new MatTableDataSource<TableData>([]);
 
+  get firstColumnId(): string {
+    return this.columns[0]?.columnDef ?? '';
+  }
+
   getTotal(id: string) {
     return this.dataSource.data
       .filter(entry => typeof entry[id] === 'number')
@@ -46,6 +50,10 @@ export class TableComponent {
   }
 
   isNumericColumn(column: string): boolean {
+    if (column === 'tableVersion') {
+      return false;
+    }
+
     let hasAtLeastOneNumber = false;
     for (const { [column]: value } of this.dataSource.data) {
       if (value === null) {

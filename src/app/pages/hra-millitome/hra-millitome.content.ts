@@ -10,6 +10,7 @@ export const headerInfo: HeaderData[] = [
       `<a class="cell-link" href="${
         element['url'] || 'TODO:Please add a url column to this .csv!'
       }">${element['organ']}</a>`,
+      alignment: 'start'
   },
   {
     columnDef: 'sex',

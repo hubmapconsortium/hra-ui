@@ -1,27 +1,27 @@
-Organ,AS,CT,B_Total,BG,BP,BM,BF,BL,ASWithNoLink,CTWithNoLink,BWithNoLink,ASWithNoCT,CTWithNoB,AS_AS,AS_CT,CT_BM,url
-Blood,1,29,159,112,47,0,0,0,0,1,0,0,0,1,29,499,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-blood-pelvis.html
-Blood vasculature,992,10,10,10,0,0,0,0,622,0,0,0,7,1020,2204,11,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-blood-vasculature.html
-Bone marrow,1,47,262,198,64,0,0,0,0,1,4,0,0,1,47,838,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-bonemarrow-pelvis.html
-Brain,183,127,256,256,0,0,0,0,61,64,0,138,0,183,127,346,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-allen-brain.html
-Eye,26,53,140,61,75,1,3,0,2,10,22,4,5,27,58,404,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-eye.html
-Fallopian tube,72,18,26,13,13,0,0,0,63,15,18,33,1,84,81,27,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/fallopian-tube.html
-Heart,52,28,44,44,0,0,0,0,23,2,1,0,7,64,230,76,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-heart.html
-Kidney,57,67,184,184,0,0,0,0,6,25,5,0,0,72,75,300,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/kidney.html
-Knee,32,24,12,0,12,0,0,0,7,0,11,15,11,32,12,26,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/knee.html
-Large intestine,54,58,166,83,83,0,0,0,0,1,3,0,0,287,1180,360,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-large-intestine.html
-Liver,17,31,85,29,56,0,0,0,3,3,6,1,2,17,32,116,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/liver.html
-Lung,73,79,280,191,89,0,0,0,12,1,16,7,0,118,172,567,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/lung.html
-Lymph nodes,34,45,223,106,117,0,0,0,1,2,0,0,0,43,86,499,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/lymph-node.html
-Lymph vasculature,38,1,1,1,0,0,0,0,24,0,0,0,0,38,21,1,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-lymph-vasculature.html
-Ovary,75,16,15,0,14,0,0,1,45,4,11,29,13,109,36,15,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-ovary.html
-Pancreas,31,35,57,54,2,0,1,0,2,3,8,11,3,132,180,142,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-pancreas.html
-Peripheral nervous system,782,1,2,1,1,0,0,0,749,1,0,1,0,803,609,2,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/peripheral-nervous-system.html
-Placenta,25,22,44,43,0,0,0,1,8,1,6,0,0,32,44,74,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/placenta-full-term.html
-Prostate,4,12,31,31,0,0,0,0,0,0,7,0,0,4,12,36,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/prostate.html
-Skin,15,36,70,0,70,0,0,0,0,2,3,0,0,17,19,100,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/skin.html
-Small intestine,39,34,89,43,46,0,0,0,16,87,9,16,10,69,165,108,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-small-intestine.html
-Spleen,37,59,194,85,109,0,0,0,13,8,13,0,0,50,129,419,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-spleen.html
-Thymus,18,50,394,318,76,0,0,0,0,2,0,1,0,34,20,602,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-thymus.html
-Ureter,7,14,30,30,0,0,0,0,1,0,11,1,0,7,14,61,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/ureter.html
-Urinary bladder,16,15,30,30,0,0,0,0,0,0,11,5,0,16,16,63,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/urinary-bladder.html
-Uterus,61,18,45,39,6,0,0,0,36,45,18,21,1,89,34,65,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/uterus.html
+Organ,tableVersion,AS,CT,B_Total,BG,BP,BM,BF,BL,ASWithNoLink,CTWithNoLink,BWithNoLink,ASWithNoCT,CTWithNoB,AS_AS,AS_CT,CT_BM,url
+Blood,1.3,1,29,159,112,47,0,0,0,0,1,0,0,0,1,29,499,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-blood-pelvis.html
+Blood vasculature,1.3,992,10,10,10,0,0,0,0,622,0,0,0,7,1020,2204,11,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-blood-vasculature.html
+Bone marrow,1.3,1,47,262,198,64,0,0,0,0,1,4,0,0,1,47,838,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-bonemarrow-pelvis.html
+Brain,1.3,183,127,256,256,0,0,0,0,61,64,0,138,0,183,127,346,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-allen-brain.html
+Eye,1.2,26,53,140,61,75,1,3,0,2,10,22,4,5,27,58,404,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-eye.html
+Fallopian tube,1.1,72,18,26,13,13,0,0,0,63,15,18,33,1,84,81,27,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/fallopian-tube.html
+Heart,1.2,52,28,44,44,0,0,0,0,23,2,1,0,7,64,230,76,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-heart.html
+Kidney,1.2,57,67,184,184,0,0,0,0,6,25,5,0,0,72,75,300,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/kidney.html
+Knee,1.1,32,24,12,0,12,0,0,0,7,0,11,15,11,32,12,26,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/knee.html
+Large intestine,1.3,54,58,166,83,83,0,0,0,0,1,3,0,0,287,1180,360,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-large-intestine.html
+Liver,1.1,17,31,85,29,56,0,0,0,3,3,6,1,2,17,32,116,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/liver.html
+Lung,1.2,73,79,280,191,89,0,0,0,12,1,16,7,0,118,172,567,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/lung.html
+Lymph nodes,1.2,34,45,223,106,117,0,0,0,1,2,0,0,0,43,86,499,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/lymph-node.html
+Lymph vasculature,1.2,38,1,1,1,0,0,0,0,24,0,0,0,0,38,21,1,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-lymph-vasculature.html
+Ovary,1.2,75,16,15,0,14,0,0,1,45,4,11,29,13,109,36,15,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-ovary.html
+Pancreas,1.2,31,35,57,54,2,0,1,0,2,3,8,11,3,132,180,142,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-pancreas.html
+Peripheral nervous system,1.0,782,1,2,1,1,0,0,0,749,1,0,1,0,803,609,2,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/peripheral-nervous-system.html
+Placenta,1.0,25,22,44,43,0,0,0,1,8,1,6,0,0,32,44,74,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/placenta-full-term.html
+Prostate,1.0,4,12,31,31,0,0,0,0,0,0,7,0,0,4,12,36,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/prostate.html
+Skin,1.2,15,36,70,0,70,0,0,0,0,2,3,0,0,17,19,100,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/skin.html
+Small intestine,1.1,39,34,89,43,46,0,0,0,16,87,9,16,10,69,165,108,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-small-intestine.html
+Spleen,1.3,37,59,194,85,109,0,0,0,13,8,13,0,0,50,129,419,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-spleen.html
+Thymus,1.3,18,50,394,318,76,0,0,0,0,2,0,1,0,34,20,602,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/asct-b-vh-thymus.html
+Ureter,1.0,7,14,30,30,0,0,0,0,1,0,11,1,0,7,14,61,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/ureter.html
+Urinary bladder,1.0,16,15,30,30,0,0,0,0,0,0,11,5,0,16,16,63,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/urinary-bladder.html
+Uterus,1.1,61,18,45,39,6,0,0,0,36,45,18,21,1,89,34,65,https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/asct-b/uterus.html

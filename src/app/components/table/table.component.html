@@ -1,39 +1,44 @@
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 demo-table">
-
+<table mat-table [dataSource]="dataSource" matSort [matSortActive]="firstColumnId" matSortDirection="asc"  class="mat-elevation-z8 data-table">
   <ng-container *ngIf="cellHeaders">
     <ng-container *ngFor="let cells of cellHeaders" [matColumnDef]="cells.columnDef">
       <th mat-header-cell *matHeaderCellDef [attr.colspan]="cells.colspan ?? 1" [attr.rowspan]="cells.rowspan ?? 1"
-        class="table-title additional-header">{{cells.header}}</th>
+        class="table-title additional-header">
+        {{ cells.header }}
+      </th>
     </ng-container>
   </ng-container>
 
   <ng-container *ngIf="additionalHeaders">
     <ng-container *ngFor="let addition of additionalHeaders" [matColumnDef]="addition.columnDef">
       <th mat-header-cell *matHeaderCellDef [attr.colspan]="addition.colspan ?? 1"
-        [attr.rowspan]="addition.rowspan ?? 1" class="table-title additional-header">{{addition.header}}</th>
+        [attr.rowspan]="addition.rowspan ?? 1" class="table-title additional-header">
+        {{ addition.header }}
+      </th>
     </ng-container>
   </ng-container>
 
   <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
     <ng-container *ngIf="column.sorting ?? true; else: noSortHeader">
-      <th mat-header-cell *matHeaderCellDef class="table-title" mat-sort-header 
-        [class]="getAlignmentClass(column)">{{ column.header }}</th>
+      <th mat-header-cell *matHeaderCellDef class="table-title" mat-sort-header [class]="getAlignmentClass(column)">
+        {{ column.header }}
+      </th>
     </ng-container>
     <ng-template #noSortHeader>
-      <th mat-header-cell *matHeaderCellDef
-        class="table-title">{{ column.header }}</th>
+      <th mat-header-cell *matHeaderCellDef class="table-title">{{ column.header }}</th>
     </ng-template>
-    <td mat-cell *matCellDef="let row" [innerHtml]="formatData(column.cell(row))" [class.transform]="isOrgan"
-      [class]="getAlignmentClass(column)"></td>
+
+    <td mat-cell *matCellDef="let row" class="table-cell" [innerHtml]="formatData(column.cell(row))" [class.transform]="isOrgan"
+      [class]="getAlignmentClass(column)">
+    </td>
+
     <ng-container *ngIf="isTotal">
       <td mat-footer-cell *matFooterCellDef class="table-footer">
         <ng-container *ngIf="isNumericColumn(column.columnDef); else: totalLabel">
           {{ getTotal(column.columnDef) }}
         </ng-container>
         <ng-template #totalLabel>
-          <ng-container *ngIf="column.isTotalRequired; else: blank">Totals</ng-container>
+          <ng-container *ngIf="column.isTotalRequired">Totals</ng-container>
         </ng-template>
-        <ng-template #blank></ng-template>
       </td>
     </ng-container>
   </ng-container>
@@ -51,6 +56,7 @@
   <div class="first-column">
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </div>
+
   <div *ngIf="isTotal">
     <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
   </div>
