@@ -103,6 +103,9 @@
         "outputPath": "dist/compodoc/components-atoms",
         "exportFormat": "json"
       }
+    },
+    "test-compodoc": {
+      "command": "compodoc -p libs/components/atoms/tsconfig.lib.json -d tmp/doc-coverage -e json --coverageTest --coverageMinimumPerFile 100 --coverageTestShowOnlyFailed -t"
     }
   },
   "tags": ["components", "atoms"]

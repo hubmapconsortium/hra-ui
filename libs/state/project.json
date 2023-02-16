@@ -64,6 +64,9 @@
         "outputPath": "dist/compodoc/state",
         "exportFormat": "json"
       }
+    },
+    "test-compodoc": {
+      "command": "compodoc -p libs/state/tsconfig.lib.json -d tmp/doc-coverage -e json --coverageTest --coverageMinimumPerFile 100 --coverageTestShowOnlyFailed -t"
     }
   },
   "tags": ["state"]

@@ -103,6 +103,9 @@
         "outputPath": "dist/compodoc/components-molecules",
         "exportFormat": "json"
       }
+    },
+    "test-compodoc": {
+      "command": "compodoc -p libs/components/molecules/tsconfig.lib.json -d tmp/doc-coverage -e json --coverageTest --coverageMinimumPerFile 100 --coverageTestShowOnlyFailed -t"
     }
   },
   "tags": ["components", "molecules"]

@@ -64,6 +64,9 @@
         "outputPath": "dist/compodoc/shared-testing",
         "exportFormat": "json"
       }
+    },
+    "test-compodoc": {
+      "command": "compodoc -p libs/shared/testing/tsconfig.lib.json -d tmp/doc-coverage -e json --coverageTest --coverageMinimumPerFile 100 --coverageTestShowOnlyFailed -t"
     }
   },
   "tags": ["utils", "testing"]
