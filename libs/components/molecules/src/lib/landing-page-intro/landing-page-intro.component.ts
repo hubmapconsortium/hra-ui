@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MarkdownModule } from 'ngx-markdown';
 
+/** Component for LandingPage Intro */
 @Component({
   selector: 'hra-landing-page-intro',
   standalone: true,
