@@ -1,84 +1,25 @@
 :host {
   display: flex;
-  //justify-content: center;
   flex-direction: row;
-  overflow: hidden;
-  column-gap: 2.81rem;
-  //align-items: flex-start;
+  column-gap: 2rem;
+  min-height: 5rem;
+  .item {
+    display: flex;
+    flex-direction: column;
 
-  .circle1 {
-    margin-top: 1.5rem;
-    height: 0.5rem;
-    width: 0.5rem;
-    top: 0.5rem;
-    left: 0.5rem;
-    border-radius: 50%;
-    border: 0.125rem solid #75838F;
-  }
+    .circle {
+      height: var(--size);
+      width: var(--size);
+      border-radius: 50%;
+      border: 0.125rem solid #75838f;
+    }
 
-  .circle2 {
-    margin-top: 1.25rem;
-    height: 1rem;
-    width: 1rem;
-    top: 0.25rem;
-    left: 0.25rem;
-    border-radius: 50%;
-    border: 0.125rem solid #75838F;
-  }
+    .label {
+      margin-top: 1rem;
+    }
 
-  .circle3 {
-    margin-top: 1rem;
-    height: 1.5rem;
-    width: 1.5rem;
-    left: 0.375rem;
-    border-radius: 50%;
-    border: 0.125rem solid #75838F;
-  }
-
-  .text1 {
-
-    margin-top: 1rem;
-    width: 1.31rem;
-    height: 1.06rem;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 0.875rem;
-    line-height: 1.06rem;
-    color: #243142;
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-
-  }
-
-  .text2 {
-    margin-top: 0.75rem;
-    width: 1.81rem;
-    height: 1.06rem;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 0.875rem;
-    line-height: 1.06rem;
-    color: #243142;
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-  }
-
-  .text3 {
-    margin-top: 0.5rem;
-    width: 2.25rem;
-    height: 1.06rem;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 0.875rem;
-    line-height: 1.06rem;
-    color: #243142;
-    flex: none;
-    order: 1;
-    flex-grow: 0;
+    .filler {
+      flex-grow: 1;
+    }
   }
 }

@@ -1,12 +1,6 @@
-<div class="circle">
-    <div class="circle1"></div>
-    <div class="text1">0%</div>
-</div>
-<div class="circle">
-    <div class="circle2"></div>
-    <div class="text2">50%</div>
-</div>
-<div class="circle">
-    <div class="circle3"></div>
-    <div class="text3">100%</div>
+<div *ngFor="let text of sizes" class="item">
+  <div class="filler"></div>
+  <div class="circle" style="--size: {{ text.radius }}rem"></div>
+  <div class="filler"></div>
+  <div class="label">{{ text.label }}</div>
 </div>

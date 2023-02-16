@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SizeLegend } from '../size-legend';
 
 @Component({
   selector: 'hra-size-legend',
@@ -9,4 +10,21 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./size-legend.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SizeLegendComponent {}
+export class SizeLegendComponent {
+  @Input() sizes: SizeLegend[] = [];
+
+  /*   texts:SizeLegend[]=[
+    {
+      "label":"0%",
+      "radius":0.5,
+    },
+    {
+      "label":"50%",
+      "radius":1
+    },
+    {
+      "label":"100%",
+      "radius":1.5
+    }
+  ] */
+}

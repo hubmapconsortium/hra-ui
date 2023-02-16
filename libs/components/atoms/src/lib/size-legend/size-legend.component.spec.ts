@@ -1,22 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
 
 import { SizeLegendComponent } from './size-legend.component';
 
 describe('SizeLegendComponent', () => {
-  let component: SizeLegendComponent;
-  let fixture: ComponentFixture<SizeLegendComponent>;
+  let shallow: Shallow<SizeLegendComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [SizeLegendComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(SizeLegendComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    shallow = new Shallow(SizeLegendComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async () => {
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 });
