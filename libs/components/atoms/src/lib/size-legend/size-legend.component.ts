@@ -12,19 +12,4 @@ import { SizeLegend } from '../size-legend';
 })
 export class SizeLegendComponent {
   @Input() sizes: SizeLegend[] = [];
-
-  /*   texts:SizeLegend[]=[
-    {
-      "label":"0%",
-      "radius":0.5,
-    },
-    {
-      "label":"50%",
-      "radius":1
-    },
-    {
-      "label":"100%",
-      "radius":1.5
-    }
-  ] */
 }
