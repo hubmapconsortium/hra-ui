@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 export interface GradientPoint {
   percentage: number;
   color: string;
-  value: string;
+  // value: string;
 }
 
 @Component({
@@ -16,6 +16,19 @@ export interface GradientPoint {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GradientLegendComponent {
+  constructor() {
+    this.gradient = [{ color: '#63B1D3', percentage: 100 }];
+    this.updateGradient();
+  }
+
   @Input()
-  gradient: GradientPoint[];
+  gradient: GradientPoint[] = [];
+
+  newGradient = ' ';
+
+  private updateGradient(): void {
+    const stops = this.gradient.map(({ percentage, color }) => `${color} ${percentage}%`).join(',');
+    this.newGradient = `linear-gradient(to right, ${stops})`;
+    console.log(this.newGradient);
+  }
 }
