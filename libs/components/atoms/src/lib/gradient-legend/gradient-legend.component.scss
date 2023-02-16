@@ -1,66 +1,16 @@
 :host {
   display: block;
+
+  .gradient-bar {
+    height: 1.5rem;
+    width: 100%;
+  }
+
+  .legend {
+    display: flex;
+
+    .filler {
+      flex-grow: 1;
+    }
+  }
 }
-
-.card-body {
-	background-color: white;
-  width: 343.5px;
-  height: 81px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 16px 32px;
-  color: #243142;
-  flex: none;
-  order: 2;
-  align-self: stretch;
-  flex-grow: 0;
-}
-
-#gradient-bar {
-	height: 24px;
-	width: 160px;
-}
-
-#legend {
-	position: relative;
-}
-
-.indicator{
-  display: flex;
-  justify-content: space-between;
-}
-
-.indicator-start {
-	width: 21px;
-  height: 17px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #243142;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
-
-.indicator-end {
-  width: 19px;
-  height: 17px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #243142;
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-}
-
-
-
-
-

@@ -1,18 +1,6 @@
-<div class="container">
-	<div class="row justify-content-center">
-		<div class="card align-self-center">
-			<div class="card-body">
-				<div id="legend">
-					<div class="scale">
-						<div id="gradient-bar" [style.background]="newGradient"></div>
-            <div class="indicator">
-              <div class="indicator-start">0.0</div>
-              <div class="indicator-end">1.0</div>
-          </div>
-					</div>
-
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="gradient-bar" [style.background]="gradientCss"></div>
+<div class="legend">
+  <div class="start">0.0</div>
+  <div class="filler"></div>
+  <div class="end">1.0</div>
 </div>
