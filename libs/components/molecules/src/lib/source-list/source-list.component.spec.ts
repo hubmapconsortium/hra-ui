@@ -1,22 +1,13 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Shallow } from 'shallow-render';
 import { SourceListComponent } from './source-list.component';
 
 describe('SourceListComponent', () => {
-  let component: SourceListComponent;
-  let fixture: ComponentFixture<SourceListComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [SourceListComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(SourceListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  let shallow: Shallow<SourceListComponent>;
+  beforeEach(() => {
+    shallow = new Shallow(SourceListComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async () => {
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 });
