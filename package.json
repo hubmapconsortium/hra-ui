@@ -20,6 +20,7 @@
     "@ngxs/store": "^3.7.6",
     "@nrwl/angular": "15.6.3",
     "angular-material-css-vars": "^4.2.1",
+    "ngx-markdown": "^15.1.1",
     "normalize.css": "^8.0.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
