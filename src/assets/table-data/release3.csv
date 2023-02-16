@@ -1,4 +1,4 @@
-Organ,tableVersion,AS,CT,B_Total,BG,BP,BM,BF,BL,ASWithNoLink,CTWithNoLink,BWithNoLink,ASWithNoCT,CTWithNoB,AS_AS,AS_CT,CT_BM
+Organ,tableVersion,AS,CT,B_Total,BG,BP,BM,BF,BL,ASWithNoLink,CTWithNoLink,BWithNoLink,ASWithNoCT,CTWithNoB,AS_AS,AS_CT,CT_BM,url
 Blood,1.2,1,30,159,112,47,0,0,0,0,1,4,0,0,1,30,506,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/asct-b/blood-pelvis.html
 Blood Vasculature,1.2,918,10,10,10,0,0,0,0,541,0,0,0,7,952,2030,11,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/asct-b/blood-vasculature.html
 Bone marrow,1.2,1,47,262,198,64,0,0,0,0,1,10,0,0,1,47,838,https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/asct-b/bone-marrow-pelvis.html

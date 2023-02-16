@@ -31,12 +31,12 @@ $border-color: #e0e0e0;
 
 :host {
   display: block;
+  width: 100%;
+  overflow-x: auto;
 
   .data-table {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
     table-layout: fixed;
+    min-width: 100%;
     background-color: $background-color;
     border: 0.063rem solid $border-color;
     box-shadow: 0rem 0.125rem 0.063rem rgba(0, 0, 0, 0.16);
@@ -45,7 +45,7 @@ $border-color: #e0e0e0;
     .table-cell,
     .table-footer {
       @include default-font();
-      min-width: 150px; // TODO fix me
+      min-width: 6.125rem;
       color: $text-color;
       text-overflow: ellipsis;
       white-space: break-spaces;
@@ -81,8 +81,11 @@ $border-color: #e0e0e0;
       .mat-sort-header-arrow {
       opacity: 0.54 !important;
       transform: rotate(180deg) !important;
-      color: #ebebeb;
+      color: #ebebeb !important;
       size: 3rem;
+      &:hover {
+        color: #8b8383 !important;
+      }
     }
 
     ::ng-deep .mat-column-csv {
@@ -93,31 +96,4 @@ $border-color: #e0e0e0;
     }
 
   }
-
-  // ::ng-deep table > thead > tr > th:nth-child(1) .mat-sort-header-arrow {
-  //   color: #212121 !important;
-  //   &:hover {
-  //     transform: rotate(360deg) !important;
-  //     color: #ebebeb !important;
-  //   }
-  // }
-
-  // .row-one > th {
-  //   text-align: center;
-  // }
-
-  // th.mat-header-cell:last-of-type {
-  //   padding-right: 1rem;
-  // }
-
-  // table td:first-child {
-  //   text-align: left;
-  //   overflow: visible;
-  //   white-space: break-spaces;
-  // }
-
-  // ::ng-deep .mat-sort-header-content {
-  //   white-space: break-spaces;
-  //   text-align: left;
-  // }
 }
