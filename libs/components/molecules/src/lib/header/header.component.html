@@ -1,7 +1,11 @@
-<a class="logo-link" [routerLink]="['/']"><img class="logo-image" [src]="logo" alt="" /></a>
-<p class="header-text-1">Human Reference Atlas</p>
-<p class="header-text-2">Functional Tissue Unit Explorer</p>
+<a class="product-logo-link" [routerLink]="['/']">
+  <img class="product-logo-image" [src]="productLogoUrl" alt="" />
+  <h2 class="product-title">{{ productTitle }}</h2>
+</a>
+
+<h2 class="app-title">{{ appTitle }}</h2>
 <div class="filler"></div>
-<img class="info-image" [src]="info" alt="" />
-<p class="header-text-3"> <a [routerLink]="['/']">About</a></p>
-<!-- <p class="header-text-3">About</p> -->
+<a [routerLink]="['/']">
+  <img class="info-image" [src]="'/assets/icons/info.svg'" alt="" />
+  <span class="about">About</span>
+</a>

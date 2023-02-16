@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  @Input() logo = '';
-  @Input() info = '';
+  @Input() productLogoUrl = '';
+  @Input() productTitle = '';
+  @Input() appTitle = '';
 }
