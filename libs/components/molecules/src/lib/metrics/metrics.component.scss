@@ -1,3 +1,75 @@
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.5rem;
+
+  .logo {
+    height: 44px;
+    padding: 9px 3px 9px 3px;
+  }
+
+  .header-title {
+    color: #243142;
+    //styleName: Regular/32;
+    font-family: Inter;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 0em;
+    margin-bottom: 8px;
+  }
+
+  .metrics {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+
+    .metric {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 236px;
+      min-width: 228px;
+      width: auto;
+      margin: 32px 28px 32px 28px;
+
+      .metric-logo {
+        height: 48px;
+        width: 48px;
+        margin: 32px 90px 32px 90px;
+      }
+
+      div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0px;
+
+        .metric-value {
+          width: 50px;
+          height: 64px;
+          margin: 0px 0px 4px 0px;
+          width: fit-content;
+
+          //styleName: Regular/48;
+          font-family: Inter;
+          font-size: 48px;
+          font-weight: 400;
+          line-height: 64px;
+          letter-spacing: 0em;
+        }
+
+        .metric-description {
+          //styleName: Regular/16;
+          font-family: Inter;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 24px;
+          letter-spacing: 0em;
+          width: fit-content;
+        }
+      }
+    }
+  }
 }

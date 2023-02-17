@@ -1,1 +1,12 @@
-<p>metrics works!</p>
+<img class="logo" [src]="logo" />
+<span class="header-title">{{ title }}</span>
+
+<div class="metrics">
+  <div class="metric" *ngFor="let item of metrics">
+    <img class="metric-logo" [src]="item.icon" />
+    <div>
+      <span class="metric-value"> {{ item.value }} </span>
+      <span class="metric-description"> {{ item.description }} </span>
+    </div>
+  </div>
+</div>
