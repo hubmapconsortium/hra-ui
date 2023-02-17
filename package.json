@@ -20,6 +20,8 @@
     "@ngxs/store": "^3.7.6",
     "@nrwl/angular": "15.6.3",
     "angular-material-css-vars": "^4.2.1",
+    "marked": "^4.2.12",
+    "ngx-markdown": "^15.1.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -48,6 +50,7 @@
     "@storybook/manager-webpack5": "^6.5.15",
     "@storybook/test-runner": "^0.7.2",
     "@types/jest": "28.1.1",
+    "@types/marked": "^4.0.8",
     "@types/node": "16.11.7",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
