@@ -16,7 +16,7 @@
     font-weight: 400;
     line-height: 40px;
     letter-spacing: 0em;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
   }
 
   .metrics {
@@ -24,7 +24,7 @@
     flex-direction: row;
     overflow-x: auto;
     max-width: 100%;
-    gap: 28px;
+    gap: 1.75rem;
 
     .metric {
       display: flex;
@@ -33,16 +33,16 @@
       height: 236px;
       min-width: 228px;
       width: auto;
-      margin: 32px 0;
+      margin: 2rem 0;
 
       .metric-logo {
         height: 48px;
         width: 48px;
-        margin: 32px 90px;
+        margin: 2rem 5.625rem;
       }
 
       .metric-value {
-        margin: 0px 0px 4px 0px;
+        margin: 0rem 0rem 0.25rem 0rem;
         font-family: Inter;
         font-size: 48px;
         font-weight: 400;
