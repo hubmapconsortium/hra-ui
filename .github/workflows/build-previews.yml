@@ -32,7 +32,7 @@ jobs:
       - name: Build Apps
         run: npx nx run-many --targets=build --projects=$APPS --configuration=development
       - name: Build Storybook
-        run: npm nx run-many --targets=build-storybook --all --configuration=ci
+        run: npx nx run-many --targets=build-storybook --all --configuration=ci
 
       - name: Collect built apps and storybook
         id: collect_dirs
