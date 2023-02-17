@@ -38,4 +38,22 @@
   .info-image {
     margin-right: 0.5rem;
   }
+
+  @media screen and (max-width: 480px) {
+    .product-title,
+    .about {
+      display: none;
+    }
+
+    .app-title {
+      font-weight: 400;
+      font-size: 1rem;
+      color: #243142;
+      align-items: center;
+    }
+    .product-logo-image {
+      height: 1.6rem;
+      margin-right: 0.6rem;
+    }
+  }
 }
