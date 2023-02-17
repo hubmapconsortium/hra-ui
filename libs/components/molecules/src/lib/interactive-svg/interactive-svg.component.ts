@@ -1,13 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-
-import { svg } from './renal corpuscle';
 
 @Component({
   selector: 'hra-interactive-svg',
-  templateUrl: './interactive-svg.component.html',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './svgs/2d-ftu-liver-liver-lobule.svg',
   styleUrls: ['./interactive-svg.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InteractiveSvgComponent {
-  svg = svg;
 }

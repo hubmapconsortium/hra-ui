@@ -1,3 +1,28 @@
 :host {
   display: block;
+
+  svg {
+    pointer-events: none;
+  }
+
+  #Crosswalk {
+    pointer-events: all;
+    path, polygon, polyline {
+      &:hover {
+        stroke: red;
+        stroke-width: 2 !important;
+      }
+    }
+
+    g {
+      g, path, polygon, polyline {
+        fill: transparent;
+        stroke: transparent;
+        &:hover {
+          stroke: red;
+          stroke-width: 2 !important;
+        }
+      }
+    }
+  }
 }
