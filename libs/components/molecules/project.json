@@ -80,6 +80,32 @@
       "options": {
         "command": "test-storybook -c libs/components/molecules/.storybook --url=http://localhost:4400"
       }
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/components/molecules/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/components-molecules"
+      },
+      "configurations": {
+        "serve": {
+          "watch": true,
+          "disableCoverage": false,
+          "disablePrivate": false,
+          "disableInternal": false
+        }
+      }
+    },
+    "compodoc-json": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/components/molecules/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/components-molecules",
+        "exportFormat": "json"
+      }
+    },
+    "test-doc-coverage": {
+      "command": "compodoc -p libs/components/molecules/tsconfig.lib.json -d tmp/doc-coverage -e json --coverageTest --coverageMinimumPerFile 100 --coverageTestShowOnlyFailed -t"
     }
   },
   "tags": ["components", "molecules"]

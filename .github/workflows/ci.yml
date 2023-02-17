@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - develop
   pull_request:
 
 jobs:
@@ -20,10 +21,24 @@ jobs:
       parallel-commands-on-agents: |
         npx nx affected --target=lint --parallel=3
         npx nx affected --target=test --parallel=3 --ci --code-coverage
+        npx nx affected --target=test-doc-coverage --parallel=3
         npx nx affected --target=build --parallel=3
+      # TODO set main branch to develop
 
   agents:
     name: Nx Cloud - Agents
     uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.11.2
     with:
       number-of-agents: 3
+
+  slack-notification:
+    name: Slack Notification
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    needs: main
+    steps:
+      - uses: kpritam/slack-job-status-action@v1
+        with:
+          job-status: ${{ needs.main.result }}
+          slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
+          channel: github
