@@ -1,8 +1,5 @@
 :host {
   display: flex;
-  background: #ffffff;
-  border-bottom: 1px solid #e2e7e9;
-  font-family: 'Inter';
   align-items: center;
 
   .product-title {
@@ -32,6 +29,7 @@
   }
 
   .product-logo-image {
+    height: 1.5rem;
     margin-right: 1rem;
   }
 
@@ -39,21 +37,20 @@
     margin-right: 0.5rem;
   }
 
-  @media screen and (max-width: 480px) {
+  @media (max-width: 480px) {
     .product-title,
     .about {
       display: none;
     }
 
     .app-title {
-      font-weight: 400;
       font-size: 1rem;
       color: #243142;
       align-items: center;
     }
+
     .product-logo-image {
-      height: 1.6rem;
-      margin-right: 0.6rem;
+      margin-right: 0.5rem;
     }
   }
 }
