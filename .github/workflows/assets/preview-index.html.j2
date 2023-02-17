@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Build preview for {{ env['GITHUB_REF_NAME'] }}</title>
+  </head>
+  <body>
+    {% macro createLinks(group, items) %}
+      <ul>
+        {% for name in items %}
+          <li>
+            <a href="dist/{{ group }}/{{ name }}/index.html">{{ name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endmacro %}
+
+    <h1>Apps</h1>
+    {{ createLinks('apps', apps.split(',')) }}
+
+    <h1>Storybooks</h1>
+    {{ createLinks('storybook', storybooks.split(',')) }}
+  </body>
+</html>

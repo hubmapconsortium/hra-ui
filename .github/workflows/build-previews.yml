@@ -1,0 +1,56 @@
+name: Netlify Preview Deploy
+
+on:
+  pull_request:
+    types: ['opened', 'edited', 'synchronize']
+
+env:
+  APPS: ftu-ui
+
+jobs:
+  deploy:
+    name: 'Deploy'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - run: npm ci
+
+      - name: Build Apps
+        run: npx nx run-many --targets=build --projects=$APPS --configuration=development
+      - name: Build Storybook
+        run: npm nx run-many --targets=build-storybook --all --configuration=ci
+
+      - name: Collect built apps and storybook
+        id: collect_dirs
+        run: |
+          apps=${find dist/apps -maxdepth 1 -mindepth 1 -type d -printf '%f,'}
+          storybooks=${find dist/storybook -maxdepth 1 -mindepth 1 -type d -printf '%f,'}
+          echo "apps=${apps::-1}" >> $GITHUB_OUTPUT
+          echo "storybooks=${storybooks::-1}" >> $GITHUB_OUTPUT
+
+      - name: Generate index file
+        uses: cuchi/jinja2-action@v1.2.0
+        with:
+          template: .github/assets/preview-index.html.j2
+          output_file: dist/index.html
+          strict: true
+          variables: |
+            apps=${{ steps.collect_dirs.outputs.apps }}
+            storybooks=${{ steps.collect_dirs.outputs.storybooks }}
+
+      - name: Show index.html
+        run: cat dist/index.html > 1
