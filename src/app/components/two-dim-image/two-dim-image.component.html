@@ -11,11 +11,11 @@
                         Metadata
                         <span class="material-symbols-outlined">info</span>
                     </a>
-                    <a *ngIf="tissue.png" mat-stroked-button disableRipple="true" [href]="tissue.png" download>
+                    <a *ngIf="tissue.png" mat-stroked-button disableRipple="true" [href]="tissue.png" (click)="downloadClick($event, tissue.png)">
                         Download PNG
                         <span class="material-symbols-outlined">download</span>
                     </a>
-                    <a [href]="tissue.svg" mat-stroked-button disableRipple="true" download>
+                    <a *ngIf="tissue.svg" mat-stroked-button disableRipple="true" [href]="tissue.svg" (click)="downloadClick($event, tissue.svg)">
                         Download SVG
                         <span class="material-symbols-outlined">download</span>
                     </a>
@@ -59,11 +59,11 @@
                                 Metadata
                                 <span class="material-symbols-outlined">info</span>
                             </a>
-                            <a *ngIf="tissue.png" mat-stroked-button disableRipple="true" [href]="tissue.png" download>
+                            <a *ngIf="tissue.png" mat-stroked-button disableRipple="true" [href]="tissue.png" (click)="downloadClick($event, tissue.png)">
                                 Download PNG
                                 <span class="material-symbols-outlined">download</span>
                             </a>
-                            <a *ngIf="tissue.svg" [href]="tissue.svg" mat-stroked-button disableRipple="true" download>
+                            <a *ngIf="tissue.svg" [href]="tissue.svg" mat-stroked-button disableRipple="true" (click)="downloadClick($event, tissue.svg)">
                                 Download SVG
                                 <span class="material-symbols-outlined">download</span>
                             </a>
