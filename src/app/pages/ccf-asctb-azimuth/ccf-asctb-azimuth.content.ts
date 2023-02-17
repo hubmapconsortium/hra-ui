@@ -11,54 +11,63 @@ export const headerInfo: HeaderData[] = [
         element['url'] || 'TODO:Please add a url column to this .csv!'
       }">${element['organ']}</a>`,
     isTotalRequired: true,
+    alignment: 'start'
   },
   {
     columnDef: 'uniqueName',
     header: 'Unique Names',
     cell: (element: TableData) => `${element['uniqueName']}`,
-    sorting: false
+    sorting: false,
+    alignment: 'center'
   },
   {
     columnDef: 'uniqueId',
     header: 'Unique IDs',
     cell: (element: TableData) => `${element['uniqueId']}`,
-    sorting: false
+    sorting: false,
+    alignment: 'center'
   },
   {
     columnDef: 'uName',
     header: 'Unique Names',
     cell: (element: TableData) => `${element['uName']}`,
-    sorting: false
+    sorting: false,
+    alignment: 'center'
   },
   {
     columnDef: 'uId',
     header: 'Unique \nIDs',
     cell: (element: TableData) => `${element['uId']}`,
-    sorting: false
+    sorting: false,
+    alignment: 'center'
   },
   {
     columnDef: 'usingId',
     header: 'Using IDs',
     cell: (element: TableData) => `${element['usingId']}`,
-    sorting: false
+    sorting: false,
+    alignment: 'center'
   },
   {
     columnDef: 'usingLabels',
     header: 'Using Labels',
     cell: (element: TableData) => `${element['usingLabels']}`,
-    sorting: false
+    sorting: false,
+    alignment: 'center'
   },
   {
     columnDef: 'dummyAnnotationLevels',
     header: '',
     cell: (element: TableData) => `${element['a']}`,
     sorting: false,
+    alignment: 'center'
   },
   {
     columnDef: 'dummyTotalCellCount',
     header: '',
     cell: (element: TableData) => `${element['b']}`,
     sorting: false,
+    alignment: 'center'
   },
   {
     columnDef: 'dummyAzimuthB',
