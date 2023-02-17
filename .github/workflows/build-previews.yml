@@ -25,7 +25,8 @@ jobs:
 
       - name: Configure nx
         uses: nrwl/nx-set-shas@v3
-        # TODO set main branch to develop
+        with:
+          main-branch-name: develop
 
       - name: Build Apps
         run: npx nx run-many --targets=build --projects=$APPS --configuration=development
