@@ -1,11 +1,11 @@
-<a class="product-logo-link" [routerLink]="['/']">
-  <img class="product-logo-image" [src]="productLogoUrl" alt="" />
+<a class="product-logo-link">
+  <img class="product-logo-image" [src]="productLogoUrl" alt="Prodoct Logo" />
   <h2 class="product-title">{{ productTitle }}</h2>
 </a>
 
 <h2 class="app-title">{{ appTitle }}</h2>
 <div class="filler"></div>
-<a [routerLink]="['/']">
-  <img class="info-image" [src]="'/assets/icons/info.svg'" alt="" />
+<a>
+  <mat-icon class="info-image">icon</mat-icon>
   <span class="about">About</span>
 </a>
