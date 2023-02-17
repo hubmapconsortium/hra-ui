@@ -22,19 +22,9 @@ jobs:
           fetch-depth: 0
       - name: Prepare Node.js
         uses: ./.github/actions/prepare-node-js
-      # - name: Use Node.js ${{ matrix.node-version }}
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: ${{ matrix.node-version }}
-      # - uses: actions/cache@v3
-      #   with:
-      #     path: ~/.npm
-      #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-node-
-      # - run: npm ci
 
-      - uses: nrwl/nx-set-shas@v3
+      - name: Configure nx
+        uses: nrwl/nx-set-shas@v3
         # TODO set main branch to develop
 
       - name: Build Apps
@@ -45,12 +35,8 @@ jobs:
           npx nx affected --targets=build-storybook --configuration=ci --parallel 1
 
       - name: Collect built apps and storybook
-        id: collect_dirs
-        run: |
-          apps=`find dist/apps -maxdepth 1 -mindepth 1 -type d -printf '%f,'``
-          storybooks=`find dist/storybook -maxdepth 1 -mindepth 1 -type d -printf '%f,'``
-          echo "apps=${apps::-1}" >> $GITHUB_OUTPUT
-          echo "storybooks=${storybooks::-1}" >> $GITHUB_OUTPUT
+        id: collect
+        uses: ./.github/actions/collect-preview-dirs
 
       - name: Generate index file
         uses: cuchi/jinja2-action@v1.2.0
@@ -59,8 +45,8 @@ jobs:
           output_file: dist/index.html
           strict: true
           variables: |
-            apps=${{ steps.collect_dirs.outputs.apps }}
-            storybooks=${{ steps.collect_dirs.outputs.storybooks }}
+            apps=${{ steps.collect.outputs.apps }}
+            storybooks=${{ steps.collect.outputs.storybooks }}
 
       - name: Show index.html
         run: cat dist/index.html > 1
