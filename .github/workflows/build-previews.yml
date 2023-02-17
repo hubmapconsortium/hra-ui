@@ -48,5 +48,12 @@ jobs:
             apps=${{ steps.collect.outputs.apps }}
             storybooks=${{ steps.collect.outputs.storybooks }}
 
-      - name: Show index.html
-        run: cat dist/index.html > 1
+      - name: Deploy Preview
+        uses: jsmrcaga/action-netlify-deploy@v1.8.0
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          use_nvm: false
+          build_command: echo
+          install_command: echo
+          build_directory: dist/
