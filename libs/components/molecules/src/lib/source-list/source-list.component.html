@@ -1,23 +1,23 @@
 <table mat-table [dataSource]="sources">
-  <caption class="sr-only">Source List Table with Title and Links</caption>
+  <caption class="sr-only">
+    Source List Table with Title and Links
+  </caption>
 
   <!-- Position Column -->
   <ng-container matColumnDef="link">
-    <th class="sr-only" mat-header-cell *matHeaderCellDef> Item Number </th>
-    <td mat-cell *matCellDef="let element; let i = index"> {{i+1}}. </td>
+    <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Number</th>
+    <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}.</td>
   </ng-container>
 
   <!-- Data Column -->
   <ng-container matColumnDef="title">
-    <th class="sr-only" mat-header-cell *matHeaderCellDef> Title and Link </th>
+    <th class="sr-only" mat-header-cell *matHeaderCellDef>Title and Link</th>
     <td mat-cell *matCellDef="let element">
-      {{element.title}}
-      <br>
-      <a [href]="element.link" target='_blank'>{{element.link}}</a>
+      {{ element.title }}
+      <br />
+      <a [href]="element.link" target="_blank">{{ element.link }}</a>
     </td>
   </ng-container>
 
-  <tr mat-row *matRowDef="let row; columns: ['link', 'title'];"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['link', 'title']"></tr>
 </table>
-
-
