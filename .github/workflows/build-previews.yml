@@ -49,11 +49,10 @@ jobs:
             storybooks=${{ steps.collect.outputs.storybooks }}
 
       - name: Deploy Preview
-        uses: jsmrcaga/action-netlify-deploy@v1.8.0
+        uses: jsmrcaga/action-netlify-deploy@v2
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          use_nvm: false
           build_command: echo
           install_command: echo
           build_directory: dist/

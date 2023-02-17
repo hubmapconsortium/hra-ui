@@ -23,6 +23,7 @@ jobs:
         npx nx affected --target=test --parallel=3 --ci --code-coverage
         npx nx affected --target=test-doc-coverage --parallel=3
         npx nx affected --target=build --parallel=3
+      # TODO set main branch to develop
 
   agents:
     name: Nx Cloud - Agents
