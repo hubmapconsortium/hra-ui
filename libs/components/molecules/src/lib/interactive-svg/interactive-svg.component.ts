@@ -1,13 +1,68 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
+import { Papa } from 'ngx-papaparse';
+
+import { allSvgs, MapData, svgMap } from './svg-models';
+
 
 @Component({
   selector: 'hra-interactive-svg',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './svgs/2d-ftu-liver-liver-lobule.svg',
+  templateUrl: './interactive-svg.component.html',
   styleUrls: ['./interactive-svg.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InteractiveSvgComponent {
+export class InteractiveSvgComponent implements OnInit {
+  @Input() fileName = 'crypt_lieberkuhn_large_intestine';
+  @Output() nodeData = new EventEmitter<MapData>();
+  mapData: MapData[];
+  SVGFile: string;
+
+  constructor(private papa: Papa, private el: ElementRef, private http: HttpClient) {
+    this.mapData = this.papa.parse(svgMap, { header: true }).data;
+    this.SVGFile = allSvgs[this.fileName].src;
+  }
+
+  ngOnInit(): void {
+    this.SVGFile = allSvgs[this.fileName].src;
+    this.http.get(this.SVGFile, {responseType: 'text'}).subscribe(svg => {
+      this.el.nativeElement.innerHTML = svg;
+    });
+}
+
+  @HostListener('mousemove', ['$event'])
+  findHoverMatch(target: MouseEvent): void {
+    const filteredMapData = this.mapData.filter(entry => entry['svg file of single 2DFTU'] === this.fileName);
+
+    const targetElement = target.target as unknown as HTMLElement;
+    const targetId = targetElement.id;
+    const parsedTargetId = targetId.split('x5F_').join('');
+    const targetNodeMatch = filteredMapData.find(entry => parsedTargetId === entry['node_name']);
+
+    const parentElement = targetElement.parentElement;
+    const parentId = parentElement ? parentElement.id : '';
+    const parsedParentId = parentId.split('x5F_').join('');
+    const parentNodeMatch = filteredMapData.find(entry => 
+      parsedParentId === entry['node_name'] || parsedParentId.includes( entry['node_name']) || entry['node_name'].includes(parsedParentId)
+    );
+
+    if (parsedTargetId !== '') {
+      console.log(targetNodeMatch);
+      this.nodeData.emit(targetNodeMatch);
+    } else if (parsedParentId !== '' && parentNodeMatch) {
+      console.log(parentNodeMatch);
+      this.nodeData.emit(parentNodeMatch);
+    }
+  }
 }

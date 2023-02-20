@@ -1,27 +1,13 @@
 :host {
   display: block;
 
-  svg {
-    pointer-events: none;
-  }
-
-  #Crosswalk {
-    pointer-events: all;
-    path, polygon, polyline {
+  ::ng-deep [id^="Crosswalk"] {
+    path, polygon, polyline, .st0 {
+      fill: transparent;
+      stroke: transparent;
       &:hover {
         stroke: red;
-        stroke-width: 2 !important;
-      }
-    }
-
-    g {
-      g, path, polygon, polyline {
-        fill: transparent;
-        stroke: transparent;
-        &:hover {
-          stroke: red;
-          stroke-width: 2 !important;
-        }
+        stroke-width: 2;
       }
     }
   }
