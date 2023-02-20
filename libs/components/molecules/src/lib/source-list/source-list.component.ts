@@ -16,5 +16,6 @@ export interface SourceListItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SourceListComponent {
+  /* Input to get the list of SourceListItem */
   @Input() sources: SourceListItem[] = [];
 }
