@@ -24,5 +24,5 @@ Default.args = {
 
   moreText: 'Explore FTUs',
 
-  img: '../../assets/welcome.svg',
+  img: 'assets/welcome.svg',
 };
