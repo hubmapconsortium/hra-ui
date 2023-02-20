@@ -1,1 +1,5 @@
-export * from '../../../../.storybook/preview';
+import { decorators, setDocs } from '../../../../.storybook/preview';
+
+export { decorators };
+
+setDocs('components-atoms');
