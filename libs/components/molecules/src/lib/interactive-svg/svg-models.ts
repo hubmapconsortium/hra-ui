@@ -10,17 +10,57 @@ export interface SvgData {
 }
 
 export const allSvgs: Record<string, SvgData> = {
-  'pancreatic_acinus': {
-    src: './assets/2d-ftu-pancreas-pancreatic-acinus.svg',
-    organ: 'pancreas'
-  },
   'cortical_collecting_duct': {
     src: './assets/2d-ftu-kidney-cortical-collecting-duct.svg',
     organ: 'kidney'
   },
+  'outer_medullary_collecting_duct': {
+    src: './assets/2d-ftu-kidney-outer-medullary-collecting-duct.svg',
+    organ: 'kidney'
+  },
+  'inner_medullary_collecting_duct': {
+    src: './assets/2d-ftu-kidney-inner-medullary-collecting-duct.svg',
+    organ: 'kidney'
+  },
+  'thick_ascending_loop_of_henle': {
+    src: './assets/2d-ftu-kidney-thick-ascending-loop-of-henle.svg',
+    organ: 'kidney'
+  },
+  'descending_thin_loop_of_henle': {
+    src: './assets/2d-ftu-kidney-descending-thin-loop-of-henle.svg',
+    organ: 'kidney'
+  },
+  'ascending_thin_loop_of_henle': {
+    src: './assets/2d-ftu-kidney-ascending-thin-loop-of-henle.svg',
+    organ: 'kidney'
+  },
+  'dermal_papilla': {
+    src: './assets/2d-ftu-skin-dermal-papilla.svg',
+    organ: 'skin'
+  },
+  'epidermal_ridge': {
+    src: './assets/2d-ftu-skin-epidermal-ridge.svg',
+    organ: 'skin'
+  },
+  'bronchial_submucosal_gland': {
+    src: './assets/2d-ftu-lung-bronchial-submucosal-gland.svg',
+    organ: 'lung'
+  },
+  'alveoli': {
+    src: './assets/2d-ftu-lung-pulmonary-alveolus.svg',
+    organ: 'lung'
+  },
   'crypt_lieberkuhn_large_intestine': {
     src: './assets/2d-ftu-large-intestine-crypt-lieberkuhn.svg',
     organ: 'large intestine'
+  },
+  'intercalated_duct_1': {
+    src: './assets/2d-ftu-pancreas-intercalated-duct.svg',
+    organ: 'pancreas'
+  },
+  'pancreatic_acinus': {
+    src: './assets/2d-ftu-pancreas-pancreatic-acinus.svg',
+    organ: 'pancreas'
   }
 }
 
@@ -71,20 +111,20 @@ export const svgMap = `organ,organ_ID,anatomical_structure_of,source_spatial_ent
 #Kidney,UBERON:0002113,#FTUOuterMedullaryCollectingDuct,#2DRefObjects,Outer_Medullary_Collecting_Duct_Principal_Cell_9,kidney outer medulla collecting duct principal cell,CL:1000716,http://purl.obolibrary.org/obo/CL_1000716,outer_medullary_collecting_duct,1,CT,,,,
 #Kidney,UBERON:0002113,#FTUOuterMedullaryCollectingDuct,#2DRefObjects,Outer_Medullary_Collecting_Duct_Principal_Cell_10,kidney outer medulla collecting duct principal cell,CL:1000716,http://purl.obolibrary.org/obo/CL_1000716,outer_medullary_collecting_duct,1,CT,,,,
 #Kidney,UBERON:0002113,#FTUOuterMedullaryCollectingDuct,#2DRefObjects,Endothelium_Peritubular_Capillary,peritubular capillary endothelial cell,CL:1001033,http://purl.obolibrary.org/obo/CL_1001033,outer_medullary_collecting_duct,1,CT,,,,
-#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_collecting_Duct_1,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
-#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_collecting_Duct_2,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
-#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_collecting_Duct_3,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
-#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_collecting_Duct_4,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
-#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_collecting_Duct_5,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
-#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_collecting_Duct_6,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
-#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_collecting_Duct_7,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
-#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_collecting_Duct_8,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
-#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_collecting_Duct_9,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
-#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_collecting_Duct_10,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
-#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_collecting_Duct_11,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
-#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_collecting_Duct_12,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
-#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_collecting_Duct_13,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
-#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_collecting_Duct_14,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
+#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_Collecting_Duct_Cell_1,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
+#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_Collecting_Duct_Cell_2,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
+#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_Collecting_Duct_Cell_3,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
+#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_Collecting_Duct_Cell_4,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
+#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_Collecting_Duct_Cell_5,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
+#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_Collecting_Duct_Cell_6,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
+#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_Collecting_Duct_Cell_7,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
+#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_Collecting_Duct_Cell_8,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
+#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_Collecting_Duct_Cell_9,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
+#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_Collecting_Duct_Cell_10,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
+#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_Collecting_Duct_Cell_11,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
+#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_Collecting_Duct_Cell_12,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
+#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_Collecting_Duct_Cell_13,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
+#Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Inner_Medullary_Collecting_Duct_Cell_14,kidney inner medulla collecting duct,CL:1000718,http://purl.obolibrary.org/obo/CL_1000718,inner_medullary_collecting_duct,1,CT,,,,
 #Kidney,UBERON:0002113,#FTUInnerMedullaryCollectingDuct,#2DRefObjects,Endothelium_Peritubular_Capillary,peritubular capillary endothelial cell,CL:1001033,http://purl.obolibrary.org/obo/CL_1001033,inner_medullary_collecting_duct,1,CT,,,,
 #Kidney,UBERON:0002113,#FTUThickAscendingLimb,#2DRefObjects,Thick_Ascending_Limb_Cell_1,kidney loop of Henle thick ascending limb epithelial cell,CL:1001106,http://purl.obolibrary.org/obo/CL_1001106,thick_ascending_loop_of_henle,1,CT,,,,
 #Kidney,UBERON:0002113,#FTUThickAscendingLimb,#2DRefObjects,Thick_Ascending_Limb_Cell_2,kidney loop of Henle thick ascending limb epithelial cell,CL:1001106,http://purl.obolibrary.org/obo/CL_1001106,thick_ascending_loop_of_henle,1,CT,,,,
@@ -99,7 +139,7 @@ export const svgMap = `organ,organ_ID,anatomical_structure_of,source_spatial_ent
 #Kidney,UBERON:0002113,#FTUDescendingThinLimb,#2DRefObjects,Descending_Thin_Limb_Cell_1,kidney loop of Henle thin descending limb epithelial cell,CL:1001111,http://purl.obolibrary.org/obo/CL_1001111,descending_thin_loop_of_henle,1,CT,,,,
 #Kidney,UBERON:0002113,#FTUDescendingThinLimb,#2DRefObjects,Descending_Thin_Limb_Cell_2,kidney loop of Henle thin descending limb epithelial cell,CL:1001111,http://purl.obolibrary.org/obo/CL_1001111,descending_thin_loop_of_henle,1,CT,,,,
 #Kidney,UBERON:0002113,#FTUDescendingThinLimb,#2DRefObjects,Descending_Thin_Limb_Cell_3,kidney loop of Henle thin descending limb epithelial cell,CL:1001111,http://purl.obolibrary.org/obo/CL_1001111,descending_thin_loop_of_henle,1,CT,,,,
-#Kidney,UBERON:0002113,#FTUDescendingThinLimb,#2DRefObjects,Descending_Vasa_Recta,vasa recta descending limb cell,CL:1001285,http://purl.obolibrary.org/obo/CL_1001285,descending_thin_loop_of_henle,1,CT,,,,
+#Kidney,UBERON:0002113,#FTUDescendingThinLimb,#2DRefObjects,Descending_Vasa_recta,vasa recta descending limb cell,CL:1001285,http://purl.obolibrary.org/obo/CL_1001285,descending_thin_loop_of_henle,1,CT,,,,
 #Kidney,UBERON:0002113,#FTUAscendingThinLimb,#2DRefObjects,Ascending_Thin_Limb_Cell_1,kidney loop of Henle thin ascending limb epithelial cell,CL:1001107,http://purl.obolibrary.org/obo/CL_1001107,ascending_thin_loop_of_henle,1,CT,,,,
 #Kidney,UBERON:0002113,#FTUAscendingThinLimb,#2DRefObjects,Ascending_Thin_Limb_Cell_2,kidney loop of Henle thin ascending limb epithelial cell,CL:1001107,http://purl.obolibrary.org/obo/CL_1001107,ascending_thin_loop_of_henle,1,CT,,,,
 #Kidney,UBERON:0002113,#FTUAscendingThinLimb,#2DRefObjects,Ascending_Thin_Limb_Cell_3,kidney loop of Henle thin ascending limb epithelial cell,CL:1001107,http://purl.obolibrary.org/obo/CL_1001107,ascending_thin_loop_of_henle,1,CT,,,,
@@ -602,8 +642,9 @@ export const svgMap = `organ,organ_ID,anatomical_structure_of,source_spatial_ent
 #Pancreas,UBERON:0001264,#FTUIntercalatedDuct,#2DRefObjects,Ductal_Epithelial_Cell_23,epithelial cell of exocrine pancreas,CL:1001433,http://purl.obolibrary.org/obo/CL_1001433,intercalated_duct_1,1,CT,,,,
 #Pancreas,UBERON:0001264,#FTUIntercalatedDuct,#2DRefObjects,Ductal_Epithelial_Cell_24,epithelial cell of exocrine pancreas,CL:1001433,http://purl.obolibrary.org/obo/CL_1001433,intercalated_duct_1,1,CT,,,,
 #Pancreas,UBERON:0001264,#FTUIntercalatedDuct,#2DRefObjects,Ductal_Epithelial_Cell_25,epithelial cell of exocrine pancreas,CL:1001433,http://purl.obolibrary.org/obo/CL_1001433,intercalated_duct_1,1,CT,,,,
-#Pancreas,UBERON:0001264,#FTUIntercalatedDuct,#2DRefObjects,intercalated_duct_1,intercalated duct of pancreas,UBERON:0014726,http://purl.obolibrary.org/obo/UBERON_0014726,intercalated_duct_1,1,CT,,,,
-#Pancreas,UBERON:0001264,#FTUIntercalatedDuct,#2DRefObjects,Pancreatic_Acinar_Cell,Pancreatic acinus,UBERON:0001263,http://purl.obolibrary.org/obo/UBERON_0001263,intercalated_duct_1,1,CT,,,,
+#Pancreas,UBERON:0001264,#FTUIntercalatedDuct,#2DRefObjects,Intercalated_Duct,intercalated duct of pancreas,UBERON:0014726,http://purl.obolibrary.org/obo/UBERON_0014726,intercalated_duct_1,1,CT,,,,
+#Pancreas,UBERON:0001264,#FTUIntercalatedDuct,#2DRefObjects,Pancreatic_Acinar_Cell_Left,Pancreatic acinus,UBERON:0001263,http://purl.obolibrary.org/obo/UBERON_0001263,intercalated_duct_1,1,CT,,,,
+#Pancreas,UBERON:0001264,#FTUIntercalatedDuct,#2DRefObjects,Pancreatic_Acinar_Cell_Right,Pancreatic acinus,UBERON:0001263,http://purl.obolibrary.org/obo/UBERON_0001263,intercalated_duct_1,1,CT,,,,
 #Pancreas,UBERON:0001264,#FTUAcinus,#2DRefObjects,Ductal_Epithelial_Cell_1,epithelial cell of exocrine pancreas,CL:1001433,http://purl.obolibrary.org/obo/CL_1001433,pancreatic_acinus,1,CT,,,,
 #Pancreas,UBERON:0001264,#FTUAcinus,#2DRefObjects,Ductal_Epithelial_Cell_2,epithelial cell of exocrine pancreas,CL:1001433,http://purl.obolibrary.org/obo/CL_1001433,pancreatic_acinus,1,CT,,,,
 #Pancreas,UBERON:0001264,#FTUAcinus,#2DRefObjects,Ductal_Epithelial_Cell_3,epithelial cell of exocrine pancreas,CL:1001433,http://purl.obolibrary.org/obo/CL_1001433,pancreatic_acinus,1,CT,,,,

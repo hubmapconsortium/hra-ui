@@ -58,10 +58,8 @@ export class InteractiveSvgComponent implements OnInit {
     );
 
     if (parsedTargetId !== '') {
-      console.log(targetNodeMatch);
       this.nodeData.emit(targetNodeMatch);
     } else if (parsedParentId !== '' && parentNodeMatch) {
-      console.log(parentNodeMatch);
       this.nodeData.emit(parentNodeMatch);
     }
   }
