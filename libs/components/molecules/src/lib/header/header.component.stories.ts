@@ -17,7 +17,7 @@ const Template: Story<HeaderComponent> = (args: HeaderComponent) => ({
 
 export const Primary = Template.bind({});
 Primary.args = {
-  productLogoUrl: '/assets/icons/logo-icon.svg',
+  productLogoUrl: 'assets/icons/logo-icon.svg',
   productTitle: 'Human Reference Atlas',
   appTitle: 'Functional Tissue Unit Explorer',
 };
