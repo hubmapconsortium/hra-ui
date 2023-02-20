@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+/** An interface of gradient colors along with their percentages for the gradient bar. */
 export interface GradientPoint {
-  percentage: number;
   color: string;
+  percentage: number;
 }
 
 @Component({
@@ -15,12 +16,12 @@ export interface GradientPoint {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GradientLegendComponent {
-  /** Input array of GradientPoint interface consisting of  color and its corresponding percentage */
+  /** Gradient colors along with their stop points */
   @Input() gradient: GradientPoint[] = [];
 
-  /** Getter function to update the linear gradient */
+  /** Computes the css linear-gradient function for the gradient bar */
   get gradientCss(): string {
-    const stops = this.gradient.map(({ percentage, color }) => `${color} ${percentage}%`).join(',');
+    const stops = this.gradient.map(({ color, percentage }) => `${color} ${percentage}%`).join(',');
     return `linear-gradient(270deg, ${stops})`;
   }
 }
