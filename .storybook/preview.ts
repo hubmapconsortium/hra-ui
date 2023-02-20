@@ -1,4 +1,5 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { setCompodocJson } from '@storybook/addon-docs/angular';
 import { moduleMetadata } from '@storybook/angular';
 import { MarkdownModule } from 'ngx-markdown';
 
@@ -15,3 +16,8 @@ export const decorators = [
     ],
   }),
 ];
+
+export function setDocs(library: string): void {
+  const docs = require(`../dist/compodoc/${library}/documentation.json`);
+  setCompodocJson(docs);
+}
