@@ -1,0 +1,10 @@
+<h1 class="title">{{ title }}</h1>
+<markdown class="description" [data]="description"></markdown>
+
+<button mat-flat-button class="more-button" color="primary" (click)="moreClick.emit()">
+  {{ moreText }}
+  <mat-icon>arrow_right_alt</mat-icon>
+</button>
+<markdown class="partners" [data]="partners"></markdown>
+
+<img class="image" [src]="img" alt="alt" />

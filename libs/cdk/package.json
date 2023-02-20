@@ -4,7 +4,9 @@
   "peerDependencies": {
     "@angular/common": "^15.1.0",
     "@angular/core": "^15.1.0",
-    "@ngxs/store": "^3.7.6"
+    "@ngxs/store": "^3.7.6",
+    "@hra-ui/theming": "*",
+    "@hra-ui/utils": "*"
   },
   "dependencies": {
     "tslib": "^2.3.0"

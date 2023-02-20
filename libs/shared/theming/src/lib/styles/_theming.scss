@@ -1,0 +1,13 @@
+@use '@angular/material' as mat;
+@use 'angular-material-css-vars/src/lib/main' as mat-css;
+
+$default-typography-config: mat.define-typography-config(
+  $font-family: (
+    'Inter',
+    sans-serif,
+  ),
+);
+
+@mixin init($args...) {
+  @include mat-css.init-material-css-vars($typography-config: $default-typography-config, $args...);
+}

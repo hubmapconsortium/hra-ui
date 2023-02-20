@@ -10,22 +10,51 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@hra-ui/cdk": ["libs/cdk/src/index.ts"],
-      "@hra-ui/cdk/injectors": ["libs/cdk/injectors/src/index.ts"],
-      "@hra-ui/components/atoms": ["libs/components/atoms/src/index.ts"],
-      "@hra-ui/components/behavioral": ["libs/components/behavioral/src/index.ts"],
-      "@hra-ui/components/molecules": ["libs/components/molecules/src/index.ts"],
-      "@hra-ui/components/organisms": ["libs/components/organisms/src/index.ts"],
-      "@hra-ui/state": ["libs/state/src/index.ts"],
-      "@hra-ui/utils": ["libs/shared/utils/src/index.ts"],
-      "@hra-ui/utils/testing": ["libs/shared/testing/src/index.ts"],
-      "@hra-ui/utils/types": ["libs/shared/utils/types/src/index.ts"]
+      "@hra-ui/cdk": [
+        "libs/cdk/src/index.ts"
+      ],
+      "@hra-ui/cdk/injectors": [
+        "libs/cdk/injectors/src/index.ts"
+      ],
+      "@hra-ui/components/atoms": [
+        "libs/components/atoms/src/index.ts"
+      ],
+      "@hra-ui/components/behavioral": [
+        "libs/components/behavioral/src/index.ts"
+      ],
+      "@hra-ui/components/molecules": [
+        "libs/components/molecules/src/index.ts"
+      ],
+      "@hra-ui/components/organisms": [
+        "libs/components/organisms/src/index.ts"
+      ],
+      "@hra-ui/state": [
+        "libs/state/src/index.ts"
+      ],
+      "@hra-ui/theming": [
+        "libs/shared/theming/src/index.ts"
+      ],
+      "@hra-ui/utils": [
+        "libs/shared/utils/src/index.ts"
+      ],
+      "@hra-ui/utils/testing": [
+        "libs/shared/testing/src/index.ts"
+      ],
+      "@hra-ui/utils/types": [
+        "libs/shared/utils/types/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }
