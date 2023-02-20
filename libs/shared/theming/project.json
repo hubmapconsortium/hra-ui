@@ -41,6 +41,32 @@
       "options": {
         "lintFilePatterns": ["libs/shared/theming/**/*.ts", "libs/shared/theming/**/*.html"]
       }
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/shared/theming/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/shared-theming"
+      },
+      "configurations": {
+        "serve": {
+          "watch": true,
+          "disableCoverage": false,
+          "disablePrivate": false,
+          "disableInternal": false
+        }
+      }
+    },
+    "compodoc-json": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/shared/theming/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/shared-theming",
+        "exportFormat": "json"
+      }
+    },
+    "test-doc-coverage": {
+      "command": "compodoc -p libs/shared/theming/tsconfig.lib.json -d tmp/doc-coverage -e json --coverageTest --coverageMinimumPerFile 100 --coverageTestShowOnlyFailed -t"
     }
   },
   "tags": ["shared", "theming"]
