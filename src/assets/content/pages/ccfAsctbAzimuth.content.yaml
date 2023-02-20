@@ -42,7 +42,7 @@ license:
 citation:
 - heading: Citation
   descriptions: 'If you use the data files v1.0 release, please cite this effort as follows:'
-acknowledgements:
+acknowledgments:
 - heading: Acknowledgments
   descriptions: This code and data was compiled by the HuBMAP MC-IU team in close collaboration with the MC-NYGC team.
 references:
