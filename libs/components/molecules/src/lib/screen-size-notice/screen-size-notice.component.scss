@@ -7,7 +7,7 @@
 .outer-container {
   border: 0.5rem;
   padding: 1.5rem;
-  box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, .16);
+  box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
 }
 
 .header-container {
@@ -23,7 +23,7 @@
   font-size: 1rem;
   line-height: 1.5rem;
   width: 9.1875rem;
-  height:1.5rem;
+  height: 1.5rem;
 }
 
 .header-close {
@@ -37,7 +37,7 @@
 }
 
 .btn-stroked {
-  border: 0.13rem solid #C6ECF6 !important;
+  border: 0.13rem solid #c6ecf6 !important;
   border-radius: 0.3rem !important;
   background: #ffffff !important;
   font-family: 'Inter' !important;
@@ -70,5 +70,3 @@
   line-height: 1.5rem;
   color: #243142;
 }
-
-
