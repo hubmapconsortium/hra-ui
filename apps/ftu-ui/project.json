@@ -47,7 +47,7 @@
           "namedChunks": true
         },
         "preview": {
-          "baseHref": "/ftu-ui",
+          "baseHref": "/ftu-ui/",
           "buildOptimizer": false,
           "optimization": false,
           "vendorChunk": true,
