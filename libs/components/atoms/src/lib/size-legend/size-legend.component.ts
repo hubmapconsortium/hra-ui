@@ -4,7 +4,9 @@ import { CommonModule } from '@angular/common';
  * Interface for taking input of the label and radius of the circles to be displayed.
  */
 interface SizeLegend {
+  /** Label under circle */
   label: string;
+  /** Radius for cirlce */
   radius: number;
 }
 /**
