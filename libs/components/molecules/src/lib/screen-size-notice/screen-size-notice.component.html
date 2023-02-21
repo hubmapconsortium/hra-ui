@@ -1,13 +1,7 @@
-<div class="outer-container">
-  <div class="header-container">
-    <p class="header-name">Screen Size Notice</p>
-    <button mat-icon-button class="header-close">
-      <mat-icon>close</mat-icon>
-    </button>
-  </div>
-  <markdown src="/assets/screen-size-notice-content.md" class="content"></markdown>
-  <div class="button-container">
-    <button mat-stroked-button color="primary" class="btn-stroked">Proceed to FTU Explorer</button>
-    <button mat-flat-button color="primary" class="btn-flat">Human Reference Atlas Portal</button>
-  </div>
-</div>
+<h2>Screen Size Notice</h2>
+<button mat-icon-button class="header-close">
+  <mat-icon>close</mat-icon>
+</button>
+<markdown src="{{ contentURL }}" class="content"></markdown>
+<button mat-stroked-button color="primary" class="btn-stroked">Proceed to FTU Explorer</button>
+<button mat-flat-button color="primary" class="btn-flat">Human Reference Atlas Portal</button>

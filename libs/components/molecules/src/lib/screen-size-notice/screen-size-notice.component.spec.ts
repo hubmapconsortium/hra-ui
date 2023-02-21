@@ -1,22 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Shallow } from 'shallow-render';
 import { ScreenSizeNoticeComponent } from './screen-size-notice.component';
 
 describe('ScreenSizeNoticeComponent', () => {
-  let component: ScreenSizeNoticeComponent;
-  let fixture: ComponentFixture<ScreenSizeNoticeComponent>;
+  let shallow: Shallow<ScreenSizeNoticeComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ScreenSizeNoticeComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(ScreenSizeNoticeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    shallow = new Shallow(ScreenSizeNoticeComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async () => {
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 });
