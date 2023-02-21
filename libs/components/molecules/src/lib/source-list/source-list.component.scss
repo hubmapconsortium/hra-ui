@@ -1,0 +1,14 @@
+@use 'utils';
+
+:host {
+  .mat-mdc-cell {
+    vertical-align: top;
+    border: none;
+    padding: 0.25rem 0.875rem;
+    font-size: 1rem;
+  }
+
+  .sr-only {
+    @include utils.sr-only();
+  }
+}
