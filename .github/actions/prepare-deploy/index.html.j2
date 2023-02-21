@@ -4,7 +4,7 @@
     <title>Build preview for {{ env['GITHUB_REF_NAME'] }}</title>
   </head>
   <body>
-    {% marco createLinkEntry(dir) %}
+    {% macro createLinkEntry(dir) %}
       <li>
         <a href="{{ dir }}/index.html">{{ last(dir.split('/')) }}</a>
       </li>
