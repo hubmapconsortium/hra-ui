@@ -2,17 +2,20 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } f
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 
+/** Interface of DataItem which contains label and value */
 export interface DataItem {
   label: string;
   value: string;
 }
 
+/** Interface that stores original DataItem along with its section and a boolean if it is the last item */
 export interface SectionItem {
   section: number;
   data: DataItem;
   isLastItem: boolean;
 }
 
+/** This component shows a card with a table of biomarker data */
 @Component({
   selector: 'hra-biomarker-table-data-card',
   standalone: true,
@@ -22,19 +25,20 @@ export interface SectionItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BiomarkerTableDataCardComponent implements OnChanges {
-  /* Input to get the list of data items */
+  /** Nested list of DataItems for each section which is displayed to the user */
   @Input() data: DataItem[][] = [];
 
-  /* Converts nested array of DataItem into Flat array of SectionItem */
+  /** Converted nested array of DataItem into Flat array of SectionItem */
   sectionItems: SectionItem[] = [];
 
+  /** Triggers an update on sectionItems array when data is changed */
   ngOnChanges(changes: SimpleChanges): void {
     if ('data' in changes) {
       this.updateSectionItems();
     }
   }
 
-  /* Updates sectionItems array when data is changed */
+  /** Updates sectionItems array when data is changed */
   private updateSectionItems(): void {
     const newSectionItems: SectionItem[] = [];
 
