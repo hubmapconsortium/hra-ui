@@ -20,12 +20,5 @@ export class ScreenSizeNoticeComponent {
   /**
    * Input for passing screen size notice content
    */
-  @Input() contentURL: string;
-
-  /**
-   * The value for the screen size notice contebnt is set
-   */
-  constructor() {
-    this.contentURL = '/assets/screen-size-notice-content.md';
-  }
+  @Input() contentUrl = '';
 }
