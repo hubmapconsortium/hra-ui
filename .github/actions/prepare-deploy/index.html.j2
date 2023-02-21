@@ -6,7 +6,7 @@
   <body>
     {% macro createLinkEntry(dir) %}
       <li>
-        <a href="{{ dir }}/index.html">{{ last(dir.split('/')) }}</a>
+        <a href="{{ dir }}/index.html">{{ dir.split('/')[-1] }}</a>
       </li>
     {% endmacro %}
 
