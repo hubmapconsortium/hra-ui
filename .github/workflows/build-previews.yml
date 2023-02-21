@@ -4,10 +4,6 @@ on:
   pull_request:
     types: ['opened', 'edited', 'synchronize']
 
-env:
-  APPS: ftu-ui
-  STORYBOOK_DISABLE_TELEMETRY: 1
-
 jobs:
   deploy:
     name: 'Deploy'

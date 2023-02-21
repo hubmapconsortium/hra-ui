@@ -63,7 +63,7 @@ runs:
       uses: cuchi/jinja2-action@v1.2.0
       with:
         template: ${{ github.action_path }}/index.html.j2
-        output_file: dist/index.html
+        output_file: ${{ inputs.deploy-directory }}/index.html
         strict: true
         variables: |
           apps=${{ steps.collect.outputs.apps }}
