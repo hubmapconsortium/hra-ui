@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Build preview for {{ env['GITHUB_REF_NAME'] }}</title>
+  </head>
+  <body>
+    {% marco createLinkEntry(dir) %}
+      <li>
+        <a href="{{ dir }}/index.html">{{ last(dir.split('/')) }}</a>
+      </li>
+    {% endmacro %}
+
+    {% macro createLinks(header, dirs_str) %}
+      {% if dirs_str %}
+        <h1>{{ header }}</h1>
+        <ul>
+          {% for dir in dirs_str.split(',') %}
+            {{ createLinkEntry(dir) }}
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endmacro %}
+
+    {{ createLinks('Apps', apps) }}
+    {{ createLinks('Storybook', storybook) }}
+    {{ createLinks('Compodoc', compodoc) }}
+  </body>
+</html>
