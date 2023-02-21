@@ -49,9 +49,9 @@ function copy_dirs() {
   local base_dir="$1"
   shift
   while (( "$#" )); do
-    local out_dir="${base_dir}/$(dir_name $1)"
-    cp -r "$1" "${out_dir}"
-    echo "${out_dir}"
+    local name=$(dir_name $1)
+    cp -r "$1" "${base_dir}/${name}"
+    echo "${name}"
     shift
   done
 }
@@ -79,7 +79,7 @@ while (( "$#" )); do
     name=$(dir_name "$1")
     dirs=$(list_dirs "$1")
     out_dirs=$(copy_dirs "${out_dir}" ${dirs[@]})
-    output "${name}" "${dirs[*]//$'\n'/,}"
+    output "${name}" "${out_dirs[*]//$'\n'/,}"
   fi
   shift
 done
