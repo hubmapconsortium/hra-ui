@@ -1,1 +1,35 @@
-<p>email-input works!</p>
+<mat-form-field class="example-full-width" appearance="outline">
+  <mat-label>Email</mat-label>
+  <input type="email" matInput [formControl]="emailControl" placeholder="Ex. pat@example.com" />
+
+  <mat-error *ngIf="emailControl.hasError('email') && !emailControl.hasError('required')">
+    Please enter a valid email address
+  </mat-error>
+  <mat-error *ngIf="emailControl.hasError('required')"> Email is required! </mat-error>
+</mat-form-field>
+
+<mat-form-field class="example-full-width" appearance="outline">
+  <mat-label>Subject</mat-label>
+  <input type="text" matInput [formControl]="subjectControl" placeholder="Ex. Some Subject" />
+
+  <!-- <mat-error *ngIf="control.hasError('text') && !control.hasError('required')">
+    Please enter a valid email address
+  </mat-error> -->
+  <mat-error *ngIf="subjectControl.hasError('required')">Subject is required! </mat-error>
+</mat-form-field>
+
+<mat-form-field class="message-box" appearance="outline">
+  <mat-label>Message</mat-label>
+  <input type="text" matInput [formControl]="messageControl" placeholder="Ex. Some Message" />
+
+  <!-- <mat-error *ngIf="control.hasError('text') && !control.hasError('required')">
+    Please enter a valid email address
+  </mat-error> -->
+  <mat-error *ngIf="messageControl.hasError('required')">Message is required! </mat-error>
+</mat-form-field>
+
+<p class="text-below-boxes">Please allow two business days for a response to each inquiry.</p>
+
+<button mat-flat-button class="submit-button">Submit</button>
+
+<button mat-flat-button class="cancel-button">Cancel</button>

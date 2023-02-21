@@ -1,4 +1,5 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 import { moduleMetadata } from '@storybook/angular';
 import { MarkdownModule } from 'ngx-markdown';
@@ -22,6 +23,7 @@ export const argTypesEnhancers = [fixArgTypes()];
 export const decorators = [
   moduleMetadata({
     imports: [
+      BrowserAnimationsModule,
       HttpClientModule,
       MarkdownModule.forRoot({
         loader: HttpClient,
