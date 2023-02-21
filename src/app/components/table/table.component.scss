@@ -53,10 +53,24 @@ $border-color: #e0e0e0;
 
     .table-cell {
       font-weight: 300;
+      box-sizing:border-box;
+      padding-right: 1rem;
     }
 
     .table-footer:not(:first-child) {
       text-align: right;
+      box-sizing:border-box;
+      padding-right: 0.5rem;
+    }
+
+    td.mat-cell:last-of-type {
+      box-sizing: border-box;
+      padding-right: 2rem;
+    }
+
+    td.mat-footer-cell:last-of-type {
+      box-sizing: border-box;
+      padding-right: 1.5rem;
     }
 
     @include text-alignment(default, right);
