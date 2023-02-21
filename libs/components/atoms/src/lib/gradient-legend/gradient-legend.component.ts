@@ -3,14 +3,13 @@ import { CommonModule } from '@angular/common';
 
 /** An interface of gradient colors along with their percentages for the gradient bar. */
 export interface GradientPoint {
-  /**
-   * color code of the gradient
-   */
+  /** Gradient color at a specific percentage */
   color: string;
-  /**Percentage of gradient */
+  /** Percentage point along the gradient bar */
   percentage: number;
 }
-/** Component fot gradient-legend used in bio markers table */
+
+/** Gradient legend for biomarkers */
 @Component({
   selector: 'hra-gradient-legend',
   standalone: true,
