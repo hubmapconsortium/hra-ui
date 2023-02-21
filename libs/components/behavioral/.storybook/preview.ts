@@ -1,1 +1,5 @@
-export * from '../../../../.storybook/preview';
+import { argTypesEnhancers, decorators, parameters, setDocs } from '../../../../.storybook/preview';
+
+export { argTypesEnhancers, decorators, parameters };
+
+setDocs('components-behavioral');

@@ -3,6 +3,6 @@
   "dest": "../../dist/libs/cdk",
   "lib": {
     "entryFile": "src/index.ts",
-    "styleIncludePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
+    "styleIncludePaths": ["node_modules/", "../shared/theming/src/lib/styles"]
   }
 }
