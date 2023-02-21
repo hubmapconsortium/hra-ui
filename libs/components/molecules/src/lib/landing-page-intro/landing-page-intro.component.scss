@@ -1,0 +1,18 @@
+:host {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: auto auto auto 3rem auto;
+  align-items: start;
+  column-gap: 2rem;
+  margin: 1rem 6rem;
+  .image {
+    grid-column: 2;
+    grid-row: 1 / span 4;
+    width: 100%;
+    height: auto;
+  }
+
+  .more-button {
+    width: 10rem;
+  }
+}
