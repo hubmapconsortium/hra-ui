@@ -1,17 +1,15 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-/**
- * Interface for taking input of the label and radius of the circles to be displayed.
- */
+
+/** Defining the input data types for the radius and label to be displayed. */
 interface SizeLegend {
   /** Label under circle */
   label: string;
   /** Radius for cirlce */
   radius: number;
 }
-/**
- * size-legend component for use under the biomarkers.
- */
+
+/** Size legend component for the biomarkers table. */
 @Component({
   selector: 'hra-size-legend',
   standalone: true,
@@ -21,8 +19,6 @@ interface SizeLegend {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SizeLegendComponent {
-  /**
-   * Input for sizes and labels of circles to be displayed.
-   */
+  /** Taking input for the radius of the circle and the label to be displayed. */
   @Input() sizes: SizeLegend[] = [];
 }
