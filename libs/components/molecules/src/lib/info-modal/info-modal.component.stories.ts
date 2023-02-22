@@ -16,8 +16,4 @@ const Template: Story<InfoModalComponent> = (args: InfoModalComponent) => ({
 });
 
 export const Primary = Template.bind({});
-Primary.args = {
-  productLogoUrl: 'assets/icons/logo-icon.svg',
-  productTitle: 'Human Reference Atlas',
-  appTitle: 'Functional Tissue Unit Explorer',
-};
+Primary.args = {};
