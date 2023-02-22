@@ -52,7 +52,7 @@ export class BiomarkerTableDataCardComponent implements OnChanges {
         newSectionItems.push({
           data: item,
           section: index,
-          isLastItem: index == section.length - 1,
+          isLastItem: index === section.length - 1,
         });
       });
     });
