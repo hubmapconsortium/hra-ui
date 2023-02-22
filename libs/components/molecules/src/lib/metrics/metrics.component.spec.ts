@@ -1,14 +1,14 @@
-import { MetricsComponent } from "./metrics.component";
-import { Shallow } from "shallow-render";
+import { MetricsComponent } from './metrics.component';
+import { Shallow } from 'shallow-render';
 
-describe("MetricsComponent", () => {
+describe('MetricsComponent', () => {
   let shallow: Shallow<MetricsComponent>;
 
   beforeEach(() => {
     shallow = new Shallow(MetricsComponent);
   });
 
-  it("should create MetricsComponent", async () => {
+  it('should create MetricsComponent', async () => {
     await expect(shallow.render()).resolves.toBeDefined();
   });
 });
