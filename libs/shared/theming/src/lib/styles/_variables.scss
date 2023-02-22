@@ -15,20 +15,36 @@ $light-dividers: var(--light-dividers);
 $light-focused: var(--light-focused);
 
 $primary: var(--palette-primary-500);
-$primary-lighter: var(--palette-accent-100);
+$primary-lighter: var(--palette-primary-100);
 $primary-darker: var(--palette-primary-700);
 
-$primary-accent: var(--palette-accent-A200);
-$primary-accent-lighter: var(--palette-accent-A100);
-$primary-accent-darker: var(--palette-accent-A400);
+$primary-contrast: var(--palette-primary-contrast-500);
+$primary-lighter-contrast: var(--palette-primary-contrast-100);
+$primary-darker-contrast: var(--palette-primary-contrast-700);
+
+$accent: var(--palette-accent-A200);
+$accent-lighter: var(--palette-accent-A100);
+$accent-darker: var(--palette-accent-A400);
+
+$accent-contrast: var(--palette-accent-contrast-A200);
+$accent-lighter-contrast: var(--palette-accent-contrast-A100);
+$accent-darker-contrast: var(--palette-accent-contrast-A400);
 
 $primary-rgb: var(--palette-primary-500-rgb);
-$primary-lighter-rgb: var(--palette-accent-100-rgb);
+$primary-lighter-rgb: var(--palette-primary-100-rgb);
 $primary-darker-rgb: var(--palette-primary-700-rgb);
 
-$primary-accent-rgb: var(--palette-accent-A200-rgb);
-$primary-accent-lighter-rgb: var(--palette-accent-A100-rgb);
-$primary-accent-darker-rgb: var(--palette-accent-A400-rgb);
+$primary-contrast-rgb: var(--palette-primary-contrast-500-rgb);
+$primary-lighter-contrast-rgb: var(--palette-primary-contrast-100-rgb);
+$primary-darker-contrast-rgb: var(--palette-primary-contrast-700-rgb);
+
+$accent-rgb: var(--palette-accent-A200-rgb);
+$accent-lighter-rgb: var(--palette-accent-A100-rgb);
+$accent-darker-rgb: var(--palette-accent-A400-rgb);
+
+$accent-contrast-rgb: var(--palette-accent-contrast-A200-rgb);
+$accent-lighter-contrast-rgb: var(--palette-accent-contrast-A100-rgb);
+$accent-darker-contrast-rgb: var(--palette-accent-contrast-A400-rgb);
 
 $primary-50: var(--palette-primary-50);
 $primary-100: var(--palette-primary-100);
@@ -45,20 +61,20 @@ $primary-A200: var(--palette-primary-A200);
 $primary-A300: var(--palette-primary-A300);
 $primary-A400: var(--palette-primary-A400);
 $primary-A700: var(--palette-primary-A700);
-$primary-darker-50: var(--palette-primary-contrast-50);
-$primary-darker-100: var(--palette-primary-contrast-100);
-$primary-darker-200: var(--palette-primary-contrast-200);
-$primary-darker-300: var(--palette-primary-contrast-300);
-$primary-darker-400: var(--palette-primary-contrast-400);
-$primary-lighter-500: var(--palette-primary-contrast-500);
-$primary-lighter-600: var(--palette-primary-contrast-600);
-$primary-lighter-700: var(--palette-primary-contrast-700);
-$primary-lighter-800: var(--palette-primary-contrast-800);
-$primary-lighter-900: var(--palette-primary-contrast-900);
-$primary-lighter-A100: var(--palette-primary-contrast-A100);
-$primary-lighter-A200: var(--palette-primary-contrast-A200);
-$primary-lighter-A400: var(--palette-primary-contrast-A400);
-$primary-lighter-A700: var(--palette-primary-contrast-A700);
+$primary-contrast-50: var(--palette-primary-contrast-50);
+$primary-contrast-100: var(--palette-primary-contrast-100);
+$primary-contrast-200: var(--palette-primary-contrast-200);
+$primary-contrast-300: var(--palette-primary-contrast-300);
+$primary-contrast-400: var(--palette-primary-contrast-400);
+$primary-contrast-500: var(--palette-primary-contrast-500);
+$primary-contrast-600: var(--palette-primary-contrast-600);
+$primary-contrast-700: var(--palette-primary-contrast-700);
+$primary-contrast-800: var(--palette-primary-contrast-800);
+$primary-contrast-900: var(--palette-primary-contrast-900);
+$primary-contrast-A100: var(--palette-primary-contrast-A100);
+$primary-contrast-A200: var(--palette-primary-contrast-A200);
+$primary-contrast-A400: var(--palette-primary-contrast-A400);
+$primary-contrast-A700: var(--palette-primary-contrast-A700);
 
 $accent-50: var(--palette-accent-50);
 $accent-100: var(--palette-accent-100);
