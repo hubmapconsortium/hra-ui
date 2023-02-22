@@ -1,6 +1,6 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
-import { moduleMetadata } from '@storybook/angular';
+import { componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { ThemingModule } from '../libs/shared/theming/src';
@@ -29,6 +29,7 @@ export const decorators = [
       ThemingModule,
     ],
   }),
+  componentWrapperDecorator((story) => `<div class="mat-typography">${story}</div>`),
 ];
 
 export function setDocs(library: string): void {
