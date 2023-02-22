@@ -1,3 +1,48 @@
 :host {
   display: block;
+
+  .bio-marker-button {
+    margin-left: 32px;
+    margin-top: 32px;
+    background: #006298;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+    width: 276px;
+    height: 48px;
+    border: 1px solid #006298;
+    border-radius: 4px;
+  }
+
+  .empty-message {
+    margin-left: 32px;
+    margin-top: 42px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    width: 438px;
+    height: 24px;
+    color: #243142;
+  }
+
+  .contact-message {
+    margin-left: 32px;
+    margin-top: 32px;
+    width: 328px;
+    height: 24px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #243142;
+  }
+
+  border-style: solid;
+  border-color: black;
+
+  width: 688px;
+  height: 245px;
 }
