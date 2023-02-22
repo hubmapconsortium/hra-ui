@@ -17,12 +17,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: ./.github/actions/prepare-deploy
+      - name: Prepare Deploy
+        uses: ./.github/actions/prepare-deploy
         with:
           main-branch-name: develop
           app-configuration: preview
 
       - name: Deploy Preview
+        id: deploy
         uses: jsmrcaga/action-netlify-deploy@v1.8.0
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
@@ -31,3 +33,12 @@ jobs:
           build_command: echo
           install_command: echo
           build_directory: deploy/
+
+      - name: Create Deploy Comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ github.ref }}
+          body: |
+            # :rocket: Preview Deploy Report
+
+            ✅Successfully deployed preview [here](${{ steps.deploy.outputs.NETLIFY_PREVIEW_URL }})
