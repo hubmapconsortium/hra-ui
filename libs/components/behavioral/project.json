@@ -88,6 +88,9 @@
         "outputPath": "dist/compodoc/components-behavioral"
       },
       "configurations": {
+        "ci": {
+          "silent": true
+        },
         "serve": {
           "watch": true,
           "disableCoverage": false,
