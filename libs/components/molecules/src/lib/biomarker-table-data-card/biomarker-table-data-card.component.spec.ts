@@ -1,14 +1,22 @@
-import { MatTableModule } from '@angular/material/table';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { BiomarkerTableDataCardComponent } from './biomarker-table-data-card.component';
 
 describe('BiomarkerTableDataCardComponent', () => {
-  let shallow: Shallow<BiomarkerTableDataCardComponent>;
-  beforeEach(() => {
-    shallow = new Shallow(BiomarkerTableDataCardComponent).dontMock(MatTableModule);
+  let component: BiomarkerTableDataCardComponent;
+  let fixture: ComponentFixture<BiomarkerTableDataCardComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [BiomarkerTableDataCardComponent],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(BiomarkerTableDataCardComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
-  it('should create', async () => {
-    await expect(shallow.render()).resolves.toBeDefined();
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 });
