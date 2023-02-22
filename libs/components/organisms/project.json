@@ -63,7 +63,11 @@
         "outputDir": "dist/storybook/components-organisms",
         "configDir": "libs/components/organisms/.storybook",
         "browserTarget": "components-organisms:build-storybook",
-        "compodoc": false
+        "compodoc": false,
+        "styles": [".storybook/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
+        }
       },
       "configurations": {
         "ci": {
@@ -76,6 +80,32 @@
       "options": {
         "command": "test-storybook -c libs/components/organisms/.storybook --url=http://localhost:4400"
       }
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/components/organisms/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/components-organisms"
+      },
+      "configurations": {
+        "serve": {
+          "watch": true,
+          "disableCoverage": false,
+          "disablePrivate": false,
+          "disableInternal": false
+        }
+      }
+    },
+    "compodoc-json": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/components/organisms/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/components-organisms",
+        "exportFormat": "json"
+      }
+    },
+    "test-doc-coverage": {
+      "command": "compodoc -p libs/components/organisms/tsconfig.lib.json -d tmp/doc-coverage -e json --coverageTest --coverageMinimumPerFile 100 --coverageTestShowOnlyFailed -t"
     }
   },
   "tags": ["components", "organisms"]

@@ -68,7 +68,11 @@
         "outputDir": "dist/storybook/cdk",
         "configDir": "libs/cdk/.storybook",
         "browserTarget": "cdk:build-storybook",
-        "compodoc": false
+        "compodoc": false,
+        "styles": [".storybook/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
+        }
       },
       "configurations": {
         "ci": {
@@ -81,6 +85,32 @@
       "options": {
         "command": "test-storybook -c libs/cdk/.storybook --url=http://localhost:4400"
       }
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/cdk/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/cdk"
+      },
+      "configurations": {
+        "serve": {
+          "watch": true,
+          "disableCoverage": false,
+          "disablePrivate": false,
+          "disableInternal": false
+        }
+      }
+    },
+    "compodoc-json": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/cdk/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/cdk",
+        "exportFormat": "json"
+      }
+    },
+    "test-doc-coverage": {
+      "command": "compodoc -p libs/cdk/tsconfig.lib.json -d tmp/doc-coverage -e json --coverageTest --coverageMinimumPerFile 100 --coverageTestShowOnlyFailed -t"
     }
   },
   "tags": ["cdk"]

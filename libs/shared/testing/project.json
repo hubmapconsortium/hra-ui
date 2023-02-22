@@ -41,6 +41,32 @@
       "options": {
         "lintFilePatterns": ["libs/shared/testing/**/*.ts", "libs/shared/testing/**/*.html"]
       }
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/shared/testing/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/shared-testing"
+      },
+      "configurations": {
+        "serve": {
+          "watch": true,
+          "disableCoverage": false,
+          "disablePrivate": false,
+          "disableInternal": false
+        }
+      }
+    },
+    "compodoc-json": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/shared/testing/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/shared-testing",
+        "exportFormat": "json"
+      }
+    },
+    "test-doc-coverage": {
+      "command": "compodoc -p libs/shared/testing/tsconfig.lib.json -d tmp/doc-coverage -e json --coverageTest --coverageMinimumPerFile 100 --coverageTestShowOnlyFailed -t"
     }
   },
   "tags": ["utils", "testing"]
