@@ -1,0 +1,16 @@
+:host {
+  display: block;
+
+  .gradient-bar {
+    height: 1.5rem;
+    width: 100%;
+  }
+
+  .legend {
+    display: flex;
+
+    .filler {
+      flex-grow: 1;
+    }
+  }
+}
