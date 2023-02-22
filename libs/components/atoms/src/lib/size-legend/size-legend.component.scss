@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  column-gap: 2rem;
+  min-height: 5rem;
+  .item {
+    display: flex;
+    flex-direction: column;
+
+    .circle {
+      height: var(--size);
+      width: var(--size);
+      border-radius: 50%;
+      border: 0.125rem solid #75838f;
+    }
+
+    .label {
+      margin-top: 1rem;
+    }
+
+    .filler {
+      flex-grow: 1;
+    }
+  }
+}
