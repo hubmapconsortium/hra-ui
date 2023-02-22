@@ -2,7 +2,7 @@ import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { ScreenSizeNoticeComponent } from './screen-size-notice.component';
 
 export default {
-  title: 'ScreenSizeNoticeComponent',
+  title: 'Molecule/ScreenSizeNoticeComponent',
   component: ScreenSizeNoticeComponent,
   decorators: [
     moduleMetadata({

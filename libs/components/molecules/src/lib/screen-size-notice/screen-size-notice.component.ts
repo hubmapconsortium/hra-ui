@@ -7,7 +7,6 @@ import { MatIconModule } from '@angular/material/icon';
 /**
  * The screen size notice component displays a notice for the users specifying the required screen size
  */
-
 @Component({
   selector: 'hra-screen-size-notice',
   standalone: true,

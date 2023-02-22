@@ -1,25 +1,28 @@
 :host {
   display: flex;
-  border: 0.5rem;
+  position: relative;
+  border-radius: 0.5rem;
   padding: 1.5rem;
   box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
   flex-direction: column;
 
   .header-close {
     position: absolute;
-    top: 2rem;
-    right: 2rem;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  h2 {
+    margin: 0.5rem 0 0 0;
   }
 
   .btn-stroked {
-    font-weight: 700 !important;
+    font-weight: 700;
     margin-bottom: 1rem;
-    margin-top: 1rem;
   }
 
   .btn-flat {
-    font-weight: 700 !important;
-    margin-bottom: 1.5rem;
+    font-weight: 700;
   }
 
   .content {
