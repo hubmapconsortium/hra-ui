@@ -1,0 +1,56 @@
+:host {
+  display: flex;
+  align-items: center;
+
+  .product-title {
+    color: #990000;
+    margin-right: 1.5rem;
+  }
+
+  a {
+    cursor: pointer;
+    display: flex;
+  }
+
+  .app-title {
+    font-weight: 400;
+    color: #243142;
+  }
+
+  .about {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #006298;
+    text-decoration: underline;
+  }
+
+  .filler {
+    flex-grow: 1;
+  }
+
+  .product-logo-image {
+    height: 1.5rem;
+    margin-right: 1rem;
+  }
+
+  .info-image {
+    margin-right: 0.5rem;
+  }
+
+  @media (max-width: 480px) {
+    .product-title,
+    .about {
+      display: none;
+    }
+
+    .app-title {
+      font-size: 1rem;
+      color: #243142;
+      align-items: center;
+    }
+
+    .product-logo-image {
+      margin-right: 0.5rem;
+    }
+  }
+}
