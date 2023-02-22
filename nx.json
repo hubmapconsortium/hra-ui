@@ -27,6 +27,10 @@
     "lint": {
       "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
     },
+    "storybook": {
+      "dependsOn": ["compodoc-json"],
+      "inputs": ["default", "^production", "{workspaceRoot}/.storybook/**/*"]
+    },
     "build-storybook": {
       "dependsOn": ["compodoc-json"],
       "inputs": ["default", "^production", "{workspaceRoot}/.storybook/**/*"]
