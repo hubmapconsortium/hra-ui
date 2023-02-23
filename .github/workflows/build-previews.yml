@@ -4,10 +4,6 @@ on:
   pull_request:
     types: ['opened', 'edited', 'synchronize']
 
-env:
-  APPS: ftu-ui
-  STORYBOOK_DISABLE_TELEMETRY: 1
-
 jobs:
   deploy:
     name: 'Deploy'
@@ -20,36 +16,15 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Prepare Node.js
-        uses: ./.github/actions/prepare-node-js
 
-      - name: Configure nx
-        uses: nrwl/nx-set-shas@v3
+      - name: Prepare Deploy
+        uses: ./.github/actions/prepare-deploy
         with:
           main-branch-name: develop
-
-      - name: Build Apps
-        run: npx nx run-many --targets=build --projects=$APPS --configuration=development
-      - name: Build Storybook
-        run: |
-          # Run one at a time due to https://github.com/nrwl/nx/issues/6842
-          npx nx affected --targets=build-storybook --configuration=ci --parallel 1
-
-      - name: Collect built apps and storybook
-        id: collect
-        uses: ./.github/actions/collect-preview-dirs
-
-      - name: Generate index file
-        uses: cuchi/jinja2-action@v1.2.0
-        with:
-          template: .github/assets/preview-index.html.j2
-          output_file: dist/index.html
-          strict: true
-          variables: |
-            apps=${{ steps.collect.outputs.apps }}
-            storybooks=${{ steps.collect.outputs.storybooks }}
+          app-configuration: preview
 
       - name: Deploy Preview
+        id: deploy
         uses: jsmrcaga/action-netlify-deploy@v1.8.0
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
@@ -57,4 +32,4 @@ jobs:
           use_nvm: false
           build_command: echo
           install_command: echo
-          build_directory: dist/
+          build_directory: deploy/

@@ -1,5 +1,5 @@
-import { decorators, setDocs } from '../../../../.storybook/preview';
+import { argTypesEnhancers, decorators, parameters, setDocs } from '../../../../.storybook/preview';
 
-export { decorators };
+export { argTypesEnhancers, decorators, parameters };
 
 setDocs('components-atoms');
