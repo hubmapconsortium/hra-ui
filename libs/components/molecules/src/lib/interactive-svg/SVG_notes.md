@@ -6,6 +6,7 @@
 - liver: liver lobule
 - thymus: thymus lobule
 - skin: dermal papilla -> blood vessel
+- lung: alveoli -> Type_II_Pneumocyte_6, capillary endothelial cell
 
 ## No SVG
 
