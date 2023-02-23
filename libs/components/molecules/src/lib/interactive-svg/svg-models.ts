@@ -11,56 +11,80 @@ export interface SvgData {
 
 export const allSvgs: Record<string, SvgData> = {
   'cortical_collecting_duct': {
-    src: './assets/2d-ftu-kidney-cortical-collecting-duct.svg',
+    src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.svg',
     organ: 'kidney'
   },
   'outer_medullary_collecting_duct': {
-    src: './assets/2d-ftu-kidney-outer-medullary-collecting-duct.svg',
+    src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.svg',
     organ: 'kidney'
   },
   'inner_medullary_collecting_duct': {
-    src: './assets/2d-ftu-kidney-inner-medullary-collecting-duct.svg',
+    src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.svg',
     organ: 'kidney'
   },
   'thick_ascending_loop_of_henle': {
-    src: './assets/2d-ftu-kidney-thick-ascending-loop-of-henle.svg',
+    src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.svg',
     organ: 'kidney'
   },
   'descending_thin_loop_of_henle': {
-    src: './assets/2d-ftu-kidney-descending-thin-loop-of-henle.svg',
+    src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.svg',
     organ: 'kidney'
   },
   'ascending_thin_loop_of_henle': {
-    src: './assets/2d-ftu-kidney-ascending-thin-loop-of-henle.svg',
+    src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.svg',
     organ: 'kidney'
   },
   'dermal_papilla': {
-    src: './assets/2d-ftu-skin-dermal-papilla.svg',
+    src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-dermal-papilla.svg',
     organ: 'skin'
   },
   'epidermal_ridge': {
-    src: './assets/2d-ftu-skin-epidermal-ridge.svg',
+    src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.svg',
     organ: 'skin'
   },
   'bronchial_submucosal_gland': {
-    src: './assets/2d-ftu-lung-bronchial-submucosal-gland.svg',
+    src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-bronchial-submucosal-gland.svg',
     organ: 'lung'
   },
   'alveoli': {
-    src: './assets/2d-ftu-lung-pulmonary-alveolus.svg',
+    src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-pulmonary-alveolus.svg',
     organ: 'lung'
   },
   'crypt_lieberkuhn_large_intestine': {
-    src: './assets/2d-ftu-large-intestine-crypt-lieberkuhn.svg',
+    src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.svg',
     organ: 'large intestine'
   },
   'intercalated_duct_1': {
-    src: './assets/2d-ftu-pancreas-intercalated-duct.svg',
+    src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-intercalated-duct.svg',
     organ: 'pancreas'
   },
   'pancreatic_acinus': {
-    src: './assets/2d-ftu-pancreas-pancreatic-acinus.svg',
+    src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-pancreatic-acinus.svg',
     organ: 'pancreas'
+  },
+  'nephron': {
+    src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-nephron.svg',
+    organ: 'kidney'
+  },
+  'renal_corpuscle': {
+    src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-renal-corpuscle.svg',
+    organ: 'kidney'
+  },
+  'islets_langerhans': {
+    src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-islets-langerhans.svg',
+    organ: 'pancreas'
+  },
+  'liver_lobule': {
+    src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-liver-liver-lobule.svg',
+    organ: 'liver'
+  },
+  'glandular_acinus': {
+    src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.svg',
+    organ: 'prostate'
+  },
+  'thymus_lobule': {
+    src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.svg',
+    organ: 'thymus'
   }
 }
 

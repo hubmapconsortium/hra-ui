@@ -24,22 +24,27 @@ import { allSvgs, MapData, svgMap } from './svg-models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InteractiveSvgComponent implements OnInit {
-  @Input() fileName = 'crypt_lieberkuhn_large_intestine';
+  @Input() fileName = '';
   @Output() nodeData = new EventEmitter<MapData>();
-  mapData: MapData[];
-  SVGFile: string;
+  mapData: MapData[] = [];
+  SVGFile = '';
 
-  constructor(private papa: Papa, private el: ElementRef, private http: HttpClient) {
-    this.mapData = this.papa.parse(svgMap, { header: true }).data;
-    this.SVGFile = allSvgs[this.fileName].src;
-  }
-
+  constructor(private papa: Papa, private el: ElementRef, private http: HttpClient) {}
+  
   ngOnInit(): void {
-    this.SVGFile = allSvgs[this.fileName].src;
+    this.mapData = this.papa.parse(svgMap, { header: true }).data;
+    this.SVGFile = allSvgs[this.fileName] ? allSvgs[this.fileName].src : '';
     this.http.get(this.SVGFile, {responseType: 'text'}).subscribe(svg => {
       this.el.nativeElement.innerHTML = svg;
+      this.bringToTopofSVG(document.querySelector('[id^="Crosswalk"]'));
     });
-}
+  }
+
+  bringToTopofSVG(targetElement: Element | null){
+    if (targetElement && targetElement.parentNode) {
+      targetElement.parentNode.appendChild(targetElement);
+    }
+  }
 
   @HostListener('mousemove', ['$event'])
   findHoverMatch(target: MouseEvent): void {
@@ -54,7 +59,9 @@ export class InteractiveSvgComponent implements OnInit {
     const parentId = parentElement ? parentElement.id : '';
     const parsedParentId = parentId.split('x5F_').join('');
     const parentNodeMatch = filteredMapData.find(entry => 
-      parsedParentId === entry['node_name'] || parsedParentId.includes( entry['node_name']) || entry['node_name'].includes(parsedParentId)
+      parsedParentId === entry['node_name'] || 
+      parsedParentId.includes( entry['node_name']) || 
+      entry['node_name'].includes(parsedParentId)
     );
 
     if (parsedTargetId !== '') {
