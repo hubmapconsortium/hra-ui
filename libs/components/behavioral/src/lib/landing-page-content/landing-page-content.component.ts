@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LandingPageIntroComponent } from '@hra-ui/components/molecules';
 import { LANDING_PAGE_CONTENT } from '../../resources/landing-page-content';
 
+/** Component for LandingPageContent Behavior */
 @Component({
   selector: 'ftu-landing-page-content',
   standalone: true,
@@ -14,4 +15,8 @@ import { LANDING_PAGE_CONTENT } from '../../resources/landing-page-content';
 export class LandingPageContentComponent {
   /** Introduction Data for landing-page-intro component */
   introData = LANDING_PAGE_CONTENT.introData;
+
+  exploreFTU(): void {
+    //TODO
+  }
 }
