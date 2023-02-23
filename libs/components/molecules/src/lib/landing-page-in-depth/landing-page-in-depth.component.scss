@@ -1,12 +1,26 @@
 :host {
-  display: block;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: auto auto auto 3rem auto;
+  align-items: start;
+  column-gap: 2rem;
+  margin: 1rem 6rem;
+  .image {
+    grid-column: 1;
+    grid-row: 1 / span 4;
+    width: 100%;
+    height: auto;
+  }
+  .title {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 40px;
+    color: #243142;
+  }
 
-  .svg-container {
-    display: flex;
-    width: 489px;
-    height: 337px;
-    background: #FFFFFF;
-    padding: 32px;
-    box-shadow: 1px 2px 16px 2px rgba(0, 0, 0, 0.16);
+  .more-button {
+    width: 247px;
   }
 }
