@@ -2,47 +2,38 @@
   display: block;
 
   .bio-marker-button {
-    margin-left: 32px;
-    margin-top: 32px;
+    margin-left: 2rem;
+    margin-top: 2rem;
     background: #006298;
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 1rem;
     color: #fff;
-    width: 276px;
-    height: 48px;
-    border: 1px solid #006298;
-    border-radius: 4px;
+    width: 17.25rem;
+    height: 3rem;
+    border: 0.0625rem solid #006298;
+    border-radius: 0.25rem;
+  }
+
+  .contact-us-message {
+    margin-left: 2rem;
+    margin-top: 2rem;
+    width: 20.5rem;
+    height: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #243142;
   }
 
   .empty-message {
-    margin-left: 32px;
-    margin-top: 42px;
-    font-family: 'Inter';
+    margin-left: 2rem;
+    margin-top: 2.625rem;
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    width: 438px;
-    height: 24px;
+    font-size: 1rem;
+    width: 27.375rem;
+    height: 1.5rem;
     color: #243142;
   }
-
-  .contact-message {
-    margin-left: 32px;
-    margin-top: 32px;
-    width: 328px;
-    height: 24px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    color: #243142;
-  }
-
-  border-style: solid;
-  border-color: black;
-
-  width: 688px;
-  height: 245px;
 }
