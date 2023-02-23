@@ -16,4 +16,6 @@ const Template: Story<InfoModalComponent> = (args: InfoModalComponent) => ({
 });
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  text: 'Human Reference Atlas',
+};

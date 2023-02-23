@@ -1,22 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
 
 import { InfoModalComponent } from './info-modal.component';
 
 describe('InfoModalComponent', () => {
-  let component: InfoModalComponent;
-  let fixture: ComponentFixture<InfoModalComponent>;
+  let shallow: Shallow<InfoModalComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [InfoModalComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(InfoModalComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    shallow = new Shallow(InfoModalComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async () => {
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 });
