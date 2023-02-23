@@ -1,3 +1,4 @@
+/** Function to return landing page intro data */
 const getIntroData = (hubMap = '', cellxGene = '', neMo = '', gTex = '', partners = ['', '']) => {
   return {
     title: 'Welcome to the Functional Tissue Unit Explorer',
@@ -17,4 +18,5 @@ const getIntroData = (hubMap = '', cellxGene = '', neMo = '', gTex = '', partner
   };
 };
 
+/** Landing page content */
 export const LANDING_PAGE_CONTENT = { introData: getIntroData() };
