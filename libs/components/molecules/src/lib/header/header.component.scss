@@ -1,9 +1,11 @@
+@use 'variables' as var;
+
 :host {
   display: flex;
   align-items: center;
 
   .product-title {
-    color: #990000;
+    color: var.$header;
     margin-right: 1.5rem;
   }
 
@@ -20,7 +22,7 @@
   .about {
     font-weight: 700;
     font-size: 1rem;
-    color: #006298;
+    color: var.$about;
     text-decoration: underline;
   }
 
