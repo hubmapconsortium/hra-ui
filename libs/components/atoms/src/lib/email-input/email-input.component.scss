@@ -92,6 +92,11 @@
     flex: 1;
   }
 
+  .product-title {
+    color: #990000;
+    margin-right: 1.5rem;
+  }
+
   ::ng-deep .mat-mdc-form-field-required-marker {
     color: #dc231e;
   }

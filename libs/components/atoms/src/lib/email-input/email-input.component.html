@@ -1,6 +1,13 @@
+<div fxLayout="row">
+  <a class="product-logo-link">
+    <img class="product-logo-image" src="assets/icons/logo-icon.svg" alt="Prodoct Logo" />
+    <h2 class="product-title">Human Reference Atlas</h2>
+  </a>
+</div>
+
 <div class="email-input-form" *ngIf="!isSubmitted">
   <mat-form-field class="example-full-width" appearance="outline">
-    <mat-label>Email</mat-label>
+    <mat-label> Email </mat-label>
     <input type="email" matInput [formControl]="emailControl" placeholder="Ex. pat@example.com" />
 
     <mat-error *ngIf="emailControl.hasError('email') && !emailControl.hasError('required')">
@@ -13,9 +20,6 @@
     <mat-label>Subject</mat-label>
     <input type="text" matInput [formControl]="subjectControl" placeholder="Ex. Some Subject" />
 
-    <!-- <mat-error *ngIf="control.hasError('text') && !control.hasError('required')">
-      Please enter a valid email address
-    </mat-error> -->
     <mat-error *ngIf="subjectControl.hasError('required')">Subject is required! </mat-error>
   </mat-form-field>
 
@@ -23,9 +27,6 @@
     <mat-label>Message</mat-label>
     <input type="text" matInput [formControl]="messageControl" placeholder="Ex. Some Message" />
 
-    <!-- <mat-error *ngIf="control.hasError('text') && !control.hasError('required')">
-      Please enter a valid email address
-    </mat-error> -->
     <mat-error *ngIf="messageControl.hasError('required')">Message is required! </mat-error>
   </mat-form-field>
 
