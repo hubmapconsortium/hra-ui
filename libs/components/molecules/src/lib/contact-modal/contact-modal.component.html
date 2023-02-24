@@ -3,13 +3,13 @@
   <h2 class="product-title">{{ productTitle }}</h2>
 </a>
 
-<button class="close" mat-icon-button>
+<button class="close" mat-icon-button (click)="closeClick.emit()">
   <mat-icon>close</mat-icon>
 </button>
 
-<hra-email-input [placeholder]="placeHolder" (emailChange)="email($event)"></hra-email-input>
+<hra-email-input [placeholder]="placeHolder" (emailChange)="email($event)" class="email"></hra-email-input>
 
-<p class="text-below-boxes">Please allow two business days for a response to each inquiry.</p>
+<markdown class="description" [data]="description"></markdown>
 
 <button mat-flat-button class="submit" color="primary">Submit</button>
 <button mat-stroked-button class="cancel" color="primary">Cancel</button>

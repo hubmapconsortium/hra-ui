@@ -1,22 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
 
 import { ContactModalComponent } from './contact-modal.component';
 
 describe('ContactModalComponent', () => {
-  let component: ContactModalComponent;
-  let fixture: ComponentFixture<ContactModalComponent>;
+  let shallow: Shallow<ContactModalComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ContactModalComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(ContactModalComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    shallow = new Shallow(ContactModalComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async () => {
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 });
