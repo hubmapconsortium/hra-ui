@@ -1,21 +1,19 @@
-
-
 :host {
   display: block;
 
   .container {
     display: flex;
-    align-items:center;
+    align-items: center;
     height: 3.5rem;
     padding: 0 3rem 0 1.375rem;
-    background-color: #F8F9FA;
+    background-color: #f8f9fa;
 
     box-shadow: 0px 0rem 0.1rem #a09c9c;
 
     .end {
       flex-grow: 1;
-      display:flex;
-      justify-content:end;
+      display: flex;
+      justify-content: end;
       margin-right: 0.1rem;
       width: 10rem;
       margin-left: 1.5rem;
@@ -23,18 +21,18 @@
     .button {
       justify-content: space-between;
       margin-left: 0.5rem;
-      background-color: #FFFFFF;
+      background-color: #ffffff;
     }
-    .button:hover{
-      border-color:black;
-      background-color: #FFFFFF;
+    .button:hover {
+      border-color: black;
+      background-color: #ffffff;
     }
   }
   .footer {
     position: fixed;
     left: 0.5rem;
     bottom: 0.1rem;
-    right: 0.5rem
+    right: 0.5rem;
   }
   .footer .actions {
     display: flex;
@@ -62,16 +60,11 @@
     display: block;
   }
 
-  .dropup-content a:hover {background-color: #ccc}
+  .dropup-content a:hover {
+    background-color: #ffffff;
+  }
 
   .dropup:hover .dropup-content {
     display: block;
   }
-
 }
-
-
-
-
-
-

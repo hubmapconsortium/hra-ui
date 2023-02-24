@@ -7,15 +7,23 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [],
-    })
+    }),
   ],
 } as Meta<FooterComponent>;
+
+const ITEMS = [
+  { label: 'Download XLXS' },
+  { label: 'Download JSON-LD' },
+  { label: 'Download PDF' },
+  { label: 'Download AI' },
+  { label: 'Download PNG' },
+];
 
 const Template: Story<FooterComponent> = (args: FooterComponent) => ({
   props: args,
 });
 
-
 export const Primary = Template.bind({});
 Primary.args = {
-}
+  items: ITEMS,
+};
