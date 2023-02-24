@@ -1,9 +1,17 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, OnChanges, Output, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  HostBinding,
+  Input,
+  OnChanges,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatIconModule  } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
-
 
 /** Downloading labels */
 export interface DropdownItemList {
@@ -13,17 +21,12 @@ export interface DropdownItemList {
 @Component({
   selector: 'hra-footer',
   standalone: true,
-  imports: [CommonModule,
-     MatButtonModule,
-     MatIconModule,
-     MatSelectModule
-    ],
+  imports: [CommonModule, MatButtonModule, MatIconModule, MatSelectModule],
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FooterComponent <List extends DropdownItemList = DropdownItemList> {
-
+export class FooterComponent<List extends DropdownItemList = DropdownItemList> {
   @HostBinding('class') readonly clsName = 'hra-footer';
 
   @Output() readonly buttonClick = new EventEmitter<void>();
@@ -32,7 +35,7 @@ export class FooterComponent <List extends DropdownItemList = DropdownItemList> 
 
   // @ViewChild('mySelect') mySelect: MatSelect;
 
-  selected = " ";
+  selected = ' ';
 
   @Input() placeholder?: string;
 
@@ -52,7 +55,11 @@ export class FooterComponent <List extends DropdownItemList = DropdownItemList> 
   //   }
   // }
 
-//   mySelect(){
-// console.log("in select")
-//   }
+  //   mySelect(){
+  // console.log("in select")
+  //   }
+
+  contactComponent() {
+    //contact component
+  }
 }

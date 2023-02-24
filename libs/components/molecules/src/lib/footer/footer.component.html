@@ -1,39 +1,41 @@
+<!-- need to chnage the links -->
 <div class="footer">
-
   <div class="container">
+    <form action="http://localhost:4400/?path=/story/footercomponent--primary" method="get" target="_blank">
+      <button class="button" mat-stroked-button>
+        <mat-icon>info</mat-icon>
+        Ilustration
+      </button>
+    </form>
 
-    <button class="button" mat-stroked-button>
-      <mat-icon>info</mat-icon>
-      Ilustration
-    </button>
-
-<div class="dropup">
-  <button  class="button" mat-stroked-button> <mat-icon>file_download</mat-icon>Download</button>
-  <div class="dropup-content">
-    <a>Download XLXS</a>
-    <a>Download JSON-LD</a>
-    <a>Download AI</a>
-    <a>Download PDF</a>
-    <a>Download PNG</a>
-   <!-- <mat-select>
+    <div class="dropup">
+      <button class="button" mat-stroked-button><mat-icon>file_download</mat-icon>Download</button>
+      <div class="dropup-content">
+        <a>Download XLXS</a>
+        <a>Download JSON-LD</a>
+        <a>Download AI</a>
+        <a>Download PDF</a>
+        <a>Download PNG</a>
+        <!-- <mat-select>
     <mat-option value="xlxs">Download XLXS</mat-option>
     <mat-option value="joson">Download JSON-LD</mat-option>
     <mat-option value="pdf">Download PDF</mat-option>
     <mat-option value="ai">Download AI</mat-option>
     <mat-option value="png">Download PNG</mat-option>
   </mat-select> -->
-  </div>
-</div>
-
-    <button class="button" mat-stroked-button><mat-icon>code</mat-icon> Embed</button>
+      </div>
+    </div>
+    <form action="http://localhost:4400/?path=/story/footercomponent--primary" method="get" target="_blank">
+      <button class="button" mat-stroked-button><mat-icon>code</mat-icon> Embed</button>
+    </form>
 
     <div class="end">
-      <button class="button" mat-stroked-button><mat-icon>mail</mat-icon> Contact</button>
+      <button class="button" mat-stroked-button (click)="contactComponent()"><mat-icon>mail</mat-icon> Contact</button>
 
-      <button class="button" mat-stroked-button> <mat-icon>open_in_new</mat-icon>HRA Portal</button>
-
+      <form action="http://localhost:4400/?path=/story/footercomponent--primary" method="get" target="_blank">
+        <button class="button" mat-stroked-button><mat-icon>open_in_new</mat-icon>HRA Portal</button>
+      </form>
     </div>
-
   </div>
 
   <!-- <div>
@@ -47,8 +49,8 @@
       </mat-select>
     </mat-form-field>
   </div> -->
-<div>
-  <!-- <mat-select class="select" panelClass="bric-dropdown-options" disableOptionCentering [placeholder]="placeholder ?? ''"
+  <div>
+    <!-- <mat-select class="select" panelClass="bric-dropdown-options" disableOptionCentering [placeholder]="placeholder ?? ''"
   [value]="selection" (selectionChange)="updateSelection($event.value)" (openedChange)="!$event && update$.next()">
   <mat-option *ngIf="(selection$ | async) === undefined && placeholder" class="option" [value]="null">
     {{ placeholder }}
@@ -57,6 +59,7 @@
     {{ item.label }}
   </mat-option> -->
 
-<!-- </mat-select> -->
+    <!-- </mat-select> -->
+  </div>
+  <div></div>
 </div>
-<div>
