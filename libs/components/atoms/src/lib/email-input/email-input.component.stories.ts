@@ -2,7 +2,7 @@ import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { EmailInputComponent } from './email-input.component';
 
 export default {
-  title: 'EmailInputComponent',
+  title: 'Atoms/EmailInputComponent',
   component: EmailInputComponent,
   decorators: [
     moduleMetadata({
