@@ -1,18 +1,11 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatTreeModule } from '@angular/material/tree';
+import { MatTreeModule, MatTreeNestedDataSource } from '@angular/material/tree';
+import { NestedTreeControl } from '@angular/cdk/tree';
 
-interface TissueTreeItem {
+interface TissueTreeGroup {
   label: string;
-}
-
-interface TissueTreeGroup<T> {
-  label: string;
-  items: T[];
-}
-
-interface TissueTreeComponent<T> {
-  groups: TissueTreeGroup<T>[];
+  items?: TissueTreeGroup[];
 }
 
 @Component({
@@ -24,28 +17,35 @@ interface TissueTreeComponent<T> {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TissueTreeListComponent {
-  @Input() treeList: TissueTreeComponent<TissueTreeItem>;
+  @Input() treeList: TissueTreeGroup[];
+
+  treeControl = new NestedTreeControl<TissueTreeGroup>((node) => node.items);
+
+  dataSource = new MatTreeNestedDataSource<TissueTreeGroup>();
 
   constructor() {
-    this.treeList = {
-      groups: [
-        {
-          label: 'Kidney',
-          items: [
-            { label: 'Ascending thin limb' },
-            { label: 'Cortical collecting duct' },
-            { label: 'Collecting duct(inner medulla)' },
-          ],
-        },
-        {
-          label: 'Large Intestine',
-          items: [{ label: 'Crypt of Lieberkuhn' }],
-        },
-        {
-          label: 'Liver',
-          items: [{ label: 'Liver lobule' }],
-        },
-      ],
-    };
+    this.treeList = [
+      {
+        label: 'Kidney',
+        items: [
+          { label: 'Ascending thin limb' },
+          { label: 'Cortical collecting duct' },
+          { label: 'Collecting duct(inner medulla)' },
+        ],
+      },
+      {
+        label: 'Large Intestine',
+        items: [{ label: 'Crypt of Lieberkuhn' }],
+      },
+      {
+        label: 'Liver',
+        items: [{ label: 'Liver lobule' }],
+      },
+    ];
+
+    this.dataSource.data = this.treeList;
+    console.log('dataSprce==', this.dataSource);
   }
+
+  hasChild = (_: number, node: TissueTreeGroup) => !!node.items && node.items.length > 0;
 }
