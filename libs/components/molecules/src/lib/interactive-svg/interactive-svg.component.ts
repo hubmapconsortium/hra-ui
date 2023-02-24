@@ -44,7 +44,7 @@ export class InteractiveSvgComponent implements OnInit {
    * @param el Element ref
    * @param http HTTP service
    */
-  constructor(private papa: Papa, private el: ElementRef, private http: HttpClient) {}
+  constructor(private readonly papa: Papa, private readonly el: ElementRef, private readonly http: HttpClient) {}
 
   /**
    * Fetches and renders SVG
