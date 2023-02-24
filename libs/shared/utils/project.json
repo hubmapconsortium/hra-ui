@@ -54,6 +54,9 @@
         "outputPath": "dist/compodoc/shared-utils"
       },
       "configurations": {
+        "ci": {
+          "silent": true
+        },
         "serve": {
           "watch": true,
           "disableCoverage": false,

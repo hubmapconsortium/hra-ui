@@ -1,0 +1,53 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.5rem;
+
+  .logo {
+    height: 2.75rem;
+    padding: 0.563rem 0.188rem 0.563rem 0.188rem;
+  }
+
+  .header-title {
+    color: #243142;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+
+  .metrics {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    max-width: 100%;
+    gap: 1.75rem;
+
+    .metric {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 14.75rem;
+      min-width: 14.25rem;
+      width: auto;
+      margin: 2rem 0;
+
+      .metric-logo {
+        height: 3rem;
+        width: 3rem;
+        margin: 2rem 5.625rem;
+      }
+
+      .metric-value {
+        margin: 0rem 0rem 0.25rem 0rem;
+        font-size: 3rem;
+        font-weight: 400;
+      }
+
+      .metric-description {
+        font-size: 1rem;
+        font-weight: 400;
+      }
+    }
+  }
+}

@@ -1,5 +1,5 @@
 name: Setup node environment
-description: Installs Node.js and installs packages using the cache
+description: Install Node.js and all dependencies using the cache when available
 
 inputs:
   node-version:
@@ -26,7 +26,7 @@ runs:
       uses: actions/cache@v3
       with:
         path: ./node_modules
-        key: modules-${{ hashFiles('**/package-lock.json') }}
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
     - name: Install dependencies
       shell: bash
       if: ${{ steps.modules_cache.outputs.cache-hit != 'true' }}
