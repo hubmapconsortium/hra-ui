@@ -1,93 +1,100 @@
-export interface MapData {
+/** Data for a SVG node */
+export interface SvgNodeData {
+  /** Node name */
   node_name: string;
+  /** File the node is located in */
   'svg file of single 2DFTU': string;
+  /** Other node properties */
   [key: string]: unknown;
 }
-
+/** Data in SVG */
 export interface SvgData {
+  /** URL for SVG */
   src: string;
+  /** Organ the SVG is contained in */
   organ: string;
 }
-
+/** Reference for all SVGs */
 export const allSvgs: Record<string, SvgData> = {
-  'cortical_collecting_duct': {
+  cortical_collecting_duct: {
     src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.svg',
-    organ: 'kidney'
+    organ: 'kidney',
   },
-  'outer_medullary_collecting_duct': {
+  outer_medullary_collecting_duct: {
     src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.svg',
-    organ: 'kidney'
+    organ: 'kidney',
   },
-  'inner_medullary_collecting_duct': {
+  inner_medullary_collecting_duct: {
     src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.svg',
-    organ: 'kidney'
+    organ: 'kidney',
   },
-  'thick_ascending_loop_of_henle': {
+  thick_ascending_loop_of_henle: {
     src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.svg',
-    organ: 'kidney'
+    organ: 'kidney',
   },
-  'descending_thin_loop_of_henle': {
+  descending_thin_loop_of_henle: {
     src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.svg',
-    organ: 'kidney'
+    organ: 'kidney',
   },
-  'ascending_thin_loop_of_henle': {
+  ascending_thin_loop_of_henle: {
     src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.svg',
-    organ: 'kidney'
+    organ: 'kidney',
   },
-  'dermal_papilla': {
+  dermal_papilla: {
     src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-dermal-papilla.svg',
-    organ: 'skin'
+    organ: 'skin',
   },
-  'epidermal_ridge': {
+  epidermal_ridge: {
     src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.svg',
-    organ: 'skin'
+    organ: 'skin',
   },
-  'bronchial_submucosal_gland': {
+  bronchial_submucosal_gland: {
     src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-bronchial-submucosal-gland.svg',
-    organ: 'lung'
+    organ: 'lung',
   },
-  'alveoli': {
+  alveoli: {
     src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-pulmonary-alveolus.svg',
-    organ: 'lung'
+    organ: 'lung',
   },
-  'crypt_lieberkuhn_large_intestine': {
+  crypt_lieberkuhn_large_intestine: {
     src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.svg',
-    organ: 'large intestine'
+    organ: 'large intestine',
   },
-  'intercalated_duct_1': {
+  intercalated_duct_1: {
     src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-intercalated-duct.svg',
-    organ: 'pancreas'
+    organ: 'pancreas',
   },
-  'pancreatic_acinus': {
+  pancreatic_acinus: {
     src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-pancreatic-acinus.svg',
-    organ: 'pancreas'
+    organ: 'pancreas',
   },
-  'nephron': {
+  nephron: {
     src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-nephron.svg',
-    organ: 'kidney'
+    organ: 'kidney',
   },
-  'renal_corpuscle': {
+  renal_corpuscle: {
     src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-renal-corpuscle.svg',
-    organ: 'kidney'
+    organ: 'kidney',
   },
-  'islets_langerhans': {
+  islets_langerhans: {
     src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-islets-langerhans.svg',
-    organ: 'pancreas'
+    organ: 'pancreas',
   },
-  'liver_lobule': {
+  liver_lobule: {
     src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-liver-liver-lobule.svg',
-    organ: 'liver'
+    organ: 'liver',
   },
-  'glandular_acinus': {
+  glandular_acinus: {
     src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.svg',
-    organ: 'prostate'
+    organ: 'prostate',
   },
-  'thymus_lobule': {
+  thymus_lobule: {
     src: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.svg',
-    organ: 'thymus'
-  }
-}
+    organ: 'thymus',
+  },
+};
 
+/** SVG mapping */
 export const svgMap = `organ,organ_ID,anatomical_structure_of,source_spatial_entity,node_name,label,OntologyID,representation_of,svg file of single 2DFTU,exist_asctb,type,REF/1,REF/1/DOI,REF/1/NOTES,Inset #
 #Pancreas,UBERON:0001264,#FTUAcinusAS,#2DRefObjects,intercalated_duct_1,interlobular duct,UBERON:0014716,http://purl.obolibrary.org/obo/UBERON_0014716,Acinus_AS,1,AS,,,,
 #Pancreas,UBERON:0001264,#FTUAcinusAS,#2DRefObjects,Islet_of_Langerhans,islet of Langerhans,UBERON:0000006,http://purl.obolibrary.org/obo/UBERON_0000006,Acinus_AS,1,AS,,,,
@@ -694,4 +701,4 @@ export const svgMap = `organ,organ_ID,anatomical_structure_of,source_spatial_ent
 #Pancreas,UBERON:0001264,#FTUAcinus,#2DRefObjects,Tuft_Cell,Tuft cell,CL:0002204,http://purl.obolibrary.org/obo/CL_1001433,pancreatic_acinus,1,CT,,,,
 #Pancreas,UBERON:0001264,#FTUAcinus,#2DRefObjects,Intercalated_Duct,intercalated duct of pancreas,UBERON:0014726,http://purl.obolibrary.org/obo/UBERON_0014726,pancreatic_acinus,,,,,,,
 #Skin,UBERON:0002097,#FTUSkinComposite,#2DRefObjects,Epidermal_Ridge,epidermal ridge of digit,UBERON:0013487,http://purl.obolibrary.org/obo/UBERON_0013487,,,,,,,,
-#Skin,UBERON:0002097,#FTUSkinComposite,#2DRefObjects,Dermal_Papilla,dermal papilla,UBERON:0000412,http://purl.obolibrary.org/obo/UBERON_0000412,,,,,,,,`
+#Skin,UBERON:0002097,#FTUSkinComposite,#2DRefObjects,Dermal_Papilla,dermal papilla,UBERON:0000412,http://purl.obolibrary.org/obo/UBERON_0000412,,,,,,,,`;
