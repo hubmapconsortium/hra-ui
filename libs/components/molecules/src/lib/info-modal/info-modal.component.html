@@ -1,4 +1,10 @@
-<mat-label>{{ value }}</mat-label>
-<button mat-icon-button class="close-button" (click)="closeClick.emit()">
-  <mat-icon>close</mat-icon>
-</button>
+<div class="header">
+  <a class="title">
+    <img class="product-logo-image" [src]="productLogoUrl" alt="Prodoct Logo" />
+    <h2 class="product-title">{{ text }}</h2>
+  </a>
+  <button mat-icon-button (click)="closeClick.emit()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<markdown class="description" [data]="description"></markdown>
