@@ -1,1 +1,15 @@
-<p>contact-modal works!</p>
+<a class="product-logo">
+  <img class="product-logo-image" [src]="productLogoUrl" alt="Prodoct Logo" />
+  <h2 class="product-title">{{ productTitle }}</h2>
+</a>
+
+<button class="close" mat-icon-button>
+  <mat-icon>close</mat-icon>
+</button>
+
+<hra-email-input [placeholder]="placeHolder" (emailChange)="email($event)"></hra-email-input>
+
+<p class="text-below-boxes">Please allow two business days for a response to each inquiry.</p>
+
+<button mat-flat-button class="submit" color="primary">Submit</button>
+<button mat-stroked-button class="cancel" color="primary">Cancel</button>
