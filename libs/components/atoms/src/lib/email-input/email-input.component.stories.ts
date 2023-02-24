@@ -16,4 +16,6 @@ const Template: Story<EmailInputComponent> = (args: EmailInputComponent) => ({
 });
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  placeholder: 'ecmaier@iu.edu',
+};
