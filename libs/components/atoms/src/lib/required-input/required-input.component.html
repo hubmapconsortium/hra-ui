@@ -1,1 +1,5 @@
-<p>required-input works!</p>
+<mat-form-field>
+  <mat-label>{{ label }}</mat-label>
+  <input matInput [formControl]="formControl" (input)="inputChanged.emit($event.target.value)" />
+  <mat-error *ngIf="formControl.invalid">{{ error }}</mat-error>
+</mat-form-field>
