@@ -4,6 +4,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MarkdownModule } from 'ngx-markdown';
 
+/**
+ * HRA Info Modal Component
+ */
 @Component({
   selector: 'hra-info-modal',
   standalone: true,
