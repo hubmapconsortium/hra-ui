@@ -1,0 +1,14 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+$colors: () !default;
+$typography: () !default;
+
+.hra-footer {
+  .container {
+    box-shadow: #a09c9c;
+  }
+  .button {
+    background-color: #ffffff;
+  }
+}
