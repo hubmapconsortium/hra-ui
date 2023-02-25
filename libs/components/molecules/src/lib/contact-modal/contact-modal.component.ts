@@ -37,56 +37,41 @@ const EMPTY_CONTACT_DATA: Partial<ContactData> = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactModalComponent {
-  /** Input for email place holder, it will be displayed in email text box. */
-  @Input() placeHolder = '';
-
   /** Input for product logo URL to displayed on the left side. */
   @Input() productLogoUrl = '';
 
   /** Input for product title to displayed on the left side. */
   @Input() productTitle = '';
 
-  /** Information modal message to the user */
+  /** Information modal message to the user. Displayed below the input fields.*/
   @Input() description = '';
 
-  /** A placeholder for the message textarea field */
-  @Input() messageplaceholder = '';
-
   /** A label for the textarea field */
-  @Input() label = '';
+  @Input() messagelabel = '';
 
+  /** Emits when the submit button is clicked and all the values are appropriate. */
   @Output() readonly submitClick = new EventEmitter<ContactData>();
 
-  /** Emits when the close icon is clicked */
+  /** Emits when the cancel button or close icon is clicked */
   @Output() readonly closeClick = new EventEmitter<void>();
 
+  /** A function to disable the submit button. If all the values are in approproiate format, then it will be enabled. */
   get disableSubmit(): boolean {
     return Object.values(this.contactData).some((value) => value === undefined);
   }
 
+  /** Asigns the undefined initially to all the input fields. */
   contactData = EMPTY_CONTACT_DATA;
 
+  /** Updates the contact data object with a new value for a given key. */
   updateData<K extends keyof ContactData>(key: K, value?: ContactData[K]): void {
     this.contactData = produce(this.contactData, (draft) => {
       draft[key] = value;
     });
   }
 
+  /** It emits the updated value of contact data */
   submit(): void {
-    if (this.disableSubmit === false) {
-      console.log(this.contactData);
-      this.submitClick.emit(this.contactData as ContactData);
-    }
-    console.log(this.disableSubmit);
+    this.submitClick.emit(this.contactData as ContactData);
   }
-
-  // email(event: string | null) {
-  //   console.log(event);
-  //   this.emailChange.emit(event);
-  // }
-
-  // message(event: string | null) {
-  //   console.log(event);
-  //   this.messageChange.emit(event);
-  // }
 }

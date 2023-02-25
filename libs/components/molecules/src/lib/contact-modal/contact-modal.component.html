@@ -8,19 +8,19 @@
 </button>
 
 <hra-email-input
-  [placeholder]="placeHolder"
+  placeholder="Example@domain.com"
   (emailChange)="updateData('email', $event)"
   class="email"
 ></hra-email-input>
 
 <hra-required-textbox
-  [placeholder]="messageplaceholder"
+  placeholder="Enter your message here"
   (messageChange)="updateData('message', $event)"
-  [label]="label"
+  [label]="messagelabel"
   class="message-field"
 ></hra-required-textbox>
 
 <markdown class="desc" [data]="description"></markdown>
 
-<button mat-flat-button class="submit" color="primary" (click)="submit()">Submit</button>
+<button mat-flat-button class="submit" color="primary" [disabled]="disableSubmit" (click)="submit()">Submit</button>
 <button mat-stroked-button class="cancel" color="primary" (click)="closeClick.emit()">Cancel</button>

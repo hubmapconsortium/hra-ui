@@ -20,7 +20,5 @@ Primary.args = {
   productLogoUrl: 'assets/icons/logo-icon.svg',
   productTitle: 'Human Reference Atlas',
   description: 'Please allow two business days for a response to each inquiry.',
-  messageplaceholder: 'Enter Message',
-  label: 'Message',
-  placeHolder: 'Enter Email Here',
+  messagelabel: 'Message',
 };
