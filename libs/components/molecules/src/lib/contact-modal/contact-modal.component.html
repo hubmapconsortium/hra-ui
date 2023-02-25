@@ -7,9 +7,20 @@
   <mat-icon>close</mat-icon>
 </button>
 
-<hra-email-input [placeholder]="placeHolder" (emailChange)="email($event)" class="email"></hra-email-input>
+<hra-email-input
+  [placeholder]="placeHolder"
+  (emailChange)="updateData('email', $event)"
+  class="email"
+></hra-email-input>
 
-<markdown class="description" [data]="description"></markdown>
+<hra-required-textbox
+  [placeholder]="messageplaceholder"
+  (messageChange)="updateData('message', $event)"
+  [label]="label"
+  class="message-field"
+></hra-required-textbox>
 
-<button mat-flat-button class="submit" color="primary">Submit</button>
-<button mat-stroked-button class="cancel" color="primary">Cancel</button>
+<markdown class="desc" [data]="description"></markdown>
+
+<button mat-flat-button class="submit" color="primary" (click)="submit()">Submit</button>
+<button mat-stroked-button class="cancel" color="primary" (click)="closeClick.emit()">Cancel</button>

@@ -2,6 +2,8 @@
   display: block;
   position: relative;
   padding-top: 2rem;
+  margin-right: 1.5rem;
+  margin-left: 1.5rem;
 
   .product-logo {
     display: flex;
@@ -20,7 +22,7 @@
   .close {
     position: absolute;
     top: 1.5rem;
-    right: 1.5rem;
+    right: 0rem;
   }
 
   .submit {
@@ -34,5 +36,13 @@
 
   .email {
     margin-top: 1.25rem;
+  }
+
+  .message-field {
+    margin-top: 1rem;
+  }
+
+  .desc {
+    margin-top: 1.5rem;
   }
 }

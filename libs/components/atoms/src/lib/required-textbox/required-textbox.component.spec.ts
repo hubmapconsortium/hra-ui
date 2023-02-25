@@ -21,11 +21,11 @@ describe('RequiredTextboxComponent', () => {
       expect(outputs.messageChange.emit).toHaveBeenCalledWith('a');
     });
 
-    it('should emit null when the entered message is empty', async () => {
+    it('should emit undefined when the entered message is empty', async () => {
       const message = '';
       const { instance, outputs } = await shallow.render();
       instance.control.setValue(message);
-      expect(outputs.messageChange.emit).toHaveBeenCalledWith(null);
+      expect(outputs.messageChange.emit).toHaveBeenCalledWith(undefined);
     });
   });
 });
