@@ -1,16 +1,6 @@
 :host {
   display: block;
 
-  .product-logo-image {
-    height: 1.5rem;
-    margin-right: 1rem;
-  }
-
-  .product-title {
-    color: #990000;
-    margin-right: 1.5rem;
-  }
-
   .header {
     cursor: pointer;
     display: flex;
@@ -21,6 +11,20 @@
       display: flex;
       flex-direction: row;
       align-items: center;
+
+      .product-logo-image {
+        height: 1.5rem;
+        margin-right: 1rem;
+      }
+
+      .product-title {
+        color: #990000;
+        margin-right: 1.5rem;
+      }
+    }
+
+    .filler {
+      flex-grow: 1;
     }
   }
 }
