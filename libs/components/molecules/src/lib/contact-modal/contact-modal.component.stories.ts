@@ -19,6 +19,4 @@ export const Primary = Template.bind({});
 Primary.args = {
   productLogoUrl: 'assets/icons/logo-icon.svg',
   productTitle: 'Human Reference Atlas',
-  description: 'Please allow two business days for a response to each inquiry.',
-  messagelabel: 'Message',
 };

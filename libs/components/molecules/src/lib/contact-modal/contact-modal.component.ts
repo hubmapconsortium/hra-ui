@@ -2,16 +2,23 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { EmailInputComponent, RequiredTextboxComponent } from '@hra-ui/components/atoms';
+import { EmailInputComponent, RequiredInputComponent, RequiredTextboxComponent } from '@hra-ui/components/atoms';
 import { produce } from 'immer';
 import { MarkdownModule } from 'ngx-markdown';
 
+/**
+  An interface representing contact data information which will be emitted if all the fields are in correct format.
+ */
 export interface ContactData {
+  /**  The email address of the person submitting the form. */
   email: string;
+  /** The subject line of the message being sent. */
   subject: string;
+  /** The body of the message being sent. */
   message: string;
 }
 
+/** Initial empty contact data */
 const EMPTY_CONTACT_DATA: Partial<ContactData> = {
   email: undefined,
   subject: undefined,
@@ -19,7 +26,7 @@ const EMPTY_CONTACT_DATA: Partial<ContactData> = {
 };
 
 /**
- * Contat modal component.
+ * Contact modal component.
  */
 @Component({
   selector: 'hra-contact-modal',
@@ -31,6 +38,7 @@ const EMPTY_CONTACT_DATA: Partial<ContactData> = {
     EmailInputComponent,
     MarkdownModule,
     RequiredTextboxComponent,
+    RequiredInputComponent,
   ],
   templateUrl: './contact-modal.component.html',
   styleUrls: ['./contact-modal.component.scss'],
@@ -42,12 +50,6 @@ export class ContactModalComponent {
 
   /** Input for product title to displayed on the left side. */
   @Input() productTitle = '';
-
-  /** Information modal message to the user. Displayed below the input fields.*/
-  @Input() description = '';
-
-  /** A label for the textarea field */
-  @Input() messagelabel = '';
 
   /** Emits when the submit button is clicked and all the values are appropriate. */
   @Output() readonly submitClick = new EventEmitter<ContactData>();
