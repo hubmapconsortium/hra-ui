@@ -22,8 +22,8 @@ export class ScreenSizeNoticeComponent {
   @Input() contentUrl = '';
 
   /** Emits when the proceed button is clicked */
-  @Output() proceedClick = new EventEmitter<void>();
+  @Output() readonly proceedClick = new EventEmitter<void>();
 
   /** Emits when the portal button is clicked */
-  @Output() portalClick = new EventEmitter<void>();
+  @Output() readonly portalClick = new EventEmitter<void>();
 }
