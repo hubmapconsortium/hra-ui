@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MarkdownModule } from 'ngx-markdown';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,4 +20,10 @@ export class ScreenSizeNoticeComponent {
    * Input for passing screen size notice content
    */
   @Input() contentUrl = '';
+
+  /** Emits when the proceed button is clicked */
+  @Output() proceedClick = new EventEmitter<void>();
+
+  /** Emits when the portal button is clicked */
+  @Output() portalClick = new EventEmitter<void>();
 }

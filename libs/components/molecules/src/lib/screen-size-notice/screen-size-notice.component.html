@@ -3,5 +3,9 @@
   <mat-icon>close</mat-icon>
 </button>
 <markdown [src]="contentUrl" class="content"></markdown>
-<button mat-stroked-button color="primary" class="btn-stroked">Proceed to FTU Explorer</button>
-<button mat-flat-button color="primary" class="btn-flat">Human Reference Atlas Portal</button>
+<button mat-stroked-button color="primary" class="btn-stroked" (click)="proceedClick.emit()">
+  Proceed to FTU Explorer
+</button>
+<button mat-flat-button color="primary" class="btn-flat" (click)="portalClick.emit()">
+  Human Reference Atlas Portal
+</button>
