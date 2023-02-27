@@ -88,6 +88,9 @@
         "outputPath": "dist/compodoc/components-atoms"
       },
       "configurations": {
+        "ci": {
+          "silent": true
+        },
         "serve": {
           "watch": true,
           "disableCoverage": false,
