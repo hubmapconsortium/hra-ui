@@ -17,7 +17,7 @@ const Template: Story<InfoModalComponent> = (args: InfoModalComponent) => ({
 
 export const Primary = Template.bind({});
 Primary.args = {
-  text: 'Human Reference Atlas',
+  productTitle: 'Human Reference Atlas',
   productLogoUrl: 'assets/icons/logo-icon.svg',
   description: `We received your message. Please allow two business days for a <br>
                   response to each inquiry. Thanks for your time and expertise!`,

@@ -1,11 +1,10 @@
-<div class="header">
-  <a class="title">
-    <img class="product-logo-image" [src]="productLogoUrl" alt="Prodoct Logo" />
-    <h2 class="product-title">{{ text }}</h2>
-  </a>
-  <div class="filler"></div>
-  <button mat-icon-button (click)="closeClick.emit()">
-    <mat-icon>close</mat-icon>
-  </button>
-</div>
+<a class="title">
+  <img class="product-logo-image" [src]="productLogoUrl" alt="Prodoct Logo" />
+  <h2 class="product-title">{{ productTitle }}</h2>
+</a>
+
+<button mat-icon-button class="close" (click)="closeClick.emit()">
+  <mat-icon>close</mat-icon>
+</button>
+
 <markdown class="description" [data]="description"></markdown>
