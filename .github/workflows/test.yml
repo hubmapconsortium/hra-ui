@@ -1,0 +1,20 @@
+name: Testing workflow stuff
+
+on:
+  pull_request:
+    types: ['opened', 'edited', 'synchronize']
+
+jobs:
+  main:
+    name: 'Test'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create Deploy Comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ github.ref }}
+          body: |
+            # :rocket: Preview Deploy Report
+
+            ✅Successfully deployed preview [here]()
