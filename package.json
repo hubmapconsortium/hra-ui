@@ -20,9 +20,10 @@
     "@ngxs/store": "^3.7.6",
     "@nrwl/angular": "15.6.3",
     "angular-material-css-vars": "^4.2.1",
-    "ngx-papaparse": "^7.0.0",
+    "ng-inline-svg-2": "^15.0.1",
     "ngx-markdown": "^15.1.1",
     "normalize.css": "^8.0.1",
+    "papaparse": "^5.3.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
