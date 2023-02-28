@@ -11,5 +11,5 @@ const Template: Story<InteractiveSvgComponent> = (args) => ({ props: args });
 
 export const Default = Template.bind({});
 Default.args = {
-  fileName: 'alveoli'
+  fileName: 'alveoli',
 };

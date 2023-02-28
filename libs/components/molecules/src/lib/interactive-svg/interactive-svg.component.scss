@@ -3,7 +3,9 @@
 
   ::ng-deep #Crosswalk {
     pointer-events: none;
-    path, polygon, polyline {
+    path,
+    polygon,
+    polyline {
       pointer-events: all;
       fill: transparent;
       stroke: transparent;
