@@ -5,6 +5,7 @@ import { data } from './biomarker-table-data-card.stories';
 
 describe('BiomarkerTableDataCardComponent', () => {
   let shallow: Shallow<BiomarkerTableDataCardComponent>;
+
   beforeEach(() => {
     shallow = new Shallow(BiomarkerTableDataCardComponent).dontMock(MatTableModule);
   });
@@ -14,17 +15,18 @@ describe('BiomarkerTableDataCardComponent', () => {
   });
 
   it('should bind input and trigger ngOnChanges', async () => {
+    const sectionItems: SectionItem[] = [
+      { section: 0, data: data[0][0], isLastItem: false },
+      { section: 0, data: data[0][1], isLastItem: false },
+      { section: 0, data: data[0][2], isLastItem: true },
+      { section: 1, data: data[1][0], isLastItem: false },
+      { section: 1, data: data[1][1], isLastItem: false },
+      { section: 1, data: data[1][2], isLastItem: true },
+      { section: 2, data: data[2][0], isLastItem: false },
+      { section: 2, data: data[2][1], isLastItem: false },
+      { section: 2, data: data[2][2], isLastItem: true },
+    ];
     const { instance } = await shallow.render({ bind: { data } });
-    const sectionItems: SectionItem[] = [];
-    data.forEach((section) => {
-      section.forEach((item, index) => {
-        sectionItems.push({
-          data: item,
-          section: index,
-          isLastItem: index === section.length - 1,
-        });
-      });
-    });
     expect(instance.sectionItems).toEqual(sectionItems);
   });
 });

@@ -47,12 +47,12 @@ export class BiomarkerTableDataCardComponent implements OnChanges {
   private updateSectionItems(): void {
     const newSectionItems: SectionItem[] = [];
 
-    this.data.forEach((section) => {
-      section.forEach((item, index) => {
+    this.data.forEach((section, sectionIndex) => {
+      section.forEach((item, itemIndex) => {
         newSectionItems.push({
           data: item,
-          section: index,
-          isLastItem: index === section.length - 1,
+          section: sectionIndex,
+          isLastItem: itemIndex === section.length - 1,
         });
       });
     });
