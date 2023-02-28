@@ -14,6 +14,4 @@ const Template: Story<RequiredInputComponent> = (args: RequiredInputComponent) =
 export const Primary = Template.bind({});
 Primary.args = {
   label: 'Enter Name',
-  error: 'Please enter the name',
-  inputValue: 'Sanket',
 };

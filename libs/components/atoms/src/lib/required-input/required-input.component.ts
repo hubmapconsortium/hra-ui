@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { injectOnDestroy } from '@hra-ui/cdk/injectors';
+import { map, takeUntil } from 'rxjs';
 
 /**
  * A reusable text field component that can be used to input text.
@@ -22,22 +24,27 @@ export class RequiredInputComponent {
   @Input() label = '';
 
   /**
-   * The error message to display if the input is invalid.
-   */
-  @Input() error = '';
-
-  /**
-   * Input Value  of required input component
-   */
-  @Input() inputValue = '';
-
-  /**
    * An event emitter that emits the input value when it changes.
    */
-  @Output() inputChanged = new EventEmitter<string>();
+  @Output() readonly inputChange = new EventEmitter<string | null>();
+
+  readonly destroy$ = injectOnDestroy();
 
   /**
    * Form control of required input component
    */
-  formControl = new FormControl(this.inputValue, Validators.required);
+  readonly control = new FormControl('', {
+    updateOn: 'blur',
+    validators: Validators.required,
+  });
+
+  constructor() {
+    const { control, destroy$, inputChange } = this;
+    control.valueChanges
+      .pipe(
+        takeUntil(destroy$),
+        map((value) => (control.valid ? value : null))
+      )
+      .subscribe(inputChange);
+  }
 }
