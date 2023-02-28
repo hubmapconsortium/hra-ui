@@ -49,6 +49,9 @@
         "outputPath": "dist/compodoc/shared-theming"
       },
       "configurations": {
+        "ci": {
+          "silent": true
+        },
         "serve": {
           "watch": true,
           "disableCoverage": false,
