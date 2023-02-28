@@ -16,6 +16,7 @@ export class LandingPageContentComponent {
   /** Introduction Data for landing-page-intro component */
   introData = LANDING_PAGE_CONTENT.introData;
 
+  /** Function to explore FTU when moreClick event is emitted */
   exploreFTU(): void {
     //TODO
   }
