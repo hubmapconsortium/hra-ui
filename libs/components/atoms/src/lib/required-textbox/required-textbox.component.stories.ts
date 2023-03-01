@@ -18,4 +18,5 @@ const Template: Story<RequiredTextboxComponent> = (args: RequiredTextboxComponen
 export const Primary = Template.bind({});
 Primary.args = {
   placeholder: 'Enter Message',
+  label: 'Message',
 };

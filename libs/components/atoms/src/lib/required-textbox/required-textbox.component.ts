@@ -21,6 +21,9 @@ export class RequiredTextboxComponent {
   /** A placeholder for the message textarea field */
   @Input() placeholder = '';
 
+  /** A label for the textarea field */
+  @Input() label = '';
+
   /** Emits the new message when the input changes or null if the message is invalid  */
   @Output() readonly messageChange = new EventEmitter<string | null>();
 
