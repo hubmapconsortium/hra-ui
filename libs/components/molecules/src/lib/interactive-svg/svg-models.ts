@@ -1,3 +1,5 @@
+import { parse } from 'papaparse';
+
 /** Data for a SVG node */
 export interface SvgNodeData {
   /** Node name */
@@ -702,3 +704,6 @@ export const svgMap = `organ,organ_ID,anatomical_structure_of,source_spatial_ent
 #Pancreas,UBERON:0001264,#FTUAcinus,#2DRefObjects,Intercalated_Duct,intercalated duct of pancreas,UBERON:0014726,http://purl.obolibrary.org/obo/UBERON_0014726,pancreatic_acinus,,,,,,,
 #Skin,UBERON:0002097,#FTUSkinComposite,#2DRefObjects,Epidermal_Ridge,epidermal ridge of digit,UBERON:0013487,http://purl.obolibrary.org/obo/UBERON_0013487,,,,,,,,
 #Skin,UBERON:0002097,#FTUSkinComposite,#2DRefObjects,Dermal_Papilla,dermal papilla,UBERON:0000412,http://purl.obolibrary.org/obo/UBERON_0000412,,,,,,,,`;
+
+/** parsed SVG mapping */
+export const svgDataSet = parse<SvgNodeData>(svgMap, { header: true }).data;

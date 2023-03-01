@@ -11,5 +11,5 @@ const Template: Story<InteractiveSvgComponent> = (args) => ({ props: args });
 
 export const Default = Template.bind({});
 Default.args = {
-  fileName: 'alveoli',
+  url: 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-pulmonary-alveolus.svg',
 };

@@ -1,18 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   EventEmitter,
-  HostListener,
   Input,
-  OnInit,
+  OnDestroy,
   Output,
+  ViewEncapsulation,
 } from '@angular/core';
-import { Papa } from 'ngx-papaparse';
+import { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';
+import { fromEvent, Subject, takeUntil, tap } from 'rxjs';
 
-import { allSvgs, SvgNodeData, svgMap } from './svg-models';
+import { svgDataSet, SvgNodeData } from './svg-models';
 
 /**
  * Interactive SVG component
@@ -20,81 +19,100 @@ import { allSvgs, SvgNodeData, svgMap } from './svg-models';
 @Component({
   selector: 'hra-interactive-svg',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, InlineSVGModule],
   templateUrl: './interactive-svg.component.html',
   styleUrls: ['./interactive-svg.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
-export class InteractiveSvgComponent implements OnInit {
-  /** name of SVG */
-  @Input() fileName = '';
+export class InteractiveSvgComponent implements OnDestroy {
+  /** SVG url */
+  @Input() url?: string;
 
-  /** Emits data for a node */
-  @Output() nodeData = new EventEmitter<SvgNodeData>();
+  /** Node data mapping */
+  @Input() svgNodeData: SvgNodeData[] = svgDataSet;
 
-  /** All SVG data */
-  svgNodeData: SvgNodeData[] = [];
+  /** Emits node id when hovered */
+  @Output() readonly nodeHover = new EventEmitter<string>();
 
-  /** SVG file URL */
-  fileURL = '';
+  /** SVG script eval mode */
+  readonly scriptEvalMode = SVGScriptEvalMode.NEVER;
 
-  /**
-   * Creates an instance of interactive svg component.
-   * @param papa CSV parser
-   * @param el Element ref
-   * @param http HTTP service
-   */
-  constructor(private readonly papa: Papa, private readonly el: ElementRef, private readonly http: HttpClient) {}
+  /** Destroys */
+  private destroy$ = new Subject<void>();
 
   /**
-   * Fetches and renders SVG
+   * Clears observables on destroy
    */
-  ngOnInit(): void {
-    this.svgNodeData = this.papa.parse(svgMap, { header: true }).data;
-    this.fileURL = allSvgs[this.fileName] ? allSvgs[this.fileName].src : '';
-    this.http.get(this.fileURL, { responseType: 'text' }).subscribe((svg) => {
-      this.el.nativeElement.innerHTML = svg;
-      this.bringToTopofSVG(document.querySelector('[id^="Crosswalk"]'));
-    });
+  ngOnDestroy(): void {
+    this.clear();
   }
 
   /**
-   * Brings the Crosswalk group to the top layer of the SVG
-   * @param targetElement Element to be moved
+   * Sets SVG element
+   * @param el SVG element
    */
-  private bringToTopofSVG(targetElement: Element | null) {
-    if (targetElement && targetElement.parentNode) {
-      targetElement.parentNode.appendChild(targetElement);
+  setSvgElement(el: SVGElement): void {
+    this.clear();
+    const crosswalkEl = el.querySelector('[id^="Crosswalk"]');
+    if (crosswalkEl) {
+      // Move to front (i.e. last child in svg)
+      el.appendChild(crosswalkEl);
+      this.attachCrosswalkHover(crosswalkEl);
     }
   }
 
   /**
-   * Checks for nodes on mouse hover and emits the matching node from mapping file
-   * @param target
+   * Attaches crosswalk hover
+   * @param el element
    */
-  @HostListener('mousemove', ['$event'])
-  findHoverMatch(target: MouseEvent): void {
-    const filteredMapData = this.svgNodeData.filter((entry) => entry['svg file of single 2DFTU'] === this.fileName);
+  private attachCrosswalkHover(el: Element): void {
+    fromEvent(el, 'mouseover')
+      .pipe(takeUntil(this.destroy$), tap(this.onCrosswalkHover.bind(this)))
+      .subscribe();
+  }
 
-    const targetElement = target.target as unknown as HTMLElement;
-    const targetId = targetElement.id;
-    const parsedTargetId = targetId.split('x5F_').join('');
-    const targetNodeMatch = filteredMapData.find((entry) => parsedTargetId === entry['node_name']);
+  /**
+   * Finds matching node in data from a hovered element
+   * @param ev
+   */
+  private onCrosswalkHover(ev: Event): void {
+    const target = ev.target as SVGElement;
+    this.findHoverMatch(target);
+  }
 
-    const parentElement = targetElement.parentElement;
+  /**
+   * Clears observables
+   */
+  private clear(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+    this.destroy$ = new Subject();
+  }
+
+  /**
+   * Checks for nodes on mouse hover and emits the matching node from mapping file
+   * @param target target element
+   */
+  findHoverMatch(target: SVGElement): void {
+    const targetId = target.id;
+
+    const parentElement = target.parentElement;
     const parentId = parentElement ? parentElement.id : '';
     const parsedParentId = parentId.split('x5F_').join('');
-    const parentNodeMatch = filteredMapData.find(
+    const parentNodeMatch = this.svgNodeData.find(
       (entry) =>
         parsedParentId === entry['node_name'] ||
         parsedParentId.includes(entry['node_name']) ||
         entry['node_name'].includes(parsedParentId)
     );
 
-    if (parsedTargetId !== '') {
-      this.nodeData.emit(targetNodeMatch);
+    if (targetId) {
+      const parsedTargetId = targetId.split('x5F_').join('');
+      const targetNodeMatch = this.svgNodeData.find((entry) => parsedTargetId === entry['node_name']);
+      this.nodeHover.emit(targetNodeMatch?.node_name);
     } else if (parsedParentId !== '' && parentNodeMatch) {
-      this.nodeData.emit(parentNodeMatch);
+      this.nodeHover.emit(parentNodeMatch.node_name);
     }
   }
 }

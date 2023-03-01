@@ -1,23 +1,12 @@
-:host {
-  display: block;
+#Crosswalk {
+  pointer-events: none;
 
-  ::ng-deep #Crosswalk {
-    pointer-events: none;
-    path,
-    polygon,
-    polyline {
-      pointer-events: all;
-      fill: transparent;
-      stroke: transparent;
-    }
-    g {
-      pointer-events: all;
-      .st0 {
-        &:hover {
-          stroke: red;
-          stroke-width: 2;
-        }
-      }
+  g > * {
+    pointer-events: all;
+
+    &:hover {
+      stroke: red;
+      stroke-width: 2;
     }
   }
 }
