@@ -1,0 +1,9 @@
+<mat-form-field class="email-text-field" appearance="outline">
+  <mat-label> Email </mat-label>
+  <input type="email" matInput [formControl]="control" [placeholder]="placeholder" />
+
+  <mat-error *ngIf="control.hasError('email') && !control.hasError('required')">
+    Please enter a valid email address
+  </mat-error>
+  <mat-error *ngIf="control.hasError('required')"> Email is required! </mat-error>
+</mat-form-field>
