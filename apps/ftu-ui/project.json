@@ -45,6 +45,19 @@
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
+        },
+        "staging": {
+          "baseHref": "/apps/ftu-ui/",
+          "outputHashing": "none"
+        },
+        "preview": {
+          "baseHref": "/apps/ftu-ui/",
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
         }
       },
       "defaultConfiguration": "production"
