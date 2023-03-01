@@ -1,56 +1,40 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 
-/** Downloading labels */
-export interface DropdownItemList {
-  label: string;
-}
+const DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [
+  {
+    panelClass: 'above', //download list panel
+    originX: 'start',
+    originY: 'top',
+    overlayX: 'start',
+    overlayY: 'bottom',
+    offsetY: 1,
+  },
+];
 
 @Component({
   selector: 'hra-footer',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatSelectModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, MatSelectModule, OverlayModule],
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FooterComponent<List extends DropdownItemList = DropdownItemList> {
+export class FooterComponent {
+  isOpen = false;
+  hasBackdrop = false;
+
+  readonly DOWNLOADS_LIST_POSITION = DOWNLOADS_LIST_POSITION;
+
   @HostBinding('class') readonly clsName = 'hra-footer';
 
   @Output() readonly buttonClick = new EventEmitter<void>();
 
-  @Output() readonly selectionChange = new EventEmitter<List>();
-
-  // @ViewChild('mySelect') mySelect: MatSelect;
-
-  selected = ' ';
-
-  @Input() placeholder?: string;
-
-  @Input() items: List[] = [];
-
-  /** Current selection */
-  @Input() selection?: List;
-
-  // OpenSel() {
-  //   this.mySelect.open()
-  // }
-
-  // updateSelection(selection: List | null): void {
-  //   if (selection) {
-  //     this.selection = selection;
-  //     this.selectionChange.emit(selection);
-  //   }
-  // }
-
-  //   mySelect(){
-  // console.log("in select")
-  //   }
-
   contactComponent() {
-    //contact component
+    //
   }
 }
