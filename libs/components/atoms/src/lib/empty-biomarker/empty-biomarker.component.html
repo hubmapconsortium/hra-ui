@@ -1,2 +1,4 @@
 <div [innerHTML]="message | markdown" class="message"></div>
-<button mat-flat-button class="collaborate-button" (click)="buttonClick.emit($event)">{{ collaborateText }}</button>
+<button mat-flat-button class="collaborate-button" (click)="collaborateClick.emit($event)">
+  {{ collaborateText }}
+</button>
