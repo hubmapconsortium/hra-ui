@@ -7,25 +7,26 @@
     height: 3rem;
     padding: 0 3rem 0 1rem;
     background-color: #f8f9fa;
-    box-shadow: 0px 0rem 0.1rem;
-
-    .end {
-      flex-grow: 1;
-      display: flex;
-      justify-content: end;
-      margin-right: 0.1rem;
-      width: 10rem;
-      margin-left: 1.5rem;
-    }
-    .button {
-      justify-content: space-between;
-      margin-left: 0.5rem;
-    }
-    .button:hover {
-      border-color: black;
-      background-color: #ffffff;
-    }
+    box-shadow: 0px 0rem 0.1rem #a09c9c;
   }
+  .controls {
+    display: flex;
+    justify-content: end;
+  }
+  .filler {
+    flex-grow: 1;
+  }
+
+  .button {
+    justify-content: space-between;
+    margin-left: 0.5rem;
+    background-color: #ffffff;
+  }
+  .button:hover {
+    border-color: black;
+    background-color: #ffffff;
+  }
+
   .footer {
     position: fixed;
     left: 0.5rem;
@@ -38,7 +39,7 @@
   }
   .dropup {
     position: relative;
-    display: inline-block;
+    display: block;
   }
 
   .dropup-content {
@@ -46,7 +47,6 @@
     position: absolute;
     background-color: #bbb6b6;
     min-width: 190px;
-    bottom: 38px;
     box-shadow: 0.1rem 0.1rem 0.4rem 0.2rem #dad7d7;
     z-index: 1;
   }

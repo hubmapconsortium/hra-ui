@@ -1,12 +1,9 @@
-<!-- need to chnage the links -->
 <div class="footer">
   <div class="container">
-    <form action="http://localhost:4400/?path=/story/footercomponent--primary" method="get" target="_blank">
-      <button class="button" mat-stroked-button>
-        <mat-icon>info</mat-icon>
-        Ilustration
-      </button>
-    </form>
+    <button class="button" mat-stroked-button>
+      <mat-icon>info</mat-icon>
+      Ilustration
+    </button>
 
     <div class="dropup">
       <button
@@ -29,28 +26,23 @@
         cdkConnectedOverlayPush="false"
         cdkConnectedOverlayPanelClass="download-options-panel"
       >
-        <ul class="dropup-content">
-          <li><button mat-flat-button>Download XLXS</button></li>
-          <li><button mat-flat-button>Download JSON-LD</button></li>
-          <li><button mat-flat-button>Download AI</button></li>
-          <li><button mat-flat-button>Download PDF</button></li>
-          <li><button mat-flat-button>Download PNG</button></li>
-        </ul>
+        <div class="container">
+          <ul class="dropup-content">
+            <li><button mat-flat-button>Download XLXS</button></li>
+            <li><button mat-flat-button>Download JSON-LD</button></li>
+            <li><button mat-flat-button>Download AI</button></li>
+            <li><button mat-flat-button>Download PDF</button></li>
+            <li><button mat-flat-button>Download PNG</button></li>
+          </ul>
+        </div>
       </ng-template>
     </div>
-    <form action="http://localhost:4400/?path=/story/footercomponent--primary" method="get" target="_blank">
-      <button class="button" mat-stroked-button><mat-icon>code</mat-icon> Embed</button>
-    </form>
+    <button class="button" mat-stroked-button><mat-icon>code</mat-icon> Embed</button>
 
-    <div class="end">
+    <div class="controls filler">
       <button class="button" mat-stroked-button (click)="contactComponent()"><mat-icon>mail</mat-icon> Contact</button>
 
-      <form action="http://localhost:4400/?path=/story/footercomponent--primary" method="get" target="_blank">
-        <button class="button" mat-stroked-button><mat-icon>open_in_new</mat-icon>HRA Portal</button>
-      </form>
+      <button class="button" mat-stroked-button><mat-icon>open_in_new</mat-icon>HRA Portal</button>
     </div>
   </div>
-
-  <div></div>
-  <div></div>
 </div>

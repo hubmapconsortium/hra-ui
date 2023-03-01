@@ -30,10 +30,6 @@ export class FooterComponent {
 
   readonly DOWNLOADS_LIST_POSITION = DOWNLOADS_LIST_POSITION;
 
-  @HostBinding('class') readonly clsName = 'hra-footer';
-
-  @Output() readonly buttonClick = new EventEmitter<void>();
-
   contactComponent() {
     //
   }
