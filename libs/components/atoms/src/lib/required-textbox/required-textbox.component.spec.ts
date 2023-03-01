@@ -1,22 +1,31 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
 
 import { RequiredTextboxComponent } from './required-textbox.component';
 
 describe('RequiredTextboxComponent', () => {
-  let component: RequiredTextboxComponent;
-  let fixture: ComponentFixture<RequiredTextboxComponent>;
+  let shallow: Shallow<RequiredTextboxComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [RequiredTextboxComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(RequiredTextboxComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    shallow = new Shallow(RequiredTextboxComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async () => {
+    await expect(shallow.render()).resolves.toBeDefined();
+  });
+
+  describe('emailChange', () => {
+    it('should emit message when the entered a message', async () => {
+      const message = 'a';
+      const { instance, outputs } = await shallow.render();
+      instance.control.setValue(message);
+      expect(outputs.messageChange.emit).toHaveBeenCalledWith('a');
+    });
+
+    it('should emit null when the entered message is empty', async () => {
+      const message = '';
+      const { instance, outputs } = await shallow.render();
+      instance.control.setValue(message);
+      expect(outputs.messageChange.emit).toHaveBeenCalledWith(null);
+    });
   });
 });
