@@ -8,6 +8,7 @@ import { map, takeUntil } from 'rxjs';
 
 /**
  * A reusable text field component that can be used to input text.
+ * This input field compoent also had required validation check.
  */
 @Component({
   selector: 'hra-required-input',
@@ -28,16 +29,25 @@ export class RequiredInputComponent {
    */
   @Output() readonly inputChange = new EventEmitter<string | null>();
 
+  /**
+   * Destroy$  used to inject the emmiter value
+   * on destroy lifecycle not on every user input.
+   */
   readonly destroy$ = injectOnDestroy();
 
   /**
-   * Form control of required input component
+   * Form control for input to set some input validation.
    */
   readonly control = new FormControl('', {
     updateOn: 'blur',
     validators: Validators.required,
   });
 
+  /**
+   * Creates an instance of required input component
+   * and it connect the form control value changes to check for validation
+   * before output emmiter is triggered
+   */
   constructor() {
     const { control, destroy$, inputChange } = this;
     control.valueChanges

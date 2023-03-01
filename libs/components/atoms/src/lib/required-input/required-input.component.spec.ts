@@ -1,7 +1,7 @@
 import { Shallow } from 'shallow-render';
 import { RequiredInputComponent } from './required-input.component';
 
-describe('TextFieldComponent', () => {
+describe('RequiredInputComponent', () => {
   let shallow: Shallow<RequiredInputComponent>;
 
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe('TextFieldComponent', () => {
 
     input.nativeElement.value = '';
     input.nativeElement.dispatchEvent(new Event('input'));
-    expect(instance.formControl.invalid).toBe(true);
+    expect(instance.control.invalid).toBe(true);
     expect(find('mat-error').nativeElement.textContent.trim()).toBe('This field is required');
   });
 
@@ -29,6 +29,6 @@ describe('TextFieldComponent', () => {
 
     input.nativeElement.value = 'hello';
     input.nativeElement.dispatchEvent(new Event('input'));
-    expect(instance.formControl.invalid).toBe(false);
+    expect(instance.control.invalid).toBe(false);
   });
 });
