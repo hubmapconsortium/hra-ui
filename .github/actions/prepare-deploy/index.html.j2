@@ -21,6 +21,12 @@
       {% endif %}
     {% endmacro %}
 
+    {% if not (apps or storybook or compodoc) %}
+      <p>
+        No app, storybook, or compodoc were affected by the current changes!
+      </p>
+    {% endif %}
+
     {{ createLinks('Apps', apps) }}
     {{ createLinks('Storybook', storybook) }}
     {{ createLinks('Compodoc', compodoc) }}
