@@ -11,6 +11,6 @@ const Template: Story<EmptyBiomarkerComponent> = (args) => ({ props: args });
 export const Default = Template.bind({});
 Default.args = {
   collaborateText: 'Collaborate with the HRA Team',
-  emptyMessage: 'We currently do not have cell type data for this biomarker.',
-  contactUsMessage: 'Please contact us to discuss your dataset.',
+  message: `We currently do not have cell type data for this biomarker.
+                    <br><br> Please contact us to discuss your dataset.`,
 };

@@ -1,31 +1,34 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MarkdownModule } from 'ngx-markdown';
 
 /**
- *  hra empty biomarker Component
+ *  Component for any empty biomaker cell
+ *  to inform about the empty data and has
+ *  button to navigate to HRA Team.
  */
 @Component({
   selector: 'hra-empty-biomarker',
   standalone: true,
-  imports: [CommonModule, MatButtonModule],
+  imports: [CommonModule, MatButtonModule, MarkdownModule],
   templateUrl: './empty-biomarker.component.html',
   styleUrls: ['./empty-biomarker.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmptyBiomarkerComponent {
   /**
-   * Input  collaborateText of empty biomarker component
+   * Input  buttonon text of empty biomarker component.
    */
   @Input() collaborateText = '';
 
   /**
-   * Input  emptyMessage of empty biomarker component
+   * Input  message markdown of empty biomarker component.
    */
-  @Input() emptyMessage = '';
+  @Input() message = '';
 
   /**
-   * Input  contentMessage of empty biomarker component
+   * An event emitter that emits the user button click event
    */
-  @Input() contactUsMessage = '';
+  @Output() readonly buttonClick = new EventEmitter();
 }

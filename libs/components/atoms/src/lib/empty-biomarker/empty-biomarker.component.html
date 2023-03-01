@@ -1,3 +1,2 @@
-<div class="empty-message">{{ emptyMessage }}</div>
-<div class="contact-us-message">{{ contactUsMessage }}</div>
-<button mat-flat-button class="bio-marker-button">{{ collaborateText }}</button>
+<div [innerHTML]="message | markdown" class="message"></div>
+<button mat-flat-button class="collaborate-button" (click)="buttonClick.emit($event)">{{ collaborateText }}</button>
