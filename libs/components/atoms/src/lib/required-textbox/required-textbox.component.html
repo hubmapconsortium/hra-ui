@@ -1,5 +1,5 @@
 <mat-form-field class="message-field" appearance="outline">
   <mat-label> Message </mat-label>
-  <textarea matInput [formControl]="control" [placeholder]="placeholder"></textarea>
+  <textarea rows="14" matInput [formControl]="control" [placeholder]="placeholder"></textarea>
   <mat-error *ngIf="control.hasError('required')"> Message is required! </mat-error>
 </mat-form-field>
