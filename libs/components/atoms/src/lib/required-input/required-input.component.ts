@@ -8,7 +8,7 @@ import { map, takeUntil } from 'rxjs';
 
 /**
  * A reusable text field component that can be used to input text.
- * This input field compoent also had required validation check.
+ * This input field component also had required validation check.
  */
 @Component({
   selector: 'hra-required-input',
@@ -30,8 +30,7 @@ export class RequiredInputComponent {
   @Output() readonly inputChange = new EventEmitter<string | null>();
 
   /**
-   * Destroy$  used to inject the emmiter value
-   * on destroy lifecycle not on every user input.
+   * Destroy observable used to control the lifetime of other observables.
    */
   readonly destroy$ = injectOnDestroy();
 
