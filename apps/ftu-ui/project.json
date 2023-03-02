@@ -46,8 +46,12 @@
           "sourceMap": true,
           "namedChunks": true
         },
+        "staging": {
+          "baseHref": "/apps/ftu-ui/",
+          "outputHashing": "none"
+        },
         "preview": {
-          "baseHref": "/ftu-ui/",
+          "baseHref": "/apps/ftu-ui/",
           "buildOptimizer": false,
           "optimization": false,
           "vendorChunk": true,
