@@ -1,3 +1,14 @@
+::ng-deep {
+  .download-options-panel .dropup-content {
+    padding-left: 10px;
+
+    .container {
+      width: fit-content;
+      height: fit-content;
+      border-radius: 1rem;
+    }
+  }
+}
 :host {
   display: block;
 
