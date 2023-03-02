@@ -30,5 +30,5 @@ export class EmptyBiomarkerComponent {
   /**
    * An event emitter that emits the user button click event
    */
-  @Output() readonly buttonClick = new EventEmitter();
+  @Output() readonly collaborateClick = new EventEmitter();
 }
