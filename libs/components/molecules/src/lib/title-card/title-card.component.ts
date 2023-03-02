@@ -15,6 +15,12 @@ export class TitleCardComponent {
   /** Title for title card */
   @Input() title = '';
 
-  /** Description for title card */
-  @Input() description = '';
+  /** Description 1 for title card */
+  @Input() description1 = '';
+
+  /** Description 2 for title card */
+  @Input() description2 = '';
+
+  /** Description 3 for title card */
+  @Input() description3 = '';
 }
