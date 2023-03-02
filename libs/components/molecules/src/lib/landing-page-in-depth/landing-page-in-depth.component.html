@@ -2,5 +2,5 @@
 <h1 class="title">{{ title }}</h1>
 <markdown class="description" [data]="description"></markdown>
 <button mat-flat-button class="more-button" color="primary" (click)="moreClick.emit()">
-  {{ moreText }}
+  <label class="more-text">{{ moreText }}</label>
 </button>

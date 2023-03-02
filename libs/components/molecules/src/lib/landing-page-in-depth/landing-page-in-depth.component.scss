@@ -1,6 +1,6 @@
 :host {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 2fr 3fr;
   grid-template-rows: auto auto auto 3rem auto;
   align-items: start;
   column-gap: 2rem;
@@ -22,5 +22,31 @@
 
   .more-button {
     width: 247px;
+    padding: 12px 16px;
+    background: #006298;
+    border: 1px solid #006298;
+    border-radius: 4px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+  }
+
+  .description {
+    color: #4c5a69;
+    font-size: 16px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  .more-text {
+    color: #ffffff;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
   }
 }
