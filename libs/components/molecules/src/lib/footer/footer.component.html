@@ -1,48 +1,51 @@
-<div class="footer">
-  <div class="container">
-    <button class="button" mat-stroked-button>
-      <mat-icon>info</mat-icon>
-      Ilustration
-    </button>
+<button class="button" mat-stroked-button>
+  <mat-icon>info</mat-icon>
+  Ilustration
+</button>
 
-    <div class="dropup">
-      <button
-        class="button"
-        mat-stroked-button
-        (click)="isOpen = !isOpen"
-        type="button"
-        cdkOverlayOrigin
-        #anchor="cdkOverlayOrigin"
-      >
-        <mat-icon>file_download</mat-icon>Download
-      </button>
+<button
+  class="button"
+  mat-stroked-button
+  (click)="isOpen = !isOpen"
+  type="button"
+  cdkOverlayOrigin
+  #anchor="cdkOverlayOrigin"
+>
+  <mat-icon>file_download</mat-icon>
+  Download
+</button>
 
-      <ng-template
-        cdkConnectedOverlay
-        [cdkConnectedOverlayOrigin]="anchor"
-        [cdkConnectedOverlayOpen]="isOpen"
-        [cdkConnectedOverlayPositions]="DOWNLOADS_LIST_POSITION"
-        [cdkConnectedOverlayOffsetX]="0"
-        cdkConnectedOverlayPush="false"
-        cdkConnectedOverlayPanelClass="download-options-panel"
-      >
-        <div class="container">
-          <ul class="dropup-content">
-            <li><button mat-flat-button>Download XLXS</button></li>
-            <li><button mat-flat-button>Download JSON-LD</button></li>
-            <li><button mat-flat-button>Download AI</button></li>
-            <li><button mat-flat-button>Download PDF</button></li>
-            <li><button mat-flat-button>Download PNG</button></li>
-          </ul>
-        </div>
-      </ng-template>
-    </div>
-    <button class="button" mat-stroked-button><mat-icon>code</mat-icon> Embed</button>
+<button class="button" mat-stroked-button>
+  <mat-icon>code</mat-icon>
+  Embed
+</button>
 
-    <div class="controls filler">
-      <button class="button" mat-stroked-button (click)="contactComponent()"><mat-icon>mail</mat-icon> Contact</button>
+<div class="filler"></div>
 
-      <button class="button" mat-stroked-button><mat-icon>open_in_new</mat-icon>HRA Portal</button>
-    </div>
-  </div>
-</div>
+<button class="button" mat-stroked-button (click)="contactComponent()">
+  <mat-icon>mail</mat-icon>
+  Contact
+</button>
+
+<button class="button" mat-stroked-button>
+  <mat-icon>open_in_new</mat-icon>
+  HRA Portal
+</button>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="anchor"
+  [cdkConnectedOverlayOpen]="isOpen"
+  [cdkConnectedOverlayPositions]="DOWNLOADS_LIST_POSITION"
+  [cdkConnectedOverlayOffsetX]="0"
+  cdkConnectedOverlayPush="false"
+  cdkConnectedOverlayPanelClass="download-options-panel"
+>
+  <mat-action-list>
+    <button mat-list-item (click)="download()">Download XLXS</button>
+    <button mat-list-item (click)="download()">Download JSON-LD</button>
+    <button mat-list-item (click)="download()">Download AI</button>
+    <button mat-list-item (click)="download()">Download PDF</button>
+    <button mat-list-item (click)="download()">Download PNG</button>
+  </mat-action-list>
+</ng-template>

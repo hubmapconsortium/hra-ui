@@ -1,36 +1,51 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 
+import { MatListModule } from '@angular/material/list';
+
 const DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [
   {
-    panelClass: 'above', //download list panel
+    panelClass: 'above',
     originX: 'start',
     originY: 'top',
     overlayX: 'start',
     overlayY: 'bottom',
-    offsetY: 1,
+    offsetY: 0,
+  },
+  {
+    panelClass: 'below',
+    originX: 'start',
+    originY: 'bottom',
+    overlayX: 'start',
+    overlayY: 'top',
   },
 ];
 
 @Component({
   selector: 'hra-footer',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatSelectModule, OverlayModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, MatSelectModule, OverlayModule, MatListModule],
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
+  @HostBinding('class') readonly clsName = 'hra-footer';
+
   isOpen = false;
   hasBackdrop = false;
 
   readonly DOWNLOADS_LIST_POSITION = DOWNLOADS_LIST_POSITION;
 
   contactComponent() {
+    //
+  }
+
+  download() {
     //
   }
 }

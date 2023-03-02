@@ -1,25 +1,6 @@
-::ng-deep {
-  .download-options-panel .dropup-content {
-    padding-left: 10px;
-
-    .container {
-      width: fit-content;
-      height: fit-content;
-      border-radius: 1rem;
-    }
-  }
-}
 :host {
-  display: block;
+  display: flex;
 
-  .container {
-    display: flex;
-    align-items: center;
-    height: 3rem;
-    padding: 0 3rem 0 1rem;
-    background-color: #f8f9fa;
-    box-shadow: 0px 0rem 0.1rem #a09c9c;
-  }
   .controls {
     display: flex;
     justify-content: end;
@@ -37,44 +18,11 @@
     border-color: black;
     background-color: #ffffff;
   }
-
-  .footer {
-    position: fixed;
-    left: 0.5rem;
-    bottom: 0.1rem;
-    right: 0.5rem;
-  }
-  .footer .actions {
-    display: flex;
-    justify-content: space-between;
-  }
-  .dropup {
-    position: relative;
-    display: block;
-  }
-
-  .dropup-content {
-    display: none;
-    position: absolute;
-    background-color: #bbb6b6;
-    min-width: 190px;
-    box-shadow: 0.1rem 0.1rem 0.4rem 0.2rem #dad7d7;
-    z-index: 1;
-  }
-
-  .dropup-content > li {
-    list-style-type: none;
-  }
-
-  .dropup-content:hover {
-    background-color: #ffffff;
-  }
-
-  .dropup:hover .dropup-content {
-    display: block;
-  }
 }
 
-.dropup-content > li {
-  list-style-type: none;
+::ng-deep {
+  .download-options-panel {
+    box-shadow: 0.1rem 0.1rem 0.4rem 0.2rem #dad7d7;
+    background-color: #ffffff;
+  }
 }
