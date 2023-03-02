@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 /** Title card component */
@@ -10,4 +10,10 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./title-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TitleCardComponent {}
+export class TitleCardComponent {
+  /** Title for title card */
+  @Input() title = '';
+
+  /** Description for title card */
+  @Input() description = '';
+}
