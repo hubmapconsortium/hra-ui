@@ -1,5 +1,5 @@
 <mat-form-field appearance="outline">
   <mat-label>{{ label }}</mat-label>
   <input matInput [formControl]="control" />
-  <mat-error *ngIf="control.invalid">{{ label }} is required!</mat-error>
+  <mat-error *ngIf="control.hasError('required')">{{ label }} is required!</mat-error>
 </mat-form-field>

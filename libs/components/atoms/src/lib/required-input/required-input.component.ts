@@ -27,7 +27,7 @@ export class RequiredInputComponent {
   /**
    * An event emitter that emits the input value when it changes.
    */
-  @Output() readonly inputChange = new EventEmitter<string | null>();
+  @Output() readonly inputChange = new EventEmitter<string | undefined>();
 
   /**
    * Destroy observable used to control the lifetime of other observables.
@@ -52,7 +52,7 @@ export class RequiredInputComponent {
     control.valueChanges
       .pipe(
         takeUntil(destroy$),
-        map((value) => (control.valid ? value : null))
+        map((value) => (control.valid ? (value as string) : undefined))
       )
       .subscribe(inputChange);
   }
