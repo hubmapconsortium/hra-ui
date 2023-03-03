@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -37,7 +37,6 @@ export class FooterComponent {
   @HostBinding('class') readonly clsName = 'hra-footer';
 
   isOpen = false;
-  hasBackdrop = false;
 
   readonly DOWNLOADS_LIST_POSITION = DOWNLOADS_LIST_POSITION;
 

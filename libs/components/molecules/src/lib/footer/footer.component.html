@@ -38,8 +38,10 @@
   [cdkConnectedOverlayOpen]="isOpen"
   [cdkConnectedOverlayPositions]="DOWNLOADS_LIST_POSITION"
   [cdkConnectedOverlayOffsetX]="0"
+  cdkConnectedOverlayHasBackdrop="false"
   cdkConnectedOverlayPush="false"
   cdkConnectedOverlayPanelClass="download-options-panel"
+  (overlayOutsideClick)="isOpen = false"
 >
   <mat-action-list>
     <button mat-list-item (click)="download()">Download XLXS</button>

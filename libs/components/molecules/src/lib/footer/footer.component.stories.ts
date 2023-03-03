@@ -24,18 +24,8 @@ const Template: Story<FooterComponent> = (args: FooterComponent) => ({
   styles: [
     `
     hra-footer {
-
-        display: flex;
-        align-items: center;
-        height: 3rem;
-        padding: 0 3rem 0 1rem;
-        background-color: #f8f9fa;
-        box-shadow: 0px 0rem 0.1rem #a09c9c;
         position: absolute;
-        left: 0.5rem;
-        bottom: 0.1rem;
-        right: 0.5rem;
-
+        inset: auto 0 0 0;
     }
   `,
   ],
