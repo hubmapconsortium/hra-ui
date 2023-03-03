@@ -1,8 +1,12 @@
 #Crosswalk {
   pointer-events: none;
 
-  g > * {
+  polyline,
+  polygon,
+  path {
     pointer-events: all;
+    fill: transparent;
+    stroke: transparent;
 
     &:hover {
       stroke: red;
