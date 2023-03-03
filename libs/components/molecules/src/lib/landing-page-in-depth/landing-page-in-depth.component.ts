@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Input } from '@angular/core';
-import { Output } from '@angular/core';
-import { EventEmitter } from '@angular/core';
-import { MarkdownModule } from 'ngx-markdown';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MarkdownModule } from 'ngx-markdown';
+/**
+ * Displays the image and also corresponding title and text along with a button to read more
+ */
 @Component({
   selector: 'hra-landing-page-in-depth',
   standalone: true,
@@ -16,10 +15,13 @@ import { MatIconModule } from '@angular/material/icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingPageInDepthComponent {
+  /**  Image title shown to the user */
   @Input() title = '';
 
+  /** Image description shown to the user */
   @Input() description = '';
 
+  /** Image shown to the user */
   @Input() img = '';
 
   /** Text for more button */
