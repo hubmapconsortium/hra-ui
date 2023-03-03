@@ -11,5 +11,5 @@ const Template: Story<InteractiveSvgComponent> = (args) => ({ props: args });
 
 export const Default = Template.bind({});
 Default.args = {
-  url: 'assets/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.svg',
+  url: 'assets/2d-ftu-kidney-descending-thin-loop-of-henle.svg',
 };

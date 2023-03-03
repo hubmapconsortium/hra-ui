@@ -1,4 +1,4 @@
-import { OverlayModule } from '@angular/cdk/overlay';
+import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -11,6 +11,7 @@ import {
   Renderer2,
   ViewEncapsulation,
 } from '@angular/core';
+import { MatDividerModule } from '@angular/material/divider';
 import { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';
 import { BehaviorSubject, debounce, fromEventPattern, map, Observable, Subject, takeUntil, timer } from 'rxjs';
 import { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';
@@ -18,6 +19,41 @@ import { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';
 import { svgDataSet, SvgNodeData } from './svg-models';
 
 const HOVER_DELAY = 300;
+
+const TOOLTIP_POSITIONS: [ConnectedPosition, ConnectedPosition, ConnectedPosition, ConnectedPosition] = [
+  {
+    panelClass: 'above',
+    originX: 'center',
+    originY: 'top',
+    overlayX: 'center',
+    overlayY: 'bottom',
+    offsetY: -10,
+  },
+  {
+    panelClass: 'below',
+    originX: 'center',
+    originY: 'bottom',
+    overlayX: 'center',
+    overlayY: 'top',
+    offsetY: 10,
+  },
+  {
+    panelClass: 'left',
+    originX: 'start',
+    originY: 'center',
+    overlayX: 'end',
+    overlayY: 'center',
+    offsetX: -10,
+  },
+  {
+    panelClass: 'right',
+    originX: 'end',
+    originY: 'center',
+    overlayX: 'start',
+    overlayY: 'center',
+    offsetX: 10,
+  },
+];
 
 export interface NodeTooltipData {
   /** Node reference */
@@ -32,7 +68,7 @@ export interface NodeTooltipData {
 @Component({
   selector: 'hra-interactive-svg',
   standalone: true,
-  imports: [CommonModule, InlineSVGModule, OverlayModule],
+  imports: [CommonModule, InlineSVGModule, OverlayModule, MatDividerModule],
   templateUrl: './interactive-svg.component.html',
   styleUrls: ['./interactive-svg.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -57,10 +93,12 @@ export class InteractiveSvgComponent implements OnDestroy {
   private destroy$ = new Subject<void>();
 
   /** Observable of node hover data or undefined when there is no active hover */
-  readonly nodeHoverr = new BehaviorSubject<NodeTooltipData | undefined>(undefined);
+  readonly nodeHoverObs = new BehaviorSubject<NodeTooltipData | undefined>(undefined);
 
   /** Observable of node hover with a timer */
-  readonly nodeHover$ = this.nodeHoverr.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));
+  readonly nodeHover$ = this.nodeHoverObs.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));
+
+  positions = TOOLTIP_POSITIONS;
 
   /**
    * Clears observables on destroy
@@ -91,7 +129,7 @@ export class InteractiveSvgComponent implements OnDestroy {
     this.attachEvent(el, 'mouseover').subscribe(this.onCrosswalkHover.bind(this));
     this.attachEvent(el, 'mouseout')
       .pipe(map(() => undefined))
-      .subscribe(this.nodeHoverr); // TODO check that mouseout is the correct event
+      .subscribe(this.nodeHoverObs); // TODO check that mouseout is the correct event
   }
 
   /**
@@ -103,11 +141,11 @@ export class InteractiveSvgComponent implements OnDestroy {
     const data = this.findCrosswalkHoverTargetData(target);
     if (data) {
       this.nodeHover.emit(data.node_name);
-      this.nodeHoverr.next({
+      this.nodeHoverObs.next({
         node: data,
         origin: {
-          x: 0,
-          y: 0,
+          x: ev.clientX,
+          y: ev.clientY,
         },
       });
     }
@@ -120,6 +158,7 @@ export class InteractiveSvgComponent implements OnDestroy {
       const index = Array.from(parent.children).indexOf(target);
       id = `${parent.id}_${index + 1}`;
     }
+
     id = this.decodeId(id).toLowerCase();
     return this.svgNodeData.find((data) => data.node_name.toLowerCase() === id);
   }
