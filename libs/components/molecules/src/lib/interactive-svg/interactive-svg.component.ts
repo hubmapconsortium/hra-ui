@@ -21,7 +21,7 @@ const HOVER_DELAY = 300;
 
 export interface NodeTooltipData {
   /** Node reference */
-  node: SvgNodeData;
+  node: string;
   /** Center point of hovered node in screen coordinates */
   origin: { x: number; y: number };
 }
@@ -62,6 +62,8 @@ export class InteractiveSvgComponent implements OnDestroy {
   /** Observable of node hover with a timer */
   readonly nodeHover$ = this.nodeHoverObs.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));
 
+  hovering = false;
+
   /**
    * Clears observables on destroy
    */
@@ -89,9 +91,7 @@ export class InteractiveSvgComponent implements OnDestroy {
    */
   private attachCrosswalkHover(el: Element): void {
     this.attachEvent(el, 'mouseover').subscribe(this.onCrosswalkHover.bind(this));
-    this.attachEvent(el, 'mouseout')
-      .pipe(map(() => undefined))
-      .subscribe(this.nodeHoverObs); // TODO check that mouseout is the correct event
+    this.attachEvent(el, 'mouseout').subscribe(this.onCrosswalkHoverOut.bind(this)); // TODO check that mouseout is the correct event
   }
 
   /**
@@ -99,12 +99,13 @@ export class InteractiveSvgComponent implements OnDestroy {
    * @param ev
    */
   private onCrosswalkHover(ev: MouseEvent): void {
+    this.hovering = true;
     const target = ev.target as SVGElement;
-    const data = this.findCrosswalkHoverTargetData(target);
-    if (data) {
-      this.nodeHover.emit(data.node_name);
+    const id = this.findCrosswalkHoverTargetData(target);
+    if (id) {
+      this.nodeHover.emit(id);
       this.nodeHoverObs.next({
-        node: data,
+        node: id,
         origin: {
           x: ev.clientX,
           y: ev.clientY,
@@ -113,16 +114,14 @@ export class InteractiveSvgComponent implements OnDestroy {
     }
   }
 
-  private findCrosswalkHoverTargetData(target: SVGElement): SvgNodeData | undefined {
-    let id = target.id;
-    if (!id) {
-      const parent = target.parentElement as HTMLElement;
-      const index = Array.from(parent.children).indexOf(target);
-      id = `${parent.id}_${index + 1}`;
-    }
+  private onCrosswalkHoverOut(): void {
+    this.hovering = false;
+    this.nodeHoverObs.next(undefined);
+  }
 
-    id = this.decodeId(id).toLowerCase();
-    return this.svgNodeData.find((data) => data.node_name.toLowerCase() === id);
+  private findCrosswalkHoverTargetData(target: SVGElement): string | undefined {
+    const parent = target.parentElement as HTMLElement;
+    return this.decodeId(parent.id).split('_').join(' ');
   }
 
   /**
