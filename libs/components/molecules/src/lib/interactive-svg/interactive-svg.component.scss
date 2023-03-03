@@ -4,19 +4,7 @@
   background: white;
   box-shadow: 1px 2px 1rem 2px rgba(0, 0, 0, 0.16);
   border-radius: 0.5rem;
-  padding: 1.5rem;
-}
-
-.tooltip-section {
-  display: grid;
-  grid-template-columns: [name] 15rem [value] auto;
-
-  .name {
-    grid-column: name;
-  }
-  .value {
-    grid-column: value;
-  }
+  padding: 1rem;
 }
 
 .divider {

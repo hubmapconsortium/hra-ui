@@ -7,7 +7,7 @@ export interface SvgNodeData {
   /** File the node is located in */
   'svg file of single 2DFTU': string;
   /** Other node properties */
-  [key: string]: unknown;
+  [key: string]: string;
 }
 /** Data in SVG */
 export interface SvgData {

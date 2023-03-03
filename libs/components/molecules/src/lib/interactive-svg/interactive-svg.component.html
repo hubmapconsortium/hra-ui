@@ -7,41 +7,7 @@
     [cdkConnectedOverlayOrigin]="hover.origin"
     [cdkConnectedOverlayViewportMargin]="16"
     [cdkConnectedOverlayOpen]="true"
-    [cdkConnectedOverlayPositions]="positions"
   >
-    <div class="tooltip">
-      <div class="tooltip-section">
-        <div class="name">
-          <div>Functional Tissue Unit Name</div>
-          <div>Uberon ID</div>
-          <div>#Datasets</div>
-        </div>
-        <div class="value">
-          <div>{{ hover.node['svg file of single 2DFTU'] }}</div>
-          <div>{{ hover.node['organ_ID'] }}</div>
-        </div>
-      </div>
-      <mat-divider class="divider"></mat-divider>
-      <div class="tooltip-section">
-        <div class="name">
-          <div>Cell Type Name</div>
-          <div>CL ID</div>
-          <div>Number of Cells</div>
-        </div>
-        <div class="value">
-          <div>{{ hover.node['node_name'] }}</div>
-          <div>{{ hover.node['OntologyID'] }}</div>
-        </div>
-      </div>
-      <mat-divider class="divider"></mat-divider>
-      <div class="tooltip-section">
-        <div class="name">
-          <div>Gene Name</div>
-          <div>HGNC ID</div>
-          <div>Mean Expression Value</div>
-        </div>
-        <div class="value"></div>
-      </div>
-    </div>
+    <div class="tooltip">{{ hover.node['node_name'].split('_').join(' ') }}</div>
   </ng-template>
 </ng-container>

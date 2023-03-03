@@ -1,4 +1,4 @@
-import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
+import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -11,7 +11,6 @@ import {
   Renderer2,
   ViewEncapsulation,
 } from '@angular/core';
-import { MatDividerModule } from '@angular/material/divider';
 import { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';
 import { BehaviorSubject, debounce, fromEventPattern, map, Observable, Subject, takeUntil, timer } from 'rxjs';
 import { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';
@@ -19,41 +18,6 @@ import { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';
 import { svgDataSet, SvgNodeData } from './svg-models';
 
 const HOVER_DELAY = 300;
-
-const TOOLTIP_POSITIONS: [ConnectedPosition, ConnectedPosition, ConnectedPosition, ConnectedPosition] = [
-  {
-    panelClass: 'above',
-    originX: 'center',
-    originY: 'top',
-    overlayX: 'center',
-    overlayY: 'bottom',
-    offsetY: -10,
-  },
-  {
-    panelClass: 'below',
-    originX: 'center',
-    originY: 'bottom',
-    overlayX: 'center',
-    overlayY: 'top',
-    offsetY: 10,
-  },
-  {
-    panelClass: 'left',
-    originX: 'start',
-    originY: 'center',
-    overlayX: 'end',
-    overlayY: 'center',
-    offsetX: -10,
-  },
-  {
-    panelClass: 'right',
-    originX: 'end',
-    originY: 'center',
-    overlayX: 'start',
-    overlayY: 'center',
-    offsetX: 10,
-  },
-];
 
 export interface NodeTooltipData {
   /** Node reference */
@@ -68,7 +32,7 @@ export interface NodeTooltipData {
 @Component({
   selector: 'hra-interactive-svg',
   standalone: true,
-  imports: [CommonModule, InlineSVGModule, OverlayModule, MatDividerModule],
+  imports: [CommonModule, InlineSVGModule, OverlayModule],
   templateUrl: './interactive-svg.component.html',
   styleUrls: ['./interactive-svg.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -97,8 +61,6 @@ export class InteractiveSvgComponent implements OnDestroy {
 
   /** Observable of node hover with a timer */
   readonly nodeHover$ = this.nodeHoverObs.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));
-
-  positions = TOOLTIP_POSITIONS;
 
   /**
    * Clears observables on destroy
