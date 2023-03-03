@@ -1,1 +1,18 @@
 <div *ngIf="url" [inlineSVG]="url" [evalScripts]="scriptEvalMode" (onSVGInserted)="setSvgElement($event)"></div>
+
+<ng-container *ngIf="nodeHover$ | async as hover">
+  <ng-template
+    cdkConnectedOverlay
+    cdkConnectedOverlayPanelClass="hra-interactive-svg-tooltip-panel"
+    [cdkConnectedOverlayOrigin]="hover.origin"
+    [cdkConnectedOverlayViewportMargin]="16"
+    [cdkConnectedOverlayOpen]="true"
+  >
+    <div>
+      {{ hover.node.node_name }}
+    </div>
+    <div>
+      {{ hover.node['svg file of single 2DFTU'] }}
+    </div>
+  </ng-template>
+</ng-container>
