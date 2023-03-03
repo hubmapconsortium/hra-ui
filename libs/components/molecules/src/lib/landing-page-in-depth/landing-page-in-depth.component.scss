@@ -5,48 +5,33 @@
   align-items: start;
   column-gap: 2rem;
   margin: 1rem 6rem;
+
   .image {
     grid-column: 1;
     grid-row: 1 / span 4;
     width: 100%;
     height: auto;
   }
+
   .title {
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     font-size: 32px;
-    line-height: 40px;
     color: #243142;
   }
 
   .more-button {
-    width: 247px;
-    padding: 12px 16px;
-    background: #006298;
-    border: 1px solid #006298;
-    border-radius: 4px;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    width: fit-content;
     height: 48px;
+    font-weight: 700;
+    font-size: 16px;
   }
 
   .description {
     color: #4c5a69;
     font-size: 16px;
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
-    line-height: 24px;
   }
 
   .more-text {
-    color: #ffffff;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 24px;
   }
 }

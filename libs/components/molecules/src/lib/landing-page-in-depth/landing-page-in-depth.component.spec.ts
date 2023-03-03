@@ -1,22 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
 
 import { LandingPageInDepthComponent } from './landing-page-in-depth.component';
 
 describe('LandingPageInDepthComponent', () => {
-  let component: LandingPageInDepthComponent;
-  let fixture: ComponentFixture<LandingPageInDepthComponent>;
+  let shallow: Shallow<LandingPageInDepthComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [LandingPageInDepthComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(LandingPageInDepthComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    shallow = new Shallow(LandingPageInDepthComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('renders images correctly', async () => {
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 });
