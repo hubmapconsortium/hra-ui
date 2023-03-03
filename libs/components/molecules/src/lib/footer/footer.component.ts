@@ -1,12 +1,14 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
-
 import { MatListModule } from '@angular/material/list';
 
+/**
+ * cdk panel list position
+ */
 const DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [
   {
     panelClass: 'above',
@@ -34,16 +36,30 @@ const DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
+  /**
+   * Host binding for class hra-footer
+   */
   @HostBinding('class') readonly clsName = 'hra-footer';
 
+  /**
+   * Determines whether panel is open
+   */
   isOpen = false;
 
+  /**
+   * Downloads list position
+   */
   readonly DOWNLOADS_LIST_POSITION = DOWNLOADS_LIST_POSITION;
 
+  /**
+   * Contacts button action component
+   */
   contactComponent() {
     //
   }
-
+  /**
+   * Download button action component
+   */
   download() {
     //
   }
