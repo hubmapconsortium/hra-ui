@@ -12,15 +12,17 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';
-import { BehaviorSubject, debounce, fromEventPattern, map, Observable, Subject, takeUntil, timer } from 'rxjs';
+import { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';
 import { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';
 
 import { svgDataSet, SvgNodeData } from './svg-models';
 
+/** Delay before tooltip becomes visible */
 const HOVER_DELAY = 300;
 
+/** Node tooltip data */
 export interface NodeTooltipData {
-  /** Node reference */
+  /** Node name */
   node: string;
   /** Center point of hovered node in screen coordinates */
   origin: { x: number; y: number };
@@ -51,6 +53,7 @@ export class InteractiveSvgComponent implements OnDestroy {
   /** SVG script eval mode */
   readonly scriptEvalMode = SVGScriptEvalMode.NEVER;
 
+  /** Custom renderer */
   private readonly renderer = inject(Renderer2);
 
   /** Destroys */
@@ -62,6 +65,7 @@ export class InteractiveSvgComponent implements OnDestroy {
   /** Observable of node hover with a timer */
   readonly nodeHover$ = this.nodeHoverObs.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));
 
+  /** If user is hovering over the svg  */
   hovering = false;
 
   /**
@@ -96,7 +100,7 @@ export class InteractiveSvgComponent implements OnDestroy {
 
   /**
    * Finds matching node in data from a hovered element
-   * @param ev
+   * @param ev Mouse event
    */
   private onCrosswalkHover(ev: MouseEvent): void {
     this.hovering = true;
@@ -114,11 +118,19 @@ export class InteractiveSvgComponent implements OnDestroy {
     }
   }
 
+  /**
+   * Handles when user hovers out of a node
+   */
   private onCrosswalkHoverOut(): void {
     this.hovering = false;
     this.nodeHoverObs.next(undefined);
   }
 
+  /**
+   * Finds and returns the decoded parent id of a target node
+   * @param target Target node
+   * @returns Decoded parent id
+   */
   private findCrosswalkHoverTargetData(target: SVGElement): string | undefined {
     const parent = target.parentElement as HTMLElement;
     return this.decodeId(parent.id).split('_').join(' ');
@@ -133,11 +145,23 @@ export class InteractiveSvgComponent implements OnDestroy {
     this.destroy$ = new Subject();
   }
 
+  /**
+   * Decodes id into a normal string
+   * @param id Undecoded ID
+   * @returns id
+   */
   private decodeId(id: string): string {
     const replacer = (_match: string, hex: string) => String.fromCharCode(Number.parseInt(hex, 16));
     return id.replace(/_x([\da-f]+)_/gi, replacer);
   }
 
+  /**
+   * Attaches an event listener
+   * @template K
+   * @param el Element
+   * @param event Event
+   * @returns Observable
+   */
   private attachEvent<K extends keyof SVGElementEventMap>(el: Element, event: K): Observable<SVGElementEventMap[K]> {
     const { renderer, destroy$ } = this;
     const add = (handler: NodeEventHandler) => renderer.listen(el, event, handler);
