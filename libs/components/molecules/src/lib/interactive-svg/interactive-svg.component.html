@@ -1,4 +1,10 @@
-<div *ngIf="url" [inlineSVG]="url" [evalScripts]="scriptEvalMode" (onSVGInserted)="setSvgElement($event)"></div>
+<div
+  *ngIf="url"
+  [class.nothovered]="!hovering"
+  [inlineSVG]="url"
+  [evalScripts]="scriptEvalMode"
+  (onSVGInserted)="setSvgElement($event)"
+></div>
 
 <ng-container *ngIf="nodeHover$ | async as hover">
   <ng-template
@@ -8,6 +14,6 @@
     [cdkConnectedOverlayViewportMargin]="16"
     [cdkConnectedOverlayOpen]="true"
   >
-    <div class="tooltip">{{ hover.node['node_name'].split('_').join(' ') }}</div>
+    <div class="tooltip">{{ hover.node }}</div>
   </ng-template>
 </ng-container>

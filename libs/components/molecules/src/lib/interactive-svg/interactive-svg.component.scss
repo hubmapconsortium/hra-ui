@@ -7,23 +7,68 @@
   padding: 1rem;
 }
 
-.divider {
-  grid-column: 1/-1;
-}
-
-#Crosswalk {
+[id^='Crosswalk'] {
   pointer-events: none;
 
-  polyline,
-  polygon,
-  path {
+  g {
     pointer-events: all;
-    fill: transparent;
-    stroke: transparent;
+    path,
+    polygon,
+    polyline {
+      fill: white;
+      stroke: gray;
+      stroke-width: 1;
+    }
+  }
 
-    &:hover {
-      stroke: red;
-      stroke-width: 2;
+  g:hover {
+    path,
+    polygon,
+    polyline {
+      fill: transparent;
+      stroke: transparent;
+    }
+  }
+
+  #Descending_x5F_Thin_x5F_Loop_x5F_Of_x5F_Henle,
+  [id^='ASCT_B'],
+  #Cortical_x5F_Collecting_x5F_Duct,
+  #Outer_x5F_Medullary_x5F_Collecting_x5F_Duct,
+  #Inner_x5F_Medullary_x5F_Collecting_x5F_Duct,
+  #Thick_x5F_Ascending_x5F_Loop_x5F_Of_x5F_Henle,
+  #Ascending_x5F_Thin_x5F_Loop_x5F_Of_x5F_Henle,
+  #Crosswalk,
+  #Inset_1,
+  #Inset_2 {
+    pointer-events: none;
+    g {
+      pointer-events: all;
+      path,
+      polygon,
+      polyline {
+        fill: white;
+        stroke: gray;
+        stroke-width: 1;
+      }
+      &:hover {
+        path,
+        polygon,
+        polyline {
+          fill: transparent;
+          stroke: transparent;
+        }
+      }
+    }
+  }
+}
+
+.nothovered {
+  [id^='Crosswalk'] {
+    path,
+    polygon,
+    polyline {
+      fill: transparent !important;
+      stroke: transparent !important;
     }
   }
 }
