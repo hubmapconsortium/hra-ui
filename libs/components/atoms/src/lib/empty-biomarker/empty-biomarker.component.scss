@@ -1,0 +1,18 @@
+:host {
+  display: block;
+  padding: 2.625rem 2rem 2.625rem 2rem;
+
+  .message {
+    color: #243142;
+  }
+
+  .collaborate-button {
+    margin-top: 2rem;
+    background: #006298;
+    font-weight: 700;
+    color: #fff;
+    width: 100%;
+    max-width: 17.25rem;
+    height: 3rem;
+  }
+}
