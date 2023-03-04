@@ -6,5 +6,3 @@ export * from './lib/required-textbox/required-textbox.component';
 export * from './lib/size-legend/size-legend.component';
 
 export * from './lib/required-input/required-input.component';
-
-export * from './lib/download-state/download-state.component';
