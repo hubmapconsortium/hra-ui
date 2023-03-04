@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DownloadStateComponent } from './download-state.component';
+import { DownloadButtonComponent } from './download-button.component';
 
-describe('DownloadStateComponent', () => {
-  let component: DownloadStateComponent;
-  let fixture: ComponentFixture<DownloadStateComponent>;
+describe('DownloadButtonComponent', () => {
+  let component: DownloadButtonComponent;
+  let fixture: ComponentFixture<DownloadButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DownloadStateComponent],
+      imports: [DownloadButtonComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DownloadStateComponent);
+    fixture = TestBed.createComponent(DownloadButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

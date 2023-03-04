@@ -2,11 +2,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'hra-download-state',
+  selector: 'ftu-download-button',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './download-state.component.html',
-  styleUrls: ['./download-state.component.scss'],
+  templateUrl: './download-button.component.html',
+  styleUrls: ['./download-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DownloadStateComponent {}
+export class DownloadButtonComponent {}
