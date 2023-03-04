@@ -8,39 +8,18 @@
 }
 
 [id^='Crosswalk'] {
-  pointer-events: none;
-
-  g {
-    pointer-events: all;
-    path,
-    polygon,
-    polyline {
-      fill: white;
-      stroke: gray;
-      stroke-width: 1;
-    }
+  path,
+  polygon,
+  polyline {
+    fill: transparent;
+    stroke: transparent;
   }
+}
 
-  g:hover {
-    path,
-    polygon,
-    polyline {
-      fill: transparent;
-      stroke: transparent;
-    }
-  }
-
-  #Descending_x5F_Thin_x5F_Loop_x5F_Of_x5F_Henle,
-  [id^='ASCT_B'],
-  #Cortical_x5F_Collecting_x5F_Duct,
-  #Outer_x5F_Medullary_x5F_Collecting_x5F_Duct,
-  #Inner_x5F_Medullary_x5F_Collecting_x5F_Duct,
-  #Thick_x5F_Ascending_x5F_Loop_x5F_Of_x5F_Henle,
-  #Ascending_x5F_Thin_x5F_Loop_x5F_Of_x5F_Henle,
-  #Crosswalk,
-  #Inset_1,
-  #Inset_2 {
+.hover-active {
+  [id^='Crosswalk'] {
     pointer-events: none;
+
     g {
       pointer-events: all;
       path,
@@ -50,7 +29,41 @@
         stroke: gray;
         stroke-width: 1;
       }
-      &:hover {
+    }
+
+    g:hover {
+      path,
+      polygon,
+      polyline {
+        fill: transparent;
+        stroke: transparent;
+      }
+    }
+
+    [id^='ASCT_B'],
+    #Descending_x5F_Thin_x5F_Loop_x5F_Of_x5F_Henle,
+    #Cortical_x5F_Collecting_x5F_Duct,
+    #Outer_x5F_Medullary_x5F_Collecting_x5F_Duct,
+    #Inner_x5F_Medullary_x5F_Collecting_x5F_Duct,
+    #Thick_x5F_Ascending_x5F_Loop_x5F_Of_x5F_Henle,
+    #Ascending_x5F_Thin_x5F_Loop_x5F_Of_x5F_Henle,
+    #Crosswalk,
+    #Inset_1,
+    #Inset_2 {
+      pointer-events: none;
+
+      g {
+        pointer-events: all;
+        path,
+        polygon,
+        polyline {
+          fill: white;
+          stroke: gray;
+          stroke-width: 1;
+        }
+      }
+
+      g:hover {
         path,
         polygon,
         polyline {
@@ -58,17 +71,6 @@
           stroke: transparent;
         }
       }
-    }
-  }
-}
-
-.nothovered {
-  [id^='Crosswalk'] {
-    path,
-    polygon,
-    polyline {
-      fill: transparent !important;
-      stroke: transparent !important;
     }
   }
 }

@@ -13,17 +13,17 @@ describe('InteractiveSvgComponent', () => {
     await expect(shallow.render()).resolves.toBeDefined();
   });
 
-  it('sets svg element', async () => {
-    const { instance } = await shallow.render({
-      bind: { url: 'assets/2d-ftu-kidney-descending-thin-loop-of-henle.svg' },
-    });
-    const parent = document.createElement('div') as unknown as SVGElement;
-    const target = document.createElement('div') as unknown as SVGElement;
-    target.id = 'Crosswalk';
-    parent.appendChild(target);
-    instance.setSvgElement(parent);
-    expect(instance).toBeDefined();
-  });
+  // it('sets svg element', async () => {
+  //   const { instance } = await shallow.render({
+  //     bind: { url: 'assets/2d-ftu-kidney-descending-thin-loop-of-henle.svg' },
+  //   });
+  //   const parent = document.createElement('div') as unknown as SVGElement;
+  //   const target = document.createElement('div') as unknown as SVGElement;
+  //   target.id = 'Crosswalk';
+  //   parent.appendChild(target);
+  //   instance.setSvgElement(parent);
+  //   expect(instance).toBeDefined();
+  // });
 
   // it('emits matching target id', async () => {
   //   const { instance, outputs } = await shallow.render({

@@ -1,6 +1,6 @@
 <div
   *ngIf="url"
-  [class.nothovered]="!hovering"
+  [class.hover-active]="hoverActive"
   [inlineSVG]="url"
   [evalScripts]="scriptEvalMode"
   (onSVGInserted)="setSvgElement($event)"

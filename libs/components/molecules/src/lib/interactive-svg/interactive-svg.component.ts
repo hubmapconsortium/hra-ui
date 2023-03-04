@@ -65,8 +65,8 @@ export class InteractiveSvgComponent implements OnDestroy {
   /** Observable of node hover with a timer */
   readonly nodeHover$ = this.nodeHoverObs.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));
 
-  /** If user is hovering over the svg  */
-  hovering = false;
+  /** If user is hoverActive over the svg  */
+  hoverActive = false;
 
   /**
    * Clears observables on destroy
@@ -103,7 +103,7 @@ export class InteractiveSvgComponent implements OnDestroy {
    * @param ev Mouse event
    */
   private onCrosswalkHover(ev: MouseEvent): void {
-    this.hovering = true;
+    this.hoverActive = true;
     const target = ev.target as SVGElement;
     const id = this.findCrosswalkHoverTargetData(target);
     if (id) {
@@ -122,7 +122,7 @@ export class InteractiveSvgComponent implements OnDestroy {
    * Handles when user hovers out of a node
    */
   private onCrosswalkHoverOut(): void {
-    this.hovering = false;
+    this.hoverActive = false;
     this.nodeHoverObs.next(undefined);
   }
 
