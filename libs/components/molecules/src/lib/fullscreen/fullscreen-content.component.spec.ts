@@ -2,7 +2,7 @@ import { Shallow } from 'shallow-render';
 
 import { FullscreenContentComponent } from './fullscreen-content.component';
 
-describe('SourceListComponent', () => {
+describe('FullscreenContentComponent', () => {
   let shallow: Shallow<FullscreenContentComponent>;
   beforeEach(() => {
     shallow = new Shallow(FullscreenContentComponent);
