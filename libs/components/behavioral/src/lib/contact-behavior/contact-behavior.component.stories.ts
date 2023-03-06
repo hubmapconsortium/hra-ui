@@ -16,4 +16,9 @@ const Template: Story<ContactBehaviorComponent> = (args: ContactBehaviorComponen
 });
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  productLogoUrl: 'assets/icons/logo-icon.svg',
+  productTitle: 'Human Reference Atlas',
+  description: `We received your message. Please allow two business days for a <br>
+                  response to each inquiry. Thanks for your time and expertise!`,
+};

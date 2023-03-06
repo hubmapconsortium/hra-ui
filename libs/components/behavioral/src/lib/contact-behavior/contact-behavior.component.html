@@ -1,1 +1,13 @@
-<p>contact-behavior works!</p>
+<hra-contact-modal
+  *ngIf="!isSubmitted"
+  [productLogoUrl]="productLogoUrl"
+  [productTitle]="productTitle"
+  (submitClick)="onSubmit()"
+></hra-contact-modal>
+
+<hra-info-modal
+  *ngIf="isSubmitted"
+  [productLogoUrl]="productLogoUrl"
+  [productTitle]="productTitle"
+  [description]="description"
+></hra-info-modal>
