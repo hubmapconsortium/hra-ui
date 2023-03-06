@@ -27,6 +27,9 @@ const DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [
   },
 ];
 
+/**
+ * Component
+ */
 @Component({
   selector: 'hra-footer',
   standalone: true,

@@ -11,14 +11,6 @@ export default {
   ],
 } as Meta<FooterComponent>;
 
-// const ITEMS = [
-//   { label: 'Download XLXS' },
-//   { label: 'Download JSON-LD' },
-//   { label: 'Download PDF' },
-//   { label: 'Download AI' },
-//   { label: 'Download PNG' },
-// ];
-
 const Template: Story<FooterComponent> = (args: FooterComponent) => ({
   props: args,
   styles: [
@@ -32,6 +24,4 @@ const Template: Story<FooterComponent> = (args: FooterComponent) => ({
 });
 
 export const Primary = Template.bind({});
-Primary.args = {
-  // items: ITEMS,
-};
+Primary.args = {};
