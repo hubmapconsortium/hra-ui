@@ -20,6 +20,7 @@ import { svgDataSet, SvgNodeData } from './svg-models';
 /** Delay before tooltip becomes visible */
 const HOVER_DELAY = 200;
 
+/** Tooltip position settings */
 const TOOLTIP_POSITIONS: ConnectedPosition[] = [
   {
     originX: 'center',
@@ -84,6 +85,7 @@ export class InteractiveSvgComponent implements OnDestroy {
   /** SVG script eval mode */
   readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;
 
+  /** Tooltip position settings */
   readonly TOOLTIP_POSITIONS = TOOLTIP_POSITIONS;
 
   /** Observable of node hover data or undefined when there is no active hover */
@@ -119,6 +121,11 @@ export class InteractiveSvgComponent implements OnDestroy {
     }
   }
 
+  /**
+   * Removes underscores from id
+   * @param name Node name
+   * @returns node name without underscores
+   */
   formatNodeName(name: string): string {
     return name.replace(/_/g, ' ');
   }
@@ -128,7 +135,7 @@ export class InteractiveSvgComponent implements OnDestroy {
    * @param el element
    */
   private attachCrosswalkHover(el: Element): void {
-    this.attachEvent(el, 'mouseover').subscribe(this.onCrosswalkHover.bind(this, el));
+    this.attachEvent(el, 'mouseover').subscribe(this.onCrosswalkHover.bind(this));
     this.attachEvent(el, 'mouseout')
       .pipe(map(() => undefined))
       .subscribe(this.nodeHoverData$);
@@ -136,9 +143,9 @@ export class InteractiveSvgComponent implements OnDestroy {
 
   /**
    * Finds matching node in data from a hovered element
-   * @param ev Mouse event
+   * @param event Mouse event
    */
-  private onCrosswalkHover(svg: Element, event: MouseEvent): void {
+  private onCrosswalkHover(event: MouseEvent): void {
     const id = this.decodeId(this.getId(event));
     if (id) {
       this.nodeHover.emit(id);
@@ -161,6 +168,11 @@ export class InteractiveSvgComponent implements OnDestroy {
     this.destroy$ = new Subject();
   }
 
+  /**
+   * Returns parent id from event target
+   * @param event Event
+   * @returns Parent id
+   */
   private getId(event: Event): string {
     const parentEl = (event.target as Element).parentElement as Element;
     return parentEl.id;
