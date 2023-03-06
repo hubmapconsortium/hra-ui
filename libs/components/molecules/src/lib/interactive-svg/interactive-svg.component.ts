@@ -1,4 +1,4 @@
-import { OverlayModule } from '@angular/cdk/overlay';
+import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -12,13 +12,44 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';
-import { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';
+import { BehaviorSubject, debounce, fromEventPattern, map, Observable, Subject, takeUntil, timer } from 'rxjs';
 import { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';
 
 import { svgDataSet, SvgNodeData } from './svg-models';
 
 /** Delay before tooltip becomes visible */
-const HOVER_DELAY = 300;
+const HOVER_DELAY = 200;
+
+const TOOLTIP_POSITIONS: ConnectedPosition[] = [
+  {
+    originX: 'center',
+    originY: 'center',
+    overlayX: 'start',
+    overlayY: 'center',
+    offsetX: 8,
+  },
+  {
+    originX: 'center',
+    originY: 'center',
+    overlayX: 'end',
+    overlayY: 'center',
+    offsetX: -8,
+  },
+  {
+    originX: 'center',
+    originY: 'center',
+    overlayX: 'center',
+    overlayY: 'top',
+    offsetY: 8,
+  },
+  {
+    originX: 'center',
+    originY: 'center',
+    overlayX: 'center',
+    overlayY: 'bottom',
+    offsetY: -8,
+  },
+];
 
 /** Node tooltip data */
 export interface NodeTooltipData {
@@ -51,22 +82,21 @@ export class InteractiveSvgComponent implements OnDestroy {
   @Output() readonly nodeHover = new EventEmitter<string>();
 
   /** SVG script eval mode */
-  readonly scriptEvalMode = SVGScriptEvalMode.NEVER;
+  readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;
+
+  readonly TOOLTIP_POSITIONS = TOOLTIP_POSITIONS;
+
+  /** Observable of node hover data or undefined when there is no active hover */
+  readonly nodeHoverData$ = new BehaviorSubject<NodeTooltipData | undefined>(undefined);
+
+  /** Observable of node hover with a timer */
+  readonly nodeHoverDelayedData$ = this.nodeHoverData$.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));
 
   /** Custom renderer */
   private readonly renderer = inject(Renderer2);
 
   /** Destroys */
   private destroy$ = new Subject<void>();
-
-  /** Observable of node hover data or undefined when there is no active hover */
-  readonly nodeHoverObs = new BehaviorSubject<NodeTooltipData | undefined>(undefined);
-
-  /** Observable of node hover with a timer */
-  readonly nodeHover$ = this.nodeHoverObs.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));
-
-  /** If user is hoverActive over the svg  */
-  hoverActive = false;
 
   /**
    * Clears observables on destroy
@@ -89,51 +119,37 @@ export class InteractiveSvgComponent implements OnDestroy {
     }
   }
 
+  formatNodeName(name: string): string {
+    return name.replace(/_/g, ' ');
+  }
+
   /**
    * Attaches crosswalk hover
    * @param el element
    */
   private attachCrosswalkHover(el: Element): void {
-    this.attachEvent(el, 'mouseover').subscribe(this.onCrosswalkHover.bind(this));
-    this.attachEvent(el, 'mouseout').subscribe(this.onCrosswalkHoverOut.bind(this)); // TODO check that mouseout is the correct event
+    this.attachEvent(el, 'mouseover').subscribe(this.onCrosswalkHover.bind(this, el));
+    this.attachEvent(el, 'mouseout')
+      .pipe(map(() => undefined))
+      .subscribe(this.nodeHoverData$);
   }
 
   /**
    * Finds matching node in data from a hovered element
    * @param ev Mouse event
    */
-  private onCrosswalkHover(ev: MouseEvent): void {
-    this.hoverActive = true;
-    const target = ev.target as SVGElement;
-    const id = this.findCrosswalkHoverTargetData(target);
+  private onCrosswalkHover(svg: Element, event: MouseEvent): void {
+    const id = this.decodeId(this.getId(event));
     if (id) {
       this.nodeHover.emit(id);
-      this.nodeHoverObs.next({
+      this.nodeHoverData$.next({
         node: id,
         origin: {
-          x: ev.clientX,
-          y: ev.clientY,
+          x: event.clientX,
+          y: event.clientY,
         },
       });
     }
-  }
-
-  /**
-   * Handles when user hovers out of a node
-   */
-  private onCrosswalkHoverOut(): void {
-    this.hoverActive = false;
-    this.nodeHoverObs.next(undefined);
-  }
-
-  /**
-   * Finds and returns the decoded parent id of a target node
-   * @param target Target node
-   * @returns Decoded parent id
-   */
-  private findCrosswalkHoverTargetData(target: SVGElement): string | undefined {
-    const parent = target.parentElement as HTMLElement;
-    return this.decodeId(parent.id).split('_').join(' ');
   }
 
   /**
@@ -143,6 +159,11 @@ export class InteractiveSvgComponent implements OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
     this.destroy$ = new Subject();
+  }
+
+  private getId(event: Event): string {
+    const parentEl = (event.target as Element).parentElement as Element;
+    return parentEl.id;
   }
 
   /**
