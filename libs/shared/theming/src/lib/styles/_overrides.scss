@@ -1,0 +1,40 @@
+@use 'variables' as vars;
+
+@mixin init() {
+  @at-root {
+    button.mdc-button {
+      font-weight: 700;
+      &.mat-primary {
+        background-color: vars.$primary-A400-rgb;
+        color: vars.$accent-50-rgb;
+      }
+      &.mat-mdc-outlined-button {
+        background-color: vars.$primary-contrast-rgb;
+        border-color: vars.$primary-200-rgb;
+        color: vars.$primary-A400-rgb;
+      }
+    }
+    a.mdc-button {
+      &.mat-unthemed {
+        text-decoration: underline;
+        color: vars.$primary-A400-rgb;
+      }
+    }
+    .hover.mdc-button {
+      &.mat-primary {
+        background-color: vars.$primary-A700-rgb;
+      }
+      &.mat-mdc-outlined-button {
+        background-color: vars.$primary-100-rgb;
+        border-color: vars.$primary-200-rgb;
+        color: vars.$primary-A700-rgb;
+      }
+    }
+    .hover-link.mdc-button {
+      &.mat-unthemed {
+        text-decoration: underline;
+        color: vars.$primary-A700-rgb;
+      }
+    }
+  }
+}
