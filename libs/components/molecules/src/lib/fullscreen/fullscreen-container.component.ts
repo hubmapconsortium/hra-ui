@@ -1,0 +1,53 @@
+import {
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  Component,
+  ContentChildren,
+  Input,
+  OnChanges,
+  QueryList,
+  SimpleChanges,
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FullscreenContentComponent } from './fullscreen-content.component';
+
+@Component({
+  selector: 'hra-fullscreen-container',
+  standalone: true,
+  imports: [CommonModule, FullscreenContentComponent],
+  template: '<ng-content></ng-content>',
+  styles: [
+    `
+      :host {
+        display: block;
+        position: relative;
+      }
+    `,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class FullscreenContainerComponent implements AfterContentInit, OnChanges {
+  /** A property that gets a reference to any child components of type FullscreenContentComponent that are projected into the component's content area */
+  @ContentChildren(FullscreenContentComponent)
+  readonly content?: QueryList<FullscreenContentComponent>;
+
+  /** A boolean input property that controls the fullscreen mode */
+  @Input() fullscreen = false;
+
+  ngAfterContentInit(): void {
+    this.updateFullscreenMode();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('fullscreen' in changes) {
+      this.updateFullscreenMode();
+    }
+  }
+
+  /** A private method that sets the isFullScreen property of each child FullscreenContentComponent based on the value of the fullscreen  */
+  private updateFullscreenMode(): void {
+    this.content?.forEach((content) => {
+      content.isFullScreen = this.fullscreen;
+    });
+  }
+}
