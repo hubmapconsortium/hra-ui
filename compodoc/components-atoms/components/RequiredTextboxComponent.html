@@ -305,7 +305,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Emits the new message when the input changes or null if the message is invalid</p>
+                        <div class="io-description"><p>Emits the new message when the input changes or undefined if the message is invalid</p>
 </div>
                     </td>
                 </tr>
@@ -419,8 +419,8 @@ export class RequiredTextboxComponent {
   /** A label for the textarea field */
   @Input() label &#x3D; &#x27;&#x27;;
 
-  /** Emits the new message when the input changes or null if the message is invalid  */
-  @Output() readonly messageChange &#x3D; new EventEmitter&lt;string | null&gt;();
+  /** Emits the new message when the input changes or undefined if the message is invalid  */
+  @Output() readonly messageChange &#x3D; new EventEmitter&lt;string | undefined&gt;();
 
   /** Observable emitting when the component is destroyed */
   readonly destroy$ &#x3D; injectOnDestroy();
@@ -437,9 +437,9 @@ export class RequiredTextboxComponent {
     control.valueChanges
       .pipe(
         takeUntil(destroy$),
-        map((value) &#x3D;&gt; (control.valid ? value : null))
+        map((value) &#x3D;&gt; (control.valid ? value : undefined))
       )
-      .subscribe((value) &#x3D;&gt; this.messageChange.emit(value));
+      .subscribe((value) &#x3D;&gt; this.messageChange.emit(value as string | undefined));
   }
 }
 </code></pre>

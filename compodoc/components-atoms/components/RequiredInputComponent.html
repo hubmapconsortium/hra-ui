@@ -424,8 +424,8 @@ export class RequiredInputComponent {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
-  &lt;mat-label&gt;{{ label }}&lt;/mat-label&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;mat-form-field class&#x3D;&quot;form-field&quot; appearance&#x3D;&quot;outline&quot;&gt;
+  &lt;mat-label&gt; {{ label }} &lt;/mat-label&gt;
   &lt;input matInput [formControl]&#x3D;&quot;control&quot; /&gt;
   &lt;mat-error *ngIf&#x3D;&quot;control.hasError(&#x27;required&#x27;)&quot;&gt;{{ label }} is required!&lt;/mat-error&gt;
 &lt;/mat-form-field&gt;
@@ -438,6 +438,14 @@ export class RequiredInputComponent {
                 </p>
                 <pre class="line-numbers"><code class="language-scss">:host {
   display: block;
+
+  .form-field {
+    width: 100%;
+  }
+
+  ::ng-deep .mat-mdc-form-field-required-marker {
+    color: #dc231e;
+  }
 }
 </code></pre>
     </div>
@@ -467,7 +475,7 @@ export class RequiredInputComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-form-field appearance="outline">  <mat-label>{{ label }}</mat-label>  <input matInput [formControl]="control" />  <mat-error *ngIf="control.hasError(\'required\')">{{ label }} is required!</mat-error></mat-form-field></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-form-field class="form-field" appearance="outline">  <mat-label> {{ label }} </mat-label>  <input matInput [formControl]="control" />  <mat-error *ngIf="control.hasError(\'required\')">{{ label }} is required!</mat-error></mat-form-field></div>'
     var COMPONENTS = [{'name': 'EmailInputComponent', 'selector': 'hra-email-input'},{'name': 'EmptyBiomarkerComponent', 'selector': 'hra-empty-biomarker'},{'name': 'GradientLegendComponent', 'selector': 'hra-gradient-legend'},{'name': 'LabelBoxComponent', 'selector': 'hra-label-box'},{'name': 'RequiredInputComponent', 'selector': 'hra-required-input'},{'name': 'RequiredTextboxComponent', 'selector': 'hra-required-textbox'},{'name': 'SizeLegendComponent', 'selector': 'hra-size-legend'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'RequiredInputComponent'};
