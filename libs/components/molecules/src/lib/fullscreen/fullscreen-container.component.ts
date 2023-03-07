@@ -11,6 +11,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { FullscreenContentComponent } from './fullscreen-content.component';
 
+/** A component that wraps any child components of type FullscreenContentComponent and sets their isFullScreen property to true or false based on its own fullscreen input property */
 @Component({
   selector: 'hra-fullscreen-container',
   standalone: true,

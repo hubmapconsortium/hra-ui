@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+/** A component that displays its content in fullscreen mode when its isFullScreen property is set to true */
 @Component({
   selector: 'hra-fullscreen-content',
   standalone: true,
