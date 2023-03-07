@@ -11,7 +11,9 @@ import {
 import { CommonModule } from '@angular/common';
 import { FullscreenContentComponent } from './fullscreen-content.component';
 
-/** A component that wraps any child components of type FullscreenContentComponent and sets their isFullScreen property to true or false based on its own fullscreen input property */
+/** A component that wraps any child components of type FullscreenContentComponent and
+ * sets their isFullScreen property to true or false based on its own fullscreen input property
+ */
 @Component({
   selector: 'hra-fullscreen-container',
   standalone: true,
@@ -35,7 +37,9 @@ export class FullscreenContainerComponent implements AfterContentInit, OnChanges
   /** A boolean input property that controls the fullscreen mode */
   @Input() fullscreen = false;
 
-  /** It calls the updateFullscreenMode method to set the isFullScreen property of the child FullscreenContentComponent instances based on the value of the fullscreen input property */
+  /** It calls the updateFullscreenMode method to set the isFullScreen property of the child
+   * FullscreenContentComponent instances based on the value of the fullscreen input property
+   */
   ngAfterContentInit(): void {
     this.updateFullscreenMode();
   }
