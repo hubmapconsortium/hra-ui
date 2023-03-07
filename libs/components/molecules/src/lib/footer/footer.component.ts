@@ -9,6 +9,9 @@ import { MatListModule } from '@angular/material/list';
  * Download format interface
  */
 export interface DownloadFormat {
+  /**
+   * format label
+   */
   label: string;
 }
 
