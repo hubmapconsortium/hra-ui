@@ -1,4 +1,6 @@
+export * from './lib/contact-modal/contact-modal.component';
 export * from './lib/biomarker-table-data-card/biomarker-table-data-card.component';
+export * from './lib/contact-modal/contact-modal.component';
 export * from './lib/footer/footer.component';
 export * from './lib/info-modal/info-modal.component';
 export * from './lib/landing-page-intro/landing-page-intro.component';
