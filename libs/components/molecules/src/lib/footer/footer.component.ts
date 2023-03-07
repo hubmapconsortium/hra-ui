@@ -6,17 +6,19 @@ import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import { MatListModule } from '@angular/material/list';
 
 /**
- * Download format interface
+ * the interface has different formats for downloading which will be emitted once clicked on Download button
+
  */
 export interface DownloadFormat {
   /**
-   * format label
+   * format label type
    */
   label: string;
 }
 
 /**
- * cdk panel list position
+ * cdk overlay positioning to check the download list panel
+ * Added two panels for the footer component
  */
 const DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [
   {
@@ -37,7 +39,7 @@ const DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [
 ];
 
 /**
- * Component
+ * Footer Component
  */
 @Component({
   selector: 'hra-footer',
@@ -49,38 +51,38 @@ const DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [
 })
 export class FooterComponent<T extends DownloadFormat = DownloadFormat> {
   /**
-   * Input  of footer component
+   * Input  of different download format for download button
    */
   @Input() downloadFormats: T[] = [];
 
   /**
-   * Output  of footer component
+   * Output emits download format when clicked on download list panel
    */
   @Output() readonly download = new EventEmitter<T>();
 
   /**
-   * Output  of Illustration
+   * Output emits link when clicked on Illustration button
    */
-  @Output() readonly IlustrationButtonClick = new EventEmitter();
+  @Output() readonly illustrationClick = new EventEmitter<void>();
   /**
-   * Output  of Embed
+   * Output emits link when clicked on Embed button
    */
-  @Output() readonly EmbedButtonClick = new EventEmitter();
+  @Output() readonly embedClick = new EventEmitter<void>();
   /**
-   * Output  of Contact
+   * Output emits contact component when clicked on Contact button
    */
-  @Output() readonly ContactButtonClick = new EventEmitter();
+  @Output() readonly contactClick = new EventEmitter<void>();
   /**
-   * Output  of HRA Portal
+   * Output emits link when clicked on HRA Portal butoon
    */
-  @Output() readonly HRAPortalButtonClick = new EventEmitter();
+  @Output() readonly hraPortalClick = new EventEmitter<void>();
   /**
-   * Downloads list position
+   * Input value downloads list position initialized with panel class positions
    */
   readonly DOWNLOADS_LIST_POSITION = DOWNLOADS_LIST_POSITION;
 
   /**
-   * Determines whether panel is open
+   * Determines whether download panel is open
    */
   downloadListOpen = false;
 }

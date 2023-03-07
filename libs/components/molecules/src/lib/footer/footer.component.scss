@@ -1,11 +1,10 @@
 :host {
   display: flex;
   padding: 1rem 2rem;
-  border-top: 1px solid #e2e7e9;
-
-  display: flex;
+  border-top: 0.063rem solid #e2e7e9;
   align-items: center;
   background-color: #f8f9fa;
+  gap: 1rem;
 
   .controls {
     display: flex;
@@ -17,12 +16,10 @@
 
   .button {
     justify-content: center;
-    margin-left: 0.5rem;
     background-color: #ffffff;
-    padding: 0.7rem 1rem;
-    border: 1px solid #4c5a69;
+    border: 0.063rem solid #4c5a69;
     min-width: 9rem;
-    min-height: 48px;
+    min-height: 3rem;
   }
   .button:hover {
     border-color: black;
