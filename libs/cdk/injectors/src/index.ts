@@ -1,2 +1,3 @@
+export { dispatch, Dispatcher } from './lib/dispatch/dispatch';
 export { injectOnDestroy } from './lib/on-destroy/on-destroy';
-export { SelectSnapshotSelector, selectQuerySnapshot, selectSnapshot } from './lib/select-snapshot/select-snapshot';
+export { selectQuerySnapshot, selectSnapshot, SelectSnapshotSelector } from './lib/select-snapshot/select-snapshot';
