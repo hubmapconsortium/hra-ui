@@ -1,5 +1,7 @@
 export * from './lib/contact-modal/contact-modal.component';
 export * from './lib/biomarker-table-data-card/biomarker-table-data-card.component';
+export * from './lib/fullscreen/fullscreen-container.component';
+export * from './lib/fullscreen/fullscreen-content.component';
 export * from './lib/contact-modal/contact-modal.component';
 export * from './lib/footer/footer.component';
 export * from './lib/info-modal/info-modal.component';
