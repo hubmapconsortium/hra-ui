@@ -3,6 +3,7 @@ export * from './lib/biomarker-table-data-card/biomarker-table-data-card.compone
 export * from './lib/contact-modal/contact-modal.component';
 export * from './lib/info-modal/info-modal.component';
 export * from './lib/landing-page-intro/landing-page-intro.component';
+export * from './lib/landing-page-in-depth/landing-page-in-depth.component';
 export * from './lib/metrics/metrics.component';
 export * from './lib/screen-size-notice/screen-size-notice.component';
 export * from './lib/source-list/source-list.component';
