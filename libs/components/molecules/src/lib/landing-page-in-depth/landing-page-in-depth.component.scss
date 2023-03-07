@@ -1,0 +1,37 @@
+:host {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-template-rows: auto auto auto 3rem auto;
+  align-items: start;
+  column-gap: 2rem;
+  margin: 1rem 6rem;
+
+  .image {
+    grid-column: 1;
+    grid-row: 1 / span 4;
+    width: 100%;
+    height: auto;
+  }
+
+  .title {
+    font-weight: 400;
+    font-size: 32px;
+    color: #243142;
+  }
+
+  .more-button {
+    width: fit-content;
+    height: 48px;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .description {
+    color: #4c5a69;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .more-text {
+  }
+}
