@@ -1,4 +1,4 @@
-<button class="button" mat-stroked-button>
+<button class="button" mat-stroked-button (click)="IlustrationButtonClick.emit()">
   <mat-icon>info</mat-icon>
   Ilustration
 </button>
@@ -6,7 +6,7 @@
 <button
   class="button"
   mat-stroked-button
-  (click)="isOpen = !isOpen"
+  (click)="downloadListOpen = !downloadListOpen"
   type="button"
   cdkOverlayOrigin
   #anchor="cdkOverlayOrigin"
@@ -15,19 +15,19 @@
   Download
 </button>
 
-<button class="button" mat-stroked-button>
+<button class="button" mat-stroked-button (click)="EmbedButtonClick.emit()">
   <mat-icon>code</mat-icon>
   Embed
 </button>
 
 <div class="filler"></div>
 
-<button class="button" mat-stroked-button (click)="contactComponent()">
+<button class="button" mat-stroked-button (click)="ContactButtonClick.emit()">
   <mat-icon>mail</mat-icon>
   Contact
 </button>
 
-<button class="button" mat-stroked-button>
+<button class="button" mat-stroked-button (click)="HRAPortalButtonClick.emit()">
   <mat-icon>open_in_new</mat-icon>
   HRA Portal
 </button>
@@ -35,19 +35,17 @@
 <ng-template
   cdkConnectedOverlay
   [cdkConnectedOverlayOrigin]="anchor"
-  [cdkConnectedOverlayOpen]="isOpen"
+  [cdkConnectedOverlayOpen]="downloadListOpen"
   [cdkConnectedOverlayPositions]="DOWNLOADS_LIST_POSITION"
   [cdkConnectedOverlayOffsetX]="0"
   cdkConnectedOverlayHasBackdrop="false"
   cdkConnectedOverlayPush="false"
   cdkConnectedOverlayPanelClass="download-options-panel"
-  (overlayOutsideClick)="isOpen = false"
+  (overlayOutsideClick)="downloadListOpen = false"
 >
   <mat-action-list>
-    <button mat-list-item (click)="download()">Download XLXS</button>
-    <button mat-list-item (click)="download()">Download JSON-LD</button>
-    <button mat-list-item (click)="download()">Download AI</button>
-    <button mat-list-item (click)="download()">Download PDF</button>
-    <button mat-list-item (click)="download()">Download PNG</button>
+    <button mat-list-item *ngFor="let format of downloadFormats" (click)="download.emit(format)">
+      {{ format.label }}
+    </button>
   </mat-action-list>
 </ng-template>

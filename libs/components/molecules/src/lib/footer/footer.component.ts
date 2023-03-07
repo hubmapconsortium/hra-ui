@@ -1,10 +1,16 @@
-import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import { MatListModule } from '@angular/material/list';
+
+/**
+ * Download format interface
+ */
+export interface DownloadFormat {
+  label: string;
+}
 
 /**
  * cdk panel list position
@@ -33,37 +39,45 @@ const DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [
 @Component({
   selector: 'hra-footer',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatSelectModule, OverlayModule, MatListModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, OverlayModule, MatListModule],
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FooterComponent {
+export class FooterComponent<T extends DownloadFormat = DownloadFormat> {
   /**
-   * Host binding for class hra-footer
+   * Input  of footer component
    */
-  @HostBinding('class') readonly clsName = 'hra-footer';
+  @Input() downloadFormats: T[] = [];
 
   /**
-   * Determines whether panel is open
+   * Output  of footer component
    */
-  isOpen = false;
+  @Output() readonly download = new EventEmitter<T>();
 
+  /**
+   * Output  of Illustration
+   */
+  @Output() readonly IlustrationButtonClick = new EventEmitter();
+  /**
+   * Output  of Embed
+   */
+  @Output() readonly EmbedButtonClick = new EventEmitter();
+  /**
+   * Output  of Contact
+   */
+  @Output() readonly ContactButtonClick = new EventEmitter();
+  /**
+   * Output  of HRA Portal
+   */
+  @Output() readonly HRAPortalButtonClick = new EventEmitter();
   /**
    * Downloads list position
    */
   readonly DOWNLOADS_LIST_POSITION = DOWNLOADS_LIST_POSITION;
 
   /**
-   * Contacts button action component
+   * Determines whether panel is open
    */
-  contactComponent() {
-    //
-  }
-  /**
-   * Download button action component
-   */
-  download() {
-    //
-  }
+  downloadListOpen = false;
 }
