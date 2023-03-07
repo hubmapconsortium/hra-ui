@@ -13,9 +13,8 @@
     stroke: transparent;
   }
 
-  .hover-active & g:not(:hover) > :is(path, polygon, polyline) {
-    fill: white;
-    stroke: gray;
-    stroke-width: 1;
+  .hover-active & g:hover > :is(path, polygon, polyline) {
+    fill: hsl(0deg 100% 50%);
+    mix-blend-mode: saturation;
   }
 }
