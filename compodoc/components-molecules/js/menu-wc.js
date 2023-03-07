@@ -60,6 +60,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/ContactModalComponent.html" data-type="entity-link" >ContactModalComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/FullscreenContainerComponent.html" data-type="entity-link" >FullscreenContainerComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/FullscreenContentComponent.html" data-type="entity-link" >FullscreenContentComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/HeaderComponent.html" data-type="entity-link" >HeaderComponent</a>
                             </li>
                             <li class="link">
