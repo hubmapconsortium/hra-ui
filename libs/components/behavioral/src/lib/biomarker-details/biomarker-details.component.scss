@@ -1,0 +1,21 @@
+:host {
+  display: block;
+
+  .legends {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+  }
+
+  .legend {
+    flex: 1;
+    align-self: center;
+    width: 50%;
+  }
+
+  .tabs {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+  }
+}

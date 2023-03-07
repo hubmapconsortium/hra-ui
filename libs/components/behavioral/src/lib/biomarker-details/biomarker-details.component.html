@@ -1,0 +1,24 @@
+<hra-label-box></hra-label-box>
+<div class="tabs">
+  <mat-tab-group>
+    <mat-tab label="Gene Biomarkers">
+      <hra-biomarker-table-data-card [data]="data"></hra-biomarker-table-data-card>
+    </mat-tab>
+    <mat-tab label="Protein Biomarkers">
+      <hra-biomarker-table-data-card [data]="data"></hra-biomarker-table-data-card>
+    </mat-tab>
+    <mat-tab label="Lipid Biomarkers">
+      <hra-biomarker-table-data-card [data]="data"></hra-biomarker-table-data-card>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+<div class="legends">
+  <hra-label-box class="legend"></hra-label-box>
+  <hra-label-box class="legend"></hra-label-box>
+</div>
+<div class="legends">
+  <hra-gradient-legend [gradient]="gradient" class="legend"></hra-gradient-legend>
+  <hra-size-legend [sizes]="sizes" class="legend"></hra-size-legend>
+</div>
+<hra-label-box></hra-label-box>
+<hra-source-list [sources]="sources"></hra-source-list>
