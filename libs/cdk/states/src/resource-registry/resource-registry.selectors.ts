@@ -46,11 +46,13 @@ export class ResourceRegistrySelectors {
     id: ResourceId,
     type: T
   ): Extract<ResourceEntry, { type: T }> | undefined;
+  /** get resource entry by type if type is a string */
   private static getEntryByType(state: ResourceRegistryModel, id: ResourceId, type: string): ResourceEntry | undefined;
+  /** get resource entry by type if type is of ResourceType */
   private static getEntryByType(
     state: ResourceRegistryModel,
     id: ResourceId,
-    type: ResourceEntry | string
+    type: ResourceType | string
   ): ResourceEntry | undefined {
     const entry = state[id];
     return entry?.type === type ? entry : undefined;
