@@ -35,10 +35,12 @@ export class FullscreenContainerComponent implements AfterContentInit, OnChanges
   /** A boolean input property that controls the fullscreen mode */
   @Input() fullscreen = false;
 
+  /** It calls the updateFullscreenMode method to set the isFullScreen property of the child FullscreenContentComponent instances based on the value of the fullscreen input property */
   ngAfterContentInit(): void {
     this.updateFullscreenMode();
   }
 
+  /** It checks if the fullscreen input property has changed, and calls the updateFullscreenMode method if it has */
   ngOnChanges(changes: SimpleChanges): void {
     if ('fullscreen' in changes) {
       this.updateFullscreenMode();
