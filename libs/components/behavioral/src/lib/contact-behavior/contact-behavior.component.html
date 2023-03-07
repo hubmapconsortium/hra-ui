@@ -1,13 +1,17 @@
 <hra-contact-modal
-  *ngIf="!isSubmitted"
   [productLogoUrl]="productLogoUrl"
   [productTitle]="productTitle"
-  (submitClick)="onSubmit()"
-></hra-contact-modal>
+  (submitClick)="submit($event)"
+  (closeClick)="close()"
+>
+</hra-contact-modal>
 
-<hra-info-modal
-  *ngIf="isSubmitted"
-  [productLogoUrl]="productLogoUrl"
-  [productTitle]="productTitle"
-  [description]="description"
-></hra-info-modal>
+<ng-template #postMessage>
+  <hra-info-modal
+    [productLogoUrl]="productLogoUrl"
+    [productTitle]="productTitle"
+    [description]="description"
+    (closeClick)="close()"
+  >
+  </hra-info-modal>
+</ng-template>

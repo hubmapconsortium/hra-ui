@@ -1,19 +1,20 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ContactModalComponent, InfoModalComponent } from '@hra-ui/components/molecules';
+import { ChangeDetectionStrategy, Component, inject, Input, TemplateRef, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { dispatch } from '@hra-ui/cdk/injectors';
+import { ContactData, ContactModalComponent, InfoModalComponent } from '@hra-ui/components/molecules';
+import { SendMessage } from '@hra-ui/state';
 
+/** A Component for contact behavior which sends the message entered by the user and shows an acknowledgement */
 @Component({
   selector: 'ftu-contact-behavior',
   standalone: true,
-  imports: [CommonModule, ContactModalComponent, InfoModalComponent],
+  imports: [CommonModule, MatDialogModule, ContactModalComponent, InfoModalComponent],
   templateUrl: './contact-behavior.component.html',
   styleUrls: ['./contact-behavior.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactBehaviorComponent {
-  /** This variable is used to determine form is submitted ot not. */
-  isSubmitted = false;
-
   /** Input for product logo URL to displayed on the left side. */
   @Input() productLogoUrl = '';
 
@@ -23,10 +24,30 @@ export class ContactBehaviorComponent {
   /** Information modal message to the user */
   @Input() description = '';
 
-  onSubmit() {
-    // Do something when the button is submitted
-    console.log('Clicked : ' + this.isSubmitted);
-    this.isSubmitted = true;
-    console.log(this.isSubmitted);
+  /** A template to post a message */
+  @ViewChild('postMessage') readonly postMessageTemplate!: TemplateRef<void>;
+
+  /** A dispatcher function to send message entered by user */
+  readonly sendMessage = dispatch(SendMessage);
+
+  /** A dialog box which shows user an acknowledgement after clicking on submit */
+  private readonly dialog = inject(MatDialog);
+
+  /** A mat form field dialog which accepts the email, subject, and message of user and validates it */
+  private readonly selfRef = inject(MatDialogRef, { optional: true });
+
+  /** Dialog box which references the acknowledgement dialog box */
+  private postRef?: MatDialogRef<void>;
+
+  /** A function which sends/dispatches a message which contains email, subject, and message. And also opens the acknowledgement dialog box. */
+  submit(message: ContactData): void {
+    this.sendMessage(message);
+    this.postRef = this.dialog.open(this.postMessageTemplate);
+  }
+
+  /** A function which closes the 'Contact us' dialog and the acknowledgement dialog.  */
+  close(): void {
+    this.postRef?.close();
+    this.selfRef?.close();
   }
 }

@@ -1,3 +1,6 @@
+import { MatDialogModule } from '@angular/material/dialog';
+import { ContactState } from '@hra-ui/state';
+import { NgxsModule } from '@ngxs/store';
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { ContactBehaviorComponent } from './contact-behavior.component';
 
@@ -6,7 +9,7 @@ export default {
   component: ContactBehaviorComponent,
   decorators: [
     moduleMetadata({
-      imports: [],
+      imports: [NgxsModule.forRoot([ContactState])],
     }),
   ],
 } as Meta<ContactBehaviorComponent>;
@@ -19,6 +22,8 @@ export const Primary = Template.bind({});
 Primary.args = {
   productLogoUrl: 'assets/icons/logo-icon.svg',
   productTitle: 'Human Reference Atlas',
-  description: `We received your message. Please allow two business days for a <br>
-                  response to each inquiry. Thanks for your time and expertise!`,
+  description: `
+    We received your message. Please allow two business days for a <br>
+    response to each inquiry. Thanks for your time and expertise!
+  `,
 };
