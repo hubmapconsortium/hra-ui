@@ -1,7 +1,7 @@
-import { MatDialogModule } from '@angular/material/dialog';
+import { ContactService, MockContactService } from '@hra-ui/services';
 import { ContactState } from '@hra-ui/state';
 import { NgxsModule } from '@ngxs/store';
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { Meta, moduleMetadata, Story } from '@storybook/angular';
 import { ContactBehaviorComponent } from './contact-behavior.component';
 
 export default {
@@ -10,6 +10,7 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [NgxsModule.forRoot([ContactState])],
+      providers: [{ provide: ContactService, useExisting: MockContactService }],
     }),
   ],
 } as Meta<ContactBehaviorComponent>;

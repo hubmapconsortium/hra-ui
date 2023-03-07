@@ -1,4 +1,4 @@
-import { ContactMessage } from './contact.model';
+import { ContactMessage } from '@hra-ui/services';
 
 /** An action class which sends the message which consists of email, subject, and message entered by user. */
 export class SendMessage {
