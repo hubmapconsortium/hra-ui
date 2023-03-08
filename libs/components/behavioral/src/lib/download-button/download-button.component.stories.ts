@@ -1,3 +1,5 @@
+import { DownloadState } from '@hra-ui/state';
+import { NgxsModule } from '@ngxs/store';
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { DownloadButtonComponent } from './download-button.component';
 
@@ -6,7 +8,7 @@ export default {
   component: DownloadButtonComponent,
   decorators: [
     moduleMetadata({
-      imports: [],
+      imports: [NgxsModule.forRoot([])],
     }),
   ],
 } as Meta<DownloadButtonComponent>;
