@@ -1,0 +1,9 @@
+:host {
+  display: block;
+
+  &.fullscreen-on {
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+  }
+}
