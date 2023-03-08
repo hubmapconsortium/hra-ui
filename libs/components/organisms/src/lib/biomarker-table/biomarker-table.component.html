@@ -1,1 +1,23 @@
-<p>biomarker-table works!</p>
+<table mat-table [dataSource]="dataSource">
+  <ng-container *ngFor="let column of columns; let index = index" [matColumnDef]="column.label">
+    <th mat-header-cell *matHeaderCellDef>
+      {{ column.label }}
+    </th>
+
+    <td mat-cell *matCellDef="let element" [ngSwitch]="column.dataType" [attr.data-type]="column.dataType">
+      <ng-container *ngSwitchCase="'text'">
+        {{ element[index] }}
+      </ng-container>
+      <ng-container *ngSwitchCase="'numeric'">
+        {{ element[index] !== undefined ? (element[index] | number) : 'no data' }}
+      </ng-container>
+      <ng-container *ngSwitchCase="'object'">
+        {{ element[index] }}
+        <!-- TODO replace -->
+      </ng-container>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnIds"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnIds"></tr>
+</table>
