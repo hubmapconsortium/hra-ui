@@ -9,8 +9,6 @@
 
   .description {
     padding: 1.5rem 2rem;
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 1rem;
     line-height: 1.5rem;
@@ -18,8 +16,6 @@
   }
 
   mat-card-header {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 1.5rem;
     line-height: 1.4202rem;
@@ -48,10 +44,6 @@
   ::ng-deep .mat-card-header-text {
     margin: unset !important;
   }
-
-  @media (max-width: 26.75rem) {
-    width: 23.75rem;
-  }
 }
 
 ::ng-deep .custom-modal {
@@ -76,8 +68,6 @@
   }
 
   .mat-dialog-title {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 1.5rem;
     line-height: 1.4202rem;

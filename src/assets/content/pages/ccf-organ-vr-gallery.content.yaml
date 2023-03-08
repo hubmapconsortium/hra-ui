@@ -28,7 +28,7 @@ dataVisualizations:
     The HRA Organ VR Gallery presents a tested implementation of classic 2D visualizations within a 3D virtual environment, ultimately enriching the analysis experience with presence and immersion while preserving the spatiality of biological data.
 
 testingAndFeedback:
-- heading:  User Testing and Feedback'
+- heading:  User Testing and Feedback
   descriptions: |
     The HRA Organ VR Gallery application is not yet available for public download. However, if you would like to experience the gallery for yourself, please email abueckle@iu.edu.
     For more information and guidance on getting started with the application, click <a href="https://www.figma.com/proto/TopdFvriKNcV9Af2Hgo8aK/Documentation-Organ?node-id=12%3A6&scaling=scale-down&page-id=0%3A">here</a> to view the documentation. 
