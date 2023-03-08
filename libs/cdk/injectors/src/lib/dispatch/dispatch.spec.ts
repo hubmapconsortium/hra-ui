@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { mock, mockClear, mockFn } from 'jest-mock-extended';
+import { mock, mockFn } from 'jest-mock-extended';
 import { dispatch } from './dispatch';
 
 jest.mock('@angular/core');
@@ -11,10 +11,12 @@ describe(dispatch, () => {
   const store = mock<Store>();
   jest.mocked(inject).mockReturnValue(store);
 
+  afterEach(() => jest.clearAllMocks());
+
   it('should create a new action instance on each call', () => {
     const fn = dispatch(actionType);
-    actionType.mockClear();
     fn();
+    expect(actionType).toHaveBeenCalledTimes(1);
     fn();
     expect(actionType).toHaveBeenCalledTimes(2);
   });
@@ -28,7 +30,6 @@ describe(dispatch, () => {
 
   it('should dispatch the action', () => {
     const fn = dispatch(actionType);
-    mockClear(store);
     fn();
     expect(store.dispatch).toHaveBeenCalledWith(actionInstance);
   });
