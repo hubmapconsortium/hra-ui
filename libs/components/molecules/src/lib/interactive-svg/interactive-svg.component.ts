@@ -15,8 +15,6 @@ import { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';
 import { BehaviorSubject, debounce, fromEventPattern, map, Observable, Subject, takeUntil, timer } from 'rxjs';
 import { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';
 
-import { svgDataSet, SvgNodeData } from './svg-models';
-
 /** Delay before tooltip becomes visible */
 const HOVER_DELAY = 200;
 
@@ -75,9 +73,6 @@ export interface NodeTooltipData {
 export class InteractiveSvgComponent implements OnDestroy {
   /** SVG url */
   @Input() url?: string;
-
-  /** Node data mapping */
-  @Input() svgNodeData: SvgNodeData[] = svgDataSet;
 
   /** Emits node id when hovered */
   @Output() readonly nodeHover = new EventEmitter<string>();
