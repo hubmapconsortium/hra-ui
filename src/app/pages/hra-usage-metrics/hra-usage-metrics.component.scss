@@ -7,8 +7,6 @@
   }
 
   .image-title {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 1.5rem;
     letter-spacing: 0.005em;
@@ -16,18 +14,18 @@
     padding-bottom: 2rem;
   }
 
-  .request-image{
+  .request-image {
     height: 100%;
-    width: 70%;
+    min-width: 70%;
     padding-bottom: 3.5rem;
   }
 
-  @media (max-width: 26.75rem) {
-    padding-left: 1.5rem;
+  img {
+    width: 100%;
+  }
 
-    p {
-      width: 23.75rem;
-      line-height: 2rem;
-    }
+  @media (max-width: 26.75rem) {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }

@@ -1,7 +1,5 @@
 :host {
   .mat-card {
-    font-family: "Inter", sans-serif;
-    font-style: normal;
     font-size: 1rem;
     font-weight: 300;
     box-shadow: 0rem 0.125rem 0.063rem rgba(0, 0, 0, 0.16);
@@ -16,11 +14,5 @@
 
   ::ng-deep p {
     margin: 0 0 0px;
-  }
-
-  @media (max-width: 26.75rem){
-    .mat-card {
-      width: 23.75rem;
-    }
   }
 }

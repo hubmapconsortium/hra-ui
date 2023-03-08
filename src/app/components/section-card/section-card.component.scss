@@ -29,8 +29,6 @@
   }
 
   .nav-card-title {
-    font-family: "Inter", sans-serif;
-    font-style: normal;
     font-size: 1.125rem;
     letter-spacing: 0.5%;
     color: #0a6ebd;
@@ -40,12 +38,9 @@
   }
 
   .description {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 1rem;
     line-height: 1.4202rem;
-    color: #212121;
   }
 
   .image-container {
@@ -69,39 +64,6 @@
 
       .gif {
         display: unset;
-      }
-    }
-  }
-
-  @media (max-width: 26.75rem) {
-    flex-direction: column;
-
-    .card-button {
-      width: 24rem;
-      height: 21rem;
-    }
-
-    .image-container {
-      .static,
-      .gif {
-        height: 12rem;
-        border: solid 1px #e0e0e0;
-        border-top-left-radius: 0.25rem;
-        border-top-right-radius: 0.25rem;
-      }
-
-      .gif {
-        display: none;
-      }
-
-      &:hover {
-        .static {
-          display: none;
-        }
-
-        .gif {
-          display: unset;
-        }
       }
     }
   }

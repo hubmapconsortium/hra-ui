@@ -2,23 +2,11 @@
   display: flex;
   align-items: center;
 
-  .version-label {
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 300;
-    font-size: 1rem;
-    line-height: 1.5rem;
-    letter-spacing: 0.005rem;
-    padding-right: 2rem;
-  }
-
   .versions {
-    width: 21rem;
+    max-width: 21rem;
     height: 2.5rem;
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.4202rem;
     letter-spacing: 0.005rem;
     color: #444c65;
@@ -47,8 +35,6 @@
 }
 
 ::ng-deep .mat-option-text {
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 300;
   font-size: 14px;
   line-height: 24px;

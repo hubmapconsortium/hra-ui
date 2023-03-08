@@ -5,7 +5,7 @@
   align-items: center;
 
   .mat-toolbar {
-    width: 77rem;
+    max-width: 77rem;
     padding: 0;
     background: #444c65;
     position: sticky;
@@ -25,8 +25,6 @@
   }
 
   .hra-header {
-    font-family: "Inter", sans-serif;
-    font-style: normal;
     font-weight: 300;
     font-size: 2rem;
     color: #c2cae5;
@@ -37,7 +35,7 @@
     text-decoration: none;
   }
 
-  @media (max-width: 26.75rem) {
-    padding-left: 1.5rem;
+  .nav-small {
+    display: none;
   }
 }

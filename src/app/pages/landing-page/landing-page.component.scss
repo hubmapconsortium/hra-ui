@@ -11,14 +11,12 @@
   }
 
   .landing-img {
-    height: 4.375rem;
-    width: 3.125rem;
+    max-height: 4.375rem;
+    max-width: 3.125rem;
     object-fit: contain;
-    border: 0.063rem solid #ffffff;
   }
 
   .landing-title {
-    font-family: "Inter", sans-serif;
     font-size: 2.25rem;
     line-height: 2.125rem;
     color: #212121;
@@ -26,8 +24,6 @@
   }
 
   .landing-subtitle {
-    font-family: "Inter", sans-serif;
-    font-style: normal;
     font-size: 1.75rem;
     font-weight: 300;
     color: #444c65;
@@ -35,28 +31,11 @@
   }
 
   .content-title {
-    font-family: "Inter", sans-serif;
     font-size: 2.25rem;
     color: #212121;
     font-weight: 300;
     line-height: 2.75rem;
     padding-bottom: 2rem;
     padding-top: 3.5rem;
-  }
-
-  @media(max-width: 26.75rem) {
-    padding-left: 1.5rem;
-    .landing-subtitle {
-      width: 26rem;
-    }
-
-    .landing-img {
-      height: 103.39px;
-      width: 38.5px;
-    }
-
-    .card-content-title {
-      width: 23.75rem;
-    }
   }
 }
