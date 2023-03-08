@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTreeModule, MatTreeNestedDataSource } from '@angular/material/tree';
 import { NestedTreeControl } from '@angular/cdk/tree';
@@ -19,7 +19,7 @@ interface TissueTreeGroup {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TissueTreeListComponent {
-  @Input() treeList: TissueTreeGroup[];
+  @Input() treeList: TissueTreeGroup[] = [];
 
   treeControl = new NestedTreeControl<TissueTreeGroup>((node) => node.children);
 
@@ -46,20 +46,21 @@ export class TissueTreeListComponent {
     ];
 
     this.dataSource.data = this.treeList;
+    this.treeControl.dataNodes = this.treeList;
   }
 
   hasChild = (_: number, node: TissueTreeGroup) => !!node.children && node.children.length > 0;
 
-  getChildren(node: TissueTreeGroup): TissueTreeGroup[] {
-    console.log('hererree');
-    return node.children || [];
-  }
+  // getChildren(node: TissueTreeGroup): TissueTreeGroup[] {
+  //   console.log('hererree');
+  //   return node.children || [];
+  // }
 
-  isExpanded(node: TissueTreeGroup): boolean {
-    console.log('in funtio');
-    console.log('node==', node);
-    console.log('reduklt==', this.treeControl.isExpanded(node));
-    // return this.treeControl.isExpanded(node);
-    return true;
-  }
+  // isExpanded(node: TissueTreeGroup): boolean {
+  //   console.log('in funtio');
+  //   console.log('node==', node);
+  //   console.log('reduklt==', this.treeControl.isExpanded(node));
+  //   // return this.treeControl.isExpanded(node);
+  //   return true;
+  // }
 }
