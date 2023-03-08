@@ -1,1 +1,9 @@
-<p>download-button works!</p>
+<mat-form-field appearance="fill">
+  <mat-label>Select Format</mat-label>
+  <mat-select [(ngModel)]="selectedFormat">
+    <mat-option value="pdf">PDF</mat-option>
+    <mat-option value="ai">Adobe Illustrator</mat-option>
+    <mat-option value="png">PNG</mat-option>
+  </mat-select>
+</mat-form-field>
+<button mat-raised-button (click)="download()">Download</button>

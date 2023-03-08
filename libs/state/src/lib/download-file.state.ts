@@ -23,6 +23,7 @@ export class DownloadState {
   @Action(DownloadFile)
   async downloadFile(ctx: StateContext<DownloadStateModel>, action: DownloadFile) {
     // Fetch the SVG file from the URL
+    console.log('download-action' + action.url + action.selectedFormat + action.fileName);
     const response = await fetch(action.url);
     const svgContent = await response.text();
     let blob: Blob | null = null;
@@ -48,35 +49,5 @@ export class DownloadState {
       const file = new File([blob], action.fileName);
       ctx.patchState({ file });
     }
-  }
-
-  /**
-   * Converts file to pdf
-   * @param svgContent
-   * @returns file to pdf
-   */
-  convertFileToPdf(svgContent: string): Promise<Blob> {
-    // file conversion code
-    return Promise.resolve(new Blob([svgContent], { type: 'application/pdf' }));
-  }
-
-  /**
-   * Converts file to png
-   * @param svgContent
-   * @returns file to png
-   */
-  convertFileToPng(svgContent: string): Promise<Blob> {
-    // file conversion code
-    return Promise.resolve(new Blob([svgContent], { type: 'image/png' }));
-  }
-
-  /**
-   * Converts file to ai
-   * @param svgContent
-   * @returns file to ai
-   */
-  convertFileToAi(svgContent: string): Promise<Blob> {
-    // file conversion code
-    return Promise.resolve(new Blob([svgContent], { type: 'application/postscript' }));
   }
 }
