@@ -210,7 +210,7 @@ import {
   ViewEncapsulation,
 } from &#x27;@angular/core&#x27;;
 import { InlineSVGModule, SVGScriptEvalMode } from &#x27;ng-inline-svg-2&#x27;;
-import { BehaviorSubject, debounce, fromEventPattern, map, Observable, Subject, takeUntil, timer } from &#x27;rxjs&#x27;;
+import { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from &#x27;rxjs&#x27;;
 import { NodeEventHandler } from &#x27;rxjs/internal/observable/fromEvent&#x27;;
 
 /** Delay before tooltip becomes visible */
@@ -329,9 +329,7 @@ export class InteractiveSvgComponent implements OnDestroy {
    */
   private attachCrosswalkHover(el: Element): void {
     this.attachEvent(el, &#x27;mouseover&#x27;).subscribe(this.onCrosswalkHover.bind(this));
-    this.attachEvent(el, &#x27;mouseout&#x27;)
-      .pipe(map(() &#x3D;&gt; undefined))
-      .subscribe(this.nodeHoverData$);
+    this.attachEvent(el, &#x27;mouseout&#x27;).subscribe(() &#x3D;&gt; this.nodeHoverData$.next(undefined));
   }
 
   /**

@@ -93,7 +93,7 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>ftu-on-destroy-host</code></td>
+                <td class="col-md-9"><code>hra-on-destroy-host</code></td>
             </tr>
 
 
@@ -184,7 +184,7 @@ class ScopedDestroySubject extends ReplaySubject&lt;void&gt; {
 
 /** Empty host component */
 @Component({
-  selector: &#x27;ftu-on-destroy-host&#x27;,
+  selector: &#x27;hra-on-destroy-host&#x27;,
   standalone: true,
   template: &#x27;&#x27;,
   styles: [&#x27;:host { display: block; }&#x27;],
@@ -310,7 +310,7 @@ export function injectOnDestroy(): Observable&lt;void&gt; {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div></div>'
-    var COMPONENTS = [{'name': 'OnDestroyHostComponent', 'selector': 'ftu-on-destroy-host'}];
+    var COMPONENTS = [{'name': 'OnDestroyHostComponent', 'selector': 'hra-on-destroy-host'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'OnDestroyHostComponent'};
 </script>
