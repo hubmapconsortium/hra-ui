@@ -19,44 +19,44 @@ const Template: Story<BiomarkerDetailsComponent> = (args: BiomarkerDetailsCompon
 export const data = [
   [
     {
-      label: 'Functional Tissue Unit Name',
-      value: 'Crypt of Lieberkuhn',
+      label: 'New Functional Tissue Unit Name',
+      value: 'New Crypt of Lieberkuhn',
     },
     {
-      label: 'Uberon ID',
-      value: 'UBERON:0011184',
+      label: 'New Uberon ID',
+      value: 'UBERON1:0011185',
     },
     {
-      label: '#Datasets',
-      value: '3',
+      label: '#Datasets1',
+      value: '4',
     },
   ],
   [
     {
-      label: 'Cell Type Name',
-      value: 'epithelial stem cell',
+      label: 'New Cell Type Name',
+      value: 'epithelial stem cell 1',
     },
     {
       label: 'CL ID',
-      value: 'CL:0009016',
+      value: 'CL:0009017',
     },
     {
       label: 'Number of Cells',
-      value: '187',
+      value: '186',
     },
   ],
   [
     {
-      label: 'Gene Name',
+      label: 'New Gene Name',
       value: 'RGMB',
     },
     {
       label: 'HGNC ID',
-      value: 'HGNC:26896',
+      value: 'HGNC:26897',
     },
     {
-      label: 'Mean Expression Value',
-      value: '0.0642',
+      label: 'New Mean Expression Value',
+      value: '0.0643',
     },
   ],
 ];
