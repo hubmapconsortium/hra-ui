@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { AddResource, LoadMarkdown } from './resource-registry.actions';
 import { ResourceEntry, ResourceId, ResourceRegistryModel, ResourceType } from './resource-registry.model';
 
@@ -14,8 +14,8 @@ import { ResourceEntry, ResourceId, ResourceRegistryModel, ResourceType } from '
 })
 @Injectable()
 export class ResourceRegistryState {
-  /** creates an instance with http */
-  constructor(private http: HttpClient) {}
+  /** injects httpClient */
+  private readonly http = inject(HttpClient);
 
   /**
    * Action for adding a resource to state
@@ -33,16 +33,13 @@ export class ResourceRegistryState {
    * @param param1 loadMarkdown object containing id and url
    */
   @Action(LoadMarkdown)
-  loadMarkdown(ctx: StateContext<ResourceRegistryModel>, { id, url }: LoadMarkdown): void {
-    this.http
-      .get(url, { responseType: 'text' })
-      .pipe(
-        tap((data) => {
-          const entry = { type: ResourceType.Markdown, markdown: data };
-          this.addResourceEntry(ctx, id, entry);
-        })
-      )
-      .subscribe();
+  loadMarkdown(ctx: StateContext<ResourceRegistryModel>, { id, url }: LoadMarkdown): Observable<string> {
+    return this.http.get(url, { responseType: 'text' }).pipe(
+      tap((data) => {
+        const entry = { type: ResourceType.Markdown, markdown: data };
+        this.addResourceEntry(ctx, id, entry);
+      })
+    );
   }
 
   /**

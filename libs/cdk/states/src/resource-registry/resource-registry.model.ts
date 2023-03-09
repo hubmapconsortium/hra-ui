@@ -16,8 +16,16 @@ export interface MarkdownResource {
   markdown: string;
 }
 
+/** type to hold resource data for Url */
+export interface UrlResource {
+  /** indicates type for resource */
+  type: ResourceType.Url;
+  /** url of the resource*/
+  url: string;
+}
+
 /** Type for different resource objects  */
-export type ResourceEntry = { type: string } | MarkdownResource;
+export type ResourceEntry = { type: string } | MarkdownResource | UrlResource;
 
 /** Type for resource registry model */
 export type ResourceRegistryModel = Record<ResourceId, ResourceEntry>;
