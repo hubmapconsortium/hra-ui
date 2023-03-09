@@ -5,7 +5,7 @@ import { SourceListModel } from './source-list.state';
 export class SourceListSelectors {
   // Selector for getting array of data sources from the SourceList object
   @Selector()
-  static getSourceList(state: SourceListModel): SourceListModel {
-    return state;
+  static getSourceList(state: SourceListModel) {
+    return state.sourceList;
   }
 }
