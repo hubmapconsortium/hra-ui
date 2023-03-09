@@ -67,6 +67,15 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
+                                <a href="classes/AddResource.html" data-type="entity-link" >AddResource</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/LoadMarkdown.html" data-type="entity-link" >LoadMarkdown</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ResourceRegistrySelectors.html" data-type="entity-link" >ResourceRegistrySelectors</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/ScopedDestroySubject.html" data-type="entity-link" >ScopedDestroySubject</a>
                             </li>
                             <li class="link">
@@ -74,6 +83,19 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                         </ul>
                     </li>
+                        <li class="chapter">
+                            <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#injectables-links"' :
+                                'data-target="#xs-injectables-links"' }>
+                                <span class="icon ion-md-arrow-round-down"></span>
+                                <span>Injectables</span>
+                                <span class="icon ion-ios-arrow-down"></span>
+                            </div>
+                            <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
+                                <li class="link">
+                                    <a href="injectables/ResourceRegistryState.html" data-type="entity-link" >ResourceRegistryState</a>
+                                </li>
+                            </ul>
+                        </li>
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#interfaces-links"' :
                             'data-target="#xs-interfaces-links"' }>
@@ -85,6 +107,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <li class="link">
                                 <a href="interfaces/DestructorScope.html" data-type="entity-link" >DestructorScope</a>
                             </li>
+                            <li class="link">
+                                <a href="interfaces/MarkdownResource.html" data-type="entity-link" >MarkdownResource</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/UrlResource.html" data-type="entity-link" >UrlResource</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="chapter">
@@ -95,6 +123,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <span class="icon ion-ios-arrow-down"></span>
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="miscellaneous-links"' : 'id="xs-miscellaneous-links"' }>
+                            <li class="link">
+                                <a href="miscellaneous/enumerations.html" data-type="entity-link">Enums</a>
+                            </li>
                             <li class="link">
                                 <a href="miscellaneous/functions.html" data-type="entity-link">Functions</a>
                             </li>
