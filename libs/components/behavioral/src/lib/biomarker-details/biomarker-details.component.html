@@ -1,24 +1,35 @@
-<hra-label-box></hra-label-box>
-<div class="tabs">
-  <mat-tab-group>
-    <mat-tab label="Gene Biomarkers">
-      <hra-biomarker-table-data-card [data]="data"></hra-biomarker-table-data-card>
-    </mat-tab>
-    <mat-tab label="Protein Biomarkers">
-      <hra-biomarker-table-data-card [data]="data"></hra-biomarker-table-data-card>
-    </mat-tab>
-    <mat-tab label="Lipid Biomarkers">
-      <hra-biomarker-table-data-card [data]="data"></hra-biomarker-table-data-card>
-    </mat-tab>
-  </mat-tab-group>
-</div>
-<div class="legends">
-  <hra-label-box class="legend"></hra-label-box>
-  <hra-label-box class="legend"></hra-label-box>
-</div>
-<div class="legends">
-  <hra-gradient-legend [gradient]="gradient" class="legend"></hra-gradient-legend>
-  <hra-size-legend [sizes]="sizes" class="legend"></hra-size-legend>
-</div>
-<hra-label-box></hra-label-box>
-<hra-source-list [sources]="sources"></hra-source-list>
+<hra-label-box class="header-label">
+  Cell Types by Gene Biomarkers
+  <mat-icon class="end">close_fullscreen</mat-icon>
+</hra-label-box>
+
+<mat-tab-group class="table">
+  <mat-tab label="Gene Biomarkers">
+    <hra-biomarker-table-data-card [data]="data"></hra-biomarker-table-data-card>
+  </mat-tab>
+  <mat-tab label="Protein Biomarkers">
+    <hra-biomarker-table-data-card [data]="data"></hra-biomarker-table-data-card>
+  </mat-tab>
+  <mat-tab label="Lipid Biomarkers">
+    <hra-biomarker-table-data-card [data]="data"></hra-biomarker-table-data-card>
+  </mat-tab>
+</mat-tab-group>
+
+<hra-label-box class="legend-label1">
+  Biomarker Expression Mean in FTU
+  <mat-icon class="icon">info</mat-icon>
+</hra-label-box>
+<hra-gradient-legend [gradient]="gradient" class="legend1"></hra-gradient-legend>
+<div class="legend-space1"></div>
+<hra-label-box class="legend-label2">
+  Percentage of Cells in FTU
+  <mat-icon class="icon">info</mat-icon>
+</hra-label-box>
+<hra-size-legend [sizes]="sizes" class="legend2"></hra-size-legend>
+<div class="legend-space2"></div>
+
+<hra-label-box class="source-label">
+  Source Data
+  <mat-icon class="end">expand_more</mat-icon>
+</hra-label-box>
+<hra-source-list [sources]="sources" class="source-list"></hra-source-list>

@@ -10,12 +10,14 @@ import { GradientPoint } from '@hra-ui/components/atoms';
 import { SizeLegend } from '@hra-ui/components/atoms';
 import { SourceListItem } from '@hra-ui/components/molecules';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'ftu-biomarker-details',
   standalone: true,
   imports: [
     CommonModule,
+    MatIconModule,
     BiomarkerTableDataCardComponent,
     LabelBoxComponent,
     GradientLegendComponent,

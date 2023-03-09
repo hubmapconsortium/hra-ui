@@ -1,21 +1,77 @@
 :host {
-  display: block;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: 3.5rem auto 3rem 5rem 3.5rem auto;
 
-  .legends {
-    display: flex;
-    flex-direction: row;
-    width: 50%;
+  .header-label {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 1;
   }
 
-  .legend {
-    flex: 1;
-    align-self: center;
-    width: 50%;
+  .table {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
   }
 
-  .tabs {
-    display: flex;
-    flex-direction: row;
-    width: 50%;
+  .legend-label1 {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 3;
+    grid-row-end: 3;
+  }
+
+  .legend-label2 {
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 3;
+  }
+
+  .legend1 {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 4;
+    grid-row-end: 4;
+  }
+
+  .legend2 {
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 4;
+    grid-row-end: 4;
+  }
+
+  .legend-space1 {
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 3;
+  }
+
+  .legend-space2 {
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: 4;
+    grid-row-end: 4;
+  }
+
+  .source-label {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 5;
+    grid-row-end: 5;
+  }
+
+  .source-list {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 6;
+  }
+
+  .icon {
+    margin-left: 0.6rem;
   }
 }
