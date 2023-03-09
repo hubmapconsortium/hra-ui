@@ -1,0 +1,76 @@
+{
+  "name": "services",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/services/src",
+  "prefix": "hra",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/services/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/services/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/services/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/services/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/services/**/*.ts", "libs/services/**/*.html"]
+      }
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/cdk/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/cdk"
+      },
+      "configurations": {
+        "ci": {
+          "silent": true
+        },
+        "serve": {
+          "watch": true,
+          "disableCoverage": false,
+          "disablePrivate": false,
+          "disableInternal": false
+        }
+      }
+    },
+    "compodoc-json": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/cdk/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/cdk",
+        "exportFormat": "json"
+      }
+    },
+    "test-doc-coverage": {
+      "command": "compodoc -p libs/cdk/tsconfig.lib.json -d tmp/doc-coverage -e json --coverageTest --coverageMinimumPerFile 100 --coverageTestShowOnlyFailed -t"
+    }
+  },
+  "tags": ["services"]
+}
