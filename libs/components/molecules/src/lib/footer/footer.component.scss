@@ -13,13 +13,24 @@
   .filler {
     flex-grow: 1;
   }
+  // .icon{
+  //   position: absolute;
+  // left: 16.67%;
+  // right: 16.67%;
+  // top: 16.67%;
+  // bottom: 16.67%;
+  // }
 
   .button {
     justify-content: center;
+    align-items: center;
     background-color: #ffffff;
     border: 0.063rem solid #4c5a69;
+    border-radius: 0.25rem;
     min-width: 9rem;
     min-height: 3rem;
+    // padding: 0rem 0rem;
+    gap: 0.5rem;
   }
   .button:hover {
     border-color: black;

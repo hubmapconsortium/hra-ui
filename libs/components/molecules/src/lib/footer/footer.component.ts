@@ -6,19 +6,18 @@ import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import { MatListModule } from '@angular/material/list';
 
 /**
- * the interface has different formats for downloading which will be emitted once clicked on Download button
+ * An interface has different download formats for list panel which will be emitted once clicked on Download button.
 
  */
 export interface DownloadFormat {
   /**
-   * format label type
+   * The format type that can be downloaded when clicked on download list panel
    */
   label: string;
 }
 
 /**
- * cdk overlay positioning to check the download list panel
- * Added two panels for the footer component
+ * A constant that has two arrays of objects for download list panel positioning according to footer component placement
  */
 const DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [
   {
@@ -39,7 +38,7 @@ const DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [
 ];
 
 /**
- * Footer Component
+ * Component for footer that displays its content at the bottom of the page with different action buttons.
  */
 @Component({
   selector: 'hra-footer',
@@ -77,12 +76,12 @@ export class FooterComponent<T extends DownloadFormat = DownloadFormat> {
    */
   @Output() readonly hraPortalClick = new EventEmitter<void>();
   /**
-   * Input value downloads list position initialized with panel class positions
+   * Download list positioning settings
    */
   readonly DOWNLOADS_LIST_POSITION = DOWNLOADS_LIST_POSITION;
 
   /**
-   * Determines whether download panel is open
+   * A boolean input property that determines whether download panel is open or closed
    */
   downloadListOpen = false;
 }
