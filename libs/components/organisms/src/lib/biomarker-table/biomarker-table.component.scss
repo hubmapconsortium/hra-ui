@@ -3,14 +3,33 @@
   max-width: 100%;
 
   .table {
-    overflow: auto;
+    overflow-x: auto;
+    max-width: 100%;
+    overflow-y: auto;
+    max-height: 100%;
 
     .cell {
       border-left: 1px rgba(0, 0, 0, 0.12) solid;
       border-top: 1px rgba(0, 0, 0, 0.12) solid;
       border-right: 1px rgba(0, 0, 0, 0.12) solid;
       border-bottom: 1px rgba(0, 0, 0, 0.12) solid;
-      padding: 0 24px !important;
+
+      &[data-type='text'] {
+        padding: 12px 32px 12px 32px;
+        width: 272px;
+      }
+
+      &[data-type='numeric'] {
+        text-align: right;
+        padding: 12px 16px 12px 16px;
+        width: 104px;
+      }
+
+      &[data-type='object'] {
+        text-align: center;
+        padding: 12px 16px 12px 16px;
+        width: 80px;
+      }
     }
 
     .column-header {

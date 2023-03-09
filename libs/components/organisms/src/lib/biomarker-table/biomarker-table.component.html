@@ -8,7 +8,7 @@
       <ng-container *ngSwitchCase="'text'">
         {{ element[index] }}
       </ng-container>
-      <ng-container class="number-cell" *ngSwitchCase="'numeric'">
+      <ng-container *ngSwitchCase="'numeric'">
         {{ element[index] !== undefined ? (element[index] | number) : 'no data' }}
       </ng-container>
       <ng-container *ngSwitchCase="'object'">
