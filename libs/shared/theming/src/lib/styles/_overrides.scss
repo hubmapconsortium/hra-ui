@@ -5,35 +5,51 @@
     button.mdc-button {
       font-weight: 700;
       &.mat-primary {
-        background-color: vars.$primary-A400-rgb;
+        background-color: vars.$primary-600-rgb;
         color: vars.$accent-50-rgb;
       }
-      &.mat-mdc-outlined-button {
+      &.mdc-button:hover {
+        background-color: vars.$primary-700-rgb;
+      }
+      &.mdc-button:disabled {
+        background-color: vars.$primary-200-rgb;
+        color: vars.$primary-400-rgb;
+      }
+      &.mdc-button:active {
+        background-color: vars.$primary-800-rgb;
+        border: solid vars.$primary-800-rgb;
+        padding: 0.5rem 0.8rem;
+        background-clip: content-box;
+      }
+      &.mdc-button:focus {
+        background-color: vars.$primary-600-rgb;
+        border: 0.25rem solid #ffaa00;
+      }
+      &.mat-secondary {
         background-color: vars.$primary-contrast-rgb;
-        border-color: vars.$primary-200-rgb;
-        color: vars.$primary-A400-rgb;
+        border: vars.$primary-200-rgb solid;
+        color: vars.$primary-600-rgb;
       }
-    }
-    a.mdc-button {
-      &.mat-unthemed {
-        text-decoration: underline;
-        color: vars.$primary-A400-rgb;
-      }
-    }
-    .hover.mdc-button {
-      &.mat-primary {
-        background-color: vars.$primary-A700-rgb;
-      }
-      &.mat-mdc-outlined-button {
+      &.mat-secondary:hover {
         background-color: vars.$primary-100-rgb;
-        border-color: vars.$primary-200-rgb;
-        color: vars.$primary-A700-rgb;
+        border: vars.$primary-200-rgb solid;
+        color: vars.$primary-700-rgb;
       }
-    }
-    .hover-link.mdc-button {
-      &.mat-unthemed {
-        text-decoration: underline;
-        color: vars.$primary-A700-rgb;
+      &.mat-secondary:disabled {
+        background-color: vars.$primary-contrast-rgb;
+        border: vars.$primary-contrast-50-rgb solid;
+        color: vars.$primary-contrast-50-rgb;
+      }
+      &.mat-secondary:active {
+        background-color: vars.$primary-700-rgb;
+        border: solid vars.$primary-700-rgb;
+        padding: 0.5rem 0.8rem;
+        background-clip: content-box;
+      }
+      &.mat-secondary:focus {
+        background-color: vars.$primary-contrast-rgb;
+        color: vars.$primary-600-rgb;
+        border: 0.25rem solid #ffaa00;
       }
     }
   }
