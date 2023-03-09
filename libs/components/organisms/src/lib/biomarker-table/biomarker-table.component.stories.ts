@@ -28,7 +28,32 @@ Primary.args = {
   data: [
     ['absorptive cell', 2764, undefined, undefined],
     ['enteroendocrine cell', 17, undefined, undefined],
-    ['epithelial stem cell', 187, 'object', 'object'],
+    [
+      'epithelial stem cell',
+      187,
+      {
+        name: 'Renal Corpuscle',
+        uberonId: 'UBERON:0001229',
+        numberOfDatasets: 24,
+        cellTypeName: 'parietal epithelial cell',
+        clId: 'CL:1000452',
+        numberOfCells: 5758,
+        geneName: 'VCAM1',
+        hgncId: 'HGNC:26896',
+        meanExpressionValue: 0.879127,
+      },
+      {
+        name: 'Renal Corpuscle',
+        uberonId: 'UBERON:0001229',
+        numberOfDatasets: 24,
+        cellTypeName: 'parietal epithelial cell',
+        clId: 'CL:1000452',
+        numberOfCells: 5758,
+        geneName: 'VCAM1',
+        hgncId: 'HGNC:567567',
+        meanExpressionValue: 0.744578,
+      },
+    ],
     ['goblet cell', undefined, undefined, undefined],
   ],
 };
