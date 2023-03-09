@@ -12,8 +12,9 @@
         {{ element[index] !== undefined ? (element[index] | number) : 'no data' }}
       </ng-container>
       <ng-container *ngSwitchCase="'object'">
-        {{ element[index] !== undefined ? element[index] : '' }}
-        <!-- TODO replace -->
+        <div *ngIf="element[index] !== undefined">
+          <hra-biomarker-table-data-icon></hra-biomarker-table-data-icon>
+        </div>
       </ng-container>
     </td>
   </ng-container>

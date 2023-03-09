@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
+import { BiomarkerTableDataIconComponent } from '@hra-ui/components/molecules';
 
 export type DataType = 'text' | 'numeric' | 'object';
 
@@ -24,7 +25,7 @@ export interface DataCell {
 @Component({
   selector: 'hra-biomarker-table',
   standalone: true,
-  imports: [CommonModule, MatTableModule],
+  imports: [CommonModule, MatTableModule, BiomarkerTableDataIconComponent],
   templateUrl: './biomarker-table.component.html',
   styleUrls: ['./biomarker-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
