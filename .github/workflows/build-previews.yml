@@ -4,13 +4,14 @@ on:
   pull_request:
     types: ['opened', 'edited', 'synchronize']
 
+concurrency:
+  group: preview-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
 jobs:
   deploy:
     name: 'Deploy'
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16]
 
     steps:
       - uses: actions/checkout@v3
@@ -33,3 +34,12 @@ jobs:
           build_command: echo
           install_command: echo
           build_directory: deploy/
+
+      - name: Create Deploy Comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ github.ref_name }}
+          body: |
+            # :rocket: Preview Deploy Report
+
+            ✅ Successfully deployed preview [here](${{ steps.deploy.outputs.NETLIFY_PREVIEW_URL }})

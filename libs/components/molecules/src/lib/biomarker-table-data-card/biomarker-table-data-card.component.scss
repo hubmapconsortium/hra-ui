@@ -1,0 +1,33 @@
+@use 'utils';
+
+:host {
+  display: flex;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
+
+  .mat-mdc-cell {
+    padding: 0.25rem 0rem;
+  }
+
+  .mat-mdc-row {
+    height: fit-content;
+  }
+
+  .no-border {
+    border: none;
+  }
+
+  .label {
+    color: #243142;
+    padding-right: 3rem;
+  }
+
+  .value {
+    color: #4c5a69;
+  }
+
+  .sr-only {
+    @include utils.sr-only();
+  }
+}
