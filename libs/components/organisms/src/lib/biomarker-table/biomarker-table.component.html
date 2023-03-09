@@ -12,7 +12,7 @@
         {{ element[index] !== undefined ? (element[index] | number) : 'no data' }}
       </ng-container>
       <ng-container *ngSwitchCase="'object'">
-        {{ element[index] }}
+        {{ element[index] !== undefined ? element[index] : '' }}
         <!-- TODO replace -->
       </ng-container>
     </td>
