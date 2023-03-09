@@ -30,7 +30,7 @@ while (( "$#" )); do
 
     # List subdirectories as a comma separated list
     sub_dirs=$(echo "${out_dir}/${dir_name}"/*)
-    sub_dirs="${sub_dirs[*]##$out_dir/}"
+    sub_dirs="${sub_dirs[*]//$out_dir\/}"
     sub_dirs="${sub_dirs[*]//$' '/,}"
 
     # Write outputs

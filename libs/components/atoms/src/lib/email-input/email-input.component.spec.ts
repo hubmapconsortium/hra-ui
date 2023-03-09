@@ -21,11 +21,11 @@ describe('EmailInputComponent', () => {
       expect(outputs.emailChange.emit).toHaveBeenCalledWith(email);
     });
 
-    it('should emit null when the entered email is invalid', async () => {
+    it('should emit undefined when the entered email is invalid', async () => {
       const email = 'a';
       const { instance, outputs } = await shallow.render();
       instance.control.setValue(email);
-      expect(outputs.emailChange.emit).toHaveBeenCalledWith(null);
+      expect(outputs.emailChange.emit).toHaveBeenCalledWith(undefined);
     });
   });
 });

@@ -24,8 +24,8 @@ export class RequiredTextboxComponent {
   /** A label for the textarea field */
   @Input() label = '';
 
-  /** Emits the new message when the input changes or null if the message is invalid  */
-  @Output() readonly messageChange = new EventEmitter<string | null>();
+  /** Emits the new message when the input changes or undefined if the message is invalid  */
+  @Output() readonly messageChange = new EventEmitter<string | undefined>();
 
   /** Observable emitting when the component is destroyed */
   readonly destroy$ = injectOnDestroy();
@@ -42,8 +42,8 @@ export class RequiredTextboxComponent {
     control.valueChanges
       .pipe(
         takeUntil(destroy$),
-        map((value) => (control.valid ? value : null))
+        map((value) => (control.valid ? value : undefined))
       )
-      .subscribe((value) => this.messageChange.emit(value));
+      .subscribe((value) => this.messageChange.emit(value as string | undefined));
   }
 }
