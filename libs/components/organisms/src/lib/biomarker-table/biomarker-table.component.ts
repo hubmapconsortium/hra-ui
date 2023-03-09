@@ -15,7 +15,7 @@ export interface DataCell {
   numberOfDatasets: number;
   cellTypeName: string;
   clId: string;
-  numberOfCells: string;
+  numberOfCells: number;
   geneName: string;
   hgncId: string;
   meanExpressionValue: number;
