@@ -45,8 +45,8 @@
     "compodoc": {
       "executor": "@twittwer/compodoc:compodoc",
       "options": {
-        "tsConfig": "libs/cdk/tsconfig.lib.json",
-        "outputPath": "dist/compodoc/cdk"
+        "tsConfig": "libs/services/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/services"
       },
       "configurations": {
         "ci": {
@@ -63,13 +63,13 @@
     "compodoc-json": {
       "executor": "@twittwer/compodoc:compodoc",
       "options": {
-        "tsConfig": "libs/cdk/tsconfig.lib.json",
-        "outputPath": "dist/compodoc/cdk",
+        "tsConfig": "libs/services/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/services",
         "exportFormat": "json"
       }
     },
     "test-doc-coverage": {
-      "command": "compodoc -p libs/cdk/tsconfig.lib.json -d tmp/doc-coverage -e json --coverageTest --coverageMinimumPerFile 100 --coverageTestShowOnlyFailed -t"
+      "command": "compodoc -p libs/services/tsconfig.lib.json -d tmp/doc-coverage -e json --coverageTest --coverageMinimumPerFile 100 --coverageTestShowOnlyFailed -t"
     }
   },
   "tags": ["services"]
