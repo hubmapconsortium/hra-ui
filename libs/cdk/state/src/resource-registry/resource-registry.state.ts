@@ -1,9 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Action, State, StateContext } from '@ngxs/store';
+import { Action, State } from '@ngxs/store';
 import { Observable, tap } from 'rxjs';
 import { AddResource, LoadMarkdown } from './resource-registry.actions';
-import { ResourceEntry, ResourceId, ResourceRegistryModel, ResourceType } from './resource-registry.model';
+import {
+  ResourceEntry,
+  ResourceId,
+  ResourceRegistryContext,
+  ResourceRegistryModel,
+  ResourceType,
+} from './resource-registry.model';
 
 /**
  * Resource registry state
@@ -23,7 +29,7 @@ export class ResourceRegistryState {
    * @param param1 addResource action object containing id and entry
    */
   @Action(AddResource)
-  addResource(ctx: StateContext<ResourceRegistryModel>, { id, entry }: AddResource): void {
+  addResource(ctx: ResourceRegistryContext, { id, entry }: AddResource): void {
     this.addResourceEntry(ctx, id, entry);
   }
 
@@ -33,13 +39,10 @@ export class ResourceRegistryState {
    * @param param1 loadMarkdown object containing id and url
    */
   @Action(LoadMarkdown)
-  loadMarkdown(ctx: StateContext<ResourceRegistryModel>, { id, url }: LoadMarkdown): Observable<string> {
-    return this.http.get(url, { responseType: 'text' }).pipe(
-      tap((data) => {
-        const entry = { type: ResourceType.Markdown, markdown: data };
-        this.addResourceEntry(ctx, id, entry);
-      })
-    );
+  loadMarkdown(ctx: ResourceRegistryContext, { id, url }: LoadMarkdown): Observable<string> {
+    return this.http
+      .get(url, { responseType: 'text' })
+      .pipe(tap((data) => this.addResourceEntry(ctx, id, { type: ResourceType.Markdown, markdown: data })));
   }
 
   /**
@@ -48,12 +51,7 @@ export class ResourceRegistryState {
    * @param id id of the resource
    * @param entry resource entry to be added
    */
-  private addResourceEntry(
-    { patchState }: StateContext<ResourceRegistryModel>,
-    id: ResourceId,
-    entry: ResourceEntry
-  ): void {
-    const resource = { [id]: entry };
-    patchState(resource);
+  private addResourceEntry({ patchState }: ResourceRegistryContext, id: ResourceId, entry: ResourceEntry): void {
+    patchState({ [id]: entry });
   }
 }

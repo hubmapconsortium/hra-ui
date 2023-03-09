@@ -1,3 +1,5 @@
+import { StateContext } from '@ngxs/store';
+
 /** Unqiue identifier for a resource */
 export enum ResourceId {}
 
@@ -29,3 +31,6 @@ export type ResourceEntry = { type: string } | MarkdownResource | UrlResource;
 
 /** Type for resource registry model */
 export type ResourceRegistryModel = Record<ResourceId, ResourceEntry>;
+
+/** Context type for action handlers */
+export type ResourceRegistryContext = StateContext<ResourceRegistryModel>;
