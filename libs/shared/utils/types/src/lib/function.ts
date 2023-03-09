@@ -10,13 +10,13 @@ export type AnyFunction = (...args: Any[]) => Any;
  * Any constructor type.
  * Primarly for use as constraint on generic types.
  */
-export type AnyConstructor = new (...args: Any) => Any;
+export type AnyConstructor = new (...args: Any[]) => Any;
 
 /**
  * Any constructor type.
  * Primarly for use as constraint on generic types.
  */
-export type AnyAbstractConstructor = abstract new (...args: Any) => Any;
+export type AnyAbstractConstructor = abstract new (...args: Any[]) => Any;
 
 /**
  * Extracts the pure function signature from any function with properties.
