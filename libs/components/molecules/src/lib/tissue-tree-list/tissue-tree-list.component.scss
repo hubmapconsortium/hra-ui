@@ -1,114 +1,104 @@
+@use '@angular/material' as mat;
+
 :host {
   display: block;
 
-  .wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 0px 0px 0px 32px;
-
-    width: 336px;
-    height: 944px;
-    overflow-y: scroll;
-
-    /* white */
-
-    background: #ffffff;
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 1;
-    flex-grow: 1;
+  .subtree-hidden {
+    display: none;
   }
 
-  .mat-tree-node {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 8px 0px 4px;
-    gap: 16px;
+  button {
+    margin-right: 1rem;
 
-    width: 304px;
-    height: 36px;
+    & ::ng-deep {
+      &,
+      .mat-mdc-button-touch-target {
+        width: 1.5rem !important;
+        height: 1.5rem !important;
+      }
 
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 0;
+      padding: 0 !important;
+    }
   }
 
-  // button {
-  //   width: 24px;
-  //   height: 24px;
+  // .mat-tree-node {
+  //   display: flex;
+  //   flex-direction: row;
+  //   align-items: center;
+  //   padding: 8px 0px 4px;
+  //   gap: 16px;
+
+  //   width: 304px;
+  //   height: 36px;
 
   //   /* Inside auto layout */
 
   //   flex: none;
   //   order: 0;
+  //   align-self: stretch;
   //   flex-grow: 0;
-  //   border: none;
-  //   border-radius: none;
-  //   outline:none !important;
+  // }
 
+  // .example-tree {
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: flex-start;
+  //   padding: 0px;
+
+  //   width: 304px;
+  //   height: 944px;
+  //   overflow-y: scroll;
+
+  //   /* Inside auto layout */
+
+  //   flex: none;
+  //   order: 0;
+  //   align-self: stretch;
+  //   flex-grow: 1;
+  // }
+
+  // .example-tree-invisible {
+  //   display: none;
+  // }
+
+  // .example-tree ul,
+  // .example-tree li {
+  //   margin-top: 0;
+  //   margin-bottom: 0;
+  //   list-style-type: none;
+  // }
+
+  // /*
+  //  * This padding sets alignment of the nested nodes.
+  //  */
+  // .example-tree .mat-nested-tree-node div[role='group'] {
+  //   padding-left: 40px;
+  // }
+
+  // /*
+  //  * Padding for leaf nodes.
+  //  * Leaf nodes need to have padding so as to align with other non-leaf nodes
+  //  * under the same parent.
+  //  */
+  // .example-tree div[role='group'] > .mat-tree-node {
+  //   padding-left: 40px;
+  // }
+
+  // button {
+  //   border-width: 0px;
+  //   width: 24px;
+  //   height: 24px;
+  //   flex: none;
+  //   order: 0;
+  //   align-items: center;
   // }
 
   // .mat-icon-rtl-mirror {
-  //   position: absolute;
+  //   // position: absolute;
   //   left: 25%;
   //   right: 25%;
   //   top: 33.23%;
   //   bottom: 35.94%;
-
-  //   /* Atlas/black */
-
-  //   background: #243142;
+  //   // background: #243142;
   // }
-
-  .example-tree {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
-
-    width: 304px;
-    height: 944px;
-    overflow-y: scroll;
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 1;
-  }
-
-  .example-tree-invisible {
-    display: none;
-  }
-
-  .example-tree ul,
-  .example-tree li {
-    margin-top: 0;
-    margin-bottom: 0;
-    list-style-type: none;
-  }
-
-  /*
-   * This padding sets alignment of the nested nodes.
-   */
-  .example-tree .mat-nested-tree-node div[role='group'] {
-    padding-left: 40px;
-  }
-
-  /*
-   * Padding for leaf nodes.
-   * Leaf nodes need to have padding so as to align with other non-leaf nodes
-   * under the same parent.
-   */
-  .example-tree div[role='group'] > .mat-tree-node {
-    padding-left: 40px;
-  }
 }

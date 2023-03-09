@@ -4,6 +4,7 @@ import { MatTreeModule, MatTreeNestedDataSource } from '@angular/material/tree';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButtonModule } from '@angular/material/button';
 
 interface TissueTreeGroup {
   name: string;
@@ -13,7 +14,7 @@ interface TissueTreeGroup {
 @Component({
   selector: 'hra-tissue-tree-list',
   standalone: true,
-  imports: [CommonModule, MatTreeModule, MatIconModule, MatExpansionModule],
+  imports: [CommonModule, MatButtonModule, MatTreeModule, MatIconModule, MatExpansionModule],
   templateUrl: './tissue-tree-list.component.html',
   styleUrls: ['./tissue-tree-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
