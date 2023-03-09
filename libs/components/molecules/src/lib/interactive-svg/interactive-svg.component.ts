@@ -131,9 +131,7 @@ export class InteractiveSvgComponent implements OnDestroy {
    */
   private attachCrosswalkHover(el: Element): void {
     this.attachEvent(el, 'mouseover').subscribe(this.onCrosswalkHover.bind(this));
-    this.attachEvent(el, 'mouseout')
-      .pipe(map(() => undefined))
-      .subscribe(this.nodeHoverData$);
+    this.attachEvent(el, 'mouseout').subscribe(() => this.nodeHoverData$.next(undefined));
   }
 
   /**
