@@ -1,22 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Shallow } from 'shallow-render';
 import { BiomarkerDetailsComponent } from './biomarker-details.component';
 
-describe('BiomarkerDetailsComponent', () => {
-  let component: BiomarkerDetailsComponent;
-  let fixture: ComponentFixture<BiomarkerDetailsComponent>;
+describe('ScreenSizeNoticeComponent', () => {
+  let shallow: Shallow<BiomarkerDetailsComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [BiomarkerDetailsComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(BiomarkerDetailsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    shallow = new Shallow(BiomarkerDetailsComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async () => {
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 });
