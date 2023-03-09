@@ -61,6 +61,9 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#dispatch" title="injectors/src/lib/dispatch/dispatch.ts" ><b>dispatch</b>&nbsp;&nbsp;&nbsp;(injectors/.../dispatch.ts)</a>
+                        </li>
+                        <li>
                             <a href="#findOrCreateScopedSubject" title="injectors/src/lib/on-destroy/on-destroy.ts" ><b>findOrCreateScopedSubject</b>&nbsp;&nbsp;&nbsp;(injectors/.../on-destroy.ts)</a>
                         </li>
                         <li>
@@ -85,7 +88,80 @@
     </table>
 </section>
 
-    <h3>injectors/src/lib/on-destroy/on-destroy.ts</h3>
+    <h3>injectors/src/lib/dispatch/dispatch.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dispatch"></a>
+                    <span class="name">
+                        <span ><b>dispatch</b></span>
+                        <a href="#dispatch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>dispatch(actionType: A)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Wraps an action constructor with automatic dispatching on each call to the function.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>actionType</td>
+                                    <td>
+                                            <code>A</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Action constructor to create new instances</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#Dispatcher" target="_self" >Dispatcher&lt;A&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A function that dispatches an action on the store each time it is called</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>injectors/src/lib/on-destroy/on-destroy.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
