@@ -44,8 +44,8 @@
           "libs/cdk/**/*.html",
           "libs/cdk/injectors/**/*.ts",
           "libs/cdk/injectors/**/*.html",
-          "libs/cdk/states/**/*.ts",
-          "libs/cdk/states/**/*.html"
+          "libs/cdk/state/**/*.ts",
+          "libs/cdk/state/**/*.html"
         ]
       }
     },
