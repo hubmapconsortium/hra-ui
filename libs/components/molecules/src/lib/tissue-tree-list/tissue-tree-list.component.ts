@@ -51,17 +51,4 @@ export class TissueTreeListComponent {
   }
 
   hasChild = (_: number, node: TissueTreeGroup) => !!node.children && node.children.length > 0;
-
-  // getChildren(node: TissueTreeGroup): TissueTreeGroup[] {
-  //   console.log('hererree');
-  //   return node.children || [];
-  // }
-
-  // isExpanded(node: TissueTreeGroup): boolean {
-  //   console.log('in funtio');
-  //   console.log('node==', node);
-  //   console.log('reduklt==', this.treeControl.isExpanded(node));
-  //   // return this.treeControl.isExpanded(node);
-  //   return true;
-  // }
 }
