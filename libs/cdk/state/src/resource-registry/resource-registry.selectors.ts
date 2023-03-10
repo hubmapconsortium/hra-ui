@@ -9,6 +9,7 @@ export class ResourceRegistrySelectors {
    * @param state resource registry state
    * @returns value of the resource
    */
+  @Selector([ResourceRegistryState])
   static query(state: ResourceRegistryModel): (id: ResourceId, type: ResourceType) => ResourceEntry | undefined {
     return (id, type) => this.getEntryByType(state, id, type);
   }
@@ -20,8 +21,8 @@ export class ResourceRegistrySelectors {
    * @returns resource data
    */
   @Selector([ResourceRegistryState])
-  static url(state: ResourceRegistryModel, id: ResourceId): ResourceEntry | undefined {
-    return this.query(state)(id, ResourceType.Url);
+  static url(state: ResourceRegistryModel): (id: ResourceId) => string | undefined {
+    return (id) => this.getEntryByType(state, id, ResourceType.Url)?.url;
   }
 
   /**
@@ -31,8 +32,8 @@ export class ResourceRegistrySelectors {
    * @returns markdown of the resource
    */
   @Selector([ResourceRegistryState])
-  static markdown(state: ResourceRegistryModel, id: ResourceId): string | undefined {
-    return this.getEntryByType(state, id, ResourceType.Markdown)?.markdown;
+  static markdown(state: ResourceRegistryModel): (id: ResourceId) => string | undefined {
+    return (id) => this.getEntryByType(state, id, ResourceType.Markdown)?.markdown;
   }
 
   /**
