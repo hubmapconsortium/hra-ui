@@ -12,62 +12,6 @@
 shopt -s extglob
 
 #######################################
-# List all subdirectories inside a directory
-# Arguments:
-#   Directory to search, a path
-# Outputs:
-#   Writes the directory paths to stdout
-#######################################
-function list_dirs() {
-  local dir="${1%%+(/)}"
-  local dirs=$([[ -d ${dir} ]] && ls -d ${dir}/*)
-  echo "${dirs}"
-}
-
-#######################################
-# Gets the directory name from a path
-# Arguments:
-#   Directory, a path
-# Outputs:
-#   Writes the directory name to stdout
-#######################################
-function dir_name() {
-  local name="${1%%+(/)}"
-  local name="${name##*/}"
-  echo "${name}"
-}
-
-#######################################
-# Copies multiple directories
-# Arguments:
-#   Base destination directory, a path
-#   One or more source directories, paths
-# Outputs:
-#   Writes the output directory paths to stdout
-#######################################
-function copy_dirs() {
-  local base_dir="$1"
-  shift
-  while (( "$#" )); do
-    local name=$(dir_name $1)
-    cp -r "$1" "${base_dir}/${name}"
-    echo "${name}"
-    shift
-  done
-}
-
-#######################################
-# Writes a key value pair to github outputs
-# Arguments:
-#   Key, a string
-#   Value, any
-#######################################
-function output() {
-  echo "${1}=${2}" >> "${GITHUB_OUTPUT}"
-}
-
-
-#######################################
 # Main logic
 #######################################
 out_dir="$1"
@@ -76,10 +20,21 @@ shift
 
 while (( "$#" )); do
   if [[ -d $1 ]]; then
-    name=$(dir_name "$1")
-    dirs=$(list_dirs "$1")
-    out_dirs=$(copy_dirs "${out_dir}" ${dirs[@]})
-    output "${name}" "${out_dirs[*]//$'\n'/,}"
+    # Extract directory name (https://stackoverflow.com/a/1371283)
+    dir_name="${1%%+(/)}"
+    dir_name="${dir_name##*/}"
+    dir_name="${dir_name:-/}"
+
+    # Copy directory
+    cp -r "$1" "${out_dir}"
+
+    # List subdirectories as a comma separated list
+    sub_dirs=$(echo "${out_dir}/${dir_name}"/*)
+    sub_dirs="${sub_dirs[*]//$out_dir\/}"
+    sub_dirs="${sub_dirs[*]//$' '/,}"
+
+    # Write outputs
+    echo "${dir_name}=${sub_dirs}" >> "${GITHUB_OUTPUT}"
   fi
   shift
 done
