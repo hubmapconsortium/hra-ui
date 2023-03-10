@@ -1,0 +1,33 @@
+<hra-label-box class="header-label">
+  Cell Types by Gene Biomarkers
+  <mat-icon class="end">close_fullscreen</mat-icon>
+</hra-label-box>
+
+<mat-tab-group class="table">
+  <mat-tab label="Gene Biomarkers">
+    <hra-biomarker-table-data-card [data]="data"></hra-biomarker-table-data-card>
+  </mat-tab>
+  <mat-tab label="Protein Biomarkers">
+    <hra-biomarker-table-data-card [data]="data"></hra-biomarker-table-data-card>
+  </mat-tab>
+  <mat-tab label="Lipid Biomarkers">
+    <hra-biomarker-table-data-card [data]="data"></hra-biomarker-table-data-card>
+  </mat-tab>
+</mat-tab-group>
+
+<hra-label-box class="legend-label1">
+  Biomarker Expression Mean in FTU
+  <mat-icon class="icon">info_outlined</mat-icon>
+</hra-label-box>
+<hra-gradient-legend [gradient]="gradient" class="legend1"></hra-gradient-legend>
+<hra-label-box class="legend-label2">
+  Percentage of Cells in FTU
+  <mat-icon class="icon">info_outlined</mat-icon>
+</hra-label-box>
+<hra-size-legend [sizes]="sizes" class="legend2"></hra-size-legend>
+
+<hra-label-box class="source-label">
+  Source Data
+  <mat-icon class="end">expand_more</mat-icon>
+</hra-label-box>
+<hra-source-list [sources]="sources" class="source-list"></hra-source-list>
