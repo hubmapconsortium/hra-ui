@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTreeModule, MatTreeNestedDataSource } from '@angular/material/tree';
 import { NestedTreeControl } from '@angular/cdk/tree';
@@ -19,35 +19,18 @@ interface TissueTreeGroup {
   styleUrls: ['./tissue-tree-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TissueTreeListComponent {
+export class TissueTreeListComponent implements OnChanges {
   @Input() treeList: TissueTreeGroup[] = [];
 
   treeControl = new NestedTreeControl<TissueTreeGroup>((node) => node.children);
 
   dataSource = new MatTreeNestedDataSource<TissueTreeGroup>();
 
-  constructor() {
-    this.treeList = [
-      {
-        name: 'Kidney',
-        children: [
-          { name: 'Ascending thin limb' },
-          { name: 'Cortical collecting duct' },
-          { name: 'Collecting duct(inner medulla)' },
-        ],
-      },
-      {
-        name: 'Large Intestine',
-        children: [{ name: 'Crypt of Lieberkuhn' }],
-      },
-      {
-        name: 'Liver',
-        children: [{ name: 'Liver lobule' }],
-      },
-    ];
-
-    this.dataSource.data = this.treeList;
-    this.treeControl.dataNodes = this.treeList;
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('treeList' in changes) {
+      this.dataSource.data = this.treeList;
+      this.treeControl.dataNodes = this.treeList;
+    }
   }
 
   hasChild = (_: number, node: TissueTreeGroup) => !!node.children && node.children.length > 0;

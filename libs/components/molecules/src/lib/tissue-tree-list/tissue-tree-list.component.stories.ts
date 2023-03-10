@@ -16,4 +16,23 @@ const Template: Story<TissueTreeListComponent> = (args: TissueTreeListComponent)
 });
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  treeList: [
+    {
+      name: 'Kidney',
+      children: [
+        { name: 'Ascending thin limb' },
+        { name: 'Cortical collecting duct' },
+        { name: 'Collecting duct(inner medulla)' },
+      ],
+    },
+    {
+      name: 'Large Intestine',
+      children: [{ name: 'Crypt of Lieberkuhn' }],
+    },
+    {
+      name: 'Liver',
+      children: [{ name: 'Liver lobule' }],
+    },
+  ],
+};
