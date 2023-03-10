@@ -2,10 +2,11 @@
   display: flex;
   flex-direction: row;
   column-gap: 2rem;
-  min-height: 5rem;
+
   .item {
     display: flex;
     flex-direction: column;
+    align-items: center;
 
     .circle {
       height: var(--size);
@@ -15,7 +16,7 @@
     }
 
     .label {
-      margin-top: 1rem;
+      margin-top: 0.5rem;
     }
 
     .filler {
