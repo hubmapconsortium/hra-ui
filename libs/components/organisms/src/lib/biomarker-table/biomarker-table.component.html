@@ -1,4 +1,8 @@
 <table class="table" mat-table [dataSource]="dataSource">
+  <caption class="sr-only">
+    Cell type table by Biomarker
+  </caption>
+
   <ng-container *ngFor="let column of columns; let index = index" [matColumnDef]="column.label">
     <th class="column-header cell" mat-header-cell *matHeaderCellDef>
       {{ column.label }}
