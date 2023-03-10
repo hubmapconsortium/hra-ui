@@ -17,11 +17,11 @@ describe('SourceListState', () => {
   it('should select the data sources from the state', () => {
     const source1 = { title: 'Owner Title', link: 'google.com' };
     const source2 = { title: 'Owner Title 2', link: 'google.com' };
-    store.dispatch(new AddSourceList(source1));
-    store.dispatch(new AddSourceList(source2));
+    store.dispatch(new AddSourceList([source1]));
+    store.dispatch(new AddSourceList([source2]));
     const dataSources = store.selectSnapshot<SourceListModel>((state) => state.app.sourceList);
-    expect(dataSources.sourceList).toEqual(2);
-    expect(dataSources.sourceList[0]).toEqual(source1);
-    expect(dataSources.sourceList[1]).toEqual(source2);
+    expect(dataSources).toEqual(2);
+    expect(dataSources[0]).toEqual(source1);
+    expect(dataSources[1]).toEqual(source2);
   });
 });
