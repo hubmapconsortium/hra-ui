@@ -25,6 +25,8 @@
     "ngx-markdown": "^15.1.1",
     "normalize.css": "^8.0.1",
     "rxjs": "~7.5.0",
+    "svg-to-png-browser": "^1.0.2",
+    "svg2pdf.js": "^2.2.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
