@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Action, State } from '@ngxs/store';
+import { LANDING_PAGE_CONTENT } from '../resources/landing-page-content';
 import { Observable, tap } from 'rxjs';
 import { AddResource, LoadMarkdown } from './resource-registry.actions';
 import {
@@ -16,7 +17,11 @@ import {
  */
 @State<ResourceRegistryModel>({
   name: 'resourceRegistry',
-  defaults: {},
+  defaults: {
+    0: { type: ResourceType.Markdown, markdown: JSON.stringify(LANDING_PAGE_CONTENT.introData) },
+    1: { type: ResourceType.Markdown, markdown: JSON.stringify(LANDING_PAGE_CONTENT.metrics) },
+    2: { type: ResourceType.Markdown, markdown: JSON.stringify(LANDING_PAGE_CONTENT.landingPageDepth) },
+  },
 })
 @Injectable()
 export class ResourceRegistryState {

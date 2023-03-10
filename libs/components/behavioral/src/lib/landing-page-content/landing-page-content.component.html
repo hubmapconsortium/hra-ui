@@ -7,5 +7,12 @@
   (moreClick)="exploreFTU()"
 >
 </hra-landing-page-intro>
-<!-- <div class="metrics" style="background-color: lightblue; height: 10rem"></div>
-<div class="content" style="background-color: lightblue; height: 10rem"></div> -->
+<hra-metrics class="metrics" [title]="metrics.title" [metrics]="metrics.metrics" [logo]="metrics.logo"></hra-metrics>
+<hra-landing-page-in-depth
+  class="landing-page-content"
+  [title]="landingPageDepth.title"
+  [description]="landingPageDepth.description"
+  [moreText]="landingPageDepth.moreText"
+  [img]="landingPageDepth.img"
+>
+</hra-landing-page-in-depth>

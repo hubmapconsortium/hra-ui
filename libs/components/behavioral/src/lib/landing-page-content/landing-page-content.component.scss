@@ -3,7 +3,7 @@
   .metrics {
     animation: fadeIn 2s;
   }
-  .content {
+  .landing-page-content {
     animation-duration: 2s;
     animation-name: slidein;
   }
@@ -19,7 +19,7 @@
 @keyframes slidein {
   from {
     margin-left: 100%;
-    width: 300%;
+    width: 100%;
   }
 
   to {
