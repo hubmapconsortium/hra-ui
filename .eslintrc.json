@@ -30,10 +30,14 @@
               },
               {
                 "sourceTag": "behavioral",
-                "onlyDependOnLibsWithTags": ["cdk", "utils", "shared", "components", "state"]
+                "onlyDependOnLibsWithTags": ["cdk", "utils", "shared", "components", "state", "services"]
               },
               {
                 "sourceTag": "state",
+                "onlyDependOnLibsWithTags": ["cdk", "utils", "shared", "services"]
+              },
+              {
+                "sourceTag": "services",
                 "onlyDependOnLibsWithTags": ["cdk", "utils", "shared"]
               },
               {
