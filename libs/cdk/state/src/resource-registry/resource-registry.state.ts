@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Action, State } from '@ngxs/store';
-import { LANDING_PAGE_CONTENT } from '../resources/landing-page-content';
+import { LANDING_PAGE_CONTENT } from './resources/landing-page-content';
 import { Observable, tap } from 'rxjs';
 import { AddResource, LoadMarkdown } from './resource-registry.actions';
 import {
