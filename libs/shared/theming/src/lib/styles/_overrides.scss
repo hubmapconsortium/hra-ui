@@ -4,6 +4,7 @@
   @at-root {
     button.mdc-button {
       font-weight: 700;
+      font-size: 1rem;
       &.mat-primary {
         background-color: vars.$primary-600-rgb;
         color: vars.$accent-50-rgb;
@@ -48,6 +49,33 @@
       }
       &.mat-secondary:focus {
         background-color: vars.$primary-contrast-rgb;
+        color: vars.$primary-600-rgb;
+        border: 0.25rem solid #ffaa00;
+      }
+    }
+    a.mdc-button {
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: underline;
+      &.mat-mdc-button {
+        text-decoration-color: vars.$primary-600-rgb;
+        color: vars.$primary-600-rgb;
+      }
+      &.mat-mdc-button:hover {
+        background-color: vars.$primary-contrast-rgb;
+        text-decoration-color: vars.$primary-700-rgb;
+        color: vars.$primary-700-rgb;
+      }
+      &.mat-secondary:disabled {
+        // background-color: red;
+        color: vars.$primary-contrast-rgb;
+      }
+      &.mat-mdc-button:active {
+        border: solid vars.$primary-700-rgb;
+        text-decoration-color: vars.$warn-600-rgb;
+        color: vars.$warn-600-rgb;
+      }
+      &.mat-mdc-button:focus {
         color: vars.$primary-600-rgb;
         border: 0.25rem solid #ffaa00;
       }

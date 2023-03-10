@@ -30,4 +30,9 @@ Basic.args = {
   palette: 'primary',
   disabled: false,
 };
-//export const Link = Template(`<a mat-button>Test</a>`);
+
+//Link
+export const Link = Template(`<a mat-button [disabled]="disabled">Test</a>`);
+Link.args = {
+  disabled: false,
+};
