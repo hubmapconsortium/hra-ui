@@ -31,7 +31,12 @@ export const decorators = [
       ThemingModule,
     ],
   }),
-  componentWrapperDecorator((story) => `<div class="mat-typography">${story}</div>`),
+  componentWrapperDecorator(
+    (story) => `
+    <div class="mat-typography">${story}</div>
+    <div class="backdrop-filler" style="position: absolute; inset: 0; z-index: -1;"></div>
+  `
+  ),
 ];
 
 export function setDocs(library: string): void {
