@@ -1,24 +1,24 @@
-import { TestBed } from '@angular/core/testing';
-import { Store, NgxsModule } from '@ngxs/store';
+import { StateContext, StateOperator } from '@ngxs/store';
+import { mock } from 'jest-mock-extended';
 import { AddSourceList } from './source-list.actions';
-import { SourceListModel, SourceListState } from './source-list.state';
+import { Source, SourceListModel, SourceListState } from './source-list.state';
 
 describe('SourceListState', () => {
-  let store: Store;
+  const ctx = mock<StateContext<SourceListModel>>();
+  const state = new SourceListState();
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [NgxsModule.forRoot([SourceListState])],
-    });
+  afterEach(() => jest.clearAllMocks());
 
-    store = TestBed.inject(Store);
-  });
+  it('should add sources to the state', () => {
+    const sourceList: Source[] = [
+      { title: 'Source 1', link: 'google.com' },
+      { title: 'Source 2', link: 'google.com' },
+    ];
 
-  it('should add a source to the sourceList array', () => {
-    const source = { title: 'Owner Title', link: 'google.com' };
-    store.dispatch(new AddSourceList([source]));
-    const state = store.selectSnapshot<SourceListModel>((state) => state.app);
-    expect(state).toEqual(1);
-    expect(state[0]).toEqual(source);
+    state.add(ctx, new AddSourceList(sourceList));
+    expect(ctx.setState).toHaveBeenCalled();
+
+    const patcher = ctx.setState.mock.lastCall[0] as StateOperator<SourceListModel>;
+    expect(patcher([])).toEqual(sourceList);
   });
 });
