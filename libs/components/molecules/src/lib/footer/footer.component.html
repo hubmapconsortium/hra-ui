@@ -1,3 +1,11 @@
+<div *ngIf="isSmall">
+  <a class="product-logo-link">
+    <img class="product-logo-image" [src]="productLogoUrl" alt="Prodoct Logo" />
+    <div class="product-title">{{ productTitle }}</div>
+  </a>
+</div>
+<div class="filler" *ngIf="isSmall"></div>
+
 <button class="button" mat-stroked-button (click)="illustrationClick.emit()">
   <mat-icon>info</mat-icon>
   Ilustration
@@ -11,7 +19,7 @@
   cdkOverlayOrigin
   #anchor="cdkOverlayOrigin"
 >
-  <mat-icon class="icon">file_download</mat-icon>
+  <mat-icon>file_download</mat-icon>
   Download
 </button>
 
@@ -20,7 +28,7 @@
   Embed
 </button>
 
-<div class="filler"></div>
+<div class="filler" *ngIf="!isSmall"></div>
 
 <button class="button" mat-stroked-button (click)="contactClick.emit()">
   <mat-icon>mail</mat-icon>
@@ -44,7 +52,11 @@
   (overlayOutsideClick)="downloadListOpen = false"
 >
   <mat-action-list>
-    <button mat-list-item *ngFor="let format of downloadFormats" (click)="download.emit(format)">
+    <button
+      mat-list-item
+      *ngFor="let format of downloadFormats"
+      (click)="downloadListOpen = false; download.emit(format)"
+    >
       {{ format.label }}
     </button>
   </mat-action-list>

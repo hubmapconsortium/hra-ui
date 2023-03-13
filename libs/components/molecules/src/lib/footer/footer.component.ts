@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -6,18 +6,17 @@ import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import { MatListModule } from '@angular/material/list';
 
 /**
- * An interface has different download formats for list panel which will be emitted once clicked on Download button.
-
+ * Base type for different download format options.
  */
 export interface DownloadFormat {
   /**
-   * The format type that can be downloaded when clicked on download list panel
+   * User readable format label
    */
   label: string;
 }
 
 /**
- * A constant that has two arrays of objects for download list panel positioning according to footer component placement
+ * Positioning value for the download list popup
  */
 const DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [
   {
@@ -49,39 +48,41 @@ const DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent<T extends DownloadFormat = DownloadFormat> {
-  /**
-   * Input  of different download format for download button
-   */
+  /** Host binding of footer component */
+  @HostBinding('class') @Input() size: 'small' | 'large' = 'large';
+
+  /** Input for product logo URL to displayed on the left side. */
+  @Input() productLogoUrl = '';
+
+  /** Input for product title to displayed on the left side. */
+  @Input() productTitle = '';
+
+  /** Different download formats options displayed to the user */
   @Input() downloadFormats: T[] = [];
 
-  /**
-   * Output emits download format when clicked on download list panel
-   */
+  /** Emits the selected download format */
   @Output() readonly download = new EventEmitter<T>();
 
-  /**
-   * Output emits link when clicked on Illustration button
-   */
+  /** Emits when the illustration button is clicked */
   @Output() readonly illustrationClick = new EventEmitter<void>();
-  /**
-   * Output emits link when clicked on Embed button
-   */
+
+  /** Emits when the embed button is clicked */
   @Output() readonly embedClick = new EventEmitter<void>();
-  /**
-   * Output emits contact component when clicked on Contact button
-   */
+
+  /** Emits when the contact button is clicked */
   @Output() readonly contactClick = new EventEmitter<void>();
-  /**
-   * Output emits link when clicked on HRA Portal butoon
-   */
+
+  /** Emits when the hra portal button is clicked */
   @Output() readonly hraPortalClick = new EventEmitter<void>();
-  /**
-   * Download list positioning settings
-   */
+
+  /** Download list popup overlay positioning */
   readonly DOWNLOADS_LIST_POSITION = DOWNLOADS_LIST_POSITION;
 
-  /**
-   * A boolean input property that determines whether download panel is open or closed
-   */
+  /** Gets whether the footer required is small */
+  get isSmall(): boolean {
+    return this.size === 'small';
+  }
+
+  /** Whether the download list panel is open */
   downloadListOpen = false;
 }

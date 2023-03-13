@@ -30,7 +30,15 @@ const Template: Story<FooterComponent> = (args: FooterComponent) => ({
   ],
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Large = Template.bind({});
+Large.args = {
+  downloadFormats: DownloadFormat,
+};
+
+export const Small = Template.bind({});
+Small.args = {
+  size: 'small',
+  productLogoUrl: 'assets/icons/logo-icon.svg',
+  productTitle: 'Human Reference Atlas',
   downloadFormats: DownloadFormat,
 };
