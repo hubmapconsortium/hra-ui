@@ -1,0 +1,31 @@
+<table class="table" mat-table [dataSource]="dataSource">
+  <caption class="sr-only">
+    Cell type table by Biomarker
+  </caption>
+
+  <ng-container *ngFor="let column of columns; let index = index" [matColumnDef]="column.label">
+    <th class="column-header cell" mat-header-cell *matHeaderCellDef>
+      {{ column.label }}
+    </th>
+
+    <td class="cell" mat-cell *matCellDef="let element" [ngSwitch]="column.dataType" [attr.data-type]="column.dataType">
+      <ng-container *ngSwitchCase="'text'">
+        {{ element[index] }}
+      </ng-container>
+      <ng-container *ngSwitchCase="'numeric'">
+        {{ element[index] !== undefined ? (element[index] | number) : 'no data' }}
+      </ng-container>
+      <ng-container *ngSwitchCase="'object'">
+        <div *ngIf="element[index] !== undefined">
+          <hra-biomarker-table-data-icon
+            [meanValue]="element[index]['meanExpressionValue']"
+            [gradientPoints]="gradientPoints"
+          ></hra-biomarker-table-data-icon>
+        </div>
+      </ng-container>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnIds"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnIds"></tr>
+</table>
