@@ -56,4 +56,9 @@ Primary.args = {
     ],
     ['goblet cell', undefined, undefined, undefined],
   ],
+  gradientPoints: [
+    { color: '#00385F', percentage: 0 },
+    { color: '#63B1D3', percentage: 49.78 },
+    { color: '#EDFAFD', percentage: 100 },
+  ],
 };

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } f
 import { CommonModule } from '@angular/common';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { BiomarkerTableDataIconComponent } from '@hra-ui/components/molecules';
+import { GradientPoint } from '@hra-ui/components/atoms';
 
 export type DataType = 'text' | 'numeric' | 'object';
 
@@ -33,6 +34,7 @@ export interface DataCell {
 export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   @Input() columns: Column[] = [];
   @Input() data: (string | number | T | undefined)[][] = [];
+  @Input() gradientPoints: GradientPoint[] = [];
 
   get columnIds(): string[] {
     return this.columns.map((column) => column.label);

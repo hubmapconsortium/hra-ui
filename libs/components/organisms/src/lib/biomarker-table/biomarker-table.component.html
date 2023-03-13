@@ -17,7 +17,10 @@
       </ng-container>
       <ng-container *ngSwitchCase="'object'">
         <div *ngIf="element[index] !== undefined">
-          <hra-biomarker-table-data-icon></hra-biomarker-table-data-icon>
+          <hra-biomarker-table-data-icon
+            [meanValue]="element[index]['meanExpressionValue']"
+            [gradientPoints]="gradientPoints"
+          ></hra-biomarker-table-data-icon>
         </div>
       </ng-container>
     </td>
