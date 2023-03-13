@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { UseButton } from 'src/app/components/use-button/use-button';
 import { ChooseVersion } from '../../components/choose-version/choose-version';
 import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
@@ -19,6 +20,7 @@ function iCaseEquals(str1: string, str2: string): boolean {
 export class ThreeDimRefPageComponent {
   headerData: PageHeaderItems[];
   overviewData: PageDataItems[];
+  organCsvButton: UseButton;
   versionData: ChooseVersion[];
   sopData:SopLinks[];
   termsOfUseData: PageDataItems[];
@@ -37,6 +39,7 @@ export class ThreeDimRefPageComponent {
   constructor(private router: Router, private route: ActivatedRoute) {
     const data = route.snapshot.data['content'];
     this.overviewData = data.overviewData;
+    this.organCsvButton = data.organCsvButton;
     this.headerData = data.headerData;
     this.termsOfUseData = data.termsOfUseData;
     this.versionData = data.versionData;

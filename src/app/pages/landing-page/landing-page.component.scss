@@ -38,4 +38,8 @@
     padding-bottom: 2rem;
     padding-top: 3.5rem;
   }
+
+  @media (max-width: 26.75rem) {
+    padding: 0rem 1rem;
+  }
 }

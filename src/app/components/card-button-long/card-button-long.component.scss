@@ -80,5 +80,13 @@
       min-width: 80px;
       background-color: #444C65;
     }
+
+    .nav-card-title {
+      flex-wrap: wrap;
+    }
+
+    .mat-icon {
+      padding: 0;
+    }
   }
 }

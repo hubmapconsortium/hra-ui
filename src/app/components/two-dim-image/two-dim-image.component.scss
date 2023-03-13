@@ -92,6 +92,50 @@
   a:-webkit-any-link {
     text-decoration: unset !important;
   }
+
+  .filler {
+    flex-grow: 1;
+  }
+
+  @media (max-width: 26.75rem) {
+    .multirow {
+      flex-direction: column;
+    }
+
+    .split {
+      width: unset;
+    }
+
+    .mat-card-actions .mat-stroked-button {
+      margin: unset;
+      margin-bottom: 1rem;
+    }
+
+    .download-buttons {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mat-stroked-button:first-child {
+      margin-bottom: 1rem !important;
+    }
+
+    .units-container {
+      flex-direction: row;
+    }
+
+    .image-container img {
+      width: 100%;
+    }
+
+    .tissue-name {
+      margin-bottom: 1rem;
+    }
+
+    // .filler {
+    //   display: none;
+    // }
+  }
 }
 
 ::ng-deep .two-dim-image-modal {
@@ -149,5 +193,15 @@
 
   .dialog-buttons {
     padding-top: 1.5rem;
+  }
+
+  .filler {
+    flex-grow: 1;
+  }
+
+  @media (max-width: 26.75rem) {
+    .filler {
+      display: none;
+    }
   }
 }

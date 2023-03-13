@@ -38,4 +38,22 @@
   .nav-small {
     display: none;
   }
+
+  @media (max-width: 26.75rem) {
+    .mat-toolbar {
+      padding: 0rem 1rem;
+    }
+    background-color: red !important;
+    .hubmap-header {
+      font-size: 1.5rem;
+    }
+
+    .hra-header {
+      font-size: 1.25rem
+    }
+
+    ccf-navbar {
+      display: none;
+    }
+  }
 }

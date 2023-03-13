@@ -4,6 +4,7 @@ export interface LongCard {
     externalLink?: string;
     body: string;
     route?: string;
+    color?: string;
 }
 
 export interface CardBlock {
