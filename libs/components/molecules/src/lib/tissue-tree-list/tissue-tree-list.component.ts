@@ -10,7 +10,13 @@ import { MatButtonModule } from '@angular/material/button';
  * Tissue Tree Item
  */
 interface TissueTreeGroup {
+  /**
+   * name of the tissue
+   */
   name: string;
+  /**
+   * child entities for the tissue
+   */
   children?: TissueTreeGroup[];
 }
 
