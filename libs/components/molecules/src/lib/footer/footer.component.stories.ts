@@ -32,6 +32,7 @@ const Template: Story<FooterComponent> = (args: FooterComponent) => ({
 
 export const Large = Template.bind({});
 Large.args = {
+  size: 'large',
   downloadFormats: DownloadFormat,
 };
 
