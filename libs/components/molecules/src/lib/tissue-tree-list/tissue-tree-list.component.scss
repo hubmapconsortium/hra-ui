@@ -7,6 +7,14 @@
     display: none;
   }
 
+  mat-tree-node {
+    margin-left: 32px;
+  }
+
+  .selected-node {
+    background-color: #fff3f0;
+  }
+
   button {
     margin-right: 1rem;
 
