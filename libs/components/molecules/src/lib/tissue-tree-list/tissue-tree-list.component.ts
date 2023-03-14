@@ -7,21 +7,21 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 
 /**
- * Tissue Tree Item
+ * Tedefinesthe stucture for tissue heirarchy
  */
 interface TissueTreeGroup {
   /**
-   * name of the tissue
+   * label identifier
    */
-  name: string;
+  label: string;
   /**
    * child entities for the tissue
    */
-  children?: TissueTreeGroup[];
+  tissues?: TissueTreeGroup[];
 }
 
 /**
- * Tab View for hubMap tissue side-bar
+ * Tabular View for hubMap tissue side-bar
  */
 @Component({
   selector: 'hra-tissue-tree-list',
@@ -35,20 +35,20 @@ export class TissueTreeListComponent implements OnChanges {
   /**
    * Tissue tree items heirarchial structure
    */
-  @Input() treeList: TissueTreeGroup[] = [];
+  @Input() tissueTree: TissueTreeGroup[] = [];
 
   /**
-   * tree controller
+   * tree controller, used to control the nodes in the tree
    */
-  treeControl = new NestedTreeControl<TissueTreeGroup>((node) => node.children);
+  control = new NestedTreeControl<TissueTreeGroup>((node) => node.tissues);
 
   /**
-   * Data source for mat-tree data structure
+   * Data source for mat-tree data structure, which defines the data in mat-tree
    */
   dataSource = new MatTreeNestedDataSource<TissueTreeGroup>();
 
   /**
-   * currently selected item in heirarchy
+   * item which is currently selected by user
    */
   selectedItem?: TissueTreeGroup = undefined;
 
@@ -57,44 +57,18 @@ export class TissueTreeListComponent implements OnChanges {
    * @param changes changes in data
    */
   ngOnChanges(changes: SimpleChanges): void {
-    if ('treeList' in changes) {
-      this.dataSource.data = this.treeList;
-      this.treeControl.dataNodes = this.treeList;
+    if ('tissueTree' in changes) {
+      this.dataSource.data = this.tissueTree;
     }
   }
 
   /**
-   * Returns if children exists for current node
-   * @param _ default
-   * @param node current node
-   * @returns boolean
+   * check if the current node has children
+   * @param _ default mat-tree structure
+   * @param node current selected node
+   * @returns boolean, which means if node has children
    */
-  hasChild = (_: number, node: TissueTreeGroup) => !!node.children && node.children.length > 0;
-
-  /**
-   * selects the given tree item
-   * @param item selected item
-   */
-  public selectItem(item: TissueTreeGroup): void {
-    this.selectedItem = item;
-  }
-
-  /**
-   * check if current item is selected by the user
-   * @param item current item
-   * @returns boolean
-   */
-  public isSelected(item: TissueTreeGroup): boolean {
-    if (this.selectedItem && this.selectedItem == item) {
-      return true;
-    }
-    return false;
-  }
-
-  /**
-   * unselects the item
-   */
-  public unselectItem(): void {
-    this.selectedItem = undefined;
+  hasChild(_: number, node: TissueTreeGroup): boolean {
+    return !!node.tissues && node.tissues.length > 0;
   }
 }

@@ -1,81 +1,39 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Shallow } from 'shallow-render';
 import { TissueTreeListComponent } from './tissue-tree-list.component';
 
 describe('TissueTreeListComponent', () => {
-  let component: TissueTreeListComponent;
-  let fixture: ComponentFixture<TissueTreeListComponent>;
-
-  const treeList = [
+  let shallow: Shallow<TissueTreeListComponent>;
+  const tissueTree = [
     {
-      name: 'Kidney',
-      children: [
-        { name: 'Ascending thin limb' },
-        { name: 'Cortical collecting duct' },
-        { name: 'Collecting duct(inner medulla)' },
+      label: 'Kidney',
+      tissues: [
+        { label: 'Ascending thin limb' },
+        { label: 'Cortical collecting duct' },
+        { label: 'Collecting duct(inner medulla)' },
       ],
     },
     {
-      name: 'Large Intestine',
-      children: [{ name: 'Crypt of Lieberkuhn' }],
+      label: 'Large Intestine',
+      tissues: [{ label: 'Crypt of Lieberkuhn' }],
     },
     {
-      name: 'Liver',
-      children: [{ name: 'Liver lobule' }],
+      label: 'Liver',
+      tissues: [{ label: 'Liver lobule' }],
     },
   ];
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [TissueTreeListComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(TissueTreeListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    shallow = new Shallow(TissueTreeListComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('creates', async () => {
+    await expect(shallow.render({ bind: { tissueTree: tissueTree } })).resolves.toBeDefined();
   });
 
-  it('check if child for the item exists', () => {
-    const component = new TissueTreeListComponent();
-    component.treeList = treeList;
-    expect(component.hasChild(1, treeList[0])).toBe(true);
-  });
-
-  it('select item', () => {
-    const component = new TissueTreeListComponent();
-    const targetItem = treeList[0]['children'][0];
-    component.treeList = treeList;
-    component.selectItem(targetItem);
-    expect(component.selectedItem).toBe(targetItem);
-  });
-
-  it('check if item is selected for false input', () => {
-    const component = new TissueTreeListComponent();
-    const selectedItem = treeList[0]['children'][0];
-    component.treeList = treeList;
-    component.selectItem(selectedItem);
-
-    const isItemSelected = component.isSelected(treeList[0]);
-    expect(isItemSelected).toBe(false);
-  });
-
-  it('check if item is selected for correct input', () => {
-    const component = new TissueTreeListComponent();
-    const selectedItem = treeList[0]['children'][0];
-    component.treeList = treeList;
-    component.selectItem(selectedItem);
-
-    const isItemSelected = component.isSelected(selectedItem);
-    expect(isItemSelected).toBe(true);
-  });
-
-  it('unselects the item', () => {
-    const component = new TissueTreeListComponent();
-    component.unselectItem();
-    expect(component.selectedItem).toBe(undefined);
+  it('check if child for the item exists', async () => {
+    const { instance } = await shallow.render({ bind: { tissueTree: tissueTree } });
+    instance.tissueTree = tissueTree;
+    expect(instance.hasChild(1, tissueTree[0])).toBe(true);
   });
 });
