@@ -20,5 +20,5 @@ export class FtuFooterBehavioralComponent<T extends DownloadFormat = DownloadFor
   /** Different download formats options displayed to the user */
   @Input() downloadFormats: T[] = [];
 
-  @Input() size: any;
+  @Input() size: 'small' | 'large' = 'large';
 }
