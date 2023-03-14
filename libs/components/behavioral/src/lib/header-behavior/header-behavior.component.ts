@@ -5,6 +5,7 @@ import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import { HeaderComponent } from '@hra-ui/components/molecules';
 import { ResourceIds as Ids } from '@hra-ui/state';
 
+/** Component for Header Behavior */
 @Component({
   selector: 'ftu-header-behavior',
   standalone: true,
