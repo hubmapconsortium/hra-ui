@@ -9,7 +9,7 @@ export interface DataCell {
   data: DataItem[][];
 }
 
-export type DataType = Array<string | number | undefined | DataCell>;
+export type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];
 
 @Component({
   selector: 'hra-biomarker-table',
@@ -21,13 +21,13 @@ export type DataType = Array<string | number | undefined | DataCell>;
 })
 export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   @Input() columns: string[] = [];
-  @Input() data: DataType[] = [];
+  @Input() data: DataRow<T>[] = [];
 
   get columnsWithTypeAndCount(): string[] {
     return ['type', 'count', ...this.columns];
   }
 
-  readonly dataSource = new MatTableDataSource<unknown[]>([]);
+  readonly dataSource = new MatTableDataSource<DataRow<T>>([]);
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('data' in changes) {
