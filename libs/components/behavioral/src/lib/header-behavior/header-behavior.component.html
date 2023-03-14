@@ -1,1 +1,6 @@
-<hra-header [productLogoUrl]="productLogoUrl" [productTitle]="productTitle" [appTitle]="appTitle"> </hra-header>
+<hra-header
+  [productLogoUrl]="productLogoUrl() ?? ''"
+  [productTitle]="productTitle() ?? ''"
+  [appTitle]="appTitle() ?? ''"
+>
+</hra-header>

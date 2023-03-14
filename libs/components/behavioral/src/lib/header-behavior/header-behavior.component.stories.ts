@@ -1,3 +1,5 @@
+import { ResourceRegistryState } from '@hra-ui/cdk/state';
+import { NgxsModule } from '@ngxs/store';
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { HeaderBehaviorComponent } from './header-behavior.component';
 
@@ -6,7 +8,7 @@ export default {
   component: HeaderBehaviorComponent,
   decorators: [
     moduleMetadata({
-      imports: [],
+      imports: [NgxsModule.forRoot([ResourceRegistryState])],
     }),
   ],
 } as Meta<HeaderBehaviorComponent>;
@@ -16,8 +18,4 @@ const Template: Story<HeaderBehaviorComponent> = (args: HeaderBehaviorComponent)
 });
 
 export const Primary = Template.bind({});
-Primary.args = {
-  productLogoUrl: 'assets/icons/logo-icon.svg',
-  productTitle: 'Human Reference Atlas',
-  appTitle: 'Functional Tissue Unit Explorer',
-};
+Primary.args = {};
