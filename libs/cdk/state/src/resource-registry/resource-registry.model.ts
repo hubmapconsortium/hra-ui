@@ -25,11 +25,12 @@ export const RESOURCE_REGISTRY_SCHEMA = z.record(
     .string()
     .transform((id) => `ResourceId:'${id}'`)
     .brand('ResourceId'),
-  z.discriminatedUnion('type', [
-    z.object({ type: z.literal(ResourceType.Markdown), markdown: z.string() }),
-    z.object({ type: z.literal(ResourceType.Url), url: z.string() }),
-    z.object({ type: z.string() }).passthrough(),
-  ])
+  z
+    .discriminatedUnion('type', [
+      z.object({ type: z.literal(ResourceType.Markdown), markdown: z.string() }),
+      z.object({ type: z.literal(ResourceType.Url), url: z.string() }),
+    ])
+    .or(z.object({ type: z.string() }).passthrough())
 );
 
 /**
