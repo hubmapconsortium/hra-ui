@@ -17,6 +17,7 @@
     "@angular/platform-browser": "~15.1.0",
     "@angular/platform-browser-dynamic": "~15.1.0",
     "@angular/router": "~15.1.0",
+    "@ngxs-labs/dispatch-decorator": "^4.0.2",
     "@ngxs/store": "^3.7.6",
     "@nrwl/angular": "15.6.3",
     "angular-material-css-vars": "^4.2.1",
@@ -26,6 +27,9 @@
     "normalize.css": "^8.0.1",
     "papaparse": "^5.3.2",
     "rxjs": "~7.5.0",
+    "save-svg-as-png": "^1.4.17",
+    "svg-to-png-browser": "^1.0.2",
+    "svg2pdf.js": "^2.2.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
