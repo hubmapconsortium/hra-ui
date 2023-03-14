@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { EMPTY, Observable } from 'rxjs';
 import { ContactMessage, ContactService } from './contact.service';
 
-/** This class represents mock implementation of the ContactService class. It extends ContactService class and implements sendMessage method which just pritns message on console. */
+/** This class represents mock implementation of the ContactService class. */
 @Injectable({
   providedIn: 'root',
 })
