@@ -1,5 +1,5 @@
+import { SourceListModel } from './source-list.model';
 import { SourceListSelectors } from './source-list.selectors';
-import { SourceListModel } from './source-list.state';
 
 describe('SourceListSelectors', () => {
   const state: SourceListModel = [

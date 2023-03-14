@@ -1,21 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Action, State, StateContext } from '@ngxs/store';
+import { Action, State } from '@ngxs/store';
 import { AddSourceList } from './source-list.actions';
 import { produce } from 'immer';
-
-/** structure of a source object */
-export interface Source {
-  /** Title property of the source object  */
-  title: string;
-  /** Link property of the source object */
-  link: string;
-}
-
-/** Type alias for the array of source objects */
-export type SourceListModel = Source[];
-
-/** Helper alias for action handler's ctx argument */
-type Context = StateContext<SourceListModel>;
+import { SourceListContext, SourceListModel } from './source-list.model';
 
 /** State handling source list data */
 @State<SourceListModel>({
@@ -30,7 +17,7 @@ export class SourceListState {
    * @param sourceList The payload which is an array of source objects to be added to the state
    */
   @Action(AddSourceList)
-  add({ setState }: Context, { sourceList }: AddSourceList) {
+  add({ setState }: SourceListContext, { sourceList }: AddSourceList) {
     setState(
       produce((draft) => {
         draft.push(...sourceList);

@@ -1,4 +1,4 @@
-import { Source } from './source-list.state';
+import { Source } from './source-list.model';
 
 /** action of adding a list of sources to the SourceList state */
 export class AddSourceList {

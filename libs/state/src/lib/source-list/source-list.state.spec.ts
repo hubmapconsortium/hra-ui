@@ -1,7 +1,8 @@
 import { StateContext, StateOperator } from '@ngxs/store';
 import { mock } from 'jest-mock-extended';
 import { AddSourceList } from './source-list.actions';
-import { Source, SourceListModel, SourceListState } from './source-list.state';
+import { Source, SourceListModel } from './source-list.model';
+import { SourceListState } from './source-list.state';
 
 describe('SourceListState', () => {
   const ctx = mock<StateContext<SourceListModel>>();
