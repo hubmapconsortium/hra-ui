@@ -60,6 +60,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/ContactModalComponent.html" data-type="entity-link" >ContactModalComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/FooterComponent.html" data-type="entity-link" >FooterComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/FullscreenContainerComponent.html" data-type="entity-link" >FullscreenContainerComponent</a>
                             </li>
                             <li class="link">
@@ -107,6 +110,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/DataItem.html" data-type="entity-link" >DataItem</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/DownloadFormat.html" data-type="entity-link" >DownloadFormat</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/MetricItem.html" data-type="entity-link" >MetricItem</a>

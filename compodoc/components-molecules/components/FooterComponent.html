@@ -1,0 +1,933 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>components-molecules</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">components-molecules</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  FooterComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/lib/footer/footer.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component for footer that displays its content at the bottom of the page with different action buttons.</p>
+
+    </p>
+
+
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>hra-footer</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./footer.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./footer.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#downloadListOpen" >downloadListOpen</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#DOWNLOADS_LIST_POSITION" >DOWNLOADS_LIST_POSITION</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#downloadFormats" >downloadFormats</a>
+                            </li>
+                            <li>
+                                <a href="#productLogoUrl" >productLogoUrl</a>
+                            </li>
+                            <li>
+                                <a href="#productTitle" >productTitle</a>
+                            </li>
+                            <li>
+                                <a href="#size" >size</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#contactClick" >contactClick</a>
+                            </li>
+                            <li>
+                                <a href="#download" >download</a>
+                            </li>
+                            <li>
+                                <a href="#embedClick" >embedClick</a>
+                            </li>
+                            <li>
+                                <a href="#hraPortalClick" >hraPortalClick</a>
+                            </li>
+                            <li>
+                                <a href="#illustrationClick" >illustrationClick</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#isSmall" >isSmall</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="downloadFormats"></a>
+                        <b>downloadFormats</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>T[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/lib/footer/footer.component.ts:61</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Different download formats options displayed to the user</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="productLogoUrl"></a>
+                        <b>productLogoUrl</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/lib/footer/footer.component.ts:55</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input for product logo URL to displayed on the left side.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="productTitle"></a>
+                        <b>productTitle</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/lib/footer/footer.component.ts:58</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input for product title to displayed on the left side.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="size"></a>
+                        <b>size</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;small&quot; | &quot;large&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;large&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/lib/footer/footer.component.ts:52</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Host binding of footer component</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="contactClick"></a>
+                        <b>contactClick</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/lib/footer/footer.component.ts:73</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when the contact button is clicked</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="download"></a>
+                        <b>download</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/lib/footer/footer.component.ts:64</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits the selected download format</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="embedClick"></a>
+                        <b>embedClick</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/lib/footer/footer.component.ts:70</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when the embed button is clicked</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="hraPortalClick"></a>
+                        <b>hraPortalClick</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/lib/footer/footer.component.ts:76</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when the hra portal button is clicked</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="illustrationClick"></a>
+                        <b>illustrationClick</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/lib/footer/footer.component.ts:67</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when the illustration button is clicked</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="downloadListOpen"></a>
+                    <span class="name">
+                        <span ><b>downloadListOpen</b></span>
+                        <a href="#downloadListOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/lib/footer/footer.component.ts:87</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Whether the download list panel is open</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DOWNLOADS_LIST_POSITION"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>DOWNLOADS_LIST_POSITION</b></span>
+                        <a href="#DOWNLOADS_LIST_POSITION"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>DOWNLOADS_LIST_POSITION</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/lib/footer/footer.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Download list popup overlay positioning</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isSmall"></a>
+                        <span class="name"><b>isSmall</b><a href="#isSmall"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>isSmall()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/lib/footer/footer.component.ts:82</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Gets whether the footer required is small</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
+import { ConnectedPosition, OverlayModule } from &#x27;@angular/cdk/overlay&#x27;;
+import { MatListModule } from &#x27;@angular/material/list&#x27;;
+
+/**
+ * Base type for different download format options.
+ */
+export interface DownloadFormat {
+  /**
+   * User readable format label
+   */
+  label: string;
+}
+
+/**
+ * Positioning value for the download list popup
+ */
+const DOWNLOADS_LIST_POSITION: ConnectedPosition[] &#x3D; [
+  {
+    panelClass: &#x27;above&#x27;,
+    originX: &#x27;start&#x27;,
+    originY: &#x27;top&#x27;,
+    overlayX: &#x27;start&#x27;,
+    overlayY: &#x27;bottom&#x27;,
+    offsetY: 0,
+  },
+  {
+    panelClass: &#x27;below&#x27;,
+    originX: &#x27;start&#x27;,
+    originY: &#x27;bottom&#x27;,
+    overlayX: &#x27;start&#x27;,
+    overlayY: &#x27;top&#x27;,
+  },
+];
+
+/**
+ * Component for footer that displays its content at the bottom of the page with different action buttons.
+ */
+@Component({
+  selector: &#x27;hra-footer&#x27;,
+  standalone: true,
+  imports: [CommonModule, MatButtonModule, MatIconModule, OverlayModule, MatListModule],
+  templateUrl: &#x27;./footer.component.html&#x27;,
+  styleUrls: [&#x27;./footer.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class FooterComponent&lt;T extends DownloadFormat &#x3D; DownloadFormat&gt; {
+  /** Host binding of footer component */
+  @HostBinding(&#x27;class&#x27;) @Input() size: &#x27;small&#x27; | &#x27;large&#x27; &#x3D; &#x27;large&#x27;;
+
+  /** Input for product logo URL to displayed on the left side. */
+  @Input() productLogoUrl &#x3D; &#x27;&#x27;;
+
+  /** Input for product title to displayed on the left side. */
+  @Input() productTitle &#x3D; &#x27;&#x27;;
+
+  /** Different download formats options displayed to the user */
+  @Input() downloadFormats: T[] &#x3D; [];
+
+  /** Emits the selected download format */
+  @Output() readonly download &#x3D; new EventEmitter&lt;T&gt;();
+
+  /** Emits when the illustration button is clicked */
+  @Output() readonly illustrationClick &#x3D; new EventEmitter&lt;void&gt;();
+
+  /** Emits when the embed button is clicked */
+  @Output() readonly embedClick &#x3D; new EventEmitter&lt;void&gt;();
+
+  /** Emits when the contact button is clicked */
+  @Output() readonly contactClick &#x3D; new EventEmitter&lt;void&gt;();
+
+  /** Emits when the hra portal button is clicked */
+  @Output() readonly hraPortalClick &#x3D; new EventEmitter&lt;void&gt;();
+
+  /** Download list popup overlay positioning */
+  readonly DOWNLOADS_LIST_POSITION &#x3D; DOWNLOADS_LIST_POSITION;
+
+  /** Gets whether the footer required is small */
+  get isSmall(): boolean {
+    return this.size &#x3D;&#x3D;&#x3D; &#x27;small&#x27;;
+  }
+
+  /** Whether the download list panel is open */
+  downloadListOpen &#x3D; false;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;isSmall&quot;&gt;
+  &lt;a class&#x3D;&quot;product-logo-link&quot;&gt;
+    &lt;img class&#x3D;&quot;product-logo-image&quot; [src]&#x3D;&quot;productLogoUrl&quot; alt&#x3D;&quot;Prodoct Logo&quot; /&gt;
+    &lt;div class&#x3D;&quot;product-title&quot;&gt;{{ productTitle }}&lt;/div&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+&lt;div class&#x3D;&quot;filler&quot; *ngIf&#x3D;&quot;isSmall&quot;&gt;&lt;/div&gt;
+
+&lt;button class&#x3D;&quot;button&quot; mat-stroked-button (click)&#x3D;&quot;illustrationClick.emit()&quot;&gt;
+  &lt;mat-icon&gt;info_outlined&lt;/mat-icon&gt;
+  Ilustration
+&lt;/button&gt;
+
+&lt;button
+  class&#x3D;&quot;button&quot;
+  mat-stroked-button
+  (click)&#x3D;&quot;downloadListOpen &#x3D; !downloadListOpen&quot;
+  type&#x3D;&quot;button&quot;
+  cdkOverlayOrigin
+  #anchor&#x3D;&quot;cdkOverlayOrigin&quot;
+&gt;
+  &lt;mat-icon&gt;download&lt;/mat-icon&gt;
+  Download
+&lt;/button&gt;
+
+&lt;button class&#x3D;&quot;button&quot; mat-stroked-button (click)&#x3D;&quot;embedClick.emit()&quot;&gt;
+  &lt;mat-icon&gt;code&lt;/mat-icon&gt;
+  Embed
+&lt;/button&gt;
+
+&lt;div class&#x3D;&quot;filler&quot; *ngIf&#x3D;&quot;!isSmall&quot;&gt;&lt;/div&gt;
+
+&lt;button class&#x3D;&quot;button&quot; mat-stroked-button (click)&#x3D;&quot;contactClick.emit()&quot;&gt;
+  &lt;mat-icon&gt;mail_outlined&lt;/mat-icon&gt;
+  Contact
+&lt;/button&gt;
+
+&lt;button class&#x3D;&quot;button&quot; mat-stroked-button (click)&#x3D;&quot;hraPortalClick.emit()&quot;&gt;
+  &lt;mat-icon&gt;open_in_new&lt;/mat-icon&gt;
+  HRA Portal
+&lt;/button&gt;
+
+&lt;ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]&#x3D;&quot;anchor&quot;
+  [cdkConnectedOverlayOpen]&#x3D;&quot;downloadListOpen&quot;
+  [cdkConnectedOverlayPositions]&#x3D;&quot;DOWNLOADS_LIST_POSITION&quot;
+  [cdkConnectedOverlayOffsetX]&#x3D;&quot;0&quot;
+  cdkConnectedOverlayHasBackdrop&#x3D;&quot;false&quot;
+  cdkConnectedOverlayPush&#x3D;&quot;false&quot;
+  cdkConnectedOverlayPanelClass&#x3D;&quot;download-options-panel&quot;
+  (overlayOutsideClick)&#x3D;&quot;downloadListOpen &#x3D; false&quot;
+&gt;
+  &lt;mat-action-list&gt;
+    &lt;button
+      mat-list-item
+      *ngFor&#x3D;&quot;let format of downloadFormats&quot;
+      (click)&#x3D;&quot;downloadListOpen &#x3D; false; download.emit(format)&quot;
+    &gt;
+      {{ format.label }}
+    &lt;/button&gt;
+  &lt;/mat-action-list&gt;
+&lt;/ng-template&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./footer.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">:host {
+  display: flex;
+  padding: 1rem 2rem;
+  border-top: 0.063rem solid #e2e7e9;
+  align-items: center;
+  background-color: #f8f9fa;
+  gap: 1rem;
+
+  .controls {
+    display: flex;
+    justify-content: end;
+  }
+  .filler {
+    flex-grow: 1;
+  }
+
+  .product-title {
+    color: #990000;
+    margin-right: 0rem;
+  }
+
+  a {
+    cursor: pointer;
+    display: flex;
+  }
+
+  .product-logo-image {
+    height: 1.2rem;
+    margin-right: 1rem;
+  }
+
+  .button {
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border: 0.063rem solid #4c5a69;
+    border-radius: 0.25rem;
+    min-width: 9rem;
+    min-height: 3rem;
+    gap: 0.5rem;
+  }
+  .button:hover {
+    border-color: black;
+    background-color: #ffffff;
+  }
+}
+
+::ng-deep {
+  .download-options-panel {
+    box-shadow: 0.1rem 0.1rem 0.4rem 0.2rem #dad7d7;
+    background-color: #ffffff;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div *ngIf="isSmall">  <a class="product-logo-link">    <img class="product-logo-image" [src]="productLogoUrl" alt="Prodoct Logo" />    <div class="product-title">{{ productTitle }}</div>  </a></div><div class="filler" *ngIf="isSmall"></div><button class="button" mat-stroked-button (click)="illustrationClick.emit()">  <mat-icon>info_outlined</mat-icon>  Ilustration</button><button  class="button"  mat-stroked-button  (click)="downloadListOpen = !downloadListOpen"  type="button"  cdkOverlayOrigin  #anchor="cdkOverlayOrigin">  <mat-icon>download</mat-icon>  Download</button><button class="button" mat-stroked-button (click)="embedClick.emit()">  <mat-icon>code</mat-icon>  Embed</button><div class="filler" *ngIf="!isSmall"></div><button class="button" mat-stroked-button (click)="contactClick.emit()">  <mat-icon>mail_outlined</mat-icon>  Contact</button><button class="button" mat-stroked-button (click)="hraPortalClick.emit()">  <mat-icon>open_in_new</mat-icon>  HRA Portal</button><ng-template  cdkConnectedOverlay  [cdkConnectedOverlayOrigin]="anchor"  [cdkConnectedOverlayOpen]="downloadListOpen"  [cdkConnectedOverlayPositions]="DOWNLOADS_LIST_POSITION"  [cdkConnectedOverlayOffsetX]="0"  cdkConnectedOverlayHasBackdrop="false"  cdkConnectedOverlayPush="false"  cdkConnectedOverlayPanelClass="download-options-panel"  (overlayOutsideClick)="downloadListOpen = false">  <mat-action-list>    <button      mat-list-item      *ngFor="let format of downloadFormats"      (click)="downloadListOpen = false; download.emit(format)"    >      {{ format.label }}    </button>  </mat-action-list></ng-template></div>'
+    var COMPONENTS = [{'name': 'BiomarkerTableDataCardComponent', 'selector': 'hra-biomarker-table-data-card'},{'name': 'ContactModalComponent', 'selector': 'hra-contact-modal'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenContainerComponent', 'selector': 'hra-fullscreen-container'},{'name': 'FullscreenContentComponent', 'selector': 'hra-fullscreen-content'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InteractiveSvgComponent', 'selector': 'hra-interactive-svg'},{'name': 'LandingPageInDepthComponent', 'selector': 'hra-landing-page-in-depth'},{'name': 'LandingPageIntroComponent', 'selector': 'hra-landing-page-intro'},{'name': 'MetricsComponent', 'selector': 'hra-metrics'},{'name': 'ScreenSizeNoticeComponent', 'selector': 'hra-screen-size-notice'},{'name': 'SourceListComponent', 'selector': 'hra-source-list'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'FooterComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'FooterComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
