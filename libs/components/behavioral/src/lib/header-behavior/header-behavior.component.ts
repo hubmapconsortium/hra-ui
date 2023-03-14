@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { selectQuerySnapshot } from '@hra-ui/cdk/injectors';
-import { ResourceRegistrySelectors } from '@hra-ui/cdk/state';
+import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import { HeaderComponent } from '@hra-ui/components/molecules';
-import { ResourceIds } from '@hra-ui/state';
+import { ResourceIds as Ids } from '@hra-ui/state';
 
 @Component({
   selector: 'ftu-header-behavior',
@@ -17,15 +17,15 @@ export class HeaderBehaviorComponent {
   /**
    * Input for product logo URL to displayed on the left side.
    */
-  readonly productLogoUrl = selectQuerySnapshot(ResourceRegistrySelectors.anyText, ResourceIds.ProductLogoUrl);
+  readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);
 
   /**
    * Input for product title to displayed on the left side.
    */
-  readonly productTitle = selectQuerySnapshot(ResourceRegistrySelectors.anyText, ResourceIds.ProductTitle);
+  readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);
 
   /**
    * Input for app title to show on the left side.
    */
-  readonly appTitle = selectQuerySnapshot(ResourceRegistrySelectors.anyText, ResourceIds.AppTitle);
+  readonly appTitle = selectQuerySnapshot(RR.anyText, Ids.AppTitle);
 }

@@ -1,0 +1,11 @@
+ProductTitle:
+  type: text
+  text: Human Reference Atlas
+
+ProductLogoUrl:
+  type: url
+  url: assets/icons/logo-icon.svg
+
+AppTitle:
+  type: text
+  text: Functional Tissue Unit Explorer
