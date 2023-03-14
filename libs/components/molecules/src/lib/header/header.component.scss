@@ -1,76 +1,75 @@
+@use 'utils';
+
+@mixin onSmall() {
+  @media (max-width: 30rem) {
+    @content;
+  }
+}
+
 :host {
   display: flex;
   align-items: center;
   height: 5rem;
 
-  .product-logo-link {
-    display: flex;
-    align-items: center;
+  .product {
+    display: contents;
 
-    .product-logo-image {
+    .logo {
       margin-right: 1rem;
+
+      @include onSmall() {
+        height: 2rem;
+        margin-right: 0.25rem;
+      }
     }
 
-    .product-title {
+    .text {
       color: #990000;
-      margin: 0;
-      margin-right: 1.5rem;
+      margin: 0 1.5rem 0 0;
+
+      @include onSmall() {
+        @include utils.sr-only();
+      }
     }
   }
-  .app-title {
+
+  .app {
     font-weight: 400;
     color: #243142;
     margin: 0;
+
+    @include onSmall() {
+      font-size: 1rem;
+    }
   }
 
-  a {
+  .about {
+    display: contents;
     cursor: pointer;
-    display: flex;
-    align-items: center;
 
-    .about {
+    .text {
       font-weight: 700;
       font-size: 1rem;
       color: #006298;
       text-decoration: underline;
       margin-right: 1.5rem;
+
+      @include onSmall() {
+        @include utils.sr-only();
+      }
     }
 
-    .info-image {
+    .icon {
       margin-right: 0.3rem;
       color: #006298;
+
+      @include onSmall() {
+        margin-right: 0;
+      }
     }
   }
 
   .filler {
     flex-grow: 1;
-  }
-
-  @media (max-width: 480px) {
-    display: flex;
-    align-items: center;
-
-    .product-title,
-    .about {
-      display: none;
-    }
-
-    .product-logo-image {
-      height: 2rem;
-    }
-
-    .app-title {
-      font-size: 1rem;
-      color: #243142;
-      align-items: center;
-    }
-
-    .product-logo-image {
-      margin-right: 0.5rem;
-    }
-
-    .info-image {
-      margin-top: 0.3rem;
-    }
   }
 }
