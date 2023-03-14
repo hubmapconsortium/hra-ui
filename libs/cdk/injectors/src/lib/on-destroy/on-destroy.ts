@@ -31,7 +31,7 @@ class ScopedDestroySubject extends ReplaySubject<void> {
 
 /** Empty host component */
 @Component({
-  selector: 'ftu-on-destroy-host',
+  selector: 'hra-on-destroy-host',
   standalone: true,
   template: '',
   styles: [':host { display: block; }'],
