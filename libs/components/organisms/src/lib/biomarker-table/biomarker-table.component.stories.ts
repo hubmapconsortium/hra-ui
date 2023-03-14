@@ -17,14 +17,7 @@ const Template: Story<BiomarkerTableComponent<DataCell>> = (args: BiomarkerTable
 
 export const Primary = Template.bind({});
 Primary.args = {
-  columns: [
-    { label: 'Cell Type', dataType: 'text' },
-    { label: 'Cell Count', dataType: 'numeric' },
-    { label: 'RGMB', dataType: 'object' },
-    { label: 'SOX9', dataType: 'object' },
-    { label: 'CD44', dataType: 'object' },
-    { label: 'LGR5', dataType: 'object' },
-  ],
+  columns: ['RGMB', 'SOX9', 'CD44', 'LGR5'],
   data: [
     ['absorptive cell', 2764, undefined, undefined],
     ['enteroendocrine cell', 17, undefined, undefined],
@@ -32,33 +25,16 @@ Primary.args = {
       'epithelial stem cell',
       187,
       {
-        name: 'Renal Corpuscle',
-        uberonId: 'UBERON:0001229',
-        numberOfDatasets: 24,
-        cellTypeName: 'parietal epithelial cell',
-        clId: 'CL:1000452',
-        numberOfCells: 5758,
-        geneName: 'VCAM1',
-        hgncId: 'HGNC:26896',
-        meanExpressionValue: 0.879127,
+        color: '#00385F',
+        size: 1,
+        data: [],
       },
       {
-        name: 'Renal Corpuscle',
-        uberonId: 'UBERON:0001229',
-        numberOfDatasets: 24,
-        cellTypeName: 'parietal epithelial cell',
-        clId: 'CL:1000452',
-        numberOfCells: 5758,
-        geneName: 'VCAM1',
-        hgncId: 'HGNC:567567',
-        meanExpressionValue: 0.744578,
+        color: '#328BB8',
+        size: 1,
+        data: [],
       },
     ],
     ['goblet cell', undefined, undefined, undefined],
-  ],
-  gradientPoints: [
-    { color: '#00385F', percentage: 0 },
-    { color: '#63B1D3', percentage: 49.78 },
-    { color: '#EDFAFD', percentage: 100 },
   ],
 };

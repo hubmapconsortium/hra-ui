@@ -17,10 +17,6 @@ const Template: Story<BiomarkerTableDataIconComponent> = (args: BiomarkerTableDa
 
 export const Primary = Template.bind({});
 Primary.args = {
-  meanValue: 0.0,
-  gradientPoints: [
-    { color: '#00385F', percentage: 0 },
-    { color: '#63B1D3', percentage: 49.78 },
-    { color: '#EDFAFD', percentage: 100 },
-  ],
+  color: '#FFFFFF',
+  size: 1,
 };

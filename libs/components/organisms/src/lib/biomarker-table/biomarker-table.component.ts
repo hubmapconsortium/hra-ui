@@ -1,27 +1,15 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
-import { BiomarkerTableDataIconComponent } from '@hra-ui/components/molecules';
-import { GradientPoint } from '@hra-ui/components/atoms';
-
-export type DataType = 'text' | 'numeric' | 'object';
-
-export interface Column {
-  label: string;
-  dataType: DataType;
-}
+import { BiomarkerTableDataIconComponent, DataItem } from '@hra-ui/components/molecules';
 
 export interface DataCell {
-  name: string;
-  uberonId: string;
-  numberOfDatasets: number;
-  cellTypeName: string;
-  clId: string;
-  numberOfCells: number;
-  geneName: string;
-  hgncId: string;
-  meanExpressionValue: number;
+  color: string;
+  size: number;
+  data: DataItem[][];
 }
+
+export type DataType = Array<string | number | undefined | DataCell>;
 
 @Component({
   selector: 'hra-biomarker-table',
@@ -32,12 +20,11 @@ export interface DataCell {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
-  @Input() columns: Column[] = [];
-  @Input() data: (string | number | T | undefined)[][] = [];
-  @Input() gradientPoints: GradientPoint[] = [];
+  @Input() columns: string[] = [];
+  @Input() data: DataType[] = [];
 
-  get columnIds(): string[] {
-    return this.columns.map((column) => column.label);
+  get columnsWithTypeAndCount(): string[] {
+    return ['type', 'count', ...this.columns];
   }
 
   readonly dataSource = new MatTableDataSource<unknown[]>([]);
