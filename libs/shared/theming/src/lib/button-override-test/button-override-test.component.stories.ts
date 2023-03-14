@@ -25,7 +25,7 @@ const Template =
   });
 
 //Basic button
-export const Basic = Template(`<button mat-button [color]="palette" [disabled]="disabled">Test</button>`);
+export const Basic = Template(`<button mat-button [color]="palette" [disabled]="disabled">Button</button>`);
 Basic.args = {
   palette: 'primary',
   disabled: false,

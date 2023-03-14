@@ -6,51 +6,52 @@
       font-weight: 700;
       font-size: 1rem;
       &.mat-primary {
-        background-color: vars.$primary-600-rgb;
-        color: vars.$accent-50-rgb;
+        background-color: vars.$primary-rgb;
+        color: vars.$primary-contrast-rgb;
       }
       &.mdc-button:hover {
-        background-color: vars.$primary-700-rgb;
+        background-color: vars.$primary-darker-rgb;
       }
       &.mdc-button:disabled {
-        background-color: vars.$primary-200-rgb;
-        color: vars.$primary-400-rgb;
-      }
-      &.mdc-button:active {
-        background-color: vars.$primary-800-rgb;
-        border: solid vars.$primary-800-rgb;
-        padding: 0.5rem 0.8rem;
-        background-clip: content-box;
+        background-color: vars.$primary-lighter-rgb;
+        color: vars.$primary-lighter-contrast-rgb;
       }
       &.mdc-button:focus {
-        background-color: vars.$primary-600-rgb;
-        border: 0.25rem solid #ffaa00;
+        background-color: vars.$primary-rgb;
+        border: 4px solid #ffaa00;
       }
-      &.mat-secondary {
-        background-color: vars.$primary-contrast-rgb;
-        border: vars.$primary-200-rgb solid;
-        color: vars.$primary-600-rgb;
-      }
-      &.mat-secondary:hover {
-        background-color: vars.$primary-100-rgb;
-        border: vars.$primary-200-rgb solid;
-        color: vars.$primary-700-rgb;
-      }
-      &.mat-secondary:disabled {
-        background-color: vars.$primary-contrast-rgb;
-        border: vars.$primary-contrast-50-rgb solid;
-        color: vars.$primary-contrast-50-rgb;
-      }
-      &.mat-secondary:active {
-        background-color: vars.$primary-700-rgb;
-        border: solid vars.$primary-700-rgb;
+      &.mdc-button:active {
+        background-color: vars.$primary-darker-rgb;
+        border: 2px solid vars.$primary-darker-rgb;
         padding: 0.5rem 0.8rem;
         background-clip: content-box;
       }
-      &.mat-secondary:focus {
+      &.mat-accent {
         background-color: vars.$primary-contrast-rgb;
-        color: vars.$primary-600-rgb;
-        border: 0.25rem solid #ffaa00;
+        border: 2px vars.$primary-lighter-rgb solid;
+        color: vars.$primary-rgb;
+      }
+      &.mat-accent:hover {
+        background-color: vars.$primary-lighter-rgb;
+        border: 2px vars.$primary-200-rgb solid;
+        color: vars.$primary-700-rgb;
+      }
+      &.mat-accent:disabled {
+        background-color: #e7e7e5;
+        border: 1px #9d9e9a solid;
+        color: #9d9e9a;
+      }
+      &.mat-accent:focus {
+        background-color: vars.$primary-lighter-contrast-rgb;
+        color: vars.$primary-rgb;
+        border: 4px solid #ffaa00;
+      }
+      &.mat-accent:active {
+        background-color: vars.$primary-darker-rgb;
+        border: 2px vars.$primary-darker-rgb solid;
+        padding: 0.5rem 0.8rem;
+        background-clip: content-box;
+        color: vars.$primary-lighter-contrast-rgb;
       }
     }
     a.mdc-button {
@@ -66,18 +67,18 @@
         text-decoration-color: vars.$primary-700-rgb;
         color: vars.$primary-700-rgb;
       }
-      &.mat-secondary:disabled {
+      &.mat-accent:disabled {
         // background-color: red;
         color: vars.$primary-contrast-rgb;
+      }
+      &.mat-mdc-button:focus {
+        color: vars.$primary-600-rgb;
+        border: 0.25rem solid #ffaa00;
       }
       &.mat-mdc-button:active {
         border: solid vars.$primary-700-rgb;
         text-decoration-color: vars.$warn-600-rgb;
         color: vars.$warn-600-rgb;
-      }
-      &.mat-mdc-button:focus {
-        color: vars.$primary-600-rgb;
-        border: 0.25rem solid #ffaa00;
       }
     }
   }
