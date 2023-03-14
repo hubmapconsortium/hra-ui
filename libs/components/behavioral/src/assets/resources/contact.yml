@@ -6,5 +6,6 @@ ProductLogoUrl:
   url: assets/icons/logo-icon.svg
 ContactAcknowledgement:
   type: text
-  text: We received your message. Please allow two business days for a <br>
-        response to each inquiry. Thanks for your time and expertise!
+  text: >-
+    We received your message. Please allow two business days for a <br> response
+    to each inquiry. Thanks for your time and expertise!
