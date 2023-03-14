@@ -1,9 +1,11 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Store } from '@ngxs/store';
+import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { mock } from 'jest-mock-extended';
 import { Shallow } from 'shallow-render';
 import { ContactBehaviorComponent } from './contact-behavior.component';
+
+jest.mock('@hra-ui/cdk/injectors');
 
 describe('ContactBehaviorComponent', () => {
   const testEmail = 'example@domain.com';
@@ -16,14 +18,15 @@ describe('ContactBehaviorComponent', () => {
   const selfRef = mock<MatDialogRef<void>>();
   const postRef = mock<MatDialogRef<void>>();
   const dialog = mock<MatDialog>();
-  dialog.open.mockReturnValue(postRef);
-
   let shallow: Shallow<ContactBehaviorComponent>;
+
+  jest.mocked(selectQuerySnapshot).mockReturnValue(jest.fn());
+  jest.mocked(dispatch).mockReturnValue(jest.fn());
+  dialog.open.mockReturnValue(postRef);
 
   beforeEach(() => {
     shallow = new Shallow(ContactBehaviorComponent)
       .dontMock(OverlayModule)
-      .provideMock({ provide: Store, useValue: mock() })
       .provideMock({ provide: MatDialog, useValue: dialog });
   });
 

@@ -1,15 +1,20 @@
+import { ResourceRegistryActions, ResourceRegistryState } from '@hra-ui/cdk/state';
 import { ContactService, MockContactService } from '@hra-ui/services';
 import { ContactState } from '@hra-ui/state';
-import { NgxsModule } from '@ngxs/store';
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
 import { ContactBehaviorComponent } from './contact-behavior.component';
 
 export default {
   title: 'ContactBehaviorComponent',
   component: ContactBehaviorComponent,
+  parameters: {
+    state: {
+      states: [ContactState, ResourceRegistryState],
+      actions: [new ResourceRegistryActions.LoadFromYaml('assets/resources/contact.yml')],
+    },
+  },
   decorators: [
     moduleMetadata({
-      imports: [NgxsModule.forRoot([ContactState])],
       providers: [{ provide: ContactService, useExisting: MockContactService }],
     }),
   ],
@@ -20,11 +25,4 @@ const Template: Story<ContactBehaviorComponent> = (args: ContactBehaviorComponen
 });
 
 export const Primary = Template.bind({});
-Primary.args = {
-  productLogoUrl: 'assets/icons/logo-icon.svg',
-  productTitle: 'Human Reference Atlas',
-  description: `
-    We received your message. Please allow two business days for a <br>
-    response to each inquiry. Thanks for your time and expertise!
-  `,
-};
+Primary.args = {};

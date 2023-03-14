@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, Input, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { dispatch } from '@hra-ui/cdk/injectors';
+import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
+import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import { ContactData, ContactModalComponent, InfoModalComponent } from '@hra-ui/components/molecules';
-import { SendMessage } from '@hra-ui/state';
+import { ResourceIds as Ids, SendMessage } from '@hra-ui/state';
 
 /** A Component for contact behavior which sends the message entered by the user and shows an acknowledgement */
 @Component({
@@ -15,17 +16,17 @@ import { SendMessage } from '@hra-ui/state';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactBehaviorComponent {
-  /** Input for product logo URL to displayed on the left side. */
-  @Input() productLogoUrl = '';
-
-  /** Input for product title to displayed on the left side. */
-  @Input() productTitle = '';
-
-  /** Information modal message to the user */
-  @Input() description = '';
-
   /** A template to post a message */
   @ViewChild('postMessage') readonly postMessageTemplate!: TemplateRef<void>;
+
+  /** Input for product logo URL to displayed on the left side. */
+  readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);
+
+  /** Input for product title to displayed on the left side. */
+  readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);
+
+  /** Information modal message to the user */
+  readonly description = selectQuerySnapshot(RR.anyText, Ids.ContactAcknowledgement);
 
   /** A dispatcher function to send message entered by user */
   readonly sendMessage = dispatch(SendMessage);
