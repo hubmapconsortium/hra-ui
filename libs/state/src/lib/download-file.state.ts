@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { State, Action, StateContext } from '@ngxs/store';
 import { DownloadFile, FileFormat } from './download-file.action';
-import { convertSVGToPNGUrl } from 'svg-to-png-browser';
+import { svg2pdf } from 'svg2pdf.js';
+import { jsPDF } from 'jspdf';
 
 //TODO: For testing purpose only
 const fileUrl = 'assets/compass.svg';
@@ -67,15 +68,67 @@ export class DownloadState {
   }
 
   // Converts the SVG file to PDF format
-  async convertFileToPdf(blob: Blob, fileName: string) {
-    this.blobDownload(new Blob([blob], { type: 'application/pdf' }), fileName + '.pdf');
+  async convertFileToPdf(svgBlob: Blob, fileName: string) {
+    // Convert the SVG blob to a string
+    const svgString = await svgBlob.text();
+
+    const parser = new DOMParser();
+    const svgElement = parser.parseFromString(svgString, 'image/svg+xml').documentElement;
+
+    // Create a new jsPDF object
+    const pdfDoc = new jsPDF();
+
+    // Convert the SVG to a PDF using svg2pdf.js
+    const pdfArray = await svg2pdf(svgElement, pdfDoc);
+
+    // Add the PDF array to the document
+    pdfDoc.addPage();
+    pdfDoc.addImage(pdfArray, 'PDF', 0, 0, pdfDoc.internal.pageSize.getWidth(), pdfDoc.internal.pageSize.getHeight());
+
+    // Generate the PDF output
+    const pdfOutput = pdfDoc.output('arraybuffer');
+
+    this.blobDownload(new Blob([pdfOutput], { type: 'application/pdf' }), fileName + '.pdf');
   }
 
   // Converts the SVG file to PNG format
-  convertFileToPng(blob: Blob, fileName: string) {
+  async convertFileToPng(svgBlob: Blob, fileName: string) {
+    console.log('svg to png call');
     // Replace with your file conversion code
-    convertSVGToPNGUrl(blob);
-    this.blobDownload(new Blob([blob], { type: 'image/png' }), fileName + '.png');
+    const svgUrl = URL.createObjectURL(svgBlob);
+
+    const img = new Image();
+    img.src = svgUrl;
+
+    const pngBlob = new Promise<Blob>((resolve) => {
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          throw new Error('Failed to create 2D context');
+        }
+        ctx.drawImage(img, 0, 0);
+
+        canvas.toBlob((blob) => {
+          if (blob) {
+            resolve(blob);
+          } else {
+            throw new Error('Failed to convert SVG to PNG');
+          }
+        }, 'image/png');
+      };
+    });
+
+    const url = window.URL.createObjectURL(await pngBlob);
+    const anchor = document.createElement('a');
+    document.body.appendChild(anchor);
+    anchor.download = fileName;
+    anchor.href = url;
+    anchor.click();
+    anchor.remove();
+    window.URL.revokeObjectURL(url);
   }
 
   // Converts the SVG file to Adobe Illustrator format
