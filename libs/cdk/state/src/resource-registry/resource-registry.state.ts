@@ -1,62 +1,83 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Action, State } from '@ngxs/store';
-import { LANDING_PAGE_CONTENT } from './resources/landing-page-content';
-import { Observable, tap } from 'rxjs';
-import { AddResource, LoadMarkdown } from './resource-registry.actions';
+import { load } from 'js-yaml';
+import { map, Observable } from 'rxjs';
+import { Add, AddFromYaml, AddMany, LoadFromYaml, LoadMarkdown } from './resource-registry.actions';
 import {
-  ResourceEntry,
-  ResourceId,
   ResourceRegistryContext,
   ResourceRegistryModel,
   ResourceType,
+  RESOURCE_REGISTRY_SCHEMA,
 } from './resource-registry.model';
 
-/**
- * Resource registry state
- */
+/** State keeping track of global resources */
 @State<ResourceRegistryModel>({
   name: 'resourceRegistry',
-  defaults: {
-    0: { type: ResourceType.Markdown, markdown: JSON.stringify(LANDING_PAGE_CONTENT.introData) },
-    1: { type: ResourceType.Markdown, markdown: JSON.stringify(LANDING_PAGE_CONTENT.metrics) },
-    2: { type: ResourceType.Markdown, markdown: JSON.stringify(LANDING_PAGE_CONTENT.landingPageDepth) },
-  },
+  defaults: {},
 })
 @Injectable()
 export class ResourceRegistryState {
-  /** injects httpClient */
+  /** Http service for resource loading */
   private readonly http = inject(HttpClient);
 
   /**
-   * Action for adding a resource to state
+   * Add a single entry
    * @param ctx State context
-   * @param param1 addResource action object containing id and entry
+   * @param action Action with id and entry to add
    */
-  @Action(AddResource)
-  addResource(ctx: ResourceRegistryContext, { id, entry }: AddResource): void {
-    this.addResourceEntry(ctx, id, entry);
+  @Action(Add)
+  addOne(ctx: ResourceRegistryContext, { id, entry }: Add): void {
+    this.addMany(ctx, new AddMany({ [id]: entry }));
   }
 
   /**
-   * action for loading markdown
+   * Add multiple entries
    * @param ctx State context
-   * @param param1 loadMarkdown object containing id and url
+   * @param action Action with entries to add
    */
-  @Action(LoadMarkdown)
-  loadMarkdown(ctx: ResourceRegistryContext, { id, url }: LoadMarkdown): Observable<string> {
+  @Action(AddMany)
+  addMany(ctx: ResourceRegistryContext, { entries }: AddMany): void {
+    ctx.patchState(entries);
+  }
+
+  /**
+   * Parse and add entries from yaml
+   * @param ctx State context
+   * @param action Action with raw yaml data
+   * @param filename Optional url/filename from which the data was loaded (for improved error messages)
+   */
+  @Action(AddFromYaml)
+  addYaml(ctx: ResourceRegistryContext, { yaml }: AddFromYaml, filename?: string): void {
+    const data = load(yaml, { filename });
+    const entries = RESOURCE_REGISTRY_SCHEMA.parse(data);
+    this.addMany(ctx, new AddMany(entries));
+  }
+
+  /**
+   * Load and add entries from an external yaml file
+   * @param ctx State context
+   * @param action Action with the external file url
+   * @returns An observable that completes when the entries has been added
+   */
+  @Action(LoadFromYaml)
+  loadYaml(ctx: ResourceRegistryContext, { url }: LoadFromYaml): Observable<void> {
     return this.http
       .get(url, { responseType: 'text' })
-      .pipe(tap((data) => this.addResourceEntry(ctx, id, { type: ResourceType.Markdown, markdown: data })));
+      .pipe(map((data) => this.addYaml(ctx, new AddFromYaml(data), url)));
   }
 
   /**
-   * method to add a resource entry to the state
-   * @param param0 State context
-   * @param id id of the resource
-   * @param entry resource entry to be added
+   * Adds a markdown entry with content loaded from an external file
+   * @param ctx State context
+   * @param action Action with id and url to the external markdown
+   * @returns An observable that completes when the entry has been added
    */
-  private addResourceEntry({ patchState }: ResourceRegistryContext, id: ResourceId, entry: ResourceEntry): void {
-    patchState({ [id]: entry });
+  @Action(LoadMarkdown)
+  loadMarkdown(ctx: ResourceRegistryContext, { id, url }: LoadMarkdown): Observable<void> {
+    return this.http.get(url, { responseType: 'text' }).pipe(
+      map((markdown) => new Add(id, { type: ResourceType.Markdown, markdown })),
+      map((action) => this.addOne(ctx, action))
+    );
   }
 }

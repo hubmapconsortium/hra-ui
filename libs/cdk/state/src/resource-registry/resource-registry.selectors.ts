@@ -1,61 +1,95 @@
+import { UnionMember } from '@hra-ui/utils/types';
 import { Selector } from '@ngxs/store';
 import { ResourceEntry, ResourceId, ResourceRegistryModel, ResourceType } from './resource-registry.model';
 import { ResourceRegistryState } from './resource-registry.state';
 
-/** Selectors for Resource registry */
+/** Query function for resource entry optionally with type specified */
+export type ResourceRegistryQuery = <T extends ResourceType | string = string>(
+  id: ResourceId,
+  type?: T
+) => UnionMember<ResourceEntry, 'type', T> | undefined;
+
+/** Query function for resource data */
+export type ResourceRegistryDataQuery<T> = (id: ResourceId) => T | undefined;
+
+/** Selectors for ResourceRegistry */
 export class ResourceRegistrySelectors {
   /**
-   * queries the resource registry for data and returns a function
-   * @param state resource registry state
-   * @returns value of the resource
+   * Queries for a resource entry
+   * @param state Current state
+   * @returns Resource query function
    */
   @Selector([ResourceRegistryState])
-  static query(state: ResourceRegistryModel): (id: ResourceId, type: ResourceType) => ResourceEntry | undefined {
-    return (id, type) => this.getEntryByType(state, id, type);
+  static query(state: ResourceRegistryModel): ResourceRegistryQuery {
+    return (id, type) => ResourceRegistrySelectors.getEntry(state, id, type);
   }
 
   /**
-   * Selector for getting url from the resource registry
-   * @param state resource registry state
-   * @param id id of the resource
-   * @returns resource data
+   * Query for any text data
+   * @param state Current state
+   * @returns Text data query function
    */
   @Selector([ResourceRegistryState])
-  static url(state: ResourceRegistryModel): (id: ResourceId) => string | undefined {
-    return (id) => this.getEntryByType(state, id, ResourceType.Url)?.url;
+  static anyText(state: ResourceRegistryModel): ResourceRegistryDataQuery<string> {
+    return (id) => {
+      const entry = ResourceRegistrySelectors.getEntry(state, id);
+      switch (entry?.type) {
+        case ResourceType.Markdown:
+          return entry.markdown as string;
+
+        case ResourceType.Text:
+          return entry.text as string;
+
+        default:
+          return undefined;
+      }
+    };
   }
 
   /**
-   * Selector for markdown content
-   * @param state resource registry state
-   * @param id id of the resource
-   * @returns markdown of the resource
+   * Query for markdown data
+   * @param state Current state
+   * @returns Markdown data query function
    */
   @Selector([ResourceRegistryState])
-  static markdown(state: ResourceRegistryModel): (id: ResourceId) => string | undefined {
-    return (id) => this.getEntryByType(state, id, ResourceType.Markdown)?.markdown;
+  static markdown(state: ResourceRegistryModel): ResourceRegistryDataQuery<string> {
+    return (id) => ResourceRegistrySelectors.getEntry(state, id, ResourceType.Markdown)?.markdown;
   }
 
   /**
-   * get resource entry based on type
-   * @param state resource registry state
-   * @param id id of the resource
-   * @param type type of the resource
+   * Query for text data
+   * @param state Current state
+   * @returns Text data query function
    */
-  private static getEntryByType<T extends ResourceType>(
+  @Selector([ResourceRegistryState])
+  static text(state: ResourceRegistryModel): ResourceRegistryDataQuery<string> {
+    return (id) => ResourceRegistrySelectors.getEntry(state, id, ResourceType.Text)?.text;
+  }
+
+  /**
+   * Query for an url
+   * @param state Current state
+   * @returns Url query function
+   */
+  @Selector([ResourceRegistryState])
+  static url(state: ResourceRegistryModel): ResourceRegistryDataQuery<string> {
+    return (id) => ResourceRegistrySelectors.getEntry(state, id, ResourceType.Url)?.url;
+  }
+
+  /**
+   * Gets a resource entry by id and optionally type
+   * @param state Resource registry state
+   * @param id Entry id
+   * @param type Optional entry type
+   * @returns The entry if found, undefined otherwise
+   */
+  private static getEntry<T extends ResourceType | string>(
     state: ResourceRegistryModel,
     id: ResourceId,
-    type: T
-  ): Extract<ResourceEntry, { type: T }> | undefined;
-  /** get resource entry by type if type is a string */
-  private static getEntryByType(state: ResourceRegistryModel, id: ResourceId, type: string): ResourceEntry | undefined;
-  /** get resource entry by type if type is of ResourceType */
-  private static getEntryByType(
-    state: ResourceRegistryModel,
-    id: ResourceId,
-    type: ResourceType | string
-  ): ResourceEntry | undefined {
-    const entry = state[id];
-    return entry?.type === type ? entry : undefined;
+    type?: T
+  ): UnionMember<ResourceEntry, 'type', T> | undefined {
+    const entry = state[id] as UnionMember<ResourceEntry, 'type', T>;
+    const typeMatches = type === undefined || entry?.type === type;
+    return typeMatches ? entry : undefined;
   }
 }
