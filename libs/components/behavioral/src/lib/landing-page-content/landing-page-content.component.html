@@ -1,18 +1,18 @@
 <hra-landing-page-intro
-  [title]="introData.title"
-  [img]="introData.img"
-  [partners]="introData.partners"
-  [description]="introData.description"
-  [moreText]="introData.moreText"
+  [title]="landingPageIntroTitle() ?? ''"
+  [img]="landingPageIntroImg() ?? ''"
+  [partners]="landingPageIntroPartners() ?? ''"
+  [description]="landingPageIntroDescription() ?? ''"
+  [moreText]="landingPageIntroMoreText() ?? ''"
   (moreClick)="exploreFTU()"
 >
 </hra-landing-page-intro>
-<hra-metrics class="metrics" [title]="metrics.title" [metrics]="metrics.metrics" [logo]="metrics.logo"></hra-metrics>
+<hra-metrics class="metrics" [title]="metricsTitle() ?? ''" [metrics]="[]" [logo]="metricsLogo() ?? ''"></hra-metrics>
 <hra-landing-page-in-depth
   class="landing-page-content"
-  [title]="landingPageDepth.title"
-  [description]="landingPageDepth.description"
-  [moreText]="landingPageDepth.moreText"
-  [img]="landingPageDepth.img"
+  [title]="landingPageDepthTitle() ?? ''"
+  [description]="landingPageDepthDescription() ?? ''"
+  [moreText]="landingPageDepthMoreText() ?? ''"
+  [img]="landingPageDepthImg() ?? ''"
 >
 </hra-landing-page-in-depth>

@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LandingPageInDepthComponent, LandingPageIntroComponent, MetricsComponent } from '@hra-ui/components/molecules';
-import { ResourceRegistrySelectors } from '@hra-ui/cdk/state';
-import { selectSnapshot } from '@hra-ui/cdk/injectors';
+import { ResourceRegistryActions, ResourceRegistrySelectors } from '@hra-ui/cdk/state';
+import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
+import { ResourceIds } from '@hra-ui/state';
 
 /** Component for LandingPageContent Behavior */
 @Component({
@@ -13,17 +14,37 @@ import { selectSnapshot } from '@hra-ui/cdk/injectors';
   styleUrls: ['./landing-page-content.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LandingPageContentComponent implements OnInit {
-  private readonly markdown = selectSnapshot(ResourceRegistrySelectors.markdown)();
-  introData = JSON.parse(this.markdown(0) as string);
-  metrics = JSON.parse(this.markdown(1) as string);
-  landingPageDepth = JSON.parse(this.markdown(2) as string);
+export class LandingPageContentComponent {
+  loadYaml = dispatch(ResourceRegistryActions.LoadFromYaml);
+  landingPageIntroTitle = selectQuerySnapshot(ResourceRegistrySelectors.markdown, ResourceIds.LandingPageTitle);
+  landingPageIntroDescription = selectQuerySnapshot(
+    ResourceRegistrySelectors.markdown,
+    ResourceIds.LandingPageDescription
+  );
+  landingPageIntroPartners = selectQuerySnapshot(ResourceRegistrySelectors.markdown, ResourceIds.LandingPagePartners);
+  landingPageIntroMoreText = selectQuerySnapshot(
+    ResourceRegistrySelectors.markdown,
+    ResourceIds.LandingPageIntroMoreText
+  );
+  landingPageIntroImg = selectQuerySnapshot(ResourceRegistrySelectors.url, ResourceIds.LandingPageIntroImg);
+  metricsTitle = selectQuerySnapshot(ResourceRegistrySelectors.text, ResourceIds.MetricsTitle);
+  metricsLogo = selectQuerySnapshot(ResourceRegistrySelectors.url, ResourceIds.MetricsLogo);
+  landingPageDepthTitle = selectQuerySnapshot(ResourceRegistrySelectors.markdown, ResourceIds.LandingPageDepthTitle);
+  landingPageDepthDescription = selectQuerySnapshot(
+    ResourceRegistrySelectors.markdown,
+    ResourceIds.LandingPageDepthDescription
+  );
+  landingPageDepthMoreText = selectQuerySnapshot(
+    ResourceRegistrySelectors.markdown,
+    ResourceIds.LandingPageDepthMoreText
+  );
+  landingPageDepthImg = selectQuerySnapshot(ResourceRegistrySelectors.url, ResourceIds.LandingPageDepthImg);
   /** Function to explore FTU when moreClick event is emitted */
   exploreFTU(): void {
     //TODO
   }
 
-  ngOnInit(): void {
-    console.log(this.introData);
+  constructor() {
+    this.loadYaml('assets/landing-page-content.yml');
   }
 }
