@@ -1,16 +1,16 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Host, HostBinding, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'hra-biomarker-table-data-icon',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './biomarker-table-data-icon.component.html',
+  template: '',
   styleUrls: ['./biomarker-table-data-icon.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BiomarkerTableDataIconComponent {
-  @Input() color = '';
-
+  @HostBinding('style.background-color') @Input() color = '';
+  // TODO
   @Input() size = 0;
 }

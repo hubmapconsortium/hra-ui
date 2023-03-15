@@ -24,8 +24,9 @@
       {{ column }}
     </th>
 
-    <td class="icon" mat-cell *matCellDef="let element">
+    <td class="icon-cell" mat-cell *matCellDef="let element">
       <hra-biomarker-table-data-icon
+        class="icon"
         *ngIf="element[index + 2] !== undefined"
         [color]="element[index + 2].color"
         [size]="element[index + 2].size"
