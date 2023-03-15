@@ -35,20 +35,20 @@ Metrics:
   type: metrics
   metrics:
     - description: consortia
-      value: "17"
-      icon: "/assets/diversity.svg"
+      value: '17'
+      icon: '/assets/diversity.svg'
     - description: publications
-      value: "1,000+"
-      icon: "/assets/publications.svg"
+      value: '1,000+'
+      icon: '/assets/publications.svg'
     - description: experts
-      value: "250+"
-      icon: "/assets/experts.svg"
+      value: '250+'
+      icon: '/assets/experts.svg'
     - description: anatomical structures
-      value: "2,665"
-      icon: "/assets/structures.svg"
+      value: '2,665'
+      icon: '/assets/structures.svg'
     - description: cell types
-      value: "953"
-      icon: "/assets/celltypes.svg"
+      value: '953'
+      icon: '/assets/celltypes.svg'
     - description: biomarkers
-      value: "2,842"
-      icon: "/assets/biomarkers.svg"
+      value: '2,842'
+      icon: '/assets/biomarkers.svg'
