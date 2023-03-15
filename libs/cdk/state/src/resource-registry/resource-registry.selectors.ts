@@ -25,6 +25,48 @@ export class ResourceRegistrySelectors {
   }
 
   /**
+   * Query for any text data
+   * @param state Current state
+   * @returns Text data query function
+   */
+  @Selector([ResourceRegistryState])
+  static anyText(state: ResourceRegistryModel): ResourceRegistryDataQuery<string> {
+    return (id) => {
+      const entry = ResourceRegistrySelectors.getEntry(state, id);
+      switch (entry?.type) {
+        case ResourceType.Markdown:
+          return entry.markdown as string;
+
+        case ResourceType.Text:
+          return entry.text as string;
+
+        default:
+          return undefined;
+      }
+    };
+  }
+
+  /**
+   * Query for markdown data
+   * @param state Current state
+   * @returns Markdown data query function
+   */
+  @Selector([ResourceRegistryState])
+  static markdown(state: ResourceRegistryModel): ResourceRegistryDataQuery<string> {
+    return (id) => ResourceRegistrySelectors.getEntry(state, id, ResourceType.Markdown)?.markdown;
+  }
+
+  /**
+   * Query for text data
+   * @param state Current state
+   * @returns Text data query function
+   */
+  @Selector([ResourceRegistryState])
+  static text(state: ResourceRegistryModel): ResourceRegistryDataQuery<string> {
+    return (id) => ResourceRegistrySelectors.getEntry(state, id, ResourceType.Text)?.text;
+  }
+
+  /**
    * Query for an url
    * @param state Current state
    * @returns Url query function
@@ -32,16 +74,6 @@ export class ResourceRegistrySelectors {
   @Selector([ResourceRegistryState])
   static url(state: ResourceRegistryModel): ResourceRegistryDataQuery<string> {
     return (id) => ResourceRegistrySelectors.getEntry(state, id, ResourceType.Url)?.url;
-  }
-
-  /**
-   * Query for a markdown data
-   * @param state Current state
-   * @returns Markdown data query function
-   */
-  @Selector([ResourceRegistryState])
-  static markdown(state: ResourceRegistryModel): ResourceRegistryDataQuery<string> {
-    return (id) => this.getEntry(state, id, ResourceType.Markdown)?.markdown;
   }
 
   /**

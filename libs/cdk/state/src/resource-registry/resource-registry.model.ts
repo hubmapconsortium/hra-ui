@@ -7,6 +7,7 @@ export type ResourceId = z.infer<(typeof RESOURCE_REGISTRY_SCHEMA)['keySchema']>
 /** Built in resource types with additional support */
 export enum ResourceType {
   Markdown = 'markdown',
+  Text = 'text',
   Url = 'url',
 }
 
@@ -28,6 +29,7 @@ export const RESOURCE_REGISTRY_SCHEMA = z.record(
   z
     .discriminatedUnion('type', [
       z.object({ type: z.literal(ResourceType.Markdown), markdown: z.string() }),
+      z.object({ type: z.literal(ResourceType.Text), text: z.string() }),
       z.object({ type: z.literal(ResourceType.Url), url: z.string() }),
     ])
     .or(z.object({ type: z.string() }).passthrough())
