@@ -1,36 +1,45 @@
 import { StateContext } from '@ngxs/store';
+import { z } from 'zod';
 
-/** Unqiue identifier for a resource */
-export enum ResourceId {}
+/** Unique identifier for a resource */
+export type ResourceId = z.infer<(typeof RESOURCE_REGISTRY_SCHEMA)['keySchema']>;
 
-/** Enum to hold different types of resources */
+/** Built in resource types with additional support */
 export enum ResourceType {
-  Markdown = 'md',
+  Markdown = 'markdown',
+  Text = 'text',
   Url = 'url',
-  Image = 'image',
 }
 
-/** type to hold Resource object for markdown */
-export interface MarkdownResource {
-  /** indicates type for resource */
-  type: ResourceType.Markdown;
-  /** markdown content */
-  markdown: string;
-}
+/** Discriminated union of all resource interfaces */
+export type ResourceEntry = z.infer<(typeof RESOURCE_REGISTRY_SCHEMA)['valueSchema']>;
 
-/** type to hold resource data for Url */
-export interface UrlResource {
-  /** indicates type for resource */
-  type: ResourceType.Url;
-  /** url of the resource*/
-  url: string;
-}
-
-/** Type for different resource objects  */
-export type ResourceEntry = { type: string } | MarkdownResource | UrlResource;
-
-/** Type for resource registry model */
-export type ResourceRegistryModel = Record<ResourceId, ResourceEntry>;
+/** State data model */
+export type ResourceRegistryModel = z.infer<typeof RESOURCE_REGISTRY_SCHEMA>;
 
 /** Context type for action handlers */
 export type ResourceRegistryContext = StateContext<ResourceRegistryModel>;
+
+/** Resource registry schema validator */
+export const RESOURCE_REGISTRY_SCHEMA = z.record(
+  z
+    .string()
+    .transform((id) => `ResourceId:'${id}'`)
+    .brand('ResourceId'),
+  z
+    .discriminatedUnion('type', [
+      z.object({ type: z.literal(ResourceType.Markdown), markdown: z.string() }),
+      z.object({ type: z.literal(ResourceType.Text), text: z.string() }),
+      z.object({ type: z.literal(ResourceType.Url), url: z.string() }),
+    ])
+    .or(z.object({ type: z.string() }).passthrough())
+);
+
+/**
+ * Creates a new resource identifier
+ * @param id Unique resource identifier
+ * @returns A new identifier
+ */
+export function createResourceId(id: string): ResourceId {
+  return RESOURCE_REGISTRY_SCHEMA.keySchema.parse(id);
+}
