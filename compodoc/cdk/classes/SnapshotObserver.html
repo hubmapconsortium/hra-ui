@@ -131,7 +131,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">injectors/src/lib/select-snapshot/select-snapshot.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">injectors/src/lib/select-snapshot/select-snapshot.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -202,8 +202,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">injectors/src/lib/select-snapshot/select-snapshot.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">injectors/src/lib/select-snapshot/select-snapshot.ts:57</a></div>
                 </td>
             </tr>
 
@@ -241,8 +241,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">injectors/src/lib/select-snapshot/select-snapshot.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">injectors/src/lib/select-snapshot/select-snapshot.ts:48</a></div>
                 </td>
             </tr>
 
@@ -313,8 +313,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">injectors/src/lib/select-snapshot/select-snapshot.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">injectors/src/lib/select-snapshot/select-snapshot.ts:27</a></div>
                 </td>
             </tr>
 
@@ -358,8 +358,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">injectors/src/lib/select-snapshot/select-snapshot.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">injectors/src/lib/select-snapshot/select-snapshot.ts:39</a></div>
                 </td>
             </tr>
 
@@ -425,12 +425,10 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectorRef, inject } from &#x27;@angular/core&#x27;;
+import type { Any } from &#x27;@hra-ui/utils/types&#x27;;
 import { StateToken, Store } from &#x27;@ngxs/store&#x27;;
 import { Observer, takeUntil } from &#x27;rxjs&#x27;;
-
 import { injectOnDestroy } from &#x27;../on-destroy/on-destroy&#x27;;
-
-import type { Any, AnyFunction, SignatureOf } from &#x27;@hra-ui/utils/types&#x27;;
 
 /** Observer storing the latest value from a snapshot stream */
 class SnapshotObserver&lt;T&gt; implements Observer&lt;T&gt; {
@@ -514,11 +512,15 @@ export function selectSnapshot&lt;T&gt;(selector: SelectSnapshotSelector&lt;T&gt
  * Automatically marks components, directives, or pipes for change detection whenever
  * a new value is available
  * @param selector Store query selector
- * @returns A snapshot function taking the same arguments as the query selector
+ * @param boundArgs Optional bound query arguments
+ * @returns A snapshot function taking the same arguments as the query selector (excluding bound arguments)
  */
-export function selectQuerySnapshot&lt;F extends AnyFunction&gt;(selector: SelectSnapshotSelector&lt;F&gt;): SignatureOf&lt;F&gt; {
+export function selectQuerySnapshot&lt;Res, BoundArgs extends Any[], QueryArgs extends Any[]&gt;(
+  selector: SelectSnapshotSelector&lt;(...args: [...BoundArgs, ...QueryArgs]) &#x3D;&gt; Res&gt;,
+  ...boundArgs: BoundArgs
+): (...args: QueryArgs) &#x3D;&gt; Res {
   const get &#x3D; selectSnapshot(selector);
-  return ((...args) &#x3D;&gt; get()(...args)) as SignatureOf&lt;F&gt;;
+  return (...args) &#x3D;&gt; get()(...boundArgs, ...args);
 }
 </code></pre>
     </div>

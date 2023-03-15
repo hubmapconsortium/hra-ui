@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >AddResource</li>
+  <li >LoadFromYaml</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -70,42 +70,13 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Action for Adding Resource</p>
+                <p>Add resources from a remote yaml file</p>
 
             </p>
 
 
 
 
-            <section>
-    <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                    <span class="modifier">Static</span>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#type" >type</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-
-
-
-
-
-
-        </tbody>
-    </table>
-</section>
 
             <section>
     <h3 id="constructor">Constructor</h3>
@@ -113,18 +84,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(id: <a href="../undefineds/ResourceId.html" target="_self">ResourceId</a>, entry: <a href="../undefineds/ResourceEntry.html" target="_self">ResourceEntry</a>)</code>
+<code>constructor(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">state/src/resource-registry/resource-registry.actions.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">state/src/resource-registry/resource-registry.actions.ts:42</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Creates an instance of AddResource</p>
+                            <div class="io-description"><p>Loads a remote yaml file and add resources</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -139,10 +110,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>id</td>
+                                                        <td>url</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../miscellaneous/enumerations.html#ResourceId" target="_self" >ResourceId</a></code>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -150,23 +121,7 @@
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>Id of resource</p>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>entry</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../miscellaneous/typealiases.html#ResourceEntry" target="_self" >ResourceEntry</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>resource to be added</p>
+                                                                <p>Remote yaml file url</p>
 
                                                         </td>
                                                 </tr>
@@ -179,51 +134,6 @@
         </table>
 </section>
 
-            <section>
-    
-    <h3 id="inputs">
-        Properties
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="type"></a>
-                    <span class="name">
-                            <span class="modifier">Static</span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>type</b></span>
-                        <a href="#type"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;[ResourceRegistry] AddResource&#x27;</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">state/src/resource-registry/resource-registry.actions.ts:19</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Action type</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
 
 
 
@@ -235,32 +145,67 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ResourceEntry, ResourceId } from &#x27;./resource-registry.model&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ActionGroup } from &#x27;../actions/actions&#x27;;
+import { ResourceEntry, ResourceId } from &#x27;./resource-registry.model&#x27;;
 
-/** Action for Loading Markdown resource */
-export class LoadMarkdown {
-  /** Action type */
-  static readonly type &#x3D; &#x27;[ResourceRegistry] LoadMarkdown&#x27;;
+/** Base action factory */
+const Action &#x3D; ActionGroup(&#x27;ResourceRegistry&#x27;);
 
+/** Add a single resource */
+export class Add extends Action(&#x27;Add&#x27;) {
   /**
-   * Creates an instance of LoadMarkdown
-   * @param id Id of resource
-   * @param url url of the resource to load
+   * Add or overwrite a single resource
+   * @param id Resource identifier
+   * @param entry Resource entry
    */
-  constructor(readonly id: ResourceId, readonly url: string) {}
+  constructor(readonly id: ResourceId, readonly entry: ResourceEntry) {
+    super();
+  }
 }
 
-/** Action for Adding Resource */
-export class AddResource {
-  /** Action type */
-  static readonly type &#x3D; &#x27;[ResourceRegistry] AddResource&#x27;;
-
+/** Add multiple resources at once */
+export class AddMany extends Action(&#x27;Add Many&#x27;) {
   /**
-   * Creates an instance of AddResource
-   * @param id Id of resource
-   * @param entry resource to be added
+   * Add or overwrite multiple resources
+   * @param entries New resources
    */
-  constructor(readonly id: ResourceId, readonly entry: ResourceEntry) {}
+  constructor(readonly entries: Partial&lt;Record&lt;ResourceId, ResourceEntry&gt;&gt;) {
+    super();
+  }
+}
+
+/** Add resources from raw yaml data */
+export class AddFromYaml extends Action(&#x27;Add from Yaml&#x27;) {
+  /**
+   * Add resources from unparsed yaml
+   * @param yaml Unparsed yaml data
+   */
+  constructor(readonly yaml: string) {
+    super();
+  }
+}
+
+/** Add resources from a remote yaml file */
+export class LoadFromYaml extends Action(&#x27;Load from Yaml&#x27;) {
+  /**
+   * Loads a remote yaml file and add resources
+   * @param url Remote yaml file url
+   */
+  constructor(readonly url: string) {
+    super();
+  }
+}
+
+/** Add a markdown resource with data loaded from a remote file */
+export class LoadMarkdown extends Action(&#x27;Load Markdown&#x27;) {
+  /**
+   * Loads a remote markdown file and add a resource
+   * @param id Resource id
+   * @param url Remote markdown file url
+   */
+  constructor(readonly id: ResourceId, readonly url: string) {
+    super();
+  }
 }
 </code></pre>
     </div>
@@ -300,7 +245,7 @@ export class AddResource {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'AddResource.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'LoadFromYaml.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

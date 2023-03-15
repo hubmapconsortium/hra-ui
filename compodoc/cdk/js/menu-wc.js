@@ -67,7 +67,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
-                                <a href="classes/AddResource.html" data-type="entity-link" >AddResource</a>
+                                <a href="classes/Add.html" data-type="entity-link" >Add</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/AddFromYaml.html" data-type="entity-link" >AddFromYaml</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/AddMany.html" data-type="entity-link" >AddMany</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/LoadFromYaml.html" data-type="entity-link" >LoadFromYaml</a>
                             </li>
                             <li class="link">
                                 <a href="classes/LoadMarkdown.html" data-type="entity-link" >LoadMarkdown</a>
@@ -105,13 +114,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
+                                <a href="interfaces/ActionConstructor.html" data-type="entity-link" >ActionConstructor</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/DestructorScope.html" data-type="entity-link" >DestructorScope</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/MarkdownResource.html" data-type="entity-link" >MarkdownResource</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/UrlResource.html" data-type="entity-link" >UrlResource</a>
                             </li>
                         </ul>
                     </li>

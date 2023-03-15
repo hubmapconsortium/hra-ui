@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >LoadMarkdown</li>
+  <li >Add</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -70,7 +70,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Add a markdown resource with data loaded from a remote file</p>
+                <p>Add a single resource</p>
 
             </p>
 
@@ -84,18 +84,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(id: <a href="../undefineds/ResourceId.html" target="_self">ResourceId</a>, url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>constructor(id: <a href="../undefineds/ResourceId.html" target="_self">ResourceId</a>, entry: <a href="../undefineds/ResourceEntry.html" target="_self">ResourceEntry</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">state/src/resource-registry/resource-registry.actions.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">state/src/resource-registry/resource-registry.actions.ts:8</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Loads a remote markdown file and add a resource</p>
+                            <div class="io-description"><p>Add or overwrite a single resource</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -121,15 +121,15 @@
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>Resource id</p>
+                                                                <p>Resource identifier</p>
 
                                                         </td>
                                                 </tr>
                                                 <tr>
-                                                        <td>url</td>
+                                                        <td>entry</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                        <code><a href="../miscellaneous/typealiases.html#ResourceEntry" target="_self" >ResourceEntry</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -137,7 +137,7 @@
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>Remote markdown file url</p>
+                                                                <p>Resource entry</p>
 
                                                         </td>
                                                 </tr>
@@ -261,7 +261,7 @@ export class LoadMarkdown extends Action(&#x27;Load Markdown&#x27;) {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'LoadMarkdown.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'Add.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

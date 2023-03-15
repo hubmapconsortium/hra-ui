@@ -70,7 +70,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Selectors for Resource registry</p>
+                <p>Selectors for ResourceRegistry</p>
 
             </p>
 
@@ -92,11 +92,19 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Static</span>
+                                <a href="#anyText" >anyText</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
                                 <a href="#markdown" >markdown</a>
                             </li>
                             <li>
                                     <span class="modifier">Static</span>
                                 <a href="#query" >query</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#text" >text</a>
                             </li>
                             <li>
                                     <span class="modifier">Static</span>
@@ -125,18 +133,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="markdown"></a>
+                    <a name="anyText"></a>
                     <span class="name">
                         <span class="modifier">Static</span>
-                        <span ><b>markdown</b></span>
-                        <a href="#markdown"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>anyText</b></span>
+                        <a href="#anyText"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>markdown(state: <a href="../undefineds/ResourceRegistryModel.html" target="_self">ResourceRegistryModel</a>, id: <a href="../undefineds/ResourceId.html" target="_self">ResourceId</a>)</code>
+                    <code>anyText(state: <a href="../undefineds/ResourceRegistryModel.html" target="_self">ResourceRegistryModel</a>)</code>
                 </td>
             </tr>
 
@@ -150,15 +158,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:33</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Selector for markdown content</p>
+                    <div class="io-description"><p>Query for any text data</p>
 </div>
 
                     <div class="io-description">
@@ -186,23 +194,7 @@
 
 
                                     <td>
-                                        <p>resource registry state</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="../miscellaneous/enumerations.html#ResourceId" target="_self" >ResourceId</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>id of the resource</p>
+                                        <p>Current state</p>
 
                                     </td>
                                 </tr>
@@ -212,11 +204,97 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>string | undefined</code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ResourceRegistryDataQuery" target="_self" >ResourceRegistryDataQuery&lt;string&gt;</a></code>
 
                     </div>
                     <div class="io-description">
-                        <p>markdown of the resource</p>
+                        <p>Text data query function</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="markdown"></a>
+                    <span class="name">
+                        <span class="modifier">Static</span>
+                        <span ><b>markdown</b></span>
+                        <a href="#markdown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>markdown(state: <a href="../undefineds/ResourceRegistryModel.html" target="_self">ResourceRegistryModel</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Selector([&#x27;ResourceRegistryState&#x27;])<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:55</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Query for markdown data</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>state</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#ResourceRegistryModel" target="_self" >ResourceRegistryModel</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Current state</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ResourceRegistryDataQuery" target="_self" >ResourceRegistryDataQuery&lt;string&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Markdown data query function</p>
 
                     </div>
                 </td>
@@ -242,18 +320,25 @@
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Selector([&#x27;ResourceRegistryState&#x27;])<br /></code>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:23</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>queries the resource registry for data and returns a function</p>
+                    <div class="io-description"><p>Queries for a resource entry</p>
 </div>
 
                     <div class="io-description">
@@ -281,7 +366,7 @@
 
 
                                     <td>
-                                        <p>resource registry state</p>
+                                        <p>Current state</p>
 
                                     </td>
                                 </tr>
@@ -291,11 +376,97 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ResourceEntry" target="_self" >ResourceEntry | undefined</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ResourceRegistryQuery" target="_self" >ResourceRegistryQuery</a></code>
 
                     </div>
                     <div class="io-description">
-                        <p>value of the resource</p>
+                        <p>Resource query function</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="text"></a>
+                    <span class="name">
+                        <span class="modifier">Static</span>
+                        <span ><b>text</b></span>
+                        <a href="#text"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>text(state: <a href="../undefineds/ResourceRegistryModel.html" target="_self">ResourceRegistryModel</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Selector([&#x27;ResourceRegistryState&#x27;])<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:65</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Query for text data</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>state</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#ResourceRegistryModel" target="_self" >ResourceRegistryModel</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Current state</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ResourceRegistryDataQuery" target="_self" >ResourceRegistryDataQuery&lt;string&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Text data query function</p>
 
                     </div>
                 </td>
@@ -317,7 +488,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>url(state: <a href="../undefineds/ResourceRegistryModel.html" target="_self">ResourceRegistryModel</a>, id: <a href="../undefineds/ResourceId.html" target="_self">ResourceId</a>)</code>
+                    <code>url(state: <a href="../undefineds/ResourceRegistryModel.html" target="_self">ResourceRegistryModel</a>)</code>
                 </td>
             </tr>
 
@@ -331,15 +502,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:75</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Selector for getting url from the resource registry</p>
+                    <div class="io-description"><p>Query for an url</p>
 </div>
 
                     <div class="io-description">
@@ -367,23 +538,7 @@
 
 
                                     <td>
-                                        <p>resource registry state</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="../miscellaneous/enumerations.html#ResourceId" target="_self" >ResourceId</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>id of the resource</p>
+                                        <p>Current state</p>
 
                                     </td>
                                 </tr>
@@ -393,11 +548,11 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ResourceEntry" target="_self" >ResourceEntry | undefined</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ResourceRegistryDataQuery" target="_self" >ResourceRegistryDataQuery&lt;string&gt;</a></code>
 
                     </div>
                     <div class="io-description">
-                        <p>resource data</p>
+                        <p>Url query function</p>
 
                     </div>
                 </td>
@@ -414,64 +569,99 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Selector } from &#x27;@ngxs/store&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UnionMember } from &#x27;@hra-ui/utils/types&#x27;;
+import { Selector } from &#x27;@ngxs/store&#x27;;
 import { ResourceEntry, ResourceId, ResourceRegistryModel, ResourceType } from &#x27;./resource-registry.model&#x27;;
 import { ResourceRegistryState } from &#x27;./resource-registry.state&#x27;;
 
-/** Selectors for Resource registry */
+/** Query function for resource entry optionally with type specified */
+export type ResourceRegistryQuery &#x3D; &lt;T extends ResourceType | string &#x3D; string&gt;(
+  id: ResourceId,
+  type?: T
+) &#x3D;&gt; UnionMember&lt;ResourceEntry, &#x27;type&#x27;, T&gt; | undefined;
+
+/** Query function for resource data */
+export type ResourceRegistryDataQuery&lt;T&gt; &#x3D; (id: ResourceId) &#x3D;&gt; T | undefined;
+
+/** Selectors for ResourceRegistry */
 export class ResourceRegistrySelectors {
   /**
-   * queries the resource registry for data and returns a function
-   * @param state resource registry state
-   * @returns value of the resource
-   */
-  static query(state: ResourceRegistryModel): (id: ResourceId, type: ResourceType) &#x3D;&gt; ResourceEntry | undefined {
-    return (id, type) &#x3D;&gt; this.getEntryByType(state, id, type);
-  }
-
-  /**
-   * Selector for getting url from the resource registry
-   * @param state resource registry state
-   * @param id id of the resource
-   * @returns resource data
+   * Queries for a resource entry
+   * @param state Current state
+   * @returns Resource query function
    */
   @Selector([ResourceRegistryState])
-  static url(state: ResourceRegistryModel, id: ResourceId): ResourceEntry | undefined {
-    return this.query(state)(id, ResourceType.Url);
+  static query(state: ResourceRegistryModel): ResourceRegistryQuery {
+    return (id, type) &#x3D;&gt; ResourceRegistrySelectors.getEntry(state, id, type);
   }
 
   /**
-   * Selector for markdown content
-   * @param state resource registry state
-   * @param id id of the resource
-   * @returns markdown of the resource
+   * Query for any text data
+   * @param state Current state
+   * @returns Text data query function
    */
   @Selector([ResourceRegistryState])
-  static markdown(state: ResourceRegistryModel, id: ResourceId): string | undefined {
-    return this.getEntryByType(state, id, ResourceType.Markdown)?.markdown;
+  static anyText(state: ResourceRegistryModel): ResourceRegistryDataQuery&lt;string&gt; {
+    return (id) &#x3D;&gt; {
+      const entry &#x3D; ResourceRegistrySelectors.getEntry(state, id);
+      switch (entry?.type) {
+        case ResourceType.Markdown:
+          return entry.markdown as string;
+
+        case ResourceType.Text:
+          return entry.text as string;
+
+        default:
+          return undefined;
+      }
+    };
   }
 
   /**
-   * get resource entry based on type
-   * @param state resource registry state
-   * @param id id of the resource
-   * @param type type of the resource
+   * Query for markdown data
+   * @param state Current state
+   * @returns Markdown data query function
    */
-  private static getEntryByType&lt;T extends ResourceType&gt;(
+  @Selector([ResourceRegistryState])
+  static markdown(state: ResourceRegistryModel): ResourceRegistryDataQuery&lt;string&gt; {
+    return (id) &#x3D;&gt; ResourceRegistrySelectors.getEntry(state, id, ResourceType.Markdown)?.markdown;
+  }
+
+  /**
+   * Query for text data
+   * @param state Current state
+   * @returns Text data query function
+   */
+  @Selector([ResourceRegistryState])
+  static text(state: ResourceRegistryModel): ResourceRegistryDataQuery&lt;string&gt; {
+    return (id) &#x3D;&gt; ResourceRegistrySelectors.getEntry(state, id, ResourceType.Text)?.text;
+  }
+
+  /**
+   * Query for an url
+   * @param state Current state
+   * @returns Url query function
+   */
+  @Selector([ResourceRegistryState])
+  static url(state: ResourceRegistryModel): ResourceRegistryDataQuery&lt;string&gt; {
+    return (id) &#x3D;&gt; ResourceRegistrySelectors.getEntry(state, id, ResourceType.Url)?.url;
+  }
+
+  /**
+   * Gets a resource entry by id and optionally type
+   * @param state Resource registry state
+   * @param id Entry id
+   * @param type Optional entry type
+   * @returns The entry if found, undefined otherwise
+   */
+  private static getEntry&lt;T extends ResourceType | string&gt;(
     state: ResourceRegistryModel,
     id: ResourceId,
-    type: T
-  ): Extract&lt;ResourceEntry, { type: T }&gt; | undefined;
-  /** get resource entry by type if type is a string */
-  private static getEntryByType(state: ResourceRegistryModel, id: ResourceId, type: string): ResourceEntry | undefined;
-  /** get resource entry by type if type is of ResourceType */
-  private static getEntryByType(
-    state: ResourceRegistryModel,
-    id: ResourceId,
-    type: ResourceType | string
-  ): ResourceEntry | undefined {
-    const entry &#x3D; state[id];
-    return entry?.type &#x3D;&#x3D;&#x3D; type ? entry : undefined;
+    type?: T
+  ): UnionMember&lt;ResourceEntry, &#x27;type&#x27;, T&gt; | undefined {
+    const entry &#x3D; state[id] as UnionMember&lt;ResourceEntry, &#x27;type&#x27;, T&gt;;
+    const typeMatches &#x3D; type &#x3D;&#x3D;&#x3D; undefined || entry?.type &#x3D;&#x3D;&#x3D; type;
+    return typeMatches ? entry : undefined;
   }
 }
 </code></pre>

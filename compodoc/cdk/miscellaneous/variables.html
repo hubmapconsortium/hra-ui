@@ -61,6 +61,15 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#Action" title="state/src/resource-registry/resource-registry.actions.ts" ><b>Action</b>&nbsp;&nbsp;&nbsp;(state/.../resource-registry.actions.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#actionTypeRegistry" title="state/src/actions/action-type-registry.ts" ><b>actionTypeRegistry</b>&nbsp;&nbsp;&nbsp;(state/.../action-type-registry.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#RESOURCE_REGISTRY_SCHEMA" title="state/src/resource-registry/resource-registry.model.ts" ><b>RESOURCE_REGISTRY_SCHEMA</b>&nbsp;&nbsp;&nbsp;(state/.../resource-registry.model.ts)</a>
+                        </li>
+                        <li>
                             <a href="#scopedSubjects" title="injectors/src/lib/on-destroy/on-destroy.ts" ><b>scopedSubjects</b>&nbsp;&nbsp;&nbsp;(injectors/.../on-destroy.ts)</a>
                         </li>
                     </ul>
@@ -70,6 +79,105 @@
     </table>
 </section>
 
+    <h3>state/src/resource-registry/resource-registry.actions.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Action"></a>
+                    <span class="name">
+                        <span ><b>Action</b></span>
+                        <a href="#Action"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ActionGroup(&#x27;ResourceRegistry&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Base action factory</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>state/src/actions/action-type-registry.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="actionTypeRegistry"></a>
+                    <span class="name">
+                        <span ><b>actionTypeRegistry</b></span>
+                        <a href="#actionTypeRegistry"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Set&lt;string&gt;()</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Registry of action types</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>state/src/resource-registry/resource-registry.model.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="RESOURCE_REGISTRY_SCHEMA"></a>
+                    <span class="name">
+                        <span ><b>RESOURCE_REGISTRY_SCHEMA</b></span>
+                        <a href="#RESOURCE_REGISTRY_SCHEMA"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.record(
+  z
+    .string()
+    .transform((id) &#x3D;&gt; &#x60;ResourceId:&#x27;${id}&#x27;&#x60;)
+    .brand(&#x27;ResourceId&#x27;),
+  z
+    .discriminatedUnion(&#x27;type&#x27;, [
+      z.object({ type: z.literal(ResourceType.Markdown), markdown: z.string() }),
+      z.object({ type: z.literal(ResourceType.Text), text: z.string() }),
+      z.object({ type: z.literal(ResourceType.Url), url: z.string() }),
+    ])
+    .or(z.object({ type: z.string() }).passthrough())
+)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Resource registry schema validator</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
     <h3>injectors/src/lib/on-destroy/on-destroy.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">

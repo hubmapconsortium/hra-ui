@@ -61,6 +61,18 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#Action" title="state/src/actions/actions.ts" ><b>Action</b>&nbsp;&nbsp;&nbsp;(state/.../actions.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ActionGroup" title="state/src/actions/actions.ts" ><b>ActionGroup</b>&nbsp;&nbsp;&nbsp;(state/.../actions.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#assertUniqueActionType" title="state/src/actions/action-type-registry.ts" ><b>assertUniqueActionType</b>&nbsp;&nbsp;&nbsp;(state/.../action-type-registry.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#createResourceId" title="state/src/resource-registry/resource-registry.model.ts" ><b>createResourceId</b>&nbsp;&nbsp;&nbsp;(state/.../resource-registry.model.ts)</a>
+                        </li>
+                        <li>
                             <a href="#dispatch" title="injectors/src/lib/dispatch/dispatch.ts" ><b>dispatch</b>&nbsp;&nbsp;&nbsp;(injectors/.../dispatch.ts)</a>
                         </li>
                         <li>
@@ -76,6 +88,9 @@
                             <a href="#injectOnDestroy" title="injectors/src/lib/on-destroy/on-destroy.ts" ><b>injectOnDestroy</b>&nbsp;&nbsp;&nbsp;(injectors/.../on-destroy.ts)</a>
                         </li>
                         <li>
+                            <a href="#registerActionType" title="state/src/actions/action-type-registry.ts" ><b>registerActionType</b>&nbsp;&nbsp;&nbsp;(state/.../action-type-registry.ts)</a>
+                        </li>
+                        <li>
                             <a href="#selectQuerySnapshot" title="injectors/src/lib/select-snapshot/select-snapshot.ts" ><b>selectQuerySnapshot</b>&nbsp;&nbsp;&nbsp;(injectors/.../select-snapshot.ts)</a>
                         </li>
                         <li>
@@ -88,7 +103,366 @@
     </table>
 </section>
 
-    <h3>injectors/src/lib/dispatch/dispatch.ts</h3>
+    <h3>state/src/actions/actions.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Action"></a>
+                    <span class="name">
+                        <span ><b>Action</b></span>
+                        <a href="#Action"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>Action(type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Creates a new base action with a specified type</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>type</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Action type</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/ActionConstructor.html" target="_self" >ActionConstructor</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A base action class</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ActionGroup"></a>
+                    <span class="name">
+                        <span ><b>ActionGroup</b></span>
+                        <a href="#ActionGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ActionGroup(group: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Creates an action factory that adds a common group string to each action type</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>group</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Common action type group</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/ActionConstructor.html" target="_self" >ActionConstructor</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>An action factory</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>state/src/actions/action-type-registry.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="assertUniqueActionType"></a>
+                    <span class="name">
+                        <span ><b>assertUniqueActionType</b></span>
+                        <a href="#assertUniqueActionType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>assertUniqueActionType(type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Asserts that an action type is unique</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>type</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Action type string</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registerActionType"></a>
+                    <span class="name">
+                        <span ><b>registerActionType</b></span>
+                        <a href="#registerActionType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>registerActionType(type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Registers an action type</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>type</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Action type string</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>state/src/resource-registry/resource-registry.model.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createResourceId"></a>
+                    <span class="name">
+                        <span ><b>createResourceId</b></span>
+                        <a href="#createResourceId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createResourceId(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Creates a new resource identifier</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Unique resource identifier</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ResourceId" target="_self" >ResourceId</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A new identifier</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>injectors/src/lib/dispatch/dispatch.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -446,7 +820,7 @@ Mostly <a href="https://github.com/angular/angular/issues/10185#issuecomment-116
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>selectQuerySnapshot(selector: <a href="../undefineds/SelectSnapshotSelector.html" target="_self">SelectSnapshotSelector</a>)</code>
+<code>selectQuerySnapshot(selector: <a href="../undefineds/SelectSnapshotSelector.html" target="_self">SelectSnapshotSelector</a>, ...boundArgs: BoundArgs)</code>
                 </td>
             </tr>
 
@@ -490,17 +864,33 @@ a new value is available</p>
 
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>boundArgs</td>
+                                    <td>
+                                            <code>BoundArgs</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Optional bound query arguments</p>
+
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>SignatureOf&lt;F&gt;</code>
+                        <b>Returns : </b>    <code>Res</code>
 
                     </div>
                     <div class="io-description">
-                        <p>A snapshot function taking the same arguments as the query selector</p>
+                        <p>A snapshot function taking the same arguments as the query selector (excluding bound arguments)</p>
 
                     </div>
                 </td>
