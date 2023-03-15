@@ -6,6 +6,7 @@ import { createResourceId, ResourceRegistryContext, ResourceType } from './resou
 import { ResourceRegistryState } from './resource-registry.state';
 
 describe('ResourceRegistryState', () => {
+  const url = 'http://test.url';
   const ctx = mock<ResourceRegistryContext>();
   let state: ResourceRegistryState;
   let controller: HttpTestingController;
@@ -49,7 +50,7 @@ describe('ResourceRegistryState', () => {
         },
         [createResourceId('test2')]: {
           type: ResourceType.Url,
-          url: 'https://google.com',
+          url: url,
         },
       };
 
@@ -79,10 +80,10 @@ describe('ResourceRegistryState', () => {
   describe('loadYaml(ctx, action)', () => {
     it('should load yaml file and call addYaml', () => {
       jest.spyOn(state, 'addYaml');
-      state.loadYaml(ctx, new LoadFromYaml('http://google.com')).subscribe();
-      const req = controller.expectOne('http://google.com');
+      state.loadYaml(ctx, new LoadFromYaml(url)).subscribe();
+      const req = controller.expectOne(url);
       req.flush({});
-      expect(req.request.url).toBe('http://google.com');
+      expect(req.request.url).toBe(url);
       expect(state.addYaml).toHaveBeenCalled();
     });
   });
@@ -90,10 +91,10 @@ describe('ResourceRegistryState', () => {
   describe('loadMarkdown(ctx, action', () => {
     it('should load markdown and call addOne', () => {
       jest.spyOn(state, 'addOne');
-      state.loadMarkdown(ctx, new LoadMarkdown(createResourceId('test'), 'http://google.com')).subscribe();
-      const req = controller.expectOne('http://google.com');
+      state.loadMarkdown(ctx, new LoadMarkdown(createResourceId('test'), url)).subscribe();
+      const req = controller.expectOne(url);
       req.flush({});
-      expect(req.request.url).toBe('http://google.com');
+      expect(req.request.url).toBe(url);
       expect(state.addOne).toHaveBeenCalled();
     });
   });
