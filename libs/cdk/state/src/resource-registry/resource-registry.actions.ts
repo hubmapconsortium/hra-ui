@@ -1,27 +1,62 @@
+import { ActionGroup } from '../actions/actions';
 import { ResourceEntry, ResourceId } from './resource-registry.model';
 
-/** Action for Loading Markdown resource */
-export class LoadMarkdown {
-  /** Action type */
-  static readonly type = '[ResourceRegistry] LoadMarkdown';
+/** Base action factory */
+const Action = ActionGroup('ResourceRegistry');
 
+/** Add a single resource */
+export class Add extends Action('Add') {
   /**
-   * Creates an instance of LoadMarkdown
-   * @param id Id of resource
-   * @param url url of the resource to load
+   * Add or overwrite a single resource
+   * @param id Resource identifier
+   * @param entry Resource entry
    */
-  constructor(readonly id: ResourceId, readonly url: string) {}
+  constructor(readonly id: ResourceId, readonly entry: ResourceEntry) {
+    super();
+  }
 }
 
-/** Action for Adding Resource */
-export class AddResource {
-  /** Action type */
-  static readonly type = '[ResourceRegistry] AddResource';
-
+/** Add multiple resources at once */
+export class AddMany extends Action('Add Many') {
   /**
-   * Creates an instance of AddResource
-   * @param id Id of resource
-   * @param entry resource to be added
+   * Add or overwrite multiple resources
+   * @param entries New resources
    */
-  constructor(readonly id: ResourceId, readonly entry: ResourceEntry) {}
+  constructor(readonly entries: Partial<Record<ResourceId, ResourceEntry>>) {
+    super();
+  }
+}
+
+/** Add resources from raw yaml data */
+export class AddFromYaml extends Action('Add from Yaml') {
+  /**
+   * Add resources from unparsed yaml
+   * @param yaml Unparsed yaml data
+   */
+  constructor(readonly yaml: string) {
+    super();
+  }
+}
+
+/** Add resources from a remote yaml file */
+export class LoadFromYaml extends Action('Load from Yaml') {
+  /**
+   * Loads a remote yaml file and add resources
+   * @param url Remote yaml file url
+   */
+  constructor(readonly url: string) {
+    super();
+  }
+}
+
+/** Add a markdown resource with data loaded from a remote file */
+export class LoadMarkdown extends Action('Load Markdown') {
+  /**
+   * Loads a remote markdown file and add a resource
+   * @param id Resource id
+   * @param url Remote markdown file url
+   */
+  constructor(readonly id: ResourceId, readonly url: string) {
+    super();
+  }
 }
