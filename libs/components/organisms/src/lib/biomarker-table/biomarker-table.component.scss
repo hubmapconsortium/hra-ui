@@ -12,17 +12,18 @@
     overflow-x: auto;
     overflow-y: auto;
     min-width: 800px;
-  }
-
-  .table th {
-    background-color: #fff7f8;
-    color: #59264d;
     font-family: Inter;
     font-size: 14px;
     font-weight: 400;
     line-height: 17px;
     letter-spacing: 0em;
-    text-align: left;
+  }
+
+  .table th {
+    background-color: #fff7f8;
+    color: #59264d;
+    text-align: right;
+    padding: 12px 16px 12px 16px;
 
     border-top: 1px solid #d3d3d3;
     border-bottom: 1px solid #d3d3d3;
@@ -33,11 +34,43 @@
     border-bottom: 1px solid #d3d3d3;
     border-left: 1px solid #d3d3d3;
   }
+
+  tr > th:first-child {
+    text-align: left;
+    padding: 12px 32px 12px 32px;
+  }
+
   tr > td:last-of-type {
     border-right: 1px solid #d3d3d3;
   }
 
   tr > th:last-of-type {
     border-right: 1px solid #d3d3d3;
+  }
+
+  .type {
+    height: 48px;
+    width: 414px;
+    left: 0px;
+    top: 0px;
+    border-radius: 0px;
+    padding: 12px 32px 12px 32px;
+  }
+
+  .count {
+    text-align: right;
+    height: 48px;
+    width: 104px;
+    left: 414px;
+    padding: 12px 16px 12px 16px;
+  }
+
+  .icon {
+    height: 48px;
+    width: 80px;
+    left: 0px;
+    top: 49px;
+    border-radius: 0px;
+    padding: 16px 16px 16px 16px;
   }
 }
