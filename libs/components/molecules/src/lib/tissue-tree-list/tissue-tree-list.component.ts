@@ -78,6 +78,6 @@ export class TissueTreeListComponent implements OnChanges {
    * @param node Tissue Tree Item, which is clicked
    */
   selectNode(node: TissueTreeGroup): void {
-    this.selected === node ? (this.selected = undefined) : (this.selected = node);
+    this.selected = this.selected === node ? undefined : node;
   }
 }
