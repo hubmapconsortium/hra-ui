@@ -35,4 +35,13 @@ describe('TissueTreeListComponent', () => {
     instance.tissueTree = tissueTree;
     expect(instance.hasChild(1, tissueTree[0])).toBe(true);
   });
+
+  it('select item and again', async () => {
+    const { instance } = await shallow.render({ bind: { tissueTree: tissueTree } });
+    const targetItem = tissueTree[0]['tissues'][0];
+    instance.selectNode(targetItem);
+    expect(instance.selected).toBe(targetItem);
+    instance.selectNode(targetItem);
+    expect(instance.selected).toBe(undefined);
+  });
 });

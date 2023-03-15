@@ -38,6 +38,11 @@ export class TissueTreeListComponent implements OnChanges {
   @Input() tissueTree: TissueTreeGroup[] = [];
 
   /**
+   * Node selected, to view the data associated with it
+   */
+  @Input() selected?: TissueTreeGroup = undefined;
+
+  /**
    * tree controller, used to control the nodes in the tree
    */
   control = new NestedTreeControl<TissueTreeGroup>((node) => node.tissues);
@@ -46,11 +51,6 @@ export class TissueTreeListComponent implements OnChanges {
    * Data source for mat-tree data structure, which defines the data in mat-tree
    */
   dataSource = new MatTreeNestedDataSource<TissueTreeGroup>();
-
-  /**
-   * item which is currently selected by user
-   */
-  selectedItem?: TissueTreeGroup = undefined;
 
   /**
    * Take actions if any data changes
@@ -70,5 +70,14 @@ export class TissueTreeListComponent implements OnChanges {
    */
   hasChild(_: number, node: TissueTreeGroup): boolean {
     return !!node.tissues && node.tissues.length > 0;
+  }
+
+  /**
+   * It selects/de-selects the node, which is clicked.
+   * If the node is already selected, it de-selects it
+   * @param node Tissue Tree Item, which is clicked
+   */
+  selectNode(node: TissueTreeGroup): void {
+    this.selected === node ? (this.selected = undefined) : (this.selected = node);
   }
 }
