@@ -25,14 +25,19 @@
     text-align: left;
 
     border-top: 1px solid #d3d3d3;
+    border-bottom: 1px solid #d3d3d3;
     border-left: 1px solid #d3d3d3;
-    border-right: 1px solid #d3d3d3;
   }
 
   .table td {
     border-bottom: 1px solid #d3d3d3;
-    border-top: 1px solid #d3d3d3;
     border-left: 1px solid #d3d3d3;
+  }
+  tr > td:last-of-type {
+    border-right: 1px solid #d3d3d3;
+  }
+
+  tr > th:last-of-type {
     border-right: 1px solid #d3d3d3;
   }
 }
