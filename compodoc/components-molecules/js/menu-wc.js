@@ -93,6 +93,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/SourceListComponent.html" data-type="entity-link" >SourceListComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/TissueTreeListComponent.html" data-type="entity-link" >TissueTreeListComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/TitleCardComponent.html" data-type="entity-link" >TitleCardComponent</a>
                             </li>
                         </ul>
@@ -125,6 +128,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/SourceListItem.html" data-type="entity-link" >SourceListItem</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/TissueTreeGroup.html" data-type="entity-link" >TissueTreeGroup</a>
                             </li>
                         </ul>
                     </li>
