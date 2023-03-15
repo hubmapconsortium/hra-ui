@@ -1,10 +1,8 @@
 import { ChangeDetectorRef, inject } from '@angular/core';
+import type { Any } from '@hra-ui/utils/types';
 import { StateToken, Store } from '@ngxs/store';
 import { Observer, takeUntil } from 'rxjs';
-
 import { injectOnDestroy } from '../on-destroy/on-destroy';
-
-import type { Any, AnyFunction, SignatureOf } from '@hra-ui/utils/types';
 
 /** Observer storing the latest value from a snapshot stream */
 class SnapshotObserver<T> implements Observer<T> {
@@ -88,9 +86,13 @@ export function selectSnapshot<T>(selector: SelectSnapshotSelector<T>): () => T 
  * Automatically marks components, directives, or pipes for change detection whenever
  * a new value is available
  * @param selector Store query selector
- * @returns A snapshot function taking the same arguments as the query selector
+ * @param boundArgs Optional bound query arguments
+ * @returns A snapshot function taking the same arguments as the query selector (excluding bound arguments)
  */
-export function selectQuerySnapshot<F extends AnyFunction>(selector: SelectSnapshotSelector<F>): SignatureOf<F> {
+export function selectQuerySnapshot<Res, BoundArgs extends Any[], QueryArgs extends Any[]>(
+  selector: SelectSnapshotSelector<(...args: [...BoundArgs, ...QueryArgs]) => Res>,
+  ...boundArgs: BoundArgs
+): (...args: QueryArgs) => Res {
   const get = selectSnapshot(selector);
-  return ((...args) => get()(...args)) as SignatureOf<F>;
+  return (...args) => get()(...boundArgs, ...args);
 }
