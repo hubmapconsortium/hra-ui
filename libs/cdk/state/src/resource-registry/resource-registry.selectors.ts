@@ -1,13 +1,22 @@
 import { UnionMember } from '@hra-ui/utils/types';
 import { Selector } from '@ngxs/store';
-import { ResourceEntry, ResourceId, ResourceRegistryModel, ResourceType } from './resource-registry.model';
+import {
+  BuiltinResourceEntry,
+  CustomResourceEntry,
+  ResourceEntry,
+  ResourceId,
+  ResourceRegistryModel,
+  ResourceType,
+} from './resource-registry.model';
 import { ResourceRegistryState } from './resource-registry.state';
 
 /** Query function for resource entry optionally with type specified */
-export type ResourceRegistryQuery = <T extends ResourceType | string = string>(
-  id: ResourceId,
-  type?: T
-) => UnionMember<ResourceEntry, 'type', T> | undefined;
+export interface ResourceRegistryQuery {
+  /** Get a resource entry with builtin type */
+  <T extends ResourceType>(id: ResourceId, type: T): UnionMember<BuiltinResourceEntry, 'type', T> | undefined;
+  /** Get a resource entry of any type */
+  (id: ResourceId, type?: string): CustomResourceEntry | undefined;
+}
 
 /** Query function for resource data */
 export type ResourceRegistryDataQuery<T> = (id: ResourceId) => T | undefined;
@@ -21,7 +30,10 @@ export class ResourceRegistrySelectors {
    */
   @Selector([ResourceRegistryState])
   static query(state: ResourceRegistryModel): ResourceRegistryQuery {
-    return (id, type) => ResourceRegistrySelectors.getEntry(state, id, type);
+    return (id: ResourceId, type?: ResourceType | string) => {
+      const entry = ResourceRegistrySelectors.getEntry(state, id, type);
+      return entry as BuiltinResourceEntry;
+    };
   }
 
   /**

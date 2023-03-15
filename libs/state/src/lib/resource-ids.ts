@@ -27,3 +27,5 @@ export const LandingPageDepthImg = createResourceId('LandingPageDepthImg');
 export const LandingPageDepthDescription = createResourceId('LandingPageDepthDescription');
 /** Landing Page Depth More Text id */
 export const LandingPageDepthMoreText = createResourceId('LandingPageDepthMoreText');
+/** metrics id */
+export const Metrics = createResourceId('Metrics');
