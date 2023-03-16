@@ -83,4 +83,16 @@ describe(selectQuerySnapshot, () => {
     expect(fn(...args)).toEqual(result);
     expect(query).toHaveBeenLastCalledWith(...args);
   });
+
+  it('should pass bound arguments before additional ones', () => {
+    const result = [1, '2'];
+    const boundArgs = ['b', 33];
+    const args = [true, { id: 2 }];
+    const query = jest.fn().mockReturnValue(result);
+    const fn = selectQuerySnapshot(selector, ...boundArgs);
+    dataSubject.next(query);
+
+    expect(fn(...args)).toEqual(result);
+    expect(query).toHaveBeenLastCalledWith(...boundArgs, ...args);
+  });
 });
