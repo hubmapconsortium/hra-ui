@@ -27,6 +27,7 @@ export class AddMany extends Action('Add Many') {
   }
 }
 
+/** Add entries from yaml file */
 export class AddFromYaml extends Action('Add from Yaml') {
   /**
    * Add links from unparsed yaml

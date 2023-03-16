@@ -4,6 +4,7 @@ import { load } from 'js-yaml';
 import { Add, AddFromYaml, AddMany } from './link-registry.actions';
 import { LinkRegistryContext, LinkRegistryModel, LINK_REGISTRY_SCHEMA } from './link-registry.model';
 
+/** State for keeping track of links globally */
 @State<LinkRegistryModel>({
   name: 'linkRegistry',
   defaults: {},
