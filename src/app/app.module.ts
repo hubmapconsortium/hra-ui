@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AnnouncementCardModule } from './components/announcement-card/announcement-card.module';
 import { BottomToolbarModule } from './components/bottom-toolbar/bottom-toolbar.module';
+import { MenuTreeModule } from './components/menu-tree/menu-tree.module';
 import { PageDataModule } from './components/page-data/page-data.module';
 import { PageHeaderModule } from './components/page-header/page-header.module';
 import { ToolbarModule } from './components/toolbar/toolbar.module';
@@ -85,7 +86,8 @@ import { VccfModule } from './pages/vccf/vccf.module';
     FourthReleaseNotesModule,
     MarkdownModule.forRoot({ sanitize: SecurityContext.NONE }),
     AnnouncementCardModule,
-    VccfModule
+    VccfModule,
+    MenuTreeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

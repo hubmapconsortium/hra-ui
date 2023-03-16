@@ -67,4 +67,21 @@
       }
     }
   }
+
+  @media (max-width: 26.75rem) {
+    mat-card-content {
+      padding: 1.5rem 2rem;
+    }
+
+    .card-button {
+      width: auto;
+      height: auto;
+    }
+
+    .image-container {
+      .gif:hover, .static {
+        height: 13rem;
+      }
+    }
+  }
 }

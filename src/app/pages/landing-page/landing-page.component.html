@@ -7,6 +7,9 @@
 </div>
 <announcement-card></announcement-card>
 <ccf-simple-tile [definitions]="definitions"></ccf-simple-tile>
-<ccf-carousel [carouselInfo]="carouselInfo"></ccf-carousel>
-<div class="content-title card-content-title">{{cardsHeading}}</div>
+<div style="width: 26rem;">
+    <ccf-carousel [carouselInfo]="carouselInfo"></ccf-carousel>
+</div>
+
+<div class="card-title">{{cardsHeading}}</div>
 <ccf-section-card [cards]="cards"></ccf-section-card>

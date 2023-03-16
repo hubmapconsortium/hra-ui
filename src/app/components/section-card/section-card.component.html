@@ -2,9 +2,9 @@
   <div class="image-container" [routerLink]="['',card.route]">
     <img [src]="card.image" alt="Images of Card" class="static">
     <img [src]="card.gif" alt="Images of Card" class="gif">
-    <mat-card-content>
-    <p class="nav-card-title">{{card.title}}</p>
-    <p class="description">{{card.description}}</p>
-  </mat-card-content>
   </div>
+  <mat-card-content>
+      <p class="nav-card-title">{{card.title}}</p>
+      <p class="description">{{card.description}}</p>
+    </mat-card-content>
 </mat-card>

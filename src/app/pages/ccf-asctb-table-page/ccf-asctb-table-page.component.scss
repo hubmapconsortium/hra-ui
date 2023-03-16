@@ -1,3 +1,12 @@
 :host {
   max-width: 77rem;
+
+  @media (max-width: 26.75rem) {
+
+    padding: 0rem 1rem;
+    
+    ccf-table {
+      overflow-x: auto;
+    }
+  }
 }

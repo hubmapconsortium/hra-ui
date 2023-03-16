@@ -1,0 +1,54 @@
+:host {
+  .menu-tree-button {
+    background-color: #444c65;
+  }
+
+  .mat-flat-button {
+    color: white;
+  }
+}
+
+::ng-deep {
+  .example-tree-invisible {
+    display: none;
+  }
+
+  .mat-tree {
+    width: 26rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 0px 0px 8px 8px;
+    padding-left: 2rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    height: auto; 
+    overflow-y: auto
+  }
+
+  .cdk-overlay-pane {
+    top: 3.5rem !important;
+  }
+
+  
+
+  .mat-tree div[role="group"] > .mat-tree-node {
+    padding-left: 1rem;
+  }
+
+  .inverse {
+    transform: rotate(180deg);
+    display: inline-block;
+  }
+
+
+  .menu-tree-backdrop {
+    margin-top: 3.5rem;
+  }
+}
+
+.mat-tree-node {
+  font-size: 1rem;
+  color: #444c65;
+  font-weight: 300;
+  line-height: 1.5rem;
+}

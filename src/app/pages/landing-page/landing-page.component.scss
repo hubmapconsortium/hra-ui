@@ -30,16 +30,36 @@
     line-height: 2.125rem;
   }
 
-  .content-title {
+  .card-title {
     font-size: 2.25rem;
     color: #212121;
     font-weight: 300;
     line-height: 2.75rem;
-    padding-bottom: 2rem;
-    padding-top: 3.5rem;
+    margin-bottom: 2rem;
+    margin-top: 3.5rem;
   }
 
   @media (max-width: 26.75rem) {
     padding: 0rem 1rem;
+
+    .landing-title {
+      font-size: 1.75rem;
+    }
+
+    .landing-subtitle {
+      font-size: 1.25rem;
+      line-height: 1.5rem;
+    }
+
+    .landing-img {
+      width: 48px;
+      height: 112px;
+      max-height: unset;
+    }
+
+    .card-title {
+      font-size: 22px;
+      margin-bottom: 1rem;
+    }
   }
 }

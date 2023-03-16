@@ -39,11 +39,14 @@
     display: none;
   }
 
+  menu-tree {
+    display: none;
+  }
+
   @media (max-width: 26.75rem) {
     .mat-toolbar {
       padding: 0rem 1rem;
     }
-    background-color: red !important;
     .hubmap-header {
       font-size: 1.5rem;
     }
@@ -54,6 +57,10 @@
 
     ccf-navbar {
       display: none;
+    }
+
+    menu-tree {
+      display: unset;
     }
   }
 }
