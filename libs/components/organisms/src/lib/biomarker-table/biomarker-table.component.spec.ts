@@ -1,22 +1,41 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { BiomarkerTableComponent } from './biomarker-table.component';
+import { BiomarkerTableComponent, DataCell, DataRow } from './biomarker-table.component';
+import { Shallow } from 'shallow-render';
+import { MatTableModule } from '@angular/material/table';
 
 describe('BiomarkerTableComponent', () => {
-  let component: BiomarkerTableComponent;
-  let fixture: ComponentFixture<BiomarkerTableComponent>;
+  const columns = ['RGMB', 'SOX9', 'CD44', 'LGR5'];
+  const data: DataRow<DataCell>[] = [
+    ['absorptive cell', 2764, undefined, undefined],
+    ['enteroendocrine cell', 17, undefined, undefined],
+    [
+      'epithelial stem cell',
+      187,
+      {
+        color: '#00385F',
+        size: 0.625,
+        data: [],
+      },
+      {
+        color: '#328BB8',
+        size: 1.25,
+        data: [],
+      },
+    ],
+    ['goblet cell', undefined, undefined, undefined],
+  ];
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [BiomarkerTableComponent],
-    }).compileComponents();
+  let shallow: Shallow<BiomarkerTableComponent<DataCell>>;
 
-    fixture = TestBed.createComponent(BiomarkerTableComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    shallow = new Shallow(BiomarkerTableComponent<DataCell>).dontMock(MatTableModule);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create BiomarkerTableComponent', async () => {
+    await expect(shallow.render({ bind: { columns: columns, data: data } })).resolves.toBeDefined();
+  });
+
+  it('should update dataSource', async () => {
+    const { instance } = await shallow.render({ bind: { columns: columns, data: data } });
+    expect(instance.dataSource.data).toBe(data);
   });
 });
