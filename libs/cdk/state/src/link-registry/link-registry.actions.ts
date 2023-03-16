@@ -28,7 +28,7 @@ export class AddMany extends Action('Add Many') {
   }
 }
 
-export class NavigateToInternalLink {
+export class NavigateToInternalLink extends Action('Navigate to Internal Link') {
   /**
    * Creates an instance of NavigateToInternalLink
    *
@@ -40,5 +40,7 @@ export class NavigateToInternalLink {
     readonly commands: string | unknown[],
     readonly queryParams?: Params,
     readonly extras?: NavigationExtras
-  ) {}
+  ) {
+    super();
+  }
 }
