@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 export class BiomarkerTableDataIconComponent {
   /** Represents the color of the icon */
   @HostBinding('style.background-color') @Input() color = '';
-  // TODO
-  /** Represents the size f the icon  */
-  @Input() size = 0;
+
+  /** Represents the size of the icon  */
+  @HostBinding('style.--radius.rem') @Input() size = 0;
 }

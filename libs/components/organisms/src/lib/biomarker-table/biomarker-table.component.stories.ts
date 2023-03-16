@@ -26,12 +26,12 @@ Primary.args = {
       187,
       {
         color: '#00385F',
-        size: 10,
+        size: 0.625,
         data: [],
       },
       {
         color: '#328BB8',
-        size: 20,
+        size: 1.25,
         data: [],
       },
     ],
