@@ -5,6 +5,7 @@ import { componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { ThemingModule } from '../libs/shared/theming/src';
+import { addState } from './decorators/state';
 import { fixArgTypes } from './fixes/arg-types';
 
 export const parameters = {
@@ -31,7 +32,13 @@ export const decorators = [
       ThemingModule,
     ],
   }),
-  componentWrapperDecorator((story) => `<div class="mat-typography">${story}</div>`),
+  componentWrapperDecorator(
+    (story) => `
+      <div class="mat-typography">${story}</div>
+      <div class="backdrop-filler" style="position: absolute; inset: 0; z-index: -1;"></div>
+    `
+  ),
+  addState(),
 ];
 
 export function setDocs(library: string): void {
