@@ -27,5 +27,5 @@ export class DownloadButtonComponent {
   }
 
   @Dispatch()
-  readonly downloadFile = () => new DownloadFile(this.url, this.fileName, this.selectedFormat);
+  readonly downloadFile = () => new DownloadFile(this.selectedFormat);
 }

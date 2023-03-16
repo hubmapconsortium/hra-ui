@@ -22,12 +22,10 @@
     "@nrwl/angular": "15.6.3",
     "angular-material-css-vars": "^4.2.1",
     "immer": "^9.0.19",
+    "jspdf": "^2.5.1",
     "ngx-markdown": "^15.1.1",
     "normalize.css": "^8.0.1",
     "rxjs": "~7.5.0",
-    "save-svg-as-png": "^1.4.17",
-    "svg-to-png-browser": "^1.0.2",
-    "svg2pdf.js": "^2.2.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
@@ -57,6 +55,7 @@
     "@storybook/test-runner": "^0.7.2",
     "@twittwer/compodoc": "^1.9.0",
     "@types/jest": "28.1.1",
+    "@types/jspdf": "^2.0.0",
     "@types/node": "16.11.7",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
@@ -82,7 +81,8 @@
     "ts-jest": "28.0.5",
     "ts-node": "10.9.1",
     "typescript": "4.9.5",
-    "webpack": "^5.64.0"
+    "webpack": "^5.64.0",
+    "worker-loader": "^3.0.8"
   },
   "lint-staged": {
     "*.{js,ts}": "eslint --cache --cache-location \"node_modules/.cache/.eslintcache\" --fix",
