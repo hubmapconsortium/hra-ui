@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content miscellaneous-variables">
+               <div class="content class">
                    <div class="content-data">
 
 
@@ -42,121 +42,123 @@
 
 
 
-
-
-
-
-
-
 <ol class="breadcrumb">
-  <li>Miscellaneous</li>
-  <li>Variables</li>
+  <li>Classes</li>
+  <li >SendMessage</li>
 </ol>
 
-<section>
-    <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <ul class="index-list">
-                        <li>
-                            <a href="#ContactAcknowledgement" title="src/lib/resource-ids.ts" ><b>ContactAcknowledgement</b>&nbsp;&nbsp;&nbsp;(src/.../resource-ids.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#ProductLogoUrl" title="src/lib/resource-ids.ts" ><b>ProductLogoUrl</b>&nbsp;&nbsp;&nbsp;(src/.../resource-ids.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#ProductTitle" title="src/lib/resource-ids.ts" ><b>ProductTitle</b>&nbsp;&nbsp;&nbsp;(src/.../resource-ids.ts)</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/lib/contact/contact.actions.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>A class which sends individual messages submitted by user.</p>
+
+            </p>
+
+
+
+
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(message: ContactMessage)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/lib/contact/contact.actions.ts:5</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>A constructor which initializes the message of type ContactMessage interface.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>message</td>
+                                                  
+                                                        <td>
+                                                                    <code>ContactMessage</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 </section>
 
-    <h3>src/lib/resource-ids.ts</h3>
-    <section>
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ContactAcknowledgement"></a>
-                    <span class="name">
-                        <span ><b>ContactAcknowledgement</b></span>
-                        <a href="#ContactAcknowledgement"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>createResourceId(&#x27;ContactAcknowledgement&#x27;)</code>
-                    </td>
-                </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Message to display after submitting contact form</p>
+
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Action } from &#x27;@hra-ui/cdk/state&#x27;;
+import { ContactMessage } from &#x27;@hra-ui/services&#x27;;
+
+/** A class which sends individual messages submitted by user. */
+export class SendMessage extends Action(&#x27;[Contact] Send Message&#x27;) {
+  /** A constructor which initializes the message of type ContactMessage interface. */
+  constructor(readonly message: ContactMessage) {
+    super();
+  }
+}
+</code></pre>
+    </div>
 </div>
-                </td>
-            </tr>
 
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ProductLogoUrl"></a>
-                    <span class="name">
-                        <span ><b>ProductLogoUrl</b></span>
-                        <a href="#ProductLogoUrl"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>createResourceId(&#x27;ProductLogoUrl&#x27;)</code>
-                    </td>
-                </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Product logo url id</p>
-</div>
-                </td>
-            </tr>
 
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ProductTitle"></a>
-                    <span class="name">
-                        <span ><b>ProductTitle</b></span>
-                        <a href="#ProductTitle"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>createResourceId(&#x27;ProductTitle&#x27;)</code>
-                    </td>
-                </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Product title id</p>
-</div>
-                </td>
-            </tr>
 
-        </tbody>
-    </table>
-</section>
+
 
 
 
@@ -185,8 +187,8 @@
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
-            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'SendMessage.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
