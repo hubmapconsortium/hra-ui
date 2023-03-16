@@ -5,7 +5,8 @@ organVrHeader:
 
 overviewData:
 - heading: Overview
-  descriptions: The Human Reference Atlas (HRA) Organ Gallery is a virtual reality (VR) application that allows users to explore 3D organ models of the HRA in their true size, location, and spatial relation to each other. Our focus is on two specific use cases: 1) introducing novice and expert users to the HuBMAP data available via the HuBMAP Data Portal, and 2) providing quality assurance and quality control (QA/QC) for HRA data providers. In Figure 1, we compare the user interface for exploring the HRA via the Exploration User Interface (EUI) (Börner et al., 2022) to how it appears in the HRA Organ Gallery when using a Meta Quest Pro
+  descriptions: |
+    The Human Reference Atlas (HRA) Organ Gallery is a virtual reality (VR) application that allows users to explore 3D organ models of the HRA in their true size, location, and spatial relation to each other. Our focus is on two specific use cases: 1) introducing novice and expert users to the HuBMAP data available via the HuBMAP Data Portal, and 2) providing quality assurance and quality control (QA/QC) for HRA data providers. In Figure 1, we compare the user interface for exploring the HRA via the Exploration User Interface (EUI) (Börner et al., 2022) to how it appears in the HRA Organ Gallery when using a Meta Quest Pro
 
 backgroundData:
 - heading: Background
