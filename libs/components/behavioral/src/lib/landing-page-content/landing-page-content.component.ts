@@ -57,4 +57,9 @@ export class LandingPageContentComponent {
   exploreFTU(): void {
     //TODO
   }
+
+  /** Function to read more when  moreClick from landingPageInDepth component is emitted */
+  readMore(): void {
+    //TODO
+  }
 }

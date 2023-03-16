@@ -1,5 +1,5 @@
 import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
-import { LandingPageIntroComponent } from '@hra-ui/components/molecules';
+import { LandingPageInDepthComponent, LandingPageIntroComponent } from '@hra-ui/components/molecules';
 import { Shallow } from 'shallow-render';
 
 import { LandingPageContentComponent } from './landing-page-content.component';
@@ -23,6 +23,14 @@ describe('LandingPageContentComponent', () => {
     jest.spyOn(instance, 'exploreFTU');
     landingPageIntroComponent.moreClick.emit();
     expect(instance.exploreFTU).toHaveBeenCalled();
+  });
+
+  it('should call readMore method on moreClick emits', async () => {
+    const { instance, findComponent } = await shallow.render();
+    const landingPageInDepthComponent = findComponent(LandingPageInDepthComponent);
+    jest.spyOn(instance, 'readMore');
+    landingPageInDepthComponent.moreClick.emit();
+    expect(instance.readMore).toHaveBeenCalled();
   });
 
   it('should get metricItems', async () => {
