@@ -1,6 +1,9 @@
-import { ChangeDetectionStrategy, Component, Host, HostBinding, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+/**
+ * Describes the data icon for the table
+ */
 @Component({
   selector: 'hra-biomarker-table-data-icon',
   standalone: true,
@@ -10,7 +13,9 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BiomarkerTableDataIconComponent {
+  /** Represents the color of the icon */
   @HostBinding('style.background-color') @Input() color = '';
   // TODO
+  /** Represents the size f the icon  */
   @Input() size = 0;
 }
