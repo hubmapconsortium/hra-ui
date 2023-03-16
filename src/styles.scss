@@ -51,6 +51,16 @@ $my-theme: mat.define-light-theme(
 
 @include mat.all-component-themes($my-theme);
 
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 html,
 body {
   height: 100%;

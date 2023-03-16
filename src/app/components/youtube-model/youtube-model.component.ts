@@ -30,6 +30,8 @@ export class YoutubeModelComponent implements OnInit {
       document.body.appendChild(tag);
       apiLoaded = true;
     }
+
+    this.isMobile = document.body.getBoundingClientRect().width <= 428;
   }
 
   @HostListener('window:resize', ['$event'])
@@ -38,7 +40,7 @@ export class YoutubeModelComponent implements OnInit {
   }
 
   getWidth(): number | undefined {
-    return this.isMobile ? parseInt('380', 10) : parseInt('1232',10)
+    return this.isMobile ? 380 : 1232
   }
 
   getHeight(): number | undefined {

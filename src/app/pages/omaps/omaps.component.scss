@@ -1,4 +1,6 @@
 :host {
+  display: block;
+  width: 100%;
   max-width: 77rem;
 
   .faq {
@@ -11,5 +13,9 @@
 
   .list-container {
     padding-bottom: 1.5rem;
+  }
+
+  @media (max-width: 26.75rem) {
+    padding: 0rem 1rem;
   }
 }
