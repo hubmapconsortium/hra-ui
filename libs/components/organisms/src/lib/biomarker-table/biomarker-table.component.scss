@@ -13,9 +13,9 @@
     overflow-y: auto;
     min-width: auto;
     font-family: Inter;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 400;
-    line-height: 17px;
+    line-height: 1.063rem;
     letter-spacing: 0em;
   }
 
@@ -24,14 +24,14 @@
     color: #59264d;
     text-align: right;
 
-    border-top: 1px solid #d3d3d3;
-    border-bottom: 1px solid #d3d3d3;
-    border-left: 1px solid #d3d3d3;
+    border-top: 0.063rem solid #d3d3d3;
+    border-bottom: 0.063rem solid #d3d3d3;
+    border-left: 0.063rem solid #d3d3d3;
   }
 
   .table td {
-    border-bottom: 1px solid #d3d3d3;
-    border-left: 1px solid #d3d3d3;
+    border-bottom: 0.063rem solid #d3d3d3;
+    border-left: 0.063rem solid #d3d3d3;
   }
 
   tr > th:first-child {
@@ -39,31 +39,31 @@
   }
 
   tr > td:last-of-type {
-    border-right: 1px solid #d3d3d3;
+    border-right: 0.063rem solid #d3d3d3;
   }
 
   tr > th:last-of-type {
-    border-right: 1px solid #d3d3d3;
+    border-right: 0.063rem solid #d3d3d3;
   }
 
   .type {
-    height: 48px;
-    width: 414px;
-    left: 0px;
-    top: 0px;
-    border-radius: 0px;
+    height: 3rem;
+    width: 25.875rem;
+    left: 0rem;
+    top: 0rem;
+    border-radius: 0rem;
   }
 
   .count {
     text-align: right;
-    height: 48px;
-    width: 104px;
-    left: 414px;
+    height: 3rem;
+    width: 6.5rem;
+    left: 25.875rem;
   }
 
   .icon-cell {
-    min-width: 80px;
-    min-height: 48px;
+    min-width: 5rem;
+    min-height: 3rem;
 
     .icon {
       margin: auto;
