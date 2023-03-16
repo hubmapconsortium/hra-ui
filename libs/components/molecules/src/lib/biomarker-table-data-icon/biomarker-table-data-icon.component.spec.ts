@@ -1,22 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BiomarkerTableDataIconComponent } from './biomarker-table-data-icon.component';
+import { Shallow } from 'shallow-render';
 
 describe('BiomarkerTableDataIconComponent', () => {
-  let component: BiomarkerTableDataIconComponent;
-  let fixture: ComponentFixture<BiomarkerTableDataIconComponent>;
+  let shallow: Shallow<BiomarkerTableDataIconComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [BiomarkerTableDataIconComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(BiomarkerTableDataIconComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    shallow = new Shallow(BiomarkerTableDataIconComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create BiomarkerTableDataIconComponent', async () => {
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 });
