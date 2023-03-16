@@ -1,46 +1,38 @@
-import { NavigationExtras, Params } from '@angular/router';
 import { ActionGroup } from '../actions/actions';
 import { LinkEntry, LinkId } from './link-registry.model';
 
 /** Base action factory */
 const Action = ActionGroup('LinkRegistry');
 
-/** Add a single resource */
+/** Add a single link */
 export class Add extends Action('Add') {
   /**
-   * Add or overwrite a single resource
-   * @param id Resource identifier
-   * @param entry Resource entry
+   * Add or overwrite a single link
+   * @param id link identifier
+   * @param entry link entry
    */
   constructor(readonly id: LinkId, readonly entry: LinkEntry) {
     super();
   }
 }
 
-/** Add multiple resources at once */
+/** Add multiple links at once */
 export class AddMany extends Action('Add Many') {
   /**
-   * Add or overwrite multiple resources
-   * @param entries New resources
+   * Add or overwrite multiple links
+   * @param entries New links
    */
   constructor(readonly entries: Partial<Record<LinkId, LinkEntry>>) {
     super();
   }
 }
 
-export class NavigateToInternalLink extends Action('Navigate to Internal Link') {
+export class AddFromYaml extends Action('Add from Yaml') {
   /**
-   * Creates an instance of NavigateToInternalLink
-   *
-   * @param commands URL fragments
-   * @param queryParams Query parameters
-   * @param extras Additional navigation configuration
+   * Add links from unparsed yaml
+   * @param yaml Unparsed yaml data
    */
-  constructor(
-    readonly commands: string | unknown[],
-    readonly queryParams?: Params,
-    readonly extras?: NavigationExtras
-  ) {
+  constructor(readonly yaml: string) {
     super();
   }
 }

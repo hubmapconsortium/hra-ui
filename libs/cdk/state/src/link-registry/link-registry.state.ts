@@ -1,10 +1,8 @@
-import { inject, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Navigate } from '@ngxs/router-plugin';
+import { Injectable } from '@angular/core';
 import { Action, State } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { Add, AddMany, NavigateToInternalLink } from './link-registry.actions';
-import { LinkRegistryContext, LinkRegistryModel } from './link-registry.model';
+import { load } from 'js-yaml';
+import { Add, AddFromYaml, AddMany } from './link-registry.actions';
+import { LinkRegistryContext, LinkRegistryModel, LINK_REGISTRY_SCHEMA } from './link-registry.model';
 
 @State<LinkRegistryModel>({
   name: 'linkRegistry',
@@ -12,23 +10,36 @@ import { LinkRegistryContext, LinkRegistryModel } from './link-registry.model';
 })
 @Injectable()
 export class LinkRegistryState {
-  private router = inject(Router);
-
+  /**
+   * Add a single entry
+   * @param ctx State context
+   * @param action Action with id and entry to add
+   */
   @Action(Add)
   addOne(ctx: LinkRegistryContext, { id, entry }: Add): void {
     this.addMany(ctx, new AddMany({ [id]: entry }));
   }
 
+  /**
+   * Add multiple entries
+   * @param ctx State context
+   * @param action Action with entries to add
+   */
   @Action(AddMany)
   addMany(ctx: LinkRegistryContext, { entries }: AddMany): void {
     ctx.patchState(entries);
   }
 
-  @Action(NavigateToInternalLink)
-  navigateToInternalLink(
-    ctx: LinkRegistryContext,
-    { commands, extras, queryParams }: NavigateToInternalLink
-  ): Observable<unknown> {
-    return ctx.dispatch(new Navigate(typeof commands === 'string' ? [commands] : commands, queryParams, extras));
+  /**
+   * Parse and add entries from yaml
+   * @param ctx State context
+   * @param action Action with raw yaml data
+   * @param filename Optional url/filename from which the data was loaded (for improved error messages)
+   */
+  @Action(AddFromYaml)
+  addYaml(ctx: LinkRegistryContext, { yaml }: AddFromYaml, filename?: string): void {
+    const data = load(yaml, { filename });
+    const entries = LINK_REGISTRY_SCHEMA.parse(data);
+    this.addMany(ctx, new AddMany(entries));
   }
 }
