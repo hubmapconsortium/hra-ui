@@ -37,3 +37,14 @@ export class AddFromYaml extends Action('Add from Yaml') {
     super();
   }
 }
+
+/** Add links from a remote yaml file */
+export class LoadFromYaml extends Action('Load from Yaml') {
+  /**
+   * Loads a remote yaml file and add links
+   * @param url Remote yaml file url
+   */
+  constructor(readonly url: string) {
+    super();
+  }
+}

@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 import { Action, State } from '@ngxs/store';
 import { load } from 'js-yaml';
-import { Add, AddFromYaml, AddMany } from './link-registry.actions';
+import { map, Observable } from 'rxjs';
+import { Add, AddFromYaml, AddMany, LoadFromYaml } from './link-registry.actions';
 import { LinkRegistryContext, LinkRegistryModel, LINK_REGISTRY_SCHEMA } from './link-registry.model';
 
 /** State for keeping track of links globally */
@@ -11,6 +13,8 @@ import { LinkRegistryContext, LinkRegistryModel, LINK_REGISTRY_SCHEMA } from './
 })
 @Injectable()
 export class LinkRegistryState {
+  /** Http service for resource loading */
+  private readonly http = inject(HttpClient);
   /**
    * Add a single entry
    * @param ctx State context
@@ -42,5 +46,18 @@ export class LinkRegistryState {
     const data = load(yaml, { filename });
     const entries = LINK_REGISTRY_SCHEMA.parse(data);
     this.addMany(ctx, new AddMany(entries));
+  }
+
+  /**
+   * Load and add entries from an external yaml file
+   * @param ctx State context
+   * @param action Action with the external file url
+   * @returns An observable that completes when the entries has been added
+   */
+  @Action(LoadFromYaml)
+  loadYaml(ctx: LinkRegistryContext, { url }: LoadFromYaml): Observable<void> {
+    return this.http
+      .get(url, { responseType: 'text' })
+      .pipe(map((data) => this.addYaml(ctx, new AddFromYaml(data), url)));
   }
 }
