@@ -15,3 +15,4 @@ export * from './lib/metrics/metrics.component';
 export * from './lib/tissue-tree-list/tissue-tree-list.component';
 export * from './lib/title-card/title-card.component';
 export * from './lib/biomarker-table-data-icon/biomarker-table-data-icon.component';
+export * from './lib/header/header.component';
