@@ -1,7 +1,9 @@
-:host{
-    max-width: 77rem;
+:host {
+  max-width: 77rem;
+  display: block;
+  width: 100%;
 
-    @media (max-width: 26.75rem) {
-        padding: 0rem 1rem;
-    }
+  @media (max-width: 26.75rem) {
+    padding: 0rem 1rem;
+  }
 }
