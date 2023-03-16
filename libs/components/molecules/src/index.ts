@@ -11,5 +11,6 @@ export * from './lib/landing-page-in-depth/landing-page-in-depth.component';
 export * from './lib/metrics/metrics.component';
 export * from './lib/screen-size-notice/screen-size-notice.component';
 export * from './lib/source-list/source-list.component';
+export * from './lib/tissue-tree-list/tissue-tree-list.component';
 export * from './lib/title-card/title-card.component';
 export * from './lib/header/header.component';
