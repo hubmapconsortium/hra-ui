@@ -1,5 +1,5 @@
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { MatButtonModule } from '@angular/material/button';
+import { Meta, moduleMetadata, Story } from '@storybook/angular';
 
 export default {
   title: 'ButtonOverrideTest',
@@ -32,7 +32,8 @@ Basic.args = {
 };
 
 //Link
-export const Link = Template(`<a mat-button [disabled]="disabled">Test</a>`);
+export const Link = Template(`<a mat-button tabindex="1" [color]="palette" [disabled]="disabled">Test</a>`);
 Link.args = {
+  palette: 'primary',
   disabled: false,
 };
