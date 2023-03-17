@@ -11,13 +11,13 @@
         color: vars.$primary-contrast-rgb;
       }
 
-      &.mdc-button:hover {
-        background-color: vars.$primary-darker-rgb;
-      }
-
       &.mdc-button:focus {
         background-color: vars.$primary-rgb;
         border: 0.25rem solid #ffaa00;
+      }
+
+      &.mdc-button:hover {
+        background-color: vars.$primary-darker-rgb;
       }
 
       &.mdc-button:active {
@@ -33,25 +33,25 @@
 
       &.mdc-button:disabled {
         background-color: vars.$primary-lighter-rgb;
-        color: vars.$primary-lighter-contrast-rgb;
+        color: vars.$primary-rgb;
       }
 
       &.mat-accent {
         background-color: vars.$primary-contrast-rgb;
-        border: 2px vars.$primary-lighter-rgb solid;
+        border: 0.125rem vars.$primary-lighter-rgb solid;
         color: vars.$primary-rgb;
-      }
-
-      &.mat-accent:hover {
-        background-color: vars.$primary-lighter-rgb;
-        border: 2px vars.$primary-200-rgb solid;
-        color: vars.$primary-700-rgb;
       }
 
       &.mat-accent:focus {
         background-color: white;
         color: vars.$primary-rgb;
-        border: 4px solid #ffaa00;
+        border: 0.25rem solid #ffaa00;
+      }
+
+      &.mat-accent:hover {
+        background-color: vars.$primary-lighter-rgb;
+        border: 0.125rem vars.$primary-lighter-rgb solid;
+        color: vars.$primary-darker-rgb;
       }
 
       &.mat-accent:active {
@@ -67,8 +67,12 @@
 
       &.mat-accent:disabled {
         background-color: #e7e7e5;
-        border: 1px #9d9e9a solid;
+        border: 0.063rem #9d9e9a solid;
         color: #9d9e9a;
+      }
+
+      .mat-mdc-button-persistent-ripple::before {
+        opacity: 0;
       }
     }
 
@@ -82,15 +86,15 @@
         color: vars.$primary-rgb;
       }
 
+      &.mdc-button:focus {
+        color: vars.$primary-rgb;
+        border: 0.25rem solid #ffaa00;
+      }
+
       &.mdc-button:hover {
         background: none;
         text-decoration-color: vars.$primary-darker-rgb;
         color: vars.$primary-darker-rgb;
-      }
-
-      &.mdc-button:focus {
-        color: vars.$primary-rgb;
-        border: 0.25rem solid #ffaa00;
       }
 
       &.mdc-button:active {
