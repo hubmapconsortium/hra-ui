@@ -34,11 +34,27 @@ jobs:
           build_command: echo
           install_command: echo
           build_directory: deploy/
-
+      - name: Find Comment
+        uses: peter-evans/find-comment@v1
+        id: fc
+        with:
+          comment-author: "github-actions[bot]"
+          body-includes: Successfully deployed preview
       - name: Create Deploy Comment
+        if: steps.fc.outputs.comment-id == ''
         uses: peter-evans/create-or-update-comment@v2
         with:
           issue-number: ${{ github.ref_name }}
+          body: |
+            # :rocket: Preview Deploy Report
+
+            ✅ Successfully deployed preview [here](${{ steps.deploy.outputs.NETLIFY_PREVIEW_URL }})
+      - name: Update Comment
+        if: steps.fc.outputs.comment-id!=''
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ github.ref_name }}
+          comment-id: ${{steps.fc.outputs.comment-id}}
           body: |
             # :rocket: Preview Deploy Report
 
