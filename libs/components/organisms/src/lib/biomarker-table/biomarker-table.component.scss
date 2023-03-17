@@ -44,7 +44,7 @@
 
   .type {
     height: 3rem;
-    min-width: 25.875rem;
+    max-width: 26rem;
     border-radius: 0rem;
   }
 
@@ -54,8 +54,15 @@
     min-width: 6.5rem;
   }
 
+  .icon-header {
+    max-width: 5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .icon-cell {
-    min-width: 5rem;
+    max-width: 5rem;
     min-height: 3rem;
 
     .icon {

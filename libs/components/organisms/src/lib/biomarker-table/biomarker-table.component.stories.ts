@@ -17,7 +17,7 @@ const Template: Story<BiomarkerTableComponent<DataCell>> = (args: BiomarkerTable
 
 export const Primary = Template.bind({});
 Primary.args = {
-  columns: ['RGMB', 'SOX9', 'CD44', 'LGR5', 'chromosome'],
+  columns: ['RGMB', 'SOX9', 'CD44', 'LGR5', 'chromosome inavalitentte A'],
   data: [
     [
       'absorptive cell',
