@@ -45,7 +45,9 @@
   .type {
     height: 3rem;
     max-width: 26rem;
+    min-width: 17rem;
     border-radius: 0rem;
+    white-space: nowrap;
   }
 
   .count {
