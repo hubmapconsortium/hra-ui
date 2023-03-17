@@ -35,9 +35,10 @@ jobs:
           install_command: echo
           build_directory: deploy/
       - name: Find Comment
-        uses: peter-evans/find-comment@v1
+        uses: peter-evans/find-comment@v2
         id: fc
         with:
+          issue-number: ${{ github.ref_name }}
           comment-author: 'github-actions[bot]'
           body-includes: Successfully deployed preview
       - name: Create Deploy Comment
