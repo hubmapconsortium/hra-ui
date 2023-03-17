@@ -1,0 +1,31 @@
+@use '@angular/material' as mat;
+
+:host {
+  display: block;
+
+  .subtree-hidden {
+    display: none;
+  }
+
+  mat-tree-node {
+    margin-left: 2rem;
+  }
+
+  .selected-node {
+    background-color: #fff3f0;
+  }
+
+  button {
+    margin-right: 1rem;
+
+    & ::ng-deep {
+      &,
+      .mat-mdc-button-touch-target {
+        width: 1.5rem !important;
+        height: 1.5rem !important;
+      }
+
+      padding: 0 !important;
+    }
+  }
+}
