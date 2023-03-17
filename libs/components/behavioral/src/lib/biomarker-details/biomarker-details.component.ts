@@ -13,6 +13,7 @@ import {
   GradientPoint,
   SizeLegend,
 } from '@hra-ui/components/atoms';
+import { BiomarkerTableComponent, DataRow, DataCell } from '@hra-ui/components/organisms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -29,6 +30,7 @@ import { MatIconModule } from '@angular/material/icon';
     SizeLegendComponent,
     SourceListComponent,
     MatTabsModule,
+    BiomarkerTableComponent,
   ],
   templateUrl: './biomarker-details.component.html',
   styleUrls: ['./biomarker-details.component.scss'],
@@ -46,4 +48,8 @@ export class BiomarkerDetailsComponent {
 
   /** List of sources with titles and links displayed to the user */
   @Input() sources: SourceListItem[] = [];
+
+  @Input() tableColumns: string[] = [];
+
+  @Input() tableData: DataRow<DataCell>[] = [];
 }
