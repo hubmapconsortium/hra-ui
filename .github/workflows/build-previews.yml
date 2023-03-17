@@ -38,7 +38,7 @@ jobs:
         uses: peter-evans/find-comment@v1
         id: fc
         with:
-          comment-author: "github-actions[bot]"
+          comment-author: 'github-actions[bot]'
           body-includes: Successfully deployed preview
       - name: Create Deploy Comment
         if: steps.fc.outputs.comment-id == ''
