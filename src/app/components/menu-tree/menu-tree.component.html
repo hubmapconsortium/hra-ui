@@ -1,19 +1,27 @@
 <button mat-icon-button (click)="this.isOpen = !this.isOpen" cdkOverlayOrigin #trigger="cdkOverlayOrigin"
   class="menu-tree-button" [disableRipple]="true">
-  <mat-icon>{{isOpen ? 'close' : 'menu'}}</mat-icon>
+  <mat-icon *ngIf="icon; else: default">{{icon}}</mat-icon>
+  <ng-template #default>
+    <mat-icon>{{isOpen ? 'close' : 'menu'}}</mat-icon>
+  </ng-template>
 </button>
 
 <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isOpen"
   [cdkConnectedOverlayHasBackdrop]="true"
   [cdkConnectedOverlayBackdropClass]="$any(['cdk-overlay-dark-backdrop', 'menu-tree-backdrop'])"
-  (detach)="isOpen = false">
-  <mat-tree cdkScrollable [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+  (detach)="isOpen = false" [cdkConnectedOverlayPanelClass]="['menu-tree-panel', overlayClass]"
+  [cdkConnectedOverlayPositions]="positions"
+  (overlayOutsideClick)="!trigger.elementRef.nativeElement.contains($event.target) && (isOpen = false)">
+  <mat-tree cdkScrollable [dataSource]="dataSource" [treeControl]="treeControl" [class]="treeClass">
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle (click)="this.isOpen = !this.isOpen">
-      <div *ngIf="node.route" [routerLink]="[node.route]"> {{node.menuName}} </div>
-      <div (click)="externalWindow(node.url!)" *ngIf="node.url">{{node.menuName}} </div>
+      <div *ngIf="node.route" [routerLink]="[node.route]" class="menu-name"> {{node.menuName}} </div>
+      <mat-divider *ngIf="node.divider" class="menu-tree-divider"></mat-divider>
+      <div (click)="externalWindow(node.url!)" *ngIf="node.url" class="menu-name">{{node.menuName}} </div>
+      <div *ngIf="node.id" (click)="scrollTo(node.id)" class="table-of-contents"> {{node.menuName}} </div>
+      <mat-divider *ngIf="node.id"></mat-divider>
     </mat-tree-node>
     <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-      <div class="mat-tree-node" matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.menuName">
+      <div class="mat-parent-node" matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.menuName">
         {{node.menuName}}
         <button mat-icon-button>
           <mat-icon [class.inverse]="treeControl.isExpanded(node)">arrow_drop_down</mat-icon>

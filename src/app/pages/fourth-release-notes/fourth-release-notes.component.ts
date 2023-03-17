@@ -1,3 +1,4 @@
+import { ConnectedPosition } from '@angular/cdk/overlay';
 import { ViewportScroller } from '@angular/common';
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -5,12 +6,8 @@ import { Subscription } from 'rxjs';
 import { ContactCard } from 'src/app/components/contact-card/contact-card';
 import { PageDataItems } from 'src/app/components/page-data/page-data';
 import { PageHeaderItems } from 'src/app/components/page-header/page-header-items';
+import { NavItems } from 'src/app/components/toolbar/nav-items';
 import { UseButton } from 'src/app/components/use-button/use-button';
-
-export interface NavItems {
-  label: string;
-  id: string;
-}
 
 @Component({
   selector: 'fourth-release-notes',
@@ -46,21 +43,52 @@ export class FourthReleaseNotesComponent implements AfterViewInit, OnDestroy {
   contactCardData: ContactCard[];
   hourEventPageButton: UseButton;
   hraReleaseCalendar: PageDataItems[];
+  icon = "list";
+
   navigationItems: NavItems[] = [
-    { label: "Introduction", id: "intro"}, 
-    { label: `What's New`, id: "whats-new" },
-    { label: 'HRA 24 Hour Event', id: "24-hr-event" },
-    { label: 'HRA Release Calendar', id: "hra-release-calendar"},
-    { label: 'ASCT+B Tables', id: "asctb-tables" },
-    { label: 'ASCT+B Reporter', id: "asctb-reporter" },
-    { label: 'ASCT+B Ontology Validations', id: "asctb-ontology-validations" },
-    { label: '3D Reference Objects', id: '3d-reference-objects' }, 
-    { label: 'Exploration User Interface', id: "exploration-user-interface" },
-    { label: 'Registration User Interface', id: 'registration-user-interface' },
-    { label: 'VR Organ Gallery', id: "vr-organ-gallery" },
-    { label: 'Previews', id: 'previews' }, 
-    { label: 'Contact Us', id: "contact-us" },
-    { label: 'Outro', id: "outro" }
+    { menuName: "Introduction", id: "intro" },
+    { menuName: `What's New`, id: "whats-new" },
+    { menuName: 'HRA 24 Hour Event', id: "24-hr-event" },
+    { menuName: 'HRA Release Calendar', id: "hra-release-calendar" },
+    { menuName: 'ASCT+B Tables', id: "asctb-tables" },
+    { menuName: 'ASCT+B Reporter', id: "asctb-reporter" },
+    { menuName: 'ASCT+B Ontology Validations', id: "asctb-ontology-validations" },
+    { menuName: '3D Reference Objects', id: '3d-reference-objects' },
+    { menuName: 'Exploration User Interface', id: "exploration-user-interface" },
+    { menuName: 'Registration User Interface', id: 'registration-user-interface' },
+    { menuName: 'VR Organ Gallery', id: "vr-organ-gallery" },
+    { menuName: 'Previews', id: 'previews' },
+    { menuName: 'Contact Us', id: "contact-us" },
+    { menuName: 'Outro', id: "outro" }
+  ];
+
+  mobileNavigationItems: NavItems[] = [
+    { menuName: "Table of Contents", id: "'" },
+    { menuName: "Introduction", id: "intro" },
+    { menuName: `What's New`, id: "whats-new" },
+    { menuName: 'HRA 24 Hour Event', id: "24-hr-event" },
+    { menuName: 'HRA Release Calendar', id: "hra-release-calendar" },
+    { menuName: 'ASCT+B Tables', id: "asctb-tables" },
+    { menuName: 'ASCT+B Reporter', id: "asctb-reporter" },
+    { menuName: 'ASCT+B Ontology Validations', id: "asctb-ontology-validations" },
+    { menuName: '3D Reference Objects', id: '3d-reference-objects' },
+    { menuName: 'Exploration User Interface', id: "exploration-user-interface" },
+    { menuName: 'Registration User Interface', id: 'registration-user-interface' },
+    { menuName: 'VR Organ Gallery', id: "vr-organ-gallery" },
+    { menuName: 'Previews', id: 'previews' },
+    { menuName: 'Contact Us', id: "contact-us" },
+    { menuName: 'Outro', id: "outro" }
+  ];
+
+  readonly TableOfContentsPosition: ConnectedPosition[] = [
+    {
+      originX: 'end',
+      originY: 'top',
+      overlayX: 'start',
+      overlayY: 'top',
+      offsetX: 0,
+      offsetY: 0
+    }
   ];
 
   constructor(private route: ActivatedRoute, private router: Router, private scroller: ViewportScroller) {
@@ -98,7 +126,7 @@ export class FourthReleaseNotesComponent implements AfterViewInit, OnDestroy {
       }
     }));
   }
-  
+
   ngAfterViewInit(): void {
     const anchor = this.route.snapshot.fragment;
     if (anchor) {

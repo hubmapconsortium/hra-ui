@@ -3,5 +3,5 @@
   <a class="hra-header" [routerLink]="['/']">HUMAN REFERENCE ATLAS</a>
   <div style="flex-grow:1;"></div>
   <ccf-navbar [items]="navigationItems"></ccf-navbar>
-  <menu-tree></menu-tree>
+  <menu-tree [treeItems]="navigationItems" [positions]="MENU_TREE_POSITIONS"></menu-tree>
 </mat-toolbar>

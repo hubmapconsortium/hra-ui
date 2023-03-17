@@ -1,9 +1,10 @@
+<menu-tree [treeItems]="mobileNavigationItems" [icon]="icon" [overlayClass]="'overlay-position'" [treeClass]="'tree-class'" [positions]="TableOfContentsPosition"></menu-tree>
 <ccf-page-header [headerCard]="headerData"></ccf-page-header>
 <mat-drawer-container class="example-container" [autosize]="true">
   <mat-drawer mode="side" opened>
     <ul class="toc-list">
-      <li *ngFor="let items of navigationItems" [value]="items" (click)="scrollTo(items.id)">
-        {{ items.label }}
+      <li *ngFor="let items of navigationItems" [value]="items" (click)="scrollTo(items.id || '')">
+        {{ items.menuName }}
       </li>
     </ul>
   </mat-drawer>

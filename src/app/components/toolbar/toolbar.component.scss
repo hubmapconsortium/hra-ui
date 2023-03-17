@@ -52,7 +52,7 @@
     }
 
     .hra-header {
-      font-size: 1.25rem
+      font-size: 1.25rem;
     }
 
     ccf-navbar {
@@ -66,5 +66,19 @@
     .hubmap-header {
       display: none;
     }
+  }
+}
+
+::ng-deep {
+  .mat-parent-node {
+    padding-left: 1rem;
+  }
+
+  .mat-nested-tree-node div.menu-name {
+    padding-left: 2rem;
+  }
+
+  div.menu-name {
+    padding-left: 1rem;
   }
 }
