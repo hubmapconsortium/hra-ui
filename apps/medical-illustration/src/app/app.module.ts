@@ -1,13 +1,21 @@
-import { NgModule } from '@angular/core';
+import { inject, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { createCustomElement } from '@angular/elements';
 
 import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
+  declarations: [AppComponent],
   imports: [BrowserModule],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    const MedicalIllustration = createCustomElement(AppComponent, {
+      injector: inject(Injector),
+    });
+
+    customElements.define('hra-medical-illustration', MedicalIllustration);
+  }
+}
