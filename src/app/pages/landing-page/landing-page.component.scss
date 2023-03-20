@@ -39,6 +39,10 @@
     margin-top: 3.5rem;
   }
 
+  .carousel-container {
+    width: 100%;
+  }
+
   @media (max-width: 26.75rem) {
     padding: 0rem 1rem;
 
@@ -60,6 +64,10 @@
     .card-title {
       font-size: 22px;
       margin-bottom: 1rem;
+    }
+
+    .carousel-container {
+      width: calc(100vw - 32px);
     }
   }
 }

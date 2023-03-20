@@ -18,7 +18,7 @@ export class CarouselComponent {
 
   readonly config: SwiperOptions = {
     autoplay: {
-      delay: 10000,
+      delay: 1000000000,
       disableOnInteraction: false
     },
     effect: 'fade',

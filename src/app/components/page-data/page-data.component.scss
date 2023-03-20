@@ -16,6 +16,7 @@
     letter-spacing: 0.005em;
     color: #000000;
     text-decoration: none;
+    overflow-wrap: break-word;
   }
 
   ::ng-deep a:-webkit-any-link {
