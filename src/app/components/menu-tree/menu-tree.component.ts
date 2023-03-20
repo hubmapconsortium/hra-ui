@@ -4,7 +4,7 @@ import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { NavItems } from '../toolbar/nav-items';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
-import { ConnectedPosition } from '@angular/cdk/overlay';
+import { ConnectedPosition, Overlay } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'menu-tree',
@@ -21,8 +21,13 @@ export class MenuTreeComponent implements OnInit {
   isOpen = false;
   treeControl = new NestedTreeControl<NavItems>(node => node.children);
   dataSource = new MatTreeNestedDataSource<NavItems>();
+  closeScrollStrategy = this.overlay.scrollStrategies.close();
 
-  constructor(private route: ActivatedRoute, private router: Router, private scroller: ViewportScroller) { }
+  constructor(
+    private router: Router,
+    private scroller: ViewportScroller,
+    private readonly overlay: Overlay
+  ) { }
 
   ngOnInit(): void {
     this.dataSource.data = this.treeItems;
@@ -40,10 +45,5 @@ export class MenuTreeComponent implements OnInit {
   scrollTo(id: string): void {
     this.router.navigate([], { fragment: id });
     this.scroller.scrollToAnchor(id);
-  }
-
-  click() {
-    this.isOpen = !this.isOpen
-    console.log(this.isOpen)
   }
 }

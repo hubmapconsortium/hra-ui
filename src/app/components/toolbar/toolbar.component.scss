@@ -72,6 +72,8 @@
 ::ng-deep {
   .mat-parent-node {
     padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
 
   .mat-nested-tree-node div.menu-name {
@@ -80,5 +82,6 @@
 
   div.menu-name {
     padding-left: 1rem;
+    
   }
 }
