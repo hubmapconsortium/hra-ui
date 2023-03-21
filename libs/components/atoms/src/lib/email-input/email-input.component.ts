@@ -21,8 +21,8 @@ export class EmailInputComponent {
   /** A placeholder for the email input field. This will be disappeared when the email is typed. */
   @Input() placeholder = '';
 
-  /** Emits the new email when the input changes or null if the email is invalid  */
-  @Output() readonly emailChange = new EventEmitter<string | null>();
+  /** Emits the new email when the input changes or undefined if the email is invalid  */
+  @Output() readonly emailChange = new EventEmitter<string | undefined>();
 
   /** Observable emitting when the component is destroyed */
   readonly destroy$ = injectOnDestroy();
@@ -39,8 +39,8 @@ export class EmailInputComponent {
     control.valueChanges
       .pipe(
         takeUntil(destroy$),
-        map((value) => (control.valid ? value : null))
+        map((value) => (control.valid ? value : undefined))
       )
-      .subscribe((value) => this.emailChange.emit(value));
+      .subscribe((value) => this.emailChange.emit(value as string | undefined));
   }
 }
