@@ -1,3 +1,5 @@
+@use 'variables' as vars;
+
 :host {
   display: block;
   padding: 2.625rem 2rem 2.625rem 2rem;
@@ -8,7 +10,7 @@
 
   .collaborate-button {
     margin-top: 2rem;
-    background: #006298;
+    background: vars.$primary-rgb;
     font-weight: 700;
     color: #fff;
     width: 100%;
