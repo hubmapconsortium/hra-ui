@@ -1,20 +1,66 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Action, State } from '@ngxs/store';
+import { UnionMember } from '@hra-ui/utils/types';
+import { Action, Selector, State } from '@ngxs/store';
 import { load } from 'js-yaml';
 import { map, Observable } from 'rxjs';
 import { Add, AddFromYaml, AddMany, LoadFromYaml } from './link-registry.actions';
-import { LinkRegistryContext, LinkRegistryModel, LINK_REGISTRY_SCHEMA } from './link-registry.model';
+import {
+  createLinkId,
+  LinkEntry,
+  LinkId,
+  LinkRegistryContext,
+  LinkRegistryModel,
+  LinkType,
+  LINK_REGISTRY_SCHEMA,
+} from './link-registry.model';
+
+/** Query function for resource entry optionally with type specified */
+export type LinkRegistryQuery = <T extends LinkType | string = string>(
+  id: LinkId,
+  type?: T
+) => UnionMember<LinkEntry, 'type', T> | undefined;
 
 /** State for keeping track of links globally */
 @State<LinkRegistryModel>({
   name: 'linkRegistry',
-  defaults: {},
+  defaults: {
+    [createLinkId('Test')]: { type: LinkType.Internal, commands: [''] },
+    [createLinkId('')]: { type: LinkType.Internal, commands: [''] },
+  },
 })
 @Injectable()
 export class LinkRegistryState {
   /** Http service for resource loading */
   private readonly http = inject(HttpClient);
+
+  /**
+   * Queries for a resource entry
+   * @param state Current state
+   * @returns Resource query function
+   */
+  @Selector()
+  static query(state: LinkRegistryModel): LinkRegistryQuery {
+    return (id, type) => this.getEntry(state, id, type);
+  }
+
+  /**
+   * Gets a resource entry by id and optionally type
+   * @param state Resource registry state
+   * @param id Entry id
+   * @param type Optional entry type
+   * @returns The entry if found, undefined otherwise
+   */
+  private static getEntry<T extends LinkType | string>(
+    state: LinkRegistryModel,
+    id: LinkId,
+    type?: T
+  ): UnionMember<LinkEntry, 'type', T> | undefined {
+    const entry = state[id] as UnionMember<LinkEntry, 'type', T>;
+    const typeMatches = type === undefined || entry?.type === type;
+    return typeMatches ? entry : undefined;
+  }
+
   /**
    * Add a single entry
    * @param ctx State context

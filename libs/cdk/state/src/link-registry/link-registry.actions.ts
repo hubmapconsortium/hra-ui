@@ -48,3 +48,9 @@ export class LoadFromYaml extends Action('Load from Yaml') {
     super();
   }
 }
+
+export class Navigate extends Action('Navigate') {
+  constructor(readonly id: LinkId) {
+    super();
+  }
+}

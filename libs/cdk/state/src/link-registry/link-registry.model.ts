@@ -20,7 +20,14 @@ export type LinkRegistryModel = z.infer<typeof LINK_REGISTRY_SCHEMA>;
 export type LinkRegistryContext = StateContext<LinkRegistryModel>;
 
 /** Type for external link entry */
-export const EXTERNAL_LINK_SCHEMA = z.object({ type: z.literal(LinkType.External), url: z.string() });
+export const EXTERNAL_LINK_SCHEMA = z
+  .object({
+    type: z.literal(LinkType.External),
+    url: z.string(),
+    rel: z.string().default('noopener'),
+    target: z.string(),
+  })
+  .partial({ rel: true, target: true });
 
 /** Type for internal link entry */
 export const INTERNAL_LINK_SCHEMA = z
