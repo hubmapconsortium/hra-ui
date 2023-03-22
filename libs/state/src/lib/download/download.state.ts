@@ -3,6 +3,10 @@ import { Download } from './download.action';
 import { FileFormat } from './file-format';
 
 //TODO: For testing purpose only
+/**
+ * this is file url which will be picked from
+ * other state later
+ */
 const fileUrl = 'assets/compass.svg';
 
 /**
