@@ -20,3 +20,30 @@ longCardData:
     title: 'Kaggle #2: HuBMAP + HPA - Hacking the Human Body'
     body: Algorithm development challenges that engage teams from around the globe to develop code for Human Reference Atlas construction
     route: kaggle-two
+  - icon: assets/images/24hr.svg
+    title: '24 Hour Human Reference Atlas Event'
+    body: Scholars and practitioners present and discuss their work in a fun and accessible style over the course of 24 hours
+    externalLink: https://humanatlas.io/events/2022-24h/
+- heading: Preview
+  cardData:
+  - icon: assets/images/preview.svg
+    title: 'Preview: ASCT+B Reporter Comparison'
+    externalLink: https://hubmapconsortium.github.io/hra-previews/pilots/pilot1.html
+  - icon: assets/images/preview.svg
+    title: 'Preview: Vasculature CCF Visualization'
+    externalLink: https://hubmapconsortium.github.io/hra-previews/pilots/pilot2.html
+  - icon: assets/images/preview.svg
+    title: 'Preview: HRA vs. Experimental Data'
+    externalLink: https://hubmapconsortium.github.io/hra-previews/pilots/pilot3.html
+  - icon: assets/images/preview.svg
+    title: 'Preview: Comparing Tabula Sapiens to the Human Reference Atlas'
+    externalLink: https://hubmapconsortium.github.io/hra-previews/pilots/pilot5.html
+  - icon: assets/images/preview.svg
+    title: 'Preview: Scrollytelling Series'
+    externalLink: https://hubmapconsortium.github.io/hra-previews/pilots/pilot4.html
+  - icon: assets/images/preview.svg
+    title: 'Preview: Functional Tissue Unit Segmentation'
+    externalLink: https://hubmapconsortium.github.io/hra-previews/pilots/pilot6.html
+  - icon: assets/images/preview.svg
+    title: 'Preview: CCF Tissue Block Annotation: Mesh-Level Collision Detection'
+    externalLink: https://hubmapconsortium.github.io/hra-previews/pilots/pilot7.html
