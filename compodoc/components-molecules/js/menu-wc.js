@@ -57,6 +57,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/BiomarkerTableDataCardComponent.html" data-type="entity-link" >BiomarkerTableDataCardComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/BiomarkerTableDataIconComponent.html" data-type="entity-link" >BiomarkerTableDataIconComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/ContactModalComponent.html" data-type="entity-link" >ContactModalComponent</a>
                             </li>
                             <li class="link">

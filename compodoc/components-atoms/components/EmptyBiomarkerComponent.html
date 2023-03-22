@@ -318,7 +318,7 @@ export class EmptyBiomarkerComponent {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;markdown [data]&#x3D;&quot;message&quot; class&#x3D;&quot;message&quot;&gt;&lt;/markdown&gt;
-&lt;button mat-flat-button class&#x3D;&quot;collaborate-button&quot; (click)&#x3D;&quot;collaborateClick.emit($event)&quot;&gt;
+&lt;button mat-flat-button class&#x3D;&quot;collaborate-button&quot; color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;collaborateClick.emit($event)&quot;&gt;
   {{ collaborateText }}
 &lt;/button&gt;
 </code></pre>
@@ -328,7 +328,9 @@ export class EmptyBiomarkerComponent {
                 <p class="comment">
                     <code>./empty-biomarker.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">:host {
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;variables&#x27; as vars;
+
+:host {
   display: block;
   padding: 2.625rem 2rem 2.625rem 2rem;
 
@@ -338,7 +340,6 @@ export class EmptyBiomarkerComponent {
 
   .collaborate-button {
     margin-top: 2rem;
-    background: #006298;
     font-weight: 700;
     color: #fff;
     width: 100%;
@@ -374,7 +375,7 @@ export class EmptyBiomarkerComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><markdown [data]="message" class="message"></markdown><button mat-flat-button class="collaborate-button" (click)="collaborateClick.emit($event)">  {{ collaborateText }}</button></div>'
+        var COMPONENT_TEMPLATE = '<div><markdown [data]="message" class="message"></markdown><button mat-flat-button class="collaborate-button" color="primary" (click)="collaborateClick.emit($event)">  {{ collaborateText }}</button></div>'
     var COMPONENTS = [{'name': 'EmailInputComponent', 'selector': 'hra-email-input'},{'name': 'EmptyBiomarkerComponent', 'selector': 'hra-empty-biomarker'},{'name': 'GradientLegendComponent', 'selector': 'hra-gradient-legend'},{'name': 'LabelBoxComponent', 'selector': 'hra-label-box'},{'name': 'RequiredInputComponent', 'selector': 'hra-required-input'},{'name': 'RequiredTextboxComponent', 'selector': 'hra-required-textbox'},{'name': 'SizeLegendComponent', 'selector': 'hra-size-legend'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'EmptyBiomarkerComponent'};
