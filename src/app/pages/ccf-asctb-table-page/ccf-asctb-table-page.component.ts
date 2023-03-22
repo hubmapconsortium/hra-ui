@@ -8,6 +8,7 @@ import { ChooseVersion } from '../../components/choose-version/choose-version';
 import { TableData } from '../../components/table/table';
 import { TableDataService } from '../../services/table-data/tabledata.service';
 import { displayedColumnsData, headerInfo } from './ccf-asctb-table-page.content';
+import { UseButton } from 'src/app/components/use-button/use-button';
 
 
 @Component({
@@ -29,6 +30,8 @@ export class CcfTablePageComponent {
   release: ChooseVersion;
   tableData: Observable<TableData[]> = EMPTY;
   columns: Observable<string[]> = EMPTY;
+  asctbTableOntologyValidationReports: PageDataItems[];
+  asctbTableOntologyValidationReportsButton: UseButton;
 
   constructor(private readonly dataService: TableDataService, route: ActivatedRoute) {
     const data = route.snapshot.data['content'];
@@ -40,6 +43,8 @@ export class CcfTablePageComponent {
     this.versionData = data.versionData;
     this.tablesUnderDevelopmentData = data.tablesUnderDevelopmentData;
     this.acknowledgmentsData = data.acknowledgmentsData;
+    this.asctbTableOntologyValidationReports = data.asctbTableOntologyValidationReports;
+    this.asctbTableOntologyValidationReportsButton = data.asctbTableOntologyValidationReportsButton;
     this.release = this.versionData[0];
     this.setData(this.versionData[0]);
   }
