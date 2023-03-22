@@ -5,3 +5,10 @@
     padding: 0rem 1rem;
   }
 }
+
+::ng-deep .panelClass {
+  position: relative;
+  top: 40px;
+  left: 0.3rem;
+  min-width: unset !important;
+}
