@@ -34,7 +34,6 @@
       &.mdc-button:disabled {
         background-color: vars.$primary-lighter-rgb;
         color: vars.$primary-rgb;
-        cursor: not-allowed;
       }
 
       &.mat-accent {
@@ -69,14 +68,10 @@
       &.mat-accent:disabled {
         background-color: #e7e7e5;
         border: 0.063rem #9d9e9a solid;
-        color: #9d9e9a;
-        :hover {
-          cursor: not-allowed;
-        }
       }
 
       .mat-mdc-button-persistent-ripple::before {
-        opacity: 0;
+        opacity: 0 !important;
       }
     }
 
@@ -114,7 +109,6 @@
       &.mdc-button[disabled] {
         color: #9d9e9a;
         text-decoration: underline #9d9e9a;
-        cursor: not-allowed;
       }
     }
   }
