@@ -46,7 +46,7 @@
                 </ng-template>
                 <mat-divider [class.no-split-divider]="tissues.tissueData?.length === 1" *ngIf="!isMultirow"></mat-divider>
                 <div class="image-container" *ngIf="tissue.image; else: threeDimensionContainer">
-                    <img [src]="tissue.image" (click)="openImageViewer(imageContent)">
+                    <img [src]="tissue.image" (click)="openImageViewer(imageContent)" #imageRef>
                     <ng-template #imageContent>
                         <div class="dialog-header">
                             <div mat-dialog-title>{{tissue.name}}</div>

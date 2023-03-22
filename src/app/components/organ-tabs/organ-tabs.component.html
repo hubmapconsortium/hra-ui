@@ -6,7 +6,7 @@
     </mat-tab>
 </mat-tab-group>
 
-<mat-select class="organ-select" panelClass="organs-panel" [value]="tabs[selectedIndex]" disableOptionCentering
+<mat-select class="organ-select" panelClass="panelClass" [value]="tabs[selectedIndex]" disableOptionCentering
     disableRipple>
     <mat-option *ngFor="let tab of tabs" [value]="tab" class="mat-select-value-text" (click)="organName.emit(tab.name)">
         {{ tab.name }}
