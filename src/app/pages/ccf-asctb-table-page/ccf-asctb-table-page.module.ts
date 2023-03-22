@@ -10,6 +10,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MarkdownModule } from 'ngx-markdown';
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
+import { UseButtonModule } from 'src/app/components/use-button/use-button.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AnnouncementCardModule } from '../../components/announcement-card/annou
     ChooseVersionModule,
     TableModule,
     MarkdownModule,
-    AnnouncementCardModule
+    AnnouncementCardModule,
+    UseButtonModule
   ],
   providers: [],
   bootstrap: []

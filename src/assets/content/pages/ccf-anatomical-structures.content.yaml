@@ -29,6 +29,15 @@ exploreTablesData:
 - heading: Explore Tables Visually
   descriptions: |
     The <a href="https://hubmapconsortium.github.io/ccf-asct-reporter/">CCF ASCT+B Reporter</a> makes it possible to explore tables visually—per organ or across all organs in support of table authoring and review. It combines two different types of Angular visualizations: A partonomy tree of anatomical structures and bimodal networks that link anatomical structures to cell types and cell types to biomarkers.
+
+asctbTableOntologyValidationReports:
+- heading: ASCT+B Table Ontology Validation Reports
+  descriptions: ASCT+B table drafts are run through a Python script called <a href="https://github.com/hubmapconsortium/ccf-validation-tools" target="_blank">CCF_Tools</a> each week. The script reads them in, compares them against the Resource Description Framework (RDF) triple store database called Ubergraph (Uberon and Cell Ontology), and outputs a validation report that can be used to improve tables during creation or revision cycles.
+
+asctbTableOntologyValidationReportsButton:
+  text: ASCT+B Ontology Validation Reports
+  url: https://hubmapconsortium.github.io/ccf-validation-tools/
+
 tablesUnderDevelopmentData:
 - heading: Tables Under Development
   descriptions: |

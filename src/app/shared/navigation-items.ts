@@ -103,12 +103,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
       {
         menuName: 'Usage Metrics',
         route: 'usage-metrics',
-        disabled: true,
-        divider: true
-      },
-      {
-        menuName: 'ASCT+B Ontology Validations',
-        url: 'https://hubmapconsortium.github.io/ccf-validation-tools/'
+        disabled: true
       }
     ]
   },
