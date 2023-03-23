@@ -1,22 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Shallow } from 'shallow-render';
 import { FtuFooterBehavioralComponent } from './ftu-footer-behavioral.component';
 
 describe('FtuFooterBehavioralComponent', () => {
-  let component: FtuFooterBehavioralComponent;
-  let fixture: ComponentFixture<FtuFooterBehavioralComponent>;
+  let shallow: Shallow<FtuFooterBehavioralComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [FtuFooterBehavioralComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(FtuFooterBehavioralComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    shallow = new Shallow(FtuFooterBehavioralComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async () => {
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 });
