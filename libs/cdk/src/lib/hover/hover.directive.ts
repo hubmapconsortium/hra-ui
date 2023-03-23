@@ -2,23 +2,31 @@ import { ConnectionPositionPair, Overlay } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { Directive, ElementRef, HostListener, inject, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
+/**  Interface for the hover context */
 export interface HoverContext<T = unknown> {
+  /** defining an implicit type */
   $implicit: T;
 }
 
+/** Defining a directive to be used across the application */
 @Directive({
+  /**  Selector for using the directive */
   selector: '[hraHover]',
+  /** Defining the directive to be standalone */
   standalone: true,
 })
 export class HoverDirective<T = unknown> {
+  /** Input for the template portal */
   @Input('hraHover')
   set content(content: TemplateRef<HoverContext<T>>) {
     this.portal = new TemplatePortal(content, this.viewContainerRef);
     this.updateContent();
   }
 
+  /**  Defining an injectable element */
   private readonly el: Element = inject(ElementRef).nativeElement;
 
+  /**  Defining the injectable overlay and setting its position */
   private readonly overlayRef = inject(Overlay).create({
     positionStrategy: inject(Overlay)
       .position()
@@ -32,10 +40,13 @@ export class HoverDirective<T = unknown> {
       .withPush(true),
   });
 
+  /** creating an injectable container reference */
   private readonly viewContainerRef = inject(ViewContainerRef);
 
+  /** creating a portal for hover */
   private portal?: TemplatePortal<HoverContext<T>>;
 
+  /** Function to handle the mouse over event and display the hover content */
   @HostListener('mouseover')
   startHover(): void {
     const { overlayRef, portal } = this;
@@ -44,6 +55,7 @@ export class HoverDirective<T = unknown> {
     }
   }
 
+  /** Function to handle the mouse out event and hide the hover content */
   @HostListener('mouseout')
   endHover(): void {
     const { overlayRef } = this;
@@ -52,6 +64,7 @@ export class HoverDirective<T = unknown> {
     }
   }
 
+  /** Function to handle the updation of overlay with up to date content */
   private updateContent(): void {
     const { overlayRef, portal } = this;
     if (overlayRef.hasAttached() && portal) {
