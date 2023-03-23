@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { InteractiveSvgComponent } from '@hra-ui/components/molecules';
-import { MedicalIllustrationSelectors } from '@hra-ui/state';
-import { ViewSelectSnapshot } from '@ngxs-labs/select-snapshot';
+import { MedicalIllustrationActions, MedicalIllustrationSelectors } from '@hra-ui/state';
 
 @Component({
   selector: 'ftu-medical-illustration-behavior',
@@ -13,10 +13,11 @@ import { ViewSelectSnapshot } from '@ngxs-labs/select-snapshot';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MedicalIllustrationBehaviorComponent {
-  @ViewSelectSnapshot(MedicalIllustrationSelectors.getUrl)
-  currentUrl?: string;
+  readonly currentUrl = selectSnapshot(MedicalIllustrationSelectors.getUrl);
+
+  readonly updateNode = dispatch(MedicalIllustrationActions.NodeHover);
 
   nodeHovered(event: string): void {
-    console.log(event);
+    this.updateNode(event);
   }
 }
