@@ -72,7 +72,7 @@ export interface NodeTooltipData {
 })
 export class InteractiveSvgComponent implements OnDestroy {
   /** SVG url */
-  @Input() url?: string;
+  @Input() url?: string | null;
 
   /** Emits node id when hovered */
   @Output() readonly nodeHover = new EventEmitter<string>();
