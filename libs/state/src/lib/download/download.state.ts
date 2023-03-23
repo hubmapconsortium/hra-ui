@@ -1,6 +1,6 @@
 import { Action, State, StateContext } from '@ngxs/store';
 import { Download } from './download.action';
-import { FileFormat } from './file-format';
+import { DownloadModel, FileFormat } from './download.model';
 
 //TODO: For testing purpose only
 /**
@@ -14,8 +14,14 @@ const fileUrl = 'assets/compass.svg';
  * file from SVG file content to different
  * format and download to user.
  */
-@State<void>({
+@State<DownloadModel>({
   name: 'download',
+  defaults: [
+    {
+      format: FileFormat.PDF,
+      label: 'Download PDF',
+    },
+  ],
 })
 export class DownloadState {
   /**
@@ -71,14 +77,15 @@ export class DownloadState {
    */
   @Action(Download)
   async downloadFile(ctx: StateContext<void>, action: Download) {
+    const format = typeof action.format === 'string' ? action.format : action.format.format;
     const fileName = this.inferFilename(fileUrl);
     const fileExt = this.inferFileExtension(fileUrl);
 
-    if (action.selectedFormat == fileExt) {
+    if (format == fileExt) {
       this.downloadAndSave(fileUrl, fileName);
     }
 
-    switch (action.selectedFormat) {
+    switch (format) {
       case FileFormat.PDF:
         this.convertFileToPdf(fileName, fileUrl);
         break;
