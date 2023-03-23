@@ -25,7 +25,12 @@ const Template =
     template,
   });
 
-export const Button = Template(`<button [hraLink]="link"></button>`);
+export const Button = Template(`<button [hraLink]="link">Button</button>`);
 Button.args = {
   link: createLinkId('Test'),
+};
+
+export const Anchor = Template('<a [hraLink]="link" >Anchor</a>');
+Anchor.args = {
+  link: createLinkId('temp'),
 };
