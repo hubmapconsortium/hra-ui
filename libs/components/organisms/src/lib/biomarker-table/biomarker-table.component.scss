@@ -1,0 +1,74 @@
+@use 'utils';
+
+:host {
+  display: block;
+  max-width: 100%;
+
+  .sr-only {
+    @include utils.sr-only();
+  }
+
+  .table {
+    overflow-x: auto;
+    overflow-y: auto;
+    min-width: auto;
+    font-size: 0.875rem;
+  }
+
+  .table th {
+    background-color: #fff7f8;
+    color: #59264d;
+    text-align: right;
+
+    border-top: 0.063rem solid #d3d3d3;
+    border-bottom: 0.063rem solid #d3d3d3;
+    border-left: 0.063rem solid #d3d3d3;
+  }
+
+  .table td {
+    border-bottom: 0.063rem solid #d3d3d3;
+    border-left: 0.063rem solid #d3d3d3;
+  }
+
+  tr > th:first-child {
+    text-align: left;
+  }
+
+  tr > td:last-of-type {
+    border-right: 0.063rem solid #d3d3d3;
+  }
+
+  tr > th:last-of-type {
+    border-right: 0.063rem solid #d3d3d3;
+  }
+
+  .type {
+    height: 3rem;
+    max-width: 26rem;
+    min-width: 17rem;
+    border-radius: 0rem;
+    white-space: nowrap;
+  }
+
+  .count {
+    text-align: right;
+    height: 3rem;
+    min-width: 6.5rem;
+  }
+
+  .icon-header {
+    max-width: 5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .icon-cell {
+    max-width: 5rem;
+    min-height: 3rem;
+
+    .icon {
+      margin: auto;
+    }
+  }
+}
