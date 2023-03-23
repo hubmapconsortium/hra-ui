@@ -1,9 +1,23 @@
+import { ResourceRegistryActions, ResourceRegistryState } from '@hra-ui/cdk/state';
+import { NgxsModule } from '@ngxs/store';
+import { moduleMetadata } from '@storybook/angular';
 import { Meta, Story } from '@storybook/angular/types-6-0';
 import { FtuFooterBehavioralComponent } from './ftu-footer-behavioral.component';
 
 export default {
   title: 'Behavioral/FtuFooterBehavioralComponent',
   component: FtuFooterBehavioralComponent,
+  parameters: {
+    state: {
+      states: [ResourceRegistryState],
+      actions: [new ResourceRegistryActions.LoadFromYaml('assets/resources/header.yml')],
+    },
+  },
+  decorators: [
+    moduleMetadata({
+      imports: [NgxsModule.forRoot([ResourceRegistryState])],
+    }),
+  ],
 } as Meta;
 
 const DownloadFormat = [
@@ -26,7 +40,5 @@ Large.args = {
 export const Small = Template.bind({});
 Small.args = {
   size: 'small',
-  productLogoUrl: 'assets/icons/logo-icon.svg',
-  productTitle: 'Human Reference Atlas',
   downloadFormats: DownloadFormat,
 };

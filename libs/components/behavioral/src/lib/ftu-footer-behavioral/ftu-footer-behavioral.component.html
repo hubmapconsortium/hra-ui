@@ -1,6 +1,6 @@
 <hra-footer
-  [productLogoUrl]="productLogoUrl"
-  [productTitle]="productTitle"
+  [productLogoUrl]="productLogoUrl() ?? ''"
+  [productTitle]="productTitle() ?? ''"
   [downloadFormats]="downloadFormats"
   [size]="size"
 ></hra-footer>
