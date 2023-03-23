@@ -2,6 +2,7 @@
 @use 'angular-material-css-vars/src/lib/public-util' as mat-css-utilities;
 @use 'reset';
 @use 'theming';
+@use 'overrides';
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 
 $mat-css-default-light-theme: map-merge(
