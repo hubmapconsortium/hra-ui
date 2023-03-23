@@ -45,7 +45,7 @@ export class LinkDirective implements OnChanges {
   /** Angular router */
   private readonly router = inject(Router);
   /** Activate route */
-  private readonly route = inject(ActivatedRoute);
+  private readonly route = inject(ActivatedRoute, { optional: true });
   /** Location strategy */
   private readonly locationStrategy = inject(LocationStrategy);
   /** DomSanitizer to sanitize the url */

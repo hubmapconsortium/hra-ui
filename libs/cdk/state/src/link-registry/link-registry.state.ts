@@ -7,7 +7,6 @@ import { load } from 'js-yaml';
 import { map, Observable } from 'rxjs';
 import { Add, AddFromYaml, AddMany, LoadFromYaml, Navigate } from './link-registry.actions';
 import {
-  createLinkId,
   ExternalLinkEntry,
   InternalLinkEntry,
   LinkEntry,
@@ -27,9 +26,7 @@ export type LinkRegistryQuery = <T extends LinkType | string = string>(
 /** State for keeping track of links globally */
 @State<LinkRegistryModel>({
   name: 'linkRegistry',
-  defaults: {
-    [createLinkId('')]: { type: LinkType.Internal, commands: [''] },
-  },
+  defaults: {},
 })
 @Injectable()
 export class LinkRegistryState {
@@ -60,7 +57,7 @@ export class LinkRegistryState {
     type?: T
   ): UnionMember<LinkEntry, 'type', T> | undefined {
     const entry = state[id] as UnionMember<LinkEntry, 'type', T>;
-    const typeMatches = type === undefined || entry.type === type;
+    const typeMatches = type === undefined || entry?.type === type;
     return typeMatches ? entry : undefined;
   }
 
