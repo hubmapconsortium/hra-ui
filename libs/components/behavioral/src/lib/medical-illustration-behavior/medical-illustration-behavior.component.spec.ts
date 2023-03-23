@@ -1,22 +1,29 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { Shallow } from 'shallow-render';
 
 import { MedicalIllustrationBehaviorComponent } from './medical-illustration-behavior.component';
 
+jest.mock('@hra-ui/cdk/injectors');
+
 describe('MedicalIllustrationBehaviorComponent', () => {
-  let component: MedicalIllustrationBehaviorComponent;
-  let fixture: ComponentFixture<MedicalIllustrationBehaviorComponent>;
+  let shallow: Shallow<MedicalIllustrationBehaviorComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [MedicalIllustrationBehaviorComponent],
-    }).compileComponents();
+  jest.mocked(selectSnapshot).mockReturnValue(jest.fn());
+  jest.mocked(dispatch).mockReturnValue(jest.fn());
 
-    fixture = TestBed.createComponent(MedicalIllustrationBehaviorComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    shallow = new Shallow(MedicalIllustrationBehaviorComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  afterEach(() => jest.clearAllMocks());
+
+  it('should create', async () => {
+    await expect(shallow.render()).resolves.toBeDefined();
+  });
+
+  it('update the node', async () => {
+    const { instance } = await shallow.render();
+    instance.nodeHovered('test');
+    expect(instance.updateNode).toHaveBeenCalledWith('test');
   });
 });
