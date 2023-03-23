@@ -15,7 +15,6 @@ export class VccfComponent {
   termsOfUse: PageDataItems[];
   license: PageDataItems[];
   citation: PageDataItems[];
-  acknowledgments: PageDataItems[];
   references: PageDataItems[];
 
   constructor(route: ActivatedRoute) {
@@ -26,7 +25,6 @@ export class VccfComponent {
     this.termsOfUse = data.termsOfUse;
     this.license = data.license;
     this.citation = data.citation;
-    this.acknowledgments = data.acknowledgments;
     this.references = data.references;
   }
 }

@@ -22,7 +22,6 @@ export class CcfTablePageComponent {
   existingTablesData: PageDataItems[];
   exploreTablesData: PageDataItems[];
   tablesUnderDevelopmentData: PageDataItems[];
-  acknowledgmentsData: PageDataItems[];
   sopLinksData: SopLinks[]
   displayedColumnsData = displayedColumnsData
   headerInfo = headerInfo
@@ -42,7 +41,6 @@ export class CcfTablePageComponent {
     this.sopLinksData = data.sopLinksData;
     this.versionData = data.versionData;
     this.tablesUnderDevelopmentData = data.tablesUnderDevelopmentData;
-    this.acknowledgmentsData = data.acknowledgmentsData;
     this.asctbTableOntologyValidationReports = data.asctbTableOntologyValidationReports;
     this.asctbTableOntologyValidationReportsButton = data.asctbTableOntologyValidationReportsButton;
     this.release = this.versionData[0];

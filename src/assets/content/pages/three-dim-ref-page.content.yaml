@@ -98,18 +98,6 @@ referenceOrgans:
 
     <a href="https://doi.org/10.48539/HBM527.RCXM.366" target="_blank">ASCT-B 3D models mapping v1.0</a> in CSV format.
 
-
-acknowledgmentsData:
-- heading: Acknowledgments
-  descriptions: |
-    The 3D Models were created by Kristen Browne for the 3D Printing and Biovisualization program operated by OCICB, NIAID. This research has been funded in part by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671, by the NIDDK Kidney Precision Medicine Project grant U2CDK114886, and NIAID under BCBB Support Services Contract HHSN316201300006W/HHSN27200002 to MSC, Inc; U.S.
-
-    The male colon is from a white 55-year-old and was provided by Arie Kaufman, Stony Brook University.
-    
-    The brain is from a 34-year-old female donor and was published by the Allen Human Reference Atlas-3D, 2020. Jim Gee, University of Pennsylvania converted the NII file into GLB. Amy Bernard, Allen Institute assisted in mapping the 141 anatomical structures to the brain ASCT+B table
-
-    The lymph node models were created using the Clearing-enhanced 3D (Ce3D) method developed by Dr. Weizhe Li, Laboratory of Immune System Biology, National Institute of Allergy and Infectious Diseases, NIH using data documented in https://www.pnas.org/content/114/35/E7321. While the size and cellular composition of mouse and human lymph nodes varies between species, the overall anatomy is well-conserved.
-
 referencesData:
 - heading: References
   descriptions: |

@@ -18,7 +18,6 @@ interface TwoDimensionReference {
   termsOfUseData: PageDataItems[];
   licenseData: PageDataItems[];
   citationData: PageDataItems[];
-  acknowledgmentsData: PageDataItems[];
   twoDimFtuLibObjects: PageDataItems[];
   disclaimer: PageDataItems[];
   filterImages: OrganData[];
@@ -48,7 +47,6 @@ export class TwoDimRefPageComponent implements OnInit {
   termsOfUseData = this.data.termsOfUseData;
   licenseData = this.data.licenseData;
   citationData = this.data.citationData;
-  acknowledgmentsData = this.data.acknowledgmentsData;
   twoDimFtuLibObjects = this.data.twoDimFtuLibObjects;
   disclaimer = this.data.disclaimer;
   filterImages = this.data.filterImages;

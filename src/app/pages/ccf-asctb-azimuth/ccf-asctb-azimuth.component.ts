@@ -24,7 +24,6 @@ export class CcfAsctbAzimuthComponent {
   TermsOfUse: PageDataItems[];
   License: PageDataItems[];
   Citation: PageDataItems[];
-  Acknowledgments: PageDataItems[];
   References: PageDataItems[];
   headerInfo= headerInfo;
   displayedColumnsData= displayedColumnsData;
@@ -48,7 +47,6 @@ export class CcfAsctbAzimuthComponent {
     this.TermsOfUse = data.termsOfUse;
     this.License = data.license;
     this.Citation = data.citation;
-    this.Acknowledgments = data.acknowledgments;
     this.References = data.references;
     this.setData();
   }

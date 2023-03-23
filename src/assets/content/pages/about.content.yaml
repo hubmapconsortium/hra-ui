@@ -64,20 +64,38 @@ presentations:
     May 19, 2020: <a href="https://hubmapconsortium.github.io/ccf/dld/2020.05.19-Borner-HuBMAPposter.pdf"><i>The Human Body Atlas: High-Resolution, Functional Mapping of Voxel, Vector, and Meta Datasets</i></a> at HuBMAP Virtual Annual Meeting, Washington, DC.
     
     
-    March 17, 2020: <a href="https://hubmapconsortium.github.io/ccf/dld/2020.03.17-MC-IU.KPMP-Talk.pdf"><i>Harmonizing KPMP/HuBMAP Data: Developing Novel Common Coordinate Framework User Interfaces</i></a> at KPMP Virtual Meeting, Washington, DC.`
+    March 17, 2020: <a href="https://hubmapconsortium.github.io/ccf/dld/2020.03.17-MC-IU.KPMP-Talk.pdf"><i>Harmonizing KPMP/HuBMAP Data: Developing Novel Common Coordinate Framework User Interfaces</i></a> at KPMP Virtual Meeting, Washington, DC.
 
 acknowledgments:
 - heading: Acknowledgments
   descriptions: |
-    The Human Reference Atlas (HRA) is under active development by the Indiana University Mapping
-    Component as part of the HuBMAP HIVE and SenNet CODCC efforts with expert input by the [HRA
-    Editorial Board](https://humanatlas.io/editorial-board) and in close collaboration with experts
-    from more than 15 other consortia. Data was provided by the HIVE and TMC components of HuBMAP.
-    This research has been funded by the NIH Common Fund through the Office of Strategic
-    Coordination/Office of the NIH Director under awards OT2OD033756 and OT2OD026671, by the
-    Cellular Senescence Network (SenNet) Consortium through the Consortium Organization and Data
-    Coordinating Center (CODCC) under award number U24CA268108, by the NIDDK Kidney Precision Medicine
-    Project grant U2CDK114886, and the NIH National Institute of Allergy and Infectious Diseases (NIAID),
-    Department of Health and Human Services under BCBB Support Services Contract HHSN316201300006W/HHSN27200002.
-    The views and conclusions contained in this document are those of the authors and should not be
-    interpreted as representing the official policies, either expressed or implied, of the NIH.
+    The Human Reference Atlas (HRA) is under active development by the Indiana University Mapping Component as part of the HuBMAP HIVE and SenNet CODCC efforts with expert input by the 
+    [HRA Editorial Board](https://humanatlas.io/editorial-board) and in close collaboration with experts from more than 15 other consortia. Data was provided by HuBMAP and other Tissue Mapping Centers. 
+    This research has been funded by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under awards OT2OD033756 and OT2OD026671, by the 
+    Cellular Senescence Network (SenNet) Consortium through the Consortium Organization and Data Coordinating Center (CODCC) under award number U24CA268108, by the 
+    NIDDK Kidney Precision Medicine Project grant U2CDK114886, and the NIH National Institute of Allergy and Infectious Diseases (NIAID), Department of Health and Human Services 
+    under BCBB Support Services Contract HHSN316201300006W/HHSN27200002.
+
+    The very first [ASCT+B table](https://humanatlas.io/asctb-tables) was published for the kidney by the Kidney Precision Medicine Project (KPMP) in 
+    "[A Multimodal and Integrated Approach to Interrogate Human Kidney Biopsies with Rigor and Reproducibility: The Kidney Precision Medicine Project](https://www.biorxiv.org/content/10.1101/828665v1)". 
+    Katy Börner (HuBMAP, KPMP), Peter Hunter (SPARC), and James Gee (BICCN) organized a CCF session at the 2020 
+    Joint NIH-HCA Meeting that brought together experts from multiple consortia to develop ASCT+B tables in an effort to create a Human Reference Atlas. Mark Musen, Chris Mungall, and 
+    David Osumi-Sutherland provided expert guidance on linking ASCT+B tables to existing ontologies.
+
+    [ASCT+B Cell Types Data from Azimuth Reference Data With Summaries](https://humanatlas.io/asctb-azimuth) was compiled by the HuBMAP MC-IU team in close collaboration with the MC-NYGC team.
+
+    The [2D Functional Tissue Unit Library](https://humanatlas.io/2d-ftu-illustrations) files were created by Rachel Bajema on the MC-IU team. This research has been funded in part by the NIH Common Fund through the Office of 
+    Strategic Coordination/Office of the NIH Director under award OT2OD026671 and the NIDDK Kidney Precision Medicine Project grant U2CDK114886.
+
+    The [3D Models](https://humanatlas.io/3d-reference-library) were created by Kristen Browne for the 3D Printing and Biovisualization program operated by OCICB, NIAID. This research has been funded in part by the NIH Common Fund through the 
+    Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671, by the NIDDK Kidney Precision Medicine Project grant U2CDK114886, and NIAID under BCBB Support Services 
+    Contract HHSN316201300006W/HHSN27200002 to MSC, Inc; U.S. The male colon is from a white 55-year-old and was provided by Arie Kaufman, Stony Brook University.The brain is from a 34-year-old 
+    female donor and was published by the Allen Human Reference Atlas-3D, 2020. Jim Gee, University of Pennsylvania converted the NII file into GLB. Amy Bernard, 
+    Allen Institute assisted in mapping the 141 anatomical structures to the brain ASCT+B table.
+
+    The CCF and associated user interfaces are developed by the MC-IU team within the HuBMAP HIVE. The MC-IU team includes Katy Börner, Lisel Record, Bruce Herr II, Ellen Quardokus, and Andreas Bueckle, 
+    Indiana University, Bloomington, IN and Griffin Weber, Harvard Medical School, Boston, MA. Former members of the team are Leonard Cross, Paul Macklin, Randy Heiland, and Jim Sluka at 
+    Indiana University, Bloomington, IN and Samuel Friedman, Opto-Knowledge Systems, Inc. We acknowledge expert input from Jeffrey Spraggins, Sanjay Jain, and Clive Wasserfall and their 
+    teams as well as the overall HuBMAP consortium.
+
+    We thank all members of the 17 consortia that participate in the Human Reference Atlas construction for their expert input and guidance.
