@@ -147,8 +147,8 @@ export const NAVIGATION_ITEMS: NavItems[] = [
     menuName: 'About',
     children: [
       {
-        menuName: 'About MC-IU',
-        route: 'about-mc-iu'
+        menuName: 'About the Team',
+        route: 'team'
       },
       {
         menuName: 'HRA Editorial Board',

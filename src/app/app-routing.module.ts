@@ -123,7 +123,7 @@ const routes: Routes = [
     resolve: { content: ContentResolver },
   },
   {
-    path: 'about-mc-iu',
+    path: 'team',
     component: AboutComponent,
     data: { contentFile: 'about.content' },
     resolve: { content: ContentResolver },
