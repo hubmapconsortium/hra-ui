@@ -43,10 +43,6 @@ tablesUnderDevelopmentData:
   descriptions: |
     The initial release of ASCT+B tables (v1.0) included 11 organs. In the 2nd release, 14 additional tables were published bringing the total to 25. In the 3rd release, several tables were updated and placenta was added resulting in 26 tables. In the 4th release, 13 tables were revised based on external reviews and updated to add ontology mappings where previously absent. If you are interested in contributing to this effort, please complete this 
     <a href="https://iu.co1.qualtrics.com/jfe/form/SV_bpaBhIr8XfdiNRH" target="_blank">online form</a> to receive relevant information and meeting invites. For questions, email infoccf@indiana.edu.
-acknowledgmentsData:
-- heading: Acknowledgments
-  descriptions: |
-    The very first ASCT+B table was published for the kidney by the Kidney Precision Medicine Project (KPMP) in "<a href="https://biorxiv.org/cgi/content/short/828665v1" target="_blank">A Multimodal and Integrated Approach to Interrogate Human Kidney Biopsies with Rigor and Reproducibility: The Kidney Precision Medicine Project</a>". Katy Börner (HuBMAP, KPMP), Peter Hunter (SPARC), and James Gee (BICCN) organized a CCF session at the 2020 Joint NIH-HCA Meeting that brought together experts from multiple consortia to develop ASCT+B tables in an effort to create a Human Reference Atlas. Mark Musen, Chris Mungall, and David Osumi-Sutherland provided expert guidance on linking ASCT+B tables to existing ontologies
 
 sopLinksData:
 - urls: 'SOP: Authoring ASCT+B Tables'

@@ -35,6 +35,3 @@ boardMembersData:
 - image: assets/images/mike_synder.svg
   description: |
     <a href="https://med.stanford.edu/content/sm/snyderlab.html.html">Mike Snyder</a>, Ph.D., Stanford W. Ascherman, Professor in Genetics. He is a leader in the field of multiomics profiling and big data, and one of the major participants of the HuBMAP, HTAN, MoTrPAC, Bridge2AI and ENCODE project.
-acknowledgmentsData:
-  heading: Acknowledgments
-  descriptions: We thank all members of the 17 consortia that participate in the Human Reference Atlas construction for their expert input and guidance.

@@ -7,7 +7,6 @@ import { UseButton } from '../../components/use-button/use-button';
 export interface CellPopulationGraphs {
   headerCardData: PageHeaderItems[];
   overviewData: PageDataItems[];
-  acknowledgmentsData: PageDataItems[];
   buttonData: UseButton;
 }
 
@@ -20,7 +19,6 @@ export class CellPopulationGraphsComponent {
   data = this.route.snapshot.data['content'] as CellPopulationGraphs;
   headerCardData = this.data.headerCardData;
   overviewData = this.data.overviewData;
-  acknowledgmentsData = this.data.acknowledgmentsData;
   buttonData = this.data.buttonData;
 
   constructor(private readonly route: ActivatedRoute) { }

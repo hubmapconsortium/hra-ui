@@ -7,7 +7,6 @@ import { UseButton } from '../../components/use-button/use-button';
 interface AsctbReporter {
   headerCardDetails: PageHeaderItems[];
   overviewData: PageDataItems[];
-  acknowledgeData: PageDataItems[];
   useButtonData: UseButton;
   height: number;
   width: number;
@@ -25,7 +24,6 @@ export class CcfReporterPageComponent {
   data = this.route.snapshot.data['content'] as AsctbReporter;
   headerCardDetails = this.data.headerCardDetails;
   overviewData = this.data.overviewData;
-  acknowledgeData = this.data.acknowledgeData;
   useButtonData = this.data.useButtonData;
   height = this.data.height;
   width = this.data.width;

@@ -26,7 +26,6 @@ export class ThreeDimRefPageComponent {
   termsOfUseData: PageDataItems[];
   licenseData: PageDataItems[];
   citationData: PageDataItems[];
-  acknowledgmentsData: PageDataItems[];
   referencesData: PageDataItems[];
   referenceOrgans: PageDataItems[];
   threeDimOrganInfo: VersionOrgans[];
@@ -47,7 +46,6 @@ export class ThreeDimRefPageComponent {
     this.threeDimOrganInfo = data.threeDimOrganInfo;
     this.licenseData = data.licenseData;
     this.citationData = data.citationData;
-    this.acknowledgmentsData = data.acknowledgmentsData;
     this.referencesData = data.referencesData;
     this.referenceOrgans = data.referenceOrgans;
     this.placeholderDate = this.versionData[0];
