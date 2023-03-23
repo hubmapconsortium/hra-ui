@@ -19,7 +19,8 @@
 
     ::ng-deep .mat-select-trigger {
       height: 100%;
-      justify-content: center;
+      justify-content: space-between;
+      padding: 0rem 1rem;
 
       .mat-select-value {
         width: unset;
@@ -31,7 +32,11 @@
     }
   }
 
-
+  @media (max-width: 26.75rem) {
+    .versions {
+      max-width: 100%;
+    }
+  }
 }
 
 ::ng-deep .mat-option-text {

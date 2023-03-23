@@ -48,6 +48,11 @@
   @media (max-width: 26.75rem) {
     .mat-card-header {
       font-size: 1.125rem;
+      padding: 1rem;
+    }
+
+    .description {
+      padding: 1rem;
     }
   }
 }
