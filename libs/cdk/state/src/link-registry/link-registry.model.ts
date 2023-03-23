@@ -13,6 +13,12 @@ export type LinkId = z.infer<(typeof LINK_REGISTRY_SCHEMA)['keySchema']>;
 /** entry for link registry */
 export type LinkEntry = z.infer<(typeof LINK_REGISTRY_SCHEMA)['valueSchema']>;
 
+/** type for internal link entry */
+export type InternalLinkEntry = z.infer<typeof INTERNAL_LINK_SCHEMA>;
+
+/** type for external link entry */
+export type ExternalLinkEntry = z.infer<typeof EXTERNAL_LINK_SCHEMA>;
+
 /** Model for LinkRegistry State */
 export type LinkRegistryModel = z.infer<typeof LINK_REGISTRY_SCHEMA>;
 

@@ -48,8 +48,12 @@ export class LoadFromYaml extends Action('Load from Yaml') {
     super();
   }
 }
-
+/** Navigate to an Internal or external url from Link id */
 export class Navigate extends Action('Navigate') {
+  /**
+   * navigate to a link
+   * @param id unqiue identifier of link
+   */
   constructor(readonly id: LinkId) {
     super();
   }

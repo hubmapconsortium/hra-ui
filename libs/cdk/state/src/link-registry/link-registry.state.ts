@@ -1,12 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { UnionMember } from '@hra-ui/utils/types';
 import { Action, Selector, State } from '@ngxs/store';
 import { load } from 'js-yaml';
 import { map, Observable } from 'rxjs';
-import { Add, AddFromYaml, AddMany, LoadFromYaml } from './link-registry.actions';
+import { Add, AddFromYaml, AddMany, LoadFromYaml, Navigate } from './link-registry.actions';
 import {
   createLinkId,
+  ExternalLinkEntry,
+  InternalLinkEntry,
   LinkEntry,
   LinkId,
   LinkRegistryContext,
@@ -15,7 +18,7 @@ import {
   LINK_REGISTRY_SCHEMA,
 } from './link-registry.model';
 
-/** Query function for resource entry optionally with type specified */
+/** Query function for link entry optionally with type specified */
 export type LinkRegistryQuery = <T extends LinkType | string = string>(
   id: LinkId,
   type?: T
@@ -25,19 +28,19 @@ export type LinkRegistryQuery = <T extends LinkType | string = string>(
 @State<LinkRegistryModel>({
   name: 'linkRegistry',
   defaults: {
-    [createLinkId('Test')]: { type: LinkType.Internal, commands: [''] },
     [createLinkId('')]: { type: LinkType.Internal, commands: [''] },
   },
 })
 @Injectable()
 export class LinkRegistryState {
-  /** Http service for resource loading */
+  /** Http service for link loading */
   private readonly http = inject(HttpClient);
-
+  /** Injects angular router */
+  private readonly router = inject(Router);
   /**
-   * Queries for a resource entry
+   * Queries for a link entry
    * @param state Current state
-   * @returns Resource query function
+   * @returns link query function
    */
   @Selector()
   static query(state: LinkRegistryModel): LinkRegistryQuery {
@@ -45,8 +48,8 @@ export class LinkRegistryState {
   }
 
   /**
-   * Gets a resource entry by id and optionally type
-   * @param state Resource registry state
+   * Gets a link entry by id and optionally type
+   * @param state link registry state
    * @param id Entry id
    * @param type Optional entry type
    * @returns The entry if found, undefined otherwise
@@ -57,7 +60,7 @@ export class LinkRegistryState {
     type?: T
   ): UnionMember<LinkEntry, 'type', T> | undefined {
     const entry = state[id] as UnionMember<LinkEntry, 'type', T>;
-    const typeMatches = type === undefined || entry?.type === type;
+    const typeMatches = type === undefined || entry.type === type;
     return typeMatches ? entry : undefined;
   }
 
@@ -105,5 +108,44 @@ export class LinkRegistryState {
     return this.http
       .get(url, { responseType: 'text' })
       .pipe(map((data) => this.addYaml(ctx, new AddFromYaml(data), url)));
+  }
+
+  /**
+   * Navigate to Internal or External urls from id
+   * @param ctx State context
+   * @param param1 Navigate action with link id
+   * @returns A promise
+   */
+  @Action(Navigate)
+  async navigate(ctx: LinkRegistryContext, { id }: Navigate): Promise<void> {
+    const entry = LinkRegistryState.getEntry(ctx.getState(), id);
+    switch (entry?.type) {
+      case LinkType.Internal:
+        await this.navigateToInternal(entry);
+        break;
+
+      case LinkType.External:
+        this.navigateToExternal(entry);
+        break;
+
+      default:
+        throw new Error(`Cannot navigate to non-existing link '${id}'`);
+    }
+  }
+
+  /**
+   * Method to navigate to an internal link using Angular router
+   * @param entry Internal Link Entry with commands and extras
+   */
+  private async navigateToInternal(entry: InternalLinkEntry): Promise<void> {
+    await this.router.navigate(entry.commands, entry.extras);
+  }
+
+  /**
+   * Method to navigate to an external link using window
+   * @param entry External link entry with url, target, and rel
+   */
+  private navigateToExternal(entry: ExternalLinkEntry): void {
+    window.open(entry.url, entry.target, entry.rel);
   }
 }

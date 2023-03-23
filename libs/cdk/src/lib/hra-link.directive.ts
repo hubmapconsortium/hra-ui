@@ -7,52 +7,80 @@ import {
   inject,
   Input,
   OnChanges,
-  Renderer2,
   SecurityContext,
   SimpleChanges,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
-import { createLinkId, LinkEntry, LinkRegistryActions, LinkRegistryState, LinkType } from '@hra-ui/cdk/state';
-import { UnionMember } from '@hra-ui/utils/types';
+import {
+  createLinkId,
+  InternalLinkEntry,
+  LinkEntry,
+  LinkRegistryActions,
+  LinkRegistryState,
+  LinkType,
+} from '@hra-ui/cdk/state';
 
+/** Empty Link ID */
 const EMPTY_LINK_ID = createLinkId('');
 
+/** Link Directive for routing */
 @Directive({
   selector: '[hraLink]',
   standalone: true,
 })
 export class LinkDirective implements OnChanges {
+  /** linkId with empty string as default value */
   @Input('hraLink') linkId = EMPTY_LINK_ID;
-
+  /** href of the element */
   @HostBinding('attr.href') href?: string;
+  /** rel attribute of the element */
   @HostBinding('attr.rel') rel?: string;
+  /** target attribute of the element */
   @HostBinding('attr.target') target?: string;
 
+  /** Native Element */
   private readonly el: HTMLElement = inject(ElementRef).nativeElement;
+  /** Angular router */
   private readonly router = inject(Router);
+  /** Activate route */
   private readonly route = inject(ActivatedRoute);
+  /** Location strategy */
   private readonly locationStrategy = inject(LocationStrategy);
+  /** DomSanitizer to sanitize the url */
   private readonly sanitizer = inject(DomSanitizer);
-  private readonly renderer = inject(Renderer2);
+  /** Selector for querying the link registry state */
   private readonly queryLink = selectQuerySnapshot(LinkRegistryState.query);
+  /** Dispatch action to navigate to a url */
   private readonly navigate = dispatch(LinkRegistryActions.Navigate);
-
+  /** tagName from Native Element */
   private readonly tagName = this.el.tagName.toLowerCase();
+  /** to know if the element is an anchor element */
   private readonly isAnchorElement = ['a', 'area'].includes(this.tagName);
+  /** url security context */
   private readonly urlSecurityContext = ['base', 'link'].includes(this.tagName)
     ? SecurityContext.RESOURCE_URL
     : SecurityContext.URL;
 
+  /** Link Entry */
   private link?: LinkEntry;
 
+  /**
+   * triggers when linkId changes
+   * @param changes contains changes of inputs
+   */
   ngOnChanges(changes: SimpleChanges): void {
     if ('linkId' in changes) {
       this.updateLink();
     }
   }
 
+  /**
+   * Triggers when a click action is performed on the element
+   * @param event type of event
+   * @returns true/false based on entry and element
+   */
   @HostListener('click', ['$event'])
   onClick(event: MouseEvent): boolean {
     const { link, linkId, isAnchorElement, target } = this;
@@ -79,13 +107,9 @@ export class LinkDirective implements OnChanges {
     return !isAnchorElement;
   }
 
-  private applyAttributeValue() {
-    const { renderer, href, el } = this;
-    if (href != null) {
-      renderer.setAttribute(el, 'href', href);
-    }
-  }
-
+  /**
+   * Updates link when linkId changes
+   */
   private updateLink(): void {
     const link = (this.link = this.queryLink(this.linkId));
     this.href = undefined;
@@ -98,12 +122,16 @@ export class LinkDirective implements OnChanges {
         this.target = link.target;
       } else {
         this.href = this.getHref(link) ?? undefined;
-        this.applyAttributeValue();
       }
     }
   }
 
-  private getHref(link: UnionMember<LinkEntry, 'type', LinkType.Internal>): string | null {
+  /**
+   * Creates a url tree and sanitizes the url
+   * @param link Internal link entry
+   * @returns A sanitized url string
+   */
+  private getHref(link: InternalLinkEntry): string | null {
     const { router, route, locationStrategy, sanitizer, urlSecurityContext } = this;
     const urlTree = router.createUrlTree(link.commands, {
       ...link.extras,
