@@ -1,2 +1,2 @@
-/** Placeholder to pass tests. Remove once there are other exports */
-export const placeholder = '';
+export * from './lib/contact/contact.service';
+export * from './lib/contact/contact.mock';
