@@ -1,4 +1,5 @@
-<menu-tree [treeItems]="mobileNavigationItems" [icon]="icon" [overlayClass]="'overlay-position'" [treeClass]="'tree-class'" [positions]="TableOfContentsPosition"></menu-tree>
+<menu-tree [treeItems]="mobileNavigationItems" [icon]="icon" [overlayClass]="'overlay-position'"
+  [treeClass]="'tree-class'" [positions]="TableOfContentsPosition"></menu-tree>
 <ccf-page-header [headerCard]="headerData"></ccf-page-header>
 <mat-drawer-container class="example-container" [autosize]="true">
   <mat-drawer mode="side" opened>
@@ -78,7 +79,7 @@
       <div id="3d-reference-objects">
         <ccf-page-data [data]="threeDimRefObjects"></ccf-page-data>
         <ccf-use-button [buttonData]="threeDimRefObjectsButton"></ccf-use-button>
-        <img src="assets/images/4th_release_3d.gif" class="three-dim-gif" />
+        <img src="assets/images/4th_release_3d.gif" class="gif" />
         <p class="page-data">
           <strong>Fig 3.</strong>
           A user interacts with a 3D Reference Object in the HRA Portal.
@@ -99,7 +100,7 @@
         <ccf-page-data [data]="registrationUserInterface"></ccf-page-data>
         <ccf-use-button [buttonData]="registrationUserInterfaceButton" class="button-container">
         </ccf-use-button>
-        <img src="assets/images/4th_release_rui_gif.gif" class="rui-gif" />
+        <img src="assets/images/4th_release_rui_gif.gif" class="gif" />
         <p class="page-data">
           <strong>Fig 5.</strong>
           A user registers a tissue block within a 3D Reference Object of the
@@ -124,9 +125,11 @@
         <strong>Previews</strong>
       </div>
       <div class="page-data">
-        Starting from an accessible overview of the Atlas project, readers will
-        be able to link to the HRA topics, concepts, and practices they wish to
-        explore in more detail.
+        <p>
+          Starting from an accessible overview of the Atlas project, readers will
+          be able to link to the HRA topics, concepts, and practices they wish to
+          explore in more detail.
+        </p>
       </div>
       <ccf-use-button [buttonData]="previewScrollytellingButton" class="preview-button"></ccf-use-button>
       <p class="page-data">
