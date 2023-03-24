@@ -5,7 +5,7 @@
   align-items: center;
 
   .mat-toolbar {
-    width: 77rem;
+    max-width: 77rem;
     padding: 0;
     background: #444c65;
     position: sticky;
@@ -22,22 +22,66 @@
     font-size: 2rem;
     line-height: 2.438rem;
     text-decoration: none;
+    padding-right: 1rem;
   }
 
   .hra-header {
-    font-family: "Inter", sans-serif;
-    font-style: normal;
     font-weight: 300;
     font-size: 2rem;
     color: #c2cae5;
     letter-spacing: -0.025em;
     line-height: 2.438rem;
     text-transform: uppercase;
-    padding-left: 1rem;
     text-decoration: none;
   }
 
+  .nav-small {
+    display: none;
+  }
+
+  menu-tree {
+    display: none;
+  }
+
   @media (max-width: 26.75rem) {
-    padding-left: 1.5rem;
+    .mat-toolbar {
+      padding: 0rem 1rem;
+    }
+    .hubmap-header {
+      font-size: 1.5rem;
+    }
+
+    .hra-header {
+      font-size: 1.25rem;
+    }
+
+    ccf-navbar {
+      display: none;
+    }
+
+    menu-tree {
+      display: unset;
+    }
+
+    .hubmap-header {
+      display: none;
+    }
+  }
+}
+
+::ng-deep {
+  .mat-parent-node {
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .mat-nested-tree-node div.menu-name {
+    padding-left: 2rem;
+  }
+
+  div.menu-name {
+    padding-left: 1rem;
+    
   }
 }

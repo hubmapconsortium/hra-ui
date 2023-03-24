@@ -5,14 +5,12 @@
     border: 0.063rem solid #444c65;
     border-radius: 0.125rem;
     background-color: #fafafa;
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 400;
     font-size: 0.875rem;
     line-height: 1.4202rem;
     letter-spacing: 0.005em;
     color: #444c65;
-    height: 2.5rem;
+    min-height: 2.5rem;
     align-items: center;
     display: inline-flex;
     text-decoration: none;
@@ -37,23 +35,24 @@
 
   .intro-gif {
     padding-bottom: 2rem;
-    height: 336px;
-    width: 344px;
+    max-height: 310px;
+    max-width: 310px;
   }
 
-  .three-dim-gif {
-    height: 335px;
-    width: 888px;
-    padding-bottom: 1rem;
+  .gif {
+    height: 100%;
+    width: 100%;
+    margin: 1rem 0rem;
   }
 
   .rui-gif {
-    width: 888px;
-    height: 509px;
+    max-width: 888px;
+    min-height: 509px;
     padding-bottom: 1rem;
   }
 
-  .date, .button-bottom {
+  .date,
+  .button-bottom {
     padding-bottom: 1rem;
   }
 
@@ -62,7 +61,7 @@
   }
 
   mat-drawer {
-    width: 306px;
+    min-width: 306px;
   }
 
   .toc-list {
@@ -82,16 +81,16 @@
       line-height: 2.25rem;
       border-bottom: #e0e0e0 1px solid;
       color: #0a6ebd;
-      height: 37px;
+      max-height: 37px;
 
       &:hover {
         background-color: #f5f5f5;
         text-decoration: underline;
         cursor: pointer;
-      } 
+      }
     }
   }
-  
+
   div::before {
     display: block;
     content: "";
@@ -117,8 +116,6 @@
     background-color: #fafafa;
     border: 0.063rem solid #444c65;
     border-radius: 0.125rem;
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 400;
     font-size: 0.875rem;
     letter-spacing: 0.005rem;
@@ -130,7 +127,7 @@
     margin-bottom: 1rem;
   }
 
-  .mat-raised-button:hover{
+  .mat-raised-button:hover {
     background-color: #e4e9e9;
   }
 
@@ -138,15 +135,71 @@
     padding-right: 0.5rem;
   }
 
-  @media (max-width: 26.75rem) {
-    padding-left: 1.5rem;
+  img {
+    width: 100%;
+  }
 
-    mat-divider {
-      width: 23.75rem;
-    }
+  menu-tree {
+    display: none;
+  }
+
+  @media (max-width: 26.75rem) {
+    padding-left: 1rem;
+    padding-right: 1rem;
 
     .mat-drawer {
       display: none;
     }
+
+    .contact-card-container {
+      margin: unset;
+    }
+
+    .contact-button {
+      width: 380px;
+      justify-content: center;
+      margin: 1rem 0rem;
+    }
+
+    menu-tree {
+      display: block;
+      padding-top: 0.5rem;
+    }
+
+    .mat-tree {
+      border-radius: 0.25rem;
+      max-width: 288px;
+    }
+  }
+}
+
+
+::ng-deep {
+  .tree-class {
+    border-radius: 0.25rem;
+    max-width: 288px;
+    padding: unset;
+
+    .table-of-contents {
+      padding: 0.75rem 0rem;
+      padding-left: 1rem;
+    }
+
+    .mat-tree-node:first-child {
+      font-weight: 300;
+      color: black;
+    }
+
+    .mat-tree-node {
+      flex-direction: column;
+      align-items: flex-start;
+      font-weight: 500;
+      color: #0a6ebd;
+    }
+
+    .mat-divider {
+      width: 100%;
+    }
+    
   }
 }

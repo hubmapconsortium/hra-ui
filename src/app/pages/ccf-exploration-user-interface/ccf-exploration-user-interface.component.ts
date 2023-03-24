@@ -7,7 +7,6 @@ import { UseButton } from '../../components/use-button/use-button';
 interface ExplorationUserInterface {
   headerCardDetails: PageHeaderItems[];
   overviewData: PageDataItems[];
-  acknowledgeData: PageDataItems[]
   tutorialData: PageDataItems[];
   interfacedata: PageDataItems[];
   useEuiButton: UseButton;
@@ -27,7 +26,6 @@ export class CcfExplorationUserInterfaceComponent {
   data = this.route.snapshot.data['content'] as ExplorationUserInterface;
   headerCardDetails = this.data.headerCardDetails;
   overviewData = this.data.overviewData;
-  acknowledgeData = this.data.acknowledgeData;
   tutorialData = this.data.tutorialData;
   interfacedata = this.data.interfacedata;
   useEuiButton = this.data.useEuiButton;

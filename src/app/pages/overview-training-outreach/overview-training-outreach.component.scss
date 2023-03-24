@@ -2,33 +2,28 @@
   max-width: 77rem;
 
   .title {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 2.25rem;
     line-height: 2.75rem;
     letter-spacing: 0.005rem;
-    color: #212121;
     padding-top: 2rem;
     padding-bottom: 1rem;
   }
 
   .heading {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 2.25rem;
     line-height: 2.75rem;
     letter-spacing: 0.005rem;
-    color: #212121;
     padding-bottom: 1rem;
   }
 
   @media (max-width: 26.75rem) {
-    padding-left: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 
     .title {
-      width: 23.75rem;
+      font-size: 1.75rem;
     }
   }
 }

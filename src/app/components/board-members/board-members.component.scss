@@ -6,8 +6,6 @@
   }
 
   .members-title {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 1.5rem;
     line-height: 1.4202rem;
@@ -19,8 +17,6 @@
   }
 
   .about {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 1rem;
     line-height: 1.5rem;
@@ -30,12 +26,7 @@
 
   @media (max-width: 26.75rem) {
     .member {
-      width: 23.75rem;
       align-items: flex-start;
-    }
-
-    .about {
-      margin-left: 1rem;
     }
   }
 }

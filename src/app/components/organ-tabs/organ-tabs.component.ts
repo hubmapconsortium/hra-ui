@@ -8,9 +8,8 @@ import { OrganData } from '../two-dim-image/two-dim-image';
 })
 export class OrganTabsComponent {
   @Input() tabs: OrganData[];
-
-  @Input() currentOrgan : string;
-
+  @Input() currentOrgan: string;
+  @Input() panelClass: string;
   @Output() organName = new EventEmitter<string>;
 
   get selectedIndex(): number {

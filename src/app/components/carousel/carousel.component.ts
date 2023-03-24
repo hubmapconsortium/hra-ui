@@ -21,14 +21,16 @@ export class CarouselComponent {
       delay: 10000,
       disableOnInteraction: false
     },
-    navigation: {
-      enabled: true
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true
     },
+    navigation: true,
     pagination: {
+      enabled: true,
       clickable: true
     },
-    effect: 'fade',
+    resizeObserver: false,
     rewind: true,
-    allowTouchMove: false
   };
 }

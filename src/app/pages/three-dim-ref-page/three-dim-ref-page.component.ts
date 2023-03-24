@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { UseButton } from 'src/app/components/use-button/use-button';
 import { ChooseVersion } from '../../components/choose-version/choose-version';
 import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
@@ -19,12 +20,12 @@ function iCaseEquals(str1: string, str2: string): boolean {
 export class ThreeDimRefPageComponent {
   headerData: PageHeaderItems[];
   overviewData: PageDataItems[];
+  organCsvButton: UseButton;
   versionData: ChooseVersion[];
   sopData:SopLinks[];
   termsOfUseData: PageDataItems[];
   licenseData: PageDataItems[];
   citationData: PageDataItems[];
-  acknowledgmentsData: PageDataItems[];
   referencesData: PageDataItems[];
   referenceOrgans: PageDataItems[];
   threeDimOrganInfo: VersionOrgans[];
@@ -37,6 +38,7 @@ export class ThreeDimRefPageComponent {
   constructor(private router: Router, private route: ActivatedRoute) {
     const data = route.snapshot.data['content'];
     this.overviewData = data.overviewData;
+    this.organCsvButton = data.organCsvButton;
     this.headerData = data.headerData;
     this.termsOfUseData = data.termsOfUseData;
     this.versionData = data.versionData;
@@ -44,7 +46,6 @@ export class ThreeDimRefPageComponent {
     this.threeDimOrganInfo = data.threeDimOrganInfo;
     this.licenseData = data.licenseData;
     this.citationData = data.citationData;
-    this.acknowledgmentsData = data.acknowledgmentsData;
     this.referencesData = data.referencesData;
     this.referenceOrgans = data.referenceOrgans;
     this.placeholderDate = this.versionData[0];

@@ -6,8 +6,6 @@
   }
 
   p {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 1rem;
     line-height: 1.5rem;
@@ -16,7 +14,11 @@
     padding-bottom: 2rem;
   }
 
+  img {
+    width: 100%;
+  }
+
   @media (max-width: 26.75rem) {
-    padding-left: 1.5rem;
+    padding: 0rem 1rem;
   }
 }

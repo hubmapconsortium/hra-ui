@@ -3,8 +3,9 @@
 <ccf-page-data [data]="overviewData" class="description"></ccf-page-data>
 <ccf-page-data [data]="disclaimer" class="description"></ccf-page-data>
 <ccf-sop-links [links]="sopData" class="description"></ccf-sop-links>
+<div class="content-title description">Functional Tissue Units</div>
 <ccf-choose-version [releaseDate]="versionData" [selectedDate]="version" (selectedVersion)="setVersion($event.version)" class="description"></ccf-choose-version>
-<ccf-organ-tabs [tabs]="filterImages" [currentOrgan]="organData[0].name" (organName)="setOrgan($event)" (organName)="setFtu($event)"></ccf-organ-tabs>
+<ccf-organ-tabs [tabs]="filterImages" [currentOrgan]="organData[0].name" (organName)="setOrgan($event)" (organName)="setFtu($event)" [panelClass]="'panelClass'"></ccf-organ-tabs>
 <ccf-two-dim-image [cardTitle]="cardTitle" [tissueData]="organData" [isMultirow]="true"></ccf-two-dim-image>
 <div class="table-heading-container">
     <div class="content-title">{{tableTitle}}</div>
@@ -16,4 +17,3 @@
 <ccf-page-data [data]="termsOfUseData" class="description"></ccf-page-data>
 <ccf-page-data [data]="licenseData" class="description"></ccf-page-data>
 <ccf-page-data [data]="citationData" class="description"></ccf-page-data>
-<ccf-page-data [data]="acknowledgmentsData" class="description"></ccf-page-data>

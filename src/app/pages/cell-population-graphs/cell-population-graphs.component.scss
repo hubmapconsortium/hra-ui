@@ -2,13 +2,15 @@
   max-width: 77rem;
 
   p {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 1rem;
     line-height: 1.5rem;
     letter-spacing: 0.005rem;
     padding-top: 1rem;
+  }
+
+  img {
+    width: 100%;
   }
 
   a {
@@ -17,7 +19,7 @@
   }
 
   .image-container {
-    padding-bottom: 2rem;
+    margin-bottom: 2rem;
   }
 
   a:-webkit-any-link:hover {
@@ -26,6 +28,7 @@
   }
 
   @media (max-width: 26.75rem) {
-    padding-left: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }

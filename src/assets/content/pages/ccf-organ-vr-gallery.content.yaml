@@ -5,13 +5,16 @@ organVrHeader:
 
 overviewData:
 - heading: Overview
-  descriptions: The HRA Organ VR Gallery is an immersive application that allows users to view, explore, and analyze 3D reference organs, anatomical structures, and cell types, in an integrated virtual reality (VR) environment[1], see Figure 1.
+  descriptions: The Human Reference Atlas (HRA) Organ Gallery is a virtual reality (VR) application that allows users to explore 3D organ models of the HRA in their true size, location, and spatial relation to each other. Our focus is on two specific use cases: 1) introducing novice and expert users to the HuBMAP data available via the HuBMAP Data Portal, and 2) providing quality assurance and quality control (QA/QC) for HRA data providers. In Figure 1, we compare the user interface for exploring the HRA via the Exploration User Interface (EUI) (Börner et al., 2022) to how it appears in the HRA Organ Gallery when using a Meta Quest Pro
 
 backgroundData:
 - heading: Background
   descriptions: |
-    The Human Reference Atlas (HRA), developed by the Human Biomolecular Atlas Program (HuBMAP)[2] in close collaboration with 17 international consortia, aims to create a spatial reference of the healthy adult human body at single-cell resolution. Anatomical Structures and Cell Types plus Biomarkers (ASCT+B) tables are compiled by experts to detail the cell types typically found in structures in human organs [3]. As of April 2022, there exist 50 3D reference organs [4], 
-    modeled after the Visible Human Project data [5], that can be used to register human tissue into a common coordinate framework (CCF) across diverse individual donors spanning different age ranges, sexes, and BMIs. The resulting spatial, specimen, and biological structure data define the HRA.`
+   The HRA effort (Börner et al., 2021) led by HuBMAP (HuBMAP Consortium et al., 2019) is a close collaboration across 17 international consortia to map the adult healthy human body at single-cell resolution. The HRA project includes three main categories of data:
+   Biological structure data that presents the connection between anatomical structures (AS) within human organs, the cell types (CT) located in them, and the biomarkers (B) that identify them
+   Spatial data that defines entities inside a 3D reference system
+   Specimen data that describes donors in terms of their demographic and health markers, such as age, sex, ethnicity, and body mass index (BMI)
+   The ASCT+B tables, which describe the cell types and biomarkers typically found in human anatomy, are compiled by experts to capture biological structure data.
 
 whyVrData:
 - heading: Why VR?
@@ -28,7 +31,7 @@ dataVisualizations:
     The HRA Organ VR Gallery presents a tested implementation of classic 2D visualizations within a 3D virtual environment, ultimately enriching the analysis experience with presence and immersion while preserving the spatiality of biological data.
 
 testingAndFeedback:
-- heading:  User Testing and Feedback'
+- heading:  User Testing and Feedback
   descriptions: |
     The HRA Organ VR Gallery application is not yet available for public download. However, if you would like to experience the gallery for yourself, please email abueckle@iu.edu.
     For more information and guidance on getting started with the application, click <a href="https://www.figma.com/proto/TopdFvriKNcV9Af2Hgo8aK/Documentation-Organ?node-id=12%3A6&scaling=scale-down&page-id=0%3A">here</a> to view the documentation. 

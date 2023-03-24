@@ -3,11 +3,11 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  box-sizing: content-box;
 
   .symbol {
-    float: left;
     height: 8rem;
-    width: 8rem;
+    max-width: 8rem;
   }
 
   .card-image {
@@ -17,11 +17,9 @@
   }
 
   mat-card {
-    padding: 0rem 1rem 0rem 0rem;
-    box-shadow: #212121;
+    padding: unset;
     margin-bottom: 0.063rem;
     display: flex;
-    overflow: hidden;
 
     &:hover {
       background: rgba(0, 0, 0, 0.04);
@@ -44,19 +42,15 @@
 
   .nav-card-title {
     display: flex;
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 400;
     font-size: 1.25rem;
-    line-height: 1.4202rem;
+    line-height: 1.75rem;
     letter-spacing: 0.005em;
     color: #0a6ebd;
   }
 
   .nav-card-description {
     padding-top: 0.5rem;
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 1rem;
     line-height: 1.5rem;
@@ -75,22 +69,25 @@
     padding-left: 10.5px;
   }
 
-  @media(max-width: 26.75rem) {
-    mat-card {
-      width: 23.75rem;
-    }
-
-    img {
-      background-color: #444C65;
+  @media (max-width: 26.75rem) {
+    .body {
+      padding: 1rem 0rem;
+      padding-right: 1rem;
     }
 
     .symbol {
-      height: inherit;
-      width: 5rem;
+      height: auto;
+      width: 80px;
+      min-width: 80px;
+      background-color: #444C65;
     }
 
-    .body {
-      margin: 1rem;
+    .nav-card-title {
+      flex-wrap: wrap;
+    }
+
+    .mat-icon {
+      padding: 0;
     }
   }
 }

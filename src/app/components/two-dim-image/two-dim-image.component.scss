@@ -4,14 +4,12 @@
     padding: unset;
   }
 
-  .mat-card-title {
-    font-family: "Inter";
-    font-style: normal;
+  .card-title {
     font-weight: 300;
     font-size: 1.5rem;
     line-height: 1.4202rem;
     letter-spacing: 0.005em;
-    padding: 1.688rem 2rem;
+    padding: 1rem 2rem;
     margin-bottom: unset;
   }
 
@@ -20,13 +18,11 @@
     padding: 0 0.938rem;
     line-height: 2.125rem;
     color: #444c65;
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 400;
     font-size: 0.875rem;
     letter-spacing: 0.005em;
     border-radius: 0.125rem;
-    width: 10rem;
+    min-width: 10rem;
   }
 
   a,
@@ -38,8 +34,6 @@
     margin-bottom: unset;
     padding-bottom: unset;
     margin-left: unset;
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 1.5rem;
     line-height: 1.4202rem;
@@ -75,14 +69,8 @@
     width: 100%;
   }
 
-  .no-split-divider {
-    width: 77rem !important;
-  }
-
   .units-container {
     padding: 1.688rem 2rem;
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 1.5rem;
     line-height: 1.4202rem;
@@ -93,7 +81,7 @@
   }
 
   .mat-card-actions > .mat-divider {
-    width: 39rem;
+    max-width: 39rem;
   }
 
   .model-container {
@@ -105,9 +93,55 @@
     text-decoration: unset !important;
   }
 
-  @media (max-width: 428px) {
-    .mat-card {
-      width: 380px;
+  .filler {
+    flex-grow: 1;
+  }
+
+  @media (max-width: 26.75rem) {
+    .multirow {
+      flex-direction: column;
+    }
+
+    .split {
+      width: unset;
+    }
+
+    .mat-card-actions .mat-stroked-button {
+      margin: unset;
+      margin-bottom: 1rem;
+    }
+
+    .download-buttons {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mat-stroked-button:first-child {
+      margin-bottom: 1rem !important;
+    }
+
+    .units-container {
+      flex-direction: row;
+      align-items: flex-start;
+      padding: 1rem;
+    }
+
+    .image-container img {
+      width: 100%;
+    }
+
+    .tissue-name {
+      margin-bottom: 1rem;
+      font-size: 1.125rem;
+    }
+
+    .card-title {
+      font-size: 1.125rem;
+      padding: 1rem;
+    }
+
+    .three-dim-name {
+      font-size: 1.125rem;
     }
   }
 }
@@ -125,19 +159,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 55rem;
-    width: 55rem;
+    max-height: 55rem;
+    min-width: 55rem;
     object-fit: contain;
   }
 
   .mat-dialog-title {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 1.5rem;
     line-height: 1.4202rem;
-    letter-spacing: 0.005rem;
-    color: #212121;
     margin: unset;
     margin-right: 0.5rem;
   }
@@ -146,14 +176,12 @@
     border: 0.063rem solid #444c65;
     line-height: 2.125rem;
     color: #444c65;
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 400;
     font-size: 0.875rem;
     letter-spacing: 0.005em;
     margin-right: 0.5rem;
     border-radius: 0.125rem;
-    width: 10rem;
+    min-width: 10rem;
   }
 
   .dialog-image {
@@ -163,7 +191,7 @@
   }
 
   .img-container {
-    width: 664px;
+    max-width: 664px;
     height: 792px;
   }
 
@@ -173,5 +201,15 @@
 
   .dialog-buttons {
     padding-top: 1.5rem;
+  }
+
+  .filler {
+    flex-grow: 1;
+  }
+
+  @media (max-width: 26.75rem) {
+    .filler {
+      display: none;
+    }
   }
 }

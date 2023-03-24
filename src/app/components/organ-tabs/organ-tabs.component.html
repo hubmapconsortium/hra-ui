@@ -1,9 +1,14 @@
-<div class="tabs-container">
-    <mat-tab-group mat-align-tabs="start" [disableRipple]="true" [selectedIndex]="selectedIndex">
-        <mat-tab *ngFor="let tab of tabs">
-            <ng-template mat-tab-label>
-                <img [src]="tab.image" class="organ-image" (click)="organName.emit(tab.name)">
-            </ng-template>
-        </mat-tab>
-    </mat-tab-group>
-</div>
+<mat-tab-group mat-align-tabs="start" [disableRipple]="true" [selectedIndex]="selectedIndex" class="organ-tabs">
+    <mat-tab *ngFor="let tab of tabs">
+        <ng-template mat-tab-label>
+            <img [src]="tab.image" class="organ-image" (click)="organName.emit(tab.name)">
+        </ng-template>
+    </mat-tab>
+</mat-tab-group>
+
+<mat-select class="organ-select" panelClass="panelClass" [value]="tabs[selectedIndex]" disableOptionCentering
+    disableRipple>
+    <mat-option *ngFor="let tab of tabs" [value]="tab" class="mat-select-value-text" (click)="organName.emit(tab.name)">
+        {{ tab.name }}
+    </mat-option>
+</mat-select>

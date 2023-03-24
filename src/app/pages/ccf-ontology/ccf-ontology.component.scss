@@ -2,8 +2,6 @@
   max-width: 77rem;
 
   .ontology-definitions {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 1rem;
     line-height: 1.5rem;
@@ -12,19 +10,18 @@
   }
 
   .long-card-container > p {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 1.5rem;
     line-height: 1.4202rem;
     letter-spacing: 0.005em;
   }
 
-  @media(max-width: 26.75rem) {
-    padding-left: 1.5rem;
+  @media (max-width: 26.75rem) {
+    padding-left: 1rem;
+    padding-right: 1rem;
 
-    .ontology-definitions {
-      width: 23.75rem;
+    .page-title {
+      font-size: 1.75rem;
     }
   }
 }

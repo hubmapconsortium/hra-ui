@@ -2,25 +2,21 @@
   display: block;
 
   .body-title {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 1.5rem;
-    line-height: 1.4202rem;
-    letter-spacing: 0.005em;
+    line-height: 2.125rem;
     color: #000000;
     padding-bottom: 1rem;
   }
 
   .body-description {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 1rem;
     line-height: 1.5rem;
     letter-spacing: 0.005em;
     color: #000000;
     text-decoration: none;
+    overflow-wrap: anywhere;
   }
 
   ::ng-deep a:-webkit-any-link {
@@ -41,8 +37,6 @@
     }
 
     h4 {
-      font-family: "Inter";
-      font-style: normal;
       font-weight: 300;
       font-size: 1rem;
       line-height: 1.5rem;
@@ -63,11 +57,5 @@
     height: 3.75rem;
     visibility: hidden;
     pointer-events: none;
-  }
-
-  @media (max-width: 26.75rem) {
-    width: 23.75rem;
-    padding-right: 1rem;
-    padding-bottom: 2.5rem;
   }
 }

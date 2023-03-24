@@ -1,8 +1,6 @@
 :host {
   display: block;
   .sop-title {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 1.5rem;
     line-height: 1.4202rem;
@@ -11,8 +9,6 @@
   }
 
   .sop-items {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 500;
     font-size: 1rem;
     line-height: 1.5rem;
@@ -35,12 +31,10 @@
       color: #3d72bf;
     }
   }
-  
-  @media(max-width: 26.75rem) {
-    width: 23.75rem;
 
+  @media (max-width: 26.75rem) {
     .sop-title {
-      line-height: 2rem;
+      line-height: 2.125rem;
     }
   }
 }

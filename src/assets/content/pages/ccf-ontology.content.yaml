@@ -30,10 +30,12 @@ ontologyWebData:
   title: Ontology Lookup Service (OLS)
   body: Repository for biomedical ontologies that aims to provide a single point of access to the latest ontology versions
   externalLink: https://www.ebi.ac.uk/ols/ontologies/ccf
+  color: rgb(0,0,0)
 - icon: assets/images/bio_portal.svg
   title: BioPortal
   body: The world's most comprehensive repository of biomedical ontologies
   externalLink: "https://bioportal.bioontology.org/ontologies/CCF"
+  color: rgb(34,73,120)
 
 referencesData:
 - heading: References
@@ -67,5 +69,5 @@ markdownData: |
 title: Common Coordinate Framework Ontology
 
 description:
-- title: A <b>Common Coordinate Framework (CCF)</b> for a human body provides a unique address for each cell in the human body. It is similar to the latitude-longtitude system used to navigate a world map.
-- title: A <b>Human Reference Atlas (HRA)</b> is a comprehensive, high-resolution, three-dimensional atlas of all the cells in the healthy human body. The Human Reference Atlas provides standard terminologies and data structures for describing specimens, biological structures, and spatial positions linked to existing ontologies.
+- title: A **Common Coordinate Framework (CCF)** for a human body provides a unique address for each cell in the human body. It is similar to the latitude-longtitude system used to navigate a world map.
+- title: A **Human Reference Atlas (HRA)** is a comprehensive, high-resolution, three-dimensional atlas of all the cells in the healthy human body. The Human Reference Atlas provides standard terminologies and data structures for describing specimens, biological structures, and spatial positions linked to existing ontologies.

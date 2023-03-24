@@ -1,4 +1,6 @@
 :host {
+  display: block;
+  width: 100%;
   max-width: 77rem;
 
   .table-heading-container {
@@ -13,8 +15,6 @@
     background-color: #fafafa;
     border: 0.063rem solid #444c65;
     border-radius: 0.125rem;
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 400;
     font-size: 0.875rem;
     letter-spacing: 0.005rem;
@@ -31,6 +31,22 @@
   }
 
   @media (max-width: 26.75rem) {
-    padding-left: 1.5rem;
+    padding: 0rem 1rem;
+
+    .table-heading-container {
+      flex-wrap: wrap;
+      line-height: 2rem;
+
+      .mat-raised-button {
+        margin-top: 1rem;
+      }
+    }
   }
+}
+
+::ng-deep .panelClass {
+  position: relative;
+  top: 40px;
+  left: 1rem;
+  min-width: unset !important;
 }

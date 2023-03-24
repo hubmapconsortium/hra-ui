@@ -4,7 +4,7 @@
     padding-top: 3rem;
     display: flex;
     flex-direction: column;
-    width: 77rem;
+    max-width: 77rem;
   }
 
   .icon {
@@ -24,8 +24,6 @@
   .card-heading {
     display: flex;
     flex-direction: column wrap;
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 2.25rem;
     line-height: 2.75rem;
@@ -34,8 +32,6 @@
   }
 
   .card-subheading {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 1rem;
     line-height: 2.5rem;
@@ -50,21 +46,25 @@
     overflow: hidden;
   }
 
-  @media(max-width: 26.75rem) {
+  @media (max-width: 26.75rem) {
+    .body {
+      padding: 1rem;
+    }
     .card-image {
       display: none;
     }
 
-    .header-card {
-      width: 25.75rem;
+    .card-heading {
+      margin-bottom: 1rem;
+      font-size: 1.75rem;
     }
 
     .card-subheading {
       line-height: 1.5rem;
     }
 
-    .body {
-      padding: 1rem 1rem;
+    .header-card {
+      padding-top: 2rem
     }
   }
 }

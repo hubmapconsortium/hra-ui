@@ -1,9 +1,9 @@
 :host {
   max-width: 77rem;
+  width: 100%;
+  display: block;
 
   .table-title {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
     font-size: 1.5rem;
     line-height: 1.4202rem;
@@ -12,6 +12,10 @@
   }
 
   @media (max-width: 26.75rem) {
-    padding-left: 1.5rem;
+    padding: 0rem 1rem;
+
+    img {
+      width: 100%;
+    }
   }
 }

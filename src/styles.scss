@@ -1,15 +1,77 @@
-/* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@use "@angular/material" as mat;
+// @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+$typography: mat.define-typography-config(
+  $font-family: (
+    "Inter",
+    sans-serif,
+  ),
+);
+
+@include mat.core($typography);
+
+$hra-pallete: (
+  50: #edefff,
+  100: #d1daef,
+  200: #b9c1db,
+  300: #9ea8c6,
+  400: #8a94b5,
+  500: #7582a5,
+  600: #667393,
+  700: #545f7c,
+  800: #444c65,
+  900: #30374d,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: rgba(black, 0.87),
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  ),
+);
+
+$my-accent: mat.define-palette($hra-pallete, 800, 200, 900);
+
+$my-primary: mat.define-palette($hra-pallete, 800, 200, 900);
+
+$my-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-accent,
+    ),
+    density: 0,
+  )
+);
+
+@include mat.all-component-themes($my-theme);
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 html,
 body {
   height: 100%;
   background-color: #fafafa;
   scroll-behavior: smooth;
 }
+
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  min-width: 77rem;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
 }
 
 a:-webkit-any-link {
@@ -25,17 +87,11 @@ a:-webkit-any-link {
 }
 
 .content-title {
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 300;
   font-size: 1.5rem;
-  line-height: 1.4202rem;
-  letter-spacing: 0.005rem;
 }
 
 .page-data {
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5rem;
@@ -43,8 +99,6 @@ a:-webkit-any-link {
 }
 
 .accuracy-prizes {
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 400;
   font-size: 1.25rem;
   line-height: 1.4202rem;
@@ -53,8 +107,6 @@ a:-webkit-any-link {
 }
 
 .list-links {
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 500;
   font-size: 1rem;
   line-height: 1.5rem;
@@ -69,17 +121,23 @@ a:-webkit-any-link {
 
 .description,
 .button-container {
-  padding-bottom: 2.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .page-title {
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 300;
   font-size: 2.25rem;
   line-height: 2.75rem;
   letter-spacing: 0.005rem;
-  color: #212121;
   padding-top: 2rem;
   padding-bottom: 1rem;
+}
+
+.hra-bold {
+  font-weight: 500;
+}
+
+strong {
+  font-weight: normal;
+  font-weight: 500;
 }

@@ -103,12 +103,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
       {
         menuName: 'Usage Metrics',
         route: 'usage-metrics',
-        disabled: true,
-        divider: true
-      },
-      {
-        menuName: 'ASCT+B Ontology Validations',
-        url: 'https://hubmapconsortium.github.io/ccf-validation-tools/'
+        disabled: true
       }
     ]
   },
@@ -141,13 +136,9 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         route: 'kaggle-two',
         disabled: true
       },
-      // {
-      //   menuName: 'Scrollytelling Series',
-      //   route: 'scrollytelling-series'
-      // },
       {
         menuName: '24 Hour Human Reference Atlas Event',
-        url: 'https://youtube.com/playlist?list=PL-CUnYVIy7DOVqQbrzhnLEtY8uoVHKXOI'
+        url: 'https://humanatlas.io/events/2022-24h/'
       }
 
     ]
@@ -156,8 +147,8 @@ export const NAVIGATION_ITEMS: NavItems[] = [
     menuName: 'About',
     children: [
       {
-        menuName: 'About MC-IU',
-        route: 'about-mc-iu'
+        menuName: 'About the Team',
+        route: 'team'
       },
       {
         menuName: 'HRA Editorial Board',

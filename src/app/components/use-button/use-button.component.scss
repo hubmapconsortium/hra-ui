@@ -1,7 +1,7 @@
 :host {
   display: block;
 
-  .mat-raised-button:hover{
+  .mat-raised-button:hover {
     background-color: #e4e9e9;
   }
 
@@ -9,17 +9,24 @@
     background-color: #fafafa;
     border: 0.063rem solid #444c65;
     border-radius: 0.125rem;
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 400;
     font-size: 0.875rem;
     letter-spacing: 0.005rem;
     color: #444c65;
     box-shadow: unset;
+    white-space: normal;
+    text-align: left;
   }
 
-  a:-webkit-any-link{
+  a:-webkit-any-link {
     text-decoration: unset !important;
   }
 
+  @media (max-width: 26.75rem) {
+    .mat-raised-button {
+      width: 380px;
+      line-height: 1.25rem;
+      padding: 0.5rem 1rem;
+    }
+  }
 }

@@ -1,12 +1,13 @@
 :host {
   display: flex;
+  flex-wrap: wrap;
   ::ng-deep .mat-card-image {
     width: unset;
   }
 
   .contact-card {
-    height: 350px;
-    width: 280px;
+    max-height: 417px;
+    max-width: 280px;
     padding: 2rem;
     margin-right: 1.5rem;
     &:hover {
@@ -28,8 +29,6 @@
   }
 
   .work-field {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 500;
     font-size: 1rem;
     line-height: 1.5rem;
@@ -38,8 +37,6 @@
   }
 
   .contact-name {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 400;
     font-size: 1.25rem;
     line-height: 1.4202rem;
@@ -48,11 +45,9 @@
   }
 
   .designation {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 300;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1rem;
+    line-height: 1.5rem;
     letter-spacing: 0.005em;
     color: #212121;
     padding-top: 1rem;
@@ -63,5 +58,20 @@
     align-items: center;
     font-size: 16px;
     line-height: 24px;
+  }
+
+  @media (max-width: 26.75rem) {
+    .contact-card {
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+
+    .mat-card-content {
+      text-align: center;
+    }
+
+    .contact-email {
+      justify-content: center;
+    }
   }
 }

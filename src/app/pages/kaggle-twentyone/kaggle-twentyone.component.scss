@@ -5,20 +5,20 @@
     padding-bottom: 1rem;
   }
 
-  mat-card{
+  mat-card {
     display: flex;
     justify-content: center;
     margin-bottom: 1rem;
   }
 
-  .datasets-container{
+  .datasets-container {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
     padding-bottom: 2.5rem;
   }
 
-  a{
+  a {
     font-size: 1rem;
     line-height: 0.5rem;
     flex-basis: 0%;
@@ -28,11 +28,15 @@
     flex-grow: 1;
   }
 
+  img {
+    width: 100%;
+  }
+
   @media (max-width: 26.75rem) {
-    padding-left: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 
     .datasets-container {
-      width: 23.75rem;
       text-align: center;
     }
   }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 
 
 let apiLoaded = false;
@@ -18,6 +18,8 @@ export class YoutubeModelComponent implements OnInit {
   @Input() title: string;
 
   @Input() playerTitle: string;
+  
+  isMobile = false;
 
   ngOnInit(): void {
     if (!apiLoaded) {
@@ -28,5 +30,20 @@ export class YoutubeModelComponent implements OnInit {
       document.body.appendChild(tag);
       apiLoaded = true;
     }
+
+    this.isMobile = document.body.getBoundingClientRect().width <= 428;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: { target: { innerWidth: number; }; }) {
+    this.isMobile = event.target.innerWidth <= 428;
+  }
+
+  getWidth(): number | undefined {
+    return this.isMobile ? 380 : 1232
+  }
+
+  getHeight(): number | undefined {
+    return this.isMobile ? parseInt('232', 10) : parseInt('584',10);
   }
 }

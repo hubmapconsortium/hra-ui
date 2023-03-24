@@ -14,7 +14,6 @@ import { UseButton } from '../../components/use-button/use-button';
 export class RegistrationUserInterfaceComponent {
   headerCardDetails: PageHeaderItems[];
   overviewData: PageDataItems[];
-  acknowledgeData:PageDataItems[];
   interfacedata: PageDataItems[];
   useRuiButton:UseButton;
   ruiSopData: SopLinks[];
@@ -28,7 +27,6 @@ export class RegistrationUserInterfaceComponent {
     const data = route.snapshot.data['content'];
     this.headerCardDetails = data.headerCardDetails;
     this.overviewData = data.overviewData;
-    this.acknowledgeData = data.acknowledgeData;
     this.interfacedata = data.interfacedata;
     this.useRuiButton = data.useRuiButton;
     this.ruiSopData = data.ruiSopData;

@@ -9,9 +9,7 @@
   }
 
   .content {
-    width: 20rem;
-    font-family: "Inter";
-    font-style: normal;
+    max-width: 20rem;
   }
 
   .presented-container {
@@ -27,7 +25,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: 0.5rem;
     font-weight: 300;
     font-size: 1rem;
     padding-bottom: 1rem;
@@ -35,7 +33,7 @@
 
   .winner {
     padding-top: 1rem;
-    gap: 8px;
+    gap: 0.5rem;
     font-size: 1rem;
     max-width: 20rem;
     font-weight: 300;
@@ -52,8 +50,6 @@
   }
 
   .solution-button {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 400;
     color: #444c65;
     border: 0.063rem solid #444c65;
@@ -83,12 +79,12 @@
 
   @media (max-width: 26.75rem) {
     mat-card {
+      flex-wrap: wrap;
       flex-direction: column;
-      width: 23.75rem;
     }
 
     .users {
-      padding-left: unset;
+      padding: unset;
       padding-top: 3rem;
     }
   }
