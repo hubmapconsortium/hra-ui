@@ -53,7 +53,9 @@
   .source-list {
     grid-column: 1 / 4;
     grid-row: 6;
-    margin-top: 1rem;
+    padding-top: 1rem;
+    padding-left: 1.125rem;
+    border-left: 0.063rem solid #d3d3d3;
   }
 
   .icon {
