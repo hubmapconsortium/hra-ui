@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AnnouncementCardModule } from './components/announcement-card/announcement-card.module';
 import { BottomToolbarModule } from './components/bottom-toolbar/bottom-toolbar.module';
+import { CountInfoCardModule } from './components/count-info-card/count-info-card.module';
 import { MenuTreeModule } from './components/menu-tree/menu-tree.module';
 import { PageDataModule } from './components/page-data/page-data.module';
 import { PageHeaderModule } from './components/page-header/page-header.module';
@@ -87,6 +88,7 @@ import { VccfModule } from './pages/vccf/vccf.module';
     MarkdownModule.forRoot({ sanitize: SecurityContext.NONE }),
     AnnouncementCardModule,
     VccfModule,
+    CountInfoCardModule
     MenuTreeModule
   ],
   providers: [],

@@ -1,0 +1,36 @@
+:host {
+  display: flex;
+  font-weight: 300;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .mat-card {
+    display: flex;
+    height: 11.5rem;
+    width: 7.75rem;
+    justify-content: center;
+    border: 0.0625rem solid #e0e0e0;
+    box-shadow: 0rem 0.125rem 0.0625rem rgba(0, 0, 0, 0.16);
+    border-radius: 0.25rem;
+    padding: unset;
+  }
+
+  .mat-card-content {
+    text-align: center;
+  }
+
+  img {
+    padding: 1.5rem;
+    height: 2.5rem;
+    width: 2.3125rem;
+  }
+
+  .card-count {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .card-text {
+    font-size: 1rem;
+  }
+}
