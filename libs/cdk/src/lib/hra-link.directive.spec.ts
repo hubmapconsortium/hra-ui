@@ -13,7 +13,7 @@ describe('LinkDirective', () => {
   `;
 
   const anchorTemplate = `
-  <a [hraLink]="linkId"></a>
+  <a target="_blank" [hraLink]="linkId"></a>
    `;
   let shallow: Shallow<LinkDirective>;
   const internalLinkEntry = {
@@ -51,7 +51,7 @@ describe('LinkDirective', () => {
       expect(instance.onClick(new MouseEvent('click'))).toBeTruthy();
     });
 
-    it('should trigger navigate event on click of internal link', async () => {
+    it('should trigger dispatch event on click of internal link', async () => {
       jest.mocked(selectQuerySnapshot).mockReturnValue(() => internalLinkEntry);
       jest.mocked(dispatch).mockReturnValue((id) => new LinkRegistryActions.Navigate(id));
       const { fixture } = await shallow.render(buttonTemplate, {
@@ -61,6 +61,7 @@ describe('LinkDirective', () => {
       });
       const button = fixture.debugElement.nativeElement.querySelector('button');
       button.click();
+      expect(dispatch).toHaveBeenCalledWith(LinkRegistryActions.Navigate);
     });
 
     describe('isAnchorElement', () => {
@@ -74,9 +75,25 @@ describe('LinkDirective', () => {
 
       it('should return true if it is ctrlKey, shiftKey, altKey, metaKey', async () => {
         jest.mocked(selectQuerySnapshot).mockReturnValue(() => internalLinkEntry);
-        const { instance, fixture, find } = await shallow.render(anchorTemplate);
+        const { instance, fixture } = await shallow.render(anchorTemplate);
         const a = fixture.debugElement.nativeElement.querySelector('a');
-        // a.click({keyCode: 16})
+        const getMouseEvent = (prop: string) =>
+          new MouseEvent('click', {
+            [prop]: true,
+          });
+        const ctrlKey = getMouseEvent('ctrlKey');
+        const shiftKey = getMouseEvent('shiftKey');
+        const altKey = getMouseEvent('altKey');
+        const metaKey = getMouseEvent('metaKey');
+        jest.spyOn(instance, 'onClick');
+        a.dispatchEvent(ctrlKey);
+        expect(instance.onClick(ctrlKey)).toBeTruthy();
+        a.dispatchEvent(shiftKey);
+        expect(instance.onClick(shiftKey)).toBeTruthy();
+        a.dispatchEvent(altKey);
+        expect(instance.onClick(altKey)).toBeTruthy();
+        a.dispatchEvent(metaKey);
+        expect(instance.onClick(metaKey)).toBeTruthy();
       });
     });
   });

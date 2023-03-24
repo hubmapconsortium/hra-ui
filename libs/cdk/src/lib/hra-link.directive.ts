@@ -83,7 +83,7 @@ export class LinkDirective implements OnChanges {
    */
   @HostListener('click', ['$event'])
   onClick(event: MouseEvent): boolean {
-    const { link, linkId, isAnchorElement, target } = this;
+    const { link, linkId, isAnchorElement } = this;
     if (!link) {
       return true;
     }
@@ -93,12 +93,7 @@ export class LinkDirective implements OnChanges {
       if (link.type === LinkType.External) {
         return true;
       }
-
       if (button !== 0 || ctrlKey || shiftKey || altKey || metaKey) {
-        return true;
-      }
-
-      if (target !== undefined && target !== '_self') {
         return true;
       }
     }
