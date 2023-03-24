@@ -11,9 +11,10 @@ $mat-css-default-light-theme: map-merge(
     --palette-primary-100: mat-css-utilities.hex-to-rgb(#c6ecf6),
     --palette-primary-500: mat-css-utilities.hex-to-rgb(#006298),
     --palette-primary-700: mat-css-utilities.hex-to-rgb(#00385f),
+    --palette-accent-A100: mat-css-utilities.hex-to-rgb(#fff7f8),
+    --palette-accent-A200: mat-css-utilities.hex-to-rgb(#990000),
+    --palette-warn-500: mat-css-utilities.hex-to-rgb(#dc231e),
   )
 );
 
 @include theming.init($default-theme: $mat-css-default-light-theme);
-
-// $default-theme: variables.$default-light-theme,
