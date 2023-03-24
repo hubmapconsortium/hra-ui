@@ -69,4 +69,8 @@
   ::ng-deep .mat-mdc-tab.mdc-tab:last-of-type {
     border-right: 0.063rem solid #d3d3d3;
   }
+
+  ::ng-deep .mat-mdc-tab.mdc-tab-indicator--active {
+    background-color: #f8f9fa;
+  }
 }
