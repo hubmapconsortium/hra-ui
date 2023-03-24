@@ -1,14 +1,13 @@
 :host {
   display: flex;
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 300;
   justify-content: space-between;
+  flex-wrap: wrap;
 
   .mat-card {
     display: flex;
-    height: 12.5rem;
-    width: 12.25rem;
+    height: 11.5rem;
+    width: 7.75rem;
     justify-content: center;
     border: 0.0625rem solid #e0e0e0;
     box-shadow: 0rem 0.125rem 0.0625rem rgba(0, 0, 0, 0.16);
@@ -21,14 +20,13 @@
   }
 
   img {
-    padding-top: 2.5rem;
-    padding-bottom: 2rem;
+    padding: 1.5rem;
     height: 2.5rem;
     width: 2.3125rem;
   }
 
   .card-count {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     text-align: center;
   }
 

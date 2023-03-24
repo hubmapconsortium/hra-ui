@@ -58,12 +58,12 @@ countCardData:
   - image: assets/images/consortia.svg
     count: 17
     text: consortia
-  - image: assets/images/publications.svg
-    count: 1,000+
-    text: publications
   - image: assets/images/experts.svg
     count: 250+
     text: experts
+  - image: assets/images/publications.svg
+    count: 1,000+
+    text: publications
   - image: assets/images/anatomical-structures.svg
     count: 2,665
     text: anatomical structures
@@ -73,3 +73,9 @@ countCardData:
   - image: assets/images/biomarkers.svg
     count: 2,842
     text: biomarkers
+  - image: assets/images/omap.svg
+    count: 7
+    text: organ mapping antibody panels
+  - image: assets/images/ftu.svg
+    count: 19
+    text: functional tissue units
