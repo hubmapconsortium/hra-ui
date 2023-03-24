@@ -88,7 +88,7 @@ import { VccfModule } from './pages/vccf/vccf.module';
     MarkdownModule.forRoot({ sanitize: SecurityContext.NONE }),
     AnnouncementCardModule,
     VccfModule,
-    CountInfoCardModule
+    CountInfoCardModule,
     MenuTreeModule
   ],
   providers: [],
