@@ -7,6 +7,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MenuTreeModule } from 'src/app/components/menu-tree/menu-tree.module';
 
 import { AppRoutingModule } from '../../app-routing.module';
 import { ContactCardModule } from '../../components/contact-card/contact-card.module';
@@ -33,7 +34,9 @@ import { FourthReleaseNotesComponent } from './fourth-release-notes.component';
     ContactCardModule,
     MatCardModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatIconModule,
+    MenuTreeModule
   ],
   providers: [],
   bootstrap: []

@@ -58,10 +58,6 @@ citationData:
     If you use the 2D data files in v1.3 release, please cite this effort as follows:
     
     Bajema, R., Bidanta, S., Quardokus, E., Herr II, B. W., Börner, K. 2022. <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-2d-reference-library.html">HuBMAP CCF 2D Reference Object Library</a>. Accessed on December 15, 2022.
-acknowledgmentsData:
-- heading: Acknowledgments
-  descriptions: |
-    The 2D Functional Tissue Unit Library files were created by Rachel Bajema on the MC-IU team. This research has been funded in part by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671 and the NIDDK Kidney Precision Medicine Project grant U2CDK114886.
 
 twoDimFtuLibObjects:
 - heading: 2D Reference Functional Tissue Unit (FTU) Library Objects

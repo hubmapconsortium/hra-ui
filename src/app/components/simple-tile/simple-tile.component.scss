@@ -12,7 +12,7 @@
     padding-bottom: 3.563rem;
   }
 
-  ::ng-deep p {
-    margin: 0 0 0px;
+  ::ng-deep markdown p {
+    margin: 0px !important;
   }
 }

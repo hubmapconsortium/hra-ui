@@ -1,18 +1,16 @@
 :host {
   max-width: 77rem;
 
-  .hubmap-title {
-    float: left;
-  }
-
   .main-content {
     margin-top: 2.5rem;
     padding-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
   }
 
   .landing-img {
-    max-height: 4.375rem;
-    max-width: 3.125rem;
+    height: 4.375rem;
+    width: 3.125rem;
     object-fit: contain;
   }
 
@@ -21,6 +19,7 @@
     line-height: 2.125rem;
     color: #212121;
     font-weight: 300;
+    letter-spacing: 0.005rem;
   }
 
   .landing-subtitle {
@@ -30,12 +29,44 @@
     line-height: 2.125rem;
   }
 
-  .content-title {
+  .card-title {
     font-size: 2.25rem;
     color: #212121;
     font-weight: 300;
     line-height: 2.75rem;
-    padding-bottom: 2rem;
-    padding-top: 3.5rem;
+    margin-bottom: 2rem;
+    margin-top: 3.5rem;
+  }
+
+  .carousel-container {
+    width: 100%;
+  }
+
+  @media (max-width: 26.75rem) {
+    padding: 0rem 1rem;
+
+    .landing-title {
+      font-size: 1.75rem;
+    }
+
+    .landing-subtitle {
+      font-size: 1.25rem;
+      line-height: 1.5rem;
+    }
+
+    .landing-img {
+      width: 48px;
+      height: 112px;
+      max-height: unset;
+    }
+
+    .card-title {
+      font-size: 1.375rem;
+      margin-bottom: 1rem;
+    }
+
+    .carousel-container {
+      width: calc(100vw - 32px);
+    }
   }
 }

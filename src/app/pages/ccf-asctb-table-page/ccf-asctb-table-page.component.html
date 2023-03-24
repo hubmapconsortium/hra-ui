@@ -6,5 +6,6 @@
 <ccf-choose-version [releaseDate]="versionData" [selectedDate]="release" (selectedVersion)="setData($event)" class="description"></ccf-choose-version>
 <ccf-table [typeCount]="(tableData | async) ?? []" [displayedColumns]="(columns | async) ?? []" [columns]="headerInfo" [isTotal]="true" [isOrgan]="true" class="description"></ccf-table>
 <ccf-page-data [data]="exploreTablesData" class="description"></ccf-page-data>
+<ccf-page-data [data]="asctbTableOntologyValidationReports"></ccf-page-data>
+<ccf-use-button [buttonData]="asctbTableOntologyValidationReportsButton" class="description"></ccf-use-button>
 <ccf-page-data [data]="tablesUnderDevelopmentData" class="description"></ccf-page-data>
-<ccf-page-data [data]="acknowledgmentsData" class="description"></ccf-page-data>

@@ -1,5 +1,5 @@
 :host {
-  .tabs-container {
+  .organ-tabs {
     padding-bottom: 2rem;
   }
 
@@ -60,7 +60,47 @@
     }
 
     .mat-tab-label:not(.mat-tab-label-active):hover::after {
-      background-color: #C2CAE5;
+      background-color: #c2cae5;
+    }
+  }
+
+  .organ-select {
+    display: none;
+  }
+
+  @media (max-width: 26.75rem) {
+    display: flex;
+    margin-bottom: 3.5rem;
+
+    .organ-select {
+      display: initial;
+      max-width: 100%;
+      height: 2.5rem;
+      font-weight: 400;
+      font-size: 0.875rem;
+      line-height: 1.4202rem;
+      letter-spacing: 0.005rem;
+      color: #444c65;
+      border: 1px solid #444c65;
+      border-radius: 2px;
+
+      ::ng-deep .mat-select-trigger {
+        height: 100%;
+        justify-content: space-between;
+        padding: 0rem 1rem;
+
+        .mat-select-value {
+          width: unset;
+        }
+      }
+
+      ::ng-deep .mat-select-arrow-wrapper {
+        padding-left: 12px;
+      }
+    }
+
+    .organ-tabs {
+      display: none;
     }
   }
 }

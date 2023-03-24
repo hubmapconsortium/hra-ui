@@ -51,6 +51,16 @@ $my-theme: mat.define-light-theme(
 
 @include mat.all-component-themes($my-theme);
 
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 html,
 body {
   height: 100%;
@@ -121,4 +131,13 @@ a:-webkit-any-link {
   letter-spacing: 0.005rem;
   padding-top: 2rem;
   padding-bottom: 1rem;
+}
+
+.hra-bold {
+  font-weight: 500;
+}
+
+strong {
+  font-weight: normal;
+  font-weight: 500;
 }

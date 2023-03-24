@@ -9,7 +9,7 @@
   </ng-template>
 
   <ng-template let-isExternal #content>
-    <div class="symbol">
+    <div class="symbol" [style.background-color]="longButton.color">
       <img [src]="longButton.icon" class="card-image" />
     </div>
     <div class="body">

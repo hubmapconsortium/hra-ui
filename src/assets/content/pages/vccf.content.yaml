@@ -31,17 +31,7 @@ citation:
   descriptions: |
     If you use the HRA-VCCF, please cite this effort as follows:
     
-    Boppana A, Lee S, Malhotra R, Halushka M, Quardokus EM, Herr BW II, Börner K, Weber GM. Anatomical structures, cell types, and biomarkers of the healthy human blood vasculature. bioRxiv. March 1, 2022. Doi: 10.1101/2022.02.28.482302.'
-
-acknowledgments:
-- heading: Acknowledgments
-  descriptions: |
-    This research has been funded by the National Institutes of Health Human BioMolecular Atlas Program
-    (HuBMAP) award OT2OD026671. We thank Zorina Galis for presenting us with the initial idea of using a
-    Vasculature Common Coordinate Framework (VCCF) as a coordinate system for the human body and helpful
-    suggestions and comments on constructing the HRA-VCCF database; Fauzan Isnaini for his contributions
-    to modeling the vasculature in functional tissue units; and, Kristen Browne for creating the 3D
-    reference objects.
+    Boppana A, Lee S, Malhotra R, Halushka M, Quardokus EM, Herr BW II, Börner K, Weber GM. Anatomical structures, cell types, and biomarkers of the healthy human blood vasculature. bioRxiv. March 1, 2022. Doi: 10.1101/2022.02.28.482302.
 
 references:
 - heading: References

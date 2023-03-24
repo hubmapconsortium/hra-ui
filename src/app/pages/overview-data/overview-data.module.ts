@@ -4,6 +4,7 @@ import { OverviewDataComponent } from './overview-data.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
+import { MenuTreeModule } from 'src/app/components/menu-tree/menu-tree.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { AnnouncementCardModule } from '../../components/announcement-card/annou
     BrowserModule,
     SimpleTileModule,
     CardButtonLongModule,
-    AnnouncementCardModule
+    AnnouncementCardModule,
+    MenuTreeModule
   ],
   providers: [],
   bootstrap: []

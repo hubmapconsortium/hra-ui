@@ -4,5 +4,6 @@ export interface NavItems {
     route?: string;
     children?: NavItems[];
     divider?: boolean;
-    url?: string
+    url?: string;
+    id?: string;
 }

@@ -14,13 +14,11 @@ export class HraApiComponent {
   pageHeaderData: PageHeaderItems[];
   useButtonData: UseButton;
   overviewData: PageDataItems[];
-  acknowledgmentsData: PageDataItems[];  
 
   constructor(route: ActivatedRoute) {
     const data = route.snapshot.data['content'];
     this.pageHeaderData = [data.pageHeaderData];
     this.useButtonData = data.useButtonData;
     this.overviewData = [data.overviewData];
-    this.acknowledgmentsData = [data.acknowledgmentsData];
   }
 }

@@ -1,4 +1,6 @@
 :host {
+  display: block;
+  width: 100%;
   max-width: 77rem;
 
   .table-heading-container {
@@ -30,5 +32,21 @@
 
   @media (max-width: 26.75rem) {
     padding: 0rem 1rem;
+
+    .table-heading-container {
+      flex-wrap: wrap;
+      line-height: 2rem;
+
+      .mat-raised-button {
+        margin-top: 1rem;
+      }
+    }
   }
+}
+
+::ng-deep .panelClass {
+  position: relative;
+  top: 40px;
+  left: 1rem;
+  min-width: unset !important;
 }

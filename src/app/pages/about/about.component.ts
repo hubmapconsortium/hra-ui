@@ -14,7 +14,7 @@ interface About {
 }
 
 @Component({
-  selector: 'about-mc-iu',
+  selector: 'team',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss']
 })

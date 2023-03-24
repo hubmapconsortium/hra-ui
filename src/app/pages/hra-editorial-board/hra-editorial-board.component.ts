@@ -8,7 +8,6 @@ interface HraEditorialBoard {
   overviewData: PageDataItems;
   boardHeader: PageHeaderItems;
   boardMembersData: BoardMemberItems[];
-  acknowledgmentsData: PageDataItems;
 }
 
 @Component({
@@ -20,7 +19,6 @@ export class HraEditorialBoardComponent {
   data = this.route.snapshot.data['content'] as HraEditorialBoard;
   overviewData = [this.data.overviewData];
   boardHeader = [this.data.boardHeader];
-  acknowledgmentsData = [this.data.acknowledgmentsData];
   boardMembersData = this.data.boardMembersData;
 
   constructor(private readonly route: ActivatedRoute) { }

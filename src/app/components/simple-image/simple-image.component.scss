@@ -44,6 +44,17 @@
   ::ng-deep .mat-card-header-text {
     margin: unset !important;
   }
+
+  @media (max-width: 26.75rem) {
+    .mat-card-header {
+      font-size: 1.125rem;
+      padding: 1rem;
+    }
+
+    .description {
+      padding: 1rem;
+    }
+  }
 }
 
 ::ng-deep .custom-modal {

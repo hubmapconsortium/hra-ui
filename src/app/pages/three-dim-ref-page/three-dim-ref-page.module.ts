@@ -9,6 +9,7 @@ import { OrganTabsModule } from '../../components/organ-tabs/organ-tabs.module';
 import { SopLinksModule } from '../../components/sop-links/sop-links.module';
 import { TwoDimImageModule } from '../../components/two-dim-image/two-dim-image.module';
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
+import { UseButtonModule } from 'src/app/components/use-button/use-button.module';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { AnnouncementCardModule } from '../../components/announcement-card/annou
         OrganTabsModule,
         SopLinksModule,
         TwoDimImageModule,
-        AnnouncementCardModule
+        AnnouncementCardModule,
+        UseButtonModule
     ],
     providers: [],
     bootstrap: [],

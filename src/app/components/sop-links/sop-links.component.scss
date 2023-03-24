@@ -31,4 +31,10 @@
       color: #3d72bf;
     }
   }
+
+  @media (max-width: 26.75rem) {
+    .sop-title {
+      line-height: 2.125rem;
+    }
+  }
 }
