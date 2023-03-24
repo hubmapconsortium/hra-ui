@@ -3,15 +3,12 @@
   <mat-icon class="end">close_fullscreen</mat-icon>
 </hra-label-box>
 
-<mat-tab-group class="table">
-  <mat-tab label="Gene Biomarkers">
-    <hra-biomarker-table-data-card [data]="data"></hra-biomarker-table-data-card>
-  </mat-tab>
-  <mat-tab label="Protein Biomarkers">
-    <hra-biomarker-table-data-card [data]="data"></hra-biomarker-table-data-card>
-  </mat-tab>
-  <mat-tab label="Lipid Biomarkers">
-    <hra-biomarker-table-data-card [data]="data"></hra-biomarker-table-data-card>
+<mat-tab-group class="table" mat-stretch-tabs="false">
+  <mat-tab *ngFor="let link of links">
+    <ng-template mat-tab-label>
+      <span class="foobar">{{ link.label }}</span>
+    </ng-template>
+    <hra-biomarker-table [data]="link.tableData" [columns]="link.tableColumns"></hra-biomarker-table>
   </mat-tab>
 </mat-tab-group>
 
