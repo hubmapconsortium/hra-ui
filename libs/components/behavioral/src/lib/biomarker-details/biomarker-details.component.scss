@@ -19,17 +19,17 @@
     grid-row: 2;
   }
 
-  .legend-label1 {
+  .mean-legend-box {
     grid-column: 1;
     grid-row: 3;
   }
 
-  .legend-label2 {
+  .percentage-legend-box {
     grid-column: 2;
     grid-row: 3;
   }
 
-  .legend1 {
+  .mean-legend {
     grid-column: 1;
     grid-row: 4;
     width: 10rem;
@@ -37,7 +37,7 @@
     border-left: 0.063rem solid #d3d3d3;
   }
 
-  .legend2 {
+  .percentage-legend {
     grid-column: 2;
     grid-row: 4;
     padding: 1rem 0 0 2rem;
