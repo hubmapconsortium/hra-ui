@@ -20,9 +20,10 @@
   }
 
   img {
-    padding: 1.5rem;
     height: 2.5rem;
     width: 2.3125rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .card-count {
@@ -31,6 +32,13 @@
   }
 
   .card-text {
-    font-size: 1rem;
+    font-size: 0.875rem;
+    padding: 0rem 0.5rem;
+  }
+
+  @media (max-width: 26.75rem) {
+    .mat-card {
+      margin-bottom: 0.5rem;
+    }
   }
 }
