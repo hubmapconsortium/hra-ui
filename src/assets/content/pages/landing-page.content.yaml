@@ -53,3 +53,32 @@ messages:
   - message: The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in
     route: release-notes/v1.3
     routeText: 4th Release Notes
+
+countCardData:
+  - image: assets/images/consortia.svg
+    count: 17
+    text: consortia
+  - image: assets/images/experts.svg
+    count: 250+
+    text: experts
+  - image: assets/images/publications.svg
+    count: 1,000+
+    text: publications
+  - image: assets/images/organs_metric.svg
+    count: 56
+    text: organs
+  - image: assets/images/anatomical-structures.svg
+    count: 2,665
+    text: anatomical structures
+  - image: assets/images/cell-types.svg
+    count: 953
+    text: cell types
+  - image: assets/images/biomarkers.svg
+    count: 2,842
+    text: biomarkers
+  - image: assets/images/omap.svg
+    count: 7
+    text: organ mapping antibody panels
+  - image: assets/images/ftu.svg
+    count: 19
+    text: functional tissue units

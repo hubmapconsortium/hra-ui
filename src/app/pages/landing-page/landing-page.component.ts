@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CountInfoCard } from 'src/app/components/count-info-card/count-info-card';
 import { Announcement } from '../../components/announcement-card/announcement-card';
 import { SliderItems } from '../../components/carousel/slider-items';
 import { SectionCardItems } from '../../components/section-card/section-card-items';
@@ -19,6 +20,7 @@ export class LandingPageComponent {
   carouselInfo: SliderItems[]
   cards: SectionCardItems[]
   messages: Announcement[];
+  countCardData: CountInfoCard[];
 
   constructor(route: ActivatedRoute) { 
     const data = route.snapshot.data['content'];
@@ -28,5 +30,6 @@ export class LandingPageComponent {
     this.carouselInfo = data.carouselInfo;
     this.cards = data.cards;
     this.messages = data.messages;
+    this.countCardData = data.countCardData;
   }
 }

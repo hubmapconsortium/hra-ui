@@ -9,6 +9,7 @@ import { AppRoutingModule } from '../../app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingPageComponent } from '../../pages/landing-page/landing-page.component';
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
+import { CountInfoCardModule } from 'src/app/components/count-info-card/count-info-card.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AnnouncementCardModule } from '../../components/announcement-card/annou
     CarouselModule,
     SectionCardModule,
     BottomToolbarModule,
-    AnnouncementCardModule
+    AnnouncementCardModule,
+    CountInfoCardModule
   ],
   providers: [],
   bootstrap: []
