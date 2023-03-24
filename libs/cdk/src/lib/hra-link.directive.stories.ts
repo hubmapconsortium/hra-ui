@@ -1,14 +1,26 @@
 import { RouterModule } from '@angular/router';
-import { createLinkId, LinkRegistryState } from '@hra-ui/cdk/state';
+import { createLinkId, LinkRegistryActions, LinkRegistryModel, LinkRegistryState, LinkType } from '@hra-ui/cdk/state';
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
+
 import { LinkDirective } from './hra-link.directive';
 
+const entries: LinkRegistryModel = {
+  [createLinkId('Test')]: {
+    url: 'https://google.com',
+    target: '_blank',
+    type: LinkType.External,
+  },
+  [createLinkId('Temp')]: {
+    type: LinkType.Internal,
+    commands: [''],
+  },
+};
 export default {
   title: 'Cdk/LinkDirective',
   parameters: {
     state: {
       states: [LinkRegistryState],
-      actions: [],
+      actions: [new LinkRegistryActions.AddMany(entries)],
     },
   },
   decorators: [
@@ -27,10 +39,10 @@ const Template =
 
 export const Button = Template(`<button [hraLink]="link">Button</button>`);
 Button.args = {
-  link: createLinkId('Test'),
+  link: createLinkId('Temp'),
 };
 
 export const Anchor = Template('<a [hraLink]="link" >Anchor</a>');
 Anchor.args = {
-  link: createLinkId('temp'),
+  link: createLinkId('Test'),
 };
