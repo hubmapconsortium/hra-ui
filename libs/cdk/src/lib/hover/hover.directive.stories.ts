@@ -25,7 +25,6 @@ const Template: Story<HoverDirective> = (args) => ({
     `
       .anchor, .hover {
         max-width: 400px;
-
       }
     `,
   ],

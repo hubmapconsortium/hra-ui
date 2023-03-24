@@ -27,7 +27,7 @@ export class HoverDirective<T = unknown> {
   private readonly el: Element = inject(ElementRef).nativeElement;
 
   /**  Defining the injectable overlay and setting its position */
-  private readonly overlayRef = inject(Overlay).create({
+  readonly overlayRef = inject(Overlay).create({
     positionStrategy: inject(Overlay)
       .position()
       .flexibleConnectedTo(this.el)
@@ -44,7 +44,7 @@ export class HoverDirective<T = unknown> {
   private readonly viewContainerRef = inject(ViewContainerRef);
 
   /** creating a portal for hover */
-  private portal?: TemplatePortal<HoverContext<T>>;
+  portal?: TemplatePortal<HoverContext<T>>;
 
   /** Function to handle the mouse over event and display the hover content */
   @HostListener('mouseover')
