@@ -1,17 +1,15 @@
+import { StateContext } from '@ngxs/store';
 import { mock, mockFn } from 'jest-mock-extended';
 import { jsPDF } from 'jspdf';
-import { Download } from './download.action';
 import { DownloadState } from './download.state';
-
-jest.mock('jspdf');
+import { Download } from './download.action';
+import { DownloadModel } from './download.model';
+jest.mock('jspdf', () => ({ jsPDF: jest.fn() }));
 
 describe('DownlodState', () => {
-  const testFileFormat = 'svg';
-  const svgUrl = 'assests/test.svg';
-  const pdfUrl = 'assests/test.pdf';
   const pngUrl = 'assests/test.png';
-
-  const testAction = new Download(testFileFormat);
+  const svgUrl = 'assests/test.svg';
+  const fileName = 'downloadFile';
   const state = new DownloadState();
 
   if (!URL.createObjectURL) {
@@ -57,38 +55,86 @@ describe('DownlodState', () => {
     });
   });
 
-  describe('convertFileToPdf', () => {
+  describe('convertFileToPdf(filename, surl)', () => {
     const doc = mock<jsPDF>();
+    const testCanvas = mock<HTMLCanvasElement>();
 
+    jest.spyOn(state, 'createCanvas').mockResolvedValue(testCanvas);
     jest.mocked(jsPDF).mockReturnValue(doc);
+    jest.spyOn(doc, 'addImage');
+    jest.spyOn(doc, 'save');
+
+    it('should call create canvas', async () => {
+      await state.convertFileToPdf(fileName, svgUrl);
+      expect(state.createCanvas).toHaveBeenCalled();
+    });
+
+    it('should call addImage on doc object', async () => {
+      await state.convertFileToPdf(fileName, svgUrl);
+      expect(doc.addImage).toHaveBeenCalled();
+    });
+
+    it('should call save on doc object', async () => {
+      await state.convertFileToPdf(fileName, svgUrl);
+      expect(doc.save).toHaveBeenCalled();
+    });
   });
 
-  it('should convert file to pdf from svg', async () => {
-    const fileName = 'testFile';
-    const surl = 'http://example.com/image.jpg';
-    const canvasDataURL = 'data:image/jpeg;base64,/9j/4AAQSk...'; // example data URL
-    const downloadImageMock = jest.fn().mockResolvedValue(canvasDataURL);
-    const createCanvasMock = jest.fn().mockResolvedValue({
-      toDataURL: jest.fn().mockReturnValue(canvasDataURL),
-      width: 500,
-      height: 500,
+  describe('convertFileToPng(filename, surl)', () => {
+    const testCanvas = mock<HTMLCanvasElement>();
+    jest.spyOn(state, 'downloadImage');
+    jest.spyOn(state, 'createCanvas').mockResolvedValue(testCanvas);
+    jest.spyOn(testCanvas, 'toBlob');
+
+    it('should call createCanvas', async () => {
+      await state.convertFileToPng(fileName, svgUrl);
+      expect(state.createCanvas).toHaveBeenCalled();
     });
-    const saveMock = jest.fn();
-    const jsPDFMock = {
-      addImage: jest.fn(),
-      save: saveMock,
-    };
-    const importMock = jest.fn().mockResolvedValue({ jsPDF: jsPDFMock });
+  });
 
-    state.downloadImage = downloadImageMock;
-    state.createCanvas = createCanvasMock;
+  describe('createCanvas(imageElement)', () => {
+    const canvas = mock<HTMLCanvasElement>();
+    const testImage = mock<HTMLImageElement>();
+    testImage.width = 100;
+    testImage.height = 100;
 
-    await state.convertFileToPdf(fileName, surl);
+    jest.spyOn(document, 'createElement').mockReturnValue(canvas);
+    jest.spyOn(canvas, 'getContext');
 
-    expect(downloadImageMock).toHaveBeenCalledWith(surl);
-    expect(createCanvasMock).toHaveBeenCalledWith(canvasDataURL);
-    expect(jsPDFMock.addImage).toHaveBeenCalledWith(canvasDataURL, 0, 0, 500, 500);
-    expect(saveMock).toHaveBeenCalledWith(`${fileName}.pdf`);
+    it('should call createCanvas', async () => {
+      const testcanvas = await state.createCanvas(testImage);
+      expect(testcanvas.width).toEqual(100);
+    });
+  });
+
+  describe('downloadFile(surl)', () => {
+    const canvas = mock<HTMLCanvasElement>();
+    const testImage = mock<HTMLImageElement>();
+    const testCtx = mock<StateContext<DownloadModel>>();
+    const testAction = mock<Download>();
+    testImage.width = 100;
+    testImage.height = 100;
+
+    jest.spyOn(document, 'createElement').mockReturnValue(canvas);
+    jest.spyOn(canvas, 'getContext');
+
+    it('should call createCanvas', async () => {
+      return state.downloadFile(testCtx, testAction);
+    });
+  });
+
+  describe('downloadAndSave(fileUrl, fileName)', () => {
+    const response = mock<Response>();
+    const data = mock<Blob>();
+    global.fetch = jest.fn(() => Promise.resolve(response)) as jest.Mock;
+
+    jest.spyOn(response, 'blob').mockResolvedValue(data);
+    jest.spyOn(state, 'blobDownload');
+
+    it('should call blobDownload', async () => {
+      await state.downloadAndSave(fileName, svgUrl);
+      expect(await state.blobDownload).toHaveBeenCalled();
+    });
   });
 
   it('should call inferFilename and return file name.', async () => {

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Download } from '@hra-ui/state';
+import { DownloadAction } from '@hra-ui/state';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
@@ -20,7 +20,7 @@ export class DownloadButtonComponent {
   url = '';
   fileName = '';
 
-  readonly downloadFile = dispatch(Download);
+  readonly downloadFile = dispatch(DownloadState);
 
   download() {
     this.url = 'https://dev.w3.org/SVG/tools/svgweb/samples/svg-files/car.svg'; // replace with your file URL

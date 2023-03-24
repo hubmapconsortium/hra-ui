@@ -76,7 +76,7 @@ export class DownloadState {
    * @param action
    */
   @Action(Download)
-  async downloadFile(ctx: StateContext<void>, action: Download) {
+  async downloadFile(ctx: StateContext<DownloadModel>, action: Download) {
     const format = typeof action.format === 'string' ? action.format : action.format.format;
     const fileName = this.inferFilename(fileUrl);
     const fileExt = this.inferFileExtension(fileUrl);
