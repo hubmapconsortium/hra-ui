@@ -43,6 +43,11 @@ const tableColumns = [
   'CD44 2',
   'LGR5 2',
   'chromosome inavalitentte A 2',
+  'RGMB 3',
+  'SOX9 3',
+  'CD44 3',
+  'LGR5 3',
+  'chromosome inavalitentte A 3',
 ];
 
 const tableData: DataRow<DataCell>[] = [
