@@ -9,10 +9,11 @@
   }
 
   .table {
-    overflow-x: auto;
-    overflow-y: auto;
-    min-width: auto;
+    // overflow-x: scroll;
+    // overflow-y: scroll;
+    // min-width: auto;
     font-size: 0.875rem;
+    position: absolute;
   }
 
   .table th {
@@ -70,5 +71,13 @@
     .icon {
       margin: auto;
     }
+  }
+
+  .table-wrapper {
+    position: relative;
+  }
+  .table-scroll {
+    height: 200px;
+    overflow: auto;
   }
 }

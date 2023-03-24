@@ -1,40 +1,44 @@
-<table class="table" mat-table [dataSource]="dataSource">
-  <caption class="sr-only">
-    Cell type table by Biomarker
-  </caption>
+<div class="table-wrapper">
+  <div class="table-scroll">
+    <table class="table" mat-table [dataSource]="dataSource">
+      <caption class="sr-only">
+        Cell type table by Biomarker
+      </caption>
 
-  <ng-container matColumnDef="type">
-    <th mat-header-cell *matHeaderCellDef>Cell Type</th>
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>Cell Type</th>
 
-    <td class="type" mat-cell *matCellDef="let element">
-      {{ element[0] }}
-    </td>
-  </ng-container>
+        <td class="type" mat-cell *matCellDef="let element">
+          {{ element[0] }}
+        </td>
+      </ng-container>
 
-  <ng-container matColumnDef="count">
-    <th class="count" mat-header-cell *matHeaderCellDef>Cell Count</th>
+      <ng-container matColumnDef="count">
+        <th class="count" mat-header-cell *matHeaderCellDef>Cell Count</th>
 
-    <td class="count" mat-cell *matCellDef="let element">
-      {{ element[1] !== undefined ? (element[1] | number) : 'no data' }}
-    </td>
-  </ng-container>
+        <td class="count" mat-cell *matCellDef="let element">
+          {{ element[1] !== undefined ? (element[1] | number) : 'no data' }}
+        </td>
+      </ng-container>
 
-  <ng-container *ngFor="let column of columns; let index = index" [matColumnDef]="column">
-    <th class="icon-header" mat-header-cell *matHeaderCellDef>
-      {{ column }}
-    </th>
+      <ng-container *ngFor="let column of columns; let index = index" [matColumnDef]="column">
+        <th class="icon-header" mat-header-cell *matHeaderCellDef>
+          {{ column }}
+        </th>
 
-    <td class="icon-cell" mat-cell *matCellDef="let element">
-      <hra-biomarker-table-data-icon
-        class="icon"
-        *ngIf="element[index + 2] !== undefined"
-        [color]="element[index + 2].color"
-        [size]="element[index + 2].size"
-      >
-      </hra-biomarker-table-data-icon>
-    </td>
-  </ng-container>
+        <td class="icon-cell" mat-cell *matCellDef="let element">
+          <hra-biomarker-table-data-icon
+            class="icon"
+            *ngIf="element[index + 2] !== undefined"
+            [color]="element[index + 2].color"
+            [size]="element[index + 2].size"
+          >
+          </hra-biomarker-table-data-icon>
+        </td>
+      </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="columnsWithTypeAndCount"></tr>
-  <tr mat-row *matRowDef="let row; columns: columnsWithTypeAndCount"></tr>
-</table>
+      <tr mat-header-row *matHeaderRowDef="columnsWithTypeAndCount"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsWithTypeAndCount"></tr>
+    </table>
+  </div>
+</div>
