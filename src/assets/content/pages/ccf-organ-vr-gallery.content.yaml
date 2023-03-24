@@ -1,68 +1,51 @@
 organVrHeader:
-- title: HRA Organ VR Gallery
+- title: HRA Organ Gallery in VR
   subtitle: An immersive application that allows users to explore 3D reference organs, anatomical structures, and cell types in virtual reality
-  image: assets/images/vr_gallery.svg
+  
 
 overviewData:
 - heading: Overview
   descriptions: |
-    The Human Reference Atlas (HRA) Organ Gallery is a virtual reality (VR) application that allows users to explore 3D organ models of the HRA in their true size, location, and spatial relation to each other. Our focus is on two specific use cases: 1) introducing novice and expert users to the HuBMAP data available via the HuBMAP Data Portal, and 2) providing quality assurance and quality control (QA/QC) for HRA data providers. In Figure 1, we compare the user interface for exploring the HRA via the Exploration User Interface (EUI) (Börner et al., 2022) to how it appears in the HRA Organ Gallery when using a Meta Quest Pro
+ The Human Reference Atlas (HRA) Organ Gallery is a virtual reality (VR) application that enables users to explore 3D organ models of the HRA in their true size, location, and spatial relation to each other.
+ A preprint titled is available at https://doi.org/10.1101/2023.02.13.528002. The HRA Organ Gallery has two main use cases: 1) introducing both novice and expert users to the HuBMAP data available via the HuBMAP Data Portal, and 2) providing quality assurance and quality control (QA/QC) for HRA data providers. More use cases are under development.
+ Figure 1 compares the user interface for exploring the HRA via the Exploration User Interface (EUI, https://portal.hubmapconsortium.org/ccf-eui) to how it appears in the HRA Organ Gallery when using a Meta Quest 2.
+image: assets/images/OrganGallery.jpg
+
+
 
 backgroundData:
 - heading: Background
   descriptions: |
-   The HRA effort (Börner et al., 2021) led by HuBMAP (HuBMAP Consortium et al., 2019) is a close collaboration across 17 international consortia to map the adult healthy human body at single-cell resolution. The HRA project includes three main categories of data:
-   Biological structure data that presents the connection between anatomical structures (AS) within human organs, the cell types (CT) located in them, and the biomarkers (B) that identify them
-   Spatial data that defines entities inside a 3D reference system
-   Specimen data that describes donors in terms of their demographic and health markers, such as age, sex, ethnicity, and body mass index (BMI)
-   The ASCT+B tables, which describe the cell types and biomarkers typically found in human anatomy, are compiled by experts to capture biological structure data.
+ The HRA project, led by HuBMAP, aims to map the adult healthy human body at single-cell resolution through a collaboration across 17 (and counting) international consortia.
+ The project includes three main categories of data: biological structure, spatial, and specimen data. The ASCT+B tables are compiled by experts to capture biological structure data, describing the connection between anatomical structures, cell types, and biomarkers.
 
 whyVrData:
 - heading: Why VR?
   descriptions: |
-    If viewed in desktop applications, the spatiality and dimensionality of the 3D reference organs is lost while viewing the biological structure and specimen data is easily possible via information visualization. However, virtual reality (VR) 
-    provides a unique method of visualizing and interacting with these diverse types of data in a unified environment. In addition, if viewed in VR, the spatiality of the organs is preserved and empowered through immersion, 
-    see Figure 2. The HRA Organ VR Gallery also builds on and implements Bowman et al.'s concept of Information-Rich Virtual Environments (IRVEs)[2].
+  Using a visually explicit method of data integration, the HRA benefits can be better defined despite the disparate data. Virtual reality (VR) presents a unique opportunity to explore both spatial and abstract data in an immersive environment that enhances presence beyond traditional interfaces like windows, icons, menus, and pointers, also called WIMP paradigm (Van Dam, 1997). Although some users may be able to learn how to explore 3D reference organs and tissue blocks on a 2D screen (Bueckle et al., 2021, 2022), many still struggle with interacting with 3D objects on a 2D screen.
+
 
 dataVisualizations:
 - heading: Data Visualizations (planned)
   descriptions: |
-    The HRA Organ VR Gallery will feature interactive stacked bar graphs, which users will be able to use to view tissue blocks in their spatial and anatomical context, select cell types across anatomical structures, and get cell type distributions, 
-    see Figure 3. Techniques such as brush-and-linking, highlighting, and hovering will be implemented for VR controllers to allow users to interact with the data. 
-    The HRA Organ VR Gallery presents a tested implementation of classic 2D visualizations within a 3D virtual environment, ultimately enriching the analysis experience with presence and immersion while preserving the spatiality of biological data.
+  The application's primary building blocks, presented in Figure 3 of the paper (https://doi.org/10.1101/2023.02.13.528002), include the SceneBuilder which serves as the data manager for the application and retrieves data from the CCF API, and the DataFetcher which uses Node, NodeArray, and GLBObject classes to store 3D organs in GLB format. Once the setup is complete, the user can interact with the organs, and the entire scene takes about 5-7 seconds to load when running natively on the Meta Quest 2. As of early March 2023, through the HRA Organ Gallery, users can investigate 55 3D reference organs and 1,203 mapped tissue blocks obtained from diverse donors and providers, connected to over 5000 datasets, in a cohesive, immersive, and 3D VR environment at the convergence of VR, information visualization, and bioinformatics. 
+
+
 
 testingAndFeedback:
-- heading:  User Testing and Feedback
+- heading:  User Testing and Feedback'
   descriptions: |
-    The HRA Organ VR Gallery application is not yet available for public download. However, if you would like to experience the gallery for yourself, please email abueckle@iu.edu.
-    For more information and guidance on getting started with the application, click <a href="https://www.figma.com/proto/TopdFvriKNcV9Af2Hgo8aK/Documentation-Organ?node-id=12%3A6&scaling=scale-down&page-id=0%3A">here</a> to view the documentation. 
-    After using the app, please take a couple of minutes to complete this brief <a href="https://forms.gle/136vKQNmMMhvFWHa7">feedback form</a>. 
-    We will take your feedback into consideration when improving and iterating on the app.
+    In order to engage a diverse group of experts in the HRA effort, we request feedback from subject matter domain experts at the NIH and its funded initiatives. We would like to involve specialists in fields such as bioinformatics, 3D modeling, medical illustration, anatomy, data curation, and biology. Additionally, we plan to conduct a user study to gather quantitative data on various QA/QC error detection methods and completion time, as well as to evaluate the app's usability, engagement, and presence. Information for test users is available at https://github.com/cns-iu/ccf-organ-vr-gallery/blob/main/INFORMATION_FOR_TESTERS.MD. The code is available at https://github.com/cns-iu/ccf-organ-vr-gallery.  
+
 
 referencesData:
 - heading: Reference
   descriptions: |
-    [1] A. Bueckle, K. M. Browne, B. W. Herr II, and K. Börner, “The Common Coordinate Framework (CCF) Organ VR Gallery.” OSF. 
-    <a href="https://www.researchgate.net/publication/357787965_The_Common_Coordinate_Framework_CCF_Organ_VR_Gallery" target="_blank">doi: 10.31219/osf.io/z9gm3</a>.
-    
+    [1]Van Dam, A. (1997). Post-WIMP user interfaces. Communications of the ACM 2, vol. 40, pp. 63-67. doi: 10.1145/253671.253708 
 
+    [2]Bueckle, A., Buehling, K., Shih, P. C., and Börner, K. (2021). 3D virtual reality vs. 2D desktop registration user interface comparison. PLOS ONE 16, e0258103. doi:10.1371/journal.pone.0258103.
 
-    [2] D. A. Bowman, C. North, J. Chen, N. F. Polys, P. S. Pyla, and U. Yilmaz, “Information-rich virtual environments: Theory, tools, and research agenda,” New York City, NY, 2003, pp. 81-90.
-    <a href="https://dl.acm.org/doi/10.1145/1008653.1008669" target="_blank">doi: 10.1145/1008653.1008669</a>.
-
-
-    [3] K. Börner et al., “Anatomical structures, cell types and biomarkers of the Human Reference Atlas,” Nature Cell Biology, vol. 23, no. 11, pp. 1117-1128, Nov. 2021, 
-    <a href="https://www.nature.com/articles/s41556-021-00788-6">doi: 10.1038/s41556-021-00788-6</a>.
-
-
-
-    [4] K. Browne et al., “HuBMAP CCF 3D Reference Object Library,” 2021. <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html">
-    https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html</a>.
-
-
-
-    [5] V. Spitzer, M. J. Ackerman, A. L. Scherzinger, and D. Whitlock, “The visible human male: a technical report,” J Am Med Inform Assoc, vol. 3, no. 2, pp. 118-130, Mar. 1996, 
-    <a href="https://academic.oup.com/jamia/article/3/2/118/708716">doi: 10.1136/jamia.1996.96236280</a>.`
+    [3]Bueckle, A., Buehling, K., Shih, P. C., and Börner, K. (2022). Optimizing Performance and Satisfaction in Matching and Movement Tasks in Virtual Reality with Interventions Using the Data Visualization Literacy Framework. Front. Virtual Real. 2. doi: 10.3389/frvir.2021.727344.
 
 height: 584
 width: 1232
