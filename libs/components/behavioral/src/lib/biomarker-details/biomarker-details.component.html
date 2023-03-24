@@ -4,11 +4,11 @@
 </hra-label-box>
 
 <mat-tab-group class="table" mat-stretch-tabs="false">
-  <mat-tab *ngFor="let link of links">
+  <mat-tab *ngFor="let tab of tabs">
     <ng-template mat-tab-label>
-      <span class="foobar">{{ link.label }}</span>
+      <span class="foobar">{{ tab.label }}</span>
     </ng-template>
-    <hra-biomarker-table [data]="link.tableData" [columns]="link.tableColumns"></hra-biomarker-table>
+    <hra-biomarker-table [data]="tab.tableData" [columns]="tab.tableColumns"></hra-biomarker-table>
   </mat-tab>
 </mat-tab-group>
 

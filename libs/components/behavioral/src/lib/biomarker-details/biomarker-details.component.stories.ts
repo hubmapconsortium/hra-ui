@@ -161,7 +161,7 @@ Primary.args = {
   ],
   tableColumns: tableColumns,
   tableData: tableData,
-  links: [
+  tabs: [
     {
       label: 'Gene Biomarkers',
       tableData: tableData,

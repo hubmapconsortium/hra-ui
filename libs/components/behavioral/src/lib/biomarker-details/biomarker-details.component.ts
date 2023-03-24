@@ -59,13 +59,13 @@ export class BiomarkerDetailsComponent implements OnChanges {
 
   @Input() tableData: DataRow<DataCell>[] = [];
 
-  @Input() links: BiomarkerTab[] = [];
+  @Input() tabs: BiomarkerTab[] = [];
 
-  activeLink = '';
+  activeTab = '';
 
   ngOnChanges(changes: SimpleChanges): void {
-    if ('links' in changes) {
-      this.activeLink = this.links[0].label;
+    if ('tabs' in changes) {
+      this.activeTab = this.tabs[0].label;
     }
   }
 }
