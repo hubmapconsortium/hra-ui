@@ -61,4 +61,12 @@
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   }
+
+  ::ng-deep .mat-mdc-tab.mdc-tab {
+    border-left: 0.063rem solid #d3d3d3;
+  }
+
+  ::ng-deep .mat-mdc-tab.mdc-tab:last-of-type {
+    border-right: 0.063rem solid #d3d3d3;
+  }
 }
