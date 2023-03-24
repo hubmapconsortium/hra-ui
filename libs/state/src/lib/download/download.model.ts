@@ -2,6 +2,7 @@ export enum FileFormat {
   PDF = 'pdf',
   PNG = 'png',
   AI = 'ai',
+  SVG = 'svg',
 }
 
 export interface DownloadFormat {
