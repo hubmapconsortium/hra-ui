@@ -17,6 +17,7 @@
   .table {
     grid-column: 1 / 4;
     grid-row: 2;
+    border-right: 0.063rem solid #d3d3d3;
   }
 
   .mean-legend-box {
@@ -56,6 +57,8 @@
     padding-top: 1rem;
     padding-left: 1.125rem;
     border-left: 0.063rem solid #d3d3d3;
+    border-right: 0.063rem solid #d3d3d3;
+    border-bottom: 0.063rem solid #d3d3d3;
   }
 
   .icon {
