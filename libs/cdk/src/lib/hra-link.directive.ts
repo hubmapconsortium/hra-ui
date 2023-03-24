@@ -71,7 +71,7 @@ export class LinkDirective implements OnChanges {
    * @param changes contains changes of inputs
    */
   ngOnChanges(changes: SimpleChanges): void {
-    if ('linkId' in changes) {
+    if (changes['linkId'].currentValue !== EMPTY_LINK_ID) {
       this.updateLink();
     }
   }

@@ -1,3 +1,4 @@
+import { SecurityContext } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
@@ -15,6 +16,10 @@ describe('LinkDirective', () => {
   const anchorTemplate = `
   <a target="_blank" [hraLink]="linkId"></a>
    `;
+
+  const linkTemplate = `
+  <link [hraLink]="linkId"/>
+  `;
   let shallow: Shallow<LinkDirective>;
   const internalLinkEntry = {
     type: LinkType.Internal,
@@ -38,15 +43,25 @@ describe('LinkDirective', () => {
   afterEach(() => jest.clearAllMocks());
 
   it('should create an instance', async () => {
-    await expect(shallow.render(buttonTemplate)).resolves.toBeDefined();
+    await expect(
+      shallow.render(buttonTemplate, {
+        bind: {
+          linkId: createLinkId(''),
+        },
+      })
+    ).resolves.toBeDefined();
+  });
+
+  it('should get RESOURCE URL from SecurityContext if tagName contains base or link', async () => {
+    const { instance } = await shallow.render(linkTemplate);
+    expect(instance['urlSecurityContext']).toEqual(SecurityContext.RESOURCE_URL);
   });
 
   describe('onClick()', () => {
     it('should trigger onClick when hraLink is clicked and return true if no link', async () => {
-      const { instance, fixture } = await shallow.render(buttonTemplate);
-      const button = fixture.debugElement.nativeElement.querySelector('button');
+      const { element, instance } = await shallow.render(buttonTemplate);
       jest.spyOn(instance, 'onClick');
-      button.click();
+      element.triggerEventHandler('click');
       expect(instance.onClick).toHaveBeenCalled();
       expect(instance.onClick(new MouseEvent('click'))).toBeTruthy();
     });
@@ -54,29 +69,27 @@ describe('LinkDirective', () => {
     it('should trigger dispatch event on click of internal link', async () => {
       jest.mocked(selectQuerySnapshot).mockReturnValue(() => internalLinkEntry);
       jest.mocked(dispatch).mockReturnValue((id) => new LinkRegistryActions.Navigate(id));
-      const { fixture } = await shallow.render(buttonTemplate, {
+      const { element } = await shallow.render(buttonTemplate, {
         bind: {
           linkId: createLinkId('test'),
         },
       });
-      const button = fixture.debugElement.nativeElement.querySelector('button');
-      button.click();
+      element.triggerEventHandler('click');
       expect(dispatch).toHaveBeenCalledWith(LinkRegistryActions.Navigate);
     });
 
     describe('isAnchorElement', () => {
       it('should return true if external link', async () => {
         jest.mocked(selectQuerySnapshot).mockReturnValue(() => externalLinkEntry);
-        const { instance, fixture } = await shallow.render(anchorTemplate);
-        const a = fixture.debugElement.nativeElement.querySelector('a');
-        a.click();
+        const { element, instance } = await shallow.render(anchorTemplate);
+        element.triggerEventHandler('click', { button: 0 });
         expect(instance.onClick(new MouseEvent('click'))).toBeTruthy();
       });
 
       it('should return true if it is ctrlKey, shiftKey, altKey, metaKey', async () => {
         jest.mocked(selectQuerySnapshot).mockReturnValue(() => internalLinkEntry);
-        const { instance, fixture } = await shallow.render(anchorTemplate);
-        const a = fixture.debugElement.nativeElement.querySelector('a');
+        const { element, instance } = await shallow.render(anchorTemplate);
+
         const getMouseEvent = (prop: string) =>
           new MouseEvent('click', {
             [prop]: true,
@@ -86,13 +99,13 @@ describe('LinkDirective', () => {
         const altKey = getMouseEvent('altKey');
         const metaKey = getMouseEvent('metaKey');
         jest.spyOn(instance, 'onClick');
-        a.dispatchEvent(ctrlKey);
+        element.triggerEventHandler('click', ctrlKey);
         expect(instance.onClick(ctrlKey)).toBeTruthy();
-        a.dispatchEvent(shiftKey);
+        element.triggerEventHandler('click', shiftKey);
         expect(instance.onClick(shiftKey)).toBeTruthy();
-        a.dispatchEvent(altKey);
+        element.triggerEventHandler('click', altKey);
         expect(instance.onClick(altKey)).toBeTruthy();
-        a.dispatchEvent(metaKey);
+        element.triggerEventHandler('click', metaKey);
         expect(instance.onClick(metaKey)).toBeTruthy();
       });
     });
