@@ -32,7 +32,18 @@ const data = [
   [createDataItem('New Gene Name', 'RGMB'), createDataItem('Mean Expression Value', '0.0643')],
 ];
 
-const tableColumns = ['RGMB', 'SOX9', 'CD44', 'LGR5', 'chromosome inavalitentte A'];
+const tableColumns = [
+  'RGMB',
+  'SOX9',
+  'CD44',
+  'LGR5',
+  'chromosome inavalitentte A',
+  'RGMB 2',
+  'SOX9 2',
+  'CD44 2',
+  'LGR5 2',
+  'chromosome inavalitentte A 2',
+];
 
 const tableData: DataRow<DataCell>[] = [
   [
@@ -145,4 +156,21 @@ Primary.args = {
   ],
   tableColumns: tableColumns,
   tableData: tableData,
+  links: [
+    {
+      label: 'Gene Biomarkers',
+      tableData: tableData,
+      tableColumns: tableColumns,
+    },
+    {
+      label: 'Protein Biomarkers',
+      tableData: tableData,
+      tableColumns: tableColumns,
+    },
+    {
+      label: 'Lipid Biomarkers',
+      tableData: [],
+      tableColumns: [],
+    },
+  ],
 };

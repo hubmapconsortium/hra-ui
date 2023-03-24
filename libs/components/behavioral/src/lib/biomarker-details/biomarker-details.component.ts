@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   BiomarkerTableDataCardComponent,
@@ -16,6 +16,12 @@ import {
 import { BiomarkerTableComponent, DataRow, DataCell } from '@hra-ui/components/organisms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
+
+export interface BiomarkerTab {
+  label: string;
+  tableData: DataRow<DataCell>[];
+  tableColumns: string[];
+}
 
 /** The component displays the biomarker details which includes the details, gradient legends, size legends and source lists*/
 @Component({
@@ -36,7 +42,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./biomarker-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BiomarkerDetailsComponent {
+export class BiomarkerDetailsComponent implements OnChanges {
   /** Nested list of DataItems for each section which is displayed to the user */
   @Input() data: DataItem[][] = [];
 
@@ -52,4 +58,14 @@ export class BiomarkerDetailsComponent {
   @Input() tableColumns: string[] = [];
 
   @Input() tableData: DataRow<DataCell>[] = [];
+
+  @Input() links: BiomarkerTab[] = [];
+
+  activeLink = '';
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('links' in changes) {
+      this.activeLink = this.links[0].label;
+    }
+  }
 }
