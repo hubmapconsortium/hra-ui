@@ -18,3 +18,4 @@ $mat-css-default-light-theme: map-merge(
 );
 
 @include theming.init($default-theme: $mat-css-default-light-theme);
+@include overrides.init();
