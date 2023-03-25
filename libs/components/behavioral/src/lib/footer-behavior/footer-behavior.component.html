@@ -1,2 +1,6 @@
 <hra-footer [productLogoUrl]="productLogoUrl() ?? ''" [productTitle]="productTitle() ?? ''" (contactClick)="contact()">
 </hra-footer>
+
+<ng-template #postContact>
+  <hra-contact-modal> </hra-contact-modal>
+</ng-template>
