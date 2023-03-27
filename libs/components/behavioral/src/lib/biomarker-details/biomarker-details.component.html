@@ -1,10 +1,11 @@
 <hra-label-box class="header-label">
   Cell Types by Gene Biomarkers
-  <mat-icon *ngIf="isTableFullScreen" (click)="switchStretch()" class="end">fullscreen</mat-icon>
-  <mat-icon *ngIf="!isTableFullScreen" (click)="switchStretch()" class="end">close_fullscreen</mat-icon>
+  <mat-icon (click)="this.isTableFullScreen = !this.isTableFullScreen" class="end">{{
+    isTableFullScreen ? 'close_fullscreen' : 'open_in_full'
+  }}</mat-icon>
 </hra-label-box>
 
-<mat-tab-group class="table" mat-stretch-tabs="false">
+<mat-tab-group class="table" mat-stretch-tabs="false" color="accent">
   <mat-tab *ngFor="let tab of tabs">
     <ng-template mat-tab-label>
       <span class="foobar">{{ tab.label }}</span>
