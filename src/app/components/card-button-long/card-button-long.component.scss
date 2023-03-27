@@ -79,7 +79,7 @@
       height: auto;
       width: 80px;
       min-width: 80px;
-      background-color: #444C65;
+      background-color: #444c65;
     }
 
     .nav-card-title {
@@ -88,6 +88,15 @@
 
     .mat-icon {
       padding: 0;
+    }
+  }
+
+  @media (max-width: 80rem) {
+    .symbol {
+      height: auto;
+      width: 80px;
+      min-width: 80px;
+      background-color: #444c65;
     }
   }
 }

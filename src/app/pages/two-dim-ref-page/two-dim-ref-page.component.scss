@@ -30,6 +30,10 @@
     background-color: #e4e9e9;
   }
 
+  @media (max-width: 80rem) {
+    padding: 0rem 1rem;
+  }
+
   @media (max-width: 26.75rem) {
     padding: 0rem 1rem;
 

@@ -67,6 +67,26 @@
       display: none;
     }
   }
+
+  @media (max-width: 80rem) {
+    .hubmap-header {
+      display: none;
+    }
+
+    .mat-toolbar {
+      padding: 0rem 1rem;
+    }
+  }
+
+  @media (max-width: 62.5rem) {
+    ccf-navbar {
+      display: none;
+    }
+
+    menu-tree {
+      display: unset;
+    }
+  }
 }
 
 ::ng-deep {
@@ -82,6 +102,5 @@
 
   div.menu-name {
     padding-left: 1rem;
-    
   }
 }

@@ -69,4 +69,8 @@
       width: calc(100vw - 32px);
     }
   }
+
+  @media (max-width: 80rem) {
+    padding: 0rem 1rem;
+  }
 }
