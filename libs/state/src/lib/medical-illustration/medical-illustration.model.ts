@@ -1,4 +1,4 @@
 export interface MedicalIllustrationModel {
   url?: string;
-  node?: string;
+  node?: Record<string, unknown>;
 }

@@ -7,11 +7,13 @@ import {
   inject,
   Input,
   OnDestroy,
+  OnInit,
   Output,
   Renderer2,
   ViewEncapsulation,
 } from '@angular/core';
 import { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';
+import { parse, ParseResult } from 'papaparse';
 import { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';
 import { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';
 
@@ -70,12 +72,14 @@ export interface NodeTooltipData {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class InteractiveSvgComponent implements OnDestroy {
+export class InteractiveSvgComponent implements OnInit, OnDestroy {
   /** SVG url */
   @Input() url?: string;
 
   /** Emits node id when hovered */
-  @Output() readonly nodeHover = new EventEmitter<string>();
+  @Output() readonly nodeHover = new EventEmitter<Record<string, unknown>>();
+
+  mapping: Record<string, unknown>[] = [];
 
   /** SVG script eval mode */
   readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;
@@ -94,6 +98,18 @@ export class InteractiveSvgComponent implements OnDestroy {
 
   /** Destroys */
   private destroy$ = new Subject<void>();
+
+  ngOnInit(): void {
+    parse('assets/mapping.csv', {
+      download: true,
+      header: true,
+      dynamicTyping: true,
+      skipEmptyLines: true,
+      complete: (results: ParseResult<Record<string, unknown>>) => {
+        this.mapping = results.data;
+      },
+    });
+  }
 
   /**
    * Clears observables on destroy
@@ -139,17 +155,28 @@ export class InteractiveSvgComponent implements OnDestroy {
    * @param event Mouse event
    */
   private onCrosswalkHover(event: MouseEvent): void {
-    const id = this.decodeId(this.getId(event));
-    if (id) {
-      this.nodeHover.emit(id);
-      this.nodeHoverData$.next({
-        node: id,
-        origin: {
-          x: event.clientX,
-          y: event.clientY,
-        },
-      });
+    const parent = (event.target as Element).parentElement;
+    const grandparent = parent?.parentElement;
+    let id = this.decodeId(this.getId(event));
+    if (!id) {
+      id = parent?.id ? parent.id : grandparent?.id || '';
     }
+
+    const mapEntry = this.mapping?.find((item) => item['node_name'] === id); //search mapping data for node entry
+
+    if (mapEntry) {
+      this.nodeHover.emit(mapEntry); //emits node entry and shows node name in tooltip if matching entry is found
+    } else {
+      id = 'Cell data not found';
+    }
+
+    this.nodeHoverData$.next({
+      node: id,
+      origin: {
+        x: event.clientX,
+        y: event.clientY,
+      },
+    });
   }
 
   /**
@@ -167,8 +194,7 @@ export class InteractiveSvgComponent implements OnDestroy {
    * @returns Parent id
    */
   private getId(event: Event): string {
-    const parentEl = (event.target as Element).parentElement as Element;
-    return parentEl.id;
+    return (event.target as Element).id;
   }
 
   /**

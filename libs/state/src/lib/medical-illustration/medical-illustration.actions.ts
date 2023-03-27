@@ -7,7 +7,7 @@ export class SetUri extends Action('[Medical Illustration] Set URI') {
 }
 
 export class SetActiveNode extends Action('[Medical Illustration] Set Active Node') {
-  constructor(readonly node?: string) {
+  constructor(readonly node?: Record<string, unknown>) {
     super();
   }
 }
