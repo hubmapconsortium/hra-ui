@@ -33,6 +33,8 @@ testingAndFeedback:
   descriptions: |
     In order to engage a diverse group of experts in the HRA effort, we request feedback from subject matter domain experts at the NIH and its funded initiatives. We would like to involve specialists in fields such as bioinformatics, 3D modeling, medical illustration, anatomy, data curation, and biology. Additionally, we plan to conduct a user study to gather quantitative data on various QA/QC error detection methods and completion time, as well as to evaluate the app's usability, engagement, and presence. Information for test users is available at https://github.com/cns-iu/ccf-organ-vr-gallery/blob/main/INFORMATION_FOR_TESTERS.MD. The code is available at https://github.com/cns-iu/ccf-organ-vr-gallery.  
 
+    Please email Andreas Bueckle (abueckle@iu.edu) if you are interested in contributing your input to the research and development of the HRA Organ Gallery.
+
 referencesData:
 - heading: Reference
   descriptions: |
