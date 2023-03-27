@@ -10,7 +10,9 @@ export type AggregateRow = Aggregate[string]['rows'][number];
  * It has two properties, summaries and aggregate, both of which are of their corresponding types.
  */
 export interface CellSummaryStateModel {
+  /** An object where each entry is an object containing information about a single cell and its corresponding biomarker. */
   summaries: CellSummary;
+  /** An object where each entry contains a label and a table of aggregated data */
   aggregate: Aggregate;
 }
 
