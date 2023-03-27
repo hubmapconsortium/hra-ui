@@ -1,7 +1,8 @@
 organVrHeader:
 - title: HRA Organ Gallery in VR
   subtitle: An immersive application that allows users to explore 3D reference organs, anatomical structures, and cell types in virtual reality
-
+  image: assets/images/vr_gallery.svg
+  
 overviewData:
 - heading: Overview
   descriptions: |
@@ -28,7 +29,7 @@ dataVisualizations:
     The application's primary building blocks, presented in Figure 3 of the paper (https://doi.org/10.1101/2023.02.13.528002), include the SceneBuilder which serves as the data manager for the application and retrieves data from the CCF API, and the DataFetcher which uses Node, NodeArray, and GLBObject classes to store 3D organs in GLB format. Once the setup is complete, the user can interact with the organs, and the entire scene takes about 5-7 seconds to load when running natively on the Meta Quest 2. As of early March 2023, through the HRA Organ Gallery, users can investigate 55 3D reference organs and 1,203 mapped tissue blocks obtained from diverse donors and providers, connected to over 5000 datasets, in a cohesive, immersive, and 3D VR environment at the convergence of VR, information visualization, and bioinformatics. 
 
 testingAndFeedback:
-- heading:  User Testing and Feedback'
+- heading:  User Testing and Feedback
   descriptions: |
     In order to engage a diverse group of experts in the HRA effort, we request feedback from subject matter domain experts at the NIH and its funded initiatives. We would like to involve specialists in fields such as bioinformatics, 3D modeling, medical illustration, anatomy, data curation, and biology. Additionally, we plan to conduct a user study to gather quantitative data on various QA/QC error detection methods and completion time, as well as to evaluate the app's usability, engagement, and presence. Information for test users is available at https://github.com/cns-iu/ccf-organ-vr-gallery/blob/main/INFORMATION_FOR_TESTERS.MD. The code is available at https://github.com/cns-iu/ccf-organ-vr-gallery.  
 
