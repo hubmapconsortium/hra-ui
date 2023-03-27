@@ -1,6 +1,7 @@
 <hra-label-box class="header-label">
   Cell Types by Gene Biomarkers
-  <mat-icon class="end">close_fullscreen</mat-icon>
+  <mat-icon *ngIf="isTableFullScreen" (click)="switchStretch()" class="end">fullscreen</mat-icon>
+  <mat-icon *ngIf="!isTableFullScreen" (click)="switchStretch()" class="end">close_fullscreen</mat-icon>
 </hra-label-box>
 
 <mat-tab-group class="table" mat-stretch-tabs="false">

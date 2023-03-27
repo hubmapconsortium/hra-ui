@@ -63,9 +63,15 @@ export class BiomarkerDetailsComponent implements OnChanges {
 
   activeTab = '';
 
+  isTableFullScreen = false;
+
   ngOnChanges(changes: SimpleChanges): void {
     if ('tabs' in changes) {
       this.activeTab = this.tabs[0].label;
     }
+  }
+
+  public switchStretch() {
+    this.isTableFullScreen = !this.isTableFullScreen;
   }
 }
