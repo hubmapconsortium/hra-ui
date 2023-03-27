@@ -16,15 +16,23 @@
 
   .slide {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas:
+      "info image";
   }
 
-  .slide-image img {
+  .slide-image {
     display: block;
-    width: 100%;
+    grid-area: image;
+  
+    img {
+      width: 100%;
+    }
+    
   }
 
   .slide-info {
+    grid-area: info;
     margin-right: 0.5rem;
   }
 
@@ -130,6 +138,7 @@
     .slide-image {
       width: 100%;
       max-height: 216px;
+      margin-bottom: 1rem;
     }
 
     .slide-image img {
@@ -137,18 +146,11 @@
     }
 
     .slide {
-      grid-template-areas:
-        "slide-image"
-        "slide-info";
-    }
-
-    .slide-image {
-      grid-area: slide-image;
-      margin-bottom: 1rem;
-    }
-
-    .slide-info {
-      grid-area: slide-info;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas: 
+        "image"
+        "info";
     }
 
     .swiper-button-next {
