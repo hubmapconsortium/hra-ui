@@ -11,25 +11,30 @@ describe('DownlodState', () => {
   const pngUrl = 'assests/test.png';
   const svgUrl = 'assests/test.svg';
   const fileName = 'downloadFile';
+  const anchor = mock<HTMLAnchorElement>();
   const state = new DownloadState();
 
   if (!URL.createObjectURL) {
     URL.createObjectURL = mockFn().mockReturnValue('blob:fakeblob');
     URL.revokeObjectURL = mockFn();
   }
+  if (!window.fetch) {
+    window.fetch = jest.fn();
+  }
 
-  afterEach(() => jest.clearAllMocks());
-  afterEach(() => jest.restoreAllMocks());
+  beforeEach(() => {
+    jest.spyOn(document, 'createElement').mockReturnValue(anchor);
+    jest.spyOn(document.body, 'appendChild').mockImplementation((node) => node);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+    jest.restoreAllMocks();
+  });
 
   describe('blobDownload(data, filename)', () => {
     const data = new Blob(['hello world'], { type: 'text/plain' });
     const filename = 'test.txt';
-    const anchor = mock<HTMLAnchorElement>();
-
-    beforeEach(() => {
-      jest.spyOn(document, 'createElement').mockReturnValue(anchor);
-      jest.spyOn(document.body, 'appendChild').mockImplementation((node) => node);
-    });
 
     it('should create an anchor element', () => {
       state.blobDownload(data, filename);
@@ -64,10 +69,10 @@ describe('DownlodState', () => {
 
     beforeEach(() => {
       jest.mocked(jsPDF).mockReturnValue(doc);
-      jest.spyOn(state, 'downloadImage').mockResolvedValue(image);
-      jest.spyOn(state, 'createCanvas').mockResolvedValue(testCanvas);
       jest.spyOn(doc, 'addImage');
       jest.spyOn(doc, 'save');
+      jest.spyOn(state, 'downloadImage').mockResolvedValue(image);
+      jest.spyOn(state, 'createCanvas').mockResolvedValue(testCanvas);
     });
 
     it('should call create canvas', async () => {
@@ -87,13 +92,14 @@ describe('DownlodState', () => {
   });
 
   describe('convertFileToPng(filename, surl)', () => {
-    const testCanvas = mock<HTMLCanvasElement>();
+    const canvas = mock<HTMLCanvasElement>();
     const image = mock<HTMLImageElement>();
 
     beforeEach(() => {
+      canvas.toBlob.mockImplementation((resolve) => resolve(null));
       jest.spyOn(state, 'downloadImage').mockResolvedValue(image);
-      jest.spyOn(state, 'createCanvas').mockResolvedValue(testCanvas);
-      jest.spyOn(testCanvas, 'toBlob').mockImplementation((resolve) => resolve(null));
+      jest.spyOn(state, 'createCanvas').mockResolvedValue(canvas);
+      jest.spyOn(state, 'blobDownload').mockImplementation(() => undefined);
     });
 
     it('should call createCanvas', async () => {
@@ -104,15 +110,15 @@ describe('DownlodState', () => {
 
   describe('createCanvas(imageElement)', () => {
     const canvas = mock<HTMLCanvasElement>();
-    const testImage = mock<HTMLImageElement>();
-    const dCtx = mock<WebGL2RenderingContext>();
-
-    testImage.width = 100;
-    testImage.height = 100;
+    const testImage = mock<HTMLImageElement>({
+      width: 100,
+      height: 100,
+    });
+    const ctx = mock<WebGL2RenderingContext>();
 
     beforeEach(() => {
       jest.spyOn(document, 'createElement').mockReturnValue(canvas);
-      jest.spyOn(canvas, 'getContext').mockReturnValue(dCtx);
+      jest.spyOn(canvas, 'getContext').mockReturnValue(ctx);
     });
 
     it('should call createCanvas', async () => {
@@ -128,42 +134,38 @@ describe('DownlodState', () => {
   });
 
   describe('downloadFile(surl)', () => {
-    const canvas = mock<HTMLCanvasElement>();
     const testImage = mock<HTMLImageElement>();
     const testCtx = mock<StateContext<DownloadModel>>();
     testImage.width = 100;
     testImage.height = 100;
 
     beforeEach(() => {
-      jest.spyOn(document, 'createElement').mockReturnValue(canvas);
-      jest.spyOn(state, 'convertFileToPng');
-      jest.spyOn(state, 'convertFileToPdf');
-      jest.spyOn(state, 'downloadAndSave');
-
-      jest.spyOn(canvas, 'getContext');
+      jest.spyOn(state, 'convertFileToPng').mockResolvedValue(undefined);
+      jest.spyOn(state, 'convertFileToPdf').mockResolvedValue(undefined);
+      jest.spyOn(state, 'downloadAndSave').mockResolvedValue(undefined);
     });
 
     it('should call createCanvas with PNG Format', async () => {
       const testActionPNG = new Download(FileFormat.PNG);
-      state.downloadFile(testCtx, testActionPNG);
+      await state.downloadFile(testCtx, testActionPNG);
       expect(state.convertFileToPng).toHaveBeenCalled();
     });
 
     it('should call createCanvas with PDF format', async () => {
       const testActionPDF = new Download(FileFormat.PDF);
-      state.downloadFile(testCtx, testActionPDF);
+      await state.downloadFile(testCtx, testActionPDF);
       expect(state.convertFileToPdf).toHaveBeenCalled();
     });
 
     it('should call createCanvas with action Format', async () => {
       const testActionPNG = new Download({ format: FileFormat.PNG, label: 'PNG' });
-      state.downloadFile(testCtx, testActionPNG);
+      await state.downloadFile(testCtx, testActionPNG);
       expect(state.convertFileToPng).toHaveBeenCalled();
     });
 
     it('should call createCanvas with action Format', async () => {
       const testActionSVG = new Download(FileFormat.SVG);
-      state.downloadFile(testCtx, testActionSVG);
+      await state.downloadFile(testCtx, testActionSVG);
       expect(state.downloadAndSave).toHaveBeenCalled();
     });
   });
@@ -171,9 +173,9 @@ describe('DownlodState', () => {
   describe('downloadAndSave(fileUrl, fileName)', () => {
     const response = mock<Response>();
     const data = mock<Blob>();
-    global.fetch = jest.fn(() => Promise.resolve(response)) as jest.Mock;
 
     beforeEach(() => {
+      jest.spyOn(window, 'fetch').mockResolvedValue(response);
       jest.spyOn(response, 'blob').mockResolvedValue(data);
       jest.spyOn(state, 'blobDownload').mockImplementation(() => undefined);
     });

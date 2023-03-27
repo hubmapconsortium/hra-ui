@@ -82,15 +82,16 @@ export class DownloadState {
     const fileExt = this.inferFileExtension(fileUrl);
 
     if (format == fileExt) {
-      this.downloadAndSave(fileUrl, fileName);
+      await this.downloadAndSave(fileUrl, fileName);
+      return;
     }
 
     switch (format) {
       case FileFormat.PDF:
-        this.convertFileToPdf(fileName, fileUrl);
+        await this.convertFileToPdf(fileName, fileUrl);
         break;
       case FileFormat.PNG:
-        this.convertFileToPng(fileName, fileUrl);
+        await this.convertFileToPng(fileName, fileUrl);
         break;
     }
   }
