@@ -39,7 +39,7 @@
   }
 
   .carousel-container {
-    width: 100%;
+    width: min(77rem,calc(100vw - 2rem))
   }
 
   @media (max-width: 26.75rem) {
