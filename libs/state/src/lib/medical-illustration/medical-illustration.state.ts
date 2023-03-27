@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
 
-import { NodeHover, SaveUrl } from './medical-illustration.actions';
-
-export interface MedicalIllustrationModel {
-  url?: string;
-  node?: string;
-}
+import { SetActiveNode, SetUri } from './medical-illustration.actions';
+import { MedicalIllustrationModel } from './medical-illustration.model';
 
 export type MedicalIllustrationContext = StateContext<MedicalIllustrationModel>;
 
@@ -16,13 +12,13 @@ export type MedicalIllustrationContext = StateContext<MedicalIllustrationModel>;
 })
 @Injectable()
 export class MedicalIllustrationState {
-  @Action(SaveUrl)
-  saveUrl({ setState }: MedicalIllustrationContext, { url }: SaveUrl) {
+  @Action(SetUri)
+  setUri({ setState }: MedicalIllustrationContext, { url }: SetUri) {
     setState({ url });
   }
 
-  @Action(NodeHover)
-  nodeHover({ patchState }: MedicalIllustrationContext, { node }: NodeHover) {
+  @Action(SetActiveNode)
+  setActiveNode({ patchState }: MedicalIllustrationContext, { node }: SetActiveNode) {
     patchState({ node });
   }
 }

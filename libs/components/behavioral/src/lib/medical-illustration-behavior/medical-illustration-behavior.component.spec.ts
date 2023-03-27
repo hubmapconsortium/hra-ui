@@ -20,10 +20,4 @@ describe('MedicalIllustrationBehaviorComponent', () => {
   it('should create', async () => {
     await expect(shallow.render()).resolves.toBeDefined();
   });
-
-  it('update the node', async () => {
-    const { instance } = await shallow.render();
-    instance.nodeHovered('test');
-    expect(instance.updateNode).toHaveBeenCalledWith('test');
-  });
 });

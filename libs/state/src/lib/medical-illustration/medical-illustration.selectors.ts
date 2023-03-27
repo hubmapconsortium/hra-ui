@@ -1,6 +1,7 @@
 import { Selector } from '@ngxs/store';
+import { MedicalIllustrationModel } from './medical-illustration.model';
 
-import { MedicalIllustrationModel, MedicalIllustrationState } from './medical-illustration.state';
+import { MedicalIllustrationState } from './medical-illustration.state';
 
 export class MedicalIllustrationSelectors {
   @Selector([MedicalIllustrationState])

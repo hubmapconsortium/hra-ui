@@ -9,7 +9,7 @@ export default {
   parameters: {
     state: {
       states: [MedicalIllustrationState],
-      actions: [new MedicalIllustrationActions.SaveUrl('assets/2d-ftu-large-intestine-crypt-lieberkuhn.svg')],
+      actions: [new MedicalIllustrationActions.SetUri('assets/2d-ftu-large-intestine-crypt-lieberkuhn.svg')],
     },
   },
 } as Meta<MedicalIllustrationBehaviorComponent>;

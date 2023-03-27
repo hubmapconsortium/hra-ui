@@ -15,9 +15,5 @@ import { MedicalIllustrationActions, MedicalIllustrationSelectors } from '@hra-u
 export class MedicalIllustrationBehaviorComponent {
   readonly currentUrl = selectSnapshot(MedicalIllustrationSelectors.getUrl);
 
-  readonly updateNode = dispatch(MedicalIllustrationActions.NodeHover);
-
-  nodeHovered(event: string): void {
-    this.updateNode(event);
-  }
+  readonly updateNode = dispatch(MedicalIllustrationActions.SetActiveNode);
 }
