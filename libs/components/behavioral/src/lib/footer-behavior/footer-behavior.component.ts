@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject, TemplateRef, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
-import { ResourceIds as Ids } from '@hra-ui/state';
 import { FooterComponent } from '@hra-ui/components/molecules';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ResourceIds as Ids } from '@hra-ui/state';
+
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
 @Component({
@@ -16,9 +17,6 @@ import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.c
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterBehaviorComponent {
-  /** A template to post a message */
-  @ViewChild('postContact') readonly postContactTemplate!: TemplateRef<void>;
-
   /** Input for product logo URL to displayed on the left side. */
   readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);
 
@@ -28,8 +26,16 @@ export class FooterBehaviorComponent {
   /** A dialog box which shows contact modal after clicking on contact */
   private readonly dialog = inject(MatDialog);
 
+  /** The current document object. */
+  private readonly document = inject(DOCUMENT);
+
   /** A function which opens the contact modal dialog box */
   contact(): void {
     this.dialog.open(ContactBehaviorComponent);
+  }
+
+  /** A function which redirects the user to a new URL */
+  goToUrl(): void {
+    this.document.location.href = 'https://example.com';
   }
 }

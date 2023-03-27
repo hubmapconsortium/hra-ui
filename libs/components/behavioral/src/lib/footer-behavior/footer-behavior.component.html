@@ -1,2 +1,7 @@
-<hra-footer [productLogoUrl]="productLogoUrl() ?? ''" [productTitle]="productTitle() ?? ''" (contactClick)="contact()">
+<hra-footer
+  [productLogoUrl]="productLogoUrl() ?? ''"
+  [productTitle]="productTitle() ?? ''"
+  (contactClick)="contact()"
+  (illustrationClick)="goToUrl()"
+>
 </hra-footer>
