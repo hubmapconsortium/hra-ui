@@ -4,12 +4,13 @@ import { selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import { ResourceIds as Ids } from '@hra-ui/state';
 import { FooterComponent } from '@hra-ui/components/molecules';
-import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
 @Component({
   selector: 'ftu-footer-behavior',
   standalone: true,
-  imports: [CommonModule, MatDialogModule, FooterComponent],
+  imports: [CommonModule, MatDialogModule, FooterComponent, ContactBehaviorComponent],
   templateUrl: './footer-behavior.component.html',
   styleUrls: ['./footer-behavior.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,11 +28,8 @@ export class FooterBehaviorComponent {
   /** A dialog box which shows contact modal after clicking on contact */
   private readonly dialog = inject(MatDialog);
 
-  /** Dialog box which references the contact modal dialog box */
-  private postRef?: MatDialogRef<void>;
-
   /** A function which opens the contact modal dialog box */
   contact(): void {
-    this.postRef = this.dialog.open(this.postContactTemplate);
+    this.dialog.open(ContactBehaviorComponent);
   }
 }
