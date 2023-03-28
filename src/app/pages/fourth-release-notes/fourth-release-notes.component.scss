@@ -143,21 +143,6 @@
     display: none;
   }
 
-  @media (max-width: 80rem) {
-    padding: 0rem 1rem;
-  }
-
-  @media (max-width: 40rem) {
-    .mat-drawer {
-      display: none;
-    }
-
-    menu-tree {
-      display: block;
-      padding-top: 0.5rem;
-    }
-  }
-
   @media (max-width: 26.75rem) {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -188,6 +173,7 @@
   }
 }
 
+
 ::ng-deep {
   .tree-class {
     border-radius: 0.25rem;
@@ -214,5 +200,6 @@
     .mat-divider {
       width: 100%;
     }
+    
   }
 }
