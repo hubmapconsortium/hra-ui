@@ -62,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>state/src/resource-registry/resource-registry.actions.ts</code>
+            <code>state/src/link-registry/link-registry.actions.ts</code>
         </p>
 
 
@@ -70,7 +70,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Add a single resource</p>
+                <p>Add a single link</p>
 
             </p>
 
@@ -84,18 +84,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(id: <a href="../undefineds/ResourceId.html" target="_self">ResourceId</a>, entry: <a href="../undefineds/ResourceEntry.html" target="_self">ResourceEntry</a>)</code>
+<code>constructor(id: <a href="../undefineds/LinkId.html" target="_self">LinkId</a>, entry: <a href="../undefineds/LinkEntry.html" target="_self">LinkEntry</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">state/src/resource-registry/resource-registry.actions.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">state/src/link-registry/link-registry.actions.ts:8</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Add or overwrite a single resource</p>
+                            <div class="io-description"><p>Add or overwrite a single link</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -113,7 +113,7 @@
                                                         <td>id</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../miscellaneous/typealiases.html#ResourceId" target="_self" >ResourceId</a></code>
+                                                                        <code><a href="../miscellaneous/typealiases.html#LinkId" target="_self" >LinkId</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -121,7 +121,7 @@
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>Resource identifier</p>
+                                                                <p>link identifier</p>
 
                                                         </td>
                                                 </tr>
@@ -129,7 +129,7 @@
                                                         <td>entry</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../miscellaneous/typealiases.html#ResourceEntry" target="_self" >ResourceEntry</a></code>
+                                                                        <code><a href="../miscellaneous/typealiases.html#LinkEntry" target="_self" >LinkEntry</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -137,7 +137,7 @@
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>Resource entry</p>
+                                                                <p>link entry</p>
 
                                                         </td>
                                                 </tr>
@@ -162,38 +162,38 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ActionGroup } from &#x27;../actions/actions&#x27;;
-import { ResourceEntry, ResourceId } from &#x27;./resource-registry.model&#x27;;
+import { LinkEntry, LinkId } from &#x27;./link-registry.model&#x27;;
 
 /** Base action factory */
-const Action &#x3D; ActionGroup(&#x27;ResourceRegistry&#x27;);
+const Action &#x3D; ActionGroup(&#x27;LinkRegistry&#x27;);
 
-/** Add a single resource */
+/** Add a single link */
 export class Add extends Action(&#x27;Add&#x27;) {
   /**
-   * Add or overwrite a single resource
-   * @param id Resource identifier
-   * @param entry Resource entry
+   * Add or overwrite a single link
+   * @param id link identifier
+   * @param entry link entry
    */
-  constructor(readonly id: ResourceId, readonly entry: ResourceEntry) {
+  constructor(readonly id: LinkId, readonly entry: LinkEntry) {
     super();
   }
 }
 
-/** Add multiple resources at once */
+/** Add multiple links at once */
 export class AddMany extends Action(&#x27;Add Many&#x27;) {
   /**
-   * Add or overwrite multiple resources
-   * @param entries New resources
+   * Add or overwrite multiple links
+   * @param entries New links
    */
-  constructor(readonly entries: Partial&lt;Record&lt;ResourceId, ResourceEntry&gt;&gt;) {
+  constructor(readonly entries: Partial&lt;Record&lt;LinkId, LinkEntry&gt;&gt;) {
     super();
   }
 }
 
-/** Add resources from raw yaml data */
+/** Add entries from yaml file */
 export class AddFromYaml extends Action(&#x27;Add from Yaml&#x27;) {
   /**
-   * Add resources from unparsed yaml
+   * Add links from unparsed yaml
    * @param yaml Unparsed yaml data
    */
   constructor(readonly yaml: string) {
@@ -201,25 +201,23 @@ export class AddFromYaml extends Action(&#x27;Add from Yaml&#x27;) {
   }
 }
 
-/** Add resources from a remote yaml file */
+/** Add links from a remote yaml file */
 export class LoadFromYaml extends Action(&#x27;Load from Yaml&#x27;) {
   /**
-   * Loads a remote yaml file and add resources
+   * Loads a remote yaml file and add links
    * @param url Remote yaml file url
    */
   constructor(readonly url: string) {
     super();
   }
 }
-
-/** Add a markdown resource with data loaded from a remote file */
-export class LoadMarkdown extends Action(&#x27;Load Markdown&#x27;) {
+/** Navigate to an Internal or external url from Link id */
+export class Navigate extends Action(&#x27;Navigate&#x27;) {
   /**
-   * Loads a remote markdown file and add a resource
-   * @param id Resource id
-   * @param url Remote markdown file url
+   * navigate to a link
+   * @param id unqiue identifier of link
    */
-  constructor(readonly id: ResourceId, readonly url: string) {
+  constructor(readonly id: LinkId) {
     super();
   }
 }

@@ -58,6 +58,19 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                         </ul>
                     </li>
+                        <li class="chapter">
+                            <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#directives-links"' :
+                                'data-target="#xs-directives-links"' }>
+                                <span class="icon ion-md-code-working"></span>
+                                <span>Directives</span>
+                                <span class="icon ion-ios-arrow-down"></span>
+                            </div>
+                            <ul class="links collapse " ${ isNormalMode ? 'id="directives-links"' : 'id="xs-directives-links"' }>
+                                <li class="link">
+                                    <a href="directives/LinkDirective.html" data-type="entity-link" >LinkDirective</a>
+                                </li>
+                            </ul>
+                        </li>
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#classes-links"' :
                             'data-target="#xs-classes-links"' }>
@@ -70,16 +83,34 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/Add.html" data-type="entity-link" >Add</a>
                             </li>
                             <li class="link">
+                                <a href="classes/Add-1.html" data-type="entity-link" >Add</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/AddFromYaml.html" data-type="entity-link" >AddFromYaml</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/AddFromYaml-1.html" data-type="entity-link" >AddFromYaml</a>
                             </li>
                             <li class="link">
                                 <a href="classes/AddMany.html" data-type="entity-link" >AddMany</a>
                             </li>
                             <li class="link">
+                                <a href="classes/AddMany-1.html" data-type="entity-link" >AddMany</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/LinkRegistrySelectors.html" data-type="entity-link" >LinkRegistrySelectors</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/LoadFromYaml.html" data-type="entity-link" >LoadFromYaml</a>
                             </li>
                             <li class="link">
+                                <a href="classes/LoadFromYaml-1.html" data-type="entity-link" >LoadFromYaml</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/LoadMarkdown.html" data-type="entity-link" >LoadMarkdown</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/Navigate.html" data-type="entity-link" >Navigate</a>
                             </li>
                             <li class="link">
                                 <a href="classes/ResourceRegistrySelectors.html" data-type="entity-link" >ResourceRegistrySelectors</a>
@@ -100,6 +131,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <span class="icon ion-ios-arrow-down"></span>
                             </div>
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
+                                <li class="link">
+                                    <a href="injectables/LinkRegistryState.html" data-type="entity-link" >LinkRegistryState</a>
+                                </li>
                                 <li class="link">
                                     <a href="injectables/ResourceRegistryState.html" data-type="entity-link" >ResourceRegistryState</a>
                                 </li>

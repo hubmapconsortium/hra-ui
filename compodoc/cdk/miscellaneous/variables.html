@@ -61,10 +61,25 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#Action" title="state/src/link-registry/link-registry.actions.ts" ><b>Action</b>&nbsp;&nbsp;&nbsp;(state/.../link-registry.actions.ts)</a>
+                        </li>
+                        <li>
                             <a href="#Action" title="state/src/resource-registry/resource-registry.actions.ts" ><b>Action</b>&nbsp;&nbsp;&nbsp;(state/.../resource-registry.actions.ts)</a>
                         </li>
                         <li>
                             <a href="#actionTypeRegistry" title="state/src/actions/action-type-registry.ts" ><b>actionTypeRegistry</b>&nbsp;&nbsp;&nbsp;(state/.../action-type-registry.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EMPTY_LINK_ID" title="src/lib/hra-link.directive.ts" ><b>EMPTY_LINK_ID</b>&nbsp;&nbsp;&nbsp;(src/.../hra-link.directive.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EXTERNAL_LINK_SCHEMA" title="state/src/link-registry/link-registry.model.ts" ><b>EXTERNAL_LINK_SCHEMA</b>&nbsp;&nbsp;&nbsp;(state/.../link-registry.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#INTERNAL_LINK_SCHEMA" title="state/src/link-registry/link-registry.model.ts" ><b>INTERNAL_LINK_SCHEMA</b>&nbsp;&nbsp;&nbsp;(state/.../link-registry.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#LINK_REGISTRY_SCHEMA" title="state/src/link-registry/link-registry.model.ts" ><b>LINK_REGISTRY_SCHEMA</b>&nbsp;&nbsp;&nbsp;(state/.../link-registry.model.ts)</a>
                         </li>
                         <li>
                             <a href="#RESOURCE_REGISTRY_SCHEMA" title="state/src/resource-registry/resource-registry.model.ts" ><b>RESOURCE_REGISTRY_SCHEMA</b>&nbsp;&nbsp;&nbsp;(state/.../resource-registry.model.ts)</a>
@@ -79,6 +94,35 @@
     </table>
 </section>
 
+    <h3>state/src/link-registry/link-registry.actions.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Action"></a>
+                    <span class="name">
+                        <span ><b>Action</b></span>
+                        <a href="#Action"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ActionGroup(&#x27;LinkRegistry&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Base action factory</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
     <h3>state/src/resource-registry/resource-registry.actions.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -130,6 +174,145 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Registry of action types</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/lib/hra-link.directive.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EMPTY_LINK_ID"></a>
+                    <span class="name">
+                        <span ><b>EMPTY_LINK_ID</b></span>
+                        <a href="#EMPTY_LINK_ID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createLinkId(&#x27;&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Empty Link ID</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>state/src/link-registry/link-registry.model.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EXTERNAL_LINK_SCHEMA"></a>
+                    <span class="name">
+                        <span ><b>EXTERNAL_LINK_SCHEMA</b></span>
+                        <a href="#EXTERNAL_LINK_SCHEMA"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(LinkType.External),
+    url: z.string(),
+    rel: z.string().default(&#x27;noopener&#x27;),
+    target: z.string(),
+  })
+  .partial({ rel: true, target: true })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Type for external link entry</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="INTERNAL_LINK_SCHEMA"></a>
+                    <span class="name">
+                        <span ><b>INTERNAL_LINK_SCHEMA</b></span>
+                        <a href="#INTERNAL_LINK_SCHEMA"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(LinkType.Internal),
+    commands: z.any().array(),
+    extras: z
+      .object({
+        queryParams: z.record(z.any()).nullable(),
+        fragment: z.string(),
+        queryParamsHandling: z.enum([&#x27;merge&#x27;, &#x27;preserve&#x27;, &#x27;&#x27;]).nullable(),
+        preserveFragment: z.boolean(),
+        onSameUrlNavigation: z.literal(&#x27;reload&#x27;),
+        skipLocationChange: z.boolean(),
+        replaceUrl: z.boolean(),
+      })
+      .partial(),
+  })
+  .partial({ extras: true })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Type for internal link entry</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="LINK_REGISTRY_SCHEMA"></a>
+                    <span class="name">
+                        <span ><b>LINK_REGISTRY_SCHEMA</b></span>
+                        <a href="#LINK_REGISTRY_SCHEMA"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.record(
+  z
+    .string()
+    .transform((id) &#x3D;&gt; &#x60;LinkId:&#x27;${id}&#x27;&#x60;)
+    .brand(&#x27;LinkId&#x27;),
+  z.discriminatedUnion(&#x27;type&#x27;, [EXTERNAL_LINK_SCHEMA, INTERNAL_LINK_SCHEMA])
+)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for link registry</p>
 </div>
                 </td>
             </tr>

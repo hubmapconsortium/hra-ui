@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >AddFromYaml</li>
+  <li >Add</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>state/src/link-registry/link-registry.actions.ts</code>
+            <code>state/src/resource-registry/resource-registry.actions.ts</code>
         </p>
 
 
@@ -70,7 +70,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Add entries from yaml file</p>
+                <p>Add a single resource</p>
 
             </p>
 
@@ -84,18 +84,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(yaml: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>constructor(id: <a href="../undefineds/ResourceId.html" target="_self">ResourceId</a>, entry: <a href="../undefineds/ResourceEntry.html" target="_self">ResourceEntry</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">state/src/link-registry/link-registry.actions.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">state/src/resource-registry/resource-registry.actions.ts:8</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Add links from unparsed yaml</p>
+                            <div class="io-description"><p>Add or overwrite a single resource</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -110,10 +110,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>yaml</td>
+                                                        <td>id</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                        <code><a href="../miscellaneous/typealiases.html#ResourceId" target="_self" >ResourceId</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -121,7 +121,23 @@
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>Unparsed yaml data</p>
+                                                                <p>Resource identifier</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>entry</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../miscellaneous/typealiases.html#ResourceEntry" target="_self" >ResourceEntry</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Resource entry</p>
 
                                                         </td>
                                                 </tr>
@@ -146,38 +162,38 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ActionGroup } from &#x27;../actions/actions&#x27;;
-import { LinkEntry, LinkId } from &#x27;./link-registry.model&#x27;;
+import { ResourceEntry, ResourceId } from &#x27;./resource-registry.model&#x27;;
 
 /** Base action factory */
-const Action &#x3D; ActionGroup(&#x27;LinkRegistry&#x27;);
+const Action &#x3D; ActionGroup(&#x27;ResourceRegistry&#x27;);
 
-/** Add a single link */
+/** Add a single resource */
 export class Add extends Action(&#x27;Add&#x27;) {
   /**
-   * Add or overwrite a single link
-   * @param id link identifier
-   * @param entry link entry
+   * Add or overwrite a single resource
+   * @param id Resource identifier
+   * @param entry Resource entry
    */
-  constructor(readonly id: LinkId, readonly entry: LinkEntry) {
+  constructor(readonly id: ResourceId, readonly entry: ResourceEntry) {
     super();
   }
 }
 
-/** Add multiple links at once */
+/** Add multiple resources at once */
 export class AddMany extends Action(&#x27;Add Many&#x27;) {
   /**
-   * Add or overwrite multiple links
-   * @param entries New links
+   * Add or overwrite multiple resources
+   * @param entries New resources
    */
-  constructor(readonly entries: Partial&lt;Record&lt;LinkId, LinkEntry&gt;&gt;) {
+  constructor(readonly entries: Partial&lt;Record&lt;ResourceId, ResourceEntry&gt;&gt;) {
     super();
   }
 }
 
-/** Add entries from yaml file */
+/** Add resources from raw yaml data */
 export class AddFromYaml extends Action(&#x27;Add from Yaml&#x27;) {
   /**
-   * Add links from unparsed yaml
+   * Add resources from unparsed yaml
    * @param yaml Unparsed yaml data
    */
   constructor(readonly yaml: string) {
@@ -185,23 +201,25 @@ export class AddFromYaml extends Action(&#x27;Add from Yaml&#x27;) {
   }
 }
 
-/** Add links from a remote yaml file */
+/** Add resources from a remote yaml file */
 export class LoadFromYaml extends Action(&#x27;Load from Yaml&#x27;) {
   /**
-   * Loads a remote yaml file and add links
+   * Loads a remote yaml file and add resources
    * @param url Remote yaml file url
    */
   constructor(readonly url: string) {
     super();
   }
 }
-/** Navigate to an Internal or external url from Link id */
-export class Navigate extends Action(&#x27;Navigate&#x27;) {
+
+/** Add a markdown resource with data loaded from a remote file */
+export class LoadMarkdown extends Action(&#x27;Load Markdown&#x27;) {
   /**
-   * navigate to a link
-   * @param id unqiue identifier of link
+   * Loads a remote markdown file and add a resource
+   * @param id Resource id
+   * @param url Remote markdown file url
    */
-  constructor(readonly id: LinkId) {
+  constructor(readonly id: ResourceId, readonly url: string) {
     super();
   }
 }
@@ -243,7 +261,7 @@ export class Navigate extends Action(&#x27;Navigate&#x27;) {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'AddFromYaml.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'Add-1.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
