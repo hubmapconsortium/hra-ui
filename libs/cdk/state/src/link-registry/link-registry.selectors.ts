@@ -3,6 +3,9 @@ import { Selector } from '@ngxs/store';
 import { LinkEntry, LinkId, LinkRegistryModel, LinkType } from './link-registry.model';
 import { LinkRegistryQuery, LinkRegistryState } from './link-registry.state';
 
+/**
+ * Selectors for Link Registry
+ */
 export class LinkRegistrySelectors {
   /**
    * Queries for a link entry

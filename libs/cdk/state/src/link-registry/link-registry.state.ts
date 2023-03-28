@@ -34,7 +34,7 @@ export class LinkRegistryState {
   private readonly http = inject(HttpClient);
   /** Injects angular router */
   private readonly router = inject(Router);
-
+  /** Injects ngZone for routing */
   private readonly zone = inject(NgZone);
 
   /**
