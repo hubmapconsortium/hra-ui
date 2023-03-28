@@ -3,6 +3,6 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export abstract class TissueLibraryService {
-  abstract setActiveTissue(): Observable<void>;
+  abstract getTissues(): Observable<void>;
   // constructor() { }
 }
