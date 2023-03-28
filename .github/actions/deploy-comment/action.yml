@@ -9,11 +9,11 @@ runs:
   steps:
     - name: Find Comment
       uses: peter-evans/find-comment@v2
-      id: "fc"
+      id: 'fc'
       with:
         issue-number: ${{ github.event.pull_request.number }}
         comment-author: 'github-actions[bot]'
-        body-includes: "# :rocket: Preview Deploy Report"
+        body-includes: '# :rocket: Preview Deploy Report'
 
     - name: Create Comment
       if: steps.fc.outputs.comment-id == ''
