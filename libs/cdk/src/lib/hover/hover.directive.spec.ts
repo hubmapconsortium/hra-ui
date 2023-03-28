@@ -45,4 +45,10 @@ describe('HoverDirective', () => {
     expect(detachSpy).toHaveBeenCalled();
     expect(attachSpy).toHaveBeenCalledWith(instance.portal);
   });
+
+  it('should update the context', async () => {
+    const { instance } = await shallow.render(template);
+    instance.data = 'test1';
+    expect(instance.portal?.context?.$implicit).toEqual('test1');
+  });
 });

@@ -1,4 +1,3 @@
-import { MatIconModule } from '@angular/material/icon';
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { HoverDirective } from './hover.directive';
 
@@ -6,18 +5,18 @@ export default {
   title: 'HoverDirective',
   decorators: [
     moduleMetadata({
-      imports: [HoverDirective, MatIconModule],
+      imports: [HoverDirective],
     }),
   ],
 } as Meta<HoverDirective>;
 
-const Template: Story<HoverDirective> = (args) => ({
+const Template: Story<{ hraHoverData: unknown }> = (args) => ({
   props: args,
   template: `
-    <div class="anchor" [hraHover]="content">Anchor element</div>
-    <ng-template #content>
+    <div class="anchor" [hraHover]="content" [hraHoverData]="hraHoverData">Anchor element</div>
+    <ng-template #content let-data>
       <div class="hover">
-        Hover content
+        {{ data }}
       </div>
     </ng-template>
   `,
@@ -31,3 +30,6 @@ const Template: Story<HoverDirective> = (args) => ({
 });
 
 export const Primary = Template.bind({});
+Primary.args = {
+  hraHoverData: 'Hovered Data',
+};

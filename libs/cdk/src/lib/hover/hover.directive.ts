@@ -19,8 +19,18 @@ export class HoverDirective<T = unknown> {
   /** Input for the template portal */
   @Input('hraHover')
   set content(content: TemplateRef<HoverContext<T>>) {
-    this.portal = new TemplatePortal(content, this.viewContainerRef);
+    this.portal = new TemplatePortal(content, this.viewContainerRef, this._data);
     this.updateContent();
+  }
+
+  /** Input for the overlay template */
+  @Input('hraHoverData')
+  set data(data: T) {
+    this._data = { $implicit: data };
+    if (this.portal) {
+      this.portal.context = this._data;
+      this.updateContent();
+    }
   }
 
   /**  Defining an injectable element */
@@ -42,6 +52,9 @@ export class HoverDirective<T = unknown> {
 
   /** creating an injectable container reference */
   private readonly viewContainerRef = inject(ViewContainerRef);
+
+  /** defining a variable for storing the context */
+  private _data?: HoverContext<T>;
 
   /** creating a portal for hover */
   portal?: TemplatePortal<HoverContext<T>>;
