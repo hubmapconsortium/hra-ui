@@ -10,9 +10,7 @@ export interface HoverContext<T = unknown> {
 
 /** Defining a directive to be used across the application */
 @Directive({
-  /**  Selector for using the directive */
   selector: '[hraHover]',
-  /** Defining the directive to be standalone */
   standalone: true,
 })
 export class HoverDirective<T = unknown> {
