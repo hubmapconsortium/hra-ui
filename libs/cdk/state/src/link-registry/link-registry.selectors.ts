@@ -30,7 +30,7 @@ export class LinkRegistrySelectors {
     type?: T
   ): UnionMember<LinkEntry, 'type', T> | undefined {
     const entry = state[id] as UnionMember<LinkEntry, 'type', T>;
-    const typeMatches = type === undefined || entry?.type === type;
+    const typeMatches = type === undefined || entry.type === type;
     return typeMatches ? entry : undefined;
   }
 }
