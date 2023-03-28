@@ -1,19 +1,34 @@
 <ccf-page-header [headerCard]="organVrHeader"></ccf-page-header>
 <announcement-card class="description"></announcement-card>
 <ccf-page-data [data]="overviewData" class="description"></ccf-page-data>
-<img src="assets/images/OrganGallery.jpg">
+<div class="overview-image">
+    <img src="assets/images/ccf-og-1.png" />
+</div>
 <p><strong>Figure 1.</strong>
-    <span class="hra-bold"> 2D vs. VR. (A)</span>: A user looks at the HRA with the 
-    <a href="https://portal.hubmapconsortium.org/ccf-eui" target="_blank">Exploration User Interface</a> in a
-    standard-size browser window on a 17-in display. 
-    <span class="hra-bold">(B)</span>: The HRA Organ Gallery allows the user to view the organs, tissue blocks, and cell type counts of the HRA in true scale using
-    immersive technology (VR). Source:
-    <a href="https://doi.org/10.1101/2023.02.13.528002" target="_blank">https://doi.org/10.1101/2023.02.13.528002</a>
+    Three stages. Top left: the whole body is visible. Top right: a gallery of individual organs.
+    Bottom left and center:
+    A user explodes an organ into individual anatomical structures.
+    Bottom right: a user explores cells around a kidney in a virtual box.
 </p>
 <ccf-page-data [data]="backgroundData" class="description"></ccf-page-data>
 <ccf-page-data [data]="whyVrData" class="description"></ccf-page-data>
+
+<div class="overview-image">
+    <img src="assets/images/whyVr.png" />
+</div>
+<p><strong>Figure 2.</strong>
+    3D heart model in the HRA Organ VR Gallery.
+</p>
 <ccf-page-data [data]="dataVisualizations" class="description"></ccf-page-data>
+<div class="overview-image">
+    <img src="assets/images/cell_pop_body_image.svg">
+</div>
+<p><strong>Figure 3.</strong>
+    Example of a data visualization, specifically a bar graph comparing skin tissue blocks, that is displayed in the
+    Organ VR gallery. This series of bar graphs showing cell type counts for tissue blocks of the human body can be
+    explored at <a href="https://hubmapconsortium.github.io/tissue-bar-graphs/" target="_blank">https://hubmapconsortium.github.io/tissue-bar-graphs/</a>
+</p>
 <ccf-page-data [data]="testingAndFeedback" class="description"></ccf-page-data>
-<!-- <div class="content-title description">Video Demo</div>
-<youtube-model [height]="height" [width]="width" [title]="title" [playerTitle]="playerTitle" [videoId]="videoId"></youtube-model> -->
+<div class="content-title description">Video Demo</div>
+<youtube-model [height]="height" [width]="width" [title]="title" [playerTitle]="playerTitle" [videoId]="videoId"></youtube-model>
 <ccf-page-data [data]="referencesData" class="description"></ccf-page-data>
