@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { UnionMember } from '@hra-ui/utils/types';
-import { Action, Selector, State } from '@ngxs/store';
+import { Action, State } from '@ngxs/store';
 import { load } from 'js-yaml';
 import { map, Observable } from 'rxjs';
 import { Add, AddFromYaml, AddMany, LoadFromYaml, Navigate } from './link-registry.actions';
@@ -34,32 +34,8 @@ export class LinkRegistryState {
   private readonly http = inject(HttpClient);
   /** Injects angular router */
   private readonly router = inject(Router);
-  /**
-   * Queries for a link entry
-   * @param state Current state
-   * @returns link query function
-   */
-  @Selector()
-  static query(state: LinkRegistryModel): LinkRegistryQuery {
-    return (id, type) => this.getEntry(state, id, type);
-  }
 
-  /**
-   * Gets a link entry by id and optionally type
-   * @param state link registry state
-   * @param id Entry id
-   * @param type Optional entry type
-   * @returns The entry if found, undefined otherwise
-   */
-  private static getEntry<T extends LinkType | string>(
-    state: LinkRegistryModel,
-    id: LinkId,
-    type?: T
-  ): UnionMember<LinkEntry, 'type', T> | undefined {
-    const entry = state[id] as UnionMember<LinkEntry, 'type', T>;
-    const typeMatches = type === undefined || entry?.type === type;
-    return typeMatches ? entry : undefined;
-  }
+  private readonly zone = inject(NgZone);
 
   /**
    * Add a single entry
@@ -115,7 +91,7 @@ export class LinkRegistryState {
    */
   @Action(Navigate)
   async navigate(ctx: LinkRegistryContext, { id }: Navigate): Promise<void> {
-    const entry = LinkRegistryState.getEntry(ctx.getState(), id);
+    const entry = ctx.getState()[id];
     switch (entry?.type) {
       case LinkType.Internal:
         await this.navigateToInternal(entry);
@@ -135,7 +111,7 @@ export class LinkRegistryState {
    * @param entry Internal Link Entry with commands and extras
    */
   private async navigateToInternal(entry: InternalLinkEntry): Promise<void> {
-    await this.router.navigate(entry.commands, entry.extras);
+    this.zone.run(() => this.router.navigate(entry.commands, entry.extras));
   }
 
   /**

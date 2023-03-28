@@ -114,22 +114,10 @@ describe('LinkRegistryState', () => {
     it('should throw error if link not present', async () => {
       try {
         await state.navigate(ctx, new Navigate(createLinkId('foo')));
-      } catch (e: any) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (e: any) {
         expect(e.message).toBe("Cannot navigate to non-existing link 'LinkId:'foo''");
       }
-    });
-  });
-
-  describe('query()', () => {
-    it('should return a function that returns a link entry based on type', () => {
-      const query = LinkRegistryState.query(mockState);
-      expect(query(TestId, LinkType.External)).toEqual({ url, type: LinkType.External });
-    });
-
-    it('should return undefined if type doesnt match', () => {
-      const query = LinkRegistryState.query(mockState);
-      expect(query(TestId, LinkType.Internal)).toBeUndefined();
     });
   });
 });

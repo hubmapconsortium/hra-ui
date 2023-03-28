@@ -18,7 +18,7 @@ import {
   InternalLinkEntry,
   LinkEntry,
   LinkRegistryActions,
-  LinkRegistryState,
+  LinkRegistrySelectors,
   LinkType,
 } from '@hra-ui/cdk/state';
 
@@ -51,7 +51,7 @@ export class LinkDirective implements OnChanges {
   /** DomSanitizer to sanitize the url */
   private readonly sanitizer = inject(DomSanitizer);
   /** Selector for querying the link registry state */
-  private readonly queryLink = selectQuerySnapshot(LinkRegistryState.query);
+  private readonly queryLink = selectQuerySnapshot(LinkRegistrySelectors.query);
   /** Dispatch action to navigate to a url */
   private readonly navigate = dispatch(LinkRegistryActions.Navigate);
   /** tagName from Native Element */
@@ -109,7 +109,7 @@ export class LinkDirective implements OnChanges {
     const link = (this.link = this.queryLink(this.linkId));
     this.href = undefined;
     this.target = undefined;
-
+    this.rel = undefined;
     if (link) {
       if (link.type === LinkType.External) {
         this.href = link.url;
