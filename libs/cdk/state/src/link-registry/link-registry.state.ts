@@ -111,7 +111,7 @@ export class LinkRegistryState {
    * @param entry Internal Link Entry with commands and extras
    */
   private async navigateToInternal(entry: InternalLinkEntry): Promise<void> {
-    this.zone.run(() => this.router.navigate(entry.commands, entry.extras));
+    await this.zone.run(() => this.router.navigate(entry.commands, entry.extras));
   }
 
   /**
