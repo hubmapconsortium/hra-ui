@@ -12,11 +12,11 @@ runs:
       id: "fc"
       with:
         issue-number: ${{ github.ref_name }}
-        body-includes: "Preview Deploy Report"
+        body-includes: "# :rocket: Preview Deploy Report"
 
     - name: Create Comment
+      if: steps.fc.outputs.comment-id == ''
       uses: peter-evans/create-or-update-comment@v2
-      if: ${{steps.fc.outputs.comment-id == 0}}
       with:
         issue-number: ${{ github.ref_name }}
         body: |
@@ -25,12 +25,12 @@ runs:
           ✅ Successfully deployed preview [here](${{ inputs.deploy-url }})
 
     - name: Update Comment
+      if: steps.fc.outputs.comment-id != ''
       uses: peter-evans/create-or-update-comment@v2
-      if: ${{steps.fc.outputs.comment-id != 0}}
       with:
         issue-number: ${{github.ref_name}}
         comment-id: ${{steps.fc.outputs.comment-id}}
         body: |
-          # :rocket: Preview Deploy Report
+          # :rocket: Preview Deploy Report Updated
 
           ✅ Successfully deployed preview [here](${{ inputs.deploy-url }})
