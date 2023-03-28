@@ -32,11 +32,10 @@
     width: 100%;
   }
 
-  @media (max-width: 80rem) {
-    padding: 0rem 1rem;
-  }
-
   @media (max-width: 26.75rem) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+
     .datasets-container {
       text-align: center;
     }

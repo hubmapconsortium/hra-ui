@@ -12,7 +12,6 @@
     letter-spacing: 0.005em;
     color: #000000;
     padding-bottom: 2rem;
-    line-height: 2rem;
   }
 
   .request-image {
@@ -25,7 +24,8 @@
     width: 100%;
   }
 
-  @media (max-width: 80rem) {
-    padding: 0rem 1rem;
+  @media (max-width: 26.75rem) {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
