@@ -1,26 +1,50 @@
-/**
- * File format
- */
-export enum FileFormat {
-  PDF = 'pdf',
-  PNG = 'png',
-  AI = 'ai',
-  SVG = 'svg',
+import { StateContext } from '@ngxs/store';
+import { z } from 'zod';
+
+// /**
+//  * File format
+//  */
+// export enum FileFormat {
+//   PDF = 'pdf',
+//   PNG = 'png',
+//   AI = 'ai',
+//   SVG = 'svg',
+// }
+
+export type DownloadFormatId = z.infer<typeof DOWNLOAD_FORMAT_ID>;
+
+export type DownloadFormat = z.infer<typeof DOWNLOAD_FORMAT>;
+
+export type DownloadDataConverter = (data: Blob, format: DownloadFormatId) => Blob | Promise<Blob>;
+
+export type DownloadModel = z.infer<typeof DOWNLOAD_MODEL>;
+
+export type DownloadContext = StateContext<DownloadModel>;
+
+export const DOWNLOAD_FORMAT_ID = z
+  .string()
+  .transform((id) => `DownloadFormatId:'${id}'`)
+  .brand('DownloadFormatId');
+
+export const DOWNLOAD_ENTRY = z.discriminatedUnion('type', [
+  z.object({ type: z.literal('url'), url: z.string() }),
+  z.object({ type: z.literal('data'), data: z.string() }),
+]);
+
+export const DOWNLOAD_FORMAT = z
+  .object({
+    id: DOWNLOAD_FORMAT_ID,
+    label: z.string(),
+    extension: z.string(),
+    fallbacks: DOWNLOAD_FORMAT_ID.array(),
+  })
+  .partial({ extension: true, fallbacks: true });
+
+export const DOWNLOAD_MODEL = z.object({
+  formats: z.record(DOWNLOAD_FORMAT_ID, DOWNLOAD_FORMAT),
+  entries: z.record(DOWNLOAD_FORMAT_ID, DOWNLOAD_ENTRY),
+});
+
+export function createDownloadFormatId(id: string): DownloadFormatId {
+  return DOWNLOAD_FORMAT_ID.parse(id);
 }
-
-/**
- * Download format
- */
-export interface DownloadFormat {
-  /**
-   * file format
-   */
-  format: FileFormat;
-
-  /**
-   * label display in UI
-   */
-  label: string;
-}
-
-export type DownloadModel = DownloadFormat[];

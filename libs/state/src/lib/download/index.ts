@@ -1,3 +1,5 @@
+export * as BuiltinFormat from './builtin-formats-ids';
 export * as DownloadAction from './download.action';
 export { DownloadState } from './download.state';
-export { FileFormat, DownloadFormat } from './download.model';
+export { DownloadFormat } from './download.model';
+export { DownloadSelectors } from './download.selectors';

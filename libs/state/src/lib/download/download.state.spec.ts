@@ -37,27 +37,27 @@ describe('DownlodState', () => {
     const filename = 'test.txt';
 
     it('should create an anchor element', () => {
-      state.blobDownload(data, filename);
+      state.downloadData(data, filename);
       expect(document.createElement).toHaveBeenCalledWith('a');
     });
 
     it('should append the anchor element to the body', () => {
-      state.blobDownload(data, filename);
+      state.downloadData(data, filename);
       expect(document.body.appendChild).toHaveBeenCalledWith(anchor);
     });
 
     it("should set the anchor's download attribute to the filename", () => {
-      state.blobDownload(data, filename);
+      state.downloadData(data, filename);
       expect(anchor.download).toEqual(filename);
     });
 
     it("should set the anchor's href to a data url", () => {
-      state.blobDownload(data, filename);
+      state.downloadData(data, filename);
       expect(anchor.href).toMatch(/^(blob|data):/);
     });
 
     it('should trigger a click on the anchor', () => {
-      state.blobDownload(data, filename);
+      state.downloadData(data, filename);
       expect(anchor.click).toHaveBeenCalled();
     });
   });
@@ -77,7 +77,7 @@ describe('DownlodState', () => {
 
     it('should call create canvas', async () => {
       await state.convertFileToPdf(fileName, svgUrl);
-      expect(state.createCanvas).toHaveBeenCalled();
+      expect(state.convertImageToCanvas).toHaveBeenCalled();
     });
 
     it('should call addImage on doc object', async () => {
@@ -104,7 +104,7 @@ describe('DownlodState', () => {
 
     it('should call createCanvas', async () => {
       await state.convertFileToPng(fileName, svgUrl);
-      expect(state.createCanvas).toHaveBeenCalled();
+      expect(state.convertImageToCanvas).toHaveBeenCalled();
     });
   });
 
@@ -122,13 +122,13 @@ describe('DownlodState', () => {
     });
 
     it('should call createCanvas', async () => {
-      const testcanvas = await state.createCanvas(testImage);
+      const testcanvas = await state.convertImageToCanvas(testImage);
       expect(testcanvas.width).toEqual(100);
     });
 
     it('should create canvas if ctx is undefined', async () => {
       jest.spyOn(canvas, 'getContext').mockReturnValue(null);
-      const testcanvas = await state.createCanvas(testImage);
+      const testcanvas = await state.convertImageToCanvas(testImage);
       expect(testcanvas.width).toEqual(100);
     });
   });
@@ -166,7 +166,7 @@ describe('DownlodState', () => {
     it('should call createCanvas with action Format', async () => {
       const testActionSVG = new Download(FileFormat.SVG);
       await state.downloadFile(testCtx, testActionSVG);
-      expect(state.downloadAndSave).toHaveBeenCalled();
+      expect(state.downloadRemoteData).toHaveBeenCalled();
     });
   });
 
@@ -181,8 +181,8 @@ describe('DownlodState', () => {
     });
 
     it('should call blobDownload', async () => {
-      await state.downloadAndSave(fileName, svgUrl);
-      expect(state.blobDownload).toHaveBeenCalled();
+      await state.downloadRemoteData(fileName, svgUrl);
+      expect(state.downloadData).toHaveBeenCalled();
     });
   });
 
