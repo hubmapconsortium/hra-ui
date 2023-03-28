@@ -1,0 +1,36 @@
+name: Create Deploy Comment
+description: Creates and Updates the deploy Comment
+inputs:
+  deploy-url:
+    description: Url for deployed preview
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Find Comment
+      uses: peter-evans/find-comment@v2
+      id: "fc"
+      with:
+        issue-number: ${{ github.ref_name }}
+        body-includes: "Preview Deploy Report"
+
+    - name: Create Comment
+      uses: peter-evans/create-or-update-comment@v2
+      if: ${{steps.fc.outputs.comment-id == 0}}
+      with:
+        issue-number: ${{ github.ref_name }}
+        body: |
+          # :rocket: Preview Deploy Report
+
+          ✅ Successfully deployed preview [here](${{ inputs.deploy-url }})
+
+    - name: Update Comment
+      uses: peter-evans/create-or-update-comment@v2
+      if: ${{steps.fc.outputs.comment-id != 0}}
+      with:
+        issue-number: ${{github.ref_name}}
+        comment-id: ${{steps.fc.outputs.comment-id}}
+        body: |
+          # :rocket: Preview Deploy Report
+
+          ✅ Successfully deployed preview [here](${{ inputs.deploy-url }})
