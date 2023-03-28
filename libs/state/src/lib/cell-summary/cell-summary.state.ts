@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
-import { z } from 'zod';
 import { ComputeAggregate } from './cell-summary.actions';
-import { AggregateRow, CellSummaryStateModel, CELL_SUMMARY_AGGREGATE_SCHEMA } from './cell-summary.model';
+import { Aggregate, AggregateRow, Cell, CellSummary, CellSummaryStateModel } from './cell-summary.model';
 
 /** State handling cell summary data */
 @State<CellSummaryStateModel>({
@@ -20,41 +19,19 @@ export class CellSummaryState {
   @Action(ComputeAggregate)
   computeAggregate(ctx: StateContext<CellSummaryStateModel>, action: ComputeAggregate) {
     const summaries = action.summaries;
-    const aggregateData: z.infer<typeof CELL_SUMMARY_AGGREGATE_SCHEMA> = {};
+    const aggregateData: Aggregate = {};
 
     for (const key in summaries) {
       const label = summaries[key].label;
       const entries = summaries[key].entries;
 
-      const counts: { [key: string]: number } = {};
+      const counts = this.getCellCountMap(entries);
 
-      entries.forEach((entry) => {
-        const cellId = entry.cell.id;
-
-        if (cellId in counts) {
-          counts[cellId] += entry.count;
-        } else {
-          counts[cellId] = entry.count;
-        }
-      });
-
-      const columns = Array.from(new Set(entries.map((entry) => entry.biomarker.id)));
-      const rows = Object.entries(counts).map(([cellId, count]) => {
-        const rowEntries = entries.filter((entry) => entry.cell.id === cellId);
-        const rowItems = columns.map((col) => {
-          const matchingEntry = rowEntries.find((entry) => entry.biomarker.id === col);
-          return {
-            color: '',
-            size: 0,
-            data: matchingEntry,
-          };
-        });
-        return [cellId, count, ...rowItems.filter((item) => item !== null)];
-      });
+      const [rows, columns] = this.getRowsAndColumns(entries, counts);
 
       aggregateData[key] = {
         label: label,
-        columns: columns,
+        columns: columns as string[],
         rows: rows as AggregateRow[],
       };
     }
@@ -62,5 +39,50 @@ export class CellSummaryState {
     ctx.patchState({
       aggregate: aggregateData,
     });
+  }
+
+  private getCellCountMap(entries: CellSummary[string]['entries']) {
+    const counts: { [key: string]: number } = {};
+
+    entries.forEach((entry) => {
+      const cellId = entry.cell.id;
+
+      if (cellId in counts) {
+        counts[cellId] += entry.count;
+      } else {
+        counts[cellId] = entry.count;
+      }
+    });
+
+    return counts;
+  }
+
+  getRowsAndColumns(entries: CellSummary[string]['entries'], counts: { [key: string]: number }) {
+    // get columns which is string array of biomarkers
+    const columns = Array.from(new Set(entries.map((entry) => entry.biomarker.id)));
+
+    // array of rowItems with format [cellId, count, ...rowItems]
+    const rows = [];
+    for (const cellId in counts) {
+      const count = counts[cellId];
+
+      // get all entries with cellId
+      const rowEntries = entries.filter((entry) => entry.cell.id === cellId);
+
+      const rowItem: AggregateRow = [cellId, count];
+      columns.forEach((col) => {
+        // find the matching cell which is [cell.id, biomarker.id]
+        const matchingEntry = rowEntries.find((entry) => entry.biomarker.id === col) as Cell;
+        rowItem.push({
+          color: '',
+          size: 0,
+          data: matchingEntry,
+        });
+      });
+
+      rows.push(rowItem);
+    }
+
+    return [rows, columns];
   }
 }
