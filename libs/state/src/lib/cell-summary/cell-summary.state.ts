@@ -41,6 +41,8 @@ export class CellSummaryState {
     });
   }
 
+  /** Gets a count of the number of occurrences of each unique cellId in an array of entries,
+   * and returns an object mapping each cellId to its corresponding count. */
   private getCellCountMap(entries: CellSummary[string]['entries']) {
     const counts: { [key: string]: number } = {};
 
@@ -57,6 +59,7 @@ export class CellSummaryState {
     return counts;
   }
 
+  /** Returns an array of rows and columns based on an array of entries */
   getRowsAndColumns(entries: CellSummary[string]['entries'], counts: { [key: string]: number }) {
     // get columns which is string array of biomarkers
     const columns = Array.from(new Set(entries.map((entry) => entry.biomarker.id)));
