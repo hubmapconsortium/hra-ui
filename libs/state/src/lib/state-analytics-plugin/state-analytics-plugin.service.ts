@@ -1,4 +1,4 @@
-import { Injectable, Provider } from '@angular/core';
+import { Inject, Provider } from '@angular/core';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { getActionTypeFromInstance, NgxsNextPluginFn, NgxsPlugin, NGXS_PLUGINS } from '@ngxs/store';
 
@@ -14,7 +14,7 @@ function isPrimitive(value: unknown): value is bigint | boolean | number | strin
   return value == null || PRIMITIVE_TYPES.includes(typeof value);
 }
 
-@Injectable({
+@Inject({
   providedIn: 'root',
 })
 export class StateAnalyticsPluginService implements NgxsPlugin {
@@ -32,7 +32,6 @@ export class StateAnalyticsPluginService implements NgxsPlugin {
    * @returns
    */
   handle(state: unknown, action: unknown, next: NgxsNextPluginFn) {
-    console.log('In handle');
     this.logAction(action);
     return next(state, action);
   }
@@ -44,11 +43,9 @@ export class StateAnalyticsPluginService implements NgxsPlugin {
    */
   private logAction(action: unknown): void {
     const type = getActionTypeFromInstance(action);
-    console.log('type', type);
 
     if (type) {
       const payload = JSON.stringify(action, this.serialize);
-      console.log('payload', payload);
       this.ga.event(type, payload);
     }
   }
@@ -62,10 +59,8 @@ export class StateAnalyticsPluginService implements NgxsPlugin {
    */
   private serialize(this: void, key: unknown, value: unknown): unknown {
     if (key === '' && typeof value === 'object') {
-      console.log('value', value);
       return { ...value, type: undefined };
     } else if (isPrimitive(value) || (Array.isArray(value) && value.every(isPrimitive))) {
-      console.log('valuee', value);
       return value;
     }
 
