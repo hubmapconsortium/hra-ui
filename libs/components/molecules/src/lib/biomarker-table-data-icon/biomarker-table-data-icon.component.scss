@@ -1,0 +1,7 @@
+:host {
+  display: block;
+  border-radius: 50%;
+  --radius: 0.625rem;
+  width: var(--radius);
+  height: var(--radius);
+}

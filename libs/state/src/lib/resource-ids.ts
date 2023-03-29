@@ -29,3 +29,8 @@ export const LandingPageDepthDescription = createResourceId('LandingPageDepthDes
 export const LandingPageDepthMoreText = createResourceId('LandingPageDepthMoreText');
 /** metrics id */
 export const Metrics = createResourceId('Metrics');
+/** Message to display after submitting contact form */
+export const ContactAcknowledgement = createResourceId('ContactAcknowledgement');
+
+/** App title id */
+export const AppTitle = createResourceId('AppTitle');
