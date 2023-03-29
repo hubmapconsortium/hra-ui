@@ -11,7 +11,10 @@ export class DownloadSelectors {
    * @returns
    */
   @Selector()
-  static getFormats(state: DownloadModel): DownloadFormat[] {
-    return state;
+  static formats(state: DownloadModel): DownloadFormat[] {
+    const { formats, entries } = state;
+    const hasData = (format: DownloadFormat | undefined): format is DownloadFormat =>
+      !!(format && format.id in entries);
+    return Object.values(formats).filter(hasData);
   }
 }
