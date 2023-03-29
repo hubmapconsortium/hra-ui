@@ -1,4 +1,4 @@
-import { MedicalIllustrationModel } from './medical-illustration.state';
+import { MedicalIllustrationModel } from './medical-illustration.model';
 import { MedicalIllustrationSelectors } from './medical-illustration.selectors';
 
 describe('MedicalIllustrationSelectors', () => {

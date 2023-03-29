@@ -7,7 +7,7 @@ import { MedicalIllustrationState } from './medical-illustration.state';
 
 describe('MedicalIllustrationState', () => {
   const testAction1 = new SetUri('test');
-  const testAction2 = new SetActiveNode('test');
+  const testAction2 = new SetActiveNode({ item: 'test' });
   const ctx = mock<StateContext<MedicalIllustrationModel>>();
   const state = new MedicalIllustrationState();
 
@@ -23,7 +23,7 @@ describe('MedicalIllustrationState', () => {
   it('should save the current active node', async () => {
     state.setActiveNode(ctx, testAction2);
     expect(ctx.patchState).toHaveBeenCalledWith({
-      node: 'test',
+      node: { item: 'test' },
     });
   });
 });
