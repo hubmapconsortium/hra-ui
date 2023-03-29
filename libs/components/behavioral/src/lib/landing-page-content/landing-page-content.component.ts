@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { selectQuerySnapshot } from '@hra-ui/cdk/injectors';
-import { ResourceRegistrySelectors as RRS } from '@hra-ui/cdk/state';
+import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
+import { LinkRegistryActions, ResourceRegistrySelectors as RRS } from '@hra-ui/cdk/state';
 import {
   LandingPageInDepthComponent,
   LandingPageIntroComponent,
   MetricItem,
   MetricsComponent,
 } from '@hra-ui/components/molecules';
-import { ResourceIds as RIds } from '@hra-ui/state';
+import { ResourceIds as RIds, LinkIds } from '@hra-ui/state';
 
 /** Component for LandingPageContent Behavior */
 @Component({
@@ -47,6 +47,9 @@ export class LandingPageContentComponent {
   /** select snapshot for landing page depth img */
   landingPageDepthImg = selectQuerySnapshot(RRS.url, RIds.LandingPageDepthImg);
 
+  /** Disptach action for navigation */
+  navigate = dispatch(LinkRegistryActions.Navigate);
+
   /** get metrics for MetricsComponent */
   get metricItems(): MetricItem[] {
     const items = this.metrics()?.['metrics'] ?? [];
@@ -55,11 +58,11 @@ export class LandingPageContentComponent {
 
   /** Function to explore FTU when moreClick event is emitted */
   exploreFTU(): void {
-    //TODO
+    this.navigate(LinkIds.ExploreFTU);
   }
 
   /** Function to read more when  moreClick from landingPageInDepth component is emitted */
   readMore(): void {
-    //TODO
+    this.navigate(LinkIds.LandingPageReadMore);
   }
 }
