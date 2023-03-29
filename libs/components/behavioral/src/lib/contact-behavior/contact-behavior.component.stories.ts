@@ -1,7 +1,6 @@
 import { ResourceRegistryActions, ResourceRegistryState } from '@hra-ui/cdk/state';
 import { ContactService, MockContactService } from '@hra-ui/services';
-import { ContactState, StateAnalyticsPluginService } from '@hra-ui/state';
-import { NGXS_PLUGINS } from '@ngxs/store';
+import { ContactState } from '@hra-ui/state';
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
 import { ContactBehaviorComponent } from './contact-behavior.component';
 
@@ -16,10 +15,7 @@ export default {
   },
   decorators: [
     moduleMetadata({
-      providers: [
-        { provide: ContactService, useExisting: MockContactService },
-        { provide: NGXS_PLUGINS, useClass: StateAnalyticsPluginService, multi: true },
-      ],
+      providers: [{ provide: ContactService, useExisting: MockContactService }],
     }),
   ],
 } as Meta<ContactBehaviorComponent>;

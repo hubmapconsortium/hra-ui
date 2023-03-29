@@ -1,6 +1,7 @@
-import { Inject, Provider } from '@angular/core';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import { inject, Injectable, InjectionToken, Provider } from '@angular/core';
 import { getActionTypeFromInstance, NgxsNextPluginFn, NgxsPlugin, NGXS_PLUGINS } from '@ngxs/store';
+import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import { DEFAULT_LOGGABLE_ACTIONS } from './default-loggable-actions';
 
 /** Primitive types */
 const PRIMITIVE_TYPES = ['bigint', 'boolean', 'number', 'string'];
@@ -14,15 +15,25 @@ function isPrimitive(value: unknown): value is bigint | boolean | number | strin
   return value == null || PRIMITIVE_TYPES.includes(typeof value);
 }
 
-@Inject({
+export const LOGGABLE_ACTIONS = new InjectionToken<unknown[]>('Loggable actions', {
+  providedIn: 'root',
+  factory: () => DEFAULT_LOGGABLE_ACTIONS,
+});
+
+@Injectable({
   providedIn: 'root',
 })
 export class StateAnalyticsPluginService implements NgxsPlugin {
   /**
-   * Creates an instance of logger plugin.
-   * @param ga
+   * Injects the service for state analytics plugin.
    */
-  constructor(private readonly ga: GoogleAnalyticsService) {}
+  private readonly ga = inject(GoogleAnalyticsService);
+
+  /**
+   * Plugin service for logging state analytics
+   * Setting loggable action types from LOGGABLE_ACTIONS dependency.
+   */
+  private readonly loggableTypes = new Set(inject(LOGGABLE_ACTIONS).map(getActionTypeFromInstance));
 
   /**
    * Handles logger plugin
@@ -43,10 +54,10 @@ export class StateAnalyticsPluginService implements NgxsPlugin {
    */
   private logAction(action: unknown): void {
     const type = getActionTypeFromInstance(action);
-
-    if (type) {
+    if (type && this.loggableTypes.has(type)) {
+      console.log('Received Action', action);
       const payload = JSON.stringify(action, this.serialize);
-      this.ga.event(type, payload);
+      this.ga.event(type, 'action_log', payload);
     }
   }
 
