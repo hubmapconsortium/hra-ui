@@ -35,7 +35,7 @@
   Contact
 </button>
 
-<button class="button" mat-stroked-button (click)="hraPortalClick.emit()">
+<button class="button" mat-stroked-button [hraLink]="hraPortal" (click)="hraPortalClick.emit()">
   <mat-icon>open_in_new</mat-icon>
   HRA Portal
 </button>

@@ -4,7 +4,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import { FooterComponent } from '@hra-ui/components/molecules';
-import { ResourceIds as Ids } from '@hra-ui/state';
+import { LinkIds, ResourceIds as Ids } from '@hra-ui/state';
 
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
@@ -22,6 +22,8 @@ export class FooterBehaviorComponent {
 
   /** Input for product title to displayed on the left side. */
   readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);
+
+  readonly hraPortal = LinkIds.Portal;
 
   /** A dialog box which shows contact modal after clicking on contact */
   private readonly dialog = inject(MatDialog);

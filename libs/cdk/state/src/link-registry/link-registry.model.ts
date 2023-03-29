@@ -63,6 +63,9 @@ export const LINK_REGISTRY_SCHEMA = z.record(
   z.discriminatedUnion('type', [EXTERNAL_LINK_SCHEMA, INTERNAL_LINK_SCHEMA])
 );
 
+/** Empty link id */
+export const EMPTY_LINK = createLinkId('');
+
 /** function to createa unique link ids */
 export function createLinkId(id: string): LinkId {
   return LINK_REGISTRY_SCHEMA.keySchema.parse(id);

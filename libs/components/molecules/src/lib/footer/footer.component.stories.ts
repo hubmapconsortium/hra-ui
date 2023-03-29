@@ -18,6 +18,7 @@ const DownloadFormat = [
   { label: 'Download AI' },
   { label: 'Download PNG' },
 ];
+
 const Template: Story<FooterComponent> = (args: FooterComponent) => ({
   props: args,
   styles: [

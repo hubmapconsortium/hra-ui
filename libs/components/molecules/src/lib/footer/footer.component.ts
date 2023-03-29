@@ -4,7 +4,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import { MatListModule } from '@angular/material/list';
-
+import { LinkDirective } from '@hra-ui/cdk';
+import { EMPTY_LINK } from '@hra-ui/cdk/state';
 /**
  * Base type for different download format options.
  */
@@ -42,7 +43,7 @@ const DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [
 @Component({
   selector: 'hra-footer',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, OverlayModule, MatListModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, OverlayModule, MatListModule, LinkDirective],
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -56,6 +57,8 @@ export class FooterComponent<T extends DownloadFormat = DownloadFormat> {
 
   /** Input for product title to displayed on the left side. */
   @Input() productTitle = '';
+
+  @Input() hraPortal = EMPTY_LINK;
 
   /** Different download formats options displayed to the user */
   @Input() downloadFormats: T[] = [];
