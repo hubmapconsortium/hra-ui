@@ -44,48 +44,53 @@ export class CellSummaryState {
   /** Gets a count of the number of occurrences of each unique cellId in an array of entries,
    * and returns an object mapping each cellId to its corresponding count. */
   private getCellCountMap(entries: CellSummary[string]['entries']) {
-    const counts: { [key: string]: number } = {};
-
-    entries.forEach((entry) => {
-      const cellId = entry.cell.id;
-
-      if (cellId in counts) {
-        counts[cellId] += entry.count;
-      } else {
-        counts[cellId] = entry.count;
-      }
-    });
-
-    return counts;
+    return entries.reduce<Record<string, number>>((res, { cell: { id }, count }) => {
+      res[id] = res[id] ? res[id] + count : count;
+      return res;
+    }, {});
   }
 
   /** Returns an array of rows and columns based on an array of entries */
-  getRowsAndColumns(entries: CellSummary[string]['entries'], counts: { [key: string]: number }) {
-    // get columns which is string array of biomarkers
-    const columns = Array.from(new Set(entries.map((entry) => entry.biomarker.id)));
+  getRowsAndColumns(
+    entries: CellSummary[string]['entries'],
+    counts: { [key: string]: number }
+  ): [rows: AggregateRow[], columns: string[]] {
+    const columns: string[] = [];
+    const columnIndices: Record<string, number> = {};
+    const rows: Record<string, AggregateRow> = {};
 
-    // array of rowItems with format [cellId, count, ...rowItems]
-    const rows = [];
-    for (const cellId in counts) {
-      const count = counts[cellId];
+    for (const entry of entries) {
+      const {
+        cell: { id: rowId, label: rowLabel },
+        biomarker: { id: columnId, label: columnLabel },
+        count,
+        percentage,
+      } = entry;
 
-      // get all entries with cellId
-      const rowEntries = entries.filter((entry) => entry.cell.id === cellId);
+      if (!(columnId in columnIndices)) {
+        columnIndices[columnId] = columns.length + 2;
+        columns.push(columnLabel);
+      }
+      const columnIndex = columnIndices[columnId];
 
-      const rowItem: AggregateRow = [cellId, count];
-      columns.forEach((col) => {
-        // find the matching cell which is [cell.id, biomarker.id]
-        const matchingEntry = rowEntries.find((entry) => entry.biomarker.id === col) as Cell;
-        rowItem.push({
-          color: '',
-          size: 0,
-          data: matchingEntry,
-        });
-      });
+      if (!(rowId in rows)) {
+        rows[rowId] = [rowLabel, counts[rowId]];
+      }
+      const row = rows[rowId];
 
-      rows.push(rowItem);
+      if (row.length < columnIndex) {
+        const start = row.length;
+        row.length = columnIndex + 1;
+        row.fill(undefined, start);
+      }
+
+      row[columnIndex] = {
+        color: '',
+        size: 0,
+        data: entry,
+      };
     }
 
-    return [rows, columns];
+    return [Object.values(rows), columns];
   }
 }
