@@ -58,6 +58,7 @@ export class FooterComponent<T extends DownloadFormat = DownloadFormat> {
   /** Input for product title to displayed on the left side. */
   @Input() productTitle = '';
 
+  /** Input for HRA Portal link */
   @Input() hraPortal = EMPTY_LINK;
 
   /** Different download formats options displayed to the user */

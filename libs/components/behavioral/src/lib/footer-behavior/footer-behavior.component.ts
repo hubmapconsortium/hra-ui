@@ -23,6 +23,7 @@ export class FooterBehaviorComponent {
   /** Input for product title to displayed on the left side. */
   readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);
 
+  /** Hra portal link routing after clicking on HRA Portal */
   readonly hraPortal = LinkIds.Portal;
 
   /** A dialog box which shows contact modal after clicking on contact */
