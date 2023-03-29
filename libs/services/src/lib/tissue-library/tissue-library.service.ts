@@ -17,23 +17,38 @@ import { z } from 'zod';
 
 export type TissueData = z.infer<typeof TISSUE_DATA_SCHEMA>;
 
-const IRI = z.string().url();
+const IRI = z.string().url().brand('IRI');
+
+// export const TISSUE_DATA_SCHEMA = z.object({
+//   root: IRI,
+//   Nodes: z.record(
+//     IRI,
+//     z.object({
+//       '@id': IRI,
+//       '@type': z.string(),
+//       label: z.string(),
+//       // TODO children
+//     })
+//   ),
+// });
 
 export const TISSUE_DATA_SCHEMA = z.object({
   root: IRI,
-  Nodes: z.record(
+  nodes: z.record(
     IRI,
     z.object({
-      '@id': IRI,
       '@type': z.string(),
+      '@id': IRI,
+      id: IRI,
+      parent: IRI.or(z.literal('')),
       label: z.string(),
-      // TODO children
+      synonymLabels: z.string().array(),
+      children: IRI.array(),
     })
   ),
 });
 
 @Injectable()
 export abstract class TissueLibraryService {
-  abstract getTissues(): Observable<void>;
-  // constructor() { }
+  abstract getTissues(): Observable<TissueData>;
 }
