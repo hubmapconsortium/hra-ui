@@ -1,6 +1,6 @@
 import { StateContext } from '@ngxs/store';
 import { mock } from 'jest-mock-extended';
-import { ComputeAggregate } from './cell-summary.actions';
+import { ComputeAggregate, SetData } from './cell-summary.actions';
 import { CellSummaryStateModel } from './cell-summary.model';
 import { CellSummaryState } from './cell-summary.state';
 
@@ -14,6 +14,12 @@ describe('CellSummaryState', () => {
   });
 
   afterEach(() => jest.clearAllMocks());
+
+  it('should set data', () => {
+    const data = { foo: 'bar' };
+    const action = new SetData(data);
+    expect(action.data).toEqual(data);
+  });
 
   it('should compute aggregate data for the given summaries', () => {
     const summaries = {
@@ -80,16 +86,11 @@ describe('CellSummaryState', () => {
     const expectedAggregate = {
       summary1: {
         label: 'Summary 1',
-        columns: ['biomarker1', 'biomarker2'],
+        columns: ['Biomarker 1', 'Biomarker 2'],
         rows: [
+          ['Cell 1', 10, { color: '', size: 0, data: summaries.summary1.entries[0] }],
           [
-            'cell1',
-            10,
-            { color: '', size: 0, data: summaries.summary1.entries[0] },
-            { color: '', size: 0, data: undefined },
-          ],
-          [
-            'cell2',
+            'Cell 2',
             10,
             { color: '', size: 0, data: summaries.summary1.entries[1] },
             { color: '', size: 0, data: summaries.summary1.entries[2] },
@@ -98,8 +99,8 @@ describe('CellSummaryState', () => {
       },
       summary2: {
         label: 'Summary 2',
-        columns: ['biomarker2'],
-        rows: [['cell1', 20, { color: '', size: 0, data: summaries.summary2.entries[0] }]],
+        columns: ['Biomarker 2'],
+        rows: [['Cell 1', 20, { color: '', size: 0, data: summaries.summary2.entries[0] }]],
       },
     };
 
