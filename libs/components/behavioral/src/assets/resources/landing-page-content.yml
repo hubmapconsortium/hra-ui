@@ -15,7 +15,7 @@ LandingPageIntroImg:
   url: 'assets/welcome.svg'
 MetricsLogo:
   type: url
-  url: '/assets/logo.svg'
+  url: 'assets/logo.svg'
 MetricsTitle:
   type: text
   text: Metrics of the Human Reference Atlas
@@ -36,19 +36,19 @@ Metrics:
   metrics:
     - description: consortia
       value: '17'
-      icon: '/assets/diversity.svg'
+      icon: 'assets/diversity.svg'
     - description: publications
       value: '1,000+'
-      icon: '/assets/publications.svg'
+      icon: 'assets/publications.svg'
     - description: experts
       value: '250+'
-      icon: '/assets/experts.svg'
+      icon: 'assets/experts.svg'
     - description: anatomical structures
       value: '2,665'
-      icon: '/assets/structures.svg'
+      icon: 'assets/structures.svg'
     - description: cell types
       value: '953'
-      icon: '/assets/celltypes.svg'
+      icon: 'assets/celltypes.svg'
     - description: biomarkers
       value: '2,842'
-      icon: '/assets/biomarkers.svg'
+      icon: 'assets/biomarkers.svg'

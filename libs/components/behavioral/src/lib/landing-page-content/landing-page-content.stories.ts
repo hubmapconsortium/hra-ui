@@ -4,12 +4,12 @@ import { Meta, Story } from '@storybook/angular/types-6-0';
 import { LandingPageContentComponent } from './landing-page-content.component';
 
 export default {
-  title: 'Behavior/LandingPageContentComponent',
+  title: 'LandingPageContentComponent',
   component: LandingPageContentComponent,
   parameters: {
     state: {
       states: [ResourceRegistryState],
-      actions: [new ResourceRegistryActions.LoadFromYaml('assets/landing-page-content.yml')],
+      actions: [new ResourceRegistryActions.LoadFromYaml('assets/resources/landing-page-content.yml')],
     },
   },
 } as Meta<LandingPageContentComponent>;
