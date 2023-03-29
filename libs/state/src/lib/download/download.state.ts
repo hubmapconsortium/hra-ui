@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { Action, NgxsOnInit, State, StateContext } from '@ngxs/store';
+import { Action, NgxsOnInit, State } from '@ngxs/store';
 import produce from 'immer';
 import { Observable, tap } from 'rxjs';
+
 import { PNG_FORMAT, SVG_FORMAT } from './builtin-formats';
 import { Download, RegisterFormat } from './download.action';
-import { DownloadContext, DownloadDataConverter, DownloadFormatId, DownloadModel, FileFormat } from './download.model';
+import { DownloadContext, DownloadFormatId, DownloadModel } from './download.model';
 
 /**
  * Download State Model used to convert

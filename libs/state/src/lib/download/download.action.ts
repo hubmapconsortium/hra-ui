@@ -1,10 +1,10 @@
 import { ActionGroup } from '@hra-ui/cdk/state';
-import { DownloadDataConverter, DownloadFormat, DownloadFormatId } from './download.model';
+import { DownloadFormat, DownloadFormatId } from './download.model';
 
 const Action = ActionGroup('Download');
 
 export class RegisterFormat extends Action('Register Format') {
-  constructor(readonly format: DownloadFormat, readonly converter?: DownloadDataConverter) {
+  constructor(readonly format: DownloadFormat) {
     super();
   }
 }
