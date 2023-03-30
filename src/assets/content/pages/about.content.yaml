@@ -70,11 +70,11 @@ acknowledgments:
 - heading: Acknowledgments
   descriptions: |
     The Human Reference Atlas (HRA) is under active development by the Indiana University Mapping Component as part of the HuBMAP HIVE and SenNet CODCC efforts with expert input by the 
-    [HRA Editorial Board](https://humanatlas.io/editorial-board) and in close collaboration with experts from more than 15 other consortia. Data was provided by HuBMAP and other Tissue Mapping Centers. 
-    This research has been funded by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under awards OT2OD033756 and OT2OD026671, by the 
-    Cellular Senescence Network (SenNet) Consortium through the Consortium Organization and Data Coordinating Center (CODCC) under award number U24CA268108, by the 
-    NIDDK Kidney Precision Medicine Project grant U2CDK114886, and the NIH National Institute of Allergy and Infectious Diseases (NIAID), Department of Health and Human Services 
-    under BCBB Support Services Contract HHSN316201300006W/HHSN27200002.
+    [HRA Editorial Board](https://humanatlas.io/editorial-board) and in close collaboration with experts from 
+    more than 15 other consortia. Data was provided by HuBMAP and other Tissue Mapping Centers. This research has been funded by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under awards OT2OD033756 and 
+    OT2OD026671, by the Cellular Senescence Network (SenNet) Consortium through the Consortium Organization and Data Coordinating Center (CODCC) under award number U24CA268108, and by the NIDDK under awards U24DK135157 and U01DK133090. 
+    The work has also been supported by the Kidney Precision Medicine Project grant U2CDK114886, and the NIH National Institute of Allergy and Infectious Diseases (NIAID), Department of Health and Human Services under BCBB Support Services 
+    Contract HHSN316201300006W/HHSN27200002.
 
     The very first [ASCT+B table](https://humanatlas.io/asctb-tables) was published for the kidney by the Kidney Precision Medicine Project (KPMP) in 
     "[A Multimodal and Integrated Approach to Interrogate Human Kidney Biopsies with Rigor and Reproducibility: The Kidney Precision Medicine Project](https://www.biorxiv.org/content/10.1101/828665v1)". 
