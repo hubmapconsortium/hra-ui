@@ -67,6 +67,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </div>
                             <ul class="links collapse " ${ isNormalMode ? 'id="directives-links"' : 'id="xs-directives-links"' }>
                                 <li class="link">
+                                    <a href="directives/HoverDirective.html" data-type="entity-link" >HoverDirective</a>
+                                </li>
+                                <li class="link">
                                     <a href="directives/LinkDirective.html" data-type="entity-link" >LinkDirective</a>
                                 </li>
                             </ul>
@@ -152,6 +155,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/DestructorScope.html" data-type="entity-link" >DestructorScope</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/HoverContext.html" data-type="entity-link" >HoverContext</a>
                             </li>
                         </ul>
                     </li>
