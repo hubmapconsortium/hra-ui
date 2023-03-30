@@ -2,26 +2,26 @@ import { ConnectionPositionPair, Overlay } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { Directive, ElementRef, HostListener, inject, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
-/**  Interface for the hover context */
+/**  Context passed to hover content templates */
 export interface HoverContext<T = unknown> {
-  /** defining an implicit type */
+  /** Data provided by the user for use inside the content template */
   $implicit: T;
 }
 
-/** Defining a directive to be used across the application */
+/** Hover overlay directive to be used across the application */
 @Directive({
   selector: '[hraHover]',
   standalone: true,
 })
 export class HoverDirective<T = unknown> {
-  /** Input for the template portal */
+  /**  Setter for the content to be displayed in the overlay */
   @Input('hraHover')
   set content(content: TemplateRef<HoverContext<T>>) {
     this.portal = new TemplatePortal(content, this.viewContainerRef, this._data);
     this.updateContent();
   }
 
-  /** Input for the overlay template */
+  /** Setter for the context that is to be displayed in the portal attached to the overlay */
   @Input('hraHoverData')
   set data(data: T) {
     this._data = { $implicit: data };
@@ -31,10 +31,10 @@ export class HoverDirective<T = unknown> {
     }
   }
 
-  /**  Defining an injectable element */
+  /**  Reference to the element that the directive is attached to */
   private readonly el: Element = inject(ElementRef).nativeElement;
 
-  /**  Defining the injectable overlay and setting its position */
+  /**  Reference to the overlay that is created when the userhovers over the element along with its position setting */
   readonly overlayRef = inject(Overlay).create({
     positionStrategy: inject(Overlay)
       .position()
@@ -48,16 +48,16 @@ export class HoverDirective<T = unknown> {
       .withPush(true),
   });
 
-  /** creating an injectable container reference */
+  /** Reference view container that the directive is attached to */
   private readonly viewContainerRef = inject(ViewContainerRef);
 
-  /** defining a variable for storing the context */
+  /** Store the data that is passed into the data input property */
   private _data?: HoverContext<T>;
 
-  /** creating a portal for hover */
+  /** Portal that is created to display the overlay */
   portal?: TemplatePortal<HoverContext<T>>;
 
-  /** Function to handle the mouse over event and display the hover content */
+  /** Function to handle the mouse over event to attach the portal and display the hover content */
   @HostListener('mouseover')
   startHover(): void {
     const { overlayRef, portal } = this;
@@ -66,7 +66,7 @@ export class HoverDirective<T = unknown> {
     }
   }
 
-  /** Function to handle the mouse out event and hide the hover content */
+  /** Function to handle the mouse out event to detach the portal  */
   @HostListener('mouseout')
   endHover(): void {
     const { overlayRef } = this;
@@ -75,7 +75,7 @@ export class HoverDirective<T = unknown> {
     }
   }
 
-  /** Function to handle the updation of overlay with up to date content */
+  /** Function to handle the updation of overlay with up to date content when the input changes */
   private updateContent(): void {
     const { overlayRef, portal } = this;
     if (overlayRef.hasAttached() && portal) {
