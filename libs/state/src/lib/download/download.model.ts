@@ -5,6 +5,8 @@ export type DownloadFormatId = z.infer<typeof DOWNLOAD_FORMAT_ID>;
 
 export type DownloadFormat = z.infer<typeof DOWNLOAD_FORMAT>;
 
+export type DownloadEntry = z.infer<typeof DOWNLOAD_ENTRY>;
+
 export type DownloadModel = z.infer<typeof DOWNLOAD_MODEL>;
 
 export type DownloadContext = StateContext<DownloadModel>;

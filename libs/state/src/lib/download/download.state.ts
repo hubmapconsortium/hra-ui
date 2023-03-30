@@ -5,7 +5,7 @@ import produce from 'immer';
 import { Observable, tap } from 'rxjs';
 
 import { PNG_FORMAT, SVG_FORMAT } from './builtin-formats';
-import { Download, RegisterFormat } from './download.action';
+import { AddEntry, ClearEntry, Download, RegisterFormat } from './download.action';
 import { DownloadContext, DownloadFormatId, DownloadModel } from './download.model';
 
 /**
@@ -23,15 +23,52 @@ import { DownloadContext, DownloadFormatId, DownloadModel } from './download.mod
 export class DownloadState implements NgxsOnInit {
   private readonly http = inject(HttpClient);
 
+  /**
+   * Ngxs on init and registry default format
+   * @param ctx
+   */
   ngxsOnInit(ctx: DownloadContext): void {
     ctx.dispatch([new RegisterFormat(SVG_FORMAT), new RegisterFormat(PNG_FORMAT)]);
   }
 
+  /**
+   * Actions register format in Download State
+   * @param ctx
+   * @param { format }
+   */
   @Action(RegisterFormat)
   registerFormat(ctx: DownloadContext, { format }: RegisterFormat): void {
     ctx.setState(
       produce((draft) => {
         draft.formats[format.id] = format;
+      })
+    );
+  }
+
+  /**
+   * Add entry into download state
+   * @param ctx
+   * @param { id, entry }
+   */
+  @Action(AddEntry)
+  addEntry(ctx: DownloadContext, { id, entry }: AddEntry): void {
+    ctx.setState(
+      produce((draft) => {
+        draft.entries[id] = entry;
+      })
+    );
+  }
+
+  /**
+   * Clear entry from download state
+   * @param ctx
+   * @param { id }
+   */
+  @Action(ClearEntry)
+  clearEntry(ctx: DownloadContext, { id }: ClearEntry): void {
+    ctx.setState(
+      produce((draft) => {
+        delete draft.formats[id];
       })
     );
   }
