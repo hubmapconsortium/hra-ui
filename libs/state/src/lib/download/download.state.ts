@@ -27,16 +27,6 @@ export class DownloadState implements NgxsOnInit {
     ctx.dispatch([new RegisterFormat(SVG_FORMAT), new RegisterFormat(PNG_FORMAT)]);
   }
 
-  /**
-   * Infers filename from file url
-   * @param fileUrl
-   * @returns
-   */
-  // inferFilename(fileUrl: string) {
-  //   fileUrl.match(/$/)?.[0] ?? '';
-  //   return fileUrl.substring(fileUrl.lastIndexOf('/') + 1, fileUrl.lastIndexOf('.'));
-  // }
-
   @Action(RegisterFormat)
   registerFormat(ctx: DownloadContext, { format }: RegisterFormat): void {
     ctx.setState(
@@ -55,9 +45,10 @@ export class DownloadState implements NgxsOnInit {
   download(ctx: DownloadContext, { format }: Download): Observable<unknown> | void {
     const { entries } = ctx.getState();
     const entry = entries[format];
-    const filename = this.guessFilename(ctx, format);
+    let filename = 'default.svg';
     switch (entry?.type) {
       case 'url':
+        filename = this.guessFilename(ctx, format, entry.url);
         return this.downloadRemoteData(entry.url).pipe(tap((data) => this.downloadData(data, filename)));
 
       case 'data':
@@ -69,11 +60,23 @@ export class DownloadState implements NgxsOnInit {
     }
   }
 
-  private guessFilename(ctx: DownloadContext, id: DownloadFormatId): string {
+  /**
+   * Guess filename
+   * @param ctx
+   * @param id
+   * @param url
+   * @returns filename
+   */
+  private guessFilename(ctx: DownloadContext, id: DownloadFormatId, url: string): string {
     const { formats } = ctx.getState();
-    const format = formats[id];
-    // TODO
-    return '';
+    const { extension = '' } = formats[id] ?? {};
+    const fakeBase = 'https://base.com';
+    const path = new URL(url, fakeBase).pathname;
+    const segments = path.split('/').filter((seg) => seg !== '');
+    const name = segments.length > 0 ? segments[segments.length - 1] : 'download';
+    const guess = name.includes('.') ? name : `${name}${extension}`;
+
+    return guess;
   }
 
   /**
