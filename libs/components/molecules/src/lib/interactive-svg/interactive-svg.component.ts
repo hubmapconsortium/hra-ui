@@ -141,23 +141,21 @@ export class InteractiveSvgComponent implements OnDestroy {
    * @param event Mouse event
    */
   private onCrosswalkHover(event: MouseEvent): void {
-    let id = this.getId(event);
+    const id = this.getId(event);
+    let label = '';
 
     const mapEntry = this.mapping?.find((item) => item['node_name'] === id); //search mapping data for node entry
     if (mapEntry) {
-      id = mapEntry['label'];
+      label = mapEntry['label'];
+      this.nodeHoverData$.next({
+        node: label,
+        origin: {
+          x: event.clientX,
+          y: event.clientY,
+        },
+      });
       this.nodeHover.emit(mapEntry); //emits node entry and shows node name in tooltip if matching entry is found
-    } else {
-      id = 'Cell data not found';
     }
-
-    this.nodeHoverData$.next({
-      node: id,
-      origin: {
-        x: event.clientX,
-        y: event.clientY,
-      },
-    });
   }
 
   /**

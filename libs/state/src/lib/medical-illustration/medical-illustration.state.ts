@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
 import { parse, ParseResult } from 'papaparse';
 
@@ -25,7 +25,7 @@ export class MedicalIllustrationState {
 
   @Action(SetMapping)
   setMapping({ patchState }: MedicalIllustrationContext, { url }: SetMapping): void {
-    parse(url || '', {
+    parse(url, {
       download: true,
       header: true,
       dynamicTyping: true,
