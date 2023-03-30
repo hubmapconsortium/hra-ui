@@ -9,6 +9,8 @@
     justify-content: space-between;
     padding-bottom: 1rem;
     align-items: center;
+    flex-wrap: wrap;
+    line-height: 2rem;
   }
 
   .mat-raised-button {
@@ -37,13 +39,8 @@
   @media (max-width: 26.75rem) {
     padding: 0rem 1rem;
 
-    .table-heading-container {
-      flex-wrap: wrap;
-      line-height: 2rem;
-
-      .mat-raised-button {
-        margin-top: 1rem;
-      }
+    .table-heading-container .mat-raised-button {
+      margin-top: 1rem;
     }
   }
 }
