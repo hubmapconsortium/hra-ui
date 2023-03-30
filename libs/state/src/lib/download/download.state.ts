@@ -45,7 +45,7 @@ export class DownloadState implements NgxsOnInit {
   download(ctx: DownloadContext, { format }: Download): Observable<unknown> | void {
     const { entries } = ctx.getState();
     const entry = entries[format];
-    let filename = 'default.svg';
+    let filename = `download${format}`;
     switch (entry?.type) {
       case 'url':
         filename = this.guessFilename(ctx, format, entry.url);
