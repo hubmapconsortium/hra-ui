@@ -1,7 +1,7 @@
-import { ChangeDetectorRef, ElementRef, inject, NgModuleRef, ViewContainerRef } from '@angular/core';
+import { ElementRef, inject, NgModuleRef, ViewContainerRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DestroyHostComponent } from './destroy-host.component';
-import { DestructorScope, isDestructorScopeLike, ScopedDestructorSubject } from './destructor-subject';
+import { DestructorScope, ScopedDestructorSubject } from './destructor-subject';
 
 /** Cached destructor observables */
 const DESTRUCTOR_CACHE = new WeakMap<object, Observable<void>>();
