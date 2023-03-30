@@ -9,7 +9,11 @@ export default {
   parameters: {
     state: {
       states: [MedicalIllustrationState],
-      actions: [new MedicalIllustrationActions.SetUri('assets/2d-ftu-large-intestine-crypt-lieberkuhn.svg')],
+      actions: [
+        new MedicalIllustrationActions.SetUri(
+          'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.svg'
+        ),
+      ],
     },
   },
 } as Meta<MedicalIllustrationBehaviorComponent>;

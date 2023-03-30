@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { InteractiveSvgComponent } from '@hra-ui/components/molecules';
 import { MedicalIllustrationActions, MedicalIllustrationSelectors } from '@hra-ui/state';
-import { parse, ParseResult } from 'papaparse';
 
 @Component({
   selector: 'ftu-medical-illustration-behavior',
@@ -24,6 +23,6 @@ export class MedicalIllustrationBehaviorComponent implements OnInit {
   readonly getMapping = selectSnapshot(MedicalIllustrationSelectors.getMapping);
 
   ngOnInit(): void {
-    this.setMapping('assets/mapping.csv');
+    this.setMapping('assets/TEMP/mapping.csv');
   }
 }
