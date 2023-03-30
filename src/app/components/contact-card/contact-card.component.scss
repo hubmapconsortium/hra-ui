@@ -6,14 +6,18 @@
   }
 
   .contact-card {
-    max-height: 417px;
-    max-width: 280px;
+    height: 26rem;
+    width: 17.5rem;
     padding: 2rem;
-    margin-right: 1.5rem;
     &:hover {
       box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2),
         0 0.375rem 1.25rem 0 rgba(0, 0, 0, 0.19);
     }
+    border: 1px solid #E0E0E0;
+  }
+
+  .contact-card:not(:last-child) {
+    margin-right: 1.5rem;
   }
 
   .image-container {
@@ -60,6 +64,19 @@
     line-height: 24px;
   }
 
+  @media (max-width: 80rem) {
+    .contact-card {
+      margin-bottom: 1rem;
+
+    }
+  }
+
+  @media (max-width: 58.5rem) {
+    .contact-card:not(:last-child) {
+      margin-right: 1.5rem;
+    }
+  }
+
   @media (max-width: 26.75rem) {
     .contact-card {
       width: 100%;
@@ -72,6 +89,10 @@
 
     .contact-email {
       justify-content: center;
+    }
+
+    .contact-card:not(:last-child) {
+      margin-right: unset;
     }
   }
 }
