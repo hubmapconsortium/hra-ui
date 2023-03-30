@@ -159,8 +159,8 @@
     }
 
     .swiper-button-next {
-      left: 98%;
-      top: 97.3%;
+      left: unset;
+      right: calc(100vw - 417px);
     }
 
     .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
@@ -172,7 +172,7 @@
     .swiper-horizontal > .swiper-pagination-bullets,
     .swiper-pagination-bullets.swiper-pagination-horizontal {
       width: unset;
-      left: 24px;
+      left: 19px;
       bottom: 0px;
     }
   }
