@@ -23,6 +23,7 @@
     letter-spacing: 0.005em;
     border-radius: 0.125rem;
     min-width: 10rem;
+    margin-bottom: 1rem;
   }
 
   a,
@@ -97,7 +98,16 @@
     flex-grow: 1;
   }
 
-  @media (max-width: 26.75rem) {
+  .mat-card-actions:not(.mat-card-actions-align-end) .mat-stroked-button:first-child {
+    margin: 0 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .image-container img {
+    width: 100%;
+  }
+
+  @media (max-width: 46rem) {
     .multirow {
       flex-direction: column;
     }
@@ -107,7 +117,7 @@
     }
 
     .mat-card-actions .mat-stroked-button {
-      margin: unset;
+      margin: 0 0.5rem;
       margin-bottom: 1rem;
     }
 
@@ -116,18 +126,14 @@
       flex-direction: column;
     }
 
-    .mat-stroked-button:first-child {
-      margin-bottom: 1rem !important;
+    .mat-card-actions:not(.mat-card-actions-align-end) .mat-stroked-button:first-child {
+      margin-bottom: 1rem;
     }
 
     .units-container {
       flex-direction: row;
       align-items: flex-start;
       padding: 1rem;
-    }
-
-    .image-container img {
-      width: 100%;
     }
 
     .tissue-name {
@@ -142,6 +148,11 @@
 
     .three-dim-name {
       font-size: 1.125rem;
+    }
+
+    .mat-card-actions .mat-divider {
+      max-width: unset;
+      width: 100%;
     }
   }
 }

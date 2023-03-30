@@ -18,7 +18,7 @@ export class TwoDimImageComponent {
   constructor(private dialog: MatDialog, private readonly downloader: FileDownloadService) { }
 
   openImageViewer(content: TemplateRef<unknown>): void {
-    const isSmallScreen = window.innerWidth / parseFloat(getComputedStyle(document.documentElement).fontSize) < 26.75;
+    const isSmallScreen = window.innerWidth / parseFloat(getComputedStyle(document.documentElement).fontSize) < 63;
     if (isSmallScreen) {
       this.imageRef.nativeElement.onclick = null;
     }
