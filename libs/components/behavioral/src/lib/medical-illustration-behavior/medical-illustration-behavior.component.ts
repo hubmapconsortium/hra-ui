@@ -13,14 +13,13 @@ import { MedicalIllustrationActions, MedicalIllustrationSelectors } from '@hra-u
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MedicalIllustrationBehaviorComponent implements OnInit {
-  mapping: Record<string, string>[] = [];
-
   readonly currentUrl = selectSnapshot(MedicalIllustrationSelectors.getUrl);
+
+  readonly getMapping = selectSnapshot(MedicalIllustrationSelectors.getMapping);
 
   readonly updateNode = dispatch(MedicalIllustrationActions.SetActiveNode);
 
   readonly setMapping = dispatch(MedicalIllustrationActions.SetMapping);
-  readonly getMapping = selectSnapshot(MedicalIllustrationSelectors.getMapping);
 
   ngOnInit(): void {
     this.setMapping('assets/TEMP/mapping.csv');
