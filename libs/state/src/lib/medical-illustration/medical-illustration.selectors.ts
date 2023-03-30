@@ -8,4 +8,9 @@ export class MedicalIllustrationSelectors {
   static getUrl(state: MedicalIllustrationModel): string | undefined {
     return state.url;
   }
+
+  @Selector([MedicalIllustrationState])
+  static getMapping(state: MedicalIllustrationModel): Record<string, string>[] | undefined {
+    return state.mapping;
+  }
 }

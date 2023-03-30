@@ -11,3 +11,9 @@ export class SetActiveNode extends Action('[Medical Illustration] Set Active Nod
     super();
   }
 }
+
+export class SetMapping extends Action('[Medical Illustration] Set Mapping') {
+  constructor(readonly url: string) {
+    super();
+  }
+}

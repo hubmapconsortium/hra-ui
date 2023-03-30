@@ -20,15 +20,10 @@ export class MedicalIllustrationBehaviorComponent implements OnInit {
 
   readonly updateNode = dispatch(MedicalIllustrationActions.SetActiveNode);
 
+  readonly setMapping = dispatch(MedicalIllustrationActions.SetMapping);
+  readonly getMapping = selectSnapshot(MedicalIllustrationSelectors.getMapping);
+
   ngOnInit(): void {
-    parse('assets/mapping.csv', {
-      download: true,
-      header: true,
-      dynamicTyping: true,
-      skipEmptyLines: true,
-      complete: (results: ParseResult<Record<string, string>>) => {
-        this.mapping = results.data;
-      },
-    });
+    this.setMapping('assets/mapping.csv');
   }
 }
