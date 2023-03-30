@@ -15,14 +15,24 @@ function isPrimitive(value: unknown): value is bigint | boolean | number | strin
   return value == null || PRIMITIVE_TYPES.includes(typeof value);
 }
 
+/**
+ * Injectable token LOGGABLE_ACTIONS provides list of actions that can be logged
+ */
 export const LOGGABLE_ACTIONS = new InjectionToken<unknown[]>('Loggable actions', {
   providedIn: 'root',
   factory: () => DEFAULT_LOGGABLE_ACTIONS,
 });
 
+/**
+ * Google Analytics Plugin Injectable
+ */
 @Injectable({
   providedIn: 'root',
 })
+
+/**
+ * State Analytics Plugin Service
+ */
 export class StateAnalyticsPluginService implements NgxsPlugin {
   /**
    * Injects the service for state analytics plugin.
