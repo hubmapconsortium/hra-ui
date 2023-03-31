@@ -2,33 +2,36 @@
     <mat-card-title class="card-title">{{cardTitle}}</mat-card-title>
     <mat-divider></mat-divider>
     <span *ngFor="let tissues of tissueData" [class.multirow]="!isMultirow">
-        <ng-container *ngFor="let tissue of tissues.tissueData let i = index; even as even; last as last;">
-            <mat-card-actions [class.split]="!isMultirow && tissues.tissueData?.length != 1" [class.no-split]="tissues.tissueData?.length === 1">
+        <ng-container *ngFor="let tissue of tissues.tissueData let i = index; even as even; last as last; odd as odd">
+            <mat-card-actions [class.split]="!isMultirow && tissues.tissueData?.length != 1"
+                [class.no-split]="tissues.tissueData?.length === 1">
                 <div class="units-container" *ngIf="isMultirow; else: downloadGlb">
                     <div class="tissue-name">{{tissue.name}}</div>
-                    <div class="filler"></div>
                     <div class="download-button-container">
                         <a mat-stroked-button disableRipple="true" href="{{tissue.url}}">
-                        Metadata
-                        <span class="material-symbols-outlined">info</span>
+                            <span class="material-symbols-outlined">info</span>
+                            Metadata
                         </a>
-                        <a *ngIf="tissue.png" mat-stroked-button disableRipple="true" [href]="tissue.png" (click)="downloadClick($event, tissue.png)">
+                        <a *ngIf="tissue.png" mat-stroked-button disableRipple="true" [href]="tissue.png"
+                            (click)="downloadClick($event, tissue.png)">
+                            <span class="material-symbols-outlined">download</span>
                             Download PNG
-                            <span class="material-symbols-outlined">download</span>
                         </a>
-                        <a *ngIf="tissue.svg" mat-stroked-button disableRipple="true" [href]="tissue.svg" (click)="downloadClick($event, tissue.svg)">
-                            Download SVG
+                        <a *ngIf="tissue.svg" mat-stroked-button disableRipple="true" [href]="tissue.svg"
+                            (click)="downloadClick($event, tissue.svg)">
                             <span class="material-symbols-outlined">download</span>
+                            Download SVG
                         </a>
                         <a *ngIf="tissue.ai" [href]="tissue.ai" mat-stroked-button disableRipple="true" download>
-                            Download AI
                             <span class="material-symbols-outlined">download</span>
+                            Download AI
                         </a>
                     </div>
                 </div>
-                
+                <mat-divider></mat-divider>
+
                 <ng-template #downloadGlb>
-                    <mat-divider *ngIf = "i != 0 && i != 1"></mat-divider>
+                    <mat-divider *ngIf="i != 0 && i != 1"></mat-divider>
                     <div class="units-container">
                         <div class="three-dim-name">{{tissue.name}}</div>
                         <div class="filler"></div>
@@ -44,34 +47,34 @@
                         </div>
                     </div>
                 </ng-template>
-                <mat-divider [class.no-split-divider]="tissues.tissueData?.length === 1" *ngIf="!isMultirow"></mat-divider>
                 <div class="image-container" *ngIf="tissue.image; else: threeDimensionContainer">
                     <img [src]="tissue.image" (click)="openImageViewer(imageContent)" #imageRef>
                     <ng-template #imageContent>
                         <div class="dialog-header">
                             <div mat-dialog-title>{{tissue.name}}</div>
                             <div class="filler"></div>
-
                             <button mat-dialog-close mat-button [disableRipple]="true">
                                 <mat-icon>close</mat-icon>
                             </button>
                         </div>
                         <div class="dialog-buttons">
                             <a mat-dialog-close mat-stroked-button [disableRipple]="true" href="{{tissue.url}}">
-                                Metadata
                                 <span class="material-symbols-outlined">info</span>
+                                Metadata
                             </a>
-                            <a *ngIf="tissue.png" mat-stroked-button disableRipple="true" [href]="tissue.png" (click)="downloadClick($event, tissue.png)">
+                            <a *ngIf="tissue.png" mat-stroked-button disableRipple="true" [href]="tissue.png"
+                                (click)="downloadClick($event, tissue.png)">
+                                <span class="material-symbols-outlined">download</span>
                                 Download PNG
-                                <span class="material-symbols-outlined">download</span>
                             </a>
-                            <a *ngIf="tissue.svg" [href]="tissue.svg" mat-stroked-button disableRipple="true" (click)="downloadClick($event, tissue.svg)">
-                                Download SVG
+                            <a *ngIf="tissue.svg" [href]="tissue.svg" mat-stroked-button disableRipple="true"
+                                (click)="downloadClick($event, tissue.svg)">
                                 <span class="material-symbols-outlined">download</span>
+                                Download SVG
                             </a>
                             <a *ngIf="tissue.ai" [href]="tissue.ai" mat-stroked-button disableRipple="true" download>
-                                Download AI
                                 <span class="material-symbols-outlined">download</span>
+                                Download AI
                             </a>
                         </div>
                         <div class="img-container">
@@ -87,7 +90,7 @@
                     </div>
                 </ng-template>
             </mat-card-actions>
-            <mat-divider [vertical]="!isMultirow" *ngIf="isMultirow && last || even"></mat-divider>
+            <mat-divider [vertical]="!isMultirow" *ngIf="isMultirow && last || even || (odd && !last)"></mat-divider>
         </ng-container>
     </span>
 </mat-card>
