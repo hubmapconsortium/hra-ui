@@ -22,7 +22,7 @@ export class MenuTreeComponent implements OnInit {
   isOpen = false;
   treeControl = new NestedTreeControl<NavItems>(node => node.children);
   dataSource = new MatTreeNestedDataSource<NavItems>();
-  closeScrollStrategy = this.overlay.scrollStrategies.close();
+  scrollStrategy = this.overlay.scrollStrategies.block();
 
   constructor(
     private router: Router,

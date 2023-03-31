@@ -10,7 +10,7 @@
   [cdkConnectedOverlayHasBackdrop]="true"
   [cdkConnectedOverlayBackdropClass]="$any(['cdk-overlay-dark-backdrop', 'menu-tree-backdrop'])"
   (detach)="isOpen = false" [cdkConnectedOverlayPanelClass]="['menu-tree-panel', overlayClass]"
-  [cdkConnectedOverlayPositions]="positions" [cdkConnectedOverlayScrollStrategy]="closeScrollStrategy"
+  [cdkConnectedOverlayPositions]="positions" [cdkConnectedOverlayScrollStrategy]="scrollStrategy"
   (overlayOutsideClick)="!trigger.elementRef.nativeElement.contains($event.target) && (isOpen = false)">
   <mat-tree cdkScrollable [dataSource]="dataSource" [treeControl]="treeControl" [class]="treeClass">
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle (click)="this.isOpen = !this.isOpen">
