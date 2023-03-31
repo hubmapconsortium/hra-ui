@@ -8,3 +8,6 @@ export const Portal = createLinkId('Portal');
 
 /** LinkId for Illustration metadata */
 export const Illustration = createLinkId('Illustration');
+
+/** LinkId for Embed */
+export const Embed = createLinkId('Embed');

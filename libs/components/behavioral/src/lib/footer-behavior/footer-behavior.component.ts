@@ -29,6 +29,9 @@ export class FooterBehaviorComponent {
   /** Metadata page link routing after clicking on Illustration */
   readonly illustrationMetadata = LinkIds.Illustration;
 
+  /** Embed link routing after clicking on Embed */
+  readonly embed = LinkIds.Embed;
+
   /** A dialog box which shows contact modal after clicking on contact */
   private readonly dialog = inject(MatDialog);
 

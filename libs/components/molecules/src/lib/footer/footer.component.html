@@ -23,7 +23,7 @@
   Download
 </button>
 
-<button class="button" mat-stroked-button (click)="embedClick.emit()">
+<button class="button" mat-stroked-button [hraLink]="embed" (click)="embedClick.emit()">
   <mat-icon>code</mat-icon>
   Embed
 </button>

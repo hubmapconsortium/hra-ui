@@ -64,6 +64,9 @@ export class FooterComponent<T extends DownloadFormat = DownloadFormat> {
   /** Input for Illustration metadata page link in HRA Portal */
   @Input() illustrationMetadata = EMPTY_LINK;
 
+  /** Input for embed link in HRA Portal */
+  @Input() embed = EMPTY_LINK;
+
   /** Different download formats options displayed to the user */
   @Input() downloadFormats: T[] = [];
 
