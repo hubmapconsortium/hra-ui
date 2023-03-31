@@ -26,6 +26,9 @@ export class FooterBehaviorComponent {
   /** Hra portal link routing after clicking on HRA Portal */
   readonly hraPortal = LinkIds.Portal;
 
+  /** Metadata page link routing after clicking on Illustration */
+  readonly illustrationMetadata = LinkIds.Illustration;
+
   /** A dialog box which shows contact modal after clicking on contact */
   private readonly dialog = inject(MatDialog);
 
@@ -35,10 +38,5 @@ export class FooterBehaviorComponent {
   /** A function which opens the contact modal dialog box */
   contact(): void {
     this.dialog.open(ContactBehaviorComponent);
-  }
-
-  /** A function which redirects the user to a new URL */
-  goToUrl(): void {
-    this.document.location.href = 'https://example.com';
   }
 }
