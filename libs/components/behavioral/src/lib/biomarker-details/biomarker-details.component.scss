@@ -22,6 +22,19 @@
     border-right: 0.063rem solid #d3d3d3;
   }
 
+  .mean-legend-wrapper {
+    border-left: 0.063rem solid #d3d3d3;
+    grid-column: 1;
+    grid-row: 4;
+  }
+
+  .size-legend-wrapper {
+    border-left: 0.063rem solid #d3d3d3;
+    border-right: 0.063rem solid #d3d3d3;
+    grid-column: 2;
+    grid-row: 4;
+  }
+
   .mean-legend-box {
     grid-column: 1;
     grid-row: 3;
@@ -33,15 +46,11 @@
   }
 
   .mean-legend {
-    grid-column: 1;
-    grid-row: 4;
     width: 10rem;
     margin: 1rem 2rem;
   }
 
   .size-legend {
-    grid-column: 2;
-    grid-row: 4;
     margin: 1rem 2rem;
   }
 
