@@ -50,7 +50,7 @@ const tableColumns = [
   'chromosome inavalitentte A 3',
 ];
 
-const tableData: DataRow<DataCell>[] = [
+const tableRows: DataRow<DataCell>[] = [
   [
     'absorptive cell',
     2764,
@@ -159,22 +159,20 @@ Primary.args = {
       link: 'google.com',
     },
   ],
-  tableColumns: tableColumns,
-  tableData: tableData,
   tabs: [
     {
       label: 'Gene Biomarkers',
-      tableData: tableData,
+      tableRows: tableRows,
       tableColumns: tableColumns,
     },
     {
       label: 'Protein Biomarkers',
-      tableData: tableData,
+      tableRows: tableRows,
       tableColumns: tableColumns,
     },
     {
       label: 'Lipid Biomarkers',
-      tableData: [],
+      tableRows: [],
       tableColumns: [],
     },
   ],

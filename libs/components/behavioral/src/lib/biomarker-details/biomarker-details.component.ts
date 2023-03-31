@@ -19,7 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 export interface BiomarkerTab {
   label: string;
-  tableData: DataRow<DataCell>[];
+  tableRows: DataRow<DataCell>[];
   tableColumns: string[];
 }
 
@@ -55,23 +55,19 @@ export class BiomarkerDetailsComponent implements OnChanges {
   /** List of sources with titles and links displayed to the user */
   @Input() sources: SourceListItem[] = [];
 
-  @Input() tableColumns: string[] = [];
-
-  @Input() tableData: DataRow<DataCell>[] = [];
-
+  /** List of Biomarker tab which includes rows and columns of the table that is to be displayed */
   @Input() tabs: BiomarkerTab[] = [];
 
+  /** The current selected tab from the cell types */
   activeTab = '';
 
+  /** Indicates if the table is fully shown, defaults to false*/
   isTableFullScreen = false;
 
+  /** Changes the selected tab when the user clicks on any other tab */
   ngOnChanges(changes: SimpleChanges): void {
     if ('tabs' in changes) {
       this.activeTab = this.tabs[0].label;
     }
-  }
-
-  public switchStretch() {
-    this.isTableFullScreen = !this.isTableFullScreen;
   }
 }
