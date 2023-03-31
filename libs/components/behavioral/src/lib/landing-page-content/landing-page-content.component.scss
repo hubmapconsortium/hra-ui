@@ -1,11 +1,12 @@
 :host {
   display: block;
+  overflow-x: hidden;
   .metrics {
     animation: fadeIn 2s;
   }
   .landing-page-content {
-    animation-duration: 2s;
-    animation-name: slidein;
+    overflow: hidden;
+    animation: slidein 3s ease-in-out forwards;
   }
 }
 @keyframes fadeIn {
@@ -17,13 +18,10 @@
   }
 }
 @keyframes slidein {
-  from {
-    margin-left: 100%;
-    width: 100%;
+  0% {
+    transform: translateX(200%);
   }
-
-  to {
-    margin-left: 0%;
-    width: 100%;
+  100% {
+    transform: translateX(0);
   }
 }
