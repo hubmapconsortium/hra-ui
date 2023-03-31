@@ -10,3 +10,9 @@ export const ContactAcknowledgement = createResourceId('ContactAcknowledgement')
 
 /** App title id */
 export const AppTitle = createResourceId('AppTitle');
+
+/** Gradient legend id */
+export const GradientLegend = createResourceId('GradientLegend');
+
+/** Size legend id */
+export const SizeLegend = createResourceId('SizeLegend');
