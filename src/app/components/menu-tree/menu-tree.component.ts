@@ -17,7 +17,6 @@ export class MenuTreeComponent implements OnInit {
   @Input() overlayClass: string;
   @Input() treeClass: string;
   @Input() positions: ConnectedPosition[];
-  @Input() position: string;
 
   isOpen = false;
   treeControl = new NestedTreeControl<NavItems>(node => node.children);

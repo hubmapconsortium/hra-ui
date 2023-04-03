@@ -16,6 +16,12 @@
     text-decoration: none;
   }
 
+  .menu {
+    position: fixed;
+    top: 3.5rem;
+    z-index: 10;
+  }
+
   .contact-card-container {
     margin: 2rem 0.5rem;
   }
