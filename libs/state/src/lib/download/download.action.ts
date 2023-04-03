@@ -7,6 +7,10 @@ const Action = ActionGroup('Download');
  * Register format into state
  */
 export class RegisterFormat extends Action('Register Format') {
+  /**
+   * Creates an instance of register format.
+   * @param format
+   */
   constructor(readonly format: DownloadFormat) {
     super();
   }
@@ -22,13 +26,9 @@ export class AddEntry extends Action('Add') {
 }
 
 /**
- * Clear entry from download state
+ * Clear all entries from download state
  */
-export class ClearEntry extends Action('Clear') {
-  constructor(readonly id: DownloadFormatId) {
-    super();
-  }
-}
+export class ClearEntries extends Action('Clear') {}
 
 /**
  * Download file Action

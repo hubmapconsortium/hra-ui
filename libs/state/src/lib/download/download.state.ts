@@ -5,7 +5,7 @@ import produce from 'immer';
 import { Observable, tap } from 'rxjs';
 
 import { PNG_FORMAT, SVG_FORMAT } from './builtin-formats';
-import { AddEntry, ClearEntry, Download, RegisterFormat } from './download.action';
+import { AddEntry, ClearEntries, Download, RegisterFormat } from './download.action';
 import { DownloadContext, DownloadFormatId, DownloadModel } from './download.model';
 
 /**
@@ -21,6 +21,9 @@ import { DownloadContext, DownloadFormatId, DownloadModel } from './download.mod
   },
 })
 export class DownloadState implements NgxsOnInit {
+  /**
+   * Http object inject for download state
+   */
   private readonly http = inject(HttpClient);
 
   /**
@@ -60,15 +63,14 @@ export class DownloadState implements NgxsOnInit {
   }
 
   /**
-   * Clear entry from download state
+   * Clear entires from download state
    * @param ctx
-   * @param { id }
    */
-  @Action(ClearEntry)
-  clearEntry(ctx: DownloadContext, { id }: ClearEntry): void {
+  @Action(ClearEntries)
+  clearEntry(ctx: DownloadContext): void {
     ctx.setState(
       produce((draft) => {
-        delete draft.formats[id];
+        draft.entries = {};
       })
     );
   }
@@ -89,6 +91,7 @@ export class DownloadState implements NgxsOnInit {
         return this.downloadRemoteData(entry.url).pipe(tap((data) => this.downloadData(data, filename)));
 
       case 'data':
+        filename = this.guessFilename(ctx, format, '');
         this.downloadData(new Blob([entry.data]), filename);
         break;
 
