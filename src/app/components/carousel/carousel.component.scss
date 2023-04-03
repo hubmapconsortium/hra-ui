@@ -176,4 +176,24 @@
       bottom: 0px;
     }
   }
+
+  @media (max-width: 26.125rem) {
+    .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
+    .swiper-pagination-horizontal.swiper-pagination-bullets
+      .swiper-pagination-bullet {
+      margin: 0rem 1rem;
+    }
+
+    .swiper-button-next {
+      left: 21rem;
+      right: unset;
+    }
+
+    .swiper-horizontal > .swiper-pagination-bullets,
+    .swiper-pagination-bullets.swiper-pagination-horizontal {
+      width: unset;
+      left: 29px;
+      bottom: 0px;
+    }
+  }
 }

@@ -215,4 +215,8 @@
       width: 100%;
     }
   }
+
+  .overlay-position {
+    max-height: calc(100vh - 4.5rem);
+  }
 }
