@@ -1,79 +1,82 @@
-import { inject } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { Any } from '@hra-ui/utils/types';
 import { Store } from '@ngxs/store';
-import { mock, mockFn } from 'jest-mock-extended';
-import { lastValueFrom, of } from 'rxjs';
-import { dispatch, dispatch$ } from './dispatch';
-
-jest.mock('@angular/core');
+import { mockFn } from 'jest-mock-extended';
+import { isObservable, lastValueFrom, of } from 'rxjs';
+import { dispatch, dispatch$, dispatchAction, dispatchAction$ } from './dispatch';
 
 const boundArgs = ['q', {}, 'w'];
-const args = [1, 'a', true];
+const dispatchArgs = [1, 'a', true];
 const actionInstance = { type: 'test' };
 const actionType = mockFn().mockReturnValue(actionInstance);
-const store = mock<Store>();
-jest.mocked(inject).mockReturnValue(store);
-store.dispatch.mockReturnValue(of(undefined));
+const storeDispatch = mockFn().mockReturnValue(of(undefined));
 
-afterEach(() => jest.clearAllMocks());
-
-describe(dispatch, () => {
-  const fn = dispatch(actionType);
-
-  it('should create a new action instance on each call', () => {
-    fn();
-    expect(actionType).toHaveBeenCalledTimes(1);
-    fn();
-    expect(actionType).toHaveBeenCalledTimes(2);
-  });
-
-  it('should forward arguments to the action constructor', () => {
-    fn(...args);
-    expect(actionType).toHaveBeenCalledWith(...args);
-  });
-
-  it('should forward bound arguments to the action constructor', () => {
-    const fn2 = dispatch(actionType, ...boundArgs);
-    fn2(...args);
-    expect(actionType).toHaveBeenCalledWith(...boundArgs, ...args);
-  });
-
-  it('should dispatch the action', () => {
-    fn();
-    expect(store.dispatch).toHaveBeenCalledWith(actionInstance);
-  });
-
-  it('should return the action instance', () => {
-    expect(fn()).toBe(actionInstance);
-  });
+beforeEach(() => {
+  jest.clearAllMocks();
+  TestBed.overrideProvider(Store, { useValue: { dispatch: storeDispatch } });
 });
 
-describe(dispatch$, () => {
-  const fn = dispatch$(actionType);
+function commonTests<R, InitArgs extends Any[], Args extends Any[]>(
+  create: (...args: InitArgs) => (...args: Args) => R,
+  initArgs: InitArgs,
+  args: Args
+): void {
+  let fn: (...args: Args) => R;
 
-  it('should create a new action instance on each call', () => {
-    fn();
-    expect(actionType).toHaveBeenCalledTimes(1);
-    fn();
-    expect(actionType).toHaveBeenCalledTimes(2);
-  });
-
-  it('should forward arguments to the action constructor', () => {
-    fn(...args);
-    expect(actionType).toHaveBeenCalledWith(...args);
-  });
-
-  it('should forward bound arguments to the action constructor', () => {
-    const fn2 = dispatch$(actionType, ...boundArgs);
-    fn2(...args);
-    expect(actionType).toHaveBeenCalledWith(...boundArgs, ...args);
+  beforeEach(() => {
+    fn = TestBed.runInInjectionContext(() => create(...initArgs));
   });
 
   it('should dispatch the action', () => {
-    fn();
-    expect(store.dispatch).toHaveBeenCalledWith(actionInstance);
+    fn(...args);
+    expect(storeDispatch).toHaveBeenCalledWith(actionInstance);
   });
 
-  it('should return the action instance', async () => {
-    await expect(lastValueFrom(fn())).resolves.toBe(actionInstance);
+  it('should return the dispatched actions', async () => {
+    const res = fn(...args);
+    const resAction = isObservable(res) ? await lastValueFrom(res) : res;
+    expect(resAction).toEqual(actionInstance);
   });
+}
+
+function commonActionArgumentTests<R, InitArgs extends Any[], Args extends Any[]>(
+  create: (...args: InitArgs) => (...args: Args) => R,
+  initArgs: InitArgs,
+  args: Args
+): void {
+  let fn: (...args: Args) => R;
+
+  beforeEach(() => {
+    fn = TestBed.runInInjectionContext(() => create(...initArgs));
+  });
+
+  it('should create a new action instance on each call', () => {
+    fn(...args);
+    expect(actionType).toHaveBeenCalledTimes(1);
+    fn(...args);
+    expect(actionType).toHaveBeenCalledTimes(2);
+  });
+
+  it('should forward bound and regular arguments to the action constructor', () => {
+    fn(...args);
+    expect(actionType).toHaveBeenCalledWith(...initArgs.slice(1), ...args);
+  });
+}
+
+describe('dispatch(type, ...boundArgs)(...args)', () => {
+  commonActionArgumentTests(dispatch, [actionType, ...boundArgs], dispatchArgs);
+  commonTests(dispatch, [actionType, ...boundArgs], dispatchArgs);
+});
+
+describe('dispatch$(type, ...boundArgs)(...args)', () => {
+  commonActionArgumentTests(dispatch$, [actionType, ...boundArgs], dispatchArgs);
+  commonTests(dispatch$, [actionType, ...boundArgs], dispatchArgs);
+});
+
+describe('dispatchAction(type, ...boundArgs)(...args)', () => {
+  commonTests(dispatchAction, [], [actionInstance]);
+});
+
+describe('dispatchAction(type, ...boundArgs)(...args)', () => {
+  commonTests(dispatchAction$, [], [actionInstance]);
 });
