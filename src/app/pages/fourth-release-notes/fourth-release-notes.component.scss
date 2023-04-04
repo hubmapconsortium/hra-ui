@@ -151,6 +151,7 @@
 
   @media (max-width: 80rem) {
     padding: 0rem 1rem;
+    max-width: 100vw;
   }
 
   @media (max-width: 40rem) {
@@ -165,8 +166,6 @@
   }
 
   @media (max-width: 26.75rem) {
-    padding-left: 1rem;
-    padding-right: 1rem;
 
     .mat-drawer {
       display: none;
@@ -177,7 +176,7 @@
     }
 
     .contact-button {
-      width: 380px;
+      width: calc(100vw - 2rem);
       justify-content: center;
       margin: 1rem 0rem;
     }

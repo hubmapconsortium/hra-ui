@@ -62,23 +62,25 @@ export class FourthReleaseNotesComponent implements AfterViewInit, OnDestroy {
     { menuName: 'Outro', id: "outro" }
   ];
 
-  mobileNavigationItems: NavItems[] = [
-    { menuName: "Table of Contents", id: "'" },
-    { menuName: "Introduction", id: "intro" },
-    { menuName: `What's New`, id: "whats-new" },
-    { menuName: 'HRA 24 Hour Event', id: "24-hr-event" },
-    { menuName: 'HRA Release Calendar', id: "hra-release-calendar" },
-    { menuName: 'ASCT+B Tables', id: "asctb-tables" },
-    { menuName: 'ASCT+B Reporter', id: "asctb-reporter" },
-    { menuName: 'ASCT+B Ontology Validations', id: "asctb-ontology-validations" },
-    { menuName: '3D Reference Objects', id: '3d-reference-objects' },
-    { menuName: 'Exploration User Interface', id: "exploration-user-interface" },
-    { menuName: 'Registration User Interface', id: 'registration-user-interface' },
-    { menuName: 'VR Organ Gallery', id: "vr-organ-gallery" },
-    { menuName: 'Previews', id: 'previews' },
-    { menuName: 'Contact Us', id: "contact-us" },
-    { menuName: 'Outro', id: "outro" }
-  ];
+  mobileNavigationItems: NavItems[]=[{ menuName: "Table of Contents", id: "'" }, ...this.navigationItems]
+
+  // mobileNavigationItems: NavItems[] = [
+  //   { menuName: "Table of Contents", id: "'" },
+  //   { menuName: "Introduction", id: "intro" },
+  //   { menuName: `What's New`, id: "whats-new" },
+  //   { menuName: 'HRA 24 Hour Event', id: "24-hr-event" },
+  //   { menuName: 'HRA Release Calendar', id: "hra-release-calendar" },
+  //   { menuName: 'ASCT+B Tables', id: "asctb-tables" },
+  //   { menuName: 'ASCT+B Reporter', id: "asctb-reporter" },
+  //   { menuName: 'ASCT+B Ontology Validations', id: "asctb-ontology-validations" },
+  //   { menuName: '3D Reference Objects', id: '3d-reference-objects' },
+  //   { menuName: 'Exploration User Interface', id: "exploration-user-interface" },
+  //   { menuName: 'Registration User Interface', id: 'registration-user-interface' },
+  //   { menuName: 'VR Organ Gallery', id: "vr-organ-gallery" },
+  //   { menuName: 'Previews', id: 'previews' },
+  //   { menuName: 'Contact Us', id: "contact-us" },
+  //   { menuName: 'Outro', id: "outro" }
+  // ];
 
   readonly TableOfContentsPosition: ConnectedPosition[] = [
     {
