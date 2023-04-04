@@ -1,6 +1,7 @@
 import { ActionGroup } from '@hra-ui/cdk/state';
 import { DownloadEntry, DownloadFormat, DownloadFormatId } from './download.model';
 
+/**Action Group for Download Action */
 const Action = ActionGroup('Download');
 
 /**
@@ -20,6 +21,7 @@ export class RegisterFormat extends Action('Register Format') {
  * Add entry into download state
  */
 export class AddEntry extends Action('Add') {
+  /** Constructor for Addd Entry */
   constructor(readonly id: DownloadFormatId, readonly entry: DownloadEntry) {
     super();
   }
