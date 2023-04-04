@@ -10,9 +10,13 @@
     letter-spacing: 0.005rem;
   }
 
+  ::ng-deep youtube-player iframe {
+    width: 100%;
+  }
+
   @media (max-width: 26.75rem) {
-    youtube-player {
-      width: 100%;
+    ::ng-deep youtube-player iframe {
+      height: 232px;
     }
   }
 }

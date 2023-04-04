@@ -10,13 +10,9 @@ let apiLoaded = false;
 })
 export class YoutubeModelComponent implements OnInit {
   @Input() height: number;
-
   @Input() width: number;
-
   @Input() videoId: string;
-
   @Input() title: string;
-
   @Input() playerTitle: string;
   
   isMobile = false;
