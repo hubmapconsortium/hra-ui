@@ -29,43 +29,43 @@ Primary.args = {
           [
             {
               label: 'Functional Tissue Unit Name',
-              value: 'Crypt of Lieberkuhn',
+              value: 'Renal Corpuscle',
             },
             {
               label: 'Uberon ID',
-              value: 'UBERON:0011184',
+              value: 'UBERON:0001229',
             },
             {
               label: '#Datasets',
-              value: '3',
+              value: '24',
             },
           ],
           [
             {
-              label: 'Cell Type Name',
-              value: 'epithelial stem cell',
+              label: 'Name Of Cell Type ',
+              value: 'example cell',
             },
             {
-              label: 'CL ID',
-              value: 'CL:0009016',
+              label: 'ID-CL',
+              value: 'CL:1234567',
             },
             {
-              label: 'Number of Cells',
-              value: '187',
+              label: 'Cells Number',
+              value: '171',
             },
           ],
           [
             {
-              label: 'Gene Name',
-              value: 'RGMB',
+              label: 'Name of Gene',
+              value: 'ABCD',
             },
             {
-              label: 'HGNC ID',
-              value: 'HGNC:26896',
+              label: 'ID-HGNC',
+              value: 'HGNC:12345',
             },
             {
-              label: 'Mean Expression Value',
-              value: '0.0642',
+              label: 'MEAN VALUE',
+              value: '0.012',
             },
           ],
         ],

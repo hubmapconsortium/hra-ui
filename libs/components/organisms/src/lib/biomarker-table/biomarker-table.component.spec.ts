@@ -1,6 +1,7 @@
 import { BiomarkerTableComponent, DataCell, DataRow } from './biomarker-table.component';
 import { Shallow } from 'shallow-render';
 import { MatTableModule } from '@angular/material/table';
+import { HoverDirective } from '@hra-ui/cdk';
 
 describe('BiomarkerTableComponent', () => {
   const columns = ['RGMB', 'SOX9', 'CD44', 'LGR5'];
@@ -27,7 +28,7 @@ describe('BiomarkerTableComponent', () => {
   let shallow: Shallow<BiomarkerTableComponent<DataCell>>;
 
   beforeEach(() => {
-    shallow = new Shallow(BiomarkerTableComponent<DataCell>).dontMock(MatTableModule);
+    shallow = new Shallow(BiomarkerTableComponent<DataCell>).dontMock(MatTableModule).dontMock(HoverDirective);
   });
 
   it('should create BiomarkerTableComponent', async () => {
