@@ -28,44 +28,34 @@ Primary.args = {
         data: [
           [
             {
-              label: 'Functional Tissue Unit Name',
-              value: 'Renal Corpuscle',
+              label: 'Name',
+              value: 'capillary endolitheal cell',
             },
             {
-              label: 'Uberon ID',
-              value: 'UBERON:0001229',
+              label: 'ID-UBERON',
+              value: '123456',
             },
             {
               label: '#Datasets',
-              value: '24',
+              value: '45',
             },
           ],
           [
             {
-              label: 'Name Of Cell Type ',
-              value: 'example cell',
+              label: 'Name ',
+              value: 'endolitheal cell',
             },
             {
               label: 'ID-CL',
               value: 'CL:1234567',
             },
             {
-              label: 'Cells Number',
-              value: '171',
-            },
-          ],
-          [
-            {
-              label: 'Name of Gene',
-              value: 'ABCD',
+              label: 'MEAN VALUE',
+              value: '0.012',
             },
             {
               label: 'ID-HGNC',
               value: 'HGNC:12345',
-            },
-            {
-              label: 'MEAN VALUE',
-              value: '0.012',
             },
           ],
         ],
