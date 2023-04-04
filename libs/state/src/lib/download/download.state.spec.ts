@@ -15,7 +15,7 @@ import {
 import { DownloadState } from './download.state';
 
 describe('DownlodState', () => {
-  const url = 'http://base.com/abcd.svg';
+  const urlFull = 'http://base.com/abcd.svg';
   const urlNoExtension = 'http://base.com/abcd';
   const urlNoPath = 'http://base.com/';
   const emptyBlob = new Blob();
@@ -54,12 +54,6 @@ describe('DownlodState', () => {
 
     jest.spyOn(document, 'createElement').mockReturnValue(anchor);
     jest.spyOn(document.body, 'appendChild').mockImplementation((node) => node);
-
-    ctx.getState.mockImplementation(() => latest);
-    ctx.setState.mockImplementation((val) => {
-      latest = typeof val === 'function' ? val(latest) : val;
-      return latest;
-    });
   });
 
   beforeEach(() => {
@@ -70,6 +64,12 @@ describe('DownlodState', () => {
       providers: [DownloadState],
     });
 
+    ctx.getState.mockImplementation(() => latest);
+    ctx.setState.mockImplementation((val) => {
+      latest = typeof val === 'function' ? val(latest) : val;
+      return latest;
+    });
+
     latest = { formats: {}, entries: {} };
     controller = TestBed.inject(HttpTestingController);
     state = TestBed.inject(DownloadState);
@@ -78,9 +78,9 @@ describe('DownlodState', () => {
   afterAll(() => jest.restoreAllMocks());
 
   describe('download(ctx, action)', () => {
-    it('should download data directly', () => {
+    it('should download data directly', async () => {
       setEntry({ type: 'data', data: 'blob:fakeblob' });
-      state.download(ctx, action);
+      await state.download(ctx, action);
       expect(anchor.click).toHaveBeenCalled();
     });
 
@@ -107,20 +107,17 @@ describe('DownlodState', () => {
     });
 
     it('should download data from remote', async () => {
-      setEntry({ type: 'url', url });
-      await doRemoteDownload(url);
+      setEntry({ type: 'url', url: urlFull });
+      await doRemoteDownload(urlFull);
     });
 
     it('unable to download data from remote', async () => {
-      setEntry({ type: 'url', url });
+      setEntry({ type: 'url', url: urlFull });
       const res = state.download(ctx, action);
       const p = res ? lastValueFrom(res) : undefined;
-      //
       const mockErrorResponse = { status: 400, statusText: 'Bad Request' };
-      const data = 'Invalid request parameters';
-      controller.expectOne(url).flush(data, mockErrorResponse); // TODO: FIX
-
-      expect(p).rejects.toBeDefined(); //
+      controller.expectOne(urlFull).flush(emptyBlob, mockErrorResponse);
+      expect(p).rejects.toBeDefined();
     });
   });
 
@@ -147,7 +144,7 @@ describe('DownlodState', () => {
 
   describe('clearEntries(ctx, action)', () => {
     it('clear entry', () => {
-      state.clearEntry(ctx);
+      state.clearEntries(ctx);
       expect(latest.entries).toEqual({});
     });
   });

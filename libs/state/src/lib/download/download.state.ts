@@ -67,7 +67,7 @@ export class DownloadState implements NgxsOnInit {
    * @param ctx
    */
   @Action(ClearEntries)
-  clearEntry(ctx: DownloadContext): void {
+  clearEntries(ctx: DownloadContext): void {
     ctx.setState(
       produce((draft) => {
         draft.entries = {};
@@ -84,16 +84,17 @@ export class DownloadState implements NgxsOnInit {
   download(ctx: DownloadContext, { format }: Download): Observable<unknown> | void {
     const { entries } = ctx.getState();
     const entry = entries[format];
-    let filename = `download${format}`;
     switch (entry?.type) {
-      case 'url':
-        filename = this.guessFilename(ctx, format, entry.url);
+      case 'url': {
+        const filename = this.guessFilename(ctx, format, entry.url);
         return this.downloadRemoteData(entry.url).pipe(tap((data) => this.downloadData(data, filename)));
+      }
 
-      case 'data':
-        filename = this.guessFilename(ctx, format, '');
+      case 'data': {
+        const filename = this.guessFilename(ctx, format, '');
         this.downloadData(new Blob([entry.data]), filename);
         break;
+      }
 
       default:
         throw new Error('Cannot download file without data');
