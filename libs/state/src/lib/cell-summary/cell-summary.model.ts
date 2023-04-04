@@ -4,6 +4,7 @@ export type Cell = z.infer<typeof CELL_SCHEMA>;
 export type CellSummary = z.infer<typeof CELL_SUMMARY_SCHEMA>;
 export type Aggregate = z.infer<typeof CELL_SUMMARY_AGGREGATE_SCHEMA>;
 export type AggregateRow = Aggregate[string]['rows'][number];
+export type AggregateRowEntry = AggregateRow[2];
 
 /**
  * The CellSummaryStateModel interface describes the overall shape of the state for this feature.

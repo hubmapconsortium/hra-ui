@@ -1,12 +1,31 @@
 import { StateContext } from '@ngxs/store';
 import { mock } from 'jest-mock-extended';
 import { ComputeAggregate, SetData } from './cell-summary.actions';
-import { CellSummaryStateModel } from './cell-summary.model';
+import { AggregateRowEntry, Cell, CellSummaryStateModel } from './cell-summary.model';
 import { CellSummaryState } from './cell-summary.state';
 
 describe('CellSummaryState', () => {
   let ctx: StateContext<CellSummaryStateModel>;
   let state: CellSummaryState;
+
+  function createCell(cid: string, clabel: string, bid: string, blabel: string, count = 0, percentage = 0): Cell {
+    return {
+      cell: {
+        id: cid,
+        label: clabel,
+      },
+      biomarker: {
+        id: bid,
+        label: blabel,
+      },
+      count,
+      percentage,
+    };
+  }
+
+  function createAggregateEntry(data: Cell): AggregateRowEntry {
+    return { color: '', size: 0, data };
+  }
 
   beforeEach(() => {
     ctx = mock<StateContext<CellSummaryStateModel>>();
@@ -26,81 +45,42 @@ describe('CellSummaryState', () => {
       summary1: {
         label: 'Summary 1',
         entries: [
-          {
-            cell: {
-              label: 'Cell 1',
-              id: 'cell1',
-            },
-            biomarker: {
-              label: 'Biomarker 1',
-              id: 'biomarker1',
-            },
-            count: 10,
-            percentage: 50,
-          },
-          {
-            cell: {
-              label: 'Cell 2',
-              id: 'cell2',
-            },
-            biomarker: {
-              label: 'Biomarker 1',
-              id: 'biomarker1',
-            },
-            count: 5,
-            percentage: 25,
-          },
-          {
-            cell: {
-              label: 'Cell 2',
-              id: 'cell2',
-            },
-            biomarker: {
-              label: 'Biomarker 2',
-              id: 'biomarker2',
-            },
-            count: 5,
-            percentage: 25,
-          },
+          createCell('cell1', 'Cell 1', 'biomarker1', 'Biomarker 1', 10, 50),
+          createCell('cell2', 'Cell 2', 'biomarker1', 'Biomarker 1', 5, 20),
+          createCell('cell2', 'Cell 2', 'biomarker2', 'Biomarker 2', 5, 20),
+          createCell('cell1', 'Cell 1', 'biomarker3', 'Biomarker 3', 15, 10),
         ],
       },
       summary2: {
         label: 'Summary 2',
-        entries: [
-          {
-            cell: {
-              label: 'Cell 1',
-              id: 'cell1',
-            },
-            biomarker: {
-              label: 'Biomarker 2',
-              id: 'biomarker2',
-            },
-            count: 20,
-            percentage: 100,
-          },
-        ],
+        entries: [createCell('cell1', 'Cell 1', 'biomarker2', 'Biomarker 2', 20, 100)],
       },
     };
 
     const expectedAggregate = {
       summary1: {
         label: 'Summary 1',
-        columns: ['Biomarker 1', 'Biomarker 2'],
+        columns: ['Biomarker 1', 'Biomarker 2', 'Biomarker 3'],
         rows: [
-          ['Cell 1', 10, { color: '', size: 0, data: summaries.summary1.entries[0] }],
+          [
+            'Cell 1',
+            25,
+            createAggregateEntry(summaries.summary1.entries[0]),
+            undefined,
+            createAggregateEntry(summaries.summary1.entries[3]),
+          ],
           [
             'Cell 2',
             10,
-            { color: '', size: 0, data: summaries.summary1.entries[1] },
-            { color: '', size: 0, data: summaries.summary1.entries[2] },
+            createAggregateEntry(summaries.summary1.entries[1]),
+            createAggregateEntry(summaries.summary1.entries[2]),
           ],
         ],
       },
       summary2: {
         label: 'Summary 2',
         columns: ['Biomarker 2'],
-        rows: [['Cell 1', 20, { color: '', size: 0, data: summaries.summary2.entries[0] }]],
+        rows: [['Cell 1', 20, createAggregateEntry(summaries.summary2.entries[0])]],
       },
     };
 

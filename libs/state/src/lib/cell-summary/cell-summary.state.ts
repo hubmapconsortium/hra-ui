@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
 import { ComputeAggregate } from './cell-summary.actions';
-import { Aggregate, AggregateRow, Cell, CellSummary, CellSummaryStateModel } from './cell-summary.model';
+import { Aggregate, AggregateRow, CellSummary, CellSummaryStateModel } from './cell-summary.model';
 
 /** State handling cell summary data */
 @State<CellSummaryStateModel>({
@@ -31,8 +31,8 @@ export class CellSummaryState {
 
       aggregateData[key] = {
         label: label,
-        columns: columns as string[],
-        rows: rows as AggregateRow[],
+        columns: columns,
+        rows: rows,
       };
     }
 
@@ -63,8 +63,6 @@ export class CellSummaryState {
       const {
         cell: { id: rowId, label: rowLabel },
         biomarker: { id: columnId, label: columnLabel },
-        count,
-        percentage,
       } = entry;
 
       if (!(columnId in columnIndices)) {
@@ -85,6 +83,7 @@ export class CellSummaryState {
       }
 
       row[columnIndex] = {
+        // TODO: Compute color and size
         color: '',
         size: 0,
         data: entry,
