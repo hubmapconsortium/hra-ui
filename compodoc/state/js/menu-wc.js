@@ -57,6 +57,24 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/Add.html" data-type="entity-link" >Add</a>
                             </li>
                             <li class="link">
+                                <a href="classes/AddEntry.html" data-type="entity-link" >AddEntry</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ClearEntries.html" data-type="entity-link" >ClearEntries</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/Download.html" data-type="entity-link" >Download</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/DownloadSelectors.html" data-type="entity-link" >DownloadSelectors</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/DownloadState.html" data-type="entity-link" >DownloadState</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/RegisterFormat.html" data-type="entity-link" >RegisterFormat</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/SendMessage.html" data-type="entity-link" >SendMessage</a>
                             </li>
                             <li class="link">
@@ -104,6 +122,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <span class="icon ion-ios-arrow-down"></span>
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="miscellaneous-links"' : 'id="xs-miscellaneous-links"' }>
+                            <li class="link">
+                                <a href="miscellaneous/functions.html" data-type="entity-link">Functions</a>
+                            </li>
                             <li class="link">
                                 <a href="miscellaneous/typealiases.html" data-type="entity-link">Type aliases</a>
                             </li>
