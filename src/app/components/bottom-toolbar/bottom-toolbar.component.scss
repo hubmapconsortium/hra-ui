@@ -17,6 +17,7 @@
     letter-spacing: 0.005em;
     color: #444c65;
     padding: 0.5rem 1rem;
+    margin-right: 1rem;
   }
 
   .bottom-bar {
@@ -52,11 +53,22 @@
     mat-icon {
       padding-right: 0.2rem;
     }
+
+    p {
+      margin-bottom: unset;
+    }
   }
 
-  @media (max-width: 26.75rem) {
+  @media (max-width: 24.56rem) {
     .bottom-bar {
-      margin-right: 1.5rem;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .bottom-button {
+      position: unset;
+      margin-top: 0.5rem;
+      margin-right: unset;
     }
   }
 }
