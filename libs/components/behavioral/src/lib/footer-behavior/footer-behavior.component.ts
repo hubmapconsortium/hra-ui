@@ -1,4 +1,4 @@
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { selectQuerySnapshot } from '@hra-ui/cdk/injectors';
@@ -8,6 +8,7 @@ import { LinkIds, ResourceIds as Ids } from '@hra-ui/state';
 
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
+/** A component for footer behavior which provides functionality for various buttons in footer */
 @Component({
   selector: 'ftu-footer-behavior',
   standalone: true,
@@ -34,9 +35,6 @@ export class FooterBehaviorComponent {
 
   /** A dialog box which shows contact modal after clicking on contact */
   private readonly dialog = inject(MatDialog);
-
-  /** The current document object. */
-  private readonly document = inject(DOCUMENT);
 
   /** Different download formats options displayed to the user */
   readonly downloadFormats = [
