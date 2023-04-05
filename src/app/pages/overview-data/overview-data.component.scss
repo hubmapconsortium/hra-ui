@@ -18,4 +18,8 @@
       font-size: 1.75rem;
     }
   }
+
+  @media (max-width: 80rem) {
+    padding: 0rem 1rem;
+  }
 }

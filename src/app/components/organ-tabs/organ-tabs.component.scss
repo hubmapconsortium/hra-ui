@@ -68,13 +68,13 @@
     display: none;
   }
 
-  @media (max-width: 26.75rem) {
+  @media (max-width: 63rem) {
     display: flex;
     margin-bottom: 3.5rem;
 
     .organ-select {
       display: initial;
-      max-width: 100%;
+      max-width: 21rem;
       height: 2.5rem;
       font-weight: 400;
       font-size: 0.875rem;

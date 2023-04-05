@@ -1,6 +1,6 @@
-<menu-tree [treeItems]="mobileNavigationItems" [icon]="icon" [overlayClass]="'overlay-position'"
+<menu-tree class="menu" [treeItems]="mobileNavigationItems" [icon]="icon" [overlayClass]="'overlay-position'"
   [treeClass]="'tree-class'" [positions]="TableOfContentsPosition"></menu-tree>
-<ccf-page-header [headerCard]="headerData"></ccf-page-header>
+<ccf-page-header [headerCard]="headerData" class="page-header"></ccf-page-header>
 <mat-drawer-container class="example-container" [autosize]="true">
   <mat-drawer mode="side" opened>
     <ul class="toc-list">
