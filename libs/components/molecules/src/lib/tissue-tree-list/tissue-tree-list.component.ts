@@ -1,26 +1,32 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatTreeModule, MatTreeNestedDataSource } from '@angular/material/tree';
-import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
-import { NestedTreeControl } from '@angular/cdk/tree';
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { MatIconModule } from '@angular/material/icon';
-import { MatExpansionModule } from '@angular/material/expansion';
+import { CommonModule } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';
 
 /**
  * Tedefinesthe stucture for tissue heirarchy
  */
-interface TissueTreeGroup {
-  /**
-   * label identifier
-   */
-  label: string;
-  /**
-   * child entities for the tissue
-   */
-  tissues?: TissueTreeGroup[];
-}
+// interface TissueTreeGroup {
+//   /**
+//    * label identifier
+//    */
+//   label: string;
+//   /**
+//    * child entities for the tissue
+//    */
+//   tissues?: TissueTreeGroup[];
+// }
 
 export interface DataNode {
   label: string;
@@ -53,13 +59,7 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
    */
   @Input() selected?: T = undefined;
 
-  // private _transformer = (node: TissueTreeGroup, level: number) => {
-  //   return {
-  //     expandable: !!node.tissues && node.tissues.length > 0,
-  //     name: node.label,
-  //     level: level
-  //   };
-  // };
+  @Output() readonly selectedChange = new EventEmitter<T | undefined>();
 
   /**
    * tree controller, used to control the nodes in the tree
@@ -94,7 +94,7 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
    * @param changes changes in data
    */
   ngOnChanges(changes: SimpleChanges): void {
-    if ('tissueTree' in changes) {
+    if ('nodes' in changes) {
       this.dataSource.data = Object.values(this.nodes);
     }
   }
@@ -116,5 +116,6 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
    */
   selectNode(node: InternalNode<T>): void {
     this.selected = this.selected === node.data ? undefined : node.data;
+    this.selectedChange.emit(this.selected);
   }
 }
