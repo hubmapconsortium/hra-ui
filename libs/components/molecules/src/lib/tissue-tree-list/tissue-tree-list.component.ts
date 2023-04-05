@@ -14,20 +14,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';
 
-/**
- * Tedefinesthe stucture for tissue heirarchy
- */
-// interface TissueTreeGroup {
-//   /**
-//    * label identifier
-//    */
-//   label: string;
-//   /**
-//    * child entities for the tissue
-//    */
-//   tissues?: TissueTreeGroup[];
-// }
-
 export interface DataNode {
   label: string;
   children?: string[];
@@ -64,7 +50,6 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
   /**
    * tree controller, used to control the nodes in the tree
    */
-  // control = new NestedTreeControl<TissueTreeGroup>((node) => node.tissues);
   readonly control = new FlatTreeControl<InternalNode<T>>(
     (node) => node.level,
     (node) => node.expandable
@@ -85,11 +70,6 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
   readonly dataSource = new MatTreeFlatDataSource(this.control, this.flattener);
 
   /**
-   * Data source for mat-tree data structure, which defines the data in mat-tree
-   */
-  // dataSource = new MatTreeNestedDataSource<TissueTreeGroup>();
-
-  /**
    * Take actions if any data changes
    * @param changes changes in data
    */
@@ -101,7 +81,6 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
 
   /**
    * check if the current node has children
-   * @param _ default mat-tree structure
    * @param node current selected node
    * @returns boolean, which means if node has children
    */
