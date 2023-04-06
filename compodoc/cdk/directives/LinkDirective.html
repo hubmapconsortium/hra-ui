@@ -57,7 +57,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/lib/hra-link.directive.ts</code>
+            <code>src/lib/link/link.directive.ts</code>
         </p>
 
 
@@ -210,12 +210,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>EMPTY_LINK_ID</code>
+                        <i>Default value : </i><code>EMPTY_LINK</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/lib/hra-link.directive.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/lib/link/link.directive.ts:32</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -248,7 +248,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/lib/hra-link.directive.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/lib/link/link.directive.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -280,7 +280,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/lib/hra-link.directive.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/lib/link/link.directive.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -312,7 +312,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/hra-link.directive.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/lib/link/link.directive.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -350,8 +350,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/lib/hra-link.directive.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/lib/link/link.directive.ts:82</a></div>
                 </td>
             </tr>
 
@@ -427,8 +427,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/lib/hra-link.directive.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/lib/link/link.directive.ts:82</a></div>
                 </td>
             </tr>
 
@@ -519,7 +519,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/lib/hra-link.directive.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/lib/link/link.directive.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -561,7 +561,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/lib/hra-link.directive.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/lib/link/link.directive.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -603,7 +603,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/hra-link.directive.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/lib/link/link.directive.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -639,16 +639,13 @@ import { DomSanitizer } from &#x27;@angular/platform-browser&#x27;;
 import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
 import { dispatch, selectQuerySnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
 import {
-  createLinkId,
+  EMPTY_LINK,
   InternalLinkEntry,
   LinkEntry,
   LinkRegistryActions,
   LinkRegistrySelectors,
   LinkType,
 } from &#x27;@hra-ui/cdk/state&#x27;;
-
-/** Empty Link ID */
-const EMPTY_LINK_ID &#x3D; createLinkId(&#x27;&#x27;);
 
 /** Link Directive for routing */
 @Directive({
@@ -657,7 +654,7 @@ const EMPTY_LINK_ID &#x3D; createLinkId(&#x27;&#x27;);
 })
 export class LinkDirective implements OnChanges {
   /** linkId with empty string as default value */
-  @Input(&#x27;hraLink&#x27;) linkId &#x3D; EMPTY_LINK_ID;
+  @Input(&#x27;hraLink&#x27;) linkId &#x3D; EMPTY_LINK;
   /** href of the element */
   @HostBinding(&#x27;attr.href&#x27;) href?: string;
   /** rel attribute of the element */
@@ -696,7 +693,7 @@ export class LinkDirective implements OnChanges {
    * @param changes contains changes of inputs
    */
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes[&#x27;linkId&#x27;].currentValue !&#x3D;&#x3D; EMPTY_LINK_ID) {
+    if (changes[&#x27;linkId&#x27;].currentValue !&#x3D;&#x3D; EMPTY_LINK) {
       this.updateLink();
     }
   }
