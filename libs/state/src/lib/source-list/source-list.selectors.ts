@@ -1,5 +1,5 @@
 import { Selector } from '@ngxs/store';
-import { SourceListModel } from './source-list.model';
+import { Source, SourceListModel } from './source-list.model';
 
 /** Selector class for retrieving data from the SourceListState */
 export class SourceListSelectors {
@@ -9,7 +9,7 @@ export class SourceListSelectors {
    * @returns array of source objects
    */
   @Selector()
-  static getSourceList(state: SourceListModel) {
+  static getSourceList(state: SourceListModel): Source[] {
     return state;
   }
 }
