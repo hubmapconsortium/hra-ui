@@ -3,7 +3,7 @@ import { ActivatedRoute, RouterModule, Routes } from '@angular/router';
 import { createLinkId, LinkEntry, LinkId, LinkRegistryActions, LinkRegistryState, LinkType } from '@hra-ui/cdk/state';
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
 
-import { LinkDirective } from './hra-link.directive';
+import { LinkDirective } from './link.directive';
 
 @Component({
   selector: 'hra-internal-route',
