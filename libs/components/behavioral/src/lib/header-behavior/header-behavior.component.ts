@@ -29,4 +29,14 @@ export class HeaderBehaviorComponent {
    * Input for app title to show on the left side.
    */
   readonly appTitle = selectQuerySnapshot(RR.anyText, Ids.AppTitle);
+
+  /**
+   * Input for product title link for user click action
+   */
+  readonly productTitleLink = selectQuerySnapshot(RR.anyText, Ids.ProductTitleLink);
+
+  /**
+   * Input for about link for user click action.
+   */
+  readonly aboutLink = selectQuerySnapshot(RR.anyText, Ids.AboutLink);
 }

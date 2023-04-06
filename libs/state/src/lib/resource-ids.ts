@@ -10,3 +10,9 @@ export const ContactAcknowledgement = createResourceId('ContactAcknowledgement')
 
 /** App title id */
 export const AppTitle = createResourceId('AppTitle');
+
+/** Product title link id */
+export const ProductTitleLink = createResourceId('ProductTitleLink');
+
+/** About Link id */
+export const AboutLink = createResourceId('AboutLink');
