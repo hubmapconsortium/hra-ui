@@ -67,3 +67,5 @@ export const LINK_REGISTRY_SCHEMA = z.record(
 export function createLinkId(id: string): LinkId {
   return LINK_REGISTRY_SCHEMA.keySchema.parse(id);
 }
+
+export const EMPTY_LINK = createLinkId('@@__EMPTY__');

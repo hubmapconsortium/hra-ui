@@ -14,16 +14,13 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import {
-  createLinkId,
+  EMPTY_LINK,
   InternalLinkEntry,
   LinkEntry,
   LinkRegistryActions,
   LinkRegistrySelectors,
   LinkType,
 } from '@hra-ui/cdk/state';
-
-/** Empty Link ID */
-const EMPTY_LINK_ID = createLinkId('');
 
 /** Link Directive for routing */
 @Directive({
@@ -32,7 +29,7 @@ const EMPTY_LINK_ID = createLinkId('');
 })
 export class LinkDirective implements OnChanges {
   /** linkId with empty string as default value */
-  @Input('hraLink') linkId = EMPTY_LINK_ID;
+  @Input('hraLink') linkId = EMPTY_LINK;
   /** href of the element */
   @HostBinding('attr.href') href?: string;
   /** rel attribute of the element */
@@ -71,7 +68,7 @@ export class LinkDirective implements OnChanges {
    * @param changes contains changes of inputs
    */
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['linkId'].currentValue !== EMPTY_LINK_ID) {
+    if (changes['linkId'].currentValue !== EMPTY_LINK) {
       this.updateLink();
     }
   }
