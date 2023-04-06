@@ -12,8 +12,9 @@ useButtonData:
   text: Use the ASCT+B Table Reporter
   url: https://hubmapconsortium.github.io/ccf-asct-reporter/
 
-height: 584
-width: 1232
-title: Overview
-videoId: pzUFmDhQEO8
-playerTitle: Tutorial
+asctbReporterPlayer:
+  height: 584
+  width: 1232
+  title: Overview
+  videoId: pzUFmDhQEO8
+  playerTitle: Tutorial

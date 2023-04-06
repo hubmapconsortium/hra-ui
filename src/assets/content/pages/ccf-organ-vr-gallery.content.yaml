@@ -44,8 +44,9 @@ referencesData:
 
     [3]Bueckle, A., Buehling, K., Shih, P. C., and Börner, K. (2022). Optimizing Performance and Satisfaction in Matching and Movement Tasks in Virtual Reality with Interventions Using the Data Visualization Literacy Framework. Front. Virtual Real. 2. doi: 10.3389/frvir.2021.727344.
 
-height: 584
-width: 1232
-title: Overview
-videoId: V3rmLTANDC8
-playerTitle: Please view the video below for a demo of the HRA Organ VR Gallery
+vrGalleryDemo:
+  height: 584
+  width: 1232
+  title: Overview
+  videoId: V3rmLTANDC8
+  playerTitle: Please view the video below for a demo of the HRA Organ VR Gallery

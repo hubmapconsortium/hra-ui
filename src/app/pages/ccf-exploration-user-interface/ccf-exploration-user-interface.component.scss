@@ -1,7 +1,20 @@
 :host {
   max-width: 77rem;
 
+  .navigate-3d-space {
+    display: flex;
+    flex-direction: row;
+  }
+
   @media (max-width: 80rem) {
     padding: 0rem 1rem;
+
+    .navigate-3d-space {
+      flex-direction: column;
+
+      img {
+        margin-bottom: 3.5rem;
+      }
+    }
   }
 }

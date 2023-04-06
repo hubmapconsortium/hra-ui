@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { YoutubeModel } from 'src/app/components/youtube-model/youtube-model';
 import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
 
@@ -16,6 +17,7 @@ interface CcfOrganVrGallery {
   videoId: string;
   playerTitle: string;
   referencesData: PageDataItems[];
+  vrGalleryDemo: YoutubeModel;
 }
 
 @Component({
@@ -37,6 +39,7 @@ export class CcfOrganVrGalleryComponent {
   playerTitle = this.data.playerTitle;
   referencesData = this.data.referencesData;
   whyVrData = this.data.whyVrData;
+  vrGalleryDemo = this.data.vrGalleryDemo;
 
   constructor(private readonly route: ActivatedRoute) { }
 }

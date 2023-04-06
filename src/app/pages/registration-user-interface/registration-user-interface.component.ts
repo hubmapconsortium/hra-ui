@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { YoutubeModel } from 'src/app/components/youtube-model/youtube-model';
 import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
 import { SopLinks } from '../../components/sop-links/sop-links';
@@ -17,6 +18,7 @@ export class RegistrationUserInterfaceComponent {
   interfacedata: PageDataItems[];
   useRuiButton:UseButton;
   ruiSopData: SopLinks[];
+  youtubePlayer: YoutubeModel;
   height: number;
   width: number;
   title: string;
@@ -30,6 +32,7 @@ export class RegistrationUserInterfaceComponent {
     this.interfacedata = data.interfacedata;
     this.useRuiButton = data.useRuiButton;
     this.ruiSopData = data.ruiSopData;
+    this.youtubePlayer = data.youtubePlayer
     this.title = data.title;
     this.videoId = data.videoId;
     this.playerTitle = data.playerTitle;
