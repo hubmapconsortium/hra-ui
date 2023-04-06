@@ -1,13 +1,23 @@
-import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
+import { dispatch, injectOnDestroy, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { LandingPageInDepthComponent, LandingPageIntroComponent } from '@hra-ui/components/molecules';
 import { Shallow } from 'shallow-render';
 
+import { Subject } from 'rxjs';
 import { LandingPageContentComponent } from './landing-page-content.component';
 jest.mock('@hra-ui/cdk/injectors');
 describe('LandingPageContentComponent', () => {
   let shallow: Shallow<LandingPageContentComponent>;
   jest.mocked(selectQuerySnapshot).mockReturnValue(jest.fn());
   jest.mocked(dispatch).mockReturnValue(jest.fn());
+  const destroy$ = new Subject<void>();
+  jest.mocked(injectOnDestroy).mockReturnValue(destroy$.asObservable());
+  const mockIntersectionObserver = jest.fn();
+  mockIntersectionObserver.mockReturnValue({
+    observe: () => null,
+    unobserve: () => null,
+    disconnect: () => null,
+  });
+  window.IntersectionObserver = mockIntersectionObserver;
   beforeEach(async () => {
     shallow = new Shallow(LandingPageContentComponent);
   });
@@ -39,5 +49,22 @@ describe('LandingPageContentComponent', () => {
     });
     const { instance } = await shallow.render();
     expect(instance.metricItems).toEqual([{ type: 'metrics', text: 'test' }]);
+  });
+
+  it('should handle intersection observer callback and add class', async () => {
+    const { instance } = await shallow.render();
+    const mockedEntries = [
+      {
+        isIntersecting: true,
+        target: instance['intersectableEls'].get(0)?.nativeElement,
+      },
+    ] as IntersectionObserverEntry[];
+    jest.spyOn(instance['renderer'], 'addClass');
+    instance.handleIntersection(mockedEntries, new IntersectionObserver(() => null));
+    expect(instance['renderer'].addClass).toHaveBeenCalled();
+  });
+
+  it('should disconnect observer on destroy', async () => {
+    destroy$.next();
   });
 });

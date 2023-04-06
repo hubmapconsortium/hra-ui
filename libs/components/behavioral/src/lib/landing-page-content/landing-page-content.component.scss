@@ -1,10 +1,10 @@
 :host {
   display: block;
   overflow-x: hidden;
-  .metrics {
+  .metrics.visible {
     animation: fadeIn 2s;
   }
-  .landing-page-content {
+  .landing-page-content.visible {
     overflow: hidden;
     animation: slidein 3s ease-in-out forwards;
   }

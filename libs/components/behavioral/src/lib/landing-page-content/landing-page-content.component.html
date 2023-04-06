@@ -12,7 +12,9 @@
   [title]="metricsTitle() ?? ''"
   [metrics]="metricItems"
   [logo]="metricsLogo() ?? ''"
-></hra-metrics>
+  #intersectable
+>
+</hra-metrics>
 <hra-landing-page-in-depth
   class="landing-page-content"
   [title]="landingPageDepthTitle() ?? ''"
@@ -20,5 +22,6 @@
   [moreText]="landingPageDepthMoreText() ?? ''"
   [img]="landingPageDepthImg() ?? ''"
   (moreClick)="readMore()"
+  #intersectable
 >
 </hra-landing-page-in-depth>

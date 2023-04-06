@@ -1,6 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  QueryList,
+  Renderer2,
+  ViewChildren,
+  inject,
+} from '@angular/core';
+import { dispatch, injectOnDestroy, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { LinkRegistryActions, ResourceRegistrySelectors as RRS } from '@hra-ui/cdk/state';
 import {
   LandingPageInDepthComponent,
@@ -8,7 +17,7 @@ import {
   MetricItem,
   MetricsComponent,
 } from '@hra-ui/components/molecules';
-import { ResourceIds as RIds, LinkIds } from '@hra-ui/state';
+import { LinkIds, ResourceIds as RIds } from '@hra-ui/state';
 
 /** Component for LandingPageContent Behavior */
 @Component({
@@ -19,7 +28,10 @@ import { ResourceIds as RIds, LinkIds } from '@hra-ui/state';
   styleUrls: ['./landing-page-content.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LandingPageContentComponent {
+export class LandingPageContentComponent implements AfterViewInit {
+  @ViewChildren('intersectable', { read: ElementRef })
+  readonly intersectableEls!: QueryList<ElementRef>;
+
   /** select snapshot for Landing Page title */
   landingPageIntroTitle = selectQuerySnapshot(RRS.markdown, RIds.LandingPageTitle);
 
@@ -49,6 +61,10 @@ export class LandingPageContentComponent {
 
   /** Disptach action for navigation */
   navigate = dispatch(LinkRegistryActions.Navigate);
+  /** Renderer to add class for animation */
+  private readonly renderer = inject(Renderer2);
+  /** destroys observer */
+  private readonly destroy$ = injectOnDestroy();
 
   /** get metrics for MetricsComponent */
   get metricItems(): MetricItem[] {
@@ -64,5 +80,24 @@ export class LandingPageContentComponent {
   /** Function to read more when  moreClick from landingPageInDepth component is emitted */
   readMore(): void {
     this.navigate(LinkIds.LandingPageReadMore);
+  }
+  /** creates an observer after view init */
+  ngAfterViewInit(): void {
+    const observer = new IntersectionObserver(this.handleIntersection.bind(this), {
+      threshold: 0.18,
+    });
+
+    this.intersectableEls.forEach((el) => observer.observe(el.nativeElement));
+    this.destroy$.subscribe(() => observer.disconnect());
+  }
+
+  /** callback function for intersection observer */
+  handleIntersection(entries: IntersectionObserverEntry[], observer: IntersectionObserver): void {
+    for (const { isIntersecting, target } of entries) {
+      if (isIntersecting) {
+        this.renderer.addClass(target, 'visible');
+        observer.unobserve(target);
+      }
+    }
   }
 }
