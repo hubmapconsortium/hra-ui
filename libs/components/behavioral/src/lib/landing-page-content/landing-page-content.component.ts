@@ -29,6 +29,7 @@ import { LinkIds, ResourceIds as RIds } from '@hra-ui/state';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingPageContentComponent implements AfterViewInit {
+  /** array of element refs for intersectables */
   @ViewChildren('intersectable', { read: ElementRef })
   readonly intersectableEls!: QueryList<ElementRef>;
 
