@@ -13,6 +13,11 @@ export interface SelectOptions {
   notifyOnChange?: boolean;
 }
 
+/**
+ * Marks a view for change detection whenever a new value is emitted
+ * @param options Options to explicitly disable marking
+ * @returns A rxjs operator
+ */
 function markForCheck<T>(options?: SelectOptions): MonoTypeOperatorFunction<T> {
   const notifyOnChange = options?.notifyOnChange ?? true;
   const cdr = inject(ChangeDetectorRef, { optional: true });
@@ -24,6 +29,13 @@ function markForCheck<T>(options?: SelectOptions): MonoTypeOperatorFunction<T> {
   return (source) => source;
 }
 
+/**
+ * Creates an observable emitting parts of the state. The observable's lifetime
+ * is automatically tied to the injection context where this is called.
+ * @param selector State selection function or token
+ * @param options Additional select options
+ * @returns An observable of the selected state
+ */
 export function select$<T>(selector: StateSelector<T>, options?: SelectOptions): Observable<T> {
   return inject(Store)
     .select(selector as StateToken<T>)
