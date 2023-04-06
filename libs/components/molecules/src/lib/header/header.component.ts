@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { LinkDirective } from '@hra-ui/cdk';
+import { EMPTY_LINK } from '@hra-ui/cdk';
 
 /**
  * Header component, displays on top of every page.
