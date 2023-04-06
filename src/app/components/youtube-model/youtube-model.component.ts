@@ -1,4 +1,5 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { YoutubeModel } from './youtube-model';
 
 
 let apiLoaded = false;
@@ -9,12 +10,7 @@ let apiLoaded = false;
   styleUrls: ['./youtube-model.component.scss']
 })
 export class YoutubeModelComponent implements OnInit {
-  @Input() height: number;
-  @Input() width: number;
-  @Input() videoId: string;
-  @Input() title: string;
-  @Input() playerTitle: string;
-  
+  @Input() playerData: YoutubeModel;
   isMobile = false;
 
   ngOnInit(): void {
@@ -36,7 +32,7 @@ export class YoutubeModelComponent implements OnInit {
   }
 
   playerSize() {
-    this.width = window.innerWidth * 0.8;
-    this.height = this.width * 0.5625;
+    this.playerData.width = window.innerWidth * 0.8;
+    this.playerData.height = this.playerData.width * 0.5625;
   }
 }
