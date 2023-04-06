@@ -12,6 +12,7 @@
 
   ::ng-deep youtube-player iframe {
     width: 100%;
+    max-height: 584px;
   }
 
   @media (max-width: 26.75rem) {
