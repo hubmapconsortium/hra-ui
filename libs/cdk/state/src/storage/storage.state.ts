@@ -1,7 +1,8 @@
+import { StorageContext } from './storage.model';
 import { Injectable } from '@angular/core';
-import { State } from '@ngxs/store';
+import { Action, State } from '@ngxs/store';
 import { StorageId, StorageModel } from './storage.model';
-
+import { Set, Delete, Clear } from './storage.actions';
 @State<StorageModel>({
   name: 'storage',
   defaults: {
@@ -10,4 +11,8 @@ import { StorageId, StorageModel } from './storage.model';
   },
 })
 @Injectable()
-export class StorageState {}
+export class StorageState {
+  // @Action(Set)
+  // set(ctx: StorageContext, { id, key, value }: Set): void {
+  // }
+}

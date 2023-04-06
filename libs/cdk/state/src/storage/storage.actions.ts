@@ -3,7 +3,6 @@ import { StorageId } from './storage.model';
 
 const Action = ActionGroup('Storage');
 
-/** action of adding a list of sources to the SourceList state */
 export class Set extends Action('Set') {
   constructor(readonly id: StorageId, readonly key: string, readonly value: string) {
     super();
