@@ -12,11 +12,6 @@ interface ExplorationUserInterface {
   interfacedata: PageDataItems[];
   sopData: PageDataItems[];
   useEuiButton: UseButton;
-  height: number;
-  width: number;
-  title: string;
-  videoId: string;
-  playerTitle: string;
   spatialSearchYoutubePlayer: YoutubeModel;
   euiDemoYoutubePlayer: YoutubeModel;
   howToUseSpatialSearch: PageDataItems[];
@@ -36,11 +31,6 @@ export class CcfExplorationUserInterfaceComponent {
   interfacedata = this.data.interfacedata;
   sopData = this.data.sopData;
   useEuiButton = this.data.useEuiButton;
-  height = this.data.height;
-  width = this.data.width;
-  title = this.data.title;
-  videoId = this.data.videoId;
-  playerTitle = this.data.playerTitle;
   spatialSearchYoutubePlayer = this.data.spatialSearchYoutubePlayer;
   euiDemoYoutubePlayer = this.data.euiDemoYoutubePlayer;
   howToUseSpatialSearch = this.data.howToUseSpatialSearch;

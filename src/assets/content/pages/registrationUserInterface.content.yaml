@@ -36,8 +36,9 @@ ruiSopData:
 - urls: ' SOP: Using the Registration User Interface'
   href: https://doi.org/10.5281/zenodo.5575776
 
-title: Overview
-videoId: gY3_-LIoKaU
-playerTitle: Tutorial
-height: 584
-width: 1232
+youtubePlayer:
+  title: Overview
+  videoId: gY3_-LIoKaU
+  playerTitle: Tutorial
+  height: 584
+  width: 1232
