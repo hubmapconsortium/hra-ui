@@ -14,15 +14,36 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';
 
+/**
+ * External interface for tissue data
+ */
 export interface DataNode {
+  /**
+   * label identifier
+   */
   label: string;
+  /**
+   * child entities for the tissue
+   */
   children?: string[];
 }
 
+/**
+ *  Internal interface for flat tissue data hierarchy
+ */
 interface InternalNode<T extends DataNode> {
   label: string;
+  /**
+   * property to check if the node has child entities
+   */
   expandable: boolean;
+  /**
+   * index indentifier
+   */
   level: number;
+  /**
+   * node data
+   */
   data: T;
 }
 
@@ -38,6 +59,9 @@ interface InternalNode<T extends DataNode> {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
+  /**
+   * Input  of tissue tree list component
+   */
   @Input() nodes: Record<string, T> = {};
 
   /**
@@ -45,6 +69,9 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
    */
   @Input() selected?: T = undefined;
 
+  /**
+   * Output  of tissue tree list component
+   */
   @Output() readonly selectedChange = new EventEmitter<T | undefined>();
 
   /**
@@ -55,6 +82,9 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
     (node) => node.expandable
   );
 
+  /**
+   * Flattener  of tissue tree list component, returns flat-data structure
+   */
   readonly flattener = new MatTreeFlattener<T, InternalNode<T>>(
     (node, level) => ({
       label: node.label,
@@ -67,6 +97,9 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
     (node) => node.children?.map((id) => this.nodes[id])
   );
 
+  /**
+   * Data source of tissue tree list component, defines the data in mat-tree
+   */
   readonly dataSource = new MatTreeFlatDataSource(this.control, this.flattener);
 
   /**
