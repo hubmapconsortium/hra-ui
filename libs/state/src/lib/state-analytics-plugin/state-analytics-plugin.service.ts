@@ -1,11 +1,7 @@
 import { inject, Injectable, InjectionToken, Provider } from '@angular/core';
 import { getActionTypeFromInstance, NgxsNextPluginFn, NgxsPlugin, NGXS_PLUGINS } from '@ngxs/store';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import {
-  DEFAULT_DOWNLOAD_ACTIONS,
-  DEFAULT_LOGGABLE_ACTIONS,
-  DEFAULT_NOTIFICATION_ACTIONS,
-} from './default-loggable-actions';
+import { DEFAULT_LOGGABLE_ACTIONS } from './default-loggable-actions';
 
 /** Primitive types */
 const PRIMITIVE_TYPES = ['bigint', 'boolean', 'number', 'string'];
@@ -25,21 +21,6 @@ function isPrimitive(value: unknown): value is bigint | boolean | number | strin
 export const LOGGABLE_ACTIONS = new InjectionToken<unknown[]>('Loggable actions', {
   providedIn: 'root',
   factory: () => DEFAULT_LOGGABLE_ACTIONS,
-});
-
-/**
- * Injectable token DOWNLOAD_ACTIONS provides list of download actions that can be logged
- */
-export const DOWNLOAD_ACTIONS = new InjectionToken<unknown[]>('download actions', {
-  providedIn: 'root',
-  factory: () => DEFAULT_DOWNLOAD_ACTIONS,
-});
-/**
- * Injectable token NOTIFICATION_ACTIONS provides list of notification actions that can be logged
- */
-export const NOTIFICATION_ACTIONS = new InjectionToken<unknown[]>('notification actions', {
-  providedIn: 'root',
-  factory: () => DEFAULT_NOTIFICATION_ACTIONS,
 });
 
 /**
