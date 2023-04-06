@@ -68,4 +68,5 @@ export function createLinkId(id: string): LinkId {
   return LINK_REGISTRY_SCHEMA.keySchema.parse(id);
 }
 
+/** Empty link id */
 export const EMPTY_LINK = createLinkId('@@__EMPTY__');
