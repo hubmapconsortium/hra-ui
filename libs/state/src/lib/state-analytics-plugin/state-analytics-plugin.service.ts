@@ -29,10 +29,6 @@ export const LOGGABLE_ACTIONS = new InjectionToken<unknown[]>('Loggable actions'
 @Injectable({
   providedIn: 'root',
 })
-
-/**
- * State Analytics Plugin Service
- */
 export class StateAnalyticsPluginService implements NgxsPlugin {
   /**
    * Injects the service for state analytics plugin.
@@ -65,7 +61,6 @@ export class StateAnalyticsPluginService implements NgxsPlugin {
   private logAction(action: unknown): void {
     const type = getActionTypeFromInstance(action);
     if (type && this.loggableTypes.has(type)) {
-      console.log('Received Action', action);
       const payload = JSON.stringify(action, this.serialize);
       this.ga.event(type, 'action_log', payload);
     }
