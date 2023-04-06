@@ -14,7 +14,6 @@ describe('StateAnalyticsPluginService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(StateAnalyticsPluginService);
-
     gaSpy = TestBed.inject(GoogleAnalyticsService);
     nextSpy = jest.fn().mockReturnValue({ state, action });
     jest.spyOn(gaSpy, 'event').mockReturnValue();

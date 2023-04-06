@@ -8,8 +8,8 @@ const PRIMITIVE_TYPES = ['bigint', 'boolean', 'number', 'string'];
 
 /**
  * Determines whether primitive is
- * @param value
- * @returns primitive
+ * @param value is string - used to check the input value from serialize funtion
+ * @returns type of value - boolean/number/string/null/bigint/undefined
  */
 function isPrimitive(value: unknown): value is bigint | boolean | number | string | null | undefined {
   return value == null || PRIMITIVE_TYPES.includes(typeof value);
@@ -43,10 +43,10 @@ export class StateAnalyticsPluginService implements NgxsPlugin {
 
   /**
    * Handles logger plugin
-   * @param state
-   * @param action
-   * @param next
-   * @returns
+   * @param state -  Current state of the store with type unknown.
+   * @param action - Current action being dispatched with type unknown type.
+   * @param next - next plugin to handle the action
+   * @returns - next plugin with the current state and action.
    */
   handle(state: unknown, action: unknown, next: NgxsNextPluginFn) {
     this.logAction(action);
@@ -55,8 +55,8 @@ export class StateAnalyticsPluginService implements NgxsPlugin {
 
   /**
    * Logs action trigerred to google analytics event
-   * @param action
-   * @returns action
+   * @param action - Current action being dispatched with type unknown type.
+   * @returns void
    */
   private logAction(action: unknown): void {
     const type = getActionTypeFromInstance(action);
@@ -68,10 +68,9 @@ export class StateAnalyticsPluginService implements NgxsPlugin {
 
   /**
    * Serializes action data
-   * @param this
-   * @param key
-   * @param value
-   * @returns serialize
+   * @param key - key with type unknown that needs to be serialized
+   * @param value - value with type unknown that needs to be serialized
+   * @returns serialized value
    */
   private serialize(this: void, key: unknown, value: unknown): unknown {
     if (key === '' && typeof value === 'object') {
