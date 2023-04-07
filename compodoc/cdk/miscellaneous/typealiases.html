@@ -61,6 +61,12 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#BuiltinResourceEntry" title="state/src/resource-registry/resource-registry.model.ts" ><b>BuiltinResourceEntry</b>&nbsp;&nbsp;&nbsp;(state/.../resource-registry.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CustomResourceEntry" title="state/src/resource-registry/resource-registry.model.ts" ><b>CustomResourceEntry</b>&nbsp;&nbsp;&nbsp;(state/.../resource-registry.model.ts)</a>
+                        </li>
+                        <li>
                             <a href="#ExternalLinkEntry" title="state/src/link-registry/link-registry.model.ts" ><b>ExternalLinkEntry</b>&nbsp;&nbsp;&nbsp;(state/.../link-registry.model.ts)</a>
                         </li>
                         <li>
@@ -97,9 +103,6 @@
                             <a href="#ResourceRegistryModel" title="state/src/resource-registry/resource-registry.model.ts" ><b>ResourceRegistryModel</b>&nbsp;&nbsp;&nbsp;(state/.../resource-registry.model.ts)</a>
                         </li>
                         <li>
-                            <a href="#ResourceRegistryQuery" title="state/src/resource-registry/resource-registry.selectors.ts" ><b>ResourceRegistryQuery</b>&nbsp;&nbsp;&nbsp;(state/.../resource-registry.selectors.ts)</a>
-                        </li>
-                        <li>
                             <a href="#StateSelector" title="injectors/src/lib/select/select.ts" ><b>StateSelector</b>&nbsp;&nbsp;&nbsp;(injectors/.../select.ts)</a>
                         </li>
                     </ul>
@@ -109,7 +112,141 @@
     </table>
 </section>
 
-    <h3>state/src/link-registry/link-registry.model.ts</h3>
+    <h3>state/src/resource-registry/resource-registry.model.ts</h3>
+    <section>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BuiltinResourceEntry"></a>
+                    <span class="name "><b>BuiltinResourceEntry</b><a href="#BuiltinResourceEntry"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Entry types with built in support</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>z.infer&lt;&gt;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CustomResourceEntry"></a>
+                    <span class="name "><b>CustomResourceEntry</b><a href="#CustomResourceEntry"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Entry for custom user types without built in support</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>z.infer&lt;&gt;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ResourceEntry"></a>
+                    <span class="name "><b>ResourceEntry</b><a href="#ResourceEntry"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Discriminated union of all resource interfaces</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>z.infer&lt;&gt;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ResourceId"></a>
+                    <span class="name "><b>ResourceId</b><a href="#ResourceId"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Unique identifier for a resource</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>z.infer&lt;&gt;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ResourceRegistryContext"></a>
+                    <span class="name "><b>ResourceRegistryContext</b><a href="#ResourceRegistryContext"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Context type for action handlers</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>        <code><a href="../miscellaneous/typealiases.html#ResourceRegistryModel" target="_self" >StateContext&lt;ResourceRegistryModel&gt;</a></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ResourceRegistryModel"></a>
+                    <span class="name "><b>ResourceRegistryModel</b><a href="#ResourceRegistryModel"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>State data model</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>z.infer&lt;&gt;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>state/src/link-registry/link-registry.model.ts</h3>
     <section>
     <table class="table table-sm table-bordered">
         <tbody>
@@ -267,96 +404,6 @@
             </tr>
         </tbody>
     </table>
-</section>    <h3>state/src/resource-registry/resource-registry.model.ts</h3>
-    <section>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ResourceEntry"></a>
-                    <span class="name "><b>ResourceEntry</b><a href="#ResourceEntry"><span class="icon ion-ios-link"></span></a></span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Discriminated union of all resource interfaces</p>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <code>    <code>z.infer&lt;&gt;</code>
-</code>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ResourceId"></a>
-                    <span class="name "><b>ResourceId</b><a href="#ResourceId"><span class="icon ion-ios-link"></span></a></span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Unique identifier for a resource</p>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <code>    <code>z.infer&lt;&gt;</code>
-</code>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ResourceRegistryContext"></a>
-                    <span class="name "><b>ResourceRegistryContext</b><a href="#ResourceRegistryContext"><span class="icon ion-ios-link"></span></a></span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Context type for action handlers</p>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <code>        <code><a href="../miscellaneous/typealiases.html#ResourceRegistryModel" target="_self" >StateContext&lt;ResourceRegistryModel&gt;</a></code>
-</code>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ResourceRegistryModel"></a>
-                    <span class="name "><b>ResourceRegistryModel</b><a href="#ResourceRegistryModel"><span class="icon ion-ios-link"></span></a></span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>State data model</p>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <code>    <code>z.infer&lt;&gt;</code>
-</code>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </section>    <h3>state/src/resource-registry/resource-registry.selectors.ts</h3>
     <section>
     <table class="table table-sm table-bordered">
@@ -370,28 +417,6 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Query function for resource data</p>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <code>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
-</code>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ResourceRegistryQuery"></a>
-                    <span class="name "><b>ResourceRegistryQuery</b><a href="#ResourceRegistryQuery"><span class="icon ion-ios-link"></span></a></span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Query function for resource entry optionally with type specified</p>
 </div>
                 </td>
             </tr>

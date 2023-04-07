@@ -158,8 +158,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:45</a></div>
                 </td>
             </tr>
 
@@ -244,8 +244,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:55</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:67</a></div>
                 </td>
             </tr>
 
@@ -330,8 +330,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:32</a></div>
                 </td>
             </tr>
 
@@ -376,7 +376,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ResourceRegistryQuery" target="_self" >ResourceRegistryQuery</a></code>
+                        <b>Returns : </b>        <code><a href="../interfaces/ResourceRegistryQuery.html" target="_self" >ResourceRegistryQuery</a></code>
 
                     </div>
                     <div class="io-description">
@@ -416,8 +416,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:77</a></div>
                 </td>
             </tr>
 
@@ -502,8 +502,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="87"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:87</a></div>
                 </td>
             </tr>
 
@@ -571,14 +571,23 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UnionMember } from &#x27;@hra-ui/utils/types&#x27;;
 import { Selector } from &#x27;@ngxs/store&#x27;;
-import { ResourceEntry, ResourceId, ResourceRegistryModel, ResourceType } from &#x27;./resource-registry.model&#x27;;
+import {
+  BuiltinResourceEntry,
+  CustomResourceEntry,
+  ResourceEntry,
+  ResourceId,
+  ResourceRegistryModel,
+  ResourceType,
+} from &#x27;./resource-registry.model&#x27;;
 import { ResourceRegistryState } from &#x27;./resource-registry.state&#x27;;
 
 /** Query function for resource entry optionally with type specified */
-export type ResourceRegistryQuery &#x3D; &lt;T extends ResourceType | string &#x3D; string&gt;(
-  id: ResourceId,
-  type?: T
-) &#x3D;&gt; UnionMember&lt;ResourceEntry, &#x27;type&#x27;, T&gt; | undefined;
+export interface ResourceRegistryQuery {
+  /** Get a resource entry with builtin type */
+  &lt;T extends ResourceType&gt;(id: ResourceId, type: T): UnionMember&lt;BuiltinResourceEntry, &#x27;type&#x27;, T&gt; | undefined;
+  /** Get a resource entry of any type */
+  (id: ResourceId, type?: string): CustomResourceEntry | undefined;
+}
 
 /** Query function for resource data */
 export type ResourceRegistryDataQuery&lt;T&gt; &#x3D; (id: ResourceId) &#x3D;&gt; T | undefined;
@@ -592,7 +601,10 @@ export class ResourceRegistrySelectors {
    */
   @Selector([ResourceRegistryState])
   static query(state: ResourceRegistryModel): ResourceRegistryQuery {
-    return (id, type) &#x3D;&gt; ResourceRegistrySelectors.getEntry(state, id, type);
+    return (id: ResourceId, type?: ResourceType | string) &#x3D;&gt; {
+      const entry &#x3D; ResourceRegistrySelectors.getEntry(state, id, type);
+      return entry as BuiltinResourceEntry;
+    };
   }
 
   /**

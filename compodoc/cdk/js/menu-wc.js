@@ -160,6 +160,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/HoverContext.html" data-type="entity-link" >HoverContext</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/ResourceRegistryQuery.html" data-type="entity-link" >ResourceRegistryQuery</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/SelectOptions.html" data-type="entity-link" >SelectOptions</a>
                             </li>
                         </ul>
