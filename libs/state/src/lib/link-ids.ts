@@ -11,3 +11,8 @@ export const Illustration = createLinkId('Illustration');
 
 /** LinkId for Embed */
 export const Embed = createLinkId('Embed');
+/** LinkId for Explore FTU */
+export const ExploreFTU = createLinkId('ExploreFTU');
+
+/** LinkId for read more in landing page content */
+export const LandingPageReadMore = createLinkId('LandingPageReadMore');

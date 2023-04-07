@@ -1,0 +1,27 @@
+:host {
+  display: block;
+  overflow-x: hidden;
+  .metrics.visible {
+    animation: fadeIn 2s;
+  }
+  .landing-page-content.visible {
+    overflow: hidden;
+    animation: slidein 3s ease-in-out forwards;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes slidein {
+  0% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
