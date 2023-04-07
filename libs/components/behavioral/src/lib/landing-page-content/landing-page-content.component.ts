@@ -9,7 +9,7 @@ import {
   ViewChildren,
   inject,
 } from '@angular/core';
-import { dispatch, injectOnDestroy, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
+import { dispatch, injectDestroy$, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { LinkRegistryActions, ResourceRegistrySelectors as RRS } from '@hra-ui/cdk/state';
 import {
   LandingPageInDepthComponent,
@@ -65,7 +65,7 @@ export class LandingPageContentComponent implements AfterViewInit {
   /** Renderer to add class for animation */
   private readonly renderer = inject(Renderer2);
   /** destroys observer */
-  private readonly destroy$ = injectOnDestroy();
+  private readonly destroy$ = injectDestroy$();
 
   /** get metrics for MetricsComponent */
   get metricItems(): MetricItem[] {

@@ -1,4 +1,4 @@
-import { dispatch, injectOnDestroy, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
+import { dispatch, injectDestroy$, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { LandingPageInDepthComponent, LandingPageIntroComponent } from '@hra-ui/components/molecules';
 import { Shallow } from 'shallow-render';
 
@@ -10,7 +10,7 @@ describe('LandingPageContentComponent', () => {
   jest.mocked(selectQuerySnapshot).mockReturnValue(jest.fn());
   jest.mocked(dispatch).mockReturnValue(jest.fn());
   const destroy$ = new Subject<void>();
-  jest.mocked(injectOnDestroy).mockReturnValue(destroy$.asObservable());
+  jest.mocked(injectDestroy$).mockReturnValue(destroy$.asObservable());
   const mockIntersectionObserver = jest.fn();
   mockIntersectionObserver.mockReturnValue({
     observe: () => null,
