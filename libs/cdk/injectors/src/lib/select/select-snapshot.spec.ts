@@ -1,42 +1,20 @@
-import { inject, ChangeDetectorRef } from '@angular/core';
-import { StateToken, Store } from '@ngxs/store';
-import { mock, MockProxy } from 'jest-mock-extended';
-import { Subject } from 'rxjs';
-
-import { injectOnDestroy } from '../on-destroy/on-destroy';
+import { ReplaySubject } from 'rxjs';
+import { select$ } from './select';
 import { selectQuerySnapshot, selectSnapshot } from './select-snapshot';
 
-jest.mock('@angular/core', () => {
-  const originalModule = jest.requireActual('@angular/core');
+jest.mock('./select.ts');
 
-  return {
-    __esModule: true,
-    ...originalModule,
-    inject: jest.fn(),
-  };
-});
-
-jest.mock('../on-destroy/on-destroy.ts');
-
-const selector = new StateToken<unknown>('test');
-const mockedInject = jest.mocked(inject);
-const mockedInjectOnDestroy = jest.mocked(injectOnDestroy);
-let store: MockProxy<Store>;
-let dataSubject: Subject<unknown>;
+let selectSubject: ReplaySubject<unknown>;
 
 beforeEach(() => {
-  mockedInject.mockReset();
-  mockedInjectOnDestroy.mockReset();
-
-  store = mock<Store>();
-  dataSubject = new Subject();
-
-  mockedInject.mockReturnValueOnce(store).mockReturnValueOnce(null);
-  mockedInjectOnDestroy.mockReturnValue(new Subject());
-  store.select.mockReturnValue(dataSubject);
+  selectSubject = new ReplaySubject();
+  jest.clearAllMocks();
+  jest.mocked(select$).mockReturnValue(selectSubject);
 });
 
 describe(selectSnapshot, () => {
+  const selector = () => undefined as unknown;
+
   it('returns a snapshot function', () => {
     expect(typeof selectSnapshot(selector)).toEqual('function');
   });
@@ -44,41 +22,40 @@ describe(selectSnapshot, () => {
   it('returns the latest value', () => {
     const value = 'abc';
     const fn = selectSnapshot(selector);
-    dataSubject.next(value);
+    selectSubject.next(value);
     expect(fn()).toEqual(value);
-  });
-
-  it('marks for change detection when a new value is available', () => {
-    const cdr = mock<ChangeDetectorRef>();
-    mockedInject.mockReset().mockReturnValueOnce(store).mockReturnValueOnce(cdr);
-    selectSnapshot(selector);
-    dataSubject.next(10);
-    expect(cdr.markForCheck).toHaveBeenCalled();
   });
 
   it('throws an error if an error has been emitted', () => {
     const error = new Error('failure');
     const fn = selectSnapshot(selector);
-    dataSubject.error(error);
+    selectSubject.error(error);
     expect(fn).toThrow(error);
   });
 
   it('continues to return the latest value even when completed', () => {
     const value = true;
     const fn = selectSnapshot(selector);
-    dataSubject.next(value);
-    dataSubject.complete();
+    selectSubject.next(value);
+    selectSubject.complete();
     expect(fn()).toEqual(value);
   });
 });
 
 describe(selectQuerySnapshot, () => {
+  const query = jest.fn();
+  const selector = () => query;
+
+  beforeEach(() => {
+    query.mockReset();
+  });
+
   it('calls query with the provided arguments', () => {
     const result = [1, '2'];
     const args = [true, { id: 2 }];
     const query = jest.fn().mockReturnValue(result);
     const fn = selectQuerySnapshot(selector);
-    dataSubject.next(query);
+    selectSubject.next(query);
 
     expect(fn(...args)).toEqual(result);
     expect(query).toHaveBeenLastCalledWith(...args);
@@ -90,7 +67,7 @@ describe(selectQuerySnapshot, () => {
     const args = [true, { id: 2 }];
     const query = jest.fn().mockReturnValue(result);
     const fn = selectQuerySnapshot(selector, ...boundArgs);
-    dataSubject.next(query);
+    selectSubject.next(query);
 
     expect(fn(...args)).toEqual(result);
     expect(query).toHaveBeenLastCalledWith(...boundArgs, ...args);

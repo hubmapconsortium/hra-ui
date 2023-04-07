@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { injectOnDestroy } from '@hra-ui/cdk/injectors';
+import { injectDestroy$ } from '@hra-ui/cdk/injectors';
 import { map, takeUntil } from 'rxjs';
 
 /**
@@ -32,7 +32,7 @@ export class RequiredInputComponent {
   /**
    * Destroy observable used to control the lifetime of other observables.
    */
-  readonly destroy$ = injectOnDestroy();
+  readonly destroy$ = injectDestroy$();
 
   /**
    * Form control for input to set some input validation.
