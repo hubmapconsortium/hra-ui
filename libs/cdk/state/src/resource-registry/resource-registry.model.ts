@@ -11,6 +11,12 @@ export enum ResourceType {
   Url = 'url',
 }
 
+/** Entry types with built in support */
+export type BuiltinResourceEntry = z.infer<(typeof RESOURCE_REGISTRY_SCHEMA)['valueSchema']['options'][0]>;
+
+/** Entry for custom user types without built in support */
+export type CustomResourceEntry = z.infer<(typeof RESOURCE_REGISTRY_SCHEMA)['valueSchema']['options'][1]>;
+
 /** Discriminated union of all resource interfaces */
 export type ResourceEntry = z.infer<(typeof RESOURCE_REGISTRY_SCHEMA)['valueSchema']>;
 

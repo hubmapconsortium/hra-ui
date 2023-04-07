@@ -25,6 +25,7 @@
     "immer": "^9.0.19",
     "js-yaml": "^4.1.0",
     "ng-inline-svg-2": "^15.0.1",
+    "ngx-google-analytics": "^14.0.1",
     "ngx-markdown": "^15.1.1",
     "normalize.css": "^8.0.1",
     "papaparse": "^5.3.2",
