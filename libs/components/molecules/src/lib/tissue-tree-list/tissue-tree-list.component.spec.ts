@@ -1,3 +1,4 @@
+import { MatTreeModule } from '@angular/material/tree';
 import { Shallow } from 'shallow-render';
 import { TissueTreeListComponent } from './tissue-tree-list.component';
 
@@ -23,7 +24,7 @@ describe('TissueTreeListComponent', () => {
   ];
 
   beforeEach(async () => {
-    shallow = new Shallow(TissueTreeListComponent);
+    shallow = new Shallow(TissueTreeListComponent).dontMock(MatTreeModule);
   });
 
   it('creates', async () => {

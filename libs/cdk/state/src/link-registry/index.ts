@@ -1,4 +1,12 @@
 export * as LinkRegistryActions from './link-registry.actions';
-export { LinkEntry, LinkId, LinkType, createLinkId, InternalLinkEntry, ExternalLinkEntry } from './link-registry.model';
-export { LinkRegistryState } from './link-registry.state';
+export {
+  createLinkId,
+  EMPTY_LINK,
+  ExternalLinkEntry,
+  InternalLinkEntry,
+  LinkEntry,
+  LinkId,
+  LinkType,
+} from './link-registry.model';
 export { LinkRegistrySelectors } from './link-registry.selectors';
+export { LinkRegistryState } from './link-registry.state';
