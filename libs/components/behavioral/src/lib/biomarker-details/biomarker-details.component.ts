@@ -16,6 +16,9 @@ import {
 import { BiomarkerTableComponent, DataRow, DataCell } from '@hra-ui/components/organisms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
+import { selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
+import { ResourceIds as Ids, SourceListSelectors } from '@hra-ui/state';
 
 export interface BiomarkerTab {
   label: string;
@@ -46,15 +49,6 @@ export class BiomarkerDetailsComponent implements OnChanges {
   /** Nested list of DataItems for each section which is displayed to the user */
   @Input() data: DataItem[][] = [];
 
-  /** Gradient colors along with their stop points */
-  @Input() gradient: GradientPoint[] = [];
-
-  /** Taking input for the radius of the circle and the label to be displayed. */
-  @Input() sizes: SizeLegend[] = [];
-
-  /** List of sources with titles and links displayed to the user */
-  @Input() sources: SourceListItem[] = [];
-
   /** List of Biomarker tab which includes rows and columns of the table that is to be displayed */
   @Input() tabs: BiomarkerTab[] = [];
 
@@ -63,6 +57,25 @@ export class BiomarkerDetailsComponent implements OnChanges {
 
   /** Indicates if the table is fully shown, defaults to false*/
   isTableFullScreen = false;
+
+  /** Gradient colors along with their stop points */
+  readonly gradient = selectQuerySnapshot(RR.query, Ids.GradientLegend, 'gradient');
+
+  /** Taking input for the radius of the circle and the label to be displayed. */
+  readonly size = selectQuerySnapshot(RR.query, Ids.SizeLegend, 'size');
+
+  /** List of sources with titles and links displayed to the user */
+  readonly source = selectSnapshot(SourceListSelectors.getSourceList);
+
+  /** Getter for gradient points */
+  get gradientPoints(): GradientPoint[] {
+    return (this.gradient()?.['points'] ?? []) as GradientPoint[];
+  }
+
+  /** Getter for sizes */
+  get sizes(): SizeLegend[] {
+    return (this.size()?.['sizes'] ?? []) as SizeLegend[];
+  }
 
   /** Changes the selected tab when the user clicks on any other tab */
   ngOnChanges(changes: SimpleChanges): void {
