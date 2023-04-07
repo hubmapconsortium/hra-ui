@@ -38,7 +38,7 @@
   <li>Components</li>
   <li
   >
-  OnDestroyHostComponent</li>
+  DestroyHostComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -61,7 +61,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>injectors/src/lib/on-destroy/on-destroy.ts</code>
+    <code>injectors/src/lib/on-destroy/destroy-host.component.ts</code>
 </p>
 
 
@@ -69,7 +69,7 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Empty host component</p>
+        <p>Component used when attaching destroy lifecycle observables to a component/directive/pipe</p>
 
     </p>
 
@@ -93,13 +93,13 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>hra-on-destroy-host</code></td>
+                <td class="col-md-9"><code>hra-destroy-host</code></td>
             </tr>
 
 
             <tr>
                 <td class="col-md-3">styles</td>
-                <td class="col-md-9"><code>:host { display: block; }</code></td>
+                <td class="col-md-9"><code>:host { display: none }</code></td>
             </tr>
 
 
@@ -115,30 +115,33 @@
     </table>
 </section>
 
-
     <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor()</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">injectors/src/lib/on-destroy/on-destroy.ts:39</a></div>
-                            </td>
-                        </tr>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Creates a new component instance that immediately removes its own DOM element</p>
-</div>
+                        <h6><b>Methods</b></h6>
                     </td>
                 </tr>
-            </tbody>
-        </table>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#create" >create</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
 </section>
 
 
@@ -146,141 +149,129 @@
 
 
 
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="create"></a>
+                    <span class="name">
+                        <span class="modifier">Static</span>
+                        <span ><b>create</b></span>
+                        <a href="#create"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>create(container: <a href="https://angular.io/api/core/ViewContainerRef" target="_blank">ViewContainerRef</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">injectors/src/lib/on-destroy/destroy-host.component.ts:19</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Creates a new DestroyHostComponent inside the provided container.
+The element is inserted as the first child (index &#39;0&#39;) in the container.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>container</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/core/ViewContainerRef" target="_blank" >ViewContainerRef</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>View in which to create the element</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../components/DestroyHostComponent.html" target="_self" >ComponentRef&lt;DestroyHostComponent&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The ComponentRef of the newly inserted element</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ElementRef, inject, NgModuleRef, ViewContainerRef, ViewRef } from &#x27;@angular/core&#x27;;
-import { Observable, ReplaySubject } from &#x27;rxjs&#x27;;
-
-/** Object on which cleanup callbacks can be registered */
-interface DestructorScope {
-  /**
-   * Register a callback to perform cleanup during scope destruction
-   * @param cb Cleanup callback
-   */
-  onDestroy(cb: () &#x3D;&gt; void): void;
-}
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ComponentRef, ViewContainerRef } from &#x27;@angular/core&#x27;;
 
 /**
- * Subject that automatically registers a cleanup function on a scope
- * During cleanup the subject will emit a single void value and then complete
+ * Component used when attaching destroy lifecycle observables to a component/directive/pipe
  */
-class ScopedDestroySubject extends ReplaySubject&lt;void&gt; {
-  /**
-   * Create a new subject that automatically registers cleanup
-   * @param scope Scope which to link the new subject
-   */
-  constructor(scope: DestructorScope) {
-    super(1);
-
-    scope.onDestroy(() &#x3D;&gt; {
-      this.next();
-      this.complete();
-    });
-  }
-}
-
-/** Empty host component */
 @Component({
-  selector: &#x27;hra-on-destroy-host&#x27;,
+  selector: &#x27;hra-destroy-host&#x27;,
   standalone: true,
   template: &#x27;&#x27;,
-  styles: [&#x27;:host { display: block; }&#x27;],
+  styles: [&#x27;:host { display: none }&#x27;],
 })
-class OnDestroyHostComponent {
-  /** Creates a new component instance that immediately removes its own DOM element */
-  constructor() {
-    const el &#x3D; inject(ElementRef).nativeElement as HTMLElement | null;
+export class DestroyHostComponent {
+  /**
+   * Creates a new DestroyHostComponent inside the provided container.
+   * The element is inserted as the first child (index &#x27;0&#x27;) in the container.
+   * @param container View in which to create the element
+   * @returns The ComponentRef of the newly inserted element
+   */
+  static create(container: ViewContainerRef): ComponentRef&lt;DestroyHostComponent&gt; {
+    const ref &#x3D; container.createComponent(DestroyHostComponent, { index: 0 });
+    const el: Element | null &#x3D; ref.location.nativeElement;
+
     el?.remove();
+    return ref;
   }
-}
-
-/** OnDestroy observables index by their owning scope */
-const scopedSubjects &#x3D; new WeakMap&lt;DestructorScope, Observable&lt;void&gt;&gt;();
-
-/**
- * Tries to find and return an existing observable associated with a scope
- * @param scope Owning scope
- * @returns The observable if found, else undefined
- */
-function findScopedSubject(scope: DestructorScope): Observable&lt;void&gt; | undefined {
-  return scopedSubjects.get(scope);
-}
-
-/**
- * Tries to find an existing observable for the scope
- * If not found a new observable is created and associated with the scope
- * @param scope Owning scope
- * @returns The existing or new observable
- */
-function findOrCreateScopedSubject(scope: DestructorScope): Observable&lt;void&gt; {
-  let result &#x3D; scopedSubjects.get(scope);
-  if (!result) {
-    result &#x3D; new ScopedDestroySubject(scope).asObservable();
-    scopedSubjects.set(scope, result);
-  }
-
-  return result;
-}
-
-/**
- * Tries to find an existing observable associated with a view container by searching all owned views
- * @param ref View container to search
- * @returns An observable if found, else undefined
- */
-function findScopedSubjectInView(ref: ViewContainerRef): Observable&lt;void&gt; | undefined {
-  for (let index &#x3D; 0, length &#x3D; ref.length; index &lt; length; index++) {
-    const result &#x3D; findScopedSubject(ref.get(index) as ViewRef);
-    if (result) {
-      return result;
-    }
-  }
-
-  return undefined;
-}
-
-/**
- * Inject an observable that emits and completes at the same time as the component, directive, pipe, or service
- * it is injected into. It can be used to control the lifetime of other observables using
- * the &#x60;takeUntil&#x60; pipe, and to build other complex injection functions.
- *
- * Caveats:
- * - There are NO guarantees about whether the returned observable will emit and complete
- *   before or after the regular ngOnDestroy lifecycle hook
- * - For root and module level services the observable may never complete unless
- *   the containing module is explicitly destroyed, so don&#x27;t rely on it for important operations
- * - Components, directives, pipe, and services that manipulate the &#x60;ViewContainerRef&#x60; MUST
- *   take care to maintain the view controlling the lifecycle of the observable. Failure
- *   to do so may result in early emit and completion of the returned observable
- *
- * Based on comment on https://github.com/angular/angular/issues/10185
- * Mostly https://github.com/angular/angular/issues/10185#issuecomment-1165545544 and
- * https://github.com/angular/angular/issues/10185#issuecomment-1199063426
- *
- * @returns An observable that emits and completes when the component/directive/etc. is destroyed
- */
-export function injectOnDestroy(): Observable&lt;void&gt; {
-  const ref &#x3D; inject(ViewContainerRef, { optional: true });
-  if (!ref) {
-    return findOrCreateScopedSubject(inject(NgModuleRef));
-  }
-
-  const result &#x3D; findScopedSubjectInView(ref);
-  if (result) {
-    return result;
-  }
-
-  const component &#x3D; ref.createComponent(OnDestroyHostComponent);
-  return findOrCreateScopedSubject(component.hostView);
 }
 </code></pre>
     </div>
 
 
     <div class="tab-pane fade " id="c-styleData">
-            <pre class="line-numbers"><code class="language-scss">:host { display: block; }
+            <pre class="line-numbers"><code class="language-scss">:host { display: none }
 </code></pre>
     </div>
 
@@ -310,9 +301,9 @@ export function injectOnDestroy(): Observable&lt;void&gt; {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div></div>'
-    var COMPONENTS = [{'name': 'OnDestroyHostComponent', 'selector': 'hra-on-destroy-host'}];
+    var COMPONENTS = [{'name': 'DestroyHostComponent', 'selector': 'hra-destroy-host'}];
     var DIRECTIVES = [{'name': 'HoverDirective', 'selector': '[hraHover]'},{'name': 'LinkDirective', 'selector': '[hraLink]'}];
-    var ACTUAL_COMPONENT = {'name': 'OnDestroyHostComponent'};
+    var ACTUAL_COMPONENT = {'name': 'DestroyHostComponent'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -358,7 +349,7 @@ export function injectOnDestroy(): Observable&lt;void&gt; {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'OnDestroyHostComponent.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'DestroyHostComponent.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

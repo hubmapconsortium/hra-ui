@@ -337,7 +337,7 @@ before output emmiter is triggered</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>injectOnDestroy()</code>
+                        <i>Default value : </i><code>injectDestroy$()</code>
                     </td>
                 </tr>
                     <tr>
@@ -366,7 +366,7 @@ import { CommonModule } from &#x27;@angular/common&#x27;;
 import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
 import { MatInputModule } from &#x27;@angular/material/input&#x27;;
 import { FormControl, ReactiveFormsModule, Validators } from &#x27;@angular/forms&#x27;;
-import { injectOnDestroy } from &#x27;@hra-ui/cdk/injectors&#x27;;
+import { injectDestroy$ } from &#x27;@hra-ui/cdk/injectors&#x27;;
 import { map, takeUntil } from &#x27;rxjs&#x27;;
 
 /**
@@ -395,7 +395,7 @@ export class RequiredInputComponent {
   /**
    * Destroy observable used to control the lifetime of other observables.
    */
-  readonly destroy$ &#x3D; injectOnDestroy();
+  readonly destroy$ &#x3D; injectDestroy$();
 
   /**
    * Form control for input to set some input validation.

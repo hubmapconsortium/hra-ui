@@ -70,6 +70,9 @@
                             <a href="#actionTypeRegistry" title="state/src/actions/action-type-registry.ts" ><b>actionTypeRegistry</b>&nbsp;&nbsp;&nbsp;(state/.../action-type-registry.ts)</a>
                         </li>
                         <li>
+                            <a href="#DESTRUCTOR_CACHE" title="injectors/src/lib/on-destroy/on-destroy.ts" ><b>DESTRUCTOR_CACHE</b>&nbsp;&nbsp;&nbsp;(injectors/.../on-destroy.ts)</a>
+                        </li>
+                        <li>
                             <a href="#EMPTY_LINK" title="state/src/link-registry/link-registry.model.ts" ><b>EMPTY_LINK</b>&nbsp;&nbsp;&nbsp;(state/.../link-registry.model.ts)</a>
                         </li>
                         <li>
@@ -82,10 +85,10 @@
                             <a href="#LINK_REGISTRY_SCHEMA" title="state/src/link-registry/link-registry.model.ts" ><b>LINK_REGISTRY_SCHEMA</b>&nbsp;&nbsp;&nbsp;(state/.../link-registry.model.ts)</a>
                         </li>
                         <li>
-                            <a href="#RESOURCE_REGISTRY_SCHEMA" title="state/src/resource-registry/resource-registry.model.ts" ><b>RESOURCE_REGISTRY_SCHEMA</b>&nbsp;&nbsp;&nbsp;(state/.../resource-registry.model.ts)</a>
+                            <a href="#NO_ERROR_SENTINEL_OBJ" title="injectors/src/lib/select/snapshot-observer.ts" ><b>NO_ERROR_SENTINEL_OBJ</b>&nbsp;&nbsp;&nbsp;(injectors/.../snapshot-observer.ts)</a>
                         </li>
                         <li>
-                            <a href="#scopedSubjects" title="injectors/src/lib/on-destroy/on-destroy.ts" ><b>scopedSubjects</b>&nbsp;&nbsp;&nbsp;(injectors/.../on-destroy.ts)</a>
+                            <a href="#RESOURCE_REGISTRY_SCHEMA" title="state/src/resource-registry/resource-registry.model.ts" ><b>RESOURCE_REGISTRY_SCHEMA</b>&nbsp;&nbsp;&nbsp;(state/.../resource-registry.model.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -174,6 +177,35 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Registry of action types</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>injectors/src/lib/on-destroy/on-destroy.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DESTRUCTOR_CACHE"></a>
+                    <span class="name">
+                        <span ><b>DESTRUCTOR_CACHE</b></span>
+                        <a href="#DESTRUCTOR_CACHE"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new WeakMap&lt;object, Observable&lt;void&gt;&gt;()</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Cached destructor observables</p>
 </div>
                 </td>
             </tr>
@@ -317,6 +349,41 @@
         </tbody>
     </table>
 </section>
+    <h3>injectors/src/lib/select/snapshot-observer.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="NO_ERROR_SENTINEL_OBJ"></a>
+                    <span class="name">
+                        <span ><b>NO_ERROR_SENTINEL_OBJ</b></span>
+                        <a href="#NO_ERROR_SENTINEL_OBJ"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Object indicating that no error has been emitted</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
     <h3>state/src/resource-registry/resource-registry.model.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -351,35 +418,6 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Resource registry schema validator</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
-    <h3>injectors/src/lib/on-destroy/on-destroy.ts</h3>
-    <section>
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="scopedSubjects"></a>
-                    <span class="name">
-                        <span ><b>scopedSubjects</b></span>
-                        <a href="#scopedSubjects"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>new WeakMap&lt;DestructorScope, Observable&lt;void&gt;&gt;()</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>OnDestroy observables index by their owning scope</p>
 </div>
                 </td>
             </tr>

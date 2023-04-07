@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>cdk</title>
+        <title>state</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">cdk</a>
+            <a href="../" class="navbar-brand">state</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content class">
+               <div class="content injectable">
                    <div class="content-data">
 
 
@@ -38,13 +38,9 @@
 
 
 
-
-
-
-
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >SnapshotObserver</li>
+  <li>Injectables</li>
+  <li >StateAnalyticsPluginService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,7 +58,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>injectors/src/lib/select/snapshot-observer.ts</code>
+            <code>src/lib/state-analytics-plugin/state-analytics-plugin.service.ts</code>
         </p>
 
 
@@ -70,18 +66,10 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Observer storing the latest value from a snapshot stream</p>
+                <p>Google Analytics Plugin Injectable</p>
 
             </p>
 
-
-            <p class="comment">
-                <h3>Implements</h3>
-            </p>
-            <p class="comment">
-                        <code>NextObserver</code>
-                        <code>ErrorObserver</code>
-            </p>
 
 
             <section>
@@ -98,13 +86,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#error" >error</a>
-                            </li>
-                            <li>
-                                <a href="#get" >get</a>
-                            </li>
-                            <li>
-                                <a href="#next" >next</a>
+                                <a href="#handle" >handle</a>
                             </li>
                         </ul>
                     </td>
@@ -119,7 +101,6 @@
 </section>
 
 
-
             <section>
     
     <h3 id="methods">
@@ -129,148 +110,31 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="error"></a>
+                    <a name="handle"></a>
                     <span class="name">
-                        <span ><b>error</b></span>
-                        <a href="#error"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>handle</b></span>
+                        <a href="#handle"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>error(err)</code>
+<code>handle(state, action, next: NgxsNextPluginFn)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">injectors/src/lib/select/snapshot-observer.ts:38</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/lib/state-analytics-plugin/state-analytics-plugin.service.ts:51</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Handles error emits</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>err</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The error value</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="get"></a>
-                    <span class="name">
-                        <span ><b>get</b></span>
-                        <a href="#get"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>get()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">injectors/src/lib/select/snapshot-observer.ts:18</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Gets the latest value or throw on errors</p>
-</div>
-
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>T</code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>The latest value</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="next"></a>
-                    <span class="name">
-                        <span ><b>next</b></span>
-                        <a href="#next"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>next(value: T)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">injectors/src/lib/select/snapshot-observer.ts:30</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Handles value emits</p>
+                    <div class="io-description"><p>Handles logger plugin</p>
 </div>
 
                     <div class="io-description">
@@ -287,9 +151,8 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>value</td>
+                                    <td>state</td>
                                     <td>
-                                            <code>T</code>
                                     </td>
 
                                     <td>
@@ -298,7 +161,44 @@
 
 
                                     <td>
-                                        <p>The new value</p>
+                                        <ul>
+<li>Current state of the store with type unknown.</li>
+</ul>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>action</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <ul>
+<li>Current action being dispatched with type unknown type.</li>
+</ul>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>next</td>
+                                    <td>
+                                            <code>NgxsNextPluginFn</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <ul>
+<li>next plugin to handle the action</li>
+</ul>
 
                                     </td>
                                 </tr>
@@ -308,11 +208,14 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                     <div class="io-description">
-                        
+                        <ul>
+<li>next plugin with the current state and action.</li>
+</ul>
+
                     </div>
                 </td>
             </tr>
@@ -320,59 +223,111 @@
     </table>
 </section>
 
-
-
-
-
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ErrorObserver, NextObserver } from &#x27;rxjs&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { inject, Injectable, InjectionToken, Provider } from &#x27;@angular/core&#x27;;
+import { getActionTypeFromInstance, NgxsNextPluginFn, NgxsPlugin, NGXS_PLUGINS } from &#x27;@ngxs/store&#x27;;
+import { GoogleAnalyticsService } from &#x27;ngx-google-analytics&#x27;;
+import { DEFAULT_LOGGABLE_ACTIONS } from &#x27;./default-loggable-actions&#x27;;
 
-/** Object indicating that no error has been emitted */
-const NO_ERROR_SENTINEL_OBJ &#x3D; {};
+/** Primitive types */
+const PRIMITIVE_TYPES &#x3D; [&#x27;bigint&#x27;, &#x27;boolean&#x27;, &#x27;number&#x27;, &#x27;string&#x27;];
 
-/** Observer storing the latest value from a snapshot stream */
-export class SnapshotObserver&lt;T&gt; implements NextObserver&lt;T&gt;, ErrorObserver&lt;T&gt; {
-  /** The latest value */
-  private value?: T &#x3D; undefined;
-  /** An error value if not equal to &#x60;NO_ERROR_SENTINEL&#x60; */
-  private errorValue: unknown &#x3D; NO_ERROR_SENTINEL_OBJ;
+/**
+ * Determines whether primitive is
+ * @param value is string - used to check the input value from serialize funtion
+ * @returns type of value - boolean/number/string/null/bigint/undefined
+ */
+function isPrimitive(value: unknown): value is bigint | boolean | number | string | null | undefined {
+  return value &#x3D;&#x3D; null || PRIMITIVE_TYPES.includes(typeof value);
+}
+
+/**
+ * Injectable token LOGGABLE_ACTIONS provides list of actions that can be logged
+ */
+export const LOGGABLE_ACTIONS &#x3D; new InjectionToken&lt;unknown[]&gt;(&#x27;Loggable actions&#x27;, {
+  providedIn: &#x27;root&#x27;,
+  factory: () &#x3D;&gt; DEFAULT_LOGGABLE_ACTIONS,
+});
+
+/**
+ * Google Analytics Plugin Injectable
+ */
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class StateAnalyticsPluginService implements NgxsPlugin {
+  /**
+   * Injects the service for state analytics plugin.
+   */
+  private readonly ga &#x3D; inject(GoogleAnalyticsService);
 
   /**
-   * Gets the latest value or throw on errors
-   * @returns The latest value
-   * @throws If an error has been emitted
+   * Plugin service for logging state analytics
+   * Setting loggable action types from LOGGABLE_ACTIONS dependency.
    */
-  get(): T {
-    if (this.errorValue !&#x3D;&#x3D; NO_ERROR_SENTINEL_OBJ) {
-      throw this.errorValue;
+  private readonly loggableTypes &#x3D; new Set(inject(LOGGABLE_ACTIONS).map(getActionTypeFromInstance));
+
+  /**
+   * Handles logger plugin
+   * @param state -  Current state of the store with type unknown.
+   * @param action - Current action being dispatched with type unknown type.
+   * @param next - next plugin to handle the action
+   * @returns - next plugin with the current state and action.
+   */
+  handle(state: unknown, action: unknown, next: NgxsNextPluginFn) {
+    this.logAction(action);
+    return next(state, action);
+  }
+
+  /**
+   * Logs action trigerred to google analytics event
+   * @param action - Current action being dispatched with type unknown type.
+   * @returns void
+   */
+  private logAction(action: unknown): void {
+    const type &#x3D; getActionTypeFromInstance(action);
+    if (type &amp;&amp; this.loggableTypes.has(type)) {
+      const payload &#x3D; JSON.stringify(action, this.serialize);
+      this.ga.event(type, &#x27;action_log&#x27;, payload);
+    }
+  }
+
+  /**
+   * Serializes action data
+   * @param key - key with type unknown that needs to be serialized
+   * @param value - value with type unknown that needs to be serialized
+   * @returns serialized value
+   */
+  private serialize(this: void, key: unknown, value: unknown): unknown {
+    if (key &#x3D;&#x3D;&#x3D; &#x27;&#x27; &amp;&amp; typeof value &#x3D;&#x3D;&#x3D; &#x27;object&#x27;) {
+      return { ...value, type: undefined };
+    } else if (isPrimitive(value) || (Array.isArray(value) &amp;&amp; value.every(isPrimitive))) {
+      return value;
     }
 
-    return this.value as T;
-  }
-
-  /**
-   * Handles value emits
-   * @param value The new value
-   */
-  next(value: T): void {
-    this.value &#x3D; value;
-  }
-
-  /**
-   * Handles error emits
-   * @param err The error value
-   */
-  error(err: unknown): void {
-    this.value &#x3D; undefined;
-    this.errorValue &#x3D; err;
+    return undefined;
   }
 }
+
+/**
+ * State Login Provider
+ */
+export const STATE_LOGGER_PROVIDER: Provider &#x3D; {
+  provide: NGXS_PLUGINS,
+  useExisting: StateAnalyticsPluginService,
+  multi: true,
+};
 </code></pre>
     </div>
+
 </div>
+
+
+
+
 
 
 
@@ -407,8 +362,8 @@ export class SnapshotObserver&lt;T&gt; implements NextObserver&lt;T&gt;, ErrorOb
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'SnapshotObserver.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'StateAnalyticsPluginService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

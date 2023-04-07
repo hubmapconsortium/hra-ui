@@ -466,7 +466,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>dispatch(SendMessage)</code>
+                        <i>Default value : </i><code>dispatch(ContactActions.SendMessage)</code>
                     </td>
                 </tr>
                     <tr>
@@ -496,7 +496,7 @@ import { MatDialog, MatDialogModule, MatDialogRef } from &#x27;@angular/material
 import { dispatch, selectQuerySnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
 import { ResourceRegistrySelectors as RR } from &#x27;@hra-ui/cdk/state&#x27;;
 import { ContactData, ContactModalComponent, InfoModalComponent } from &#x27;@hra-ui/components/molecules&#x27;;
-import { ResourceIds as Ids, SendMessage } from &#x27;@hra-ui/state&#x27;;
+import { ResourceIds as Ids, ContactActions } from &#x27;@hra-ui/state&#x27;;
 
 /** A Component for contact behavior which sends the message entered by the user and shows an acknowledgement */
 @Component({
@@ -521,7 +521,7 @@ export class ContactBehaviorComponent {
   readonly description &#x3D; selectQuerySnapshot(RR.anyText, Ids.ContactAcknowledgement);
 
   /** A dispatcher function to send message entered by user */
-  readonly sendMessage &#x3D; dispatch(SendMessage);
+  readonly sendMessage &#x3D; dispatch(ContactActions.SendMessage);
 
   /** A dialog box which shows user an acknowledgement after clicking on submit */
   private readonly dialog &#x3D; inject(MatDialog);

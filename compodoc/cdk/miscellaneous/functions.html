@@ -70,6 +70,9 @@
                             <a href="#assertUniqueActionType" title="state/src/actions/action-type-registry.ts" ><b>assertUniqueActionType</b>&nbsp;&nbsp;&nbsp;(state/.../action-type-registry.ts)</a>
                         </li>
                         <li>
+                            <a href="#createActionFactory" title="injectors/src/lib/dispatch/dispatch.ts" ><b>createActionFactory</b>&nbsp;&nbsp;&nbsp;(injectors/.../dispatch.ts)</a>
+                        </li>
+                        <li>
                             <a href="#createLinkId" title="state/src/link-registry/link-registry.model.ts" ><b>createLinkId</b>&nbsp;&nbsp;&nbsp;(state/.../link-registry.model.ts)</a>
                         </li>
                         <li>
@@ -79,25 +82,52 @@
                             <a href="#dispatch" title="injectors/src/lib/dispatch/dispatch.ts" ><b>dispatch</b>&nbsp;&nbsp;&nbsp;(injectors/.../dispatch.ts)</a>
                         </li>
                         <li>
-                            <a href="#findOrCreateScopedSubject" title="injectors/src/lib/on-destroy/on-destroy.ts" ><b>findOrCreateScopedSubject</b>&nbsp;&nbsp;&nbsp;(injectors/.../on-destroy.ts)</a>
+                            <a href="#dispatch$" title="injectors/src/lib/dispatch/dispatch.ts" ><b>dispatch$</b>&nbsp;&nbsp;&nbsp;(injectors/.../dispatch.ts)</a>
                         </li>
                         <li>
-                            <a href="#findScopedSubject" title="injectors/src/lib/on-destroy/on-destroy.ts" ><b>findScopedSubject</b>&nbsp;&nbsp;&nbsp;(injectors/.../on-destroy.ts)</a>
+                            <a href="#dispatchAction" title="injectors/src/lib/dispatch/dispatch.ts" ><b>dispatchAction</b>&nbsp;&nbsp;&nbsp;(injectors/.../dispatch.ts)</a>
                         </li>
                         <li>
-                            <a href="#findScopedSubjectInView" title="injectors/src/lib/on-destroy/on-destroy.ts" ><b>findScopedSubjectInView</b>&nbsp;&nbsp;&nbsp;(injectors/.../on-destroy.ts)</a>
+                            <a href="#dispatchAction$" title="injectors/src/lib/dispatch/dispatch.ts" ><b>dispatchAction$</b>&nbsp;&nbsp;&nbsp;(injectors/.../dispatch.ts)</a>
                         </li>
                         <li>
-                            <a href="#injectOnDestroy" title="injectors/src/lib/on-destroy/on-destroy.ts" ><b>injectOnDestroy</b>&nbsp;&nbsp;&nbsp;(injectors/.../on-destroy.ts)</a>
+                            <a href="#dispatchImpl" title="injectors/src/lib/dispatch/dispatch.ts" ><b>dispatchImpl</b>&nbsp;&nbsp;&nbsp;(injectors/.../dispatch.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#findDestructorScope" title="injectors/src/lib/on-destroy/on-destroy.ts" ><b>findDestructorScope</b>&nbsp;&nbsp;&nbsp;(injectors/.../on-destroy.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#findStableKeyObject" title="injectors/src/lib/on-destroy/on-destroy.ts" ><b>findStableKeyObject</b>&nbsp;&nbsp;&nbsp;(injectors/.../on-destroy.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#firstDefinedValue" title="injectors/src/lib/on-destroy/on-destroy.ts" ><b>firstDefinedValue</b>&nbsp;&nbsp;&nbsp;(injectors/.../on-destroy.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#identity" title="injectors/src/lib/dispatch/dispatch.ts" ><b>identity</b>&nbsp;&nbsp;&nbsp;(injectors/.../dispatch.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#injectDestroy$" title="injectors/src/lib/on-destroy/on-destroy.ts" ><b>injectDestroy$</b>&nbsp;&nbsp;&nbsp;(injectors/.../on-destroy.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#isDestructorScopeLike" title="injectors/src/lib/on-destroy/destructor-subject.ts" ><b>isDestructorScopeLike</b>&nbsp;&nbsp;&nbsp;(injectors/.../destructor-subject.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#markForCheck" title="injectors/src/lib/select/select.ts" ><b>markForCheck</b>&nbsp;&nbsp;&nbsp;(injectors/.../select.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#pipeActionInstance" title="injectors/src/lib/dispatch/dispatch.ts" ><b>pipeActionInstance</b>&nbsp;&nbsp;&nbsp;(injectors/.../dispatch.ts)</a>
                         </li>
                         <li>
                             <a href="#registerActionType" title="state/src/actions/action-type-registry.ts" ><b>registerActionType</b>&nbsp;&nbsp;&nbsp;(state/.../action-type-registry.ts)</a>
                         </li>
                         <li>
-                            <a href="#selectQuerySnapshot" title="injectors/src/lib/select-snapshot/select-snapshot.ts" ><b>selectQuerySnapshot</b>&nbsp;&nbsp;&nbsp;(injectors/.../select-snapshot.ts)</a>
+                            <a href="#select$" title="injectors/src/lib/select/select.ts" ><b>select$</b>&nbsp;&nbsp;&nbsp;(injectors/.../select.ts)</a>
                         </li>
                         <li>
-                            <a href="#selectSnapshot" title="injectors/src/lib/select-snapshot/select-snapshot.ts" ><b>selectSnapshot</b>&nbsp;&nbsp;&nbsp;(injectors/.../select-snapshot.ts)</a>
+                            <a href="#selectQuerySnapshot" title="injectors/src/lib/select/select-snapshot.ts" ><b>selectQuerySnapshot</b>&nbsp;&nbsp;&nbsp;(injectors/.../select-snapshot.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#selectSnapshot" title="injectors/src/lib/select/select-snapshot.ts" ><b>selectSnapshot</b>&nbsp;&nbsp;&nbsp;(injectors/.../select-snapshot.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -392,6 +422,570 @@
             </tr>
         </tbody>
     </table>
+</section>    <h3>injectors/src/lib/dispatch/dispatch.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createActionFactory"></a>
+                    <span class="name">
+                        <span ><b>createActionFactory</b></span>
+                        <a href="#createActionFactory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createActionFactory(type, boundArgs: BoundArgs)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Creates an action factory function</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>type</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Action constructor</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>boundArgs</td>
+                                    <td>
+                                            <code>BoundArgs</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Initial bound arguments</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>A</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A factory function creating a new action on each call</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dispatch"></a>
+                    <span class="name">
+                        <span ><b>dispatch</b></span>
+                        <a href="#dispatch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>dispatch(type, ...boundArgs: BoundArgs)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Wraps an action constructor with automatic dispatching on each call to the function.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>type</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Action constructor to create new instances</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>boundArgs</td>
+                                    <td>
+                                            <code>BoundArgs</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Bound arguments to the action constructor</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>A</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A function that dispatches an action on the store each time it is called</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dispatch$"></a>
+                    <span class="name">
+                        <span ><b>dispatch$</b></span>
+                        <a href="#dispatch$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>dispatch$(type, ...boundArgs: BoundArgs)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Wraps an action constructor with automatic dispatching on each call to the function.
+Each call to the wrapper returns an observable that emits the action instance once the
+dispatch action has completed.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>type</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Action constructor to create new instances</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>boundArgs</td>
+                                    <td>
+                                            <code>BoundArgs</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Bound arguments to the action constructor</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;A&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A function that dispatches an action on the store each time it is called</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dispatchAction"></a>
+                    <span class="name">
+                        <span ><b>dispatchAction</b></span>
+                        <a href="#dispatchAction"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>dispatchAction()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Creates a callback that can dispatch any action or array of actions.
+Each call returns passed actions unchanged</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>A</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A function that dispatches actions on the store each time it is called</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dispatchAction$"></a>
+                    <span class="name">
+                        <span ><b>dispatchAction$</b></span>
+                        <a href="#dispatchAction$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>dispatchAction$()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Creates a callback that can dispatch any action or array of actions.
+Each call returns an observable that emits the passed actions when the dispatch has finished</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;A&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A function that dispatches actions on the store each time it is called</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dispatchImpl"></a>
+                    <span class="name">
+                        <span ><b>dispatchImpl</b></span>
+                        <a href="#dispatchImpl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>dispatchImpl(actionFactory, resultHandler)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Common dispatch functionality used to implement all dispatch functions</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>actionFactory</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Creates an action or array of actions from the user provided arguments</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>resultHandler</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Selects the output value from the action and the dispatch observable</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>R</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A new dispatch function taking user arguments, dispatches actions, and returns a value</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="identity"></a>
+                    <span class="name">
+                        <span ><b>identity</b></span>
+                        <a href="#identity"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>identity(value: T)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Identity function returning the first argument passed</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+                                    <td>
+                                            <code>T</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>T</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pipeActionInstance"></a>
+                    <span class="name">
+                        <span ><b>pipeActionInstance</b></span>
+                        <a href="#pipeActionInstance"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>pipeActionInstance(action: A, obs$: Observable)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Maps all emits to an action value</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>action</td>
+                                    <td>
+                                            <code>A</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>obs$</td>
+                                    <td>
+                                            <code>Observable</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;A&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    <h3>state/src/link-registry/link-registry.model.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -532,95 +1126,22 @@
             </tr>
         </tbody>
     </table>
-</section>    <h3>injectors/src/lib/dispatch/dispatch.ts</h3>
-    <section>
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="dispatch"></a>
-                    <span class="name">
-                        <span ><b>dispatch</b></span>
-                        <a href="#dispatch"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>dispatch(actionType: A)</code>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Wraps an action constructor with automatic dispatching on each call to the function.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>actionType</td>
-                                    <td>
-                                            <code>A</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>Action constructor to create new instances</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#Dispatcher" target="_self" >Dispatcher&lt;A&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>A function that dispatches an action on the store each time it is called</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </section>    <h3>injectors/src/lib/on-destroy/on-destroy.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findOrCreateScopedSubject"></a>
+                    <a name="findDestructorScope"></a>
                     <span class="name">
-                        <span ><b>findOrCreateScopedSubject</b></span>
-                        <a href="#findOrCreateScopedSubject"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>findDestructorScope</b></span>
+                        <a href="#findDestructorScope"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findOrCreateScopedSubject(scope: <a href="../interfaces/DestructorScope.html" target="_self">DestructorScope</a>)</code>
+<code>findDestructorScope()</code>
                 </td>
             </tr>
 
@@ -629,50 +1150,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Tries to find an existing observable for the scope
-If not found a new observable is created and associated with the scope</p>
+                    <div class="io-description"><p>Finds the nearest destructor scope object in the current injection context</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>scope</td>
-                                    <td>
-                                                <code><a href="../interfaces/DestructorScope.html" target="_self" >DestructorScope</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>Owning scope</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;void&gt;</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/DestructorScope.html" target="_self" >DestructorScope</a></code>
 
                     </div>
                     <div class="io-description">
-                        <p>The existing or new observable</p>
+                        <p>The scope on which cleanup can be attached</p>
 
                     </div>
                 </td>
@@ -683,16 +1171,16 @@ If not found a new observable is created and associated with the scope</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findScopedSubject"></a>
+                    <a name="findStableKeyObject"></a>
                     <span class="name">
-                        <span ><b>findScopedSubject</b></span>
-                        <a href="#findScopedSubject"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>findStableKeyObject</b></span>
+                        <a href="#findStableKeyObject"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findScopedSubject(scope: <a href="../interfaces/DestructorScope.html" target="_self">DestructorScope</a>)</code>
+<code>findStableKeyObject()</code>
                 </td>
             </tr>
 
@@ -701,49 +1189,18 @@ If not found a new observable is created and associated with the scope</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Tries to find and return an existing observable associated with a scope</p>
+                    <div class="io-description"><p>Finds a stable object in the current injection context to be
+used as a key in the destructor cache</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>scope</td>
-                                    <td>
-                                                <code><a href="../interfaces/DestructorScope.html" target="_self" >DestructorScope</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>Owning scope</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Observable | undefined</code>
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
 
                     </div>
                     <div class="io-description">
-                        <p>The observable if found, else undefined</p>
+                        <p>An object</p>
 
                     </div>
                 </td>
@@ -754,16 +1211,16 @@ If not found a new observable is created and associated with the scope</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findScopedSubjectInView"></a>
+                    <a name="firstDefinedValue"></a>
                     <span class="name">
-                        <span ><b>findScopedSubjectInView</b></span>
-                        <a href="#findScopedSubjectInView"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>firstDefinedValue</b></span>
+                        <a href="#firstDefinedValue"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findScopedSubjectInView(ref: <a href="https://angular.io/api/core/ViewContainerRef" target="_blank">ViewContainerRef</a>)</code>
+<code>firstDefinedValue(genFn)</code>
                 </td>
             </tr>
 
@@ -772,7 +1229,7 @@ If not found a new observable is created and associated with the scope</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Tries to find an existing observable associated with a view container by searching all owned views</p>
+                    <div class="io-description"><p>Get the first defined value returned by a generator</p>
 </div>
 
                     <div class="io-description">
@@ -782,17 +1239,13 @@ If not found a new observable is created and associated with the scope</p>
                             <thead>
                                 <tr>
                                     <td>Name</td>
-                                    <td>Type</td>
                                     <td>Optional</td>
                                     <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>ref</td>
-                                    <td>
-                                                <code><a href="https://angular.io/api/core/ViewContainerRef" target="_blank" >ViewContainerRef</a></code>
-                                    </td>
+                                    <td>genFn</td>
 
                                     <td>
                                         No
@@ -800,7 +1253,7 @@ If not found a new observable is created and associated with the scope</p>
 
 
                                     <td>
-                                        <p>View container to search</p>
+                                        <p>Generator function taking no arguments</p>
 
                                     </td>
                                 </tr>
@@ -810,11 +1263,11 @@ If not found a new observable is created and associated with the scope</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Observable | undefined</code>
+                        <b>Returns : </b>    <code>T</code>
 
                     </div>
                     <div class="io-description">
-                        <p>An observable if found, else undefined</p>
+                        <p>The first non-null value</p>
 
                     </div>
                 </td>
@@ -825,16 +1278,16 @@ If not found a new observable is created and associated with the scope</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="injectOnDestroy"></a>
+                    <a name="injectDestroy$"></a>
                     <span class="name">
-                        <span ><b>injectOnDestroy</b></span>
-                        <a href="#injectOnDestroy"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>injectDestroy$</b></span>
+                        <a href="#injectDestroy$"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>injectOnDestroy()</code>
+<code>injectDestroy$()</code>
                 </td>
             </tr>
 
@@ -875,7 +1328,237 @@ Mostly <a href="https://github.com/angular/angular/issues/10185#issuecomment-116
             </tr>
         </tbody>
     </table>
-</section>    <h3>injectors/src/lib/select-snapshot/select-snapshot.ts</h3>
+</section>    <h3>injectors/src/lib/on-destroy/destructor-subject.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isDestructorScopeLike"></a>
+                    <span class="name">
+                        <span ><b>isDestructorScopeLike</b></span>
+                        <a href="#isDestructorScopeLike"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isDestructorScopeLike(obj)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Determines whether an object is destructor scope like</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>obj</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Value to test</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/DestructorScope.html" target="_self" >DestructorScope</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>true if the object seems to be a destructor scope, otherwise false</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>injectors/src/lib/select/select.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="markForCheck"></a>
+                    <span class="name">
+                        <span ><b>markForCheck</b></span>
+                        <a href="#markForCheck"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>markForCheck(options?: <a href="../interfaces/SelectOptions.html" target="_self">SelectOptions</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Marks a view for change detection whenever a new value is emitted</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>options</td>
+                                    <td>
+                                                <code><a href="../interfaces/SelectOptions.html" target="_self" >SelectOptions</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>Options to explicitly disable marking</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>MonoTypeOperatorFunction&lt;T&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A rxjs operator</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="select$"></a>
+                    <span class="name">
+                        <span ><b>select$</b></span>
+                        <a href="#select$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>select$(selector: <a href="../undefineds/StateSelector.html" target="_self">StateSelector</a>, options?: <a href="../interfaces/SelectOptions.html" target="_self">SelectOptions</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Creates an observable emitting parts of the state. The observable&#39;s lifetime
+is automatically tied to the injection context where this is called.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>selector</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#StateSelector" target="_self" >StateSelector</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>State selection function or token</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>options</td>
+                                    <td>
+                                                <code><a href="../interfaces/SelectOptions.html" target="_self" >SelectOptions</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>Additional select options</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;T&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>An observable of the selected state</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>injectors/src/lib/select/select-snapshot.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -890,7 +1573,7 @@ Mostly <a href="https://github.com/angular/angular/issues/10185#issuecomment-116
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>selectQuerySnapshot(selector: <a href="../undefineds/SelectSnapshotSelector.html" target="_self">SelectSnapshotSelector</a>, ...boundArgs: BoundArgs)</code>
+<code>selectQuerySnapshot(selector: <a href="../undefineds/StateSelector.html" target="_self">StateSelector</a>, ...boundArgs: BoundArgs)</code>
                 </td>
             </tr>
 
@@ -921,7 +1604,7 @@ a new value is available</p>
                                 <tr>
                                     <td>selector</td>
                                     <td>
-                                                <code><a href="../miscellaneous/typealiases.html#SelectSnapshotSelector" target="_self" >SelectSnapshotSelector</a></code>
+                                                <code><a href="../miscellaneous/typealiases.html#StateSelector" target="_self" >StateSelector</a></code>
                                     </td>
 
                                     <td>
@@ -980,7 +1663,7 @@ a new value is available</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>selectSnapshot(selector: <a href="../undefineds/SelectSnapshotSelector.html" target="_self">SelectSnapshotSelector</a>)</code>
+<code>selectSnapshot(selector: <a href="../undefineds/StateSelector.html" target="_self">StateSelector</a>)</code>
                 </td>
             </tr>
 
@@ -1010,7 +1693,7 @@ a new value is available</p>
                                 <tr>
                                     <td>selector</td>
                                     <td>
-                                                <code><a href="../miscellaneous/typealiases.html#SelectSnapshotSelector" target="_self" >SelectSnapshotSelector</a></code>
+                                                <code><a href="../miscellaneous/typealiases.html#StateSelector" target="_self" >StateSelector</a></code>
                                     </td>
 
                                     <td>

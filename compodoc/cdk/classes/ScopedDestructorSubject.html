@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >ScopedDestroySubject</li>
+  <li >ScopedDestructorSubject</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>injectors/src/lib/on-destroy/on-destroy.ts</code>
+            <code>injectors/src/lib/on-destroy/destructor-subject.ts</code>
         </p>
 
 
@@ -70,8 +70,9 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Subject that automatically registers a cleanup function on a scope
-During cleanup the subject will emit a single void value and then complete</p>
+                <p>A subject type that is associated with a destructor scope.
+When the cleanup function is run the subject emits a single
+undefined value and immediately completes</p>
 
             </p>
 
@@ -96,13 +97,13 @@ During cleanup the subject will emit a single void value and then complete</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">injectors/src/lib/on-destroy/on-destroy.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">injectors/src/lib/on-destroy/destructor-subject.ts:27</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Create a new subject that automatically registers cleanup</p>
+                            <div class="io-description"><p>Creates a new subject and attaches cleanup to the destructor scope</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -128,7 +129,7 @@ During cleanup the subject will emit a single void value and then complete</p>
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>Scope which to link the new subject</p>
+                                                                <p>Associated scope</p>
 
                                                         </td>
                                                 </tr>
@@ -152,26 +153,36 @@ During cleanup the subject will emit a single void value and then complete</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ElementRef, inject, NgModuleRef, ViewContainerRef, ViewRef } from &#x27;@angular/core&#x27;;
-import { Observable, ReplaySubject } from &#x27;rxjs&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ReplaySubject } from &#x27;rxjs&#x27;;
 
-/** Object on which cleanup callbacks can be registered */
-interface DestructorScope {
+/** Object on which cleanup functions can be registered */
+export interface DestructorScope {
   /**
-   * Register a callback to perform cleanup during scope destruction
-   * @param cb Cleanup callback
+   * Register a cleanup function
+   * @param cb Cleanup callback function
    */
   onDestroy(cb: () &#x3D;&gt; void): void;
 }
 
 /**
- * Subject that automatically registers a cleanup function on a scope
- * During cleanup the subject will emit a single void value and then complete
+ * Determines whether an object is destructor scope like
+ * @param obj Value to test
+ * @returns true if the object seems to be a destructor scope, otherwise false
  */
-class ScopedDestroySubject extends ReplaySubject&lt;void&gt; {
+export function isDestructorScopeLike(obj: unknown): obj is DestructorScope {
+  const isObject &#x3D; typeof obj &#x3D;&#x3D;&#x3D; &#x27;object&#x27; &amp;&amp; obj !&#x3D;&#x3D; null;
+  return isObject &amp;&amp; &#x27;onDestroy&#x27; in obj &amp;&amp; typeof obj.onDestroy &#x3D;&#x3D;&#x3D; &#x27;function&#x27;;
+}
+
+/**
+ * A subject type that is associated with a destructor scope.
+ * When the cleanup function is run the subject emits a single
+ * undefined value and immediately completes
+ */
+export class ScopedDestructorSubject extends ReplaySubject&lt;void&gt; {
   /**
-   * Create a new subject that automatically registers cleanup
-   * @param scope Scope which to link the new subject
+   * Creates a new subject and attaches cleanup to the destructor scope
+   * @param scope Associated scope
    */
   constructor(scope: DestructorScope) {
     super(1);
@@ -181,100 +192,6 @@ class ScopedDestroySubject extends ReplaySubject&lt;void&gt; {
       this.complete();
     });
   }
-}
-
-/** Empty host component */
-@Component({
-  selector: &#x27;hra-on-destroy-host&#x27;,
-  standalone: true,
-  template: &#x27;&#x27;,
-  styles: [&#x27;:host { display: block; }&#x27;],
-})
-class OnDestroyHostComponent {
-  /** Creates a new component instance that immediately removes its own DOM element */
-  constructor() {
-    const el &#x3D; inject(ElementRef).nativeElement as HTMLElement | null;
-    el?.remove();
-  }
-}
-
-/** OnDestroy observables index by their owning scope */
-const scopedSubjects &#x3D; new WeakMap&lt;DestructorScope, Observable&lt;void&gt;&gt;();
-
-/**
- * Tries to find and return an existing observable associated with a scope
- * @param scope Owning scope
- * @returns The observable if found, else undefined
- */
-function findScopedSubject(scope: DestructorScope): Observable&lt;void&gt; | undefined {
-  return scopedSubjects.get(scope);
-}
-
-/**
- * Tries to find an existing observable for the scope
- * If not found a new observable is created and associated with the scope
- * @param scope Owning scope
- * @returns The existing or new observable
- */
-function findOrCreateScopedSubject(scope: DestructorScope): Observable&lt;void&gt; {
-  let result &#x3D; scopedSubjects.get(scope);
-  if (!result) {
-    result &#x3D; new ScopedDestroySubject(scope).asObservable();
-    scopedSubjects.set(scope, result);
-  }
-
-  return result;
-}
-
-/**
- * Tries to find an existing observable associated with a view container by searching all owned views
- * @param ref View container to search
- * @returns An observable if found, else undefined
- */
-function findScopedSubjectInView(ref: ViewContainerRef): Observable&lt;void&gt; | undefined {
-  for (let index &#x3D; 0, length &#x3D; ref.length; index &lt; length; index++) {
-    const result &#x3D; findScopedSubject(ref.get(index) as ViewRef);
-    if (result) {
-      return result;
-    }
-  }
-
-  return undefined;
-}
-
-/**
- * Inject an observable that emits and completes at the same time as the component, directive, pipe, or service
- * it is injected into. It can be used to control the lifetime of other observables using
- * the &#x60;takeUntil&#x60; pipe, and to build other complex injection functions.
- *
- * Caveats:
- * - There are NO guarantees about whether the returned observable will emit and complete
- *   before or after the regular ngOnDestroy lifecycle hook
- * - For root and module level services the observable may never complete unless
- *   the containing module is explicitly destroyed, so don&#x27;t rely on it for important operations
- * - Components, directives, pipe, and services that manipulate the &#x60;ViewContainerRef&#x60; MUST
- *   take care to maintain the view controlling the lifecycle of the observable. Failure
- *   to do so may result in early emit and completion of the returned observable
- *
- * Based on comment on https://github.com/angular/angular/issues/10185
- * Mostly https://github.com/angular/angular/issues/10185#issuecomment-1165545544 and
- * https://github.com/angular/angular/issues/10185#issuecomment-1199063426
- *
- * @returns An observable that emits and completes when the component/directive/etc. is destroyed
- */
-export function injectOnDestroy(): Observable&lt;void&gt; {
-  const ref &#x3D; inject(ViewContainerRef, { optional: true });
-  if (!ref) {
-    return findOrCreateScopedSubject(inject(NgModuleRef));
-  }
-
-  const result &#x3D; findScopedSubjectInView(ref);
-  if (result) {
-    return result;
-  }
-
-  const component &#x3D; ref.createComponent(OnDestroyHostComponent);
-  return findOrCreateScopedSubject(component.hostView);
 }
 </code></pre>
     </div>
@@ -314,7 +231,7 @@ export function injectOnDestroy(): Observable&lt;void&gt; {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'ScopedDestroySubject.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ScopedDestructorSubject.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -54,7 +54,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="components-links"' : 'id="xs-components-links"' }>
                             <li class="link">
-                                <a href="components/OnDestroyHostComponent.html" data-type="entity-link" >OnDestroyHostComponent</a>
+                                <a href="components/DestroyHostComponent.html" data-type="entity-link" >DestroyHostComponent</a>
                             </li>
                         </ul>
                     </li>
@@ -119,7 +119,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/ResourceRegistrySelectors.html" data-type="entity-link" >ResourceRegistrySelectors</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ScopedDestroySubject.html" data-type="entity-link" >ScopedDestroySubject</a>
+                                <a href="classes/ScopedDestructorSubject.html" data-type="entity-link" >ScopedDestructorSubject</a>
                             </li>
                             <li class="link">
                                 <a href="classes/SnapshotObserver.html" data-type="entity-link" >SnapshotObserver</a>
@@ -158,6 +158,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/HoverContext.html" data-type="entity-link" >HoverContext</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SelectOptions.html" data-type="entity-link" >SelectOptions</a>
                             </li>
                         </ul>
                     </li>
