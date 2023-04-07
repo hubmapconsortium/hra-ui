@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { createLinkId, LinkRegistryActions, LinkType } from '@hra-ui/cdk/state';
 import { Shallow } from 'shallow-render';
-import { LinkDirective } from './hra-link.directive';
+import { LinkDirective } from './link.directive';
 
 jest.mock('@hra-ui/cdk/injectors');
 
