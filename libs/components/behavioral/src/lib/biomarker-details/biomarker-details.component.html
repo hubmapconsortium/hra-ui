@@ -19,7 +19,7 @@
   <mat-icon class="icon">info_outlined</mat-icon>
 </hra-label-box>
 <div class="mean-legend-wrapper">
-  <hra-gradient-legend [gradient]="gradient" class="mean-legend"></hra-gradient-legend>
+  <hra-gradient-legend [gradient]="gradientPoints" class="mean-legend"></hra-gradient-legend>
 </div>
 
 <hra-label-box class="size-legend-box">
@@ -34,4 +34,4 @@
   Source Data
   <mat-icon class="end">expand_more</mat-icon>
 </hra-label-box>
-<hra-source-list [sources]="sources" class="source-list"></hra-source-list>
+<hra-source-list [sources]="source()" class="source-list"></hra-source-list>

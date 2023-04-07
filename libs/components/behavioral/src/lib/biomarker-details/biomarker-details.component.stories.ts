@@ -3,14 +3,26 @@ import { BiomarkerDetailsComponent } from './biomarker-details.component';
 import { MatIconModule } from '@angular/material/icon';
 import { DataItem } from '@hra-ui/components/molecules';
 import { DataRow, DataCell } from '@hra-ui/components/organisms';
+import { SourceListActions, SourceListState } from '@hra-ui/state';
+import { ResourceRegistryActions, ResourceRegistryState } from '@hra-ui/cdk/state';
 
-function createDataItem(label: string, value: string): DataItem {
+export function createDataItem(label: string, value: string): DataItem {
   return { label, value };
 }
 
 export default {
   title: 'BiomarkerDetailsComponent',
   component: BiomarkerDetailsComponent,
+  parameters: {
+    state: {
+      states: [ResourceRegistryState, SourceListState],
+      actions: [
+        new ResourceRegistryActions.LoadFromYaml('assets/resources/gradient.yml'),
+        new ResourceRegistryActions.LoadFromYaml('assets/resources/size.yml'),
+        new SourceListActions.Add([{ title: 'foobar', link: 'abc' }]),
+      ],
+    },
+  },
   decorators: [
     moduleMetadata({
       imports: [MatIconModule],
@@ -129,36 +141,6 @@ const tableRows: DataRow<DataCell>[] = [
 export const Primary = Template.bind({});
 Primary.args = {
   data: data,
-  gradient: [
-    { color: '#00385F', percentage: 0 },
-    { color: '#63B1D3', percentage: 49.78 },
-    { color: '#EDFAFD', percentage: 100 },
-  ],
-  sizes: [
-    {
-      label: '0%',
-      radius: 0.5,
-    },
-    {
-      label: '50%',
-      radius: 1,
-    },
-    {
-      label: '100%',
-      radius: 1.5,
-    },
-  ],
-  sources: [
-    {
-      title: 'Owner Title',
-      link: 'google.com',
-    },
-    {
-      title:
-        '[Dataset Owner Title but extremely long and wraps around to the next line as you can see here in this example]',
-      link: 'google.com',
-    },
-  ],
   tabs: [
     {
       label: 'Gene Biomarkers',
