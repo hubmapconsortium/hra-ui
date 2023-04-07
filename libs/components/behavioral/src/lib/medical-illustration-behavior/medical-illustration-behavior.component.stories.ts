@@ -10,6 +10,7 @@ export default {
     state: {
       states: [MedicalIllustrationState],
       actions: [
+        new MedicalIllustrationActions.SetMapping('assets/TEMP/mapping.csv'),
         new MedicalIllustrationActions.SetUri(
           'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.svg'
         ),

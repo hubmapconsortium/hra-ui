@@ -12,16 +12,12 @@ import { MedicalIllustrationActions, MedicalIllustrationSelectors } from '@hra-u
   styleUrls: ['./medical-illustration-behavior.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MedicalIllustrationBehaviorComponent implements OnInit {
-  readonly currentUrl = selectSnapshot(MedicalIllustrationSelectors.getUrl);
+export class MedicalIllustrationBehaviorComponent {
+  readonly currentUrl = selectSnapshot(MedicalIllustrationSelectors.url);
 
-  readonly getMapping = selectSnapshot(MedicalIllustrationSelectors.getMapping);
+  readonly getMapping = selectSnapshot(MedicalIllustrationSelectors.mapping);
 
   readonly updateNode = dispatch(MedicalIllustrationActions.SetActiveNode);
 
   readonly setMapping = dispatch(MedicalIllustrationActions.SetMapping);
-
-  ngOnInit(): void {
-    this.setMapping('assets/TEMP/mapping.csv');
-  }
 }

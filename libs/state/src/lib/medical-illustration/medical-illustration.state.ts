@@ -14,8 +14,8 @@ export type MedicalIllustrationContext = StateContext<MedicalIllustrationModel>;
 @Injectable()
 export class MedicalIllustrationState {
   @Action(SetUri)
-  setUri({ setState }: MedicalIllustrationContext, { url }: SetUri) {
-    setState({ url });
+  setUri({ patchState }: MedicalIllustrationContext, { url }: SetUri) {
+    patchState({ url });
   }
 
   @Action(SetActiveNode)
@@ -23,7 +23,7 @@ export class MedicalIllustrationState {
     patchState({ node });
   }
 
-  @Action(SetMapping)
+  @Action(SetMapping, { cancelUncompleted: true })
   setMapping({ patchState }: MedicalIllustrationContext, { url }: SetMapping): void {
     parse(url, {
       download: true,

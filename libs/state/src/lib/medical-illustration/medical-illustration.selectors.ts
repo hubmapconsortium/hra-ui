@@ -5,12 +5,12 @@ import { MedicalIllustrationState } from './medical-illustration.state';
 
 export class MedicalIllustrationSelectors {
   @Selector([MedicalIllustrationState])
-  static getUrl(state: MedicalIllustrationModel): string | undefined {
+  static url(state: MedicalIllustrationModel): string | undefined {
     return state.url;
   }
 
   @Selector([MedicalIllustrationState])
-  static getMapping(state: MedicalIllustrationModel): Record<string, string>[] | undefined {
+  static mapping(state: MedicalIllustrationModel): Record<string, string>[] | undefined {
     return state.mapping;
   }
 }
