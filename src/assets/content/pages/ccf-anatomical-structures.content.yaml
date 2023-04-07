@@ -5,11 +5,11 @@ headerCardDetails:
 
 overviewData:
 - heading: Overview
-  descriptions: Anatomical Structures, Cell Types, plus Biomarkers (ASCT+B) tables aim to capture the nested part_of structure of anatomical human body parts, the typology of cells, and biomarkers used to identify cell types (e.g., gene, protein, lipid or metabolic markers). The tables are authored and reviewed by an international team of anatomists, pathologists, physicians, and other experts.
+  descriptions: Anatomical Structures, Cell Types, plus Biomarkers (ASCT+B) tables aim to capture the nested <i>part_of</i> structure of anatomical human body parts, the typology of cells, and biomarkers used to identify cell types (e.g., gene, protein, lipid or metabolic markers). The tables are authored and reviewed by an international team of anatomists, pathologists, physicians, and other experts.
 
 existingTablesData:
 - heading: Existing Tables
-  descriptions: The below table lists for each organ the number of anatomical structures (#AS), the number of cell types (#CT), the number of biomarkers (#B), the number of part_of relationships between AS, the number of located_in links between CT and AS, and the number of CT and B, i.e., which B characterize a CT.
+  descriptions: The below table lists for each organ the number of anatomical structures (#AS), the number of cell types (#CT), the number of biomarkers (#B), the number of <i>part_of</i> relationships between AS, the number of located_in links between CT and AS, and the number of CT and B, i.e., which B characterize a CT.
 
 versionData:
 - release: 4th HRA Release (v1.3), December 2022

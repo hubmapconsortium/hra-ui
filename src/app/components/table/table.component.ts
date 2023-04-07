@@ -44,9 +44,10 @@ export class TableComponent {
   }
 
   getTotal(id: string) {
-    return this.dataSource.data
-      .filter(entry => typeof entry[id] === 'number')
-      .reduce((acc, entry) => acc + (entry[id] as number), 0);
+    const sum = this.dataSource.data
+    .filter(entry => typeof entry[id] === 'number')
+    .reduce((acc, entry) => acc + (entry[id] as number), 0);
+    return sum.toLocaleString();
   }
 
   isNumericColumn(column: string): boolean {

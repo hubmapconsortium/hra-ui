@@ -66,8 +66,14 @@
 
   .mat-icon {
     height: 1.313rem;
-    padding-left: 10.5px;
+    // padding-left: 10.5px;
   }
+
+  // @media (max-width: 48rem) {
+  //   .mat-icon {
+  //     padding-right: 1rem;
+  //   }
+  // }
 
   @media (max-width: 26.75rem) {
     .body {
@@ -80,14 +86,6 @@
       width: 80px;
       min-width: 80px;
       background-color: #444c65;
-    }
-
-    .nav-card-title {
-      flex-wrap: wrap;
-    }
-
-    .mat-icon {
-      padding: 0;
     }
   }
 
