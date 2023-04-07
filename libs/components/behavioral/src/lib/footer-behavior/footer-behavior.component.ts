@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { selectQuerySnapshot } from '@hra-ui/cdk/injectors';
+import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
-import { DownloadFormat, FooterComponent } from '@hra-ui/components/molecules';
-import { LinkIds, ResourceIds as Ids } from '@hra-ui/state';
+import { FooterComponent } from '@hra-ui/components/molecules';
+import { LinkIds, ResourceIds as Ids, DownloadActions, DownloadFormat } from '@hra-ui/state';
 
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
@@ -36,14 +36,17 @@ export class FooterBehaviorComponent {
   /** A dialog box which shows contact modal after clicking on contact */
   private readonly dialog = inject(MatDialog);
 
-  /** Different download formats options displayed to the user */
-  readonly downloadFormats = [
-    { label: 'Download XLXS' },
-    { label: 'Download JSON-LD' },
-    { label: 'Download PDF' },
-    { label: 'Download AI' },
-    { label: 'Download PNG' },
-  ];
+  /** A dispatcher function to download file in specified format */
+  readonly download = dispatch(DownloadActions.Download);
+
+  // /** Different download formats options displayed to the user */
+  // readonly downloadFormats = [
+  //   { label: 'Download XLXS' },
+  //   { label: 'Download JSON-LD' },
+  //   { label: 'Download PDF' },
+  //   { label: 'Download AI' },
+  //   { label: 'Download PNG' },
+  // ];
 
   /** A function which opens the contact modal dialog box */
   contact(): void {
@@ -51,7 +54,8 @@ export class FooterBehaviorComponent {
   }
 
   /** A function which opens download list popup */
-  downLoadClicked(event: DownloadFormat) {
-    console.log('Method not implemented.' + event);
+  downLoadClicked(format: DownloadFormat) {
+    // console.log('Method not implemented.' + event);
+    this.download(format);
   }
 }

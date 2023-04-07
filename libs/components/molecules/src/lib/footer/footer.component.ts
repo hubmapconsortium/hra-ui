@@ -6,6 +6,7 @@ import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import { MatListModule } from '@angular/material/list';
 import { LinkDirective } from '@hra-ui/cdk';
 import { EMPTY_LINK } from '@hra-ui/cdk/state';
+// import { DownloadFormat } from '@hra-ui/state';
 /**
  * Base type for different download format options.
  */
