@@ -73,21 +73,22 @@
   .toc-list {
     border: #e0e0e0 2px solid;
     padding-top: unset;
-    position: fixed;
+    position: static;
     list-style: none;
     margin: unset;
     padding: unset;
     border-radius: 4px;
 
     li {
-      padding-left: 1rem;
-      padding-right: 1rem;
+      display: flex;
+      align-items: center;
+      padding: 0rem 1rem;
       font-weight: 500;
       font-size: 1rem;
       line-height: 2.25rem;
       border-bottom: #e0e0e0 1px solid;
       color: #0a6ebd;
-      max-height: 37px;
+      height: 3rem;
 
       &:hover {
         background-color: #f5f5f5;
@@ -95,6 +96,11 @@
         cursor: pointer;
       }
     }
+  }
+
+  .scrolled {
+    position: fixed;
+    top: 4rem;
   }
 
   div::before {

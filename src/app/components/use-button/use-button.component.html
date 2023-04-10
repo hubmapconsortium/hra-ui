@@ -1,5 +1,4 @@
 <a *ngIf="buttonData.url; else: route" mat-raised-button href={{buttonData.url}} target="_blank">{{buttonData.text}}</a>
 <ng-template #route>
-    <a mat-raised-button [routerLink]="['',buttonData.route]"
-        style="padding-bottom: unset !important;">{{buttonData.text}}</a>
+    <a mat-raised-button [routerLink]="['',buttonData.route]">{{buttonData.text}}</a>
 </ng-template>

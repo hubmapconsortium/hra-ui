@@ -14,8 +14,9 @@
     </div>
     <div class="body">
       <div class="nav-card-title">
-        {{ longButton.title }}
-        <mat-icon *ngIf="isExternal">open_in_new</mat-icon>
+        <span>{{ longButton.title }}
+          <mat-icon *ngIf="isExternal" class="external-icon">open_in_new</mat-icon>
+        </span>
       </div>
       <div class="nav-card-description">
         {{longButton.body}}

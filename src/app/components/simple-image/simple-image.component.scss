@@ -54,6 +54,10 @@
     .description {
       padding: 1rem;
     }
+
+    .mat-card-actions {
+      pointer-events: none;
+    }
   }
 }
 

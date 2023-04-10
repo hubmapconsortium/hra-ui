@@ -1,6 +1,6 @@
 import { ConnectedPosition } from '@angular/cdk/overlay';
 import { ViewportScroller } from '@angular/common';
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ContactCard } from 'src/app/components/contact-card/contact-card';
@@ -14,7 +14,7 @@ import { UseButton } from 'src/app/components/use-button/use-button';
   templateUrl: './fourth-release-notes.component.html',
   styleUrls: ['./fourth-release-notes.component.scss']
 })
-export class FourthReleaseNotesComponent implements AfterViewInit, OnDestroy {
+export class FourthReleaseNotesComponent implements AfterViewInit, OnDestroy, OnInit {
   private subscriptions = new Subscription();
 
   headerData: PageHeaderItems[];
@@ -44,6 +44,7 @@ export class FourthReleaseNotesComponent implements AfterViewInit, OnDestroy {
   hourEventPageButton: UseButton;
   hraReleaseCalendar: PageDataItems[];
   icon = "list";
+  scrolled: boolean = false;
 
   navigationItems: NavItems[] = [
     { menuName: "Introduction", id: "intro" },
@@ -62,25 +63,7 @@ export class FourthReleaseNotesComponent implements AfterViewInit, OnDestroy {
     { menuName: 'Outro', id: "outro" }
   ];
 
-  mobileNavigationItems: NavItems[]=[{ menuName: "Table of Contents", id: "'" }, ...this.navigationItems]
-
-  // mobileNavigationItems: NavItems[] = [
-  //   { menuName: "Table of Contents", id: "'" },
-  //   { menuName: "Introduction", id: "intro" },
-  //   { menuName: `What's New`, id: "whats-new" },
-  //   { menuName: 'HRA 24 Hour Event', id: "24-hr-event" },
-  //   { menuName: 'HRA Release Calendar', id: "hra-release-calendar" },
-  //   { menuName: 'ASCT+B Tables', id: "asctb-tables" },
-  //   { menuName: 'ASCT+B Reporter', id: "asctb-reporter" },
-  //   { menuName: 'ASCT+B Ontology Validations', id: "asctb-ontology-validations" },
-  //   { menuName: '3D Reference Objects', id: '3d-reference-objects' },
-  //   { menuName: 'Exploration User Interface', id: "exploration-user-interface" },
-  //   { menuName: 'Registration User Interface', id: 'registration-user-interface' },
-  //   { menuName: 'VR Organ Gallery', id: "vr-organ-gallery" },
-  //   { menuName: 'Previews', id: 'previews' },
-  //   { menuName: 'Contact Us', id: "contact-us" },
-  //   { menuName: 'Outro', id: "outro" }
-  // ];
+  mobileNavigationItems: NavItems[] = [{ menuName: "Table of Contents", id: "'" }, ...this.navigationItems]
 
   readonly TableOfContentsPosition: ConnectedPosition[] = [
     {
@@ -127,6 +110,17 @@ export class FourthReleaseNotesComponent implements AfterViewInit, OnDestroy {
         this.scroller.scrollToAnchor(anchor);
       }
     }));
+  }
+
+  ngOnInit(): void {
+    window.addEventListener('scroll', () => {
+      const scrollPosition = window.pageYOffset;
+      if (scrollPosition > 220) {
+        this.scrolled = true;
+      } else {
+        this.scrolled = false;
+      }
+    });
   }
 
   ngAfterViewInit(): void {

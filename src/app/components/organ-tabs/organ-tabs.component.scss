@@ -103,4 +103,10 @@
       display: none;
     }
   }
+
+  @media (max-width: 26.75rem) {
+    .organ-select {
+      max-width: unset;
+    }
+  }
 }
