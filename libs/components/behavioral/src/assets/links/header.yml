@@ -1,0 +1,8 @@
+ProductTitle:
+  type: external
+  url: 'https://www.example.com'
+
+About:
+  type: external
+  url: 'https://www.example.com'
+
