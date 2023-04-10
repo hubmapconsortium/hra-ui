@@ -1,2 +1,2 @@
-<hra-interactive-svg [url]="currentUrl()" [mapping]="getMapping() || []" (nodeHover)="updateNode($event)">
+<hra-interactive-svg [url]="currentUrl()" [mapping]="getMapping() ?? []" (nodeHover)="updateNode($event)">
 </hra-interactive-svg>

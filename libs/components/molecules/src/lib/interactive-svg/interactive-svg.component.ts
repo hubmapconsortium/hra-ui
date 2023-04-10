@@ -142,7 +142,6 @@ export class InteractiveSvgComponent implements OnDestroy {
    */
   private onCrosswalkHover(event: MouseEvent): void {
     const id = this.getId(event);
-
     const mapEntry = this.mapping?.find((item) => item['node_name'] === id); //search mapping data for node entry
     if (mapEntry) {
       this.nodeHoverData$.next({
@@ -173,12 +172,13 @@ export class InteractiveSvgComponent implements OnDestroy {
   private getId(event: Event): string {
     const parent = (event.target as Element).parentElement;
     const grandparent = parent ? parent.parentElement : null;
-    let id = '';
-
-    if (parent) {
-      id = parent.id;
-    } else {
-      id = grandparent ? grandparent.id : '';
+    let id = (event.target as Element).id;
+    if (!id) {
+      if (parent) {
+        id = parent.id;
+      } else {
+        id = grandparent ? grandparent.id : '';
+      }
     }
     return this.decodeId(id);
   }

@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
-import { parse, ParseResult } from 'papaparse';
+import { parse } from 'papaparse';
+import { map, Observable } from 'rxjs';
 
 import { SetActiveNode, SetMapping, SetUri } from './medical-illustration.actions';
 import { MedicalIllustrationModel } from './medical-illustration.model';
@@ -13,9 +15,11 @@ export type MedicalIllustrationContext = StateContext<MedicalIllustrationModel>;
 })
 @Injectable()
 export class MedicalIllustrationState {
+  private readonly http = inject(HttpClient);
+
   @Action(SetUri)
-  setUri({ patchState }: MedicalIllustrationContext, { url }: SetUri) {
-    patchState({ url });
+  setUri({ setState }: MedicalIllustrationContext, { url }: SetUri) {
+    setState({ url: url, node: undefined });
   }
 
   @Action(SetActiveNode)
@@ -24,15 +28,12 @@ export class MedicalIllustrationState {
   }
 
   @Action(SetMapping, { cancelUncompleted: true })
-  setMapping({ patchState }: MedicalIllustrationContext, { url }: SetMapping): void {
-    parse(url, {
-      download: true,
-      header: true,
-      dynamicTyping: true,
-      skipEmptyLines: true,
-      complete: (results: ParseResult<Record<string, string>>) => {
-        patchState({ mapping: results.data });
-      },
-    });
+  setMapping({ patchState }: MedicalIllustrationContext, { url }: SetMapping): Observable<void> {
+    return this.http.get(url, { responseType: 'text' }).pipe(
+      map((result) => {
+        const parsedResult = parse(result, { header: true }).data as Record<string, string>[];
+        patchState({ mapping: parsedResult });
+      })
+    );
   }
 }

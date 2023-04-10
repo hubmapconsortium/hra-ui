@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { InteractiveSvgComponent } from '@hra-ui/components/molecules';
 import { MedicalIllustrationActions, MedicalIllustrationSelectors } from '@hra-ui/state';
@@ -18,6 +18,4 @@ export class MedicalIllustrationBehaviorComponent {
   readonly getMapping = selectSnapshot(MedicalIllustrationSelectors.mapping);
 
   readonly updateNode = dispatch(MedicalIllustrationActions.SetActiveNode);
-
-  readonly setMapping = dispatch(MedicalIllustrationActions.SetMapping);
 }
