@@ -93,6 +93,7 @@ export class CellSummaryState {
     return [Object.values(rows), columns];
   }
 
+  /** Converts a hex string to RGB values. */
   private hexToRgb(hex: string) {
     const hexValue = hex.toUpperCase().replace('#', '');
     const r = parseInt(hexValue.substring(0, 2), 16);
@@ -101,6 +102,7 @@ export class CellSummaryState {
     return [r, g, b];
   }
 
+  /** Converts RGB values to a hex string. */
   private rgbToHex(rgb: number[]) {
     const r = Math.round(rgb[0]).toString(16).padStart(2, '0');
     const g = Math.round(rgb[1]).toString(16).padStart(2, '0');
@@ -108,6 +110,7 @@ export class CellSummaryState {
     return `#${r}${g}${b}`.toUpperCase();
   }
 
+  /** Calculates the interpolated color value at the given percentage between two points in a color gradient. */
   interpolateColor(points: GradientPoint[], percentage: number): string {
     const index = points.findIndex((point) => point.percentage >= percentage);
     const lowPoint = points[index - 1];
