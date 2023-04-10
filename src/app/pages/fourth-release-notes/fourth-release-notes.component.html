@@ -3,7 +3,7 @@
 <ccf-page-header [headerCard]="headerData" class="page-header"></ccf-page-header>
 <mat-drawer-container class="example-container" [autosize]="true">
   <mat-drawer mode="side" opened>
-    <ul class="toc-list">
+    <ul class="toc-list" [ngClass]="{'scrolled': scrolled}">
       <li *ngFor="let items of navigationItems" [value]="items" (click)="scrollTo(items.id || '')">
         {{ items.menuName }}
       </li>
