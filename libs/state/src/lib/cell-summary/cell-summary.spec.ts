@@ -1,7 +1,7 @@
 import { StateContext } from '@ngxs/store';
 import { mock } from 'jest-mock-extended';
 import { ComputeAggregate, SetData } from './cell-summary.actions';
-import { AggregateRowEntry, Cell, CellSummaryStateModel } from './cell-summary.model';
+import { AggregateRowEntry, Cell, CellSummaryStateModel, GradientPoint } from './cell-summary.model';
 import { CellSummaryState } from './cell-summary.state';
 
 describe('CellSummaryState', () => {
@@ -86,5 +86,20 @@ describe('CellSummaryState', () => {
 
     state.computeAggregate(ctx, new ComputeAggregate(summaries));
     expect(ctx.patchState).toHaveBeenCalledWith({ aggregate: expectedAggregate });
+  });
+
+  it('should interpolate and get the color using the percentage', () => {
+    const points: GradientPoint[] = [
+      { color: '#edfafd', percentage: 0 },
+      { color: '#d5e7ee', percentage: 0.1 },
+      { color: '#a7bfcd', percentage: 0.3 },
+      { color: '#47718e', percentage: 0.7 },
+      { color: '#00385f', percentage: 1 },
+    ];
+
+    const expected = '#9BB5C5';
+
+    const received = state.interpolateColor(points, 0.35);
+    expect(received).toBe(expected);
   });
 });
