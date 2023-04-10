@@ -108,7 +108,7 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
    */
   ngOnChanges(changes: SimpleChanges): void {
     if ('nodes' in changes) {
-      this.dataSource.data = Object.values(this.nodes);
+      this.dataSource.data = this.findRootNodes();
     }
   }
 
@@ -129,5 +129,21 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
   selectNode(node: InternalNode<T>): void {
     this.selected = this.selected === node.data ? undefined : node.data;
     this.selectedChange.emit(this.selected);
+  }
+
+  private findRootNodes(): T[] {
+    const nodes = { ...this.nodes };
+    for (const key in nodes) {
+      for (const child of nodes[key].children ?? []) {
+        delete nodes[child];
+      }
+    }
+
+    return Object.values(nodes);
+  }
+
+  changeStyle(): void {
+    const div = document.getElementById('tree-class') as HTMLDivElement; // type assertion to HTMLDivElement
+    div.style.backgroundColor = 'blue';
   }
 }
