@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
 import { ComputeAggregate } from './cell-summary.actions';
-import { Aggregate, AggregateRow, CellSummary, CellSummaryStateModel } from './cell-summary.model';
+import { Aggregate, AggregateRow, CellSummary, CellSummaryStateModel, GradientPoint } from './cell-summary.model';
 
 /** State handling cell summary data */
 @State<CellSummaryStateModel>({
@@ -17,7 +17,7 @@ export class CellSummaryState {
    * computes aggregate data and stores in the current state
    */
   @Action(ComputeAggregate)
-  computeAggregate(ctx: StateContext<CellSummaryStateModel>, action: ComputeAggregate) {
+  computeAggregate(ctx: StateContext<CellSummaryStateModel>, action: ComputeAggregate): void {
     const summaries = action.summaries;
     const aggregateData: Aggregate = {};
 
@@ -43,7 +43,7 @@ export class CellSummaryState {
 
   /** Gets a count of the number of occurrences of each unique cellId in an array of entries,
    * and returns an object mapping each cellId to its corresponding count. */
-  private getCellCountMap(entries: CellSummary[string]['entries']) {
+  private getCellCountMap(entries: CellSummary[string]['entries']): { [key: string]: number } {
     return entries.reduce<Record<string, number>>((res, { cell: { id }, count }) => {
       res[id] = res[id] ? res[id] + count : count;
       return res;
@@ -51,7 +51,7 @@ export class CellSummaryState {
   }
 
   /** Returns an array of rows and columns based on an array of entries */
-  getRowsAndColumns(
+  private getRowsAndColumns(
     entries: CellSummary[string]['entries'],
     counts: { [key: string]: number }
   ): [rows: AggregateRow[], columns: string[]] {
@@ -91,5 +91,37 @@ export class CellSummaryState {
     }
 
     return [Object.values(rows), columns];
+  }
+
+  private hexToRgb(hex: string) {
+    const hexValue = hex.toUpperCase().replace('#', '');
+    const r = parseInt(hexValue.substring(0, 2), 16);
+    const g = parseInt(hexValue.substring(2, 4), 16);
+    const b = parseInt(hexValue.substring(4, 6), 16);
+    return [r, g, b];
+  }
+
+  private rgbToHex(rgb: number[]) {
+    const r = Math.round(rgb[0]).toString(16).padStart(2, '0');
+    const g = Math.round(rgb[1]).toString(16).padStart(2, '0');
+    const b = Math.round(rgb[2]).toString(16).padStart(2, '0');
+    return `#${r}${g}${b}`.toUpperCase();
+  }
+
+  interpolateColor(points: GradientPoint[], percentage: number): string {
+    const index = points.findIndex((point) => point.percentage >= percentage);
+    const lowPoint = points[index - 1];
+    const highPoint = points[index];
+    const diff = highPoint.percentage - lowPoint.percentage;
+    const finalPercentage = (percentage - lowPoint.percentage) / diff;
+
+    const rgb1 = this.hexToRgb(lowPoint.color);
+    const rgb2 = this.hexToRgb(highPoint.color);
+
+    const r = Math.round(rgb1[0] + (rgb2[0] - rgb1[0]) * finalPercentage);
+    const g = Math.round(rgb1[1] + (rgb2[1] - rgb1[1]) * finalPercentage);
+    const b = Math.round(rgb1[2] + (rgb2[2] - rgb1[2]) * finalPercentage);
+
+    return this.rgbToHex([r, g, b]);
   }
 }
