@@ -1,5 +1,6 @@
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { TissueTreeListComponent } from './tissue-tree-list.component';
+import { DataNode } from './tissue-tree-list.component';
 
 export default {
   title: 'TissueTreeListComponent',
@@ -9,30 +10,56 @@ export default {
       imports: [],
     }),
   ],
-} as Meta<TissueTreeListComponent>;
+} as Meta<TissueTreeListComponent<DataNode>>;
 
-const Template: Story<TissueTreeListComponent> = (args: TissueTreeListComponent) => ({
+const Template: Story<TissueTreeListComponent<DataNode>> = (args: TissueTreeListComponent<DataNode>) => ({
   props: args,
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
-  tissueTree: [
-    {
+  nodes: {
+    id1: {
       label: 'Kidney',
-      tissues: [
-        { label: 'Ascending thin limb' },
-        { label: 'Cortical collecting duct' },
-        { label: 'Collecting duct(inner medulla)' },
-      ],
+      children: ['id2', 'id3'],
     },
-    {
+    id2: {
+      label: 'Ascending thin limb',
+    },
+    id3: {
+      label: 'Cortical collecting duct',
+    },
+    id4: {
       label: 'Large Intestine',
-      tissues: [{ label: 'Crypt of Lieberkuhn' }],
+      children: ['id5'],
     },
-    {
+    id5: {
+      label: 'Crypt of Lieberkuhn',
+    },
+    id6: {
       label: 'Liver',
-      tissues: [{ label: 'Liver lobule' }],
+      children: ['id7'],
     },
-  ],
+    id7: {
+      label: 'Liver lobule',
+    },
+  },
+  // tissueTree: [
+  //   {
+  //     label: 'Kidney',
+  //     tissues: [
+  //       { label: 'Ascending thin limb' },
+  //       { label: 'Cortical collecting duct' },
+  //       { label: 'Collecting duct(inner medulla)' },
+  //     ],
+  //   },
+  //   {
+  //     label: 'Large Intestine',
+  //     tissues: [{ label: 'Crypt of Lieberkuhn' }],
+  //   },
+  //   {
+  //     label: 'Liver',
+  //     tissues: [{ label: 'Liver lobule' }],
+  //   },
+  // ],
 };
