@@ -1,9 +1,14 @@
 import { z } from 'zod';
 
+/** Type representing a single cell value */
 export type Cell = z.infer<typeof CELL_SCHEMA>;
+/** Type representing CELL_SUMMARY_SCHEMA which has labels and entries */
 export type CellSummary = z.infer<typeof CELL_SUMMARY_SCHEMA>;
+/** Type representing an aggregate summary of cell values in a group */
 export type Aggregate = z.infer<typeof CELL_SUMMARY_AGGREGATE_SCHEMA>;
+/** Type representing a row in an aggregate summary */
 export type AggregateRow = Aggregate[string]['rows'][number];
+/** Type representing a single entry in a row with cell, biomarker, count and percentage */
 export type AggregateRowEntry = AggregateRow[2];
 
 /**
@@ -67,3 +72,11 @@ export const CELL_SUMMARY_AGGREGATE_SCHEMA = z.record(
       .array(),
   })
 );
+
+/** An interface of gradient colors along with their percentages for the gradient bar. */
+export interface GradientPoint {
+  /** Gradient color at a specific percentage */
+  color: string;
+  /** Percentage point along the gradient bar */
+  percentage: number;
+}
