@@ -5,7 +5,7 @@ import { parse } from 'papaparse';
 import { map, Observable } from 'rxjs';
 
 import { SetActiveNode, SetMapping, SetUri } from './medical-illustration.actions';
-import { MedicalIllustrationModel } from './medical-illustration.model';
+import { MedicalIllustrationModel, MapEntry } from './medical-illustration.model';
 
 export type MedicalIllustrationContext = StateContext<MedicalIllustrationModel>;
 
@@ -31,7 +31,7 @@ export class MedicalIllustrationState {
   setMapping({ patchState }: MedicalIllustrationContext, { url }: SetMapping): Observable<void> {
     return this.http.get(url, { responseType: 'text' }).pipe(
       map((result) => {
-        const parsedResult = parse(result, { header: true }).data as Record<string, string>[];
+        const parsedResult = parse(result, { header: true }).data as MapEntry[];
         patchState({ mapping: parsedResult });
       })
     );
