@@ -1,8 +1,10 @@
-import { UnionMember } from '@hra-ui/utils/types';
 import { Selector } from '@ngxs/store';
 import {
-  BuiltinResourceEntry,
-  CustomResourceEntry,
+  BuiltinResourceType,
+  createCustomResourceType,
+  getEntry,
+  isBuiltinType,
+  isCustomType,
   ResourceEntry,
   ResourceId,
   ResourceRegistryModel,
@@ -10,13 +12,28 @@ import {
 } from './resource-registry.model';
 import { ResourceRegistryState } from './resource-registry.state';
 
-/** Query function for resource entry optionally with type specified */
-export interface ResourceRegistryQuery {
-  /** Get a resource entry with builtin type */
-  <T extends ResourceType>(id: ResourceId, type: T): UnionMember<BuiltinResourceEntry, 'type', T> | undefined;
-  /** Get a resource entry of any type */
-  (id: ResourceId, type?: string): CustomResourceEntry | undefined;
-}
+/**
+ * Query function returned by {@link ResourceRegistrySelectors.query}
+ * @deprecated Use selectors with improved type inference instead
+ */
+export type ResourceRegistryQuery = (id: ResourceId, type?: string) => ResourceEntry | undefined;
+
+/** Query function returned by {@link ResourceRegistrySelectors.entry} */
+export type ResourceRegistryEntryQuery = <T extends ResourceEntry>(
+  id: ResourceId,
+  type: ResourceType<T>
+) => T | undefined;
+
+/** Query function returned by {@link ResourceRegistrySelectors.anyEntry} */
+export type ResourceRegistryAnyEntryQuery = (id: ResourceId) => ResourceEntry | undefined;
+
+/** Query function returned by {@link ResourceRegistrySelectors.field} */
+export type ResourceRegistryFieldQuery = <T extends ResourceEntry, K extends keyof T, D = undefined>(
+  id: ResourceId,
+  type: ResourceType<T>,
+  field: K,
+  defaultValue?: D
+) => T[K] | D;
 
 /** Query function for resource data */
 export type ResourceRegistryDataQuery<T> = (id: ResourceId) => T | undefined;
@@ -25,14 +42,35 @@ export type ResourceRegistryDataQuery<T> = (id: ResourceId) => T | undefined;
 export class ResourceRegistrySelectors {
   /**
    * Queries for a resource entry
+   * @deprecated Replaced by selectors with better type inference,
+   * see {@link ResourceRegistrySelectors.entry} and {@link ResourceRegistrySelectors.anyEntry}
    * @param state Current state
    * @returns Resource query function
    */
   @Selector([ResourceRegistryState])
   static query(state: ResourceRegistryModel): ResourceRegistryQuery {
-    return (id: ResourceId, type?: ResourceType | string) => {
-      const entry = ResourceRegistrySelectors.getEntry(state, id, type);
-      return entry as BuiltinResourceEntry;
+    return (id, type?) => {
+      const isWrappedType = type === undefined || isBuiltinType(type) || isCustomType(type);
+      const wrappedType = isWrappedType ? type : createCustomResourceType(type);
+      return getEntry(state, id, wrappedType as never);
+    };
+  }
+
+  @Selector([ResourceRegistryState])
+  static entry(state: ResourceRegistryModel): ResourceRegistryEntryQuery {
+    return (id, type) => getEntry(state, id, type);
+  }
+
+  @Selector([ResourceRegistryState])
+  static anyEntry(state: ResourceRegistryModel): ResourceRegistryAnyEntryQuery {
+    return (id) => getEntry(state, id);
+  }
+
+  @Selector([ResourceRegistryState])
+  static field(state: ResourceRegistryModel): ResourceRegistryFieldQuery {
+    return (id, type, field, defaultValue?) => {
+      const entry = getEntry(state, id, type);
+      return entry?.[field] ?? (defaultValue as never);
     };
   }
 
@@ -44,13 +82,13 @@ export class ResourceRegistrySelectors {
   @Selector([ResourceRegistryState])
   static anyText(state: ResourceRegistryModel): ResourceRegistryDataQuery<string> {
     return (id) => {
-      const entry = ResourceRegistrySelectors.getEntry(state, id);
+      const entry = getEntry(state, id);
       switch (entry?.type) {
-        case ResourceType.Markdown:
-          return entry.markdown as string;
+        case BuiltinResourceType.Markdown:
+          return entry.markdown;
 
-        case ResourceType.Text:
-          return entry.text as string;
+        case BuiltinResourceType.Text:
+          return entry.text;
 
         default:
           return undefined;
@@ -63,9 +101,9 @@ export class ResourceRegistrySelectors {
    * @param state Current state
    * @returns Markdown data query function
    */
-  @Selector([ResourceRegistryState])
-  static markdown(state: ResourceRegistryModel): ResourceRegistryDataQuery<string> {
-    return (id) => ResourceRegistrySelectors.getEntry(state, id, ResourceType.Markdown)?.markdown;
+  @Selector([ResourceRegistrySelectors.field])
+  static markdown(getField: ResourceRegistryFieldQuery): ResourceRegistryDataQuery<string> {
+    return (id) => getField(id, BuiltinResourceType.Markdown, 'markdown');
   }
 
   /**
@@ -73,9 +111,9 @@ export class ResourceRegistrySelectors {
    * @param state Current state
    * @returns Text data query function
    */
-  @Selector([ResourceRegistryState])
-  static text(state: ResourceRegistryModel): ResourceRegistryDataQuery<string> {
-    return (id) => ResourceRegistrySelectors.getEntry(state, id, ResourceType.Text)?.text;
+  @Selector([ResourceRegistrySelectors.field])
+  static text(getField: ResourceRegistryFieldQuery): ResourceRegistryDataQuery<string> {
+    return (id) => getField(id, BuiltinResourceType.Text, 'text');
   }
 
   /**
@@ -83,25 +121,8 @@ export class ResourceRegistrySelectors {
    * @param state Current state
    * @returns Url query function
    */
-  @Selector([ResourceRegistryState])
-  static url(state: ResourceRegistryModel): ResourceRegistryDataQuery<string> {
-    return (id) => ResourceRegistrySelectors.getEntry(state, id, ResourceType.Url)?.url;
-  }
-
-  /**
-   * Gets a resource entry by id and optionally type
-   * @param state Resource registry state
-   * @param id Entry id
-   * @param type Optional entry type
-   * @returns The entry if found, undefined otherwise
-   */
-  private static getEntry<T extends ResourceType | string>(
-    state: ResourceRegistryModel,
-    id: ResourceId,
-    type?: T
-  ): UnionMember<ResourceEntry, 'type', T> | undefined {
-    const entry = state[id] as UnionMember<ResourceEntry, 'type', T>;
-    const typeMatches = type === undefined || entry?.type === type;
-    return typeMatches ? entry : undefined;
+  @Selector([ResourceRegistrySelectors.field])
+  static url(getField: ResourceRegistryFieldQuery): ResourceRegistryDataQuery<string> {
+    return (id) => getField(id, BuiltinResourceType.Url, 'url');
   }
 }

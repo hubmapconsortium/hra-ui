@@ -1,7 +1,18 @@
 export * as ResourceRegistryActions from './resource-registry.actions';
-export { createResourceId, ResourceEntry, ResourceId, ResourceType } from './resource-registry.model';
 export {
+  createCustomResourceType,
+  createResourceId,
+  isBuiltinType,
+  isCustomType,
+  ResourceEntry,
+  ResourceId,
+  ResourceType,
+} from './resource-registry.model';
+export {
+  ResourceRegistryAnyEntryQuery,
   ResourceRegistryDataQuery,
+  ResourceRegistryEntryQuery,
+  ResourceRegistryFieldQuery,
   ResourceRegistryQuery,
   ResourceRegistrySelectors,
 } from './resource-registry.selectors';
