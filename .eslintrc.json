@@ -1,19 +1,10 @@
 {
   "root": true,
-  "ignorePatterns": [
-    "**/*"
-  ],
-  "plugins": [
-    "@nrwl/nx"
-  ],
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nrwl/nx"],
   "overrides": [
     {
-      "files": [
-        "*.ts",
-        "*.tsx",
-        "*.js",
-        "*.jsx"
-      ],
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
         "@nrwl/nx/enforce-module-boundaries": [
           "error",
@@ -23,75 +14,39 @@
             "depConstraints": [
               {
                 "sourceTag": "app",
-                "onlyDependOnLibsWithTags": [
-                  "*"
-                ]
+                "onlyDependOnLibsWithTags": ["*"]
               },
               {
                 "sourceTag": "atoms",
-                "onlyDependOnLibsWithTags": [
-                  "cdk",
-                  "utils"
-                ]
+                "onlyDependOnLibsWithTags": ["cdk", "utils"]
               },
               {
                 "sourceTag": "molecules",
-                "onlyDependOnLibsWithTags": [
-                  "cdk",
-                  "utils",
-                  "atoms"
-                ]
+                "onlyDependOnLibsWithTags": ["cdk", "utils", "atoms"]
               },
               {
                 "sourceTag": "organisms",
-                "onlyDependOnLibsWithTags": [
-                  "cdk",
-                  "utils",
-                  "atoms",
-                  "molecules"
-                ]
+                "onlyDependOnLibsWithTags": ["cdk", "utils", "atoms", "molecules"]
               },
               {
                 "sourceTag": "behavioral",
-                "onlyDependOnLibsWithTags": [
-                  "cdk",
-                  "utils",
-                  "shared",
-                  "components",
-                  "state",
-                  "services"
-                ]
+                "onlyDependOnLibsWithTags": ["cdk", "utils", "shared", "components", "state", "services"]
               },
               {
                 "sourceTag": "state",
-                "onlyDependOnLibsWithTags": [
-                  "cdk",
-                  "utils",
-                  "shared",
-                  "services"
-                ]
+                "onlyDependOnLibsWithTags": ["cdk", "utils", "shared", "services"]
               },
               {
                 "sourceTag": "services",
-                "onlyDependOnLibsWithTags": [
-                  "cdk",
-                  "utils",
-                  "shared"
-                ]
+                "onlyDependOnLibsWithTags": ["cdk", "utils", "shared"]
               },
               {
                 "sourceTag": "cdk",
-                "onlyDependOnLibsWithTags": [
-                  "utils",
-                  "shared"
-                ]
+                "onlyDependOnLibsWithTags": ["utils", "shared"]
               },
               {
                 "sourceTag": "shared",
-                "onlyDependOnLibsWithTags": [
-                  "utils",
-                  "shared"
-                ]
+                "onlyDependOnLibsWithTags": ["utils", "shared"]
               }
             ]
           }
@@ -99,40 +54,22 @@
       }
     },
     {
-      "files": [
-        "*.ts",
-        "*.tsx"
-      ],
-      "extends": [
-        "plugin:@nrwl/nx/typescript"
-      ],
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nrwl/nx/typescript"],
       "rules": {}
     },
     {
-      "files": [
-        "*.js",
-        "*.jsx"
-      ],
-      "extends": [
-        "plugin:@nrwl/nx/javascript"
-      ],
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nrwl/nx/javascript"],
       "rules": {}
     },
     {
-      "files": [
-        "*.spec.ts",
-        "*.spec.tsx",
-        "*.spec.js",
-        "*.spec.jsx"
-      ],
+      "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
       "env": {
         "jest": true
       },
       "rules": {}
     }
   ],
-  "extends": [
-    null,
-    "plugin:storybook/recommended"
-  ]
+  "extends": ["plugin:storybook/recommended"]
 }
