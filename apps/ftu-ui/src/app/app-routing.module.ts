@@ -1,13 +1,16 @@
-import { NgModule } from '@angular/core';
+import { Injectable, NgModule } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Route, RouterModule } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { FtuPageComponent } from './pages/ftu-page/ftu-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 
+@Injectable({
+  providedIn: 'root',
+})
 export class FtuResolver implements Resolve<unknown> {
   resolve(route: ActivatedRouteSnapshot): Observable<unknown> {
-    const id = route.paramMap.get('id');
-    const uberon = route.paramMap.get('uberon');
+    const id = route.queryParamMap.get('id');
+    const uberon = route.queryParamMap.get('uberon');
 
     if (!id || !uberon) {
       return of({ error: 'Missing required params' });
