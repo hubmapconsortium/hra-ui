@@ -156,4 +156,9 @@ describe('BiomarkerDetailsComponent', () => {
   it('should create', async () => {
     await expect(shallow.render({ bind: { data: data, tabs: tabs } })).resolves.toBeDefined();
   });
+
+  it('should update activeTab', async () => {
+    const { instance } = await shallow.render({ bind: { data: data, tabs: tabs } });
+    expect(instance.activeTab).toBe(tabs[0].label);
+  });
 });
