@@ -158,6 +158,9 @@ describe('BiomarkerDetailsComponent', () => {
   });
 
   it('should update activeTab', async () => {
+    gradientFn.mockReturnValueOnce([{ color: '#ffffff', percentage: 0.3 }]);
+    sizesFn.mockReturnValueOnce([{ label: '', radius: 11 }]);
+
     const { instance } = await shallow.render({ bind: { data: data, tabs: tabs } });
     expect(instance.activeTab).toBe(tabs[0].label);
   });
