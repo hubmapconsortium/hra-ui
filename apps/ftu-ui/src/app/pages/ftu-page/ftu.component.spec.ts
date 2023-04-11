@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FtuPageComponent } from './ftu-page.component';
+import { FtuComponent } from './ftu.component';
 
 describe('FtuPageComponent', () => {
-  let component: FtuPageComponent;
-  let fixture: ComponentFixture<FtuPageComponent>;
+  let component: FtuComponent;
+  let fixture: ComponentFixture<FtuComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FtuPageComponent],
+      imports: [FtuComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FtuPageComponent);
+    fixture = TestBed.createComponent(FtuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
