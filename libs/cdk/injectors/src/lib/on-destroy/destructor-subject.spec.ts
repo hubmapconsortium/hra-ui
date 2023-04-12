@@ -38,7 +38,7 @@ describe('ScopedDestructorSubject', () => {
 
   it('should emit a single value and complete during cleanup', async () => {
     const subject = new ScopedDestructorSubject(scope);
-    scope.onDestroy.mock.lastCall[0]();
+    scope.onDestroy.mock.lastCall?.[0]();
     await expect(lastValueFrom(subject)).resolves.toBeUndefined();
   });
 });

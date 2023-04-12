@@ -1,9 +1,9 @@
-import { Meta, Story } from '@storybook/angular/types-6-0';
+import { Meta, Story } from '@storybook/angular';
 
 import { BiomarkerTableDataCardComponent } from './biomarker-table-data-card.component';
 
 export default {
-  title: 'Molecule/BiomarkerTableDataCardComponent',
+  title: 'BiomarkerTableDataCardComponent',
   component: BiomarkerTableDataCardComponent,
 } as Meta<BiomarkerTableDataCardComponent>;
 
