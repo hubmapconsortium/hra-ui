@@ -1,23 +1,19 @@
-import { rootMain } from '../../../.storybook/main';
+import type { StorybookConfig } from '@storybook/types';
 
-import type { StorybookConfig, Options } from '@storybook/core-common';
-
-const config: StorybookConfig = {
-  ...rootMain,
-  core: { ...rootMain.core, builder: 'webpack5' },
-  stories: [...rootMain.stories, '../**/*.stories.mdx', '../**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: [...(rootMain.addons || [])],
-  webpackFinal: async (config, { configType }: Options) => {
-    // apply any global webpack configs that might have been specified in .storybook/main.ts
-    if (rootMain.webpackFinal) {
-      config = await rootMain.webpackFinal(config, { configType } as Options);
-    }
-
-    // add your own webpack tweaks if needed
-
-    return config;
+export default {
+  stories: ['../**/*.stories.mdx', '../**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: ['@storybook/addon-essentials'],
+  framework: {
+    name: '@storybook/angular',
+    options: {},
   },
-  staticDirs: [{ from: '../src/assets', to: '/assets' }],
-};
-
-module.exports = config;
+  docs: {
+    autodocs: true,
+  },
+  staticDirs: [
+    {
+      from: '../src/assets',
+      to: '/assets',
+    },
+  ],
+} satisfies StorybookConfig;
