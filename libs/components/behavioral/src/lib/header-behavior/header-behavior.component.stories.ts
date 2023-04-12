@@ -1,4 +1,9 @@
-import { ResourceRegistryActions, ResourceRegistryState } from '@hra-ui/cdk/state';
+import {
+  LinkRegistryActions,
+  LinkRegistryState,
+  ResourceRegistryActions,
+  ResourceRegistryState,
+} from '@hra-ui/cdk/state';
 import { Meta, Story } from '@storybook/angular';
 import { HeaderBehaviorComponent } from './header-behavior.component';
 
@@ -7,8 +12,11 @@ export default {
   component: HeaderBehaviorComponent,
   parameters: {
     state: {
-      states: [ResourceRegistryState],
-      actions: [new ResourceRegistryActions.LoadFromYaml('assets/resources/header.yml')],
+      states: [ResourceRegistryState, LinkRegistryState],
+      actions: [
+        new ResourceRegistryActions.LoadFromYaml('assets/resources/header.yml'),
+        new LinkRegistryActions.LoadFromYaml('assets/links/header.yml'),
+      ],
     },
   },
 } as Meta<HeaderBehaviorComponent>;
