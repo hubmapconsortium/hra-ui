@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { LinkDirective } from '@hra-ui/cdk';
+import { EMPTY_LINK } from '@hra-ui/cdk';
 
 /**
  * Header component, displays on top of every page.
@@ -8,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'hra-header',
   standalone: true,
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule, MatIconModule, LinkDirective],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,4 +30,10 @@ export class HeaderComponent {
    * Input for app title to show on the left side.
    */
   @Input() appTitle = '';
+
+  /** Input for Product Title link */
+  @Input() productTitleLink = EMPTY_LINK;
+
+  /** Input for about link */
+  @Input() aboutLink = EMPTY_LINK;
 }
