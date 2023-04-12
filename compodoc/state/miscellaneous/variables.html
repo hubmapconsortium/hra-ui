@@ -64,10 +64,22 @@
                             <a href="#About" title="src/lib/link-ids.ts" ><b>About</b>&nbsp;&nbsp;&nbsp;(src/.../link-ids.ts)</a>
                         </li>
                         <li>
+                            <a href="#Action" title="src/lib/cell-summary/cell-summary.actions.ts" ><b>Action</b>&nbsp;&nbsp;&nbsp;(src/.../cell-summary.actions.ts)</a>
+                        </li>
+                        <li>
                             <a href="#Action" title="src/lib/download/download.action.ts" ><b>Action</b>&nbsp;&nbsp;&nbsp;(src/.../download.action.ts)</a>
                         </li>
                         <li>
                             <a href="#AppTitle" title="src/lib/resource-ids.ts" ><b>AppTitle</b>&nbsp;&nbsp;&nbsp;(src/.../resource-ids.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CELL_SCHEMA" title="src/lib/cell-summary/cell-summary.model.ts" ><b>CELL_SCHEMA</b>&nbsp;&nbsp;&nbsp;(src/.../cell-summary.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CELL_SUMMARY_AGGREGATE_SCHEMA" title="src/lib/cell-summary/cell-summary.model.ts" ><b>CELL_SUMMARY_AGGREGATE_SCHEMA</b>&nbsp;&nbsp;&nbsp;(src/.../cell-summary.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CELL_SUMMARY_SCHEMA" title="src/lib/cell-summary/cell-summary.model.ts" ><b>CELL_SUMMARY_SCHEMA</b>&nbsp;&nbsp;&nbsp;(src/.../cell-summary.model.ts)</a>
                         </li>
                         <li>
                             <a href="#ContactAcknowledgement" title="src/lib/resource-ids.ts" ><b>ContactAcknowledgement</b>&nbsp;&nbsp;&nbsp;(src/.../resource-ids.ts)</a>
@@ -295,6 +307,35 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>LinkId for test</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/lib/cell-summary/cell-summary.actions.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Action"></a>
+                    <span class="name">
+                        <span ><b>Action</b></span>
+                        <a href="#Action"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ActionGroup(&#x27;ResourceRegistry&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Base action factory</p>
 </div>
                 </td>
             </tr>
@@ -743,6 +784,123 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Product title id</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/lib/cell-summary/cell-summary.model.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CELL_SCHEMA"></a>
+                    <span class="name">
+                        <span ><b>CELL_SCHEMA</b></span>
+                        <a href="#CELL_SCHEMA"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  cell: z.object({
+    id: z.string(),
+    label: z.string(),
+  }),
+  biomarker: z.object({
+    id: z.string(),
+    label: z.string(),
+  }),
+  count: z.number(),
+  percentage: z.number(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The CELL_SCHEMA has an object that contains an id and a label for the cell,
+another object that contains an id and a label for the biomarker, and a count and a percentage that are both numbers.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CELL_SUMMARY_AGGREGATE_SCHEMA"></a>
+                    <span class="name">
+                        <span ><b>CELL_SUMMARY_AGGREGATE_SCHEMA</b></span>
+                        <a href="#CELL_SUMMARY_AGGREGATE_SCHEMA"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.record(
+  z.object({
+    label: z.string(),
+    columns: z.string().array(),
+    rows: z
+      .tuple([z.string(), z.number().optional()])
+      .rest(
+        z
+          .object({
+            color: z.string(),
+            size: z.number(),
+            data: CELL_SCHEMA,
+          })
+          .optional()
+      )
+      .array(),
+  })
+)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The CELL_SUMMARY_AGGREGATE_SCHEMA is a record of Aggregate objects, where each Aggregate object contains a label,
+an array of columns that are strings, and an array of rows that are AggregateRow objects.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CELL_SUMMARY_SCHEMA"></a>
+                    <span class="name">
+                        <span ><b>CELL_SUMMARY_SCHEMA</b></span>
+                        <a href="#CELL_SUMMARY_SCHEMA"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.record(
+  z.object({
+    label: z.string(),
+    entries: CELL_SCHEMA.array(),
+  })
+)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The CELL_SUMMARY_SCHEMA constant is a record of CellSummary objects,
+where each CellSummary object contains a label and an array of CELL_SCHEMA objects.</p>
 </div>
                 </td>
             </tr>
