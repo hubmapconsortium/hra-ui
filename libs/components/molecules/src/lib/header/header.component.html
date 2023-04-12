@@ -1,4 +1,4 @@
-<a class="product">
+<a class="product" [hraLink]="productTitleLink">
   <img class="logo image" [src]="productLogoUrl" alt="Prodoct Logo" />
   <h2 class="text">{{ productTitle }}</h2>
 </a>
@@ -6,7 +6,7 @@
 
 <div class="filler"></div>
 
-<a class="about">
+<a class="about" [hraLink]="aboutLink">
   <mat-icon class="icon">info_outlined</mat-icon>
   <span class="text">About</span>
 </a>
