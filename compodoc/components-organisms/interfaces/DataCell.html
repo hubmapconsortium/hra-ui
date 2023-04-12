@@ -244,7 +244,12 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { MatTableModule, MatTableDataSource } from &#x27;@angular/material/table&#x27;;
-import { BiomarkerTableDataIconComponent, DataItem } from &#x27;@hra-ui/components/molecules&#x27;;
+import {
+  BiomarkerTableDataCardComponent,
+  BiomarkerTableDataIconComponent,
+  DataItem,
+} from &#x27;@hra-ui/components/molecules&#x27;;
+import { HoverDirective } from &#x27;@hra-ui/cdk&#x27;;
 
 /**
  * An interface representing a single cell of the table.
@@ -265,7 +270,13 @@ export type DataRow&lt;T&gt; &#x3D; [string, number | undefined, ...(T | undefin
 @Component({
   selector: &#x27;hra-biomarker-table&#x27;,
   standalone: true,
-  imports: [CommonModule, MatTableModule, BiomarkerTableDataIconComponent],
+  imports: [
+    CommonModule,
+    MatTableModule,
+    BiomarkerTableDataIconComponent,
+    HoverDirective,
+    BiomarkerTableDataCardComponent,
+  ],
   templateUrl: &#x27;./biomarker-table.component.html&#x27;,
   styleUrls: [&#x27;./biomarker-table.component.scss&#x27;],
   changeDetection: ChangeDetectionStrategy.OnPush,

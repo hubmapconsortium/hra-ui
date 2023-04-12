@@ -216,7 +216,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:43</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -248,7 +248,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:46</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -288,7 +288,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -323,7 +323,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:49</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -348,7 +348,12 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { MatTableModule, MatTableDataSource } from &#x27;@angular/material/table&#x27;;
-import { BiomarkerTableDataIconComponent, DataItem } from &#x27;@hra-ui/components/molecules&#x27;;
+import {
+  BiomarkerTableDataCardComponent,
+  BiomarkerTableDataIconComponent,
+  DataItem,
+} from &#x27;@hra-ui/components/molecules&#x27;;
+import { HoverDirective } from &#x27;@hra-ui/cdk&#x27;;
 
 /**
  * An interface representing a single cell of the table.
@@ -369,7 +374,13 @@ export type DataRow&lt;T&gt; &#x3D; [string, number | undefined, ...(T | undefin
 @Component({
   selector: &#x27;hra-biomarker-table&#x27;,
   standalone: true,
-  imports: [CommonModule, MatTableModule, BiomarkerTableDataIconComponent],
+  imports: [
+    CommonModule,
+    MatTableModule,
+    BiomarkerTableDataIconComponent,
+    HoverDirective,
+    BiomarkerTableDataCardComponent,
+  ],
   templateUrl: &#x27;./biomarker-table.component.html&#x27;,
   styleUrls: [&#x27;./biomarker-table.component.scss&#x27;],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -425,7 +436,7 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
   &lt;/ng-container&gt;
 
   &lt;ng-container *ngFor&#x3D;&quot;let column of columns; let index &#x3D; index&quot; [matColumnDef]&#x3D;&quot;column&quot;&gt;
-    &lt;th class&#x3D;&quot;icon-header&quot; mat-header-cell *matHeaderCellDef&gt;
+    &lt;th class&#x3D;&quot;icon-header&quot; mat-header-cell *matHeaderCellDef [hraHover]&#x3D;&quot;columnHover&quot; [hraHoverData]&#x3D;&quot;column&quot;&gt;
       {{ column }}
     &lt;/th&gt;
 
@@ -435,6 +446,8 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
         *ngIf&#x3D;&quot;element[index + 2] !&#x3D;&#x3D; undefined&quot;
         [color]&#x3D;&quot;element[index + 2].color&quot;
         [size]&#x3D;&quot;element[index + 2].size&quot;
+        [hraHover]&#x3D;&quot;dataHover&quot;
+        [hraHoverData]&#x3D;&quot;element[index + 2].data&quot;
       &gt;
       &lt;/hra-biomarker-table-data-icon&gt;
     &lt;/td&gt;
@@ -443,6 +456,16 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
   &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;columnsWithTypeAndCount&quot;&gt;&lt;/tr&gt;
   &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: columnsWithTypeAndCount&quot;&gt;&lt;/tr&gt;
 &lt;/table&gt;
+
+&lt;ng-template #columnHover let-columnName&gt;
+  &lt;div class&#x3D;&quot;biomarker-table-hover full-column-name&quot;&gt;
+    {{ columnName }}
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+
+&lt;ng-template #dataHover let-data&gt;
+  &lt;hra-biomarker-table-data-card [data]&#x3D;&quot;data&quot;&gt; &lt;/hra-biomarker-table-data-card&gt;
+&lt;/ng-template&gt;
 </code></pre>
     </div>
 
@@ -451,6 +474,7 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
                     <code>./biomarker-table.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss">@use &#x27;utils&#x27;;
+@use &#x27;variables&#x27; as vars;
 
 :host {
   display: block;
@@ -524,6 +548,14 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
     }
   }
 }
+
+::ng-deep .biomarker-table-hover.full-column-name {
+  display: flex;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
+  background-color: vars.$primary-contrast-rgb;
+}
 </code></pre>
     </div>
 
@@ -552,7 +584,7 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><table class="table" mat-table [dataSource]="dataSource">  <caption class="sr-only">    Cell type table by Biomarker  </caption>  <ng-container matColumnDef="type">    <th mat-header-cell *matHeaderCellDef>Cell Type</th>    <td class="type" mat-cell *matCellDef="let element">      {{ element[0] }}    </td>  </ng-container>  <ng-container matColumnDef="count">    <th class="count" mat-header-cell *matHeaderCellDef>Cell Count</th>    <td class="count" mat-cell *matCellDef="let element">      {{ element[1] !== undefined ? (element[1] | number) : \'no data\' }}    </td>  </ng-container>  <ng-container *ngFor="let column of columns; let index = index" [matColumnDef]="column">    <th class="icon-header" mat-header-cell *matHeaderCellDef>      {{ column }}    </th>    <td class="icon-cell" mat-cell *matCellDef="let element">      <hra-biomarker-table-data-icon        class="icon"        *ngIf="element[index + 2] !== undefined"        [color]="element[index + 2].color"        [size]="element[index + 2].size"      >      </hra-biomarker-table-data-icon>    </td>  </ng-container>  <tr mat-header-row *matHeaderRowDef="columnsWithTypeAndCount"></tr>  <tr mat-row *matRowDef="let row; columns: columnsWithTypeAndCount"></tr></table></div>'
+        var COMPONENT_TEMPLATE = '<div><table class="table" mat-table [dataSource]="dataSource">  <caption class="sr-only">    Cell type table by Biomarker  </caption>  <ng-container matColumnDef="type">    <th mat-header-cell *matHeaderCellDef>Cell Type</th>    <td class="type" mat-cell *matCellDef="let element">      {{ element[0] }}    </td>  </ng-container>  <ng-container matColumnDef="count">    <th class="count" mat-header-cell *matHeaderCellDef>Cell Count</th>    <td class="count" mat-cell *matCellDef="let element">      {{ element[1] !== undefined ? (element[1] | number) : \'no data\' }}    </td>  </ng-container>  <ng-container *ngFor="let column of columns; let index = index" [matColumnDef]="column">    <th class="icon-header" mat-header-cell *matHeaderCellDef [hraHover]="columnHover" [hraHoverData]="column">      {{ column }}    </th>    <td class="icon-cell" mat-cell *matCellDef="let element">      <hra-biomarker-table-data-icon        class="icon"        *ngIf="element[index + 2] !== undefined"        [color]="element[index + 2].color"        [size]="element[index + 2].size"        [hraHover]="dataHover"        [hraHoverData]="element[index + 2].data"      >      </hra-biomarker-table-data-icon>    </td>  </ng-container>  <tr mat-header-row *matHeaderRowDef="columnsWithTypeAndCount"></tr>  <tr mat-row *matRowDef="let row; columns: columnsWithTypeAndCount"></tr></table><ng-template #columnHover let-columnName>  <div class="biomarker-table-hover full-column-name">    {{ columnName }}  </div></ng-template><ng-template #dataHover let-data>  <hra-biomarker-table-data-card [data]="data"> </hra-biomarker-table-data-card></ng-template></div>'
     var COMPONENTS = [{'name': 'BiomarkerTableComponent', 'selector': 'hra-biomarker-table'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'BiomarkerTableComponent'};
