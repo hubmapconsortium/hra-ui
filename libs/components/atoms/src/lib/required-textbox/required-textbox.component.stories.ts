@@ -2,7 +2,7 @@ import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { RequiredTextboxComponent } from './required-textbox.component';
 
 export default {
-  title: 'Atoms/RequiredTextboxComponent',
+  title: 'RequiredTextboxComponent',
   component: RequiredTextboxComponent,
   decorators: [
     moduleMetadata({
