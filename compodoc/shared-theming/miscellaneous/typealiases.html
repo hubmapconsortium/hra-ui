@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content miscellaneous-variables">
+               <div class="content miscellaneous-typealiases">
                    <div class="content-data">
 
 
@@ -50,7 +50,7 @@
 
 <ol class="breadcrumb">
   <li>Miscellaneous</li>
-  <li>Variables</li>
+  <li>Type aliases</li>
 </ol>
 
 <section>
@@ -61,10 +61,10 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
-                            <a href="#placeholder" title="src/index.ts" ><b>placeholder</b>&nbsp;&nbsp;&nbsp;(src/.../index.ts)</a>
+                            <a href="#ThemingContext" title="src/lib/state/theming.model.ts" ><b>ThemingContext</b>&nbsp;&nbsp;&nbsp;(src/.../theming.model.ts)</a>
                         </li>
                         <li>
-                            <a href="#THEMING_FILE_SCHEMA" title="src/lib/state/theming.model.ts" ><b>THEMING_FILE_SCHEMA</b>&nbsp;&nbsp;&nbsp;(src/.../theming.model.ts)</a>
+                            <a href="#ThemingModel" title="src/lib/state/theming.model.ts" ><b>ThemingModel</b>&nbsp;&nbsp;&nbsp;(src/.../theming.model.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -73,65 +73,53 @@
     </table>
 </section>
 
-    <h3>src/index.ts</h3>
-    <section>
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="placeholder"></a>
-                    <span class="name">
-                        <span ><b>placeholder</b></span>
-                        <a href="#placeholder"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>undefined</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Placeholder to make build and tests pass until any actual library code is created</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
     <h3>src/lib/state/theming.model.ts</h3>
     <section>
-    <h3></h3>    <table class="table table-sm table-bordered">
+    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="THEMING_FILE_SCHEMA"></a>
-                    <span class="name">
-                        <span ><b>THEMING_FILE_SCHEMA</b></span>
-                        <a href="#THEMING_FILE_SCHEMA"><span class="icon ion-ios-link"></span></a>
-                    </span>
+                    <a name="ThemingContext"></a>
+                    <span class="name "><b>ThemingContext</b><a href="#ThemingContext"><span class="icon ion-ios-link"></span></a></span>
                 </td>
             </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>z.record(z.nativeEnum(MaterialCssVariables), z.string())</code>
-                    </td>
-                </tr>
-
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Theming mdoel schema, having records with key as material-css-vars pallete keys and string values</p>
+                    <div class="io-description"><p>State context for theming, with reference of model</p>
 </div>
                 </td>
             </tr>
-
+            <tr>
+                <td class="col-md-4">
+                    <code>        <code><a href="../miscellaneous/typealiases.html#ThemingModel" target="_self" >StateContext&lt;ThemingModel&gt;</a></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ThemingModel"></a>
+                    <span class="name "><b>ThemingModel</b><a href="#ThemingModel"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Model for theming</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>z.infer&lt;&gt;</code>
+</code>
+                </td>
+            </tr>
         </tbody>
     </table>
 </section>
-
 
 
                    </div><div class="search-results">
@@ -159,8 +147,8 @@
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
-            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-typealiases';
+            var COMPODOC_CURRENT_PAGE_URL = 'typealiases.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
