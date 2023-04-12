@@ -140,6 +140,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Readonly</span>
+                                <a href="#aboutLink" >aboutLink</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#appTitle" >appTitle</a>
                             </li>
                             <li>
@@ -149,6 +153,10 @@
                             <li>
                                     <span class="modifier">Readonly</span>
                                 <a href="#productTitle" >productTitle</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#productTitleLink" >productTitleLink</a>
                             </li>
                         </ul>
                     </td>
@@ -174,6 +182,38 @@
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="aboutLink"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>aboutLink</b></span>
+                        <a href="#aboutLink"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>LinkIds.About</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/header-behavior/header-behavior.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Input for about link for user click action.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -270,6 +310,38 @@
 
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="productTitleLink"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>productTitleLink</b></span>
+                        <a href="#productTitleLink"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>LinkIds.ProductTitle</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/lib/header-behavior/header-behavior.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Input for product title link for user click action</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
 </section>
 
 </div>
@@ -281,7 +353,7 @@ import { ChangeDetectionStrategy, Component } from &#x27;@angular/core&#x27;;
 import { selectQuerySnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
 import { ResourceRegistrySelectors as RR } from &#x27;@hra-ui/cdk/state&#x27;;
 import { HeaderComponent } from &#x27;@hra-ui/components/molecules&#x27;;
-import { ResourceIds as Ids } from &#x27;@hra-ui/state&#x27;;
+import { ResourceIds as Ids, LinkIds } from &#x27;@hra-ui/state&#x27;;
 
 /** Component for Header Behavior */
 @Component({
@@ -307,6 +379,16 @@ export class HeaderBehaviorComponent {
    * Input for app title to show on the left side.
    */
   readonly appTitle &#x3D; selectQuerySnapshot(RR.anyText, Ids.AppTitle);
+
+  /**
+   * Input for product title link for user click action
+   */
+  readonly productTitleLink &#x3D; LinkIds.ProductTitle;
+
+  /**
+   * Input for about link for user click action.
+   */
+  readonly aboutLink &#x3D; LinkIds.About;
 }
 </code></pre>
     </div>
@@ -316,6 +398,8 @@ export class HeaderBehaviorComponent {
   [productLogoUrl]&#x3D;&quot;productLogoUrl() ?? &#x27;&#x27;&quot;
   [productTitle]&#x3D;&quot;productTitle() ?? &#x27;&#x27;&quot;
   [appTitle]&#x3D;&quot;appTitle() ?? &#x27;&#x27;&quot;
+  [productTitleLink]&#x3D;&quot;productTitleLink&quot;
+  [aboutLink]&#x3D;&quot;aboutLink&quot;
 &gt;
 &lt;/hra-header&gt;
 </code></pre>
@@ -356,7 +440,7 @@ export class HeaderBehaviorComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-header  [productLogoUrl]="productLogoUrl() ?? \'\'"  [productTitle]="productTitle() ?? \'\'"  [appTitle]="appTitle() ?? \'\'"></hra-header></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-header  [productLogoUrl]="productLogoUrl() ?? \'\'"  [productTitle]="productTitle() ?? \'\'"  [appTitle]="appTitle() ?? \'\'"  [productTitleLink]="productTitleLink"  [aboutLink]="aboutLink"></hra-header></div>'
     var COMPONENTS = [{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'HeaderBehaviorComponent'};
