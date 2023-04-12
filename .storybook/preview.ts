@@ -1,6 +1,8 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { NgxsModule } from '@ngxs/store';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 import { applicationConfig, componentWrapperDecorator } from '@storybook/angular';
 import { MarkdownModule } from 'ngx-markdown';
@@ -28,6 +30,8 @@ export const decorators = [
       importProvidersFrom(
         BrowserAnimationsModule,
         HttpClientModule,
+        NgxsModule.forRoot([], { developmentMode: true }),
+        NgxsLoggerPluginModule.forRoot(),
         MarkdownModule.forRoot({
           loader: HttpClient,
         }),

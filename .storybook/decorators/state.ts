@@ -1,5 +1,4 @@
 import { APP_INITIALIZER, importProvidersFrom } from '@angular/core';
-import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsModule, Store } from '@ngxs/store';
 import { AngularRenderer, applicationConfig } from '@storybook/angular';
 import type { DecoratorFunction } from '@storybook/csf';
@@ -18,12 +17,7 @@ export function addState(): DecoratorFunction<AngularRenderer> {
 
     return applicationConfig({
       providers: [
-        importProvidersFrom(
-          NgxsModule.forRoot(config.states, {
-            developmentMode: true,
-          }),
-          NgxsLoggerPluginModule.forRoot()
-        ),
+        importProvidersFrom(NgxsModule.forFeature(config.states)),
         {
           provide: APP_INITIALIZER,
           multi: true,
