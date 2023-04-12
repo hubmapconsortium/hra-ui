@@ -1,7 +1,6 @@
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
 
 import { FooterComponent } from './footer.component';
-// import { Svg } from '@hra-ui/state';
 
 export default {
   title: 'FooterComponent',
@@ -20,12 +19,6 @@ const DownloadFormat = [
   { label: 'Download AI' },
   { label: 'Download PNG' },
 ];
-
-// const DownloadFormat = [{
-//   id: Svg,
-//   label: 'Download Svg',
-//   extension: '.svg',
-// }];
 
 const Template: Story<FooterComponent> = (args: FooterComponent) => ({
   props: args,
