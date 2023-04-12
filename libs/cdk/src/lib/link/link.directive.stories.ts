@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, importProvidersFrom, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule, Routes } from '@angular/router';
 import { createLinkId, LinkEntry, LinkId, LinkRegistryActions, LinkRegistryState, LinkType } from '@hra-ui/cdk/state';
-import { Meta, moduleMetadata, Story } from '@storybook/angular';
+import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
 import { LinkDirective } from './link.directive';
 
@@ -70,22 +70,29 @@ export default {
     },
   },
   decorators: [
-    moduleMetadata({
-      imports: [LinkDirective, RouterModule.forRoot(routes, { useHash: true })],
+    applicationConfig({
+      providers: [importProvidersFrom(RouterModule.forRoot(routes, { useHash: true }))],
     }),
+    moduleMetadata({ imports: [RouterModule] }),
   ],
 } as Meta<object>;
 
-const Template =
-  (template: string): Story<object> =>
-  (args) => ({
-    props: args,
-    template,
-  });
+type Story = StoryObj<object>;
 
-export const Anchor = Template('<a [hraLink]="link" >Anchor</a>');
-Anchor.args = {
-  link: createLinkId('External'),
+export const Anchor: Story = {
+  render: (args) => ({
+    props: args,
+    template: '<a [hraLink]="link">Anchor</a>',
+  }),
+  decorators: [moduleMetadata({ imports: [LinkDirective] })],
+  args: {
+    link: createLinkId('External'),
+  },
 };
 
-export const Button = Template(`<router-outlet></router-outlet>`);
+export const Button: Story = {
+  render: (args) => ({
+    props: args,
+    template: `<router-outlet></router-outlet>`,
+  }),
+};

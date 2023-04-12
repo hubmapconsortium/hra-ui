@@ -1,7 +1,8 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { importProvidersFrom } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
-import { componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
+import { applicationConfig, componentWrapperDecorator } from '@storybook/angular';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { ThemingModule } from '../libs/shared/theming/src';
@@ -22,14 +23,16 @@ export const parameters = {
 export const argTypesEnhancers = [fixArgTypes()];
 
 export const decorators = [
-  moduleMetadata({
-    imports: [
-      BrowserAnimationsModule,
-      HttpClientModule,
-      MarkdownModule.forRoot({
-        loader: HttpClient,
-      }),
-      ThemingModule,
+  applicationConfig({
+    providers: [
+      importProvidersFrom(
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MarkdownModule.forRoot({
+          loader: HttpClient,
+        }),
+        ThemingModule
+      ),
     ],
   }),
   componentWrapperDecorator(

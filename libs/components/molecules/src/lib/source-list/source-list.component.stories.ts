@@ -1,9 +1,9 @@
-import { Meta, Story } from '@storybook/angular/types-6-0';
+import { Meta, Story } from '@storybook/angular';
 
 import { SourceListComponent } from './source-list.component';
 
 export default {
-  title: 'Molecule/SourceListComponent',
+  title: 'SourceListComponent',
   component: SourceListComponent,
 } as Meta<SourceListComponent>;
 
