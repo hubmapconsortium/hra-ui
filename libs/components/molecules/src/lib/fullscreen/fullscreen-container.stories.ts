@@ -1,10 +1,10 @@
 import { moduleMetadata } from '@storybook/angular';
-import { Meta, Story } from '@storybook/angular/types-6-0';
+import { Meta, Story } from '@storybook/angular';
 import { FullscreenContentComponent } from './fullscreen-content.component';
 import { FullscreenContainerComponent } from './fullscreen-container.component';
 
 export default {
-  title: 'Molecule/FullscreenContainerComponent',
+  title: 'FullscreenContainerComponent',
   component: FullscreenContainerComponent,
   decorators: [
     moduleMetadata({

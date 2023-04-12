@@ -1,5 +1,5 @@
 import { ResourceRegistryActions, ResourceRegistryState } from '@hra-ui/cdk/state';
-import { Meta, Story } from '@storybook/angular/types-6-0';
+import { Meta, Story } from '@storybook/angular';
 
 import { LandingPageContentComponent } from './landing-page-content.component';
 

@@ -19,7 +19,7 @@ describe('SourceListState', () => {
     state.add(ctx, new Add(sourceList));
     expect(ctx.setState).toHaveBeenCalled();
 
-    const patcher = ctx.setState.mock.lastCall[0] as StateOperator<SourceListModel>;
+    const patcher = ctx.setState.mock.lastCall?.[0] as StateOperator<SourceListModel>;
     expect(patcher([])).toEqual(sourceList);
   });
 
