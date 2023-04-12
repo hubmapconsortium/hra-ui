@@ -1,9 +1,9 @@
-import { Meta, Story } from '@storybook/angular/types-6-0';
+import { Meta, Story } from '@storybook/angular';
 
 import { InteractiveSvgComponent } from './interactive-svg.component';
 
 export default {
-  title: 'Molecule/InteractiveSvg',
+  title: 'InteractiveSvg',
   component: InteractiveSvgComponent,
   argTypes: {
     url: {
