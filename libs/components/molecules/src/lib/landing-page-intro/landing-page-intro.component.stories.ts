@@ -1,9 +1,9 @@
-import { Meta, Story } from '@storybook/angular/types-6-0';
+import { Meta, Story } from '@storybook/angular';
 
 import { LandingPageIntroComponent } from './landing-page-intro.component';
 
 export default {
-  title: 'Molecule/LandingPageIntro',
+  title: 'LandingPageIntro',
   component: LandingPageIntroComponent,
 } as Meta<LandingPageIntroComponent>;
 

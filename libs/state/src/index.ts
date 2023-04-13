@@ -1,3 +1,4 @@
+export * from './lib/cell-summary';
 export * from './lib/contact';
 export * as ResourceIds from './lib/resource-ids';
 export * from './lib/source-list';

@@ -1,14 +1,9 @@
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { Meta, Story } from '@storybook/angular';
 import { BiomarkerTableComponent, DataCell } from './biomarker-table.component';
 
 export default {
   title: 'BiomarkerTableComponent',
   component: BiomarkerTableComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [],
-    }),
-  ],
 } as Meta<BiomarkerTableComponent<DataCell>>;
 
 const Template: Story<BiomarkerTableComponent<DataCell>> = (args: BiomarkerTableComponent<DataCell>) => ({
@@ -25,7 +20,40 @@ Primary.args = {
       {
         color: '#9ca5ee',
         size: 0.56,
-        data: [],
+        data: [
+          [
+            {
+              label: 'Name',
+              value: 'capillary endolitheal cell',
+            },
+            {
+              label: 'ID-UBERON',
+              value: '123456',
+            },
+            {
+              label: '#Datasets',
+              value: '45',
+            },
+          ],
+          [
+            {
+              label: 'Name ',
+              value: 'endolitheal cell',
+            },
+            {
+              label: 'ID-CL',
+              value: 'CL:1234567',
+            },
+            {
+              label: 'MEAN VALUE',
+              value: '0.012',
+            },
+            {
+              label: 'ID-HGNC',
+              value: 'HGNC:12345',
+            },
+          ],
+        ],
       },
       undefined,
       {
