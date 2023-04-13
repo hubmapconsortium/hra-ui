@@ -58,21 +58,37 @@ export interface NodeTooltipData {
   origin: { x: number; y: number };
 }
 
+/** Interface for node entries */
 export interface NodeMapEntry {
+  /** Organ label */
   organ_label: string;
+  /** Organ id */
   organ_id: string;
+  /** Anatomical structure */
   anatomical_structure_of: string;
+  /** Spatial entity source */
   source_spatial_entity: string;
+  /** Node name */
   node_name: string;
+  /** Node label */
   label: string;
+  /** Ontology id */
   OntologyID: string;
+  /** Link to represenation */
   representation_of: string;
+  /** File of single 2dftu */
   'svg file of single 2DFTU': string;
+  /** if asctb exists */
   exist_asctb: string;
+  /** Type */
   type: string;
+  /** REF/1 */
   'REF/1': string;
+  /** REF/1/DOI */
   'REF/1/DOI': string;
+  /** REF/1/NOTES */
   'REF/1/NOTES': string;
+  /** Inset # */
   'Inset #': string;
 }
 
@@ -92,6 +108,7 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestro
   /** SVG url */
   @Input() url?: string;
 
+  /** Mapping info */
   @Input() mapping: T[] = [];
 
   /** Emits node id when hovered */

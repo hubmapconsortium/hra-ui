@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+/** Map Entry typings */
 const mapEntry = z.object({
   organ_label: z.string(),
   organ_id: z.string(),
@@ -20,8 +21,12 @@ const mapEntry = z.object({
 
 export type MapEntry = z.infer<typeof mapEntry>;
 
+/** Interface for medical illustration model */
 export interface MedicalIllustrationModel {
+  /** Illustration URL */
   url?: string;
+  /** Current selected node */
   node?: MapEntry;
+  /** Mapping info */
   mapping?: MapEntry[];
 }

@@ -9,24 +9,39 @@ import { MedicalIllustrationModel, MapEntry } from './medical-illustration.model
 
 export type MedicalIllustrationContext = StateContext<MedicalIllustrationModel>;
 
+/**
+ * State handling medical illustrations
+ */
 @State<MedicalIllustrationModel>({
   name: 'medicalIllustration',
   defaults: {},
 })
 @Injectable()
 export class MedicalIllustrationState {
+  /**
+   * Http client
+   */
   private readonly http = inject(HttpClient);
 
+  /**
+   * Sets illustration URI
+   */
   @Action(SetUri)
   setUri({ setState }: MedicalIllustrationContext, { url }: SetUri) {
     setState({ url: url, node: undefined });
   }
 
+  /**
+   * Sets active node
+   */
   @Action(SetActiveNode)
   setActiveNode({ patchState }: MedicalIllustrationContext, { node }: SetActiveNode) {
     patchState({ node });
   }
 
+  /**
+   * Parses and sets mapping info
+   */
   @Action(SetMapping, { cancelUncompleted: true })
   setMapping({ patchState }: MedicalIllustrationContext, { url }: SetMapping): Observable<void> {
     return this.http.get(url, { responseType: 'text' }).pipe(
