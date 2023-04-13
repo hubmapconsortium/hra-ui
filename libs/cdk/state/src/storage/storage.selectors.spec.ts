@@ -15,6 +15,7 @@ describe('StorageSelectors', () => {
       const selector = StorageSelectors.get();
       expect(selector(StorageId.Local, 'hello')).toEqual('world');
       expect(selector(StorageId.Session, 'session1')).toEqual('value1');
+      expect(selector(StorageId.Local, 'hello2')).toEqual(undefined);
     });
   });
 
