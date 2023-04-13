@@ -96,3 +96,12 @@
     background-color: #f8f9fa;
   }
 }
+
+::ng-deep .hoverdata {
+  display: flex;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0.063rem 0.125rem;
+  background-color: vars.$primary-contrast-rgb;
+  max-width: 21rem;
+}

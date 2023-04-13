@@ -19,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import { ResourceIds as Ids, SourceListSelectors } from '@hra-ui/state';
+import { HoverDirective } from '@hra-ui/cdk';
 
 export interface BiomarkerTab {
   label: string;
@@ -40,6 +41,7 @@ export interface BiomarkerTab {
     SourceListComponent,
     MatTabsModule,
     BiomarkerTableComponent,
+    HoverDirective,
   ],
   templateUrl: './biomarker-details.component.html',
   styleUrls: ['./biomarker-details.component.scss'],
@@ -51,6 +53,10 @@ export class BiomarkerDetailsComponent implements OnChanges {
 
   /** List of Biomarker tab which includes rows and columns of the table that is to be displayed */
   @Input() tabs: BiomarkerTab[] = [];
+
+  @Input() gradientHoverInfo = '';
+
+  @Input() sizeHoverInfo = '';
 
   /** The current selected tab from the cell types */
   activeTab = '';

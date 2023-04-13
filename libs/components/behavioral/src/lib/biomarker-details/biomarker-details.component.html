@@ -16,7 +16,7 @@
 
 <hra-label-box class="mean-legend-box">
   Biomarker Expression Mean in FTU
-  <mat-icon class="icon">info_outlined</mat-icon>
+  <mat-icon class="icon" [hraHover]="gradienthover">info_outlined</mat-icon>
 </hra-label-box>
 <div class="mean-legend-wrapper">
   <hra-gradient-legend [gradient]="gradientPoints" class="mean-legend"></hra-gradient-legend>
@@ -24,7 +24,7 @@
 
 <hra-label-box class="size-legend-box">
   Percentage of Cells in FTU
-  <mat-icon class="icon">info_outlined</mat-icon>
+  <mat-icon class="icon" [hraHover]="sizehover">info_outlined</mat-icon>
 </hra-label-box>
 <div class="size-legend-wrapper">
   <hra-size-legend [sizes]="sizes" class="size-legend"></hra-size-legend>
@@ -37,3 +37,15 @@
 <div class="source-list-wrapper">
   <hra-source-list [sources]="source()" class="source-list"></hra-source-list>
 </div>
+
+<ng-template #gradienthover>
+  <div class="hoverdata">
+    {{ gradientHoverInfo }}
+  </div>
+</ng-template>
+
+<ng-template #sizehover>
+  <div class="hoverdata">
+    {{ sizeHoverInfo }}
+  </div>
+</ng-template>
