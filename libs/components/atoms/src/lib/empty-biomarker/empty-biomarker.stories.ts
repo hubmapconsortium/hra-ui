@@ -1,8 +1,8 @@
-import { Meta, Story } from '@storybook/angular/types-6-0';
+import { Meta, Story } from '@storybook/angular';
 import { EmptyBiomarkerComponent } from './empty-biomarker.component';
 
 export default {
-  title: 'Atom/EmptyBiomarker',
+  title: 'EmptyBiomarker',
   component: EmptyBiomarkerComponent,
 } as Meta<EmptyBiomarkerComponent>;
 
