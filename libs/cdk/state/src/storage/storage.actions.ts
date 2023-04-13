@@ -10,7 +10,7 @@ export class Set extends Action('Set') {
 }
 
 export class Delete extends Action('Delete') {
-  constructor(readonly id: StorageId) {
+  constructor(readonly id: StorageId, readonly key: string) {
     super();
   }
 }

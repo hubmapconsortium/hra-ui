@@ -6,23 +6,13 @@ import { StorageState } from './storage.state';
 export class StorageSelectors {
   @Selector([StorageState])
   static get(): (id: StorageId, key: string) => string | undefined {
-    return (id, key) => StorageSelectors.getStorage(id).getItem(key) ?? undefined;
+    return (id, key) => StorageState.getStorage(id).getItem(key) ?? undefined;
   }
 
-  @Selector([Selector])
+  @Selector([StorageState])
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore Allow selector name
   static length(): (id: StorageId) => number | undefined {
-    return (id) => StorageSelectors.getStorage(id).length;
-  }
-
-  private static getStorage(id: StorageId): Storage {
-    switch (id) {
-      case StorageId.Local:
-        return localStorage;
-
-      case StorageId.Session:
-        return sessionStorage;
-    }
+    return (id) => StorageState.getStorage(id).length;
   }
 }
