@@ -4,7 +4,7 @@ import { mock } from 'jest-mock-extended';
 import { SetActiveNode, SetUri } from './medical-illustration.actions';
 import { MedicalIllustrationModel } from './medical-illustration.model';
 import { MedicalIllustrationState } from './medical-illustration.state';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
 describe('MedicalIllustrationState', () => {
