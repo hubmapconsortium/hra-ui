@@ -6,10 +6,19 @@ import { z } from 'zod';
 export type ResourceId = z.infer<typeof RESOURCE_ID>;
 
 /** Resource type string with entry typings */
-export type ResourceType<T extends ResourceEntry> = T['type'] & { _typings: T };
+export type ResourceType<T extends ResourceEntry> = T['type'] & { _typings: T } & z.BRAND<'ResourceType'>;
+
+/** Custom entry types */
+type CustomResourceType<T extends string> = `custom:${T}`;
 
 /** Any resource entry */
 export type ResourceEntry = z.infer<typeof RESOURCE_ENTRY>;
+
+/** Typed custom resource entry */
+export type CustomResourceEntry<T extends string, Props extends object> = { type: CustomResourceType<T> } & Props;
+
+/** Payload type used when creating custom types */
+export type ResourceEntryPayload<Props extends object> = Props & z.BRAND<'ResourceEntryPayload'>;
 
 /** State data model */
 export type ResourceRegistryModel = z.infer<typeof RESOURCE_REGISTRY_SCHEMA>;
@@ -35,35 +44,35 @@ export const RESOURCE_ID = z
 type ExtractBuiltinEntryType<T> = UnionMember<z.infer<typeof BUILTIN_ENTRY>, 'type', T>;
 
 /** Maps raw builtin type strings to ResourceType */
-type BuiltinTypes<T = typeof BuiltinResourceEntryType> = {
+type BuiltinTypes<T = typeof RawBuiltinResourceType> = {
   [K in keyof T]: ResourceType<ExtractBuiltinEntryType<T[K]>>;
 };
 
 /** Raw builtin type strings */
-export enum BuiltinResourceEntryType {
+enum RawBuiltinResourceType {
   Markdown = 'markdown',
   Text = 'text',
   Url = 'url',
 }
 
 /** Builtin resource types */
-export const BuiltinResourceType = BuiltinResourceEntryType as BuiltinTypes;
+export const BuiltinResourceType = RawBuiltinResourceType as BuiltinTypes;
 
 /** Markdown data */
 export const MARKDOWN_ENTRY = z.object({
-  type: z.literal(BuiltinResourceEntryType.Markdown),
+  type: z.literal(RawBuiltinResourceType.Markdown),
   markdown: z.string(),
 });
 
 /** Text data */
 export const TEXT_ENTRY = z.object({
-  type: z.literal(BuiltinResourceEntryType.Text),
+  type: z.literal(RawBuiltinResourceType.Text),
   text: z.string(),
 });
 
 /** External url */
 export const URL_ENTRY = z.object({
-  type: z.literal(BuiltinResourceEntryType.Url),
+  type: z.literal(RawBuiltinResourceType.Url),
   url: z.string().url(),
 });
 
@@ -74,14 +83,11 @@ export const BUILTIN_ENTRY = z.discriminatedUnion('type', [MARKDOWN_ENTRY, TEXT_
 // Custom entry
 // ------------------------------------
 
-/** Custom entry types */
-type CustomType<T extends string> = `custom:${T}`;
-
 /** Custom entry type validator with transformation */
 export const CUSTOM_ENTRY_TYPE = z
   .string()
   .refine((val) => !isBuiltinType(val), 'Invalid builtin resource format')
-  .transform<CustomType<string>>(createCustomResourceType);
+  .transform<CustomResourceType<string>>(createCustomType);
 
 /** Custom entry */
 export const CUSTOM_ENTRY = z.object({ type: CUSTOM_ENTRY_TYPE }).passthrough();
@@ -104,7 +110,7 @@ export const RESOURCE_REGISTRY_SCHEMA = z.record(RESOURCE_ID, RESOURCE_ENTRY);
 const CUSTOM_TYPE_PREFIX = 'custom:';
 
 /** Builtin type strings as an array */
-const BUILTIN_TYPE_VALUES = Object.values(BuiltinResourceEntryType);
+const BUILTIN_TYPE_VALUES = Object.values(RawBuiltinResourceType);
 
 /**
  * Determines whether a type string has builtin support
@@ -135,14 +141,39 @@ export function createResourceId(id: string) {
 }
 
 /**
- * Creates a custom resource type with specified properties
- * @param type Raw resource type
- * @returns A new resource type with typings
+ * Helper function used to specify the payload format when creating custom types
+ * @returns A custom payload type
+ * @see {@link createCustomType} for usage
  */
-export function createCustomResourceType<Props extends object, T extends string = string>(
+export function payload<Props extends object>(): ResourceEntryPayload<Props> {
+  return null as never;
+}
+
+/**
+ * Creates a custom resource type
+ * @param type Raw resource type
+ * @returns A new resource type
+ */
+export function createCustomType<T extends string>(
   type: T
-): ResourceType<{ type: CustomType<T> } & Props> {
-  return `${CUSTOM_TYPE_PREFIX}${type}` as ResourceType<{ type: CustomType<T> } & Props>;
+): ResourceType<CustomResourceEntry<T, Partial<Record<string, unknown>>>>;
+/**
+ * Creates a custom resource type with a payload. The payload should be
+ * specified using the {@link payload} function
+ * @example
+ * const MyResourceType = createCustomType('my-type', payload<{ value: number }>());
+ *
+ * @param type Raw resource type
+ * @param payload Payload type
+ * @returns A new resource type
+ */
+export function createCustomType<T extends string, Props extends object>(
+  type: T,
+  payload: (() => ResourceEntryPayload<Props>) | ResourceEntryPayload<Props>
+): ResourceType<CustomResourceEntry<T, Props>>;
+/** Implementation of createCustomType overloads */
+export function createCustomType(type: string): unknown {
+  return `${CUSTOM_TYPE_PREFIX}${type}`;
 }
 
 /**
