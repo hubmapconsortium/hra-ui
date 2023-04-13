@@ -51,21 +51,90 @@ describe('InteractiveSvgComponent', () => {
   });
 
   describe('hover', () => {
-    const g = mock<SVGGElement>({ id: 'test_x5F_' });
-    const path = mock<SVGPathElement>({ parentElement: g });
+    const path = mock<SVGPathElement>({
+      id: 'Cortical_Collecting_Duct_Principal_Cell_1',
+      parentElement: { id: '', parentElement: undefined },
+    });
+    const path2 = mock<SVGPathElement>({
+      id: '',
+      parentElement: { id: 'Cortical_Collecting_Duct_Principal_Cell_2', parentElement: undefined },
+    });
+    const path3 = mock<SVGPathElement>({
+      id: '',
+      parentElement: { id: '', parentElement: { id: 'Cortical_Collecting_Duct_Principal_Cell_3' } },
+    });
     const event = { target: path, clientX: 10, clientY: 20 };
+    const event2 = { target: path2, clientX: 10, clientY: 20 };
+    const event3 = { target: path3, clientX: 10, clientY: 20 };
+    const testMapping: NodeMapEntry[] = [
+      {
+        organ_label: 'Kidney',
+        organ_id: 'UBERON:0002113',
+        anatomical_structure_of: '#FTUCorticalCollectingDuct',
+        source_spatial_entity: '#2DRefObjects',
+        node_name: 'Cortical_Collecting_Duct_Principal_Cell_1',
+        label: 'kidney cortex collecting duct principal cell',
+        OntologyID: 'CL:1000714',
+        representation_of: 'http://purl.obolibrary.org/obo/CL_1000714',
+        'svg file of single 2DFTU': '2d-ftu-kidney-cortical-collecting-duct',
+        exist_asctb: '1',
+        type: 'CT',
+        'REF/1': '',
+        'REF/1/DOI': '',
+        'REF/1/NOTES': '',
+        'Inset #': '',
+      },
+      {
+        organ_label: 'Kidney',
+        organ_id: 'UBERON:0002113',
+        anatomical_structure_of: '#FTUCorticalCollectingDuct',
+        source_spatial_entity: '#2DRefObjects',
+        node_name: 'Cortical_Collecting_Duct_Principal_Cell_2',
+        label: 'kidney cortex collecting duct principal cell',
+        OntologyID: 'CL:1000714',
+        representation_of: 'http://purl.obolibrary.org/obo/CL_1000714',
+        'svg file of single 2DFTU': '2d-ftu-kidney-cortical-collecting-duct',
+        exist_asctb: '1',
+        type: 'CT',
+        'REF/1': '',
+        'REF/1/DOI': '',
+        'REF/1/NOTES': '',
+        'Inset #': '',
+      },
+      {
+        organ_label: 'Kidney',
+        organ_id: 'UBERON:0002113',
+        anatomical_structure_of: '#FTUCorticalCollectingDuct',
+        source_spatial_entity: '#2DRefObjects',
+        node_name: 'Cortical_Collecting_Duct_Principal_Cell_3',
+        label: 'kidney cortex collecting duct principal cell',
+        OntologyID: 'CL:1000714',
+        representation_of: 'http://purl.obolibrary.org/obo/CL_1000714',
+        'svg file of single 2DFTU': '2d-ftu-kidney-cortical-collecting-duct',
+        exist_asctb: '1',
+        type: 'CT',
+        'REF/1': '',
+        'REF/1/DOI': '',
+        'REF/1/NOTES': '',
+        'Inset #': '',
+      },
+    ];
 
     it('should emit hover event on mouseover', async () => {
-      const { instance, outputs } = await shallow.render();
+      const { instance, outputs } = await shallow.render({ bind: { mapping: testMapping } });
       instance.setSvgElement(svg);
 
       const handler = renderer.listen.mock.calls.find((args) => args[1] === 'mouseover')?.[2];
       handler?.(event);
-      expect(outputs.nodeHover.emit).toHaveBeenCalledWith('test_');
+      expect(outputs.nodeHover.emit).toHaveBeenCalledWith(testMapping[0]);
+      handler?.(event2);
+      expect(outputs.nodeHover.emit).toHaveBeenCalledWith(testMapping[1]);
+      handler?.(event3);
+      expect(outputs.nodeHover.emit).toHaveBeenCalledWith(testMapping[2]);
     });
 
     it('should clear hover event on mouseout', async () => {
-      const { instance } = await shallow.render();
+      const { instance } = await shallow.render({ bind: { mapping: testMapping } });
       jest.spyOn(instance.nodeHoverData$, 'next');
       instance.setSvgElement(svg);
 

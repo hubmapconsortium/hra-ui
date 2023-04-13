@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/angular';
 
-import { InteractiveSvgComponent } from './interactive-svg.component';
+import { InteractiveSvgComponent, NodeMapEntry } from './interactive-svg.component';
 
 export default {
   title: 'InteractiveSvg',
@@ -34,8 +34,8 @@ export default {
         'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.svg',
     },
   },
-} as Meta<InteractiveSvgComponent>;
+} as Meta<InteractiveSvgComponent<NodeMapEntry>>;
 
-const Template: Story<InteractiveSvgComponent> = (args) => ({ props: args });
+const Template: Story<InteractiveSvgComponent<NodeMapEntry>> = (args) => ({ props: args });
 
 export const Default = Template.bind({});

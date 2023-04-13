@@ -206,10 +206,10 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestro
    */
   private getId(event: Event): string {
     const parent = (event.target as Element).parentElement;
-    const grandparent = parent ? parent.parentElement : null;
+    const grandparent = parent?.parentElement;
     let id = (event.target as Element).id;
     if (!id) {
-      if (parent) {
+      if (parent && parent.id) {
         id = parent.id;
       } else {
         id = grandparent ? grandparent.id : '';
