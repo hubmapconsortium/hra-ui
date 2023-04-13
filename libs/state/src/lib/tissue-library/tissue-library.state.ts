@@ -1,17 +1,20 @@
 import { inject, Injectable } from '@angular/core';
 import { TissueLibraryService } from '@hra-ui/services';
-import { Action, State, StateContext } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Action, State } from '@ngxs/store';
+import { Observable, tap } from 'rxjs';
 import { Load } from './tissue-library.actions';
 import { TissueData } from '@hra-ui/services';
+import { TissueLibraryContext, TissueLibraryModel } from './tissue-library.model';
 
-@State<void>({ name: 'tissue-library' })
+@State<TissueLibraryModel>({
+  name: 'tissue-library',
+})
 @Injectable()
 export class TissueLibraryState {
-  private readonly tissue = inject(TissueLibraryService);
+  private readonly dataService = inject(TissueLibraryService);
 
   @Action(Load)
-  setActive(ctx: StateContext<void>): Observable<TissueData> {
-    return this.tissue.getTissues();
+  setActive(ctx: TissueLibraryContext): Observable<unknown> {
+    return this.dataService.getTissues().pipe(tap((data) => ctx.setState(data)));
   }
 }
