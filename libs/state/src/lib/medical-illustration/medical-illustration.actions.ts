@@ -1,4 +1,5 @@
 import { Action } from '@hra-ui/cdk/state';
+import { MapEntry } from './medical-illustration.model';
 
 export class SetUri extends Action('[Medical Illustration] Set URI') {
   constructor(readonly url?: string) {
@@ -7,7 +8,7 @@ export class SetUri extends Action('[Medical Illustration] Set URI') {
 }
 
 export class SetActiveNode extends Action('[Medical Illustration] Set Active Node') {
-  constructor(readonly node?: Record<string, unknown>) {
+  constructor(readonly node?: MapEntry) {
     super();
   }
 }

@@ -1,6 +1,6 @@
 import { Selector } from '@ngxs/store';
 
-import { MedicalIllustrationModel } from './medical-illustration.model';
+import { MapEntry, MedicalIllustrationModel } from './medical-illustration.model';
 import { MedicalIllustrationState } from './medical-illustration.state';
 
 export class MedicalIllustrationSelectors {
@@ -10,7 +10,7 @@ export class MedicalIllustrationSelectors {
   }
 
   @Selector([MedicalIllustrationState])
-  static mapping(state: MedicalIllustrationModel): Record<string, string>[] | undefined {
-    return state.mapping;
+  static mapping(state: MedicalIllustrationModel): MapEntry[] {
+    return state.mapping ?? [];
   }
 }

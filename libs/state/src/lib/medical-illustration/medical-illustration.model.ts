@@ -22,6 +22,6 @@ export type MapEntry = z.infer<typeof mapEntry>;
 
 export interface MedicalIllustrationModel {
   url?: string;
-  node?: Record<string, unknown>;
+  node?: MapEntry;
   mapping?: MapEntry[];
 }

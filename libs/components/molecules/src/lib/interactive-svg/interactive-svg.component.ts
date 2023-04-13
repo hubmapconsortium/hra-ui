@@ -58,6 +58,24 @@ export interface NodeTooltipData {
   origin: { x: number; y: number };
 }
 
+export interface NodeMapEntry {
+  organ_label: string;
+  organ_id: string;
+  anatomical_structure_of: string;
+  source_spatial_entity: string;
+  node_name: string;
+  label: string;
+  OntologyID: string;
+  representation_of: string;
+  'svg file of single 2DFTU': string;
+  exist_asctb: string;
+  type: string;
+  'REF/1': string;
+  'REF/1/DOI': string;
+  'REF/1/NOTES': string;
+  'Inset #': string;
+}
+
 /**
  * Interactive SVG component
  */
@@ -70,14 +88,14 @@ export interface NodeTooltipData {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class InteractiveSvgComponent implements OnDestroy {
+export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestroy {
   /** SVG url */
   @Input() url?: string;
 
-  @Input() mapping: Record<string, string>[] = [];
+  @Input() mapping: T[] = [];
 
   /** Emits node id when hovered */
-  @Output() readonly nodeHover = new EventEmitter<Record<string, unknown>>();
+  @Output() readonly nodeHover = new EventEmitter<T>();
 
   /** SVG script eval mode */
   readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;
