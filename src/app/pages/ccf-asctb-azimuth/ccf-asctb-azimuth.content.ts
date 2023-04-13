@@ -18,56 +18,56 @@ export const headerInfo: HeaderData[] = [
     header: 'Unique Names',
     cell: (element: TableData) => `${element['uniqueName']}`,
     sorting: false,
-    alignment: 'center'
+    alignment: 'end'
   },
   {
     columnDef: 'uniqueId',
     header: 'Unique IDs',
     cell: (element: TableData) => `${element['uniqueId']}`,
     sorting: false,
-    alignment: 'center'
+    alignment: 'end'
   },
   {
     columnDef: 'uName',
     header: 'Unique Names',
     cell: (element: TableData) => `${element['uName']}`,
     sorting: false,
-    alignment: 'center'
+    alignment: 'end'
   },
   {
     columnDef: 'uId',
     header: 'Unique \nIDs',
     cell: (element: TableData) => `${element['uId']}`,
     sorting: false,
-    alignment: 'center'
+    alignment: 'end'
   },
   {
     columnDef: 'usingId',
     header: 'Using IDs',
     cell: (element: TableData) => `${element['usingId']}`,
     sorting: false,
-    alignment: 'center'
+    alignment: 'end'
   },
   {
     columnDef: 'usingLabels',
     header: 'Using Labels',
     cell: (element: TableData) => `${element['usingLabels']}`,
     sorting: false,
-    alignment: 'center'
+    alignment: 'end'
   },
   {
     columnDef: 'dummyAnnotationLevels',
     header: '',
     cell: (element: TableData) => `${element['a']}`,
     sorting: false,
-    alignment: 'center'
+    alignment: 'end'
   },
   {
     columnDef: 'dummyTotalCellCount',
     header: '',
     cell: (element: TableData) => `${element['b']}`,
     sorting: false,
-    alignment: 'center'
+    alignment: 'end'
   },
   {
     columnDef: 'dummyAzimuthB',

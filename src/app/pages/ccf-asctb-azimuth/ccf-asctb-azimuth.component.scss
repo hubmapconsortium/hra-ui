@@ -3,6 +3,10 @@
   display: block;
   width: 100%;
 
+  ::ng-deep th.mat-header-cell {
+    text-align: right;
+  }
+
   @media (max-width: 80rem) {
     padding: 0rem 1rem;
   }

@@ -44,9 +44,18 @@ export const columnHeaders: HeaderData[] = [
     {
         columnDef: 'csv',
         header: `Download`,
-        cell: (element: TableData) => `<a class="cell-link" href="${element['csv'] || 'TODO:Please add a url column to this .csv!'}">CSV</a> | <a class="cell-link" href="${element['xlsx'] || 'TODO:Please add a url column to this .csv!'}">XLSX</a>`,
+        cell: (element: TableData) => `
+            <a class="cell-link" href="${element['csv'] || 'TODO:Please add a url column to this .csv!'}">
+                CSV
+            </a>
+            |
+            <a class="cell-link" href="${element['xlsx'] || 'TODO:Please add a url column to this .csv!'}">
+                XLSX
+            </a>
+        `,
         sorting: false,
-        isTotalRequired: true
+        isTotalRequired: true,
+        alignment: 'start'
     },
     {
         columnDef: 'as',

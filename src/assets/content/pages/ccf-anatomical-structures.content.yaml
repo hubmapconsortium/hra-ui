@@ -59,6 +59,7 @@ headerInfo:
 - columnDef: 'tableVersion'
   header: 'Table Version'
   cell: "`${element['tableVersion']}`"
+  alignment: end
 - columnDef: 'AS'
   header: '#AS'
   cell: "`${element['AS']}`"
