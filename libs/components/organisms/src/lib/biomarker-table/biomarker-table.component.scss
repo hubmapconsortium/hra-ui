@@ -1,4 +1,5 @@
 @use 'utils';
+@use 'variables' as vars;
 
 :host {
   display: block;
@@ -90,4 +91,12 @@
     height: 200px;
     overflow: auto;
   }
+}
+
+::ng-deep .biomarker-table-hover.full-column-name {
+  display: flex;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
+  background-color: vars.$primary-contrast-rgb;
 }

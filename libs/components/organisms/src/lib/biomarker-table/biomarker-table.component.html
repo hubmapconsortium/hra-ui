@@ -22,7 +22,7 @@
       </ng-container>
 
       <ng-container *ngFor="let column of columns; let index = index" [matColumnDef]="column">
-        <th class="icon-header" mat-header-cell *matHeaderCellDef>
+        <th class="icon-header" mat-header-cell *matHeaderCellDef [hraHover]="columnHover" [hraHoverData]="column">
           {{ column }}
         </th>
 
@@ -32,6 +32,8 @@
             *ngIf="element[index + 2] !== undefined"
             [color]="element[index + 2].color"
             [size]="element[index + 2].size"
+            [hraHover]="dataHover"
+            [hraHoverData]="element[index + 2].data"
           >
           </hra-biomarker-table-data-icon>
         </td>
@@ -42,3 +44,13 @@
     </table>
   </div>
 </div>
+
+<ng-template #columnHover let-columnName>
+  <div class="biomarker-table-hover full-column-name">
+    {{ columnName }}
+  </div>
+</ng-template>
+
+<ng-template #dataHover let-data>
+  <hra-biomarker-table-data-card [data]="data"> </hra-biomarker-table-data-card>
+</ng-template>
