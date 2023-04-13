@@ -4,7 +4,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import { FooterComponent } from '@hra-ui/components/molecules';
-import { DownloadActions, DownloadFormat, DownloadSelectors, ResourceIds as Ids, LinkIds } from '@hra-ui/state';
+import { DownloadActions, DownloadSelectors, ResourceIds as Ids, LinkIds } from '@hra-ui/state';
 
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
@@ -39,7 +39,8 @@ export class FooterBehaviorComponent {
   /** A dispatcher function to download file in specified format */
   readonly download = dispatch(DownloadActions.Download);
 
-  readonly downloadFormat: DownloadFormat[] = selectSnapshot(DownloadSelectors.formats)();
+  /** Selects a snapshot of the current value of the available download formats */
+  readonly downloadFormat = selectSnapshot(DownloadSelectors.formats);
 
   /** A function which opens the contact modal dialog box */
   contact(): void {
