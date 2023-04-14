@@ -101,6 +101,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/AddMany-1.html" data-type="entity-link" >AddMany</a>
                             </li>
                             <li class="link">
+                                <a href="classes/Clear.html" data-type="entity-link" >Clear</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/Delete.html" data-type="entity-link" >Delete</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/LinkRegistrySelectors.html" data-type="entity-link" >LinkRegistrySelectors</a>
                             </li>
                             <li class="link">
@@ -122,7 +128,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/ScopedDestructorSubject.html" data-type="entity-link" >ScopedDestructorSubject</a>
                             </li>
                             <li class="link">
+                                <a href="classes/Set.html" data-type="entity-link" >Set</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/SnapshotObserver.html" data-type="entity-link" >SnapshotObserver</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/StorageSelectors.html" data-type="entity-link" >StorageSelectors</a>
                             </li>
                         </ul>
                     </li>
@@ -139,6 +151,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/ResourceRegistryState.html" data-type="entity-link" >ResourceRegistryState</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/StorageState.html" data-type="entity-link" >StorageState</a>
                                 </li>
                             </ul>
                         </li>
