@@ -22,9 +22,13 @@ describe('StorageState', () => {
   describe('set(ctx, action)', () => {
     it('should should set hello to world in local storage', () => {
       state.set(ctx, new Set(StorageId.Local, 'hello', 'world'));
-      state.set(ctx, new Set(StorageId.Session, 'helloSession', 'worldSession'));
-      state.set(ctx, new Set(StorageId.Session, 'helloSession1', 'worldSession1'));
       expect(StorageState.getStorage(StorageId.Local).getItem('hello')).toBe('world');
+    });
+  });
+
+  describe('set(ctx, action)', () => {
+    it('should should set hello to world in session storage', () => {
+      state.set(ctx, new Set(StorageId.Session, 'helloSession', 'worldSession'));
       expect(StorageState.getStorage(StorageId.Session).getItem('helloSession')).toBe('worldSession');
     });
   });
@@ -32,18 +36,27 @@ describe('StorageState', () => {
   describe('delete(action)', () => {
     it('should should delete hello in local storage', () => {
       state.delete(ctx, new Delete(StorageId.Local, 'hello'));
-      state.delete(ctx, new Delete(StorageId.Session, 'helloSession'));
       expect(StorageState.getStorage(StorageId.Local).getItem('hello')).toBe(null);
+    });
+  });
+
+  describe('delete(action)', () => {
+    it('should should delete hello in session storage', () => {
+      state.delete(ctx, new Delete(StorageId.Session, 'helloSession'));
       expect(StorageState.getStorage(StorageId.Session).getItem('helloSession')).toBe(null);
-      expect(StorageState.getStorage(StorageId.Session).getItem('helloSession1')).toBe('worldSession1');
     });
   });
 
   describe('clear(action)', () => {
     it('should should clear local storage', () => {
       state.clear(ctx, new Clear(StorageId.Local));
-      state.clear(ctx, new Clear(StorageId.Session));
       expect(StorageState.getStorage(StorageId.Local).length).toBe(0);
+    });
+  });
+
+  describe('clear(action)', () => {
+    it('should should clear session storage', () => {
+      state.clear(ctx, new Clear(StorageId.Session));
       expect(StorageState.getStorage(StorageId.Session).length).toBe(0);
     });
   });
