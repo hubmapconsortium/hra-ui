@@ -40,3 +40,9 @@ export const GradientLegend = createResourceId('GradientLegend');
 
 /** Size legend id */
 export const SizeLegend = createResourceId('SizeLegend');
+
+/** Info to show on the tooltip for Gradient legend */
+export const GradientLegendInfo = createResourceId('GradientLegendInfo');
+
+/** Info to show on the tooltip for Size legend */
+export const SizeLegendInfo = createResourceId('SizeLegendInfo');
