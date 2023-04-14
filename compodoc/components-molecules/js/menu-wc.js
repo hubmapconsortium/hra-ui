@@ -124,6 +124,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/MetricItem.html" data-type="entity-link" >MetricItem</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/NodeMapEntry.html" data-type="entity-link" >NodeMapEntry</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/NodeTooltipData.html" data-type="entity-link" >NodeTooltipData</a>
                             </li>
                             <li class="link">

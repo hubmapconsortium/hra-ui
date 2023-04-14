@@ -75,6 +75,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/DownloadState.html" data-type="entity-link" >DownloadState</a>
                             </li>
                             <li class="link">
+                                <a href="classes/MedicalIllustrationSelectors.html" data-type="entity-link" >MedicalIllustrationSelectors</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/RegisterFormat.html" data-type="entity-link" >RegisterFormat</a>
                             </li>
                             <li class="link">
@@ -84,7 +87,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/Set.html" data-type="entity-link" >Set</a>
                             </li>
                             <li class="link">
+                                <a href="classes/SetActiveNode.html" data-type="entity-link" >SetActiveNode</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/SetData.html" data-type="entity-link" >SetData</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SetMapping.html" data-type="entity-link" >SetMapping</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SetUri.html" data-type="entity-link" >SetUri</a>
                             </li>
                             <li class="link">
                                 <a href="classes/SourceListSelectors.html" data-type="entity-link" >SourceListSelectors</a>
@@ -104,6 +116,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/ContactState.html" data-type="entity-link" >ContactState</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/MedicalIllustrationState.html" data-type="entity-link" >MedicalIllustrationState</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/SourceListState.html" data-type="entity-link" >SourceListState</a>
@@ -126,6 +141,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/GradientPoint.html" data-type="entity-link" >GradientPoint</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/MedicalIllustrationModel.html" data-type="entity-link" >MedicalIllustrationModel</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Source.html" data-type="entity-link" >Source</a>

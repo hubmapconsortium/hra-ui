@@ -38,7 +38,7 @@
   <li>Components</li>
   <li
   >
-  HeaderBehaviorComponent</li>
+  MedicalIllustrationBehaviorComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -64,7 +64,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/lib/header-behavior/header-behavior.component.ts</code>
+    <code>src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts</code>
 </p>
 
 
@@ -72,7 +72,7 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Component for Header Behavior</p>
+        <p>Behavior component for medical illustration component</p>
 
     </p>
 
@@ -100,19 +100,19 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>ftu-header-behavior</code></td>
+                <td class="col-md-9"><code>ftu-medical-illustration-behavior</code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./header-behavior.component.scss</code></td>
+                <td class="col-md-9"><code>./medical-illustration-behavior.component.scss</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./header-behavior.component.html</code></td>
+                <td class="col-md-9"><code>./medical-illustration-behavior.component.html</code></td>
             </tr>
 
 
@@ -140,23 +140,15 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#aboutLink" >aboutLink</a>
+                                <a href="#currentUrl" >currentUrl</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#appTitle" >appTitle</a>
+                                <a href="#getMapping" >getMapping</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#productLogoUrl" >productLogoUrl</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#productTitle" >productTitle</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#productTitleLink" >productTitleLink</a>
+                                <a href="#updateNode" >updateNode</a>
                             </li>
                         </ul>
                     </td>
@@ -186,28 +178,28 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="aboutLink"></a>
+                    <a name="currentUrl"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
-                        <span ><b>aboutLink</b></span>
-                        <a href="#aboutLink"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>currentUrl</b></span>
+                        <a href="#currentUrl"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>LinkIds.About</code>
+                        <i>Default value : </i><code>selectSnapshot(MedicalIllustrationSelectors.url)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/header-behavior/header-behavior.component.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts:22</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Input for about link for user click action.</p>
+                    <div class="io-description"><p>Current illustration url</p>
 </div>
                 </td>
             </tr>
@@ -218,28 +210,28 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="appTitle"></a>
+                    <a name="getMapping"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
-                        <span ><b>appTitle</b></span>
-                        <a href="#appTitle"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>getMapping</b></span>
+                        <a href="#getMapping"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>selectQuerySnapshot(RR.anyText, Ids.AppTitle)</code>
+                        <i>Default value : </i><code>selectSnapshot(MedicalIllustrationSelectors.mapping)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/lib/header-behavior/header-behavior.component.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts:27</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Input for app title to show on the left side.</p>
+                    <div class="io-description"><p>Current mapping file</p>
 </div>
                 </td>
             </tr>
@@ -250,92 +242,28 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="productLogoUrl"></a>
+                    <a name="updateNode"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
-                        <span ><b>productLogoUrl</b></span>
-                        <a href="#productLogoUrl"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>updateNode</b></span>
+                        <a href="#updateNode"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>selectQuerySnapshot(RR.url, Ids.ProductLogoUrl)</code>
+                        <i>Default value : </i><code>dispatch(MedicalIllustrationActions.SetActiveNode)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/lib/header-behavior/header-behavior.component.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts:32</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Input for product logo URL to displayed on the left side.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="productTitle"></a>
-                    <span class="name">
-                            <span class="modifier">Readonly</span>
-                        <span ><b>productTitle</b></span>
-                        <a href="#productTitle"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>selectQuerySnapshot(RR.anyText, Ids.ProductTitle)</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/lib/header-behavior/header-behavior.component.ts:26</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Input for product title to displayed on the left side.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="productTitleLink"></a>
-                    <span class="name">
-                            <span class="modifier">Readonly</span>
-                        <span ><b>productTitleLink</b></span>
-                        <a href="#productTitleLink"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>LinkIds.ProductTitle</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/lib/header-behavior/header-behavior.component.ts:36</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Input for product title link for user click action</p>
+                    <div class="io-description"><p>Updates the active node on node hover</p>
 </div>
                 </td>
             </tr>
@@ -350,64 +278,49 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
 import { ChangeDetectionStrategy, Component } from &#x27;@angular/core&#x27;;
-import { selectQuerySnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
-import { ResourceRegistrySelectors as RR } from &#x27;@hra-ui/cdk/state&#x27;;
-import { HeaderComponent } from &#x27;@hra-ui/components/molecules&#x27;;
-import { ResourceIds as Ids, LinkIds } from &#x27;@hra-ui/state&#x27;;
+import { dispatch, selectSnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
+import { InteractiveSvgComponent } from &#x27;@hra-ui/components/molecules&#x27;;
+import { MedicalIllustrationActions, MedicalIllustrationSelectors } from &#x27;@hra-ui/state&#x27;;
 
-/** Component for Header Behavior */
+/**
+ * Behavior component for medical illustration component
+ */
 @Component({
-  selector: &#x27;ftu-header-behavior&#x27;,
+  selector: &#x27;ftu-medical-illustration-behavior&#x27;,
   standalone: true,
-  imports: [CommonModule, HeaderComponent],
-  templateUrl: &#x27;./header-behavior.component.html&#x27;,
-  styleUrls: [&#x27;./header-behavior.component.scss&#x27;],
+  imports: [CommonModule, InteractiveSvgComponent],
+  templateUrl: &#x27;./medical-illustration-behavior.component.html&#x27;,
+  styleUrls: [&#x27;./medical-illustration-behavior.component.scss&#x27;],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderBehaviorComponent {
+export class MedicalIllustrationBehaviorComponent {
   /**
-   * Input for product logo URL to displayed on the left side.
+   * Current illustration url
    */
-  readonly productLogoUrl &#x3D; selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);
+  readonly currentUrl &#x3D; selectSnapshot(MedicalIllustrationSelectors.url);
 
   /**
-   * Input for product title to displayed on the left side.
+   * Current mapping file
    */
-  readonly productTitle &#x3D; selectQuerySnapshot(RR.anyText, Ids.ProductTitle);
+  readonly getMapping &#x3D; selectSnapshot(MedicalIllustrationSelectors.mapping);
 
   /**
-   * Input for app title to show on the left side.
+   * Updates the active node on node hover
    */
-  readonly appTitle &#x3D; selectQuerySnapshot(RR.anyText, Ids.AppTitle);
-
-  /**
-   * Input for product title link for user click action
-   */
-  readonly productTitleLink &#x3D; LinkIds.ProductTitle;
-
-  /**
-   * Input for about link for user click action.
-   */
-  readonly aboutLink &#x3D; LinkIds.About;
+  readonly updateNode &#x3D; dispatch(MedicalIllustrationActions.SetActiveNode);
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;hra-header
-  [productLogoUrl]&#x3D;&quot;productLogoUrl() ?? &#x27;&#x27;&quot;
-  [productTitle]&#x3D;&quot;productTitle() ?? &#x27;&#x27;&quot;
-  [appTitle]&#x3D;&quot;appTitle() ?? &#x27;&#x27;&quot;
-  [productTitleLink]&#x3D;&quot;productTitleLink&quot;
-  [aboutLink]&#x3D;&quot;aboutLink&quot;
-&gt;
-&lt;/hra-header&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;hra-interactive-svg [url]&#x3D;&quot;currentUrl()&quot; [mapping]&#x3D;&quot;getMapping()&quot; (nodeHover)&#x3D;&quot;updateNode($event)&quot;&gt;
+&lt;/hra-interactive-svg&gt;
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
                 <p class="comment">
-                    <code>./header-behavior.component.scss</code>
+                    <code>./medical-illustration-behavior.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss">:host {
   display: block;
@@ -440,10 +353,10 @@ export class HeaderBehaviorComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-header  [productLogoUrl]="productLogoUrl() ?? \'\'"  [productTitle]="productTitle() ?? \'\'"  [appTitle]="appTitle() ?? \'\'"  [productTitleLink]="productTitleLink"  [aboutLink]="aboutLink"></hra-header></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-interactive-svg [url]="currentUrl()" [mapping]="getMapping()" (nodeHover)="updateNode($event)"></hra-interactive-svg></div>'
     var COMPONENTS = [{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'}];
     var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'HeaderBehaviorComponent'};
+    var ACTUAL_COMPONENT = {'name': 'MedicalIllustrationBehaviorComponent'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -489,7 +402,7 @@ export class HeaderBehaviorComponent {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'HeaderBehaviorComponent.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'MedicalIllustrationBehaviorComponent.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
