@@ -1,5 +1,7 @@
 import { StateContext } from '@ngxs/store';
-
+/**
+ * StorageId - enum with values as Local, Session - identifier for storage types
+ */
 export enum StorageId {
   Local = 'local',
   Session = 'session',
