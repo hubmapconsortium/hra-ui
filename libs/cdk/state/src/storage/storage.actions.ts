@@ -4,7 +4,9 @@ import { StorageId } from './storage.model';
 /** Base action factory */
 const Action = ActionGroup('Storage');
 
-/* Sets key, value to the storageId supplied */
+/**
+ * Class Set Action for set method
+ */
 export class Set extends Action('Set') {
   /**
    * constructor class for Set action object
@@ -16,7 +18,9 @@ export class Set extends Action('Set') {
     super();
   }
 }
-/* Deletes the key specified for the given StorageId */
+/**
+ *  Class Delete Action for delete method
+ */
 export class Delete extends Action('Delete') {
   /**
    * constructor class for Delete action object
@@ -27,7 +31,9 @@ export class Delete extends Action('Delete') {
     super();
   }
 }
-/* Clear the values stored in the specified StorageId */
+/**
+ * Clear the values stored in the specified StorageId
+ */
 export class Clear extends Action('Clear') {
   /**
    * constructor class for clear action object
