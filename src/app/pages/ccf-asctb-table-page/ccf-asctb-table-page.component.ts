@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EMPTY, map, Observable } from 'rxjs';
 import { PageDataItems } from '../../components/page-data/page-data';
@@ -7,8 +7,8 @@ import { SopLinks } from '../../components/sop-links/sop-links';
 import { ChooseVersion } from '../../components/choose-version/choose-version';
 import { TableData } from '../../components/table/table';
 import { TableDataService } from '../../services/table-data/tabledata.service';
-import { displayedColumnsData, headerInfo } from './ccf-asctb-table-page.content';
 import { UseButton } from 'src/app/components/use-button/use-button';
+import { HeaderData } from 'src/app/components/table/header';
 
 
 @Component({
@@ -23,8 +23,8 @@ export class CcfTablePageComponent {
   exploreTablesData: PageDataItems[];
   tablesUnderDevelopmentData: PageDataItems[];
   sopLinksData: SopLinks[]
-  displayedColumnsData = displayedColumnsData
-  headerInfo = headerInfo
+  displayedColumnsData: string[];
+  headerInfo: HeaderData[]
   versionData: ChooseVersion[]
   release: ChooseVersion;
   tableData: Observable<TableData[]> = EMPTY;
@@ -44,11 +44,17 @@ export class CcfTablePageComponent {
     this.asctbTableOntologyValidationReports = data.asctbTableOntologyValidationReports;
     this.asctbTableOntologyValidationReportsButton = data.asctbTableOntologyValidationReportsButton;
     this.release = this.versionData[0];
+    this.headerInfo = data.headerInfo;
+    this.headerInfo = this.headerInfo.map((data) => ({
+      ...data,
+      cell: new Function('element', `return ${data.cell}`) as HeaderData['cell']
+    }))
+    this.displayedColumnsData = this.headerInfo.map(h => h.columnDef);
     this.setData(this.versionData[0]);
   }
 
   setData(version: ChooseVersion): void {
-    const data = this.dataService.getData(version.file, displayedColumnsData);
+    const data = this.dataService.getData(version.file, this.displayedColumnsData);
     this.tableData = data.pipe(map(result => result.data));
     this.columns = data.pipe(map(result => result.columns));
   }

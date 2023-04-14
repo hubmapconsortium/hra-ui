@@ -19,13 +19,38 @@ $border-color: #e0e0e0;
     right: end,
     center: center,
   );
+  $text-align-to-padding-side: (
+    start: left,
+    left: left,
+    end: right,
+    right: right,
+    center: ''
+  );
+  $text-align-to-text-align: (
+    start: left,
+    left: left,
+    end: right,
+    right: right,
+    center: ''
+  );
+  $justify-content: map-get($text-align-to-justify-content, $text-align);
+  $padding-side: map-get($text-align-to-padding-side, $text-align);
+  $text-align: map-get($text-align-to-text-align, $text-align);
 
   .alignment-#{$type} {
     text-align: $text-align;
+
+    @if $padding-side != '' {
+      padding-#{$padding-side}: 1rem;
+    }
   }
 
   ::ng-deep th.alignment-#{$type} > * {
-    justify-content: map-get($text-align-to-justify-content, $text-align);
+    justify-content: $justify-content;
+
+    .mat-sort-header-content {
+      text-align: $text-align;
+    }
   }
 }
 
@@ -51,26 +76,36 @@ $border-color: #e0e0e0;
       white-space: break-spaces;
     }
 
+    .table-title {
+      vertical-align: text-top;
+      padding: 1rem;
+      max-width: 150px;
+    }
+
+    td.mat-footer-cell:first-of-type {
+      padding-left: 1rem;
+    }
+
     .table-cell {
       font-weight: 300;
       box-sizing:border-box;
-      padding-right: 1rem;
     }
 
     .table-footer:not(:first-child) {
       text-align: right;
       box-sizing:border-box;
-      padding-right: 0.5rem;
+      white-space: unset;
+      padding-right: 1rem;
     }
 
     td.mat-cell:last-of-type {
       box-sizing: border-box;
-      padding-right: 2rem;
+      padding-right: 1rem;
     }
 
     td.mat-footer-cell:last-of-type {
       box-sizing: border-box;
-      padding-right: 1.5rem;
+      padding-right: 1rem;
     }
 
     @include text-alignment(default, right);
@@ -102,12 +137,20 @@ $border-color: #e0e0e0;
       }
     }
 
+    ::ng-deep .mat-sort-header-content {
+      // text-align: left;
+      white-space: normal;
+    }
+
     ::ng-deep .mat-column-csv {
-      height: inherit;
-      display: flex;
-      padding: 0.5rem;
+      white-space: nowrap !important;
       align-items: center;
     }
 
+    ::ng-deep td.mat-column-csv {
+      text-align: left !important;
+      padding-left: 1rem;
+      padding-right: unset !important;
+    }
   }
 }

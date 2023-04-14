@@ -49,3 +49,62 @@ sopLinksData:
   href: https://doi.org/10.5281/zenodo.5746152
 - urls: 'SOP: ASCT+B Table Communications'
   href: https://doi.org/10.5281/zenodo.5639623
+
+headerInfo:
+- columnDef: Organ
+  header: Organ
+  cell: "`<a class=\"cell-link\" href=\"${element['url'] || 'TODO:Please add a url column to this.csv!'}\">${element['Organ']}</a>`"
+  isTotalRequired: true
+  alignment: start
+- columnDef: 'tableVersion'
+  header: 'Table Version'
+  cell: "`${element['tableVersion']}`"
+  alignment: end
+- columnDef: 'AS'
+  header: '#AS'
+  cell: "`${element['AS']}`"
+- columnDef: 'CT'
+  header: '#CT'
+  cell: "`${element['CT']}`"
+- columnDef: 'B_Total'
+  header: '#B Total'
+  cell: "`${element['B_Total']}`"
+- columnDef: 'BG'
+  header: '#BG'
+  cell: "`${element['BG']}`"
+- columnDef: 'BP'
+  header: '#BP'
+  cell: "`${element['BP']}`"
+- columnDef: 'BM'
+  header: '#BM'
+  cell: "`${element['BM']}`"
+- columnDef: 'BF'
+  header: '#BF'
+  cell: "`${element['BF']}`"
+- columnDef: 'BL'
+  header: '#BL'
+  cell: "`${element['BL']}`"
+- columnDef: 'ASWithNoLink'
+  header: '#AS With NoLink'
+  cell: "`${element['ASWithNoLink']}`"
+- columnDef: 'CTWithNoLink'
+  header: '#CT With NoLink'
+  cell: "`${element['CTWithNoLink']}`"
+- columnDef: 'BWithNoLink'
+  header: '#B With NoLink'
+  cell: "`${element['BWithNoLink']}`"
+- columnDef: 'ASWithNoCT'
+  header: '#AS With NoCT'
+  cell: "`${element['ASWithNoCT']}`"
+- columnDef: 'CTWithNoB'
+  header: '#CT With NoB'
+  cell: "`${element['CTWithNoB']}`"
+- columnDef: 'AS_AS'
+  header: '#AS-AS'
+  cell: "`${element['AS_AS']}`"
+- columnDef: 'AS_CT'
+  header: '#AS-CT'
+  cell: "`${element['AS_CT']}`"
+- columnDef: 'CT_BM'
+  header: '#CT-BM'
+  cell: "`${element['CT_BM']}`"
