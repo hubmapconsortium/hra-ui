@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EMPTY, map, Observable } from 'rxjs';
+import { HeaderData } from 'src/app/components/table/header';
 import { ChooseVersion } from '../../components/choose-version/choose-version';
 import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
 import { TableData } from '../../components/table/table';
 import { TableDataService } from '../../services/table-data/tabledata.service';
-import { displayedColumnsData, headerInfo } from './hra-millitome.content';
 
 
 @Component({
@@ -19,8 +19,8 @@ export class HraMillitomeComponent {
   headerCardDetails: PageHeaderItems[];
   overViewData: PageDataItems[];
   tableTitle: string;
-  displayedColumnsData = displayedColumnsData;
-  headerInfo = headerInfo;
+  headerInfo: HeaderData[];
+  displayedColumnsData: string[];
 
   tableData: Observable<TableData[]> = EMPTY;
   columns: Observable<string[]> = EMPTY;
@@ -30,11 +30,17 @@ export class HraMillitomeComponent {
     this.headerCardDetails = [data.headerCardDetails];
     this.overViewData = [data.overViewData];
     this.tableTitle = data.tableTitle;
+    this.headerInfo = data.headerInfo;
+    this.headerInfo = this.headerInfo.map((data) => ({
+      ...data,
+      cell: new Function('element', `return ${data.cell}`) as HeaderData['cell']
+    }))
+    this.displayedColumnsData = this.headerInfo.map(h => h.columnDef);
     this.setData();
   }
 
   setData(): void {
-    const data = this.dataService.getData('hra-millitome.csv', displayedColumnsData);
+    const data = this.dataService.getData('hra-millitome.csv', this.displayedColumnsData);
     this.tableData = data.pipe(map(result => result.data));
   }
 }

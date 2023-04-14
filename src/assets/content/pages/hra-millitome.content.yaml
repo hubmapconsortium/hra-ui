@@ -20,3 +20,17 @@ overViewData:
     Each package contains three 3D-printable .STL files, one each for “small”, “medium” and “large” organ sizes to cover a wide range of variations (i.e. VH_F_Kidney_L_20_Medium = female kidney, left, 20mm block size, medium size). Also included in each package is a .CSV file to record data about the sample blocks taken from the organ.
 tableTitle:
   Millitome Catalog
+
+headerInfo:
+- columnDef: organ
+  header: Organ
+  cell: "`<a class=\"cell-link\" href=\"${element['url'] || 'TODO:Please add a url column to this .csv!'}\">${element['organ']}</a>`"
+  alignment: start
+- columnDef: sex
+  header: Sex
+  cell: "`${element['sex']}`"
+  alignment: start
+- columnDef: "left/right"
+  header: "Left/Right"
+  cell: "`${element['left/right']}`"
+  alignment: start
