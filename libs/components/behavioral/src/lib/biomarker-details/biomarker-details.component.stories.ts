@@ -158,8 +158,4 @@ Primary.args = {
       tableColumns: [],
     },
   ],
-  gradientHoverInfo:
-    'Expression is scaled linearly to the range [0,1]. Scaling is done by designating the minimum value in the current view to 0 and the max is assigned to 1.',
-  sizeHoverInfo:
-    'The percentage of cells in the FTU is calculated by dividing the total number of cells in all FTUs by the number of all cells in that tissue section.',
 };
