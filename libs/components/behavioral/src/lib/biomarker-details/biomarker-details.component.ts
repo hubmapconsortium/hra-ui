@@ -55,10 +55,10 @@ export class BiomarkerDetailsComponent implements OnChanges {
   @Input() tabs: BiomarkerTab[] = [];
 
   /** Info to be shown on the tooltip for Gradient Legend */
-  gradientHoverInfo = selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);
+  readonly gradientHoverInfo = selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);
 
   /** Info to be shown on the tooltip for Size Legend */
-  sizeHoverInfo = selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo);
+  readonly sizeHoverInfo = selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo);
 
   /** The current selected tab from the cell types */
   activeTab = '';
