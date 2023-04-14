@@ -4,100 +4,91 @@
   display: grid;
   grid-template-columns: 21.5rem 21.5rem auto;
   grid-template-rows: 3.5rem auto 3rem 5rem 3.5rem auto;
+  grid-template-areas:
+    'table-header table-header table-header'
+    'table table table'
+    'gradient-legend-header size-legend-header .'
+    'gradient-legend size-legend .'
+    'source-list-header source-list-header source-list-header'
+    'source-list source-list source-list';
 
-  .header-label {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    grid-column: 1 / 4;
-    grid-row: 1;
-    padding: 0.25rem 2rem;
-    gap: 0.5rem;
+  .table-header {
+    grid-area: table-header;
   }
 
   .table {
-    grid-column: 1 / 4;
-    grid-row: 2;
-    border-right: 0.063rem solid #d3d3d3;
+    grid-area: table;
+    max-width: 100%;
+    overflow: auto;
+
+    ::ng-deep .table-tab-header {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      border-left: 0.063rem solid #d3d3d3;
+
+      &:last-child {
+        border-right: 0.063rem solid #d3d3d3;
+      }
+
+      &.mdc-tab-indicator--active {
+        background-color: #f8f9fa;
+      }
+    }
   }
 
-  .mean-legend-wrapper {
-    border-left: 0.063rem solid #d3d3d3;
-    grid-column: 1;
-    grid-row: 4;
-  }
-
-  .size-legend-wrapper {
-    border-left: 0.063rem solid #d3d3d3;
-    border-right: 0.063rem solid #d3d3d3;
-    grid-column: 2;
-    grid-row: 4;
-  }
-
-  .mean-legend-box {
-    grid-column: 1;
-    grid-row: 3;
+  .legend-header {
     color: vars.$dark-primary-text;
+
+    &.gradient {
+      grid-area: gradient-legend-header;
+    }
+
+    &.size {
+      grid-area: size-legend-header;
+    }
+
+    .icon {
+      margin-left: 0.6rem;
+    }
   }
 
-  .size-legend-box {
-    grid-column: 2;
-    grid-row: 3;
-    color: vars.$dark-primary-text;
-  }
-
-  .mean-legend {
-    width: 10rem;
-    margin: 1rem 2rem;
-  }
-
-  .size-legend {
-    margin: 1rem 2rem;
-  }
-
-  .source-label {
-    grid-column: 1 / 4;
-    grid-row: 5;
-    color: vars.$dark-primary-text;
-  }
-
-  .source-list-wrapper {
-    grid-column: 1 / 4;
-    grid-row: 6;
+  .legend {
+    padding: 1rem 2rem;
     border-left: 0.063rem solid #d3d3d3;
     border-right: 0.063rem solid #d3d3d3;
-    border-bottom: 0.063rem solid #d3d3d3;
+
+    &.gradient {
+      grid-area: gradient-legend;
+
+      .content {
+        width: 10rem;
+      }
+    }
+
+    &.size {
+      grid-area: size-legend;
+    }
+  }
+
+  .source-list-header {
+    grid-area: source-list-header;
+    color: vars.$dark-primary-text;
   }
 
   .source-list {
-    margin: 1rem 1.125rem;
-    width: min-content;
-  }
-
-  .icon {
-    margin-left: 0.6rem;
-  }
-
-  .foobar {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-
-  ::ng-deep .mat-mdc-tab.mdc-tab {
+    grid-area: source-list;
+    padding: 1rem 1.125rem;
     border-left: 0.063rem solid #d3d3d3;
-  }
-
-  ::ng-deep .mat-mdc-tab.mdc-tab:last-of-type {
     border-right: 0.063rem solid #d3d3d3;
-  }
+    border-bottom: 0.063rem solid #d3d3d3;
 
-  ::ng-deep .mat-mdc-tab.mdc-tab-indicator--active {
-    background-color: #f8f9fa;
+    .content {
+      width: min-content;
+    }
   }
 }
 
-::ng-deep .hoverdata {
+::ng-deep .biomarker-details.info-tooltip {
   display: flex;
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;

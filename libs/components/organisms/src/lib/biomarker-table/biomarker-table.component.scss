@@ -3,17 +3,9 @@
 
 :host {
   display: block;
-  max-width: 100%;
 
   .sr-only {
     @include utils.sr-only();
-  }
-
-  .table {
-    min-width: auto;
-    min-height: auto;
-    font-size: 0.875rem;
-    position: absolute;
   }
 
   .table th {
@@ -81,15 +73,6 @@
     .icon {
       margin: auto;
     }
-  }
-
-  .table-wrapper {
-    position: relative;
-  }
-
-  .table-scroll {
-    height: 200px;
-    overflow: auto;
   }
 }
 
