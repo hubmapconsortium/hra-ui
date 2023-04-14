@@ -58,6 +58,40 @@ export interface NodeTooltipData {
   origin: { x: number; y: number };
 }
 
+/** Interface for node entries */
+export interface NodeMapEntry {
+  /** Organ label */
+  organ_label: string;
+  /** Organ id */
+  organ_id: string;
+  /** Anatomical structure */
+  anatomical_structure_of: string;
+  /** Spatial entity source */
+  source_spatial_entity: string;
+  /** Node name */
+  node_name: string;
+  /** Node label */
+  label: string;
+  /** Ontology id */
+  OntologyID: string;
+  /** Link to represenation */
+  representation_of: string;
+  /** File of single 2dftu */
+  'svg file of single 2DFTU': string;
+  /** if asctb exists */
+  exist_asctb: string;
+  /** Type */
+  type: string;
+  /** REF/1 */
+  'REF/1': string;
+  /** REF/1/DOI */
+  'REF/1/DOI': string;
+  /** REF/1/NOTES */
+  'REF/1/NOTES': string;
+  /** Inset # */
+  'Inset #': string;
+}
+
 /**
  * Interactive SVG component
  */
@@ -70,12 +104,15 @@ export interface NodeTooltipData {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class InteractiveSvgComponent implements OnDestroy {
+export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestroy {
   /** SVG url */
   @Input() url?: string;
 
+  /** Mapping info */
+  @Input() mapping: T[] = [];
+
   /** Emits node id when hovered */
-  @Output() readonly nodeHover = new EventEmitter<string>();
+  @Output() readonly nodeHover = new EventEmitter<T>();
 
   /** SVG script eval mode */
   readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;
@@ -139,16 +176,17 @@ export class InteractiveSvgComponent implements OnDestroy {
    * @param event Mouse event
    */
   private onCrosswalkHover(event: MouseEvent): void {
-    const id = this.decodeId(this.getId(event));
-    if (id) {
-      this.nodeHover.emit(id);
+    const id = this.getId(event);
+    const mapEntry = this.mapping?.find((item) => item['node_name'] === id); //search mapping data for node entry
+    if (mapEntry) {
       this.nodeHoverData$.next({
-        node: id,
+        node: mapEntry['label'],
         origin: {
           x: event.clientX,
           y: event.clientY,
         },
       });
+      this.nodeHover.emit(mapEntry); //emits node entry
     }
   }
 
@@ -167,8 +205,17 @@ export class InteractiveSvgComponent implements OnDestroy {
    * @returns Parent id
    */
   private getId(event: Event): string {
-    const parentEl = (event.target as Element).parentElement as Element;
-    return parentEl.id;
+    const parent = (event.target as Element).parentElement;
+    const grandparent = parent?.parentElement;
+    let id = (event.target as Element).id;
+    if (!id) {
+      if (parent && parent.id) {
+        id = parent.id;
+      } else {
+        id = grandparent ? grandparent.id : '';
+      }
+    }
+    return this.decodeId(id);
   }
 
   /**
