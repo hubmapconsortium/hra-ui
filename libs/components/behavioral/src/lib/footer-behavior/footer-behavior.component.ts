@@ -24,6 +24,9 @@ export class FooterBehaviorComponent {
   /** Input for product title to displayed on the left side. */
   readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);
 
+  /** Selects a snapshot of the current value of the available download formats */
+  readonly downloadFormats = selectSnapshot(DownloadSelectors.formats);
+
   /** Hra portal link routing after clicking on HRA Portal */
   readonly hraPortal = LinkIds.Portal;
 
@@ -33,14 +36,11 @@ export class FooterBehaviorComponent {
   /** Embed link routing after clicking on Embed */
   readonly embed = LinkIds.Embed;
 
-  /** A dialog box which shows contact modal after clicking on contact */
-  private readonly dialog = inject(MatDialog);
-
   /** A dispatcher function to download file in specified format */
   readonly download = dispatch(DownloadActions.Download);
 
-  /** Selects a snapshot of the current value of the available download formats */
-  readonly downloadFormat = selectSnapshot(DownloadSelectors.formats);
+  /** A dialog box which shows contact modal after clicking on contact */
+  private readonly dialog = inject(MatDialog);
 
   /** A function which opens the contact modal dialog box */
   contact(): void {

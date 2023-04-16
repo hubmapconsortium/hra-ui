@@ -1,20 +1,21 @@
-import { MatDialog } from '@angular/material/dialog';
-import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { mock } from 'jest-mock-extended';
 import { Shallow } from 'shallow-render';
 import { FooterBehaviorComponent } from './footer-behavior.component';
+import { MarkdownModule } from 'ngx-markdown';
 
 jest.mock('@hra-ui/cdk/injectors');
 
 describe('FooterBehaviorComponent', () => {
-  const dialog = mock<MatDialog>();
   let shallow: Shallow<FooterBehaviorComponent>;
 
   jest.mocked(selectQuerySnapshot).mockReturnValue(jest.fn());
+  jest.mocked(selectSnapshot).mockReturnValue(jest.fn());
   jest.mocked(dispatch).mockReturnValue(jest.fn());
 
   beforeEach(async () => {
-    shallow = new Shallow(FooterBehaviorComponent).provideMock({ provide: MatDialog, useValue: dialog });
+    shallow = new Shallow(FooterBehaviorComponent).import(MarkdownModule.forRoot()).dontMock(MatDialogModule);
   });
 
   afterEach(() => jest.clearAllMocks());
@@ -25,9 +26,10 @@ describe('FooterBehaviorComponent', () => {
 
   describe('contact', () => {
     it('should open the contact modal dialog box', async () => {
-      const { instance } = await shallow.render();
+      const { instance, inject } = await shallow.render();
+      const spy = jest.spyOn(inject(MatDialog), 'open');
       instance.contact();
-      expect(dialog.open).toHaveBeenCalled();
+      expect(spy).toHaveBeenCalled();
     });
   });
 });

@@ -1,11 +1,11 @@
 <hra-footer
   [productLogoUrl]="productLogoUrl() ?? ''"
   [productTitle]="productTitle() ?? ''"
+  [hraPortal]="hraPortal"
+  [illustrationMetadata]="illustrationMetadata"
+  [embed]="embed"
+  [downloadFormats]="downloadFormats()"
   (contactClick)="contact()"
-  (hraPortalClick)="(hraPortal)"
-  (illustrationClick)="(illustrationMetadata)"
-  (embedClick)="(embed)"
-  (download)="(download)"
-  [downloadFormats]="downloadFormat()"
+  (download)="download($event.id)"
 >
 </hra-footer>
