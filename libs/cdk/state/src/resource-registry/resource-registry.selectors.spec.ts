@@ -88,8 +88,8 @@ describe('ResourceRegistrySelectors', () => {
       expect(anyText(textId)).toEqual(textData);
     });
 
-    it('should return undefined if no text with id exists', () => {
-      expect(anyText(urlId)).toBeUndefined();
+    it('should return empty string if no text with id exists', () => {
+      expect(anyText(urlId)).toEqual('');
     });
   });
 
@@ -101,8 +101,8 @@ describe('ResourceRegistrySelectors', () => {
       expect(markdown(markdownId)).toEqual(markdownData);
     });
 
-    it('should return undefined if no markdown with id exists', () => {
-      expect(markdown(urlId)).toBeUndefined();
+    it('should return empty string if no markdown with id exists', () => {
+      expect(markdown(urlId)).toEqual('');
     });
   });
 
@@ -114,8 +114,8 @@ describe('ResourceRegistrySelectors', () => {
       expect(text(textId)).toEqual(textData);
     });
 
-    it('should return undefined if no text with id exists', () => {
-      expect(text(urlId)).toBeUndefined();
+    it('should return empty string if no text with id exists', () => {
+      expect(text(urlId)).toEqual('');
     });
   });
 
@@ -126,8 +126,9 @@ describe('ResourceRegistrySelectors', () => {
     it('should return url from id', () => {
       expect(url(urlId)).toEqual('http://google.com');
     });
-    it('should return undefined if no id exists in state', () => {
-      expect(url(createResourceId('test4'))).toBeUndefined();
+
+    it('should return empty string if no id exists in state', () => {
+      expect(url(createResourceId('test4'))).toEqual('');
     });
   });
 });
