@@ -6,7 +6,8 @@ import { selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { LinkDirective } from '@hra-ui/cdk';
 
 jest.mock('@hra-ui/cdk/injectors');
-jest.mocked(selectQuerySnapshot).mockReturnValue(() => undefined);
+jest.mocked(selectQuerySnapshot).mockReturnValue(() => undefined as never);
+
 describe('FooterComponent', () => {
   let shallow: Shallow<FooterComponent>;
 
