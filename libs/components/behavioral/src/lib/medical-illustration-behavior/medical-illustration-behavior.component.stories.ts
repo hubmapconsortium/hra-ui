@@ -11,9 +11,7 @@ export default {
       states: [MedicalIllustrationState],
       actions: [
         new MedicalIllustrationActions.SetMapping('assets/TEMP/mapping.csv'),
-        new MedicalIllustrationActions.SetUri(
-          'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.svg'
-        ),
+        new MedicalIllustrationActions.SetUri('./assets/TEMP/2d-ftu-kidney-renal-corpuscle-v2.svg'),
       ],
     },
   },
