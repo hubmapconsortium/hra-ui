@@ -47,6 +47,7 @@ export class CcfAsctbAzimuthComponent {
     this.License = data.license;
     this.Citation = data.citation;
     this.References = data.references;
+    this.headerInfo = data.headerInfo;
     this.headerInfo = this.headerInfo.map((data) => ({
       ...data,
       cell: new Function('element', `return ${data.cell}`) as HeaderData['cell']
