@@ -50,3 +50,94 @@ references:
     
     Hao Y, Hao S, Andersen-Nissen E, Mauck WM 3rd, Zheng S, Butler A, Lee MJ, Wilk AJ, Darby C, Zager M, Hoffman P, Stoeckius M, Papalexi E, Mimitou EP, Jain J, Srivastava A, Stuart T, Fleming LM, Yeung B, Rogers AJ, McElrath JM, Blish CA, Gottardo R, Smibert P, Satija R. 2021.
     <a href="https://doi.org/10.1016/j.cell.2021.04.048">Integrated Analysis of Multimodal Single-Cell Data</a>. <i>Cell.</i> 184 (13): 3573-3587.e29. doi: 10.1016/j.cell.2021.04.048
+
+headerInfo:
+  - columnDef: organ
+    header: Organ
+    cell: "`<a class=\"cell-link\" href=\"${element['url'] || 'TODO:Please add a url column to this .csv!'}\">${element['organ']}</a>`"
+    isTotalRequired: true
+    alignment: start
+  - columnDef: uniqueName
+    header: Unique Names
+    cell: "`${element['uniqueName']}`"
+    sorting: false
+    alignment: end
+  - columnDef: uniqueId
+    header: Unique IDs
+    cell: "`${element['uniqueId']}`"
+    sorting: false
+    alignment: end
+  - columnDef: uName
+    header: Unique Names
+    cell: "`${element['uName']}`"
+    sorting: false
+    alignment: end
+  - columnDef: uId
+    header: Unique IDs
+    cell: "`${element['uId']}`"
+    sorting: false
+    alignment: end
+  - columnDef: usingId
+    header: Using IDs
+    cell: "`${element['usingId']}`"
+    sorting: false
+    alignment: end
+  - columnDef: usingLabels
+    header: Using Labels
+    cell: "`${element['usingLabels']}`"
+    sorting: false
+    alignment: end
+  - columnDef: dummyAnnotationLevels
+    header: ""
+    cell: "`${element['a']}`"
+    sorting: false
+    alignment: end
+  - columnDef: dummyTotalCellCount
+    header: ""
+    cell: "`${element['b']}`"
+    sorting: false
+    alignment: end
+  - columnDef: dummyAzimuthB
+    header: ""
+    cell: "`${element['c']}`"
+    sorting: false
+  - columnDef: dummyAsctbB
+    header: ""
+    cell: "`${element['d']}`"
+    sorting: false
+  - columnDef: dummyMatchesB
+    header: ""
+    cell: "`${element['e']}`"
+    sorting: false
+    
+additionalHeaders:
+  - header: Azimuth
+    columnDef: azimuthCT
+    colspan: 3
+  - header: ASCT+B v1.0
+    columnDef: asctbVersionCT
+    colspan: 1
+  - header: Matches
+    columnDef: matchesCT
+    colspan: 3
+  - header: Azimuth
+    columnDef: azimuthB
+  - header: ASCT+B
+    columnDef: asctbVersionB
+  - header: Matches
+    columnDef: matchesB
+
+cellData:
+  - columnDef: cellTypes
+    header: Cell Types
+    colspan: 7
+  - columnDef: annotationLevels
+    header: Annotation Levels in Azimuth Reference
+    rowspan: 2
+  - columnDef: totalCellCount
+    header: Total Cell Count in Aziumuth Reference
+    rowspan: 2
+  - columnDef: biomarkers
+    header: Biomarkers
+    colspan: 3
+   

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EMPTY, map, Observable } from 'rxjs';
+import { ExtraHeader, HeaderData } from 'src/app/components/table/header';
 import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
 import { TableData } from '../../components/table/table';
 import { TableDataService } from '../../services/table-data/tabledata.service';
-import { additionalColumnsData, additionalHeaders, cellData, cellHeaders, displayedColumnsData, headerInfo } from './ccf-asctb-azimuth.content';
 
 
 @Component({
@@ -25,13 +25,12 @@ export class CcfAsctbAzimuthComponent {
   License: PageDataItems[];
   Citation: PageDataItems[];
   References: PageDataItems[];
-  headerInfo= headerInfo;
-  displayedColumnsData= displayedColumnsData;
-  additionalHeaders = additionalHeaders;
-  additionalColumnsData = additionalColumnsData;
-  cellData = cellData;
-  cellHeaders = cellHeaders;
-
+  headerInfo: HeaderData[]
+  displayedColumnsData: string[];
+  additionalHeaders: ExtraHeader[];
+  additionalColumnsData: string[];
+  cellData: ExtraHeader[];
+  cellHeaders: string[];
   tableData: Observable<TableData[]> = EMPTY;
   columns: Observable<string[]> = EMPTY;
 
@@ -48,11 +47,20 @@ export class CcfAsctbAzimuthComponent {
     this.License = data.license;
     this.Citation = data.citation;
     this.References = data.references;
+    this.headerInfo = this.headerInfo.map((data) => ({
+      ...data,
+      cell: new Function('element', `return ${data.cell}`) as HeaderData['cell']
+    }))
+    this.displayedColumnsData = this.headerInfo.map(h=>h.columnDef);
+    this.additionalHeaders = data.additionalHeaders
+    this.additionalColumnsData = this.additionalHeaders.map(h=>h.columnDef)
+    this.cellData = data.cellData;
+    this.cellHeaders = this.cellData.map(h=>h.columnDef)
     this.setData();
   }
 
   setData(): void {
-    const data = this.dataService.getData('azimuth.csv', displayedColumnsData);
+    const data = this.dataService.getData('azimuth.csv', this.displayedColumnsData);
     this.tableData = data.pipe(map(result => result.data));
   }
 }
