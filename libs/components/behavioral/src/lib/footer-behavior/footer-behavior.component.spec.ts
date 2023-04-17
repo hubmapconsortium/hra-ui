@@ -1,9 +1,8 @@
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
-import { mock } from 'jest-mock-extended';
+import { MarkdownModule } from 'ngx-markdown';
 import { Shallow } from 'shallow-render';
 import { FooterBehaviorComponent } from './footer-behavior.component';
-import { MarkdownModule } from 'ngx-markdown';
 
 jest.mock('@hra-ui/cdk/injectors');
 
