@@ -73,6 +73,15 @@
                             <a href="#createActionFactory" title="injectors/src/lib/dispatch/dispatch.ts" ><b>createActionFactory</b>&nbsp;&nbsp;&nbsp;(injectors/.../dispatch.ts)</a>
                         </li>
                         <li>
+                            <a href="#createCustomType" title="state/src/resource-registry/resource-registry.model.ts" ><b>createCustomType</b>&nbsp;&nbsp;&nbsp;(state/.../resource-registry.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#createCustomType" title="state/src/resource-registry/resource-registry.model.ts" ><b>createCustomType</b>&nbsp;&nbsp;&nbsp;(state/.../resource-registry.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#createCustomType" title="state/src/resource-registry/resource-registry.model.ts" ><b>createCustomType</b>&nbsp;&nbsp;&nbsp;(state/.../resource-registry.model.ts)</a>
+                        </li>
+                        <li>
                             <a href="#createLinkId" title="state/src/link-registry/link-registry.model.ts" ><b>createLinkId</b>&nbsp;&nbsp;&nbsp;(state/.../link-registry.model.ts)</a>
                         </li>
                         <li>
@@ -103,16 +112,28 @@
                             <a href="#firstDefinedValue" title="injectors/src/lib/on-destroy/on-destroy.ts" ><b>firstDefinedValue</b>&nbsp;&nbsp;&nbsp;(injectors/.../on-destroy.ts)</a>
                         </li>
                         <li>
+                            <a href="#getEntry" title="state/src/resource-registry/resource-registry.model.ts" ><b>getEntry</b>&nbsp;&nbsp;&nbsp;(state/.../resource-registry.model.ts)</a>
+                        </li>
+                        <li>
                             <a href="#identity" title="injectors/src/lib/dispatch/dispatch.ts" ><b>identity</b>&nbsp;&nbsp;&nbsp;(injectors/.../dispatch.ts)</a>
                         </li>
                         <li>
                             <a href="#injectDestroy$" title="injectors/src/lib/on-destroy/on-destroy.ts" ><b>injectDestroy$</b>&nbsp;&nbsp;&nbsp;(injectors/.../on-destroy.ts)</a>
                         </li>
                         <li>
+                            <a href="#isBuiltinType" title="state/src/resource-registry/resource-registry.model.ts" ><b>isBuiltinType</b>&nbsp;&nbsp;&nbsp;(state/.../resource-registry.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#isCustomType" title="state/src/resource-registry/resource-registry.model.ts" ><b>isCustomType</b>&nbsp;&nbsp;&nbsp;(state/.../resource-registry.model.ts)</a>
+                        </li>
+                        <li>
                             <a href="#isDestructorScopeLike" title="injectors/src/lib/on-destroy/destructor-subject.ts" ><b>isDestructorScopeLike</b>&nbsp;&nbsp;&nbsp;(injectors/.../destructor-subject.ts)</a>
                         </li>
                         <li>
                             <a href="#markForCheck" title="injectors/src/lib/select/select.ts" ><b>markForCheck</b>&nbsp;&nbsp;&nbsp;(injectors/.../select.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#payload" title="state/src/resource-registry/resource-registry.model.ts" ><b>payload</b>&nbsp;&nbsp;&nbsp;(state/.../resource-registry.model.ts)</a>
                         </li>
                         <li>
                             <a href="#pipeActionInstance" title="injectors/src/lib/dispatch/dispatch.ts" ><b>pipeActionInstance</b>&nbsp;&nbsp;&nbsp;(injectors/.../dispatch.ts)</a>
@@ -986,6 +1007,567 @@ Each call returns an observable that emits the passed actions when the dispatch 
             </tr>
         </tbody>
     </table>
+</section>    <h3>state/src/resource-registry/resource-registry.model.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createCustomType"></a>
+                    <span class="name">
+                        <span ><b>createCustomType</b></span>
+                        <a href="#createCustomType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createCustomType(type: T)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Creates a custom resource type</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>type</td>
+                                    <td>
+                                            <code>T</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Raw resource type</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>ResourceType&lt;CustomResourceEntry&lt;T, Partial&lt;Record&lt;string, &gt;&gt;&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A new resource type</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createCustomType"></a>
+                    <span class="name">
+                        <span ><b>createCustomType</b></span>
+                        <a href="#createCustomType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createCustomType(type: T, payload)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Creates a custom resource type with a payload. The payload should be
+specified using the <a href="../miscellaneous/functions.html#payload">payload</a> function</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>type</td>
+                                    <td>
+                                            <code>T</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Raw resource type</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>payload</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Payload type</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <b>Example :</b>
+                        <div>
+                            <pre class="line-numbers"><code class="language-html">const MyResourceType = createCustomType(&amp;#39;my-type&amp;#39;, payload&amp;lt;{ value: number }&amp;gt;());</code></pre>
+                        </div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>ResourceType&lt;CustomResourceEntry&lt;T, Props&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A new resource type</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createCustomType"></a>
+                    <span class="name">
+                        <span ><b>createCustomType</b></span>
+                        <a href="#createCustomType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createCustomType(type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Implementation of createCustomType overloads</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>type</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createResourceId"></a>
+                    <span class="name">
+                        <span ><b>createResourceId</b></span>
+                        <a href="#createResourceId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createResourceId(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Creates a new resource identifier</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Raw identifier</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getEntry"></a>
+                    <span class="name">
+                        <span ><b>getEntry</b></span>
+                        <a href="#getEntry"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getEntry(state: <a href="../undefineds/ResourceRegistryModel.html" target="_self">ResourceRegistryModel</a>, id: <a href="../undefineds/ResourceId.html" target="_self">ResourceId</a>, type?: <a href="../undefineds/ResourceType.html" target="_self">ResourceType</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Internal helper function for getting an entry from the state</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>state</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#ResourceRegistryModel" target="_self" >ResourceRegistryModel</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Current state snapshot</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#ResourceId" target="_self" >ResourceId</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Resource id</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>type</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#ResourceType" target="_self" >ResourceType</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>Optional entry type</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>T | undefined</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The entry object it exists and has the correct type, otherwise undefined</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isBuiltinType"></a>
+                    <span class="name">
+                        <span ><b>isBuiltinType</b></span>
+                        <a href="#isBuiltinType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isBuiltinType(type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Determines whether a type string has builtin support</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>type</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The type string</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isCustomType"></a>
+                    <span class="name">
+                        <span ><b>isCustomType</b></span>
+                        <a href="#isCustomType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isCustomType(type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Determines whether a type is a custom resource type</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>type</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The type string</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ResourceType" target="_self" >ResourceType&lt;z.infer&lt;&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>True if type is a custom type, otherwise false</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="payload"></a>
+                    <span class="name">
+                        <span ><b>payload</b></span>
+                        <a href="#payload"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>payload()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Helper function used to specify the payload format when creating custom types</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>ResourceEntryPayload&lt;Props&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A custom payload type</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    <h3>state/src/link-registry/link-registry.model.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -1048,79 +1630,6 @@ Each call returns an observable that emits the passed actions when the dispatch 
                     </div>
                     <div class="io-description">
                         
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>    <h3>state/src/resource-registry/resource-registry.model.ts</h3>
-    <section>
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="createResourceId"></a>
-                    <span class="name">
-                        <span ><b>createResourceId</b></span>
-                        <a href="#createResourceId"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>createResourceId(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Creates a new resource identifier</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>Unique resource identifier</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ResourceId" target="_self" >ResourceId</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>A new identifier</p>
-
                     </div>
                 </td>
             </tr>
@@ -1583,9 +2092,11 @@ is automatically tied to the injection context where this is called.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Injects a function that can be called with the same arguments as the query selector
-and returns the latest value each time
-Automatically marks components, directives, or pipes for change detection whenever
-a new value is available</p>
+and returns the latest value each time. Automatically marks components, directives, or pipes
+for change detection whenever a new value is available. Note that since typescript has yet to
+implement support for higher order generics there is sometimes a need to specialize the
+returned query function with the correct arguments and return type. This can be done as shown
+in the examples.</p>
 </div>
 
                     <div class="io-description">
@@ -1637,9 +2148,31 @@ a new value is available</p>
                         </table>
                     </div>
                     <div>
+                        <b>Example :</b>
+                        <div>
+                            <b><i>Basic usage</b></i>
+class Component {
+...
+// Return type: () => string
+readonly markdown = querySelectSnapshot(ResourceRegistrySelectors.markdown, id);
+// Return type: (id: ResourceId) => string
+readonly markdownById = querySelectSnapshot(ResourceRegistrySelectors.markdown);
+...
+}
+                        </div>
+                        <div>
+                            <b><i>Specialize query arguments and/or return type</b></i>
+class Component {
+...
+// Return type: () => number[]
+readonly points = querySelectSnapshot(ResourceRegistrySelectors.field, id, type, 'points', [])<number[]>;
+// Return type: (field: string, defaultValue: string) => string
+readonly getStringField = querySelectSnapshot(ResourceRegistrySelectors.field, id, type)<string, [string, string]>;
+}
+                        </div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Res</code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#SelectQuery" target="_self" >SelectQuery&lt;F, BoundArgs&gt;</a></code>
 
                     </div>
                     <div class="io-description">

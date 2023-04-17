@@ -92,15 +92,23 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Static</span>
+                                <a href="#anyEntry" >anyEntry</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
                                 <a href="#anyText" >anyText</a>
                             </li>
                             <li>
                                     <span class="modifier">Static</span>
-                                <a href="#markdown" >markdown</a>
+                                <a href="#entry" >entry</a>
                             </li>
                             <li>
                                     <span class="modifier">Static</span>
-                                <a href="#query" >query</a>
+                                <a href="#field" >field</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#markdown" >markdown</a>
                             </li>
                             <li>
                                     <span class="modifier">Static</span>
@@ -133,6 +141,92 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="anyEntry"></a>
+                    <span class="name">
+                        <span class="modifier">Static</span>
+                        <span ><b>anyEntry</b></span>
+                        <a href="#anyEntry"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>anyEntry(state: <a href="../undefineds/ResourceRegistryModel.html" target="_self">ResourceRegistryModel</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Selector([&#x27;ResourceRegistryState&#x27;])<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:47</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Queries an entry by id</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>state</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#ResourceRegistryModel" target="_self" >ResourceRegistryModel</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Current state</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#AnyEntryQuery" target="_self" >AnyEntryQuery</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Any entry query function</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="anyText"></a>
                     <span class="name">
                         <span class="modifier">Static</span>
@@ -158,8 +252,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:70</a></div>
                 </td>
             </tr>
 
@@ -204,11 +298,183 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ResourceRegistryDataQuery" target="_self" >ResourceRegistryDataQuery&lt;string&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#DataQuery" target="_self" >DataQuery&lt;string&gt;</a></code>
 
                     </div>
                     <div class="io-description">
                         <p>Text data query function</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="entry"></a>
+                    <span class="name">
+                        <span class="modifier">Static</span>
+                        <span ><b>entry</b></span>
+                        <a href="#entry"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>entry(state: <a href="../undefineds/ResourceRegistryModel.html" target="_self">ResourceRegistryModel</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Selector([&#x27;ResourceRegistryState&#x27;])<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:37</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Queries an entry by id and type</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>state</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#ResourceRegistryModel" target="_self" >ResourceRegistryModel</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Current state</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#EntryQuery" target="_self" >EntryQuery</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Entry query function</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="field"></a>
+                    <span class="name">
+                        <span class="modifier">Static</span>
+                        <span ><b>field</b></span>
+                        <a href="#field"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>field(state: <a href="../undefineds/ResourceRegistryModel.html" target="_self">ResourceRegistryModel</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Selector([&#x27;ResourceRegistryState&#x27;])<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:57</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Queries a field of an entry</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>state</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#ResourceRegistryModel" target="_self" >ResourceRegistryModel</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Current state</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#FieldQuery" target="_self" >FieldQuery</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A field query function</p>
 
                     </div>
                 </td>
@@ -230,7 +496,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>markdown(state: <a href="../undefineds/ResourceRegistryModel.html" target="_self">ResourceRegistryModel</a>)</code>
+                    <code>markdown(getField: <a href="../undefineds/FieldQuery.html" target="_self">FieldQuery</a>)</code>
                 </td>
             </tr>
 
@@ -238,14 +504,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Selector([&#x27;ResourceRegistryState&#x27;])<br /></code>
+                    <code>@Selector([&#x27;undefined&#x27;])<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:67</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:92</a></div>
                 </td>
             </tr>
 
@@ -264,14 +530,13 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
-                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>state</td>
+                                    <td>getField</td>
                                     <td>
-                                                <code><a href="../miscellaneous/typealiases.html#ResourceRegistryModel" target="_self" >ResourceRegistryModel</a></code>
+                                                <code><a href="../miscellaneous/typealiases.html#FieldQuery" target="_self" >FieldQuery</a></code>
                                     </td>
 
                                     <td>
@@ -279,10 +544,6 @@
                                     </td>
 
 
-                                    <td>
-                                        <p>Current state</p>
-
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -290,97 +551,11 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ResourceRegistryDataQuery" target="_self" >ResourceRegistryDataQuery&lt;string&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#DataQuery" target="_self" >DataQuery&lt;string&gt;</a></code>
 
                     </div>
                     <div class="io-description">
                         <p>Markdown data query function</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="query"></a>
-                    <span class="name">
-                        <span class="modifier">Static</span>
-                        <span ><b>query</b></span>
-                        <a href="#query"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>query(state: <a href="../undefineds/ResourceRegistryModel.html" target="_self">ResourceRegistryModel</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Selector([&#x27;ResourceRegistryState&#x27;])<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:32</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Queries for a resource entry</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>state</td>
-                                    <td>
-                                                <code><a href="../miscellaneous/typealiases.html#ResourceRegistryModel" target="_self" >ResourceRegistryModel</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>Current state</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/ResourceRegistryQuery.html" target="_self" >ResourceRegistryQuery</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>Resource query function</p>
 
                     </div>
                 </td>
@@ -402,7 +577,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>text(state: <a href="../undefineds/ResourceRegistryModel.html" target="_self">ResourceRegistryModel</a>)</code>
+                    <code>text(getField: <a href="../undefineds/FieldQuery.html" target="_self">FieldQuery</a>)</code>
                 </td>
             </tr>
 
@@ -410,14 +585,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Selector([&#x27;ResourceRegistryState&#x27;])<br /></code>
+                    <code>@Selector([&#x27;undefined&#x27;])<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="102"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:102</a></div>
                 </td>
             </tr>
 
@@ -436,14 +611,13 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
-                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>state</td>
+                                    <td>getField</td>
                                     <td>
-                                                <code><a href="../miscellaneous/typealiases.html#ResourceRegistryModel" target="_self" >ResourceRegistryModel</a></code>
+                                                <code><a href="../miscellaneous/typealiases.html#FieldQuery" target="_self" >FieldQuery</a></code>
                                     </td>
 
                                     <td>
@@ -451,10 +625,6 @@
                                     </td>
 
 
-                                    <td>
-                                        <p>Current state</p>
-
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -462,7 +632,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ResourceRegistryDataQuery" target="_self" >ResourceRegistryDataQuery&lt;string&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#DataQuery" target="_self" >DataQuery&lt;string&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -488,7 +658,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>url(state: <a href="../undefineds/ResourceRegistryModel.html" target="_self">ResourceRegistryModel</a>)</code>
+                    <code>url(getField: <a href="../undefineds/FieldQuery.html" target="_self">FieldQuery</a>)</code>
                 </td>
             </tr>
 
@@ -496,14 +666,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Selector([&#x27;ResourceRegistryState&#x27;])<br /></code>
+                    <code>@Selector([&#x27;undefined&#x27;])<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="87"
-                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:87</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="112"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:112</a></div>
                 </td>
             </tr>
 
@@ -522,14 +692,13 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
-                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>state</td>
+                                    <td>getField</td>
                                     <td>
-                                                <code><a href="../miscellaneous/typealiases.html#ResourceRegistryModel" target="_self" >ResourceRegistryModel</a></code>
+                                                <code><a href="../miscellaneous/typealiases.html#FieldQuery" target="_self" >FieldQuery</a></code>
                                     </td>
 
                                     <td>
@@ -537,10 +706,6 @@
                                     </td>
 
 
-                                    <td>
-                                        <p>Current state</p>
-
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -548,7 +713,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ResourceRegistryDataQuery" target="_self" >ResourceRegistryDataQuery&lt;string&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#DataQuery" target="_self" >DataQuery&lt;string&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -569,11 +734,10 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UnionMember } from &#x27;@hra-ui/utils/types&#x27;;
-import { Selector } from &#x27;@ngxs/store&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Selector } from &#x27;@ngxs/store&#x27;;
 import {
-  BuiltinResourceEntry,
-  CustomResourceEntry,
+  BuiltinResourceType,
+  getEntry,
   ResourceEntry,
   ResourceId,
   ResourceRegistryModel,
@@ -581,29 +745,55 @@ import {
 } from &#x27;./resource-registry.model&#x27;;
 import { ResourceRegistryState } from &#x27;./resource-registry.state&#x27;;
 
-/** Query function for resource entry optionally with type specified */
-export interface ResourceRegistryQuery {
-  /** Get a resource entry with builtin type */
-  &lt;T extends ResourceType&gt;(id: ResourceId, type: T): UnionMember&lt;BuiltinResourceEntry, &#x27;type&#x27;, T&gt; | undefined;
-  /** Get a resource entry of any type */
-  (id: ResourceId, type?: string): CustomResourceEntry | undefined;
-}
+/** Query function returned by {@link ResourceRegistrySelectors.entry} */
+export type EntryQuery &#x3D; &lt;T extends ResourceEntry&gt;(id: ResourceId, type: ResourceType&lt;T&gt;) &#x3D;&gt; T | undefined;
+
+/** Query function returned by {@link ResourceRegistrySelectors.anyEntry} */
+export type AnyEntryQuery &#x3D; (id: ResourceId) &#x3D;&gt; ResourceEntry | undefined;
+
+/** Query function returned by {@link ResourceRegistrySelectors.field} */
+export type FieldQuery &#x3D; &lt;T extends ResourceEntry, K extends keyof T&gt;(
+  id: ResourceId,
+  type: ResourceType&lt;T&gt;,
+  field: K,
+  defaultValue?: T[K]
+) &#x3D;&gt; T[K];
 
 /** Query function for resource data */
-export type ResourceRegistryDataQuery&lt;T&gt; &#x3D; (id: ResourceId) &#x3D;&gt; T | undefined;
+export type DataQuery&lt;T&gt; &#x3D; (id: ResourceId) &#x3D;&gt; T;
 
 /** Selectors for ResourceRegistry */
 export class ResourceRegistrySelectors {
   /**
-   * Queries for a resource entry
+   * Queries an entry by id and type
    * @param state Current state
-   * @returns Resource query function
+   * @returns Entry query function
    */
   @Selector([ResourceRegistryState])
-  static query(state: ResourceRegistryModel): ResourceRegistryQuery {
-    return (id: ResourceId, type?: ResourceType | string) &#x3D;&gt; {
-      const entry &#x3D; ResourceRegistrySelectors.getEntry(state, id, type);
-      return entry as BuiltinResourceEntry;
+  static entry(state: ResourceRegistryModel): EntryQuery {
+    return (id, type) &#x3D;&gt; getEntry(state, id, type);
+  }
+
+  /**
+   * Queries an entry by id
+   * @param state Current state
+   * @returns Any entry query function
+   */
+  @Selector([ResourceRegistryState])
+  static anyEntry(state: ResourceRegistryModel): AnyEntryQuery {
+    return (id) &#x3D;&gt; getEntry(state, id);
+  }
+
+  /**
+   * Queries a field of an entry
+   * @param state Current state
+   * @returns A field query function
+   */
+  @Selector([ResourceRegistryState])
+  static field(state: ResourceRegistryModel): FieldQuery {
+    return (id, type, field, defaultValue?) &#x3D;&gt; {
+      const entry &#x3D; getEntry(state, id, type);
+      return entry?.[field] ?? (defaultValue as never);
     };
   }
 
@@ -613,18 +803,18 @@ export class ResourceRegistrySelectors {
    * @returns Text data query function
    */
   @Selector([ResourceRegistryState])
-  static anyText(state: ResourceRegistryModel): ResourceRegistryDataQuery&lt;string&gt; {
+  static anyText(state: ResourceRegistryModel): DataQuery&lt;string&gt; {
     return (id) &#x3D;&gt; {
-      const entry &#x3D; ResourceRegistrySelectors.getEntry(state, id);
+      const entry &#x3D; getEntry(state, id);
       switch (entry?.type) {
-        case ResourceType.Markdown:
-          return entry.markdown as string;
+        case BuiltinResourceType.Markdown:
+          return entry.markdown ?? &#x27;&#x27;;
 
-        case ResourceType.Text:
-          return entry.text as string;
+        case BuiltinResourceType.Text:
+          return entry.text ?? &#x27;&#x27;;
 
         default:
-          return undefined;
+          return &#x27;&#x27;;
       }
     };
   }
@@ -634,9 +824,9 @@ export class ResourceRegistrySelectors {
    * @param state Current state
    * @returns Markdown data query function
    */
-  @Selector([ResourceRegistryState])
-  static markdown(state: ResourceRegistryModel): ResourceRegistryDataQuery&lt;string&gt; {
-    return (id) &#x3D;&gt; ResourceRegistrySelectors.getEntry(state, id, ResourceType.Markdown)?.markdown;
+  @Selector([ResourceRegistrySelectors.field])
+  static markdown(getField: FieldQuery): DataQuery&lt;string&gt; {
+    return (id) &#x3D;&gt; getField(id, BuiltinResourceType.Markdown, &#x27;markdown&#x27;, &#x27;&#x27;);
   }
 
   /**
@@ -644,9 +834,9 @@ export class ResourceRegistrySelectors {
    * @param state Current state
    * @returns Text data query function
    */
-  @Selector([ResourceRegistryState])
-  static text(state: ResourceRegistryModel): ResourceRegistryDataQuery&lt;string&gt; {
-    return (id) &#x3D;&gt; ResourceRegistrySelectors.getEntry(state, id, ResourceType.Text)?.text;
+  @Selector([ResourceRegistrySelectors.field])
+  static text(getField: FieldQuery): DataQuery&lt;string&gt; {
+    return (id) &#x3D;&gt; getField(id, BuiltinResourceType.Text, &#x27;text&#x27;, &#x27;&#x27;);
   }
 
   /**
@@ -654,26 +844,9 @@ export class ResourceRegistrySelectors {
    * @param state Current state
    * @returns Url query function
    */
-  @Selector([ResourceRegistryState])
-  static url(state: ResourceRegistryModel): ResourceRegistryDataQuery&lt;string&gt; {
-    return (id) &#x3D;&gt; ResourceRegistrySelectors.getEntry(state, id, ResourceType.Url)?.url;
-  }
-
-  /**
-   * Gets a resource entry by id and optionally type
-   * @param state Resource registry state
-   * @param id Entry id
-   * @param type Optional entry type
-   * @returns The entry if found, undefined otherwise
-   */
-  private static getEntry&lt;T extends ResourceType | string&gt;(
-    state: ResourceRegistryModel,
-    id: ResourceId,
-    type?: T
-  ): UnionMember&lt;ResourceEntry, &#x27;type&#x27;, T&gt; | undefined {
-    const entry &#x3D; state[id] as UnionMember&lt;ResourceEntry, &#x27;type&#x27;, T&gt;;
-    const typeMatches &#x3D; type &#x3D;&#x3D;&#x3D; undefined || entry?.type &#x3D;&#x3D;&#x3D; type;
-    return typeMatches ? entry : undefined;
+  @Selector([ResourceRegistrySelectors.field])
+  static url(getField: FieldQuery): DataQuery&lt;string&gt; {
+    return (id) &#x3D;&gt; getField(id, BuiltinResourceType.Url, &#x27;url&#x27;, &#x27;&#x27;);
   }
 }
 </code></pre>
