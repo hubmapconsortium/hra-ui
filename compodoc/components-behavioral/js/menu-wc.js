@@ -57,6 +57,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/ContactBehaviorComponent.html" data-type="entity-link" >ContactBehaviorComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/FooterBehaviorComponent.html" data-type="entity-link" >FooterBehaviorComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/HeaderBehaviorComponent.html" data-type="entity-link" >HeaderBehaviorComponent</a>
                             </li>
                             <li class="link">

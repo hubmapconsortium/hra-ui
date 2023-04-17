@@ -157,6 +157,8 @@ import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
 import { ConnectedPosition, OverlayModule } from &#x27;@angular/cdk/overlay&#x27;;
 import { MatListModule } from &#x27;@angular/material/list&#x27;;
+import { LinkDirective } from &#x27;@hra-ui/cdk&#x27;;
+import { EMPTY_LINK } from &#x27;@hra-ui/cdk/state&#x27;;
 
 /**
  * Base type for different download format options.
@@ -195,7 +197,7 @@ const DOWNLOADS_LIST_POSITION: ConnectedPosition[] &#x3D; [
 @Component({
   selector: &#x27;hra-footer&#x27;,
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, OverlayModule, MatListModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, OverlayModule, MatListModule, LinkDirective],
   templateUrl: &#x27;./footer.component.html&#x27;,
   styleUrls: [&#x27;./footer.component.scss&#x27;],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -210,23 +212,23 @@ export class FooterComponent&lt;T extends DownloadFormat &#x3D; DownloadFormat&g
   /** Input for product title to displayed on the left side. */
   @Input() productTitle &#x3D; &#x27;&#x27;;
 
+  /** Input for HRA Portal link */
+  @Input() hraPortal &#x3D; EMPTY_LINK;
+
+  /** Input for Illustration metadata page link in HRA Portal */
+  @Input() illustrationMetadata &#x3D; EMPTY_LINK;
+
+  /** Input for embed link in HRA Portal */
+  @Input() embed &#x3D; EMPTY_LINK;
+
   /** Different download formats options displayed to the user */
   @Input() downloadFormats: T[] &#x3D; [];
 
   /** Emits the selected download format */
   @Output() readonly download &#x3D; new EventEmitter&lt;T&gt;();
 
-  /** Emits when the illustration button is clicked */
-  @Output() readonly illustrationClick &#x3D; new EventEmitter&lt;void&gt;();
-
-  /** Emits when the embed button is clicked */
-  @Output() readonly embedClick &#x3D; new EventEmitter&lt;void&gt;();
-
   /** Emits when the contact button is clicked */
   @Output() readonly contactClick &#x3D; new EventEmitter&lt;void&gt;();
-
-  /** Emits when the hra portal button is clicked */
-  @Output() readonly hraPortalClick &#x3D; new EventEmitter&lt;void&gt;();
 
   /** Download list popup overlay positioning */
   readonly DOWNLOADS_LIST_POSITION &#x3D; DOWNLOADS_LIST_POSITION;
