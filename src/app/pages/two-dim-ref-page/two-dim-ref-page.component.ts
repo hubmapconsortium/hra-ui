@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { EMPTY, map, Observable } from 'rxjs';
+import { HeaderData } from 'src/app/components/table/header';
 import { TableData } from 'src/app/components/table/table';
 import { TableDataService } from 'src/app/services/table-data/tabledata.service';
 import { ChooseVersion } from '../../components/choose-version/choose-version';
@@ -8,7 +9,6 @@ import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
 import { SopLinks } from '../../components/sop-links/sop-links';
 import { OrganData, VersionOrgans } from '../../components/two-dim-image/two-dim-image';
-import { displayedColumnsData, headerInfo } from './two-dim-ref-page.content';
 
 
 interface TwoDimensionReference {
@@ -27,6 +27,8 @@ interface TwoDimensionReference {
   info: VersionOrgans;
   version: ChooseVersion;
   organInfo: VersionOrgans[];
+  headerInfo: HeaderData[];
+  displayedColumnsData: string[];
 }
 
 function iCaseEquals(str1: string, str2: string): boolean {
@@ -58,8 +60,11 @@ export class TwoDimRefPageComponent implements OnInit {
   info = this.data.info;
   version = this.data.version;
   organInfo = this.data.organInfo;
-  headerInfo = headerInfo;
-  displayedColumnsData = displayedColumnsData;
+  headerInfo = this.data.headerInfo.map((data) => ({
+    ...data,
+    cell: new Function('element', `return ${data.cell}`) as HeaderData['cell']
+  }))
+  displayedColumnsData = this.data.headerInfo.map(h=>h.columnDef);
   tableData: Observable<TableData[]> = EMPTY;
   columns: Observable<string[]> = EMPTY;
 

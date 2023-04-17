@@ -302,3 +302,34 @@ organInfo:
       url: https://doi.org/10.48539/HBM794.PKVD.274
       svg: https://hubmapconsortium.github.io/ccf-releases/v1.2/2d-ftu/thymus_lobule_thymus.svg
       png: https://hubmapconsortium.github.io/ccf-2d-reference-object-library/v1.0/png/thymus_lobule_thymus.png
+
+headerInfo:
+  - columnDef: FTU Label in Uberon
+    header: FTU Label in Uberon
+    cell: "`${element['FTU Label in Uberon']}`"
+    alignment: start
+  - columnDef: FTU ID in Uberon
+    header: FTU ID in Uberon
+    cell: "`${element['FTU ID in Uberon']}`"
+    alignment: start
+  - columnDef: CT Label in CL
+    header: CT Label in CL
+    cell: "`${element['CT Label in CL']}`"
+    alignment: start
+  - columnDef: CT ID in CL
+    header: CT ID in CL
+    cell: "`${element['CT ID in CL']}`"
+    alignment: start
+  - columnDef: CT Label in 2D Object
+    header: CT Label in 2D Object
+    cell: "`${element['CT Label in 2D Object']}`"
+    alignment: start
+    isTotalRequired: true
+  - columnDef: "#CT"
+    header: "#CT"
+    cell: "`${element['#CT']}`"
+    alignment: end
+  - columnDef: "#AS"
+    header: "#AS"
+    cell: "`${element['#AS']}`"
+    alignment: end
