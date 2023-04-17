@@ -67,7 +67,7 @@ describe('LinkDirective', () => {
     });
 
     it('should trigger dispatch event on click of internal link', async () => {
-      jest.mocked(selectQuerySnapshot).mockReturnValue(() => internalLinkEntry);
+      jest.mocked(selectQuerySnapshot).mockReturnValue(() => internalLinkEntry as never);
       jest.mocked(dispatch).mockReturnValue((id) => new LinkRegistryActions.Navigate(id));
       const { element } = await shallow.render(buttonTemplate, {
         bind: {
@@ -80,14 +80,14 @@ describe('LinkDirective', () => {
 
     describe('isAnchorElement', () => {
       it('should return true if external link', async () => {
-        jest.mocked(selectQuerySnapshot).mockReturnValue(() => externalLinkEntry);
+        jest.mocked(selectQuerySnapshot).mockReturnValue(() => externalLinkEntry as never);
         const { element, instance } = await shallow.render(anchorTemplate);
         element.triggerEventHandler('click', { button: 0 });
         expect(instance.onClick(new MouseEvent('click'))).toBeTruthy();
       });
 
       it('should return true if it is ctrlKey, shiftKey, altKey, metaKey', async () => {
-        jest.mocked(selectQuerySnapshot).mockReturnValue(() => internalLinkEntry);
+        jest.mocked(selectQuerySnapshot).mockReturnValue(() => internalLinkEntry as never);
         const { element, instance } = await shallow.render(anchorTemplate);
 
         const getMouseEvent = (prop: string) =>

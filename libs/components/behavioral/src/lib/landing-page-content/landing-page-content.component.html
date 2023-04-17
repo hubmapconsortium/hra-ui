@@ -1,27 +1,21 @@
 <hra-landing-page-intro
-  [title]="landingPageIntroTitle() ?? ''"
-  [img]="landingPageIntroImg() ?? ''"
-  [partners]="landingPageIntroPartners() ?? ''"
-  [description]="landingPageIntroDescription() ?? ''"
-  [moreText]="landingPageIntroMoreText() ?? ''"
-  (moreClick)="exploreFTU()"
+  [title]="landingPageIntroTitle()"
+  [img]="landingPageIntroImg()"
+  [partners]="landingPageIntroPartners()"
+  [description]="landingPageIntroDescription()"
+  [moreText]="landingPageIntroMoreText()"
+  (moreClick)="navigate(LinkIds.ExploreFTU)"
 >
 </hra-landing-page-intro>
-<hra-metrics
-  class="metrics"
-  [title]="metricsTitle() ?? ''"
-  [metrics]="metricItems"
-  [logo]="metricsLogo() ?? ''"
-  #intersectable
->
+<hra-metrics class="metrics" [title]="metricsTitle()" [metrics]="metrics()" [logo]="metricsLogo()" #intersectable>
 </hra-metrics>
 <hra-landing-page-in-depth
   class="landing-page-content"
-  [title]="landingPageDepthTitle() ?? ''"
-  [description]="landingPageDepthDescription() ?? ''"
-  [moreText]="landingPageDepthMoreText() ?? ''"
-  [img]="landingPageDepthImg() ?? ''"
-  (moreClick)="readMore()"
+  [title]="landingPageDepthTitle()"
+  [description]="landingPageDepthDescription()"
+  [moreText]="landingPageDepthMoreText()"
+  [img]="landingPageDepthImg()"
+  (moreClick)="navigate(LinkIds.LandingPageReadMore)"
   #intersectable
 >
 </hra-landing-page-in-depth>
