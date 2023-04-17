@@ -60,6 +60,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/AddEntry.html" data-type="entity-link" >AddEntry</a>
                             </li>
                             <li class="link">
+                                <a href="classes/CellSummarySelectors.html" data-type="entity-link" >CellSummarySelectors</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/ClearEntries.html" data-type="entity-link" >ClearEntries</a>
                             </li>
                             <li class="link">
