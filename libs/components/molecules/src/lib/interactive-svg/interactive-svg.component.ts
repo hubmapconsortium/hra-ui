@@ -176,17 +176,16 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestro
    * @param event Mouse event
    */
   private onCrosswalkHover(event: MouseEvent): void {
-    const id = this.getId(event);
-    const mapEntry = this.mapping?.find((item) => item['node_name'] === id); //search mapping data for node entry
-    if (mapEntry) {
+    const node = this.getNode(event);
+    if (node) {
       this.nodeHoverData$.next({
-        node: mapEntry['label'],
+        node: node['label'],
         origin: {
           x: event.clientX,
           y: event.clientY,
         },
       });
-      this.nodeHover.emit(mapEntry); //emits node entry
+      this.nodeHover.emit(node); //emits node entry
     }
   }
 
@@ -204,18 +203,24 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestro
    * @param event Event
    * @returns Parent id
    */
-  private getId(event: Event): string {
+  private getNode(event: Event): T | undefined {
+    const targetId = (event.target as Element).id;
     const parent = (event.target as Element).parentElement;
     const grandparent = parent?.parentElement;
-    let id = (event.target as Element).id;
-    if (!id) {
-      if (parent && parent.id) {
-        id = parent.id;
-      } else {
-        id = grandparent ? grandparent.id : '';
+    const idCollection = [targetId, parent?.id, grandparent?.id];
+    console.log(idCollection);
+    for (const id of idCollection) {
+      const decodedID = this.decodeId(id || '');
+      const match = this.mapping.find(
+        (item) =>
+          item['node_name']?.toLowerCase() === decodedID.toLowerCase() ||
+          item['label']?.toLowerCase() === decodedID.toLowerCase().split('_').join(' ')
+      ); //search mapping data for node entry;
+      if (match) {
+        return match;
       }
     }
-    return this.decodeId(id);
+    return undefined;
   }
 
   /**
