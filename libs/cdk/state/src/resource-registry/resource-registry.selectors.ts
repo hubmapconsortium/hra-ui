@@ -16,15 +16,15 @@ export type EntryQuery = <T extends ResourceEntry>(id: ResourceId, type: Resourc
 export type AnyEntryQuery = (id: ResourceId) => ResourceEntry | undefined;
 
 /** Query function returned by {@link ResourceRegistrySelectors.field} */
-export type FieldQuery = <T extends ResourceEntry, K extends keyof T, D = undefined>(
+export type FieldQuery = <T extends ResourceEntry, K extends keyof T>(
   id: ResourceId,
   type: ResourceType<T>,
   field: K,
-  defaultValue?: D
-) => T[K] | D;
+  defaultValue?: T[K]
+) => T[K];
 
 /** Query function for resource data */
-export type DataQuery<T> = (id: ResourceId) => T | undefined;
+export type DataQuery<T> = (id: ResourceId) => T;
 
 /** Selectors for ResourceRegistry */
 export class ResourceRegistrySelectors {
@@ -72,13 +72,13 @@ export class ResourceRegistrySelectors {
       const entry = getEntry(state, id);
       switch (entry?.type) {
         case BuiltinResourceType.Markdown:
-          return entry.markdown;
+          return entry.markdown ?? '';
 
         case BuiltinResourceType.Text:
-          return entry.text;
+          return entry.text ?? '';
 
         default:
-          return undefined;
+          return '';
       }
     };
   }
@@ -90,7 +90,7 @@ export class ResourceRegistrySelectors {
    */
   @Selector([ResourceRegistrySelectors.field])
   static markdown(getField: FieldQuery): DataQuery<string> {
-    return (id) => getField(id, BuiltinResourceType.Markdown, 'markdown');
+    return (id) => getField(id, BuiltinResourceType.Markdown, 'markdown', '');
   }
 
   /**
@@ -100,7 +100,7 @@ export class ResourceRegistrySelectors {
    */
   @Selector([ResourceRegistrySelectors.field])
   static text(getField: FieldQuery): DataQuery<string> {
-    return (id) => getField(id, BuiltinResourceType.Text, 'text');
+    return (id) => getField(id, BuiltinResourceType.Text, 'text', '');
   }
 
   /**
@@ -110,6 +110,6 @@ export class ResourceRegistrySelectors {
    */
   @Selector([ResourceRegistrySelectors.field])
   static url(getField: FieldQuery): DataQuery<string> {
-    return (id) => getField(id, BuiltinResourceType.Url, 'url');
+    return (id) => getField(id, BuiltinResourceType.Url, 'url', '');
   }
 }
