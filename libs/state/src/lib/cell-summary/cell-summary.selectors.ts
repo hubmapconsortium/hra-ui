@@ -1,6 +1,5 @@
 import { Selector } from '@ngxs/store';
-import { Aggregate, CellSummaryStateModel } from './cell-summary.model';
-import { CellSummary } from './cell-summary.model';
+import { Aggregate, CellSummaryStateModel, CellSummary } from './cell-summary.model';
 import { CellSummaryState } from './cell-summary.state';
 
 /** selectors for the CellSummary state */
