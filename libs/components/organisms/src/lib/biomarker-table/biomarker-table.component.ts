@@ -1,7 +1,12 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
-import { BiomarkerTableDataIconComponent, DataItem } from '@hra-ui/components/molecules';
+import {
+  BiomarkerTableDataCardComponent,
+  BiomarkerTableDataIconComponent,
+  DataItem,
+} from '@hra-ui/components/molecules';
+import { HoverDirective } from '@hra-ui/cdk';
 
 /**
  * An interface representing a single cell of the table.
@@ -22,7 +27,13 @@ export type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];
 @Component({
   selector: 'hra-biomarker-table',
   standalone: true,
-  imports: [CommonModule, MatTableModule, BiomarkerTableDataIconComponent],
+  imports: [
+    CommonModule,
+    MatTableModule,
+    BiomarkerTableDataIconComponent,
+    HoverDirective,
+    BiomarkerTableDataCardComponent,
+  ],
   templateUrl: './biomarker-table.component.html',
   styleUrls: ['./biomarker-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
