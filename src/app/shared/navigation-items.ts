@@ -88,7 +88,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
       },
       {
         menuName: 'HRA Organ VR Gallery',
-        route: 'vr-organ-gallery'
+        route: 'hra-organ-gallery-in-vr'
       },
       {
         menuName: 'HRA Millitome',
