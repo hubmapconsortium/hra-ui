@@ -1,10 +1,11 @@
 import { MatTableModule } from '@angular/material/table';
+import { selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { DataCell, DataRow } from '@hra-ui/components/organisms';
+import { ResourceIds } from '@hra-ui/state';
+import { Any } from '@hra-ui/utils/types';
 import { Shallow } from 'shallow-render';
 import { BiomarkerDetailsComponent, BiomarkerTab } from './biomarker-details.component';
 import { createDataItem } from './biomarker-details.component.stories';
-import { selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
-import { ResourceIds } from '@hra-ui/state';
 
 jest.mock('@hra-ui/cdk/injectors');
 
@@ -138,7 +139,7 @@ describe('BiomarkerDetailsComponent', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    jest.mocked(selectQuerySnapshot).mockImplementation((...args) => {
+    jest.mocked(selectQuerySnapshot).mockImplementation(((...args: Any[]) => {
       switch (args[1]) {
         case ResourceIds.GradientLegend:
           return gradientFn;
@@ -147,7 +148,7 @@ describe('BiomarkerDetailsComponent', () => {
         default:
           return () => undefined;
       }
-    });
+    }) as never);
     jest.mocked(selectSnapshot).mockImplementation(() => sourceFn);
 
     shallow = new Shallow(BiomarkerDetailsComponent).dontMock(MatTableModule);
