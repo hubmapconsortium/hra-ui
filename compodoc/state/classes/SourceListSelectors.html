@@ -136,14 +136,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Selector()<br /></code>
+                    <code>@Selector([&#x27;SourceListState&#x27;])<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/lib/source-list/source-list.selectors.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="13"
+                            class="link-to-prism">src/lib/source-list/source-list.selectors.ts:13</a></div>
                 </td>
             </tr>
 
@@ -188,7 +188,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/Source.html" target="_self" >SourceListModel</a></code>
+                        <b>Returns : </b>        <code><a href="../interfaces/Source.html" target="_self" >Source[]</a></code>
 
                     </div>
                     <div class="io-description">
@@ -210,7 +210,8 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Selector } from &#x27;@ngxs/store&#x27;;
-import { SourceListModel } from &#x27;./source-list.model&#x27;;
+import { Source, SourceListModel } from &#x27;./source-list.model&#x27;;
+import { SourceListState } from &#x27;./source-list.state&#x27;;
 
 /** Selector class for retrieving data from the SourceListState */
 export class SourceListSelectors {
@@ -219,8 +220,8 @@ export class SourceListSelectors {
    * @param state The current state of the SourceListState
    * @returns array of source objects
    */
-  @Selector()
-  static getSourceList(state: SourceListModel) {
+  @Selector([SourceListState])
+  static getSourceList(state: SourceListModel): Source[] {
     return state;
   }
 }

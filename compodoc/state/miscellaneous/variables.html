@@ -106,6 +106,15 @@
                             <a href="#ExploreFTU" title="src/lib/link-ids.ts" ><b>ExploreFTU</b>&nbsp;&nbsp;&nbsp;(src/.../link-ids.ts)</a>
                         </li>
                         <li>
+                            <a href="#Gradient" title="src/lib/resource-types.ts" ><b>Gradient</b>&nbsp;&nbsp;&nbsp;(src/.../resource-types.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GradientLegend" title="src/lib/resource-ids.ts" ><b>GradientLegend</b>&nbsp;&nbsp;&nbsp;(src/.../resource-ids.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GradientLegendInfo" title="src/lib/resource-ids.ts" ><b>GradientLegendInfo</b>&nbsp;&nbsp;&nbsp;(src/.../resource-ids.ts)</a>
+                        </li>
+                        <li>
                             <a href="#Illustration" title="src/lib/link-ids.ts" ><b>Illustration</b>&nbsp;&nbsp;&nbsp;(src/.../link-ids.ts)</a>
                         </li>
                         <li>
@@ -176,6 +185,15 @@
                         </li>
                         <li>
                             <a href="#ProductTitle" title="src/lib/resource-ids.ts" ><b>ProductTitle</b>&nbsp;&nbsp;&nbsp;(src/.../resource-ids.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Size" title="src/lib/resource-types.ts" ><b>Size</b>&nbsp;&nbsp;&nbsp;(src/.../resource-types.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SizeLegend" title="src/lib/resource-ids.ts" ><b>SizeLegend</b>&nbsp;&nbsp;&nbsp;(src/.../resource-ids.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SizeLegendInfo" title="src/lib/resource-ids.ts" ><b>SizeLegendInfo</b>&nbsp;&nbsp;&nbsp;(src/.../resource-ids.ts)</a>
                         </li>
                         <li>
                             <a href="#STATE_LOGGER_PROVIDER" title="src/lib/state-analytics-plugin/state-analytics-plugin.service.ts" ><b>STATE_LOGGER_PROVIDER</b>&nbsp;&nbsp;&nbsp;(src/.../state-analytics-plugin.service.ts)</a>
@@ -513,6 +531,58 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Message to display after submitting contact form</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GradientLegend"></a>
+                    <span class="name">
+                        <span ><b>GradientLegend</b></span>
+                        <a href="#GradientLegend"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createResourceId(&#x27;GradientLegend&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gradient legend id</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GradientLegendInfo"></a>
+                    <span class="name">
+                        <span ><b>GradientLegendInfo</b></span>
+                        <a href="#GradientLegendInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createResourceId(&#x27;GradientLegendInfo&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Info to show on the tooltip for Gradient legend</p>
 </div>
                 </td>
             </tr>
@@ -883,6 +953,58 @@
 
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SizeLegend"></a>
+                    <span class="name">
+                        <span ><b>SizeLegend</b></span>
+                        <a href="#SizeLegend"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createResourceId(&#x27;SizeLegend&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Size legend id</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SizeLegendInfo"></a>
+                    <span class="name">
+                        <span ><b>SizeLegendInfo</b></span>
+                        <a href="#SizeLegendInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createResourceId(&#x27;SizeLegendInfo&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Info to show on the tooltip for Size legend</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
 </section>
     <h3>src/lib/cell-summary/cell-summary.model.ts</h3>
     <section>
@@ -1166,6 +1288,90 @@ which is an object with <code>formats</code> and <code>entries</code> properties
         </tbody>
     </table>
 </section>
+    <h3>src/lib/resource-types.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Gradient"></a>
+                    <span class="name">
+                        <span ><b>Gradient</b></span>
+                        <a href="#Gradient"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createCustomType(&#x27;gradient&#x27;, payload&lt;{ points: { color: string; percentage: number }[] }&gt;())</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gradient legend resource</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Metrics"></a>
+                    <span class="name">
+                        <span ><b>Metrics</b></span>
+                        <a href="#Metrics"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createCustomType(
+  &#x27;metrics&#x27;,
+  payload&lt;{ metrics: { icon: string; value: string; description: string }[] }&gt;()
+)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Metrics resource</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Size"></a>
+                    <span class="name">
+                        <span ><b>Size</b></span>
+                        <a href="#Size"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createCustomType(&#x27;size&#x27;, payload&lt;{ sizes: { label: string; radius: number }[] }&gt;())</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Size legend resource</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
     <h3>src/lib/state-analytics-plugin/state-analytics-plugin.service.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -1304,38 +1510,6 @@ which is an object with <code>formats</code> and <code>entries</code> properties
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Map Entry typings</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
-    <h3>src/lib/resource-types.ts</h3>
-    <section>
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="Metrics"></a>
-                    <span class="name">
-                        <span ><b>Metrics</b></span>
-                        <a href="#Metrics"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>createCustomType(
-  &#x27;metrics&#x27;,
-  payload&lt;{ metrics: { icon: string; value: string; description: string }[] }&gt;()
-)</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Metrics resource</p>
 </div>
                 </td>
             </tr>
