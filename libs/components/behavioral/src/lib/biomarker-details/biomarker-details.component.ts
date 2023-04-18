@@ -16,9 +16,13 @@ import { BiomarkerTableDataCardComponent, DataItem, SourceListComponent } from '
 import { BiomarkerTableComponent, DataCell, DataRow } from '@hra-ui/components/organisms';
 import { ResourceIds as Ids, ResourceTypes as RTypes, SourceListSelectors } from '@hra-ui/state';
 
+/** Tab data */
 export interface BiomarkerTab {
+  /** Tab label */
   label: string;
+  /** Table rows */
   tableRows: DataRow<DataCell>[];
+  /** Table column labels */
   tableColumns: string[];
 }
 
