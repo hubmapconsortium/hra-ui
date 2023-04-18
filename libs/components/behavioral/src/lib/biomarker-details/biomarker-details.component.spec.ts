@@ -1,13 +1,18 @@
 import { MatTableModule } from '@angular/material/table';
+import { HoverDirective } from '@hra-ui/cdk';
 import { selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { DataItem } from '@hra-ui/components/molecules';
 import { DataCell, DataRow } from '@hra-ui/components/organisms';
 import { ResourceIds } from '@hra-ui/state';
 import { Any } from '@hra-ui/utils/types';
 import { Shallow } from 'shallow-render';
 import { BiomarkerDetailsComponent, BiomarkerTab } from './biomarker-details.component';
-import { createDataItem } from './biomarker-details.component.stories';
 
 jest.mock('@hra-ui/cdk/injectors');
+
+export function createDataItem(label: string, value: string): DataItem {
+  return { label, value };
+}
 
 describe('BiomarkerDetailsComponent', () => {
   const data = [
@@ -151,7 +156,7 @@ describe('BiomarkerDetailsComponent', () => {
     }) as never);
     jest.mocked(selectSnapshot).mockImplementation(() => sourceFn);
 
-    shallow = new Shallow(BiomarkerDetailsComponent).dontMock(MatTableModule);
+    shallow = new Shallow(BiomarkerDetailsComponent).dontMock(MatTableModule, HoverDirective);
   });
 
   it('should create', async () => {
