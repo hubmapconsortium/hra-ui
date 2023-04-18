@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
 
+interface HraSop {
+  pageHeader: PageHeaderItems[];
+  overviewData: PageDataItems[];
+}
 
 @Component({
   selector: 'standard-operating-procedures',
@@ -10,14 +14,9 @@ import { PageHeaderItems } from '../../components/page-header/page-header-items'
   styleUrls: ['./hra-sop.component.scss']
 })
 export class HraSopComponent {
-  pageHeader: PageHeaderItems[];
-  tableTitle: string;
-  overviewData: PageDataItems[];
+  data = this.route.snapshot.data['content'] as HraSop;
+  pageHeader = this.data.pageHeader;
+  overviewData = this.data.overviewData;
 
-  constructor(route: ActivatedRoute){
-    const data = route.snapshot.data['content'];
-    this.tableTitle = data.tableTitle;
-    this.pageHeader = [data.pageHeader];
-    this.overviewData = [data.overviewData];
-  }
+  constructor(private readonly route: ActivatedRoute) {}
 }

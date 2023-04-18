@@ -1,10 +1,10 @@
 pageHeader:
-  image: assets/images/hra-sop.svg
+- image: assets/images/hra-sop.svg
   title: Human Reference Atlas Standard Operating Procedures
   subtitle: Standard operating procedures for Human Reference Atlas construction, visualization, and usage
 
 overviewData:
-  heading: Table of Contents
+- heading: Table of Contents
   descriptions: |
     [Overview](https://docs.google.com/document/u/0/d/1oMPWB454auN-FTe7XVtxWk7SbJgWFtcS6LvOjgN89wA/edit)
 
@@ -120,6 +120,3 @@ overviewData:
     > Publishing CCF.OWL on BioPortal and OLS
 
     > HRA Release Process
-
-tableTile:
-  Standard Operating Procedures

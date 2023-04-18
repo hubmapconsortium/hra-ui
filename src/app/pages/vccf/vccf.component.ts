@@ -3,12 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PageDataItems } from 'src/app/components/page-data/page-data';
 import { PageHeaderItems } from 'src/app/components/page-header/page-header-items';
 
-@Component({
-  selector: 'ccf-vccf',
-  templateUrl: './vccf.component.html',
-  styleUrls: ['./vccf.component.scss']
-})
-export class VccfComponent {
+interface Vccf {
   pageHeader: PageHeaderItems[];
   overviewData: PageDataItems[];
   vccfDataFiles: PageDataItems[];
@@ -16,15 +11,22 @@ export class VccfComponent {
   license: PageDataItems[];
   citation: PageDataItems[];
   references: PageDataItems[];
+}
 
-  constructor(route: ActivatedRoute) {
-    const data = route.snapshot.data['content'];
-    this.pageHeader = data.pageHeader;
-    this.overviewData = data.overviewData;
-    this.vccfDataFiles = data.vccfDataFiles;
-    this.termsOfUse = data.termsOfUse;
-    this.license = data.license;
-    this.citation = data.citation;
-    this.references = data.references;
-  }
+@Component({
+  selector: 'ccf-vccf',
+  templateUrl: './vccf.component.html',
+  styleUrls: ['./vccf.component.scss']
+})
+export class VccfComponent {
+  constructor(private readonly route: ActivatedRoute) { }
+
+  data = this.route.snapshot.data['content'] as Vccf;
+  pageHeader = this.data.pageHeader;
+  overviewData = this.data.overviewData;
+  vccfDataFiles = this.data.vccfDataFiles;
+  termsOfUse = this.data.termsOfUse;
+  license = this.data.license;
+  citation = this.data.citation;
+  references = this.data.references;
 }

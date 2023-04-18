@@ -1,10 +1,9 @@
 boardHeader:
-  title: Human Reference Atlas Editorial Board
+- title: Human Reference Atlas Editorial Board
   subtitle: A panel of interdisciplinary experts advises on Human Reference Atlas policies, extensions, and applications
   image: assets/images/editorial_board.svg
 overviewData:
-  heading: | 
-    Overview
+- heading: Overview
   descriptions: |
     The HRA editorial board is composed of interdisciplinary experts from pathology, surgery, and single cell experimentalists.
 
@@ -16,6 +15,7 @@ overviewData:
     - optimize incentive structures (e.g., HRA papers in major journals, awards for highest quality contributions by organ teams/editors/reviewers),
     - discuss commercial and other means to sustain the HRA effort beyond current NIH funding, and
     - act as ambassadors for the HRA—promoting the HRA at relevant conferences and within key communities.
+
 boardMembersData:
 - image: assets/images/kristin.svg
   description: |

@@ -3,11 +3,7 @@ hraUsageHeading:
   title: Human Reference Atlas Usage Metrics
   subtitle: Data and statistics on which tools and consortia are using the Human Reference Atlas
 
-hraMetrics:
-- heading: Human Reference Atlas Usage Metrics
-  descriptions: HRA data and APIs are now used in HuBMAP, SenNet, and GTEx projects and portals
-
-hubmapGteMetricsData:
+hubmapMetricsData:
 - heading: HuBMAP Metrics
   descriptions: |
     The RUI is deployed in the HuBMAP Ingest Portal and used to add standardized spatial and biological structure (ASCT+B aligned) annotations. The EUI is available via Data Portal. ASCT+B terms are used by Vitessce to assign ontology-aligned cell type annotations for Azimuth cell by gene annotations and soon CODEX cell type annotations.

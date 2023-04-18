@@ -6,6 +6,14 @@ import { PageHeaderItems } from '../../components/page-header/page-header-items'
 import { SopLinks } from '../../components/sop-links/sop-links';
 import { UseButton } from '../../components/use-button/use-button';
 
+interface RegistrationUserInterface {
+  headerCardDetails: PageHeaderItems[];
+  overviewData: PageDataItems[];
+  interfacedata: PageDataItems[];
+  useRuiButton:UseButton;
+  ruiSopData: SopLinks[];
+  youtubePlayer: YoutubeModel;
+}
 
 @Component({
   selector: 'registration-user-interface',
@@ -13,30 +21,13 @@ import { UseButton } from '../../components/use-button/use-button';
   styleUrls: ['./registration-user-interface.component.scss']
 })
 export class RegistrationUserInterfaceComponent {
-  headerCardDetails: PageHeaderItems[];
-  overviewData: PageDataItems[];
-  interfacedata: PageDataItems[];
-  useRuiButton:UseButton;
-  ruiSopData: SopLinks[];
-  youtubePlayer: YoutubeModel;
-  height: number;
-  width: number;
-  title: string;
-  videoId: string;
-  playerTitle: string;
-
-  constructor(route: ActivatedRoute) {
-    const data = route.snapshot.data['content'];
-    this.headerCardDetails = data.headerCardDetails;
-    this.overviewData = data.overviewData;
-    this.interfacedata = data.interfacedata;
-    this.useRuiButton = data.useRuiButton;
-    this.ruiSopData = data.ruiSopData;
-    this.youtubePlayer = data.youtubePlayer
-    this.title = data.title;
-    this.videoId = data.videoId;
-    this.playerTitle = data.playerTitle;
-    this.height = data.height;
-    this.width = data.width;
-  }
+  constructor(private readonly route: ActivatedRoute) { }
+  
+  data = this.route.snapshot.data['content'] as RegistrationUserInterface;
+  headerCardDetails = this.data.headerCardDetails;
+  overviewData = this.data.overviewData;
+  interfacedata = this.data.interfacedata;
+  useRuiButton = this.data.useRuiButton;
+  ruiSopData = this.data.ruiSopData;
+  youtubePlayer = this.data.youtubePlayer
 }

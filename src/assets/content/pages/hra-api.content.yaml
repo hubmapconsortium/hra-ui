@@ -1,10 +1,10 @@
 pageHeaderData:
-  title: Human Reference Atlas Application Programming Interfaces
+- title: Human Reference Atlas Application Programming Interfaces
   subtitle: Query and interact with the HRA using Python, JavaScript, SPARQL, REST,
     and more
   image: assets/images/hra_api.svg
 overviewData:
-  heading: Overview
+- heading: Overview
   descriptions: This API provides programmatic access to data registered to the Common
     Coordinate Framework. A listing of API endpoints and database schema descriptions
     with examples are provided.

@@ -4,13 +4,7 @@ import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
 import { PrizeCard } from '../../components/prize-card/prize-card';
 
-
-@Component({
-  selector: 'kaggle-one',
-  templateUrl: './kaggle-twentyone.component.html',
-  styleUrls: ['./kaggle-twentyone.component.scss']
-})
-export class KaggleTwentyoneComponent {
+interface KaggleTwentyOne {
   kaggle2021Header: PageHeaderItems[];
   overviewData: PageDataItems[];
   acknowledgmentsData: PageDataItems[];
@@ -19,16 +13,23 @@ export class KaggleTwentyoneComponent {
   judgesPrizeData: PrizeCard[];
   kudosData: PrizeCard[];
   awardsCeremony: PageDataItems[];
+}
 
-  constructor(route: ActivatedRoute){
-    const data = route.snapshot.data['content'];
-    this.kaggle2021Header = data.kaggle2021Header;
-    this.overviewData = data.overviewData;
-    this.acknowledgmentsData = data.acknowledgmentsData;
-    this.datasetsData = data.datasetsData;
-    this.accuracyPrizeData = data.accuracyPrizeData;
-    this.kudosData = data.kudosData;
-    this.awardsCeremony = data.awardsCeremony;
-    this.judgesPrizeData = data.judgesPrizeData;
-  }
+@Component({
+  selector: 'kaggle-one',
+  templateUrl: './kaggle-twentyone.component.html',
+  styleUrls: ['./kaggle-twentyone.component.scss']
+})
+export class KaggleTwentyoneComponent {
+  constructor(private readonly route: ActivatedRoute) { }
+  
+  data = this.route.snapshot.data['content'] as KaggleTwentyOne;
+  kaggle2021Header = this.data.kaggle2021Header;
+  overviewData = this.data.overviewData;
+  acknowledgmentsData = this.data.acknowledgmentsData;
+  datasetsData = this.data.datasetsData;
+  accuracyPrizeData = this.data.accuracyPrizeData;
+  kudosData = this.data.kudosData;
+  awardsCeremony = this.data.awardsCeremony;
+  judgesPrizeData = this.data.judgesPrizeData;
 }

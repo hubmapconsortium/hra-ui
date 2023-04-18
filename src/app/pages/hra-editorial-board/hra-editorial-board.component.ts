@@ -5,8 +5,8 @@ import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
 
 interface HraEditorialBoard {
-  overviewData: PageDataItems;
-  boardHeader: PageHeaderItems;
+  overviewData: PageDataItems[];
+  boardHeader: PageHeaderItems[];
   boardMembersData: BoardMemberItems[];
 }
 
@@ -17,8 +17,8 @@ interface HraEditorialBoard {
 })
 export class HraEditorialBoardComponent {
   data = this.route.snapshot.data['content'] as HraEditorialBoard;
-  overviewData = [this.data.overviewData];
-  boardHeader = [this.data.boardHeader];
+  overviewData = this.data.overviewData;
+  boardHeader = this.data.boardHeader;
   boardMembersData = this.data.boardMembersData;
 
   constructor(private readonly route: ActivatedRoute) { }

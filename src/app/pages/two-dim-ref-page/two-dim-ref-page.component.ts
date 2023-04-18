@@ -53,7 +53,7 @@ export class TwoDimRefPageComponent implements OnInit {
   disclaimer = this.data.disclaimer;
   filterImages = this.data.filterImages;
   cardTitle = "";
-  tableTitle = ""
+  tableTitle = "";
   versionData = this.data.versionData;
   placeholderDate = this.data.placeholderDate;
   organData = this.data.organData;
