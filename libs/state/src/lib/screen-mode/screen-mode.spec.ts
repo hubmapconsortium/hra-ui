@@ -7,7 +7,7 @@ import { ScreenModeState } from './screen-mode.state';
 describe('ScreenMode State', () => {
   const state = new ScreenModeState();
   const action = new Set(true);
-  const latest: ScreenModeModel = {
+  let latest: ScreenModeModel = {
     isFullScreen: false,
   };
   const ctx = mock<StateContext<ScreenModeModel>>();
@@ -20,8 +20,12 @@ describe('ScreenMode State', () => {
   });
 
   it('should update flag', async () => {
-    ctx.setState.mockImplementation(() => latest);
-    await state.set(ctx, action);
+    ctx.setState.mockImplementation((val) => {
+      latest = typeof val === 'function' ? val(latest) : val;
+      return latest;
+    });
+
+    state.set(ctx, action);
     expect(latest.isFullScreen).toEqual(true);
   });
 });
