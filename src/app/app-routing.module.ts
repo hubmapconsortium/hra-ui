@@ -196,7 +196,7 @@ const routes: Routes = [
     resolve: { content: ContentResolver },
   },
   {
-    path: 'vr-organ-gallery',
+    path: 'hra-organ-gallery-in-vr',
     component: CcfOrganVrGalleryComponent,
     data: {
       contentFile: 'ccf-organ-vr-gallery.content',

@@ -128,7 +128,7 @@ vrOrganGallery:
 
 vrOrganGalleryButton:
   text: VR Organ Gallery
-  url: https://humanatlas.io/vr-organ-gallery
+  url: https://humanatlas.io/hra-organ-gallery-in-vr
 
 previewScrollytellingButton:
   text: 'Preview: Scrollytelling Series'
