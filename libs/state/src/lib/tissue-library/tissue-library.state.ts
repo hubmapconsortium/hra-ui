@@ -3,7 +3,6 @@ import { TissueLibraryService } from '@hra-ui/services';
 import { Action, State } from '@ngxs/store';
 import { Observable, tap } from 'rxjs';
 import { Load } from './tissue-library.actions';
-import { TissueData } from '@hra-ui/services';
 import { TissueLibraryContext, TissueLibraryModel } from './tissue-library.model';
 
 @State<TissueLibraryModel>({
