@@ -1,25 +1,20 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  BiomarkerTableDataCardComponent,
-  SourceListComponent,
-  DataItem,
-  SourceListItem,
-} from '@hra-ui/components/molecules';
-import {
-  LabelBoxComponent,
-  GradientLegendComponent,
-  SizeLegendComponent,
-  GradientPoint,
-  SizeLegend,
-} from '@hra-ui/components/atoms';
-import { BiomarkerTableComponent, DataRow, DataCell } from '@hra-ui/components/organisms';
-import { MatTabsModule } from '@angular/material/tabs';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
+import { HoverDirective } from '@hra-ui/cdk';
 import { selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
-import { ResourceIds as Ids, SourceListSelectors } from '@hra-ui/state';
-import { HoverDirective } from '@hra-ui/cdk';
+import {
+  GradientLegendComponent,
+  GradientPoint,
+  LabelBoxComponent,
+  SizeLegend,
+  SizeLegendComponent,
+} from '@hra-ui/components/atoms';
+import { BiomarkerTableDataCardComponent, DataItem, SourceListComponent } from '@hra-ui/components/molecules';
+import { BiomarkerTableComponent, DataCell, DataRow } from '@hra-ui/components/organisms';
+import { ResourceIds as Ids, ResourceTypes as RTypes, SourceListSelectors } from '@hra-ui/state';
 
 export interface BiomarkerTab {
   label: string;
@@ -67,23 +62,15 @@ export class BiomarkerDetailsComponent implements OnChanges {
   isTableFullScreen = false;
 
   /** Gradient colors along with their stop points */
-  readonly gradient = selectQuerySnapshot(RR.query, Ids.GradientLegend, 'gradient');
+  readonly gradients = selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, 'points' as const, [])<
+    GradientPoint[]
+  >;
 
   /** Taking input for the radius of the circle and the label to be displayed. */
-  readonly size = selectQuerySnapshot(RR.query, Ids.SizeLegend, 'size');
+  readonly sizes = selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>;
 
   /** List of sources with titles and links displayed to the user */
   readonly source = selectSnapshot(SourceListSelectors.getSourceList);
-
-  /** Getter for gradient points */
-  get gradientPoints(): GradientPoint[] {
-    return (this.gradient()?.['points'] ?? []) as GradientPoint[];
-  }
-
-  /** Getter for sizes */
-  get sizes(): SizeLegend[] {
-    return (this.size()?.['sizes'] ?? []) as SizeLegend[];
-  }
 
   /** Changes the selected tab when the user clicks on any other tab */
   ngOnChanges(changes: SimpleChanges): void {
