@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderBehaviorComponent, LandingPageContentComponent } from '@hra-ui/components/behavioral';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { LandingPageContentComponent } from '@hra-ui/components/behavioral';
 
 @Component({
   selector: 'ftu-landing',
   standalone: true,
-  imports: [CommonModule, HeaderBehaviorComponent, LandingPageContentComponent],
+  imports: [CommonModule, LandingPageContentComponent],
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
