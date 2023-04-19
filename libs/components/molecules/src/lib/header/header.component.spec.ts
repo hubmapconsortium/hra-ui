@@ -5,7 +5,7 @@ import { selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { HeaderComponent } from './header.component';
 
 jest.mock('@hra-ui/cdk/injectors');
-jest.mocked(selectQuerySnapshot).mockReturnValue(() => undefined);
+jest.mocked(selectQuerySnapshot).mockReturnValue(() => undefined as never);
 
 describe('HeaderComponent', () => {
   let shallow: Shallow<HeaderComponent>;

@@ -3,17 +3,9 @@
 
 :host {
   display: block;
-  max-width: 100%;
 
   .sr-only {
     @include utils.sr-only();
-  }
-
-  .table {
-    overflow-x: auto;
-    overflow-y: auto;
-    min-width: auto;
-    font-size: 0.875rem;
   }
 
   .table th {
@@ -31,8 +23,18 @@
     border-left: 0.063rem solid #d3d3d3;
   }
 
+  .table tr:first-child td {
+    border-top: 0.063rem solid #d3d3d3;
+  }
+
+  tr > td:first-child {
+    text-align: left;
+    padding: 0 2rem;
+  }
+
   tr > th:first-child {
     text-align: left;
+    padding: 0 2rem;
   }
 
   tr > td:last-of-type {
