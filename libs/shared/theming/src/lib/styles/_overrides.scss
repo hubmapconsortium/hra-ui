@@ -111,5 +111,20 @@
         text-decoration: underline #9d9e9a;
       }
     }
+
+    ::-webkit-scrollbar {
+      width: 0.5rem;
+      height: 0.5rem;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f8f9fa;
+      border: 0.063rem solid #d3d3d3;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #a0abb4;
+      border-radius: 0.5rem;
+    }
   }
 }
