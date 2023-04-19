@@ -4,6 +4,7 @@ import produce from 'immer';
 import { Set } from './screen-mode.actions';
 import { ScreenModeModel } from './screen-mode.model';
 
+/** State storing the screen mode */
 @State<ScreenModeModel>({
   name: 'screenmode',
   defaults: {
@@ -12,6 +13,11 @@ import { ScreenModeModel } from './screen-mode.model';
 })
 @Injectable()
 export class ScreenModeState {
+  /**
+   * Updates the screen mode
+   * @param ctx State context
+   * @param action Action with new mode
+   */
   @Action(Set)
   set({ setState }: StateContext<ScreenModeModel>, { isFullScreen }: Set): void {
     setState(
