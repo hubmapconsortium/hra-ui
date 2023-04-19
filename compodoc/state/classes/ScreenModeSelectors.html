@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >Set</li>
+  <li >ScreenModeSelectors</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/lib/screen-mode/screen-mode.actions.ts</code>
+            <code>src/lib/screen-mode/screen-mode.selectors.ts</code>
         </p>
 
 
@@ -70,72 +70,131 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Update the screen mode</p>
+                <p>Screen mode selectors</p>
 
             </p>
 
 
 
 
-
             <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(isFullScreen: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/lib/screen-mode/screen-mode.actions.ts:4</a></div>
-                            </td>
-                        </tr>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Creates an instance of Set</p>
-</div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>isFullScreen</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Whether the mode is fullscreen</p>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
+                        <h6><b>Methods</b></h6>
                     </td>
                 </tr>
-            </tbody>
-        </table>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#isFullScreen" >isFullScreen</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
 </section>
 
 
 
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isFullScreen"></a>
+                    <span class="name">
+                        <span class="modifier">Static</span>
+                        <span ><b>isFullScreen</b></span>
+                        <a href="#isFullScreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isFullScreen(state: <a href="../interfaces/ScreenModeModel.html" target="_self">ScreenModeModel</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Selector()<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="14"
+                            class="link-to-prism">src/lib/screen-mode/screen-mode.selectors.ts:14</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Selectors screen mode selectors</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>state</td>
+                                    <td>
+                                                <code><a href="../interfaces/ScreenModeModel.html" target="_self" >ScreenModeModel</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>true if full screen</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
 
 
 
@@ -145,16 +204,21 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Action } from &#x27;@hra-ui/cdk/state&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Selector } from &#x27;@ngxs/store&#x27;;
+import { ScreenModeModel } from &#x27;./screen-mode.model&#x27;;
 
-/** Update the screen mode */
-export class Set extends Action(&#x27;[Screenmode] Set Screenmode&#x27;) {
+/**
+ * Screen mode selectors
+ */
+export class ScreenModeSelectors {
   /**
-   * Creates an instance of Set
-   * @param isFullScreen Whether the mode is fullscreen
+   * Selectors screen mode selectors
+   * @param state
+   * @returns true if full screen
    */
-  constructor(readonly isFullScreen: boolean) {
-    super();
+  @Selector()
+  static isFullScreen(state: ScreenModeModel): boolean {
+    return state.isFullScreen;
   }
 }
 </code></pre>
@@ -195,7 +259,7 @@ export class Set extends Action(&#x27;[Screenmode] Set Screenmode&#x27;) {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'Set.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ScreenModeSelectors.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

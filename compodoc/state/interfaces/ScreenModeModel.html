@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content class">
+               <div class="content interface">
                    <div class="content-data">
 
 
@@ -42,9 +42,12 @@
 
 
 
+
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >Set</li>
+  <li>Interfaces</li>
+  <li
+  >
+  ScreenModeModel</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,7 +65,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/lib/screen-mode/screen-mode.actions.ts</code>
+            <code>src/lib/screen-mode/screen-mode.model.ts</code>
         </p>
 
 
@@ -70,97 +73,91 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Update the screen mode</p>
+                <p>Screen mode state model</p>
 
             </p>
 
 
+        <section>
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#isFullScreen" 
+>
+                                            isFullScreen
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
 
 
             <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(isFullScreen: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/lib/screen-mode/screen-mode.actions.ts:4</a></div>
-                            </td>
-                        </tr>
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="isFullScreen"></a>
+                                        <span class="name "><b>isFullScreen</b>
+                                            <a href="#isFullScreen">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>isFullScreen:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Creates an instance of Set</p>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Whether in fullscreen</p>
 </div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>isFullScreen</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Whether the mode is fullscreen</p>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
-
-
-
-
-
-
-
-
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Action } from &#x27;@hra-ui/cdk/state&#x27;;
-
-/** Update the screen mode */
-export class Set extends Action(&#x27;[Screenmode] Set Screenmode&#x27;) {
-  /**
-   * Creates an instance of Set
-   * @param isFullScreen Whether the mode is fullscreen
-   */
-  constructor(readonly isFullScreen: boolean) {
-    super();
-  }
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface ScreenModeModel {
+  /** Whether in fullscreen */
+  isFullScreen: boolean;
 }
 </code></pre>
     </div>
 </div>
-
 
 
 
@@ -194,8 +191,8 @@ export class Set extends Action(&#x27;[Screenmode] Set Screenmode&#x27;) {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'Set.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'ScreenModeModel.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

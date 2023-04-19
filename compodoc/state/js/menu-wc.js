@@ -84,10 +84,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/RegisterFormat.html" data-type="entity-link" >RegisterFormat</a>
                             </li>
                             <li class="link">
+                                <a href="classes/ScreenModeSelectors.html" data-type="entity-link" >ScreenModeSelectors</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/SendMessage.html" data-type="entity-link" >SendMessage</a>
                             </li>
                             <li class="link">
                                 <a href="classes/Set.html" data-type="entity-link" >Set</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/Set-1.html" data-type="entity-link" >Set</a>
                             </li>
                             <li class="link">
                                 <a href="classes/SetActiveNode.html" data-type="entity-link" >SetActiveNode</a>
@@ -124,6 +130,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/MedicalIllustrationState.html" data-type="entity-link" >MedicalIllustrationState</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/ScreenModeState.html" data-type="entity-link" >ScreenModeState</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/SourceListState.html" data-type="entity-link" >SourceListState</a>
                                 </li>
                                 <li class="link">
@@ -147,6 +156,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/MedicalIllustrationModel.html" data-type="entity-link" >MedicalIllustrationModel</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ScreenModeModel.html" data-type="entity-link" >ScreenModeModel</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Source.html" data-type="entity-link" >Source</a>
