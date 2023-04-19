@@ -1,22 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Shallow } from 'shallow-render';
 import { FtuComponent } from './ftu.component';
 
-describe('FtuPageComponent', () => {
-  let component: FtuComponent;
-  let fixture: ComponentFixture<FtuComponent>;
+describe('AppComponent', () => {
+  let shallow: Shallow<FtuComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [FtuComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(FtuComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    shallow = new Shallow(FtuComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create component', async () => {
+    expect(shallow.render()).resolves.toBeDefined();
   });
 });
