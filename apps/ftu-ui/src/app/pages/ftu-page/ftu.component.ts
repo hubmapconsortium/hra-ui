@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderBehaviorComponent } from '@hra-ui/components/behavioral';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FullscreenContainerComponent, FullscreenContentComponent } from '@hra-ui/components/molecules';
 
 @Component({
   selector: 'ftu-ftu-page',
   standalone: true,
-  imports: [CommonModule, HeaderBehaviorComponent],
+  imports: [CommonModule, FullscreenContainerComponent, FullscreenContentComponent],
   templateUrl: './ftu.component.html',
   styleUrls: ['./ftu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
