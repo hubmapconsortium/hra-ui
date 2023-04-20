@@ -1,8 +1,8 @@
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { dispatch } from '@hra-ui/cdk/injectors';
 import { mock } from 'jest-mock-extended';
+import { EMPTY } from 'rxjs';
 import { ftuResolver } from './ftu.resolver';
-import { EMPTY, of } from 'rxjs';
 
 jest.mock('@hra-ui/cdk/injectors');
 

@@ -1,7 +1,8 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CdkStateModule } from '@hra-ui/cdk/state';
 import { HeaderBehaviorComponent } from '@hra-ui/components/behavioral';
 import { ThemingModule } from '@hra-ui/theming';
 import { NgxsModule } from '@ngxs/store';
@@ -9,7 +10,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
 import { MarkdownModule } from 'ngx-markdown';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { states } from './app.state';
+import { initFactory } from './app.init';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,17 +19,25 @@ import { states } from './app.state';
     BrowserAnimationsModule,
     HttpClientModule,
 
-    AppRoutingModule,
-    NgxsModule.forRoot([...states]),
+    InlineSVGModule.forRoot(),
     MarkdownModule.forRoot({
       loader: HttpClient,
     }),
-    InlineSVGModule.forRoot(),
+    NgxsModule.forRoot(),
     ThemingModule,
+
+    AppRoutingModule,
+    CdkStateModule,
 
     HeaderBehaviorComponent,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initFactory,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
