@@ -6,7 +6,7 @@ import { Load } from './tissue-library.actions';
 import { TissueLibraryContext, TissueLibraryModel } from './tissue-library.model';
 
 @State<TissueLibraryModel>({
-  name: 'tissue-library',
+  name: 'tissueLibrary',
 })
 @Injectable()
 export class TissueLibraryState {
