@@ -1,4 +1,4 @@
-import { ActionGroup } from '@hra-ui/cdk/state';
+import { ActionGroup } from '../actions/actions';
 import { StorageId } from './storage.model';
 
 /** Base action factory */
