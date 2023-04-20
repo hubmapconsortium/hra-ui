@@ -1,21 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { Shallow } from 'shallow-render';
 import { TissueLibraryBehaviorComponent } from './tissue-library-behavior.component';
+import { TissueLibrarySelectors } from '@hra-ui/state';
+import { Component } from '@angular/core';
+
+jest.mock('@hra-ui/cdk/injectors');
 
 describe('TissueLibraryBehaviorComponent', () => {
-  let component: TissueLibraryBehaviorComponent;
-  let fixture: ComponentFixture<TissueLibraryBehaviorComponent>;
+  let shallow: Shallow<TissueLibraryBehaviorComponent>;
+
+  jest.mocked(selectSnapshot).mockReturnValue(jest.fn().mockReturnValue([]));
+  jest.mocked(dispatch).mockReturnValue(jest.fn());
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [TissueLibraryBehaviorComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(TissueLibraryBehaviorComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    shallow = new Shallow(TissueLibraryBehaviorComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async () => {
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 });
