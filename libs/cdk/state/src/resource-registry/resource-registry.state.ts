@@ -5,9 +5,9 @@ import { load } from 'js-yaml';
 import { map, Observable } from 'rxjs';
 import { Add, AddFromYaml, AddMany, LoadFromYaml, LoadMarkdown } from './resource-registry.actions';
 import {
+  BuiltinResourceType,
   ResourceRegistryContext,
   ResourceRegistryModel,
-  ResourceType,
   RESOURCE_REGISTRY_SCHEMA,
 } from './resource-registry.model';
 
@@ -76,7 +76,7 @@ export class ResourceRegistryState {
   @Action(LoadMarkdown)
   loadMarkdown(ctx: ResourceRegistryContext, { id, url }: LoadMarkdown): Observable<void> {
     return this.http.get(url, { responseType: 'text' }).pipe(
-      map((markdown) => new Add(id, { type: ResourceType.Markdown, markdown })),
+      map((markdown) => new Add(id, { type: BuiltinResourceType.Markdown, markdown })),
       map((action) => this.addOne(ctx, action))
     );
   }

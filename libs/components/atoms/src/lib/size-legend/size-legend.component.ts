@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 /** Defining the input data types for the radius and label to be displayed. */
-interface SizeLegend {
+export interface SizeLegend {
   /** Label under circle */
   label: string;
   /** Radius for cirlce */
