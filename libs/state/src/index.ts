@@ -1,7 +1,6 @@
 export * from './lib/cell-summary';
 export * from './lib/contact';
 export * from './lib/download';
-export * from './lib/source-list';
 export * from './lib/medical-illustration';
 export * as LinkIds from './lib/link-ids';
 export * as ResourceIds from './lib/resource-ids';
@@ -9,3 +8,4 @@ export * as ResourceTypes from './lib/resource-types';
 export * from './lib/source-list';
 export * from './lib/state-analytics-plugin';
 export * from './lib/state.module';
+export * from './lib/tissue-library';
