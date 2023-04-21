@@ -549,8 +549,8 @@ export class ContactBehaviorComponent {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;hra-contact-modal
-  [productLogoUrl]&#x3D;&quot;productLogoUrl() ?? &#x27;&#x27;&quot;
-  [productTitle]&#x3D;&quot;productTitle() ?? &#x27;&#x27;&quot;
+  [productLogoUrl]&#x3D;&quot;productLogoUrl()&quot;
+  [productTitle]&#x3D;&quot;productTitle()&quot;
   (submitClick)&#x3D;&quot;submit($event)&quot;
   (closeClick)&#x3D;&quot;close()&quot;
 &gt;
@@ -558,9 +558,9 @@ export class ContactBehaviorComponent {
 
 &lt;ng-template #postMessage&gt;
   &lt;hra-info-modal
-    [productLogoUrl]&#x3D;&quot;productLogoUrl() ?? &#x27;&#x27;&quot;
-    [productTitle]&#x3D;&quot;productTitle() ?? &#x27;&#x27;&quot;
-    [description]&#x3D;&quot;description() ?? &#x27;&#x27;&quot;
+    [productLogoUrl]&#x3D;&quot;productLogoUrl()&quot;
+    [productTitle]&#x3D;&quot;productTitle()&quot;
+    [description]&#x3D;&quot;description()&quot;
     (closeClick)&#x3D;&quot;close()&quot;
   &gt;
   &lt;/hra-info-modal&gt;
@@ -603,7 +603,7 @@ export class ContactBehaviorComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-contact-modal  [productLogoUrl]="productLogoUrl() ?? \'\'"  [productTitle]="productTitle() ?? \'\'"  (submitClick)="submit($event)"  (closeClick)="close()"></hra-contact-modal><ng-template #postMessage>  <hra-info-modal    [productLogoUrl]="productLogoUrl() ?? \'\'"    [productTitle]="productTitle() ?? \'\'"    [description]="description() ?? \'\'"    (closeClick)="close()"  >  </hra-info-modal></ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-contact-modal  [productLogoUrl]="productLogoUrl()"  [productTitle]="productTitle()"  (submitClick)="submit($event)"  (closeClick)="close()"></hra-contact-modal><ng-template #postMessage>  <hra-info-modal    [productLogoUrl]="productLogoUrl()"    [productTitle]="productTitle()"    [description]="description()"    (closeClick)="close()"  >  </hra-info-modal></ng-template></div>'
     var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ContactBehaviorComponent'};

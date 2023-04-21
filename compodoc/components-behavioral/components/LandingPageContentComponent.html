@@ -450,7 +450,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>selectQuerySnapshot(RRS.markdown, RIds.LandingPageDepthMoreText)</code>
+                        <i>Default value : </i><code>selectQuerySnapshot(RRS.anyText, RIds.LandingPageDepthMoreText)</code>
                     </td>
                 </tr>
                     <tr>
@@ -482,7 +482,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>selectQuerySnapshot(RRS.markdown, RIds.LandingPageDepthTitle)</code>
+                        <i>Default value : </i><code>selectQuerySnapshot(RRS.anyText, RIds.LandingPageDepthTitle)</code>
                     </td>
                 </tr>
                     <tr>
@@ -578,7 +578,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>selectQuerySnapshot(RRS.markdown, RIds.LandingPageIntroMoreText)</code>
+                        <i>Default value : </i><code>selectQuerySnapshot(RRS.anyText, RIds.LandingPageIntroMoreText)</code>
                     </td>
                 </tr>
                     <tr>
@@ -642,7 +642,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>selectQuerySnapshot(RRS.markdown, RIds.LandingPageTitle)</code>
+                        <i>Default value : </i><code>selectQuerySnapshot(RRS.anyText, RIds.LandingPageTitle)</code>
                     </td>
                 </tr>
                     <tr>
@@ -770,7 +770,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>selectQuerySnapshot(RRS.text, RIds.MetricsTitle)</code>
+                        <i>Default value : </i><code>selectQuerySnapshot(RRS.anyText, RIds.MetricsTitle)</code>
                     </td>
                 </tr>
                     <tr>
@@ -862,7 +862,7 @@ export class LandingPageContentComponent implements AfterViewInit {
   readonly intersectableEls!: QueryList&lt;ElementRef&gt;;
 
   /** select snapshot for Landing Page title */
-  readonly landingPageIntroTitle &#x3D; selectQuerySnapshot(RRS.markdown, RIds.LandingPageTitle);
+  readonly landingPageIntroTitle &#x3D; selectQuerySnapshot(RRS.anyText, RIds.LandingPageTitle);
 
   /** select snapshot for landing page intro description */
   readonly landingPageIntroDescription &#x3D; selectQuerySnapshot(RRS.markdown, RIds.LandingPageDescription);
@@ -870,21 +870,21 @@ export class LandingPageContentComponent implements AfterViewInit {
   readonly landingPageIntroPartners &#x3D; selectQuerySnapshot(RRS.markdown, RIds.LandingPagePartners);
 
   /** select snapshot for landing page intro more text */
-  readonly landingPageIntroMoreText &#x3D; selectQuerySnapshot(RRS.markdown, RIds.LandingPageIntroMoreText);
+  readonly landingPageIntroMoreText &#x3D; selectQuerySnapshot(RRS.anyText, RIds.LandingPageIntroMoreText);
   /** select snapshot for landing page intro img */
   readonly landingPageIntroImg &#x3D; selectQuerySnapshot(RRS.url, RIds.LandingPageIntroImg);
   /** select snapshot for metrics */
   readonly metrics &#x3D; selectQuerySnapshot(RRS.field, RIds.Metrics, RTypes.Metrics, &#x27;metrics&#x27; as const, [])&lt;MetricItem[]&gt;;
   /** select snapshot for metrics title */
-  readonly metricsTitle &#x3D; selectQuerySnapshot(RRS.text, RIds.MetricsTitle);
+  readonly metricsTitle &#x3D; selectQuerySnapshot(RRS.anyText, RIds.MetricsTitle);
   /** select snapshot for metrics logo */
   readonly metricsLogo &#x3D; selectQuerySnapshot(RRS.url, RIds.MetricsLogo);
   /** select snapshot for landing page depth title */
-  readonly landingPageDepthTitle &#x3D; selectQuerySnapshot(RRS.markdown, RIds.LandingPageDepthTitle);
+  readonly landingPageDepthTitle &#x3D; selectQuerySnapshot(RRS.anyText, RIds.LandingPageDepthTitle);
   /** select snapshot for landing page depth description */
   readonly landingPageDepthDescription &#x3D; selectQuerySnapshot(RRS.markdown, RIds.LandingPageDepthDescription);
   /** select snapshot forlanding page depth more text */
-  readonly landingPageDepthMoreText &#x3D; selectQuerySnapshot(RRS.markdown, RIds.LandingPageDepthMoreText);
+  readonly landingPageDepthMoreText &#x3D; selectQuerySnapshot(RRS.anyText, RIds.LandingPageDepthMoreText);
   /** select snapshot for landing page depth img */
   readonly landingPageDepthImg &#x3D; selectQuerySnapshot(RRS.url, RIds.LandingPageDepthImg);
 

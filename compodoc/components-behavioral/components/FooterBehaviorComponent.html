@@ -532,8 +532,8 @@ export class FooterBehaviorComponent {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;hra-footer
-  [productLogoUrl]&#x3D;&quot;productLogoUrl() ?? &#x27;&#x27;&quot;
-  [productTitle]&#x3D;&quot;productTitle() ?? &#x27;&#x27;&quot;
+  [productLogoUrl]&#x3D;&quot;productLogoUrl()&quot;
+  [productTitle]&#x3D;&quot;productTitle()&quot;
   [hraPortal]&#x3D;&quot;hraPortal&quot;
   [illustrationMetadata]&#x3D;&quot;illustrationMetadata&quot;
   [embed]&#x3D;&quot;embed&quot;
@@ -580,7 +580,7 @@ export class FooterBehaviorComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-footer  [productLogoUrl]="productLogoUrl() ?? \'\'"  [productTitle]="productTitle() ?? \'\'"  [hraPortal]="hraPortal"  [illustrationMetadata]="illustrationMetadata"  [embed]="embed"  [downloadFormats]="downloadFormats()"  (contactClick)="contact()"  (download)="download($event.id)"></hra-footer></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-footer  [productLogoUrl]="productLogoUrl()"  [productTitle]="productTitle()"  [hraPortal]="hraPortal"  [illustrationMetadata]="illustrationMetadata"  [embed]="embed"  [downloadFormats]="downloadFormats()"  (contactClick)="contact()"  (download)="download($event.id)"></hra-footer></div>'
     var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'FooterBehaviorComponent'};
