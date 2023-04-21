@@ -6,4 +6,3 @@ ExploreFTU:
   type: internal
   commands:
     - 'explore'
-
