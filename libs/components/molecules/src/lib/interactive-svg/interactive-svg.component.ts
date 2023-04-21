@@ -199,23 +199,20 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestro
   }
 
   /**
-   * Returns parent id from event target
+   * Returns entry from mapping if target, parent, or grandparent id matches the node name
    * @param event Event
-   * @returns Parent id
+   * @returns Node entry that matches the target id
    */
   private getNode(event: Event): T | undefined {
     const targetId = (event.target as Element).id;
-    const parent = (event.target as Element).parentElement;
-    const grandparent = parent?.parentElement;
-    const idCollection = [targetId, parent?.id, grandparent?.id];
-    console.log(idCollection);
+    const parentId = (event.target as Element).parentElement?.id ?? '';
+    const grandparentId = (event.target as Element).parentElement?.parentElement?.id ?? '';
+    const idCollection = [targetId, parentId, grandparentId];
     for (const id of idCollection) {
-      const decodedID = this.decodeId(id || '');
+      const decodedID = this.decodeId(id);
       const match = this.mapping.find(
-        (item) =>
-          item['node_name']?.toLowerCase() === decodedID.toLowerCase() ||
-          item['label']?.toLowerCase() === decodedID.toLowerCase().split('_').join(' ')
-      ); //search mapping data for node entry;
+        (item) => item['node_name']?.toLowerCase() === decodedID.toLowerCase() //search mapping by node_name for matching node entry
+      );
       if (match) {
         return match;
       }
