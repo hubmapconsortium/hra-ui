@@ -28,4 +28,4 @@ import { StateAnalyticsPluginService } from './state-analytics-plugin';
     },
   ],
 })
-export class FtuStateModule {}
+export class HraStateModule {}
