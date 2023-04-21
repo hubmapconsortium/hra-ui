@@ -8,3 +8,4 @@ export * as ResourceIds from './lib/resource-ids';
 export * as ResourceTypes from './lib/resource-types';
 export * from './lib/source-list';
 export * from './lib/state-analytics-plugin';
+export * from './lib/state.module';
