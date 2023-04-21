@@ -1,4 +1,5 @@
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { Meta, moduleMetadata, Story } from '@storybook/angular';
+
 import { FooterComponent } from './footer.component';
 
 export default {
@@ -18,6 +19,7 @@ const DownloadFormat = [
   { label: 'Download AI' },
   { label: 'Download PNG' },
 ];
+
 const Template: Story<FooterComponent> = (args: FooterComponent) => ({
   props: args,
   styles: [

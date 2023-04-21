@@ -73,7 +73,7 @@ export const TEXT_ENTRY = z.object({
 /** External url */
 export const URL_ENTRY = z.object({
   type: z.literal(RawBuiltinResourceType.Url),
-  url: z.string().url(),
+  url: z.string(),
 });
 
 /** Union of all builtin entries */
