@@ -12,6 +12,10 @@
     grid-area: header;
   }
 
+  .sidebar {
+    grid-area: sidebar;
+  }
+
   .page-content {
     grid-area: content;
   }
