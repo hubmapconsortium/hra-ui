@@ -1,122 +1,131 @@
-pageHeader:
-- image: assets/images/hra-sop.svg
-  title: Human Reference Atlas Standard Operating Procedures
-  subtitle: Standard operating procedures for Human Reference Atlas construction, visualization, and usage
+- type: header
+  headerCard:
+  - image: assets/images/hra-sop.svg
+    title: Human Reference Atlas Standard Operating Procedures
+    subtitle: Standard operating procedures for Human Reference Atlas construction, visualization, and usage
 
-overviewData:
-- heading: Table of Contents
-  descriptions: |
-    [Overview](https://docs.google.com/document/u/0/d/1oMPWB454auN-FTe7XVtxWk7SbJgWFtcS6LvOjgN89wA/edit)
+- type: announcement
+  announcementCard:
+  - message: "The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in "
+    route: 'v1.3'
+    routeText: '4th Release Notes.'
+    emoji: '🎉'
 
-    [Introduction to Standard Operating Procedures](https://docs.google.com/document/u/0/d/1bHi61R2T2GqwgRGH2OtlimWtz2HL_5KyH5tQpzzH898/edit)
-    > Managing SOPs
+- type: page-data
+  pageData:
+  - heading: Table of Contents
+    descriptions: |
+      [Overview](https://docs.google.com/document/u/0/d/1oMPWB454auN-FTe7XVtxWk7SbJgWFtcS6LvOjgN89wA/edit)
 
-    >> [Section Overview Template](https://docs.google.com/document/u/0/d/18c9OZ8glq7Avgef9yuf5bzSMQ_p12EuxmPr0vW01Wck/edit)
+      [Introduction to Standard Operating Procedures](https://docs.google.com/document/u/0/d/1bHi61R2T2GqwgRGH2OtlimWtz2HL_5KyH5tQpzzH898/edit)
+      > Managing SOPs
 
-    >> [SOP Template](https://docs.google.com/document/d/1EFupv_ehdX-kiybceP64T54XZwI0iq-ZqG26s7_ijLY/edit#)
+      >> [Section Overview Template](https://docs.google.com/document/u/0/d/18c9OZ8glq7Avgef9yuf5bzSMQ_p12EuxmPr0vW01Wck/edit)
 
-    > [Glossary](https://docs.google.com/document/d/1IBuPOt2mkPOOMF9vUsZk5HQ3vm9M7WjnlW-ZOMG6wSY/edit#)
+      >> [SOP Template](https://docs.google.com/document/d/1EFupv_ehdX-kiybceP64T54XZwI0iq-ZqG26s7_ijLY/edit#)
 
-    > Design Style Guide
-    
-    [3D Tissue Registration](https://docs.google.com/document/u/0/d/1l20H7brenvTh4Vomrns4SPZbqQxRnrnO7sOF3BtN2b4/edit)
+      > [Glossary](https://docs.google.com/document/d/1IBuPOt2mkPOOMF9vUsZk5HQ3vm9M7WjnlW-ZOMG6wSY/edit#)
 
-    > [Using the CCF Registration User Interface (RUI)](https://doi.org/10.5281/zenodo.5575776)
-    
-    > [Assigning RUI Data to Multiple Tissue Blocks](https://doi.org/10.5281/zenodo.5746143)
-    
-    > Constructing a Millitome and Generating Virtual Tissue Blocks
-    
-    > [Using a Millitome](https://doi.org/10.5281/zenodo.7382703)
+      > Design Style Guide
+      
+      [3D Tissue Registration](https://docs.google.com/document/u/0/d/1l20H7brenvTh4Vomrns4SPZbqQxRnrnO7sOF3BtN2b4/edit)
 
-    Anatomical Structures and Cell Type Segmentation
+      > [Using the CCF Registration User Interface (RUI)](https://doi.org/10.5281/zenodo.5575776)
+      
+      > [Assigning RUI Data to Multiple Tissue Blocks](https://doi.org/10.5281/zenodo.5746143)
+      
+      > Constructing a Millitome and Generating Virtual Tissue Blocks
+      
+      > [Using a Millitome](https://doi.org/10.5281/zenodo.7382703)
 
-    > [Manual Segmentation of Tissue](https://doi.org/10.5281/zenodo.5565027)
+      Anatomical Structures and Cell Type Segmentation
 
-    > Running a Kaggle Competition
+      > [Manual Segmentation of Tissue](https://doi.org/10.5281/zenodo.5565027)
 
-    Anatomical Structures and Cell Type Annotation
+      > Running a Kaggle Competition
 
-    > Computing Cell Type Populations from Cell by Gene Matrices
+      Anatomical Structures and Cell Type Annotation
 
-    > Computing Cell Type Populations from CODEX Data
+      > Computing Cell Type Populations from Cell by Gene Matrices
 
-    > Using Cell Type Population Data in HRA Interfaces
+      > Computing Cell Type Populations from CODEX Data
 
-    VCCF Framework
+      > Using Cell Type Population Data in HRA Interfaces
 
-    > Creating Organ Vessel Maps
+      VCCF Framework
 
-    > Connecting Blood Vasculature With FTUs
+      > Creating Organ Vessel Maps
 
-    > Blood vasculature that does not connect with ASCT+B Tables
+      > Connecting Blood Vasculature With FTUs
 
-    Vasculature Computations
+      > Blood vasculature that does not connect with ASCT+B Tables
 
-    > Computing Vessel Properties
+      Vasculature Computations
 
-    > Computing Cell Type to Vasculature Distance Distributions
+      > Computing Vessel Properties
 
-    [Anatomical Structures, Cell Types, Plus Biomarkers (ASCT+B)](https://docs.google.com/document/d/1oppBW06hfCUifii7LAI2MpaFED78atMx-r6ezyzPTqw/edit#heading=h.6ys5lo962o6b)[Tables](https://docs.google.com/document/d/1oppBW06hfCUifii7LAI2MpaFED78atMx-r6ezyzPTqw/edit#heading=h.6ys5lo962o6b)
+      > Computing Cell Type to Vasculature Distance Distributions
 
-    > [Authoring ASCT+B Tables](https://doi.org/10.5281/zenodo.5746152)
+      [Anatomical Structures, Cell Types, Plus Biomarkers (ASCT+B)](https://docs.google.com/document/d/1oppBW06hfCUifii7LAI2MpaFED78atMx-r6ezyzPTqw/edit#heading=h.6ys5lo962o6b)[Tables](https://docs.google.com/document/d/1oppBW06hfCUifii7LAI2MpaFED78atMx-r6ezyzPTqw/edit#heading=h.6ys5lo962o6b)
 
-    > Authoring ASCT+B Tables Using The ASCT+B Generator Python Script
+      > [Authoring ASCT+B Tables](https://doi.org/10.5281/zenodo.5746152)
 
-    > [Construction of Organ Mapping Antibody Panels (OMAPs)](https://doi.org/10.5281/zenodo.5749882)
+      > Authoring ASCT+B Tables Using The ASCT+B Generator Python Script
 
-    >> [FAQ:](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)[Frequently Asked Questions (FAQ) for](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)[Organ Mapping Antibody Panels (](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)[OMAPs](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)[)](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)
+      > [Construction of Organ Mapping Antibody Panels (OMAPs)](https://doi.org/10.5281/zenodo.5749882)
 
-    > [Constructing Antibody Validation Reports (AVRs)](https://doi.org/10.5281/zenodo.7418623)
+      >> [FAQ:](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)[Frequently Asked Questions (FAQ) for](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)[Organ Mapping Antibody Panels (](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)[OMAPs](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)[)](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)
 
-    >> [FAQ: Frequently Asked Questions (FAQ) for Antibody Validation Report (AVR)](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)
+      > [Constructing Antibody Validation Reports (AVRs)](https://doi.org/10.5281/zenodo.7418623)
 
-    > Creating Crosswalks Between ASCT+B Tables and Azimuth Reference Maps
+      >> [FAQ: Frequently Asked Questions (FAQ) for Antibody Validation Report (AVR)](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)
 
-    > Mapping Experimental Data to the HRA Using OMAPs or Azimuth
+      > Creating Crosswalks Between ASCT+B Tables and Azimuth Reference Maps
 
-    > [ASCT+B Table Communications](https://doi.org/10.5281/zenodo.5639622)
+      > Mapping Experimental Data to the HRA Using OMAPs or Azimuth
 
-    [3D Reference Object Library](https://docs.google.com/document/d/1NOY6PsjGr1GDa39PZaTxoSvr0Ee4L8rW6lyYqNgyBC0/edit#heading=h.6ys5lo962o6b)
+      > [ASCT+B Table Communications](https://doi.org/10.5281/zenodo.5639622)
 
-    > [Creating 3D Models from Datasets](https://doi.org/10.5281/zenodo.7384275)
+      [3D Reference Object Library](https://docs.google.com/document/d/1NOY6PsjGr1GDa39PZaTxoSvr0Ee4L8rW6lyYqNgyBC0/edit#heading=h.6ys5lo962o6b)
 
-    > Creating Crosswalks between ASCT+B Tables and 3D Reference Objects
+      > [Creating 3D Models from Datasets](https://doi.org/10.5281/zenodo.7384275)
 
-    > [3D Reference Object Approval](https://doi.org/10.5281/zenodo.5944196)
+      > Creating Crosswalks between ASCT+B Tables and 3D Reference Objects
 
-    > [Using 3D Reference Objects](https://doi.org/10.5281/zenodo.5639651)
+      > [3D Reference Object Approval](https://doi.org/10.5281/zenodo.5944196)
 
-    2D Functional Tissue Unit (FTU) Reference Object Library
+      > [Using 3D Reference Objects](https://doi.org/10.5281/zenodo.5639651)
 
-    > [Creating 2D Illustrations of Functional Tissue Units](https://doi.org/10.5281/zenodo.6703107)
+      2D Functional Tissue Unit (FTU) Reference Object Library
 
-    > [Style Guide: Human Reference Atlas 2D Functional Tissue Unit (FTU) Illustrations](https://doi.org/10.5281/zenodo.6703376)
+      > [Creating 2D Illustrations of Functional Tissue Units](https://doi.org/10.5281/zenodo.6703107)
 
-    > [Creating a Crosswalk between ASCT+B Tables and 2D Functional Tissue Unit Models](https://doi.org/10.5281/zenodo.5748154)
+      > [Style Guide: Human Reference Atlas 2D Functional Tissue Unit (FTU) Illustrations](https://doi.org/10.5281/zenodo.6703376)
 
-    HRA Validation and Review
+      > [Creating a Crosswalk between ASCT+B Tables and 2D Functional Tissue Unit Models](https://doi.org/10.5281/zenodo.5748154)
 
-    > Internal Validation of ASCT+B Tables, and 2D and 3D Reference Objects
+      HRA Validation and Review
 
-    > External Review of ASCT+B Tables
+      > Internal Validation of ASCT+B Tables, and 2D and 3D Reference Objects
 
-    > ASCT+B Table Validation with CCF Tools
+      > External Review of ASCT+B Tables
 
-    > ASCT+B Reporter Validation Checks
+      > ASCT+B Table Validation with CCF Tools
 
-    > <a href="https://zenodo.org/record/7577521#.Y9R0knbMJmM" target="_blank">HRA Editorial Board Procedures</a>
+      > ASCT+B Reporter Validation Checks
 
-    [Human Reference Atlas Tracking and Publication](https://docs.google.com/document/d/1ZlJV61GA60ZtWoCu8HE93fBPOxPootfAe-ggAzipWEM/edit#heading=h.6ys5lo962o6b)
+      > <a href="https://zenodo.org/record/7577521#.Y9R0knbMJmM" target="_blank">HRA Editorial Board Procedures</a>
 
-    > Tracking Digital Object Status
+      [Human Reference Atlas Tracking and Publication](https://docs.google.com/document/d/1ZlJV61GA60ZtWoCu8HE93fBPOxPootfAe-ggAzipWEM/edit#heading=h.6ys5lo962o6b)
 
-    > Maintaining the HRA Portal
+      > Tracking Digital Object Status
 
-    > Designing Organ Icons
+      > Maintaining the HRA Portal
 
-    > [Registering Digital Object Identifiers](https://doi.org/10.5281/zenodo.7384461)
+      > Designing Organ Icons
 
-    > Publishing CCF.OWL on BioPortal and OLS
+      > [Registering Digital Object Identifiers](https://doi.org/10.5281/zenodo.7384461)
 
-    > HRA Release Process
+      > Publishing CCF.OWL on BioPortal and OLS
+
+      > HRA Release Process

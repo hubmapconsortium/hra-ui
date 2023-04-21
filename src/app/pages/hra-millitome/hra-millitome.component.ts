@@ -2,12 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EMPTY, map, Observable } from 'rxjs';
 import { HeaderData } from 'src/app/components/table/header';
-import { ChooseVersion } from '../../components/choose-version/choose-version';
 import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
 import { TableData } from '../../components/table/table';
 import { TableDataService } from '../../services/table-data/tabledata.service';
 
+interface HraMillitome {
+  headerCardDetails: PageHeaderItems[];
+  overViewData: PageDataItems[];
+  tableTitle: string;
+  headerInfo: HeaderData[];
+  displayedColumnsData: string[];
+}
 
 @Component({
   selector: 'hra-millitome',
@@ -15,27 +21,19 @@ import { TableDataService } from '../../services/table-data/tabledata.service';
   styleUrls: ['./hra-millitome.component.scss']
 })
 export class HraMillitomeComponent {
-  version: ChooseVersion = {release: 'hra-millitome.csv', version:''};
-  headerCardDetails: PageHeaderItems[];
-  overViewData: PageDataItems[];
-  tableTitle: string;
-  headerInfo: HeaderData[];
-  displayedColumnsData: string[];
-
   tableData: Observable<TableData[]> = EMPTY;
   columns: Observable<string[]> = EMPTY;
-
-  constructor(private readonly dataService: TableDataService, route: ActivatedRoute) { 
-    const data = route.snapshot.data['content'];
-    this.headerCardDetails = [data.headerCardDetails];
-    this.overViewData = [data.overViewData];
-    this.tableTitle = data.tableTitle;
-    this.headerInfo = data.headerInfo;
-    this.headerInfo = this.headerInfo.map((data) => ({
-      ...data,
-      cell: new Function('element', `return ${data.cell}`) as HeaderData['cell']
-    }))
-    this.displayedColumnsData = this.headerInfo.map(h => h.columnDef);
+  data = this.route.snapshot.data['content'] as HraMillitome;
+  headerCardDetails = this.data.headerCardDetails;
+  overViewData = this.data.overViewData;
+  tableTitle = this.data.tableTitle;
+  headerInfo = this.data.headerInfo.map((data) => ({
+    ...data,
+    cell: new Function('element', `return ${data.cell}`) as HeaderData['cell']
+  }))
+  displayedColumnsData = this.headerInfo.map(h => h.columnDef);
+  
+  constructor(private readonly dataService: TableDataService, private readonly route: ActivatedRoute) { 
     this.setData();
   }
 

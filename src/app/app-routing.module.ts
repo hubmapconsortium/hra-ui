@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PageComponent } from './components/page/page.component';
 import { AboutComponent } from './pages/about/about.component';
 import { CcfAsctbAzimuthComponent } from './pages/ccf-asctb-azimuth/ccf-asctb-azimuth.component';
 import { CcfReporterPageComponent } from './pages/ccf-asctb-reporter-page/ccf-asctb-reporter-page.component';
@@ -124,7 +125,7 @@ const routes: Routes = [
   },
   {
     path: 'team',
-    component: AboutComponent,
+    component: PageComponent,
     data: { contentFile: 'about.content' },
     resolve: { content: ContentResolver },
   },
@@ -205,7 +206,7 @@ const routes: Routes = [
   },
   {
     path: 'editorial-board',
-    component: HraEditorialBoardComponent,
+    component: PageComponent,
     data: {
       contentFile: 'hra-editorial-board.content',
     },

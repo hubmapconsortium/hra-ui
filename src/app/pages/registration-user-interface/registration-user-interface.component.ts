@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PageDef } from 'src/app/components/page-element/page-def';
 import { YoutubeModel } from 'src/app/components/youtube-model/youtube-model';
 import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
@@ -23,11 +24,11 @@ interface RegistrationUserInterface {
 export class RegistrationUserInterfaceComponent {
   constructor(private readonly route: ActivatedRoute) { }
   
-  data = this.route.snapshot.data['content'] as RegistrationUserInterface;
-  headerCardDetails = this.data.headerCardDetails;
-  overviewData = this.data.overviewData;
-  interfacedata = this.data.interfacedata;
-  useRuiButton = this.data.useRuiButton;
-  ruiSopData = this.data.ruiSopData;
-  youtubePlayer = this.data.youtubePlayer
+  data = this.route.snapshot.data['content'] as PageDef[];
+  // headerCardDetails = this.data.headerCardDetails;
+  // overviewData = this.data.overviewData;
+  // interfacedata = this.data.interfacedata;
+  // useRuiButton = this.data.useRuiButton;
+  // ruiSopData = this.data.ruiSopData;
+  // youtubePlayer = this.data.youtubePlayer
 }

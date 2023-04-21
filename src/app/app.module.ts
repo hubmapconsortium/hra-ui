@@ -8,10 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AnnouncementCardModule } from './components/announcement-card/announcement-card.module';
 import { BottomToolbarModule } from './components/bottom-toolbar/bottom-toolbar.module';
+import { CardWithHeaderModule } from './components/card-with-header/card-with-header.module';
 import { CountInfoCardModule } from './components/count-info-card/count-info-card.module';
 import { MenuTreeModule } from './components/menu-tree/menu-tree.module';
 import { PageDataModule } from './components/page-data/page-data.module';
+import { PageElementModule } from './components/page-element/page-element.module';
 import { PageHeaderModule } from './components/page-header/page-header.module';
+import { PageRendererModule } from './components/page-renderer/page-renderer.module';
+import { PageModule } from './components/page/page.module';
 import { ToolbarModule } from './components/toolbar/toolbar.module';
 import { YoutubeModelModule } from './components/youtube-model/youtube-model.module';
 import { AboutModule } from './pages/about/about.module';
@@ -89,7 +93,11 @@ import { VccfModule } from './pages/vccf/vccf.module';
     AnnouncementCardModule,
     VccfModule,
     CountInfoCardModule,
-    MenuTreeModule
+    MenuTreeModule,
+    PageRendererModule,
+    PageElementModule,
+    PageModule,
+    CardWithHeaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

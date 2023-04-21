@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PageDef } from 'src/app/components/page-element/page-def';
 import { CardBlock, LongCard } from '../../components/card-button-long/long-card';
 import { TileDefinition } from '../../shared/simple-tile-items';
 
@@ -10,15 +11,12 @@ import { TileDefinition } from '../../shared/simple-tile-items';
   styleUrls: ['./overview-training-outreach.component.scss']
 })
 export class OverviewTrainingOutreachComponent {
-  title: string;
-  TileDefinition = TileDefinition;
-  longCardData: CardBlock[];
+  // title: string;
+  // TileDefinition = TileDefinition;
+  // longCardData: CardBlock[];
 
-  constructor(private router: Router, route: ActivatedRoute) { 
-    const data = route.snapshot.data['content'];
-    this.title = data.title;
-    this.longCardData = data.longCardData;
-  }
+  data = this.route.snapshot.data['content'] as PageDef[];
+  constructor(private router: Router, private readonly route: ActivatedRoute) { }
 
   clicked(card:LongCard):void{
     this.router.navigate([card.route])

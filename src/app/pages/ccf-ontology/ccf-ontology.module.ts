@@ -9,6 +9,7 @@ import { SimpleImageModule } from '../../components/simple-image/simple-image.mo
 import { CardButtonLongModule } from '../../components/card-button-long/card-button-long.module';
 import { MarkdownModule } from 'ngx-markdown';
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
+import { PageRendererModule } from 'src/app/components/page-renderer/page-renderer.module';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { AnnouncementCardModule } from '../../components/announcement-card/annou
     SimpleImageModule,
     CardButtonLongModule,
     AnnouncementCardModule,
+    PageRendererModule,
     MarkdownModule.forChild()
   ],
   providers: [],

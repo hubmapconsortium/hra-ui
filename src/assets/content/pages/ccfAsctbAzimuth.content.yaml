@@ -1,3 +1,13 @@
+- type: header
+
+- type: page-data
+  pageData:
+
+- type: table
+
+- type: page-data
+  pageData:
+
 azimuthHeader:
 - image: assets/images/asctb_azimuth.svg
   title: ASCT+B Cell Types Data from Azimuth Reference Data with Summaries

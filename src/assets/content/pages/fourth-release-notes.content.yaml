@@ -97,25 +97,25 @@ threeDimRefObjectsButton:
   text: 4th Release 3D Reference Objects
   url: https://humanatlas.io/3d-reference-library
 
-eui:
+explorationUserInterface:
 - heading:
   descriptions: |
     **Exploration User Interface**
 
     Check out the Exploration User Interface (EUI) to see our 3D Reference Objects in action.
 
-euiButton:
+explorationUserInterfaceButton:
   text: Use the Exploration User Interface
   url: https://humanatlas.io/exploration-user-interface
 
-rui:
+registrationUserInterface:
 - heading:
   descriptions: |
     **Registration User Interface**
 
     Use the RUI to spatially place your tissue block data.
 
-ruiButton:
+registrationUserInterfaceButton:
   text: Use the Registration User Interface
   url: https://humanatlas.io/registration-user-interface
 
@@ -162,3 +162,33 @@ contactCardData:
   field: Research
   role: Research Scientist
   email: abueckle@iu.edu
+
+navigationItems:
+- menuName: Introduction
+  id: intro
+- menuName: "What's New"
+  id: whats-new
+- menuName: HRA 24 Hour Event
+  id: 24-hr-event
+- menuName: HRA Release Calendar
+  id: hra-release-calendar
+- menuName: ASCT+B Tables
+  id: asctb-tables
+- menuName: ASCT+B Reporter
+  id: asctb-reporter
+- menuName: ASCT+B Ontology Validations
+  id: asctb-ontology-validations
+- menuName: 3D Reference Objects
+  id: 3d-reference-objects
+- menuName: Exploration User Interface
+  id: exploration-user-interface
+- menuName: Registration User Interface
+  id: registration-user-interface
+- menuName: VR Organ Gallery
+  id: vr-organ-gallery
+- menuName: Previews
+  id: previews
+- menuName: Contact Us
+  id: contact-us
+- menuName: Outro
+  id: outro

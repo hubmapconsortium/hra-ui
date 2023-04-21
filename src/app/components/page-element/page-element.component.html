@@ -1,0 +1,14 @@
+<ng-container [ngSwitch]="def.type">
+    <ccf-page-header *ngSwitchCase="'header'" [headerCard]="def['headerCard']" class="page-header"></ccf-page-header>
+    <ccf-page-data *ngSwitchCase="'page-data'" [data]="def['pageData']" class="description"></ccf-page-data>
+    <announcement-card *ngSwitchCase="'announcement'" [messages]="def['announcementCard']"></announcement-card>
+    <ccf-use-button *ngSwitchCase="'button'" [buttonData]="def['useButton']" class="button-container"></ccf-use-button>
+    <ccf-sop-links *ngSwitchCase="'sop-links'" [links]="def['sopData']"></ccf-sop-links>
+    <ccf-board-members *ngSwitchCase="'boardMembers'" [membersData]="def['boardMembersData']"></ccf-board-members>
+    <ccf-card-button-long *ngSwitchCase="'longCard'" [longButtonItems]="def['longButtonItems']" (cardRoutes)="clicked($event)"></ccf-card-button-long>
+    <ccf-simple-tile *ngSwitchCase="'simpleTile'" [definitions]="def['description']"></ccf-simple-tile>
+    <youtube-model *ngSwitchCase="'player'" [playerData]="def['youtubePlayer']"></youtube-model>
+    <div *ngSwitchCase="'title'" class="title">{{ def['title'] }}</div>
+    <div *ngSwitchCase="'margin'" [style.margin-top]="def['top']" [style.margin-bottom]="def['bottom']"></div>
+    <card-with-header *ngSwitchCase="'cardBlock'" [cardBlockData]="def['cardWithTitle']"></card-with-header>
+</ng-container>

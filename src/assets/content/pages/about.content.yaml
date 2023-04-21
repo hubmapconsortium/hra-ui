@@ -1,101 +1,120 @@
-pageHeaderData:
-- title: About the Team
-  subtitle: Learn about the HuBMAP Infrastructure, Visualization, & Engagement (HIVE) Mapping Component Indiana University (MC-IU) Team
-  image: assets/images/about.svg
+- type: header
+  headerCard:
+  - title: About the Team
+    subtitle: Learn about the HuBMAP Infrastructure, Visualization, & Engagement (HIVE) Mapping Component Indiana University (MC-IU) Team
+    image: assets/images/about.svg
 
-overview:
-- heading: Overview
-  descriptions: The ultimate goal of the HIVE Mapping effort is to develop a common coordinate framework (CCF) for the healthy human body. This framework will support cataloging different types of individual cells, understanding the functions of and relationships between those cell types, and modeling their individual and collective function.
+- type: announcement
+  announcementCard:
+  - message: "The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in "
+    route: 'v1.3'
+    routeText: '4th Release Notes.'
+    emoji: '🎉'
 
-history:
-- heading: History
-  descriptions: During the initial four years of HuBMAP, the MC-IU team has built many elements of the CCF. We co-organized the construction of ASCT+B Tables and implemented a CCF Ontology. 
-    We collaborated with NIAID at NIH on the design of a 3D Reference Object Library. Lastly, we developed three interactive user interfaces. The CCF ASCT+B Reporter supports the authoring and interactive review of ASCT+B Tables. 
-    The CCF Registration User Interface (RUI) supports uniform tissue data registration across organs and labs. The CCF Exploration User Interface (EUI) supports exploration of semantically and spatially explicit data—from the whole body to the single cell level. 
-    For an introduction to HuBMAP goals, data, and code visit the Visible Human MOOC (VHMOOC).
+- type: simpleTile
+  description:
+  - title: A <span class="hra-bold">Common Coordinate Framework (CCF)</span> for a human body provides a unique address for each cell in the human body. It is similar to the latitude-longtitude system used to navigate a world map.
+  - title: A <span class="hra-bold">Human Reference Atlas (HRA)</span> is a comprehensive, high-resolution, three-dimensional atlas of all the cells in the healthy human body. The Human Reference Atlas provides standard terminologies and data structures for describing specimens, biological structures, and spatial positions linked to existing ontologies.
 
-references:
-- heading: References
-  descriptions: |
-    Börner, Katy, Andreas D. Bueckle, and Michael Ginda. 2019."<a href="https://cns.iu.edu/docs/publications/2019-borner-pnas.pdf">
-    Data Visualization Literacy: Definitions, Conceptual Frameworks, Exercises, and Assessments.</a>" PNAS116 (6): 1857-1864. doi:10.1073/pnas.1807180116.
-    
-    
-    Börner, Katy, Ellen M. Quardokus, Bruce W. Herr II, Leonard E. Cross, Elizabeth G. Record, Yingnan Ju, Andreas D. Bueckle, James P. Sluka, Jonathan C. Silverstein, Kristen M. Browne, Sanjay Jain, Clive H. Wasserfall, Marda L. Jorgensen, Jeffrey M. Spraggins, Nathan H. Patterson, Mark A. Musen, and Griffin M. Weber. 2020. 
-    <a href="https://arxiv.org/abs/2007.14474">Construction and Usage of a Human Body Common Coordinate Framework Comprising Clinical, Semantic, and Spatial Ontologies.</a> arXiv:2007.14474v1.
-    
-    
-    Börner, Katy, Sarah A Teichmann, Ellen M Quardokus, James Gee, Kristen Browne, David Osumi-Sutherland, Bruce W Herr II, Andreas Bueckle, Hrishikesh Paul, Muzlifah A Haniffa, Laura Jardine, Amy Bernard, Song-Lin Ding, Jeremy A Miller, Shin Lin, Marc Halushka, Avinash Boppana, Teri A Longacre, John Hickey, Yiing Lin, M Todd Valerius, Yongqun He, Gloria Pryhuber, Xin Sun, Marda Jorgensen, Andrea J Radtke, Clive Wasserfall, Fiona Ginty, Jonhan Ho, Joel Sunshine, Rebecca T Beuschel, Maigan Brusko, Sujin Lee, Rajeev Malhotra, Sanjay Jain, and Griffin Weber. 2021. 
-    <a href="https://cns.iu.edu/docs/publications/2021-Borner-ASCT+B_of_the_HRA.pdf" target="_blank">Anatomical structures, cell types and biomarkers of the Human Reference Atlas.</a> Nature Cell Biology 23: 1117-1128. doi: 10.1038/s41556-021-00788-6.
-    
-    
-    Börner, Katy, William Rouse, Paul Trunfio, and H. Eugene Stanley. 2018. <a href="https://cns.iu.edu/docs/publications/2018-borner-forecasting-innovations.pdf">Forecasting Innovations in Science, Technology, and Education.</a> PNAS 115 (50): 12573-12581. doi:10.1073/pnas.1818750115.
-    
-    
-    Ginda, Michael, Michael C. Richey, Mark Cousino, and Katy Börner. 2019. <a href="https://cns.iu.edu/docs/publications/2019-journal.pone.0215964.pdf" target="_blank">Visualizing Learner Engagement, Performance, and Trajectories to Evaluate and Optimize Online Course Design.<a> PLOS One 14 (5): e0215964. doi:10.1371/journal.pone.0215964.
-    
-    
-    Snyder, Michael P., Shin Lin, Amanda Posgai, Mark Atkinson, Aviv Regev, Jennifer Rood, Orit Rozenblatt-Rosen, Leslie Gaffney, Anna Hupalowska, Rahul Satija, Nils Gehlenborg, Jay Shendure, Julia Laskin, Pehr Harbury, Nicholas A. Nystrom, Jonathan C. Silverstein, Ziv Bar-Joseph, Kun Zhang, Katy Börner, Yiing Lin, Richard Conroy, Dena Procaccini, Ananda L. Roy, Ajay Pillai, Marishka Brown, and Zorina S. Galis. 2019. 
-    <a href="https://cns.iu.edu/docs/publications/2019-Snyder-HuBMAP.pdf">The Human Body at Cellular Resolution: The NIH Human Biomolecular Atlas Program.</a> Nature 574: 187-192. doi:10.1038/s41586-019-1629-x.
-    
-    
-    Weber, Griffin M, Yingnan Ju, and Katy Börner. 2020. <a href="https://cns.iu.edu/docs/publications/2020-Weber-Considerations.pdf">Considerations for Using the Vasculature as a Coordinate System to Map All the Cells in the Human Body.</a> Frontiers in Cardiovascular Medicine 7 (29). doi:10.3389/fcvm.2020.00029.
-    
-    
-    Bueckle, Andreas, Kilian Buehling, Patrick C. Shih, and Katy Börner. 2022. <a href="https://www.frontiersin.org/articles/10.3389/frvir.2021.727344/full">Optimizing Performance and Satisfaction in Matching and Movement Tasks in Virtual Reality with Interventions Using the Data Visualization Literacy Framework.</a> Frontiers in Virtual Reality, vol. 2. doi: 10.3389/frvir.2021.727344.
-    
-    
-    Bueckle, Andreas, Kristen M. Browne, Bruce W. Herr II, Katy Börner. 2022. <a href="https://osf.io/z9gm3/">The CCF Organ VR Gallery.</a> OSF preprint. doi: 10.31219/osf.io/z9gm3.
-    
-    
-    Börner, Katy, Andreas Bueckle, Bruce W. Herr II, Leonard E. Cross, Ellen M. Quardokus, Elizabeth G. Record, Yingnan Ju, Jonathan C. Silverstein, Kristen M. Browne, Sanjay Jain, Clive H. Wasserfall, Marda L. Jorgensen, Jeffrey M. Spraggins, Nathan H. Patterson, Griffin M. Weber. 2021. 
-    <a href="https://www.figma.com/exit?url=https%3A%2F%2Fwww.biorxiv.org%2Fcontent%2F10.1101%2F2021.12.30.474265v1">Tissue Registration and Exploration User Interfaces in support of a Human Reference Atlas.</a>” biorXiv preprint bioRxiv:2021.12.30.474265. doi: 10.1101/2021.12.30.474265.
-    
-    
-    Bueckle, Andreas, Kilian Buehling, Patrick C. Shih, and Katy Börner. 2021. “<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0258103" target="_blank">3D Virtual Reality vs. 2D Desktop Registration User Interface Comparison.</a>” PLOS One, vol. 16, no. 10. doi: 10.1371/journal.pone.0258103.
+- type: page-data
+  pageData:
+  - heading: Overview
+    descriptions: The ultimate goal of the HIVE Mapping effort is to develop a common coordinate framework (CCF) for the healthy human body. This framework will support cataloging different types of individual cells, understanding the functions of and relationships between those cell types, and modeling their individual and collective function.
 
-presentations:
-- heading: Presentations
-  descriptions: |
-    November 18, 2020: <a href="https://hubmapconsortium.github.io/ccf/dld/2020.11.18-CZI-Borner.pdf"><i>Human Reference Atlas: Anatomical Structures, Cell Types & Biomarkers</i></a> at 
-    <a href="https://chanzuckerberg.com/science/programs-resources/single-cell-biology/seednetworks/">Chan Zuckerberg Initiative (CZI) Seed Networks 2020 Annual Meeting</a>, Virtual Event.
-    
-    
-    May 19, 2020: <a href="https://hubmapconsortium.github.io/ccf/dld/2020.05.19-Borner-HuBMAPposter.pdf"><i>The Human Body Atlas: High-Resolution, Functional Mapping of Voxel, Vector, and Meta Datasets</i></a> at HuBMAP Virtual Annual Meeting, Washington, DC.
-    
-    
-    March 17, 2020: <a href="https://hubmapconsortium.github.io/ccf/dld/2020.03.17-MC-IU.KPMP-Talk.pdf"><i>Harmonizing KPMP/HuBMAP Data: Developing Novel Common Coordinate Framework User Interfaces</i></a> at KPMP Virtual Meeting, Washington, DC.
+- type: page-data
+  pageData:
+  - heading: History
+    descriptions: During the initial four years of HuBMAP, the MC-IU team has built many elements of the CCF. We co-organized the construction of ASCT+B Tables and implemented a CCF Ontology. 
+      We collaborated with NIAID at NIH on the design of a 3D Reference Object Library. Lastly, we developed three interactive user interfaces. The CCF ASCT+B Reporter supports the authoring and interactive review of ASCT+B Tables. 
+      The CCF Registration User Interface (RUI) supports uniform tissue data registration across organs and labs. The CCF Exploration User Interface (EUI) supports exploration of semantically and spatially explicit data—from the whole body to the single cell level. 
+      For an introduction to HuBMAP goals, data, and code visit the Visible Human MOOC (VHMOOC).
 
-acknowledgments:
-- heading: Acknowledgments
-  descriptions: |
-    The Human Reference Atlas (HRA) is under active development by the Indiana University Mapping Component as part of the HuBMAP HIVE and SenNet CODCC efforts with expert input by the 
-    [HRA Editorial Board](https://humanatlas.io/editorial-board) and in close collaboration with experts from 
-    more than 15 other consortia. Data was provided by HuBMAP and other Tissue Mapping Centers. This research has been funded by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under awards OT2OD033756 and 
-    OT2OD026671, by the Cellular Senescence Network (SenNet) Consortium through the Consortium Organization and Data Coordinating Center (CODCC) under award number U24CA268108, and by the NIDDK under awards U24DK135157 and U01DK133090. 
-    The work has also been supported by the Kidney Precision Medicine Project grant U2CDK114886, and the NIH National Institute of Allergy and Infectious Diseases (NIAID), Department of Health and Human Services under BCBB Support Services 
-    Contract HHSN316201300006W/HHSN27200002.
+- type: page-data
+  pageData:
+  - heading: References
+    descriptions: |
+      Börner, Katy, Andreas D. Bueckle, and Michael Ginda. 2019."<a href="https://cns.iu.edu/docs/publications/2019-borner-pnas.pdf">
+      Data Visualization Literacy: Definitions, Conceptual Frameworks, Exercises, and Assessments.</a>" PNAS116 (6): 1857-1864. doi:10.1073/pnas.1807180116.
+      
+      
+      Börner, Katy, Ellen M. Quardokus, Bruce W. Herr II, Leonard E. Cross, Elizabeth G. Record, Yingnan Ju, Andreas D. Bueckle, James P. Sluka, Jonathan C. Silverstein, Kristen M. Browne, Sanjay Jain, Clive H. Wasserfall, Marda L. Jorgensen, Jeffrey M. Spraggins, Nathan H. Patterson, Mark A. Musen, and Griffin M. Weber. 2020. 
+      <a href="https://arxiv.org/abs/2007.14474">Construction and Usage of a Human Body Common Coordinate Framework Comprising Clinical, Semantic, and Spatial Ontologies.</a> arXiv:2007.14474v1.
+      
+      
+      Börner, Katy, Sarah A Teichmann, Ellen M Quardokus, James Gee, Kristen Browne, David Osumi-Sutherland, Bruce W Herr II, Andreas Bueckle, Hrishikesh Paul, Muzlifah A Haniffa, Laura Jardine, Amy Bernard, Song-Lin Ding, Jeremy A Miller, Shin Lin, Marc Halushka, Avinash Boppana, Teri A Longacre, John Hickey, Yiing Lin, M Todd Valerius, Yongqun He, Gloria Pryhuber, Xin Sun, Marda Jorgensen, Andrea J Radtke, Clive Wasserfall, Fiona Ginty, Jonhan Ho, Joel Sunshine, Rebecca T Beuschel, Maigan Brusko, Sujin Lee, Rajeev Malhotra, Sanjay Jain, and Griffin Weber. 2021. 
+      <a href="https://cns.iu.edu/docs/publications/2021-Borner-ASCT+B_of_the_HRA.pdf" target="_blank">Anatomical structures, cell types and biomarkers of the Human Reference Atlas.</a> Nature Cell Biology 23: 1117-1128. doi: 10.1038/s41556-021-00788-6.
+      
+      
+      Börner, Katy, William Rouse, Paul Trunfio, and H. Eugene Stanley. 2018. <a href="https://cns.iu.edu/docs/publications/2018-borner-forecasting-innovations.pdf">Forecasting Innovations in Science, Technology, and Education.</a> PNAS 115 (50): 12573-12581. doi:10.1073/pnas.1818750115.
+      
+      
+      Ginda, Michael, Michael C. Richey, Mark Cousino, and Katy Börner. 2019. <a href="https://cns.iu.edu/docs/publications/2019-journal.pone.0215964.pdf" target="_blank">Visualizing Learner Engagement, Performance, and Trajectories to Evaluate and Optimize Online Course Design.<a> PLOS One 14 (5): e0215964. doi:10.1371/journal.pone.0215964.
+      
+      
+      Snyder, Michael P., Shin Lin, Amanda Posgai, Mark Atkinson, Aviv Regev, Jennifer Rood, Orit Rozenblatt-Rosen, Leslie Gaffney, Anna Hupalowska, Rahul Satija, Nils Gehlenborg, Jay Shendure, Julia Laskin, Pehr Harbury, Nicholas A. Nystrom, Jonathan C. Silverstein, Ziv Bar-Joseph, Kun Zhang, Katy Börner, Yiing Lin, Richard Conroy, Dena Procaccini, Ananda L. Roy, Ajay Pillai, Marishka Brown, and Zorina S. Galis. 2019. 
+      <a href="https://cns.iu.edu/docs/publications/2019-Snyder-HuBMAP.pdf">The Human Body at Cellular Resolution: The NIH Human Biomolecular Atlas Program.</a> Nature 574: 187-192. doi:10.1038/s41586-019-1629-x.
+      
+      
+      Weber, Griffin M, Yingnan Ju, and Katy Börner. 2020. <a href="https://cns.iu.edu/docs/publications/2020-Weber-Considerations.pdf">Considerations for Using the Vasculature as a Coordinate System to Map All the Cells in the Human Body.</a> Frontiers in Cardiovascular Medicine 7 (29). doi:10.3389/fcvm.2020.00029.
+      
+      
+      Bueckle, Andreas, Kilian Buehling, Patrick C. Shih, and Katy Börner. 2022. <a href="https://www.frontiersin.org/articles/10.3389/frvir.2021.727344/full">Optimizing Performance and Satisfaction in Matching and Movement Tasks in Virtual Reality with Interventions Using the Data Visualization Literacy Framework.</a> Frontiers in Virtual Reality, vol. 2. doi: 10.3389/frvir.2021.727344.
+      
+      
+      Bueckle, Andreas, Kristen M. Browne, Bruce W. Herr II, Katy Börner. 2022. <a href="https://osf.io/z9gm3/">The CCF Organ VR Gallery.</a> OSF preprint. doi: 10.31219/osf.io/z9gm3.
+      
+      
+      Börner, Katy, Andreas Bueckle, Bruce W. Herr II, Leonard E. Cross, Ellen M. Quardokus, Elizabeth G. Record, Yingnan Ju, Jonathan C. Silverstein, Kristen M. Browne, Sanjay Jain, Clive H. Wasserfall, Marda L. Jorgensen, Jeffrey M. Spraggins, Nathan H. Patterson, Griffin M. Weber. 2021. 
+      <a href="https://www.figma.com/exit?url=https%3A%2F%2Fwww.biorxiv.org%2Fcontent%2F10.1101%2F2021.12.30.474265v1">Tissue Registration and Exploration User Interfaces in support of a Human Reference Atlas.</a>” biorXiv preprint bioRxiv:2021.12.30.474265. doi: 10.1101/2021.12.30.474265.
+      
+      
+      Bueckle, Andreas, Kilian Buehling, Patrick C. Shih, and Katy Börner. 2021. “<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0258103" target="_blank">3D Virtual Reality vs. 2D Desktop Registration User Interface Comparison.</a>” PLOS One, vol. 16, no. 10. doi: 10.1371/journal.pone.0258103.
 
-    The very first [ASCT+B table](https://humanatlas.io/asctb-tables) was published for the kidney by the Kidney Precision Medicine Project (KPMP) in 
-    "[A Multimodal and Integrated Approach to Interrogate Human Kidney Biopsies with Rigor and Reproducibility: The Kidney Precision Medicine Project](https://www.biorxiv.org/content/10.1101/828665v1)". 
-    Katy Börner (HuBMAP, KPMP), Peter Hunter (SPARC), and James Gee (BICCN) organized a CCF session at the 2020 
-    Joint NIH-HCA Meeting that brought together experts from multiple consortia to develop ASCT+B tables in an effort to create a Human Reference Atlas. Mark Musen, Chris Mungall, and 
-    David Osumi-Sutherland provided expert guidance on linking ASCT+B tables to existing ontologies.
 
-    [ASCT+B Cell Types Data from Azimuth Reference Data With Summaries](https://humanatlas.io/asctb-azimuth) was compiled by the HuBMAP MC-IU team in close collaboration with the MC-NYGC team.
+- type: page-data
+  pageData:
+  - heading: Presentations
+    descriptions: |
+      November 18, 2020: <a href="https://hubmapconsortium.github.io/ccf/dld/2020.11.18-CZI-Borner.pdf"><i>Human Reference Atlas: Anatomical Structures, Cell Types & Biomarkers</i></a> at 
+      <a href="https://chanzuckerberg.com/science/programs-resources/single-cell-biology/seednetworks/">Chan Zuckerberg Initiative (CZI) Seed Networks 2020 Annual Meeting</a>, Virtual Event.
+      
+      
+      May 19, 2020: <a href="https://hubmapconsortium.github.io/ccf/dld/2020.05.19-Borner-HuBMAPposter.pdf"><i>The Human Body Atlas: High-Resolution, Functional Mapping of Voxel, Vector, and Meta Datasets</i></a> at HuBMAP Virtual Annual Meeting, Washington, DC.
+      
+      
+      March 17, 2020: <a href="https://hubmapconsortium.github.io/ccf/dld/2020.03.17-MC-IU.KPMP-Talk.pdf"><i>Harmonizing KPMP/HuBMAP Data: Developing Novel Common Coordinate Framework User Interfaces</i></a> at KPMP Virtual Meeting, Washington, DC.
 
-    The [2D Functional Tissue Unit Library](https://humanatlas.io/2d-ftu-illustrations) files were created by Rachel Bajema on the MC-IU team. This research has been funded in part by the NIH Common Fund through the Office of 
-    Strategic Coordination/Office of the NIH Director under award OT2OD026671 and the NIDDK Kidney Precision Medicine Project grant U2CDK114886.
+- type: page-data
+  pageData:
+  - heading: Acknowledgments
+    descriptions: |
+      The Human Reference Atlas (HRA) is under active development by the Indiana University Mapping Component as part of the HuBMAP HIVE and SenNet CODCC efforts with expert input by the 
+      [HRA Editorial Board](https://humanatlas.io/editorial-board) and in close collaboration with experts from 
+      more than 15 other consortia. Data was provided by HuBMAP and other Tissue Mapping Centers. This research has been funded by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under awards OT2OD033756 and 
+      OT2OD026671, by the Cellular Senescence Network (SenNet) Consortium through the Consortium Organization and Data Coordinating Center (CODCC) under award number U24CA268108, and by the NIDDK under awards U24DK135157 and U01DK133090. 
+      The work has also been supported by the Kidney Precision Medicine Project grant U2CDK114886, and the NIH National Institute of Allergy and Infectious Diseases (NIAID), Department of Health and Human Services under BCBB Support Services 
+      Contract HHSN316201300006W/HHSN27200002.
 
-    The [3D Models](https://humanatlas.io/3d-reference-library) were created by Kristen Browne for the 3D Printing and Biovisualization program operated by OCICB, NIAID. This research has been funded in part by the NIH Common Fund through the 
-    Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671, by the NIDDK Kidney Precision Medicine Project grant U2CDK114886, and NIAID under BCBB Support Services 
-    Contract HHSN316201300006W/HHSN27200002 to MSC, Inc; U.S. The male colon is from a white 55-year-old and was provided by Arie Kaufman, Stony Brook University.The brain is from a 34-year-old 
-    female donor and was published by the Allen Human Reference Atlas-3D, 2020. Jim Gee, University of Pennsylvania converted the NII file into GLB. Amy Bernard, 
-    Allen Institute assisted in mapping the 141 anatomical structures to the brain ASCT+B table.
+      The very first [ASCT+B table](https://humanatlas.io/asctb-tables) was published for the kidney by the Kidney Precision Medicine Project (KPMP) in 
+      "[A Multimodal and Integrated Approach to Interrogate Human Kidney Biopsies with Rigor and Reproducibility: The Kidney Precision Medicine Project](https://www.biorxiv.org/content/10.1101/828665v1)". 
+      Katy Börner (HuBMAP, KPMP), Peter Hunter (SPARC), and James Gee (BICCN) organized a CCF session at the 2020 
+      Joint NIH-HCA Meeting that brought together experts from multiple consortia to develop ASCT+B tables in an effort to create a Human Reference Atlas. Mark Musen, Chris Mungall, and 
+      David Osumi-Sutherland provided expert guidance on linking ASCT+B tables to existing ontologies.
 
-    The CCF and associated user interfaces are developed by the MC-IU team within the HuBMAP HIVE. The MC-IU team includes Katy Börner, Lisel Record, Bruce Herr II, Ellen Quardokus, and Andreas Bueckle, 
-    Indiana University, Bloomington, IN and Griffin Weber, Harvard Medical School, Boston, MA. Former members of the team are Leonard Cross, Paul Macklin, Randy Heiland, and Jim Sluka at 
-    Indiana University, Bloomington, IN and Samuel Friedman, Opto-Knowledge Systems, Inc. We acknowledge expert input from Jeffrey Spraggins, Sanjay Jain, and Clive Wasserfall and their 
-    teams as well as the overall HuBMAP consortium.
+      [ASCT+B Cell Types Data from Azimuth Reference Data With Summaries](https://humanatlas.io/asctb-azimuth) was compiled by the HuBMAP MC-IU team in close collaboration with the MC-NYGC team.
 
-    We thank all members of the 17 consortia that participate in the Human Reference Atlas construction for their expert input and guidance.
+      The [2D Functional Tissue Unit Library](https://humanatlas.io/2d-ftu-illustrations) files were created by Rachel Bajema on the MC-IU team. This research has been funded in part by the NIH Common Fund through the Office of 
+      Strategic Coordination/Office of the NIH Director under award OT2OD026671 and the NIDDK Kidney Precision Medicine Project grant U2CDK114886.
+
+      The [3D Models](https://humanatlas.io/3d-reference-library) were created by Kristen Browne for the 3D Printing and Biovisualization program operated by OCICB, NIAID. This research has been funded in part by the NIH Common Fund through the 
+      Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671, by the NIDDK Kidney Precision Medicine Project grant U2CDK114886, and NIAID under BCBB Support Services 
+      Contract HHSN316201300006W/HHSN27200002 to MSC, Inc; U.S. The male colon is from a white 55-year-old and was provided by Arie Kaufman, Stony Brook University.The brain is from a 34-year-old 
+      female donor and was published by the Allen Human Reference Atlas-3D, 2020. Jim Gee, University of Pennsylvania converted the NII file into GLB. Amy Bernard, 
+      Allen Institute assisted in mapping the 141 anatomical structures to the brain ASCT+B table.
+
+      The CCF and associated user interfaces are developed by the MC-IU team within the HuBMAP HIVE. The MC-IU team includes Katy Börner, Lisel Record, Bruce Herr II, Ellen Quardokus, and Andreas Bueckle, 
+      Indiana University, Bloomington, IN and Griffin Weber, Harvard Medical School, Boston, MA. Former members of the team are Leonard Cross, Paul Macklin, Randy Heiland, and Jim Sluka at 
+      Indiana University, Bloomington, IN and Samuel Friedman, Opto-Knowledge Systems, Inc. We acknowledge expert input from Jeffrey Spraggins, Sanjay Jain, and Clive Wasserfall and their 
+      teams as well as the overall HuBMAP consortium.
+
+      We thank all members of the 17 consortia that participate in the Human Reference Atlas construction for their expert input and guidance.

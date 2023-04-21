@@ -63,7 +63,7 @@ omapsVersionData:
   file: omaps_release2.csv
   version: '2'
 
-omapHeaders:
+columnHeaders:
 - columnDef: omapId
   header: OMAP ID
   cell: "`${element['omapId']}`"

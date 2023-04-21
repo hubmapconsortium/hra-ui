@@ -7,6 +7,7 @@ import { PageDataModule } from '../../components/page-data/page-data.module';
 import { AboutComponent } from './about.component';
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
 import { SimpleTileModule } from 'src/app/components/simple-tile/simple-tile.module';
+import { PageRendererModule } from 'src/app/components/page-renderer/page-renderer.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { SimpleTileModule } from 'src/app/components/simple-tile/simple-tile.mod
     PageHeaderModule,
     PageDataModule,
     AnnouncementCardModule,
-    SimpleTileModule
+    SimpleTileModule,
+    PageRendererModule
   ],
   providers: [],
   bootstrap: []
