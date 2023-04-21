@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Action, NgxsOnInit, State } from '@ngxs/store';
 import produce from 'immer';
 import { Observable, tap } from 'rxjs';
@@ -20,6 +20,7 @@ import { DownloadContext, DownloadFormatId, DownloadModel } from './download.mod
     entries: {},
   },
 })
+@Injectable()
 export class DownloadState implements NgxsOnInit {
   /**
    * Http object inject for download state
