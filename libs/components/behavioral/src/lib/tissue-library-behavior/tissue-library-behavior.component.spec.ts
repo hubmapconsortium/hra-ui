@@ -1,8 +1,6 @@
-import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { Shallow } from 'shallow-render';
 import { TissueLibraryBehaviorComponent } from './tissue-library-behavior.component';
-import { TissueLibrarySelectors } from '@hra-ui/state';
-import { Component } from '@angular/core';
 
 jest.mock('@hra-ui/cdk/injectors');
 
