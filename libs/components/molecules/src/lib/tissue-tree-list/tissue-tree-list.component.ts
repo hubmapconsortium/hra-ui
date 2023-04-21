@@ -29,21 +29,16 @@ export interface DataNode {
 }
 
 /**
- *  Internal interface for flat tissue data hierarchy
+ * Internal interface for flat tissue data hierarchy
  */
 interface InternalNode<T extends DataNode> {
+  /** Displayed label */
   label: string;
-  /**
-   * property to check if the node has child entities
-   */
+  /** Whether the node can be expanded to display child nodes */
   expandable: boolean;
-  /**
-   * index indentifier
-   */
+  /** Depth of node in the tree */
   level: number;
-  /**
-   * node data
-   */
+  /** Associated user node data */
   data: T;
 }
 
@@ -83,7 +78,7 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
   );
 
   /**
-   * Flattener  of tissue tree list component, returns flat-data structure
+   * Flattener of tissue tree list component, returns flat-data structure
    */
   readonly flattener = new MatTreeFlattener<T, InternalNode<T>>(
     (node, level) => ({
@@ -131,6 +126,11 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
     this.selectedChange.emit(this.selected);
   }
 
+  /**
+   * It creates a copy of the input nodes object.
+   * It iterates over it and removes all the children nodes from it.
+   * @returns remaining nodes which are root nodes.
+   */
   private findRootNodes(): T[] {
     const nodes = { ...this.nodes };
     for (const key in nodes) {
@@ -140,10 +140,5 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
     }
 
     return Object.values(nodes);
-  }
-
-  changeStyle(): void {
-    const div = document.getElementById('tree-class') as HTMLDivElement; // type assertion to HTMLDivElement
-    div.style.backgroundColor = 'blue';
   }
 }

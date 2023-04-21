@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { TISSUE_DATA_SCHEMA, TissueData, TissueLibraryService } from './tissue-library.service';
-import { Observable, defer, of } from 'rxjs';
 
+/** Mock tissue data */
 const MOCK_TISSUE_DATA = TISSUE_DATA_SCHEMA.parse({
   root: 'http://example.com/root',
   nodes: {
@@ -35,10 +36,12 @@ const MOCK_TISSUE_DATA = TISSUE_DATA_SCHEMA.parse({
   },
 });
 
+/** Mock implementation of {@link TissueLibraryService} */
 @Injectable({
   providedIn: 'root',
 })
 export class MockTissueLibraryService extends TissueLibraryService {
+  /** Implementation of {@link TissueLibraryService.getTissues} */
   getTissues(): Observable<TissueData> {
     return of(MOCK_TISSUE_DATA);
   }
