@@ -1,10 +1,9 @@
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  hra-fullscreen-container {
-    height: 100%;
-    hra-fullscreen-content {
-      height: 100%;
-    }
+
+  .filler {
+    flex-grow: 1;
   }
 }
