@@ -86,7 +86,6 @@ export class LandingPageContentComponent implements AfterViewInit {
     for (const { isIntersecting, target } of entries) {
       if (isIntersecting) {
         this.renderer.addClass(target, 'visible');
-        this.renderer.removeClass(target, 'hide');
         observer.unobserve(target);
       }
     }
