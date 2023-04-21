@@ -3,6 +3,10 @@ import { LinkRegistryActions, LinkType, ResourceRegistryActions } from '@hra-ui/
 import { LinkIds } from '@hra-ui/state';
 import { Observable } from 'rxjs';
 
+/**
+ * Factory for APP_INITIALIZER to initialize the application
+ * @returns A initialization function
+ */
 export function initFactory(): () => Observable<unknown> {
   const dispatch = dispatchAction$();
   return () =>
