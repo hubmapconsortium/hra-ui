@@ -1,12 +1,18 @@
 :host {
   display: block;
   overflow-x: hidden;
+  .metrics.hide {
+    visibility: hidden;
+  }
+  .landing-page-content.hide {
+    visibility: hidden;
+  }
   .metrics.visible {
-    animation: fadeIn 2s;
+    animation: fadeIn 2s ease-in-out;
   }
   .landing-page-content.visible {
     overflow: hidden;
-    animation: slidein 3s ease-in-out forwards;
+    animation: slidein 3s ease-in-out;
   }
 }
 @keyframes fadeIn {
