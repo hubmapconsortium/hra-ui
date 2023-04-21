@@ -1,3 +1,10 @@
 :host {
   display: block;
+  height: 100%;
+  hra-fullscreen-container {
+    height: 100%;
+    hra-fullscreen-content {
+      height: 100%;
+    }
+  }
 }

@@ -1,3 +1,7 @@
 :host {
   display: block;
+  height: 100%;
+  .page-content {
+    height: 100%;
+  }
 }

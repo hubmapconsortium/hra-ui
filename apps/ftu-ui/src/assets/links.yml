@@ -1,1 +1,9 @@
-{}
+About:
+  type: internal
+  commands:
+    - 'about'
+ExploreFTU:
+  type: internal
+  commands:
+    - 'explore'
+
