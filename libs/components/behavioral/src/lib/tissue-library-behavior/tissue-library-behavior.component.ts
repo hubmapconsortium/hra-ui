@@ -4,6 +4,9 @@ import { selectSnapshot } from '@hra-ui/cdk/injectors';
 import { TissueTreeListComponent } from '@hra-ui/components/molecules';
 import { TissueLibrarySelectors } from '@hra-ui/state';
 
+/**
+ * Component for Tissue Library Behavior
+ */
 @Component({
   selector: 'ftu-tissue-library-behavior',
   standalone: true,
@@ -13,5 +16,8 @@ import { TissueLibrarySelectors } from '@hra-ui/state';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TissueLibraryBehaviorComponent {
+  /**
+   * Input for tissues data
+   */
   readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);
 }
