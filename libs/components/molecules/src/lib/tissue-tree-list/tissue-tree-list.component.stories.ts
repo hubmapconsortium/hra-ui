@@ -44,22 +44,4 @@ Primary.args = {
       label: 'Liver lobule',
     },
   },
-  // tissueTree: [
-  //   {
-  //     label: 'Kidney',
-  //     tissues: [
-  //       { label: 'Ascending thin limb' },
-  //       { label: 'Cortical collecting duct' },
-  //       { label: 'Collecting duct(inner medulla)' },
-  //     ],
-  //   },
-  //   {
-  //     label: 'Large Intestine',
-  //     tissues: [{ label: 'Crypt of Lieberkuhn' }],
-  //   },
-  //   {
-  //     label: 'Liver',
-  //     tissues: [{ label: 'Liver lobule' }],
-  //   },
-  // ],
 };
