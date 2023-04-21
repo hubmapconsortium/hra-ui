@@ -1,9 +1,15 @@
 :host {
-  display: flex;
-  flex-direction: column;
+  display: block;
   height: 100%;
 
-  .filler {
-    flex-grow: 1;
+  .content-container {
+    height: calc(100% - 5rem - 1px);
+
+    .fullscreen-content-container {
+      &,
+      .illustration-details {
+        height: 100%;
+      }
+    }
   }
 }
