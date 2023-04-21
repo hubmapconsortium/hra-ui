@@ -954,28 +954,44 @@ export class LandingPageContentComponent implements AfterViewInit {
                 <pre class="line-numbers"><code class="language-scss">:host {
   display: block;
   overflow-x: hidden;
-  .metrics.visible {
-    animation: fadeIn 2s;
+
+  .metrics {
+    opacity: 0;
+
+    &amp;.visible {
+      animation: fadeIn 2s ease-in-out forwards;
+    }
   }
-  .landing-page-content.visible {
-    overflow: hidden;
-    animation: slidein 3s ease-in-out forwards;
+
+  .landing-page-content {
+    opacity: 0;
+
+    &amp;.visible {
+      overflow: hidden;
+      animation: slideIn 3s ease-in-out forwards;
+    }
   }
 }
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
-@keyframes slidein {
+
+@keyframes slideIn {
   0% {
     transform: translateX(200%);
+    opacity: 1;
   }
+
   100% {
     transform: translateX(0);
+    opacity: 1;
   }
 }
 </code></pre>
