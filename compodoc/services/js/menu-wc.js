@@ -59,6 +59,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <li class="link">
                                     <a href="injectables/MockContactService.html" data-type="entity-link" >MockContactService</a>
                                 </li>
+                                <li class="link">
+                                    <a href="injectables/MockTissueLibraryService.html" data-type="entity-link" >MockTissueLibraryService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/TissueLibraryService.html" data-type="entity-link" >TissueLibraryService</a>
+                                </li>
                             </ul>
                         </li>
                     <li class="chapter">
@@ -71,6 +77,22 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
                                 <a href="interfaces/ContactMessage.html" data-type="entity-link" >ContactMessage</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#miscellaneous-links"'
+                            : 'data-target="#xs-miscellaneous-links"' }>
+                            <span class="icon ion-ios-cube"></span>
+                            <span>Miscellaneous</span>
+                            <span class="icon ion-ios-arrow-down"></span>
+                        </div>
+                        <ul class="links collapse " ${ isNormalMode ? 'id="miscellaneous-links"' : 'id="xs-miscellaneous-links"' }>
+                            <li class="link">
+                                <a href="miscellaneous/typealiases.html" data-type="entity-link">Type aliases</a>
+                            </li>
+                            <li class="link">
+                                <a href="miscellaneous/variables.html" data-type="entity-link">Variables</a>
                             </li>
                         </ul>
                     </li>

@@ -38,7 +38,7 @@
   <li>Components</li>
   <li
   >
-  MedicalIllustrationBehaviorComponent</li>
+  TissueLibraryBehaviorComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -64,7 +64,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts</code>
+    <code>src/lib/tissue-library-behavior/tissue-library-behavior.component.ts</code>
 </p>
 
 
@@ -72,7 +72,7 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Behavior component for medical illustration component</p>
+        <p>Component for Tissue Library Behavior</p>
 
     </p>
 
@@ -100,19 +100,19 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>ftu-medical-illustration-behavior</code></td>
+                <td class="col-md-9"><code>ftu-tissue-library-behavior</code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./medical-illustration-behavior.component.scss</code></td>
+                <td class="col-md-9"><code>./tissue-library-behavior.component.scss</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./medical-illustration-behavior.component.html</code></td>
+                <td class="col-md-9"><code>./tissue-library-behavior.component.html</code></td>
             </tr>
 
 
@@ -140,15 +140,7 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#currentUrl" >currentUrl</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#getMapping" >getMapping</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#updateNode" >updateNode</a>
+                                <a href="#tissues" >tissues</a>
                             </li>
                         </ul>
                     </td>
@@ -178,92 +170,28 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="currentUrl"></a>
+                    <a name="tissues"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
-                        <span ><b>currentUrl</b></span>
-                        <a href="#currentUrl"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>tissues</b></span>
+                        <a href="#tissues"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>selectSnapshot(MedicalIllustrationSelectors.url)</code>
+                        <i>Default value : </i><code>selectSnapshot(TissueLibrarySelectors.tissues)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/lib/tissue-library-behavior/tissue-library-behavior.component.ts:22</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Current illustration url</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getMapping"></a>
-                    <span class="name">
-                            <span class="modifier">Readonly</span>
-                        <span ><b>getMapping</b></span>
-                        <a href="#getMapping"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>selectSnapshot(MedicalIllustrationSelectors.mapping)</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts:27</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Current mapping file</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="updateNode"></a>
-                    <span class="name">
-                            <span class="modifier">Readonly</span>
-                        <span ><b>updateNode</b></span>
-                        <a href="#updateNode"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>dispatch(MedicalIllustrationActions.SetActiveNode)</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts:32</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Updates the active node on node hover</p>
+                    <div class="io-description"><p>Input for tissues data</p>
 </div>
                 </td>
             </tr>
@@ -276,51 +204,40 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
-import { ChangeDetectionStrategy, Component } from &#x27;@angular/core&#x27;;
-import { dispatch, selectSnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
-import { InteractiveSvgComponent } from &#x27;@hra-ui/components/molecules&#x27;;
-import { MedicalIllustrationActions, MedicalIllustrationSelectors } from &#x27;@hra-ui/state&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { selectSnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
+import { TissueTreeListComponent } from &#x27;@hra-ui/components/molecules&#x27;;
+import { TissueLibrarySelectors } from &#x27;@hra-ui/state&#x27;;
 
 /**
- * Behavior component for medical illustration component
+ * Component for Tissue Library Behavior
  */
 @Component({
-  selector: &#x27;ftu-medical-illustration-behavior&#x27;,
+  selector: &#x27;ftu-tissue-library-behavior&#x27;,
   standalone: true,
-  imports: [CommonModule, InteractiveSvgComponent],
-  templateUrl: &#x27;./medical-illustration-behavior.component.html&#x27;,
-  styleUrls: [&#x27;./medical-illustration-behavior.component.scss&#x27;],
+  imports: [CommonModule, TissueTreeListComponent],
+  templateUrl: &#x27;./tissue-library-behavior.component.html&#x27;,
+  styleUrls: [&#x27;./tissue-library-behavior.component.scss&#x27;],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MedicalIllustrationBehaviorComponent {
+export class TissueLibraryBehaviorComponent {
   /**
-   * Current illustration url
+   * Input for tissues data
    */
-  readonly currentUrl &#x3D; selectSnapshot(MedicalIllustrationSelectors.url);
-
-  /**
-   * Current mapping file
-   */
-  readonly getMapping &#x3D; selectSnapshot(MedicalIllustrationSelectors.mapping);
-
-  /**
-   * Updates the active node on node hover
-   */
-  readonly updateNode &#x3D; dispatch(MedicalIllustrationActions.SetActiveNode);
+  readonly tissues &#x3D; selectSnapshot(TissueLibrarySelectors.tissues);
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;hra-interactive-svg [url]&#x3D;&quot;currentUrl()&quot; [mapping]&#x3D;&quot;getMapping()&quot; (nodeHover)&#x3D;&quot;updateNode($event)&quot;&gt;
-&lt;/hra-interactive-svg&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;hra-tissue-tree-list [nodes]&#x3D;&quot;tissues()&quot;&gt; &lt;/hra-tissue-tree-list&gt;
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
                 <p class="comment">
-                    <code>./medical-illustration-behavior.component.scss</code>
+                    <code>./tissue-library-behavior.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss">:host {
   display: block;
@@ -353,10 +270,10 @@ export class MedicalIllustrationBehaviorComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-interactive-svg [url]="currentUrl()" [mapping]="getMapping()" (nodeHover)="updateNode($event)"></hra-interactive-svg></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-tissue-tree-list [nodes]="tissues()"> </hra-tissue-tree-list></div>'
     var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
     var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'MedicalIllustrationBehaviorComponent'};
+    var ACTUAL_COMPONENT = {'name': 'TissueLibraryBehaviorComponent'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -402,7 +319,7 @@ export class MedicalIllustrationBehaviorComponent {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'MedicalIllustrationBehaviorComponent.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'TissueLibraryBehaviorComponent.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

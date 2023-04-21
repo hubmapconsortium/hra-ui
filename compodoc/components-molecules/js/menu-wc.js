@@ -118,7 +118,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/DataItem.html" data-type="entity-link" >DataItem</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/DataNode.html" data-type="entity-link" >DataNode</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/DownloadFormat.html" data-type="entity-link" >DownloadFormat</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/InternalNode.html" data-type="entity-link" >InternalNode</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/MetricItem.html" data-type="entity-link" >MetricItem</a>
@@ -134,9 +140,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/SourceListItem.html" data-type="entity-link" >SourceListItem</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/TissueTreeGroup.html" data-type="entity-link" >TissueTreeGroup</a>
                             </li>
                         </ul>
                     </li>

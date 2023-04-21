@@ -78,6 +78,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/DownloadState.html" data-type="entity-link" >DownloadState</a>
                             </li>
                             <li class="link">
+                                <a href="classes/Load.html" data-type="entity-link" >Load</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/MedicalIllustrationSelectors.html" data-type="entity-link" >MedicalIllustrationSelectors</a>
                             </li>
                             <li class="link">
@@ -110,6 +113,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <li class="link">
                                 <a href="classes/SourceListSelectors.html" data-type="entity-link" >SourceListSelectors</a>
                             </li>
+                            <li class="link">
+                                <a href="classes/TissueLibrarySelectors.html" data-type="entity-link" >TissueLibrarySelectors</a>
+                            </li>
                         </ul>
                     </li>
                         <li class="chapter">
@@ -137,6 +143,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/StateAnalyticsPluginService.html" data-type="entity-link" >StateAnalyticsPluginService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/TissueLibraryState.html" data-type="entity-link" >TissueLibraryState</a>
                                 </li>
                             </ul>
                         </li>
