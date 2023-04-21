@@ -1,3 +1,18 @@
 :host {
-  display: block;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 21rem calc(100% - 21rem);
+  grid-template-rows: 5rem auto;
+  grid-template-areas:
+    'header header'
+    'sidebar content';
+
+  .header {
+    grid-area: header;
+  }
+
+  .page-content {
+    grid-area: content;
+  }
 }
