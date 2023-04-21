@@ -7,6 +7,7 @@ import { MedicalIllustrationState } from './medical-illustration';
 import { ScreenModeState } from './screen-mode';
 import { SourceListState } from './source-list';
 import { StateAnalyticsPluginService } from './state-analytics-plugin';
+import { TissueLibraryState } from './tissue-library';
 
 /** Provides all states */
 @NgModule({
@@ -18,6 +19,7 @@ import { StateAnalyticsPluginService } from './state-analytics-plugin';
       MedicalIllustrationState,
       ScreenModeState,
       SourceListState,
+      TissueLibraryState,
     ]),
   ],
   providers: [
