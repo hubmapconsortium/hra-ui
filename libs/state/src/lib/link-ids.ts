@@ -1,7 +1,7 @@
 import { createLinkId } from '@hra-ui/cdk/state';
 
-/** LinkId for test */
-export const TestId = createLinkId('Test');
+/** Landing page id */
+export const LandingPage = createLinkId('LandingPage');
 
 /** Product title link id */
 export const ProductTitle = createLinkId('ProductTitle');

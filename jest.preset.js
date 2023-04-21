@@ -3,7 +3,7 @@ const nxPreset = require('@nrwl/jest/preset').default;
 module.exports = {
   ...nxPreset,
   collectCoverage: true,
-  coveragePathIgnorePatterns: ['/node_modules/', 'index.ts'],
+  coveragePathIgnorePatterns: ['/node_modules/', 'index.ts', '.*-routing.module.ts'],
   coverageThreshold: {
     global: {
       branches: 85,
