@@ -45,6 +45,21 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                     </ul>
                 </li>
+                    <li class="chapter modules">
+                        <a data-type="chapter-link" href="modules.html">
+                            <div class="menu-toggler linked" data-toggle="collapse" ${ isNormalMode ?
+                                'data-target="#modules-links"' : 'data-target="#xs-modules-links"' }>
+                                <span class="icon ion-ios-archive"></span>
+                                <span class="link-name">Modules</span>
+                                <span class="icon ion-ios-arrow-down"></span>
+                            </div>
+                        </a>
+                        <ul class="links collapse " ${ isNormalMode ? 'id="modules-links"' : 'id="xs-modules-links"' }>
+                            <li class="link">
+                                <a href="modules/HraServiceModule.html" data-type="entity-link" >HraServiceModule</a>
+                            </li>
+                </ul>
+                </li>
                         <li class="chapter">
                             <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#injectables-links"' :
                                 'data-target="#xs-injectables-links"' }>

@@ -45,6 +45,21 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                     </ul>
                 </li>
+                    <li class="chapter modules">
+                        <a data-type="chapter-link" href="modules.html">
+                            <div class="menu-toggler linked" data-toggle="collapse" ${ isNormalMode ?
+                                'data-target="#modules-links"' : 'data-target="#xs-modules-links"' }>
+                                <span class="icon ion-ios-archive"></span>
+                                <span class="link-name">Modules</span>
+                                <span class="icon ion-ios-arrow-down"></span>
+                            </div>
+                        </a>
+                        <ul class="links collapse " ${ isNormalMode ? 'id="modules-links"' : 'id="xs-modules-links"' }>
+                            <li class="link">
+                                <a href="modules/HraStateModule.html" data-type="entity-link" >HraStateModule</a>
+                            </li>
+                </ul>
+                </li>
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#classes-links"' :
                             'data-target="#xs-classes-links"' }>
@@ -73,9 +88,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/DownloadSelectors.html" data-type="entity-link" >DownloadSelectors</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/DownloadState.html" data-type="entity-link" >DownloadState</a>
                             </li>
                             <li class="link">
                                 <a href="classes/Load.html" data-type="entity-link" >Load</a>
@@ -131,6 +143,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/ContactState.html" data-type="entity-link" >ContactState</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/DownloadState.html" data-type="entity-link" >DownloadState</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/MedicalIllustrationState.html" data-type="entity-link" >MedicalIllustrationState</a>

@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content class">
+               <div class="content injectable">
                    <div class="content-data">
 
 
@@ -38,12 +38,8 @@
 
 
 
-
-
-
-
 <ol class="breadcrumb">
-  <li>Classes</li>
+  <li>Injectables</li>
   <li >DownloadState</li>
 </ol>
 
@@ -76,13 +72,6 @@ format and download to user.</p>
 
             </p>
 
-
-            <p class="comment">
-                <h3>Implements</h3>
-            </p>
-            <p class="comment">
-                        <code>NgxsOnInit</code>
-            </p>
 
 
             <section>
@@ -126,7 +115,6 @@ format and download to user.</p>
 </section>
 
 
-
             <section>
     
     <h3 id="methods">
@@ -159,8 +147,8 @@ format and download to user.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">src/lib/download/download.state.ts:57</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/lib/download/download.state.ts:58</a></div>
                 </td>
             </tr>
 
@@ -248,8 +236,8 @@ format and download to user.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/lib/download/download.state.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/lib/download/download.state.ts:71</a></div>
                 </td>
             </tr>
 
@@ -326,8 +314,8 @@ format and download to user.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="84"
-                            class="link-to-prism">src/lib/download/download.state.ts:84</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">src/lib/download/download.state.ts:85</a></div>
                 </td>
             </tr>
 
@@ -408,8 +396,8 @@ format and download to user.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/lib/download/download.state.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/lib/download/download.state.ts:34</a></div>
                 </td>
             </tr>
 
@@ -486,8 +474,8 @@ format and download to user.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/lib/download/download.state.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/lib/download/download.state.ts:44</a></div>
                 </td>
             </tr>
 
@@ -550,16 +538,12 @@ format and download to user.</p>
     </table>
 </section>
 
-
-
-
-
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
-import { inject } from &#x27;@angular/core&#x27;;
+import { inject, Injectable } from &#x27;@angular/core&#x27;;
 import { Action, NgxsOnInit, State } from &#x27;@ngxs/store&#x27;;
 import produce from &#x27;immer&#x27;;
 import { Observable, tap } from &#x27;rxjs&#x27;;
@@ -580,6 +564,7 @@ import { DownloadContext, DownloadFormatId, DownloadModel } from &#x27;./downloa
     entries: {},
   },
 })
+@Injectable()
 export class DownloadState implements NgxsOnInit {
   /**
    * Http object inject for download state
@@ -708,7 +693,12 @@ export class DownloadState implements NgxsOnInit {
 }
 </code></pre>
     </div>
+
 </div>
+
+
+
+
 
 
 
@@ -743,7 +733,7 @@ export class DownloadState implements NgxsOnInit {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
             var COMPODOC_CURRENT_PAGE_URL = 'DownloadState.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
