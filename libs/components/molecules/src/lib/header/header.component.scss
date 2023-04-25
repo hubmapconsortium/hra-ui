@@ -1,75 +1,88 @@
 @use 'utils';
-
-@mixin onSmall() {
-  @media (max-width: 30rem) {
-    @content;
-  }
-}
+@use 'variables' as vars;
 
 :host {
   display: flex;
   align-items: center;
   height: 5rem;
-  padding: 1rem 2rem;
+  padding: 0 2rem 0 1rem;
+
+  @include utils.define-flex-filler();
+
+  h1 {
+    // Reset margins for h1 elements
+    margin: 0;
+  }
+
   .product {
-    display: contents;
+    display: flex;
+    align-items: center;
+    // Style the ripple animation
+    padding: 0 1rem;
+    border-radius: 0.25rem;
 
-    .logo {
-      margin-right: 1rem;
-
-      @include onSmall() {
-        height: 2rem;
-        margin-right: 0.25rem;
-      }
+    &:hover {
+      cursor: pointer;
     }
 
     .text {
-      color: #990000;
-      margin: 0 1.5rem 0 0;
-
-      @include onSmall() {
-        @include utils.sr-only();
-      }
+      margin-left: 1rem;
+      font-weight: 600;
+      color: vars.$accent-rgb;
     }
   }
 
   .app {
-    font-weight: 400;
-    color: #243142;
-    margin: 0;
-
-    @include onSmall() {
-      font-size: 1rem;
-    }
+    margin-left: 0.5rem;
   }
 
   .about {
-    display: contents;
-    cursor: pointer;
+    width: 9rem;
+    height: 3rem;
 
-    .text {
-      font-weight: 700;
-      font-size: 1rem;
-      color: #006298;
-      text-decoration: underline;
-      margin-right: 1.5rem;
+    .icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      font-size: 1.5rem;
+    }
+  }
 
-      @include onSmall() {
-        @include utils.sr-only();
+  @media (max-width: 30rem) {
+    height: 4.5rem;
+
+    .product .text,
+    .about .text {
+      @include utils.sr-only();
+    }
+
+    .product {
+      height: 2.5rem;
+      padding: 0 0.25rem;
+
+      .logo {
+        width: 1.5rem;
+        height: 1.5rem;
       }
     }
 
-    .icon {
-      margin-right: 0.3rem;
-      color: #006298;
+    .app {
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
 
-      @include onSmall() {
-        margin-right: 0;
+    .about {
+      min-width: 2.5rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      padding: 0;
+
+      .icon {
+        margin: 0;
       }
     }
   }
 
-  .filler {
-    flex-grow: 1;
+  @media (max-width: 20rem) {
+    padding: 0;
   }
 }
