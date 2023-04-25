@@ -19,7 +19,16 @@ const mapEntry = z.object({
   'Inset #': z.string(),
 });
 
+const referenceOrgan = z.object({
+  representation_of: z.string(),
+  object: z.object({
+    file: z.string(),
+  }),
+});
+
 export type MapEntry = z.infer<typeof mapEntry>;
+
+export type ReferenceOrgan = z.infer<typeof referenceOrgan>;
 
 /** Interface for medical illustration model */
 export interface MedicalIllustrationModel {
@@ -29,4 +38,6 @@ export interface MedicalIllustrationModel {
   node?: MapEntry;
   /** Mapping info */
   mapping?: MapEntry[];
+
+  referenceOrgans?: ReferenceOrgan[];
 }

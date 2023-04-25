@@ -4,7 +4,7 @@ import { Action, State, StateContext } from '@ngxs/store';
 import { parse } from 'papaparse';
 import { map, Observable } from 'rxjs';
 
-import { SetActiveNode, SetMapping, SetUri } from './medical-illustration.actions';
+import { SetActiveNode, SetMapping, SetUri, SetUriFromIRI } from './medical-illustration.actions';
 import { MedicalIllustrationModel, MapEntry } from './medical-illustration.model';
 
 export type MedicalIllustrationContext = StateContext<MedicalIllustrationModel>;
@@ -29,6 +29,19 @@ export class MedicalIllustrationState {
   @Action(SetUri)
   setUri({ setState }: MedicalIllustrationContext, { url }: SetUri) {
     setState({ url: url, node: undefined });
+  }
+
+  @Action(SetUriFromIRI)
+  setUriFromIRI({ patchState, getState }: MedicalIllustrationContext, { iri }: SetUriFromIRI) {
+    const referenceOrgans = getState().referenceOrgans;
+    if (referenceOrgans?.length) {
+      referenceOrgans.forEach((ref) => {
+        if (ref.representation_of === iri) {
+          patchState({ url: ref.object.file });
+          return;
+        }
+      });
+    }
   }
 
   /**

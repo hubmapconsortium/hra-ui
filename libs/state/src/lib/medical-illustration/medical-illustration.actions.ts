@@ -14,6 +14,12 @@ export class SetUri extends Action('[Medical Illustration] Set URI') {
   }
 }
 
+export class SetUriFromIRI extends Action('[Medical Illustration] Set URI From IRI') {
+  constructor(readonly iri?: string) {
+    super();
+  }
+}
+
 /**
  * Action for setting the current active node
  */
