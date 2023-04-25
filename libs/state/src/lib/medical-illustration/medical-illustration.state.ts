@@ -31,6 +31,11 @@ export class MedicalIllustrationState {
     setState({ url: url, node: undefined });
   }
 
+  /**
+   * Sets uri by finding it from reference organs
+   * @param param0 state context
+   * @param param1 Action object with iri
+   */
   @Action(SetUriFromIRI)
   setUriFromIRI({ patchState, getState }: MedicalIllustrationContext, { iri }: SetUriFromIRI) {
     const referenceOrgans = getState().referenceOrgans;

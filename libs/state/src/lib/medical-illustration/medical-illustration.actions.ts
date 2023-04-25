@@ -14,7 +14,14 @@ export class SetUri extends Action('[Medical Illustration] Set URI') {
   }
 }
 
+/**
+ * Action for setting the current illustration URI from IRI
+ */
 export class SetUriFromIRI extends Action('[Medical Illustration] Set URI From IRI') {
+  /**
+   * Creates an instance of set uri from iri.
+   * @param [url]
+   */
   constructor(readonly iri?: string) {
     super();
   }
