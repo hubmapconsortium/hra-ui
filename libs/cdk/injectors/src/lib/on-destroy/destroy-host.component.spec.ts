@@ -1,4 +1,5 @@
-import { ComponentRef, ViewContainerRef } from '@angular/core';
+import { ComponentRef, ElementRef, ViewContainerRef } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { mockDeep } from 'jest-mock-extended';
 import { DestroyHostComponent } from './destroy-host.component';
 
@@ -18,21 +19,16 @@ describe('DestroyHostComponent', () => {
     it('should return a ComponentRef', () => {
       expect(DestroyHostComponent.create(container)).toBe(ref);
     });
+  });
 
+  describe('ngAfterViewInit()', () => {
     it('should remove the element from the dom', () => {
-      const el: Element = ref.location.nativeElement;
-      DestroyHostComponent.create(container);
-      expect(el.remove).toHaveBeenCalled();
-    });
+      const el = mockDeep<ElementRef<Element>>();
+      TestBed.overrideProvider(ElementRef, { useValue: el });
 
-    it('should not fail if the dom element is null', () => {
-      const ref2 = mockDeep<ComponentRef<DestroyHostComponent>>({
-        location: { nativeElement: null },
-      });
-      const container2 = mockDeep<ViewContainerRef>();
-      container2.createComponent.mockReturnValue(ref2);
-
-      expect(() => DestroyHostComponent.create(container2)).not.toThrow();
+      const comp = TestBed.runInInjectionContext(() => new DestroyHostComponent());
+      comp.ngAfterViewInit();
+      expect(el.nativeElement.remove).toHaveBeenCalled();
     });
   });
 });
