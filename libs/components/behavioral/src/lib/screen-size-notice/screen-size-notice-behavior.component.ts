@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { ScreenSizeNoticeComponent } from '@hra-ui/components/molecules';
 import { HostListener, Renderer2, ElementRef } from '@angular/core';
-import { StorageId, StorageState } from '@hra-ui/cdk/state';
+import { StorageId, StorageState, StorageActions } from '@hra-ui/cdk/state';
 
 @Component({
   selector: 'ftu-screen-size-notice-behavior',
@@ -18,7 +18,7 @@ import { StorageId, StorageState } from '@hra-ui/cdk/state';
 })
 export class ScreenSizeNoticeBehaviorComponent {
   constructor(private renderer: Renderer2, private el: ElementRef) {
-    StorageState.getStorage(StorageId.Local).clear();
+    StorageState.getStorage(StorageId.Local).setItem('screenSizeProceedClick', '');
   }
 
   @Input() screenResized = false;
@@ -26,8 +26,10 @@ export class ScreenSizeNoticeBehaviorComponent {
   url = 'abcd';
 
   proceedClick() {
-    console.log('Proceed CLicked');
-    if (StorageState.getStorage(StorageId.Local).getItem('screenSizeProceedClick') === null) {
+    const screenSizeProceedClick: string | null = StorageState.getStorage(StorageId.Local).getItem(
+      'screenSizeProceedClick'
+    );
+    if (screenSizeProceedClick === null || screenSizeProceedClick === '') {
       StorageState.getStorage(StorageId.Local).setItem('screenSizeProceedClick', 'clicked');
       this.screenResized = false;
     }
