@@ -74,6 +74,12 @@
     </p>
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+    </p>
 
 
 <section>
@@ -119,6 +125,21 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#el" >el</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -176,8 +197,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">injectors/src/lib/on-destroy/destroy-host.component.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">injectors/src/lib/on-destroy/destroy-host.component.ts:22</a></div>
                 </td>
             </tr>
 
@@ -235,12 +256,56 @@ The element is inserted as the first child (index &#39;0&#39;) in the container.
         </tbody>
     </table>
 </section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="el"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>el</b></span>
+                        <a href="#el"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Element</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ElementRef).nativeElement</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">injectors/src/lib/on-destroy/destroy-host.component.ts:14</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Reference to own dom element</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ComponentRef, ViewContainerRef } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AfterViewInit, Component, ComponentRef, ElementRef, inject, ViewContainerRef } from &#x27;@angular/core&#x27;;
 
 /**
  * Component used when attaching destroy lifecycle observables to a component/directive/pipe
@@ -251,7 +316,10 @@ The element is inserted as the first child (index &#39;0&#39;) in the container.
   template: &#x27;&#x27;,
   styles: [&#x27;:host { display: none }&#x27;],
 })
-export class DestroyHostComponent {
+export class DestroyHostComponent implements AfterViewInit {
+  /** Reference to own dom element */
+  readonly el: Element &#x3D; inject(ElementRef).nativeElement;
+
   /**
    * Creates a new DestroyHostComponent inside the provided container.
    * The element is inserted as the first child (index &#x27;0&#x27;) in the container.
@@ -259,11 +327,12 @@ export class DestroyHostComponent {
    * @returns The ComponentRef of the newly inserted element
    */
   static create(container: ViewContainerRef): ComponentRef&lt;DestroyHostComponent&gt; {
-    const ref &#x3D; container.createComponent(DestroyHostComponent, { index: 0 });
-    const el: Element | null &#x3D; ref.location.nativeElement;
+    return container.createComponent(DestroyHostComponent, { index: 0 });
+  }
 
-    el?.remove();
-    return ref;
+  /** Disconnects the component from the dom tree */
+  ngAfterViewInit(): void {
+    this.el.remove();
   }
 }
 </code></pre>
