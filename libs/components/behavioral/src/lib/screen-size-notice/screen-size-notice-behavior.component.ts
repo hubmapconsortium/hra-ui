@@ -1,12 +1,12 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { ScreenSizeNoticeComponent } from '@hra-ui/components/molecules';
-import { dispatch } from '@hra-ui/cdk/injectors';
 import { HostListener, Renderer2, ElementRef } from '@angular/core';
+import { StorageId, StorageState } from '@hra-ui/cdk/state';
 
 @Component({
   selector: 'ftu-screen-size-notice-behavior',
@@ -17,28 +17,31 @@ import { HostListener, Renderer2, ElementRef } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScreenSizeNoticeBehaviorComponent {
-  constructor(private renderer: Renderer2, private el: ElementRef) {}
+  constructor(private renderer: Renderer2, private el: ElementRef) {
+    StorageState.getStorage(StorageId.Local).clear();
+  }
+
+  @Input() screenResized = false;
 
   url = 'abcd';
 
-  portalClick() {
-    console.log('Portal Clicked');
-  }
-
   proceedClick() {
     console.log('Proceed CLicked');
+    if (StorageState.getStorage(StorageId.Local).getItem('screenSizeProceedClick') === null) {
+      StorageState.getStorage(StorageId.Local).setItem('screenSizeProceedClick', 'clicked');
+      this.screenResized = false;
+    }
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(_event: any) {
-    // your code here
     if (window.innerWidth < 480) {
       if (window.innerWidth < 480) {
-        console.log('here');
-        //this.renderer.addClass(this.el.nativeElement, 'show-component');
-      } else {
-        console.log('here1');
-        //this.renderer.removeClass(this.el.nativeElement, 'show-component');
+        if (StorageState.getStorage(StorageId.Local).getItem('screenSizeProceedClick') === 'clicked') {
+          this.screenResized = false;
+        } else {
+          this.screenResized = true;
+        }
       }
     }
   }
