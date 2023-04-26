@@ -1,22 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Shallow } from 'shallow-render';
 import { LandingComponent } from './landing.component';
 
-describe('LandingPageComponent', () => {
-  let component: LandingComponent;
-  let fixture: ComponentFixture<LandingComponent>;
+describe('AppComponent', () => {
+  let shallow: Shallow<LandingComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [LandingComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(LandingComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    shallow = new Shallow(LandingComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create component', async () => {
+    expect(shallow.render()).resolves.toBeDefined();
   });
 });

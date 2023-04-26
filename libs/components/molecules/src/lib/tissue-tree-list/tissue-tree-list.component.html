@@ -1,26 +1,24 @@
-<mat-tree [dataSource]="dataSource" [treeControl]="control" class="tree">
-  <mat-tree-node
-    (click)="selectNode(node)"
-    [class.selected-node]="selected === node"
-    *matTreeNodeDef="let node; let level = level"
-    [matTreeNodePadding]="level"
-    matTreeNodePaddingIndent="32"
-  >
-    {{ node.label }}
-  </mat-tree-node>
+<div style="width: 16.5rem">
+  <mat-tree [dataSource]="dataSource" [treeControl]="control" class="tree">
+    <mat-tree-node
+      (click)="selectNode(node)"
+      *matTreeNodeDef="let node; let level = level"
+      [matTreeNodePadding]="level"
+      matTreeNodePaddingIndent="56"
+      tabIndex="0"
+    >
+      <span class="selected">
+        {{ node.label }}
+      </span>
+    </mat-tree-node>
 
-  <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-    <div class="mat-tree-node">
+    <mat-tree-node *matTreeNodeDef="let node; let level = level; when: hasChild">
       <button mat-icon-button matTreeNodeToggle class="toggle" [attr.aria-label]="'Toggle ' + node.label">
         <mat-icon>
-          {{ control.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+          {{ control.isExpanded(node) ? 'keyboard_arrow_up' : 'chevron_right' }}
         </mat-icon>
       </button>
       {{ node.label }}
-    </div>
-
-    <div [class.subtree-hidden]="!control.isExpanded(node)" role="group">
-      <ng-container matTreeNodeOutlet></ng-container>
-    </div>
-  </mat-nested-tree-node>
-</mat-tree>
+    </mat-tree-node>
+  </mat-tree>
+</div>

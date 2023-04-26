@@ -3,16 +3,20 @@
 :host {
   display: block;
 
+  .mat-tree-node:focus {
+    background-color: #fff3f0 !important;
+    color: #990000;
+  }
+
   .subtree-hidden {
     display: none;
   }
 
   mat-tree-node {
     margin-left: 2rem;
-  }
-
-  .selected-node {
-    background-color: #fff3f0;
+    line-height: 17px;
+    padding-top: 7.5px;
+    padding-bottom: 7.5px;
   }
 
   button {

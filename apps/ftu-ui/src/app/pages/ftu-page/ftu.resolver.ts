@@ -1,13 +1,20 @@
 import { ResolveFn } from '@angular/router';
-import { of } from 'rxjs';
+import { dispatch } from '@hra-ui/cdk/injectors';
+import { LinkRegistryActions } from '@hra-ui/cdk/state';
+import { LinkIds } from '@hra-ui/state';
+import { EMPTY, of } from 'rxjs';
 
+/**
+ * Resolve data for the 'id' query parameter or navigate to the landing page on failures
+ */
 export const ftuResolver: ResolveFn<unknown> = (route) => {
+  const navigateHome = dispatch(LinkRegistryActions.Navigate, LinkIds.LandingPage);
   const id = route.queryParamMap.get('id');
-  const uberon = route.queryParamMap.get('uberon');
 
   if (!id) {
-    return of({ error: 'Missing required params' });
+    navigateHome();
+    return EMPTY;
   }
 
-  return of({ id, uberon });
+  return of({ id });
 };

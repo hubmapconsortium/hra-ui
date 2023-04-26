@@ -34,7 +34,7 @@ export class LandingPageContentComponent implements AfterViewInit {
   readonly intersectableEls!: QueryList<ElementRef>;
 
   /** select snapshot for Landing Page title */
-  readonly landingPageIntroTitle = selectQuerySnapshot(RRS.markdown, RIds.LandingPageTitle);
+  readonly landingPageIntroTitle = selectQuerySnapshot(RRS.anyText, RIds.LandingPageTitle);
 
   /** select snapshot for landing page intro description */
   readonly landingPageIntroDescription = selectQuerySnapshot(RRS.markdown, RIds.LandingPageDescription);
@@ -42,21 +42,21 @@ export class LandingPageContentComponent implements AfterViewInit {
   readonly landingPageIntroPartners = selectQuerySnapshot(RRS.markdown, RIds.LandingPagePartners);
 
   /** select snapshot for landing page intro more text */
-  readonly landingPageIntroMoreText = selectQuerySnapshot(RRS.markdown, RIds.LandingPageIntroMoreText);
+  readonly landingPageIntroMoreText = selectQuerySnapshot(RRS.anyText, RIds.LandingPageIntroMoreText);
   /** select snapshot for landing page intro img */
   readonly landingPageIntroImg = selectQuerySnapshot(RRS.url, RIds.LandingPageIntroImg);
   /** select snapshot for metrics */
   readonly metrics = selectQuerySnapshot(RRS.field, RIds.Metrics, RTypes.Metrics, 'metrics' as const, [])<MetricItem[]>;
   /** select snapshot for metrics title */
-  readonly metricsTitle = selectQuerySnapshot(RRS.text, RIds.MetricsTitle);
+  readonly metricsTitle = selectQuerySnapshot(RRS.anyText, RIds.MetricsTitle);
   /** select snapshot for metrics logo */
   readonly metricsLogo = selectQuerySnapshot(RRS.url, RIds.MetricsLogo);
   /** select snapshot for landing page depth title */
-  readonly landingPageDepthTitle = selectQuerySnapshot(RRS.markdown, RIds.LandingPageDepthTitle);
+  readonly landingPageDepthTitle = selectQuerySnapshot(RRS.anyText, RIds.LandingPageDepthTitle);
   /** select snapshot for landing page depth description */
   readonly landingPageDepthDescription = selectQuerySnapshot(RRS.markdown, RIds.LandingPageDepthDescription);
   /** select snapshot forlanding page depth more text */
-  readonly landingPageDepthMoreText = selectQuerySnapshot(RRS.markdown, RIds.LandingPageDepthMoreText);
+  readonly landingPageDepthMoreText = selectQuerySnapshot(RRS.anyText, RIds.LandingPageDepthMoreText);
   /** select snapshot for landing page depth img */
   readonly landingPageDepthImg = selectQuerySnapshot(RRS.url, RIds.LandingPageDepthImg);
 
