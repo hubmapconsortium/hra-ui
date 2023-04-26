@@ -6,25 +6,14 @@
       [matTreeNodePadding]="level"
       matTreeNodePaddingIndent="56"
       tabIndex="0"
-      matTreeNodeToggle
-      class="toggle"
-      [attr.aria-label]="'Toggle ' + node.label"
     >
-      <button mat-icon-button>
-        <mat-icon>
-          {{ control.isExpanded(node) ? 'keyboard_arrow_up' : 'chevron_right' }}
-        </mat-icon>
-      </button>
-      {{ node.label }}
+      <span class="selected">
+        {{ node.label }}
+      </span>
     </mat-tree-node>
 
-    <mat-tree-node
-      *matTreeNodeDef="let node; let level = level; when: hasChild"
-      matTreeNodeToggle
-      class="toggle"
-      [attr.aria-label]="'Toggle ' + node.label"
-    >
-      <button mat-icon-button>
+    <mat-tree-node *matTreeNodeDef="let node; let level = level; when: hasChild">
+      <button mat-icon-button matTreeNodeToggle class="toggle" [attr.aria-label]="'Toggle ' + node.label">
         <mat-icon>
           {{ control.isExpanded(node) ? 'keyboard_arrow_up' : 'chevron_right' }}
         </mat-icon>

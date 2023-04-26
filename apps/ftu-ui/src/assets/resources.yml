@@ -86,3 +86,35 @@ LandingPageDepthDescription:
 LandingPageDepthMoreText:
   type: text
   text: Read more about this effort
+
+GradientLegendInfo:
+  type: text
+  text: |
+    Expression is scaled linearly to the range [0,1].
+    Scaling is done by designating the minimum value in the current view to 0 and the max is assigned to 1.
+
+GradientLegend:
+  type: gradient
+  points:
+    - color: '#00385F'
+      percentage: 0
+    - color: '#63B1D3'
+      percentage: 49.78
+    - color: '#EDFAFD'
+      percentage: 100
+
+SizeLegendInfo:
+  type: text
+  text: |
+    The percentage of cells in the FTU is calculated by dividing the total number of
+    cells in all FTUs by the number of all cells in that tissue section.
+
+SizeLegend:
+  type: size
+  sizes:
+    - label: '0%'
+      radius: 0.5
+    - label: '50%'
+      radius: 1
+    - label: '100%'
+      radius: 1.5
