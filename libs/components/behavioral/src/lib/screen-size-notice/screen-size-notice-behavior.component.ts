@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { ScreenSizeNoticeComponent } from '@hra-ui/components/molecules';
 import { dispatch } from '@hra-ui/cdk/injectors';
+import { HostListener, Renderer2, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'ftu-screen-size-notice-behavior',
@@ -16,6 +17,8 @@ import { dispatch } from '@hra-ui/cdk/injectors';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScreenSizeNoticeBehaviorComponent {
+  constructor(private renderer: Renderer2, private el: ElementRef) {}
+
   url = 'abcd';
 
   portalClick() {
@@ -24,5 +27,19 @@ export class ScreenSizeNoticeBehaviorComponent {
 
   proceedClick() {
     console.log('Proceed CLicked');
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(_event: any) {
+    // your code here
+    if (window.innerWidth < 480) {
+      if (window.innerWidth < 480) {
+        console.log('here');
+        //this.renderer.addClass(this.el.nativeElement, 'show-component');
+      } else {
+        console.log('here1');
+        //this.renderer.removeClass(this.el.nativeElement, 'show-component');
+      }
+    }
   }
 }
