@@ -1,5 +1,5 @@
 import { ScreenSizeNoticeBehaviorComponent } from './screen-size-notice-behavior.component';
-import { StorageActions, StorageState } from '@hra-ui/cdk/state';
+import { StorageState } from '@hra-ui/cdk/state';
 import { Meta, Story } from '@storybook/angular';
 
 export default {

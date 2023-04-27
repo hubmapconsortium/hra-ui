@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { ScreenSizeNoticeComponent } from '@hra-ui/components/molecules';
 import { HostListener, Renderer2, ElementRef } from '@angular/core';
-import { StorageId, StorageState, StorageActions } from '@hra-ui/cdk/state';
+import { StorageId, StorageState } from '@hra-ui/cdk/state';
 
 @Component({
   selector: 'ftu-screen-size-notice-behavior',
@@ -38,12 +38,10 @@ export class ScreenSizeNoticeBehaviorComponent {
   @HostListener('window:resize', ['$event'])
   onResize(_event: any) {
     if (window.innerWidth < 480) {
-      if (window.innerWidth < 480) {
-        if (StorageState.getStorage(StorageId.Local).getItem('screenSizeProceedClick') === 'clicked') {
-          this.screenResized = false;
-        } else {
-          this.screenResized = true;
-        }
+      if (StorageState.getStorage(StorageId.Local).getItem('screenSizeProceedClick') === 'clicked') {
+        this.screenResized = false;
+      } else {
+        this.screenResized = true;
       }
     }
   }
