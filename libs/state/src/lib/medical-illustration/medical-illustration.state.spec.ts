@@ -1,7 +1,7 @@
 import { StateContext } from '@ngxs/store';
 import { mock } from 'jest-mock-extended';
 
-import { SetActiveNode, SetUri } from './medical-illustration.actions';
+import { SetActiveNode, SetUri, SetUriFromIRI } from './medical-illustration.actions';
 import { MedicalIllustrationModel } from './medical-illustration.model';
 import { MedicalIllustrationState } from './medical-illustration.state';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -25,9 +25,24 @@ describe('MedicalIllustrationState', () => {
     'REF/1/NOTES': '',
     'Inset #': '',
   };
+  const mockState = {
+    url: '',
+    node: testNode,
+    referenceOrgans: [
+      {
+        representation_of: testNode.representation_of,
+        object: {
+          file: 'test.com',
+        },
+      },
+    ],
+  };
   const testAction1 = new SetUri('test');
   const testAction2 = new SetActiveNode(testNode);
-  const ctx = mock<StateContext<MedicalIllustrationModel>>();
+  const testAction3 = new SetUriFromIRI(testNode.representation_of);
+  const ctx = mock<StateContext<MedicalIllustrationModel>>({
+    getState: () => mockState,
+  });
   let state: MedicalIllustrationState;
 
   beforeEach(() => {
@@ -54,6 +69,13 @@ describe('MedicalIllustrationState', () => {
     state.setActiveNode(ctx, testAction2);
     expect(ctx.patchState).toHaveBeenCalledWith({
       node: testNode,
+    });
+  });
+
+  it('should set uri from the iri', async () => {
+    state.setUriFromIRI(ctx, testAction3);
+    expect(ctx.patchState).toHaveBeenCalledWith({
+      url: 'test.com',
     });
   });
 });
