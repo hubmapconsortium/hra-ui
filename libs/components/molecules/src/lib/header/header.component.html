@@ -1,12 +1,12 @@
-<a class="product" [hraLink]="productTitleLink">
-  <img class="logo image" [src]="productLogoUrl" alt="Prodoct Logo" />
-  <h2 class="text">{{ productTitle }}</h2>
+<a class="product" matRipple [hraLink]="productTitleLink">
+  <img class="logo image" [src]="productLogoUrl" alt="Prodoct Logo" aria-hidden="true" />
+  <h1 class="text">{{ productTitle }}</h1>
 </a>
-<h2 class="app text">{{ appTitle }}</h2>
+<h1 class="app text">{{ appTitle }}</h1>
 
 <div class="filler"></div>
 
-<a class="about" [hraLink]="aboutLink">
+<a mat-flat-button class="about" [hraLink]="aboutLink">
   <mat-icon class="icon">info_outlined</mat-icon>
   <span class="text">About</span>
 </a>
