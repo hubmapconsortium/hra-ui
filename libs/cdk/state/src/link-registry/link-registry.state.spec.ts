@@ -6,7 +6,7 @@ import { createLinkId, LinkRegistryContext, LinkRegistryModel, LinkType } from '
 import { LinkRegistryState } from './link-registry.state';
 
 describe('LinkRegistryState', () => {
-  const url = 'http://test.url';
+  const url = 'http://test.url/';
   window.open = jest.fn();
   const ctx = mock<LinkRegistryContext>({
     getState: () => {
@@ -102,7 +102,7 @@ describe('LinkRegistryState', () => {
     it('should navigate to an internal url based on type', async () => {
       jest.spyOn(state['router'], 'navigate');
       await state.navigate(ctx, new Navigate(createLinkId('')));
-      expect(state['router'].navigate).toHaveBeenCalledWith([''], undefined);
+      expect(state['router'].navigate).toHaveBeenCalledWith([''], {});
     });
 
     it('should navigate to an external url based on type', async () => {
