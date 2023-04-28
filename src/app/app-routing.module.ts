@@ -34,7 +34,7 @@ import { ContentResolver } from './services/content-resolver/conent-resolver.ser
 const routes: Routes = [
   {
     path: '',
-    component: LandingPageComponent,
+    component: PageComponent,
     pathMatch: 'full',
     data: { contentFile: 'landing-page.content' },
     resolve: { content: ContentResolver },
@@ -47,7 +47,7 @@ const routes: Routes = [
   },
   {
     path: 'asctb-tables',
-    component: CcfTablePageComponent,
+    component: PageComponent,
     data: {
       contentFile: 'ccf-anatomical-structures.content',
     },
@@ -77,7 +77,7 @@ const routes: Routes = [
   },
   {
     path: 'asctb-reporter',
-    component: CcfReporterPageComponent,
+    component: PageComponent,
     data: {
       contentFile: 'ccf-asctb-reporter.content',
     },
@@ -101,7 +101,7 @@ const routes: Routes = [
   },
   {
     path: 'registration-user-interface',
-    component: RegistrationUserInterfaceComponent,
+    component: PageComponent,
     data: {
       contentFile: 'registrationUserInterface.content',
     },
@@ -109,7 +109,7 @@ const routes: Routes = [
   },
   {
     path: 'cell-population-graphs',
-    component: CellPopulationGraphsComponent,
+    component: PageComponent,
     data: {
       contentFile: 'ccf-cell-population-graphs.content',
     },
@@ -117,7 +117,7 @@ const routes: Routes = [
   },
   {
     path: 'api',
-    component: HraApiComponent,
+    component: PageComponent,
     data: {
       contentFile: 'hra-api.content',
     },
@@ -161,7 +161,7 @@ const routes: Routes = [
   },
   {
     path: 'usage-metrics',
-    component: HraUsageMetricsComponent,
+    component: PageComponent,
     data: {
       contentFile: 'hra-usage-metrics.content',
     },
@@ -198,7 +198,7 @@ const routes: Routes = [
   },
   {
     path: 'hra-organ-gallery-in-vr',
-    component: CcfOrganVrGalleryComponent,
+    component: PageComponent,
     data: {
       contentFile: 'ccf-organ-vr-gallery.content',
     },
@@ -229,7 +229,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'vccf', component: VccfComponent,
+    path: 'vccf', component: PageComponent,
     data: {
       contentFile: 'vccf.content'
     },

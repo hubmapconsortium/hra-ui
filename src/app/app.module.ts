@@ -16,6 +16,7 @@ import { PageElementModule } from './components/page-element/page-element.module
 import { PageHeaderModule } from './components/page-header/page-header.module';
 import { PageRendererModule } from './components/page-renderer/page-renderer.module';
 import { PageModule } from './components/page/page.module';
+import { TableVersionModule } from './components/table-version/table-version.module';
 import { ToolbarModule } from './components/toolbar/toolbar.module';
 import { YoutubeModelModule } from './components/youtube-model/youtube-model.module';
 import { AboutModule } from './pages/about/about.module';
@@ -97,7 +98,8 @@ import { VccfModule } from './pages/vccf/vccf.module';
     PageRendererModule,
     PageElementModule,
     PageModule,
-    CardWithHeaderModule
+    CardWithHeaderModule,
+    TableVersionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

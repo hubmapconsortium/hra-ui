@@ -13,6 +13,12 @@ import { SimpleTileModule } from '../simple-tile/simple-tile.module';
 import { AnnouncementCardModule } from '../announcement-card/announcement-card.module';
 import { YoutubeModelModule } from '../youtube-model/youtube-model.module';
 import { CardWithHeaderModule } from '../card-with-header/card-with-header.module';
+import { SimpleImageModule } from '../simple-image/simple-image.module';
+import { CarouselModule } from '../carousel/carousel.module';
+import { TableModule } from '../table/table.module';
+import { CountInfoCardModule } from '../count-info-card/count-info-card.module';
+import { SectionCardModule } from '../section-card/section-card.module';
+import { TableVersionModule } from '../table-version/table-version.module';
 @NgModule({
     declarations: [PageElementComponent],
     imports: [
@@ -28,7 +34,14 @@ import { CardWithHeaderModule } from '../card-with-header/card-with-header.modul
         SimpleTileModule,
         AnnouncementCardModule,
         YoutubeModelModule,
-        CardWithHeaderModule
+        CardWithHeaderModule,
+        SimpleImageModule,
+        CarouselModule,
+        TableModule,
+        CarouselModule,
+        CountInfoCardModule,
+        SectionCardModule,
+        TableVersionModule
     ],
     exports: [PageElementComponent]
 })

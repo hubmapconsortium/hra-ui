@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingPageComponent } from '../../pages/landing-page/landing-page.component';
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
 import { CountInfoCardModule } from 'src/app/components/count-info-card/count-info-card.module';
+import { PageRendererModule } from 'src/app/components/page-renderer/page-renderer.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CountInfoCardModule } from 'src/app/components/count-info-card/count-in
     SectionCardModule,
     BottomToolbarModule,
     AnnouncementCardModule,
-    CountInfoCardModule
+    CountInfoCardModule,
+    PageRendererModule
   ],
   providers: [],
   bootstrap: []

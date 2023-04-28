@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PageDef } from 'src/app/components/page-element/page-def';
 import { PageDataItems } from '../../components/page-data/page-data';
 import { PageHeaderItems } from '../../components/page-header/page-header-items';
 
@@ -21,11 +22,11 @@ interface HraUsageMetrics {
 export class HraUsageMetricsComponent {
   constructor (private readonly route: ActivatedRoute) {}
   
-  data = this.route.snapshot.data['content'] as HraUsageMetrics;
-  hraUsageHeading = this.data.hraUsageHeading;
-  hubmapMetricsData = this.data.hubmapMetricsData;
-  trainingMaterials = this.data.trainingMaterials;
-  gtexMetrics = this.data.gtexMetrics;
-  softwareData = this.data.softwareData;
-  licenses = this.data.licenses;
+  data = this.route.snapshot.data['content'] as PageDef[];
+  // hraUsageHeading = this.data.hraUsageHeading;
+  // hubmapMetricsData = this.data.hubmapMetricsData;
+  // trainingMaterials = this.data.trainingMaterials;
+  // gtexMetrics = this.data.gtexMetrics;
+  // softwareData = this.data.softwareData;
+  // licenses = this.data.licenses;
 }

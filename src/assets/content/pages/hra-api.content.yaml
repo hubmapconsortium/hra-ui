@@ -1,13 +1,27 @@
-pageHeaderData:
-- title: Human Reference Atlas Application Programming Interfaces
-  subtitle: Query and interact with the HRA using Python, JavaScript, SPARQL, REST,
-    and more
-  image: assets/images/hra_api.svg
-overviewData:
-- heading: Overview
-  descriptions: This API provides programmatic access to data registered to the Common
-    Coordinate Framework. A listing of API endpoints and database schema descriptions
-    with examples are provided.
-useButtonData:
+- type: header
+  headerCard:
+  - title: Human Reference Atlas Application Programming Interfaces
+    subtitle: Query and interact with the HRA using Python, JavaScript, SPARQL, REST,
+      and more
+    image: assets/images/hra_api.svg
+
+- type: page-data
+  pageData:
+  - heading: Overview
+    descriptions: This API provides programmatic access to data registered to the Common
+      Coordinate Framework. A listing of API endpoints and database schema descriptions
+      with examples are provided.
+
+- type: button
   text: Use the Human Reference Atlas APIs
   url: https://ccf-api.hubmapconsortium.org/#/operations/reference-organs
+
+- type: image
+  imageSource: assets/images/api_interface.svg
+  styles:
+    display: flex
+    justify-content: center
+    padding: 0rem 5rem
+
+- type: margin
+  bottom: 2.5rem

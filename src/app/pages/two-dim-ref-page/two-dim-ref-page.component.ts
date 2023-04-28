@@ -14,7 +14,7 @@ import { OrganData, VersionOrgans } from '../../components/two-dim-image/two-dim
 interface TwoDimensionReference {
   twoDimHeaderCardDetails: PageHeaderItems[];
   overviewData: PageDataItems[];
-  sopData: SopLinks[];
+  sopData: SopLinks;
   termsOfUseData: PageDataItems[];
   licenseData: PageDataItems[];
   citationData: PageDataItems[];

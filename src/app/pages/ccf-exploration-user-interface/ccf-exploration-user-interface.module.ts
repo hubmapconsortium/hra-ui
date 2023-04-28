@@ -12,6 +12,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { YoutubeModelModule } from '../../components/youtube-model/youtube-model.module';
 import { UseButtonModule } from '../../components/use-button/use-button.module';
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
+import { PageRendererModule } from 'src/app/components/page-renderer/page-renderer.module';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { AnnouncementCardModule } from '../../components/announcement-card/annou
     UseButtonModule,
     MarkdownModule,
     YoutubeModelModule,
-    AnnouncementCardModule
+    AnnouncementCardModule,
+    PageRendererModule
   ],
   providers: [],
   bootstrap: []

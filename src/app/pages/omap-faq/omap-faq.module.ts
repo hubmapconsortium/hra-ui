@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PageRendererModule } from 'src/app/components/page-renderer/page-renderer.module';
 import { PageDataModule } from '../../components/page-data/page-data.module';
 import { PageHeaderModule } from '../../components/page-header/page-header.module';
 import { UseButtonModule } from '../../components/use-button/use-button.module';
@@ -15,7 +16,8 @@ import { OmapFaqComponent } from './omap-faq.component';
     BrowserAnimationsModule,
     PageHeaderModule,
     PageDataModule,
-    UseButtonModule
+    UseButtonModule,
+    PageRendererModule
   ],
   providers: [],
   bootstrap: []

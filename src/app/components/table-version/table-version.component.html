@@ -1,0 +1,2 @@
+<ccf-choose-version *ngIf="versionData" [releaseDate]="versionData" [selectedDate]="release" (selectedVersion)="setData($event)" class="description"></ccf-choose-version>
+<ccf-table [typeCount]="(tableData | async) ?? []" [displayedColumns]="(columns | async) ?? []" [columns]="headerInfo" [isTotal]="true" [isOrgan]="true" class="description"></ccf-table>

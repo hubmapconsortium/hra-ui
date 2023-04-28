@@ -10,6 +10,8 @@ import { TableModule } from '../../components/table/table.module';
 import { ChooseVersionModule } from '../../components/choose-version/choose-version.module';
 import { RouterModule } from '@angular/router';
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
+import { PageRendererModule } from 'src/app/components/page-renderer/page-renderer.module';
+import { TableVersionModule } from 'src/app/components/table-version/table-version.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { AnnouncementCardModule } from '../../components/announcement-card/annou
     TableModule,
     ChooseVersionModule,
     RouterModule,
-    AnnouncementCardModule
+    AnnouncementCardModule,
+    PageRendererModule,
+    TableVersionModule
   ],
   providers: [],
   bootstrap: []

@@ -10,6 +10,7 @@ import { CardButtonLongModule } from '../../components/card-button-long/card-but
 import { MarkdownModule } from 'ngx-markdown';
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
 import { PageRendererModule } from 'src/app/components/page-renderer/page-renderer.module';
+import { CardWithHeaderModule } from 'src/app/components/card-with-header/card-with-header.module';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { PageRendererModule } from 'src/app/components/page-renderer/page-render
     CardButtonLongModule,
     AnnouncementCardModule,
     PageRendererModule,
+    CardWithHeaderModule,
     MarkdownModule.forChild()
   ],
   providers: [],

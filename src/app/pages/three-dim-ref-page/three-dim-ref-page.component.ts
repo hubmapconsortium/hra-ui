@@ -12,7 +12,7 @@ interface ThreeDimRefPage {
   overviewData: PageDataItems[];
   organCsvButton: UseButton;
   versionData: ChooseVersion[];
-  sopData:SopLinks[];
+  sopData:SopLinks;
   termsOfUseData: PageDataItems[];
   licenseData: PageDataItems[];
   citationData: PageDataItems[];

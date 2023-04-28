@@ -147,3 +147,26 @@ strong {
   margin-top: 3.5rem;
   margin-bottom: 1.5rem;
 }
+
+//landing page media queries
+@media (max-width: 38.5rem) {
+  .landing-title {
+    font-size: 1.75rem !important;
+  }
+
+  .landing-subtitle {
+    font-size: 1.25rem !important;
+    line-height: 1.5rem !important;
+  }
+
+  .landing-img {
+    width: 48px !important;
+    height: 112px !important;
+    max-height: unset !important;
+  }
+
+  .card-title {
+    font-size: 1.375rem !important;
+    margin-bottom: 1rem !important;
+  }
+}

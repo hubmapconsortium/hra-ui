@@ -1,16 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { YoutubeModel } from 'src/app/components/youtube-model/youtube-model';
-import { PageDataItems } from '../../components/page-data/page-data';
-import { PageHeaderItems } from '../../components/page-header/page-header-items';
-import { UseButton } from '../../components/use-button/use-button';
-
-interface AsctbReporter {
-  headerCardDetails: PageHeaderItems[];
-  overviewData: PageDataItems[];
-  useButtonData: UseButton;
-  asctbReporterPlayer: YoutubeModel;
-}
+import { PageDef } from 'src/app/components/page-element/page-def';
 
 @Component({
   selector: 'asctb-reporter',
@@ -18,11 +8,6 @@ interface AsctbReporter {
   styleUrls: ['./ccf-asctb-reporter-page.component.scss']
 })
 export class CcfReporterPageComponent {
-  data = this.route.snapshot.data['content'] as AsctbReporter;
-  headerCardDetails = this.data.headerCardDetails;
-  overviewData = this.data.overviewData;
-  useButtonData = this.data.useButtonData;
-  asctbReporterPlayer = this.data.asctbReporterPlayer;
-
+  data = this.route.snapshot.data['content'] as PageDef[];
   constructor(private readonly route: ActivatedRoute) { }
 }

@@ -11,6 +11,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MarkdownModule } from 'ngx-markdown';
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
 import { UseButtonModule } from 'src/app/components/use-button/use-button.module';
+import { TableVersionModule } from 'src/app/components/table-version/table-version.module';
+import { PageRendererModule } from 'src/app/components/page-renderer/page-renderer.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { UseButtonModule } from 'src/app/components/use-button/use-button.module
     TableModule,
     MarkdownModule,
     AnnouncementCardModule,
-    UseButtonModule
+    UseButtonModule,
+    TableVersionModule,
+    PageRendererModule
   ],
   providers: [],
   bootstrap: []

@@ -26,9 +26,8 @@
       <a href="https://hubmapconsortium.github.io/ccf-ui/">Exploration User Interface (EUI)</a> developed within HuBMAP.
 
 - type: button
-  useButton:
-    text: Use the Registration User Interface
-    url: https://hubmapconsortium.github.io/ccf-ui/rui/
+  text: Use the Registration User Interface
+  url: https://hubmapconsortium.github.io/ccf-ui/rui/
 
 - type: sop-links
   sopData:
