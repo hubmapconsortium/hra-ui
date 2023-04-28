@@ -52,9 +52,9 @@ describe('LinkDirective', () => {
     ).resolves.toBeDefined();
   });
 
-  it('should get RESOURCE URL from SecurityContext if tagName contains base or link', async () => {
+  it('should be a resource url if tagName contains base or link', async () => {
     const { instance } = await shallow.render(linkTemplate);
-    expect(instance['urlSecurityContext']).toEqual(SecurityContext.RESOURCE_URL);
+    expect(instance['isResourceUrl']).toEqual(true);
   });
 
   describe('onClick()', () => {
