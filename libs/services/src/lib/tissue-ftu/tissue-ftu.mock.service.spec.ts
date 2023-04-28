@@ -1,16 +1,15 @@
-import { TestBed } from '@angular/core/testing';
-
-import { TissueFtuService } from './tissue-ftu.service';
 import { HttpClientModule } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
+import { MockTissueFtuService } from './tissue-ftu.mock';
 
-describe('TissueFtuService', () => {
-  let service: TissueFtuService;
+describe('MockTIssueFtuService', () => {
+  let service: MockTissueFtuService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
     });
-    service = TestBed.inject(TissueFtuService);
+    service = TestBed.inject(MockTissueFtuService);
   });
 
   it('should be created', () => {

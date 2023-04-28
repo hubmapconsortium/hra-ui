@@ -3,9 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
 import { parse } from 'papaparse';
 import { map, Observable } from 'rxjs';
-
 import { SetActiveNode, SetMapping, SetUri, SetUriFromIRI } from './medical-illustration.actions';
-import { MedicalIllustrationModel, MapEntry } from './medical-illustration.model';
+import { MapEntry, MedicalIllustrationModel } from './medical-illustration.model';
 
 export type MedicalIllustrationContext = StateContext<MedicalIllustrationModel>;
 
@@ -39,14 +38,11 @@ export class MedicalIllustrationState {
   @Action(SetUriFromIRI)
   setUriFromIRI({ patchState, getState }: MedicalIllustrationContext, { iri }: SetUriFromIRI) {
     const referenceOrgans = getState().referenceOrgans;
-    if (referenceOrgans?.length) {
-      referenceOrgans.forEach((ref) => {
-        if (ref.representation_of === iri) {
-          patchState({ url: ref.object.file });
-          return;
-        }
-      });
+    const ref = referenceOrgans?.find((ref) => ref.representation_of === iri);
+    if (ref === undefined) {
+      throw new Error('Reference organ with match iri not found');
     }
+    patchState({ url: ref.object.file });
   }
 
   /**

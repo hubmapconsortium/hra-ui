@@ -1,11 +1,10 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
 import { StateContext } from '@ngxs/store';
 import { mock } from 'jest-mock-extended';
-
 import { SetActiveNode, SetUri, SetUriFromIRI } from './medical-illustration.actions';
 import { MedicalIllustrationModel } from './medical-illustration.model';
 import { MedicalIllustrationState } from './medical-illustration.state';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { TestBed } from '@angular/core/testing';
 
 describe('MedicalIllustrationState', () => {
   const testNode = {

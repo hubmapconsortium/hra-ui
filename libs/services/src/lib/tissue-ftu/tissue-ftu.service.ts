@@ -1,17 +1,20 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { z } from 'zod';
 
-/** Service to fetch reference organs */
-@Injectable({
-  providedIn: 'root',
-})
-export class TissueFtuService {
-  /** injects http client */
-  private http = inject(HttpClient);
+export type ReferenceOrgan = z.infer<typeof REFERENCE_ORGAN>;
 
-  /** Method to fetch reference organs */
-  getReferenceOrgans(): Observable<unknown> {
-    return this.http.get('');
-  }
+/** Reference organ type */
+export const REFERENCE_ORGAN = z.object({
+  representation_of: z.string(),
+  object: z.object({
+    file: z.string(),
+  }),
+});
+
+/** Abstract Service to fetch reference organs */
+@Injectable()
+export abstract class TissueFtuService {
+  /** abstract Method to fetch reference organs */
+  abstract getReferenceOrgans(): Observable<ReferenceOrgan[]>;
 }

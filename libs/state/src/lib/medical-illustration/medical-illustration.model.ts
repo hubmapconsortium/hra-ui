@@ -1,3 +1,4 @@
+// import { ReferenceOrgan } from '@hra-ui/services';
 import { z } from 'zod';
 
 /** Map Entry typings */
@@ -19,17 +20,7 @@ const mapEntry = z.object({
   'Inset #': z.string(),
 });
 
-/** Reference organ type */
-const referenceOrgan = z.object({
-  representation_of: z.string(),
-  object: z.object({
-    file: z.string(),
-  }),
-});
-
 export type MapEntry = z.infer<typeof mapEntry>;
-
-export type ReferenceOrgan = z.infer<typeof referenceOrgan>;
 
 /** Interface for medical illustration model */
 export interface MedicalIllustrationModel {
@@ -40,5 +31,5 @@ export interface MedicalIllustrationModel {
   /** Mapping info */
   mapping?: MapEntry[];
   /** reference organs */
-  referenceOrgans?: ReferenceOrgan[];
+  referenceOrgans?: any[];
 }
