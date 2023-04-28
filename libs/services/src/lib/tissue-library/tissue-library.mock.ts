@@ -13,7 +13,7 @@ const MOCK_TISSUE_DATA = TISSUE_DATA_SCHEMA.parse({
       parent: '',
       label: 'Node 1',
       synonymLabels: ['Synonym 1', 'Synonym 2', 'Synonym 3'],
-      children: [],
+      children: ['http://example.com/node2', 'http://example.com/node3'],
     },
     'http://example.com/node2': {
       '@type': 'RootType',
@@ -21,8 +21,8 @@ const MOCK_TISSUE_DATA = TISSUE_DATA_SCHEMA.parse({
       id: 'http://example.com/node2',
       parent: '',
       label: 'Node 2',
-      synonymLabels: ['Synonym 4', 'Synonym 5', 'Synonym 6'],
-      children: ['http://example.com/node3'],
+      synonymLabels: ['Synonym 1', 'Synonym 2', 'Synonym 3'],
+      children: [],
     },
     'http://example.com/node3': {
       '@type': 'RootType',

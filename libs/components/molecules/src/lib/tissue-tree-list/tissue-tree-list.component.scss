@@ -8,8 +8,12 @@
     color: #990000;
   }
 
-  .subtree-hidden {
-    display: none;
+  // .subtree-hidden {
+  //   display: none;
+  // }
+
+  .node-link {
+    text-decoration: none;
   }
 
   mat-tree-node {
@@ -21,13 +25,25 @@
 
   button {
     margin-right: 1rem;
-    & ::ng-deep {
-      &,
-      .mat-mdc-button-touch-target {
-        width: 1.5rem !important;
-        height: 1.5rem !important;
-      }
-      padding: 0 !important;
-    }
+    display: flex;
+    align-items: center;
+    // background-color: #990000;
+    // & ::ng-deep {
+    //   &,
+    //   .mat-mdc-button-touch-target {
+    //     width: 10.5rem !important;
+    //     height: 10.5rem !important;
+    //   }
+    //   padding: 0 !important;
+    // }
+  }
+
+  span {
+    white-space: nowrap;
+  }
+
+  .foo-container {
+    display: flex;
+    align-items: center;
   }
 }

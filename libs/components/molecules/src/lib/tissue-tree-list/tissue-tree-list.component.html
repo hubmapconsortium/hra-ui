@@ -1,24 +1,23 @@
-<div style="width: 16.5rem">
-  <mat-tree [dataSource]="dataSource" [treeControl]="control" class="tree">
-    <mat-tree-node
-      (click)="selectNode(node)"
-      *matTreeNodeDef="let node; let level = level"
-      [matTreeNodePadding]="level"
-      matTreeNodePaddingIndent="56"
-      tabIndex="0"
-    >
-      <span class="selected">
-        {{ node.label }}
-      </span>
-    </mat-tree-node>
-
-    <mat-tree-node *matTreeNodeDef="let node; let level = level; when: hasChild">
-      <button mat-icon-button matTreeNodeToggle class="toggle" [attr.aria-label]="'Toggle ' + node.label">
+<mat-tree [dataSource]="dataSource" [treeControl]="control" class="tree">
+  <mat-tree-node
+    (click)="selectNode(node)"
+    *matTreeNodeDef="let node; let level = level; when: !hasChild"
+    [matTreeNodePadding]="level"
+    matTreeNodePaddingIndent="92"
+    tabIndex="0"
+  >
+    <a href="#" class="node-link">
+      {{ node.label }}
+    </a>
+  </mat-tree-node>
+  <mat-tree-node *matTreeNodeDef="let node; let level = level; when: hasChild">
+    <div matTreeNodeToggle class="toggle" [attr.aria-label]="'Toggle ' + node.label" class="foo-container">
+      <button mat-icon-button>
         <mat-icon>
           {{ control.isExpanded(node) ? 'keyboard_arrow_up' : 'chevron_right' }}
         </mat-icon>
       </button>
       {{ node.label }}
-    </mat-tree-node>
-  </mat-tree>
-</div>
+    </div>
+  </mat-tree-node>
+</mat-tree>
