@@ -89,7 +89,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">state/src/link-registry/link-registry.actions.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">state/src/link-registry/link-registry.actions.ts:32</a></div>
                             </td>
                         </tr>
 
@@ -145,7 +145,8 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ActionGroup } from &#x27;../actions/actions&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UrlCreationOptions } from &#x27;@angular/router&#x27;;
+import { ActionGroup } from &#x27;../actions/actions&#x27;;
 import { LinkEntry, LinkId } from &#x27;./link-registry.model&#x27;;
 
 /** Base action factory */
@@ -200,8 +201,9 @@ export class Navigate extends Action(&#x27;Navigate&#x27;) {
   /**
    * navigate to a link
    * @param id unqiue identifier of link
+   * @param extras Options when building the navigation url
    */
-  constructor(readonly id: LinkId) {
+  constructor(readonly id: LinkId, readonly extras: UrlCreationOptions &#x3D; {}) {
     super();
   }
 }
