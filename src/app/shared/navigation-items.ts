@@ -127,6 +127,10 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         disabled: true
       },
       {
+        menuName: 'HRA User Stories',
+        url: 'https://docs.google.com/document/d/1I4gFPY47EBKEIDQ-hWTcxCUsGRxL7yJqKfCvlQAQe5Y/edit#heading=h.6n4dk68tke9a'
+      },
+      {
         menuName: 'Kaggle #1: HuBMAP - Hacking the Kidney',
         route: 'kaggle-one',
         disabled: true
