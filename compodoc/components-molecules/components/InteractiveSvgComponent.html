@@ -796,17 +796,16 @@ export class InteractiveSvgComponent&lt;T extends NodeMapEntry&gt; implements On
    * @param event Mouse event
    */
   private onCrosswalkHover(event: MouseEvent): void {
-    const id &#x3D; this.getId(event);
-    const mapEntry &#x3D; this.mapping?.find((item) &#x3D;&gt; item[&#x27;node_name&#x27;] &#x3D;&#x3D;&#x3D; id); //search mapping data for node entry
-    if (mapEntry) {
+    const node &#x3D; this.getNode(event);
+    if (node) {
       this.nodeHoverData$.next({
-        node: mapEntry[&#x27;label&#x27;],
+        node: node[&#x27;label&#x27;],
         origin: {
           x: event.clientX,
           y: event.clientY,
         },
       });
-      this.nodeHover.emit(mapEntry); //emits node entry
+      this.nodeHover.emit(node); //emits node entry
     }
   }
 
@@ -820,22 +819,25 @@ export class InteractiveSvgComponent&lt;T extends NodeMapEntry&gt; implements On
   }
 
   /**
-   * Returns parent id from event target
+   * Returns entry from mapping if target, parent, or grandparent id matches the node name
    * @param event Event
-   * @returns Parent id
+   * @returns Node entry that matches the target id
    */
-  private getId(event: Event): string {
-    const parent &#x3D; (event.target as Element).parentElement;
-    const grandparent &#x3D; parent?.parentElement;
-    let id &#x3D; (event.target as Element).id;
-    if (!id) {
-      if (parent &amp;&amp; parent.id) {
-        id &#x3D; parent.id;
-      } else {
-        id &#x3D; grandparent ? grandparent.id : &#x27;&#x27;;
+  private getNode(event: Event): T | undefined {
+    const targetId &#x3D; (event.target as Element).id;
+    const parentId &#x3D; (event.target as Element).parentElement?.id ?? &#x27;&#x27;;
+    const grandparentId &#x3D; (event.target as Element).parentElement?.parentElement?.id ?? &#x27;&#x27;;
+    const idCollection &#x3D; [targetId, parentId, grandparentId];
+    for (const id of idCollection) {
+      const decodedID &#x3D; this.decodeId(id);
+      const match &#x3D; this.mapping.find(
+        (item) &#x3D;&gt; item[&#x27;node_name&#x27;]?.toLowerCase() &#x3D;&#x3D;&#x3D; decodedID.toLowerCase() //search mapping by node_name for matching node entry
+      );
+      if (match) {
+        return match;
       }
     }
-    return this.decodeId(id);
+    return undefined;
   }
 
   /**
