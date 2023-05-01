@@ -93,7 +93,7 @@ const routes: Routes = [
   },
   {
     path: 'hra-millitome',
-    component: HraMillitomeComponent,
+    component: PageComponent,
     data: {
       contentFile: 'hra-millitome.content',
     },
@@ -153,7 +153,7 @@ const routes: Routes = [
   },
   {
     path: 'asctb-azimuth',
-    component: CcfAsctbAzimuthComponent,
+    component: PageComponent,
     data: {
       contentFile: 'ccfAsctbAzimuth.content',
     },
@@ -190,7 +190,7 @@ const routes: Routes = [
   },
   {
     path: 'kaggle-two',
-    component: KaggleTwoComponent,
+    component: PageComponent,
     data: {
       contentFile: 'kaggle-two.content',
     },

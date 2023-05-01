@@ -19,6 +19,8 @@ import { TableModule } from '../table/table.module';
 import { CountInfoCardModule } from '../count-info-card/count-info-card.module';
 import { SectionCardModule } from '../section-card/section-card.module';
 import { TableVersionModule } from '../table-version/table-version.module';
+import { MatCardModule } from '@angular/material/card';
+import { PrizeCardModule } from '../prize-card/prize-card.module';
 @NgModule({
     declarations: [PageElementComponent],
     imports: [
@@ -41,7 +43,9 @@ import { TableVersionModule } from '../table-version/table-version.module';
         CarouselModule,
         CountInfoCardModule,
         SectionCardModule,
-        TableVersionModule
+        TableVersionModule,
+        MatCardModule,
+        PrizeCardModule
     ],
     exports: [PageElementComponent]
 })

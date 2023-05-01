@@ -20,6 +20,9 @@
     <ccf-carousel *ngSwitchCase="'carousel'" [carouselInfo]="def['carouselInfo']"></ccf-carousel>
     <count-info-card *ngSwitchCase="'countCard'" [cardInformation]="def['countCardInfo']"></count-info-card>
     <ccf-section-card *ngSwitchCase="'sectionCard'" [cards]="def['cardsInfo']"></ccf-section-card>
-    <table-version *ngSwitchCase="'tableVersion'" [headerInfo]="def['headerInfo']" [versionData]="def['versionData']"></table-version>
-    <!-- <ccf-table *ngSwitchCase="'table'" [typeCount]="(tableData | async) ?? []" [displayedColumns]="displayedColumnsData" [columns]="headerInfo" [isOrgan]="true" [additionalHeaders]="additionalHeaders" [additionalColumnsData]="additionalColumnsData" [cellHeaders]="cellData" [cellHeadersData]="cellHeaders" ></ccf-table> -->
+    <table-version *ngSwitchCase="'tableVersion'" [isTotal]="def['isTotal']" [versionChooserDisabled]="def['versionChooserDisabled']" [headerInfo]="def['headerInfo']" [versionData]="def['versionData']" [additionalHeaders]="def['additionalHeaders']" [cellHeaders]="def['cellHeaders']"></table-version>
+    <mat-card *ngSwitchCase="'matCard'" [style]="def['styles']">
+        <page-element *ngFor="let comp of def['components']" [def]="comp"></page-element>
+    </mat-card>
+    <ccf-prize-card *ngSwitchCase="'prizeCard'" [prizeCard]="def['prizeCard']"></ccf-prize-card>
 </ng-container>

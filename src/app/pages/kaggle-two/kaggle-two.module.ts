@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { PrizeCardModule } from '../../components/prize-card/prize-card.module';
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
 import { YoutubeModelModule } from 'src/app/components/youtube-model/youtube-model.module';
+import { PageRendererModule } from 'src/app/components/page-renderer/page-renderer.module';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { YoutubeModelModule } from 'src/app/components/youtube-model/youtube-mod
         MatCardModule,
         PrizeCardModule,
         AnnouncementCardModule,
-        YoutubeModelModule
+        YoutubeModelModule,
+        PageRendererModule
     ],
     providers: [],
     bootstrap: []
