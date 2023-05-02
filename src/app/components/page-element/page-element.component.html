@@ -13,8 +13,7 @@
     <div *ngSwitchCase="'margin'" [style.margin-top]="def['top']" [style.margin-bottom]="def['bottom']"></div>
     <card-with-header *ngSwitchCase="'cardBlock'" [cardBlockData]="def['cardWithTitle']"></card-with-header>
     <ccf-simple-image *ngSwitchCase="'simpleImage'" [imageInfo]="def['imageData']"></ccf-simple-image>
-    <img *ngSwitchCase="'image'" [src]="def['imageSource']" [class]="def['class']" [style]="def['styles']"
-        style="width: 100%;">
+    <img *ngSwitchCase="'image'" [src]="def['imageSource']" [class]="def['class']" [style]="def['styles']">
     <div *ngSwitchCase="'text'" [style]="def['styles']" [class]="def['class']">{{def['text']}}</div>
     <div *ngSwitchCase="'styled-group'" [style]="def['styles']" [class]="def['class']">
         <page-element *ngFor="let comp of def['components']" [def]="comp"></page-element>

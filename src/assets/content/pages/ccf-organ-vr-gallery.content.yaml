@@ -25,6 +25,8 @@
 
 - type: image
   imageSource: assets/images/OrganGallery.jpg
+  styles:
+    width: 100%
 
 - type: page-data
   pageData:
