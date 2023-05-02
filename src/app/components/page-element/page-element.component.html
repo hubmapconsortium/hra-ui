@@ -17,7 +17,9 @@
     <div *ngSwitchCase="'styled-group'" [style]="def['styles']" [class]="def['class']">
         <page-element *ngFor="let comp of def['components']" [def]="comp"></page-element>
     </div>
-    <ccf-carousel *ngSwitchCase="'carousel'" [carouselInfo]="def['carouselInfo']"></ccf-carousel>
+    <div *ngSwitchCase="'carousel'" [style]="def['containerStyles']">
+        <ccf-carousel [carouselInfo]="def['carouselInfo']"></ccf-carousel>
+    </div>
     <count-info-card *ngSwitchCase="'countCard'" [cardInformation]="def['countCardInfo']"></count-info-card>
     <ccf-section-card *ngSwitchCase="'sectionCard'" [cards]="def['cardsInfo']"></ccf-section-card>
     <table-version *ngSwitchCase="'tableVersion'" [isTotal]="def['isTotal']" [versionChooserDisabled]="def['versionChooserDisabled']" [headerInfo]="def['headerInfo']" [versionData]="def['versionData']" [additionalHeaders]="def['additionalHeaders']" [cellHeaders]="def['cellHeaders']"></table-version>
@@ -25,4 +27,7 @@
         <page-element *ngFor="let comp of def['components']" [def]="comp"></page-element>
     </mat-card>
     <ccf-prize-card *ngSwitchCase="'prizeCard'" [prizeCard]="def['prizeCard']"></ccf-prize-card>
+    <div *ngSwitchCase="'datasets'" [style]="def['styles']">
+        <a *ngFor="let link of def['links']" [href]="link['href']" [title]="link['title']" [class]="link['class']">{{link['data']}}</a>
+    </div>
 </ng-container>

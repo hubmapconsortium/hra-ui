@@ -1,5 +1,6 @@
 - type: title
   title: Common Coordinate Framework Ontology
+  class: page-title
 
 - type: announcement
   announcementCard:

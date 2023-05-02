@@ -1,5 +1,6 @@
 - type: title
   title: Human Reference Atlas Tools
+  class: page-title
 
 - type: simpleTile
   description:

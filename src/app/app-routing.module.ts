@@ -41,7 +41,7 @@ const routes: Routes = [
   },
   {
     path: 'overview-data',
-    component: OverviewDataComponent,
+    component: PageComponent,
     data: { contentFile: 'overview-data.content' },
     resolve: { content: ContentResolver },
   },
@@ -63,13 +63,13 @@ const routes: Routes = [
   },
   {
     path: 'overview-tools',
-    component: OverviewToolsComponent,
+    component: PageComponent,
     data: { contentFile: 'overview-tools.content' },
     resolve: { content: ContentResolver },
   },
   {
     path: 'ccf-ontology',
-    component: CcfOntologyComponent,
+    component: PageComponent,
     data: {
       contentFile: 'ccf-ontology.content',
     },
@@ -85,7 +85,7 @@ const routes: Routes = [
   },
   {
     path: 'exploration-user-interface',
-    component: CcfExplorationUserInterfaceComponent,
+    component: PageComponent,
     data: {
       contentFile: 'ccf-exploration-user-interface.content',
     },
@@ -131,7 +131,7 @@ const routes: Routes = [
   },
   {
     path: 'overview-training-outreach',
-    component: OverviewTrainingOutreachComponent,
+    component: PageComponent,
     data: {
       contentFile: 'overviewTrainingOutreach.content',
     },
@@ -139,7 +139,7 @@ const routes: Routes = [
   },
   {
     path: 'omap',
-    component: OmapsComponent,
+    component: PageComponent,
     data: { contentFile: 'omaps.content' },
     resolve: { content: ContentResolver },
   },
@@ -174,7 +174,7 @@ const routes: Routes = [
   },
   {
     path: 'standard-operating-procedures',
-    component: HraSopComponent,
+    component: PageComponent,
     data: {
       contentFile: 'hra-sop.content',
     },
@@ -182,7 +182,7 @@ const routes: Routes = [
   },
   {
     path: 'kaggle-one',
-    component: KaggleTwentyoneComponent,
+    component: PageComponent,
     data: {
       contentFile: 'kaggle-twentyone.content',
     },
@@ -213,7 +213,8 @@ const routes: Routes = [
     resolve: { content: ContentResolver },
   },
   {
-    path: 'faq/omap', component: OmapFaqComponent,
+    path: 'faq/omap', 
+    component: PageComponent,
     data: {
       contentFile: 'omap-faq.content'
     },

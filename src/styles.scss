@@ -148,6 +148,23 @@ strong {
   margin-bottom: 1.5rem;
 }
 
+//styles for kaggle-21 links
+.datasets {
+  font-size: 1rem;
+  line-height: 0.5rem;
+  flex-basis: 0%;
+  padding-bottom: 2rem;
+  min-width: 200px;
+  letter-spacing: 0.005rem;
+  flex-grow: 1;
+}
+
+@media (max-width: 28.75rem) {
+  .datasets {
+    text-align: center;
+  }
+}
+
 //landing page media queries
 @media (max-width: 38.5rem) {
   .landing-title {
@@ -168,5 +185,11 @@ strong {
   .card-title {
     font-size: 1.375rem !important;
     margin-bottom: 1rem !important;
+  }
+}
+
+@media (max-width: 80rem) {
+  .page-title {
+    font-size: 1.75rem;
   }
 }
