@@ -1,49 +1,35 @@
-@use '@angular/material' as mat;
+@use 'variables' as vars;
 
 :host {
   display: block;
 
-  .mat-tree-node:focus {
-    background-color: #fff3f0 !important;
-    color: #990000;
-  }
+  .row {
+    min-height: 2rem;
 
-  // .subtree-hidden {
-  //   display: none;
-  // }
+    &.selected {
+      background-color: vars.$accent-lighter-rgb;
+    }
 
-  .node-link {
-    text-decoration: none;
-  }
+    .toggle {
+      width: 2rem;
+      height: 2rem;
+      padding: 0.25rem;
+    }
 
-  mat-tree-node {
-    margin-left: 2rem;
-    line-height: 17px;
-    padding-top: 7.5px;
-    padding-bottom: 7.5px;
-  }
+    .label-container {
+      display: flex;
+      align-items: center;
+      height: 2rem;
+      padding-left: 1rem;
 
-  button {
-    margin-right: 1rem;
-    display: flex;
-    align-items: center;
-    // background-color: #990000;
-    // & ::ng-deep {
-    //   &,
-    //   .mat-mdc-button-touch-target {
-    //     width: 10.5rem !important;
-    //     height: 10.5rem !important;
-    //   }
-    //   padding: 0 !important;
-    // }
-  }
+      .link {
+        text-decoration: none;
+        color: rgba(vars.$dark-primary-text);
+      }
+    }
 
-  span {
-    white-space: nowrap;
-  }
-
-  .foo-container {
-    display: flex;
-    align-items: center;
+    &.selected .label-container .link {
+      color: vars.$accent-rgb;
+    }
   }
 }

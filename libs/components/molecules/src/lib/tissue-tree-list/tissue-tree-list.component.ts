@@ -13,18 +13,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';
+import { LinkDirective } from '@hra-ui/cdk';
+import { LinkId } from '@hra-ui/cdk/state';
 
-/**
- * External interface for tissue data
- */
+/** Base node type */
 export interface DataNode {
-  /**
-   * label identifier
-   */
+  /** User readable label */
   label: string;
-  /**
-   * child entities for the tissue
-   */
+  /** Link to navigate to on node click */
+  link?: LinkId;
+  /** Nested nodes */
   children?: string[];
 }
 
@@ -48,7 +46,7 @@ interface InternalNode<T extends DataNode> {
 @Component({
   selector: 'hra-tissue-tree-list',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatTreeModule, MatIconModule, MatExpansionModule],
+  imports: [CommonModule, MatButtonModule, MatTreeModule, MatIconModule, MatExpansionModule, LinkDirective],
   templateUrl: './tissue-tree-list.component.html',
   styleUrls: ['./tissue-tree-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -121,8 +119,8 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
    * If the node is already selected, it de-selects it
    * @param node Tissue Tree Item, which is clicked
    */
-  selectNode(node: InternalNode<T>): void {
-    this.selected = this.selected === node.data ? undefined : node.data;
+  selectNode(node: T): void {
+    this.selected = this.selected === node ? undefined : node;
     this.selectedChange.emit(this.selected);
   }
 
