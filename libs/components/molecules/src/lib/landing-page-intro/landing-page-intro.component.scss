@@ -11,6 +11,7 @@
   .title {
     font-size: 3rem;
     line-height: 4rem;
+    margin: 0;
   }
 
   .more-button {
@@ -27,6 +28,10 @@
 
   .description,
   .partners {
+    ::ng-deep p {
+      margin: 0;
+    }
+
     ::ng-deep a {
       color: vars.$primary-rgb;
       font-weight: 700;
