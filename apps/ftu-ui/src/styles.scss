@@ -1,19 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
 @use 'angular-material-css-vars/src/lib/variables' as mat-css-vars;
 @use 'angular-material-css-vars/src/lib/public-util' as mat-css-utilities;
 @use 'reset';
 @use 'theming';
 @use 'overrides';
+
 html,
 body {
   height: 100%;
 }
 body {
   margin: 0;
-  font-family: Inter, sans-serif;
 }
-
-@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 
 $mat-css-default-light-theme: map-merge(
   mat-css-vars.$default-light-theme,
