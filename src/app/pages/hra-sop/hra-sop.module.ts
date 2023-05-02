@@ -7,6 +7,7 @@ import { PageHeaderModule } from '../../components/page-header/page-header.modul
 import { TableModule } from '../../components/table/table.module';
 import { PageDataModule } from '../../components/page-data/page-data.module';
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
+import { PageRendererModule } from 'src/app/components/page-renderer/page-renderer.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AnnouncementCardModule } from '../../components/announcement-card/annou
     PageHeaderModule,
     TableModule,
     PageDataModule,
-    AnnouncementCardModule
+    AnnouncementCardModule,
+    PageRendererModule
   ],
   providers: [],
   bootstrap: []

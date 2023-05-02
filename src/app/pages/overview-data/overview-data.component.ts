@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PageDef } from 'src/app/components/page-element/page-def';
 import { LongCard } from '../../components/card-button-long/long-card';
 import { TileItems } from '../../components/simple-tile/tile-items';
 
@@ -15,11 +16,7 @@ export interface Overview {
   styleUrls: ['./overview-data.component.scss']
 })
 export class OverviewDataComponent {
-  data = this.route.snapshot.data['content'] as Overview;
-
-  pageTitle = this.data.pageTitle;
-  description = this.data.description;
-  longButtonItems = this.data.longButtonItems;
+  data = this.route.snapshot.data['content'] as PageDef[];
 
   constructor(private router: Router, private readonly route: ActivatedRoute) { }
 

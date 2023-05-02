@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LongCard } from '../../components/card-button-long/long-card';
+import { PageDef } from 'src/app/components/page-element/page-def';
+import { CardBlock, LongCard } from '../../components/card-button-long/long-card';
 import { PageDataItems } from '../../components/page-data/page-data';
 import { ImageData } from '../../components/simple-image/simple-image';
 import { TileItems } from '../../components/simple-tile/tile-items';
@@ -15,6 +16,8 @@ interface CcfOntology {
   ontologyWebData: LongCard[];
   referencesData: PageDataItems[];
   markdownData: string[];
+  ontologyDefs: PageDataItems[];
+  cardBlock: CardBlock[];
 }
 
 @Component({
@@ -23,16 +26,18 @@ interface CcfOntology {
   styleUrls: ['./ccf-ontology.component.scss']
 })
 export class CcfOntologyComponent {
-  data = this.route.snapshot.data['content'] as CcfOntology;
-  title = this.data.title;
-  description = this.data.description;
-  overviewData = this.data.overviewData;
-  ccfKnowledgeData = this.data.ccfKnowledgeData;
-  spatialOntologyData = this.data.spatialOntologyData;
-  relatedToolsData = this.data.relatedToolsData;
-  ontologyWebData = this.data.ontologyWebData;
-  referencesData = this.data.referencesData;
-  markdownData = [this.data.markdownData];
+  data = this.route.snapshot.data['content'] as PageDef[];
+  // title = this.data.title;
+  // description = this.data.description;
+  // overviewData = this.data.overviewData;
+  // ccfKnowledgeData = this.data.ccfKnowledgeData;
+  // spatialOntologyData = this.data.spatialOntologyData;
+  // relatedToolsData = this.data.relatedToolsData;
+  // ontologyWebData = this.data.ontologyWebData;
+  // referencesData = this.data.referencesData;
+  // ontologyDefs = this.data.ontologyDefs;
+  // cardBlock = this.data.cardBlock;
+  // markdownData = [this.data.markdownData];
 
   constructor(private router: Router, private readonly route: ActivatedRoute) { }
 

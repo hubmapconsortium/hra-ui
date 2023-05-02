@@ -1,5 +1,5 @@
 <table mat-table [dataSource]="dataSource" matSort [matSortActive]="firstColumnId" matSortDirection="asc"  class="mat-elevation-z8 data-table">
-  <ng-container *ngIf="cellHeaders">
+  <ng-container *ngIf="cellHeaders?.length">
     <ng-container *ngFor="let cells of cellHeaders" [matColumnDef]="cells.columnDef">
       <th mat-header-cell *matHeaderCellDef [attr.colspan]="cells.colspan ?? 1" [attr.rowspan]="cells.rowspan ?? 1"
         class="table-title additional-header">
@@ -8,7 +8,7 @@
     </ng-container>
   </ng-container>
 
-  <ng-container *ngIf="additionalHeaders">
+  <ng-container *ngIf="additionalHeaders?.length">
     <ng-container *ngFor="let addition of additionalHeaders" [matColumnDef]="addition.columnDef">
       <th mat-header-cell *matHeaderCellDef [attr.colspan]="addition.colspan ?? 1"
         [attr.rowspan]="addition.rowspan ?? 1" class="table-title additional-header">

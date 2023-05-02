@@ -1,24 +1,6 @@
 :host {
   max-width: 77rem;
 
-  .title {
-    font-weight: 300;
-    font-size: 2.25rem;
-    line-height: 2.75rem;
-    letter-spacing: 0.005rem;
-    padding-top: 2rem;
-    padding-bottom: 1rem;
-  }
-
-  @media (max-width: 26.75rem) {
-    padding-left: 1rem;
-    padding-right: 1rem;
-
-    .title {
-      font-size: 1.75rem;
-    }
-  }
-
   @media (max-width: 80rem) {
     padding: 0rem 1rem;
   }

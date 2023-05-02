@@ -29,14 +29,16 @@ versionData:
   version: "1.0"
 
 sopData:
-- urls: 'SOP: 3D Reference Object Approval'
-  href: https://doi.org/10.5281/zenodo.5944196
-- urls: 'SOP: Using 3D Reference Objects'
-  href: https://doi.org/10.5281/zenodo.5639651
-- urls: 'SOP: Using the CCF Registration User Interface'
-  href: https://doi.org/10.5281/zenodo.5575776
-- urls: 'SOP: Assigning RUI Data to Multiple Tissue Blocks'
-  href: https://doi.org/10.5281/zenodo.5746143
+  title: Standard Operating Procedures (SOP)
+  href:
+    - urls: 'SOP: 3D Reference Object Approval'
+      href: https://doi.org/10.5281/zenodo.5944196
+    - urls: 'SOP: Using 3D Reference Objects'
+      href: https://doi.org/10.5281/zenodo.5639651
+    - urls: 'SOP: Using the CCF Registration User Interface'
+      href: https://doi.org/10.5281/zenodo.5575776
+    - urls: 'SOP: Assigning RUI Data to Multiple Tissue Blocks'
+      href: https://doi.org/10.5281/zenodo.5746143
 
 termsOfUseData:
 - heading: Terms Of Use

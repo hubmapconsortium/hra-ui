@@ -1,20 +1,18 @@
-<div class="page-title">{{title}}</div>
+<!-- <div class="page-title">{{title}}</div>
 <announcement-card></announcement-card>
 <ccf-simple-tile [definitions]="description"></ccf-simple-tile>
 <ccf-page-data [data]="overviewData" class="description"></ccf-page-data>
 <ccf-simple-image [imageInfo]="ccfKnowledgeData"></ccf-simple-image>
-<div class="ontology-definitions">
-    <markdown *ngFor="let data of markdownData">
-        {{data}}
-    </markdown>
-</div>
-<ccf-simple-image [imageInfo]="spatialOntologyData" class="description"></ccf-simple-image>
-<div class="long-card-container description">
+<ccf-page-data [data]="ontologyDefs"></ccf-page-data>
+<ccf-simple-image [imageInfo]="spatialOntologyData" class="description"></ccf-simple-image> -->
+<!-- <div class="long-card-container description">
     <p>Related Tools</p>
     <ccf-card-button-long [longButtonItems]="relatedToolsData" (cardRoutes)="cardClicked($event)"></ccf-card-button-long>
 </div>
 <div class="long-card-container description">
     <p>CCF Ontology on the Web</p>
     <ccf-card-button-long [longButtonItems]="ontologyWebData"></ccf-card-button-long>
-</div>
-<ccf-page-data [data]="referencesData" class="description"></ccf-page-data>
+</div> -->
+<!-- <card-with-header [cardBlockData]="cardBlock"></card-with-header>
+<ccf-page-data [data]="referencesData" class="description"></ccf-page-data> -->
+<ccf-page-renderer [defs]="data"></ccf-page-renderer>

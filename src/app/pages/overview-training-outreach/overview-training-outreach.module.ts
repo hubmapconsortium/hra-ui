@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { OverviewTrainingOutreachComponent } from './overview-training-outreach.component';
 import { CardButtonLongModule } from '../../components/card-button-long/card-button-long.module';
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
+import { CardWithHeaderModule } from 'src/app/components/card-with-header/card-with-header.module';
+import { PageRendererModule } from 'src/app/components/page-renderer/page-renderer.module';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { AnnouncementCardModule } from '../../components/announcement-card/annou
     BrowserModule,
     SimpleTileModule,
     CardButtonLongModule,
-    AnnouncementCardModule
+    AnnouncementCardModule,
+    CardWithHeaderModule,
+    PageRendererModule
   ],
   providers: [],
   bootstrap: []

@@ -1,17 +1,1 @@
-<ccf-page-header [headerCard]="kaggle2022Header" class="page-header"></ccf-page-header>
-<announcement-card class="description"></announcement-card>
-<ccf-page-data [data]="overviewData" class="description"></ccf-page-data>
-<ccf-page-data [data]="awardsCeremony"></ccf-page-data>
-<youtube-model [playerData]="awardsYoutube"></youtube-model>
-<div class="content-title">Winning Teams</div>
-<div class="accuracy-prizes">Accuracy Prizes</div>
-<div style="padding-bottom: 1rem;">
-    <mat-card>
-        <img src="assets/images/accuracy_prizes.svg" class="prize-image">
-    </mat-card>
-</div>
-<ccf-prize-card [prizeCard]="accuracyPrizeData"></ccf-prize-card>
-<div class="accuracy-prizes">Judges Prizes</div>
-<ccf-prize-card [prizeCard]="judgesPrizeData" class="description"></ccf-prize-card>
-<ccf-page-data [data]="datasets" class="description"></ccf-page-data>
-<ccf-page-data [data]="acknowledgments" class="description"></ccf-page-data>
+<ccf-page-renderer [defs]="data"></ccf-page-renderer>

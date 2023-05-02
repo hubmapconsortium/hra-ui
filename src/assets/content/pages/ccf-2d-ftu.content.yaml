@@ -29,8 +29,10 @@ disclaimer:
 
 
 sopData:
-- urls: ' Style Guide: HuBMAP 2D Functional Tissue Unit (FTU) Illustrations'
-  href: https://zenodo.org/record/6703108/files/SOP_%20Creating%202D%20Illustrations%20for%20Functional%20Tissue%20Units.pdf
+  title: Standard Operating Procedures (SOP)
+  href:
+    - urls: ' Style Guide: HuBMAP 2D Functional Tissue Unit (FTU) Illustrations'
+      href: https://zenodo.org/record/6703108/files/SOP_%20Creating%202D%20Illustrations%20for%20Functional%20Tissue%20Units.pdf
 
 versionData:
 - release: 4th HRA Release (v1.3), December 2022

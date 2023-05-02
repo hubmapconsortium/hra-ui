@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PageDataItems } from '../../components/page-data/page-data';
-import { PageHeaderItems } from '../../components/page-header/page-header-items';
-import { UseButton } from '../../components/use-button/use-button';
-
+import { PageDef } from 'src/app/components/page-element/page-def';
  
 @Component({
   selector: 'ccf-hra-api',
@@ -11,14 +8,7 @@ import { UseButton } from '../../components/use-button/use-button';
   styleUrls: ['./hra-api.component.scss']
 })
 export class HraApiComponent {
-  pageHeaderData: PageHeaderItems[];
-  useButtonData: UseButton;
-  overviewData: PageDataItems[];
 
-  constructor(route: ActivatedRoute) {
-    const data = route.snapshot.data['content'];
-    this.pageHeaderData = [data.pageHeaderData];
-    this.useButtonData = data.useButtonData;
-    this.overviewData = [data.overviewData];
-  }
+  constructor(private readonly route: ActivatedRoute) { }
+  data = this.route.snapshot.data['content'] as PageDef[];
 }

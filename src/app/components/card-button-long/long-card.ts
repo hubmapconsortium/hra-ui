@@ -10,4 +10,5 @@ export interface LongCard {
 export interface CardBlock {
     heading: string;
     cardData: LongCard[];
+    headerSize?: string;
 }

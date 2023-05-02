@@ -7,5 +7,5 @@ import { UseButton } from './use-button';
   styleUrls: ['./use-button.component.scss']
 })
 export class UseButtonComponent {
-  @Input() buttonData: UseButton
+  @Input() buttonData: UseButton;
 }

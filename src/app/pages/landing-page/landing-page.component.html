@@ -1,4 +1,4 @@
-<div class="main-content">
+<!-- <div class="main-content">
     <img src="assets/images/hubmap_dude.svg" class="landing-img">
     <div class="hubmap-details">
         <div class="landing-title">{{title}}</div>
@@ -6,10 +6,11 @@
     </div>
 </div>
 <announcement-card></announcement-card>
-<ccf-simple-tile [definitions]="definitions"></ccf-simple-tile>
+<ccf-simple-tile [definitions]="definitions" style="margin-bottom: 2rem; display: block;"></ccf-simple-tile>
 <div class="carousel-container description">
     <ccf-carousel [carouselInfo]="carouselInfo"></ccf-carousel>
 </div>
 <count-info-card [cardInformation]="countCardData" class="description"></count-info-card>
 <div class="card-title">{{cardsHeading}}</div>
-<ccf-section-card [cards]="cards"></ccf-section-card>
+<ccf-section-card [cards]="cards"></ccf-section-card> -->
+<ccf-page-renderer [defs]="data"></ccf-page-renderer>

@@ -1,37 +1,51 @@
-boardHeader:
-  title: Human Reference Atlas Editorial Board
-  subtitle: A panel of interdisciplinary experts advises on Human Reference Atlas policies, extensions, and applications
-  image: assets/images/editorial_board.svg
-overviewData:
-  heading: | 
-    Overview
-  descriptions: |
-    The HRA editorial board is composed of interdisciplinary experts from pathology, surgery, and single cell experimentalists.
+- type: header
+  headerCard:
+  - title: Human Reference Atlas Editorial Board
+    subtitle: A panel of interdisciplinary experts advises on Human Reference Atlas policies, extensions, and applications
+    image: assets/images/editorial_board.svg
 
-    The board will meet virtually every six months—in Nov and May of each year—to
+- type: announcement
+  announcementCard:
+  - message: "The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in "
+    route: 'v1.3'
+    routeText: '4th Release Notes.'
+    emoji: '🎉'
 
-    - advise on setting HRA editorial policies,
-    - suggest future HRA extensions (e.g., crosswalks between ASCT+B tables and Azimuth references or OMAPs),
-    - select organ-specific editors that invite high quality submissions/revisions of HRA digital objects and administer the peer review of submissions,
-    - optimize incentive structures (e.g., HRA papers in major journals, awards for highest quality contributions by organ teams/editors/reviewers),
-    - discuss commercial and other means to sustain the HRA effort beyond current NIH funding, and
-    - act as ambassadors for the HRA—promoting the HRA at relevant conferences and within key communities.
-boardMembersData:
-- image: assets/images/kristin.svg
-  description: |
-    <a href="https://www.broadinstitute.org/bios/kristin-ardlie">Kristin Ardlie</a>, Ph.D., Director of the GTEx Laboratory Data Analysis and Coordination Center at the Broad Institute of MIT and Harvard, where she is an institute scientist. She was responsible for the generation, quality control, and analysis of RNA sequence data for ca. 20,000 tissues to characterize the relationship between genetic variation and the regulation of gene expression across human tissues.
-- image: assets/images/fiona_ginty.svg
-  description: |
-    <a href="https://www.ge.com/research/people/fiona-ginty">Fiona Ginty</a>, Ph.D. leads a group of cellular and molecular scientists in Biosciences at GE Research who are inventing new methods and applications for the life sciences industry, including new cell therapy workflows, forensics, synthetic biology and cell imaging.
-- image: assets/images/marc_halushka.svg
-  description: |
-    <a href="https://www.hopkinsmedicine.org/profiles/details/marc-halushka">Marc Halushka</a>, M.D., is a professor of Pathology at the Johns Hopkins University School of Medicine. His areas of expertise include cardiovascular pathology, cell signal localization and microRNAs. He is a world-renowned expert on the use of cardiovascular tissue microarrays.
-- image: assets/images/matthias_kretzler.svg
-  description: |
-    <a href="https://medicine.umich.edu/dept/dcmb/matthias-kretzler-md">Matthias Kretzler</a>, M.D., Professor of Computational Medicine & Bioinformatics, Professor of Internal Medicine at University of Michigan. He performs research on systems biology of renal diseases, including nephrotic syndrome, diabetes, hypertension and autoimmune diseases of the kidney.
-- image: assets/images/louise_laurent.svg
-  description: |
-    <a href="https://obgyn.ucsd.edu/research/labs/laurent/index.html">Louise C. Laurent</a>, M.D., Ph.D. is the Vice Chair for Translational Research and Director of Perinatal Research for the UC San Diego Department of Obstetrics, Gynecology, & Reproductive Sciences and a member of the UC San Diego Embryonic Stem Cell Research Oversight Committee.
-- image: assets/images/mike_synder.svg
-  description: |
-    <a href="https://med.stanford.edu/content/sm/snyderlab.html.html">Mike Snyder</a>, Ph.D., Stanford W. Ascherman, Professor in Genetics. He is a leader in the field of multiomics profiling and big data, and one of the major participants of the HuBMAP, HTAN, MoTrPAC, Bridge2AI and ENCODE project.
+- type: margin
+  bottom: 1.5rem
+
+- type: page-data
+  pageData:
+  - heading: Overview
+    descriptions: |
+      The HRA editorial board is composed of interdisciplinary experts from pathology, surgery, and single cell experimentalists.
+
+      The board will meet virtually every six months—in Nov and May of each year—to
+
+      - advise on setting HRA editorial policies,
+      - suggest future HRA extensions (e.g., crosswalks between ASCT+B tables and Azimuth references or OMAPs),
+      - select organ-specific editors that invite high quality submissions/revisions of HRA digital objects and administer the peer review of submissions,
+      - optimize incentive structures (e.g., HRA papers in major journals, awards for highest quality contributions by organ teams/editors/reviewers),
+      - discuss commercial and other means to sustain the HRA effort beyond current NIH funding, and
+      - act as ambassadors for the HRA—promoting the HRA at relevant conferences and within key communities.
+
+- type: boardMembers
+  boardMembersData:
+  - image: assets/images/kristin.svg
+    description: |
+      <a href="https://www.broadinstitute.org/bios/kristin-ardlie">Kristin Ardlie</a>, Ph.D., Director of the GTEx Laboratory Data Analysis and Coordination Center at the Broad Institute of MIT and Harvard, where she is an institute scientist. She was responsible for the generation, quality control, and analysis of RNA sequence data for ca. 20,000 tissues to characterize the relationship between genetic variation and the regulation of gene expression across human tissues.
+  - image: assets/images/fiona_ginty.svg
+    description: |
+      <a href="https://www.ge.com/research/people/fiona-ginty">Fiona Ginty</a>, Ph.D. leads a group of cellular and molecular scientists in Biosciences at GE Research who are inventing new methods and applications for the life sciences industry, including new cell therapy workflows, forensics, synthetic biology and cell imaging.
+  - image: assets/images/marc_halushka.svg
+    description: |
+      <a href="https://www.hopkinsmedicine.org/profiles/details/marc-halushka">Marc Halushka</a>, M.D., is a professor of Pathology at the Johns Hopkins University School of Medicine. His areas of expertise include cardiovascular pathology, cell signal localization and microRNAs. He is a world-renowned expert on the use of cardiovascular tissue microarrays.
+  - image: assets/images/matthias_kretzler.svg
+    description: |
+      <a href="https://medicine.umich.edu/dept/dcmb/matthias-kretzler-md">Matthias Kretzler</a>, M.D., Professor of Computational Medicine & Bioinformatics, Professor of Internal Medicine at University of Michigan. He performs research on systems biology of renal diseases, including nephrotic syndrome, diabetes, hypertension and autoimmune diseases of the kidney.
+  - image: assets/images/louise_laurent.svg
+    description: |
+      <a href="https://obgyn.ucsd.edu/research/labs/laurent/index.html">Louise C. Laurent</a>, M.D., Ph.D. is the Vice Chair for Translational Research and Director of Perinatal Research for the UC San Diego Department of Obstetrics, Gynecology, & Reproductive Sciences and a member of the UC San Diego Embryonic Stem Cell Research Oversight Committee.
+  - image: assets/images/mike_synder.svg
+    description: |
+      <a href="https://med.stanford.edu/content/sm/snyderlab.html.html">Mike Snyder</a>, Ph.D., Stanford W. Ascherman, Professor in Genetics. He is a leader in the field of multiomics profiling and big data, and one of the major participants of the HuBMAP, HTAN, MoTrPAC, Bridge2AI and ENCODE project.

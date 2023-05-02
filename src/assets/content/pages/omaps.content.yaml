@@ -1,100 +1,152 @@
-omapsHeading:
-- image: assets/images/omaps.svg
-  title: Organ Mapping Antibody Panels (OMAPs)
-  subtitle: Validated panels for diverse organs to run multiplexed antibody-based imaging that generates semantic ASCT+B table term annotations
+- type: header
+  headerCard:
+  - image: assets/images/omaps.svg
+    title: Organ Mapping Antibody Panels (OMAPs)
+    subtitle: Validated panels for diverse organs to run multiplexed antibody-based imaging that generates semantic ASCT+B table term annotations
 
-overviewData:
-- heading: Overview
-  descriptions: |
-    Organ Mapping Antibody Panels (OMAPs) are collections of antibodies that allow spatial mapping of the anatomical structures and cell types present in diverse organs using multiplexed antibody-based imaging (<a href="https://www.nature.com/articles/s41592-021-01316-y">Hickey et al, 2021</a>). 
-    The construction of an OMAP is an iterative, resource intensive process that requires domain expertise in tissue biology, spatial proteomics, and multiplexed imaging (<a href="https://www.nature.com/articles/s41596-019-0206-y">Du et al. 2019</a>, <a href="https://www.nature.com/articles/s41596-021-00644-9">Radtke et al. 2022</a>). 
-    To overcome these challenges, the Human BioMolecular Atlas Program (HuBMAP) is authoring and publishing OMAPs. 
-    These community-validated resources directly parallel efforts in the field of flow cytometry to publish Optimized Multicolor Immunofluorescence Panels (OMIPs) (<a href="https://onlinelibrary.wiley.com/doi/10.1002/cyto.a.20916">Mahnke, Chattopadhyay, and Roederer 2010</a>, 
-    <a href="https://onlinelibrary.wiley.com/doi/10.1002/cyto.a.20959">Roederer and Tárnok 2010</a>). In contrast to existing antibody validation resources such as the 
-    <a href="https://avr.hubmapconsortium.org/">HuBMAP Antibody Validation Report</a> and <a href="https://www.proteinatlas.org/humanproteome/tissue">Human Protein Atlas</a>, OMAPs additionally provide experimental details relevant for their successful application, e.g., tissue preservation method, imaging method, antigen retrieval conditions, and antibody cycling order. 
-    The end result is an assembly of expertly curated antibodies that work together in a single tissue section. The panels presented here are authored and reviewed by experts in pathology, tissue biology, and multiplexed imaging. Information on antibody lots and recommended concentrations vary across experiments and, in the case of antibody dilutions, must be empirically determined.
-    
-    To facilitate tissue mapping efforts within and beyond the HuBMAP community, OMAPs are designed for integration with the ASCT+B Reporter 
-    (<a href="https://www.nature.com/articles/s41556-021-00788-6">Börner et al. 2021</a>), a state-of-the-art visualization tool <a href="https://hubmapconsortium.github.io/ccf-asct-reporter">https://hubmapconsortium.github.io/ccf-asct-reporter</a>.
-    We strongly encourage inclusion of blood endothelial markers to empower construction of a human reference atlas using the vasculature common coordinate framework (VCCF), originally proposed by Dr. Zorina Galis 
-    (<a href="https://www.youtube.com/watch?v=ZGYU_dsb0j4&ab_channel=CyberinfrastructureforNetworkScienceCenter%28CNS%29">Galis 2019</a>) and expanded upon here (<a href="https://www.frontiersin.org/articles/10.3389/fcvm.2020.00029/full">Weber, Ju, and Börner 2020</a>). We additionally recommend the inclusion of antibodies directed against one or more lymphatic endothelial markers to further our understanding of the “yet to be charted” human lymphatic system (<a href="https://www.nature.com/articles/s41591-022-01865-5">Radtke, Lukacs et al, 2022</a>), <a href="https://www.nhlbi.nih.gov/events/2021/yet-be-charted-mapping-lymphatic-system-across-body-scales-and-expertise-domains">NHLBI, NIH 2021</a>), <a href="https://www.niddk.nih.gov/news/meetings-workshops/2022/yet-to-be-charted-lymphatic-system-in-health-and-disease">National Heart, Lung, and Blood Institute (NHLBI), and National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK), 2022</a>).
+- type: announcement
+  announcementCard:
+  - message: "The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in "
+    route: 'v1.3'
+    routeText: '4th Release Notes.'
+    emoji: '🎉'
 
-goalsForOmaps:
-- heading: Goals for OMAP's
-  descriptions: |
-   - Offset the considerable time (6-8 months) and cost (~$30-60,000 in 2022 USD) associated with creating such resources de novo
-   - Standardize data acquisition for multiplexed tissue imaging studies
-   - Empower construction of atlases from healthy and diseased human tissues
-   - Support the spatial biology community by aggregating highly cited antibody clones
-   - Identify essential markers for anatomical structures and cell types in diverse human organs
+- type: margin
+  bottom: 2.5rem
 
-sopData:
-- urls: 'SOP: Construction of Organ Mapping Antibody Panels for Multiplexed Antibody-Based Imaging of Human Tissues'
-  href: https://doi.org/10.5281/zenodo.5749882
+- type: page-data
+  pageData:
+  - heading: Overview
+    descriptions: |
+      Organ Mapping Antibody Panels (OMAPs) are collections of antibodies that allow spatial mapping of the anatomical structures and cell types present in diverse organs using multiplexed antibody-based imaging (<a href="https://www.nature.com/articles/s41592-021-01316-y">Hickey et al, 2021</a>). 
+      The construction of an OMAP is an iterative, resource intensive process that requires domain expertise in tissue biology, spatial proteomics, and multiplexed imaging (<a href="https://www.nature.com/articles/s41596-019-0206-y">Du et al. 2019</a>, <a href="https://www.nature.com/articles/s41596-021-00644-9">Radtke et al. 2022</a>). 
+      To overcome these challenges, the Human BioMolecular Atlas Program (HuBMAP) is authoring and publishing OMAPs. 
+      These community-validated resources directly parallel efforts in the field of flow cytometry to publish Optimized Multicolor Immunofluorescence Panels (OMIPs) (<a href="https://onlinelibrary.wiley.com/doi/10.1002/cyto.a.20916">Mahnke, Chattopadhyay, and Roederer 2010</a>, 
+      <a href="https://onlinelibrary.wiley.com/doi/10.1002/cyto.a.20959">Roederer and Tárnok 2010</a>). In contrast to existing antibody validation resources such as the 
+      <a href="https://avr.hubmapconsortium.org/">HuBMAP Antibody Validation Report</a> and <a href="https://www.proteinatlas.org/humanproteome/tissue">Human Protein Atlas</a>, OMAPs additionally provide experimental details relevant for their successful application, e.g., tissue preservation method, imaging method, antigen retrieval conditions, and antibody cycling order. 
+      The end result is an assembly of expertly curated antibodies that work together in a single tissue section. The panels presented here are authored and reviewed by experts in pathology, tissue biology, and multiplexed imaging. Information on antibody lots and recommended concentrations vary across experiments and, in the case of antibody dilutions, must be empirically determined.
+      
+      To facilitate tissue mapping efforts within and beyond the HuBMAP community, OMAPs are designed for integration with the ASCT+B Reporter 
+      (<a href="https://www.nature.com/articles/s41556-021-00788-6">Börner et al. 2021</a>), a state-of-the-art visualization tool <a href="https://hubmapconsortium.github.io/ccf-asct-reporter">https://hubmapconsortium.github.io/ccf-asct-reporter</a>.
+      We strongly encourage inclusion of blood endothelial markers to empower construction of a human reference atlas using the vasculature common coordinate framework (VCCF), originally proposed by Dr. Zorina Galis 
+      (<a href="https://www.youtube.com/watch?v=ZGYU_dsb0j4&ab_channel=CyberinfrastructureforNetworkScienceCenter%28CNS%29">Galis 2019</a>) and expanded upon here (<a href="https://www.frontiersin.org/articles/10.3389/fcvm.2020.00029/full">Weber, Ju, and Börner 2020</a>). We additionally recommend the inclusion of antibodies directed against one or more lymphatic endothelial markers to further our understanding of the “yet to be charted” human lymphatic system (<a href="https://www.nature.com/articles/s41591-022-01865-5">Radtke, Lukacs et al, 2022</a>), <a href="https://www.nhlbi.nih.gov/events/2021/yet-be-charted-mapping-lymphatic-system-across-body-scales-and-expertise-domains">NHLBI, NIH 2021</a>), <a href="https://www.niddk.nih.gov/news/meetings-workshops/2022/yet-to-be-charted-lymphatic-system-in-health-and-disease">National Heart, Lung, and Blood Institute (NHLBI), and National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK), 2022</a>).
 
-referencesData:
-- heading: References
-  descriptions: |
-    Börner, Katy, Sarah A. Teichmann, Ellen M. Quardokus, James C. Gee, Kristen Browne, David Osumi-Sutherland, Bruce W. Herr, et al. 2021.
-    Anatomical Structures, Cell Types and Biomarkers of the Human Reference Atlas. Nature Cell Biology 23 (11): 1117-28. https://doi.org/10.1038/s41556-021-00788-6.
+- type: page-data
+  pageData:
+  - heading: Goals for OMAP's
+    descriptions: |
+      - Offset the considerable time (6-8 months) and cost (~$30-60,000 in 2022 USD) associated with creating such resources de novo
+      - Standardize data acquisition for multiplexed tissue imaging studies
+      - Empower construction of atlases from healthy and diseased human tissues
+      - Support the spatial biology community by aggregating highly cited antibody clones
+      - Identify essential markers for anatomical structures and cell types in diverse human organs
 
-    Du, Ziming, Jia-Ren Lin, Rumana Rashid, Zoltan Maliga, Shu Wang, Jon C. Aster, Benjamin Izar, Peter K. Sorger, and Sandro Santagata. 2019. “Qualifying Antibodies for Image-Based Immune Profiling and Multiplexed Tissue Imaging.” Nature Protocols 14 (10): 2900–2930. https://doi.org/10.1038/s41596-019-0206-y
+- type: sop-links
+  sopData:
+    title: Standard Operating Procedures (SOP)
+    href:
+      - urls: 'SOP: Construction of Organ Mapping Antibody Panels for Multiplexed Antibody-Based Imaging of Human Tissues'
+        href: https://doi.org/10.5281/zenodo.5749882
 
-    Galis, Zorina S. 2019. Common Coordinate Framework (CCF) Workshop Anatomical Mapping: Using the Vasculature for CCF. Indiana University. https://www.youtube.com/watch?v=ZGYU_dsb0j4.
+- type: margin
+  bottom: 2.5rem
 
-    Galis, Zorina S. 2020. “Editorial: Where Is Waldo: Contextualizing the Endothelial Cell in the Era of Precision Biology.” Frontiers in Cardiovascular Medicine 7. https://doi.org/10.3389/fcvm.2020.00127.
+- type: sop-links
+  sopData:
+    title: OMAP Construction Templates
+    href:
+      - urls: OMAP Table Template harmonized with Antibody Validation Reports
+        href: https://hubmapconsortium.github.io/ccf/pages/omap-extras/omap-table-template.xlsx
+      - urls: OMAP Description Document Template
+        href: https://hubmapconsortium.github.io/ccf/pages/omap-extras/omap-description-document-template.docx
 
-    Mahnke, Yolanda, Pratip Chattopadhyay, and Mario Roederer. 2010. “Publication of Optimized Multicolor Immunofluorescence Panels.” Cytometry. Part A : The Journal of the International Society for Analytical Cytology 77 (9): 814–18. https://doi.org/10.1002/cyto.a.20916.
+- type: margin
+  bottom: 2.5rem
 
-    Radtke Andrea J., Chu Colin J, Yaniv Ziv, Yao Li, Marr James, Beuschel Rebecca T, Ichise Hiroshi, et al. 2021. “Accompanying Dataset for: ‘IBEX: An Iterative Immunolabeling and Chemical Bleaching Method for High-Content Imaging of Diverse Tissues.’” Zenodo. https://doi.org/10.5281/zenodo.5244551.
+- type: sop-links
+  sopData:
+    title: Frequently Asked Questions (FAQs)
+    href:
+      - urls: Frequently Asked Questions (FAQs) for OMAPs
+        href: /faq/omap
 
-    Roederer, Mario, and Attila Tárnok. 2010. “OMIPs—Orchestrating Multiplexity in Polychromatic Science.” Cytometry Part A 77A (9): 811–12. https://doi.org/10.1002/cyto.a.20959.
+- type: margin
+  bottom: 2rem
 
-    Weber, Griffin M., Yingnan Ju, and Katy Börner. 2020. “Considerations for Using the Vasculature as a Coordinate System to Map All the Cells in the Human Body.” Frontiers in Cardiovascular Medicine 7: 29. https://doi.org/10.3389/fcvm.2020.00029.
-  
-omapsVersionData:
-- release: '4th HRA Release (v1.3), December 2022'
-  file: omaps_release4.csv
-  version: '4'
-- release: '3rd HRA Release (v1.2), June 2022'
-  file: omaps_release3.csv
-  version: '3'
-- release: '2nd HRA Release (v1.1), December 2021'
-  file: omaps_release2.csv
-  version: '2'
+- type: title
+  title: Existing OMAPs
+  styles:
+    font-weight: 300
+    font-size: 1.5rem
+    line-height: 2.75rem
+    margin-bottom: 1.5rem
+  class: card-title
 
-omapHeaders:
-- columnDef: omapId
-  header: OMAP ID
-  cell: "`${element['omapId']}`"
-  alignment: left
-- columnDef: organ
-  header: Organ
-  cell: "`<a class=\"cell-link\" href=\"${element['url'] || 'TODO:Please add a url column to this .csv!'}\">${element['organ']}</a>`"
-  alignment: start
-- columnDef: tissuePreservationMethod
-  header: Tissue Preservation Method
-  cell: "`${element['tissuePreservationMethod']}`"
-  alignment: start
-- columnDef: imagingMethod
-  header: Multiplexed antibody-based imaging method
-  cell: "`${element['imagingMethod']}`"
-  alignment: start
-- columnDef: csv
-  header: Download
-  cell: "`<a class=\"cell-link\" href=\"${element['csv'] || 'TODO:Please add a url column to this .csv!'}\">CSV</a> | <a class=\"cell-link\" href=\"${element['xlsx'] || 'TODO:Please add a url column to this .csv!'}\">XLSX</a>`"
-  sorting: false
-  isTotalRequired: true
-  alignment: "start"
-- columnDef: 'as'
-  header: '#AS'
-  cell: "`${element['as']}`"
-  alignment: "end"
-- columnDef: 'ct'
-  header: '#CT'
-  cell: "`${element['ct']}`"
-  alignment: "end"
-- columnDef: 'bp'
-  header: '#BP'
-  cell: "`${element['bp']}`"
-  alignment: "end"
+- type: tableVersion
+  isTotal: true
+  versionData:
+  - release: '4th HRA Release (v1.3), December 2022'
+    file: omaps_release4.csv
+    version: '4'
+  - release: '3rd HRA Release (v1.2), June 2022'
+    file: omaps_release3.csv
+    version: '3'
+  - release: '2nd HRA Release (v1.1), December 2021'
+    file: omaps_release2.csv
+    version: '2'
+  headerInfo:
+  - columnDef: omapId
+    header: OMAP ID
+    cell: "`${element['omapId']}`"
+    alignment: left
+  - columnDef: organ
+    header: Organ
+    cell: "`<a class=\"cell-link\" href=\"${element['url'] || 'TODO:Please add a url column to this .csv!'}\">${element['organ']}</a>`"
+    alignment: start
+  - columnDef: tissuePreservationMethod
+    header: Tissue Preservation Method
+    cell: "`${element['tissuePreservationMethod']}`"
+    alignment: start
+  - columnDef: imagingMethod
+    header: Multiplexed antibody-based imaging method
+    cell: "`${element['imagingMethod']}`"
+    alignment: start
+  - columnDef: csv
+    header: Download
+    cell: "`<a class=\"cell-link\" href=\"${element['csv'] || 'TODO:Please add a url column to this .csv!'}\">CSV</a> | <a class=\"cell-link\" href=\"${element['xlsx'] || 'TODO:Please add a url column to this .csv!'}\">XLSX</a>`"
+    sorting: false
+    isTotalRequired: true
+    alignment: "start"
+  - columnDef: 'as'
+    header: '#AS'
+    cell: "`${element['as']}`"
+    alignment: "end"
+  - columnDef: 'ct'
+    header: '#CT'
+    cell: "`${element['ct']}`"
+    alignment: "end"
+  - columnDef: 'bp'
+    header: '#BP'
+    cell: "`${element['bp']}`"
+    alignment: "end"
+
+- type: page-data
+  pageData:
+  - heading: References
+    descriptions: |
+      Börner, Katy, Sarah A. Teichmann, Ellen M. Quardokus, James C. Gee, Kristen Browne, David Osumi-Sutherland, Bruce W. Herr, et al. 2021.
+      Anatomical Structures, Cell Types and Biomarkers of the Human Reference Atlas. Nature Cell Biology 23 (11): 1117-28. https://doi.org/10.1038/s41556-021-00788-6.
+
+      Du, Ziming, Jia-Ren Lin, Rumana Rashid, Zoltan Maliga, Shu Wang, Jon C. Aster, Benjamin Izar, Peter K. Sorger, and Sandro Santagata. 2019. “Qualifying Antibodies for Image-Based Immune Profiling and Multiplexed Tissue Imaging.” Nature Protocols 14 (10): 2900–2930. https://doi.org/10.1038/s41596-019-0206-y
+
+      Galis, Zorina S. 2019. Common Coordinate Framework (CCF) Workshop Anatomical Mapping: Using the Vasculature for CCF. Indiana University. https://www.youtube.com/watch?v=ZGYU_dsb0j4.
+
+      Galis, Zorina S. 2020. “Editorial: Where Is Waldo: Contextualizing the Endothelial Cell in the Era of Precision Biology.” Frontiers in Cardiovascular Medicine 7. https://doi.org/10.3389/fcvm.2020.00127.
+
+      Mahnke, Yolanda, Pratip Chattopadhyay, and Mario Roederer. 2010. “Publication of Optimized Multicolor Immunofluorescence Panels.” Cytometry. Part A : The Journal of the International Society for Analytical Cytology 77 (9): 814–18. https://doi.org/10.1002/cyto.a.20916.
+
+      Radtke Andrea J., Chu Colin J, Yaniv Ziv, Yao Li, Marr James, Beuschel Rebecca T, Ichise Hiroshi, et al. 2021. “Accompanying Dataset for: ‘IBEX: An Iterative Immunolabeling and Chemical Bleaching Method for High-Content Imaging of Diverse Tissues.’” Zenodo. https://doi.org/10.5281/zenodo.5244551.
+
+      Roederer, Mario, and Attila Tárnok. 2010. “OMIPs—Orchestrating Multiplexity in Polychromatic Science.” Cytometry Part A 77A (9): 811–12. https://doi.org/10.1002/cyto.a.20959.
+
+      Weber, Griffin M., Yingnan Ju, and Katy Börner. 2020. “Considerations for Using the Vasculature as a Coordinate System to Map All the Cells in the Human Body.” Frontiers in Cardiovascular Medicine 7: 29. https://doi.org/10.3389/fcvm.2020.00029.

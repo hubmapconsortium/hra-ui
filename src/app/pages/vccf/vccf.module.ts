@@ -5,6 +5,7 @@ import { PageHeaderModule } from '../../components/page-header/page-header.modul
 import { PageDataModule } from '../../components/page-data/page-data.module';
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
 import { VccfComponent } from './vccf.component';
+import { PageRendererModule } from 'src/app/components/page-renderer/page-renderer.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { VccfComponent } from './vccf.component';
     BrowserAnimationsModule,
     PageHeaderModule,
     PageDataModule,
-    AnnouncementCardModule
+    AnnouncementCardModule,
+    PageRendererModule
 
   ],
   providers: [],

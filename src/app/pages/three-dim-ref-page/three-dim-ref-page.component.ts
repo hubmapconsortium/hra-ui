@@ -7,6 +7,24 @@ import { PageHeaderItems } from '../../components/page-header/page-header-items'
 import { SopLinks } from '../../components/sop-links/sop-links';
 import { OrganData, VersionOrgans } from '../../components/two-dim-image/two-dim-image';
 
+interface ThreeDimRefPage {
+  headerData: PageHeaderItems[];
+  overviewData: PageDataItems[];
+  organCsvButton: UseButton;
+  versionData: ChooseVersion[];
+  sopData:SopLinks;
+  termsOfUseData: PageDataItems[];
+  licenseData: PageDataItems[];
+  citationData: PageDataItems[];
+  referencesData: PageDataItems[];
+  referenceOrgans: PageDataItems[];
+  threeDimOrganInfo: VersionOrgans[];
+  cardTitle: string;
+  tabsImages:OrganData[];
+  organData: OrganData[];
+  information: VersionOrgans;
+  placeholderDate: ChooseVersion;
+}
 
 function iCaseEquals(str1: string, str2: string): boolean {
   return str1.toLowerCase() === str2.toLowerCase();
@@ -18,37 +36,25 @@ function iCaseEquals(str1: string, str2: string): boolean {
   styleUrls: ['./three-dim-ref-page.component.scss']
 })
 export class ThreeDimRefPageComponent {
-  headerData: PageHeaderItems[];
-  overviewData: PageDataItems[];
-  organCsvButton: UseButton;
-  versionData: ChooseVersion[];
-  sopData:SopLinks[];
-  termsOfUseData: PageDataItems[];
-  licenseData: PageDataItems[];
-  citationData: PageDataItems[];
-  referencesData: PageDataItems[];
-  referenceOrgans: PageDataItems[];
-  threeDimOrganInfo: VersionOrgans[];
   cardTitle = '';
   tabsImages:OrganData[];
   organData: OrganData[];
   information: VersionOrgans;
-  placeholderDate: ChooseVersion;
+  data = this.route.snapshot.data['content'] as ThreeDimRefPage;
+  overviewData = this.data.overviewData;
+  organCsvButton = this.data.organCsvButton;
+  headerData = this.data.headerData;
+  termsOfUseData = this.data.termsOfUseData;
+  versionData = this.data.versionData;
+  sopData = this.data.sopData;
+  threeDimOrganInfo = this.data.threeDimOrganInfo;
+  licenseData = this.data.licenseData;
+  citationData = this.data.citationData;
+  referencesData = this.data.referencesData;
+  referenceOrgans = this.data.referenceOrgans;
+  placeholderDate = this.versionData[0];
 
-  constructor(private router: Router, private route: ActivatedRoute) {
-    const data = route.snapshot.data['content'];
-    this.overviewData = data.overviewData;
-    this.organCsvButton = data.organCsvButton;
-    this.headerData = data.headerData;
-    this.termsOfUseData = data.termsOfUseData;
-    this.versionData = data.versionData;
-    this.sopData = data.sopData;
-    this.threeDimOrganInfo = data.threeDimOrganInfo;
-    this.licenseData = data.licenseData;
-    this.citationData = data.citationData;
-    this.referencesData = data.referencesData;
-    this.referenceOrgans = data.referenceOrgans;
-    this.placeholderDate = this.versionData[0];
+  constructor(private router: Router, private readonly route: ActivatedRoute) {
     const [{ version: defaultVersion, organData: [{ name: defaultOrgan }] }] = this.threeDimOrganInfo;
     const { version = defaultVersion, organ = defaultOrgan } = this.route.snapshot.queryParams;
     this.setVersion(`${version}`, `${organ}`);

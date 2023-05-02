@@ -1,0 +1,8 @@
+:host {
+  max-width: 77rem;
+
+  @media (max-width: 80rem) {
+    padding: 0rem 1rem;
+    max-width: 100vw;
+  }
+}

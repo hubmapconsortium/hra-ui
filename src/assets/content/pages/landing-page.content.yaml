@@ -1,84 +1,236 @@
-title: Human Reference Atlas
-subtitle: 3D Multiscale Biomolecular Human Reference Atlas Construction, Visualization and Usage
-cardsHeading: Explore the Human Reference Atlas
+# title: Human Reference Atlas
+# subtitle: 3D Multiscale Biomolecular Human Reference Atlas Construction, Visualization and Usage
+# cardsHeading: Explore the Human Reference Atlas
 
-carouselInfo:
-  - title: Map the human body at single cell resolution
-    body: Learn more about the thousands of experts building a Human Reference Atlas.
-    image: assets/images/carousel1.svg
-    url: https://doi.org/10.1038/s41556-021-00788-6
-  - title: Contribute data to the Human Reference Atlas
-    body: Register your data spatially using the Registration User Interface tool.
-    image: assets/images/carousel2.svg
-    route: registration-user-interface
-  - title: Compare data to the Human Reference Atlas
-    body: Use the ASCT+B Reporter tool to explore data in the context of the Human Reference Atlas.
-    image: assets/images/carousel3.svg
-    route: asctb-reporter
-  - title: Search for a cell type, gene, or protein
-    body: Explore cell type populations with via Cell Type Population graph tool.
-    image: assets/images/carousel4.svg
-    route: cell-population-graphs
-  - title: Search for data across levels-from the whole body down to single cells
-    body: Explore Human Reference Atlas data with the Exploration User Interface tool.
-    image: assets/images/carousel5.svg
-    route: exploration-user-interface
-  - title: Learn more about the Human BioMolecular Atlas Program
-    body: Explore HuBMAP data, code, and documentation using the HuBMAP Data Portal.
-    image: assets/images/carousel6.svg
-    url: https://portal.hubmapconsortium.org/
+# carouselInfo:
+#   - title: Map the human body at single cell resolution
+#     body: Learn more about the thousands of experts building a Human Reference Atlas.
+#     image: assets/images/carousel1.svg
+#     url: https://doi.org/10.1038/s41556-021-00788-6
+#   - title: Contribute data to the Human Reference Atlas
+#     body: Register your data spatially using the Registration User Interface tool.
+#     image: assets/images/carousel2.svg
+#     route: registration-user-interface
+#   - title: Compare data to the Human Reference Atlas
+#     body: Use the ASCT+B Reporter tool to explore data in the context of the Human Reference Atlas.
+#     image: assets/images/carousel3.svg
+#     route: asctb-reporter
+#   - title: Search for a cell type, gene, or protein
+#     body: Explore cell type populations with via Cell Type Population graph tool.
+#     image: assets/images/carousel4.svg
+#     route: cell-population-graphs
+#   - title: Search for data across levels-from the whole body down to single cells
+#     body: Explore Human Reference Atlas data with the Exploration User Interface tool.
+#     image: assets/images/carousel5.svg
+#     route: exploration-user-interface
+#   - title: Learn more about the Human BioMolecular Atlas Program
+#     body: Explore HuBMAP data, code, and documentation using the HuBMAP Data Portal.
+#     image: assets/images/carousel6.svg
+#     url: https://portal.hubmapconsortium.org/
 
-cards:
-  - title: Data
-    description: Research the data constructing Human Reference Atlas
-    image: assets/images/data_svg.svg
-    gif: assets/images/data_gif.gif
-    route: overview-data
-  - title: CCF Ontology
-    description: Discover the Common Coordinate Framework Ontology
-    image: assets/images/ontology_svg.svg
-    gif: assets/images/ontology_gif.gif
-    route: ccf-ontology
-  - title: Tools
-    description: Construct, visualize, and use the tools of the Human Reference Atlas
-    image: assets/images/tools_svg.svg
-    gif: assets/images/tools_gif.gif
-    route: overview-tools
-  - title: Training and Outreach
-    description: Check out HuBMAP's education and engagement efforts
-    image: assets/images/training_outreach_svg.svg
-    gif: assets/images/training-outreach.gif
-    route: overview-training-outreach
-messages:
-  - message: The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in
-    route: release-notes/v1.3
-    routeText: 4th Release Notes
+# cards:
+#   - title: Data
+#     description: Research the data constructing Human Reference Atlas
+#     image: assets/images/data_svg.svg
+#     gif: assets/images/data_gif.gif
+#     route: overview-data
+#   - title: CCF Ontology
+#     description: Discover the Common Coordinate Framework Ontology
+#     image: assets/images/ontology_svg.svg
+#     gif: assets/images/ontology_gif.gif
+#     route: ccf-ontology
+#   - title: Tools
+#     description: Construct, visualize, and use the tools of the Human Reference Atlas
+#     image: assets/images/tools_svg.svg
+#     gif: assets/images/tools_gif.gif
+#     route: overview-tools
+#   - title: Training and Outreach
+#     description: Check out HuBMAP's education and engagement efforts
+#     image: assets/images/training_outreach_svg.svg
+#     gif: assets/images/training-outreach.gif
+#     route: overview-training-outreach
+# messages:
+#   - message: The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in
+#     route: release-notes/v1.3
+#     routeText: 4th Release Notes
 
-countCardData:
-  - image: assets/images/consortia.svg
-    count: 17
-    text: consortia
-  - image: assets/images/experts.svg
-    count: 250+
-    text: experts
-  - image: assets/images/publications.svg
-    count: 1,000+
-    text: publications
-  - image: assets/images/organs_metric.svg
-    count: 56
-    text: organs
-  - image: assets/images/anatomical-structures.svg
-    count: 2,665
-    text: anatomical structures
-  - image: assets/images/cell-types.svg
-    count: 953
-    text: cell types
-  - image: assets/images/biomarkers.svg
-    count: 2,842
-    text: biomarkers
-  - image: assets/images/omap.svg
-    count: 7
-    text: organ mapping antibody panels
-  - image: assets/images/ftu.svg
-    count: 19
-    text: functional tissue units
+# countCardData:
+#   - image: assets/images/consortia.svg
+#     count: 17
+#     text: consortia
+#   - image: assets/images/experts.svg
+#     count: 250+
+#     text: experts
+#   - image: assets/images/publications.svg
+#     count: 1,000+
+#     text: publications
+#   - image: assets/images/organs_metric.svg
+#     count: 56
+#     text: organs
+#   - image: assets/images/anatomical-structures.svg
+#     count: 2,665
+#     text: anatomical structures
+#   - image: assets/images/cell-types.svg
+#     count: 953
+#     text: cell types
+#   - image: assets/images/biomarkers.svg
+#     count: 2,842
+#     text: biomarkers
+#   - image: assets/images/omap.svg
+#     count: 7
+#     text: organ mapping antibody panels
+#   - image: assets/images/ftu.svg
+#     count: 19
+#     text: functional tissue units
+    
+- type: styled-group
+  class: main-content
+  styles:
+    margin-top: 2.5rem
+    padding-bottom: 1rem
+    display: flex
+    flex-direction: row
+  components:
+  - type: image
+    imageSource: assets/images/hubmap_dude.svg
+    styles:
+      height: 4.375rem
+      width: 3.125rem
+      object-fit: contain
+    class: landing-img
+  - type: styled-group
+    styles:
+    components:
+    - type: text
+      text: Human Reference Atlas
+      styles:
+        font-size: 2.25rem
+        line-height: 2.125rem
+        color: rgb(33,33,33)
+        font-weight: 300
+        letter-spacing: 0.005rem
+      class: landing-title
+    - type: text
+      text: 3D Multiscale Biomolecular Human Reference Atlas Construction, Visualization and Usage
+      styles:
+        font-size: 1.75rem
+        font-weight: 300
+        color: rgb(68,68,101)
+        line-height: 2.125rem
+      class: landing-subtitle
+
+- type: announcement
+  announcementCard:
+  - message: "The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in "
+    route: 'v1.3'
+    routeText: '4th Release Notes.'
+    emoji: '🎉'
+
+- type: simpleTile
+  description:
+  - title: "A <span class=\"hra-bold\">Common Coordinate Framework (CCF)</span> for a human body provides a unique address for each cell in the human body. It is similar to the latitude-longitude system used to navigate a world map."
+  - title: "A <span class=\"hra-bold\">Human Reference Atlas (HRA)</span> is a comprehensive, high-resolution, three-dimensional atlas of all the cells in the healthy human body. The Human Reference Atlas provides standard terminologies and data structures for describing specimens, biological structures, and spatial positions linked to existing ontologies."
+
+- type: margin
+  bottom: 2.5rem
+    
+- type: carousel
+  containerStyles:
+    width: min(77rem,calc(100vw - 32px))
+  carouselInfo:
+    - title: Map the human body at single cell resolution
+      body: Learn more about the thousands of experts building a Human Reference Atlas.
+      image: assets/images/carousel1.svg
+      url: https://doi.org/10.1038/s41556-021-00788-6
+    - title: Contribute data to the Human Reference Atlas
+      body: Register your data spatially using the Registration User Interface tool.
+      image: assets/images/carousel2.svg
+      route: registration-user-interface
+    - title: Compare data to the Human Reference Atlas
+      body: Use the ASCT+B Reporter tool to explore data in the context of the Human Reference Atlas.
+      image: assets/images/carousel3.svg
+      route: asctb-reporter
+    - title: Search for a cell type, gene, or protein
+      body: Explore cell type populations with via Cell Type Population graph tool.
+      image: assets/images/carousel4.svg
+      route: cell-population-graphs
+    - title: Search for data across levels-from the whole body down to single cells
+      body: Explore Human Reference Atlas data with the Exploration User Interface tool.
+      image: assets/images/carousel5.svg
+      route: exploration-user-interface
+    - title: Learn more about the Human BioMolecular Atlas Program
+      body: Explore HuBMAP data, code, and documentation using the HuBMAP Data Portal.
+      image: assets/images/carousel6.svg
+      url: https://portal.hubmapconsortium.org/
+
+- type: margin
+  bottom: 2.5rem
+
+- type: countCard
+  countCardInfo:
+    - image: assets/images/consortia.svg
+      count: 17
+      text: consortia
+    - image: assets/images/experts.svg
+      count: 250+
+      text: experts
+    - image: assets/images/publications.svg
+      count: 1,000+
+      text: publications
+    - image: assets/images/organs_metric.svg
+      count: 56
+      text: organs
+    - image: assets/images/anatomical-structures.svg
+      count: 2,665
+      text: anatomical structures
+    - image: assets/images/cell-types.svg
+      count: 953
+      text: cell types
+    - image: assets/images/biomarkers.svg
+      count: 2,842
+      text: biomarkers
+    - image: assets/images/omap.svg
+      count: 7
+      text: organ mapping antibody panels
+    - image: assets/images/ftu.svg
+      count: 19
+      text: functional tissue units
+
+- type: margin
+  bottom: 3.5rem
+
+- type: title
+  title: Explore the Human Reference Atlas
+  styles:
+    font-weight: 300
+    font-size: 2.25rem
+    line-height: 2.75rem
+  class: card-title
+
+- type: margin
+  bottom: 2rem
+
+- type: sectionCard
+  cardsInfo:
+    - title: Data
+      description: Research the data constructing Human Reference Atlas
+      image: assets/images/data_svg.svg
+      gif: assets/images/data_gif.gif
+      route: overview-data
+    - title: CCF Ontology
+      description: Discover the Common Coordinate Framework Ontology
+      image: assets/images/ontology_svg.svg
+      gif: assets/images/ontology_gif.gif
+      route: ccf-ontology
+    - title: Tools
+      description: Construct, visualize, and use the tools of the Human Reference Atlas
+      image: assets/images/tools_svg.svg
+      gif: assets/images/tools_gif.gif
+      route: overview-tools
+    - title: Training and Outreach
+      description: Check out HuBMAP's education and engagement efforts
+      image: assets/images/training_outreach_svg.svg
+      gif: assets/images/training-outreach.gif
+      route: overview-training-outreach
+
+

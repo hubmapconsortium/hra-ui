@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PageComponent } from './components/page/page.component';
 import { AboutComponent } from './pages/about/about.component';
 import { CcfAsctbAzimuthComponent } from './pages/ccf-asctb-azimuth/ccf-asctb-azimuth.component';
 import { CcfReporterPageComponent } from './pages/ccf-asctb-reporter-page/ccf-asctb-reporter-page.component';
@@ -33,20 +34,20 @@ import { ContentResolver } from './services/content-resolver/conent-resolver.ser
 const routes: Routes = [
   {
     path: '',
-    component: LandingPageComponent,
+    component: PageComponent,
     pathMatch: 'full',
     data: { contentFile: 'landing-page.content' },
     resolve: { content: ContentResolver },
   },
   {
     path: 'overview-data',
-    component: OverviewDataComponent,
+    component: PageComponent,
     data: { contentFile: 'overview-data.content' },
     resolve: { content: ContentResolver },
   },
   {
     path: 'asctb-tables',
-    component: CcfTablePageComponent,
+    component: PageComponent,
     data: {
       contentFile: 'ccf-anatomical-structures.content',
     },
@@ -62,13 +63,13 @@ const routes: Routes = [
   },
   {
     path: 'overview-tools',
-    component: OverviewToolsComponent,
+    component: PageComponent,
     data: { contentFile: 'overview-tools.content' },
     resolve: { content: ContentResolver },
   },
   {
     path: 'ccf-ontology',
-    component: CcfOntologyComponent,
+    component: PageComponent,
     data: {
       contentFile: 'ccf-ontology.content',
     },
@@ -76,7 +77,7 @@ const routes: Routes = [
   },
   {
     path: 'asctb-reporter',
-    component: CcfReporterPageComponent,
+    component: PageComponent,
     data: {
       contentFile: 'ccf-asctb-reporter.content',
     },
@@ -84,7 +85,7 @@ const routes: Routes = [
   },
   {
     path: 'exploration-user-interface',
-    component: CcfExplorationUserInterfaceComponent,
+    component: PageComponent,
     data: {
       contentFile: 'ccf-exploration-user-interface.content',
     },
@@ -92,7 +93,7 @@ const routes: Routes = [
   },
   {
     path: 'hra-millitome',
-    component: HraMillitomeComponent,
+    component: PageComponent,
     data: {
       contentFile: 'hra-millitome.content',
     },
@@ -100,7 +101,7 @@ const routes: Routes = [
   },
   {
     path: 'registration-user-interface',
-    component: RegistrationUserInterfaceComponent,
+    component: PageComponent,
     data: {
       contentFile: 'registrationUserInterface.content',
     },
@@ -108,7 +109,7 @@ const routes: Routes = [
   },
   {
     path: 'cell-population-graphs',
-    component: CellPopulationGraphsComponent,
+    component: PageComponent,
     data: {
       contentFile: 'ccf-cell-population-graphs.content',
     },
@@ -116,7 +117,7 @@ const routes: Routes = [
   },
   {
     path: 'api',
-    component: HraApiComponent,
+    component: PageComponent,
     data: {
       contentFile: 'hra-api.content',
     },
@@ -124,13 +125,13 @@ const routes: Routes = [
   },
   {
     path: 'team',
-    component: AboutComponent,
+    component: PageComponent,
     data: { contentFile: 'about.content' },
     resolve: { content: ContentResolver },
   },
   {
     path: 'overview-training-outreach',
-    component: OverviewTrainingOutreachComponent,
+    component: PageComponent,
     data: {
       contentFile: 'overviewTrainingOutreach.content',
     },
@@ -138,7 +139,7 @@ const routes: Routes = [
   },
   {
     path: 'omap',
-    component: OmapsComponent,
+    component: PageComponent,
     data: { contentFile: 'omaps.content' },
     resolve: { content: ContentResolver },
   },
@@ -152,7 +153,7 @@ const routes: Routes = [
   },
   {
     path: 'asctb-azimuth',
-    component: CcfAsctbAzimuthComponent,
+    component: PageComponent,
     data: {
       contentFile: 'ccfAsctbAzimuth.content',
     },
@@ -160,7 +161,7 @@ const routes: Routes = [
   },
   {
     path: 'usage-metrics',
-    component: HraUsageMetricsComponent,
+    component: PageComponent,
     data: {
       contentFile: 'hra-usage-metrics.content',
     },
@@ -173,7 +174,7 @@ const routes: Routes = [
   },
   {
     path: 'standard-operating-procedures',
-    component: HraSopComponent,
+    component: PageComponent,
     data: {
       contentFile: 'hra-sop.content',
     },
@@ -181,7 +182,7 @@ const routes: Routes = [
   },
   {
     path: 'kaggle-one',
-    component: KaggleTwentyoneComponent,
+    component: PageComponent,
     data: {
       contentFile: 'kaggle-twentyone.content',
     },
@@ -189,7 +190,7 @@ const routes: Routes = [
   },
   {
     path: 'kaggle-two',
-    component: KaggleTwoComponent,
+    component: PageComponent,
     data: {
       contentFile: 'kaggle-two.content',
     },
@@ -197,7 +198,7 @@ const routes: Routes = [
   },
   {
     path: 'hra-organ-gallery-in-vr',
-    component: CcfOrganVrGalleryComponent,
+    component: PageComponent,
     data: {
       contentFile: 'ccf-organ-vr-gallery.content',
     },
@@ -205,14 +206,15 @@ const routes: Routes = [
   },
   {
     path: 'editorial-board',
-    component: HraEditorialBoardComponent,
+    component: PageComponent,
     data: {
       contentFile: 'hra-editorial-board.content',
     },
     resolve: { content: ContentResolver },
   },
   {
-    path: 'faq/omap', component: OmapFaqComponent,
+    path: 'faq/omap', 
+    component: PageComponent,
     data: {
       contentFile: 'omap-faq.content'
     },
@@ -228,7 +230,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'vccf', component: VccfComponent,
+    path: 'vccf', component: PageComponent,
     data: {
       contentFile: 'vccf.content'
     },

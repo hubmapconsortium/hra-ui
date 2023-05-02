@@ -1,13 +1,39 @@
-headerCardData:
-- image: assets/images/cell_graphs.svg
-  title: Cell Population Graphs
-  subtitle: An interactive tool for exploring and comparing cell populations
+- type: header
+  headerCard:
+  - image: assets/images/cell_graphs.svg
+    title: Cell Population Graphs
+    subtitle: An interactive tool for exploring and comparing cell populations
 
-overviewData:
-- heading: Overview
-  descriptions: |
-    Visualization tool for comparing cell type distributions from single cell RNA sequencing datasets from HuBMAP and other public data portals. The number of cells per cell type in a dataset (e.g., derived from a tissue block, tissue section, or biopsy) is visualized as count or percentage in a bar graph. Datasets can be sorted by total cell count or tissue block location (for blocks that were registered via the tissue registration user interface (RUI) into a 3D reference organ model) and they can be grouped by dataset-specific properties (e.g., age, ethnicity, sex, or UV exposure).
+- type: announcement
+  announcementCard:
+  - message: "The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in "
+    route: 'v1.3'
+    routeText: '4th Release Notes.'
+    emoji: '🎉'
 
-buttonData:
+- type: margin
+  bottom: 2.5rem
+
+- type: page-data
+  pageData:
+  - heading: Overview
+    descriptions: |
+      Visualization tool for comparing cell type distributions from single cell RNA sequencing datasets from HuBMAP and other public data portals. The number of cells per cell type in a dataset (e.g., derived from a tissue block, tissue section, or biopsy) is visualized as count or percentage in a bar graph. Datasets can be sorted by total cell count or tissue block location (for blocks that were registered via the tissue registration user interface (RUI) into a 3D reference organ model) and they can be grouped by dataset-specific properties (e.g., age, ethnicity, sex, or UV exposure).
+
+
+- type: button
   text: Use the Cell Population Graphs
   url: https://hubmapconsortium.github.io/tissue-bar-graphs/
+
+
+- type: image
+  imageSource: assets/images/cell_pop_body_image.svg
+
+- type: page-data
+  pageData:
+  - heading:
+    descriptions: |
+      <strong>Figure 1.</strong> Ten datasets from the 
+      <a href="https://www.biorxiv.org/content/10.1101/2022.03.30.486438v1" target="_blank">
+          Human Digital Twin
+      </a>paper by Soumya et al.

@@ -6,6 +6,7 @@ import { CcfAsctbAzimuthComponent } from './ccf-asctb-azimuth.component';
 import { PageDataModule } from '../../components/page-data/page-data.module';
 import { TableModule } from '../../components/table/table.module';
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
+import { PageRendererModule } from 'src/app/components/page-renderer/page-renderer.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AnnouncementCardModule } from '../../components/announcement-card/annou
     PageHeaderModule,
     PageDataModule,
     TableModule,
-    AnnouncementCardModule
+    AnnouncementCardModule,
+    PageRendererModule
   ],
   providers: [],
   bootstrap: []

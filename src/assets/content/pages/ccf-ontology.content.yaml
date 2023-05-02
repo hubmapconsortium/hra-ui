@@ -1,73 +1,104 @@
-overviewData:
-- heading: Overview
-  descriptions: |
-    The CCF Ontology comprises a Clinical Ontology, Semantic Ontology, and Spatial Ontology, 
-    see **Figure 1**. Collectively, the three ontologies make up the CCF Ontology (also called union ontology) 
-    that supports spatially and semantically explicit search, filter, and browsing in the HuBMAP Portal.
+- type: title
+  title: Common Coordinate Framework Ontology
+  class: page-title
+
+- type: announcement
+  announcementCard:
+    - message: "The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in "
+      route: "v1.3"
+      routeText: "4th Release Notes."
+      emoji: "🎉"
+
+- type: simpleTile
+  description:
+  - title: A <span class="hra-bold">Common Coordinate Framework (CCF)</span> for a human body provides a unique address for each cell in the human body. It is similar to the latitude-longtitude system used to navigate a world map.
+  - title: A <span class="hra-bold">Human Reference Atlas (HRA)</span> is a comprehensive, high-resolution, three-dimensional atlas of all the cells in the healthy human body. The Human Reference Atlas provides standard terminologies and data structures for describing specimens, biological structures, and spatial positions linked to existing ontologies.
+
+- type: margin
+  bottom: 2.5rem
+
+- type: page-data
+  pageData:
+  - heading: Overview
+    descriptions: |
+      The CCF Ontology comprises a Clinical Ontology, Semantic Ontology, and Spatial Ontology, 
+      see **Figure 1**. Collectively, the three ontologies make up the CCF Ontology (also called union ontology) 
+      that supports spatially and semantically explicit search, filter, and browsing in the HuBMAP Portal.
+
+- type: simpleImage
+  imageData:
+  - title: Common Coordinate Framework Knowledge Architecture
+    description: |
+      **Figure 1.** Tissue samples and datasets are annotated using the CCF Clinical, CCF Semantic, and CCF Spatial Ontologies.
+    image: assets/images/ontology.svg
+    image_dialog: assets/images/ontology.svg
   
-ccfKnowledgeData:
-- title: Common Coordinate Framework Knowledge Architecture
-  description: |
-    **Figure 1.** Tissue samples and datasets are annotated using the CCF Clinical, CCF Semantic, and CCF Spatial Ontologies.
-  image: assets/images/ontology.svg
-  image_dialog: assets/images/ontology.svg
-
-spatialOntologyData:
-- title: Spatial Ontology
-  description: |
-    **Figure 2.** Spatial placement of anatomical structures in relation to the HuBMAP Atlas reference system. Note that spatial entities can use different coordinate systems that are “mapped” into the common reference system.`,
-  image: assets/images/spatial_ontology.svg
-  image_dialog: assets/images/spatial_ontology.svg
-
-relatedToolsData:
-- icon: assets/images/hra_api.svg
-  title: Human Reference Atlas Application Programming Interfaces
-  body: Query and interact with the HRA using Python, JavaScript, SPARQL, REST, and more
-  route: api
-
-ontologyWebData:
-- icon: assets/images/ontology_lookup_service.svg
-  title: Ontology Lookup Service (OLS)
-  body: Repository for biomedical ontologies that aims to provide a single point of access to the latest ontology versions
-  externalLink: https://www.ebi.ac.uk/ols/ontologies/ccf
-  color: rgb(0,0,0)
-- icon: assets/images/bio_portal.svg
-  title: BioPortal
-  body: The world's most comprehensive repository of biomedical ontologies
-  externalLink: "https://bioportal.bioontology.org/ontologies/CCF"
-  color: rgb(34,73,120)
-
-referencesData:
-- heading: References
-  descriptions: |
-    Herr II, Bruce W., Ellen M. Quardokus, Leonard E. Cross, Elizabeth G. Record, Griffin M. Weber, and Katy Börner. 2020. <a href="https://hubmapconsortium.github.io/hubmap-ontology/ccf.owl">HuBMAP CCF Ontology v1.0.0 (OWL format)</a>.
+- type: page-data
+  pageData:
+  - heading:
+    descriptions: |
+      **Clinical Ontology.** Captures CCF relevant clinical and other metadata such as donor sex, age, tissue
+      sample author, and technology used.It does not capture all metadata associated with HuBMAP data.
     
-    
-    Herr II, Bruce W., Ellen M. Quardokus, Leonard E. Cross, Elizabeth G. Record, Griffin M. Weber, and Katy Börner. 2020. <a href="https://github.com/hubmapconsortium/hubmap-ontology">"HuBMAP CCF Ontology Source Code Repository</a>.
-    
-    
-    Börner Katy, Ellen M. Quardokus, Bruce W. Herr II, Leonard E. Cross, Elizabeth G. Record, Yingnan Ju, Andreas D. Bueckle, James P. Sluka, Jonathan C. Silverstein, Kristen M. Browne, 
-    Sanjay Jain, Clive H. Wasserfall, Marda L. Jorgensen, Jeffrey M. Spraggins, Nathan H. Patterson, Mark A. Musen, and Griffin M. Weber. 2020. 
-    <a href="https://arxiv.org/abs/2007.14474">Construction and Usage of a Human Body Common Coordinate Framework Comprising Clinical, Semantic, and Spatial Ontologies</a>. arXiv:2007.14474v1.
-    
-    
-    Herr, Bruce W., Josef Hardi, Ellen M. Quardokus, Andreas Bueckle, Lu Chen, Fusheng Wang, Anita R. Caron, David Osumi-Sutherland, Mark A. Musen, and Katy Börner. “Specimen, Biological Structure, and Spatial Ontologies in Support of a Human Reference Atlas.” Scientific Data 10, no. 1 (March 27, 2023): 171. https://doi.org/10.1038/s41597-023-01993-8.
-    
-    Lubiana, Tiago, Paola Roncaglia, Christopher J. Mungall, Ellen M. Quardokus, Joshua D. Fortriede, David Osumi-Sutherland, and Alexander D. Diehl. “Guidelines for Reporting Cell Types: The MIRACL Standard.” arXiv, 2022. https://doi.org/10.48550/ARXIV.2204.09673.
+      **Semantic Ontology.** Mirrors the ASCT+B tables and includes the CCF Anatomical Structures Partonomy of anatomical structures and the 
+      CCF Cell Types Ontology. Sources of ontology terms are UBERON, FMA, and Cell Ontology (CL).
+      
+      **Spatial Ontology.** Defines the position, rotation, and size of anatomical structures—at the macro, micro, and 
+      single-cell level—in correspondence to the HuBMAP Atlas reference system, shown below in **Figure 2.**
+      Note that all anatomical structures are semantically annotated using terms from the Semantic Ontology.
 
-markdownData: |
-  **Clinical Ontology.** Captures CCF relevant clinical and other metadata such as donor sex, age, tissue
-  sample author, and technology used.It does not capture all metadata associated with HuBMAP data.
-  
-  **Semantic Ontology.** Mirrors the ASCT+B tables and includes the CCF Anatomical Structures Partonomy of anatomical structures and the 
-  CCF Cell Types Ontology. Sources of ontology terms are UBERON, FMA, and Cell Ontology (CL).
-  
-  **Spatial Ontology.** Defines the position, rotation, and size of anatomical structures—at the macro, micro, and 
-  single-cell level—in correspondence to the HuBMAP Atlas reference system, shown below in <b>Figure 2. </b>
-  Note that all anatomical structures are semantically annotated using terms from the Semantic Ontology.
+- type: simpleImage
+  imageData:
+  - title: Spatial Ontology
+    description: |
+      **Figure 2.** Spatial placement of anatomical structures in relation to the HuBMAP Atlas reference system. Note that spatial entities can use different coordinate systems that are “mapped” into the common reference system.`,
+    image: assets/images/spatial_ontology.svg
+    image_dialog: assets/images/spatial_ontology.svg
 
-title: Common Coordinate Framework Ontology
+- type: margin
+  bottom: 2.5rem
 
-description:
-- title: A **Common Coordinate Framework (CCF)** for a human body provides a unique address for each cell in the human body. It is similar to the latitude-longtitude system used to navigate a world map.
-- title: A **Human Reference Atlas (HRA)** is a comprehensive, high-resolution, three-dimensional atlas of all the cells in the healthy human body. The Human Reference Atlas provides standard terminologies and data structures for describing specimens, biological structures, and spatial positions linked to existing ontologies.
+- type: cardBlock
+  cardWithTitle:
+  - heading: Related Tools
+    cardData:
+    - icon: assets/images/hra_api.svg
+      title: Human Reference Atlas Application Programming Interfaces
+      body: Query and interact with the HRA using Python, JavaScript, SPARQL, REST, and more
+      route: api
+    headerSize: 'font-size: 1.5rem'
+  - heading: CCF Ontology on the Web
+    cardData:
+    - icon: assets/images/ontology_lookup_service.svg
+      title: Ontology Lookup Service (OLS)
+      body: Repository for biomedical ontologies that aims to provide a single point of access to the latest ontology versions
+      externalLink: https://www.ebi.ac.uk/ols/ontologies/ccf
+      color: rgb(0,0,0)
+    - icon: assets/images/bio_portal.svg
+      title: BioPortal
+      body: The world's most comprehensive repository of biomedical ontologies
+      externalLink: "https://bioportal.bioontology.org/ontologies/CCF"
+      color: rgb(34,73,120)
+    headerSize: 'font-size: 1.5rem'
+
+- type: margin
+  bottom: 2.5rem
+
+- type: page-data
+  pageData:
+  - heading: References
+    descriptions: |
+      Herr II, Bruce W., Ellen M. Quardokus, Leonard E. Cross, Elizabeth G. Record, Griffin M. Weber, and Katy Börner. 2020. <a href="https://hubmapconsortium.github.io/hubmap-ontology/ccf.owl">HuBMAP CCF Ontology v1.0.0 (OWL format)</a>.
+      
+      
+      Herr II, Bruce W., Ellen M. Quardokus, Leonard E. Cross, Elizabeth G. Record, Griffin M. Weber, and Katy Börner. 2020. <a href="https://github.com/hubmapconsortium/hubmap-ontology">"HuBMAP CCF Ontology Source Code Repository</a>.
+      
+      
+      Börner Katy, Ellen M. Quardokus, Bruce W. Herr II, Leonard E. Cross, Elizabeth G. Record, Yingnan Ju, Andreas D. Bueckle, James P. Sluka, Jonathan C. Silverstein, Kristen M. Browne, 
+      Sanjay Jain, Clive H. Wasserfall, Marda L. Jorgensen, Jeffrey M. Spraggins, Nathan H. Patterson, Mark A. Musen, and Griffin M. Weber. 2020. 
+      <a href="https://arxiv.org/abs/2007.14474">Construction and Usage of a Human Body Common Coordinate Framework Comprising Clinical, Semantic, and Spatial Ontologies</a>. arXiv:2007.14474v1.
+      
+      
+      Herr, Bruce W., Josef Hardi, Ellen M. Quardokus, Andreas Bueckle, Lu Chen, Fusheng Wang, Anita R. Caron, David Osumi-Sutherland, Mark A. Musen, and Katy Börner. “Specimen, Biological Structure, and Spatial Ontologies in Support of a Human Reference Atlas.” Scientific Data 10, no. 1 (March 27, 2023): 171. https://doi.org/10.1038/s41597-023-01993-8.
+      
+      Lubiana, Tiago, Paola Roncaglia, Christopher J. Mungall, Ellen M. Quardokus, Joshua D. Fortriede, David Osumi-Sutherland, and Alexander D. Diehl. “Guidelines for Reporting Cell Types: The MIRACL Standard.” arXiv, 2022. https://doi.org/10.48550/ARXIV.2204.09673.

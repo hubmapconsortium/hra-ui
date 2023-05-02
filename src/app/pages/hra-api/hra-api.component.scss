@@ -1,22 +1,3 @@
 :host {
   max-width: 77rem;
-
-  .image-container {
-    display: flex;
-    justify-content: center;
-    padding: 0rem 5rem;
-  }
-
-  @media (max-width: 80rem) {
-    padding: 0rem 1rem;
-    
-    img {
-      width: 100%;
-      height: 100%;
-    }
-
-    .image-container {
-      padding: unset;
-    }
-  }
 }

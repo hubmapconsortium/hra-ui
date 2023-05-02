@@ -10,6 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MarkdownModule } from 'ngx-markdown';
 import { HraMillitomeComponent } from './hra-millitome.component';
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
+import { PageRendererModule } from 'src/app/components/page-renderer/page-renderer.module';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { AnnouncementCardModule } from '../../components/announcement-card/annou
     ChooseVersionModule,
     TableModule,
     MarkdownModule,
-    AnnouncementCardModule
+    AnnouncementCardModule,
+    PageRendererModule
   ],
   providers: [],
   bootstrap: []

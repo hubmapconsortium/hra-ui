@@ -14,7 +14,7 @@ import { OrganData, VersionOrgans } from '../../components/two-dim-image/two-dim
 interface TwoDimensionReference {
   twoDimHeaderCardDetails: PageHeaderItems[];
   overviewData: PageDataItems[];
-  sopData: SopLinks[];
+  sopData: SopLinks;
   termsOfUseData: PageDataItems[];
   licenseData: PageDataItems[];
   citationData: PageDataItems[];
@@ -53,7 +53,7 @@ export class TwoDimRefPageComponent implements OnInit {
   disclaimer = this.data.disclaimer;
   filterImages = this.data.filterImages;
   cardTitle = "";
-  tableTitle = ""
+  tableTitle = "";
   versionData = this.data.versionData;
   placeholderDate = this.data.placeholderDate;
   organData = this.data.organData;

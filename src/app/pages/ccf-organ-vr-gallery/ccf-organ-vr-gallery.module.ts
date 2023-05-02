@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PageRendererModule } from 'src/app/components/page-renderer/page-renderer.module';
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
 import { PageDataModule } from '../../components/page-data/page-data.module';
 import { PageHeaderModule } from '../../components/page-header/page-header.module';
@@ -18,7 +19,8 @@ import { CcfOrganVrGalleryComponent } from './ccf-organ-vr-gallery.component';
     PageHeaderModule,
     PageDataModule,
     YoutubeModelModule,
-    AnnouncementCardModule
+    AnnouncementCardModule,
+    PageRendererModule
   ],
   providers: [],
   bootstrap: []

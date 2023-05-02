@@ -9,14 +9,7 @@ import { PageHeaderItems } from 'src/app/components/page-header/page-header-item
 import { NavItems } from 'src/app/components/toolbar/nav-items';
 import { UseButton } from 'src/app/components/use-button/use-button';
 
-@Component({
-  selector: 'fourth-release-notes',
-  templateUrl: './fourth-release-notes.component.html',
-  styleUrls: ['./fourth-release-notes.component.scss']
-})
-export class FourthReleaseNotesComponent implements AfterViewInit, OnDestroy, OnInit {
-  private subscriptions = new Subscription();
-
+interface FourthReleaseNotes {
   headerData: PageHeaderItems[];
   fourthReleaseIntro: PageDataItems[];
   fourthReleaseStats: PageDataItems[];
@@ -43,27 +36,59 @@ export class FourthReleaseNotesComponent implements AfterViewInit, OnDestroy, On
   contactCardData: ContactCard[];
   hourEventPageButton: UseButton;
   hraReleaseCalendar: PageDataItems[];
+  navigationItems: NavItems[];
+  mobileNavigationItems: NavItems[];
+  icon: string;
+  scrolled: boolean;
+}
+
+@Component({
+  selector: 'fourth-release-notes',
+  templateUrl: './fourth-release-notes.component.html',
+  styleUrls: ['./fourth-release-notes.component.scss']
+})
+export class FourthReleaseNotesComponent implements AfterViewInit, OnDestroy, OnInit {
+  private subscriptions = new Subscription();
   icon = "list";
   scrolled: boolean = false;
+  
+  data = this.route.snapshot.data['content'] as FourthReleaseNotes;
+  headerData = this.data.headerData;
+  fourthReleaseIntro = this.data.fourthReleaseIntro;
+  fourthReleaseStats = this.data.fourthReleaseStats;
+  hraHourEvent = this.data.hraHourEvent;
+  hourEventUseButton = this.data.hourEventUseButton;
+  asctbTables = this.data.asctbTables;
+  asctbTablesButton = this.data.asctbTablesButton;
+  asctbReporter = this.data.asctbReporter;
+  asctbReporterButton = this.data.asctbReporterButton;
+  ontologyValidations = this.data.ontologyValidations;
+  ontologyValidationsButton = this.data.ontologyValidationsButton;
+  threeDimRefObjects = this.data.threeDimRefObjects
+  threeDimRefObjectsButton = this.data.threeDimRefObjectsButton
+  explorationUserInterface = this.data.explorationUserInterface;
+  explorationUserInterfaceButton = this.data.explorationUserInterfaceButton;
+  registrationUserInterface = this.data.registrationUserInterface;
+  registrationUserInterfaceButton = this.data.registrationUserInterfaceButton;
+  vrOrganGallery = this.data.vrOrganGallery;
+  vrOrganGalleryButton = this.data.vrOrganGalleryButton;
+  previewScrollytellingButton = this.data.previewScrollytellingButton;
+  previewComparingTabula = this.data.previewComparingTabula;
+  previewFtuSegmentation = this.data.previewFtuSegmentation;
+  previewCcfTissueBlock = this.data.previewCcfTissueBlock;
+  contactCardData = this.data.contactCardData;
+  hourEventPageButton = this.data.hourEventPageButton;
+  hraReleaseCalendar = this.data.hraReleaseCalendar;
+  navigationItems = this.data.navigationItems;
+  mobileNavigationItems = [{ menuName: "Table of Contents", id: "'" }, ...this.navigationItems]
 
-  navigationItems: NavItems[] = [
-    { menuName: "Introduction", id: "intro" },
-    { menuName: `What's New`, id: "whats-new" },
-    { menuName: 'HRA 24 Hour Event', id: "24-hr-event" },
-    { menuName: 'HRA Release Calendar', id: "hra-release-calendar" },
-    { menuName: 'ASCT+B Tables', id: "asctb-tables" },
-    { menuName: 'ASCT+B Reporter', id: "asctb-reporter" },
-    { menuName: 'ASCT+B Ontology Validations', id: "asctb-ontology-validations" },
-    { menuName: '3D Reference Objects', id: '3d-reference-objects' },
-    { menuName: 'Exploration User Interface', id: "exploration-user-interface" },
-    { menuName: 'Registration User Interface', id: 'registration-user-interface' },
-    { menuName: 'VR Organ Gallery', id: "vr-organ-gallery" },
-    { menuName: 'Previews', id: 'previews' },
-    { menuName: 'Contact Us', id: "contact-us" },
-    { menuName: 'Outro', id: "outro" }
-  ];
-
-  mobileNavigationItems: NavItems[] = [{ menuName: "Table of Contents", id: "'" }, ...this.navigationItems]
+  constructor(private route: ActivatedRoute, private router: Router, private scroller: ViewportScroller) {
+    this.subscriptions.add(this.route.fragment.subscribe((anchor) => {
+      if (anchor) {
+        this.scroller.scrollToAnchor(anchor);
+      }
+    }));
+  }
 
   readonly TableOfContentsPosition: ConnectedPosition[] = [
     {
@@ -75,42 +100,6 @@ export class FourthReleaseNotesComponent implements AfterViewInit, OnDestroy, On
       offsetY: 0
     }
   ];
-
-  constructor(private route: ActivatedRoute, private router: Router, private scroller: ViewportScroller) {
-    const data = route.snapshot.data['content'];
-    this.headerData = data.headerData;
-    this.fourthReleaseIntro = data.fourthReleaseIntro;
-    this.fourthReleaseStats = data.fourthReleaseStats;
-    this.hraHourEvent = data.hraHourEvent;
-    this.hourEventUseButton = data.hourEventUseButton;
-    this.asctbTables = data.asctbTables;
-    this.asctbTablesButton = data.asctbTablesButton;
-    this.asctbReporter = data.asctbReporter;
-    this.asctbReporterButton = data.asctbReporterButton;
-    this.ontologyValidations = data.ontologyValidations;
-    this.ontologyValidationsButton = data.ontologyValidationsButton;
-    this.threeDimRefObjects = data.threeDimRefObjects
-    this.threeDimRefObjectsButton = data.threeDimRefObjectsButton
-    this.explorationUserInterface = data.eui;
-    this.explorationUserInterfaceButton = data.euiButton;
-    this.registrationUserInterface = data.rui;
-    this.registrationUserInterfaceButton = data.ruiButton;
-    this.vrOrganGallery = data.vrOrganGallery;
-    this.vrOrganGalleryButton = data.vrOrganGalleryButton;
-    this.previewScrollytellingButton = data.previewScrollytellingButton;
-    this.previewComparingTabula = data.previewComparingTabula;
-    this.previewFtuSegmentation = data.previewFtuSegmentation;
-    this.previewCcfTissueBlock = data.previewCcfTissueBlock;
-    this.contactCardData = data.contactCardData;
-    this.hourEventPageButton = data.hourEventPageButton
-    this.hraReleaseCalendar = data.hraReleaseCalendar
-
-    this.subscriptions.add(this.route.fragment.subscribe((anchor) => {
-      if (anchor) {
-        this.scroller.scrollToAnchor(anchor);
-      }
-    }));
-  }
 
   ngOnInit(): void {
     window.addEventListener('scroll', () => {

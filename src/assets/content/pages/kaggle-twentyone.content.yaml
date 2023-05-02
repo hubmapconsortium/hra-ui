@@ -1,192 +1,373 @@
-kaggle2021Header:
-- title: 'Kaggle #1: HuBMAP - Hacking the Kidney'
-  subtitle: Algorithm development challenges that engage teams from around the globe to develop code for HRA construction
-  image: assets/images/kaggle.svg
+- type: header
+  headerCard:
+  - title: 'Kaggle #1: HuBMAP - Hacking the Kidney'
+    subtitle: Algorithm development challenges that engage teams from around the globe to develop code for HRA construction
+    image: assets/images/kaggle.svg
 
-overviewData:
-- heading: Overview
-  descriptions: |
-    Our best estimates show there are over 7 billion people on the planet and 300 billion stars in the Milky Way galaxy. By comparison, the adult human body contains 37 trillion cells. To determine the function and relationship among these cells is a monumental undertaking. Many areas of human health would be impacted if we better understand cellular activity. A problem with this much data is a great match for the Kaggle community.
+- type: announcement
+  announcementCard:
+  - message: "The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in "
+    route: 'v1.3'
+    routeText: '4th Release Notes.'
+    emoji: '🎉'
+
+- type: margin
+  bottom: 2.5rem
+
+- type: page-data
+  pageData:
+  - heading: Overview
+    descriptions: |
+      Our best estimates show there are over 7 billion people on the planet and 300 billion stars in the Milky Way galaxy. By comparison, the adult human body contains 37 trillion cells. To determine the function and relationship among these cells is a monumental undertaking. Many areas of human health would be impacted if we better understand cellular activity. A problem with this much data is a great match for the Kaggle community.
+
+      Just as the Human Genome Project mapped the entirety of human DNA, the Human BioMolecular Atlas Program (HuBMAP) is a major endeavor. Sponsored by the National Institutes of Health (NIH), HuBMAP is working to catalyze the development of a framework for mapping the human body at a level of glomeruli functional tissue units for the first time in history. Hoping to become one of the world’s largest collaborative biological projects, HuBMAP aims to be an open map of the human body at the cellular level.
+
+      This competition, "Hacking the Kidney," starts by mapping the human kidney at single cell resolution.
+
+      The challenge is to detect functional tissue units (FTUs) across different tissue preparation pipelines. An FTU is defined as a “three-dimensional block of cells centered around a capillary, such that each cell in this block is within diffusion distance from any other cell in the same block” (de Bono, 2013). The goal of this competition is the implementation of a successful and robust glomeruli FTU detector.
+
+      Advancements in HuBMAP will accelerate the world's understanding of the relationships between cell and tissue organization and function and human health. These datasets and insights can be used by researchers in cell and tissue anatomy, pharmaceutical companies to develop therapies, or even parents to show their children the magnitude of the human body.
+
+      Please see <a href="https://www.kaggle.com/c/hubmap-kidney-segmentation">https://www.kaggle.com/c/hubmap-kidney-segmentation</a> for competition details.
+
+- type: page-data
+  pageData:
+  - heading: Awards Ceremony
+    descriptions: |
+      On May 21, 2021, Judges announced winning teams at the annual HubMAP All-Hands Meeting and the HuBMAP Awards: Hacking the Kidney on Kaggle ceremony. 
+      A <a href="https://www.youtube.com/watch?v=fZebsmQoUEY">recording</a> of the event and competitor presentations will be posted at the 
+      <a href="https://www.youtube.com/channel/UCbSvPJ9dXASL14KoDeutMFg">HuBMAP Consortium YouTube channel</a>.
+
+- type: title
+  title: Winning Teams
+  styles:
+    font-weight: 300
+    font-size: 1.5rem
+
+- type: title
+  title: Accuracy Prizes
+  styles:
+    font-weight: 400
+    font-size: 1.25rem
+    line-height: 1.4202rem
+    padding-bottom: 1rem
+    padding-top: 1.5rem
+
+- type: matCard
+  styles:
+    margin-bottom: 1rem
+  components:
+    - type: image
+      imageSource: assets/images/accuracy_prizes.svg
+
+- type: prizeCard
+  prizeCard:
+  - title: 1st Place ($18,000)
+    presentedBy: Geri Studebaker
+    matDivider: true
+    winner:
+    - winner: Tom
+      kaggleId: <b>Kaggle ID:</b> tikutiku
+      button:
+      - label: Solution WriteUp
+        link: https://www.kaggle.com/c/hubmap-kidney-segmentation/discussion/238198
+    orgImage: assets/images/google.svg
+    userImage:
+    - assets/images/tikutiku.svg
+  - title: 2nd Place ($10,000)
+    presentedBy: Aashima Gupta
+    matDivider: true
+    winner:
+    - winner: Gleb
+      kaggleId: <b>Kaggle IDs (no order):</b> bakeryproducts, kulyabin, and sherlockkay
+    orgImage: assets/images/google.svg
+    userImage:
+    - assets/images/bakeryproducts.svg 
+    - assets/images/kulyabin.svg
+    - assets/images/sherlockkay.svg
+  - title: 3rd Place ($3,000)
+    presentedBy: Albert Ihochi
+    matDivider: true
+    winner:
+    - winner: Whats goin on
+      kaggleId: <b>Kaggle IDs (no order):</b> shujun717 and rvslight
+      button:
+      - label: Solution Write-up
+        link: https://www.kaggle.com/c/hubmap-kidney-segmentation/discussion/238013
+    orgImage: assets/images/third_place_org.svg
+
+- type: title
+  title: Judges Prizes
+  styles:
+    font-weight: 400
+    font-size: 1.25rem
+    line-height: 1.4202rem
+    padding-bottom: 1rem
+    padding-top: 1.5rem
+
+- type: prizeCard
+  prizeCard:
+    - title: Scientific Prize ($15,000)
+      presentedBy: Ryan Copping
+      matDivider: true
+      winner:
+      - winner: DeepLive.exe
+        kaggleId: |
+          <b>Kaggle IDs (no order):</b> optimo, theoviel, and iafoss
+        button:
+        - label: Notebook
+          link: https://www.kaggle.com/code/theoviel/hubmap-final-methodology-submission/notebook
+        - label: Presentation
+          link: https://www.youtube.com/watch?v=uqyFPMnOB2g&list=PLuJUUASr8daMaDBweSiSbPXgzwUX_xoX_&index=3
+      orgImage: assets/images/roche.svg
+      userImage: 
+      - assets/images/optimo.svg
+      - assets/images/theoviel.svg 
+      - assets/images/iafoss.svg
+    - title: Innovation Prize ($10,000)
+      presentedBy: Matt Nelson
+      matDivider: true,
+      winner:
+      - winner: deepflash2
+        kaggleId: |
+          <b>Kaggle IDs (no order):</b> matjes, theudas, maddonix
+        button:
+        - label: Notebook
+          link: https://www.kaggle.com/matjes/hubmap-deepflash2-judge-price
+        - label: Presentation
+          link: https://www.youtube.com/watch?v=w6LpUDkXL0Q&list=PLuJUUASr8daMaDBweSiSbPXgzwUX_xoX_&index=2
+      orgImage: assets/images/innovation_prize.svg
+      userImage:
+      - assets/images/matjes.svg
+      - assets/images/theudas.svg
+      - assets/images/maddonix.svg
+    - title: Diversity Prize ($3,000)
+      presentedBy: Rahcyne Omatete
+      matDivider: true
+      winner:
+      - winner: 404!
+        kaggleId: |
+          <b>Kaggle IDs (no order):</b> Gavi_sr, Sophie, tpmeli, and dskswu
+        button:
+        - label: Notebook
+          link: https://www.kaggle.com/dskswu/team-404-hubmap-presentation-v1-1
+        - label: Presentation
+          link: https://www.youtube.com/watch?v=pZTjzaP12Sc&list=PLuJUUASr8daMaDBweSiSbPXgzwUX_xoX_&index=5
+      orgImage: assets/images/diversity_prize.svg
+      userImage:
+      - assets/images/Gavi_sr.svg
+      - assets/images/Sophie.svg
+      - assets/images/tpmeli.svg
+      - assets/images/dskswu.svg
+
+- type: title
+  title: Kudos!
+  styles:
+    font-weight: 400
+    font-size: 1.25rem
+    line-height: 1.4202rem
+    padding-bottom: 1rem
+    padding-top: 1.5rem
+
+- type: prizeCard
+  prizeCard:
+  - title: Team Players!
+    matDivider: false
+    winner:
+    - winner: Efforless Neuron
+      kaggleId: |
+        <b>Kaggle IDs (no order):</b> chienhsianghung, ulrich07, raphaelensae, faisalalsrheed, and salimkhazem
+      button:
+      - label: Presentation
+        link: https://www.youtube.com/watch?v=DnX7vU4Caqg&list=PLuJUUASr8daMaDBweSiSbPXgzwUX_xoX_&index=6
+    userImage:
+    - assets/images/chienhsianghung.svg
+    - assets/images/ulrich07.svg
+    - assets/images/raphaelensae.svg 
+    - assets/images/faisalalsrheed.svg
+    - assets/images/salimkhazem.svg
+  - title: Community Hero
+    matDivider: false
+    winner:
+    - winner: Wojtek Rosa
+      kaggleId: |
+        <b>Kaggle ID:</b> wrrosa
+    userImage:
+    - assets/images/wrrosa.svg
+  - title: Most Entertaining
+    matDivider: false
+    winner:
+    - winner: deepflash2
+      kaggleId: |
+        <b>Kaggle IDs (no order):</b> matjes, theudas, maddonix
+      button:
+      - label: Notebook
+        link: https://www.kaggle.com/matjes/hubmap-deepflash2-judge-price
+      - label: Presentation
+        link: https://www.youtube.com/watch?v=w6LpUDkXL0Q&list=PLuJUUASr8daMaDBweSiSbPXgzwUX_xoX_&index=2
+    userImage:
+    - assets/images/matjes.svg
+    - assets/images/theudas.svg
+    - assets/images/maddonix.svg
+
+- type: margin
+  bottom: 2.5rem
+
+- type: page-data
+  pageData:
+  - heading: Datasets
+    descriptions: |
+      All datasets have been published as a HuBMAP 
+      <a href="https://portal.hubmapconsortium.org/browse/collection/4964d24bbc6668a72c4cbb5e0393a6bc">collection</a>. 
+      Here is the link to the <a href="https://hubmapconsortium.github.io/ccf/dld/kaggle-metadata.csv">metadata file</a> and below are the direct links to all 30 datasets:
+
+- type: datasets
+  styles:
+    display: flex
+    flex-flow: row wrap
+    justify-content: space-between
+    padding-bottom: 2.5rem
+  links:
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/8adc3c31ca84ec4b958ed20a7c4f4919
+      title: HuBMAP ID that links to dataset
+      data: HBM875.QHDJ.259
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/13f68db2ce711221e402e6af2d8cad45
+      title: HuBMAP ID that links to dataset
+      data: HBM463.JRTB.582
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/058f837db913d4c3d0854eb2229c2695
+      title: HuBMAP ID that links to dataset
+      data: HBM958.GHFM.676
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/751d7b4638d6bfe51756669a4f192c00
+      title: HuBMAP ID that links to dataset
+      data: HBM636.ZPTS.368
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/64fb1a207109beb61404b7e0b4c60810
+      title: HuBMAP ID that links to dataset
+      data: HBM725.PDDC.788
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/46bab56124c61f7a66c50c3cde0aa596
+      title: HuBMAP ID that links to dataset
+      data: HBM636.GVWP.354
+    - class: datasets
+      href: "https://portal.hubmapconsortium.org/browse/dataset/7eef1634020f429f9855ff319ff0c65e"
+      title: "HuBMAP ID that links to dataset"
+      data: "HBM362.PTQJ.743"
+    - class: datasets
+      href: "https://portal.hubmapconsortium.org/browse/dataset/9eb457ab0141f7ba734e337917a9bde9"
+      title: "HuBMAP ID that links to dataset"
+      data: "HBM783.GDKK.879"
+    - class: datasets
+      href: "https://portal.hubmapconsortium.org/browse/dataset/7810dadcb43b35ef9de6378f3d53b532"
+      title: "HuBMAP ID that links to dataset"
+      data: "HBM389.MBWW.346"
+    - class: datasets
+      href: "https://portal.hubmapconsortium.org/browse/dataset/7aed690c306ad4a8e08b7ec794e3a304"
+      title: "HuBMAP ID that links to dataset"
+      data: "HBM879.CDHB.995"
+    - class: datasets
+      href: "https://portal.hubmapconsortium.org/browse/dataset/8030bee708b211203104616629480b52"
+      title: "HuBMAP ID that links to dataset"
+      data: "HBM662.PMPZ.644"
+    - class: datasets
+      href: "https://portal.hubmapconsortium.org/browse/dataset/47f4411d2eba0edaad6951c5cc1bc03b"
+      title: "HuBMAP ID that links to dataset"
+      data: "HBM833.DBGG.252"
+    - class: datasets
+      href: "https://portal.hubmapconsortium.org/browse/dataset/ae7723aee8bc809afe0a05756bdf91de"
+      title: "HuBMAP ID that links to dataset"
+      data: "HBM473.FKKH.583"
+    - class: datasets
+      href: "https://portal.hubmapconsortium.org/browse/dataset/5eacc268fa94d3419580ff04c9a9c76d"
+      title: "HuBMAP ID that links to dataset"
+      data: "HBM874.RZDW.757"
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/7e3f3b5d1890f9612efb91d3a820cdcc
+      title: HuBMAP ID that links to dataset
+      data: HBM849.XMPC.398
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/3d2c9295c0e05f4d81d23ee95e9dad23
+      title: HuBMAP ID that links to dataset
+      data: HBM623.RPMC.638
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/1e9b9d5ac57ac8bd4093f2503675a2cd
+      title: HuBMAP ID that links to dataset
+      data: HBM979.HDZH.896
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/d0be34d165e38dc3b9074aca578a1c46
+      title: HuBMAP ID that links to dataset
+      data: HBM276.PGFS.693
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/484b359a4b9d4e370f52c4c3fef782a3
+      title: HuBMAP ID that links to dataset
+      data: HBM264.XSVF.528
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/20fea3266c0b545def76080a3f545d0a
+      title: HuBMAP ID that links to dataset
+      data: HBM676.SNVK.793
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/d63f77a8a5b4c23a328f526517a52ff9
+      title: HuBMAP ID that links to dataset
+      data: HBM984.PMZN.942
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/bb820445c6d02c53ecc7ff6e98681742
+      title: HuBMAP ID that links to dataset
+      data: HBM649.XFQG.775
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/8690897fced9931da34d66d669c1d698
+      title: HuBMAP ID that links to dataset
+      data: HBM627.RSGW.898
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/9472427491eb889f5884175a8a0d59bf
+      title: HuBMAP ID that links to dataset
+      data: HBM344.LLLV.539
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/56416e5ba064fef6e3cffc6fb3f47eb7
+      title: HuBMAP ID that links to dataset
+      data: HBM296.RLWW.755
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/32d2d8cd78933cf74f9855ca764a1391
+      title: HuBMAP ID that links to dataset
+      data: HBM324.ZGZM.874
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/7afaa263c0c928094459c597940e0351
+      title: HuBMAP ID that links to dataset
+      data: HBM673.JJRZ.435   
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/7308530b92438fdbe258b501aeb86069
+      title: HuBMAP ID that links to dataset
+      data: HBM227.THVC.544
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/b4c8ef4fdbc94b884e8f3251ac9143bd
+      title: HuBMAP ID that links to dataset
+      data: HBM649.DLZF.463
+    - class: datasets
+      href: https://portal.hubmapconsortium.org/browse/dataset/0a13556dc03c91eca001161c82facf36
+      title: HuBMAP ID that links to dataset
+      data: HBM832.FQKR.463
+
+- type: page-data
+  pageData:
+  - heading: Acknowledgments
+    descriptions: |
+      We would like to thank the many individuals that made this competition possible including:
+
+      <strong>Organizers</strong>: Andrea de Souza (Eli Lilly and Company), Katy Börner (Indiana University), Deepika Vuppalanchi (Precision Value Health), Christine Drury (InnovDigi/Conference Ventures), and Sandeep Allam (STLogics).
+
+      <strong>Support Team</strong>: Richard Holland, Marcos Novaes, and Addison Howard (Google), Leah Scherschel, Lisel Record, Ellen Quardokus, and Yingnan Ju (Indiana University), Jeffrey Spraggins and Heath Patterson (Vanderbilt University), and Arkan Abadi (Eli Lilly).
+
+      <strong>Kaggle Sponsors</strong>: Google HCLS, Roche, Deloitte, Deerfield Healthcare, Pistoia Alliance, CAS - American Chemical Society, Maven Wave.
+
+      <strong>Kaggle Judges</strong>: Zorina Galis (NIH), Thomas Fuchs (Paige.ai, Mount Sinai), Matt Nelson (Deerfield Healthcare), Amy Bernard (Allen Institute), Maigan Brusko (University of Florida), John Marioni (EMBL-EBI, UK), Blue Lake (UC San Diego), David Van Valen (CalTech), and Alex Wolf (Cellarity).
+
+      <strong>Funders</strong>: This work has been funded in part by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671 and VU HuBMAP under award 1U54DK120058-01.
 
 
-    Just as the Human Genome Project mapped the entirety of human DNA, the Human BioMolecular Atlas Program (HuBMAP) is a major endeavor. Sponsored by the National Institutes of Health (NIH), HuBMAP is working to catalyze the development of a framework for mapping the human body at a level of glomeruli functional tissue units for the first time in history. Hoping to become one of the world’s largest collaborative biological projects, HuBMAP aims to be an open map of the human body at the cellular level.
-
-
-    This competition, "Hacking the Kidney," starts by mapping the human kidney at single cell resolution.
-
-
-    The challenge is to detect functional tissue units (FTUs) across different tissue preparation pipelines. An FTU is defined as a “three-dimensional block of cells centered around a capillary, such that each cell in this block is within diffusion distance from any other cell in the same block” (de Bono, 2013). The goal of this competition is the implementation of a successful and robust glomeruli FTU detector.
-
-
-    Advancements in HuBMAP will accelerate the world's understanding of the relationships between cell and tissue organization and function and human health. These datasets and insights can be used by researchers in cell and tissue anatomy, pharmaceutical companies to develop therapies, or even parents to show their children the magnitude of the human body.
 
 
 
-    Please see <a href="https://www.kaggle.com/c/hubmap-kidney-segmentation">https://www.kaggle.com/c/hubmap-kidney-segmentation</a> for competition details.
-
-awardsCeremony:
-- heading: Awards Ceremony
-  descriptions: |
-    On May 21, 2021, Judges announced winning teams at the annual HubMAP All-Hands Meeting and the HuBMAP Awards: Hacking the Kidney on Kaggle ceremony. 
-    A <a href="https://www.youtube.com/watch?v=fZebsmQoUEY">recording</a> of the event and competitor presentations will be posted at the 
-    <a href="https://www.youtube.com/channel/UCbSvPJ9dXASL14KoDeutMFg">HuBMAP Consortium YouTube channel</a>.
-
-acknowledgmentsData:
-- heading: Acknowledgments
-  descriptions: |
-    We would like to thank the many individuals that made this competition possible including:
 
 
-
-    <strong>Organizers</strong>: Andrea de Souza (Eli Lilly and Company), Katy Börner (Indiana University), Deepika Vuppalanchi (Precision Value Health), Christine Drury (InnovDigi/Conference Ventures), and Sandeep Allam (STLogics).
-
-
-    <strong>Support Team</strong>: Richard Holland, Marcos Novaes, and Addison Howard (Google), Leah Scherschel, Lisel Record, Ellen Quardokus, and Yingnan Ju (Indiana University), Jeffrey Spraggins and Heath Patterson (Vanderbilt University), and Arkan Abadi (Eli Lilly).
-
-
-    <strong>Kaggle Sponsors</strong>: Google HCLS, Roche, Deloitte, Deerfield Healthcare, Pistoia Alliance, CAS - American Chemical Society, Maven Wave.
-
-
-    <strong>Kaggle Judges</strong>: Zorina Galis (NIH), Thomas Fuchs (Paige.ai, Mount Sinai), Matt Nelson (Deerfield Healthcare), Amy Bernard (Allen Institute), Maigan Brusko (University of Florida), John Marioni (EMBL-EBI, UK), Blue Lake (UC San Diego), David Van Valen (CalTech), and Alex Wolf (Cellarity).
-
-
-    <strong>Funders</strong>: This work has been funded in part by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671 and VU HuBMAP under award 1U54DK120058-01.
-
-accuracyPrizeData:
-- title: 1st Place ($18,000)
-  presentedBy: Geri Studebaker
-  matDivider: true
-  winner:
-  - winner: Tom
-    kaggleId: |
-      <b>Kaggle ID:</b> tikutiku
-    button:
-    - label: Solution WriteUp
-      link: https://www.kaggle.com/c/hubmap-kidney-segmentation/discussion/238198
-  orgImage: assets/images/google.svg
-  userImage:
-  - assets/images/tikutiku.svg
-- title: 2nd Place ($10,000)
-  presentedBy: Aashima Gupta
-  matDivider: true
-  winner:
-  - winner: Gleb
-    kaggleId: |
-      <b>Kaggle IDs (no order):</b> bakeryproducts, kulyabin, and sherlockkay
-  orgImage: assets/images/google.svg
-  userImage:
-  - assets/images/bakeryproducts.svg 
-  - assets/images/kulyabin.svg
-  - assets/images/sherlockkay.svg
-- title: 3rd Place ($3,000)
-  presentedBy: Albert Ihochi
-  matDivider: true
-  winner:
-  - winner: Whats goin on
-    kaggleId: |
-     <b>Kaggle IDs (no order):</b> shujun717 and rvslight
-    button:
-    - label: Solution Write-up
-      link: https://www.kaggle.com/c/hubmap-kidney-segmentation/discussion/238013
-  orgImage: assets/images/third_place_org.svg
-
-judgesPrizeData:
-- title: Scientific Prize ($15,000)
-  presentedBy: Ryan Copping
-  matDivider: true
-  winner:
-  - winner: DeepLive.exe
-    kaggleId: |
-      <b>Kaggle IDs (no order):</b> optimo, theoviel, and iafoss
-    button:
-    - label: Notebook
-      link: https://www.kaggle.com/code/theoviel/hubmap-final-methodology-submission/notebook
-    - label: Presentation
-      link: https://www.youtube.com/watch?v=uqyFPMnOB2g&list=PLuJUUASr8daMaDBweSiSbPXgzwUX_xoX_&index=3
-  orgImage: assets/images/roche.svg
-  userImage: 
-  - assets/images/optimo.svg
-  - assets/images/theoviel.svg 
-  - assets/images/iafoss.svg
-- title: Innovation Prize ($10,000)
-  presentedBy: Matt Nelson
-  matDivider: true,
-  winner:
-  - winner: deepflash2
-    kaggleId: |
-      <b>Kaggle IDs (no order):</b> matjes, theudas, maddonix
-    button:
-    - label: Notebook
-      link: https://www.kaggle.com/matjes/hubmap-deepflash2-judge-price
-    - label: Presentation
-      link: https://www.youtube.com/watch?v=w6LpUDkXL0Q&list=PLuJUUASr8daMaDBweSiSbPXgzwUX_xoX_&index=2
-  orgImage: assets/images/innovation_prize.svg
-  userImage:
-  - assets/images/matjes.svg
-  - assets/images/theudas.svg
-  - assets/images/maddonix.svg
-- title: Diversity Prize ($3,000)
-  presentedBy: Rahcyne Omatete
-  matDivider: true
-  winner:
-  - winner: 404!
-    kaggleId: |
-      <b>Kaggle IDs (no order):</b> Gavi_sr, Sophie, tpmeli, and dskswu
-    button:
-    - label: Notebook
-      link: https://www.kaggle.com/dskswu/team-404-hubmap-presentation-v1-1
-    - label: Presentation
-      link: https://www.youtube.com/watch?v=pZTjzaP12Sc&list=PLuJUUASr8daMaDBweSiSbPXgzwUX_xoX_&index=5
-  orgImage: assets/images/diversity_prize.svg
-  userImage:
-  - assets/images/Gavi_sr.svg
-  - assets/images/Sophie.svg
-  - assets/images/tpmeli.svg
-  - assets/images/dskswu.svg
-
-kudosData:
-- title: Team Players!
-  matDivider: false
-  winner:
-  - winner: Efforless Neuron
-    kaggleId: |
-      <b>Kaggle IDs (no order):</b> chienhsianghung, ulrich07, raphaelensae, faisalalsrheed, and salimkhazem
-    button:
-    - label: Presentation
-      link: https://www.youtube.com/watch?v=DnX7vU4Caqg&list=PLuJUUASr8daMaDBweSiSbPXgzwUX_xoX_&index=6
-  userImage:
-  - assets/images/chienhsianghung.svg
-  - assets/images/ulrich07.svg
-  - assets/images/raphaelensae.svg 
-  - assets/images/faisalalsrheed.svg
-  - assets/images/salimkhazem.svg
-- title: Community Hero
-  matDivider: false
-  winner:
-  - winner: Wojtek Rosa
-    kaggleId: |
-      <b>Kaggle ID:</b> wrrosa
-  userImage:
-  - assets/images/wrrosa.svg
-- title: Most Entertaining
-  matDivider: false
-  winner:
-  - winner: deepflash2
-    kaggleId: |
-      <b>Kaggle IDs (no order):</b> matjes, theudas, maddonix
-    button:
-    - label: Notebook
-      link: https://www.kaggle.com/matjes/hubmap-deepflash2-judge-price
-    - label: Presentation
-      link: https://www.youtube.com/watch?v=w6LpUDkXL0Q&list=PLuJUUASr8daMaDBweSiSbPXgzwUX_xoX_&index=2
-  userImage:
-  - assets/images/matjes.svg
-  - assets/images/theudas.svg
-  - assets/images/maddonix.svg
-
-datasetsData:
-- heading: Datasets
-  descriptions: |
-    All datasets have been published as a HuBMAP 
-    <a href="https://portal.hubmapconsortium.org/browse/collection/4964d24bbc6668a72c4cbb5e0393a6bc">collection</a>. 
-    Here is the link to the <a href="https://hubmapconsortium.github.io/ccf/dld/kaggle-metadata.csv">metadata file</a> and below are the direct links to all 30 datasets:
