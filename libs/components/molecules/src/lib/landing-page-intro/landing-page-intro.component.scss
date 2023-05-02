@@ -1,18 +1,35 @@
+@use 'variables' as vars;
+
 :host {
   display: grid;
   grid-template-columns: 3fr 2fr;
   grid-template-rows: auto auto auto 3rem auto;
   align-items: start;
   column-gap: 2rem;
-  margin: 1rem 6rem;
+  row-gap: 2rem;
+
+  .title {
+    font-size: 3rem;
+    line-height: 4rem;
+  }
+
+  .more-button {
+    width: fit-content;
+  }
+
   .image {
     grid-column: 2;
     grid-row: 1 / span 4;
+    place-self: center;
     width: 100%;
     height: auto;
   }
 
-  .more-button {
-    width: 11rem;
+  .description,
+  .partners {
+    ::ng-deep a {
+      color: vars.$primary-rgb;
+      font-weight: 700;
+    }
   }
 }
