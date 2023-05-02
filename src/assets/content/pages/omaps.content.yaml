@@ -4,6 +4,16 @@
     title: Organ Mapping Antibody Panels (OMAPs)
     subtitle: Validated panels for diverse organs to run multiplexed antibody-based imaging that generates semantic ASCT+B table term annotations
 
+- type: announcement
+  announcementCard:
+  - message: "The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in "
+    route: 'v1.3'
+    routeText: '4th Release Notes.'
+    emoji: '🎉'
+
+- type: margin
+  bottom: 2.5rem
+
 - type: page-data
   pageData:
   - heading: Overview
@@ -73,6 +83,7 @@
   class: card-title
 
 - type: tableVersion
+  isTotal: true
   versionData:
   - release: '4th HRA Release (v1.3), December 2022'
     file: omaps_release4.csv

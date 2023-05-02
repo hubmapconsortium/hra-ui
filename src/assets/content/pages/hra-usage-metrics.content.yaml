@@ -57,6 +57,8 @@
   text: CCF Ontology (including published glb files) production requests for May
   styles:
     font-size: 1.5rem
+    font-weight: 300
+    line-height: 2rem
 
 - type: margin
   bottom: 2.5rem
@@ -71,6 +73,8 @@
   text: CCF API Requests for May
   styles:
     font-size: 1.5rem
+    font-weight: 300
+    line-height: 2rem
 
 - type: margin
   bottom: 2.5rem
@@ -85,6 +89,8 @@
   text: CCF Ontology Bioportal Visits
   styles:
     font-size: 1.5rem
+    font-weight: 300
+    line-height: 2rem
 
 - type: margin
   bottom: 2.5rem

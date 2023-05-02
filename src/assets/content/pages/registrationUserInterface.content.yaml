@@ -11,6 +11,9 @@
     routeText: '4th Release Notes.'
     emoji: '🎉'
 
+- type: margin
+  bottom: 2.5rem
+
 - type: page-data
   pageData:
   - heading: Overview
@@ -31,8 +34,13 @@
 
 - type: sop-links
   sopData:
-  - urls: ' SOP: Using the Registration User Interface'
-    href: https://doi.org/10.5281/zenodo.5575776
+    title: Standard Operating Procedures (SOP)
+    href:
+    - urls: ' SOP: Using the Registration User Interface'
+      href: https://doi.org/10.5281/zenodo.5575776
+
+- type: margin
+  bottom: 2.5rem
 
 - type: player
   youtubePlayer:

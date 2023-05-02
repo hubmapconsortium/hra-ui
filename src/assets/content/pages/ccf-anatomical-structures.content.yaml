@@ -21,10 +21,12 @@
 
 - type: sop-links
   sopData:
-  - urls: 'SOP: Authoring ASCT+B Tables'
-    href: https://doi.org/10.5281/zenodo.5746152
-  - urls: 'SOP: ASCT+B Table Communications'
-    href: https://doi.org/10.5281/zenodo.5639623
+    title: Standard Operating Procedures (SOP)
+    href:
+    - urls: 'SOP: Authoring ASCT+B Tables'
+      href: https://doi.org/10.5281/zenodo.5746152
+    - urls: 'SOP: ASCT+B Table Communications'
+      href: https://doi.org/10.5281/zenodo.5639623
 
 - type: margin
   bottom: 2rem

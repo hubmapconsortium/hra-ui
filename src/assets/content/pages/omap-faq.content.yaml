@@ -11,6 +11,9 @@
     title: Frequently Asked Questions (FAQs) for Organ Mapping Antibody Panels (OMAPs)
     subtitle: 
 
+- type: margin
+  bottom: 2.5rem
+
 - type: page-data
   pageData:
   - heading: Table of Contents

@@ -55,6 +55,9 @@
     image: assets/images/spatial_ontology.svg
     image_dialog: assets/images/spatial_ontology.svg
 
+- type: margin
+  bottom: 2.5rem
+
 - type: cardBlock
   cardWithTitle:
   - heading: Related Tools
@@ -77,6 +80,9 @@
       externalLink: "https://bioportal.bioontology.org/ontologies/CCF"
       color: rgb(34,73,120)
     headerSize: 'font-size: 1.5rem'
+
+- type: margin
+  bottom: 2.5rem
 
 - type: page-data
   pageData:

@@ -11,6 +11,9 @@
     routeText: '4th Release Notes.'
     emoji: '🎉'
 
+- type: margin
+  bottom: 2.5rem
+
 - type: page-data
   pageData:
   - heading: Table of Contents
