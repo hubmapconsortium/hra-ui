@@ -26,8 +26,16 @@
 </mat-tree>
 
 <ng-template let-label="label" let-data="data" #label>
-  <div class="label-container" (click)="data.link && selectNode(data)">
-    <a *ngIf="data.link; else noLink" [hraLink]="data.link" class="link">{{ label }}</a>
+  <div class="label-container">
+    <a
+      *ngIf="data.link; else noLink"
+      [hraLink]="data.link"
+      [queryParams]="{ id: data.id }"
+      class="link"
+      (click)="selectNode(data)"
+    >
+      {{ label }}
+    </a>
     <ng-template #noLink>
       <span>{{ label }}</span>
     </ng-template>

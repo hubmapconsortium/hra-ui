@@ -56,12 +56,10 @@ describe('TissueTreeListComponent', () => {
       expect(outputs.selectedChange.emit).toHaveBeenCalledWith(internalNode.data);
     });
 
-    it('should clear the selected node if called with the current selection', async () => {
-      const { instance, outputs } = await shallow.render({ bind: { nodes } });
-      instance.selected = internalNode.data;
+    it('should not emit if the same node is selected', async () => {
+      const { instance, outputs } = await shallow.render({ bind: { nodes, selected: internalNode.data } });
       instance.selectNode(internalNode.data);
-      expect(instance.selected).toBeUndefined();
-      expect(outputs.selectedChange.emit).toHaveBeenCalledWith(undefined);
+      expect(outputs.selectedChange.emit).not.toHaveBeenCalled();
     });
   });
 });

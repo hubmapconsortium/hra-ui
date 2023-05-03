@@ -20,6 +20,8 @@ import { LinkId } from '@hra-ui/cdk/state';
 export interface DataNode {
   /** User readable label */
   label: string;
+  /** Id to pass as a query parameter on navigation */
+  id?: string;
   /** Link to navigate to on node click */
   link?: LinkId;
   /** Nested nodes */
@@ -115,13 +117,14 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
   }
 
   /**
-   * It selects/de-selects the node, which is clicked.
-   * If the node is already selected, it de-selects it
+   * It selects the node, which is clicked.
    * @param node Tissue Tree Item, which is clicked
    */
   selectNode(node: T): void {
-    this.selected = this.selected === node ? undefined : node;
-    this.selectedChange.emit(this.selected);
+    if (this.selected !== node) {
+      this.selected = node;
+      this.selectedChange.emit(this.selected);
+    }
   }
 
   /**
