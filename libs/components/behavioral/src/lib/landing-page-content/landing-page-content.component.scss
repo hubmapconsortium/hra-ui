@@ -2,20 +2,24 @@
   display: block;
   overflow-x: hidden;
 
+  .intro {
+    margin: 3.5rem 2rem;
+  }
+
   .metrics {
     opacity: 0;
 
     &.visible {
-      animation: fadeIn 2s ease-in-out forwards;
+      animation: fadeIn 2s ease-in forwards;
     }
   }
 
-  .landing-page-content {
+  .in-depth {
     opacity: 0;
 
     &.visible {
       overflow: hidden;
-      animation: slideIn 3s ease-in-out forwards;
+      animation: slideIn 2s ease-in-out forwards;
     }
   }
 }
