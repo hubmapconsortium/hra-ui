@@ -313,9 +313,9 @@ export class MetricsComponent {
 
 &lt;div class&#x3D;&quot;metrics&quot;&gt;
   &lt;div class&#x3D;&quot;metric&quot; *ngFor&#x3D;&quot;let item of metrics&quot;&gt;
-    &lt;img class&#x3D;&quot;metric-logo&quot; [src]&#x3D;&quot;item.icon&quot; alt&#x3D;&quot;&quot; /&gt;
-    &lt;span class&#x3D;&quot;metric-value&quot;&gt; {{ item.value }} &lt;/span&gt;
-    &lt;span class&#x3D;&quot;metric-description&quot;&gt; {{ item.description }} &lt;/span&gt;
+    &lt;img class&#x3D;&quot;logo&quot; [src]&#x3D;&quot;item.icon&quot; alt&#x3D;&quot;&quot; /&gt;
+    &lt;span class&#x3D;&quot;value&quot;&gt; {{ item.value }} &lt;/span&gt;
+    &lt;span class&#x3D;&quot;description&quot;&gt; {{ item.description }} &lt;/span&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
@@ -329,18 +329,17 @@ export class MetricsComponent {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 1.5rem;
+  padding: 2rem 0 0 0;
+  background: #f8f9fa;
+  gap: 0.5rem;
 
   .logo {
     height: 2.75rem;
-    padding: 0.563rem 0.188rem 0.563rem 0.188rem;
   }
 
   .header-title {
-    color: #243142;
     font-size: 2rem;
-    font-weight: 400;
-    margin-bottom: 0.5rem;
+    line-height: 2.5rem;
   }
 
   .metrics {
@@ -348,32 +347,31 @@ export class MetricsComponent {
     flex-direction: row;
     overflow-x: auto;
     max-width: 100%;
-    gap: 1.75rem;
+    gap: 2rem;
+    padding: 2rem 1.75rem;
 
     .metric {
       display: flex;
       flex-direction: column;
       align-items: center;
-      height: 14.75rem;
       min-width: 14.25rem;
-      width: auto;
-      margin: 2rem 0;
+      height: 14.75rem;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
 
-      .metric-logo {
-        height: 3rem;
-        width: 3rem;
-        margin: 2rem 5.625rem;
+      .logo {
+        margin-bottom: 2rem;
       }
 
-      .metric-value {
-        margin: 0rem 0rem 0.25rem 0rem;
+      .value {
         font-size: 3rem;
-        font-weight: 400;
+        line-height: 4rem;
+        margin-bottom: 0.25rem;
       }
 
-      .metric-description {
+      .description {
         font-size: 1rem;
-        font-weight: 400;
+        text-align: center;
       }
     }
   }
@@ -406,7 +404,7 @@ export class MetricsComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><img class="logo" [src]="logo" alt="" /><span class="header-title">{{ title }}</span><div class="metrics">  <div class="metric" *ngFor="let item of metrics">    <img class="metric-logo" [src]="item.icon" alt="" />    <span class="metric-value"> {{ item.value }} </span>    <span class="metric-description"> {{ item.description }} </span>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><img class="logo" [src]="logo" alt="" /><span class="header-title">{{ title }}</span><div class="metrics">  <div class="metric" *ngFor="let item of metrics">    <img class="logo" [src]="item.icon" alt="" />    <span class="value"> {{ item.value }} </span>    <span class="description"> {{ item.description }} </span>  </div></div></div>'
     var COMPONENTS = [{'name': 'BiomarkerTableDataCardComponent', 'selector': 'hra-biomarker-table-data-card'},{'name': 'BiomarkerTableDataIconComponent', 'selector': 'hra-biomarker-table-data-icon'},{'name': 'ContactModalComponent', 'selector': 'hra-contact-modal'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenContainerComponent', 'selector': 'hra-fullscreen-container'},{'name': 'FullscreenContentComponent', 'selector': 'hra-fullscreen-content'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InteractiveSvgComponent', 'selector': 'hra-interactive-svg'},{'name': 'LandingPageInDepthComponent', 'selector': 'hra-landing-page-in-depth'},{'name': 'LandingPageIntroComponent', 'selector': 'hra-landing-page-intro'},{'name': 'MetricsComponent', 'selector': 'hra-metrics'},{'name': 'ScreenSizeNoticeComponent', 'selector': 'hra-screen-size-notice'},{'name': 'SourceListComponent', 'selector': 'hra-source-list'},{'name': 'TissueTreeListComponent', 'selector': 'hra-tissue-tree-list'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'MetricsComponent'};

@@ -200,10 +200,6 @@
                                     <span class="modifier">Readonly</span>
                                 <a href="#metricsTitle" >metricsTitle</a>
                             </li>
-                            <li>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#navigate" >navigate</a>
-                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -261,8 +257,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/lib/landing-page-content/landing-page-content.component.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/lib/landing-page-content/landing-page-content.component.ts:82</a></div>
                 </td>
             </tr>
 
@@ -679,7 +675,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/lib/landing-page-content/landing-page-content.component.ts:67</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/lib/landing-page-content/landing-page-content.component.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -788,38 +784,6 @@
 
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="navigate"></a>
-                    <span class="name">
-                            <span class="modifier">Readonly</span>
-                        <span ><b>navigate</b></span>
-                        <a href="#navigate"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>dispatch(LinkRegistryActions.Navigate)</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/lib/landing-page-content/landing-page-content.component.ts:64</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Disptach action for navigation</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
 </section>
 
 </div>
@@ -837,8 +801,8 @@ import {
   Renderer2,
   ViewChildren,
 } from &#x27;@angular/core&#x27;;
-import { dispatch, injectDestroy$, selectQuerySnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
-import { LinkRegistryActions, ResourceRegistrySelectors as RRS } from &#x27;@hra-ui/cdk/state&#x27;;
+import { injectDestroy$, selectQuerySnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
+import { ResourceRegistrySelectors as RRS } from &#x27;@hra-ui/cdk/state&#x27;;
 import {
   LandingPageInDepthComponent,
   LandingPageIntroComponent,
@@ -888,9 +852,6 @@ export class LandingPageContentComponent implements AfterViewInit {
   /** select snapshot for landing page depth img */
   readonly landingPageDepthImg &#x3D; selectQuerySnapshot(RRS.url, RIds.LandingPageDepthImg);
 
-  /** Disptach action for navigation */
-  readonly navigate &#x3D; dispatch(LinkRegistryActions.Navigate);
-
   /** Expose links for use it template */
   readonly LinkIds &#x3D; LinkIds;
 
@@ -924,23 +885,24 @@ export class LandingPageContentComponent implements AfterViewInit {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;hra-landing-page-intro
+  class&#x3D;&quot;intro&quot;
   [title]&#x3D;&quot;landingPageIntroTitle()&quot;
   [img]&#x3D;&quot;landingPageIntroImg()&quot;
   [partners]&#x3D;&quot;landingPageIntroPartners()&quot;
   [description]&#x3D;&quot;landingPageIntroDescription()&quot;
   [moreText]&#x3D;&quot;landingPageIntroMoreText()&quot;
-  (moreClick)&#x3D;&quot;navigate(LinkIds.ExploreFTU)&quot;
+  [moreLink]&#x3D;&quot;LinkIds.ExploreFTU&quot;
 &gt;
 &lt;/hra-landing-page-intro&gt;
 &lt;hra-metrics class&#x3D;&quot;metrics&quot; [title]&#x3D;&quot;metricsTitle()&quot; [metrics]&#x3D;&quot;metrics()&quot; [logo]&#x3D;&quot;metricsLogo()&quot; #intersectable&gt;
 &lt;/hra-metrics&gt;
 &lt;hra-landing-page-in-depth
-  class&#x3D;&quot;landing-page-content&quot;
+  class&#x3D;&quot;in-depth&quot;
   [title]&#x3D;&quot;landingPageDepthTitle()&quot;
   [description]&#x3D;&quot;landingPageDepthDescription()&quot;
   [moreText]&#x3D;&quot;landingPageDepthMoreText()&quot;
   [img]&#x3D;&quot;landingPageDepthImg()&quot;
-  (moreClick)&#x3D;&quot;navigate(LinkIds.LandingPageReadMore)&quot;
+  [moreLink]&#x3D;&quot;LinkIds.LandingPageReadMore&quot;
   #intersectable
 &gt;
 &lt;/hra-landing-page-in-depth&gt;
@@ -955,20 +917,24 @@ export class LandingPageContentComponent implements AfterViewInit {
   display: block;
   overflow-x: hidden;
 
+  .intro {
+    margin: 3.5rem 2rem;
+  }
+
   .metrics {
     opacity: 0;
 
     &amp;.visible {
-      animation: fadeIn 2s ease-in-out forwards;
+      animation: fadeIn 2s ease-in forwards;
     }
   }
 
-  .landing-page-content {
+  .in-depth {
     opacity: 0;
 
     &amp;.visible {
       overflow: hidden;
-      animation: slideIn 3s ease-in-out forwards;
+      animation: slideIn 2s ease-in-out forwards;
     }
   }
 }
@@ -1022,7 +988,7 @@ export class LandingPageContentComponent implements AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-landing-page-intro  [title]="landingPageIntroTitle()"  [img]="landingPageIntroImg()"  [partners]="landingPageIntroPartners()"  [description]="landingPageIntroDescription()"  [moreText]="landingPageIntroMoreText()"  (moreClick)="navigate(LinkIds.ExploreFTU)"></hra-landing-page-intro><hra-metrics class="metrics" [title]="metricsTitle()" [metrics]="metrics()" [logo]="metricsLogo()" #intersectable></hra-metrics><hra-landing-page-in-depth  class="landing-page-content"  [title]="landingPageDepthTitle()"  [description]="landingPageDepthDescription()"  [moreText]="landingPageDepthMoreText()"  [img]="landingPageDepthImg()"  (moreClick)="navigate(LinkIds.LandingPageReadMore)"  #intersectable></hra-landing-page-in-depth></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-landing-page-intro  class="intro"  [title]="landingPageIntroTitle()"  [img]="landingPageIntroImg()"  [partners]="landingPageIntroPartners()"  [description]="landingPageIntroDescription()"  [moreText]="landingPageIntroMoreText()"  [moreLink]="LinkIds.ExploreFTU"></hra-landing-page-intro><hra-metrics class="metrics" [title]="metricsTitle()" [metrics]="metrics()" [logo]="metricsLogo()" #intersectable></hra-metrics><hra-landing-page-in-depth  class="in-depth"  [title]="landingPageDepthTitle()"  [description]="landingPageDepthDescription()"  [moreText]="landingPageDepthMoreText()"  [img]="landingPageDepthImg()"  [moreLink]="LinkIds.LandingPageReadMore"  #intersectable></hra-landing-page-in-depth></div>'
     var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LandingPageContentComponent'};
