@@ -3,7 +3,7 @@
 :host {
   display: grid;
   grid-template-columns: 3fr 2fr;
-  grid-template-rows: auto auto auto 3rem auto;
+  grid-template-rows: auto auto 3rem 1fr;
   align-items: start;
   column-gap: 2rem;
   row-gap: 2rem;
