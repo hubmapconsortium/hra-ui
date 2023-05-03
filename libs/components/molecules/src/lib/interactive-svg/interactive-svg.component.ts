@@ -176,17 +176,16 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestro
    * @param event Mouse event
    */
   private onCrosswalkHover(event: MouseEvent): void {
-    const id = this.getId(event);
-    const mapEntry = this.mapping?.find((item) => item['node_name'] === id); //search mapping data for node entry
-    if (mapEntry) {
+    const node = this.getNode(event);
+    if (node) {
       this.nodeHoverData$.next({
-        node: mapEntry['label'],
+        node: node['label'],
         origin: {
           x: event.clientX,
           y: event.clientY,
         },
       });
-      this.nodeHover.emit(mapEntry); //emits node entry
+      this.nodeHover.emit(node); //emits node entry
     }
   }
 
@@ -200,22 +199,25 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestro
   }
 
   /**
-   * Returns parent id from event target
+   * Returns entry from mapping if target, parent, or grandparent id matches the node name
    * @param event Event
-   * @returns Parent id
+   * @returns Node entry that matches the target id
    */
-  private getId(event: Event): string {
-    const parent = (event.target as Element).parentElement;
-    const grandparent = parent?.parentElement;
-    let id = (event.target as Element).id;
-    if (!id) {
-      if (parent && parent.id) {
-        id = parent.id;
-      } else {
-        id = grandparent ? grandparent.id : '';
+  private getNode(event: Event): T | undefined {
+    const targetId = (event.target as Element).id;
+    const parentId = (event.target as Element).parentElement?.id ?? '';
+    const grandparentId = (event.target as Element).parentElement?.parentElement?.id ?? '';
+    const idCollection = [targetId, parentId, grandparentId];
+    for (const id of idCollection) {
+      const decodedID = this.decodeId(id);
+      const match = this.mapping.find(
+        (item) => item['node_name']?.toLowerCase() === decodedID.toLowerCase() //search mapping by node_name for matching node entry
+      );
+      if (match) {
+        return match;
       }
     }
-    return this.decodeId(id);
+    return undefined;
   }
 
   /**
