@@ -1,37 +1,43 @@
+@use 'variables' as vars;
+
 :host {
   display: grid;
   grid-template-columns: 2fr 3fr;
-  grid-template-rows: auto auto auto 3rem auto;
-  align-items: start;
+  grid-template-rows: auto auto 1fr;
   column-gap: 2rem;
-  margin: 1rem 6rem;
+  row-gap: 2rem;
+  padding: 3.5rem 2rem;
 
   .image {
     grid-column: 1;
-    grid-row: 1 / span 4;
+    grid-row: 1 / span 3;
     width: 100%;
     height: auto;
+    align-self: center;
   }
 
   .title {
-    font-weight: 400;
-    font-size: 32px;
-    color: #243142;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    margin: 0;
+  }
+
+  .description {
+    font-size: 1rem;
+    line-height: 1.5rem;
+
+    ::ng-deep p {
+      margin: 0;
+    }
+
+    ::ng-deep a {
+      color: vars.$primary-rgb;
+      font-weight: 700;
+    }
   }
 
   .more-button {
     width: fit-content;
-    height: 48px;
-    font-weight: 700;
-    font-size: 16px;
-  }
-
-  .description {
-    color: #4c5a69;
-    font-size: 16px;
-    font-weight: 400;
-  }
-
-  .more-text {
+    height: 3rem;
   }
 }

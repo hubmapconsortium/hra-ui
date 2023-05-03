@@ -17,6 +17,7 @@
 
   .sidebar {
     grid-area: sidebar;
+    border-right: 0.0625rem solid rgba(vars.$dark-dividers);
   }
 
   .page-content {
