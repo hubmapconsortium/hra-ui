@@ -1,26 +1,8 @@
-import { LocationStrategy } from '@angular/common';
-import {
-  Directive,
-  ElementRef,
-  HostBinding,
-  HostListener,
-  inject,
-  Input,
-  OnChanges,
-  SecurityContext,
-  SimpleChanges,
-} from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Directive, ElementRef, HostBinding, HostListener, inject, Injector, Input, OnChanges } from '@angular/core';
+import { ActivatedRoute, Params, QueryParamsHandling, UrlCreationOptions } from '@angular/router';
 import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
-import {
-  EMPTY_LINK,
-  InternalLinkEntry,
-  LinkEntry,
-  LinkRegistryActions,
-  LinkRegistrySelectors,
-  LinkType,
-} from '@hra-ui/cdk/state';
+import { EMPTY_LINK, LinkEntry, LinkRegistryActions, LinkRegistrySelectors, LinkType } from '@hra-ui/cdk/state';
+import { createExternalUrl, createInternalUrl } from '@hra-ui/utils';
 
 /** Link Directive for routing */
 @Directive({
@@ -30,6 +12,22 @@ import {
 export class LinkDirective implements OnChanges {
   /** linkId with empty string as default value */
   @Input('hraLink') linkId = EMPTY_LINK;
+
+  /** Query string parameters */
+  @Input() queryParams?: Params;
+
+  /** How to handle existing query params */
+  @Input() queryParamsHandling?: QueryParamsHandling;
+
+  /** Url fragment */
+  @Input() fragment?: string;
+
+  /** Whether to preserve the existing fragment */
+  @Input() preserveFragment?: boolean;
+
+  /** Nagivate relative to a route. Only affects internal links. */
+  @Input() relativeTo?: ActivatedRoute;
+
   /** href of the element */
   @HostBinding('attr.href') href?: string;
   /** rel attribute of the element */
@@ -37,40 +35,37 @@ export class LinkDirective implements OnChanges {
   /** target attribute of the element */
   @HostBinding('attr.target') target?: string;
 
-  /** Native Element */
-  private readonly el: HTMLElement = inject(ElementRef).nativeElement;
-  /** Angular router */
-  private readonly router = inject(Router);
-  /** Activate route */
-  private readonly route = inject(ActivatedRoute, { optional: true });
-  /** Location strategy */
-  private readonly locationStrategy = inject(LocationStrategy);
-  /** DomSanitizer to sanitize the url */
-  private readonly sanitizer = inject(DomSanitizer);
+  /** Reference to this component's injector */
+  private readonly injector = inject(Injector);
+  /** Element tag on which this directive is mounted */
+  private readonly tagName = inject<ElementRef<Element>>(ElementRef).nativeElement.tagName.toLowerCase();
   /** Selector for querying the link registry state */
   private readonly queryLink = selectQuerySnapshot(LinkRegistrySelectors.query);
   /** Dispatch action to navigate to a url */
   private readonly navigate = dispatch(LinkRegistryActions.Navigate);
-  /** tagName from Native Element */
-  private readonly tagName = this.el.tagName.toLowerCase();
-  /** to know if the element is an anchor element */
-  private readonly isAnchorElement = ['a', 'area'].includes(this.tagName);
-  /** url security context */
-  private readonly urlSecurityContext = ['base', 'link'].includes(this.tagName)
-    ? SecurityContext.RESOURCE_URL
-    : SecurityContext.URL;
 
   /** Link Entry */
   private link?: LinkEntry;
 
-  /**
-   * triggers when linkId changes
-   * @param changes contains changes of inputs
-   */
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['linkId'].currentValue !== EMPTY_LINK) {
-      this.updateLink();
-    }
+  /** Whether the host element is an anchor */
+  private get isAnchorElement(): boolean {
+    return ['a', 'area'].includes(this.tagName);
+  }
+
+  /** Whether the host element deals with resource urls */
+  private get isResourceUrl(): boolean {
+    return ['base', 'link'].includes(this.tagName);
+  }
+
+  /** Collects query params and fragment options into a single object */
+  private get extras(): UrlCreationOptions {
+    const { link } = this;
+    return this.mergeExtras(link?.type === LinkType.Internal ? link.extras : undefined, this);
+  }
+
+  /** Updates the current link/url based on the inputs */
+  ngOnChanges(): void {
+    this.updateLink();
   }
 
   /**
@@ -87,49 +82,60 @@ export class LinkDirective implements OnChanges {
 
     if (isAnchorElement) {
       const { button, ctrlKey, shiftKey, altKey, metaKey } = event;
-      if (link.type === LinkType.External) {
-        return true;
-      }
-      if (button !== 0 || ctrlKey || shiftKey || altKey || metaKey) {
+      if (link.type === LinkType.External || button !== 0 || ctrlKey || shiftKey || altKey || metaKey) {
         return true;
       }
     }
 
-    this.navigate(linkId);
+    this.navigate(linkId, this.extras);
     return !isAnchorElement;
   }
 
-  /**
-   * Updates link when linkId changes
-   */
+  /** Updates the link entry and bound attributes */
   private updateLink(): void {
     const link = (this.link = this.queryLink(this.linkId));
-    this.href = undefined;
-    this.target = undefined;
-    this.rel = undefined;
-    if (link) {
-      if (link.type === LinkType.External) {
-        this.href = link.url;
-        this.rel = link.rel;
-        this.target = link.target;
-      } else {
-        this.href = this.getHref(link) ?? undefined;
-      }
+    ({ href: this.href, rel: this.rel, target: this.target } = this.getLinkAttributes(link));
+  }
+
+  /**
+   * Gets the new values for different attributes bound to the host element
+   * @param link Current link entry
+   * @returns New attributes values to bind on the host element
+   */
+  private getLinkAttributes(link?: LinkEntry): { href?: string; rel?: string; target?: string } {
+    const { injector, extras, isResourceUrl } = this;
+    switch (link?.type) {
+      case LinkType.Internal:
+        return { href: createInternalUrl(injector, link.commands, extras, isResourceUrl) };
+
+      case LinkType.External:
+        return { ...link, href: createExternalUrl(link.url, extras) };
+
+      default:
+        return {};
     }
   }
 
   /**
-   * Creates a url tree and sanitizes the url
-   * @param link Internal link entry
-   * @returns A sanitized url string
+   * Merges two UrlCreationOptions.
+   * Undefined values in the second set does not override values from the first set.
+   * @param opt1 First set of options
+   * @param opt2 Second set of options
+   * @returns Merged options
    */
-  private getHref(link: InternalLinkEntry): string | null {
-    const { router, route, locationStrategy, sanitizer, urlSecurityContext } = this;
-    const urlTree = router.createUrlTree(link.commands, {
-      ...link.extras,
-      relativeTo: route,
-    });
-    const url = locationStrategy.prepareExternalUrl(router.serializeUrl(urlTree));
-    return sanitizer.sanitize(urlSecurityContext, url);
+  private mergeExtras(opt1: UrlCreationOptions | undefined, opt2: UrlCreationOptions): UrlCreationOptions {
+    const result = { ...opt1 };
+    const mergeKey = <K extends keyof UrlCreationOptions>(key: K) => {
+      if (opt2[key] !== undefined) {
+        result[key] = opt2[key];
+      }
+    };
+
+    mergeKey('queryParams');
+    mergeKey('queryParamsHandling');
+    mergeKey('fragment');
+    mergeKey('preserveFragment');
+    mergeKey('relativeTo');
+    return result;
   }
 }

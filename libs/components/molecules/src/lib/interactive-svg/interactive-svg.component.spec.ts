@@ -102,6 +102,15 @@ describe('InteractiveSvgComponent', () => {
       expect(outputs.nodeHover.emit).toHaveBeenCalledWith(testMapping[2]);
     });
 
+    it('should not emit anything if node not found in mapping', async () => {
+      const { instance, outputs } = await shallow.render({ bind: { mapping: [] } });
+      instance.setSvgElement(svg);
+
+      const handler = renderer.listen.mock.calls.find((args) => args[1] === 'mouseover')?.[2];
+      handler?.(event);
+      expect(outputs.nodeHover.emit).toHaveBeenCalledTimes(0);
+    });
+
     it('should clear hover event on mouseout', async () => {
       const { instance } = await shallow.render({ bind: { mapping: testMapping } });
       jest.spyOn(instance.nodeHoverData$, 'next');

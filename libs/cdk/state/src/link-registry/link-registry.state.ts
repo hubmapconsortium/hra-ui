@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, NgZone } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, UrlCreationOptions } from '@angular/router';
+import { createExternalUrl } from '@hra-ui/utils';
 import { UnionMember } from '@hra-ui/utils/types';
 import { Action, State } from '@ngxs/store';
 import { load } from 'js-yaml';
@@ -90,15 +91,15 @@ export class LinkRegistryState {
    * @returns A promise
    */
   @Action(Navigate)
-  async navigate(ctx: LinkRegistryContext, { id }: Navigate): Promise<void> {
+  async navigate(ctx: LinkRegistryContext, { id, extras }: Navigate): Promise<void> {
     const entry = ctx.getState()[id];
     switch (entry?.type) {
       case LinkType.Internal:
-        await this.navigateToInternal(entry);
+        await this.navigateToInternal(entry, extras);
         break;
 
       case LinkType.External:
-        this.navigateToExternal(entry);
+        this.navigateToExternal(entry, extras);
         break;
 
       default:
@@ -110,15 +111,16 @@ export class LinkRegistryState {
    * Method to navigate to an internal link using Angular router
    * @param entry Internal Link Entry with commands and extras
    */
-  private async navigateToInternal(entry: InternalLinkEntry): Promise<void> {
-    await this.zone.run(() => this.router.navigate(entry.commands, entry.extras));
+  private async navigateToInternal(entry: InternalLinkEntry, extras: UrlCreationOptions): Promise<void> {
+    await this.zone.run(() => this.router.navigate(entry.commands, { ...entry.extras, ...extras }));
   }
 
   /**
    * Method to navigate to an external link using window
    * @param entry External link entry with url, target, and rel
    */
-  private navigateToExternal(entry: ExternalLinkEntry): void {
-    window.open(entry.url, entry.target, entry.rel);
+  private navigateToExternal(entry: ExternalLinkEntry, extras: UrlCreationOptions): void {
+    const url = createExternalUrl(entry.url, extras);
+    window.open(url, entry.target, entry.rel);
   }
 }
