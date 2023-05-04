@@ -3,7 +3,9 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CdkStateModule } from '@hra-ui/cdk/state';
-import { HeaderBehaviorComponent } from '@hra-ui/components/behavioral';
+import { HeaderBehaviorComponent, TissueLibraryBehaviorComponent } from '@hra-ui/components/behavioral';
+import { HraServiceModule } from '@hra-ui/services';
+import { HraStateModule } from '@hra-ui/state';
 import { ThemingModule } from '@hra-ui/theming';
 import { NgxsModule } from '@ngxs/store';
 import { InlineSVGModule } from 'ng-inline-svg-2';
@@ -28,8 +30,11 @@ import { initFactory } from './app.init';
 
     AppRoutingModule,
     CdkStateModule,
+    HraServiceModule,
+    HraStateModule,
 
     HeaderBehaviorComponent,
+    TissueLibraryBehaviorComponent,
   ],
   providers: [
     {

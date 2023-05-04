@@ -1,10 +1,11 @@
 import { MatTreeModule } from '@angular/material/tree';
 import { Shallow } from 'shallow-render';
 import { DataNode, TissueTreeListComponent } from './tissue-tree-list.component';
+import { LinkDirective } from '@hra-ui/cdk';
 
 describe('TissueTreeListComponent', () => {
-  let shallow: Shallow<TissueTreeListComponent<DataNode>>;
-  const nodes: Record<string, DataNode> = {
+  let shallow: Shallow<TissueTreeListComponent<string, DataNode<string>>>;
+  const nodes: Record<string, DataNode<string>> = {
     id1: {
       label: 'Kidney',
       children: ['id2', 'id3'],
@@ -33,7 +34,7 @@ describe('TissueTreeListComponent', () => {
   };
 
   beforeEach(async () => {
-    shallow = new Shallow(TissueTreeListComponent).dontMock(MatTreeModule);
+    shallow = new Shallow(TissueTreeListComponent).dontMock(MatTreeModule, LinkDirective);
   });
 
   it('creates', async () => {
@@ -45,22 +46,20 @@ describe('TissueTreeListComponent', () => {
       label: '',
       expandable: false,
       level: 0,
-      data: nodes[0],
+      data: nodes['id1'],
     };
 
     it('should set the selected node', async () => {
       const { instance, outputs } = await shallow.render({ bind: { nodes } });
-      instance.selectNode(internalNode);
+      instance.selectNode(internalNode.data);
       expect(instance.selected).toBe(internalNode.data);
       expect(outputs.selectedChange.emit).toHaveBeenCalledWith(internalNode.data);
     });
 
-    it('should clear the selected node if called with the current selection', async () => {
-      const { instance, outputs } = await shallow.render({ bind: { nodes } });
-      instance.selected = internalNode.data;
-      instance.selectNode(internalNode);
-      expect(instance.selected).toBeUndefined();
-      expect(outputs.selectedChange.emit).toHaveBeenCalledWith(undefined);
+    it('should not emit if the same node is selected', async () => {
+      const { instance, outputs } = await shallow.render({ bind: { nodes, selected: internalNode.data } });
+      instance.selectNode(internalNode.data);
+      expect(outputs.selectedChange.emit).not.toHaveBeenCalled();
     });
   });
 });

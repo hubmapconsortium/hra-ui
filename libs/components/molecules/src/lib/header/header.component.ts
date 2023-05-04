@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { LinkDirective } from '@hra-ui/cdk';
 import { EMPTY_LINK } from '@hra-ui/cdk';
@@ -10,7 +12,7 @@ import { EMPTY_LINK } from '@hra-ui/cdk';
 @Component({
   selector: 'hra-header',
   standalone: true,
-  imports: [CommonModule, MatIconModule, LinkDirective],
+  imports: [CommonModule, MatButtonModule, MatIconModule, MatRippleModule, LinkDirective],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

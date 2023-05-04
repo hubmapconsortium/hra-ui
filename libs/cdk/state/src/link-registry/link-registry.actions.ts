@@ -1,3 +1,4 @@
+import { UrlCreationOptions } from '@angular/router';
 import { ActionGroup } from '../actions/actions';
 import { LinkEntry, LinkId } from './link-registry.model';
 
@@ -53,8 +54,9 @@ export class Navigate extends Action('Navigate') {
   /**
    * navigate to a link
    * @param id unqiue identifier of link
+   * @param extras Options when building the navigation url
    */
-  constructor(readonly id: LinkId) {
+  constructor(readonly id: LinkId, readonly extras: UrlCreationOptions = {}) {
     super();
   }
 }

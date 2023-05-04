@@ -13,25 +13,25 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';
+import { LinkDirective } from '@hra-ui/cdk';
+import { LinkId } from '@hra-ui/cdk/state';
 
-/**
- * External interface for tissue data
- */
-export interface DataNode {
-  /**
-   * label identifier
-   */
+/** Base node type */
+export interface DataNode<K extends string> {
+  /** User readable label */
   label: string;
-  /**
-   * child entities for the tissue
-   */
-  children?: string[];
+  /** Id to pass as a query parameter on navigation */
+  id?: string;
+  /** Link to navigate to on node click */
+  link?: LinkId;
+  /** Nested nodes */
+  children?: K[];
 }
 
 /**
  * Internal interface for flat tissue data hierarchy
  */
-interface InternalNode<T extends DataNode> {
+interface InternalNode<K extends string, T extends DataNode<K>> {
   /** Displayed label */
   label: string;
   /** Whether the node can be expanded to display child nodes */
@@ -48,16 +48,16 @@ interface InternalNode<T extends DataNode> {
 @Component({
   selector: 'hra-tissue-tree-list',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatTreeModule, MatIconModule, MatExpansionModule],
+  imports: [CommonModule, MatButtonModule, MatTreeModule, MatIconModule, MatExpansionModule, LinkDirective],
   templateUrl: './tissue-tree-list.component.html',
   styleUrls: ['./tissue-tree-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
+export class TissueTreeListComponent<K extends string, T extends DataNode<K>> implements OnChanges {
   /**
    * Input  of tissue tree list component
    */
-  @Input() nodes: Record<string, T> = {};
+  @Input() nodes: Record<K, T> = {} as Record<K, T>;
 
   /**
    * Node selected, to view the data associated with it
@@ -72,7 +72,7 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
   /**
    * tree controller, used to control the nodes in the tree
    */
-  readonly control = new FlatTreeControl<InternalNode<T>>(
+  readonly control = new FlatTreeControl<InternalNode<K, T>>(
     (node) => node.level,
     (node) => node.expandable
   );
@@ -80,7 +80,7 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
   /**
    * Flattener of tissue tree list component, returns flat-data structure
    */
-  readonly flattener = new MatTreeFlattener<T, InternalNode<T>>(
+  readonly flattener = new MatTreeFlattener<T, InternalNode<K, T>>(
     (node, level) => ({
       label: node.label,
       expandable: (node.children?.length ?? 0) > 0,
@@ -112,18 +112,19 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
    * @param node current selected node
    * @returns boolean, which means if node has children
    */
-  hasChild(_: number, node: InternalNode<T>): boolean {
+  hasChild(_: number, node: InternalNode<K, T>): boolean {
     return node.expandable;
   }
 
   /**
-   * It selects/de-selects the node, which is clicked.
-   * If the node is already selected, it de-selects it
+   * It selects the node, which is clicked.
    * @param node Tissue Tree Item, which is clicked
    */
-  selectNode(node: InternalNode<T>): void {
-    this.selected = this.selected === node.data ? undefined : node.data;
-    this.selectedChange.emit(this.selected);
+  selectNode(node: T): void {
+    if (this.selected !== node) {
+      this.selected = node;
+      this.selectedChange.emit(this.selected);
+    }
   }
 
   /**
