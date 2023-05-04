@@ -10,11 +10,11 @@ export default {
       states: [LinkRegistryState],
     },
   },
-} satisfies Meta<TissueTreeListComponent<DataNode>>;
+} satisfies Meta<TissueTreeListComponent<string, DataNode<string>>>;
 
-type Story = StoryObj<TissueTreeListComponent<DataNode>>;
+type Story = StoryObj<TissueTreeListComponent<string, DataNode<string>>>;
 
-const nodes: Record<string, DataNode> = {
+const nodes: Record<string, DataNode<string>> = {
   id1: {
     label: 'Kidney',
     children: ['id2', 'id3'],

@@ -4,8 +4,8 @@ import { DataNode, TissueTreeListComponent } from './tissue-tree-list.component'
 import { LinkDirective } from '@hra-ui/cdk';
 
 describe('TissueTreeListComponent', () => {
-  let shallow: Shallow<TissueTreeListComponent<DataNode>>;
-  const nodes: Record<string, DataNode> = {
+  let shallow: Shallow<TissueTreeListComponent<string, DataNode<string>>>;
+  const nodes: Record<string, DataNode<string>> = {
     id1: {
       label: 'Kidney',
       children: ['id2', 'id3'],

@@ -17,7 +17,7 @@ import { LinkDirective } from '@hra-ui/cdk';
 import { LinkId } from '@hra-ui/cdk/state';
 
 /** Base node type */
-export interface DataNode {
+export interface DataNode<K extends string> {
   /** User readable label */
   label: string;
   /** Id to pass as a query parameter on navigation */
@@ -25,13 +25,13 @@ export interface DataNode {
   /** Link to navigate to on node click */
   link?: LinkId;
   /** Nested nodes */
-  children?: string[];
+  children?: K[];
 }
 
 /**
  * Internal interface for flat tissue data hierarchy
  */
-interface InternalNode<T extends DataNode> {
+interface InternalNode<K extends string, T extends DataNode<K>> {
   /** Displayed label */
   label: string;
   /** Whether the node can be expanded to display child nodes */
@@ -53,11 +53,11 @@ interface InternalNode<T extends DataNode> {
   styleUrls: ['./tissue-tree-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
+export class TissueTreeListComponent<K extends string, T extends DataNode<K>> implements OnChanges {
   /**
    * Input  of tissue tree list component
    */
-  @Input() nodes: Record<string, T> = {};
+  @Input() nodes: Record<K, T> = {} as Record<K, T>;
 
   /**
    * Node selected, to view the data associated with it
@@ -72,7 +72,7 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
   /**
    * tree controller, used to control the nodes in the tree
    */
-  readonly control = new FlatTreeControl<InternalNode<T>>(
+  readonly control = new FlatTreeControl<InternalNode<K, T>>(
     (node) => node.level,
     (node) => node.expandable
   );
@@ -80,7 +80,7 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
   /**
    * Flattener of tissue tree list component, returns flat-data structure
    */
-  readonly flattener = new MatTreeFlattener<T, InternalNode<T>>(
+  readonly flattener = new MatTreeFlattener<T, InternalNode<K, T>>(
     (node, level) => ({
       label: node.label,
       expandable: (node.children?.length ?? 0) > 0,
@@ -112,7 +112,7 @@ export class TissueTreeListComponent<T extends DataNode> implements OnChanges {
    * @param node current selected node
    * @returns boolean, which means if node has children
    */
-  hasChild(_: number, node: InternalNode<T>): boolean {
+  hasChild(_: number, node: InternalNode<K, T>): boolean {
     return node.expandable;
   }
 
