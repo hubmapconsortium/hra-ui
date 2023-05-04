@@ -4,6 +4,7 @@ import { select$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { TissueTreeListComponent } from '@hra-ui/components/molecules';
 import { TissueItem } from '@hra-ui/services';
 import { MedicalIllustrationSelectors, TissueLibrarySelectors } from '@hra-ui/state';
+import { LabelBoxComponent } from '@hra-ui/components/atoms';
 
 /**
  * Component for Tissue Library Behavior
@@ -11,7 +12,7 @@ import { MedicalIllustrationSelectors, TissueLibrarySelectors } from '@hra-ui/st
 @Component({
   selector: 'ftu-tissue-library-behavior',
   standalone: true,
-  imports: [CommonModule, TissueTreeListComponent],
+  imports: [CommonModule, LabelBoxComponent, TissueTreeListComponent],
   templateUrl: './tissue-library-behavior.component.html',
   styleUrls: ['./tissue-library-behavior.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

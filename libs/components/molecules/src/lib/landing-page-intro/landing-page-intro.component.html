@@ -1,9 +1,9 @@
 <h1 class="title">{{ title }}</h1>
 <markdown class="description" [data]="description"></markdown>
 
-<button mat-flat-button class="more-button" color="primary" (click)="moreClick.emit()">
+<button mat-flat-button class="more-button" color="primary" [hraLink]="moreLink">
   {{ moreText }}
-  <mat-icon>arrow_right_alt</mat-icon>
+  <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
 </button>
 <markdown class="partners" [data]="partners"></markdown>
 
