@@ -69,6 +69,9 @@
                         <li>
                             <a href="#TISSUE_DATA_SCHEMA" title="src/lib/tissue-library/tissue-library.service.ts" ><b>TISSUE_DATA_SCHEMA</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-library.service.ts)</a>
                         </li>
+                        <li>
+                            <a href="#TISSUE_ITEM_SCHEMA" title="src/lib/tissue-library/tissue-library.service.ts" ><b>TISSUE_ITEM_SCHEMA</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-library.service.ts)</a>
+                        </li>
                     </ul>
                 </td>
             </tr>
@@ -119,26 +122,48 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>z.object({
   root: IRI,
-  nodes: z.record(
-    IRI,
-    z.object({
-      &#x27;@type&#x27;: z.string(),
-      &#x27;@id&#x27;: IRI,
-      id: IRI,
-      parent: IRI.or(z.literal(&#x27;&#x27;)),
-      label: z.string(),
-      synonymLabels: z.string().array(),
-      children: IRI.array(),
-    })
-  ),
+  nodes: z.record(IRI, TISSUE_ITEM_SCHEMA),
 })</code>
                     </td>
                 </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>A Schema which defines the root and its nodes
-which in turn defines id, parent, label, synonymLabels and children</p>
+                    <div class="io-description"><p>A Schema which defines the root and its nodes</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TISSUE_ITEM_SCHEMA"></a>
+                    <span class="name">
+                        <span ><b>TISSUE_ITEM_SCHEMA</b></span>
+                        <a href="#TISSUE_ITEM_SCHEMA"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  &#x27;@type&#x27;: z.string(),
+  &#x27;@id&#x27;: IRI,
+  id: IRI,
+  parent: IRI.or(z.literal(&#x27;&#x27;)),
+  label: z.string(),
+  synonymLabels: z.string().array(),
+  children: IRI.array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tissue data schema which defines the type, id, parent, synonmynLabels and children</p>
 </div>
                 </td>
             </tr>
@@ -171,7 +196,7 @@ which in turn defines id, parent, label, synonymLabels and children</p>
       parent: &#x27;&#x27;,
       label: &#x27;Node 1&#x27;,
       synonymLabels: [&#x27;Synonym 1&#x27;, &#x27;Synonym 2&#x27;, &#x27;Synonym 3&#x27;],
-      children: [],
+      children: [&#x27;http://example.com/node2&#x27;, &#x27;http://example.com/node3&#x27;],
     },
     &#x27;http://example.com/node2&#x27;: {
       &#x27;@type&#x27;: &#x27;RootType&#x27;,
@@ -179,8 +204,8 @@ which in turn defines id, parent, label, synonymLabels and children</p>
       id: &#x27;http://example.com/node2&#x27;,
       parent: &#x27;&#x27;,
       label: &#x27;Node 2&#x27;,
-      synonymLabels: [&#x27;Synonym 4&#x27;, &#x27;Synonym 5&#x27;, &#x27;Synonym 6&#x27;],
-      children: [&#x27;http://example.com/node3&#x27;],
+      synonymLabels: [&#x27;Synonym 1&#x27;, &#x27;Synonym 2&#x27;, &#x27;Synonym 3&#x27;],
+      children: [],
     },
     &#x27;http://example.com/node3&#x27;: {
       &#x27;@type&#x27;: &#x27;RootType&#x27;,

@@ -129,8 +129,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/lib/tissue-library/tissue-library.service.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/lib/tissue-library/tissue-library.service.ts:50</a></div>
                 </td>
             </tr>
 
@@ -159,6 +159,16 @@ import { Observable } from &#x27;rxjs&#x27;;
 import { z } from &#x27;zod&#x27;;
 
 /**
+ * A type of Iri which is infered from the IRI
+ */
+export type Iri &#x3D; z.infer&lt;typeof IRI&gt;;
+
+/**
+ * A type of TissueItem which is infered from the Tissue Item Schema
+ */
+export type TissueItem &#x3D; z.infer&lt;typeof TISSUE_ITEM_SCHEMA&gt;;
+
+/**
  * A type of TissueData which is infered from the Tissue Data Schema
  */
 export type TissueData &#x3D; z.infer&lt;typeof TISSUE_DATA_SCHEMA&gt;;
@@ -169,23 +179,24 @@ export type TissueData &#x3D; z.infer&lt;typeof TISSUE_DATA_SCHEMA&gt;;
 export const IRI &#x3D; z.string().url().brand(&#x27;IRI&#x27;);
 
 /**
+ * Tissue data schema which defines the type, id, parent, synonmynLabels and children
+ */
+export const TISSUE_ITEM_SCHEMA &#x3D; z.object({
+  &#x27;@type&#x27;: z.string(),
+  &#x27;@id&#x27;: IRI,
+  id: IRI,
+  parent: IRI.or(z.literal(&#x27;&#x27;)),
+  label: z.string(),
+  synonymLabels: z.string().array(),
+  children: IRI.array(),
+});
+
+/**
  * A Schema which defines the root and its nodes
- * which in turn defines id, parent, label, synonymLabels and children
  */
 export const TISSUE_DATA_SCHEMA &#x3D; z.object({
   root: IRI,
-  nodes: z.record(
-    IRI,
-    z.object({
-      &#x27;@type&#x27;: z.string(),
-      &#x27;@id&#x27;: IRI,
-      id: IRI,
-      parent: IRI.or(z.literal(&#x27;&#x27;)),
-      label: z.string(),
-      synonymLabels: z.string().array(),
-      children: IRI.array(),
-    })
-  ),
+  nodes: z.record(IRI, TISSUE_ITEM_SCHEMA),
 });
 
 /** An abstract class representing a TissueLibraryService*/

@@ -301,25 +301,25 @@ import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
 import { MatExpansionModule } from &#x27;@angular/material/expansion&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from &#x27;@angular/material/tree&#x27;;
+import { LinkDirective } from &#x27;@hra-ui/cdk&#x27;;
+import { LinkId } from &#x27;@hra-ui/cdk/state&#x27;;
 
-/**
- * External interface for tissue data
- */
-export interface DataNode {
-  /**
-   * label identifier
-   */
+/** Base node type */
+export interface DataNode&lt;K extends string&gt; {
+  /** User readable label */
   label: string;
-  /**
-   * child entities for the tissue
-   */
-  children?: string[];
+  /** Id to pass as a query parameter on navigation */
+  id?: string;
+  /** Link to navigate to on node click */
+  link?: LinkId;
+  /** Nested nodes */
+  children?: K[];
 }
 
 /**
  * Internal interface for flat tissue data hierarchy
  */
-interface InternalNode&lt;T extends DataNode&gt; {
+interface InternalNode&lt;K extends string, T extends DataNode&lt;K&gt;&gt; {
   /** Displayed label */
   label: string;
   /** Whether the node can be expanded to display child nodes */
@@ -336,16 +336,16 @@ interface InternalNode&lt;T extends DataNode&gt; {
 @Component({
   selector: &#x27;hra-tissue-tree-list&#x27;,
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatTreeModule, MatIconModule, MatExpansionModule],
+  imports: [CommonModule, MatButtonModule, MatTreeModule, MatIconModule, MatExpansionModule, LinkDirective],
   templateUrl: &#x27;./tissue-tree-list.component.html&#x27;,
   styleUrls: [&#x27;./tissue-tree-list.component.scss&#x27;],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TissueTreeListComponent&lt;T extends DataNode&gt; implements OnChanges {
+export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;K&gt;&gt; implements OnChanges {
   /**
    * Input  of tissue tree list component
    */
-  @Input() nodes: Record&lt;string, T&gt; &#x3D; {};
+  @Input() nodes: Record&lt;K, T&gt; &#x3D; {} as Record&lt;K, T&gt;;
 
   /**
    * Node selected, to view the data associated with it
@@ -360,7 +360,7 @@ export class TissueTreeListComponent&lt;T extends DataNode&gt; implements OnChan
   /**
    * tree controller, used to control the nodes in the tree
    */
-  readonly control &#x3D; new FlatTreeControl&lt;InternalNode&lt;T&gt;&gt;(
+  readonly control &#x3D; new FlatTreeControl&lt;InternalNode&lt;K, T&gt;&gt;(
     (node) &#x3D;&gt; node.level,
     (node) &#x3D;&gt; node.expandable
   );
@@ -368,7 +368,7 @@ export class TissueTreeListComponent&lt;T extends DataNode&gt; implements OnChan
   /**
    * Flattener of tissue tree list component, returns flat-data structure
    */
-  readonly flattener &#x3D; new MatTreeFlattener&lt;T, InternalNode&lt;T&gt;&gt;(
+  readonly flattener &#x3D; new MatTreeFlattener&lt;T, InternalNode&lt;K, T&gt;&gt;(
     (node, level) &#x3D;&gt; ({
       label: node.label,
       expandable: (node.children?.length ?? 0) &gt; 0,
@@ -400,18 +400,19 @@ export class TissueTreeListComponent&lt;T extends DataNode&gt; implements OnChan
    * @param node current selected node
    * @returns boolean, which means if node has children
    */
-  hasChild(_: number, node: InternalNode&lt;T&gt;): boolean {
+  hasChild(_: number, node: InternalNode&lt;K, T&gt;): boolean {
     return node.expandable;
   }
 
   /**
-   * It selects/de-selects the node, which is clicked.
-   * If the node is already selected, it de-selects it
+   * It selects the node, which is clicked.
    * @param node Tissue Tree Item, which is clicked
    */
-  selectNode(node: InternalNode&lt;T&gt;): void {
-    this.selected &#x3D; this.selected &#x3D;&#x3D;&#x3D; node.data ? undefined : node.data;
-    this.selectedChange.emit(this.selected);
+  selectNode(node: T): void {
+    if (this.selected !&#x3D;&#x3D; node) {
+      this.selected &#x3D; node;
+      this.selectedChange.emit(this.selected);
+    }
   }
 
   /**

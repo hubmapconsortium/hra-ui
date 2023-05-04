@@ -230,13 +230,13 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>Record&lt;string | T&gt;</code>
+                        <i>Type : </i>    <code>Record&lt;K | T&gt;</code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>{}</code>
+                        <i>Default value : </i><code>{} as Record&lt;K, T&gt;</code>
                     </td>
                 </tr>
                         <tr>
@@ -335,7 +335,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>hasChild(_: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, node: <a href="../interfaces/InternalNode.html" target="_self">InternalNode&lt;T&gt;</a>)</code>
+<code>hasChild(_: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, node: <a href="../interfaces/InternalNode.html" target="_self">InternalNode&lt;K | T&gt;</a>)</code>
                 </td>
             </tr>
 
@@ -383,7 +383,7 @@
                                 <tr>
                                     <td>node</td>
                                     <td>
-                                                <code><a href="../interfaces/InternalNode.html" target="_self" >InternalNode&lt;T&gt;</a></code>
+                                                <code><a href="../interfaces/InternalNode.html" target="_self" >InternalNode&lt;K | T&gt;</a></code>
                                     </td>
 
                                     <td>
@@ -426,23 +426,22 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>selectNode(node: <a href="../interfaces/InternalNode.html" target="_self">InternalNode&lt;T&gt;</a>)</code>
+<code>selectNode(node: T)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="124"
-                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:124</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:123</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>It selects/de-selects the node, which is clicked.
-If the node is already selected, it de-selects it</p>
+                    <div class="io-description"><p>It selects the node, which is clicked.</p>
 </div>
 
                     <div class="io-description">
@@ -461,7 +460,7 @@ If the node is already selected, it de-selects it</p>
                                 <tr>
                                     <td>node</td>
                                     <td>
-                                                <code><a href="../interfaces/InternalNode.html" target="_self" >InternalNode&lt;T&gt;</a></code>
+                                            <code>T</code>
                                     </td>
 
                                     <td>
@@ -510,7 +509,7 @@ If the node is already selected, it de-selects it</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new FlatTreeControl&lt;InternalNode&lt;T&gt;&gt;(
+                        <i>Default value : </i><code>new FlatTreeControl&lt;InternalNode&lt;K, T&gt;&gt;(
     (node) &#x3D;&gt; node.level,
     (node) &#x3D;&gt; node.expandable
   )</code>
@@ -577,7 +576,7 @@ If the node is already selected, it de-selects it</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new MatTreeFlattener&lt;T, InternalNode&lt;T&gt;&gt;(
+                        <i>Default value : </i><code>new MatTreeFlattener&lt;T, InternalNode&lt;K, T&gt;&gt;(
     (node, level) &#x3D;&gt; ({
       label: node.label,
       expandable: (node.children?.length ?? 0) &gt; 0,
@@ -626,25 +625,25 @@ import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
 import { MatExpansionModule } from &#x27;@angular/material/expansion&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from &#x27;@angular/material/tree&#x27;;
+import { LinkDirective } from &#x27;@hra-ui/cdk&#x27;;
+import { LinkId } from &#x27;@hra-ui/cdk/state&#x27;;
 
-/**
- * External interface for tissue data
- */
-export interface DataNode {
-  /**
-   * label identifier
-   */
+/** Base node type */
+export interface DataNode&lt;K extends string&gt; {
+  /** User readable label */
   label: string;
-  /**
-   * child entities for the tissue
-   */
-  children?: string[];
+  /** Id to pass as a query parameter on navigation */
+  id?: string;
+  /** Link to navigate to on node click */
+  link?: LinkId;
+  /** Nested nodes */
+  children?: K[];
 }
 
 /**
  * Internal interface for flat tissue data hierarchy
  */
-interface InternalNode&lt;T extends DataNode&gt; {
+interface InternalNode&lt;K extends string, T extends DataNode&lt;K&gt;&gt; {
   /** Displayed label */
   label: string;
   /** Whether the node can be expanded to display child nodes */
@@ -661,16 +660,16 @@ interface InternalNode&lt;T extends DataNode&gt; {
 @Component({
   selector: &#x27;hra-tissue-tree-list&#x27;,
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatTreeModule, MatIconModule, MatExpansionModule],
+  imports: [CommonModule, MatButtonModule, MatTreeModule, MatIconModule, MatExpansionModule, LinkDirective],
   templateUrl: &#x27;./tissue-tree-list.component.html&#x27;,
   styleUrls: [&#x27;./tissue-tree-list.component.scss&#x27;],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TissueTreeListComponent&lt;T extends DataNode&gt; implements OnChanges {
+export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;K&gt;&gt; implements OnChanges {
   /**
    * Input  of tissue tree list component
    */
-  @Input() nodes: Record&lt;string, T&gt; &#x3D; {};
+  @Input() nodes: Record&lt;K, T&gt; &#x3D; {} as Record&lt;K, T&gt;;
 
   /**
    * Node selected, to view the data associated with it
@@ -685,7 +684,7 @@ export class TissueTreeListComponent&lt;T extends DataNode&gt; implements OnChan
   /**
    * tree controller, used to control the nodes in the tree
    */
-  readonly control &#x3D; new FlatTreeControl&lt;InternalNode&lt;T&gt;&gt;(
+  readonly control &#x3D; new FlatTreeControl&lt;InternalNode&lt;K, T&gt;&gt;(
     (node) &#x3D;&gt; node.level,
     (node) &#x3D;&gt; node.expandable
   );
@@ -693,7 +692,7 @@ export class TissueTreeListComponent&lt;T extends DataNode&gt; implements OnChan
   /**
    * Flattener of tissue tree list component, returns flat-data structure
    */
-  readonly flattener &#x3D; new MatTreeFlattener&lt;T, InternalNode&lt;T&gt;&gt;(
+  readonly flattener &#x3D; new MatTreeFlattener&lt;T, InternalNode&lt;K, T&gt;&gt;(
     (node, level) &#x3D;&gt; ({
       label: node.label,
       expandable: (node.children?.length ?? 0) &gt; 0,
@@ -725,18 +724,19 @@ export class TissueTreeListComponent&lt;T extends DataNode&gt; implements OnChan
    * @param node current selected node
    * @returns boolean, which means if node has children
    */
-  hasChild(_: number, node: InternalNode&lt;T&gt;): boolean {
+  hasChild(_: number, node: InternalNode&lt;K, T&gt;): boolean {
     return node.expandable;
   }
 
   /**
-   * It selects/de-selects the node, which is clicked.
-   * If the node is already selected, it de-selects it
+   * It selects the node, which is clicked.
    * @param node Tissue Tree Item, which is clicked
    */
-  selectNode(node: InternalNode&lt;T&gt;): void {
-    this.selected &#x3D; this.selected &#x3D;&#x3D;&#x3D; node.data ? undefined : node.data;
-    this.selectedChange.emit(this.selected);
+  selectNode(node: T): void {
+    if (this.selected !&#x3D;&#x3D; node) {
+      this.selected &#x3D; node;
+      this.selectedChange.emit(this.selected);
+    }
   }
 
   /**
@@ -759,30 +759,49 @@ export class TissueTreeListComponent&lt;T extends DataNode&gt; implements OnChan
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div style&#x3D;&quot;width: 16.5rem&quot;&gt;
-  &lt;mat-tree [dataSource]&#x3D;&quot;dataSource&quot; [treeControl]&#x3D;&quot;control&quot; class&#x3D;&quot;tree&quot;&gt;
-    &lt;mat-tree-node
-      (click)&#x3D;&quot;selectNode(node)&quot;
-      *matTreeNodeDef&#x3D;&quot;let node; let level &#x3D; level&quot;
-      [matTreeNodePadding]&#x3D;&quot;level&quot;
-      matTreeNodePaddingIndent&#x3D;&quot;56&quot;
-      tabIndex&#x3D;&quot;0&quot;
-    &gt;
-      &lt;span class&#x3D;&quot;selected&quot;&gt;
-        {{ node.label }}
-      &lt;/span&gt;
-    &lt;/mat-tree-node&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;mat-tree [dataSource]&#x3D;&quot;dataSource&quot; [treeControl]&#x3D;&quot;control&quot; class&#x3D;&quot;tree&quot;&gt;
+  &lt;mat-tree-node
+    *matTreeNodeDef&#x3D;&quot;let node; let level &#x3D; level&quot;
+    [matTreeNodePadding]&#x3D;&quot;level&quot;
+    matTreeNodePaddingIndent&#x3D;&quot;64&quot;
+    [class.selected]&#x3D;&quot;node.data &#x3D;&#x3D;&#x3D; selected&quot;
+    class&#x3D;&quot;row&quot;
+    tabIndex&#x3D;&quot;0&quot;
+  &gt;
+    &lt;ng-container [ngTemplateOutlet]&#x3D;&quot;label&quot; [ngTemplateOutletContext]&#x3D;&quot;node&quot;&gt; &lt;/ng-container&gt;
+  &lt;/mat-tree-node&gt;
 
-    &lt;mat-tree-node *matTreeNodeDef&#x3D;&quot;let node; let level &#x3D; level; when: hasChild&quot;&gt;
-      &lt;button mat-icon-button matTreeNodeToggle class&#x3D;&quot;toggle&quot; [attr.aria-label]&#x3D;&quot;&#x27;Toggle &#x27; + node.label&quot;&gt;
-        &lt;mat-icon&gt;
-          {{ control.isExpanded(node) ? &#x27;keyboard_arrow_up&#x27; : &#x27;chevron_right&#x27; }}
-        &lt;/mat-icon&gt;
-      &lt;/button&gt;
-      {{ node.label }}
-    &lt;/mat-tree-node&gt;
-  &lt;/mat-tree&gt;
-&lt;/div&gt;
+  &lt;mat-tree-node
+    *matTreeNodeDef&#x3D;&quot;let node; let level &#x3D; level; when: hasChild&quot;
+    class&#x3D;&quot;row&quot;
+    [class.selected]&#x3D;&quot;node.data &#x3D;&#x3D;&#x3D; selected&quot;
+  &gt;
+    &lt;button mat-icon-button matTreeNodeToggle class&#x3D;&quot;toggle&quot; [attr.aria-label]&#x3D;&quot;&#x27;Toggle &#x27; + node.label&quot;&gt;
+      &lt;mat-icon&gt;
+        {{ control.isExpanded(node) ? &#x27;keyboard_arrow_up&#x27; : &#x27;chevron_right&#x27; }}
+      &lt;/mat-icon&gt;
+    &lt;/button&gt;
+
+    &lt;ng-container [ngTemplateOutlet]&#x3D;&quot;label&quot; [ngTemplateOutletContext]&#x3D;&quot;node&quot;&gt; &lt;/ng-container&gt;
+  &lt;/mat-tree-node&gt;
+&lt;/mat-tree&gt;
+
+&lt;ng-template let-label&#x3D;&quot;label&quot; let-data&#x3D;&quot;data&quot; #label&gt;
+  &lt;div class&#x3D;&quot;label-container&quot;&gt;
+    &lt;a
+      *ngIf&#x3D;&quot;data.link; else noLink&quot;
+      [hraLink]&#x3D;&quot;data.link&quot;
+      [queryParams]&#x3D;&quot;{ id: data.id }&quot;
+      class&#x3D;&quot;link&quot;
+      (click)&#x3D;&quot;selectNode(data)&quot;
+    &gt;
+      {{ label }}
+    &lt;/a&gt;
+    &lt;ng-template #noLink&gt;
+      &lt;span&gt;{{ label }}&lt;/span&gt;
+    &lt;/ng-template&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
 </code></pre>
     </div>
 
@@ -790,38 +809,38 @@ export class TissueTreeListComponent&lt;T extends DataNode&gt; implements OnChan
                 <p class="comment">
                     <code>./tissue-tree-list.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;@angular/material&#x27; as mat;
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;variables&#x27; as vars;
 
 :host {
   display: block;
 
-  .mat-tree-node:focus {
-    background-color: #fff3f0 !important;
-    color: #990000;
-  }
+  .row {
+    min-height: 2rem;
 
-  .subtree-hidden {
-    display: none;
-  }
+    &amp;.selected {
+      background-color: vars.$accent-lighter-rgb;
+    }
 
-  mat-tree-node {
-    margin-left: 2rem;
-    line-height: 17px;
-    padding-top: 7.5px;
-    padding-bottom: 7.5px;
-  }
+    .toggle {
+      width: 2rem;
+      height: 2rem;
+      padding: 0.25rem;
+    }
 
-  button {
-    margin-right: 1rem;
+    .label-container {
+      display: flex;
+      align-items: center;
+      height: 2rem;
+      padding-left: 1rem;
 
-    &amp; ::ng-deep {
-      &amp;,
-      .mat-mdc-button-touch-target {
-        width: 1.5rem !important;
-        height: 1.5rem !important;
+      .link {
+        text-decoration: none;
+        color: rgba(vars.$dark-primary-text);
       }
+    }
 
-      padding: 0 !important;
+    &amp;.selected .label-container .link {
+      color: vars.$accent-rgb;
     }
   }
 }
@@ -853,7 +872,7 @@ export class TissueTreeListComponent&lt;T extends DataNode&gt; implements OnChan
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div style="width: 16.5rem">  <mat-tree [dataSource]="dataSource" [treeControl]="control" class="tree">    <mat-tree-node      (click)="selectNode(node)"      *matTreeNodeDef="let node; let level = level"      [matTreeNodePadding]="level"      matTreeNodePaddingIndent="56"      tabIndex="0"    >      <span class="selected">        {{ node.label }}      </span>    </mat-tree-node>    <mat-tree-node *matTreeNodeDef="let node; let level = level; when: hasChild">      <button mat-icon-button matTreeNodeToggle class="toggle" [attr.aria-label]="\'Toggle \' + node.label">        <mat-icon>          {{ control.isExpanded(node) ? \'keyboard_arrow_up\' : \'chevron_right\' }}        </mat-icon>      </button>      {{ node.label }}    </mat-tree-node>  </mat-tree></div></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-tree [dataSource]="dataSource" [treeControl]="control" class="tree">  <mat-tree-node    *matTreeNodeDef="let node; let level = level"    [matTreeNodePadding]="level"    matTreeNodePaddingIndent="64"    [class.selected]="node.data === selected"    class="row"    tabIndex="0"  >    <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>  </mat-tree-node>  <mat-tree-node    *matTreeNodeDef="let node; let level = level; when: hasChild"    class="row"    [class.selected]="node.data === selected"  >    <button mat-icon-button matTreeNodeToggle class="toggle" [attr.aria-label]="\'Toggle \' + node.label">      <mat-icon>        {{ control.isExpanded(node) ? \'keyboard_arrow_up\' : \'chevron_right\' }}      </mat-icon>    </button>    <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>  </mat-tree-node></mat-tree><ng-template let-label="label" let-data="data" #label>  <div class="label-container">    <a      *ngIf="data.link; else noLink"      [hraLink]="data.link"      [queryParams]="{ id: data.id }"      class="link"      (click)="selectNode(data)"    >      {{ label }}    </a>    <ng-template #noLink>      <span>{{ label }}</span>    </ng-template>  </div></ng-template></div>'
     var COMPONENTS = [{'name': 'BiomarkerTableDataCardComponent', 'selector': 'hra-biomarker-table-data-card'},{'name': 'BiomarkerTableDataIconComponent', 'selector': 'hra-biomarker-table-data-icon'},{'name': 'ContactModalComponent', 'selector': 'hra-contact-modal'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenContainerComponent', 'selector': 'hra-fullscreen-container'},{'name': 'FullscreenContentComponent', 'selector': 'hra-fullscreen-content'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InteractiveSvgComponent', 'selector': 'hra-interactive-svg'},{'name': 'LandingPageInDepthComponent', 'selector': 'hra-landing-page-in-depth'},{'name': 'LandingPageIntroComponent', 'selector': 'hra-landing-page-intro'},{'name': 'MetricsComponent', 'selector': 'hra-metrics'},{'name': 'ScreenSizeNoticeComponent', 'selector': 'hra-screen-size-notice'},{'name': 'SourceListComponent', 'selector': 'hra-source-list'},{'name': 'TissueTreeListComponent', 'selector': 'hra-tissue-tree-list'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TissueTreeListComponent'};

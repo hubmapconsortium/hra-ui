@@ -178,7 +178,7 @@ const MOCK_TISSUE_DATA &#x3D; TISSUE_DATA_SCHEMA.parse({
       parent: &#x27;&#x27;,
       label: &#x27;Node 1&#x27;,
       synonymLabels: [&#x27;Synonym 1&#x27;, &#x27;Synonym 2&#x27;, &#x27;Synonym 3&#x27;],
-      children: [],
+      children: [&#x27;http://example.com/node2&#x27;, &#x27;http://example.com/node3&#x27;],
     },
     &#x27;http://example.com/node2&#x27;: {
       &#x27;@type&#x27;: &#x27;RootType&#x27;,
@@ -186,8 +186,8 @@ const MOCK_TISSUE_DATA &#x3D; TISSUE_DATA_SCHEMA.parse({
       id: &#x27;http://example.com/node2&#x27;,
       parent: &#x27;&#x27;,
       label: &#x27;Node 2&#x27;,
-      synonymLabels: [&#x27;Synonym 4&#x27;, &#x27;Synonym 5&#x27;, &#x27;Synonym 6&#x27;],
-      children: [&#x27;http://example.com/node3&#x27;],
+      synonymLabels: [&#x27;Synonym 1&#x27;, &#x27;Synonym 2&#x27;, &#x27;Synonym 3&#x27;],
+      children: [],
     },
     &#x27;http://example.com/node3&#x27;: {
       &#x27;@type&#x27;: &#x27;RootType&#x27;,

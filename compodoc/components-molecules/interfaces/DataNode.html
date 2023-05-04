@@ -73,7 +73,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>External interface for tissue data</p>
+                <p>Base node type</p>
 
             </p>
 
@@ -98,9 +98,23 @@
                                         </a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#id" 
+>
+                                            id
+                                        </a>
+                                </li>
+                                <li>
                                         <a href="#label" 
 >
                                             label
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#link" 
+>
+                                            link
                                         </a>
                                 </li>
                             </ul>
@@ -128,7 +142,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>children:     <code>string[]</code>
+                                        <code>children:     <code>K[]</code>
 </code>
                                     </td>
                                 </tr>
@@ -136,7 +150,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>    <code>string[]</code>
+                                            <i>Type : </i>    <code>K[]</code>
 
                                         </td>
                                     </tr>
@@ -152,7 +166,51 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>child entities for the tissue</p>
+                                    <div class="io-description"><p>Nested nodes</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="id"></a>
+                                        <span class="name "><b>id</b>
+                                            <a href="#id">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>id:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Id to pass as a query parameter on navigation</p>
 </div>
                                 </td>
                             </tr>
@@ -191,7 +249,51 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>label identifier</p>
+                                    <div class="io-description"><p>User readable label</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="link"></a>
+                                        <span class="name "><b>link</b>
+                                            <a href="#link">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>link:     <code>LinkId</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>LinkId</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Link to navigate to on node click</p>
 </div>
                                 </td>
                             </tr>
@@ -217,25 +319,25 @@ import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
 import { MatExpansionModule } from &#x27;@angular/material/expansion&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from &#x27;@angular/material/tree&#x27;;
+import { LinkDirective } from &#x27;@hra-ui/cdk&#x27;;
+import { LinkId } from &#x27;@hra-ui/cdk/state&#x27;;
 
-/**
- * External interface for tissue data
- */
-export interface DataNode {
-  /**
-   * label identifier
-   */
+/** Base node type */
+export interface DataNode&lt;K extends string&gt; {
+  /** User readable label */
   label: string;
-  /**
-   * child entities for the tissue
-   */
-  children?: string[];
+  /** Id to pass as a query parameter on navigation */
+  id?: string;
+  /** Link to navigate to on node click */
+  link?: LinkId;
+  /** Nested nodes */
+  children?: K[];
 }
 
 /**
  * Internal interface for flat tissue data hierarchy
  */
-interface InternalNode&lt;T extends DataNode&gt; {
+interface InternalNode&lt;K extends string, T extends DataNode&lt;K&gt;&gt; {
   /** Displayed label */
   label: string;
   /** Whether the node can be expanded to display child nodes */
@@ -252,16 +354,16 @@ interface InternalNode&lt;T extends DataNode&gt; {
 @Component({
   selector: &#x27;hra-tissue-tree-list&#x27;,
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatTreeModule, MatIconModule, MatExpansionModule],
+  imports: [CommonModule, MatButtonModule, MatTreeModule, MatIconModule, MatExpansionModule, LinkDirective],
   templateUrl: &#x27;./tissue-tree-list.component.html&#x27;,
   styleUrls: [&#x27;./tissue-tree-list.component.scss&#x27;],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TissueTreeListComponent&lt;T extends DataNode&gt; implements OnChanges {
+export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;K&gt;&gt; implements OnChanges {
   /**
    * Input  of tissue tree list component
    */
-  @Input() nodes: Record&lt;string, T&gt; &#x3D; {};
+  @Input() nodes: Record&lt;K, T&gt; &#x3D; {} as Record&lt;K, T&gt;;
 
   /**
    * Node selected, to view the data associated with it
@@ -276,7 +378,7 @@ export class TissueTreeListComponent&lt;T extends DataNode&gt; implements OnChan
   /**
    * tree controller, used to control the nodes in the tree
    */
-  readonly control &#x3D; new FlatTreeControl&lt;InternalNode&lt;T&gt;&gt;(
+  readonly control &#x3D; new FlatTreeControl&lt;InternalNode&lt;K, T&gt;&gt;(
     (node) &#x3D;&gt; node.level,
     (node) &#x3D;&gt; node.expandable
   );
@@ -284,7 +386,7 @@ export class TissueTreeListComponent&lt;T extends DataNode&gt; implements OnChan
   /**
    * Flattener of tissue tree list component, returns flat-data structure
    */
-  readonly flattener &#x3D; new MatTreeFlattener&lt;T, InternalNode&lt;T&gt;&gt;(
+  readonly flattener &#x3D; new MatTreeFlattener&lt;T, InternalNode&lt;K, T&gt;&gt;(
     (node, level) &#x3D;&gt; ({
       label: node.label,
       expandable: (node.children?.length ?? 0) &gt; 0,
@@ -316,18 +418,19 @@ export class TissueTreeListComponent&lt;T extends DataNode&gt; implements OnChan
    * @param node current selected node
    * @returns boolean, which means if node has children
    */
-  hasChild(_: number, node: InternalNode&lt;T&gt;): boolean {
+  hasChild(_: number, node: InternalNode&lt;K, T&gt;): boolean {
     return node.expandable;
   }
 
   /**
-   * It selects/de-selects the node, which is clicked.
-   * If the node is already selected, it de-selects it
+   * It selects the node, which is clicked.
    * @param node Tissue Tree Item, which is clicked
    */
-  selectNode(node: InternalNode&lt;T&gt;): void {
-    this.selected &#x3D; this.selected &#x3D;&#x3D;&#x3D; node.data ? undefined : node.data;
-    this.selectedChange.emit(this.selected);
+  selectNode(node: T): void {
+    if (this.selected !&#x3D;&#x3D; node) {
+      this.selected &#x3D; node;
+      this.selectedChange.emit(this.selected);
+    }
   }
 
   /**
