@@ -9,8 +9,8 @@ import {
   Renderer2,
   ViewChildren,
 } from '@angular/core';
-import { dispatch, injectDestroy$, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
-import { LinkRegistryActions, ResourceRegistrySelectors as RRS } from '@hra-ui/cdk/state';
+import { injectDestroy$, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
+import { ResourceRegistrySelectors as RRS } from '@hra-ui/cdk/state';
 import {
   LandingPageInDepthComponent,
   LandingPageIntroComponent,
@@ -59,9 +59,6 @@ export class LandingPageContentComponent implements AfterViewInit {
   readonly landingPageDepthMoreText = selectQuerySnapshot(RRS.anyText, RIds.LandingPageDepthMoreText);
   /** select snapshot for landing page depth img */
   readonly landingPageDepthImg = selectQuerySnapshot(RRS.url, RIds.LandingPageDepthImg);
-
-  /** Disptach action for navigation */
-  readonly navigate = dispatch(LinkRegistryActions.Navigate);
 
   /** Expose links for use it template */
   readonly LinkIds = LinkIds;
