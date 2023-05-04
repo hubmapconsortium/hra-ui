@@ -2,9 +2,8 @@ import { select$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { EMPTY } from 'rxjs';
 import { Shallow } from 'shallow-render';
 import { TissueLibraryBehaviorComponent } from './tissue-library-behavior.component';
-import { subscribe } from 'diagnostics_channel';
 import { Store } from '@ngxs/store';
-import { MedicalIllustrationActions, MedicalIllustrationSelectors } from '@hra-ui/state';
+import { MedicalIllustrationSelectors } from '@hra-ui/state';
 
 jest.mock('@hra-ui/cdk/injectors');
 
