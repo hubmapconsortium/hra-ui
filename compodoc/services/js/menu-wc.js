@@ -75,7 +75,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/MockContactService.html" data-type="entity-link" >MockContactService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/MockTissueFtuService.html" data-type="entity-link" >MockTissueFtuService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/MockTissueLibraryService.html" data-type="entity-link" >MockTissueLibraryService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/TissueFtuService.html" data-type="entity-link" >TissueFtuService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/TissueLibraryService.html" data-type="entity-link" >TissueLibraryService</a>
@@ -103,6 +109,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <span class="icon ion-ios-arrow-down"></span>
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="miscellaneous-links"' : 'id="xs-miscellaneous-links"' }>
+                            <li class="link">
+                                <a href="miscellaneous/functions.html" data-type="entity-link">Functions</a>
+                            </li>
                             <li class="link">
                                 <a href="miscellaneous/typealiases.html" data-type="entity-link">Type aliases</a>
                             </li>

@@ -1,8 +1,13 @@
 About:
-  type: internal
-  commands:
-    - 'about'
+  type: external
+  url: https://www.example.com
 ExploreFTU:
+  type: external
+  url: https://www.example.com
+LandingPageReadMore:
+  type: external
+  url: https://www.example.com
+FTU:
   type: internal
   commands:
-    - 'explore'
+    - 'ftu/'

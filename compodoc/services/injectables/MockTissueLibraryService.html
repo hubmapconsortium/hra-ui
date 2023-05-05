@@ -138,7 +138,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/TissueLibraryService.html#source" target="_self" >TissueLibraryService:45</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/TissueLibraryService.html#source" target="_self" >TissueLibraryService:143</a></code>
 </div>
                 </td>
             </tr>
@@ -164,42 +164,140 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { createLinkId } from &#x27;@hra-ui/cdk/state&#x27;;
 import { Observable, of } from &#x27;rxjs&#x27;;
-import { TISSUE_DATA_SCHEMA, TissueData, TissueLibraryService } from &#x27;./tissue-library.service&#x27;;
+import { TissueData, TissueLibraryService } from &#x27;./tissue-library.service&#x27;;
+
+/** Create a new id from a label */
+function createNodeId(label: string, parent: string): string {
+  return &#x60;${parent}${label.replace(/ /g, &#x27;_&#x27;)}/&#x60;;
+}
+
+/** Create a new node */
+function defineNode(label: string, parent: string, url?: string, ...children: [label: string, url: string][]): object {
+  const id &#x3D; createNodeId(label, parent);
+  const childNodes &#x3D; children.reduce(
+    (acc, [childLabel, childUrl]) &#x3D;&gt; ({
+      ...acc,
+      ...defineNode(childLabel, id, childUrl),
+    }),
+    {}
+  );
+  const node &#x3D; {
+    &#x27;@type&#x27;: &#x27;&#x27;,
+    &#x27;@id&#x27;: id,
+    id,
+    parent,
+    label,
+    synonymLabels: [],
+    link: url &amp;&amp; createLinkId(&#x27;FTU&#x27;),
+    representation_of: id,
+    object: {
+      file: url,
+    },
+    children: Object.keys(childNodes),
+  };
+
+  return { [id]: node, ...childNodes };
+}
+
+/** Base node id */
+const BASE_ID &#x3D; &#x27;https://example.com/&#x27;;
 
 /** Mock tissue data */
-const MOCK_TISSUE_DATA &#x3D; TISSUE_DATA_SCHEMA.parse({
-  root: &#x27;http://example.com/root&#x27;,
-  nodes: {
-    &#x27;http://example.com/node1&#x27;: {
-      &#x27;@type&#x27;: &#x27;RootType&#x27;,
-      &#x27;@id&#x27;: &#x27;http://example.com/node1&#x27;,
-      id: &#x27;http://example.com/node1&#x27;,
-      parent: &#x27;&#x27;,
-      label: &#x27;Node 1&#x27;,
-      synonymLabels: [&#x27;Synonym 1&#x27;, &#x27;Synonym 2&#x27;, &#x27;Synonym 3&#x27;],
-      children: [&#x27;http://example.com/node2&#x27;, &#x27;http://example.com/node3&#x27;],
-    },
-    &#x27;http://example.com/node2&#x27;: {
-      &#x27;@type&#x27;: &#x27;RootType&#x27;,
-      &#x27;@id&#x27;: &#x27;http://example.com/node2&#x27;,
-      id: &#x27;http://example.com/node2&#x27;,
-      parent: &#x27;&#x27;,
-      label: &#x27;Node 2&#x27;,
-      synonymLabels: [&#x27;Synonym 1&#x27;, &#x27;Synonym 2&#x27;, &#x27;Synonym 3&#x27;],
-      children: [],
-    },
-    &#x27;http://example.com/node3&#x27;: {
-      &#x27;@type&#x27;: &#x27;RootType&#x27;,
-      &#x27;@id&#x27;: &#x27;http://example.com/node3&#x27;,
-      id: &#x27;http://example.com/node3&#x27;,
-      parent: &#x27;&#x27;,
-      label: &#x27;Node 3&#x27;,
-      synonymLabels: [],
-      children: [],
-    },
-  },
-});
+export const MOCK_TISSUE_DATA &#x3D; {
+  root: BASE_ID,
+  nodes: Object.assign(
+    {},
+    defineNode(
+      &#x27;Kidney&#x27;,
+      BASE_ID,
+      undefined,
+      [
+        &#x27;Descending Thin Loop of Henle&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.svg&#x27;,
+      ],
+      [
+        &#x27;Renal Corpuscle&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-renal-corpuscle.svg&#x27;,
+      ],
+      [
+        &#x27;Ascending Thin Loop of Henle&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.svg&#x27;,
+      ],
+      [
+        &#x27;Cortical Collecting Duct&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.svg&#x27;,
+      ],
+      [
+        &#x27;Inner Medullary Collecting Duct&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.svg&#x27;,
+      ],
+      [&#x27;Nephron&#x27;, &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-nephron.svg&#x27;],
+      [
+        &#x27;Outer Medullary Collectiong Duct&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.svg&#x27;,
+      ],
+      [
+        &#x27;Thick Ascending Loop of Henle&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.svg&#x27;,
+      ]
+    ),
+    defineNode(
+      &#x27;Lung&#x27;,
+      BASE_ID,
+      undefined,
+      [
+        &#x27;Pulmonary Alveolus&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-pulmonary-alveolus.svg&#x27;,
+      ],
+      [
+        &#x27;Bronchial Submucosal Gland&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-bronchial-submucosal-gland.svg&#x27;,
+      ]
+    ),
+    defineNode(&#x27;Large Intestine&#x27;, BASE_ID, undefined, [
+      &#x27;Crypt Lieberkuhn&#x27;,
+      &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.svg&#x27;,
+    ]),
+    defineNode(
+      &#x27;Pancreas&#x27;,
+      BASE_ID,
+      undefined,
+      [
+        &#x27;Islates Langerhans&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-islets-langerhans.svg&#x27;,
+      ],
+      [
+        &#x27;Intercalated Duct&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-intercalated-duct.svg&#x27;,
+      ],
+      [
+        &#x27;Pancreatic Acinus&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-pancreatic-acinus.svg&#x27;,
+      ]
+    ),
+    defineNode(
+      &#x27;Skin&#x27;,
+      BASE_ID,
+      undefined,
+      [&#x27;Dermal Papilla&#x27;, &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-dermal-papilla.svg&#x27;],
+      [&#x27;Epidermal Ridge&#x27;, &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.svg&#x27;]
+    ),
+    defineNode(&#x27;Liver&#x27;, BASE_ID, undefined, [
+      &#x27;Liver Lobule&#x27;,
+      &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-liver-liver-lobule.svg&#x27;,
+    ]),
+    defineNode(&#x27;Prostate&#x27;, BASE_ID, undefined, [
+      &#x27;Prostate Glandular Acinus&#x27;,
+      &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.svg&#x27;,
+    ]),
+    defineNode(&#x27;Thymus&#x27;, BASE_ID, undefined, [
+      &#x27;Thymus Lobule&#x27;,
+      &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.svg&#x27;,
+    ])
+  ),
+};
 
 /** Mock implementation of {@link TissueLibraryService} */
 @Injectable({
@@ -208,7 +306,7 @@ const MOCK_TISSUE_DATA &#x3D; TISSUE_DATA_SCHEMA.parse({
 export class MockTissueLibraryService extends TissueLibraryService {
   /** Implementation of {@link TissueLibraryService.getTissues} */
   getTissues(): Observable&lt;TissueData&gt; {
-    return of(MOCK_TISSUE_DATA);
+    return of(MOCK_TISSUE_DATA as TissueData);
   }
 }
 </code></pre>

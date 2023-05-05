@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>state</title>
+        <title>services</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">state</a>
+            <a href="../" class="navbar-brand">services</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content class">
+               <div class="content injectable">
                    <div class="content-data">
 
 
@@ -38,13 +38,9 @@
 
 
 
-
-
-
-
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >SetMapping</li>
+  <li>Injectables</li>
+  <li >MockTissueFtuService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,7 +58,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/lib/medical-illustration/medical-illustration.actions.ts</code>
+            <code>src/lib/tissue-ftu/tissue-ftu.mock.ts</code>
         </p>
 
 
@@ -70,139 +66,135 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Action for setting the mapping file</p>
+                <p>Implementation of TissueFtuService</p>
 
             </p>
 
-
-
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                        <code><a href="../injectables/TissueFtuService.html" target="_self" >TissueFtuService</a></code>
+            </p>
 
 
             <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/lib/medical-illustration/medical-illustration.actions.ts:49</a></div>
-                            </td>
-                        </tr>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Creates an instance of set mapping.</p>
-</div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>url</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
+                        <h6><b>Methods</b></h6>
                     </td>
                 </tr>
-            </tbody>
-        </table>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getReferenceOrgans" >getReferenceOrgans</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
 </section>
 
 
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getReferenceOrgans"></a>
+                    <span class="name">
+                        <span ><b>getReferenceOrgans</b></span>
+                        <a href="#getReferenceOrgans"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getReferenceOrgans()</code>
+                </td>
+            </tr>
 
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../injectables/TissueFtuService.html" target="_self" >TissueFtuService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/TissueFtuService.html#source" target="_self" >TissueFtuService:21</a></code>
+</div>
+                </td>
+            </tr>
 
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Implementation of getReferenceOrgans method</p>
+</div>
 
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ReferenceOrgan" target="_self" >Observable&lt;ReferenceOrgan[]&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ActionGroup } from &#x27;@hra-ui/cdk/state&#x27;;
-import { MapEntry } from &#x27;./medical-illustration.model&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { Any } from &#x27;@hra-ui/utils/types&#x27;;
+import { Observable, of } from &#x27;rxjs&#x27;;
+import { MOCK_TISSUE_DATA } from &#x27;../tissue-library/tissue-library.mock&#x27;;
+import { ReferenceOrgan, TissueFtuService } from &#x27;./tissue-ftu.service&#x27;;
 
-/** Action base */
-const Action &#x3D; ActionGroup(&#x27;Medical Illustration&#x27;);
-
-/**
- * Action for setting the current illustration URI
- */
-export class SetUri extends Action(&#x27;Set URI&#x27;) {
-  /**
-   * Creates an instance of set uri.
-   * @param [url]
-   */
-  constructor(readonly url?: string) {
-    super();
-  }
+/** Test whether an object is a reference organ */
+function isReferenceOrgan(obj: Any): obj is ReferenceOrgan {
+  return !!obj[&#x27;object&#x27;][&#x27;file&#x27;];
 }
 
-/**
- * Action for setting the current illustration URI from IRI
- */
-export class SetUriFromIRI extends Action(&#x27;Set URI From IRI&#x27;) {
-  /**
-   * Creates an instance of set uri from iri.
-   * @param [url]
-   */
-  constructor(readonly iri: string) {
-    super();
+/** Reference organs */
+const MOCK_REFERENCE_ORGANS &#x3D; Object.values(MOCK_TISSUE_DATA.nodes).filter(isReferenceOrgan);
+
+/** Implementation of TissueFtuService */
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class MockTissueFtuService extends TissueFtuService {
+  /** Implementation of getReferenceOrgans method */
+  getReferenceOrgans(): Observable&lt;ReferenceOrgan[]&gt; {
+    return of(MOCK_REFERENCE_ORGANS);
   }
 }
-
-/**
- * Action for setting the current active node
- */
-export class SetActiveNode extends Action(&#x27;Set Active Node&#x27;) {
-  /**
-   * Creates an instance of set active node.
-   * @param [node]
-   */
-  constructor(readonly node?: MapEntry) {
-    super();
-  }
-}
-
-/**
- * Action for setting the mapping file
- */
-export class SetMapping extends Action(&#x27;Set Mapping&#x27;) {
-  /**
-   * Creates an instance of set mapping.
-   * @param url
-   */
-  constructor(readonly url: string) {
-    super();
-  }
-}
-
-/** Loads reference organ data */
-export class LoadReferenceOrgans extends Action(&#x27;Load Reference Organs&#x27;) {}
 </code></pre>
     </div>
+
 </div>
+
+
+
+
 
 
 
@@ -237,8 +229,8 @@ export class LoadReferenceOrgans extends Action(&#x27;Load Reference Organs&#x27
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'SetMapping.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'MockTissueFtuService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

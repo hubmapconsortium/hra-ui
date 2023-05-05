@@ -298,6 +298,7 @@ import {
   SimpleChanges,
 } from &#x27;@angular/core&#x27;;
 import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
+import { MatRippleModule } from &#x27;@angular/material/core&#x27;;
 import { MatExpansionModule } from &#x27;@angular/material/expansion&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from &#x27;@angular/material/tree&#x27;;
@@ -336,7 +337,15 @@ interface InternalNode&lt;K extends string, T extends DataNode&lt;K&gt;&gt; {
 @Component({
   selector: &#x27;hra-tissue-tree-list&#x27;,
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatTreeModule, MatIconModule, MatExpansionModule, LinkDirective],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatTreeModule,
+    MatIconModule,
+    MatExpansionModule,
+    MatRippleModule,
+    LinkDirective,
+  ],
   templateUrl: &#x27;./tissue-tree-list.component.html&#x27;,
   styleUrls: [&#x27;./tissue-tree-list.component.scss&#x27;],
   changeDetection: ChangeDetectionStrategy.OnPush,

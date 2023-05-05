@@ -667,6 +667,7 @@ export class BiomarkerDetailsComponent implements OnChanges {
 
   .table-header {
     grid-area: table-header;
+    border-bottom: 0.063rem solid #d3d3d3;
   }
 
   .table {
@@ -691,6 +692,9 @@ export class BiomarkerDetailsComponent implements OnChanges {
 
   .legend-header {
     color: vars.$dark-primary-text;
+    border-top: 0.063rem solid #d3d3d3;
+    border-bottom: 0.063rem solid #d3d3d3;
+    border-right: 0.063rem solid #d3d3d3;
 
     &amp;.gradient {
       grid-area: gradient-legend-header;
@@ -707,7 +711,6 @@ export class BiomarkerDetailsComponent implements OnChanges {
 
   .legend {
     padding: 1rem 2rem;
-    border-left: 0.063rem solid #d3d3d3;
     border-right: 0.063rem solid #d3d3d3;
 
     &amp;.gradient {
@@ -726,14 +729,13 @@ export class BiomarkerDetailsComponent implements OnChanges {
   .source-list-header {
     grid-area: source-list-header;
     color: vars.$dark-primary-text;
+    border-top: 0.063rem solid #d3d3d3;
+    border-bottom: 0.063rem solid #d3d3d3;
   }
 
   .source-list {
     grid-area: source-list;
     padding: 1rem 1.125rem;
-    border-left: 0.063rem solid #d3d3d3;
-    border-right: 0.063rem solid #d3d3d3;
-    border-bottom: 0.063rem solid #d3d3d3;
 
     .content {
       width: min-content;

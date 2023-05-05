@@ -89,7 +89,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/lib/medical-illustration/medical-illustration.actions.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/lib/medical-illustration/medical-illustration.actions.ts:36</a></div>
                             </td>
                         </tr>
 
@@ -140,13 +140,16 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Action } from &#x27;@hra-ui/cdk/state&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ActionGroup } from &#x27;@hra-ui/cdk/state&#x27;;
 import { MapEntry } from &#x27;./medical-illustration.model&#x27;;
+
+/** Action base */
+const Action &#x3D; ActionGroup(&#x27;Medical Illustration&#x27;);
 
 /**
  * Action for setting the current illustration URI
  */
-export class SetUri extends Action(&#x27;[Medical Illustration] Set URI&#x27;) {
+export class SetUri extends Action(&#x27;Set URI&#x27;) {
   /**
    * Creates an instance of set uri.
    * @param [url]
@@ -157,9 +160,22 @@ export class SetUri extends Action(&#x27;[Medical Illustration] Set URI&#x27;) {
 }
 
 /**
+ * Action for setting the current illustration URI from IRI
+ */
+export class SetUriFromIRI extends Action(&#x27;Set URI From IRI&#x27;) {
+  /**
+   * Creates an instance of set uri from iri.
+   * @param [url]
+   */
+  constructor(readonly iri: string) {
+    super();
+  }
+}
+
+/**
  * Action for setting the current active node
  */
-export class SetActiveNode extends Action(&#x27;[Medical Illustration] Set Active Node&#x27;) {
+export class SetActiveNode extends Action(&#x27;Set Active Node&#x27;) {
   /**
    * Creates an instance of set active node.
    * @param [node]
@@ -172,7 +188,7 @@ export class SetActiveNode extends Action(&#x27;[Medical Illustration] Set Activ
 /**
  * Action for setting the mapping file
  */
-export class SetMapping extends Action(&#x27;[Medical Illustration] Set Mapping&#x27;) {
+export class SetMapping extends Action(&#x27;Set Mapping&#x27;) {
   /**
    * Creates an instance of set mapping.
    * @param url
@@ -181,6 +197,9 @@ export class SetMapping extends Action(&#x27;[Medical Illustration] Set Mapping&
     super();
   }
 }
+
+/** Loads reference organ data */
+export class LoadReferenceOrgans extends Action(&#x27;Load Reference Organs&#x27;) {}
 </code></pre>
     </div>
 </div>

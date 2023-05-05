@@ -241,7 +241,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:60</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:69</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -273,7 +273,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:74</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -303,7 +303,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:70</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:79</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -342,8 +342,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="115"
-                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:115</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="124"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:124</a></div>
                 </td>
             </tr>
 
@@ -433,8 +433,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="123"
-                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:123</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="132"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:132</a></div>
                 </td>
             </tr>
 
@@ -517,7 +517,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:75</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:84</a></div>
                         </td>
                     </tr>
 
@@ -549,7 +549,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:98</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:107</a></div>
                         </td>
                     </tr>
 
@@ -591,7 +591,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:83</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:92</a></div>
                         </td>
                     </tr>
 
@@ -622,6 +622,7 @@ import {
   SimpleChanges,
 } from &#x27;@angular/core&#x27;;
 import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
+import { MatRippleModule } from &#x27;@angular/material/core&#x27;;
 import { MatExpansionModule } from &#x27;@angular/material/expansion&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from &#x27;@angular/material/tree&#x27;;
@@ -660,7 +661,15 @@ interface InternalNode&lt;K extends string, T extends DataNode&lt;K&gt;&gt; {
 @Component({
   selector: &#x27;hra-tissue-tree-list&#x27;,
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatTreeModule, MatIconModule, MatExpansionModule, LinkDirective],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatTreeModule,
+    MatIconModule,
+    MatExpansionModule,
+    MatRippleModule,
+    LinkDirective,
+  ],
   templateUrl: &#x27;./tissue-tree-list.component.html&#x27;,
   styleUrls: [&#x27;./tissue-tree-list.component.scss&#x27;],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -787,7 +796,7 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
 &lt;/mat-tree&gt;
 
 &lt;ng-template let-label&#x3D;&quot;label&quot; let-data&#x3D;&quot;data&quot; #label&gt;
-  &lt;div class&#x3D;&quot;label-container&quot;&gt;
+  &lt;div class&#x3D;&quot;label-container&quot; matRipple [matRippleDisabled]&#x3D;&quot;!data.link&quot;&gt;
     &lt;a
       *ngIf&#x3D;&quot;data.link; else noLink&quot;
       [hraLink]&#x3D;&quot;data.link&quot;
@@ -831,9 +840,11 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
       display: flex;
       align-items: center;
       height: 2rem;
-      padding-left: 1rem;
+      padding: 0 1rem;
+      border-radius: 0.25rem;
 
       .link {
+        cursor: pointer;
         text-decoration: none;
         color: rgba(vars.$dark-primary-text);
       }
@@ -872,7 +883,7 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-tree [dataSource]="dataSource" [treeControl]="control" class="tree">  <mat-tree-node    *matTreeNodeDef="let node; let level = level"    [matTreeNodePadding]="level"    matTreeNodePaddingIndent="64"    [class.selected]="node.data === selected"    class="row"    tabIndex="0"  >    <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>  </mat-tree-node>  <mat-tree-node    *matTreeNodeDef="let node; let level = level; when: hasChild"    class="row"    [class.selected]="node.data === selected"  >    <button mat-icon-button matTreeNodeToggle class="toggle" [attr.aria-label]="\'Toggle \' + node.label">      <mat-icon>        {{ control.isExpanded(node) ? \'keyboard_arrow_up\' : \'chevron_right\' }}      </mat-icon>    </button>    <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>  </mat-tree-node></mat-tree><ng-template let-label="label" let-data="data" #label>  <div class="label-container">    <a      *ngIf="data.link; else noLink"      [hraLink]="data.link"      [queryParams]="{ id: data.id }"      class="link"      (click)="selectNode(data)"    >      {{ label }}    </a>    <ng-template #noLink>      <span>{{ label }}</span>    </ng-template>  </div></ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-tree [dataSource]="dataSource" [treeControl]="control" class="tree">  <mat-tree-node    *matTreeNodeDef="let node; let level = level"    [matTreeNodePadding]="level"    matTreeNodePaddingIndent="64"    [class.selected]="node.data === selected"    class="row"    tabIndex="0"  >    <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>  </mat-tree-node>  <mat-tree-node    *matTreeNodeDef="let node; let level = level; when: hasChild"    class="row"    [class.selected]="node.data === selected"  >    <button mat-icon-button matTreeNodeToggle class="toggle" [attr.aria-label]="\'Toggle \' + node.label">      <mat-icon>        {{ control.isExpanded(node) ? \'keyboard_arrow_up\' : \'chevron_right\' }}      </mat-icon>    </button>    <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>  </mat-tree-node></mat-tree><ng-template let-label="label" let-data="data" #label>  <div class="label-container" matRipple [matRippleDisabled]="!data.link">    <a      *ngIf="data.link; else noLink"      [hraLink]="data.link"      [queryParams]="{ id: data.id }"      class="link"      (click)="selectNode(data)"    >      {{ label }}    </a>    <ng-template #noLink>      <span>{{ label }}</span>    </ng-template>  </div></ng-template></div>'
     var COMPONENTS = [{'name': 'BiomarkerTableDataCardComponent', 'selector': 'hra-biomarker-table-data-card'},{'name': 'BiomarkerTableDataIconComponent', 'selector': 'hra-biomarker-table-data-icon'},{'name': 'ContactModalComponent', 'selector': 'hra-contact-modal'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenContainerComponent', 'selector': 'hra-fullscreen-container'},{'name': 'FullscreenContentComponent', 'selector': 'hra-fullscreen-content'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InteractiveSvgComponent', 'selector': 'hra-interactive-svg'},{'name': 'LandingPageInDepthComponent', 'selector': 'hra-landing-page-in-depth'},{'name': 'LandingPageIntroComponent', 'selector': 'hra-landing-page-intro'},{'name': 'MetricsComponent', 'selector': 'hra-metrics'},{'name': 'ScreenSizeNoticeComponent', 'selector': 'hra-screen-size-notice'},{'name': 'SourceListComponent', 'selector': 'hra-source-list'},{'name': 'TissueTreeListComponent', 'selector': 'hra-tissue-tree-list'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TissueTreeListComponent'};

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>services</title>
+        <title>state</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">services</a>
+            <a href="../" class="navbar-brand">state</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -28,87 +28,131 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content module">
+               <div class="content class">
                    <div class="content-data">
 
 
 
+
+
+
+
+
+
+
+
+
 <ol class="breadcrumb">
-    <li>Modules</li>
-    <li >HraServiceModule</li>
+  <li>Classes</li>
+  <li >LoadReferenceOrgans</li>
 </ol>
 
-
 <ul class="nav nav-tabs" role="tablist">
-    <li  class="active" >
-        <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
-    </li>
-    <li >
-        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
-    </li>
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
 </ul>
 
 <div class="tab-content">
     <div class="tab-pane fade active in" id="c-info">
-
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/lib/service.module.ts</code>
+            <code>src/lib/medical-illustration/medical-illustration.actions.ts</code>
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Loads reference organ data</p>
+
+            </p>
 
 
 
-        <div class="container-fluid module">
-            <div class="row">
-            </div>
-        </div>
+
+
+
+
+
+
+
+
 
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
-import { MockContactService } from &#x27;./contact/contact.mock&#x27;;
-import { ContactService } from &#x27;./contact/contact.service&#x27;;
-import { MockTissueLibraryService } from &#x27;./tissue-library/tissue-library.mock&#x27;;
-import { TissueLibraryService } from &#x27;./tissue-library/tissue-library.service&#x27;;
-import { TissueFtuService } from &#x27;./tissue-ftu/tissue-ftu.service&#x27;;
-import { MockTissueFtuService } from &#x27;./tissue-ftu/tissue-ftu.mock&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ActionGroup } from &#x27;@hra-ui/cdk/state&#x27;;
+import { MapEntry } from &#x27;./medical-illustration.model&#x27;;
 
-@NgModule({
-  providers: [
-    // TODO replace with real services
-    {
-      provide: ContactService,
-      useExisting: MockContactService,
-    },
-    {
-      provide: TissueLibraryService,
-      useExisting: MockTissueLibraryService,
-    },
-    {
-      provide: TissueFtuService,
-      useExisting: MockTissueFtuService,
-    },
-  ],
-})
-export class HraServiceModule {}
+/** Action base */
+const Action &#x3D; ActionGroup(&#x27;Medical Illustration&#x27;);
+
+/**
+ * Action for setting the current illustration URI
+ */
+export class SetUri extends Action(&#x27;Set URI&#x27;) {
+  /**
+   * Creates an instance of set uri.
+   * @param [url]
+   */
+  constructor(readonly url?: string) {
+    super();
+  }
+}
+
+/**
+ * Action for setting the current illustration URI from IRI
+ */
+export class SetUriFromIRI extends Action(&#x27;Set URI From IRI&#x27;) {
+  /**
+   * Creates an instance of set uri from iri.
+   * @param [url]
+   */
+  constructor(readonly iri: string) {
+    super();
+  }
+}
+
+/**
+ * Action for setting the current active node
+ */
+export class SetActiveNode extends Action(&#x27;Set Active Node&#x27;) {
+  /**
+   * Creates an instance of set active node.
+   * @param [node]
+   */
+  constructor(readonly node?: MapEntry) {
+    super();
+  }
+}
+
+/**
+ * Action for setting the mapping file
+ */
+export class SetMapping extends Action(&#x27;Set Mapping&#x27;) {
+  /**
+   * Creates an instance of set mapping.
+   * @param url
+   */
+  constructor(readonly url: string) {
+    super();
+  }
+}
+
+/** Loads reference organ data */
+export class LoadReferenceOrgans extends Action(&#x27;Load Reference Organs&#x27;) {}
 </code></pre>
     </div>
 </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -143,8 +187,8 @@ export class HraServiceModule {}
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
-            var COMPODOC_CURRENT_PAGE_URL = 'HraServiceModule.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'LoadReferenceOrgans.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

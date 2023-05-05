@@ -61,10 +61,19 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#BASE_ID" title="src/lib/tissue-library/tissue-library.mock.ts" ><b>BASE_ID</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-library.mock.ts)</a>
+                        </li>
+                        <li>
                             <a href="#IRI" title="src/lib/tissue-library/tissue-library.service.ts" ><b>IRI</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-library.service.ts)</a>
                         </li>
                         <li>
+                            <a href="#MOCK_REFERENCE_ORGANS" title="src/lib/tissue-ftu/tissue-ftu.mock.ts" ><b>MOCK_REFERENCE_ORGANS</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-ftu.mock.ts)</a>
+                        </li>
+                        <li>
                             <a href="#MOCK_TISSUE_DATA" title="src/lib/tissue-library/tissue-library.mock.ts" ><b>MOCK_TISSUE_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-library.mock.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#REFERENCE_ORGAN" title="src/lib/tissue-ftu/tissue-ftu.service.ts" ><b>REFERENCE_ORGAN</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-ftu.service.ts)</a>
                         </li>
                         <li>
                             <a href="#TISSUE_DATA_SCHEMA" title="src/lib/tissue-library/tissue-library.service.ts" ><b>TISSUE_DATA_SCHEMA</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-library.service.ts)</a>
@@ -79,6 +88,165 @@
     </table>
 </section>
 
+    <h3>src/lib/tissue-library/tissue-library.mock.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BASE_ID"></a>
+                    <span class="name">
+                        <span ><b>BASE_ID</b></span>
+                        <a href="#BASE_ID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;https://example.com/&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Base node id</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MOCK_TISSUE_DATA"></a>
+                    <span class="name">
+                        <span ><b>MOCK_TISSUE_DATA</b></span>
+                        <a href="#MOCK_TISSUE_DATA"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  root: BASE_ID,
+  nodes: Object.assign(
+    {},
+    defineNode(
+      &#x27;Kidney&#x27;,
+      BASE_ID,
+      undefined,
+      [
+        &#x27;Descending Thin Loop of Henle&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.svg&#x27;,
+      ],
+      [
+        &#x27;Renal Corpuscle&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-renal-corpuscle.svg&#x27;,
+      ],
+      [
+        &#x27;Ascending Thin Loop of Henle&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.svg&#x27;,
+      ],
+      [
+        &#x27;Cortical Collecting Duct&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.svg&#x27;,
+      ],
+      [
+        &#x27;Inner Medullary Collecting Duct&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.svg&#x27;,
+      ],
+      [&#x27;Nephron&#x27;, &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-nephron.svg&#x27;],
+      [
+        &#x27;Outer Medullary Collectiong Duct&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.svg&#x27;,
+      ],
+      [
+        &#x27;Thick Ascending Loop of Henle&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.svg&#x27;,
+      ]
+    ),
+    defineNode(
+      &#x27;Lung&#x27;,
+      BASE_ID,
+      undefined,
+      [
+        &#x27;Pulmonary Alveolus&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-pulmonary-alveolus.svg&#x27;,
+      ],
+      [
+        &#x27;Bronchial Submucosal Gland&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-bronchial-submucosal-gland.svg&#x27;,
+      ]
+    ),
+    defineNode(&#x27;Large Intestine&#x27;, BASE_ID, undefined, [
+      &#x27;Crypt Lieberkuhn&#x27;,
+      &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.svg&#x27;,
+    ]),
+    defineNode(
+      &#x27;Pancreas&#x27;,
+      BASE_ID,
+      undefined,
+      [
+        &#x27;Islates Langerhans&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-islets-langerhans.svg&#x27;,
+      ],
+      [
+        &#x27;Intercalated Duct&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-intercalated-duct.svg&#x27;,
+      ],
+      [
+        &#x27;Pancreatic Acinus&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-pancreatic-acinus.svg&#x27;,
+      ]
+    ),
+    defineNode(
+      &#x27;Skin&#x27;,
+      BASE_ID,
+      undefined,
+      [&#x27;Dermal Papilla&#x27;, &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-dermal-papilla.svg&#x27;],
+      [&#x27;Epidermal Ridge&#x27;, &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.svg&#x27;]
+    ),
+    defineNode(&#x27;Liver&#x27;, BASE_ID, undefined, [
+      &#x27;Liver Lobule&#x27;,
+      &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-liver-liver-lobule.svg&#x27;,
+    ]),
+    defineNode(&#x27;Prostate&#x27;, BASE_ID, undefined, [
+      &#x27;Prostate Glandular Acinus&#x27;,
+      &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.svg&#x27;,
+    ]),
+    defineNode(&#x27;Thymus&#x27;, BASE_ID, undefined, [
+      &#x27;Thymus Lobule&#x27;,
+      &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.svg&#x27;,
+    ])
+  ),
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mock tissue data</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
     <h3>src/lib/tissue-library/tissue-library.service.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -171,59 +339,62 @@
         </tbody>
     </table>
 </section>
-    <h3>src/lib/tissue-library/tissue-library.mock.ts</h3>
+    <h3>src/lib/tissue-ftu/tissue-ftu.mock.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="MOCK_TISSUE_DATA"></a>
+                    <a name="MOCK_REFERENCE_ORGANS"></a>
                     <span class="name">
-                        <span ><b>MOCK_TISSUE_DATA</b></span>
-                        <a href="#MOCK_TISSUE_DATA"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>MOCK_REFERENCE_ORGANS</b></span>
+                        <a href="#MOCK_REFERENCE_ORGANS"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>TISSUE_DATA_SCHEMA.parse({
-  root: &#x27;http://example.com/root&#x27;,
-  nodes: {
-    &#x27;http://example.com/node1&#x27;: {
-      &#x27;@type&#x27;: &#x27;RootType&#x27;,
-      &#x27;@id&#x27;: &#x27;http://example.com/node1&#x27;,
-      id: &#x27;http://example.com/node1&#x27;,
-      parent: &#x27;&#x27;,
-      label: &#x27;Node 1&#x27;,
-      synonymLabels: [&#x27;Synonym 1&#x27;, &#x27;Synonym 2&#x27;, &#x27;Synonym 3&#x27;],
-      children: [&#x27;http://example.com/node2&#x27;, &#x27;http://example.com/node3&#x27;],
-    },
-    &#x27;http://example.com/node2&#x27;: {
-      &#x27;@type&#x27;: &#x27;RootType&#x27;,
-      &#x27;@id&#x27;: &#x27;http://example.com/node2&#x27;,
-      id: &#x27;http://example.com/node2&#x27;,
-      parent: &#x27;&#x27;,
-      label: &#x27;Node 2&#x27;,
-      synonymLabels: [&#x27;Synonym 1&#x27;, &#x27;Synonym 2&#x27;, &#x27;Synonym 3&#x27;],
-      children: [],
-    },
-    &#x27;http://example.com/node3&#x27;: {
-      &#x27;@type&#x27;: &#x27;RootType&#x27;,
-      &#x27;@id&#x27;: &#x27;http://example.com/node3&#x27;,
-      id: &#x27;http://example.com/node3&#x27;,
-      parent: &#x27;&#x27;,
-      label: &#x27;Node 3&#x27;,
-      synonymLabels: [],
-      children: [],
-    },
-  },
+                        <i>Default value : </i><code>Object.values(MOCK_TISSUE_DATA.nodes).filter(isReferenceOrgan)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Reference organs</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/lib/tissue-ftu/tissue-ftu.service.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REFERENCE_ORGAN"></a>
+                    <span class="name">
+                        <span ><b>REFERENCE_ORGAN</b></span>
+                        <a href="#REFERENCE_ORGAN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  representation_of: z.string(),
+  object: z.object({
+    file: z.string(),
+  }),
 })</code>
                     </td>
                 </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Mock tissue data</p>
+                    <div class="io-description"><p>Reference organ type</p>
 </div>
                 </td>
             </tr>
