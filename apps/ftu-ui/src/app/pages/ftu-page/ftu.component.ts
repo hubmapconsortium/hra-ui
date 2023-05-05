@@ -11,6 +11,7 @@ import { FullscreenContainerComponent, FullscreenContentComponent } from '@hra-u
 import { MedicalIllustrationActions } from '@hra-ui/state';
 import { takeUntil } from 'rxjs';
 
+/** Main FTU page */
 @Component({
   selector: 'ftu-ftu-page',
   standalone: true,
@@ -28,6 +29,7 @@ import { takeUntil } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FtuComponent {
+  /** Set the illustration from the id query parameter */
   constructor() {
     const queryParams$ = inject(ActivatedRoute).queryParams.pipe(takeUntil(injectDestroy$()));
     const setUriFromIri = dispatch(MedicalIllustrationActions.SetUriFromIRI);
