@@ -1,3 +1,4 @@
+import { ReferenceOrgan } from '@hra-ui/services';
 import { z } from 'zod';
 
 /** Map Entry typings */
@@ -29,4 +30,6 @@ export interface MedicalIllustrationModel {
   node?: MapEntry;
   /** Mapping info */
   mapping?: MapEntry[];
+  /** reference organs */
+  referenceOrgans?: ReferenceOrgan[];
 }

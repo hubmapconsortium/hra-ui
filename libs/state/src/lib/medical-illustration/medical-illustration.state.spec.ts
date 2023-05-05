@@ -1,11 +1,12 @@
-import { StateContext } from '@ngxs/store';
-import { mock } from 'jest-mock-extended';
-
-import { SetActiveNode, SetUri } from './medical-illustration.actions';
-import { MedicalIllustrationModel } from './medical-illustration.model';
-import { MedicalIllustrationState } from './medical-illustration.state';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { TissueFtuService } from '@hra-ui/services';
+import { StateContext } from '@ngxs/store';
+import { mock } from 'jest-mock-extended';
+import { firstValueFrom, of } from 'rxjs';
+import { SetActiveNode, SetUri, SetUriFromIRI } from './medical-illustration.actions';
+import { MedicalIllustrationModel } from './medical-illustration.model';
+import { MedicalIllustrationState } from './medical-illustration.state';
 
 describe('MedicalIllustrationState', () => {
   const testNode = {
@@ -25,9 +26,24 @@ describe('MedicalIllustrationState', () => {
     'REF/1/NOTES': '',
     'Inset #': '',
   };
+  const mockState = {
+    url: '',
+    node: testNode,
+    referenceOrgans: [
+      {
+        representation_of: testNode.representation_of,
+        object: {
+          file: 'test.com',
+        },
+      },
+    ],
+  };
   const testAction1 = new SetUri('test');
   const testAction2 = new SetActiveNode(testNode);
-  const ctx = mock<StateContext<MedicalIllustrationModel>>();
+  const testAction3 = new SetUriFromIRI(testNode.representation_of);
+  const ctx = mock<StateContext<MedicalIllustrationModel>>({
+    getState: () => mockState,
+  });
   let state: MedicalIllustrationState;
 
   beforeEach(() => {
@@ -35,7 +51,10 @@ describe('MedicalIllustrationState', () => {
 
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [MedicalIllustrationState],
+      providers: [
+        MedicalIllustrationState,
+        { provide: TissueFtuService, useValue: { getReferenceOrgans: () => of(mockState.referenceOrgans) } },
+      ],
     });
 
     state = TestBed.inject(MedicalIllustrationState);
@@ -45,7 +64,7 @@ describe('MedicalIllustrationState', () => {
 
   it('should save a url', async () => {
     state.setUri(ctx, testAction1);
-    expect(ctx.setState).toHaveBeenCalledWith({
+    expect(ctx.patchState).toHaveBeenCalledWith({
       url: 'test',
     });
   });
@@ -54,6 +73,22 @@ describe('MedicalIllustrationState', () => {
     state.setActiveNode(ctx, testAction2);
     expect(ctx.patchState).toHaveBeenCalledWith({
       node: testNode,
+    });
+  });
+
+  it('should set uri from the iri', async () => {
+    state.setUriFromIRI(ctx, testAction3);
+    expect(ctx.patchState).toHaveBeenCalledWith({
+      url: 'test.com',
+    });
+  });
+
+  describe('loadReferenceOrgans(ctx)', () => {
+    it('should load the organs from the ftu service', async () => {
+      const spy = jest.spyOn(TestBed.inject(TissueFtuService), 'getReferenceOrgans');
+      await firstValueFrom(state.loadReferenceOrgans(ctx));
+      expect(spy).toHaveBeenCalled();
+      expect(ctx.patchState).toHaveBeenCalled();
     });
   });
 });
