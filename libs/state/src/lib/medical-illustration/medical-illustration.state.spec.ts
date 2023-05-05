@@ -1,7 +1,9 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { TissueFtuService } from '@hra-ui/services';
 import { StateContext } from '@ngxs/store';
 import { mock } from 'jest-mock-extended';
+import { firstValueFrom, of } from 'rxjs';
 import { SetActiveNode, SetUri, SetUriFromIRI } from './medical-illustration.actions';
 import { MedicalIllustrationModel } from './medical-illustration.model';
 import { MedicalIllustrationState } from './medical-illustration.state';
@@ -49,7 +51,10 @@ describe('MedicalIllustrationState', () => {
 
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [MedicalIllustrationState],
+      providers: [
+        MedicalIllustrationState,
+        { provide: TissueFtuService, useValue: { getReferenceOrgans: () => of(mockState.referenceOrgans) } },
+      ],
     });
 
     state = TestBed.inject(MedicalIllustrationState);
@@ -59,7 +64,7 @@ describe('MedicalIllustrationState', () => {
 
   it('should save a url', async () => {
     state.setUri(ctx, testAction1);
-    expect(ctx.setState).toHaveBeenCalledWith({
+    expect(ctx.patchState).toHaveBeenCalledWith({
       url: 'test',
     });
   });
@@ -75,6 +80,15 @@ describe('MedicalIllustrationState', () => {
     state.setUriFromIRI(ctx, testAction3);
     expect(ctx.patchState).toHaveBeenCalledWith({
       url: 'test.com',
+    });
+  });
+
+  describe('loadReferenceOrgans(ctx)', () => {
+    it('should load the organs from the ftu service', async () => {
+      const spy = jest.spyOn(TestBed.inject(TissueFtuService), 'getReferenceOrgans');
+      await firstValueFrom(state.loadReferenceOrgans(ctx));
+      expect(spy).toHaveBeenCalled();
+      expect(ctx.patchState).toHaveBeenCalled();
     });
   });
 });
