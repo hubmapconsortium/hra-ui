@@ -3,7 +3,12 @@
   height: 100%;
 
   .content-container {
+    display: flex;
     height: calc(100% - 5rem - 1px);
+
+    .illustration {
+      flex-grow: 1;
+    }
 
     .fullscreen-content-container {
       &,
