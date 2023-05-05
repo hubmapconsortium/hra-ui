@@ -12,7 +12,7 @@ const routes: Route[] = [
   {
     path: 'ftu',
     resolve: {
-      ftuData: ftuResolver,
+      id: ftuResolver,
     },
     loadComponent: () => FtuComponent,
   },
