@@ -26,7 +26,7 @@
 </mat-tree>
 
 <ng-template let-label="label" let-data="data" #label>
-  <div class="label-container">
+  <div class="label-container" matRipple [matRippleDisabled]="!data.link">
     <a
       *ngIf="data.link; else noLink"
       [hraLink]="data.link"
