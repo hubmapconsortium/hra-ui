@@ -1,3 +1,11 @@
+ProductTitle:
+  type: internal
+  commands:
+   - '/'
+FTU:
+  type: internal
+  commands:
+    - 'ftu/'
 About:
   type: external
   url: https://www.example.com
@@ -7,7 +15,12 @@ ExploreFTU:
 LandingPageReadMore:
   type: external
   url: https://www.example.com
-FTU:
-  type: internal
-  commands:
-    - 'ftu/'
+Portal:
+  type: external
+  url: https://www.example.com
+Illustration:
+  type: external
+  url: https://www.example.com
+Embed:
+  type: external
+  url: https://www.example.com
