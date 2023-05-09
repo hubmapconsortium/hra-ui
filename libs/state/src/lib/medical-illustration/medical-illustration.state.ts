@@ -4,6 +4,7 @@ import { TissueFtuService } from '@hra-ui/services';
 import { Action, State, StateContext } from '@ngxs/store';
 import { parse } from 'papaparse';
 import { Observable, tap } from 'rxjs';
+import { Load } from '../cell-summary/cell-summary.actions';
 import { LoadReferenceOrgans, SetActiveNode, SetMapping, SetUri, SetUriFromIRI } from './medical-illustration.actions';
 import { MapEntry, MedicalIllustrationModel } from './medical-illustration.model';
 
@@ -40,13 +41,18 @@ export class MedicalIllustrationState {
    * @param param1 Action object with iri
    */
   @Action(SetUriFromIRI)
-  setUriFromIRI({ patchState, getState }: MedicalIllustrationContext, { iri }: SetUriFromIRI): void {
+  setUriFromIRI(
+    { patchState, getState, dispatch }: MedicalIllustrationContext,
+    { iri }: SetUriFromIRI
+  ): Observable<void> {
     const referenceOrgans = getState().referenceOrgans;
     const ref = referenceOrgans?.find((ref) => ref.representation_of === iri);
     if (ref === undefined) {
       throw new Error('Reference organ with match iri not found');
     }
     patchState({ url: ref.object.file });
+
+    return dispatch(new Load(ref.object.file));
   }
 
   /**

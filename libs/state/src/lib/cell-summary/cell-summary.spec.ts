@@ -1,4 +1,8 @@
-import { StateContext } from '@ngxs/store';
+import { HttpClientModule } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
+import { ResourceRegistryState } from '@hra-ui/cdk/state';
+import { MockTissueFtuService, TissueFtuService } from '@hra-ui/services';
+import { NgxsModule, StateContext } from '@ngxs/store';
 import { mock } from 'jest-mock-extended';
 import { ComputeAggregate, SetData } from './cell-summary.actions';
 import { Aggregate, AggregateRowEntry, Cell, CellSummaryStateModel, GradientPoint } from './cell-summary.model';
@@ -16,26 +20,27 @@ function createCell(cid: string, clabel: string, bid: string, blabel: string, co
     },
     count,
     percentage,
+    metadata: [],
   };
 }
 
-function createAggregateEntry(data: Cell): AggregateRowEntry {
-  return { color: '', size: 0, data };
+function createAggregateEntry(data: Cell, size = 0, color = '#000000'): AggregateRowEntry {
+  return { color, size, data: data.metadata };
 }
 
 export const summariesData = {
   summary1: {
     label: 'Summary 1',
     entries: [
-      createCell('cell1', 'Cell 1', 'biomarker1', 'Biomarker 1', 10, 50),
-      createCell('cell2', 'Cell 2', 'biomarker1', 'Biomarker 1', 5, 20),
-      createCell('cell2', 'Cell 2', 'biomarker2', 'Biomarker 2', 5, 20),
-      createCell('cell1', 'Cell 1', 'biomarker3', 'Biomarker 3', 15, 10),
+      createCell('cell1', 'Cell 1', 'biomarker1', 'Biomarker 1', 10, 0.5),
+      createCell('cell2', 'Cell 2', 'biomarker1', 'Biomarker 1', 5, 0.2),
+      createCell('cell2', 'Cell 2', 'biomarker2', 'Biomarker 2', 5, 0.2),
+      createCell('cell1', 'Cell 1', 'biomarker3', 'Biomarker 3', 15, 0.2),
     ],
   },
   summary2: {
     label: 'Summary 2',
-    entries: [createCell('cell1', 'Cell 1', 'biomarker2', 'Biomarker 2', 20, 100)],
+    entries: [createCell('cell1', 'Cell 1', 'biomarker2', 'Biomarker 2', 20, 1)],
   },
 };
 
@@ -47,22 +52,22 @@ export const aggregateData: Aggregate = {
       [
         'Cell 1',
         25,
-        createAggregateEntry(summariesData.summary1.entries[0]),
+        createAggregateEntry(summariesData.summary1.entries[0], 2.6),
         undefined,
-        createAggregateEntry(summariesData.summary1.entries[3]),
+        createAggregateEntry(summariesData.summary1.entries[3], 3.4),
       ],
       [
         'Cell 2',
         10,
-        createAggregateEntry(summariesData.summary1.entries[1]),
-        createAggregateEntry(summariesData.summary1.entries[2]),
+        createAggregateEntry(summariesData.summary1.entries[1], 3),
+        createAggregateEntry(summariesData.summary1.entries[2], 3),
       ],
     ],
   },
   summary2: {
     label: 'Summary 2',
     columns: ['Biomarker 2'],
-    rows: [['Cell 1', 20, createAggregateEntry(summariesData.summary2.entries[0])]],
+    rows: [['Cell 1', 20, createAggregateEntry(summariesData.summary2.entries[0], 5)]],
   },
 };
 
@@ -71,16 +76,20 @@ describe('CellSummaryState', () => {
   let state: CellSummaryState;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [NgxsModule.forRoot([ResourceRegistryState]), HttpClientModule],
+      providers: [{ provide: TissueFtuService, useExisting: MockTissueFtuService }],
+    });
+
     ctx = mock<StateContext<CellSummaryStateModel>>();
-    state = new CellSummaryState();
+    state = TestBed.runInInjectionContext(() => new CellSummaryState());
   });
 
   afterEach(() => jest.clearAllMocks());
 
   it('should set data', () => {
-    const data = { foo: 'bar' };
-    const action = new SetData(data);
-    expect(action.data).toEqual(data);
+    const action = new SetData({});
+    expect(action.data).toEqual({});
   });
 
   it('should compute aggregate data for the given summaries', () => {
@@ -101,5 +110,18 @@ describe('CellSummaryState', () => {
 
     const received = state.interpolateColor(points, 0.35);
     expect(received).toBe(expected);
+  });
+
+  describe('interpolateSize(...)', () => {
+    it('should interpolate from the points', () => {
+      const result = state.interpolateSize(
+        [
+          { label: '', radius: 0 },
+          { label: '', radius: 10 },
+        ],
+        0.5
+      );
+      expect(result).toEqual(5);
+    });
   });
 });

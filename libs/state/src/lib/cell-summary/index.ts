@@ -1,3 +1,12 @@
 export * as CellSummaryActions from './cell-summary.actions';
-export { Cell, CellSummary, Aggregate, AggregateRow, AggregateRowEntry, GradientPoint } from './cell-summary.model';
+export {
+  Aggregate,
+  AggregateRow,
+  AggregateRowEntry,
+  Cell,
+  CellSummary,
+  GradientPoint,
+  SizePoint,
+} from './cell-summary.model';
+export * from './cell-summary.selectors';
 export { CellSummaryState } from './cell-summary.state';

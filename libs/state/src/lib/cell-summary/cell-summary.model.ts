@@ -11,6 +11,14 @@ export type AggregateRow = Aggregate[string]['rows'][number];
 /** Type representing a single entry in a row with cell, biomarker, count and percentage */
 export type AggregateRowEntry = AggregateRow[2];
 
+/** Size legend item */
+export interface SizePoint {
+  /** Label (percentage) */
+  label: string;
+  /** Radius in rems */
+  radius: number;
+}
+
 /**
  * The CellSummaryStateModel interface describes the overall shape of the state for this feature.
  * It has two properties, summaries and aggregate, both of which are of their corresponding types.
@@ -37,6 +45,13 @@ export const CELL_SCHEMA = z.object({
   }),
   count: z.number(),
   percentage: z.number(),
+  metadata: z
+    .object({
+      label: z.string(),
+      value: z.string(),
+    })
+    .array()
+    .array(),
 });
 
 /**
@@ -65,7 +80,7 @@ export const CELL_SUMMARY_AGGREGATE_SCHEMA = z.record(
           .object({
             color: z.string(),
             size: z.number(),
-            data: CELL_SCHEMA,
+            data: CELL_SCHEMA.shape['metadata'],
           })
           .optional()
       )
