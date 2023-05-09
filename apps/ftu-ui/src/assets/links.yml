@@ -1,7 +1,7 @@
 ProductTitle:
   type: internal
   commands:
-   - '/'
+    - '/'
 FTU:
   type: internal
   commands:
