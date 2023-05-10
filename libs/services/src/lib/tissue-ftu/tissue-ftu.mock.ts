@@ -15,8 +15,8 @@ function createCell(
   clabel: string,
   bid: string,
   blabel: string,
-  count = 0,
-  percentage = 0,
+  count: number,
+  percentage: number,
   metadata: { label: string; value: string }[][] = []
 ) {
   return {
