@@ -72,10 +72,10 @@ export class ResourceRegistrySelectors {
       const entry = getEntry(state, id);
       switch (entry?.type) {
         case BuiltinResourceType.Markdown:
-          return entry.markdown ?? '';
+          return entry.markdown;
 
         case BuiltinResourceType.Text:
-          return entry.text ?? '';
+          return entry.text;
 
         default:
           return '';
