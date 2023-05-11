@@ -1,0 +1,783 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>cdk</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">cdk</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >ResourceRegistryState</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>state/src/resource-registry/resource-registry.state.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>State keeping track of global resources</p>
+
+            </p>
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addMany" >addMany</a>
+                            </li>
+                            <li>
+                                <a href="#addOne" >addOne</a>
+                            </li>
+                            <li>
+                                <a href="#addYaml" >addYaml</a>
+                            </li>
+                            <li>
+                                <a href="#loadMarkdown" >loadMarkdown</a>
+                            </li>
+                            <li>
+                                <a href="#loadYaml" >loadYaml</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addMany"></a>
+                    <span class="name">
+                        <span ><b>addMany</b></span>
+                        <a href="#addMany"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addMany(ctx: <a href="../undefineds/ResourceRegistryContext.html" target="_self">ResourceRegistryContext</a>, undefined: <a href="../classes/AddMany.html" target="_self">AddMany</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Action(AddMany)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.state.ts:40</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Add multiple entries</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ctx</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#ResourceRegistryContext" target="_self" >ResourceRegistryContext</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>State context</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                                <code><a href="../classes/AddMany.html" target="_self" >AddMany</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addOne"></a>
+                    <span class="name">
+                        <span ><b>addOne</b></span>
+                        <a href="#addOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addOne(ctx: <a href="../undefineds/ResourceRegistryContext.html" target="_self">ResourceRegistryContext</a>, undefined: <a href="../classes/Add.html" target="_self">Add</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Action(Add)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.state.ts:30</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Add a single entry</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ctx</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#ResourceRegistryContext" target="_self" >ResourceRegistryContext</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>State context</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                                <code><a href="../classes/Add.html" target="_self" >Add</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addYaml"></a>
+                    <span class="name">
+                        <span ><b>addYaml</b></span>
+                        <a href="#addYaml"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addYaml(ctx: <a href="../undefineds/ResourceRegistryContext.html" target="_self">ResourceRegistryContext</a>, undefined: <a href="../classes/AddFromYaml.html" target="_self">AddFromYaml</a>, filename?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Action(AddFromYaml)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.state.ts:51</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Parse and add entries from yaml</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ctx</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#ResourceRegistryContext" target="_self" >ResourceRegistryContext</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>State context</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                                <code><a href="../classes/AddFromYaml.html" target="_self" >AddFromYaml</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>filename</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>Optional url/filename from which the data was loaded (for improved error messages)</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadMarkdown"></a>
+                    <span class="name">
+                        <span ><b>loadMarkdown</b></span>
+                        <a href="#loadMarkdown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadMarkdown(ctx: <a href="../undefineds/ResourceRegistryContext.html" target="_self">ResourceRegistryContext</a>, undefined: <a href="../classes/LoadMarkdown.html" target="_self">LoadMarkdown</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Action(LoadMarkdown)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.state.ts:77</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Adds a markdown entry with content loaded from an external file</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ctx</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#ResourceRegistryContext" target="_self" >ResourceRegistryContext</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>State context</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                                <code><a href="../classes/LoadMarkdown.html" target="_self" >LoadMarkdown</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>An observable that completes when the entry has been added</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadYaml"></a>
+                    <span class="name">
+                        <span ><b>loadYaml</b></span>
+                        <a href="#loadYaml"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadYaml(ctx: <a href="../undefineds/ResourceRegistryContext.html" target="_self">ResourceRegistryContext</a>, undefined: <a href="../classes/LoadFromYaml.html" target="_self">LoadFromYaml</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Action(LoadFromYaml)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.state.ts:64</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Load and add entries from an external yaml file</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ctx</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#ResourceRegistryContext" target="_self" >ResourceRegistryContext</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>State context</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                                <code><a href="../classes/LoadFromYaml.html" target="_self" >LoadFromYaml</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>An observable that completes when the entries has been added</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
+import { inject, Injectable } from &#x27;@angular/core&#x27;;
+import { Action, State } from &#x27;@ngxs/store&#x27;;
+import { load } from &#x27;js-yaml&#x27;;
+import { map, Observable } from &#x27;rxjs&#x27;;
+import { Add, AddFromYaml, AddMany, LoadFromYaml, LoadMarkdown } from &#x27;./resource-registry.actions&#x27;;
+import {
+  BuiltinResourceType,
+  ResourceRegistryContext,
+  ResourceRegistryModel,
+  RESOURCE_REGISTRY_SCHEMA,
+} from &#x27;./resource-registry.model&#x27;;
+
+/** State keeping track of global resources */
+@State&lt;ResourceRegistryModel&gt;({
+  name: &#x27;resourceRegistry&#x27;,
+  defaults: {},
+})
+@Injectable()
+export class ResourceRegistryState {
+  /** Http service for resource loading */
+  private readonly http &#x3D; inject(HttpClient);
+
+  /**
+   * Add a single entry
+   * @param ctx State context
+   * @param action Action with id and entry to add
+   */
+  @Action(Add)
+  addOne(ctx: ResourceRegistryContext, { id, entry }: Add): void {
+    this.addMany(ctx, new AddMany({ [id]: entry }));
+  }
+
+  /**
+   * Add multiple entries
+   * @param ctx State context
+   * @param action Action with entries to add
+   */
+  @Action(AddMany)
+  addMany(ctx: ResourceRegistryContext, { entries }: AddMany): void {
+    ctx.patchState(entries);
+  }
+
+  /**
+   * Parse and add entries from yaml
+   * @param ctx State context
+   * @param action Action with raw yaml data
+   * @param filename Optional url/filename from which the data was loaded (for improved error messages)
+   */
+  @Action(AddFromYaml)
+  addYaml(ctx: ResourceRegistryContext, { yaml }: AddFromYaml, filename?: string): void {
+    const data &#x3D; load(yaml, { filename });
+    const entries &#x3D; RESOURCE_REGISTRY_SCHEMA.parse(data);
+    this.addMany(ctx, new AddMany(entries));
+  }
+
+  /**
+   * Load and add entries from an external yaml file
+   * @param ctx State context
+   * @param action Action with the external file url
+   * @returns An observable that completes when the entries has been added
+   */
+  @Action(LoadFromYaml)
+  loadYaml(ctx: ResourceRegistryContext, { url }: LoadFromYaml): Observable&lt;void&gt; {
+    return this.http
+      .get(url, { responseType: &#x27;text&#x27; })
+      .pipe(map((data) &#x3D;&gt; this.addYaml(ctx, new AddFromYaml(data), url)));
+  }
+
+  /**
+   * Adds a markdown entry with content loaded from an external file
+   * @param ctx State context
+   * @param action Action with id and url to the external markdown
+   * @returns An observable that completes when the entry has been added
+   */
+  @Action(LoadMarkdown)
+  loadMarkdown(ctx: ResourceRegistryContext, { id, url }: LoadMarkdown): Observable&lt;void&gt; {
+    return this.http.get(url, { responseType: &#x27;text&#x27; }).pipe(
+      map((markdown) &#x3D;&gt; new Add(id, { type: BuiltinResourceType.Markdown, markdown })),
+      map((action) &#x3D;&gt; this.addOne(ctx, action))
+    );
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ResourceRegistryState.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

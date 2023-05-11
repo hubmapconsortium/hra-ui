@@ -80,11 +80,13 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
+import { NgxsModule } from &#x27;@ngxs/store&#x27;;
 import { MaterialCssVarsModule } from &#x27;angular-material-css-vars&#x27;;
+import { ThemingState } from &#x27;./state/theming.state&#x27;;
 
 /** Configures global theming */
 @NgModule({
-  imports: [MaterialCssVarsModule.forRoot({})],
+  imports: [MaterialCssVarsModule.forRoot({}), NgxsModule.forFeature([ThemingState])],
 })
 export class ThemingModule {}
 </code></pre>

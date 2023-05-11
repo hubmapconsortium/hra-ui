@@ -1,0 +1,670 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>components-organisms</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">components-organisms</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  BiomarkerTableComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/lib/biomarker-table/biomarker-table.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Cell types table, describing the types and quanitites of cells for a specific organ</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>hra-biomarker-table</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./biomarker-table.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./biomarker-table.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#dataSource" >dataSource</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#columns" >columns</a>
+                            </li>
+                            <li>
+                                <a href="#data" >data</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#columnsWithTypeAndCount" >columnsWithTypeAndCount</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="columns"></a>
+                        <b>columns</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:43</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Columns for the table</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="data"></a>
+                        <b>data</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#DataRow" target="_self" >DataRow&lt;T&gt;[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:46</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Rows of the table</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dataSource"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>dataSource</b></span>
+                        <a href="#dataSource"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new MatTableDataSource&lt;DataRow&lt;T&gt;&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Source for the table</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="columnsWithTypeAndCount"></a>
+                        <span class="name"><b>columnsWithTypeAndCount</b><a href="#columnsWithTypeAndCount"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>columnsWithTypeAndCount()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:49</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Getter method to provide the definations of the columns</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>string[]</code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { MatTableModule, MatTableDataSource } from &#x27;@angular/material/table&#x27;;
+import {
+  BiomarkerTableDataCardComponent,
+  BiomarkerTableDataIconComponent,
+  DataItem,
+} from &#x27;@hra-ui/components/molecules&#x27;;
+import { HoverDirective } from &#x27;@hra-ui/cdk&#x27;;
+
+/**
+ * An interface representing a single cell of the table.
+ */
+export interface DataCell {
+  /** Represents the color of the icon */
+  color: string;
+  /** Represents the size of the icon */
+  size: number;
+  /** Represents the data for the data card */
+  data: DataItem[][];
+}
+
+/** Describes the composition of a single row in the table */
+export type DataRow&lt;T&gt; &#x3D; [string, number | undefined, ...(T | undefined)[]];
+
+/** Cell types table, describing the types and quanitites of cells for a specific organ */
+@Component({
+  selector: &#x27;hra-biomarker-table&#x27;,
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatTableModule,
+    BiomarkerTableDataIconComponent,
+    HoverDirective,
+    BiomarkerTableDataCardComponent,
+  ],
+  templateUrl: &#x27;./biomarker-table.component.html&#x27;,
+  styleUrls: [&#x27;./biomarker-table.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChanges {
+  /** Columns for the table */
+  @Input() columns: string[] &#x3D; [];
+
+  /** Rows of the table */
+  @Input() data: DataRow&lt;T&gt;[] &#x3D; [];
+
+  /** Getter method to provide the definations of the columns */
+  get columnsWithTypeAndCount(): string[] {
+    return [&#x27;type&#x27;, &#x27;count&#x27;, ...this.columns];
+  }
+
+  /** Source for the table */
+  readonly dataSource &#x3D; new MatTableDataSource&lt;DataRow&lt;T&gt;&gt;([]);
+
+  /**
+   * sets the data source for the table on every change
+   * @param changes object consisting of change in the Input
+   */
+  ngOnChanges(changes: SimpleChanges): void {
+    if (&#x27;data&#x27; in changes) {
+      this.dataSource.data &#x3D; this.data;
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;table class&#x3D;&quot;table&quot; mat-table [dataSource]&#x3D;&quot;dataSource&quot;&gt;
+  &lt;caption class&#x3D;&quot;sr-only&quot;&gt;
+    Cell type table by Biomarker
+  &lt;/caption&gt;
+
+  &lt;ng-container matColumnDef&#x3D;&quot;type&quot;&gt;
+    &lt;th mat-header-cell *matHeaderCellDef&gt;Cell Type&lt;/th&gt;
+
+    &lt;td class&#x3D;&quot;type&quot; mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+      {{ element[0] }}
+    &lt;/td&gt;
+  &lt;/ng-container&gt;
+
+  &lt;ng-container matColumnDef&#x3D;&quot;count&quot;&gt;
+    &lt;th class&#x3D;&quot;count&quot; mat-header-cell *matHeaderCellDef&gt;Cell Count&lt;/th&gt;
+
+    &lt;td class&#x3D;&quot;count&quot; mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+      {{ element[1] !&#x3D;&#x3D; undefined ? (element[1] | number) : &#x27;no data&#x27; }}
+    &lt;/td&gt;
+  &lt;/ng-container&gt;
+
+  &lt;ng-container *ngFor&#x3D;&quot;let column of columns; let index &#x3D; index&quot; [matColumnDef]&#x3D;&quot;column&quot;&gt;
+    &lt;th class&#x3D;&quot;icon-header&quot; mat-header-cell *matHeaderCellDef [hraHover]&#x3D;&quot;columnHover&quot; [hraHoverData]&#x3D;&quot;column&quot;&gt;
+      {{ column }}
+    &lt;/th&gt;
+
+    &lt;td class&#x3D;&quot;icon-cell&quot; mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+      &lt;hra-biomarker-table-data-icon
+        class&#x3D;&quot;icon&quot;
+        *ngIf&#x3D;&quot;element[index + 2] !&#x3D;&#x3D; undefined&quot;
+        [color]&#x3D;&quot;element[index + 2].color&quot;
+        [size]&#x3D;&quot;element[index + 2].size&quot;
+        [hraHover]&#x3D;&quot;dataHover&quot;
+        [hraHoverData]&#x3D;&quot;element[index + 2].data&quot;
+      &gt;
+      &lt;/hra-biomarker-table-data-icon&gt;
+    &lt;/td&gt;
+  &lt;/ng-container&gt;
+
+  &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;columnsWithTypeAndCount&quot;&gt;&lt;/tr&gt;
+  &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: columnsWithTypeAndCount&quot;&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;ng-template #columnHover let-columnName&gt;
+  &lt;div class&#x3D;&quot;biomarker-table-hover full-column-name&quot;&gt;
+    {{ columnName }}
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+
+&lt;ng-template #dataHover let-data&gt;
+  &lt;hra-biomarker-table-data-card [data]&#x3D;&quot;data&quot;&gt; &lt;/hra-biomarker-table-data-card&gt;
+&lt;/ng-template&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./biomarker-table.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;utils&#x27;;
+@use &#x27;variables&#x27; as vars;
+
+:host {
+  display: block;
+
+  .sr-only {
+    @include utils.sr-only();
+  }
+
+  .table th {
+    background-color: #fff7f8;
+    color: #59264d;
+    text-align: right;
+
+    border-top: 0.063rem solid #d3d3d3;
+    border-bottom: 0.063rem solid #d3d3d3;
+    border-left: 0.063rem solid #d3d3d3;
+  }
+
+  .table td {
+    border-bottom: 0.063rem solid #d3d3d3;
+    border-left: 0.063rem solid #d3d3d3;
+  }
+
+  .table tr:first-child td {
+    border-top: 0.063rem solid #d3d3d3;
+  }
+
+  tr &gt; td:first-child {
+    text-align: left;
+    padding: 0 2rem;
+  }
+
+  tr &gt; th:first-child {
+    text-align: left;
+    padding: 0 2rem;
+  }
+
+  tr &gt; td:last-of-type {
+    border-right: 0.063rem solid #d3d3d3;
+  }
+
+  tr &gt; th:last-of-type {
+    border-right: 0.063rem solid #d3d3d3;
+  }
+
+  .type {
+    height: 3rem;
+    max-width: 26rem;
+    min-width: 17rem;
+    border-radius: 0rem;
+    white-space: nowrap;
+  }
+
+  .count {
+    text-align: right;
+    height: 3rem;
+    min-width: 6.5rem;
+  }
+
+  .icon-header {
+    max-width: 5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .icon-cell {
+    max-width: 5rem;
+    min-height: 3rem;
+
+    .icon {
+      margin: auto;
+    }
+  }
+}
+
+::ng-deep .biomarker-table-hover.full-column-name {
+  display: flex;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
+  background-color: vars.$primary-contrast-rgb;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><table class="table" mat-table [dataSource]="dataSource">  <caption class="sr-only">    Cell type table by Biomarker  </caption>  <ng-container matColumnDef="type">    <th mat-header-cell *matHeaderCellDef>Cell Type</th>    <td class="type" mat-cell *matCellDef="let element">      {{ element[0] }}    </td>  </ng-container>  <ng-container matColumnDef="count">    <th class="count" mat-header-cell *matHeaderCellDef>Cell Count</th>    <td class="count" mat-cell *matCellDef="let element">      {{ element[1] !== undefined ? (element[1] | number) : \'no data\' }}    </td>  </ng-container>  <ng-container *ngFor="let column of columns; let index = index" [matColumnDef]="column">    <th class="icon-header" mat-header-cell *matHeaderCellDef [hraHover]="columnHover" [hraHoverData]="column">      {{ column }}    </th>    <td class="icon-cell" mat-cell *matCellDef="let element">      <hra-biomarker-table-data-icon        class="icon"        *ngIf="element[index + 2] !== undefined"        [color]="element[index + 2].color"        [size]="element[index + 2].size"        [hraHover]="dataHover"        [hraHoverData]="element[index + 2].data"      >      </hra-biomarker-table-data-icon>    </td>  </ng-container>  <tr mat-header-row *matHeaderRowDef="columnsWithTypeAndCount"></tr>  <tr mat-row *matRowDef="let row; columns: columnsWithTypeAndCount"></tr></table><ng-template #columnHover let-columnName>  <div class="biomarker-table-hover full-column-name">    {{ columnName }}  </div></ng-template><ng-template #dataHover let-data>  <hra-biomarker-table-data-card [data]="data"> </hra-biomarker-table-data-card></ng-template></div>'
+    var COMPONENTS = [{'name': 'BiomarkerTableComponent', 'selector': 'hra-biomarker-table'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'BiomarkerTableComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'BiomarkerTableComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

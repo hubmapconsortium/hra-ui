@@ -270,7 +270,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Emits the new email when the input changes or null if the email is invalid</p>
+                        <div class="io-description"><p>Emits the new email when the input changes or undefined if the email is invalid</p>
 </div>
                     </td>
                 </tr>
@@ -334,7 +334,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>injectOnDestroy()</code>
+                        <i>Default value : </i><code>injectDestroy$()</code>
                     </td>
                 </tr>
                     <tr>
@@ -363,7 +363,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { FormControl, ReactiveFormsModule, Validators } from &#x27;@angular/forms&#x27;;
 import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
 import { MatInputModule } from &#x27;@angular/material/input&#x27;;
-import { injectOnDestroy } from &#x27;@hra-ui/cdk/injectors&#x27;;
+import { injectDestroy$ } from &#x27;@hra-ui/cdk/injectors&#x27;;
 import { map, takeUntil } from &#x27;rxjs&#x27;;
 
 /**
@@ -381,11 +381,11 @@ export class EmailInputComponent {
   /** A placeholder for the email input field. This will be disappeared when the email is typed. */
   @Input() placeholder &#x3D; &#x27;&#x27;;
 
-  /** Emits the new email when the input changes or null if the email is invalid  */
-  @Output() readonly emailChange &#x3D; new EventEmitter&lt;string | null&gt;();
+  /** Emits the new email when the input changes or undefined if the email is invalid  */
+  @Output() readonly emailChange &#x3D; new EventEmitter&lt;string | undefined&gt;();
 
   /** Observable emitting when the component is destroyed */
-  readonly destroy$ &#x3D; injectOnDestroy();
+  readonly destroy$ &#x3D; injectDestroy$();
 
   /**  A control to validate the email. */
   readonly control &#x3D; new FormControl(&#x27;&#x27;, {
@@ -399,9 +399,9 @@ export class EmailInputComponent {
     control.valueChanges
       .pipe(
         takeUntil(destroy$),
-        map((value) &#x3D;&gt; (control.valid ? value : null))
+        map((value) &#x3D;&gt; (control.valid ? value : undefined))
       )
-      .subscribe((value) &#x3D;&gt; this.emailChange.emit(value));
+      .subscribe((value) &#x3D;&gt; this.emailChange.emit(value as string | undefined));
   }
 }
 </code></pre>

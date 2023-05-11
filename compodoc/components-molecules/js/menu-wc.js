@@ -57,10 +57,31 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/BiomarkerTableDataCardComponent.html" data-type="entity-link" >BiomarkerTableDataCardComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/BiomarkerTableDataIconComponent.html" data-type="entity-link" >BiomarkerTableDataIconComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ContactModalComponent.html" data-type="entity-link" >ContactModalComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/FooterComponent.html" data-type="entity-link" >FooterComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/FullscreenContainerComponent.html" data-type="entity-link" >FullscreenContainerComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/FullscreenContentComponent.html" data-type="entity-link" >FullscreenContentComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/HeaderComponent.html" data-type="entity-link" >HeaderComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/InfoModalComponent.html" data-type="entity-link" >InfoModalComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/InteractiveSvgComponent.html" data-type="entity-link" >InteractiveSvgComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/LandingPageInDepthComponent.html" data-type="entity-link" >LandingPageInDepthComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/LandingPageIntroComponent.html" data-type="entity-link" >LandingPageIntroComponent</a>
@@ -73,6 +94,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/SourceListComponent.html" data-type="entity-link" >SourceListComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/TissueTreeListComponent.html" data-type="entity-link" >TissueTreeListComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/TitleCardComponent.html" data-type="entity-link" >TitleCardComponent</a>
@@ -88,16 +112,47 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
+                                <a href="interfaces/ContactData.html" data-type="entity-link" >ContactData</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/DataItem.html" data-type="entity-link" >DataItem</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/DataNode.html" data-type="entity-link" >DataNode</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/DownloadFormat.html" data-type="entity-link" >DownloadFormat</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/InternalNode.html" data-type="entity-link" >InternalNode</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/MetricItem.html" data-type="entity-link" >MetricItem</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/NodeMapEntry.html" data-type="entity-link" >NodeMapEntry</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/NodeTooltipData.html" data-type="entity-link" >NodeTooltipData</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/SectionItem.html" data-type="entity-link" >SectionItem</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/SourceListItem.html" data-type="entity-link" >SourceListItem</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#miscellaneous-links"'
+                            : 'data-target="#xs-miscellaneous-links"' }>
+                            <span class="icon ion-ios-cube"></span>
+                            <span>Miscellaneous</span>
+                            <span class="icon ion-ios-arrow-down"></span>
+                        </div>
+                        <ul class="links collapse " ${ isNormalMode ? 'id="miscellaneous-links"' : 'id="xs-miscellaneous-links"' }>
+                            <li class="link">
+                                <a href="miscellaneous/variables.html" data-type="entity-link">Variables</a>
                             </li>
                         </ul>
                     </li>

@@ -62,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>injectors/src/lib/select-snapshot/select-snapshot.ts</code>
+            <code>injectors/src/lib/select/snapshot-observer.ts</code>
         </p>
 
 
@@ -79,7 +79,8 @@
                 <h3>Implements</h3>
             </p>
             <p class="comment">
-                        <code>Observer</code>
+                        <code>NextObserver</code>
+                        <code>ErrorObserver</code>
             </p>
 
 
@@ -96,9 +97,6 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
-                            <li>
-                                <a href="#complete" >complete</a>
-                            </li>
                             <li>
                                 <a href="#error" >error</a>
                             </li>
@@ -120,61 +118,6 @@
     </table>
 </section>
 
-            <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(cdr: ChangeDetectorRef | null)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">injectors/src/lib/select-snapshot/select-snapshot.ts:16</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Creates a new SnapshotObserver</p>
-</div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>cdr</td>
-                                                  
-                                                        <td>
-                                                                    <code>ChangeDetectorRef | null</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Change detector to notify whenever a new value is emitted</p>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
 
             <section>
@@ -182,45 +125,6 @@
     <h3 id="methods">
         Methods
     </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="complete"></a>
-                    <span class="name">
-                        <span ><b>complete</b></span>
-                        <a href="#complete"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>complete()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">injectors/src/lib/select-snapshot/select-snapshot.ts:59</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Handles completion emits</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -241,8 +145,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">injectors/src/lib/select-snapshot/select-snapshot.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="38"
+                            class="link-to-prism">injectors/src/lib/select/snapshot-observer.ts:38</a></div>
                 </td>
             </tr>
 
@@ -313,8 +217,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">injectors/src/lib/select-snapshot/select-snapshot.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">injectors/src/lib/select/snapshot-observer.ts:18</a></div>
                 </td>
             </tr>
 
@@ -358,8 +262,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">injectors/src/lib/select-snapshot/select-snapshot.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">injectors/src/lib/select/snapshot-observer.ts:30</a></div>
                 </td>
             </tr>
 
@@ -424,28 +328,17 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectorRef, inject } from &#x27;@angular/core&#x27;;
-import { StateToken, Store } from &#x27;@ngxs/store&#x27;;
-import { Observer, takeUntil } from &#x27;rxjs&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ErrorObserver, NextObserver } from &#x27;rxjs&#x27;;
 
-import { injectOnDestroy } from &#x27;../on-destroy/on-destroy&#x27;;
-
-import type { Any, AnyFunction, SignatureOf } from &#x27;@hra-ui/utils/types&#x27;;
+/** Object indicating that no error has been emitted */
+const NO_ERROR_SENTINEL_OBJ &#x3D; {};
 
 /** Observer storing the latest value from a snapshot stream */
-class SnapshotObserver&lt;T&gt; implements Observer&lt;T&gt; {
-  /** Whether an error has been emitted */
-  private hasError &#x3D; false;
+export class SnapshotObserver&lt;T&gt; implements NextObserver&lt;T&gt;, ErrorObserver&lt;T&gt; {
   /** The latest value */
   private value?: T &#x3D; undefined;
-  /** The error value if &#x60;hasError &#x3D;&#x3D;&#x3D; true&#x60; */
-  private errorValue?: unknown;
-
-  /**
-   * Creates a new SnapshotObserver
-   * @param cdr Change detector to notify whenever a new value is emitted
-   */
-  constructor(private readonly cdr: ChangeDetectorRef | null) {}
+  /** An error value if not equal to &#x60;NO_ERROR_SENTINEL&#x60; */
+  private errorValue: unknown &#x3D; NO_ERROR_SENTINEL_OBJ;
 
   /**
    * Gets the latest value or throw on errors
@@ -453,7 +346,7 @@ class SnapshotObserver&lt;T&gt; implements Observer&lt;T&gt; {
    * @throws If an error has been emitted
    */
   get(): T {
-    if (this.hasError) {
+    if (this.errorValue !&#x3D;&#x3D; NO_ERROR_SENTINEL_OBJ) {
       throw this.errorValue;
     }
 
@@ -466,7 +359,6 @@ class SnapshotObserver&lt;T&gt; implements Observer&lt;T&gt; {
    */
   next(value: T): void {
     this.value &#x3D; value;
-    this.cdr?.markForCheck();
   }
 
   /**
@@ -474,51 +366,9 @@ class SnapshotObserver&lt;T&gt; implements Observer&lt;T&gt; {
    * @param err The error value
    */
   error(err: unknown): void {
-    this.hasError &#x3D; true;
     this.value &#x3D; undefined;
     this.errorValue &#x3D; err;
   }
-
-  /**
-   * Handles completion emits
-   */
-  complete(): void {
-    // Intentionally empty
-  }
-}
-
-/** Type of &#x60;selectSnapshot&#x60; and &#x60;selectQuerySnapshot&#x60; selector argument */
-export type SelectSnapshotSelector&lt;T&gt; &#x3D; ((...args: Any[]) &#x3D;&gt; T) | StateToken&lt;T&gt;;
-
-/**
- * Injects a function that returns the latest snapshot value each time it is called
- * Automatically marks components, directives, or pipes for change detection whenever
- * a new value is available
- * @param selector Store data selector
- * @returns A snapshot function
- */
-export function selectSnapshot&lt;T&gt;(selector: SelectSnapshotSelector&lt;T&gt;): () &#x3D;&gt; T {
-  const store &#x3D; inject(Store);
-  const cdr &#x3D; inject(ChangeDetectorRef, { optional: true });
-  const destroy$ &#x3D; injectOnDestroy();
-  const data$ &#x3D; store.select&lt;T&gt;(selector as StateToken&lt;T&gt;).pipe(takeUntil(destroy$));
-  const observer &#x3D; new SnapshotObserver&lt;T&gt;(cdr);
-
-  data$.subscribe(observer);
-  return observer.get.bind(observer);
-}
-
-/**
- * Injects a function that can be called with the same arguments as the query selector
- * and returns the latest value each time
- * Automatically marks components, directives, or pipes for change detection whenever
- * a new value is available
- * @param selector Store query selector
- * @returns A snapshot function taking the same arguments as the query selector
- */
-export function selectQuerySnapshot&lt;F extends AnyFunction&gt;(selector: SelectSnapshotSelector&lt;F&gt;): SignatureOf&lt;F&gt; {
-  const get &#x3D; selectSnapshot(selector);
-  return ((...args) &#x3D;&gt; get()(...args)) as SignatureOf&lt;F&gt;;
 }
 </code></pre>
     </div>

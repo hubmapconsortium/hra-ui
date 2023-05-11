@@ -45,6 +45,162 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                     </ul>
                 </li>
+                    <li class="chapter modules">
+                        <a data-type="chapter-link" href="modules.html">
+                            <div class="menu-toggler linked" data-toggle="collapse" ${ isNormalMode ?
+                                'data-target="#modules-links"' : 'data-target="#xs-modules-links"' }>
+                                <span class="icon ion-ios-archive"></span>
+                                <span class="link-name">Modules</span>
+                                <span class="icon ion-ios-arrow-down"></span>
+                            </div>
+                        </a>
+                        <ul class="links collapse " ${ isNormalMode ? 'id="modules-links"' : 'id="xs-modules-links"' }>
+                            <li class="link">
+                                <a href="modules/HraStateModule.html" data-type="entity-link" >HraStateModule</a>
+                            </li>
+                </ul>
+                </li>
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#classes-links"' :
+                            'data-target="#xs-classes-links"' }>
+                            <span class="icon ion-ios-paper"></span>
+                            <span>Classes</span>
+                            <span class="icon ion-ios-arrow-down"></span>
+                        </div>
+                        <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
+                            <li class="link">
+                                <a href="classes/Add.html" data-type="entity-link" >Add</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/AddEntry.html" data-type="entity-link" >AddEntry</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CellSummarySelectors.html" data-type="entity-link" >CellSummarySelectors</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ClearEntries.html" data-type="entity-link" >ClearEntries</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ComputeAggregate.html" data-type="entity-link" >ComputeAggregate</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/Download.html" data-type="entity-link" >Download</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/DownloadSelectors.html" data-type="entity-link" >DownloadSelectors</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/Load.html" data-type="entity-link" >Load</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/Load-1.html" data-type="entity-link" >Load</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/LoadReferenceOrgans.html" data-type="entity-link" >LoadReferenceOrgans</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/MedicalIllustrationSelectors.html" data-type="entity-link" >MedicalIllustrationSelectors</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/RegisterFormat.html" data-type="entity-link" >RegisterFormat</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ScreenModeSelectors.html" data-type="entity-link" >ScreenModeSelectors</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SendMessage.html" data-type="entity-link" >SendMessage</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/Set.html" data-type="entity-link" >Set</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/Set-1.html" data-type="entity-link" >Set</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SetActiveNode.html" data-type="entity-link" >SetActiveNode</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SetData.html" data-type="entity-link" >SetData</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SetMapping.html" data-type="entity-link" >SetMapping</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SetUri.html" data-type="entity-link" >SetUri</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SetUriFromIRI.html" data-type="entity-link" >SetUriFromIRI</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SourceListSelectors.html" data-type="entity-link" >SourceListSelectors</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/TissueLibrarySelectors.html" data-type="entity-link" >TissueLibrarySelectors</a>
+                            </li>
+                        </ul>
+                    </li>
+                        <li class="chapter">
+                            <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#injectables-links"' :
+                                'data-target="#xs-injectables-links"' }>
+                                <span class="icon ion-md-arrow-round-down"></span>
+                                <span>Injectables</span>
+                                <span class="icon ion-ios-arrow-down"></span>
+                            </div>
+                            <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
+                                <li class="link">
+                                    <a href="injectables/CellSummaryState.html" data-type="entity-link" >CellSummaryState</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/ContactState.html" data-type="entity-link" >ContactState</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/DownloadState.html" data-type="entity-link" >DownloadState</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/MedicalIllustrationState.html" data-type="entity-link" >MedicalIllustrationState</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/ScreenModeState.html" data-type="entity-link" >ScreenModeState</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/SourceListState.html" data-type="entity-link" >SourceListState</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/StateAnalyticsPluginService.html" data-type="entity-link" >StateAnalyticsPluginService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/TissueLibraryState.html" data-type="entity-link" >TissueLibraryState</a>
+                                </li>
+                            </ul>
+                        </li>
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#interfaces-links"' :
+                            'data-target="#xs-interfaces-links"' }>
+                            <span class="icon ion-md-information-circle-outline"></span>
+                            <span>Interfaces</span>
+                            <span class="icon ion-ios-arrow-down"></span>
+                        </div>
+                        <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
+                            <li class="link">
+                                <a href="interfaces/CellSummaryStateModel.html" data-type="entity-link" >CellSummaryStateModel</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/GradientPoint.html" data-type="entity-link" >GradientPoint</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/MedicalIllustrationModel.html" data-type="entity-link" >MedicalIllustrationModel</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ScreenModeModel.html" data-type="entity-link" >ScreenModeModel</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SizePoint.html" data-type="entity-link" >SizePoint</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/Source.html" data-type="entity-link" >Source</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#miscellaneous-links"'
                             : 'data-target="#xs-miscellaneous-links"' }>
@@ -53,6 +209,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <span class="icon ion-ios-arrow-down"></span>
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="miscellaneous-links"' : 'id="xs-miscellaneous-links"' }>
+                            <li class="link">
+                                <a href="miscellaneous/functions.html" data-type="entity-link">Functions</a>
+                            </li>
+                            <li class="link">
+                                <a href="miscellaneous/typealiases.html" data-type="entity-link">Type aliases</a>
+                            </li>
                             <li class="link">
                                 <a href="miscellaneous/variables.html" data-type="entity-link">Variables</a>
                             </li>

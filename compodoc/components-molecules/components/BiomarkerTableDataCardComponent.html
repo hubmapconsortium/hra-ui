@@ -329,7 +329,7 @@ export class BiomarkerTableDataCardComponent implements OnChanges {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;no-data&quot; *ngIf&#x3D;&quot;sectionItems.length &#x3D;&#x3D;&#x3D; 0&quot;&gt;No data&lt;/div&gt;
-&lt;table mat-table [dataSource]&#x3D;&quot;sectionItems&quot;&gt;
+&lt;table mat-table *ngIf&#x3D;&quot;sectionItems.length &gt; 0&quot; [dataSource]&#x3D;&quot;sectionItems&quot;&gt;
   &lt;caption class&#x3D;&quot;sr-only&quot;&gt;
     Biomarker Table Data Card
   &lt;/caption&gt;
@@ -360,12 +360,14 @@ export class BiomarkerTableDataCardComponent implements OnChanges {
                     <code>./biomarker-table-data-card.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss">@use &#x27;utils&#x27;;
+@use &#x27;variables&#x27; as vars;
 
 :host {
   display: flex;
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
+  background-color: vars.$primary-contrast-rgb;
 
   .mat-mdc-cell {
     padding: 0.25rem 0rem;
@@ -420,8 +422,8 @@ export class BiomarkerTableDataCardComponent implements OnChanges {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="no-data" *ngIf="sectionItems.length === 0">No data</div><table mat-table [dataSource]="sectionItems">  <caption class="sr-only">    Biomarker Table Data Card  </caption>  <!-- Label Column -->  <ng-container matColumnDef="label">    <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Label</th>    <td class="label" mat-cell *matCellDef="let element" [class.no-border]="!element.isLastItem">      {{ element.data.label }}    </td>  </ng-container>  <!-- Value Column -->  <ng-container matColumnDef="value">    <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Value</th>    <td class="value" mat-cell *matCellDef="let element" [class.no-border]="!element.isLastItem">      {{ element.data.value }}    </td>  </ng-container>  <tr mat-row *matRowDef="let row; columns: [\'label\', \'value\']"></tr></table></div>'
-    var COMPONENTS = [{'name': 'BiomarkerTableDataCardComponent', 'selector': 'hra-biomarker-table-data-card'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'LandingPageIntroComponent', 'selector': 'hra-landing-page-intro'},{'name': 'MetricsComponent', 'selector': 'hra-metrics'},{'name': 'ScreenSizeNoticeComponent', 'selector': 'hra-screen-size-notice'},{'name': 'SourceListComponent', 'selector': 'hra-source-list'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'}];
+        var COMPONENT_TEMPLATE = '<div><div class="no-data" *ngIf="sectionItems.length === 0">No data</div><table mat-table *ngIf="sectionItems.length > 0" [dataSource]="sectionItems">  <caption class="sr-only">    Biomarker Table Data Card  </caption>  <!-- Label Column -->  <ng-container matColumnDef="label">    <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Label</th>    <td class="label" mat-cell *matCellDef="let element" [class.no-border]="!element.isLastItem">      {{ element.data.label }}    </td>  </ng-container>  <!-- Value Column -->  <ng-container matColumnDef="value">    <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Value</th>    <td class="value" mat-cell *matCellDef="let element" [class.no-border]="!element.isLastItem">      {{ element.data.value }}    </td>  </ng-container>  <tr mat-row *matRowDef="let row; columns: [\'label\', \'value\']"></tr></table></div>'
+    var COMPONENTS = [{'name': 'BiomarkerTableDataCardComponent', 'selector': 'hra-biomarker-table-data-card'},{'name': 'BiomarkerTableDataIconComponent', 'selector': 'hra-biomarker-table-data-icon'},{'name': 'ContactModalComponent', 'selector': 'hra-contact-modal'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenContainerComponent', 'selector': 'hra-fullscreen-container'},{'name': 'FullscreenContentComponent', 'selector': 'hra-fullscreen-content'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InteractiveSvgComponent', 'selector': 'hra-interactive-svg'},{'name': 'LandingPageInDepthComponent', 'selector': 'hra-landing-page-in-depth'},{'name': 'LandingPageIntroComponent', 'selector': 'hra-landing-page-intro'},{'name': 'MetricsComponent', 'selector': 'hra-metrics'},{'name': 'ScreenSizeNoticeComponent', 'selector': 'hra-screen-size-notice'},{'name': 'SourceListComponent', 'selector': 'hra-source-list'},{'name': 'TissueTreeListComponent', 'selector': 'hra-tissue-tree-list'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'BiomarkerTableDataCardComponent'};
 </script>

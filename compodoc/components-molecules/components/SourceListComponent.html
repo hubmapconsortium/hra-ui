@@ -262,6 +262,8 @@ export class SourceListComponent {
                 <pre class="line-numbers"><code class="language-scss">@use &#x27;utils&#x27;;
 
 :host {
+  display: block;
+
   .mat-mdc-cell {
     vertical-align: top;
     border: none;
@@ -302,7 +304,7 @@ export class SourceListComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><table mat-table [dataSource]="sources">  <caption class="sr-only">    Source List Table with Title and Links  </caption>  <!-- Position Column -->  <ng-container matColumnDef="link">    <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Number</th>    <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}.</td>  </ng-container>  <!-- Data Column -->  <ng-container matColumnDef="title">    <th class="sr-only" mat-header-cell *matHeaderCellDef>Title and Link</th>    <td mat-cell *matCellDef="let element">      {{ element.title }}      <br />      <a [href]="element.link" target="_blank">{{ element.link }}</a>    </td>  </ng-container>  <tr mat-row *matRowDef="let row; columns: [\'link\', \'title\']"></tr></table></div>'
-    var COMPONENTS = [{'name': 'BiomarkerTableDataCardComponent', 'selector': 'hra-biomarker-table-data-card'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'LandingPageIntroComponent', 'selector': 'hra-landing-page-intro'},{'name': 'MetricsComponent', 'selector': 'hra-metrics'},{'name': 'ScreenSizeNoticeComponent', 'selector': 'hra-screen-size-notice'},{'name': 'SourceListComponent', 'selector': 'hra-source-list'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'}];
+    var COMPONENTS = [{'name': 'BiomarkerTableDataCardComponent', 'selector': 'hra-biomarker-table-data-card'},{'name': 'BiomarkerTableDataIconComponent', 'selector': 'hra-biomarker-table-data-icon'},{'name': 'ContactModalComponent', 'selector': 'hra-contact-modal'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenContainerComponent', 'selector': 'hra-fullscreen-container'},{'name': 'FullscreenContentComponent', 'selector': 'hra-fullscreen-content'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InteractiveSvgComponent', 'selector': 'hra-interactive-svg'},{'name': 'LandingPageInDepthComponent', 'selector': 'hra-landing-page-in-depth'},{'name': 'LandingPageIntroComponent', 'selector': 'hra-landing-page-intro'},{'name': 'MetricsComponent', 'selector': 'hra-metrics'},{'name': 'ScreenSizeNoticeComponent', 'selector': 'hra-screen-size-notice'},{'name': 'SourceListComponent', 'selector': 'hra-source-list'},{'name': 'TissueTreeListComponent', 'selector': 'hra-tissue-tree-list'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SourceListComponent'};
 </script>

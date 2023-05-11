@@ -1,0 +1,398 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>state</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">state</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >StateAnalyticsPluginService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/lib/state-analytics-plugin/state-analytics-plugin.service.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Google Analytics Plugin Injectable</p>
+
+            </p>
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#handle" >handle</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handle"></a>
+                    <span class="name">
+                        <span ><b>handle</b></span>
+                        <a href="#handle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handle(state, action, next: NgxsNextPluginFn)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/lib/state-analytics-plugin/state-analytics-plugin.service.ts:51</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Handles logger plugin</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>state</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <ul>
+<li>Current state of the store with type unknown.</li>
+</ul>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>action</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <ul>
+<li>Current action being dispatched with type unknown type.</li>
+</ul>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>next</td>
+                                    <td>
+                                            <code>NgxsNextPluginFn</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <ul>
+<li>next plugin to handle the action</li>
+</ul>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <ul>
+<li>next plugin with the current state and action.</li>
+</ul>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { inject, Injectable, InjectionToken, Provider } from &#x27;@angular/core&#x27;;
+import { getActionTypeFromInstance, NgxsNextPluginFn, NgxsPlugin, NGXS_PLUGINS } from &#x27;@ngxs/store&#x27;;
+import { GoogleAnalyticsService } from &#x27;ngx-google-analytics&#x27;;
+import { DEFAULT_LOGGABLE_ACTIONS } from &#x27;./default-loggable-actions&#x27;;
+
+/** Primitive types */
+const PRIMITIVE_TYPES &#x3D; [&#x27;bigint&#x27;, &#x27;boolean&#x27;, &#x27;number&#x27;, &#x27;string&#x27;];
+
+/**
+ * Determines whether primitive is
+ * @param value is string - used to check the input value from serialize funtion
+ * @returns type of value - boolean/number/string/null/bigint/undefined
+ */
+function isPrimitive(value: unknown): value is bigint | boolean | number | string | null | undefined {
+  return value &#x3D;&#x3D; null || PRIMITIVE_TYPES.includes(typeof value);
+}
+
+/**
+ * Injectable token LOGGABLE_ACTIONS provides list of actions that can be logged
+ */
+export const LOGGABLE_ACTIONS &#x3D; new InjectionToken&lt;unknown[]&gt;(&#x27;Loggable actions&#x27;, {
+  providedIn: &#x27;root&#x27;,
+  factory: () &#x3D;&gt; DEFAULT_LOGGABLE_ACTIONS,
+});
+
+/**
+ * Google Analytics Plugin Injectable
+ */
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class StateAnalyticsPluginService implements NgxsPlugin {
+  /**
+   * Injects the service for state analytics plugin.
+   */
+  private readonly ga &#x3D; inject(GoogleAnalyticsService);
+
+  /**
+   * Plugin service for logging state analytics
+   * Setting loggable action types from LOGGABLE_ACTIONS dependency.
+   */
+  private readonly loggableTypes &#x3D; new Set(inject(LOGGABLE_ACTIONS).map(getActionTypeFromInstance));
+
+  /**
+   * Handles logger plugin
+   * @param state -  Current state of the store with type unknown.
+   * @param action - Current action being dispatched with type unknown type.
+   * @param next - next plugin to handle the action
+   * @returns - next plugin with the current state and action.
+   */
+  handle(state: unknown, action: unknown, next: NgxsNextPluginFn) {
+    this.logAction(action);
+    return next(state, action);
+  }
+
+  /**
+   * Logs action trigerred to google analytics event
+   * @param action - Current action being dispatched with type unknown type.
+   * @returns void
+   */
+  private logAction(action: unknown): void {
+    const type &#x3D; getActionTypeFromInstance(action);
+    if (type &amp;&amp; this.loggableTypes.has(type)) {
+      const payload &#x3D; JSON.stringify(action, this.serialize);
+      this.ga.event(type, &#x27;action_log&#x27;, payload);
+    }
+  }
+
+  /**
+   * Serializes action data
+   * @param key - key with type unknown that needs to be serialized
+   * @param value - value with type unknown that needs to be serialized
+   * @returns serialized value
+   */
+  private serialize(this: void, key: unknown, value: unknown): unknown {
+    if (key &#x3D;&#x3D;&#x3D; &#x27;&#x27; &amp;&amp; typeof value &#x3D;&#x3D;&#x3D; &#x27;object&#x27;) {
+      return { ...value, type: undefined };
+    } else if (isPrimitive(value) || (Array.isArray(value) &amp;&amp; value.every(isPrimitive))) {
+      return value;
+    }
+
+    return undefined;
+  }
+}
+
+/**
+ * State Login Provider
+ */
+export const STATE_LOGGER_PROVIDER: Provider &#x3D; {
+  provide: NGXS_PLUGINS,
+  useExisting: StateAnalyticsPluginService,
+  multi: true,
+};
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'StateAnalyticsPluginService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

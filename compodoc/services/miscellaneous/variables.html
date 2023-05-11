@@ -1,0 +1,521 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>services</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">services</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-variables">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Miscellaneous</li>
+  <li>Variables</li>
+</ol>
+
+<section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#BASE_ID" title="src/lib/tissue-library/tissue-library.mock.ts" ><b>BASE_ID</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-library.mock.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#IRI" title="src/lib/tissue-library/tissue-library.service.ts" ><b>IRI</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-library.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MOCK_REFERENCE_ORGANS" title="src/lib/tissue-ftu/tissue-ftu.mock.ts" ><b>MOCK_REFERENCE_ORGANS</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-ftu.mock.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MOCK_SUMMARIES" title="src/lib/tissue-ftu/tissue-ftu.mock.ts" ><b>MOCK_SUMMARIES</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-ftu.mock.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MOCK_TISSUE_DATA" title="src/lib/tissue-library/tissue-library.mock.ts" ><b>MOCK_TISSUE_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-library.mock.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#REFERENCE_ORGAN" title="src/lib/tissue-ftu/tissue-ftu.service.ts" ><b>REFERENCE_ORGAN</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-ftu.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TISSUE_DATA_SCHEMA" title="src/lib/tissue-library/tissue-library.service.ts" ><b>TISSUE_DATA_SCHEMA</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-library.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TISSUE_ITEM_SCHEMA" title="src/lib/tissue-library/tissue-library.service.ts" ><b>TISSUE_ITEM_SCHEMA</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-library.service.ts)</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>src/lib/tissue-library/tissue-library.mock.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BASE_ID"></a>
+                    <span class="name">
+                        <span ><b>BASE_ID</b></span>
+                        <a href="#BASE_ID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;https://example.com/&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Base node id</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MOCK_TISSUE_DATA"></a>
+                    <span class="name">
+                        <span ><b>MOCK_TISSUE_DATA</b></span>
+                        <a href="#MOCK_TISSUE_DATA"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  root: BASE_ID,
+  nodes: Object.assign(
+    {},
+    defineNode(
+      &#x27;Kidney&#x27;,
+      BASE_ID,
+      undefined,
+      [
+        &#x27;Descending Thin Loop of Henle&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.svg&#x27;,
+      ],
+      [
+        &#x27;Renal Corpuscle&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-renal-corpuscle.svg&#x27;,
+      ],
+      [
+        &#x27;Ascending Thin Loop of Henle&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.svg&#x27;,
+      ],
+      [
+        &#x27;Cortical Collecting Duct&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.svg&#x27;,
+      ],
+      [
+        &#x27;Inner Medullary Collecting Duct&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.svg&#x27;,
+      ],
+      [&#x27;Nephron&#x27;, &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-nephron.svg&#x27;],
+      [
+        &#x27;Outer Medullary Collectiong Duct&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.svg&#x27;,
+      ],
+      [
+        &#x27;Thick Ascending Loop of Henle&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.svg&#x27;,
+      ]
+    ),
+    defineNode(
+      &#x27;Lung&#x27;,
+      BASE_ID,
+      undefined,
+      [
+        &#x27;Pulmonary Alveolus&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-pulmonary-alveolus.svg&#x27;,
+      ],
+      [
+        &#x27;Bronchial Submucosal Gland&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-bronchial-submucosal-gland.svg&#x27;,
+      ]
+    ),
+    defineNode(&#x27;Large Intestine&#x27;, BASE_ID, undefined, [
+      &#x27;Crypt Lieberkuhn&#x27;,
+      &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.svg&#x27;,
+    ]),
+    defineNode(
+      &#x27;Pancreas&#x27;,
+      BASE_ID,
+      undefined,
+      [
+        &#x27;Islates Langerhans&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-islets-langerhans.svg&#x27;,
+      ],
+      [
+        &#x27;Intercalated Duct&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-intercalated-duct.svg&#x27;,
+      ],
+      [
+        &#x27;Pancreatic Acinus&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-pancreatic-acinus.svg&#x27;,
+      ]
+    ),
+    defineNode(
+      &#x27;Skin&#x27;,
+      BASE_ID,
+      undefined,
+      [&#x27;Dermal Papilla&#x27;, &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-dermal-papilla.svg&#x27;],
+      [&#x27;Epidermal Ridge&#x27;, &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.svg&#x27;]
+    ),
+    defineNode(&#x27;Liver&#x27;, BASE_ID, undefined, [
+      &#x27;Liver Lobule&#x27;,
+      &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-liver-liver-lobule.svg&#x27;,
+    ]),
+    defineNode(&#x27;Prostate&#x27;, BASE_ID, undefined, [
+      &#x27;Prostate Glandular Acinus&#x27;,
+      &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.svg&#x27;,
+    ]),
+    defineNode(&#x27;Thymus&#x27;, BASE_ID, undefined, [
+      &#x27;Thymus Lobule&#x27;,
+      &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.svg&#x27;,
+    ])
+  ),
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mock tissue data</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/lib/tissue-library/tissue-library.service.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="IRI"></a>
+                    <span class="name">
+                        <span ><b>IRI</b></span>
+                        <a href="#IRI"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.string().url().brand(&#x27;IRI&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>A validator that ensures string representing valid URLS, specifically marked as IRI are accepted</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TISSUE_DATA_SCHEMA"></a>
+                    <span class="name">
+                        <span ><b>TISSUE_DATA_SCHEMA</b></span>
+                        <a href="#TISSUE_DATA_SCHEMA"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  root: IRI,
+  nodes: z.record(IRI, TISSUE_ITEM_SCHEMA),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>A Schema which defines the root and its nodes</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TISSUE_ITEM_SCHEMA"></a>
+                    <span class="name">
+                        <span ><b>TISSUE_ITEM_SCHEMA</b></span>
+                        <a href="#TISSUE_ITEM_SCHEMA"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  &#x27;@type&#x27;: z.string(),
+  &#x27;@id&#x27;: IRI,
+  id: IRI,
+  parent: IRI.or(z.literal(&#x27;&#x27;)),
+  label: z.string(),
+  synonymLabels: z.string().array(),
+  children: IRI.array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tissue data schema which defines the type, id, parent, synonmynLabels and children</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/lib/tissue-ftu/tissue-ftu.mock.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MOCK_REFERENCE_ORGANS"></a>
+                    <span class="name">
+                        <span ><b>MOCK_REFERENCE_ORGANS</b></span>
+                        <a href="#MOCK_REFERENCE_ORGANS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Object.values(MOCK_TISSUE_DATA.nodes).filter(isReferenceOrgan)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Reference organs</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MOCK_SUMMARIES"></a>
+                    <span class="name">
+                        <span ><b>MOCK_SUMMARIES</b></span>
+                        <a href="#MOCK_SUMMARIES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  summary1: {
+    label: &#x27;Summary 1&#x27;,
+    entries: [
+      createCell(&#x27;cell1&#x27;, &#x27;Cell 1&#x27;, &#x27;biomarker1&#x27;, &#x27;Biomarker 1&#x27;, 10, 0.5, [
+        [
+          { label: &#x27;metadata 1&#x27;, value: &#x27;value of data&#x27; },
+          { label: &#x27;metadata 2&#x27;, value: &#x27;value of data&#x27; },
+        ],
+        [{ label: &#x27;metadata 3&#x27;, value: &#x27;value of data&#x27; }],
+      ]),
+      createCell(&#x27;cell2&#x27;, &#x27;Cell 2&#x27;, &#x27;biomarker1&#x27;, &#x27;Biomarker 1&#x27;, 5, 0.2),
+      createCell(&#x27;cell2&#x27;, &#x27;Cell 2&#x27;, &#x27;biomarker2&#x27;, &#x27;Biomarker 2&#x27;, 5, 0.2),
+      createCell(&#x27;cell1&#x27;, &#x27;Cell 1&#x27;, &#x27;biomarker3&#x27;, &#x27;Biomarker 3&#x27;, 15, 0.2),
+    ],
+  },
+  summary2: {
+    label: &#x27;Summary 2&#x27;,
+    entries: [createCell(&#x27;cell1&#x27;, &#x27;Cell 1&#x27;, &#x27;biomarker2&#x27;, &#x27;Biomarker 2&#x27;, 20, 1)],
+  },
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mock summary data</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/lib/tissue-ftu/tissue-ftu.service.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REFERENCE_ORGAN"></a>
+                    <span class="name">
+                        <span ><b>REFERENCE_ORGAN</b></span>
+                        <a href="#REFERENCE_ORGAN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  representation_of: z.string(),
+  object: z.object({
+    file: z.string(),
+  }),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Reference organ type</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
+            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
