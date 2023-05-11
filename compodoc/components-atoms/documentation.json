@@ -1,0 +1,638 @@
+{
+    "pipes": [],
+    "interfaces": [
+        {
+            "name": "GradientPoint",
+            "id": "interface-GradientPoint-0121dabc61d822bbf39b93ef45616878d1b4846724b8a426b4f2880d25983e5e9b4151a4f4c393584208d474e9e35b5568aa54bc73eacd8f8562e86cbc7df405",
+            "file": "src/lib/gradient-legend/gradient-legend.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/** An interface of gradient colors along with their percentages for the gradient bar. */\nexport interface GradientPoint {\n  /** Gradient color at a specific percentage */\n  color: string;\n  /** Percentage point along the gradient bar */\n  percentage: number;\n}\n\n/** Gradient legend for biomarkers */\n@Component({\n  selector: 'hra-gradient-legend',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './gradient-legend.component.html',\n  styleUrls: ['./gradient-legend.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class GradientLegendComponent {\n  /** Gradient colors along with their stop points */\n  @Input() gradient: GradientPoint[] = [];\n\n  /** Computes the css linear-gradient function for the gradient bar */\n  get gradientCss(): string {\n    const stops = this.gradient.map(({ color, percentage }) => `${color} ${percentage}%`).join(',');\n    return `linear-gradient(270deg, ${stops})`;\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "color",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Gradient color at a specific percentage</p>\n",
+                    "line": 7,
+                    "rawdescription": "\nGradient color at a specific percentage"
+                },
+                {
+                    "name": "percentage",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "<p>Percentage point along the gradient bar</p>\n",
+                    "line": 9,
+                    "rawdescription": "\nPercentage point along the gradient bar"
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "description": "<p>An interface of gradient colors along with their percentages for the gradient bar.</p>\n",
+            "rawdescription": "\nAn interface of gradient colors along with their percentages for the gradient bar.",
+            "methods": []
+        },
+        {
+            "name": "SizeLegend",
+            "id": "interface-SizeLegend-dae8784679328cc4f52418a0ae905fed758d8fca706c3b6238631087d98a163ec72f26f1b06661d00473eefd6eafd27ab263e34a661981ea71d5a1885746f8e9",
+            "file": "src/lib/size-legend/size-legend.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/** Defining the input data types for the radius and label to be displayed. */\nexport interface SizeLegend {\n  /** Label under circle */\n  label: string;\n  /** Radius for cirlce */\n  radius: number;\n}\n\n/** Size legend component for the biomarkers table. */\n@Component({\n  selector: 'hra-size-legend',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './size-legend.component.html',\n  styleUrls: ['./size-legend.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SizeLegendComponent {\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  @Input() sizes: SizeLegend[] = [];\n}\n",
+            "properties": [
+                {
+                    "name": "label",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Label under circle</p>\n",
+                    "line": 7,
+                    "rawdescription": "\nLabel under circle"
+                },
+                {
+                    "name": "radius",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "<p>Radius for cirlce</p>\n",
+                    "line": 9,
+                    "rawdescription": "\nRadius for cirlce"
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "description": "<p>Defining the input data types for the radius and label to be displayed.</p>\n",
+            "rawdescription": "\nDefining the input data types for the radius and label to be displayed.",
+            "methods": []
+        }
+    ],
+    "injectables": [],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "EmailInputComponent",
+            "id": "component-EmailInputComponent-1f7d0d808093e56fed36089f88f516d958678e7e917eb4299c6deb26edf7810680d231b1d0c349c0b380f39d8927a3738e20cd80686dd35cc343ef10c58dc481",
+            "file": "src/lib/email-input/email-input.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-email-input",
+            "styleUrls": [
+                "./email-input.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./email-input.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "placeholder",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nA placeholder for the email input field. This will be disappeared when the email is typed.",
+                    "description": "<p>A placeholder for the email input field. This will be disappeared when the email is typed.</p>\n",
+                    "line": 22,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "emailChange",
+                    "defaultValue": "new EventEmitter<string | undefined>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nEmits the new email when the input changes or undefined if the email is invalid",
+                    "description": "<p>Emits the new email when the input changes or undefined if the email is invalid</p>\n",
+                    "line": 25,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "control",
+                    "defaultValue": "new FormControl('', {\n    updateOn: 'blur',\n    validators: [Validators.required, Validators.email],\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>A control to validate the email.</p>\n",
+                    "line": 31,
+                    "rawdescription": "\nA control to validate the email.",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "destroy$",
+                    "defaultValue": "injectDestroy$()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Observable emitting when the component is destroyed</p>\n",
+                    "line": 28,
+                    "rawdescription": "\nObservable emitting when the component is destroyed",
+                    "modifierKind": [
+                        144
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Email input components for contact modal.</p>\n",
+            "rawdescription": "\n\nEmail input components for contact modal.\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';\nimport { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';\nimport { MatFormFieldModule } from '@angular/material/form-field';\nimport { MatInputModule } from '@angular/material/input';\nimport { injectDestroy$ } from '@hra-ui/cdk/injectors';\nimport { map, takeUntil } from 'rxjs';\n\n/**\n * Email input components for contact modal.\n */\n@Component({\n  selector: 'hra-email-input',\n  standalone: true,\n  imports: [CommonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule],\n  templateUrl: './email-input.component.html',\n  styleUrls: ['./email-input.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class EmailInputComponent {\n  /** A placeholder for the email input field. This will be disappeared when the email is typed. */\n  @Input() placeholder = '';\n\n  /** Emits the new email when the input changes or undefined if the email is invalid  */\n  @Output() readonly emailChange = new EventEmitter<string | undefined>();\n\n  /** Observable emitting when the component is destroyed */\n  readonly destroy$ = injectDestroy$();\n\n  /**  A control to validate the email. */\n  readonly control = new FormControl('', {\n    updateOn: 'blur',\n    validators: [Validators.required, Validators.email],\n  });\n\n  /** Connects the input control to component outputs */\n  constructor() {\n    const { control, destroy$ } = this;\n    control.valueChanges\n      .pipe(\n        takeUntil(destroy$),\n        map((value) => (control.valid ? value : undefined))\n      )\n      .subscribe((value) => this.emailChange.emit(value as string | undefined));\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: block;\n\n  .email-text-field {\n    width: 100%;\n    background: #ffffff;\n  }\n\n  ::ng-deep .mat-mdc-form-field-required-marker {\n    color: #dc231e;\n  }\n}\n",
+                    "styleUrl": "./email-input.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "<p>Connects the input control to component outputs</p>\n",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 34,
+                "rawdescription": "\nConnects the input control to component outputs"
+            },
+            "templateData": "<mat-form-field class=\"email-text-field\" appearance=\"outline\">\n  <mat-label> Email </mat-label>\n  <input type=\"email\" matInput [formControl]=\"control\" [placeholder]=\"placeholder\" />\n\n  <mat-error *ngIf=\"control.hasError('email') && !control.hasError('required')\">\n    Please enter a valid email address\n  </mat-error>\n  <mat-error *ngIf=\"control.hasError('required')\"> Email is required! </mat-error>\n</mat-form-field>\n"
+        },
+        {
+            "name": "EmptyBiomarkerComponent",
+            "id": "component-EmptyBiomarkerComponent-37024d95c11a561444e101c6aa7bc4ff857513ca38fac3e421501e21ab27f43cf3f33da15755e5ac3a40b963a23bdf6efe3e86834cd7971258fea52168aa9ad5",
+            "file": "src/lib/empty-biomarker/empty-biomarker.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-empty-biomarker",
+            "styleUrls": [
+                "./empty-biomarker.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./empty-biomarker.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "collaborateText",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nInput  buttonon text of empty biomarker component.\n",
+                    "description": "<p>Input  buttonon text of empty biomarker component.</p>\n",
+                    "line": 23,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "message",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nInput  message markdown of empty biomarker component.\n",
+                    "description": "<p>Input  message markdown of empty biomarker component.</p>\n",
+                    "line": 28,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "collaborateClick",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nAn event emitter that emits the user button click event\n",
+                    "description": "<p>An event emitter that emits the user button click event</p>\n",
+                    "line": 33,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p> Component for any empty biomaker cell\n to inform about the empty data and has\n button to navigate to HRA Team.</p>\n",
+            "rawdescription": "\n\n Component for any empty biomaker cell\n to inform about the empty data and has\n button to navigate to HRA Team.\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MarkdownModule } from 'ngx-markdown';\n\n/**\n *  Component for any empty biomaker cell\n *  to inform about the empty data and has\n *  button to navigate to HRA Team.\n */\n@Component({\n  selector: 'hra-empty-biomarker',\n  standalone: true,\n  imports: [CommonModule, MatButtonModule, MarkdownModule],\n  templateUrl: './empty-biomarker.component.html',\n  styleUrls: ['./empty-biomarker.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class EmptyBiomarkerComponent {\n  /**\n   * Input  buttonon text of empty biomarker component.\n   */\n  @Input() collaborateText = '';\n\n  /**\n   * Input  message markdown of empty biomarker component.\n   */\n  @Input() message = '';\n\n  /**\n   * An event emitter that emits the user button click event\n   */\n  @Output() readonly collaborateClick = new EventEmitter();\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use 'variables' as vars;\n\n:host {\n  display: block;\n  padding: 2.625rem 2rem 2.625rem 2rem;\n\n  .message {\n    color: #243142;\n  }\n\n  .collaborate-button {\n    margin-top: 2rem;\n    font-weight: 700;\n    color: #fff;\n    width: 100%;\n    max-width: 17.25rem;\n    height: 3rem;\n  }\n}\n",
+                    "styleUrl": "./empty-biomarker.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<markdown [data]=\"message\" class=\"message\"></markdown>\n<button mat-flat-button class=\"collaborate-button\" color=\"primary\" (click)=\"collaborateClick.emit($event)\">\n  {{ collaborateText }}\n</button>\n"
+        },
+        {
+            "name": "GradientLegendComponent",
+            "id": "component-GradientLegendComponent-0121dabc61d822bbf39b93ef45616878d1b4846724b8a426b4f2880d25983e5e9b4151a4f4c393584208d474e9e35b5568aa54bc73eacd8f8562e86cbc7df405",
+            "file": "src/lib/gradient-legend/gradient-legend.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-gradient-legend",
+            "styleUrls": [
+                "./gradient-legend.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./gradient-legend.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "gradient",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nGradient colors along with their stop points",
+                    "description": "<p>Gradient colors along with their stop points</p>\n",
+                    "line": 23,
+                    "type": "GradientPoint[]",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Gradient legend for biomarkers</p>\n",
+            "rawdescription": "\nGradient legend for biomarkers",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/** An interface of gradient colors along with their percentages for the gradient bar. */\nexport interface GradientPoint {\n  /** Gradient color at a specific percentage */\n  color: string;\n  /** Percentage point along the gradient bar */\n  percentage: number;\n}\n\n/** Gradient legend for biomarkers */\n@Component({\n  selector: 'hra-gradient-legend',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './gradient-legend.component.html',\n  styleUrls: ['./gradient-legend.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class GradientLegendComponent {\n  /** Gradient colors along with their stop points */\n  @Input() gradient: GradientPoint[] = [];\n\n  /** Computes the css linear-gradient function for the gradient bar */\n  get gradientCss(): string {\n    const stops = this.gradient.map(({ color, percentage }) => `${color} ${percentage}%`).join(',');\n    return `linear-gradient(270deg, ${stops})`;\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: block;\n\n  .gradient-bar {\n    height: 1.5rem;\n    width: 100%;\n  }\n\n  .legend {\n    display: flex;\n\n    .filler {\n      flex-grow: 1;\n    }\n  }\n}\n",
+                    "styleUrl": "./gradient-legend.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "accessors": {
+                "gradientCss": {
+                    "name": "gradientCss",
+                    "getSignature": {
+                        "name": "gradientCss",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 26,
+                        "rawdescription": "\nComputes the css linear-gradient function for the gradient bar",
+                        "description": "<p>Computes the css linear-gradient function for the gradient bar</p>\n"
+                    }
+                }
+            },
+            "templateData": "<div class=\"gradient-bar\" [style.background]=\"gradientCss\"></div>\n<div class=\"legend\">\n  <div class=\"start\">0.0</div>\n  <div class=\"filler\"></div>\n  <div class=\"end\">1.0</div>\n</div>\n"
+        },
+        {
+            "name": "LabelBoxComponent",
+            "id": "component-LabelBoxComponent-ef78615c37f1899e7f105d2e14f13a219f8472171bf04099642de0ee701b87eafba4f218cf04d7ba1c2e552e28262d1b32ae397ca7eab7043ad462a5f76a960d",
+            "file": "src/lib/label-box/label-box.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-label-box",
+            "styleUrls": [
+                "./label-box.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./label-box.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Label box component for reuse accross the page. The content with &quot;end&quot; selector will be added to the end of the label box</p>\n",
+            "rawdescription": "\nLabel box component for reuse accross the page. The content with \"end\" selector will be added to the end of the label box",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/** Label box component for reuse accross the page. The content with \"end\" selector will be added to the end of the label box */\n@Component({\n  selector: 'hra-label-box',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './label-box.component.html',\n  styleUrls: ['./label-box.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class LabelBoxComponent {}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: flex;\n  align-items: center;\n  padding: 0.75rem 2rem;\n  background: #f8f9fa;\n\n  .filler {\n    flex-grow: 1;\n  }\n}\n",
+                    "styleUrl": "./label-box.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<ng-content></ng-content>\n\n<div class=\"filler\"></div>\n\n<ng-content select=\".end\"></ng-content>\n"
+        },
+        {
+            "name": "RequiredInputComponent",
+            "id": "component-RequiredInputComponent-6a768e79d86219e624a199447195426647b4cde0beb840ecbc68113987b52c6d0be44d19e13b91a4c8d351b9ad503e8a328db1c7626d4ea76b7cc8338bef3247",
+            "file": "src/lib/required-input/required-input.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-required-input",
+            "styleUrls": [
+                "./required-input.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./required-input.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nThe label to display for the text field.\n",
+                    "description": "<p>The label to display for the text field.</p>\n",
+                    "line": 25,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "inputChange",
+                    "defaultValue": "new EventEmitter<string | undefined>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nAn event emitter that emits the input value when it changes.\n",
+                    "description": "<p>An event emitter that emits the input value when it changes.</p>\n",
+                    "line": 30,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "control",
+                    "defaultValue": "new FormControl('', {\n    updateOn: 'blur',\n    validators: Validators.required,\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Form control for input to set some input validation.</p>\n",
+                    "line": 40,
+                    "rawdescription": "\n\nForm control for input to set some input validation.\n",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "destroy$",
+                    "defaultValue": "injectDestroy$()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Destroy observable used to control the lifetime of other observables.</p>\n",
+                    "line": 35,
+                    "rawdescription": "\n\nDestroy observable used to control the lifetime of other observables.\n",
+                    "modifierKind": [
+                        144
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>A reusable text field component that can be used to input text.\nThis input field component also had required validation check.</p>\n",
+            "rawdescription": "\n\nA reusable text field component that can be used to input text.\nThis input field component also had required validation check.\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatFormFieldModule } from '@angular/material/form-field';\nimport { MatInputModule } from '@angular/material/input';\nimport { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';\nimport { injectDestroy$ } from '@hra-ui/cdk/injectors';\nimport { map, takeUntil } from 'rxjs';\n\n/**\n * A reusable text field component that can be used to input text.\n * This input field component also had required validation check.\n */\n@Component({\n  selector: 'hra-required-input',\n  standalone: true,\n  imports: [CommonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule],\n  templateUrl: './required-input.component.html',\n  styleUrls: ['./required-input.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class RequiredInputComponent {\n  /**\n   * The label to display for the text field.\n   */\n  @Input() label = '';\n\n  /**\n   * An event emitter that emits the input value when it changes.\n   */\n  @Output() readonly inputChange = new EventEmitter<string | undefined>();\n\n  /**\n   * Destroy observable used to control the lifetime of other observables.\n   */\n  readonly destroy$ = injectDestroy$();\n\n  /**\n   * Form control for input to set some input validation.\n   */\n  readonly control = new FormControl('', {\n    updateOn: 'blur',\n    validators: Validators.required,\n  });\n\n  /**\n   * Creates an instance of required input component\n   * and it connect the form control value changes to check for validation\n   * before output emmiter is triggered\n   */\n  constructor() {\n    const { control, destroy$, inputChange } = this;\n    control.valueChanges\n      .pipe(\n        takeUntil(destroy$),\n        map((value) => (control.valid ? (value as string) : undefined))\n      )\n      .subscribe(inputChange);\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: block;\n\n  .form-field {\n    width: 100%;\n  }\n\n  ::ng-deep .mat-mdc-form-field-required-marker {\n    color: #dc231e;\n  }\n}\n",
+                    "styleUrl": "./required-input.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "<p>Creates an instance of required input component\nand it connect the form control value changes to check for validation\nbefore output emmiter is triggered</p>\n",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 43,
+                "rawdescription": "\n\nCreates an instance of required input component\nand it connect the form control value changes to check for validation\nbefore output emmiter is triggered\n"
+            },
+            "templateData": "<mat-form-field class=\"form-field\" appearance=\"outline\">\n  <mat-label> {{ label }} </mat-label>\n  <input matInput [formControl]=\"control\" />\n  <mat-error *ngIf=\"control.hasError('required')\">{{ label }} is required!</mat-error>\n</mat-form-field>\n"
+        },
+        {
+            "name": "RequiredTextboxComponent",
+            "id": "component-RequiredTextboxComponent-ad002581cf0f7ae0707bd500566ee127dc19a3403138f98034117f59231d3c30eaf53896f1e1b5850df7a95498bb9dd632f29b200e38de676c48c0d61c350ad7",
+            "file": "src/lib/required-textbox/required-textbox.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-required-textbox",
+            "styleUrls": [
+                "./required-textbox.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./required-textbox.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nA label for the textarea field",
+                    "description": "<p>A label for the textarea field</p>\n",
+                    "line": 25,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "placeholder",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nA placeholder for the message textarea field",
+                    "description": "<p>A placeholder for the message textarea field</p>\n",
+                    "line": 22,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "messageChange",
+                    "defaultValue": "new EventEmitter<string | undefined>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nEmits the new message when the input changes or undefined if the message is invalid",
+                    "description": "<p>Emits the new message when the input changes or undefined if the message is invalid</p>\n",
+                    "line": 28,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "control",
+                    "defaultValue": "new FormControl('', {\n    updateOn: 'blur',\n    validators: [Validators.required],\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>A control to validate if the message field is empty</p>\n",
+                    "line": 34,
+                    "rawdescription": "\nA control to validate if the message field is empty",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "destroy$",
+                    "defaultValue": "injectDestroy$()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Observable emitting when the component is destroyed</p>\n",
+                    "line": 31,
+                    "rawdescription": "\nObservable emitting when the component is destroyed",
+                    "modifierKind": [
+                        144
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>The required textbox component displays a message box for users to add a message</p>\n",
+            "rawdescription": "\n\nThe required textbox component displays a message box for users to add a message\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { injectDestroy$ } from '@hra-ui/cdk/injectors';\nimport { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';\nimport { map, takeUntil } from 'rxjs';\nimport { MatFormFieldModule } from '@angular/material/form-field';\nimport { MatInputModule } from '@angular/material/input';\n\n/**\n * The required textbox component displays a message box for users to add a message\n */\n@Component({\n  selector: 'hra-required-textbox',\n  standalone: true,\n  imports: [CommonModule, MatInputModule, MatFormFieldModule, ReactiveFormsModule],\n  templateUrl: './required-textbox.component.html',\n  styleUrls: ['./required-textbox.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class RequiredTextboxComponent {\n  /** A placeholder for the message textarea field */\n  @Input() placeholder = '';\n\n  /** A label for the textarea field */\n  @Input() label = '';\n\n  /** Emits the new message when the input changes or undefined if the message is invalid  */\n  @Output() readonly messageChange = new EventEmitter<string | undefined>();\n\n  /** Observable emitting when the component is destroyed */\n  readonly destroy$ = injectDestroy$();\n\n  /**  A control to validate if the message field is empty */\n  readonly control = new FormControl('', {\n    updateOn: 'blur',\n    validators: [Validators.required],\n  });\n\n  /** Connects the input control to component outputs */\n  constructor() {\n    const { control, destroy$ } = this;\n    control.valueChanges\n      .pipe(\n        takeUntil(destroy$),\n        map((value) => (control.valid ? value : undefined))\n      )\n      .subscribe((value) => this.messageChange.emit(value as string | undefined));\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: block;\n\n  .message-field {\n    width: 100%;\n    background: #ffffff;\n  }\n\n  ::ng-deep .mat-mdc-form-field-required-marker {\n    color: #dc231e;\n  }\n}\n",
+                    "styleUrl": "./required-textbox.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "<p>Connects the input control to component outputs</p>\n",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 37,
+                "rawdescription": "\nConnects the input control to component outputs"
+            },
+            "templateData": "<mat-form-field class=\"message-field\" appearance=\"outline\">\n  <mat-label> {{ label }} </mat-label>\n  <textarea\n    cdkTextareaAutosize\n    cdkAutosizeMinRows=\"10\"\n    cdkAutosizeMaxRows=\"20\"\n    matInput\n    [formControl]=\"control\"\n    [placeholder]=\"placeholder\"\n  ></textarea>\n  <mat-error *ngIf=\"control.hasError('required')\"> {{ label }} is required! </mat-error>\n</mat-form-field>\n"
+        },
+        {
+            "name": "SizeLegendComponent",
+            "id": "component-SizeLegendComponent-dae8784679328cc4f52418a0ae905fed758d8fca706c3b6238631087d98a163ec72f26f1b06661d00473eefd6eafd27ab263e34a661981ea71d5a1885746f8e9",
+            "file": "src/lib/size-legend/size-legend.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-size-legend",
+            "styleUrls": [
+                "./size-legend.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./size-legend.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "sizes",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nTaking input for the radius of the circle and the label to be displayed.",
+                    "description": "<p>Taking input for the radius of the circle and the label to be displayed.</p>\n",
+                    "line": 23,
+                    "type": "SizeLegend[]",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Size legend component for the biomarkers table.</p>\n",
+            "rawdescription": "\nSize legend component for the biomarkers table.",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/** Defining the input data types for the radius and label to be displayed. */\nexport interface SizeLegend {\n  /** Label under circle */\n  label: string;\n  /** Radius for cirlce */\n  radius: number;\n}\n\n/** Size legend component for the biomarkers table. */\n@Component({\n  selector: 'hra-size-legend',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './size-legend.component.html',\n  styleUrls: ['./size-legend.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SizeLegendComponent {\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  @Input() sizes: SizeLegend[] = [];\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: flex;\n  flex-direction: row;\n  column-gap: 2rem;\n\n  .item {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    line-height: 0.5rem;\n\n    .circle {\n      height: var(--size);\n      width: var(--size);\n      border-radius: 50%;\n      border: 0.125rem solid #75838f;\n    }\n\n    .label {\n      margin-top: 0.5rem;\n    }\n\n    .filler {\n      flex-grow: 1;\n    }\n  }\n}\n",
+                    "styleUrl": "./size-legend.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<div *ngFor=\"let text of sizes\" class=\"item\">\n  <div class=\"filler\"></div>\n  <div class=\"circle\" style=\"--size: {{ text.radius }}rem\"></div>\n  <div class=\"filler\"></div>\n  <div class=\"label\">{{ text.label }}</div>\n</div>\n"
+        }
+    ],
+    "modules": [],
+    "miscellaneous": []
+}

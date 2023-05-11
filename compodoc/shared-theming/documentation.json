@@ -1,0 +1,342 @@
+{
+    "pipes": [],
+    "interfaces": [],
+    "injectables": [
+        {
+            "name": "ThemingState",
+            "id": "injectable-ThemingState-bc96eb085e9f41108d0a07c93ef58359e93bf96384f9b49b4e90d3f6f570a75ca04b1bd6fce0878c0c58715039571f02f400086da7f63acae3a2987851ae31fa",
+            "file": "src/lib/state/theming.state.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "load",
+                    "args": [
+                        {
+                            "name": "ctx",
+                            "type": "ThemingContext",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "type": "Load",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<>",
+                    "typeParameters": [],
+                    "line": 44,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nAction for loading yaml, reading data from yaml, setting state variables, and set material-css-vars variables for dynamic theming.\n",
+                    "description": "<p>Action for loading yaml, reading data from yaml, setting state variables, and set material-css-vars variables for dynamic theming.</p>\n",
+                    "decorators": [
+                        {
+                            "name": "Action",
+                            "stringifiedArguments": "Load"
+                        }
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 1096,
+                                "end": 1099,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "ctx"
+                            },
+                            "type": "ThemingContext",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 1090,
+                                "end": 1095,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>State Context</p>\n"
+                        },
+                        {
+                            "type": "Load",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "tagName": {
+                                "pos": 1173,
+                                "end": 1180,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>asyncronous data from the url</p>\n"
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "<p>State for keeping track of theming applied</p>\n",
+            "rawdescription": "\n\nState for keeping track of theming applied\n",
+            "sourceCode": "import { HttpClient } from '@angular/common/http';\nimport { inject, Injectable } from '@angular/core';\nimport { Action, State } from '@ngxs/store';\nimport { MaterialCssVariables, MaterialCssVarsService } from 'angular-material-css-vars';\nimport { load } from 'js-yaml';\nimport { map, Observable, tap } from 'rxjs';\nimport { Load } from './theming.actions';\nimport { ThemingContext, ThemingModel, THEMING_FILE_SCHEMA } from './theming.model';\n\n/**\n * State for keeping track of theming applied\n */\n@State<ThemingModel>({\n  /**\n   * name of the state\n   */\n  name: 'theming',\n  /**\n   * state variables default value\n   */\n  defaults: {},\n})\n/**\n * Theming state class\n */\n@Injectable()\nexport class ThemingState {\n  /**\n   * http service for link loading\n   */\n  private readonly http = inject(HttpClient);\n  /**\n   * Material-vars service for setting theming variables\n   */\n  private readonly materialVars = inject(MaterialCssVarsService);\n\n  /**\n   * Action for loading yaml, reading data from yaml, setting state variables, and set material-css-vars variables for dynamic theming.\n   * @param ctx State Context\n   * @param action Action with url(yaml url) to load\n   * @returns asyncronous data from the url\n   */\n  @Action(Load)\n  load(ctx: ThemingContext, { url }: Load): Observable<unknown> {\n    return this.http.get(url, { responseType: 'text' }).pipe(\n      map((data) => load(data, { filename: url })),\n      map((data) => THEMING_FILE_SCHEMA.parse(data)),\n      tap((data) => ctx.setState(data)),\n      tap((data) => this.setVariables(data))\n    );\n  }\n\n  /**\n   * Set values to the material-css-vars pallete keys\n   * @param data key-value pairs set in state\n   */\n  private setVariables(data: ThemingModel): void {\n    for (const [key, value] of Object.entries(data)) {\n      this.materialVars.setVariable(key as MaterialCssVariables, value);\n    }\n  }\n}\n",
+            "type": "injectable"
+        }
+    ],
+    "guards": [],
+    "interceptors": [],
+    "classes": [
+        {
+            "name": "Load",
+            "id": "class-Load-469f09c45915febbba378ba114f9cebc6d6342ca6e618a54edaa277bdc8b3fbbce18cea9b8c908ad8794b8a3f9a2fac6a9e21ab80e6e979fda2c08bca4eb995b",
+            "file": "src/lib/state/theming.actions.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "export class Load {\n  /**\n   * static type for the action\n   */\n  static readonly type = '[Theming] Load Theming File';\n  /**\n   * Initialising type for the  action\n   */\n  readonly type = Load.type;\n\n  /**\n   * It takes URL of the yaml file, and loads it.\n   * @param url URL of the yaml file, containing theming color key-value pairs\n   */\n  constructor(readonly url: string) {}\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "<p>It takes URL of the yaml file, and loads it.</p>\n",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "url",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 12,
+                "rawdescription": "\n\nIt takes URL of the yaml file, and loads it.\n",
+                "jsdoctags": [
+                    {
+                        "name": {
+                            "pos": 354,
+                            "end": 357,
+                            "flags": 4227072,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "kind": 79,
+                            "escapedText": "url"
+                        },
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "pos": 348,
+                            "end": 353,
+                            "flags": 4227072,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "kind": 79,
+                            "escapedText": "param"
+                        },
+                        "comment": "<p>URL of the yaml file, containing theming color key-value pairs</p>\n"
+                    }
+                ]
+            },
+            "properties": [
+                {
+                    "name": "type",
+                    "defaultValue": "'[Theming] Load Theming File'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>static type for the action</p>\n",
+                    "line": 8,
+                    "rawdescription": "\n\nstatic type for the action\n",
+                    "modifierKind": [
+                        124,
+                        144
+                    ]
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "Load.type",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Initialising type for the  action</p>\n",
+                    "line": 12,
+                    "rawdescription": "\n\nInitialising type for the  action\n",
+                    "modifierKind": [
+                        144
+                    ]
+                }
+            ],
+            "description": "<p>Load Action, which is triggered to load yaml file, to get theming pallete</p>\n",
+            "rawdescription": "\n\nLoad Action, which is triggered to load yaml file, to get theming pallete\n",
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        }
+    ],
+    "directives": [],
+    "components": [],
+    "modules": [
+        {
+            "name": "ThemingModule",
+            "id": "module-ThemingModule-a5ac292a1d8f0af8ae5b93edb01358072adb02eaa2e0139627ccb0f40b61d38613bc286464b0e4b2577330616277bc72746d8169acd7a4f527abd04f0e0fe000",
+            "description": "<p>Configures global theming</p>\n",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/lib/theming.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { NgxsModule } from '@ngxs/store';\nimport { MaterialCssVarsModule } from 'angular-material-css-vars';\nimport { ThemingState } from './state/theming.state';\n\n/** Configures global theming */\n@NgModule({\n  imports: [MaterialCssVarsModule.forRoot({}), NgxsModule.forFeature([ThemingState])],\n})\nexport class ThemingModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        }
+    ],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "placeholder",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/index.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "undefined",
+                "rawdescription": "Placeholder to make build and tests pass until any actual library code is created",
+                "description": "<p>Placeholder to make build and tests pass until any actual library code is created</p>\n"
+            },
+            {
+                "name": "THEMING_FILE_SCHEMA",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/lib/state/theming.model.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "z.record(z.nativeEnum(MaterialCssVariables), z.string())",
+                "rawdescription": "Theming mdoel schema, having records with key as material-css-vars pallete keys and string values",
+                "description": "<p>Theming mdoel schema, having records with key as material-css-vars pallete keys and string values</p>\n"
+            }
+        ],
+        "functions": [],
+        "typealiases": [
+            {
+                "name": "ThemingContext",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StateContext<ThemingModel>",
+                "file": "src/lib/state/theming.model.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>State context for theming, with reference of model</p>\n",
+                "kind": 177
+            },
+            {
+                "name": "ThemingModel",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "z.infer<>",
+                "file": "src/lib/state/theming.model.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Model for theming</p>\n",
+                "kind": 177
+            }
+        ],
+        "enumerations": [],
+        "groupedVariables": {
+            "src/index.ts": [
+                {
+                    "name": "placeholder",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/index.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "undefined",
+                    "rawdescription": "Placeholder to make build and tests pass until any actual library code is created",
+                    "description": "<p>Placeholder to make build and tests pass until any actual library code is created</p>\n"
+                }
+            ],
+            "src/lib/state/theming.model.ts": [
+                {
+                    "name": "THEMING_FILE_SCHEMA",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/lib/state/theming.model.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "z.record(z.nativeEnum(MaterialCssVariables), z.string())",
+                    "rawdescription": "Theming mdoel schema, having records with key as material-css-vars pallete keys and string values",
+                    "description": "<p>Theming mdoel schema, having records with key as material-css-vars pallete keys and string values</p>\n"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {
+            "src/lib/state/theming.model.ts": [
+                {
+                    "name": "ThemingContext",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StateContext<ThemingModel>",
+                    "file": "src/lib/state/theming.model.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>State context for theming, with reference of model</p>\n",
+                    "kind": 177
+                },
+                {
+                    "name": "ThemingModel",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "z.infer<>",
+                    "file": "src/lib/state/theming.model.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Model for theming</p>\n",
+                    "kind": 177
+                }
+            ]
+        }
+    }
+}

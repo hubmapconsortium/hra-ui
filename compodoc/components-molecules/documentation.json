@@ -1,0 +1,2429 @@
+{
+    "pipes": [],
+    "interfaces": [
+        {
+            "name": "ContactData",
+            "id": "interface-ContactData-309310b2740da63be5ea5aaa894ef73ced8bed2a86b50643af4dd031551d6cdb7b26ece6b3328d0e31c21e46f940bd8b901f5665c241ca2a4cb38f39631bd8a3",
+            "file": "src/lib/contact-modal/contact-modal.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { EmailInputComponent, RequiredInputComponent, RequiredTextboxComponent } from '@hra-ui/components/atoms';\nimport { produce } from 'immer';\nimport { MarkdownModule } from 'ngx-markdown';\n\n/**\n  An interface representing contact data information which will be emitted if all the fields are in correct format.\n */\nexport interface ContactData {\n  /**  The email address of the person submitting the form. */\n  email: string;\n  /** The subject line of the message being sent. */\n  subject: string;\n  /** The body of the message being sent. */\n  message: string;\n}\n\n/** Initial empty contact data */\nconst EMPTY_CONTACT_DATA: Partial<ContactData> = {\n  email: undefined,\n  subject: undefined,\n  message: undefined,\n};\n\n/**\n * Contact modal component.\n */\n@Component({\n  selector: 'hra-contact-modal',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatButtonModule,\n    MatIconModule,\n    EmailInputComponent,\n    MarkdownModule,\n    RequiredTextboxComponent,\n    RequiredInputComponent,\n  ],\n  templateUrl: './contact-modal.component.html',\n  styleUrls: ['./contact-modal.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ContactModalComponent {\n  /** Input for product logo URL to displayed on the left side. */\n  @Input() productLogoUrl = '';\n\n  /** Input for product title to displayed on the left side. */\n  @Input() productTitle = '';\n\n  /** Emits when the submit button is clicked and all the values are appropriate. */\n  @Output() readonly submitClick = new EventEmitter<ContactData>();\n\n  /** Emits when the cancel button or close icon is clicked */\n  @Output() readonly closeClick = new EventEmitter<void>();\n\n  /** A function to disable the submit button. If all the values are in approproiate format, then it will be enabled. */\n  get disableSubmit(): boolean {\n    return Object.values(this.contactData).some((value) => value === undefined);\n  }\n\n  /** Asigns the undefined initially to all the input fields. */\n  contactData = EMPTY_CONTACT_DATA;\n\n  /** Updates the contact data object with a new value for a given key. */\n  updateData<K extends keyof ContactData>(key: K, value?: ContactData[K]): void {\n    this.contactData = produce(this.contactData, (draft) => {\n      draft[key] = value;\n    });\n  }\n\n  /** It emits the updated value of contact data */\n  submit(): void {\n    this.submitClick.emit(this.contactData as ContactData);\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "email",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>The email address of the person submitting the form.</p>\n",
+                    "line": 14,
+                    "rawdescription": "\nThe email address of the person submitting the form."
+                },
+                {
+                    "name": "message",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>The body of the message being sent.</p>\n",
+                    "line": 18,
+                    "rawdescription": "\nThe body of the message being sent."
+                },
+                {
+                    "name": "subject",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>The subject line of the message being sent.</p>\n",
+                    "line": 16,
+                    "rawdescription": "\nThe subject line of the message being sent."
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "description": "<p>An interface representing contact data information which will be emitted if all the fields are in correct format.</p>\n",
+            "rawdescription": "\n\nAn interface representing contact data information which will be emitted if all the fields are in correct format.\n",
+            "methods": []
+        },
+        {
+            "name": "DataItem",
+            "id": "interface-DataItem-dba50a1e9cbac5f9733930bd6b04d1ac5fda31ee6342e13da75314f7b5dbbf46c436aab104bfc47abdc323e9ff42aeeb0047ee89577f639d3979c6964344bbd7",
+            "file": "src/lib/biomarker-table-data-card/biomarker-table-data-card.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from '@angular/material/table';\n\n/** An item which defines a string label and a string value */\nexport interface DataItem {\n  /** A string property that represents the label */\n  label: string;\n  /** A string property that represents the value */\n  value: string;\n}\n\n/** An item which represents a section with a data item and an indicator for the last item in the section */\nexport interface SectionItem {\n  /** A number property that represents the section number */\n  section: number;\n  /** A DateItem property that represents a section and its data */\n  data: DataItem;\n  /** A boolean property that represents the last item of a section */\n  isLastItem: boolean;\n}\n\n/** This component displays a table with sections, where each section contains a list of items with a label and a value. */\n@Component({\n  selector: 'hra-biomarker-table-data-card',\n  standalone: true,\n  imports: [CommonModule, MatTableModule],\n  templateUrl: './biomarker-table-data-card.component.html',\n  styleUrls: ['./biomarker-table-data-card.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerTableDataCardComponent implements OnChanges {\n  /** Nested list of DataItems for each section which is displayed to the user */\n  @Input() data: DataItem[][] = [];\n\n  /** Converted nested array of DataItem into Flat array of SectionItem */\n  sectionItems: SectionItem[] = [];\n\n  /** Triggers an update on sectionItems array when data is changed */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('data' in changes) {\n      this.updateSectionItems();\n    }\n  }\n\n  /** Updates sectionItems array when data is changed */\n  private updateSectionItems(): void {\n    const newSectionItems: SectionItem[] = [];\n\n    this.data.forEach((section, sectionIndex) => {\n      section.forEach((item, itemIndex) => {\n        newSectionItems.push({\n          data: item,\n          section: sectionIndex,\n          isLastItem: itemIndex === section.length - 1,\n        });\n      });\n    });\n\n    this.sectionItems = newSectionItems;\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "label",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>A string property that represents the label</p>\n",
+                    "line": 8,
+                    "rawdescription": "\nA string property that represents the label"
+                },
+                {
+                    "name": "value",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>A string property that represents the value</p>\n",
+                    "line": 10,
+                    "rawdescription": "\nA string property that represents the value"
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "description": "<p>An item which defines a string label and a string value</p>\n",
+            "rawdescription": "\nAn item which defines a string label and a string value",
+            "methods": []
+        },
+        {
+            "name": "DataNode",
+            "id": "interface-DataNode-0d34d3e353e0bd47205c1a9c796a479033131f273c3c00e7c0a98d16c3b73c2d8b3fa98e293642bef4b4bdbb7e994fe6992025d58cadebc780556f90af3b530d",
+            "file": "src/lib/tissue-tree-list/tissue-tree-list.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { FlatTreeControl } from '@angular/cdk/tree';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  Input,\n  OnChanges,\n  Output,\n  SimpleChanges,\n} from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatExpansionModule } from '@angular/material/expansion';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { LinkId } from '@hra-ui/cdk/state';\n\n/** Base node type */\nexport interface DataNode<K extends string> {\n  /** User readable label */\n  label: string;\n  /** Id to pass as a query parameter on navigation */\n  id?: string;\n  /** Link to navigate to on node click */\n  link?: LinkId;\n  /** Nested nodes */\n  children?: K[];\n}\n\n/**\n * Internal interface for flat tissue data hierarchy\n */\ninterface InternalNode<K extends string, T extends DataNode<K>> {\n  /** Displayed label */\n  label: string;\n  /** Whether the node can be expanded to display child nodes */\n  expandable: boolean;\n  /** Depth of node in the tree */\n  level: number;\n  /** Associated user node data */\n  data: T;\n}\n\n/**\n * Tabular View for hubMap tissue side-bar\n */\n@Component({\n  selector: 'hra-tissue-tree-list',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatButtonModule,\n    MatTreeModule,\n    MatIconModule,\n    MatExpansionModule,\n    MatRippleModule,\n    LinkDirective,\n  ],\n  templateUrl: './tissue-tree-list.component.html',\n  styleUrls: ['./tissue-tree-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueTreeListComponent<K extends string, T extends DataNode<K>> implements OnChanges {\n  /**\n   * Input  of tissue tree list component\n   */\n  @Input() nodes: Record<K, T> = {} as Record<K, T>;\n\n  /**\n   * Node selected, to view the data associated with it\n   */\n  @Input() selected?: T = undefined;\n\n  /**\n   * Output  of tissue tree list component\n   */\n  @Output() readonly selectedChange = new EventEmitter<T | undefined>();\n\n  /**\n   * tree controller, used to control the nodes in the tree\n   */\n  readonly control = new FlatTreeControl<InternalNode<K, T>>(\n    (node) => node.level,\n    (node) => node.expandable\n  );\n\n  /**\n   * Flattener of tissue tree list component, returns flat-data structure\n   */\n  readonly flattener = new MatTreeFlattener<T, InternalNode<K, T>>(\n    (node, level) => ({\n      label: node.label,\n      expandable: (node.children?.length ?? 0) > 0,\n      level,\n      data: node,\n    }),\n    (node) => node.level,\n    (node) => node.expandable,\n    (node) => node.children?.map((id) => this.nodes[id])\n  );\n\n  /**\n   * Data source of tissue tree list component, defines the data in mat-tree\n   */\n  readonly dataSource = new MatTreeFlatDataSource(this.control, this.flattener);\n\n  /**\n   * Take actions if any data changes\n   * @param changes changes in data\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('nodes' in changes) {\n      this.dataSource.data = this.findRootNodes();\n    }\n  }\n\n  /**\n   * check if the current node has children\n   * @param node current selected node\n   * @returns boolean, which means if node has children\n   */\n  hasChild(_: number, node: InternalNode<K, T>): boolean {\n    return node.expandable;\n  }\n\n  /**\n   * It selects the node, which is clicked.\n   * @param node Tissue Tree Item, which is clicked\n   */\n  selectNode(node: T): void {\n    if (this.selected !== node) {\n      this.selected = node;\n      this.selectedChange.emit(this.selected);\n    }\n  }\n\n  /**\n   * It creates a copy of the input nodes object.\n   * It iterates over it and removes all the children nodes from it.\n   * @returns remaining nodes which are root nodes.\n   */\n  private findRootNodes(): T[] {\n    const nodes = { ...this.nodes };\n    for (const key in nodes) {\n      for (const child of nodes[key].children ?? []) {\n        delete nodes[child];\n      }\n    }\n\n    return Object.values(nodes);\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "children",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "K[]",
+                    "optional": true,
+                    "description": "<p>Nested nodes</p>\n",
+                    "line": 29,
+                    "rawdescription": "\nNested nodes"
+                },
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "<p>Id to pass as a query parameter on navigation</p>\n",
+                    "line": 25,
+                    "rawdescription": "\nId to pass as a query parameter on navigation"
+                },
+                {
+                    "name": "label",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>User readable label</p>\n",
+                    "line": 23,
+                    "rawdescription": "\nUser readable label"
+                },
+                {
+                    "name": "link",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "LinkId",
+                    "optional": true,
+                    "description": "<p>Link to navigate to on node click</p>\n",
+                    "line": 27,
+                    "rawdescription": "\nLink to navigate to on node click"
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "description": "<p>Base node type</p>\n",
+            "rawdescription": "\nBase node type",
+            "methods": []
+        },
+        {
+            "name": "DownloadFormat",
+            "id": "interface-DownloadFormat-8b2546c471b258bf6a1366f32f76e1cfb6e5e130e40f5f54fc777c49dd8b4011c994505ca83bf52ee5f6c022571a4285701658442b10a1c9ed863ea4777b6c0e",
+            "file": "src/lib/footer/footer.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatButtonModule } from '@angular/material/button';\nimport { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { MatListModule } from '@angular/material/list';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { EMPTY_LINK } from '@hra-ui/cdk/state';\n\n/**\n * Base type for different download format options.\n */\nexport interface DownloadFormat {\n  /**\n   * User readable format label\n   */\n  label: string;\n}\n\n/**\n * Positioning value for the download list popup\n */\nconst DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [\n  {\n    panelClass: 'above',\n    originX: 'start',\n    originY: 'top',\n    overlayX: 'start',\n    overlayY: 'bottom',\n    offsetY: 0,\n  },\n  {\n    panelClass: 'below',\n    originX: 'start',\n    originY: 'bottom',\n    overlayX: 'start',\n    overlayY: 'top',\n  },\n];\n\n/**\n * Component for footer that displays its content at the bottom of the page with different action buttons.\n */\n@Component({\n  selector: 'hra-footer',\n  standalone: true,\n  imports: [CommonModule, MatButtonModule, MatIconModule, OverlayModule, MatListModule, LinkDirective],\n  templateUrl: './footer.component.html',\n  styleUrls: ['./footer.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FooterComponent<T extends DownloadFormat = DownloadFormat> {\n  /** Host binding of footer component */\n  @HostBinding('class') @Input() size: 'small' | 'large' = 'large';\n\n  /** Input for product logo URL to displayed on the left side. */\n  @Input() productLogoUrl = '';\n\n  /** Input for product title to displayed on the left side. */\n  @Input() productTitle = '';\n\n  /** Input for HRA Portal link */\n  @Input() hraPortal = EMPTY_LINK;\n\n  /** Input for Illustration metadata page link in HRA Portal */\n  @Input() illustrationMetadata = EMPTY_LINK;\n\n  /** Input for embed link in HRA Portal */\n  @Input() embed = EMPTY_LINK;\n\n  /** Different download formats options displayed to the user */\n  @Input() downloadFormats: T[] = [];\n\n  /** Emits the selected download format */\n  @Output() readonly download = new EventEmitter<T>();\n\n  /** Emits when the contact button is clicked */\n  @Output() readonly contactClick = new EventEmitter<void>();\n\n  /** Download list popup overlay positioning */\n  readonly DOWNLOADS_LIST_POSITION = DOWNLOADS_LIST_POSITION;\n\n  /** Gets whether the footer required is small */\n  get isSmall(): boolean {\n    return this.size === 'small';\n  }\n\n  /** Whether the download list panel is open */\n  downloadListOpen = false;\n}\n",
+            "properties": [
+                {
+                    "name": "label",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>User readable format label</p>\n",
+                    "line": 17,
+                    "rawdescription": "\n\nUser readable format label\n"
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "description": "<p>Base type for different download format options.</p>\n",
+            "rawdescription": "\n\nBase type for different download format options.\n",
+            "methods": []
+        },
+        {
+            "name": "InternalNode",
+            "id": "interface-InternalNode-0d34d3e353e0bd47205c1a9c796a479033131f273c3c00e7c0a98d16c3b73c2d8b3fa98e293642bef4b4bdbb7e994fe6992025d58cadebc780556f90af3b530d",
+            "file": "src/lib/tissue-tree-list/tissue-tree-list.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { FlatTreeControl } from '@angular/cdk/tree';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  Input,\n  OnChanges,\n  Output,\n  SimpleChanges,\n} from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatExpansionModule } from '@angular/material/expansion';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { LinkId } from '@hra-ui/cdk/state';\n\n/** Base node type */\nexport interface DataNode<K extends string> {\n  /** User readable label */\n  label: string;\n  /** Id to pass as a query parameter on navigation */\n  id?: string;\n  /** Link to navigate to on node click */\n  link?: LinkId;\n  /** Nested nodes */\n  children?: K[];\n}\n\n/**\n * Internal interface for flat tissue data hierarchy\n */\ninterface InternalNode<K extends string, T extends DataNode<K>> {\n  /** Displayed label */\n  label: string;\n  /** Whether the node can be expanded to display child nodes */\n  expandable: boolean;\n  /** Depth of node in the tree */\n  level: number;\n  /** Associated user node data */\n  data: T;\n}\n\n/**\n * Tabular View for hubMap tissue side-bar\n */\n@Component({\n  selector: 'hra-tissue-tree-list',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatButtonModule,\n    MatTreeModule,\n    MatIconModule,\n    MatExpansionModule,\n    MatRippleModule,\n    LinkDirective,\n  ],\n  templateUrl: './tissue-tree-list.component.html',\n  styleUrls: ['./tissue-tree-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueTreeListComponent<K extends string, T extends DataNode<K>> implements OnChanges {\n  /**\n   * Input  of tissue tree list component\n   */\n  @Input() nodes: Record<K, T> = {} as Record<K, T>;\n\n  /**\n   * Node selected, to view the data associated with it\n   */\n  @Input() selected?: T = undefined;\n\n  /**\n   * Output  of tissue tree list component\n   */\n  @Output() readonly selectedChange = new EventEmitter<T | undefined>();\n\n  /**\n   * tree controller, used to control the nodes in the tree\n   */\n  readonly control = new FlatTreeControl<InternalNode<K, T>>(\n    (node) => node.level,\n    (node) => node.expandable\n  );\n\n  /**\n   * Flattener of tissue tree list component, returns flat-data structure\n   */\n  readonly flattener = new MatTreeFlattener<T, InternalNode<K, T>>(\n    (node, level) => ({\n      label: node.label,\n      expandable: (node.children?.length ?? 0) > 0,\n      level,\n      data: node,\n    }),\n    (node) => node.level,\n    (node) => node.expandable,\n    (node) => node.children?.map((id) => this.nodes[id])\n  );\n\n  /**\n   * Data source of tissue tree list component, defines the data in mat-tree\n   */\n  readonly dataSource = new MatTreeFlatDataSource(this.control, this.flattener);\n\n  /**\n   * Take actions if any data changes\n   * @param changes changes in data\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('nodes' in changes) {\n      this.dataSource.data = this.findRootNodes();\n    }\n  }\n\n  /**\n   * check if the current node has children\n   * @param node current selected node\n   * @returns boolean, which means if node has children\n   */\n  hasChild(_: number, node: InternalNode<K, T>): boolean {\n    return node.expandable;\n  }\n\n  /**\n   * It selects the node, which is clicked.\n   * @param node Tissue Tree Item, which is clicked\n   */\n  selectNode(node: T): void {\n    if (this.selected !== node) {\n      this.selected = node;\n      this.selectedChange.emit(this.selected);\n    }\n  }\n\n  /**\n   * It creates a copy of the input nodes object.\n   * It iterates over it and removes all the children nodes from it.\n   * @returns remaining nodes which are root nodes.\n   */\n  private findRootNodes(): T[] {\n    const nodes = { ...this.nodes };\n    for (const key in nodes) {\n      for (const child of nodes[key].children ?? []) {\n        delete nodes[child];\n      }\n    }\n\n    return Object.values(nodes);\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "data",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "T",
+                    "optional": false,
+                    "description": "<p>Associated user node data</p>\n",
+                    "line": 43,
+                    "rawdescription": "\nAssociated user node data"
+                },
+                {
+                    "name": "expandable",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "<p>Whether the node can be expanded to display child nodes</p>\n",
+                    "line": 39,
+                    "rawdescription": "\nWhether the node can be expanded to display child nodes"
+                },
+                {
+                    "name": "label",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Displayed label</p>\n",
+                    "line": 37,
+                    "rawdescription": "\nDisplayed label"
+                },
+                {
+                    "name": "level",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "<p>Depth of node in the tree</p>\n",
+                    "line": 41,
+                    "rawdescription": "\nDepth of node in the tree"
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "description": "<p>Internal interface for flat tissue data hierarchy</p>\n",
+            "rawdescription": "\n\nInternal interface for flat tissue data hierarchy\n",
+            "methods": []
+        },
+        {
+            "name": "MetricItem",
+            "id": "interface-MetricItem-e52c0a1cdf090042d1924c4907a4034774cbb442217faca9ec5035e76d2796116cf55644ecf49ae040fdea1168f9c5d99f6ce15b2079f70de3d853fece481b30",
+            "file": "src/lib/metrics/metrics.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/**\n  An interface representing a single metric with an icon, value and description.\n */\nexport interface MetricItem {\n  /** Represents the icon associated with the metric. */\n  icon: string;\n  /** Describes the numberical value of the metric. */\n  value: string;\n  /** Describes the type of metric. */\n  description: string;\n}\n/**\n * Describes the metrics for the HuBMAP project.\n */\n@Component({\n  selector: 'hra-metrics',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './metrics.component.html',\n  styleUrls: ['./metrics.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MetricsComponent {\n  /** Main title of metrics component. */\n  @Input() title = '';\n\n  /** Logo of metrics component. */\n  @Input() logo = '';\n\n  /** List of metrics that will be shown to the user. */\n  @Input() metrics: MetricItem[] = [];\n}\n",
+            "properties": [
+                {
+                    "name": "description",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Describes the type of metric.</p>\n",
+                    "line": 13,
+                    "rawdescription": "\nDescribes the type of metric."
+                },
+                {
+                    "name": "icon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Represents the icon associated with the metric.</p>\n",
+                    "line": 9,
+                    "rawdescription": "\nRepresents the icon associated with the metric."
+                },
+                {
+                    "name": "value",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Describes the numberical value of the metric.</p>\n",
+                    "line": 11,
+                    "rawdescription": "\nDescribes the numberical value of the metric."
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "description": "<p>An interface representing a single metric with an icon, value and description.</p>\n",
+            "rawdescription": "\n\nAn interface representing a single metric with an icon, value and description.\n",
+            "methods": []
+        },
+        {
+            "name": "NodeMapEntry",
+            "id": "interface-NodeMapEntry-4d116933a3cdbd3939f6a5ae395d2b11ac346115b010de653d695c6323307da5053683b6c40be1c5096a7a4e80ac688f2fe3a4e958e908afa6e8ce88a2cd92f5",
+            "file": "src/lib/interactive-svg/interactive-svg.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  inject,\n  Input,\n  OnDestroy,\n  Output,\n  Renderer2,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';\nimport { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';\nimport { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';\n\n/** Delay before tooltip becomes visible */\nconst HOVER_DELAY = 200;\n\n/** Tooltip position settings */\nconst TOOLTIP_POSITIONS: ConnectedPosition[] = [\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'start',\n    overlayY: 'center',\n    offsetX: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'end',\n    overlayY: 'center',\n    offsetX: -8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'top',\n    offsetY: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'bottom',\n    offsetY: -8,\n  },\n];\n\n/** Node tooltip data */\nexport interface NodeTooltipData {\n  /** Node name */\n  node: string;\n  /** Center point of hovered node in screen coordinates */\n  origin: { x: number; y: number };\n}\n\n/** Interface for node entries */\nexport interface NodeMapEntry {\n  /** Organ label */\n  organ_label: string;\n  /** Organ id */\n  organ_id: string;\n  /** Anatomical structure */\n  anatomical_structure_of: string;\n  /** Spatial entity source */\n  source_spatial_entity: string;\n  /** Node name */\n  node_name: string;\n  /** Node label */\n  label: string;\n  /** Ontology id */\n  OntologyID: string;\n  /** Link to represenation */\n  representation_of: string;\n  /** File of single 2dftu */\n  'svg file of single 2DFTU': string;\n  /** if asctb exists */\n  exist_asctb: string;\n  /** Type */\n  type: string;\n  /** REF/1 */\n  'REF/1': string;\n  /** REF/1/DOI */\n  'REF/1/DOI': string;\n  /** REF/1/NOTES */\n  'REF/1/NOTES': string;\n  /** Inset # */\n  'Inset #': string;\n}\n\n/**\n * Interactive SVG component\n */\n@Component({\n  selector: 'hra-interactive-svg',\n  standalone: true,\n  imports: [CommonModule, InlineSVGModule, OverlayModule],\n  templateUrl: './interactive-svg.component.html',\n  styleUrls: ['./interactive-svg.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestroy {\n  /** SVG url */\n  @Input() url?: string;\n\n  /** Mapping info */\n  @Input() mapping: T[] = [];\n\n  /** Emits node id when hovered */\n  @Output() readonly nodeHover = new EventEmitter<T>();\n\n  /** SVG script eval mode */\n  readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;\n\n  /** Tooltip position settings */\n  readonly TOOLTIP_POSITIONS = TOOLTIP_POSITIONS;\n\n  /** Observable of node hover data or undefined when there is no active hover */\n  readonly nodeHoverData$ = new BehaviorSubject<NodeTooltipData | undefined>(undefined);\n\n  /** Observable of node hover with a timer */\n  readonly nodeHoverDelayedData$ = this.nodeHoverData$.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));\n\n  /** Custom renderer */\n  private readonly renderer = inject(Renderer2);\n\n  /** Destroys */\n  private destroy$ = new Subject<void>();\n\n  /**\n   * Clears observables on destroy\n   */\n  ngOnDestroy(): void {\n    this.clear();\n  }\n\n  /**\n   * Sets SVG element\n   * @param el SVG element\n   */\n  setSvgElement(el: SVGElement): void {\n    this.clear();\n    const crosswalkEl = el.querySelector('[id^=\"Crosswalk\"]');\n    if (crosswalkEl) {\n      // Move to front (i.e. last child in svg)\n      this.renderer.appendChild(el, crosswalkEl);\n      this.attachCrosswalkHover(crosswalkEl);\n    }\n  }\n\n  /**\n   * Removes underscores from id\n   * @param name Node name\n   * @returns node name without underscores\n   */\n  formatNodeName(name: string): string {\n    return name.replace(/_/g, ' ');\n  }\n\n  /**\n   * Attaches crosswalk hover\n   * @param el element\n   */\n  private attachCrosswalkHover(el: Element): void {\n    this.attachEvent(el, 'mouseover').subscribe(this.onCrosswalkHover.bind(this));\n    this.attachEvent(el, 'mouseout').subscribe(() => this.nodeHoverData$.next(undefined));\n  }\n\n  /**\n   * Finds matching node in data from a hovered element\n   * @param event Mouse event\n   */\n  private onCrosswalkHover(event: MouseEvent): void {\n    const node = this.getNode(event);\n    if (node) {\n      this.nodeHoverData$.next({\n        node: node['label'],\n        origin: {\n          x: event.clientX,\n          y: event.clientY,\n        },\n      });\n      this.nodeHover.emit(node); //emits node entry\n    }\n  }\n\n  /**\n   * Clears observables\n   */\n  private clear(): void {\n    this.destroy$.next();\n    this.destroy$.complete();\n    this.destroy$ = new Subject();\n  }\n\n  /**\n   * Returns entry from mapping if target, parent, or grandparent id matches the node name\n   * @param event Event\n   * @returns Node entry that matches the target id\n   */\n  private getNode(event: Event): T | undefined {\n    const targetId = (event.target as Element).id;\n    const parentId = (event.target as Element).parentElement?.id ?? '';\n    const grandparentId = (event.target as Element).parentElement?.parentElement?.id ?? '';\n    const idCollection = [targetId, parentId, grandparentId];\n    for (const id of idCollection) {\n      const decodedID = this.decodeId(id);\n      const match = this.mapping.find(\n        (item) => item['node_name']?.toLowerCase() === decodedID.toLowerCase() //search mapping by node_name for matching node entry\n      );\n      if (match) {\n        return match;\n      }\n    }\n    return undefined;\n  }\n\n  /**\n   * Decodes id into a normal string\n   * @param id Undecoded ID\n   * @returns id\n   */\n  private decodeId(id: string): string {\n    const replacer = (_match: string, hex: string) => String.fromCharCode(Number.parseInt(hex, 16));\n    return id.replace(/_x([\\da-f]+)_/gi, replacer);\n  }\n\n  /**\n   * Attaches an event listener\n   * @template K\n   * @param el Element\n   * @param event Event\n   * @returns Observable\n   */\n  private attachEvent<K extends keyof SVGElementEventMap>(el: Element, event: K): Observable<SVGElementEventMap[K]> {\n    const { renderer, destroy$ } = this;\n    const add = (handler: NodeEventHandler) => renderer.listen(el, event, handler);\n    const remove = (_handler: NodeEventHandler, unlisten: () => void) => unlisten();\n    return fromEventPattern<SVGElementEventMap[K]>(add, remove).pipe(takeUntil(destroy$));\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "anatomical_structure_of",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Anatomical structure</p>\n",
+                    "line": 68,
+                    "rawdescription": "\nAnatomical structure"
+                },
+                {
+                    "name": "exist_asctb",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>if asctb exists</p>\n",
+                    "line": 82,
+                    "rawdescription": "\nif asctb exists"
+                },
+                {
+                    "name": "Inset #",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Inset #</p>\n",
+                    "line": 92,
+                    "rawdescription": "\nInset #"
+                },
+                {
+                    "name": "label",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Node label</p>\n",
+                    "line": 74,
+                    "rawdescription": "\nNode label"
+                },
+                {
+                    "name": "node_name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Node name</p>\n",
+                    "line": 72,
+                    "rawdescription": "\nNode name"
+                },
+                {
+                    "name": "OntologyID",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Ontology id</p>\n",
+                    "line": 76,
+                    "rawdescription": "\nOntology id"
+                },
+                {
+                    "name": "organ_id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Organ id</p>\n",
+                    "line": 66,
+                    "rawdescription": "\nOrgan id"
+                },
+                {
+                    "name": "organ_label",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Organ label</p>\n",
+                    "line": 64,
+                    "rawdescription": "\nOrgan label"
+                },
+                {
+                    "name": "REF/1",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>REF/1</p>\n",
+                    "line": 86,
+                    "rawdescription": "\nREF/1"
+                },
+                {
+                    "name": "REF/1/DOI",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>REF/1/DOI</p>\n",
+                    "line": 88,
+                    "rawdescription": "\nREF/1/DOI"
+                },
+                {
+                    "name": "REF/1/NOTES",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>REF/1/NOTES</p>\n",
+                    "line": 90,
+                    "rawdescription": "\nREF/1/NOTES"
+                },
+                {
+                    "name": "representation_of",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Link to represenation</p>\n",
+                    "line": 78,
+                    "rawdescription": "\nLink to represenation"
+                },
+                {
+                    "name": "source_spatial_entity",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Spatial entity source</p>\n",
+                    "line": 70,
+                    "rawdescription": "\nSpatial entity source"
+                },
+                {
+                    "name": "svg file of single 2DFTU",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>File of single 2dftu</p>\n",
+                    "line": 80,
+                    "rawdescription": "\nFile of single 2dftu"
+                },
+                {
+                    "name": "type",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Type</p>\n",
+                    "line": 84,
+                    "rawdescription": "\nType"
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "description": "<p>Interface for node entries</p>\n",
+            "rawdescription": "\nInterface for node entries",
+            "methods": []
+        },
+        {
+            "name": "NodeTooltipData",
+            "id": "interface-NodeTooltipData-4d116933a3cdbd3939f6a5ae395d2b11ac346115b010de653d695c6323307da5053683b6c40be1c5096a7a4e80ac688f2fe3a4e958e908afa6e8ce88a2cd92f5",
+            "file": "src/lib/interactive-svg/interactive-svg.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  inject,\n  Input,\n  OnDestroy,\n  Output,\n  Renderer2,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';\nimport { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';\nimport { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';\n\n/** Delay before tooltip becomes visible */\nconst HOVER_DELAY = 200;\n\n/** Tooltip position settings */\nconst TOOLTIP_POSITIONS: ConnectedPosition[] = [\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'start',\n    overlayY: 'center',\n    offsetX: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'end',\n    overlayY: 'center',\n    offsetX: -8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'top',\n    offsetY: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'bottom',\n    offsetY: -8,\n  },\n];\n\n/** Node tooltip data */\nexport interface NodeTooltipData {\n  /** Node name */\n  node: string;\n  /** Center point of hovered node in screen coordinates */\n  origin: { x: number; y: number };\n}\n\n/** Interface for node entries */\nexport interface NodeMapEntry {\n  /** Organ label */\n  organ_label: string;\n  /** Organ id */\n  organ_id: string;\n  /** Anatomical structure */\n  anatomical_structure_of: string;\n  /** Spatial entity source */\n  source_spatial_entity: string;\n  /** Node name */\n  node_name: string;\n  /** Node label */\n  label: string;\n  /** Ontology id */\n  OntologyID: string;\n  /** Link to represenation */\n  representation_of: string;\n  /** File of single 2dftu */\n  'svg file of single 2DFTU': string;\n  /** if asctb exists */\n  exist_asctb: string;\n  /** Type */\n  type: string;\n  /** REF/1 */\n  'REF/1': string;\n  /** REF/1/DOI */\n  'REF/1/DOI': string;\n  /** REF/1/NOTES */\n  'REF/1/NOTES': string;\n  /** Inset # */\n  'Inset #': string;\n}\n\n/**\n * Interactive SVG component\n */\n@Component({\n  selector: 'hra-interactive-svg',\n  standalone: true,\n  imports: [CommonModule, InlineSVGModule, OverlayModule],\n  templateUrl: './interactive-svg.component.html',\n  styleUrls: ['./interactive-svg.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestroy {\n  /** SVG url */\n  @Input() url?: string;\n\n  /** Mapping info */\n  @Input() mapping: T[] = [];\n\n  /** Emits node id when hovered */\n  @Output() readonly nodeHover = new EventEmitter<T>();\n\n  /** SVG script eval mode */\n  readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;\n\n  /** Tooltip position settings */\n  readonly TOOLTIP_POSITIONS = TOOLTIP_POSITIONS;\n\n  /** Observable of node hover data or undefined when there is no active hover */\n  readonly nodeHoverData$ = new BehaviorSubject<NodeTooltipData | undefined>(undefined);\n\n  /** Observable of node hover with a timer */\n  readonly nodeHoverDelayedData$ = this.nodeHoverData$.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));\n\n  /** Custom renderer */\n  private readonly renderer = inject(Renderer2);\n\n  /** Destroys */\n  private destroy$ = new Subject<void>();\n\n  /**\n   * Clears observables on destroy\n   */\n  ngOnDestroy(): void {\n    this.clear();\n  }\n\n  /**\n   * Sets SVG element\n   * @param el SVG element\n   */\n  setSvgElement(el: SVGElement): void {\n    this.clear();\n    const crosswalkEl = el.querySelector('[id^=\"Crosswalk\"]');\n    if (crosswalkEl) {\n      // Move to front (i.e. last child in svg)\n      this.renderer.appendChild(el, crosswalkEl);\n      this.attachCrosswalkHover(crosswalkEl);\n    }\n  }\n\n  /**\n   * Removes underscores from id\n   * @param name Node name\n   * @returns node name without underscores\n   */\n  formatNodeName(name: string): string {\n    return name.replace(/_/g, ' ');\n  }\n\n  /**\n   * Attaches crosswalk hover\n   * @param el element\n   */\n  private attachCrosswalkHover(el: Element): void {\n    this.attachEvent(el, 'mouseover').subscribe(this.onCrosswalkHover.bind(this));\n    this.attachEvent(el, 'mouseout').subscribe(() => this.nodeHoverData$.next(undefined));\n  }\n\n  /**\n   * Finds matching node in data from a hovered element\n   * @param event Mouse event\n   */\n  private onCrosswalkHover(event: MouseEvent): void {\n    const node = this.getNode(event);\n    if (node) {\n      this.nodeHoverData$.next({\n        node: node['label'],\n        origin: {\n          x: event.clientX,\n          y: event.clientY,\n        },\n      });\n      this.nodeHover.emit(node); //emits node entry\n    }\n  }\n\n  /**\n   * Clears observables\n   */\n  private clear(): void {\n    this.destroy$.next();\n    this.destroy$.complete();\n    this.destroy$ = new Subject();\n  }\n\n  /**\n   * Returns entry from mapping if target, parent, or grandparent id matches the node name\n   * @param event Event\n   * @returns Node entry that matches the target id\n   */\n  private getNode(event: Event): T | undefined {\n    const targetId = (event.target as Element).id;\n    const parentId = (event.target as Element).parentElement?.id ?? '';\n    const grandparentId = (event.target as Element).parentElement?.parentElement?.id ?? '';\n    const idCollection = [targetId, parentId, grandparentId];\n    for (const id of idCollection) {\n      const decodedID = this.decodeId(id);\n      const match = this.mapping.find(\n        (item) => item['node_name']?.toLowerCase() === decodedID.toLowerCase() //search mapping by node_name for matching node entry\n      );\n      if (match) {\n        return match;\n      }\n    }\n    return undefined;\n  }\n\n  /**\n   * Decodes id into a normal string\n   * @param id Undecoded ID\n   * @returns id\n   */\n  private decodeId(id: string): string {\n    const replacer = (_match: string, hex: string) => String.fromCharCode(Number.parseInt(hex, 16));\n    return id.replace(/_x([\\da-f]+)_/gi, replacer);\n  }\n\n  /**\n   * Attaches an event listener\n   * @template K\n   * @param el Element\n   * @param event Event\n   * @returns Observable\n   */\n  private attachEvent<K extends keyof SVGElementEventMap>(el: Element, event: K): Observable<SVGElementEventMap[K]> {\n    const { renderer, destroy$ } = this;\n    const add = (handler: NodeEventHandler) => renderer.listen(el, event, handler);\n    const remove = (_handler: NodeEventHandler, unlisten: () => void) => unlisten();\n    return fromEventPattern<SVGElementEventMap[K]>(add, remove).pipe(takeUntil(destroy$));\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "node",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Node name</p>\n",
+                    "line": 56,
+                    "rawdescription": "\nNode name"
+                },
+                {
+                    "name": "origin",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type",
+                    "optional": false,
+                    "description": "<p>Center point of hovered node in screen coordinates</p>\n",
+                    "line": 58,
+                    "rawdescription": "\nCenter point of hovered node in screen coordinates"
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "description": "<p>Node tooltip data</p>\n",
+            "rawdescription": "\nNode tooltip data",
+            "methods": []
+        },
+        {
+            "name": "SectionItem",
+            "id": "interface-SectionItem-dba50a1e9cbac5f9733930bd6b04d1ac5fda31ee6342e13da75314f7b5dbbf46c436aab104bfc47abdc323e9ff42aeeb0047ee89577f639d3979c6964344bbd7",
+            "file": "src/lib/biomarker-table-data-card/biomarker-table-data-card.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from '@angular/material/table';\n\n/** An item which defines a string label and a string value */\nexport interface DataItem {\n  /** A string property that represents the label */\n  label: string;\n  /** A string property that represents the value */\n  value: string;\n}\n\n/** An item which represents a section with a data item and an indicator for the last item in the section */\nexport interface SectionItem {\n  /** A number property that represents the section number */\n  section: number;\n  /** A DateItem property that represents a section and its data */\n  data: DataItem;\n  /** A boolean property that represents the last item of a section */\n  isLastItem: boolean;\n}\n\n/** This component displays a table with sections, where each section contains a list of items with a label and a value. */\n@Component({\n  selector: 'hra-biomarker-table-data-card',\n  standalone: true,\n  imports: [CommonModule, MatTableModule],\n  templateUrl: './biomarker-table-data-card.component.html',\n  styleUrls: ['./biomarker-table-data-card.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerTableDataCardComponent implements OnChanges {\n  /** Nested list of DataItems for each section which is displayed to the user */\n  @Input() data: DataItem[][] = [];\n\n  /** Converted nested array of DataItem into Flat array of SectionItem */\n  sectionItems: SectionItem[] = [];\n\n  /** Triggers an update on sectionItems array when data is changed */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('data' in changes) {\n      this.updateSectionItems();\n    }\n  }\n\n  /** Updates sectionItems array when data is changed */\n  private updateSectionItems(): void {\n    const newSectionItems: SectionItem[] = [];\n\n    this.data.forEach((section, sectionIndex) => {\n      section.forEach((item, itemIndex) => {\n        newSectionItems.push({\n          data: item,\n          section: sectionIndex,\n          isLastItem: itemIndex === section.length - 1,\n        });\n      });\n    });\n\n    this.sectionItems = newSectionItems;\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "data",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "DataItem",
+                    "optional": false,
+                    "description": "<p>A DateItem property that represents a section and its data</p>\n",
+                    "line": 18,
+                    "rawdescription": "\nA DateItem property that represents a section and its data"
+                },
+                {
+                    "name": "isLastItem",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "<p>A boolean property that represents the last item of a section</p>\n",
+                    "line": 20,
+                    "rawdescription": "\nA boolean property that represents the last item of a section"
+                },
+                {
+                    "name": "section",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "<p>A number property that represents the section number</p>\n",
+                    "line": 16,
+                    "rawdescription": "\nA number property that represents the section number"
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "description": "<p>An item which represents a section with a data item and an indicator for the last item in the section</p>\n",
+            "rawdescription": "\nAn item which represents a section with a data item and an indicator for the last item in the section",
+            "methods": []
+        },
+        {
+            "name": "SourceListItem",
+            "id": "interface-SourceListItem-4874510b6764d560fb198c485649d9eade797bb14c94270715b0b603c61b9dfb3ddc2a78e1202e122b2d537d4cb4ccb94644be557a7c8ab1387e8764addbd532",
+            "file": "src/lib/source-list/source-list.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from '@angular/material/table';\n\n/** SourceListItem interface contains title and link to the dataset for the SourceList*/\nexport interface SourceListItem {\n  /** Title of the dataset in the SourceList */\n  title: string;\n\n  /** Link to the dataset in the SourceList */\n  link: string;\n}\n\n/** This component shows list of sources with title and links to the datasets */\n@Component({\n  selector: 'hra-source-list',\n  standalone: true,\n  imports: [CommonModule, MatTableModule],\n  templateUrl: './source-list.component.html',\n  styleUrls: ['./source-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SourceListComponent {\n  /** List of sources with titles and links displayed to the user */\n  @Input() sources: SourceListItem[] = [];\n}\n",
+            "properties": [
+                {
+                    "name": "link",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Link to the dataset in the SourceList</p>\n",
+                    "line": 11,
+                    "rawdescription": "\nLink to the dataset in the SourceList"
+                },
+                {
+                    "name": "title",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Title of the dataset in the SourceList</p>\n",
+                    "line": 8,
+                    "rawdescription": "\nTitle of the dataset in the SourceList"
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "description": "<p>SourceListItem interface contains title and link to the dataset for the SourceList</p>\n",
+            "rawdescription": "\nSourceListItem interface contains title and link to the dataset for the SourceList",
+            "methods": []
+        }
+    ],
+    "injectables": [],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "BiomarkerTableDataCardComponent",
+            "id": "component-BiomarkerTableDataCardComponent-dba50a1e9cbac5f9733930bd6b04d1ac5fda31ee6342e13da75314f7b5dbbf46c436aab104bfc47abdc323e9ff42aeeb0047ee89577f639d3979c6964344bbd7",
+            "file": "src/lib/biomarker-table-data-card/biomarker-table-data-card.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-biomarker-table-data-card",
+            "styleUrls": [
+                "./biomarker-table-data-card.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./biomarker-table-data-card.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "data",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nNested list of DataItems for each section which is displayed to the user",
+                    "description": "<p>Nested list of DataItems for each section which is displayed to the user</p>\n",
+                    "line": 34,
+                    "type": "DataItem[][]",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "sectionItems",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "SectionItem[]",
+                    "optional": false,
+                    "description": "<p>Converted nested array of DataItem into Flat array of SectionItem</p>\n",
+                    "line": 37,
+                    "rawdescription": "\nConverted nested array of DataItem into Flat array of SectionItem"
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>This component displays a table with sections, where each section contains a list of items with a label and a value.</p>\n",
+            "rawdescription": "\nThis component displays a table with sections, where each section contains a list of items with a label and a value.",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from '@angular/material/table';\n\n/** An item which defines a string label and a string value */\nexport interface DataItem {\n  /** A string property that represents the label */\n  label: string;\n  /** A string property that represents the value */\n  value: string;\n}\n\n/** An item which represents a section with a data item and an indicator for the last item in the section */\nexport interface SectionItem {\n  /** A number property that represents the section number */\n  section: number;\n  /** A DateItem property that represents a section and its data */\n  data: DataItem;\n  /** A boolean property that represents the last item of a section */\n  isLastItem: boolean;\n}\n\n/** This component displays a table with sections, where each section contains a list of items with a label and a value. */\n@Component({\n  selector: 'hra-biomarker-table-data-card',\n  standalone: true,\n  imports: [CommonModule, MatTableModule],\n  templateUrl: './biomarker-table-data-card.component.html',\n  styleUrls: ['./biomarker-table-data-card.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerTableDataCardComponent implements OnChanges {\n  /** Nested list of DataItems for each section which is displayed to the user */\n  @Input() data: DataItem[][] = [];\n\n  /** Converted nested array of DataItem into Flat array of SectionItem */\n  sectionItems: SectionItem[] = [];\n\n  /** Triggers an update on sectionItems array when data is changed */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('data' in changes) {\n      this.updateSectionItems();\n    }\n  }\n\n  /** Updates sectionItems array when data is changed */\n  private updateSectionItems(): void {\n    const newSectionItems: SectionItem[] = [];\n\n    this.data.forEach((section, sectionIndex) => {\n      section.forEach((item, itemIndex) => {\n        newSectionItems.push({\n          data: item,\n          section: sectionIndex,\n          isLastItem: itemIndex === section.length - 1,\n        });\n      });\n    });\n\n    this.sectionItems = newSectionItems;\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use 'utils';\n@use 'variables' as vars;\n\n:host {\n  display: flex;\n  padding: 1rem 1.5rem;\n  border-radius: 0.5rem;\n  box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);\n  background-color: vars.$primary-contrast-rgb;\n\n  .mat-mdc-cell {\n    padding: 0.25rem 0rem;\n  }\n\n  .mat-mdc-row {\n    height: fit-content;\n  }\n\n  .no-border {\n    border: none;\n  }\n\n  .label {\n    color: #243142;\n    padding-right: 3rem;\n  }\n\n  .value {\n    color: #4c5a69;\n  }\n\n  .sr-only {\n    @include utils.sr-only();\n  }\n}\n",
+                    "styleUrl": "./biomarker-table-data-card.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "implements": [
+                "OnChanges"
+            ],
+            "templateData": "<div class=\"no-data\" *ngIf=\"sectionItems.length === 0\">No data</div>\n<table mat-table *ngIf=\"sectionItems.length > 0\" [dataSource]=\"sectionItems\">\n  <caption class=\"sr-only\">\n    Biomarker Table Data Card\n  </caption>\n\n  <!-- Label Column -->\n  <ng-container matColumnDef=\"label\">\n    <th class=\"sr-only\" mat-header-cell *matHeaderCellDef>Item Label</th>\n    <td class=\"label\" mat-cell *matCellDef=\"let element\" [class.no-border]=\"!element.isLastItem\">\n      {{ element.data.label }}\n    </td>\n  </ng-container>\n\n  <!-- Value Column -->\n  <ng-container matColumnDef=\"value\">\n    <th class=\"sr-only\" mat-header-cell *matHeaderCellDef>Item Value</th>\n    <td class=\"value\" mat-cell *matCellDef=\"let element\" [class.no-border]=\"!element.isLastItem\">\n      {{ element.data.value }}\n    </td>\n  </ng-container>\n\n  <tr mat-row *matRowDef=\"let row; columns: ['label', 'value']\"></tr>\n</table>\n"
+        },
+        {
+            "name": "BiomarkerTableDataIconComponent",
+            "id": "component-BiomarkerTableDataIconComponent-0fab04062dee70e0c4d57bfdc6f056400c9b82591b050c6912b9e59a896e1a5535f884a104c1d3f95c19721a049ca51f5b2a953512dc1d6a501c29d5399a063c",
+            "file": "src/lib/biomarker-table-data-icon/biomarker-table-data-icon.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-biomarker-table-data-icon",
+            "styleUrls": [
+                "./biomarker-table-data-icon.component.scss"
+            ],
+            "styles": [],
+            "template": "",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "color",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nRepresents the color of the icon",
+                    "description": "<p>Represents the color of the icon</p>\n",
+                    "line": 17,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nRepresents the size of the icon",
+                    "description": "<p>Represents the size of the icon</p>\n",
+                    "line": 20,
+                    "type": "number",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Describes the data icon for the table</p>\n",
+            "rawdescription": "\n\nDescribes the data icon for the table\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/**\n * Describes the data icon for the table\n */\n@Component({\n  selector: 'hra-biomarker-table-data-icon',\n  standalone: true,\n  imports: [CommonModule],\n  template: '',\n  styleUrls: ['./biomarker-table-data-icon.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerTableDataIconComponent {\n  /** Represents the color of the icon */\n  @HostBinding('style.background-color') @Input() color = '';\n\n  /** Represents the size of the icon  */\n  @HostBinding('style.--radius.rem') @Input() size = 0;\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: block;\n  border-radius: 50%;\n  --radius: 0.625rem;\n  width: var(--radius);\n  height: var(--radius);\n}\n",
+                    "styleUrl": "./biomarker-table-data-icon.component.scss"
+                }
+            ],
+            "stylesData": ""
+        },
+        {
+            "name": "ContactModalComponent",
+            "id": "component-ContactModalComponent-309310b2740da63be5ea5aaa894ef73ced8bed2a86b50643af4dd031551d6cdb7b26ece6b3328d0e31c21e46f940bd8b901f5665c241ca2a4cb38f39631bd8a3",
+            "file": "src/lib/contact-modal/contact-modal.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-contact-modal",
+            "styleUrls": [
+                "./contact-modal.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./contact-modal.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "productLogoUrl",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nInput for product logo URL to displayed on the left side.",
+                    "description": "<p>Input for product logo URL to displayed on the left side.</p>\n",
+                    "line": 49,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "productTitle",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nInput for product title to displayed on the left side.",
+                    "description": "<p>Input for product title to displayed on the left side.</p>\n",
+                    "line": 52,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "closeClick",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nEmits when the cancel button or close icon is clicked",
+                    "description": "<p>Emits when the cancel button or close icon is clicked</p>\n",
+                    "line": 58,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "submitClick",
+                    "defaultValue": "new EventEmitter<ContactData>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nEmits when the submit button is clicked and all the values are appropriate.",
+                    "description": "<p>Emits when the submit button is clicked and all the values are appropriate.</p>\n",
+                    "line": 55,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "contactData",
+                    "defaultValue": "EMPTY_CONTACT_DATA",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Asigns the undefined initially to all the input fields.</p>\n",
+                    "line": 66,
+                    "rawdescription": "\nAsigns the undefined initially to all the input fields."
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "submit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 76,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nIt emits the updated value of contact data",
+                    "description": "<p>It emits the updated value of contact data</p>\n"
+                },
+                {
+                    "name": "updateData",
+                    "args": [
+                        {
+                            "name": "key",
+                            "type": "K",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "value",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "optional": true
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [
+                        "K"
+                    ],
+                    "line": 69,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nUpdates the contact data object with a new value for a given key.",
+                    "description": "<p>Updates the contact data object with a new value for a given key.</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": "key",
+                            "type": "K",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "value",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "optional": true,
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Contact modal component.</p>\n",
+            "rawdescription": "\n\nContact modal component.\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { EmailInputComponent, RequiredInputComponent, RequiredTextboxComponent } from '@hra-ui/components/atoms';\nimport { produce } from 'immer';\nimport { MarkdownModule } from 'ngx-markdown';\n\n/**\n  An interface representing contact data information which will be emitted if all the fields are in correct format.\n */\nexport interface ContactData {\n  /**  The email address of the person submitting the form. */\n  email: string;\n  /** The subject line of the message being sent. */\n  subject: string;\n  /** The body of the message being sent. */\n  message: string;\n}\n\n/** Initial empty contact data */\nconst EMPTY_CONTACT_DATA: Partial<ContactData> = {\n  email: undefined,\n  subject: undefined,\n  message: undefined,\n};\n\n/**\n * Contact modal component.\n */\n@Component({\n  selector: 'hra-contact-modal',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatButtonModule,\n    MatIconModule,\n    EmailInputComponent,\n    MarkdownModule,\n    RequiredTextboxComponent,\n    RequiredInputComponent,\n  ],\n  templateUrl: './contact-modal.component.html',\n  styleUrls: ['./contact-modal.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ContactModalComponent {\n  /** Input for product logo URL to displayed on the left side. */\n  @Input() productLogoUrl = '';\n\n  /** Input for product title to displayed on the left side. */\n  @Input() productTitle = '';\n\n  /** Emits when the submit button is clicked and all the values are appropriate. */\n  @Output() readonly submitClick = new EventEmitter<ContactData>();\n\n  /** Emits when the cancel button or close icon is clicked */\n  @Output() readonly closeClick = new EventEmitter<void>();\n\n  /** A function to disable the submit button. If all the values are in approproiate format, then it will be enabled. */\n  get disableSubmit(): boolean {\n    return Object.values(this.contactData).some((value) => value === undefined);\n  }\n\n  /** Asigns the undefined initially to all the input fields. */\n  contactData = EMPTY_CONTACT_DATA;\n\n  /** Updates the contact data object with a new value for a given key. */\n  updateData<K extends keyof ContactData>(key: K, value?: ContactData[K]): void {\n    this.contactData = produce(this.contactData, (draft) => {\n      draft[key] = value;\n    });\n  }\n\n  /** It emits the updated value of contact data */\n  submit(): void {\n    this.submitClick.emit(this.contactData as ContactData);\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: block;\n  position: relative;\n  padding-top: 2rem;\n  margin-right: 1.5rem;\n  margin-left: 1.5rem;\n\n  .product-logo {\n    display: flex;\n    align-items: center;\n\n    .product-logo-image {\n      margin-right: 1rem;\n    }\n\n    .product-title {\n      color: #990000;\n      margin: 0;\n      font-weight: 600;\n    }\n  }\n\n  .close {\n    position: absolute;\n    top: 1.5rem;\n    right: 0rem;\n  }\n\n  .submit {\n    margin-right: 1.5rem;\n  }\n\n  .submit,\n  .cancel {\n    width: 7.5rem;\n  }\n\n  .email {\n    margin-top: 1.25rem;\n  }\n\n  .message-field {\n    margin-top: 1rem;\n  }\n\n  .subject-field {\n    margin-top: 1rem;\n  }\n\n  .desc {\n    margin-top: 1.5rem;\n  }\n}\n",
+                    "styleUrl": "./contact-modal.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "accessors": {
+                "disableSubmit": {
+                    "name": "disableSubmit",
+                    "getSignature": {
+                        "name": "disableSubmit",
+                        "type": "boolean",
+                        "returnType": "boolean",
+                        "line": 61,
+                        "rawdescription": "\nA function to disable the submit button. If all the values are in approproiate format, then it will be enabled.",
+                        "description": "<p>A function to disable the submit button. If all the values are in approproiate format, then it will be enabled.</p>\n"
+                    }
+                }
+            },
+            "templateData": "<a class=\"product-logo\">\n  <img class=\"product-logo-image\" [src]=\"productLogoUrl\" alt=\"Prodoct Logo\" />\n  <h2 class=\"product-title\">{{ productTitle }}</h2>\n</a>\n\n<button class=\"close\" mat-icon-button (click)=\"closeClick.emit()\">\n  <mat-icon>close</mat-icon>\n</button>\n\n<hra-email-input class=\"email\" placeholder=\"Example@domain.com\" (emailChange)=\"updateData('email', $event)\">\n</hra-email-input>\n\n<hra-required-input label=\"Subject\" (inputChange)=\"updateData('subject', $event)\" class=\"subject-field\">\n</hra-required-input>\n\n<hra-required-textbox\n  class=\"message-field\"\n  label=\"Message\"\n  placeholder=\"Enter your message here\"\n  (messageChange)=\"updateData('message', $event)\"\n>\n</hra-required-textbox>\n\n<markdown class=\"desc\" data=\"Please allow two business days for a response to each inquiry.\"></markdown>\n\n<button mat-flat-button class=\"submit\" color=\"primary\" [disabled]=\"disableSubmit\" (click)=\"submit()\">Submit</button>\n<button mat-stroked-button class=\"cancel\" color=\"accent\" (click)=\"closeClick.emit()\">Cancel</button>\n"
+        },
+        {
+            "name": "FooterComponent",
+            "id": "component-FooterComponent-8b2546c471b258bf6a1366f32f76e1cfb6e5e130e40f5f54fc777c49dd8b4011c994505ca83bf52ee5f6c022571a4285701658442b10a1c9ed863ea4777b6c0e",
+            "file": "src/lib/footer/footer.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-footer",
+            "styleUrls": [
+                "./footer.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./footer.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "downloadFormats",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nDifferent download formats options displayed to the user",
+                    "description": "<p>Different download formats options displayed to the user</p>\n",
+                    "line": 72,
+                    "type": "T[]",
+                    "decorators": []
+                },
+                {
+                    "name": "embed",
+                    "defaultValue": "EMPTY_LINK",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nInput for embed link in HRA Portal",
+                    "description": "<p>Input for embed link in HRA Portal</p>\n",
+                    "line": 69,
+                    "type": "any",
+                    "decorators": []
+                },
+                {
+                    "name": "hraPortal",
+                    "defaultValue": "EMPTY_LINK",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nInput for HRA Portal link",
+                    "description": "<p>Input for HRA Portal link</p>\n",
+                    "line": 63,
+                    "type": "any",
+                    "decorators": []
+                },
+                {
+                    "name": "illustrationMetadata",
+                    "defaultValue": "EMPTY_LINK",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nInput for Illustration metadata page link in HRA Portal",
+                    "description": "<p>Input for Illustration metadata page link in HRA Portal</p>\n",
+                    "line": 66,
+                    "type": "any",
+                    "decorators": []
+                },
+                {
+                    "name": "productLogoUrl",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nInput for product logo URL to displayed on the left side.",
+                    "description": "<p>Input for product logo URL to displayed on the left side.</p>\n",
+                    "line": 57,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "productTitle",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nInput for product title to displayed on the left side.",
+                    "description": "<p>Input for product title to displayed on the left side.</p>\n",
+                    "line": 60,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'large'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nHost binding of footer component",
+                    "description": "<p>Host binding of footer component</p>\n",
+                    "line": 54,
+                    "type": "\"small\" | \"large\"",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "contactClick",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nEmits when the contact button is clicked",
+                    "description": "<p>Emits when the contact button is clicked</p>\n",
+                    "line": 78,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "download",
+                    "defaultValue": "new EventEmitter<T>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nEmits the selected download format",
+                    "description": "<p>Emits the selected download format</p>\n",
+                    "line": 75,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "downloadListOpen",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Whether the download list panel is open</p>\n",
+                    "line": 89,
+                    "rawdescription": "\nWhether the download list panel is open"
+                },
+                {
+                    "name": "DOWNLOADS_LIST_POSITION",
+                    "defaultValue": "DOWNLOADS_LIST_POSITION",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Download list popup overlay positioning</p>\n",
+                    "line": 81,
+                    "rawdescription": "\nDownload list popup overlay positioning",
+                    "modifierKind": [
+                        144
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Component for footer that displays its content at the bottom of the page with different action buttons.</p>\n",
+            "rawdescription": "\n\nComponent for footer that displays its content at the bottom of the page with different action buttons.\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatButtonModule } from '@angular/material/button';\nimport { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { MatListModule } from '@angular/material/list';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { EMPTY_LINK } from '@hra-ui/cdk/state';\n\n/**\n * Base type for different download format options.\n */\nexport interface DownloadFormat {\n  /**\n   * User readable format label\n   */\n  label: string;\n}\n\n/**\n * Positioning value for the download list popup\n */\nconst DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [\n  {\n    panelClass: 'above',\n    originX: 'start',\n    originY: 'top',\n    overlayX: 'start',\n    overlayY: 'bottom',\n    offsetY: 0,\n  },\n  {\n    panelClass: 'below',\n    originX: 'start',\n    originY: 'bottom',\n    overlayX: 'start',\n    overlayY: 'top',\n  },\n];\n\n/**\n * Component for footer that displays its content at the bottom of the page with different action buttons.\n */\n@Component({\n  selector: 'hra-footer',\n  standalone: true,\n  imports: [CommonModule, MatButtonModule, MatIconModule, OverlayModule, MatListModule, LinkDirective],\n  templateUrl: './footer.component.html',\n  styleUrls: ['./footer.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FooterComponent<T extends DownloadFormat = DownloadFormat> {\n  /** Host binding of footer component */\n  @HostBinding('class') @Input() size: 'small' | 'large' = 'large';\n\n  /** Input for product logo URL to displayed on the left side. */\n  @Input() productLogoUrl = '';\n\n  /** Input for product title to displayed on the left side. */\n  @Input() productTitle = '';\n\n  /** Input for HRA Portal link */\n  @Input() hraPortal = EMPTY_LINK;\n\n  /** Input for Illustration metadata page link in HRA Portal */\n  @Input() illustrationMetadata = EMPTY_LINK;\n\n  /** Input for embed link in HRA Portal */\n  @Input() embed = EMPTY_LINK;\n\n  /** Different download formats options displayed to the user */\n  @Input() downloadFormats: T[] = [];\n\n  /** Emits the selected download format */\n  @Output() readonly download = new EventEmitter<T>();\n\n  /** Emits when the contact button is clicked */\n  @Output() readonly contactClick = new EventEmitter<void>();\n\n  /** Download list popup overlay positioning */\n  readonly DOWNLOADS_LIST_POSITION = DOWNLOADS_LIST_POSITION;\n\n  /** Gets whether the footer required is small */\n  get isSmall(): boolean {\n    return this.size === 'small';\n  }\n\n  /** Whether the download list panel is open */\n  downloadListOpen = false;\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: flex;\n  padding: 1rem 2rem;\n  border-top: 0.063rem solid #e2e7e9;\n  align-items: center;\n  background-color: #f8f9fa;\n  gap: 1rem;\n\n  .controls {\n    display: flex;\n    justify-content: flex-end;\n  }\n  .filler {\n    flex-grow: 1;\n  }\n\n  .product-title {\n    color: #990000;\n    margin-right: 0rem;\n  }\n\n  a {\n    cursor: pointer;\n    display: flex;\n  }\n\n  .product-logo-image {\n    height: 1.2rem;\n    margin-right: 1rem;\n  }\n\n  .button {\n    justify-content: center;\n    align-items: center;\n    background-color: #ffffff;\n    border: 0.063rem solid #4c5a69;\n    border-radius: 0.25rem;\n    min-width: 9rem;\n    min-height: 3rem;\n    gap: 0.5rem;\n  }\n\n  .button:hover {\n    border-color: black;\n    background-color: #ffffff;\n  }\n}\n\n::ng-deep {\n  .download-options-panel {\n    box-shadow: 0.1rem 0.1rem 0.4rem 0.2rem #dad7d7;\n    background-color: #ffffff;\n  }\n}\n",
+                    "styleUrl": "./footer.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "accessors": {
+                "isSmall": {
+                    "name": "isSmall",
+                    "getSignature": {
+                        "name": "isSmall",
+                        "type": "boolean",
+                        "returnType": "boolean",
+                        "line": 84,
+                        "rawdescription": "\nGets whether the footer required is small",
+                        "description": "<p>Gets whether the footer required is small</p>\n"
+                    }
+                }
+            },
+            "templateData": "<div *ngIf=\"isSmall\">\n  <a class=\"product-logo-link\">\n    <img class=\"product-logo-image\" [src]=\"productLogoUrl\" alt=\"Prodoct Logo\" />\n    <div class=\"product-title\">{{ productTitle }}</div>\n  </a>\n</div>\n<div class=\"filler\" *ngIf=\"isSmall\"></div>\n\n<button class=\"button\" mat-stroked-button [hraLink]=\"illustrationMetadata\">\n  <mat-icon>info_outlined</mat-icon>\n  Ilustration\n</button>\n\n<button\n  class=\"button\"\n  mat-stroked-button\n  (click)=\"downloadListOpen = !downloadListOpen\"\n  type=\"button\"\n  cdkOverlayOrigin\n  #anchor=\"cdkOverlayOrigin\"\n>\n  <mat-icon>download</mat-icon>\n  Download\n</button>\n\n<button class=\"button\" mat-stroked-button [hraLink]=\"embed\">\n  <mat-icon>code</mat-icon>\n  Embed\n</button>\n\n<div class=\"filler\" *ngIf=\"!isSmall\"></div>\n\n<button class=\"button\" mat-stroked-button (click)=\"contactClick.emit()\">\n  <mat-icon>mail_outlined</mat-icon>\n  Contact\n</button>\n\n<button class=\"button\" mat-stroked-button [hraLink]=\"hraPortal\">\n  <mat-icon>open_in_new</mat-icon>\n  HRA Portal\n</button>\n\n<ng-template\n  cdkConnectedOverlay\n  [cdkConnectedOverlayOrigin]=\"anchor\"\n  [cdkConnectedOverlayOpen]=\"downloadListOpen\"\n  [cdkConnectedOverlayPositions]=\"DOWNLOADS_LIST_POSITION\"\n  [cdkConnectedOverlayOffsetX]=\"0\"\n  cdkConnectedOverlayHasBackdrop=\"false\"\n  cdkConnectedOverlayPush=\"false\"\n  cdkConnectedOverlayPanelClass=\"download-options-panel\"\n  (overlayOutsideClick)=\"downloadListOpen = false\"\n>\n  <mat-action-list>\n    <button\n      mat-list-item\n      *ngFor=\"let format of downloadFormats\"\n      (click)=\"downloadListOpen = false; download.emit(format)\"\n    >\n      {{ format.label }}\n    </button>\n  </mat-action-list>\n</ng-template>\n"
+        },
+        {
+            "name": "FullscreenContainerComponent",
+            "id": "component-FullscreenContainerComponent-78edc2b37cbc90a17be0fcca4ed7291593d5f3d12c4ea823de3f9510c13bad4492bc5cd65823726fc7e333c874880c17093ff9d20096fd92e20137c8cc4f75af",
+            "file": "src/lib/fullscreen/fullscreen-container.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-fullscreen-container",
+            "styleUrls": [],
+            "styles": [
+                "\n      :host {\n        display: block;\n        position: relative;\n      }\n    "
+            ],
+            "template": "<ng-content></ng-content>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "fullscreen",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nA boolean input property that controls the fullscreen mode",
+                    "description": "<p>A boolean input property that controls the fullscreen mode</p>\n",
+                    "line": 38,
+                    "type": "boolean",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "content",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "QueryList<FullscreenContentComponent>",
+                    "optional": true,
+                    "description": "<p>A property that gets a reference to any child components of type FullscreenContentComponent that are projected into the component&#39;s content area</p>\n",
+                    "line": 35,
+                    "rawdescription": "\nA property that gets a reference to any child components of type FullscreenContentComponent that are projected into the component's content area",
+                    "decorators": [
+                        {
+                            "name": "ContentChildren",
+                            "stringifiedArguments": "FullscreenContentComponent"
+                        }
+                    ],
+                    "modifierKind": [
+                        144
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>A component that wraps any child components of type FullscreenContentComponent and\nsets their isFullScreen property to true or false based on its own fullscreen input property</p>\n",
+            "rawdescription": "\nA component that wraps any child components of type FullscreenContentComponent and\nsets their isFullScreen property to true or false based on its own fullscreen input property\n",
+            "type": "component",
+            "sourceCode": "import {\n  AfterContentInit,\n  ChangeDetectionStrategy,\n  Component,\n  ContentChildren,\n  Input,\n  OnChanges,\n  QueryList,\n  SimpleChanges,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FullscreenContentComponent } from './fullscreen-content.component';\n\n/** A component that wraps any child components of type FullscreenContentComponent and\n * sets their isFullScreen property to true or false based on its own fullscreen input property\n */\n@Component({\n  selector: 'hra-fullscreen-container',\n  standalone: true,\n  imports: [CommonModule, FullscreenContentComponent],\n  template: '<ng-content></ng-content>',\n  styles: [\n    `\n      :host {\n        display: block;\n        position: relative;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FullscreenContainerComponent implements AfterContentInit, OnChanges {\n  /** A property that gets a reference to any child components of type FullscreenContentComponent that are projected into the component's content area */\n  @ContentChildren(FullscreenContentComponent)\n  readonly content?: QueryList<FullscreenContentComponent>;\n\n  /** A boolean input property that controls the fullscreen mode */\n  @Input() fullscreen = false;\n\n  /** It calls the updateFullscreenMode method to set the isFullScreen property of the child\n   * FullscreenContentComponent instances based on the value of the fullscreen input property\n   */\n  ngAfterContentInit(): void {\n    this.updateFullscreenMode();\n  }\n\n  /** It checks if the fullscreen input property has changed, and calls the updateFullscreenMode method if it has */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('fullscreen' in changes) {\n      this.updateFullscreenMode();\n    }\n  }\n\n  /** A private method that sets the isFullScreen property of each child FullscreenContentComponent based on the value of the fullscreen  */\n  private updateFullscreenMode(): void {\n    this.content?.forEach((content) => {\n      content.isFullScreen = this.fullscreen;\n    });\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "\n      :host {\n        display: block;\n        position: relative;\n      }\n    \n",
+            "implements": [
+                "AfterContentInit",
+                "OnChanges"
+            ]
+        },
+        {
+            "name": "FullscreenContentComponent",
+            "id": "component-FullscreenContentComponent-6710fc01baaf0574ecee8c1610a0f285865856eb963b364d086ef5d9528a4680bd78469b881201a033e582734f9ab5cabb16aeef9e5e00bd2679e67b73a067d9",
+            "file": "src/lib/fullscreen/fullscreen-content.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-fullscreen-content",
+            "styleUrls": [
+                "./fullscreen-content.component.scss"
+            ],
+            "styles": [],
+            "template": "<ng-content></ng-content>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "isFullScreen",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>This binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true</p>\n",
+                    "line": 15,
+                    "rawdescription": "\nThis binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true",
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'class.fullscreen-on'"
+                        }
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [
+                {
+                    "name": "class.fullscreen-on",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nThis binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true",
+                    "description": "<p>This binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true</p>\n",
+                    "line": 15,
+                    "type": "boolean",
+                    "decorators": []
+                }
+            ],
+            "hostListeners": [],
+            "description": "<p>A component that displays its content in fullscreen mode when its isFullScreen property is set to true</p>\n",
+            "rawdescription": "\nA component that displays its content in fullscreen mode when its isFullScreen property is set to true",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/** A component that displays its content in fullscreen mode when its isFullScreen property is set to true */\n@Component({\n  selector: 'hra-fullscreen-content',\n  standalone: true,\n  imports: [CommonModule],\n  template: '<ng-content></ng-content>',\n  styleUrls: ['./fullscreen-content.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FullscreenContentComponent {\n  /** This binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true */\n  @HostBinding('class.fullscreen-on') isFullScreen = false;\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: block;\n\n  &.fullscreen-on {\n    position: absolute;\n    inset: 0;\n    z-index: 100;\n  }\n}\n",
+                    "styleUrl": "./fullscreen-content.component.scss"
+                }
+            ],
+            "stylesData": ""
+        },
+        {
+            "name": "HeaderComponent",
+            "id": "component-HeaderComponent-81f5689eacf69c8f1658a62e299bcad0df485f2cc8e6664f3f16cfa7d30400e53a54549f6aa8125abb2fc207fb428887c0a19dde695063a2d92611d78d9c6956",
+            "file": "src/lib/header/header.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-header",
+            "styleUrls": [
+                "./header.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./header.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "aboutLink",
+                    "defaultValue": "EMPTY_LINK",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nInput for about link",
+                    "description": "<p>Input for about link</p>\n",
+                    "line": 40,
+                    "type": "any",
+                    "decorators": []
+                },
+                {
+                    "name": "appTitle",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nInput for app title to show on the left side.\n",
+                    "description": "<p>Input for app title to show on the left side.</p>\n",
+                    "line": 34,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "productLogoUrl",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nInput for product logo URL to displayed on the left side.\n",
+                    "description": "<p>Input for product logo URL to displayed on the left side.</p>\n",
+                    "line": 24,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "productTitle",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nInput for product title to displayed on the left side.\n",
+                    "description": "<p>Input for product title to displayed on the left side.</p>\n",
+                    "line": 29,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "productTitleLink",
+                    "defaultValue": "EMPTY_LINK",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nInput for Product Title link",
+                    "description": "<p>Input for Product Title link</p>\n",
+                    "line": 37,
+                    "type": "any",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Header component, displays on top of every page.</p>\n",
+            "rawdescription": "\n\nHeader component, displays on top of every page.\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatIconModule } from '@angular/material/icon';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { EMPTY_LINK } from '@hra-ui/cdk';\n\n/**\n * Header component, displays on top of every page.\n */\n@Component({\n  selector: 'hra-header',\n  standalone: true,\n  imports: [CommonModule, MatButtonModule, MatIconModule, MatRippleModule, LinkDirective],\n  templateUrl: './header.component.html',\n  styleUrls: ['./header.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HeaderComponent {\n  /**\n   * Input for product logo URL to displayed on the left side.\n   */\n  @Input() productLogoUrl = '';\n\n  /**\n   * Input for product title to displayed on the left side.\n   */\n  @Input() productTitle = '';\n\n  /**\n   * Input for app title to show on the left side.\n   */\n  @Input() appTitle = '';\n\n  /** Input for Product Title link */\n  @Input() productTitleLink = EMPTY_LINK;\n\n  /** Input for about link */\n  @Input() aboutLink = EMPTY_LINK;\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use 'utils';\n@use 'variables' as vars;\n\n:host {\n  display: flex;\n  align-items: center;\n  height: 5rem;\n  padding: 0 2rem 0 1rem;\n\n  @include utils.define-flex-filler();\n\n  h1 {\n    // Reset margins for h1 elements\n    margin: 0;\n  }\n\n  .product {\n    display: flex;\n    align-items: center;\n    text-decoration: none;\n    // Style the ripple animation\n    padding: 0 1rem;\n    border-radius: 0.25rem;\n\n    &:hover {\n      cursor: pointer;\n    }\n\n    .text {\n      margin-left: 1rem;\n      font-weight: 600;\n      color: vars.$accent-rgb;\n    }\n  }\n\n  .app {\n    margin-left: 0.5rem;\n  }\n\n  .about {\n    width: 9rem;\n    height: 3rem;\n\n    .icon {\n      width: 1.5rem;\n      height: 1.5rem;\n      font-size: 1.5rem;\n    }\n  }\n\n  @media (max-width: 30rem) {\n    height: 4.5rem;\n\n    .product .text,\n    .about .text {\n      @include utils.sr-only();\n    }\n\n    .product {\n      height: 2.5rem;\n      padding: 0 0.25rem;\n\n      .logo {\n        width: 1.5rem;\n        height: 1.5rem;\n      }\n    }\n\n    .app {\n      font-size: 1rem;\n      line-height: 1.5rem;\n    }\n\n    .about {\n      min-width: 2.5rem;\n      width: 2.5rem;\n      height: 2.5rem;\n      padding: 0;\n\n      .icon {\n        margin: 0;\n      }\n    }\n  }\n\n  @media (max-width: 20rem) {\n    padding: 0;\n  }\n}\n",
+                    "styleUrl": "./header.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<a class=\"product\" matRipple [hraLink]=\"productTitleLink\">\n  <img class=\"logo image\" [src]=\"productLogoUrl\" alt=\"Prodoct Logo\" aria-hidden=\"true\" />\n  <h1 class=\"text\">{{ productTitle }}</h1>\n</a>\n<h1 class=\"app text\">{{ appTitle }}</h1>\n\n<div class=\"filler\"></div>\n\n<a mat-flat-button class=\"about\" [hraLink]=\"aboutLink\">\n  <mat-icon class=\"icon\">info_outlined</mat-icon>\n  <span class=\"text\">About</span>\n</a>\n"
+        },
+        {
+            "name": "InfoModalComponent",
+            "id": "component-InfoModalComponent-56dc03e6960f4005149bab8dbf6a5b713061505964f6b3cc7d33868ed7f83aff7dbf222ccf66999864c6313f218c20f849715b3ebcc4d2ea44285c6e07811662",
+            "file": "src/lib/info-modal/info-modal.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-info-modal",
+            "styleUrls": [
+                "./info-modal.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./info-modal.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "description",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nInformation modal message to the user",
+                    "description": "<p>Information modal message to the user</p>\n",
+                    "line": 24,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "productLogoUrl",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nProduct logo shown to the user",
+                    "description": "<p>Product logo shown to the user</p>\n",
+                    "line": 21,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "productTitle",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nProduct title shown to the user",
+                    "description": "<p>Product title shown to the user</p>\n",
+                    "line": 18,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "closeClick",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nEmits when the close icon is clicked",
+                    "description": "<p>Emits when the close icon is clicked</p>\n",
+                    "line": 27,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Displays an information modal to the user with the product title and logo and description</p>\n",
+            "rawdescription": "\nDisplays an information modal to the user with the product title and logo and description",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MarkdownModule } from 'ngx-markdown';\n\n/** Displays an information modal to the user with the product title and logo and description */\n@Component({\n  selector: 'hra-info-modal',\n  standalone: true,\n  imports: [CommonModule, MatButtonModule, MatIconModule, MarkdownModule],\n  templateUrl: './info-modal.component.html',\n  styleUrls: ['./info-modal.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class InfoModalComponent {\n  /** Product title shown to the user */\n  @Input() productTitle = '';\n\n  /** Product logo shown to the user */\n  @Input() productLogoUrl = '';\n\n  /** Information modal message to the user */\n  @Input() description = '';\n\n  /** Emits when the close icon is clicked */\n  @Output() readonly closeClick = new EventEmitter<void>();\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: block;\n  position: relative;\n  padding: 2rem 2rem 1.25rem 2rem;\n\n  .close {\n    position: absolute;\n    top: 1.5rem;\n    right: 1.5rem;\n  }\n\n  .title {\n    display: flex;\n    align-items: center;\n\n    .product-logo-image {\n      height: 2.75rem;\n      margin-right: 1rem;\n    }\n\n    .product-title {\n      margin: 0;\n      color: #990000;\n    }\n  }\n\n  .description {\n    display: block;\n    margin-top: 1rem;\n  }\n}\n",
+                    "styleUrl": "./info-modal.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<a class=\"title\">\n  <img class=\"product-logo-image\" [src]=\"productLogoUrl\" alt=\"Prodoct Logo\" />\n  <h2 class=\"product-title\">{{ productTitle }}</h2>\n</a>\n\n<button mat-icon-button class=\"close\" (click)=\"closeClick.emit()\">\n  <mat-icon>close</mat-icon>\n</button>\n\n<markdown class=\"description\" [data]=\"description\"></markdown>\n"
+        },
+        {
+            "name": "InteractiveSvgComponent",
+            "id": "component-InteractiveSvgComponent-4d116933a3cdbd3939f6a5ae395d2b11ac346115b010de653d695c6323307da5053683b6c40be1c5096a7a4e80ac688f2fe3a4e958e908afa6e8ce88a2cd92f5",
+            "file": "src/lib/interactive-svg/interactive-svg.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-interactive-svg",
+            "styleUrls": [
+                "./interactive-svg.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./interactive-svg.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "mapping",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nMapping info",
+                    "description": "<p>Mapping info</p>\n",
+                    "line": 112,
+                    "type": "T[]",
+                    "decorators": []
+                },
+                {
+                    "name": "url",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nSVG url",
+                    "description": "<p>SVG url</p>\n",
+                    "line": 109,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "nodeHover",
+                    "defaultValue": "new EventEmitter<T>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nEmits node id when hovered",
+                    "description": "<p>Emits node id when hovered</p>\n",
+                    "line": 115,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "NEVER_EVAL_SCRIPTS",
+                    "defaultValue": "SVGScriptEvalMode.NEVER",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>SVG script eval mode</p>\n",
+                    "line": 118,
+                    "rawdescription": "\nSVG script eval mode",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "nodeHoverData$",
+                    "defaultValue": "new BehaviorSubject<NodeTooltipData | undefined>(undefined)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Observable of node hover data or undefined when there is no active hover</p>\n",
+                    "line": 124,
+                    "rawdescription": "\nObservable of node hover data or undefined when there is no active hover",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "nodeHoverDelayedData$",
+                    "defaultValue": "this.nodeHoverData$.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)))",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Observable of node hover with a timer</p>\n",
+                    "line": 127,
+                    "rawdescription": "\nObservable of node hover with a timer",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "TOOLTIP_POSITIONS",
+                    "defaultValue": "TOOLTIP_POSITIONS",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Tooltip position settings</p>\n",
+                    "line": 121,
+                    "rawdescription": "\nTooltip position settings",
+                    "modifierKind": [
+                        144
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "formatNodeName",
+                    "args": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 161,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nRemoves underscores from id\n",
+                    "description": "<p>Removes underscores from id</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 3905,
+                                "end": 3909,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "name"
+                            },
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 3899,
+                                "end": 3904,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>Node name</p>\n"
+                        },
+                        {
+                            "tagName": {
+                                "pos": 3926,
+                                "end": 3933,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>node name without underscores</p>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "setSvgElement",
+                    "args": [
+                        {
+                            "name": "el",
+                            "type": "SVGElement",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 146,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nSets SVG element\n",
+                    "description": "<p>Sets SVG element</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 3534,
+                                "end": 3536,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "el"
+                            },
+                            "type": "SVGElement",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 3528,
+                                "end": 3533,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>SVG element</p>\n"
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Interactive SVG component</p>\n",
+            "rawdescription": "\n\nInteractive SVG component\n",
+            "type": "component",
+            "sourceCode": "import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  inject,\n  Input,\n  OnDestroy,\n  Output,\n  Renderer2,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';\nimport { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';\nimport { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';\n\n/** Delay before tooltip becomes visible */\nconst HOVER_DELAY = 200;\n\n/** Tooltip position settings */\nconst TOOLTIP_POSITIONS: ConnectedPosition[] = [\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'start',\n    overlayY: 'center',\n    offsetX: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'end',\n    overlayY: 'center',\n    offsetX: -8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'top',\n    offsetY: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'bottom',\n    offsetY: -8,\n  },\n];\n\n/** Node tooltip data */\nexport interface NodeTooltipData {\n  /** Node name */\n  node: string;\n  /** Center point of hovered node in screen coordinates */\n  origin: { x: number; y: number };\n}\n\n/** Interface for node entries */\nexport interface NodeMapEntry {\n  /** Organ label */\n  organ_label: string;\n  /** Organ id */\n  organ_id: string;\n  /** Anatomical structure */\n  anatomical_structure_of: string;\n  /** Spatial entity source */\n  source_spatial_entity: string;\n  /** Node name */\n  node_name: string;\n  /** Node label */\n  label: string;\n  /** Ontology id */\n  OntologyID: string;\n  /** Link to represenation */\n  representation_of: string;\n  /** File of single 2dftu */\n  'svg file of single 2DFTU': string;\n  /** if asctb exists */\n  exist_asctb: string;\n  /** Type */\n  type: string;\n  /** REF/1 */\n  'REF/1': string;\n  /** REF/1/DOI */\n  'REF/1/DOI': string;\n  /** REF/1/NOTES */\n  'REF/1/NOTES': string;\n  /** Inset # */\n  'Inset #': string;\n}\n\n/**\n * Interactive SVG component\n */\n@Component({\n  selector: 'hra-interactive-svg',\n  standalone: true,\n  imports: [CommonModule, InlineSVGModule, OverlayModule],\n  templateUrl: './interactive-svg.component.html',\n  styleUrls: ['./interactive-svg.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestroy {\n  /** SVG url */\n  @Input() url?: string;\n\n  /** Mapping info */\n  @Input() mapping: T[] = [];\n\n  /** Emits node id when hovered */\n  @Output() readonly nodeHover = new EventEmitter<T>();\n\n  /** SVG script eval mode */\n  readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;\n\n  /** Tooltip position settings */\n  readonly TOOLTIP_POSITIONS = TOOLTIP_POSITIONS;\n\n  /** Observable of node hover data or undefined when there is no active hover */\n  readonly nodeHoverData$ = new BehaviorSubject<NodeTooltipData | undefined>(undefined);\n\n  /** Observable of node hover with a timer */\n  readonly nodeHoverDelayedData$ = this.nodeHoverData$.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));\n\n  /** Custom renderer */\n  private readonly renderer = inject(Renderer2);\n\n  /** Destroys */\n  private destroy$ = new Subject<void>();\n\n  /**\n   * Clears observables on destroy\n   */\n  ngOnDestroy(): void {\n    this.clear();\n  }\n\n  /**\n   * Sets SVG element\n   * @param el SVG element\n   */\n  setSvgElement(el: SVGElement): void {\n    this.clear();\n    const crosswalkEl = el.querySelector('[id^=\"Crosswalk\"]');\n    if (crosswalkEl) {\n      // Move to front (i.e. last child in svg)\n      this.renderer.appendChild(el, crosswalkEl);\n      this.attachCrosswalkHover(crosswalkEl);\n    }\n  }\n\n  /**\n   * Removes underscores from id\n   * @param name Node name\n   * @returns node name without underscores\n   */\n  formatNodeName(name: string): string {\n    return name.replace(/_/g, ' ');\n  }\n\n  /**\n   * Attaches crosswalk hover\n   * @param el element\n   */\n  private attachCrosswalkHover(el: Element): void {\n    this.attachEvent(el, 'mouseover').subscribe(this.onCrosswalkHover.bind(this));\n    this.attachEvent(el, 'mouseout').subscribe(() => this.nodeHoverData$.next(undefined));\n  }\n\n  /**\n   * Finds matching node in data from a hovered element\n   * @param event Mouse event\n   */\n  private onCrosswalkHover(event: MouseEvent): void {\n    const node = this.getNode(event);\n    if (node) {\n      this.nodeHoverData$.next({\n        node: node['label'],\n        origin: {\n          x: event.clientX,\n          y: event.clientY,\n        },\n      });\n      this.nodeHover.emit(node); //emits node entry\n    }\n  }\n\n  /**\n   * Clears observables\n   */\n  private clear(): void {\n    this.destroy$.next();\n    this.destroy$.complete();\n    this.destroy$ = new Subject();\n  }\n\n  /**\n   * Returns entry from mapping if target, parent, or grandparent id matches the node name\n   * @param event Event\n   * @returns Node entry that matches the target id\n   */\n  private getNode(event: Event): T | undefined {\n    const targetId = (event.target as Element).id;\n    const parentId = (event.target as Element).parentElement?.id ?? '';\n    const grandparentId = (event.target as Element).parentElement?.parentElement?.id ?? '';\n    const idCollection = [targetId, parentId, grandparentId];\n    for (const id of idCollection) {\n      const decodedID = this.decodeId(id);\n      const match = this.mapping.find(\n        (item) => item['node_name']?.toLowerCase() === decodedID.toLowerCase() //search mapping by node_name for matching node entry\n      );\n      if (match) {\n        return match;\n      }\n    }\n    return undefined;\n  }\n\n  /**\n   * Decodes id into a normal string\n   * @param id Undecoded ID\n   * @returns id\n   */\n  private decodeId(id: string): string {\n    const replacer = (_match: string, hex: string) => String.fromCharCode(Number.parseInt(hex, 16));\n    return id.replace(/_x([\\da-f]+)_/gi, replacer);\n  }\n\n  /**\n   * Attaches an event listener\n   * @template K\n   * @param el Element\n   * @param event Event\n   * @returns Observable\n   */\n  private attachEvent<K extends keyof SVGElementEventMap>(el: Element, event: K): Observable<SVGElementEventMap[K]> {\n    const { renderer, destroy$ } = this;\n    const add = (handler: NodeEventHandler) => renderer.listen(el, event, handler);\n    const remove = (_handler: NodeEventHandler, unlisten: () => void) => unlisten();\n    return fromEventPattern<SVGElementEventMap[K]>(add, remove).pipe(takeUntil(destroy$));\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".tooltip {\n  display: flex;\n  flex-direction: column;\n  background: white;\n  box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);\n  border-radius: 0.5rem;\n  padding: 1rem;\n}\n\n[id^='Crosswalk'] {\n  :is(path, polygon, polyline) {\n    fill: transparent;\n    stroke: transparent;\n  }\n\n  .hover-active & g:hover > :is(path, polygon, polyline) {\n    fill: hsl(0deg 100% 50%);\n    mix-blend-mode: saturation;\n  }\n\n  .hover-active & g > g:hover {\n    :is(path, polygon, polyline) {\n      fill: hsl(0deg 100% 50%);\n      mix-blend-mode: saturation;\n    }\n  }\n}\n",
+                    "styleUrl": "./interactive-svg.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "implements": [
+                "OnDestroy"
+            ],
+            "templateData": "<div\n  *ngIf=\"url\"\n  class=\"svg\"\n  [class.hover-active]=\"nodeHoverData$ | async\"\n  [inlineSVG]=\"url\"\n  [evalScripts]=\"NEVER_EVAL_SCRIPTS\"\n  (onSVGInserted)=\"setSvgElement($event)\"\n></div>\n\n<ng-container *ngIf=\"nodeHoverDelayedData$ | async as hover\">\n  <ng-template\n    cdkConnectedOverlay\n    cdkConnectedOverlayPanelClass=\"hra-interactive-svg-tooltip-panel\"\n    [cdkConnectedOverlayOrigin]=\"hover.origin\"\n    [cdkConnectedOverlayPositions]=\"TOOLTIP_POSITIONS\"\n    [cdkConnectedOverlayViewportMargin]=\"16\"\n    [cdkConnectedOverlayOpen]=\"true\"\n  >\n    <div class=\"tooltip\">\n      {{ formatNodeName(hover.node) }}\n    </div>\n  </ng-template>\n</ng-container>\n"
+        },
+        {
+            "name": "LandingPageInDepthComponent",
+            "id": "component-LandingPageInDepthComponent-266cc77d12f81268af62a259a42675f25c0be65e3cab6881ce7afcd3dbaa4ab87e767f669fc822ea592327de677787a00c9eb4a5b9b1171d78fe6aefc8cc439b",
+            "file": "src/lib/landing-page-in-depth/landing-page-in-depth.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-landing-page-in-depth",
+            "styleUrls": [
+                "./landing-page-in-depth.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./landing-page-in-depth.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "description",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nImage description shown to the user",
+                    "description": "<p>Image description shown to the user</p>\n",
+                    "line": 24,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "img",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nImage shown to the user",
+                    "description": "<p>Image shown to the user</p>\n",
+                    "line": 27,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "moreLink",
+                    "defaultValue": "EMPTY_LINK",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nLink to navigate to on more button click",
+                    "description": "<p>Link to navigate to on more button click</p>\n",
+                    "line": 33,
+                    "type": "any",
+                    "decorators": []
+                },
+                {
+                    "name": "moreText",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nText for more button",
+                    "description": "<p>Text for more button</p>\n",
+                    "line": 30,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nImage title shown to the user",
+                    "description": "<p>Image title shown to the user</p>\n",
+                    "line": 21,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Displays the image and also corresponding title and text along with a button to read more</p>\n",
+            "rawdescription": "\n\nDisplays the image and also corresponding title and text along with a button to read more\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { EMPTY_LINK, LinkDirective } from '@hra-ui/cdk';\nimport { MarkdownModule } from 'ngx-markdown';\n\n/**\n * Displays the image and also corresponding title and text along with a button to read more\n */\n@Component({\n  selector: 'hra-landing-page-in-depth',\n  standalone: true,\n  imports: [CommonModule, MarkdownModule, MatButtonModule, MatIconModule, LinkDirective],\n  templateUrl: './landing-page-in-depth.component.html',\n  styleUrls: ['./landing-page-in-depth.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class LandingPageInDepthComponent {\n  /**  Image title shown to the user */\n  @Input() title = '';\n\n  /** Image description shown to the user */\n  @Input() description = '';\n\n  /** Image shown to the user */\n  @Input() img = '';\n\n  /** Text for more button */\n  @Input() moreText = '';\n\n  /** Link to navigate to on more button click */\n  @Input() moreLink = EMPTY_LINK;\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use 'variables' as vars;\n\n:host {\n  display: grid;\n  grid-template-columns: 2fr 3fr;\n  grid-template-rows: auto auto 1fr;\n  column-gap: 2rem;\n  row-gap: 2rem;\n  padding: 3.5rem 2rem;\n\n  .image {\n    grid-column: 1;\n    grid-row: 1 / span 3;\n    width: 100%;\n    height: auto;\n    align-self: center;\n  }\n\n  .title {\n    font-size: 2rem;\n    line-height: 2.5rem;\n    margin: 0;\n  }\n\n  .description {\n    font-size: 1rem;\n    line-height: 1.5rem;\n\n    ::ng-deep p {\n      margin: 0;\n    }\n\n    ::ng-deep a {\n      color: vars.$primary-rgb;\n      font-weight: 700;\n    }\n  }\n\n  .more-button {\n    width: fit-content;\n    height: 3rem;\n  }\n}\n",
+                    "styleUrl": "./landing-page-in-depth.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<img class=\"image\" [src]=\"img\" alt=\"\" />\n<h1 class=\"title\">{{ title }}</h1>\n<markdown class=\"description\" [data]=\"description\"></markdown>\n<button mat-flat-button class=\"more-button\" color=\"primary\" [hraLink]=\"moreLink\">\n  {{ moreText }}\n</button>\n"
+        },
+        {
+            "name": "LandingPageIntroComponent",
+            "id": "component-LandingPageIntroComponent-8e48a2ad3d32eea60c9dee7976b3dbc195b3a8107a3c174ac68b4696362903f19522bad089b509daae23505334aa5361945e7a8124fd32f17a6834c349c87aed",
+            "file": "src/lib/landing-page-intro/landing-page-intro.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-landing-page-intro",
+            "styleUrls": [
+                "./landing-page-intro.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./landing-page-intro.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "description",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nDescription for FTU Explorer",
+                    "description": "<p>Description for FTU Explorer</p>\n",
+                    "line": 22,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "img",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nIntro Image file url",
+                    "description": "<p>Intro Image file url</p>\n",
+                    "line": 28,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "moreLink",
+                    "defaultValue": "EMPTY_LINK",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nLink to navigate to on more button click",
+                    "description": "<p>Link to navigate to on more button click</p>\n",
+                    "line": 34,
+                    "type": "any",
+                    "decorators": []
+                },
+                {
+                    "name": "moreText",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nText for more button",
+                    "description": "<p>Text for more button</p>\n",
+                    "line": 31,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "partners",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nThank you message to partners",
+                    "description": "<p>Thank you message to partners</p>\n",
+                    "line": 25,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nIntro title for FTU Explorer",
+                    "description": "<p>Intro title for FTU Explorer</p>\n",
+                    "line": 19,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Component for LandingPage Intro</p>\n",
+            "rawdescription": "\nComponent for LandingPage Intro",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { EMPTY_LINK, LinkDirective } from '@hra-ui/cdk';\nimport { MarkdownModule } from 'ngx-markdown';\n\n/** Component for LandingPage Intro */\n@Component({\n  selector: 'hra-landing-page-intro',\n  standalone: true,\n  imports: [CommonModule, MatButtonModule, MatIconModule, MarkdownModule, LinkDirective],\n  templateUrl: './landing-page-intro.component.html',\n  styleUrls: ['./landing-page-intro.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class LandingPageIntroComponent {\n  /** Intro title for FTU Explorer */\n  @Input() title = '';\n\n  /** Description for FTU Explorer */\n  @Input() description = '';\n\n  /** Thank you message to partners */\n  @Input() partners = '';\n\n  /** Intro Image file url */\n  @Input() img = '';\n\n  /** Text for more button */\n  @Input() moreText = '';\n\n  /** Link to navigate to on more button click */\n  @Input() moreLink = EMPTY_LINK;\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use 'variables' as vars;\n\n:host {\n  display: grid;\n  grid-template-columns: 3fr 2fr;\n  grid-template-rows: auto auto 3rem 1fr;\n  align-items: start;\n  column-gap: 2rem;\n  row-gap: 2rem;\n\n  .title {\n    font-size: 3rem;\n    line-height: 4rem;\n    margin: 0;\n  }\n\n  .more-button {\n    width: fit-content;\n    height: 3rem;\n  }\n\n  .image {\n    grid-column: 2;\n    grid-row: 1 / span 4;\n    place-self: center;\n    width: 100%;\n    height: auto;\n  }\n\n  .description,\n  .partners {\n    ::ng-deep p {\n      margin: 0;\n    }\n\n    ::ng-deep a {\n      color: vars.$primary-rgb;\n      font-weight: 700;\n    }\n  }\n}\n",
+                    "styleUrl": "./landing-page-intro.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<h1 class=\"title\">{{ title }}</h1>\n<markdown class=\"description\" [data]=\"description\"></markdown>\n\n<button mat-flat-button class=\"more-button\" color=\"primary\" [hraLink]=\"moreLink\">\n  {{ moreText }}\n  <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>\n</button>\n<markdown class=\"partners\" [data]=\"partners\"></markdown>\n\n<img class=\"image\" [src]=\"img\" alt=\"alt\" />\n"
+        },
+        {
+            "name": "MetricsComponent",
+            "id": "component-MetricsComponent-e52c0a1cdf090042d1924c4907a4034774cbb442217faca9ec5035e76d2796116cf55644ecf49ae040fdea1168f9c5d99f6ce15b2079f70de3d853fece481b30",
+            "file": "src/lib/metrics/metrics.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-metrics",
+            "styleUrls": [
+                "./metrics.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./metrics.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "logo",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nLogo of metrics component.",
+                    "description": "<p>Logo of metrics component.</p>\n",
+                    "line": 31,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "metrics",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nList of metrics that will be shown to the user.",
+                    "description": "<p>List of metrics that will be shown to the user.</p>\n",
+                    "line": 34,
+                    "type": "MetricItem[]",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nMain title of metrics component.",
+                    "description": "<p>Main title of metrics component.</p>\n",
+                    "line": 28,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Describes the metrics for the HuBMAP project.</p>\n",
+            "rawdescription": "\n\nDescribes the metrics for the HuBMAP project.\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/**\n  An interface representing a single metric with an icon, value and description.\n */\nexport interface MetricItem {\n  /** Represents the icon associated with the metric. */\n  icon: string;\n  /** Describes the numberical value of the metric. */\n  value: string;\n  /** Describes the type of metric. */\n  description: string;\n}\n/**\n * Describes the metrics for the HuBMAP project.\n */\n@Component({\n  selector: 'hra-metrics',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './metrics.component.html',\n  styleUrls: ['./metrics.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MetricsComponent {\n  /** Main title of metrics component. */\n  @Input() title = '';\n\n  /** Logo of metrics component. */\n  @Input() logo = '';\n\n  /** List of metrics that will be shown to the user. */\n  @Input() metrics: MetricItem[] = [];\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  padding: 2rem 0 0 0;\n  background: #f8f9fa;\n  gap: 0.5rem;\n\n  .logo {\n    height: 2.75rem;\n  }\n\n  .header-title {\n    font-size: 2rem;\n    line-height: 2.5rem;\n  }\n\n  .metrics {\n    display: flex;\n    flex-direction: row;\n    overflow-x: auto;\n    max-width: 100%;\n    gap: 2rem;\n    padding: 2rem 1.75rem;\n\n    .metric {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n      min-width: 14.25rem;\n      height: 14.75rem;\n      padding-top: 2rem;\n      padding-bottom: 2rem;\n\n      .logo {\n        margin-bottom: 2rem;\n      }\n\n      .value {\n        font-size: 3rem;\n        line-height: 4rem;\n        margin-bottom: 0.25rem;\n      }\n\n      .description {\n        font-size: 1rem;\n        text-align: center;\n      }\n    }\n  }\n}\n",
+                    "styleUrl": "./metrics.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<img class=\"logo\" [src]=\"logo\" alt=\"\" />\n<span class=\"header-title\">{{ title }}</span>\n\n<div class=\"metrics\">\n  <div class=\"metric\" *ngFor=\"let item of metrics\">\n    <img class=\"logo\" [src]=\"item.icon\" alt=\"\" />\n    <span class=\"value\"> {{ item.value }} </span>\n    <span class=\"description\"> {{ item.description }} </span>\n  </div>\n</div>\n"
+        },
+        {
+            "name": "ScreenSizeNoticeComponent",
+            "id": "component-ScreenSizeNoticeComponent-5703bd8b1cc8230fd2afb96b7d917f103baec1d78e31f4b9ec95dc1564ce9ef7dbe965f41c1a676ad68faf75355914b4da2d7c7f2f467743124f0af4d888d723",
+            "file": "src/lib/screen-size-notice/screen-size-notice.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-screen-size-notice",
+            "styleUrls": [
+                "./screen-size-notice.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./screen-size-notice.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "contentUrl",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nInput for passing screen size notice content\n",
+                    "description": "<p>Input for passing screen size notice content</p>\n",
+                    "line": 22,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "portalClick",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nEmits when the portal button is clicked",
+                    "description": "<p>Emits when the portal button is clicked</p>\n",
+                    "line": 28,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "proceedClick",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nEmits when the proceed button is clicked",
+                    "description": "<p>Emits when the proceed button is clicked</p>\n",
+                    "line": 25,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>The screen size notice component displays a notice for the users specifying the required screen size</p>\n",
+            "rawdescription": "\n\nThe screen size notice component displays a notice for the users specifying the required screen size\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MarkdownModule } from 'ngx-markdown';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\n\n/**\n * The screen size notice component displays a notice for the users specifying the required screen size\n */\n@Component({\n  selector: 'hra-screen-size-notice',\n  standalone: true,\n  imports: [CommonModule, MarkdownModule, MatButtonModule, MatIconModule],\n  templateUrl: './screen-size-notice.component.html',\n  styleUrls: ['./screen-size-notice.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ScreenSizeNoticeComponent {\n  /**\n   * Input for passing screen size notice content\n   */\n  @Input() contentUrl = '';\n\n  /** Emits when the proceed button is clicked */\n  @Output() readonly proceedClick = new EventEmitter<void>();\n\n  /** Emits when the portal button is clicked */\n  @Output() readonly portalClick = new EventEmitter<void>();\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: flex;\n  position: relative;\n  border-radius: 0.5rem;\n  padding: 1.5rem;\n  box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);\n  flex-direction: column;\n\n  .header-close {\n    position: absolute;\n    top: 1rem;\n    right: 1rem;\n  }\n\n  h2 {\n    margin: 0 0 1rem 0;\n  }\n\n  .btn-stroked {\n    font-weight: 700;\n    margin-bottom: 1rem;\n    margin-top: 1rem;\n  }\n\n  .btn-flat {\n    font-weight: 700;\n  }\n\n  .content {\n    font-size: 1rem;\n  }\n}\n",
+                    "styleUrl": "./screen-size-notice.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<h2>Screen Size Notice</h2>\n<button mat-icon-button class=\"header-close\">\n  <mat-icon>close</mat-icon>\n</button>\n<markdown [src]=\"contentUrl\" class=\"content\"></markdown>\n<button mat-stroked-button color=\"primary\" class=\"btn-stroked\" (click)=\"proceedClick.emit()\">\n  Proceed to FTU Explorer\n</button>\n<button mat-flat-button color=\"primary\" class=\"btn-flat\" (click)=\"portalClick.emit()\">\n  Human Reference Atlas Portal\n</button>\n"
+        },
+        {
+            "name": "SourceListComponent",
+            "id": "component-SourceListComponent-4874510b6764d560fb198c485649d9eade797bb14c94270715b0b603c61b9dfb3ddc2a78e1202e122b2d537d4cb4ccb94644be557a7c8ab1387e8764addbd532",
+            "file": "src/lib/source-list/source-list.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-source-list",
+            "styleUrls": [
+                "./source-list.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./source-list.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "sources",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nList of sources with titles and links displayed to the user",
+                    "description": "<p>List of sources with titles and links displayed to the user</p>\n",
+                    "line": 25,
+                    "type": "SourceListItem[]",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>This component shows list of sources with title and links to the datasets</p>\n",
+            "rawdescription": "\nThis component shows list of sources with title and links to the datasets",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from '@angular/material/table';\n\n/** SourceListItem interface contains title and link to the dataset for the SourceList*/\nexport interface SourceListItem {\n  /** Title of the dataset in the SourceList */\n  title: string;\n\n  /** Link to the dataset in the SourceList */\n  link: string;\n}\n\n/** This component shows list of sources with title and links to the datasets */\n@Component({\n  selector: 'hra-source-list',\n  standalone: true,\n  imports: [CommonModule, MatTableModule],\n  templateUrl: './source-list.component.html',\n  styleUrls: ['./source-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SourceListComponent {\n  /** List of sources with titles and links displayed to the user */\n  @Input() sources: SourceListItem[] = [];\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use 'utils';\n\n:host {\n  display: block;\n\n  .mat-mdc-cell {\n    vertical-align: top;\n    border: none;\n    padding: 0.25rem 0.875rem;\n    font-size: 1rem;\n  }\n\n  .sr-only {\n    @include utils.sr-only();\n  }\n}\n",
+                    "styleUrl": "./source-list.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<table mat-table [dataSource]=\"sources\">\n  <caption class=\"sr-only\">\n    Source List Table with Title and Links\n  </caption>\n\n  <!-- Position Column -->\n  <ng-container matColumnDef=\"link\">\n    <th class=\"sr-only\" mat-header-cell *matHeaderCellDef>Item Number</th>\n    <td mat-cell *matCellDef=\"let element; let i = index\">{{ i + 1 }}.</td>\n  </ng-container>\n\n  <!-- Data Column -->\n  <ng-container matColumnDef=\"title\">\n    <th class=\"sr-only\" mat-header-cell *matHeaderCellDef>Title and Link</th>\n    <td mat-cell *matCellDef=\"let element\">\n      {{ element.title }}\n      <br />\n      <a [href]=\"element.link\" target=\"_blank\">{{ element.link }}</a>\n    </td>\n  </ng-container>\n\n  <tr mat-row *matRowDef=\"let row; columns: ['link', 'title']\"></tr>\n</table>\n"
+        },
+        {
+            "name": "TissueTreeListComponent",
+            "id": "component-TissueTreeListComponent-0d34d3e353e0bd47205c1a9c796a479033131f273c3c00e7c0a98d16c3b73c2d8b3fa98e293642bef4b4bdbb7e994fe6992025d58cadebc780556f90af3b530d",
+            "file": "src/lib/tissue-tree-list/tissue-tree-list.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-tissue-tree-list",
+            "styleUrls": [
+                "./tissue-tree-list.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./tissue-tree-list.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "nodes",
+                    "defaultValue": "{} as Record<K, T>",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nInput  of tissue tree list component\n",
+                    "description": "<p>Input  of tissue tree list component</p>\n",
+                    "line": 69,
+                    "type": "Record<K | T>",
+                    "decorators": []
+                },
+                {
+                    "name": "selected",
+                    "defaultValue": "undefined",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nNode selected, to view the data associated with it\n",
+                    "description": "<p>Node selected, to view the data associated with it</p>\n",
+                    "line": 74,
+                    "type": "T",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "selectedChange",
+                    "defaultValue": "new EventEmitter<T | undefined>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nOutput  of tissue tree list component\n",
+                    "description": "<p>Output  of tissue tree list component</p>\n",
+                    "line": 79,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "control",
+                    "defaultValue": "new FlatTreeControl<InternalNode<K, T>>(\n    (node) => node.level,\n    (node) => node.expandable\n  )",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>tree controller, used to control the nodes in the tree</p>\n",
+                    "line": 84,
+                    "rawdescription": "\n\ntree controller, used to control the nodes in the tree\n",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "dataSource",
+                    "defaultValue": "new MatTreeFlatDataSource(this.control, this.flattener)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Data source of tissue tree list component, defines the data in mat-tree</p>\n",
+                    "line": 107,
+                    "rawdescription": "\n\nData source of tissue tree list component, defines the data in mat-tree\n",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "flattener",
+                    "defaultValue": "new MatTreeFlattener<T, InternalNode<K, T>>(\n    (node, level) => ({\n      label: node.label,\n      expandable: (node.children?.length ?? 0) > 0,\n      level,\n      data: node,\n    }),\n    (node) => node.level,\n    (node) => node.expandable,\n    (node) => node.children?.map((id) => this.nodes[id])\n  )",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Flattener of tissue tree list component, returns flat-data structure</p>\n",
+                    "line": 92,
+                    "rawdescription": "\n\nFlattener of tissue tree list component, returns flat-data structure\n",
+                    "modifierKind": [
+                        144
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "hasChild",
+                    "args": [
+                        {
+                            "name": "_",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "node",
+                            "type": "InternalNode<K | T>",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 124,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\ncheck if the current node has children\n",
+                    "description": "<p>check if the current node has children</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": "_",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": {
+                                "pos": 3259,
+                                "end": 3263,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "node"
+                            },
+                            "type": "InternalNode<K | T>",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 3253,
+                                "end": 3258,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>current selected node</p>\n"
+                        },
+                        {
+                            "tagName": {
+                                "pos": 3292,
+                                "end": 3299,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>boolean, which means if node has children</p>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "selectNode",
+                    "args": [
+                        {
+                            "name": "node",
+                            "type": "T",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 132,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nIt selects the node, which is clicked.\n",
+                    "description": "<p>It selects the node, which is clicked.</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 3502,
+                                "end": 3506,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "node"
+                            },
+                            "type": "T",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 3496,
+                                "end": 3501,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>Tissue Tree Item, which is clicked</p>\n"
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Tabular View for hubMap tissue side-bar</p>\n",
+            "rawdescription": "\n\nTabular View for hubMap tissue side-bar\n",
+            "type": "component",
+            "sourceCode": "import { FlatTreeControl } from '@angular/cdk/tree';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  Input,\n  OnChanges,\n  Output,\n  SimpleChanges,\n} from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatExpansionModule } from '@angular/material/expansion';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { LinkId } from '@hra-ui/cdk/state';\n\n/** Base node type */\nexport interface DataNode<K extends string> {\n  /** User readable label */\n  label: string;\n  /** Id to pass as a query parameter on navigation */\n  id?: string;\n  /** Link to navigate to on node click */\n  link?: LinkId;\n  /** Nested nodes */\n  children?: K[];\n}\n\n/**\n * Internal interface for flat tissue data hierarchy\n */\ninterface InternalNode<K extends string, T extends DataNode<K>> {\n  /** Displayed label */\n  label: string;\n  /** Whether the node can be expanded to display child nodes */\n  expandable: boolean;\n  /** Depth of node in the tree */\n  level: number;\n  /** Associated user node data */\n  data: T;\n}\n\n/**\n * Tabular View for hubMap tissue side-bar\n */\n@Component({\n  selector: 'hra-tissue-tree-list',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatButtonModule,\n    MatTreeModule,\n    MatIconModule,\n    MatExpansionModule,\n    MatRippleModule,\n    LinkDirective,\n  ],\n  templateUrl: './tissue-tree-list.component.html',\n  styleUrls: ['./tissue-tree-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueTreeListComponent<K extends string, T extends DataNode<K>> implements OnChanges {\n  /**\n   * Input  of tissue tree list component\n   */\n  @Input() nodes: Record<K, T> = {} as Record<K, T>;\n\n  /**\n   * Node selected, to view the data associated with it\n   */\n  @Input() selected?: T = undefined;\n\n  /**\n   * Output  of tissue tree list component\n   */\n  @Output() readonly selectedChange = new EventEmitter<T | undefined>();\n\n  /**\n   * tree controller, used to control the nodes in the tree\n   */\n  readonly control = new FlatTreeControl<InternalNode<K, T>>(\n    (node) => node.level,\n    (node) => node.expandable\n  );\n\n  /**\n   * Flattener of tissue tree list component, returns flat-data structure\n   */\n  readonly flattener = new MatTreeFlattener<T, InternalNode<K, T>>(\n    (node, level) => ({\n      label: node.label,\n      expandable: (node.children?.length ?? 0) > 0,\n      level,\n      data: node,\n    }),\n    (node) => node.level,\n    (node) => node.expandable,\n    (node) => node.children?.map((id) => this.nodes[id])\n  );\n\n  /**\n   * Data source of tissue tree list component, defines the data in mat-tree\n   */\n  readonly dataSource = new MatTreeFlatDataSource(this.control, this.flattener);\n\n  /**\n   * Take actions if any data changes\n   * @param changes changes in data\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('nodes' in changes) {\n      this.dataSource.data = this.findRootNodes();\n    }\n  }\n\n  /**\n   * check if the current node has children\n   * @param node current selected node\n   * @returns boolean, which means if node has children\n   */\n  hasChild(_: number, node: InternalNode<K, T>): boolean {\n    return node.expandable;\n  }\n\n  /**\n   * It selects the node, which is clicked.\n   * @param node Tissue Tree Item, which is clicked\n   */\n  selectNode(node: T): void {\n    if (this.selected !== node) {\n      this.selected = node;\n      this.selectedChange.emit(this.selected);\n    }\n  }\n\n  /**\n   * It creates a copy of the input nodes object.\n   * It iterates over it and removes all the children nodes from it.\n   * @returns remaining nodes which are root nodes.\n   */\n  private findRootNodes(): T[] {\n    const nodes = { ...this.nodes };\n    for (const key in nodes) {\n      for (const child of nodes[key].children ?? []) {\n        delete nodes[child];\n      }\n    }\n\n    return Object.values(nodes);\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use 'variables' as vars;\n\n:host {\n  display: block;\n\n  .row {\n    min-height: 2rem;\n\n    &.selected {\n      background-color: vars.$accent-lighter-rgb;\n    }\n\n    .toggle {\n      width: 2rem;\n      height: 2rem;\n      padding: 0.25rem;\n    }\n\n    .label-container {\n      display: flex;\n      align-items: center;\n      height: 2rem;\n      padding: 0 1rem;\n      border-radius: 0.25rem;\n\n      .link {\n        cursor: pointer;\n        text-decoration: none;\n        color: rgba(vars.$dark-primary-text);\n      }\n    }\n\n    &.selected .label-container .link {\n      color: vars.$accent-rgb;\n    }\n  }\n}\n",
+                    "styleUrl": "./tissue-tree-list.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "implements": [
+                "OnChanges"
+            ],
+            "templateData": "<mat-tree [dataSource]=\"dataSource\" [treeControl]=\"control\" class=\"tree\">\n  <mat-tree-node\n    *matTreeNodeDef=\"let node; let level = level\"\n    [matTreeNodePadding]=\"level\"\n    matTreeNodePaddingIndent=\"64\"\n    [class.selected]=\"node.data === selected\"\n    class=\"row\"\n    tabIndex=\"0\"\n  >\n    <ng-container [ngTemplateOutlet]=\"label\" [ngTemplateOutletContext]=\"node\"> </ng-container>\n  </mat-tree-node>\n\n  <mat-tree-node\n    *matTreeNodeDef=\"let node; let level = level; when: hasChild\"\n    class=\"row\"\n    [class.selected]=\"node.data === selected\"\n  >\n    <button mat-icon-button matTreeNodeToggle class=\"toggle\" [attr.aria-label]=\"'Toggle ' + node.label\">\n      <mat-icon>\n        {{ control.isExpanded(node) ? 'keyboard_arrow_up' : 'chevron_right' }}\n      </mat-icon>\n    </button>\n\n    <ng-container [ngTemplateOutlet]=\"label\" [ngTemplateOutletContext]=\"node\"> </ng-container>\n  </mat-tree-node>\n</mat-tree>\n\n<ng-template let-label=\"label\" let-data=\"data\" #label>\n  <div class=\"label-container\" matRipple [matRippleDisabled]=\"!data.link\">\n    <a\n      *ngIf=\"data.link; else noLink\"\n      [hraLink]=\"data.link\"\n      [queryParams]=\"{ id: data.id }\"\n      class=\"link\"\n      (click)=\"selectNode(data)\"\n    >\n      {{ label }}\n    </a>\n    <ng-template #noLink>\n      <span>{{ label }}</span>\n    </ng-template>\n  </div>\n</ng-template>\n"
+        },
+        {
+            "name": "TitleCardComponent",
+            "id": "component-TitleCardComponent-dda33e0370aff82797f5b3494c98b25f59e8b87daefd03e828cec8116928222c19885f73255625acfce7c66d590784fd1ad8faa664dac65130f8119fc2670670",
+            "file": "src/lib/title-card/title-card.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-title-card",
+            "styleUrls": [
+                "./title-card.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./title-card.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "description",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nDescription for the title card shown to the user",
+                    "description": "<p>Description for the title card shown to the user</p>\n",
+                    "line": 19,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nTitle for the title card shown to the user",
+                    "description": "<p>Title for the title card shown to the user</p>\n",
+                    "line": 16,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Displays title card to the user with title and description</p>\n",
+            "rawdescription": "\nDisplays title card to the user with title and description",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MarkdownModule } from 'ngx-markdown';\n\n/** Displays title card to the user with title and description */\n@Component({\n  selector: 'hra-title-card',\n  standalone: true,\n  imports: [CommonModule, MarkdownModule],\n  templateUrl: './title-card.component.html',\n  styleUrls: ['./title-card.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TitleCardComponent {\n  /** Title for the title card shown to the user*/\n  @Input() title = '';\n\n  /** Description for the title card shown to the user*/\n  @Input() description = '';\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: block;\n\n  .title {\n    margin-bottom: 0.5rem;\n  }\n}\n",
+                    "styleUrl": "./title-card.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<h1 class=\"title\">{{ title }}</h1>\n<markdown class=\"description\" [data]=\"description\"></markdown>\n"
+        }
+    ],
+    "modules": [],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "DOWNLOADS_LIST_POSITION",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/lib/footer/footer.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "ConnectedPosition[]",
+                "defaultValue": "[\n  {\n    panelClass: 'above',\n    originX: 'start',\n    originY: 'top',\n    overlayX: 'start',\n    overlayY: 'bottom',\n    offsetY: 0,\n  },\n  {\n    panelClass: 'below',\n    originX: 'start',\n    originY: 'bottom',\n    overlayX: 'start',\n    overlayY: 'top',\n  },\n]",
+                "rawdescription": "Positioning value for the download list popup",
+                "description": "<p>Positioning value for the download list popup</p>\n"
+            },
+            {
+                "name": "EMPTY_CONTACT_DATA",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/lib/contact-modal/contact-modal.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Partial<ContactData>",
+                "defaultValue": "{\n  email: undefined,\n  subject: undefined,\n  message: undefined,\n}",
+                "rawdescription": "Initial empty contact data",
+                "description": "<p>Initial empty contact data</p>\n"
+            },
+            {
+                "name": "HOVER_DELAY",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/lib/interactive-svg/interactive-svg.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "number",
+                "defaultValue": "200",
+                "rawdescription": "Delay before tooltip becomes visible",
+                "description": "<p>Delay before tooltip becomes visible</p>\n"
+            },
+            {
+                "name": "TOOLTIP_POSITIONS",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/lib/interactive-svg/interactive-svg.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "ConnectedPosition[]",
+                "defaultValue": "[\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'start',\n    overlayY: 'center',\n    offsetX: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'end',\n    overlayY: 'center',\n    offsetX: -8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'top',\n    offsetY: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'bottom',\n    offsetY: -8,\n  },\n]",
+                "rawdescription": "Tooltip position settings",
+                "description": "<p>Tooltip position settings</p>\n"
+            }
+        ],
+        "functions": [],
+        "typealiases": [],
+        "enumerations": [],
+        "groupedVariables": {
+            "src/lib/footer/footer.component.ts": [
+                {
+                    "name": "DOWNLOADS_LIST_POSITION",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/lib/footer/footer.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ConnectedPosition[]",
+                    "defaultValue": "[\n  {\n    panelClass: 'above',\n    originX: 'start',\n    originY: 'top',\n    overlayX: 'start',\n    overlayY: 'bottom',\n    offsetY: 0,\n  },\n  {\n    panelClass: 'below',\n    originX: 'start',\n    originY: 'bottom',\n    overlayX: 'start',\n    overlayY: 'top',\n  },\n]",
+                    "rawdescription": "Positioning value for the download list popup",
+                    "description": "<p>Positioning value for the download list popup</p>\n"
+                }
+            ],
+            "src/lib/contact-modal/contact-modal.component.ts": [
+                {
+                    "name": "EMPTY_CONTACT_DATA",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/lib/contact-modal/contact-modal.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Partial<ContactData>",
+                    "defaultValue": "{\n  email: undefined,\n  subject: undefined,\n  message: undefined,\n}",
+                    "rawdescription": "Initial empty contact data",
+                    "description": "<p>Initial empty contact data</p>\n"
+                }
+            ],
+            "src/lib/interactive-svg/interactive-svg.component.ts": [
+                {
+                    "name": "HOVER_DELAY",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/lib/interactive-svg/interactive-svg.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "defaultValue": "200",
+                    "rawdescription": "Delay before tooltip becomes visible",
+                    "description": "<p>Delay before tooltip becomes visible</p>\n"
+                },
+                {
+                    "name": "TOOLTIP_POSITIONS",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/lib/interactive-svg/interactive-svg.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ConnectedPosition[]",
+                    "defaultValue": "[\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'start',\n    overlayY: 'center',\n    offsetX: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'end',\n    overlayY: 'center',\n    offsetX: -8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'top',\n    offsetY: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'bottom',\n    offsetY: -8,\n  },\n]",
+                    "rawdescription": "Tooltip position settings",
+                    "description": "<p>Tooltip position settings</p>\n"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {}
+    }
+}
