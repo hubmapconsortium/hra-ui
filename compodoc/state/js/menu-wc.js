@@ -93,6 +93,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/Load.html" data-type="entity-link" >Load</a>
                             </li>
                             <li class="link">
+                                <a href="classes/Load-1.html" data-type="entity-link" >Load</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/LoadReferenceOrgans.html" data-type="entity-link" >LoadReferenceOrgans</a>
                             </li>
                             <li class="link">
@@ -189,6 +192,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/ScreenModeModel.html" data-type="entity-link" >ScreenModeModel</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SizePoint.html" data-type="entity-link" >SizePoint</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Source.html" data-type="entity-link" >Source</a>

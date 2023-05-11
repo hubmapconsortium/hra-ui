@@ -92,6 +92,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#getCellSummaries" >getCellSummaries</a>
+                            </li>
+                            <li>
                                 <a href="#getReferenceOrgans" >getReferenceOrgans</a>
                             </li>
                         </ul>
@@ -112,6 +115,51 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCellSummaries"></a>
+                    <span class="name">
+                        <span ><b>getCellSummaries</b></span>
+                        <a href="#getCellSummaries"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCellSummaries()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../injectables/TissueFtuService.html" target="_self" >TissueFtuService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/TissueFtuService.html#source" target="_self" >TissueFtuService:74</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Implementation of abstract method</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -138,7 +186,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/TissueFtuService.html#source" target="_self" >TissueFtuService:21</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/TissueFtuService.html#source" target="_self" >TissueFtuService:69</a></code>
 </div>
                 </td>
             </tr>
@@ -174,8 +222,56 @@ function isReferenceOrgan(obj: Any): obj is ReferenceOrgan {
   return !!obj[&#x27;object&#x27;][&#x27;file&#x27;];
 }
 
+/** Helper for creating summary data */
+function createCell(
+  cid: string,
+  clabel: string,
+  bid: string,
+  blabel: string,
+  count: number,
+  percentage: number,
+  metadata: { label: string; value: string }[][] &#x3D; []
+) {
+  return {
+    cell: {
+      id: cid,
+      label: clabel,
+    },
+    biomarker: {
+      id: bid,
+      label: blabel,
+    },
+    count,
+    percentage,
+    metadata,
+  };
+}
+
 /** Reference organs */
 const MOCK_REFERENCE_ORGANS &#x3D; Object.values(MOCK_TISSUE_DATA.nodes).filter(isReferenceOrgan);
+
+/** Mock summary data */
+const MOCK_SUMMARIES &#x3D; {
+  summary1: {
+    label: &#x27;Summary 1&#x27;,
+    entries: [
+      createCell(&#x27;cell1&#x27;, &#x27;Cell 1&#x27;, &#x27;biomarker1&#x27;, &#x27;Biomarker 1&#x27;, 10, 0.5, [
+        [
+          { label: &#x27;metadata 1&#x27;, value: &#x27;value of data&#x27; },
+          { label: &#x27;metadata 2&#x27;, value: &#x27;value of data&#x27; },
+        ],
+        [{ label: &#x27;metadata 3&#x27;, value: &#x27;value of data&#x27; }],
+      ]),
+      createCell(&#x27;cell2&#x27;, &#x27;Cell 2&#x27;, &#x27;biomarker1&#x27;, &#x27;Biomarker 1&#x27;, 5, 0.2),
+      createCell(&#x27;cell2&#x27;, &#x27;Cell 2&#x27;, &#x27;biomarker2&#x27;, &#x27;Biomarker 2&#x27;, 5, 0.2),
+      createCell(&#x27;cell1&#x27;, &#x27;Cell 1&#x27;, &#x27;biomarker3&#x27;, &#x27;Biomarker 3&#x27;, 15, 0.2),
+    ],
+  },
+  summary2: {
+    label: &#x27;Summary 2&#x27;,
+    entries: [createCell(&#x27;cell1&#x27;, &#x27;Cell 1&#x27;, &#x27;biomarker2&#x27;, &#x27;Biomarker 2&#x27;, 20, 1)],
+  },
+};
 
 /** Implementation of TissueFtuService */
 @Injectable({
@@ -185,6 +281,11 @@ export class MockTissueFtuService extends TissueFtuService {
   /** Implementation of getReferenceOrgans method */
   getReferenceOrgans(): Observable&lt;ReferenceOrgan[]&gt; {
     return of(MOCK_REFERENCE_ORGANS);
+  }
+
+  /** Implementation of abstract method */
+  getCellSummaries(): Observable&lt;unknown&gt; {
+    return of(MOCK_SUMMARIES);
   }
 }
 </code></pre>

@@ -808,10 +808,10 @@ export class ResourceRegistrySelectors {
       const entry &#x3D; getEntry(state, id);
       switch (entry?.type) {
         case BuiltinResourceType.Markdown:
-          return entry.markdown ?? &#x27;&#x27;;
+          return entry.markdown;
 
         case BuiltinResourceType.Text:
-          return entry.text ?? &#x27;&#x27;;
+          return entry.text;
 
         default:
           return &#x27;&#x27;;

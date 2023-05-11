@@ -84,12 +84,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(summaries: z.infer<>)</code>
+<code>constructor(summaries: <a href="../undefineds/CellSummary.html" target="_self">CellSummary</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/lib/cell-summary/cell-summary.actions.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/lib/cell-summary/cell-summary.actions.ts:27</a></div>
                             </td>
                         </tr>
 
@@ -113,7 +113,7 @@
                                                         <td>summaries</td>
                                                   
                                                         <td>
-                                                                    <code>z.infer&lt;&gt;</code>
+                                                                        <code><a href="../miscellaneous/typealiases.html#CellSummary" target="_self" >CellSummary</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -148,8 +148,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ActionGroup } from &#x27;@hra-ui/cdk/state&#x27;;
-import { z } from &#x27;zod&#x27;;
-import { CELL_SUMMARY_SCHEMA } from &#x27;./cell-summary.model&#x27;;
+import { CellSummary } from &#x27;./cell-summary.model&#x27;;
 
 /** Base action factory */
 const Action &#x3D; ActionGroup(&#x27;ResourceRegistry&#x27;);
@@ -160,7 +159,15 @@ export class SetData extends Action(&#x27;SetData&#x27;) {
    * Defines the SetData action, which sets data to the store.
    * @param data - The data to set to the store.
    */
-  constructor(readonly data: object) {
+  constructor(readonly data: CellSummary) {
+    super();
+  }
+}
+
+/** Loads cell summaries */
+export class Load extends Action(&#x27;Load&#x27;) {
+  /** Create a Load action */
+  constructor(readonly id: unknown) {
     super();
   }
 }
@@ -171,7 +178,7 @@ export class ComputeAggregate extends Action(&#x27;ComputeAggregate&#x27;) {
    * Defines the ComputeAggregate action, which computes aggregate data for the given summaries.
    * @param summaries - The cell summary data to compute aggregate for.
    */
-  constructor(readonly summaries: z.infer&lt;typeof CELL_SUMMARY_SCHEMA&gt;) {
+  constructor(readonly summaries: CellSummary) {
     super();
   }
 }

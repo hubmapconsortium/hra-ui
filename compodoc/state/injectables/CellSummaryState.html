@@ -91,6 +91,15 @@
                             <li>
                                 <a href="#interpolateColor" >interpolateColor</a>
                             </li>
+                            <li>
+                                <a href="#interpolateSize" >interpolateSize</a>
+                            </li>
+                            <li>
+                                <a href="#load" >load</a>
+                            </li>
+                            <li>
+                                <a href="#set" >set</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -122,7 +131,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>computeAggregate(ctx: <a href="../injectables/CellSummaryState.html" target="_self">StateContext&lt;CellSummaryStateModel&gt;</a>, action: <a href="../classes/ComputeAggregate.html" target="_self">ComputeAggregate</a>)</code>
+<code>computeAggregate(ctx: <a href="../undefineds/Context.html" target="_self">Context</a>, action: <a href="../classes/ComputeAggregate.html" target="_self">ComputeAggregate</a>)</code>
                 </td>
             </tr>
 
@@ -136,8 +145,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/lib/cell-summary/cell-summary.state.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/lib/cell-summary/cell-summary.state.ts:82</a></div>
                 </td>
             </tr>
 
@@ -162,7 +171,7 @@
                                 <tr>
                                     <td>ctx</td>
                                     <td>
-                                                <code><a href="../injectables/CellSummaryState.html" target="_self" >StateContext&lt;CellSummaryStateModel&gt;</a></code>
+                                                <code><a href="../miscellaneous/typealiases.html#Context" target="_self" >Context</a></code>
                                     </td>
 
                                     <td>
@@ -219,8 +228,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="114"
-                            class="link-to-prism">src/lib/cell-summary/cell-summary.state.ts:114</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="175"
+                            class="link-to-prism">src/lib/cell-summary/cell-summary.state.ts:175</a></div>
                 </td>
             </tr>
 
@@ -282,16 +291,303 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="interpolateSize"></a>
+                    <span class="name">
+                        <span ><b>interpolateSize</b></span>
+                        <a href="#interpolateSize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>interpolateSize(points: <a href="../interfaces/SizePoint.html" target="_self">SizePoint[]</a>, percentage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="193"
+                            class="link-to-prism">src/lib/cell-summary/cell-summary.state.ts:193</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Calculates the interpolated size at a percentage</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>points</td>
+                                    <td>
+                                                <code><a href="../interfaces/SizePoint.html" target="_self" >SizePoint[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>percentage</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="load"></a>
+                    <span class="name">
+                        <span ><b>load</b></span>
+                        <a href="#load"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>load(undefined: <a href="../undefineds/Context.html" target="_self">Context</a>, undefined: <a href="../classes/Load.html" target="_self">Load</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Action(Load)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/lib/cell-summary/cell-summary.state.ts:74</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Load summaries from service</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#Context" target="_self" >Context</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                                <code><a href="../classes/Load.html" target="_self" >Load</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="set"></a>
+                    <span class="name">
+                        <span ><b>set</b></span>
+                        <a href="#set"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>set(undefined: <a href="../undefineds/Context.html" target="_self">Context</a>, undefined: <a href="../classes/SetData.html" target="_self">SetData</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Action(SetData)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/lib/cell-summary/cell-summary.state.ts:67</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Set summaries</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#Context" target="_self" >Context</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                                <code><a href="../classes/SetData.html" target="_self" >SetData</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { inject, Injectable } from &#x27;@angular/core&#x27;;
+import { selectQuerySnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
+import { ResourceRegistrySelectors } from &#x27;@hra-ui/cdk/state&#x27;;
+import { TissueFtuService } from &#x27;@hra-ui/services&#x27;;
 import { Action, State, StateContext } from &#x27;@ngxs/store&#x27;;
-import { ComputeAggregate } from &#x27;./cell-summary.actions&#x27;;
-import { Aggregate, AggregateRow, CellSummary, CellSummaryStateModel, GradientPoint } from &#x27;./cell-summary.model&#x27;;
+import { Observable, switchMap } from &#x27;rxjs&#x27;;
+import { GradientLegend, SizeLegend } from &#x27;../resource-ids&#x27;;
+import { Gradient, Size } from &#x27;../resource-types&#x27;;
+import { ComputeAggregate, Load, SetData } from &#x27;./cell-summary.actions&#x27;;
+import {
+  Aggregate,
+  AggregateRow,
+  CellSummary,
+  CellSummaryStateModel,
+  GradientPoint,
+  SizePoint,
+} from &#x27;./cell-summary.model&#x27;;
+
+/** Helper alias for action handler context */
+type Context &#x3D; StateContext&lt;CellSummaryStateModel&gt;;
+
+/** Default gradient points */
+const DEFAULT_GRADIENTS: GradientPoint[] &#x3D; [
+  { color: &#x27;#000000&#x27;, percentage: 0 },
+  { color: &#x27;#000000&#x27;, percentage: 1 },
+];
+
+/** Default size points */
+const DEFAULT_SIZES: SizePoint[] &#x3D; [
+  { label: &#x27;&#x27;, radius: 1 },
+  { label: &#x27;&#x27;, radius: 5 },
+];
 
 /** State handling cell summary data */
 @State&lt;CellSummaryStateModel&gt;({
@@ -303,11 +599,45 @@ import { Aggregate, AggregateRow, CellSummary, CellSummaryStateModel, GradientPo
 })
 @Injectable()
 export class CellSummaryState {
+  /** Gradient legend points */
+  private readonly gradients &#x3D; selectQuerySnapshot(
+    ResourceRegistrySelectors.field,
+    GradientLegend,
+    Gradient,
+    &#x27;points&#x27; as const,
+    DEFAULT_GRADIENTS
+  )&lt;GradientPoint[]&gt;;
+
+  /** Size legend points */
+  private readonly sizes &#x3D; selectQuerySnapshot(
+    ResourceRegistrySelectors.field,
+    SizeLegend,
+    Size,
+    &#x27;sizes&#x27; as const,
+    DEFAULT_SIZES
+  )&lt;SizePoint[]&gt;;
+
+  /** Service to load summaries */
+  private readonly dataService &#x3D; inject(TissueFtuService);
+
+  /** Set summaries */
+  @Action(SetData)
+  set({ patchState, dispatch }: Context, { data }: SetData): Observable&lt;void&gt; {
+    patchState({ summaries: data });
+    return dispatch(new ComputeAggregate(data));
+  }
+
+  /** Load summaries from service */
+  @Action(Load)
+  load({ dispatch }: Context, { id }: Load): Observable&lt;void&gt; {
+    return this.dataService.getCellSummaries(id).pipe(switchMap((data) &#x3D;&gt; dispatch(new SetData(data as CellSummary))));
+  }
+
   /**
    * computes aggregate data and stores in the current state
    */
   @Action(ComputeAggregate)
-  computeAggregate(ctx: StateContext&lt;CellSummaryStateModel&gt;, action: ComputeAggregate): void {
+  computeAggregate(ctx: Context, action: ComputeAggregate): void {
     const summaries &#x3D; action.summaries;
     const aggregateData: Aggregate &#x3D; {};
 
@@ -373,10 +703,9 @@ export class CellSummaryState {
       }
 
       row[columnIndex] &#x3D; {
-        // TODO: Compute color and size
-        color: &#x27;&#x27;,
-        size: 0,
-        data: entry,
+        color: this.interpolateColor(this.gradients(), entry.percentage),
+        size: this.interpolateSize(this.sizes(), entry.count / counts[rowId]),
+        data: entry.metadata,
       };
     }
 
@@ -416,6 +745,14 @@ export class CellSummaryState {
     const b &#x3D; Math.round(rgb1[2] + (rgb2[2] - rgb1[2]) * finalPercentage);
 
     return this.rgbToHex([r, g, b]);
+  }
+
+  /** Calculates the interpolated size at a percentage */
+  interpolateSize(points: SizePoint[], percentage: number): number {
+    const { radius: min } &#x3D; points[0];
+    const { radius: max } &#x3D; points[points.length - 1];
+    const diff &#x3D; max - min;
+    return min + diff * percentage;
   }
 }
 </code></pre>

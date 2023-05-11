@@ -187,7 +187,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#Aggregate" target="_self" >Aggregate</a></code>
+                        <b>Returns : </b>    <code>[]</code>
 
                     </div>
                     <div class="io-description">
@@ -295,8 +295,8 @@ import { CellSummaryState } from &#x27;./cell-summary.state&#x27;;
 export class CellSummarySelectors {
   /** get the aggregate data from the state */
   @Selector([CellSummaryState])
-  static aggregates(state: CellSummaryStateModel): Aggregate {
-    return state.aggregate;
+  static aggregates(state: CellSummaryStateModel): Aggregate[string][] {
+    return Object.values(state.aggregate);
   }
 
   /** get the summaries data from the state */

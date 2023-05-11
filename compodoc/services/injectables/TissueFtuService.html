@@ -87,6 +87,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Abstract</span>
+                                <a href="#getCellSummaries" >getCellSummaries</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Abstract</span>
                                 <a href="#getReferenceOrgans" >getReferenceOrgans</a>
                             </li>
                         </ul>
@@ -107,6 +111,75 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCellSummaries"></a>
+                    <span class="name">
+                        <span class="modifier">Abstract</span>
+                        <span ><b>getCellSummaries</b></span>
+                        <a href="#getCellSummaries"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getCellSummaries(id)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/lib/tissue-ftu/tissue-ftu.service.ts:22</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get summary data</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -173,6 +246,9 @@ export const REFERENCE_ORGAN &#x3D; z.object({
 export abstract class TissueFtuService {
   /** abstract Method to fetch reference organs */
   abstract getReferenceOrgans(): Observable&lt;ReferenceOrgan[]&gt;;
+
+  /** Get summary data */
+  abstract getCellSummaries(id: unknown): Observable&lt;unknown&gt;;
 }
 </code></pre>
     </div>

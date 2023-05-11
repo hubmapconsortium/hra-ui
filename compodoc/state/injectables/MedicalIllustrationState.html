@@ -145,8 +145,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/lib/medical-illustration/medical-illustration.state.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/lib/medical-illustration/medical-illustration.state.ts:81</a></div>
                 </td>
             </tr>
 
@@ -222,8 +222,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="56"
-                            class="link-to-prism">src/lib/medical-illustration/medical-illustration.state.ts:56</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/lib/medical-illustration/medical-illustration.state.ts:62</a></div>
                 </td>
             </tr>
 
@@ -310,8 +310,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="64"
-                            class="link-to-prism">src/lib/medical-illustration/medical-illustration.state.ts:64</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/lib/medical-illustration/medical-illustration.state.ts:70</a></div>
                 </td>
             </tr>
 
@@ -398,8 +398,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/lib/medical-illustration/medical-illustration.state.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/lib/medical-illustration/medical-illustration.state.ts:34</a></div>
                 </td>
             </tr>
 
@@ -486,8 +486,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/lib/medical-illustration/medical-illustration.state.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/lib/medical-illustration/medical-illustration.state.ts:44</a></div>
                 </td>
             </tr>
 
@@ -537,7 +537,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <b>Returns : </b>    <code>Observable&lt;void&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -559,6 +559,7 @@ import { TissueFtuService } from &#x27;@hra-ui/services&#x27;;
 import { Action, State, StateContext } from &#x27;@ngxs/store&#x27;;
 import { parse } from &#x27;papaparse&#x27;;
 import { Observable, tap } from &#x27;rxjs&#x27;;
+import { Load } from &#x27;../cell-summary/cell-summary.actions&#x27;;
 import { LoadReferenceOrgans, SetActiveNode, SetMapping, SetUri, SetUriFromIRI } from &#x27;./medical-illustration.actions&#x27;;
 import { MapEntry, MedicalIllustrationModel } from &#x27;./medical-illustration.model&#x27;;
 
@@ -595,13 +596,18 @@ export class MedicalIllustrationState {
    * @param param1 Action object with iri
    */
   @Action(SetUriFromIRI)
-  setUriFromIRI({ patchState, getState }: MedicalIllustrationContext, { iri }: SetUriFromIRI): void {
+  setUriFromIRI(
+    { patchState, getState, dispatch }: MedicalIllustrationContext,
+    { iri }: SetUriFromIRI
+  ): Observable&lt;void&gt; {
     const referenceOrgans &#x3D; getState().referenceOrgans;
     const ref &#x3D; referenceOrgans?.find((ref) &#x3D;&gt; ref.representation_of &#x3D;&#x3D;&#x3D; iri);
     if (ref &#x3D;&#x3D;&#x3D; undefined) {
       throw new Error(&#x27;Reference organ with match iri not found&#x27;);
     }
     patchState({ url: ref.object.file });
+
+    return dispatch(new Load(ref.object.file));
   }
 
   /**

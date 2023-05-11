@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>components-behavioral</title>
+        <title>state</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">components-behavioral</a>
+            <a href="../" class="navbar-brand">state</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -47,7 +47,7 @@
   <li>Interfaces</li>
   <li
   >
-  BiomarkerTab</li>
+  SizePoint</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -65,7 +65,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/lib/biomarker-details/biomarker-details.component.ts</code>
+            <code>src/lib/cell-summary/cell-summary.model.ts</code>
         </p>
 
 
@@ -73,7 +73,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Tab data</p>
+                <p>Size legend item</p>
 
             </p>
 
@@ -97,15 +97,9 @@
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#tableColumns" 
+                                        <a href="#radius" 
 >
-                                            tableColumns
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#tableRows" 
->
-                                            tableRows
+                                            radius
                                         </a>
                                 </li>
                             </ul>
@@ -152,7 +146,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Tab label</p>
+                                    <div class="io-description"><p>Label (percentage)</p>
 </div>
                                 </td>
                             </tr>
@@ -162,9 +156,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="tableColumns"></a>
-                                        <span class="name "><b>tableColumns</b>
-                                            <a href="#tableColumns">
+                                        <a name="radius"></a>
+                                        <span class="name "><b>radius</b>
+                                            <a href="#radius">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -172,7 +166,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>tableColumns:     <code>string[]</code>
+                                        <code>radius:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -180,7 +174,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>    <code>string[]</code>
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                                         </td>
                                     </tr>
@@ -191,46 +185,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Table column labels</p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="tableRows"></a>
-                                        <span class="name "><b>tableRows</b>
-                                            <a href="#tableRows">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>tableRows:     <code>DataRow&lt;DataCell&gt;[]</code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code>DataRow&lt;DataCell&gt;[]</code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>Table rows</p>
+                                    <div class="io-description"><p>Radius in rems</p>
 </div>
                                 </td>
                             </tr>
@@ -241,90 +196,102 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from &#x27;@angular/core&#x27;;
-import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
-import { MatTabsModule } from &#x27;@angular/material/tabs&#x27;;
-import { HoverDirective } from &#x27;@hra-ui/cdk&#x27;;
-import { selectQuerySnapshot, selectSnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
-import { ResourceRegistrySelectors as RR } from &#x27;@hra-ui/cdk/state&#x27;;
-import {
-  GradientLegendComponent,
-  GradientPoint,
-  LabelBoxComponent,
-  SizeLegend,
-  SizeLegendComponent,
-} from &#x27;@hra-ui/components/atoms&#x27;;
-import { BiomarkerTableDataCardComponent, DataItem, SourceListComponent } from &#x27;@hra-ui/components/molecules&#x27;;
-import { BiomarkerTableComponent, DataCell, DataRow } from &#x27;@hra-ui/components/organisms&#x27;;
-import { ResourceIds as Ids, ResourceTypes as RTypes, SourceListSelectors } from &#x27;@hra-ui/state&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { z } from &#x27;zod&#x27;;
 
-/** Tab data */
-export interface BiomarkerTab {
-  /** Tab label */
+/** Type representing a single cell value */
+export type Cell &#x3D; z.infer&lt;typeof CELL_SCHEMA&gt;;
+/** Type representing CELL_SUMMARY_SCHEMA which has labels and entries */
+export type CellSummary &#x3D; z.infer&lt;typeof CELL_SUMMARY_SCHEMA&gt;;
+/** Type representing an aggregate summary of cell values in a group */
+export type Aggregate &#x3D; z.infer&lt;typeof CELL_SUMMARY_AGGREGATE_SCHEMA&gt;;
+/** Type representing a row in an aggregate summary */
+export type AggregateRow &#x3D; Aggregate[string][&#x27;rows&#x27;][number];
+/** Type representing a single entry in a row with cell, biomarker, count and percentage */
+export type AggregateRowEntry &#x3D; AggregateRow[2];
+
+/** Size legend item */
+export interface SizePoint {
+  /** Label (percentage) */
   label: string;
-  /** Table rows */
-  tableRows: DataRow&lt;DataCell&gt;[];
-  /** Table column labels */
-  tableColumns: string[];
+  /** Radius in rems */
+  radius: number;
 }
 
-/** The component displays the biomarker details which includes the details, gradient legends, size legends and source lists*/
-@Component({
-  selector: &#x27;ftu-biomarker-details&#x27;,
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatIconModule,
-    BiomarkerTableDataCardComponent,
-    LabelBoxComponent,
-    GradientLegendComponent,
-    SizeLegendComponent,
-    SourceListComponent,
-    MatTabsModule,
-    BiomarkerTableComponent,
-    HoverDirective,
-  ],
-  templateUrl: &#x27;./biomarker-details.component.html&#x27;,
-  styleUrls: [&#x27;./biomarker-details.component.scss&#x27;],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class BiomarkerDetailsComponent implements OnChanges {
-  /** Nested list of DataItems for each section which is displayed to the user */
-  @Input() data: DataItem[][] &#x3D; [];
+/**
+ * The CellSummaryStateModel interface describes the overall shape of the state for this feature.
+ * It has two properties, summaries and aggregate, both of which are of their corresponding types.
+ */
+export interface CellSummaryStateModel {
+  /** An object where each entry is an object containing information about a single cell and its corresponding biomarker. */
+  summaries: CellSummary;
+  /** An object where each entry contains a label and a table of aggregated data */
+  aggregate: Aggregate;
+}
 
-  /** List of Biomarker tab which includes rows and columns of the table that is to be displayed */
-  @Input() tabs: BiomarkerTab[] &#x3D; [];
+/**
+ * The CELL_SCHEMA has an object that contains an id and a label for the cell,
+ * another object that contains an id and a label for the biomarker, and a count and a percentage that are both numbers.
+ */
+export const CELL_SCHEMA &#x3D; z.object({
+  cell: z.object({
+    id: z.string(),
+    label: z.string(),
+  }),
+  biomarker: z.object({
+    id: z.string(),
+    label: z.string(),
+  }),
+  count: z.number(),
+  percentage: z.number(),
+  metadata: z
+    .object({
+      label: z.string(),
+      value: z.string(),
+    })
+    .array()
+    .array(),
+});
 
-  /** Info to be shown on the tooltip for Gradient Legend */
-  readonly gradientHoverInfo &#x3D; selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);
+/**
+ * The CELL_SUMMARY_SCHEMA constant is a record of CellSummary objects,
+ * where each CellSummary object contains a label and an array of CELL_SCHEMA objects.
+ */
+export const CELL_SUMMARY_SCHEMA &#x3D; z.record(
+  z.object({
+    label: z.string(),
+    entries: CELL_SCHEMA.array(),
+  })
+);
 
-  /** Info to be shown on the tooltip for Size Legend */
-  readonly sizeHoverInfo &#x3D; selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo);
+/**
+ * The CELL_SUMMARY_AGGREGATE_SCHEMA is a record of Aggregate objects, where each Aggregate object contains a label,
+ * an array of columns that are strings, and an array of rows that are AggregateRow objects.
+ */
+export const CELL_SUMMARY_AGGREGATE_SCHEMA &#x3D; z.record(
+  z.object({
+    label: z.string(),
+    columns: z.string().array(),
+    rows: z
+      .tuple([z.string(), z.number().optional()])
+      .rest(
+        z
+          .object({
+            color: z.string(),
+            size: z.number(),
+            data: CELL_SCHEMA.shape[&#x27;metadata&#x27;],
+          })
+          .optional()
+      )
+      .array(),
+  })
+);
 
-  /** The current selected tab from the cell types */
-  activeTab &#x3D; &#x27;&#x27;;
-
-  /** Indicates if the table is fully shown, defaults to false*/
-  isTableFullScreen &#x3D; false;
-
-  /** Gradient colors along with their stop points */
-  readonly gradients &#x3D; selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, &#x27;points&#x27; as const, [])&lt;
-    GradientPoint[]
-  &gt;;
-
-  /** Taking input for the radius of the circle and the label to be displayed. */
-  readonly sizes &#x3D; selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, &#x27;sizes&#x27; as const, [])&lt;SizeLegend[]&gt;;
-
-  /** List of sources with titles and links displayed to the user */
-  readonly source &#x3D; selectSnapshot(SourceListSelectors.getSourceList);
-
-  /** Changes the selected tab when the user clicks on any other tab */
-  ngOnChanges(changes: SimpleChanges): void {
-    if (&#x27;tabs&#x27; in changes) {
-      this.activeTab &#x3D; this.tabs[0].label;
-    }
-  }
+/** An interface of gradient colors along with their percentages for the gradient bar. */
+export interface GradientPoint {
+  /** Gradient color at a specific percentage */
+  color: string;
+  /** Percentage point along the gradient bar */
+  percentage: number;
 }
 </code></pre>
     </div>
@@ -363,7 +330,7 @@ export class BiomarkerDetailsComponent implements OnChanges {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'BiomarkerTab.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'SizePoint.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
