@@ -1,91 +1,54 @@
-import { Component, ElementRef, inject, NgModuleRef, ViewContainerRef, ViewRef } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
+import { ElementRef, inject, NgModuleRef, ViewContainerRef } from '@angular/core';
+import { Observable } from 'rxjs';
+import { DestroyHostComponent } from './destroy-host.component';
+import { DestructorScope, ScopedDestructorSubject } from './destructor-subject';
 
-/** Object on which cleanup callbacks can be registered */
-interface DestructorScope {
-  /**
-   * Register a callback to perform cleanup during scope destruction
-   * @param cb Cleanup callback
-   */
-  onDestroy(cb: () => void): void;
-}
+/** Cached destructor observables */
+const DESTRUCTOR_CACHE = new WeakMap<object, Observable<void>>();
 
 /**
- * Subject that automatically registers a cleanup function on a scope
- * During cleanup the subject will emit a single void value and then complete
+ * Get the first defined value returned by a generator
+ *
+ * @param genFn Generator function taking no arguments
+ * @returns The first non-null value
+ * @throws If the generator doesn't yield any non-null values
  */
-class ScopedDestroySubject extends ReplaySubject<void> {
-  /**
-   * Create a new subject that automatically registers cleanup
-   * @param scope Scope which to link the new subject
-   */
-  constructor(scope: DestructorScope) {
-    super(1);
-
-    scope.onDestroy(() => {
-      this.next();
-      this.complete();
-    });
-  }
-}
-
-/** Empty host component */
-@Component({
-  selector: 'ftu-on-destroy-host',
-  standalone: true,
-  template: '',
-  styles: [':host { display: block; }'],
-})
-class OnDestroyHostComponent {
-  /** Creates a new component instance that immediately removes its own DOM element */
-  constructor() {
-    const el = inject(ElementRef).nativeElement as HTMLElement | null;
-    el?.remove();
-  }
-}
-
-/** OnDestroy observables index by their owning scope */
-const scopedSubjects = new WeakMap<DestructorScope, Observable<void>>();
-
-/**
- * Tries to find and return an existing observable associated with a scope
- * @param scope Owning scope
- * @returns The observable if found, else undefined
- */
-function findScopedSubject(scope: DestructorScope): Observable<void> | undefined {
-  return scopedSubjects.get(scope);
-}
-
-/**
- * Tries to find an existing observable for the scope
- * If not found a new observable is created and associated with the scope
- * @param scope Owning scope
- * @returns The existing or new observable
- */
-function findOrCreateScopedSubject(scope: DestructorScope): Observable<void> {
-  let result = scopedSubjects.get(scope);
-  if (!result) {
-    result = new ScopedDestroySubject(scope).asObservable();
-    scopedSubjects.set(scope, result);
-  }
-
-  return result;
-}
-
-/**
- * Tries to find an existing observable associated with a view container by searching all owned views
- * @param ref View container to search
- * @returns An observable if found, else undefined
- */
-function findScopedSubjectInView(ref: ViewContainerRef): Observable<void> | undefined {
-  for (let index = 0, length = ref.length; index < length; index++) {
-    const result = findScopedSubject(ref.get(index) as ViewRef);
-    if (result) {
-      return result;
+function firstDefinedValue<T>(genFn: () => Generator<T | null | undefined>): T {
+  for (const value of genFn()) {
+    if (value != null) {
+      return value;
     }
   }
 
-  return undefined;
+  throw new Error('Unreachable');
+}
+
+/**
+ * Finds a stable object in the current injection context to be
+ * used as a key in the destructor cache
+ *
+ * @returns An object
+ */
+function findStableKeyObject(): object {
+  return firstDefinedValue(function* () {
+    yield inject(ElementRef, { optional: true })?.nativeElement;
+    yield inject(ViewContainerRef, { optional: true });
+    yield inject(NgModuleRef);
+  });
+}
+
+/**
+ * Finds the nearest destructor scope object in the current injection context
+ *
+ * @returns The scope on which cleanup can be attached
+ */
+function findDestructorScope(): DestructorScope {
+  return firstDefinedValue(function* () {
+    const vcr = inject(ViewContainerRef, { optional: true });
+    yield vcr && DestroyHostComponent.create(vcr);
+
+    yield inject(NgModuleRef);
+  });
 }
 
 /**
@@ -108,17 +71,14 @@ function findScopedSubjectInView(ref: ViewContainerRef): Observable<void> | unde
  *
  * @returns An observable that emits and completes when the component/directive/etc. is destroyed
  */
-export function injectOnDestroy(): Observable<void> {
-  const ref = inject(ViewContainerRef, { optional: true });
-  if (!ref) {
-    return findOrCreateScopedSubject(inject(NgModuleRef));
+export function injectDestroy$(): Observable<void> {
+  const key = findStableKeyObject();
+  let destructor = DESTRUCTOR_CACHE.get(key);
+  if (!destructor) {
+    const scope = findDestructorScope();
+    destructor = new ScopedDestructorSubject(scope).asObservable();
+    DESTRUCTOR_CACHE.set(key, destructor);
   }
 
-  const result = findScopedSubjectInView(ref);
-  if (result) {
-    return result;
-  }
-
-  const component = ref.createComponent(OnDestroyHostComponent);
-  return findOrCreateScopedSubject(component.hostView);
+  return destructor;
 }

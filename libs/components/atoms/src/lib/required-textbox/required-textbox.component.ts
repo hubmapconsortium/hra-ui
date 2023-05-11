@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { injectOnDestroy } from '@hra-ui/cdk/injectors';
+import { injectDestroy$ } from '@hra-ui/cdk/injectors';
 import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { map, takeUntil } from 'rxjs';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,11 +24,11 @@ export class RequiredTextboxComponent {
   /** A label for the textarea field */
   @Input() label = '';
 
-  /** Emits the new message when the input changes or null if the message is invalid  */
-  @Output() readonly messageChange = new EventEmitter<string | null>();
+  /** Emits the new message when the input changes or undefined if the message is invalid  */
+  @Output() readonly messageChange = new EventEmitter<string | undefined>();
 
   /** Observable emitting when the component is destroyed */
-  readonly destroy$ = injectOnDestroy();
+  readonly destroy$ = injectDestroy$();
 
   /**  A control to validate if the message field is empty */
   readonly control = new FormControl('', {
@@ -42,8 +42,8 @@ export class RequiredTextboxComponent {
     control.valueChanges
       .pipe(
         takeUntil(destroy$),
-        map((value) => (control.valid ? value : null))
+        map((value) => (control.valid ? value : undefined))
       )
-      .subscribe((value) => this.messageChange.emit(value));
+      .subscribe((value) => this.messageChange.emit(value as string | undefined));
   }
 }

@@ -1,56 +1,89 @@
+@use 'utils';
+@use 'variables' as vars;
+
 :host {
   display: flex;
   align-items: center;
+  height: 5rem;
+  padding: 0 2rem 0 1rem;
 
-  .product-title {
-    color: #990000;
-    margin-right: 1.5rem;
+  @include utils.define-flex-filler();
+
+  h1 {
+    // Reset margins for h1 elements
+    margin: 0;
   }
 
-  a {
-    cursor: pointer;
+  .product {
     display: flex;
+    align-items: center;
+    text-decoration: none;
+    // Style the ripple animation
+    padding: 0 1rem;
+    border-radius: 0.25rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .text {
+      margin-left: 1rem;
+      font-weight: 600;
+      color: vars.$accent-rgb;
+    }
   }
 
-  .app-title {
-    font-weight: 400;
-    color: #243142;
+  .app {
+    margin-left: 0.5rem;
   }
 
   .about {
-    font-weight: 700;
-    font-size: 1rem;
-    color: #006298;
-    text-decoration: underline;
+    width: 9rem;
+    height: 3rem;
+
+    .icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      font-size: 1.5rem;
+    }
   }
 
-  .filler {
-    flex-grow: 1;
-  }
+  @media (max-width: 30rem) {
+    height: 4.5rem;
 
-  .product-logo-image {
-    height: 1.5rem;
-    margin-right: 1rem;
-  }
-
-  .info-image {
-    margin-right: 0.5rem;
-  }
-
-  @media (max-width: 480px) {
-    .product-title,
-    .about {
-      display: none;
+    .product .text,
+    .about .text {
+      @include utils.sr-only();
     }
 
-    .app-title {
+    .product {
+      height: 2.5rem;
+      padding: 0 0.25rem;
+
+      .logo {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+
+    .app {
       font-size: 1rem;
-      color: #243142;
-      align-items: center;
+      line-height: 1.5rem;
     }
 
-    .product-logo-image {
-      margin-right: 0.5rem;
+    .about {
+      min-width: 2.5rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      padding: 0;
+
+      .icon {
+        margin: 0;
+      }
     }
+  }
+
+  @media (max-width: 20rem) {
+    padding: 0;
   }
 }

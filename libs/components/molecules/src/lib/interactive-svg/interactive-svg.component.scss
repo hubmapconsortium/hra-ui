@@ -1,0 +1,27 @@
+.tooltip {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+[id^='Crosswalk'] {
+  :is(path, polygon, polyline) {
+    fill: transparent;
+    stroke: transparent;
+  }
+
+  .hover-active & g:hover > :is(path, polygon, polyline) {
+    fill: hsl(0deg 100% 50%);
+    mix-blend-mode: saturation;
+  }
+
+  .hover-active & g > g:hover {
+    :is(path, polygon, polyline) {
+      fill: hsl(0deg 100% 50%);
+      mix-blend-mode: saturation;
+    }
+  }
+}

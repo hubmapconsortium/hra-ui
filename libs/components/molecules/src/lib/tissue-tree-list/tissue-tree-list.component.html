@@ -1,0 +1,43 @@
+<mat-tree [dataSource]="dataSource" [treeControl]="control" class="tree">
+  <mat-tree-node
+    *matTreeNodeDef="let node; let level = level"
+    [matTreeNodePadding]="level"
+    matTreeNodePaddingIndent="64"
+    [class.selected]="node.data === selected"
+    class="row"
+    tabIndex="0"
+  >
+    <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>
+  </mat-tree-node>
+
+  <mat-tree-node
+    *matTreeNodeDef="let node; let level = level; when: hasChild"
+    class="row"
+    [class.selected]="node.data === selected"
+  >
+    <button mat-icon-button matTreeNodeToggle class="toggle" [attr.aria-label]="'Toggle ' + node.label">
+      <mat-icon>
+        {{ control.isExpanded(node) ? 'keyboard_arrow_up' : 'chevron_right' }}
+      </mat-icon>
+    </button>
+
+    <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>
+  </mat-tree-node>
+</mat-tree>
+
+<ng-template let-label="label" let-data="data" #label>
+  <div class="label-container" matRipple [matRippleDisabled]="!data.link">
+    <a
+      *ngIf="data.link; else noLink"
+      [hraLink]="data.link"
+      [queryParams]="{ id: data.id }"
+      class="link"
+      (click)="selectNode(data)"
+    >
+      {{ label }}
+    </a>
+    <ng-template #noLink>
+      <span>{{ label }}</span>
+    </ng-template>
+  </div>
+</ng-template>

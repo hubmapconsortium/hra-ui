@@ -1,0 +1,27 @@
+<a class="product-logo">
+  <img class="product-logo-image" [src]="productLogoUrl" alt="Prodoct Logo" />
+  <h2 class="product-title">{{ productTitle }}</h2>
+</a>
+
+<button class="close" mat-icon-button (click)="closeClick.emit()">
+  <mat-icon>close</mat-icon>
+</button>
+
+<hra-email-input class="email" placeholder="Example@domain.com" (emailChange)="updateData('email', $event)">
+</hra-email-input>
+
+<hra-required-input label="Subject" (inputChange)="updateData('subject', $event)" class="subject-field">
+</hra-required-input>
+
+<hra-required-textbox
+  class="message-field"
+  label="Message"
+  placeholder="Enter your message here"
+  (messageChange)="updateData('message', $event)"
+>
+</hra-required-textbox>
+
+<markdown class="desc" data="Please allow two business days for a response to each inquiry."></markdown>
+
+<button mat-flat-button class="submit" color="primary" [disabled]="disableSubmit" (click)="submit()">Submit</button>
+<button mat-stroked-button class="cancel" color="accent" (click)="closeClick.emit()">Cancel</button>

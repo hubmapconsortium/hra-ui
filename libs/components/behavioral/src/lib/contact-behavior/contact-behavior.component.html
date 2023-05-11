@@ -1,0 +1,17 @@
+<hra-contact-modal
+  [productLogoUrl]="productLogoUrl()"
+  [productTitle]="productTitle()"
+  (submitClick)="submit($event)"
+  (closeClick)="close()"
+>
+</hra-contact-modal>
+
+<ng-template #postMessage>
+  <hra-info-modal
+    [productLogoUrl]="productLogoUrl()"
+    [productTitle]="productTitle()"
+    [description]="description()"
+    (closeClick)="close()"
+  >
+  </hra-info-modal>
+</ng-template>

@@ -1,4 +1,22 @@
+@use 'angular-material-css-vars/src/lib/variables' as mat-css-vars;
+@use 'angular-material-css-vars/src/lib/public-util' as mat-css-utilities;
 @use 'reset';
 @use 'theming';
+@use 'overrides';
+@import 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap';
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
-@include theming.init();
+
+$mat-css-default-light-theme: map-merge(
+  mat-css-vars.$default-light-theme,
+  (
+    --palette-primary-100: mat-css-utilities.hex-to-rgb(#c6ecf6),
+    --palette-primary-500: mat-css-utilities.hex-to-rgb(#006298),
+    --palette-primary-700: mat-css-utilities.hex-to-rgb(#00385f),
+    --palette-accent-A100: mat-css-utilities.hex-to-rgb(#fff7f8),
+    --palette-accent-A200: mat-css-utilities.hex-to-rgb(#990000),
+    --palette-warn-500: mat-css-utilities.hex-to-rgb(#dc231e),
+  )
+);
+
+@include theming.init($default-theme: $mat-css-default-light-theme);
+@include overrides.init();

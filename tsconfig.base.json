@@ -24,6 +24,9 @@
       "@hra-ui/cdk/injectors": [
         "libs/cdk/injectors/src/index.ts"
       ],
+      "@hra-ui/cdk/state": [
+        "libs/cdk/state/src/index.ts"
+      ],
       "@hra-ui/components/atoms": [
         "libs/components/atoms/src/index.ts"
       ],
@@ -35,6 +38,9 @@
       ],
       "@hra-ui/components/organisms": [
         "libs/components/organisms/src/index.ts"
+      ],
+      "@hra-ui/services": [
+        "libs/services/src/index.ts"
       ],
       "@hra-ui/state": [
         "libs/state/src/index.ts"

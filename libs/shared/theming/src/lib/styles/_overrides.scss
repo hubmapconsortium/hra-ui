@@ -1,0 +1,130 @@
+@use 'variables' as vars;
+
+@mixin init() {
+  @at-root {
+    button.mdc-button {
+      font-weight: 700;
+      font-size: 1rem;
+
+      &.mat-primary {
+        background-color: vars.$primary-rgb;
+        color: vars.$primary-contrast-rgb;
+      }
+
+      &.mdc-button:focus {
+        background-color: vars.$primary-rgb;
+        border: 0.25rem solid #ffaa00;
+      }
+
+      &.mdc-button:hover {
+        background-color: vars.$primary-darker-rgb;
+      }
+
+      &.mdc-button:active {
+        background-color: white;
+        border: 0.125rem solid vars.$primary-darker-rgb;
+        color: white;
+      }
+
+      &.mdc-button:active span.mat-mdc-button-ripple {
+        background-color: vars.$primary-darker-rgb;
+        margin: 0.25rem;
+      }
+
+      &.mdc-button:disabled {
+        background-color: vars.$primary-lighter-rgb;
+        color: vars.$primary-rgb;
+      }
+
+      &.mat-accent {
+        background-color: vars.$primary-contrast-rgb;
+        border: 0.125rem vars.$primary-lighter-rgb solid;
+        color: vars.$primary-rgb;
+      }
+
+      &.mat-accent:focus {
+        background-color: white;
+        color: vars.$primary-rgb;
+        border: 0.25rem solid #ffaa00;
+      }
+
+      &.mat-accent:hover {
+        background-color: vars.$primary-lighter-rgb;
+        border: 0.125rem vars.$primary-lighter-rgb solid;
+        color: vars.$primary-darker-rgb;
+      }
+
+      &.mat-accent:active {
+        background-color: white;
+        border: 0.125rem solid vars.$primary-rgb;
+        color: white;
+      }
+
+      &.mat-accent:active span.mat-mdc-button-ripple {
+        background-color: vars.$primary-rgb;
+        margin: 0.25rem;
+      }
+
+      &.mat-accent:disabled {
+        background-color: #e7e7e5;
+        border: 0.063rem #9d9e9a solid;
+      }
+
+      .mat-mdc-button-persistent-ripple::before {
+        opacity: 0 !important;
+      }
+    }
+
+    a.mdc-button {
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: underline;
+
+      &.mdc-button {
+        text-decoration-color: vars.$primary-rgb;
+        color: vars.$primary-rgb;
+      }
+
+      &.mdc-button:focus {
+        color: vars.$primary-rgb;
+        border: 0.25rem solid #ffaa00;
+      }
+
+      &.mdc-button:hover {
+        background: none;
+        text-decoration-color: vars.$primary-darker-rgb;
+        color: vars.$primary-darker-rgb;
+      }
+
+      &.mdc-button:active {
+        border: solid vars.$primary-darker-rgb;
+        text-decoration-color: #990000;
+        color: #990000;
+      }
+
+      &.mdc-button:active span.mat-mdc-button-ripple {
+        background-color: white;
+      }
+
+      &.mdc-button[disabled] {
+        color: #9d9e9a;
+        text-decoration: underline #9d9e9a;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      width: 0.5rem;
+      height: 0.5rem;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f8f9fa;
+      border: 0.063rem solid #d3d3d3;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #a0abb4;
+      border-radius: 0.5rem;
+    }
+  }
+}

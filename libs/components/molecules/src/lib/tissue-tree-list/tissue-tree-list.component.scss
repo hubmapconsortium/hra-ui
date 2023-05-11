@@ -1,0 +1,37 @@
+@use 'variables' as vars;
+
+:host {
+  display: block;
+
+  .row {
+    min-height: 2rem;
+
+    &.selected {
+      background-color: vars.$accent-lighter-rgb;
+    }
+
+    .toggle {
+      width: 2rem;
+      height: 2rem;
+      padding: 0.25rem;
+    }
+
+    .label-container {
+      display: flex;
+      align-items: center;
+      height: 2rem;
+      padding: 0 1rem;
+      border-radius: 0.25rem;
+
+      .link {
+        cursor: pointer;
+        text-decoration: none;
+        color: rgba(vars.$dark-primary-text);
+      }
+    }
+
+    &.selected .label-container .link {
+      color: vars.$accent-rgb;
+    }
+  }
+}

@@ -1,6 +1,8 @@
 @use 'utils';
 
 :host {
+  display: block;
+
   .mat-mdc-cell {
     vertical-align: top;
     border: none;

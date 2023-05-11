@@ -1,0 +1,63 @@
+<div *ngIf="isSmall">
+  <a class="product-logo-link">
+    <img class="product-logo-image" [src]="productLogoUrl" alt="Prodoct Logo" />
+    <div class="product-title">{{ productTitle }}</div>
+  </a>
+</div>
+<div class="filler" *ngIf="isSmall"></div>
+
+<button class="button" mat-stroked-button [hraLink]="illustrationMetadata">
+  <mat-icon>info_outlined</mat-icon>
+  Ilustration
+</button>
+
+<button
+  class="button"
+  mat-stroked-button
+  (click)="downloadListOpen = !downloadListOpen"
+  type="button"
+  cdkOverlayOrigin
+  #anchor="cdkOverlayOrigin"
+>
+  <mat-icon>download</mat-icon>
+  Download
+</button>
+
+<button class="button" mat-stroked-button [hraLink]="embed">
+  <mat-icon>code</mat-icon>
+  Embed
+</button>
+
+<div class="filler" *ngIf="!isSmall"></div>
+
+<button class="button" mat-stroked-button (click)="contactClick.emit()">
+  <mat-icon>mail_outlined</mat-icon>
+  Contact
+</button>
+
+<button class="button" mat-stroked-button [hraLink]="hraPortal">
+  <mat-icon>open_in_new</mat-icon>
+  HRA Portal
+</button>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="anchor"
+  [cdkConnectedOverlayOpen]="downloadListOpen"
+  [cdkConnectedOverlayPositions]="DOWNLOADS_LIST_POSITION"
+  [cdkConnectedOverlayOffsetX]="0"
+  cdkConnectedOverlayHasBackdrop="false"
+  cdkConnectedOverlayPush="false"
+  cdkConnectedOverlayPanelClass="download-options-panel"
+  (overlayOutsideClick)="downloadListOpen = false"
+>
+  <mat-action-list>
+    <button
+      mat-list-item
+      *ngFor="let format of downloadFormats"
+      (click)="downloadListOpen = false; download.emit(format)"
+    >
+      {{ format.label }}
+    </button>
+  </mat-action-list>
+</ng-template>

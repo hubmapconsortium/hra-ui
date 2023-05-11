@@ -1,0 +1,26 @@
+@use 'variables' as vars;
+
+:host {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 21rem calc(100% - 21rem);
+  grid-template-rows: 5rem auto;
+  grid-template-areas:
+    'header header'
+    'sidebar content';
+
+  .header {
+    grid-area: header;
+    border-bottom: 0.0625rem solid rgba(vars.$dark-dividers);
+  }
+
+  .sidebar {
+    grid-area: sidebar;
+    border-right: 0.0625rem solid rgba(vars.$dark-dividers);
+  }
+
+  .page-content {
+    grid-area: content;
+  }
+}
