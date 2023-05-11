@@ -1,0 +1,1026 @@
+{
+    "pipes": [],
+    "interfaces": [],
+    "injectables": [],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "BiomarkerDetailsComponent",
+            "id": "component-BiomarkerDetailsComponent-45221c1ec8a85622b19bf947835305069c08adf5eb6798608c6db43afe6c019e016730de8dbe22a50591f232bbec1d7bab5bb1f8db3c993b53f2a0641e067f53",
+            "file": "src/lib/biomarker-details/biomarker-details.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ftu-biomarker-details",
+            "styleUrls": [
+                "./biomarker-details.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./biomarker-details.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "gradientHoverInfo",
+                    "defaultValue": "selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Info to be shown on the tooltip for Gradient Legend</p>\n",
+                    "line": 45,
+                    "rawdescription": "\nInfo to be shown on the tooltip for Gradient Legend",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "gradients",
+                    "defaultValue": "selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, 'points' as const, [])<\n    GradientPoint[]\n  >",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Gradient colors along with their stop points</p>\n",
+                    "line": 54,
+                    "rawdescription": "\nGradient colors along with their stop points",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "isTableFullScreen",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Indicates if the table is fully shown, defaults to false</p>\n",
+                    "line": 51,
+                    "rawdescription": "\nIndicates if the table is fully shown, defaults to false"
+                },
+                {
+                    "name": "sizeHoverInfo",
+                    "defaultValue": "selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Info to be shown on the tooltip for Size Legend</p>\n",
+                    "line": 48,
+                    "rawdescription": "\nInfo to be shown on the tooltip for Size Legend",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "sizes",
+                    "defaultValue": "selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Taking input for the radius of the circle and the label to be displayed.</p>\n",
+                    "line": 59,
+                    "rawdescription": "\nTaking input for the radius of the circle and the label to be displayed.",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "source",
+                    "defaultValue": "selectSnapshot(SourceListSelectors.getSourceList)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>List of sources with titles and links displayed to the user</p>\n",
+                    "line": 62,
+                    "rawdescription": "\nList of sources with titles and links displayed to the user",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "tabs",
+                    "defaultValue": "selectSnapshot(CellSummarySelectors.aggregates)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Table tabs</p>\n",
+                    "line": 42,
+                    "rawdescription": "\nTable tabs",
+                    "modifierKind": [
+                        144
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>The component displays the biomarker details which includes the details, gradient legends, size legends and source lists</p>\n",
+            "rawdescription": "\nThe component displays the biomarker details which includes the details, gradient legends, size legends and source lists",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTabsModule } from '@angular/material/tabs';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport {\n  GradientLegendComponent,\n  GradientPoint,\n  LabelBoxComponent,\n  SizeLegend,\n  SizeLegendComponent,\n} from '@hra-ui/components/atoms';\nimport { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/components/molecules';\nimport { BiomarkerTableComponent } from '@hra-ui/components/organisms';\nimport { CellSummarySelectors, ResourceIds as Ids, ResourceTypes as RTypes, SourceListSelectors } from '@hra-ui/state';\n\n/** The component displays the biomarker details which includes the details, gradient legends, size legends and source lists*/\n@Component({\n  selector: 'ftu-biomarker-details',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatIconModule,\n    MatTabsModule,\n\n    BiomarkerTableComponent,\n    BiomarkerTableDataCardComponent,\n    GradientLegendComponent,\n    HoverDirective,\n    LabelBoxComponent,\n    SizeLegendComponent,\n    SourceListComponent,\n  ],\n  templateUrl: './biomarker-details.component.html',\n  styleUrls: ['./biomarker-details.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerDetailsComponent {\n  /** Table tabs */\n  readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);\n\n  /** Info to be shown on the tooltip for Gradient Legend */\n  readonly gradientHoverInfo = selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);\n\n  /** Info to be shown on the tooltip for Size Legend */\n  readonly sizeHoverInfo = selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo);\n\n  /** Indicates if the table is fully shown, defaults to false*/\n  isTableFullScreen = false;\n\n  /** Gradient colors along with their stop points */\n  readonly gradients = selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, 'points' as const, [])<\n    GradientPoint[]\n  >;\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  readonly sizes = selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>;\n\n  /** List of sources with titles and links displayed to the user */\n  readonly source = selectSnapshot(SourceListSelectors.getSourceList);\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use 'variables' as vars;\n\n:host {\n  display: grid;\n  grid-template-columns: 21.5rem 21.5rem auto;\n  grid-template-rows: 3.5rem auto 3rem 5rem 3.5rem auto;\n  grid-template-areas:\n    'table-header table-header table-header'\n    'table table table'\n    'gradient-legend-header size-legend-header .'\n    'gradient-legend size-legend .'\n    'source-list-header source-list-header source-list-header'\n    'source-list source-list source-list';\n\n  .table-header {\n    grid-area: table-header;\n    border-bottom: 0.063rem solid #d3d3d3;\n  }\n\n  .table {\n    grid-area: table;\n    max-width: 100%;\n    overflow: auto;\n\n    ::ng-deep .table-tab-header {\n      padding-left: 1rem;\n      padding-right: 1rem;\n      border-left: 0.063rem solid #d3d3d3;\n\n      &:last-child {\n        border-right: 0.063rem solid #d3d3d3;\n      }\n\n      &.mdc-tab-indicator--active {\n        background-color: #f8f9fa;\n      }\n    }\n  }\n\n  .legend-header {\n    color: vars.$dark-primary-text;\n    border-top: 0.063rem solid #d3d3d3;\n    border-bottom: 0.063rem solid #d3d3d3;\n    border-right: 0.063rem solid #d3d3d3;\n\n    &.gradient {\n      grid-area: gradient-legend-header;\n    }\n\n    &.size {\n      grid-area: size-legend-header;\n    }\n\n    .icon {\n      margin-left: 0.6rem;\n    }\n  }\n\n  .legend {\n    padding: 1rem 2rem;\n    border-right: 0.063rem solid #d3d3d3;\n\n    &.gradient {\n      grid-area: gradient-legend;\n\n      .content {\n        width: 10rem;\n      }\n    }\n\n    &.size {\n      grid-area: size-legend;\n    }\n  }\n\n  .source-list-header {\n    grid-area: source-list-header;\n    color: vars.$dark-primary-text;\n    border-top: 0.063rem solid #d3d3d3;\n    border-bottom: 0.063rem solid #d3d3d3;\n  }\n\n  .source-list {\n    grid-area: source-list;\n    padding: 1rem 1.125rem;\n\n    .content {\n      width: min-content;\n    }\n  }\n}\n\n::ng-deep .biomarker-details.info-tooltip {\n  display: flex;\n  padding: 1rem 1.5rem;\n  border-radius: 0.5rem;\n  box-shadow: 0.063rem 0.125rem;\n  background-color: vars.$primary-contrast-rgb;\n  max-width: 21rem;\n}\n",
+                    "styleUrl": "./biomarker-details.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<hra-label-box class=\"table-header\">\n  Cell Types by Gene Biomarkers\n  <mat-icon (click)=\"this.isTableFullScreen = !this.isTableFullScreen\" class=\"end\">\n    {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}\n  </mat-icon>\n</hra-label-box>\n\n<mat-tab-group class=\"table\" mat-stretch-tabs=\"false\" color=\"accent\">\n  <mat-tab *ngFor=\"let tab of tabs()\" labelClass=\"table-tab-header\" [label]=\"tab.label\">\n    <hra-biomarker-table [data]=\"tab.rows\" [columns]=\"tab.columns\"></hra-biomarker-table>\n  </mat-tab>\n</mat-tab-group>\n\n<hra-label-box class=\"legend-header gradient\">\n  Biomarker Expression Mean in FTU\n  <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"gradientHoverInfo()\">info_outlined</mat-icon>\n</hra-label-box>\n<div class=\"legend gradient\">\n  <hra-gradient-legend [gradient]=\"gradients()\" class=\"content\"></hra-gradient-legend>\n</div>\n\n<hra-label-box class=\"legend-header size\">\n  Percentage of Cells in FTU\n  <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"sizeHoverInfo()\">info_outlined</mat-icon>\n</hra-label-box>\n<div class=\"legend size\">\n  <hra-size-legend [sizes]=\"sizes()\" class=\"content\"></hra-size-legend>\n</div>\n\n<hra-label-box class=\"source-list-header\">\n  Source Data\n  <mat-icon class=\"end\">expand_more</mat-icon>\n</hra-label-box>\n<div class=\"source-list\">\n  <hra-source-list [sources]=\"source()\" class=\"content\"></hra-source-list>\n</div>\n\n<ng-template #infoTooltip let-tooltip>\n  <div class=\"biomarker-details info-tooltip\">\n    {{ tooltip }}\n  </div>\n</ng-template>\n"
+        },
+        {
+            "name": "ContactBehaviorComponent",
+            "id": "component-ContactBehaviorComponent-86a3fff869f8f5d474d4b1b5ba9b30c99d285f158fe4e8e056992c698ed0a564cf592cac6bcdec4850173379d7cf8b365648ca37dbbe4d95ab3a351335b10715",
+            "file": "src/lib/contact-behavior/contact-behavior.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ftu-contact-behavior",
+            "styleUrls": [
+                "./contact-behavior.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./contact-behavior.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "description",
+                    "defaultValue": "selectQuerySnapshot(RR.anyText, Ids.ContactAcknowledgement)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Information modal message to the user</p>\n",
+                    "line": 29,
+                    "rawdescription": "\nInformation modal message to the user",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "postMessageTemplate",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TemplateRef<void>",
+                    "optional": false,
+                    "description": "<p>A template to post a message</p>\n",
+                    "line": 20,
+                    "rawdescription": "\nA template to post a message",
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'postMessage'"
+                        }
+                    ],
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "productLogoUrl",
+                    "defaultValue": "selectQuerySnapshot(RR.url, Ids.ProductLogoUrl)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Input for product logo URL to displayed on the left side.</p>\n",
+                    "line": 23,
+                    "rawdescription": "\nInput for product logo URL to displayed on the left side.",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "productTitle",
+                    "defaultValue": "selectQuerySnapshot(RR.anyText, Ids.ProductTitle)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Input for product title to displayed on the left side.</p>\n",
+                    "line": 26,
+                    "rawdescription": "\nInput for product title to displayed on the left side.",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "sendMessage",
+                    "defaultValue": "dispatch(ContactActions.SendMessage)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>A dispatcher function to send message entered by user</p>\n",
+                    "line": 32,
+                    "rawdescription": "\nA dispatcher function to send message entered by user",
+                    "modifierKind": [
+                        144
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "close",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 50,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nA function which closes the 'Contact us' dialog and the acknowledgement dialog.",
+                    "description": "<p>A function which closes the &#39;Contact us&#39; dialog and the acknowledgement dialog.</p>\n"
+                },
+                {
+                    "name": "submit",
+                    "args": [
+                        {
+                            "name": "message",
+                            "type": "ContactData",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 44,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nA function which sends/dispatches a message which contains email, subject, and message. And also opens the acknowledgement dialog box.",
+                    "description": "<p>A function which sends/dispatches a message which contains email, subject, and message. And also opens the acknowledgement dialog box.</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": "message",
+                            "type": "ContactData",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>A Component for contact behavior which sends the message entered by the user and shows an acknowledgement</p>\n",
+            "rawdescription": "\nA Component for contact behavior which sends the message entered by the user and shows an acknowledgement",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject, TemplateRef, ViewChild } from '@angular/core';\nimport { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';\nimport { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { ContactData, ContactModalComponent, InfoModalComponent } from '@hra-ui/components/molecules';\nimport { ResourceIds as Ids, ContactActions } from '@hra-ui/state';\n\n/** A Component for contact behavior which sends the message entered by the user and shows an acknowledgement */\n@Component({\n  selector: 'ftu-contact-behavior',\n  standalone: true,\n  imports: [CommonModule, MatDialogModule, ContactModalComponent, InfoModalComponent],\n  templateUrl: './contact-behavior.component.html',\n  styleUrls: ['./contact-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ContactBehaviorComponent {\n  /** A template to post a message */\n  @ViewChild('postMessage') readonly postMessageTemplate!: TemplateRef<void>;\n\n  /** Input for product logo URL to displayed on the left side. */\n  readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);\n\n  /** Input for product title to displayed on the left side. */\n  readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);\n\n  /** Information modal message to the user */\n  readonly description = selectQuerySnapshot(RR.anyText, Ids.ContactAcknowledgement);\n\n  /** A dispatcher function to send message entered by user */\n  readonly sendMessage = dispatch(ContactActions.SendMessage);\n\n  /** A dialog box which shows user an acknowledgement after clicking on submit */\n  private readonly dialog = inject(MatDialog);\n\n  /** A mat form field dialog which accepts the email, subject, and message of user and validates it */\n  private readonly selfRef = inject(MatDialogRef, { optional: true });\n\n  /** Dialog box which references the acknowledgement dialog box */\n  private postRef?: MatDialogRef<void>;\n\n  /** A function which sends/dispatches a message which contains email, subject, and message. And also opens the acknowledgement dialog box. */\n  submit(message: ContactData): void {\n    this.sendMessage(message);\n    this.postRef = this.dialog.open(this.postMessageTemplate);\n  }\n\n  /** A function which closes the 'Contact us' dialog and the acknowledgement dialog.  */\n  close(): void {\n    this.postRef?.close();\n    this.selfRef?.close();\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: block;\n}\n",
+                    "styleUrl": "./contact-behavior.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<hra-contact-modal\n  [productLogoUrl]=\"productLogoUrl()\"\n  [productTitle]=\"productTitle()\"\n  (submitClick)=\"submit($event)\"\n  (closeClick)=\"close()\"\n>\n</hra-contact-modal>\n\n<ng-template #postMessage>\n  <hra-info-modal\n    [productLogoUrl]=\"productLogoUrl()\"\n    [productTitle]=\"productTitle()\"\n    [description]=\"description()\"\n    (closeClick)=\"close()\"\n  >\n  </hra-info-modal>\n</ng-template>\n"
+        },
+        {
+            "name": "FooterBehaviorComponent",
+            "id": "component-FooterBehaviorComponent-fbae356ad7262c7cdfd6b191d84b6193ec9b9ebdb864e862f584a1bb73380361210d61bb2b21d53abffbb78bfe90efaf6ed7de2f7b6fe9966ad80d74ada04043",
+            "file": "src/lib/footer-behavior/footer-behavior.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ftu-footer-behavior",
+            "styleUrls": [
+                "./footer-behavior.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./footer-behavior.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "download",
+                    "defaultValue": "dispatch(DownloadActions.Download)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>A dispatcher function to download file in specified format</p>\n",
+                    "line": 40,
+                    "rawdescription": "\nA dispatcher function to download file in specified format",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "downloadFormats",
+                    "defaultValue": "selectSnapshot(DownloadSelectors.formats)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Selects a snapshot of the current value of the available download formats</p>\n",
+                    "line": 28,
+                    "rawdescription": "\nSelects a snapshot of the current value of the available download formats",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "embed",
+                    "defaultValue": "LinkIds.Embed",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Embed link routing after clicking on Embed</p>\n",
+                    "line": 37,
+                    "rawdescription": "\nEmbed link routing after clicking on Embed",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "hraPortal",
+                    "defaultValue": "LinkIds.Portal",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Hra portal link routing after clicking on HRA Portal</p>\n",
+                    "line": 31,
+                    "rawdescription": "\nHra portal link routing after clicking on HRA Portal",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "illustrationMetadata",
+                    "defaultValue": "LinkIds.Illustration",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Metadata page link routing after clicking on Illustration</p>\n",
+                    "line": 34,
+                    "rawdescription": "\nMetadata page link routing after clicking on Illustration",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "productLogoUrl",
+                    "defaultValue": "selectQuerySnapshot(RR.url, Ids.ProductLogoUrl)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Input for product logo URL to displayed on the left side.</p>\n",
+                    "line": 22,
+                    "rawdescription": "\nInput for product logo URL to displayed on the left side.",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "productTitle",
+                    "defaultValue": "selectQuerySnapshot(RR.anyText, Ids.ProductTitle)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Input for product title to displayed on the left side.</p>\n",
+                    "line": 25,
+                    "rawdescription": "\nInput for product title to displayed on the left side.",
+                    "modifierKind": [
+                        144
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "contact",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 46,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nA function which opens the contact modal dialog box",
+                    "description": "<p>A function which opens the contact modal dialog box</p>\n"
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>A component for footer behavior which provides functionality for various buttons in footer</p>\n",
+            "rawdescription": "\nA component for footer behavior which provides functionality for various buttons in footer",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject } from '@angular/core';\nimport { MatDialog, MatDialogModule } from '@angular/material/dialog';\nimport { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { FooterComponent } from '@hra-ui/components/molecules';\nimport { DownloadActions, DownloadSelectors, ResourceIds as Ids, LinkIds } from '@hra-ui/state';\n\nimport { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';\n\n/** A component for footer behavior which provides functionality for various buttons in footer */\n@Component({\n  selector: 'ftu-footer-behavior',\n  standalone: true,\n  imports: [CommonModule, MatDialogModule, FooterComponent, ContactBehaviorComponent],\n  templateUrl: './footer-behavior.component.html',\n  styleUrls: ['./footer-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FooterBehaviorComponent {\n  /** Input for product logo URL to displayed on the left side. */\n  readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);\n\n  /** Input for product title to displayed on the left side. */\n  readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);\n\n  /** Selects a snapshot of the current value of the available download formats */\n  readonly downloadFormats = selectSnapshot(DownloadSelectors.formats);\n\n  /** Hra portal link routing after clicking on HRA Portal */\n  readonly hraPortal = LinkIds.Portal;\n\n  /** Metadata page link routing after clicking on Illustration */\n  readonly illustrationMetadata = LinkIds.Illustration;\n\n  /** Embed link routing after clicking on Embed */\n  readonly embed = LinkIds.Embed;\n\n  /** A dispatcher function to download file in specified format */\n  readonly download = dispatch(DownloadActions.Download);\n\n  /** A dialog box which shows contact modal after clicking on contact */\n  private readonly dialog = inject(MatDialog);\n\n  /** A function which opens the contact modal dialog box */\n  contact(): void {\n    this.dialog.open(ContactBehaviorComponent);\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: block;\n}\n",
+                    "styleUrl": "./footer-behavior.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<hra-footer\n  [productLogoUrl]=\"productLogoUrl()\"\n  [productTitle]=\"productTitle()\"\n  [hraPortal]=\"hraPortal\"\n  [illustrationMetadata]=\"illustrationMetadata\"\n  [embed]=\"embed\"\n  [downloadFormats]=\"downloadFormats()\"\n  (contactClick)=\"contact()\"\n  (download)=\"download($event.id)\"\n>\n</hra-footer>\n"
+        },
+        {
+            "name": "HeaderBehaviorComponent",
+            "id": "component-HeaderBehaviorComponent-a76f74e70c7aacab4debd2492e1302dc534513cd4598dce499fc0d4f09bf0a16fc333bcb4bb100ffc9dbcb5427533473060400e0ae5eb7051dac7768474ae300",
+            "file": "src/lib/header-behavior/header-behavior.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ftu-header-behavior",
+            "styleUrls": [
+                "./header-behavior.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./header-behavior.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "aboutLink",
+                    "defaultValue": "LinkIds.About",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Input for about link for user click action.</p>\n",
+                    "line": 41,
+                    "rawdescription": "\n\nInput for about link for user click action.\n",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "appTitle",
+                    "defaultValue": "selectQuerySnapshot(RR.anyText, Ids.AppTitle)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Input for app title to show on the left side.</p>\n",
+                    "line": 31,
+                    "rawdescription": "\n\nInput for app title to show on the left side.\n",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "productLogoUrl",
+                    "defaultValue": "selectQuerySnapshot(RR.url, Ids.ProductLogoUrl)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Input for product logo URL to displayed on the left side.</p>\n",
+                    "line": 21,
+                    "rawdescription": "\n\nInput for product logo URL to displayed on the left side.\n",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "productTitle",
+                    "defaultValue": "selectQuerySnapshot(RR.anyText, Ids.ProductTitle)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Input for product title to displayed on the left side.</p>\n",
+                    "line": 26,
+                    "rawdescription": "\n\nInput for product title to displayed on the left side.\n",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "productTitleLink",
+                    "defaultValue": "LinkIds.ProductTitle",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Input for product title link for user click action</p>\n",
+                    "line": 36,
+                    "rawdescription": "\n\nInput for product title link for user click action\n",
+                    "modifierKind": [
+                        144
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Component for Header Behavior</p>\n",
+            "rawdescription": "\nComponent for Header Behavior",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { selectQuerySnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { HeaderComponent } from '@hra-ui/components/molecules';\nimport { ResourceIds as Ids, LinkIds } from '@hra-ui/state';\n\n/** Component for Header Behavior */\n@Component({\n  selector: 'ftu-header-behavior',\n  standalone: true,\n  imports: [CommonModule, HeaderComponent],\n  templateUrl: './header-behavior.component.html',\n  styleUrls: ['./header-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HeaderBehaviorComponent {\n  /**\n   * Input for product logo URL to displayed on the left side.\n   */\n  readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);\n\n  /**\n   * Input for product title to displayed on the left side.\n   */\n  readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);\n\n  /**\n   * Input for app title to show on the left side.\n   */\n  readonly appTitle = selectQuerySnapshot(RR.anyText, Ids.AppTitle);\n\n  /**\n   * Input for product title link for user click action\n   */\n  readonly productTitleLink = LinkIds.ProductTitle;\n\n  /**\n   * Input for about link for user click action.\n   */\n  readonly aboutLink = LinkIds.About;\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: block;\n}\n",
+                    "styleUrl": "./header-behavior.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<hra-header\n  [productLogoUrl]=\"productLogoUrl()\"\n  [productTitle]=\"productTitle()\"\n  [appTitle]=\"appTitle()\"\n  [productTitleLink]=\"productTitleLink\"\n  [aboutLink]=\"aboutLink\"\n>\n</hra-header>\n"
+        },
+        {
+            "name": "LandingPageContentComponent",
+            "id": "component-LandingPageContentComponent-d72615e2863b7f2f08c767452a75c71c9e079687610cd3e50b54f72f11546184f7ad55c5304741d79adb9bb9ea161cdac4253ae6fb1cbbf15040f2814110616a",
+            "file": "src/lib/landing-page-content/landing-page-content.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ftu-landing-page-content",
+            "styleUrls": [
+                "./landing-page-content.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./landing-page-content.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "intersectableEls",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "QueryList<ElementRef>",
+                    "optional": false,
+                    "description": "<p>array of element refs for intersectables</p>\n",
+                    "line": 34,
+                    "rawdescription": "\narray of element refs for intersectables",
+                    "decorators": [
+                        {
+                            "name": "ViewChildren",
+                            "stringifiedArguments": "'intersectable', {read: ElementRef}"
+                        }
+                    ],
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "landingPageDepthDescription",
+                    "defaultValue": "selectQuerySnapshot(RRS.markdown, RIds.LandingPageDepthDescription)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>select snapshot for landing page depth description</p>\n",
+                    "line": 57,
+                    "rawdescription": "\nselect snapshot for landing page depth description",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "landingPageDepthImg",
+                    "defaultValue": "selectQuerySnapshot(RRS.url, RIds.LandingPageDepthImg)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>select snapshot for landing page depth img</p>\n",
+                    "line": 61,
+                    "rawdescription": "\nselect snapshot for landing page depth img",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "landingPageDepthMoreText",
+                    "defaultValue": "selectQuerySnapshot(RRS.anyText, RIds.LandingPageDepthMoreText)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>select snapshot forlanding page depth more text</p>\n",
+                    "line": 59,
+                    "rawdescription": "\nselect snapshot forlanding page depth more text",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "landingPageDepthTitle",
+                    "defaultValue": "selectQuerySnapshot(RRS.anyText, RIds.LandingPageDepthTitle)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>select snapshot for landing page depth title</p>\n",
+                    "line": 55,
+                    "rawdescription": "\nselect snapshot for landing page depth title",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "landingPageIntroDescription",
+                    "defaultValue": "selectQuerySnapshot(RRS.markdown, RIds.LandingPageDescription)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>select snapshot for landing page intro description</p>\n",
+                    "line": 40,
+                    "rawdescription": "\nselect snapshot for landing page intro description",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "landingPageIntroImg",
+                    "defaultValue": "selectQuerySnapshot(RRS.url, RIds.LandingPageIntroImg)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>select snapshot for landing page intro img</p>\n",
+                    "line": 47,
+                    "rawdescription": "\nselect snapshot for landing page intro img",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "landingPageIntroMoreText",
+                    "defaultValue": "selectQuerySnapshot(RRS.anyText, RIds.LandingPageIntroMoreText)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>select snapshot for landing page intro more text</p>\n",
+                    "line": 45,
+                    "rawdescription": "\nselect snapshot for landing page intro more text",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "landingPageIntroPartners",
+                    "defaultValue": "selectQuerySnapshot(RRS.markdown, RIds.LandingPagePartners)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>select snapshot for landing page intro partners</p>\n",
+                    "line": 42,
+                    "rawdescription": "\nselect snapshot for landing page intro partners",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "landingPageIntroTitle",
+                    "defaultValue": "selectQuerySnapshot(RRS.anyText, RIds.LandingPageTitle)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>select snapshot for Landing Page title</p>\n",
+                    "line": 37,
+                    "rawdescription": "\nselect snapshot for Landing Page title",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "LinkIds",
+                    "defaultValue": "LinkIds",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Expose links for use it template</p>\n",
+                    "line": 64,
+                    "rawdescription": "\nExpose links for use it template",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "metrics",
+                    "defaultValue": "selectQuerySnapshot(RRS.field, RIds.Metrics, RTypes.Metrics, 'metrics' as const, [])<MetricItem[]>",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>select snapshot for metrics</p>\n",
+                    "line": 49,
+                    "rawdescription": "\nselect snapshot for metrics",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "metricsLogo",
+                    "defaultValue": "selectQuerySnapshot(RRS.url, RIds.MetricsLogo)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>select snapshot for metrics logo</p>\n",
+                    "line": 53,
+                    "rawdescription": "\nselect snapshot for metrics logo",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "metricsTitle",
+                    "defaultValue": "selectQuerySnapshot(RRS.anyText, RIds.MetricsTitle)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>select snapshot for metrics title</p>\n",
+                    "line": 51,
+                    "rawdescription": "\nselect snapshot for metrics title",
+                    "modifierKind": [
+                        144
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "handleIntersection",
+                    "args": [
+                        {
+                            "name": "entries",
+                            "type": "IntersectionObserverEntry[]",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "observer",
+                            "type": "IntersectionObserver",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 82,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\ncallback function for intersection observer",
+                    "description": "<p>callback function for intersection observer</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": "entries",
+                            "type": "IntersectionObserverEntry[]",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "observer",
+                            "type": "IntersectionObserver",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Component for LandingPageContent Behavior</p>\n",
+            "rawdescription": "\nComponent for LandingPageContent Behavior",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  AfterViewInit,\n  ChangeDetectionStrategy,\n  Component,\n  ElementRef,\n  inject,\n  QueryList,\n  Renderer2,\n  ViewChildren,\n} from '@angular/core';\nimport { injectDestroy$, selectQuerySnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RRS } from '@hra-ui/cdk/state';\nimport {\n  LandingPageInDepthComponent,\n  LandingPageIntroComponent,\n  MetricItem,\n  MetricsComponent,\n} from '@hra-ui/components/molecules';\nimport { LinkIds, ResourceIds as RIds, ResourceTypes as RTypes } from '@hra-ui/state';\n\n/** Component for LandingPageContent Behavior */\n@Component({\n  selector: 'ftu-landing-page-content',\n  standalone: true,\n  imports: [CommonModule, LandingPageIntroComponent, MetricsComponent, LandingPageInDepthComponent],\n  templateUrl: './landing-page-content.component.html',\n  styleUrls: ['./landing-page-content.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class LandingPageContentComponent implements AfterViewInit {\n  /** array of element refs for intersectables */\n  @ViewChildren('intersectable', { read: ElementRef })\n  readonly intersectableEls!: QueryList<ElementRef>;\n\n  /** select snapshot for Landing Page title */\n  readonly landingPageIntroTitle = selectQuerySnapshot(RRS.anyText, RIds.LandingPageTitle);\n\n  /** select snapshot for landing page intro description */\n  readonly landingPageIntroDescription = selectQuerySnapshot(RRS.markdown, RIds.LandingPageDescription);\n  /** select snapshot for landing page intro partners */\n  readonly landingPageIntroPartners = selectQuerySnapshot(RRS.markdown, RIds.LandingPagePartners);\n\n  /** select snapshot for landing page intro more text */\n  readonly landingPageIntroMoreText = selectQuerySnapshot(RRS.anyText, RIds.LandingPageIntroMoreText);\n  /** select snapshot for landing page intro img */\n  readonly landingPageIntroImg = selectQuerySnapshot(RRS.url, RIds.LandingPageIntroImg);\n  /** select snapshot for metrics */\n  readonly metrics = selectQuerySnapshot(RRS.field, RIds.Metrics, RTypes.Metrics, 'metrics' as const, [])<MetricItem[]>;\n  /** select snapshot for metrics title */\n  readonly metricsTitle = selectQuerySnapshot(RRS.anyText, RIds.MetricsTitle);\n  /** select snapshot for metrics logo */\n  readonly metricsLogo = selectQuerySnapshot(RRS.url, RIds.MetricsLogo);\n  /** select snapshot for landing page depth title */\n  readonly landingPageDepthTitle = selectQuerySnapshot(RRS.anyText, RIds.LandingPageDepthTitle);\n  /** select snapshot for landing page depth description */\n  readonly landingPageDepthDescription = selectQuerySnapshot(RRS.markdown, RIds.LandingPageDepthDescription);\n  /** select snapshot forlanding page depth more text */\n  readonly landingPageDepthMoreText = selectQuerySnapshot(RRS.anyText, RIds.LandingPageDepthMoreText);\n  /** select snapshot for landing page depth img */\n  readonly landingPageDepthImg = selectQuerySnapshot(RRS.url, RIds.LandingPageDepthImg);\n\n  /** Expose links for use it template */\n  readonly LinkIds = LinkIds;\n\n  /** Renderer to add class for animation */\n  private readonly renderer = inject(Renderer2);\n  /** destroys observer */\n  private readonly destroy$ = injectDestroy$();\n\n  /** creates an observer after view init */\n  ngAfterViewInit(): void {\n    const observer = new IntersectionObserver(this.handleIntersection.bind(this), {\n      threshold: 0.18,\n    });\n\n    this.intersectableEls.forEach((el) => observer.observe(el.nativeElement));\n    this.destroy$.subscribe(() => observer.disconnect());\n  }\n\n  /** callback function for intersection observer */\n  handleIntersection(entries: IntersectionObserverEntry[], observer: IntersectionObserver): void {\n    for (const { isIntersecting, target } of entries) {\n      if (isIntersecting) {\n        this.renderer.addClass(target, 'visible');\n        observer.unobserve(target);\n      }\n    }\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: block;\n  overflow-x: hidden;\n\n  .intro {\n    margin: 3.5rem 2rem;\n  }\n\n  .metrics {\n    opacity: 0;\n\n    &.visible {\n      animation: fadeIn 2s ease-in forwards;\n    }\n  }\n\n  .in-depth {\n    opacity: 0;\n\n    &.visible {\n      overflow: hidden;\n      animation: slideIn 2s ease-in-out forwards;\n    }\n  }\n}\n\n@keyframes fadeIn {\n  0% {\n    opacity: 0;\n  }\n\n  100% {\n    opacity: 1;\n  }\n}\n\n@keyframes slideIn {\n  0% {\n    transform: translateX(200%);\n    opacity: 1;\n  }\n\n  100% {\n    transform: translateX(0);\n    opacity: 1;\n  }\n}\n",
+                    "styleUrl": "./landing-page-content.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "implements": [
+                "AfterViewInit"
+            ],
+            "templateData": "<hra-landing-page-intro\n  class=\"intro\"\n  [title]=\"landingPageIntroTitle()\"\n  [img]=\"landingPageIntroImg()\"\n  [partners]=\"landingPageIntroPartners()\"\n  [description]=\"landingPageIntroDescription()\"\n  [moreText]=\"landingPageIntroMoreText()\"\n  [moreLink]=\"LinkIds.ExploreFTU\"\n>\n</hra-landing-page-intro>\n<hra-metrics class=\"metrics\" [title]=\"metricsTitle()\" [metrics]=\"metrics()\" [logo]=\"metricsLogo()\" #intersectable>\n</hra-metrics>\n<hra-landing-page-in-depth\n  class=\"in-depth\"\n  [title]=\"landingPageDepthTitle()\"\n  [description]=\"landingPageDepthDescription()\"\n  [moreText]=\"landingPageDepthMoreText()\"\n  [img]=\"landingPageDepthImg()\"\n  [moreLink]=\"LinkIds.LandingPageReadMore\"\n  #intersectable\n>\n</hra-landing-page-in-depth>\n"
+        },
+        {
+            "name": "MedicalIllustrationBehaviorComponent",
+            "id": "component-MedicalIllustrationBehaviorComponent-4d072a2c669b13a37a474273087cb45cdda4f473bc10c094aa6cf71f81f9e6a3c48ee4397549130ffd073b7fca89b671fa38908be91e7101f307dce040c8d05f",
+            "file": "src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ftu-medical-illustration-behavior",
+            "styleUrls": [
+                "./medical-illustration-behavior.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./medical-illustration-behavior.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "currentUrl",
+                    "defaultValue": "selectSnapshot(MedicalIllustrationSelectors.url)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Current illustration url</p>\n",
+                    "line": 22,
+                    "rawdescription": "\n\nCurrent illustration url\n",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "getMapping",
+                    "defaultValue": "selectSnapshot(MedicalIllustrationSelectors.mapping)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Current mapping file</p>\n",
+                    "line": 27,
+                    "rawdescription": "\n\nCurrent mapping file\n",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "updateNode",
+                    "defaultValue": "dispatch(MedicalIllustrationActions.SetActiveNode)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Updates the active node on node hover</p>\n",
+                    "line": 32,
+                    "rawdescription": "\n\nUpdates the active node on node hover\n",
+                    "modifierKind": [
+                        144
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Behavior component for medical illustration component</p>\n",
+            "rawdescription": "\n\nBehavior component for medical illustration component\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { InteractiveSvgComponent } from '@hra-ui/components/molecules';\nimport { MedicalIllustrationActions, MedicalIllustrationSelectors } from '@hra-ui/state';\n\n/**\n * Behavior component for medical illustration component\n */\n@Component({\n  selector: 'ftu-medical-illustration-behavior',\n  standalone: true,\n  imports: [CommonModule, InteractiveSvgComponent],\n  templateUrl: './medical-illustration-behavior.component.html',\n  styleUrls: ['./medical-illustration-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MedicalIllustrationBehaviorComponent {\n  /**\n   * Current illustration url\n   */\n  readonly currentUrl = selectSnapshot(MedicalIllustrationSelectors.url);\n\n  /**\n   * Current mapping file\n   */\n  readonly getMapping = selectSnapshot(MedicalIllustrationSelectors.mapping);\n\n  /**\n   * Updates the active node on node hover\n   */\n  readonly updateNode = dispatch(MedicalIllustrationActions.SetActiveNode);\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: block;\n}\n",
+                    "styleUrl": "./medical-illustration-behavior.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<hra-interactive-svg [url]=\"currentUrl()\" [mapping]=\"getMapping()\" (nodeHover)=\"updateNode($event)\">\n</hra-interactive-svg>\n"
+        },
+        {
+            "name": "TissueLibraryBehaviorComponent",
+            "id": "component-TissueLibraryBehaviorComponent-93b57608533323cc0faeb9dac3062d79932873f60ab75de35b17be69c83c43f3899557a0c57cf3d3653276d6f764b845942c7ed507bff89456893ec1e74317b4",
+            "file": "src/lib/tissue-library-behavior/tissue-library-behavior.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ftu-tissue-library-behavior",
+            "styleUrls": [
+                "./tissue-library-behavior.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./tissue-library-behavior.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "selected",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TissueItem",
+                    "optional": true,
+                    "description": "<p>Selected  of tissue library behavior component</p>\n",
+                    "line": 28,
+                    "rawdescription": "\n\nSelected  of tissue library behavior component\n"
+                },
+                {
+                    "name": "tissues",
+                    "defaultValue": "selectSnapshot(TissueLibrarySelectors.tissues)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Input for tissues data</p>\n",
+                    "line": 24,
+                    "rawdescription": "\n\nInput for tissues data\n",
+                    "modifierKind": [
+                        144
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Component for Tissue Library Behavior</p>\n",
+            "rawdescription": "\n\nComponent for Tissue Library Behavior\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { select$, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { TissueTreeListComponent } from '@hra-ui/components/molecules';\nimport { TissueItem } from '@hra-ui/services';\nimport { MedicalIllustrationSelectors, TissueLibrarySelectors } from '@hra-ui/state';\nimport { LabelBoxComponent } from '@hra-ui/components/atoms';\n\n/**\n * Component for Tissue Library Behavior\n */\n@Component({\n  selector: 'ftu-tissue-library-behavior',\n  standalone: true,\n  imports: [CommonModule, LabelBoxComponent, TissueTreeListComponent],\n  templateUrl: './tissue-library-behavior.component.html',\n  styleUrls: ['./tissue-library-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueLibraryBehaviorComponent {\n  /**\n   * Input for tissues data\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n  /**\n   * Selected  of tissue library behavior component\n   */\n  selected?: TissueItem;\n\n  /**\n   * Sets the TissueItem instance as undefined if\n   * the url is undefined\n   */\n  constructor() {\n    select$(MedicalIllustrationSelectors.url).subscribe((url) => {\n      if (url === undefined) {\n        this.selected = undefined;\n      }\n    });\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: block;\n\n  .label {\n    border-bottom: 1px solid #e2e7e9;\n  }\n}\n",
+                    "styleUrl": "./tissue-library-behavior.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "<p>Sets the TissueItem instance as undefined if\nthe url is undefined</p>\n",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 28,
+                "rawdescription": "\n\nSets the TissueItem instance as undefined if\nthe url is undefined\n"
+            },
+            "templateData": "<hra-label-box class=\"label\">FTU Library</hra-label-box>\n<hra-tissue-tree-list [nodes]=\"tissues()\" [(selected)]=\"selected\"> </hra-tissue-tree-list>\n"
+        }
+    ],
+    "modules": [],
+    "miscellaneous": []
+}

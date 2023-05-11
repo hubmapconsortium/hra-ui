@@ -1,0 +1,190 @@
+{
+    "pipes": [],
+    "interfaces": [
+        {
+            "name": "DataCell",
+            "id": "interface-DataCell-62f34507642e5d63349d97a52c0b9f85751e6a43a155474dc7935c39429324ea1cef411464f8d7d26f459b341f39496408d5a815b66227228c355ef3a3838965",
+            "file": "src/lib/biomarker-table/biomarker-table.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule, MatTableDataSource } from '@angular/material/table';\nimport {\n  BiomarkerTableDataCardComponent,\n  BiomarkerTableDataIconComponent,\n  DataItem,\n} from '@hra-ui/components/molecules';\nimport { HoverDirective } from '@hra-ui/cdk';\n\n/**\n * An interface representing a single cell of the table.\n */\nexport interface DataCell {\n  /** Represents the color of the icon */\n  color: string;\n  /** Represents the size of the icon */\n  size: number;\n  /** Represents the data for the data card */\n  data: DataItem[][];\n}\n\n/** Describes the composition of a single row in the table */\nexport type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];\n\n/** Cell types table, describing the types and quanitites of cells for a specific organ */\n@Component({\n  selector: 'hra-biomarker-table',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatTableModule,\n    BiomarkerTableDataIconComponent,\n    HoverDirective,\n    BiomarkerTableDataCardComponent,\n  ],\n  templateUrl: './biomarker-table.component.html',\n  styleUrls: ['./biomarker-table.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerTableComponent<T extends DataCell> implements OnChanges {\n  /** Columns for the table */\n  @Input() columns: string[] = [];\n\n  /** Rows of the table */\n  @Input() data: DataRow<T>[] = [];\n\n  /** Getter method to provide the definations of the columns */\n  get columnsWithTypeAndCount(): string[] {\n    return ['type', 'count', ...this.columns];\n  }\n\n  /** Source for the table */\n  readonly dataSource = new MatTableDataSource<DataRow<T>>([]);\n\n  /**\n   * sets the data source for the table on every change\n   * @param changes object consisting of change in the Input\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('data' in changes) {\n      this.dataSource.data = this.data;\n    }\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "color",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Represents the color of the icon</p>\n",
+                    "line": 16,
+                    "rawdescription": "\nRepresents the color of the icon"
+                },
+                {
+                    "name": "data",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "DataItem[][]",
+                    "optional": false,
+                    "description": "<p>Represents the data for the data card</p>\n",
+                    "line": 20,
+                    "rawdescription": "\nRepresents the data for the data card"
+                },
+                {
+                    "name": "size",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "<p>Represents the size of the icon</p>\n",
+                    "line": 18,
+                    "rawdescription": "\nRepresents the size of the icon"
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "description": "<p>An interface representing a single cell of the table.</p>\n",
+            "rawdescription": "\n\nAn interface representing a single cell of the table.\n",
+            "methods": []
+        }
+    ],
+    "injectables": [],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "BiomarkerTableComponent",
+            "id": "component-BiomarkerTableComponent-62f34507642e5d63349d97a52c0b9f85751e6a43a155474dc7935c39429324ea1cef411464f8d7d26f459b341f39496408d5a815b66227228c355ef3a3838965",
+            "file": "src/lib/biomarker-table/biomarker-table.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-biomarker-table",
+            "styleUrls": [
+                "./biomarker-table.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./biomarker-table.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "columns",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nColumns for the table",
+                    "description": "<p>Columns for the table</p>\n",
+                    "line": 43,
+                    "type": "string[]",
+                    "decorators": []
+                },
+                {
+                    "name": "data",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nRows of the table",
+                    "description": "<p>Rows of the table</p>\n",
+                    "line": 46,
+                    "type": "DataRow<T>[]",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "dataSource",
+                    "defaultValue": "new MatTableDataSource<DataRow<T>>([])",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Source for the table</p>\n",
+                    "line": 54,
+                    "rawdescription": "\nSource for the table",
+                    "modifierKind": [
+                        144
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Cell types table, describing the types and quanitites of cells for a specific organ</p>\n",
+            "rawdescription": "\nCell types table, describing the types and quanitites of cells for a specific organ",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule, MatTableDataSource } from '@angular/material/table';\nimport {\n  BiomarkerTableDataCardComponent,\n  BiomarkerTableDataIconComponent,\n  DataItem,\n} from '@hra-ui/components/molecules';\nimport { HoverDirective } from '@hra-ui/cdk';\n\n/**\n * An interface representing a single cell of the table.\n */\nexport interface DataCell {\n  /** Represents the color of the icon */\n  color: string;\n  /** Represents the size of the icon */\n  size: number;\n  /** Represents the data for the data card */\n  data: DataItem[][];\n}\n\n/** Describes the composition of a single row in the table */\nexport type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];\n\n/** Cell types table, describing the types and quanitites of cells for a specific organ */\n@Component({\n  selector: 'hra-biomarker-table',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatTableModule,\n    BiomarkerTableDataIconComponent,\n    HoverDirective,\n    BiomarkerTableDataCardComponent,\n  ],\n  templateUrl: './biomarker-table.component.html',\n  styleUrls: ['./biomarker-table.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerTableComponent<T extends DataCell> implements OnChanges {\n  /** Columns for the table */\n  @Input() columns: string[] = [];\n\n  /** Rows of the table */\n  @Input() data: DataRow<T>[] = [];\n\n  /** Getter method to provide the definations of the columns */\n  get columnsWithTypeAndCount(): string[] {\n    return ['type', 'count', ...this.columns];\n  }\n\n  /** Source for the table */\n  readonly dataSource = new MatTableDataSource<DataRow<T>>([]);\n\n  /**\n   * sets the data source for the table on every change\n   * @param changes object consisting of change in the Input\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('data' in changes) {\n      this.dataSource.data = this.data;\n    }\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use 'utils';\n@use 'variables' as vars;\n\n:host {\n  display: block;\n\n  .sr-only {\n    @include utils.sr-only();\n  }\n\n  .table th {\n    background-color: #fff7f8;\n    color: #59264d;\n    text-align: right;\n\n    border-top: 0.063rem solid #d3d3d3;\n    border-bottom: 0.063rem solid #d3d3d3;\n    border-left: 0.063rem solid #d3d3d3;\n  }\n\n  .table td {\n    border-bottom: 0.063rem solid #d3d3d3;\n    border-left: 0.063rem solid #d3d3d3;\n  }\n\n  .table tr:first-child td {\n    border-top: 0.063rem solid #d3d3d3;\n  }\n\n  tr > td:first-child {\n    text-align: left;\n    padding: 0 2rem;\n  }\n\n  tr > th:first-child {\n    text-align: left;\n    padding: 0 2rem;\n  }\n\n  tr > td:last-of-type {\n    border-right: 0.063rem solid #d3d3d3;\n  }\n\n  tr > th:last-of-type {\n    border-right: 0.063rem solid #d3d3d3;\n  }\n\n  .type {\n    height: 3rem;\n    max-width: 26rem;\n    min-width: 17rem;\n    border-radius: 0rem;\n    white-space: nowrap;\n  }\n\n  .count {\n    text-align: right;\n    height: 3rem;\n    min-width: 6.5rem;\n  }\n\n  .icon-header {\n    max-width: 5rem;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n\n  .icon-cell {\n    max-width: 5rem;\n    min-height: 3rem;\n\n    .icon {\n      margin: auto;\n    }\n  }\n}\n\n::ng-deep .biomarker-table-hover.full-column-name {\n  display: flex;\n  padding: 1rem 1.5rem;\n  border-radius: 0.5rem;\n  box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);\n  background-color: vars.$primary-contrast-rgb;\n}\n",
+                    "styleUrl": "./biomarker-table.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "implements": [
+                "OnChanges"
+            ],
+            "accessors": {
+                "columnsWithTypeAndCount": {
+                    "name": "columnsWithTypeAndCount",
+                    "getSignature": {
+                        "name": "columnsWithTypeAndCount",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 49,
+                        "rawdescription": "\nGetter method to provide the definations of the columns",
+                        "description": "<p>Getter method to provide the definations of the columns</p>\n"
+                    }
+                }
+            },
+            "templateData": "<table class=\"table\" mat-table [dataSource]=\"dataSource\">\n  <caption class=\"sr-only\">\n    Cell type table by Biomarker\n  </caption>\n\n  <ng-container matColumnDef=\"type\">\n    <th mat-header-cell *matHeaderCellDef>Cell Type</th>\n\n    <td class=\"type\" mat-cell *matCellDef=\"let element\">\n      {{ element[0] }}\n    </td>\n  </ng-container>\n\n  <ng-container matColumnDef=\"count\">\n    <th class=\"count\" mat-header-cell *matHeaderCellDef>Cell Count</th>\n\n    <td class=\"count\" mat-cell *matCellDef=\"let element\">\n      {{ element[1] !== undefined ? (element[1] | number) : 'no data' }}\n    </td>\n  </ng-container>\n\n  <ng-container *ngFor=\"let column of columns; let index = index\" [matColumnDef]=\"column\">\n    <th class=\"icon-header\" mat-header-cell *matHeaderCellDef [hraHover]=\"columnHover\" [hraHoverData]=\"column\">\n      {{ column }}\n    </th>\n\n    <td class=\"icon-cell\" mat-cell *matCellDef=\"let element\">\n      <hra-biomarker-table-data-icon\n        class=\"icon\"\n        *ngIf=\"element[index + 2] !== undefined\"\n        [color]=\"element[index + 2].color\"\n        [size]=\"element[index + 2].size\"\n        [hraHover]=\"dataHover\"\n        [hraHoverData]=\"element[index + 2].data\"\n      >\n      </hra-biomarker-table-data-icon>\n    </td>\n  </ng-container>\n\n  <tr mat-header-row *matHeaderRowDef=\"columnsWithTypeAndCount\"></tr>\n  <tr mat-row *matRowDef=\"let row; columns: columnsWithTypeAndCount\"></tr>\n</table>\n\n<ng-template #columnHover let-columnName>\n  <div class=\"biomarker-table-hover full-column-name\">\n    {{ columnName }}\n  </div>\n</ng-template>\n\n<ng-template #dataHover let-data>\n  <hra-biomarker-table-data-card [data]=\"data\"> </hra-biomarker-table-data-card>\n</ng-template>\n"
+        }
+    ],
+    "modules": [],
+    "miscellaneous": {
+        "variables": [],
+        "functions": [],
+        "typealiases": [
+            {
+                "name": "DataRow",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "[string, , ...[]]",
+                "file": "src/lib/biomarker-table/biomarker-table.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Describes the composition of a single row in the table</p>\n",
+                "kind": 183
+            }
+        ],
+        "enumerations": [],
+        "groupedVariables": {},
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {
+            "src/lib/biomarker-table/biomarker-table.component.ts": [
+                {
+                    "name": "DataRow",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "[string, , ...[]]",
+                    "file": "src/lib/biomarker-table/biomarker-table.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Describes the composition of a single row in the table</p>\n",
+                    "kind": 183
+                }
+            ]
+        }
+    }
+}
