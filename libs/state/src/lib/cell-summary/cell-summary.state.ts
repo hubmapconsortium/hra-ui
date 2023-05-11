@@ -1,7 +1,35 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { selectQuerySnapshot } from '@hra-ui/cdk/injectors';
+import { ResourceRegistrySelectors } from '@hra-ui/cdk/state';
+import { TissueFtuService } from '@hra-ui/services';
 import { Action, State, StateContext } from '@ngxs/store';
-import { ComputeAggregate } from './cell-summary.actions';
-import { Aggregate, AggregateRow, CellSummary, CellSummaryStateModel, GradientPoint } from './cell-summary.model';
+import { Observable, switchMap } from 'rxjs';
+import { GradientLegend, SizeLegend } from '../resource-ids';
+import { Gradient, Size } from '../resource-types';
+import { ComputeAggregate, Load, SetData } from './cell-summary.actions';
+import {
+  Aggregate,
+  AggregateRow,
+  CellSummary,
+  CellSummaryStateModel,
+  GradientPoint,
+  SizePoint,
+} from './cell-summary.model';
+
+/** Helper alias for action handler context */
+type Context = StateContext<CellSummaryStateModel>;
+
+/** Default gradient points */
+const DEFAULT_GRADIENTS: GradientPoint[] = [
+  { color: '#000000', percentage: 0 },
+  { color: '#000000', percentage: 1 },
+];
+
+/** Default size points */
+const DEFAULT_SIZES: SizePoint[] = [
+  { label: '', radius: 1 },
+  { label: '', radius: 5 },
+];
 
 /** State handling cell summary data */
 @State<CellSummaryStateModel>({
@@ -13,11 +41,45 @@ import { Aggregate, AggregateRow, CellSummary, CellSummaryStateModel, GradientPo
 })
 @Injectable()
 export class CellSummaryState {
+  /** Gradient legend points */
+  private readonly gradients = selectQuerySnapshot(
+    ResourceRegistrySelectors.field,
+    GradientLegend,
+    Gradient,
+    'points' as const,
+    DEFAULT_GRADIENTS
+  )<GradientPoint[]>;
+
+  /** Size legend points */
+  private readonly sizes = selectQuerySnapshot(
+    ResourceRegistrySelectors.field,
+    SizeLegend,
+    Size,
+    'sizes' as const,
+    DEFAULT_SIZES
+  )<SizePoint[]>;
+
+  /** Service to load summaries */
+  private readonly dataService = inject(TissueFtuService);
+
+  /** Set summaries */
+  @Action(SetData)
+  set({ patchState, dispatch }: Context, { data }: SetData): Observable<void> {
+    patchState({ summaries: data });
+    return dispatch(new ComputeAggregate(data));
+  }
+
+  /** Load summaries from service */
+  @Action(Load)
+  load({ dispatch }: Context, { id }: Load): Observable<void> {
+    return this.dataService.getCellSummaries(id).pipe(switchMap((data) => dispatch(new SetData(data as CellSummary))));
+  }
+
   /**
    * computes aggregate data and stores in the current state
    */
   @Action(ComputeAggregate)
-  computeAggregate(ctx: StateContext<CellSummaryStateModel>, action: ComputeAggregate): void {
+  computeAggregate(ctx: Context, action: ComputeAggregate): void {
     const summaries = action.summaries;
     const aggregateData: Aggregate = {};
 
@@ -83,10 +145,9 @@ export class CellSummaryState {
       }
 
       row[columnIndex] = {
-        // TODO: Compute color and size
-        color: '',
-        size: 0,
-        data: entry,
+        color: this.interpolateColor(this.gradients(), entry.percentage),
+        size: this.interpolateSize(this.sizes(), entry.count / counts[rowId]),
+        data: entry.metadata,
       };
     }
 
@@ -126,5 +187,13 @@ export class CellSummaryState {
     const b = Math.round(rgb1[2] + (rgb2[2] - rgb1[2]) * finalPercentage);
 
     return this.rgbToHex([r, g, b]);
+  }
+
+  /** Calculates the interpolated size at a percentage */
+  interpolateSize(points: SizePoint[], percentage: number): number {
+    const { radius: min } = points[0];
+    const { radius: max } = points[points.length - 1];
+    const diff = max - min;
+    return min + diff * percentage;
   }
 }

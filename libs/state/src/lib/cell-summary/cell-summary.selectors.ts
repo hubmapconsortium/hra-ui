@@ -6,8 +6,8 @@ import { CellSummaryState } from './cell-summary.state';
 export class CellSummarySelectors {
   /** get the aggregate data from the state */
   @Selector([CellSummaryState])
-  static aggregates(state: CellSummaryStateModel): Aggregate {
-    return state.aggregate;
+  static aggregates(state: CellSummaryStateModel): Aggregate[string][] {
+    return Object.values(state.aggregate);
   }
 
   /** get the summaries data from the state */

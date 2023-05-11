@@ -17,4 +17,7 @@ export const REFERENCE_ORGAN = z.object({
 export abstract class TissueFtuService {
   /** abstract Method to fetch reference organs */
   abstract getReferenceOrgans(): Observable<ReferenceOrgan[]>;
+
+  /** Get summary data */
+  abstract getCellSummaries(id: unknown): Observable<unknown>;
 }

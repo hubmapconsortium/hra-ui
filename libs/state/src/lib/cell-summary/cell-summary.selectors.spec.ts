@@ -11,7 +11,7 @@ describe('CellSummarySelectors', () => {
   describe('getAggregateData', () => {
     it('should return the aggregate data', () => {
       const aggregate = CellSummarySelectors.aggregates(state);
-      expect(aggregate).toEqual(state.aggregate);
+      expect(aggregate).toEqual(Object.values(state.aggregate));
     });
   });
 
