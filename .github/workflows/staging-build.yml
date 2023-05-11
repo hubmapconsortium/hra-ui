@@ -24,7 +24,6 @@ jobs:
           main-branch-name: develop
           app-configuration: staging
           nx-command: run-many
-          build-storybook: false
 
       - name: Publish
         uses: peaceiris/actions-gh-pages@v3
