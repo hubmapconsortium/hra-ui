@@ -1,6 +1,6 @@
 headerData:
 - image: assets/images/three_dim_library.svg
-  title: CCF 3D Reference Object Library
+  title: 3D Reference Object Library
   subtitle: Open source 3D organs crosswalked to ASCT+B tables used for tissue registration and exploration
 
 overviewData:
