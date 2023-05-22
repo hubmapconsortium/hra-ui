@@ -1,7 +1,7 @@
 - type: header
   headerCard:
   - image: assets/images/asctb_table.svg
-    title: CCF Anatomical Structures, Cell Types and Biomarkers (ASCT+B) Tables
+    title: Anatomical Structures, Cell Types and Biomarkers (ASCT+B) Tables
     subtitle: Data tables containing hierarchical anatomical structures, cell types and biomarkers from the Cell Ontology
 
 - type: announcement
