@@ -23,10 +23,10 @@
   sopData:
     title: Standard Operating Procedures (SOP)
     href:
-    - urls: 'SOP: Authoring ASCT+B Tables'
-      href: https://doi.org/10.5281/zenodo.5746152
+    - urls: 'SOP: Authoring Anatomical Structures, Cell Types and Biomarkers (ASCT+B) Tables'
+      href: https://zenodo.org/record/7382751#.ZFPCXXbMK3A
     - urls: 'SOP: ASCT+B Table Communications'
-      href: https://doi.org/10.5281/zenodo.5639623
+      href: https://zenodo.org/record/5639623#.ZFPCYHbMK3A
 
 - type: margin
   bottom: 2rem
