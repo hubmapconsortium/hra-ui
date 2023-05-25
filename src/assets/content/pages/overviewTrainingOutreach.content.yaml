@@ -44,10 +44,23 @@
       body: Scholars and practitioners present and discuss their work in a fun and accessible style over the course of 24 hours
       externalLink: https://humanatlas.io/events/2022-24h/
 
+- type: cardBlock
+  cardWithTitle:
+  - heading: Release Notes
+    cardData:
+      - icon: assets/images/hra-sop.svg
+        title: '4th Release Notes'
+        body: See what's new in the 4th Release (v1.3) of the Human Reference Atlas
+        route: release-notes/v1.3
+      - icon: assets/images/hra-sop.svg
+        title: '5th Release Notes'
+        body: See what's new in the 5th Release (v1.4) of the Human Reference Atlas
+        route: release-notes/v1.3
+    id: release-notes
 
 - type: cardBlock
   cardWithTitle:
-  - heading: Preview
+  - heading: Previews
     cardData:
     - icon: assets/images/preview.svg
       title: 'Preview: ASCT+B Reporter Comparison'
@@ -70,3 +83,4 @@
     - icon: assets/images/preview.svg
       title: 'Preview: CCF Tissue Block Annotation: Mesh-Level Collision Detection'
       externalLink: https://hubmapconsortium.github.io/hra-previews/pilots/pilot7.html
+    id: previews
