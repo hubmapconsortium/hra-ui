@@ -29,6 +29,7 @@
       title: Human Reference Atlas Standard Operating Procedures
       body: Standard operating procedures for Human Reference Atlas construction, visualization, and usage
       route: standard-operating-procedures
+    id: training
   - heading: Outreach
     cardData:
     - icon: assets/images/kaggle.svg
@@ -43,9 +44,7 @@
       title: '24 Hour Human Reference Atlas Event'
       body: Scholars and practitioners present and discuss their work in a fun and accessible style over the course of 24 hours
       externalLink: https://humanatlas.io/events/2022-24h/
-
-- type: cardBlock
-  cardWithTitle:
+    id: outreach
   - heading: Release Notes
     cardData:
       - icon: assets/images/hra-sop.svg
@@ -57,9 +56,6 @@
         body: See what's new in the 5th Release (v1.4) of the Human Reference Atlas
         route: release-notes/v1.3
     id: release-notes
-
-- type: cardBlock
-  cardWithTitle:
   - heading: Previews
     cardData:
     - icon: assets/images/preview.svg
