@@ -3,6 +3,7 @@ Kidney,Female,Left,https://github.com/hubmapconsortium/hra-millitome/tree/main/m
 Kidney,Female,Right,https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Kidney_R/
 Kidney,Male,Left,https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_M_Kidney_L/
 Kidney,Male,Right,https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_M_Kidney_R/
+Pancreas,Generic,N/A,https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/G_Pancreas/
 Pancreas,Female,N/A,https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Pancreas/
 Pancreas,Male,N/A,https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_M_Pancreas/
 Spleen,Female,N/A,https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Spleen/
