@@ -24,8 +24,16 @@ export interface SourceListItem {
 export class SourceListComponent {
   /** List of sources with titles and links displayed to the user */
   @Input() sources: SourceListItem[] = [];
+  /**
+   * Show table of source list component which toggles to true or false
+   * based on click
+   */
   showTable = true;
 
+  /**
+   * It changes the value of showTable to false if value it true
+   * and vice versa
+   */
   toggleTable(): void {
     this.showTable = !this.showTable;
   }
