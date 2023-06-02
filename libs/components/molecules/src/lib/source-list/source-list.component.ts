@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 /** SourceListItem interface contains title and link to the dataset for the SourceList*/
 export interface SourceListItem {
@@ -15,7 +16,7 @@ export interface SourceListItem {
 @Component({
   selector: 'hra-source-list',
   standalone: true,
-  imports: [CommonModule, MatTableModule],
+  imports: [CommonModule, MatTableModule, MatIconModule],
   templateUrl: './source-list.component.html',
   styleUrls: ['./source-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,4 +24,9 @@ export interface SourceListItem {
 export class SourceListComponent {
   /** List of sources with titles and links displayed to the user */
   @Input() sources: SourceListItem[] = [];
+  showTable = true;
+
+  toggleTable(): void {
+    this.showTable = !this.showTable;
+  }
 }

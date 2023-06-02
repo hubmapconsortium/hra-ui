@@ -1,7 +1,22 @@
 @use 'utils';
+@use 'variables' as vars;
 
 :host {
   display: block;
+
+  @include utils.define-flex-filler();
+
+  h1 {
+    margin: 0;
+  }
+
+  .text {
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    color: vars.$primary-darker-rgb;
+  }
 
   .mat-mdc-cell {
     vertical-align: top;
@@ -10,7 +25,24 @@
     font-size: 1rem;
   }
 
+  .filler {
+    width: 30rem;
+  }
+
   .sr-only {
     @include utils.sr-only();
+  }
+
+  .toggle {
+    display: flex;
+    align-items: center;
+    border: none;
+    // width: 43rem;
+    // height: 3.5rem;
+    // padding: 1rem, 2rem;
+  }
+
+  .hidden {
+    display: none;
   }
 }
