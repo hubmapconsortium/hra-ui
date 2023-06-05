@@ -1,5 +1,5 @@
 :host {
-  display: flex;
+  display: none;
   position: relative;
   border-radius: 0.5rem;
   padding: 1.5rem;
@@ -12,21 +12,38 @@
     right: 1rem;
   }
 
-  h2 {
+  h3 {
     margin: 0 0 1rem 0;
+    font-weight: 700;
   }
 
   .btn-stroked {
     font-weight: 700;
     margin-bottom: 1rem;
     margin-top: 1rem;
+    padding: 0.75rem 0;
+    letter-spacing: 0.5px;
   }
 
   .btn-flat {
     font-weight: 700;
+    font-size: 16px;
+    padding: 0.75rem 0;
+    letter-spacing: 0.5px;
   }
 
   .content {
     font-size: 1rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 480px) {
+    display: flex;
+    position: relative;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
+    flex-direction: column;
   }
 }
