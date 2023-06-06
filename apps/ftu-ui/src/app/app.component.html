@@ -1,7 +1,9 @@
 <ftu-header-behavior class="header"></ftu-header-behavior>
 
-<ftu-tissue-library-behavior class="sidebar"></ftu-tissue-library-behavior>
+<ng-container *ngIf="!isModalDisplayed">
+  <ftu-tissue-library-behavior class="sidebar"></ftu-tissue-library-behavior>
 
-<div class="page-content">
-  <router-outlet></router-outlet>
-</div>
+  <div class="page-content">
+    <router-outlet></router-outlet>
+  </div>
+</ng-container>
