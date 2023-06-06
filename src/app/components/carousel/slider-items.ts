@@ -4,4 +4,5 @@ export interface SliderItems {
     image: string
     url?: string,
     route?: string;
+    buttonText?: string;
 }

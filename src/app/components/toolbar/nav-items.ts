@@ -6,4 +6,5 @@ export interface NavItems {
     divider?: boolean;
     url?: string;
     id?: string;
+    fragment?: string;
 }

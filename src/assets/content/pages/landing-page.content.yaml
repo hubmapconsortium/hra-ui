@@ -57,26 +57,29 @@
       body: Learn more about the thousands of experts building a Human Reference Atlas.
       image: assets/images/carousel1.svg
       url: https://doi.org/10.1038/s41556-021-00788-6
-    - title: Contribute data to the Human Reference Atlas
-      body: Register your data spatially using the Registration User Interface tool.
-      image: assets/images/carousel2.svg
-      route: registration-user-interface
+      buttonText: View Paper
+    # - title: Contribute data to the Human Reference Atlas
+    #   body: Register your data spatially using the Registration User Interface tool.
+    #   image: assets/images/carousel2.svg
+    #   route: registration-user-interface
     - title: Compare data to the Human Reference Atlas
       body: Use the ASCT+B Reporter tool to explore data in the context of the Human Reference Atlas.
       image: assets/images/carousel3.svg
       route: asctb-reporter
-    - title: Search for a cell type, gene, or protein
-      body: Explore cell type populations with via Cell Type Population graph tool.
-      image: assets/images/carousel4.svg
-      route: cell-population-graphs
-    - title: Search for data across levels-from the whole body down to single cells
-      body: Explore Human Reference Atlas data with the Exploration User Interface tool.
-      image: assets/images/carousel5.svg
-      route: exploration-user-interface
+      buttonText: Learn More
+    # - title: Search for a cell type, gene, or protein
+    #   body: Explore cell type populations with via Cell Type Population graph tool.
+    #   image: assets/images/carousel4.svg
+    #   route: cell-population-graphs
+    # - title: Search for data across levels-from the whole body down to single cells
+    #   body: Explore Human Reference Atlas data with the Exploration User Interface tool.
+    #   image: assets/images/carousel5.svg
+    #   route: exploration-user-interface
     - title: Learn more about the Human BioMolecular Atlas Program
       body: Explore HuBMAP data, code, and documentation using the HuBMAP Data Portal.
       image: assets/images/carousel6.svg
       url: https://portal.hubmapconsortium.org/
+      buttonText: HuBMAP Data Portal
 
 - type: margin
   bottom: 2.5rem

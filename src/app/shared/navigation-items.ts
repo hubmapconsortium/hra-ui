@@ -143,6 +143,16 @@ export const NAVIGATION_ITEMS: NavItems[] = [
       {
         menuName: '24 Hour Human Reference Atlas Event',
         url: 'https://humanatlas.io/events/2022-24h/'
+      },
+      {
+        menuName: 'Release Notes',
+        route: 'overview-training-outreach',
+        fragment: 'release-notes'
+      },
+      {
+        menuName: 'Previews',
+        route: 'overview-training-outreach',
+        fragment: 'previews'
       }
 
     ]
