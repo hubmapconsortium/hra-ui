@@ -5,6 +5,9 @@ export const ProductTitle = createResourceId('ProductTitle');
 /** Product logo url id */
 export const ProductLogoUrl = createResourceId('ProductLogoUrl');
 
+/** Content url id */
+export const ContentUrl = createResourceId('ContentUrl');
+
 /** Landing Page Title id */
 export const LandingPageTitle = createResourceId('LandingPageIntroTitle');
 /** Landing Page Description id */
