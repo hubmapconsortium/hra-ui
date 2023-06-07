@@ -24,20 +24,20 @@
   pageData:
   - heading: GTEx Metrics
     descriptions: |
-      **Monthly users, if applicable (based on one or more of the following: monthly downloads from websites, monthly downloads from package managers, monthly unique requests for updates, etc.)**
+      Monthly users, if applicable (based on one or more of the following: monthly downloads from websites, monthly downloads from package managers, monthly unique requests for updates, etc.)
       There are about 4,400 papers citing “gtex portal” in Google Scholar. There are 28,000 results in Google Scholar citing “gtex”.
 
       We have an average of 20,000 users and 160,000 pageviews per month, based on Google Analytics data. It is difficult for us to track the number of monthly downloads, as our files are stored in Google Cloud Storage (GCS) and it is difficult for us to track downloads from GCS. Our downloads page has approximately 6,500 pageviews per month.
       Some of those pageviews may result in 0 file downloads while others may result in multiple file downloads.
 
 
-      **Software Projects that depend on the project**
+      Software Projects that depend on the project
       API is public and allows for anonymous access, so it is hard for us to know which software
       projects depend on the GTEx Portal. We do know that the NIH Common Fund Data Ecosystem Portal will be using our gene expression API to display gene expression data.
       The Human BioMolecular Atlas Program (HuBMAP) uses our API to retrieve summary data about our samples. Several pharmaceutical and biotechnology companies have developed internal applications that depend upon our API, including Novo Nordisk.
-      Our top referrals are from <a href="https://genecards.org">https://genecards.org</a>, which displays GTEx gene expression data and provides links back to the GTEx Portal.
+      Our top referrals are from <a href="https://genecards.org" target="_blank">GeneCards</a>, which displays GTEx gene expression data and provides links back to the GTEx Portal.
 
-      **Monthly visitors to project's website, discussion forum (e.g., Stack Overflow)**
+      Monthly visitors to project's website, discussion forum (e.g., Stack Overflow)
       The number of monthly visitors to the web site is 20,000, based on Google Analytics data.
 
 - type: page-data
@@ -45,7 +45,7 @@
   - heading: Software
     descriptions: |
       ## CCF UI (RUI + EUI + WCs) Requests for May
-      HuBMAP ID Generator is in the ingest portal. Those numbers are artificially high because the google analytics for the RUI actually starts when they go to the site May 2022:
+      HuBMAP ID Generator is in the ingest portal. Those numbers are artificially high because the Google Analytics for the RUI actually starts when they go to the site.
 
 - type: image
   imageSource: assets/images/ccfUiRequestsMay.png
@@ -105,33 +105,55 @@
   pageData:
   - heading: Training Materials
     descriptions: |
-      Videos, including the main video have been accessed 6,976 times.
+      As of June 2023, YouTube videos in the Visible Human Massive Open Online Course (VHMOOC) playlist has been viewed 9,720 times.
 
-      In April 2023, the Visible Human MOOC has welcomed 252 students.
+      Visible Human MOOC has welcomed 261 students as of June 2023.
 
-      Here are current view numbers for select videos via YouTube (<a href="https://www.youtube.com/playlist?list=PLuJUUASr8daNUIGpZRgp1bVC12kODL6pv">https://www.youtube.com/playlist?list=PLuJUUASr8daNUIGpZRgp1bVC12kODL6pv</a>):
+- type: button
+  text: VHMOOC YouTube Playlist
+  url: https://www.youtube.com/playlist?list=PLuJUUASr8daNUIGpZRgp1bVC12kODL6pv
 
-      HuBMAP Overview: 3,979
+- type: page-data
+  pageData:
+  - heading: HRA Diversity Metrics
+    descriptions: |
+      The Human Reference Atlas diversity survey was designed to provide a baseline measurement of the diversity of the people building and using the Human Reference Atlas. 
+      The survey will be conducted annually to measure how the Human Reference Atlas community evolves over time.
 
-      Intro Ontologies: 1,246
+      Respondents hold the following roles in the Human Reference Atlas:
+      - ASCT+B Table author
+      - ASDCT+B Table reviewer
+      - Infrastructure designer
+      - Interface designer
+      - Organizer
+      - User
+      - Interface tester
+      - Other
+      - I prefer not to respond
 
-      ASCT+B for Collision Detection in RUI and Semantic Search in EUI by Bruce W. Herr II: 17
+      Gender and sexual orientation  
+      Female: 52%  
+      Male: 48%  
+      Identify as LGBTIA+: 4.3%
 
-      The HuBMAP Common Coordinate Framework (CCF): 194
+      Ethnicity and race  
+      White: 82.6%  
+      Asian: 13%  
+      Hispanic, Latino, or Spanish: 4.3%  
 
-      HuBMAP Portal Design and Usage: Data and Code in 1st Portal Release: 122
+      Disability  
+      5.3%
 
-      Jeff Spraggins Presents TMC-VU: 105
+      Continent of residence  
+      North America: 19  
+      Europe: 3  
+      Australia/Oceania: 1
 
-      Introduction to Data Harmonization with Seurat (feat. Rahul Satija): 1,006
+      Socio-economic background  
+      Individuals from disadvantaged backgrounds, as defined using 
+      [National Institutes of Health criteria](https://extramural-diversity.nih.gov/diversity-matters/disadvantaged-backgrounds): 47%
 
-      Introduction to Anatomical Structures and Cell Types plus Biomarkers (ASCT+B) Tables: 129
-
-      CODEX Data on HuBMAP Portal: 136
-
-      Vitessce and Data Portal (2021): 42
-
-      The playlist itself has been visited 270 times.
+      The survey used to gather this information can be found [here](https://drive.google.com/file/d/1_Sv27z4rmg92Fin_JuCSrO0JlaBQSRwK/view?usp=share_link).
 
 - type: page-data
   pageData:

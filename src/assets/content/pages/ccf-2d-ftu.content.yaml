@@ -9,30 +9,27 @@ overviewData:
   descriptions: |
     The 2D Functional Tissue Unit Library provides anatomically correct illustrations of functional tissue units (FTUs). The illustrations are developed by a specialist in 2D medical illustration and approved by organ experts.
     
-    Illustrations are created using terms from the Anatomical Structures, Cell Types, and Biomarker (ASCT+B) table for each organ. Subject matter experts collaborate on a list of anatomical structures and/or cell types to be included in each FTU. Histology atlases and data sets are consulted for visual reference, and research is undertaken to determine if cell sizes and their relative number and distribution is known for a given FTU. Reasonable estimates are made when placing cells in the illustration and relating them to a scale bar.    
+    Illustrations are created using terms from the Anatomical Structures, Cell Types, and Biomarker (ASCT+B) table for each organ. Subject matter experts collaborate on a list of anatomical structures and/or cell types to be included in each FTU. Histology atlases and data sets are consulted for visual reference, and research is undertaken to determine if cell sizes and their relative number and distribution is known for a given FTU. Reasonable estimates are made when placing cells in the illustration and relating them to a scale bar.
     
     A crosswalk table is then created for each FTU illustration, linking the terms in the ASCT+B table to the individual cells in the illustration. This provides an opportunity to add interactive functionality and extends the potential uses for each FTU.
-    
-    On June, 2022, a total of 8 2D FTUs became available in SVG format. Each illustration can be downloaded and edited using Adobe Illustrator. We encourage users to create additional FTU illustrations using these templates, or to use and share them as desired.
-
-    On December 15, 2022, a total of 19 2D FTUs from 7 organs became available in SVG and AI formats.
 
 disclaimer:
 - heading: Disclaimer
   descriptions: |
-    Note: These illustrations are a stylized representation of the average number and distribution of cell type populations within a functional tissue unit (FTU). Cell types are included based on their linkage to the FTU in each organ’s Anatomical Structures, Cell Type and Biomarkers (ASCT+B) Table. The intention is to illustrate relationships between individual cells and to include visual information on their relative shape, scale and distribution within the tissue. A relationship to blood supply is indicated.
+    These illustrations are a stylized representation of the average number and distribution of cell type populations within a functional tissue unit (FTU). Cell types are included based on their linkage to the FTU in each organ’s Anatomical Structures, Cell Type and Biomarkers (ASCT+B) Table. The intention is to illustrate relationships between individual cells and to include visual information on their relative shape, scale and distribution within the tissue. A relationship to blood supply is indicated.
  
     We are working towards an understanding of cellular relationships within each FTU, as well as perfusion, innervation, structural and extracellular matrix support. Greater relationships of scale within the body are also considered. Smaller FTUs may be nested within larger FTUs.
  
-    This work is iterative and will be updated in regular publication cycles. In future releases, illustrations will be linked to data sets interactively. 
+    This work is iterative and will be updated in regular publication cycles. In future releases, illustrations will be linked to data sets interactively.
+
     Machine learning and AI are employed in segmenting these FTUs from data which will be connected to the illustrations in future publication cycles.
 
 
 sopData:
   title: Standard Operating Procedures (SOP)
   href:
-    - urls: ' Style Guide: HuBMAP 2D Functional Tissue Unit (FTU) Illustrations'
-      href: https://zenodo.org/record/6703108/files/SOP_%20Creating%202D%20Illustrations%20for%20Functional%20Tissue%20Units.pdf
+    - urls: 'Style Guide: Human Reference Atlas 2D Functional Tissue Unit (FTU) Illustrations'
+      href: https://zenodo.org/record/6703377
 
 versionData:
 - release: 4th HRA Release (v1.3), December 2022
@@ -54,12 +51,13 @@ citationData:
   descriptions: |
     If you use the 2D data files in v1.2 release, please cite this effort as follows:
     
-     Bajema, R., Bidanta, S., Quardokus, E., Herr II, B. W., Börner, K. 2022.
-    <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-2d-reference-library.html">HuBMAP CCF 2D Reference Object Library</a>. Accessed on May 6, 2022.
+    Bajema, R., Bidanta, S., Quardokus, E., Herr II, B. W., Börner, K. 2022.
+    <i><a href="https://hubmapconsortium.github.io/ccf/pages/ccf-2d-reference-library.html">HuBMAP CCF 2D Reference Object Library</a></i>. Accessed on May 6, 2022.
 
     If you use the 2D data files in v1.3 release, please cite this effort as follows:
     
-    Bajema, R., Bidanta, S., Quardokus, E., Herr II, B. W., Börner, K. 2022. <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-2d-reference-library.html">HuBMAP CCF 2D Reference Object Library</a>. Accessed on December 15, 2022.
+    Bajema, R., Bidanta, S., Quardokus, E., Herr II, B. W., Börner, K. 2022. 
+    <i><a href="https://hubmapconsortium.github.io/ccf/pages/ccf-2d-reference-library.html">HuBMAP CCF 2D Reference Object Library</a></i>. Accessed on December 15, 2022.
 
 twoDimFtuLibObjects:
 - heading: 2D Reference Functional Tissue Unit (FTU) Library Objects
@@ -68,8 +66,10 @@ twoDimFtuLibObjects:
 
     <a href="https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.3/2d-ftu" target="_blank">Download v1.1 FTUs</a> in SVG format. SVG files may be programmatically linked to data sets and used interactively. They may be edited using a combination of illustration and text editor software programs. SVG files may not display correctly until viewed in a browser window.
     
-    <a href="https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.3/2d-ftu" target="_blank">Download v1.1 FTUs</a> in AI Format. AI files may be edited in Adobe Illustrator, where users can change labels, colors, and illustration components as desired. <a href="https://doi.org/10.48539/HBM984.MZSG.873" target="_blank">ASCT-B to 2D FTU mapping v1.0</a> in CSV format.
+    <a href="https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.3/2d-ftu" target="_blank">Download v1.1 FTUs</a> in AI Format. AI files may be edited in Adobe Illustrator, where users can change labels, colors, and illustration components as desired.
     
+    <a href="https://doi.org/10.48539/HBM984.MZSG.873" target="_blank">ASCT-B to 2D FTU mapping v1.0</a> in CSV format.
+
     <a href="https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.3/2d-ftu" target="_blank">ASCT-B to 2D FTU</a> mapping v1.1 in CSV format.
 
 

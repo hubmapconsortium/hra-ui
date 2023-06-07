@@ -37,7 +37,7 @@
       
       > [Assigning RUI Data to Multiple Tissue Blocks](https://doi.org/10.5281/zenodo.5746143)
       
-      > Constructing a Millitome and Generating Virtual Tissue Blocks
+      > [Constructing a Millitome and Generating Virtual Tissue Blocks](https://doi.org/10.5281/zenodo.7901004)
       
       > [Using a Millitome](https://doi.org/10.5281/zenodo.7382703)
 
@@ -55,7 +55,7 @@
 
       > Using Cell Type Population Data in HRA Interfaces
 
-      VCCF Framework
+      [Vasculature Common Coordinate Framework](https://docs.google.com/document/d/1DNYeE7eQ0fGj-OSMQ5ccM2sLWqUg2BpEZwoG6l6aSvY/edit#heading=h.4ou04n97ttbd)
 
       > Creating Organ Vessel Maps
 
@@ -69,7 +69,7 @@
 
       > Computing Cell Type to Vasculature Distance Distributions
 
-      [Anatomical Structures, Cell Types, Plus Biomarkers (ASCT+B)](https://docs.google.com/document/d/1oppBW06hfCUifii7LAI2MpaFED78atMx-r6ezyzPTqw/edit#heading=h.6ys5lo962o6b)[Tables](https://docs.google.com/document/d/1oppBW06hfCUifii7LAI2MpaFED78atMx-r6ezyzPTqw/edit#heading=h.6ys5lo962o6b)
+      [Anatomical Structures, Cell Types, Plus Biomarkers (ASCT+B) Tables](https://docs.google.com/document/d/1oppBW06hfCUifii7LAI2MpaFED78atMx-r6ezyzPTqw/edit#heading=h.6ys5lo962o6b)
 
       > [Authoring ASCT+B Tables](https://doi.org/10.5281/zenodo.5746152)
 
@@ -77,7 +77,7 @@
 
       > [Construction of Organ Mapping Antibody Panels (OMAPs)](https://doi.org/10.5281/zenodo.5749882)
 
-      >> [FAQ:](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)[Frequently Asked Questions (FAQ) for](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)[Organ Mapping Antibody Panels (](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)[OMAPs](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)[)](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)
+      >> [FAQ: Frequently Asked Questions (FAQ) for Organ Mapping Antibody Panels (OMAPs)](https://humanatlas.io/faq/omap)
 
       > [Constructing Antibody Validation Reports (AVRs)](https://doi.org/10.5281/zenodo.7418623)
 
@@ -113,19 +113,19 @@
 
       > External Review of ASCT+B Tables
 
+      > Validation Checks Performed by the DO-CMS
+
       > ASCT+B Table Validation with CCF Tools
 
       > ASCT+B Reporter Validation Checks
 
-      > <a href="https://zenodo.org/record/7577521#.Y9R0knbMJmM" target="_blank">HRA Editorial Board Procedures</a>
+      > <a href="https://zenodo.org/record/7577521#.Y9R0knbMJmM" target="_blank">HRA Editorial Procedures</a>
 
       [Human Reference Atlas Tracking and Publication](https://docs.google.com/document/d/1ZlJV61GA60ZtWoCu8HE93fBPOxPootfAe-ggAzipWEM/edit#heading=h.6ys5lo962o6b)
 
       > Tracking Digital Object Status
 
-      > Maintaining the HRA Portal
-
-      > Designing Organ Icons
+      > Maintaining the HRA Portal and Designing Organ Icons
 
       > [Registering Digital Object Identifiers](https://doi.org/10.5281/zenodo.7384461)
 

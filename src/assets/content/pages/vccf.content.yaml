@@ -17,14 +17,16 @@
 - type: page-data
   pageData:
   - heading: Overview
-    descriptions: The Human Reference Atlas-Vasculature Common Coordinate Framework (HRA-VCCF) dataset is the first open, computer-readable, and comprehensive database of the adult human blood vasculature. It contains a list of blood vessels and their branching relationships, as well as associated cell types and biomarkers, the vessel type, anastomoses, portal systems, microvasculature, functional tissue units, links to 3D reference objects, and mappings to anatomical structures the vessels supply or drain. Future versions will add variants, vessel geometries, and other properties. This database is used to derive the blood vasculature ASCT+B table; and, it can be used as a coordinate system for describing the location within the body--a Vasculature Common Coordinate Framework (VCCF).
+    descriptions: The Human Reference Atlas-Vasculature Common Coordinate Framework (HRA-VCCF) dataset is the first open, computer-readable, and comprehensive database of the adult human blood vasculature. 
+      It contains a list of blood vessels and their branching relationships, as well as associated cell types and biomarkers, the vessel type, anastomoses, portal systems, microvasculature, functional tissue units, 
+      links to 3D reference objects, vessel geometries (length, diameter), and mappings to anatomical structures the vessels supply or drain. This database is used to derive the blood vasculature ASCT+B table; and, 
+      it can be used as a coordinate system for describing the location within the body--a Vasculature Common Coordinate Framework (VCCF).
 
 - type: page-data
   pageData:
   - heading: HRA-VCCF Data Files
     descriptions: |
-      The HRA-VCCF is available as comma-separated values at 
-      https://github.com/hubmapconsortium/hra-vccf
+      The HRA-VCCF is available as comma-separated values in <a href="https://github.com/hubmapconsortium/hra-vccf" target="_blank">GitHub</a>
 
 - type: page-data
   pageData:

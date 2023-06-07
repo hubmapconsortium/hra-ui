@@ -67,9 +67,16 @@ citationData:
 
     Browne,K., Schlehlein, H., Herr II, B. W., Quardokus, E, Bueckle, A., Börner, K. (2022). HuBMAP CCF 3D Reference Object Library. https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html. Accessed on December 15, 2022
 
+    If you use the data files v1.4 release, please cite this effort as follows:
+    
+    Browne,K., Schlehlein, H., Herr II, B. W., Quardokus, E, Bueckle, A., Börner, K. (2023). HuBMAP CCF 3D Reference Object Library. https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html. Accessed on June 1, 2023
+
+
 referenceOrgans:
 - heading: Reference Organs
 - descriptions: |
+    Download v1.4 organs in GLB format.
+    
     <a href="https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.3/models" target="_blank">Download v1.3 organs</a> in GLB format.
 
     <a href="https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/models" target="_blank">Download v1.2 organs</a> in GLB format.
@@ -78,6 +85,8 @@ referenceOrgans:
 
     <a href="https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.0/models" target="_blank">Download v1.0 organs</a> in GLB format.
 
+    Download v1.4 extraction sites for female in GLB and FBX format.
+
     <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Female/v1.3" target="_blank">Download v1.3 extraction sites for female</a> in GLB and FBX format.
 
     <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.2/Extraction%20Sites" target="_blank">Download v1.2 extraction sites for female</a> in GLB and FBX format.
@@ -85,6 +94,8 @@ referenceOrgans:
     <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.1/Extraction%20Sites" target="_blank">Download v1.1 extraction sites for female</a> in GLB and FBX format.
 
     <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.0/Extraction%20Sites" target="_blank">Download v1.0 extraction sites for female</a> in GLB and FBX format.
+
+    Download v1.4 extraction sites for male in GLB and FBX format.
 
     <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.2/Extraction%20Sites" target="_blank">Download v1.3 extraction sites for male</a> in GLB and FBX format.
 
@@ -103,7 +114,8 @@ referenceOrgans:
 referencesData:
 - heading: References
   descriptions: |
-    Börner, Katy, Sarah A. Teichmann, Ellen M. Quardokus, James C. Gee, Kristen Browne, David Osumi-Sutherland, Bruce W. Herr, et al. 2021. “Anatomical Structures, Cell Types and Biomarkers of the Human Reference Atlas.” Nature Cell Biology 23 (11): 1117-28. <a href="https://doi.org/10.1038/s41556-021-00788-6" target="_blank">https://doi.org/10.1038/s41556-021-00788-6</a>
+    Börner, Katy, Sarah A. Teichmann, Ellen M. Quardokus, James C. Gee, Kristen Browne, David Osumi-Sutherland, Bruce W. Herr, et al. 2021. “Anatomical Structures, Cell Types and Biomarkers of the Human Reference Atlas.” 
+    Nature Cell Biology 23 (11): 1117-28. <a href="https://doi.org/10.1038/s41556-021-00788-6" target="_blank">https://doi.org/10.1038/s41556-021-00788-6</a>.
     
     Ding, Song-Lin, Joshua J. Royall, Susan M. Sunkin, Lydia Ng, Benjamin A. C. Facer, Phil Lesnar, Angie Guillozet-Bongaarts, Bergen McMurray, Aaron Szafer, Tim A. Dolbeare, Allison Stevens, Lee Tirrell, Thomas Benner, Shiella Caldejon, Rachel A. Dalley, Nick Dee, Christopher Lau, Julie Nyhus, Melissa Reding, Zackery L. Riley, David Sandman, Elaine Shen, Andre van der Kouwe, Ani Varjabedian, Michelle Wright, Lilla Zöllei, Chinh Dang, James A. Knowles, Christof Koch, John W. Phillips, Nenad Sestan, Paul Wohnoutka, H. Ronald Zielke, John G. Hohrmann, Allan R. Jones, Amy Bernard, Michael J. Hawrylycz, Patrick R. Hof, Bruce Fischl, and Ed S. Lein. 2016. "<a href="https://pubmed.ncbi.nlm.nih.gov/27418273/" target="_blank">Comprehensive Cellular-Resolution Atlas of the Adult Human Brain.</a>" Journal of Comparative Neurology 524 (16): 3127-348. doi:10.1002/cne.24080.
 
