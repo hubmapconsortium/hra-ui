@@ -5,9 +5,6 @@ export const ProductTitle = createResourceId('ProductTitle');
 /** Product logo url id */
 export const ProductLogoUrl = createResourceId('ProductLogoUrl');
 
-/** Content url id */
-export const ContentUrl = createResourceId('ContentUrl');
-
 /** Landing Page Title id */
 export const LandingPageTitle = createResourceId('LandingPageIntroTitle');
 /** Landing Page Description id */
@@ -49,3 +46,6 @@ export const GradientLegendInfo = createResourceId('GradientLegendInfo');
 
 /** Info to show on the tooltip for Size legend */
 export const SizeLegendInfo = createResourceId('SizeLegendInfo');
+
+/** Screen size notice content */
+export const ScreenSizeNoticeContent = createResourceId('ScreenSizeNoticeContent');
