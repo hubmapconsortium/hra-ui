@@ -41,6 +41,12 @@
     padding: 0rem 1rem;
   }
 
+  @media (max-width: 60rem) {
+    .mat-raised-button {
+      margin-top: 1rem;
+    }
+  }
+
   @media (max-width: 26.75rem) {
     padding: 0rem 1rem;
 
