@@ -2,7 +2,7 @@
   class="menu-tree-button" [disableRipple]="true">
   <mat-icon *ngIf="icon; else: default">{{icon}}</mat-icon>
   <ng-template #default>
-    <mat-icon>{{isOpen ? 'close' : 'menu'}}</mat-icon>
+    <mat-icon>{{isOpen ? 'menu' : 'menu'}}</mat-icon>
   </ng-template>
 </button>
 

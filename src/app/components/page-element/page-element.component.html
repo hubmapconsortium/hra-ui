@@ -1,8 +1,11 @@
 <ng-container [ngSwitch]="def.type">
-    <ccf-page-header *ngSwitchCase="'header'" [headerCard]="def['headerCard']" class="page-header"></ccf-page-header>
-    <ccf-page-data *ngSwitchCase="'page-data'" [data]="def['pageData']" class="description"></ccf-page-data>
+    <ccf-page-header *ngSwitchCase="'header'" [style]="def['styles']" [headerCard]="def['headerCard']"
+        class="page-header"></ccf-page-header>
+    <ccf-page-data *ngSwitchCase="'page-data'" [data]="def['pageData']" [style]="def['styles']" class="description">
+    </ccf-page-data>
     <announcement-card *ngSwitchCase="'announcement'" [messages]="def['announcementCard']"></announcement-card>
-    <ccf-use-button *ngSwitchCase="'button'" [buttonData]="$any(def)" class="button-container"></ccf-use-button>
+    <ccf-use-button *ngSwitchCase="'button'" [buttonData]="$any(def)" class="button-container" [style]="def['styles']">
+    </ccf-use-button>
     <ccf-sop-links *ngSwitchCase="'sop-links'" [links]="def['sopData']"></ccf-sop-links>
     <ccf-board-members *ngSwitchCase="'boardMembers'" [membersData]="def['boardMembersData']"></ccf-board-members>
     <ccf-card-button-long *ngSwitchCase="'longCard'" [longButtonItems]="def['longButtonItems']"
@@ -15,7 +18,7 @@
     <ccf-simple-image *ngSwitchCase="'simpleImage'" [imageInfo]="def['imageData']"></ccf-simple-image>
     <img *ngSwitchCase="'image'" [src]="def['imageSource']" [class]="def['class']" [style]="def['styles']">
     <div *ngSwitchCase="'text'" [style]="def['styles']" [class]="def['class']">{{def['text']}}</div>
-    <div *ngSwitchCase="'styled-group'" [style]="def['styles']" [class]="def['class']">
+    <div *ngSwitchCase="'styled-group'" [style]="def['styles']" [class]="def['class']" [id]="def['id']">
         <page-element *ngFor="let comp of def['components']" [def]="comp"></page-element>
     </div>
     <div *ngSwitchCase="'carousel'" [style]="def['containerStyles']">
@@ -35,4 +38,25 @@
         <a *ngFor="let link of def['links']" [href]="link['href']" [title]="link['title']"
             [class]="link['class']">{{link['data']}}</a>
     </div>
+    <menu-tree *ngSwitchCase="'menuTree'" class="menu" [style]="def['styles']"
+        [treeItems]="def['mobileNavigationItems']" [icon]="def['icon']" [overlayClass]="'overlay-position'"
+        [treeClass]="'tree-class'" [positions]="def['positions']"></menu-tree>
+    <mat-drawer-container *ngSwitchCase="'drawer'" [autosize]="true">
+        <mat-drawer mode="side" opened [style]="def['drawerStyles']">
+            <ul class="toc-list" [ngClass]="{'scrolled': scrolled}">
+                <li *ngFor="let items of def['navigationItems']" [value]="items" (click)="scrollTo(items.id || '')">
+                    {{ items.menuName }}
+                </li>
+            </ul>
+        </mat-drawer>
+        <mat-drawer-content>
+            <page-element *ngFor="let comp of def['components']" [def]="comp"></page-element>
+        </mat-drawer-content>
+    </mat-drawer-container>
+    <mat-divider *ngSwitchCase="'divider'" [style]="def['styles']"></mat-divider>
+    <contact-card *ngSwitchCase="'contact-card'" [contactCard]="def['contactData']"></contact-card>
+    <a *ngSwitchCase="'downloadButton'" mat-raised-button [style]="def['styles']" [href]="def['href']" download
+        class="download-button">
+        <span class="material-symbols-outlined">{{def["icon"]}}</span>{{def['text']}}
+    </a>
 </ng-container>
