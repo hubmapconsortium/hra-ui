@@ -236,6 +236,14 @@ const routes: Routes = [
     },
     resolve: { content: ContentResolver }
   },
+  {
+    path: 'release-notes/v1.4', 
+    component: PageComponent,
+    data: {
+      contentFile: 'fifth-release-notes.content'
+    },
+    resolve: { content: ContentResolver }
+  },
   { path: '', redirectTo: '', pathMatch: 'full' },
   {
     path: '**',
