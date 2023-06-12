@@ -46,7 +46,7 @@
     title: Human Reference Atlas Application Programming Interfaces
     body: Query and interact with the HRA using Python, JavaScript, SPARQL, REST, and more
     route: api
-  - icon: assets/images/hra_usage.svg
-    title: Human Reference Atlas Usage Metrics
-    body: Data and statistics on which tools and consortia are using the Human Reference Atlas
-    route: usage-metrics
+  # - icon: assets/images/hra_usage.svg
+  #   title: Human Reference Atlas Usage Metrics
+  #   body: Data and statistics on which tools and consortia are using the Human Reference Atlas
+  #   route: usage-metrics
