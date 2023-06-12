@@ -96,22 +96,22 @@
       count: 1,000+
       text: publications
     - image: assets/images/organs_metric.svg
-      count: 56
+      count: 66
       text: organs
     - image: assets/images/anatomical-structures.svg
-      count: 2,665
+      count: 4,244
       text: anatomical structures
     - image: assets/images/cell-types.svg
-      count: 953
+      count: 1,202
       text: cell types
     - image: assets/images/biomarkers.svg
-      count: 2,842
+      count: 2,324
       text: biomarkers
     - image: assets/images/omap.svg
-      count: 7
+      count: 13
       text: organ mapping antibody panels
     - image: assets/images/ftu.svg
-      count: 19
+      count: 21
       text: functional tissue units
 
 - type: margin
