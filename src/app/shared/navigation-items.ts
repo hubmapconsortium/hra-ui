@@ -38,11 +38,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
       {
         menuName: 'Organ Mapping Antibody Panels (OMAPs)',
         route: 'omap',
-        disabled: true
-      },
-      {
-        menuName: '4th Release Notes',
-        route: 'release-notes/v1.3',
+        disabled: true,
         divider: true
       },
       {
