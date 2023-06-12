@@ -100,11 +100,11 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         route: 'api',
         disabled: true
       },
-      {
-        menuName: 'Usage Metrics',
-        route: 'usage-metrics',
-        disabled: true
-      }
+      // {
+      //   menuName: 'Usage Metrics',
+      //   route: 'usage-metrics',
+      //   disabled: true
+      // }
     ]
   },
   {
