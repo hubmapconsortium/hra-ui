@@ -26,7 +26,7 @@
         letter-spacing: 0.005rem
       class: landing-title
     - type: text
-      text: 3D Multiscale Biomolecular Human Reference Atlas Construction, Visualization and Usage
+      text: 3D Multiscale Biomolecular Human Reference Atlas Construction, Visualization, and Usage
       styles:
         font-size: 1.75rem
         font-weight: 300
@@ -36,14 +36,13 @@
 
 - type: announcement
   announcementCard:
-  - message: "The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in "
-    route: 'v1.3'
-    routeText: '4th Release Notes.'
+  - message: "The 5th Release of the Human Reference Atlas (v1.4) is now available! See what's new in HRA v1.4 in "
+    route: 'v1.4'
+    routeText: '5th Release Notes.'
     emoji: '🎉'
 
 - type: simpleTile
   description:
-  - title: "A <span class=\"hra-bold\">Common Coordinate Framework (CCF)</span> for a human body provides a unique address for each cell in the human body. It is similar to the latitude-longitude system used to navigate a world map."
   - title: "A <span class=\"hra-bold\">Human Reference Atlas (HRA)</span> is a comprehensive, high-resolution, three-dimensional atlas of all the cells in the healthy human body. The Human Reference Atlas provides standard terminologies and data structures for describing specimens, biological structures, and spatial positions linked to existing ontologies."
 
 - type: margin
@@ -53,8 +52,8 @@
   containerStyles:
     width: min(77rem,calc(100vw - 32px))
   carouselInfo:
-    - title: Map the human body at single cell resolution
-      body: Learn more about the thousands of experts building a Human Reference Atlas.
+    - title: Map the human body at single-cell resolution
+      body: Learn more about the thousands of experts building the Human Reference Atlas.
       image: assets/images/carousel1.svg
       url: https://doi.org/10.1038/s41556-021-00788-6
       buttonText: View Paper
@@ -131,7 +130,7 @@
 - type: sectionCard
   cardsInfo:
     - title: Data
-      description: Research the data constructing Human Reference Atlas
+      description: Research the data constructing the Human Reference Atlas
       image: assets/images/data_svg.svg
       gif: assets/images/data_gif.gif
       route: overview-data

@@ -86,7 +86,7 @@
         - type: downloadButton
           styles:
             margin-bottom: 1rem
-          href: assets/images/hra-release-calendar.svg
+          href: assets/images/hra-release-calendar.jpg
           text: Download JPG
           icon: download
         - type: image
@@ -137,7 +137,7 @@
               margin-bottom: 2rem
           buttonData:
           text: Use the ASCT+B Reporter
-          url: https://humanatlas.io/asctb-tables
+          url: https://hubmapconsortium.github.io/ccf-asct-reporter/
         - type: divider
           styles:
             margin-bottom: 1rem
@@ -161,7 +161,7 @@
             margin-bottom: 2rem
           buttonData:
           text: Learn about the VCCF
-          url: https://humanatlas.io/asctb-tables
+          url: https://humanatlas.io/vccf
         - type: divider
           styles:
               margin-bottom: 1rem
@@ -181,7 +181,7 @@
             margin-bottom: 2rem
           buttonData:
           text: Validation Tools GitHub Repository
-          url: https://humanatlas.io/asctb-tables
+          url: https://hubmapconsortium.github.io/ccf-validation-tools/
         - type: divider
           styles:
             margin-bottom: 1rem
@@ -221,7 +221,7 @@
             margin-bottom: 2rem
           buttonData:
           text: 'Preview: HRA-KG 2.0 Beta GitHub Repository'
-          url: https://humanatlas.io/asctb-tables
+          url: https://github.com/hubmapconsortium/hra-kg/releases
         - type: divider
           styles:
             margin-bottom: 1rem
@@ -276,3 +276,8 @@
 
               Every six months, a new version of Human Reference Atlas data is released together with user interfaces that make it possible 
               to visually explore the atlas or programmatically access the data. The 6th release is in December. Thanks for reading!
+        - type: image
+          imageSource: assets/images/4th_release_outro.svg
+
+- type: margin
+  bottom: 6.5rem

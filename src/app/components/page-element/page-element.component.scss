@@ -20,6 +20,10 @@
     margin-bottom: 1.5rem;
   }
 
+  mat-drawer {
+    min-width: 306px;
+  }
+
   .toc-list {
     border: #e0e0e0 2px solid;
     padding-top: unset;
@@ -47,6 +51,11 @@
         cursor: pointer;
       }
     }
+  }
+
+  .scrolled {
+    position: fixed;
+    top: 4rem;
   }
 
   .mat-drawer-side {

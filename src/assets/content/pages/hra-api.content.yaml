@@ -5,6 +5,16 @@
       and more
     image: assets/images/hra_api.svg
 
+- type: announcement
+  announcementCard:
+  - message: "The 5th Release of the Human Reference Atlas (v1.4) is now available! See what's new in HRA v1.4 in "
+    route: 'v1.4'
+    routeText: '5th Release Notes.'
+    emoji: '🎉'
+
+- type: margin
+  bottom: 2.5rem
+
 - type: page-data
   pageData:
   - heading: Overview

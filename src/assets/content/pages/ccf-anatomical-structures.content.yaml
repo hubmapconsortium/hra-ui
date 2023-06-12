@@ -1,14 +1,14 @@
 - type: header
   headerCard:
   - image: assets/images/asctb_table.svg
-    title: Anatomical Structures, Cell Types and Biomarkers (ASCT+B) Tables
-    subtitle: Data tables containing hierarchical anatomical structures, cell types and biomarkers from the Cell Ontology
+    title: Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Tables
+    subtitle: Data tables containing hierarchical anatomical structures, cell types, and biomarkers from the Cell Ontology
 
 - type: announcement
   announcementCard:
-  - message: "The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in "
-    route: 'v1.3'
-    routeText: '4th Release Notes.'
+  - message: "The 5th Release of the Human Reference Atlas (v1.4) is now available! See what's new in HRA v1.4 in "
+    route: 'v1.4'
+    routeText: '5th Release Notes.'
     emoji: '🎉'
 
 - type: margin
@@ -17,13 +17,13 @@
 - type: page-data
   pageData:
   - heading: Overview
-    descriptions: Anatomical Structures, Cell Types, plus Biomarkers (ASCT+B) tables aim to capture the nested <i>part_of</i> structure of anatomical human body parts, the typology of cells, and biomarkers used to identify cell types (e.g., gene, protein, lipid or metabolic markers). The tables are authored and reviewed by an international team of anatomists, pathologists, physicians, and other experts.
+    descriptions: Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) tables aim to capture the nested <i>part_of</i> structure of anatomical human body parts, the typology of cells, and the biomarkers used to identify cell types (e.g., gene, protein, lipid or metabolic markers). The tables are authored and reviewed by an international team of anatomists, pathologists, physicians, and other experts.
 
 - type: sop-links
   sopData:
     title: Standard Operating Procedures (SOP)
     href:
-    - urls: 'SOP: Authoring Anatomical Structures, Cell Types and Biomarkers (ASCT+B) Tables'
+    - urls: 'SOP: Authoring Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Tables'
       href: https://zenodo.org/record/7382751#.ZFPCXXbMK3A
     - urls: 'SOP: ASCT+B Table Communications'
       href: https://zenodo.org/record/5639623#.ZFPCYHbMK3A
@@ -34,7 +34,7 @@
 - type: page-data
   pageData:
   - heading: Existing Tables
-    descriptions: The below table lists for each organ the number of anatomical structures (#AS), the number of cell types (#CT), the number of biomarkers (#B), the number of <i>part_of</i> relationships between AS, the number of located_in links between CT and AS, and the number of CT and B, i.e., which B characterize a CT.
+    descriptions: The below table lists for each organ the number of anatomical structures (#AS), the number of cell types (#CT), the number of biomarkers (#B), the number of <i>part_of</i> relationships between AS, the number of located_in links between CT and AS, and the number of CT and B (i.e., which B characterize a CT).
 
 - type: tableVersion
   versionData:
@@ -113,7 +113,8 @@
   pageData:
   - heading: Explore Tables Visually
     descriptions: |
-      The <a href="https://hubmapconsortium.github.io/ccf-asct-reporter/">CCF ASCT+B Reporter</a> makes it possible to explore tables visually—per organ or across all organs in support of table authoring and review. It combines two different types of Angular visualizations: A partonomy tree of anatomical structures and bimodal networks that link anatomical structures to cell types and cell types to biomarkers.
+      The <a href="https://hubmapconsortium.github.io/ccf-asct-reporter/">CCF ASCT+B Reporter</a> makes it possible to explore tables visually—per organ or across all organs—in support of table authoring and review. 
+      It combines two different types of Angular visualizations: 1) A partonomy tree of anatomical structures, 2) bimodal networks that link anatomical structures to cell types and cell types to biomarkers.
 
 - type: page-data
   pageData:
