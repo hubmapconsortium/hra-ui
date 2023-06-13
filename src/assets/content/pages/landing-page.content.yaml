@@ -24,6 +24,7 @@
         color: rgb(33,33,33)
         font-weight: 300
         letter-spacing: 0.005rem
+        margin-bottom: 0.5rem
       class: landing-title
     - type: text
       text: 3D Multiscale Biomolecular Human Reference Atlas Construction, Visualization, and Usage

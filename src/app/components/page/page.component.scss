@@ -6,3 +6,9 @@
     max-width: 100vw;
   }
 }
+
+::ng-deep .cell-link:hover {
+  color: #444c65;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
