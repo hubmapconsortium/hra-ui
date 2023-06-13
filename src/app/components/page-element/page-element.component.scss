@@ -81,6 +81,23 @@
       0px 1px 3px 1px rgba(0, 0, 0, 0.15);
   }
 
+  .download-button:hover {
+    background: rgba(103, 80, 164, 0.08);
+  }
+
+  .download-button:focus,
+  .download-button:active {
+    background: rgba(103, 80, 164, 0.12);
+  }
+
+  .download-button:disabled {
+    background: rgba(29, 27, 32, 0.12);
+  }
+
+  .icon {
+    margin-right: 11px;
+  }
+
   menu-tree {
     display: none;
   }
