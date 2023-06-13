@@ -19,8 +19,9 @@
   - heading: Overview
     descriptions: |
       The Human Reference Atlas (HRA) Organ Gallery is a virtual reality (VR) application that enables users to explore 3D organ models of the HRA in their true size, location, and spatial relation to each other.
-      A preprint titled is available at https://doi.org/10.1101/2023.02.13.528002. The HRA Organ Gallery has two main use cases: 1) introducing both novice and expert users to the HuBMAP data available via the HuBMAP Data Portal, and 2) providing quality assurance and quality control (QA/QC) for HRA data providers. More use cases are under development.
-      Figure 1 compares the user interface for exploring the HRA via the Exploration User Interface (EUI, https://portal.hubmapconsortium.org/ccf-eui) to how it appears in the HRA Organ Gallery when using a Meta Quest 2.
+      The HRA Organ Gallery has two main use cases: 1) introducing both novice and expert users to the HuBMAP data available via the HuBMAP Data Portal, and 2) providing quality assurance and quality control (QA/QC) for HRA data providers. 
+      More use cases are under development. Further information can be found in this <a href="https://doi.org/10.1101/2023.02.13.528002" target="_blank">recent preprint title</a>.
+      Figure 1 compares the user interface for exploring the HRA via the [Exploration User Interface (EUI)](https://portal.hubmapconsortium.org/ccf-eui) to how it appears in the HRA Organ Gallery when using a Meta Quest 2.
     image: assets/images/OrganGallery.jpg
 
 - type: image
@@ -37,8 +38,7 @@
       <a href="https://portal.hubmapconsortium.org/ccf-eui" target="_blank">Exploration User Interface</a> in a
       standard-size browser window on a 17-in display. 
       <span class="hra-bold">(B)</span>: The HRA Organ Gallery allows the user to view the organs, tissue blocks, and cell type counts of the HRA in true scale using
-      immersive technology (VR). Source:
-      <a href="https://doi.org/10.1101/2023.02.13.528002" target="_blank">https://doi.org/10.1101/2023.02.13.528002</a>
+      immersive technology (VR). [Source](https://doi.org/10.1101/2023.02.13.528002)
 
 - type: page-data
   pageData:
@@ -58,13 +58,13 @@
   pageData:
   - heading: Data Visualizations
     descriptions: |
-      The application's primary building blocks, presented in Figure 3 of the paper (https://doi.org/10.1101/2023.02.13.528002), include the SceneBuilder which serves as the data manager for the application and retrieves data from the CCF API, and the DataFetcher which uses Node, NodeArray, and GLBObject classes to store 3D organs in GLB format. Once the setup is complete, the user can interact with the organs, and the entire scene takes about 5-7 seconds to load when running natively on the Meta Quest 2. As of early March 2023, through the HRA Organ Gallery, users can investigate 55 3D reference organs and 1,203 mapped tissue blocks obtained from diverse donors and providers, connected to over 5000 datasets, in a cohesive, immersive, and 3D VR environment at the convergence of VR, information visualization, and bioinformatics. 
+      The application's primary building blocks, presented in Figure 3 of <a href="https://doi.org/10.1101/2023.02.13.528002" target="blank">the preprint paper</a>, include the SceneBuilder which serves as the data manager for the application and retrieves data from the CCF API, and the DataFetcher which uses Node, NodeArray, and GLBObject classes to store 3D organs in GLB format. Once the setup is complete, the user can interact with the organs, and the entire scene takes about 5-7 seconds to load when running natively on the Meta Quest 2. As of early March 2023, through the HRA Organ Gallery, users can investigate 55 3D reference organs and 1,203 mapped tissue blocks obtained from diverse donors and providers, connected to over 5000 datasets, in a cohesive, immersive, and 3D VR environment at the convergence of VR, information visualization, and bioinformatics. 
 
 - type: page-data
   pageData:
   - heading: Feedback
     descriptions: |
-      In order to engage a diverse group of experts in the HRA effort, we request feedback from subject matter domain experts at the NIH and its funded initiatives. We would like to involve specialists in fields such as bioinformatics, 3D modeling, medical illustration, anatomy, data curation, and biology. Additionally, we plan to conduct a user study to gather quantitative data on various QA/QC error detection methods and completion time, as well as to evaluate the app's usability, engagement, and presence. Information for test users is available at https://github.com/cns-iu/ccf-organ-vr-gallery/blob/main/INFORMATION_FOR_TESTERS.MD. The code is available at https://github.com/cns-iu/ccf-organ-vr-gallery.  
+      In order to engage a diverse group of experts in the HRA effort, we request feedback from subject matter domain experts at the NIH and its funded initiatives. We would like to involve specialists in fields such as bioinformatics, 3D modeling, medical illustration, anatomy, data curation, and biology. Additionally, we plan to conduct a user study to gather quantitative data on various QA/QC error detection methods and completion time, as well as to evaluate the app's usability, engagement, and presence. Information for test users is available <a href="https://github.com/cns-iu/hra-organ-gallery-in-vr/blob/main/INFORMATION_FOR_TESTERS.MD" target="_blank">here</a>. The code is available on <a href="https://github.com/cns-iu/ccf-organ-vr-gallery" target="_blank">GitHub</a>.  
 
       Please email Andreas Bueckle (abueckle@iu.edu) if you are interested in contributing your input to the research and development of the HRA Organ Gallery.
 
@@ -87,11 +87,17 @@
 
 - type: page-data
   pageData:
-  - heading: Reference
+  - heading: References
     descriptions: |
-      [1]Van Dam, A. (1997). Post-WIMP user interfaces. Communications of the ACM 2, vol. 40, pp. 63-67. doi: 10.1145/253671.253708 
+      Bueckle, Andreas., Kilian Buehling, Patrick C. Shih, and Katy Börner. 2021.
+      "<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0258103" target="blank">3D Virtual Reality vs. 2D Desktop Registration User Interface Comparison</a>".
+      <i>PLOS ONE</i> 16 (10): e0258103. doi: 10.1371/journal.pone.0258103.
 
-      [2]Bueckle, A., Buehling, K., Shih, P. C., and Börner, K. (2021). 3D virtual reality vs. 2D desktop registration user interface comparison. PLOS ONE 16, e0258103. doi:10.1371/journal.pone.0258103.
+      Bueckle, Andreas., Kilian Buehling, Patrick C. Shih, and Katy Börner. 2022. 
+      "<a href="https://www.frontiersin.org/articles/10.3389/frvir.2021.727344/full" target="_blank">
+      Optimizing Performance and Satisfaction in Matching and Movement Tasks in Virtual Reality with Interventions Using the Data Visualization Literacy Framework</a>".
+      <i>Frontiers in Virtual Reality</i> 2. doi: 10.3389/frvir.2021.727344.
 
-      [3]Bueckle, A., Buehling, K., Shih, P. C., and Börner, K. (2022). Optimizing Performance and Satisfaction in Matching and Movement Tasks in Virtual Reality with Interventions Using the Data Visualization Literacy Framework. Front. Virtual Real. 2. doi: 10.3389/frvir.2021.727344.
-
+      van Dam, Andries. 1997. 
+      "<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0258103" target="blank">Post-WIMP User Interfaces</a>".
+      <i>Communications of the ACM</i> 40 (2): 63-67. doi: 10.1145/253671.253708.

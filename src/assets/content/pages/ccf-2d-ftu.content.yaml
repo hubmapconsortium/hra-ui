@@ -1,11 +1,11 @@
 twoDimHeaderCardDetails:
 - image: assets/images/two_dim_header.svg
   title: 2D Functional Tissue Unit (FTU) Illustrations
-  subtitle: Open source 2D reference illustrations of Functional Tissue Units (FTUs) mapped to ASCT+B tables used for single cell data exploration
+  subtitle: Open-source 2D reference illustrations of functional tissue units (FTUs) mapped to ASCT+B tables used for single-cell data exploration
 
 
 overviewData:
-- heading: 'Overview'
+- heading: Overview
   descriptions: |
     The 2D Functional Tissue Unit Library provides anatomically correct illustrations of functional tissue units (FTUs). The illustrations are developed by a specialist in 2D medical illustration and approved by organ experts.
     
@@ -16,7 +16,7 @@ overviewData:
 disclaimer:
 - heading: Disclaimer
   descriptions: |
-    These illustrations are a stylized representation of the average number and distribution of cell type populations within a functional tissue unit (FTU). Cell types are included based on their linkage to the FTU in each organ’s Anatomical Structures, Cell Type and Biomarkers (ASCT+B) Table. The intention is to illustrate relationships between individual cells and to include visual information on their relative shape, scale and distribution within the tissue. A relationship to blood supply is indicated.
+    These illustrations are a stylized representation of the average number and distribution of cell-type populations within a functional tissue unit (FTU). Cell types are included based on their linkage to the FTU in each organ's Anatomical Structures, Cell Type, and Biomarkers (ASCT+B) Table. The intention is to illustrate relationships between individual cells and to include visual information on their relative shape, scale, and distribution within the tissue. A relationship to blood supply is indicated.
  
     We are working towards an understanding of cellular relationships within each FTU, as well as perfusion, innervation, structural and extracellular matrix support. Greater relationships of scale within the body are also considered. Smaller FTUs may be nested within larger FTUs.
  
@@ -51,13 +51,13 @@ citationData:
   descriptions: |
     If you use the 2D data files in v1.2 release, please cite this effort as follows:
     
-    Bajema, R., Bidanta, S., Quardokus, E., Herr II, B. W., Börner, K. 2022.
-    <i><a href="https://hubmapconsortium.github.io/ccf/pages/ccf-2d-reference-library.html">HuBMAP CCF 2D Reference Object Library</a></i>. Accessed on May 6, 2022.
+    Bajema, Rachel, Supriya Bidanta, Ellen M. Quardokus, Bruce W. Herr II, and Katy Börner. 2022.
+    <i><a href="https://humanatlas.io/2d-ftu-illustrations" target="_blank">HuBMAP CCF 2D Reference Object Library</a></i>. Accessed on March 6, 2022.
 
     If you use the 2D data files in v1.3 release, please cite this effort as follows:
     
-    Bajema, R., Bidanta, S., Quardokus, E., Herr II, B. W., Börner, K. 2022. 
-    <i><a href="https://hubmapconsortium.github.io/ccf/pages/ccf-2d-reference-library.html">HuBMAP CCF 2D Reference Object Library</a></i>. Accessed on December 15, 2022.
+    Bajema, Rachel, Supriya Bidanta, Ellen M. Quardokus, Bruce W. Herr II, and Katy Börner. 2022.
+    <i><a href="https://humanatlas.io/2d-ftu-illustrations">HuBMAP CCF 2D Reference Object Library</a></i>. Accessed on December 15, 2022.
 
 twoDimFtuLibObjects:
 - heading: 2D Reference Functional Tissue Unit (FTU) Library Objects

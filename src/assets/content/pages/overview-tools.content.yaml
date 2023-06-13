@@ -19,7 +19,7 @@
 - type: longCard
   longButtonItems:
   - icon: assets/images/asctb_reporter.svg
-    title: CCF Anatomical Structures, Cell Types and Biomarkers (ASCT+B) Reporter
+    title: CCF Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Reporter
     body: A visualization tool for human organ experts to explore and compare ASCT+B Tables
     route: asctb-reporter
   - icon: assets/images/cell_graphs.svg
