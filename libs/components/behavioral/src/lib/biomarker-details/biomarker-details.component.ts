@@ -3,8 +3,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { HoverDirective } from '@hra-ui/cdk';
-import { selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
+import { ScreenModeAction } from '@hra-ui/state';
 import {
   GradientLegendComponent,
   GradientPoint,
@@ -60,4 +61,11 @@ export class BiomarkerDetailsComponent {
 
   /** List of sources with titles and links displayed to the user */
   readonly source = selectSnapshot(SourceListSelectors.getSourceList);
+
+  private readonly setScreenMode = dispatch(ScreenModeAction.Set);
+
+  toggleFullscreen(): void {
+    this.isTableFullScreen = !this.isTableFullScreen;
+    this.setScreenMode(this.isTableFullScreen);
+  }
 }
