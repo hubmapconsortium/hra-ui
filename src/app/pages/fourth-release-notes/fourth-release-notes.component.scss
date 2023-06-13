@@ -93,6 +93,8 @@
       &:hover {
         background-color: #f5f5f5;
         text-decoration: underline;
+        text-decoration-thickness: 2px;
+        color: #444C65;
         cursor: pointer;
       }
     }

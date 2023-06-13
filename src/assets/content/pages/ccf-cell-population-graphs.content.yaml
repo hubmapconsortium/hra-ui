@@ -18,7 +18,7 @@
   pageData:
   - heading: Overview
     descriptions: |
-      Visualization tool for comparing cell type distributions from single cell RNA sequencing datasets from HuBMAP and other public data portals. The number of cells per cell type in a dataset (e.g., derived from a tissue block, tissue section, or biopsy) is visualized as count or percentage in a bar graph. Datasets can be sorted by total cell count or tissue block location (for blocks that were registered via the tissue registration user interface (RUI) into a 3D reference organ model) and they can be grouped by dataset-specific properties (e.g., age, ethnicity, sex, or UV exposure).
+      Visualization tool for comparing cell-type distributions from single-cell RNA sequencing datasets from HuBMAP and other public data portals. The number of cells per cell type in a dataset (e.g., derived from a tissue block, tissue section, or biopsy) is visualized as count or percentage in a bar graph. Datasets can be sorted by total cell count or tissue block location (for blocks that were registered via the tissue registration user interface [RUI] into a 3D reference organ model), and they can be grouped by dataset-specific properties (e.g., age, ethnicity, sex, or UV exposure).
 
 
 - type: button

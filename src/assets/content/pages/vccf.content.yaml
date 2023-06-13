@@ -26,7 +26,7 @@
   pageData:
   - heading: HRA-VCCF Data Files
     descriptions: |
-      The HRA-VCCF is available as comma-separated values in <a href="https://github.com/hubmapconsortium/hra-vccf" target="_blank">GitHub</a>
+      The HRA-VCCF is available as comma-separated values in <a href="https://github.com/hubmapconsortium/hra-vccf" target="_blank">GitHub</a>.
 
 - type: page-data
   pageData:
@@ -41,7 +41,7 @@
 - type: page-data
   pageData:
   - heading: License
-    descriptions: The HRA-VCCF is released under Creative Commons Attribution 4.0 International (CC BY 4.0)
+    descriptions: The HRA-VCCF is released under Creative Commons Attribution 4.0 International (CC BY 4.0).
 
 - type: page-data
   pageData:
@@ -49,12 +49,18 @@
     descriptions: |
       If you use the HRA-VCCF, please cite this effort as follows:
       
-      Boppana A, Lee S, Malhotra R, Halushka M, Quardokus EM, Herr BW II, Börner K, Weber GM. Anatomical structures, cell types, and biomarkers of the healthy human blood vasculature. bioRxiv. March 1, 2022. Doi: 10.1101/2022.02.28.482302.
+      Boppana, Avinash, Sujin Lee, Rajeev Malhotra, Marc Halushka, Ellen M. Quardokus, Bruce W. Herr II, Katy Börner, and Griffin M. Weber. 2022.
+      "<a href="https://cns.iu.edu/docs/publications/2022-Boppana_ASCT+B.pdf" target="_blank">
+      Anatomical structures, cell types, and biomarkers of the healthy human blood vasculature</a>." <i>bioRxiv</i>, March 1, 2022. doi: 10.1101/2022.02.28.482302.
 
 - type: page-data
   pageData:
   - heading: References
     descriptions: |
-      Weber GM, Ju Y, Börner K. Considerations for Using the Vasculature as a Coordinate System to Map All the Cells in the Human Body. Front Cardiovasc Med. 2020 Mar 13;7:29. doi: 10.3389/fcvm.2020.00029. PMID: 32232057; PMCID: PMC7082726.
+      Weber Griffin M., Yingnan Ju, and Katy Börner. 2020.
+      "<a href="https://www.frontiersin.org/articles/10.3389/fcvm.2020.00029/full" target="_blank">Considerations for Using the Vasculature as a Coordinate System to Map All the Cells in the Human Body.</a>"
+      Front Cardiovasc Med. 2020 Mar 13;7:29. doi: 10.3389/fcvm.2020.00029. PMID: 32232057; PMCID: PMC7082726.
 
-      Boppana A, Lee S, Malhotra R, Halushka M, Quardokus EM, Herr BW II, Börner K, Weber GM. Anatomical structures, cell types, and biomarkers of the healthy human blood vasculature. bioRxiv. March 1, 2022. Doi: 10.1101/2022.02.28.482302.
+      Boppana, Avinash, Sujin Lee, Rajeev Malhotra, Marc Halushka, Ellen M. Quardokus, Bruce W. Herr II, Katy Börner, and Griffin M. Weber. 2022.
+      "<a href="https://cns.iu.edu/docs/publications/2022-Boppana_ASCT+B.pdf" target="_blank">Anatomical structures, cell types, and biomarkers of the healthy human blood vasculature.</a>"
+      <i>bioRxiv</i>." March 1, 2022. doi: 10.1101/2022.02.28.482302.

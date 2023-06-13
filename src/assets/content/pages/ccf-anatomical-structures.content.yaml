@@ -53,7 +53,10 @@
   headerInfo:
   - columnDef: Organ
     header: Organ
-    cell: "`<a class=\"cell-link\" href=\"${element['url'] || 'TODO:Please add a url column to this.csv!'}\">${element['Organ']}</a>`"
+    cell: |
+      `<a class="cell-link" href="${element['url'] || 'TODO:Please add a url column to this.csv!'}">
+        ${element['Organ']}
+      </a>`
     isTotalRequired: true
     alignment: start
   - columnDef: 'tableVersion'
