@@ -1,6 +1,7 @@
 export * from './lib/cell-summary';
 export * from './lib/contact';
 export * from './lib/download';
+export * from './lib/screen-mode';
 export * from './lib/medical-illustration';
 export * as LinkIds from './lib/link-ids';
 export * as ResourceIds from './lib/resource-ids';
