@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { dispatch, injectDestroy$ } from '@hra-ui/cdk/injectors';
+import { dispatch, injectDestroy$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import {
   BiomarkerDetailsComponent,
   FooterBehaviorComponent,
   MedicalIllustrationBehaviorComponent,
 } from '@hra-ui/components/behavioral';
 import { FullscreenContainerComponent, FullscreenContentComponent } from '@hra-ui/components/molecules';
-import { MedicalIllustrationActions } from '@hra-ui/state';
+import { MedicalIllustrationActions, ScreenModeSelectors } from '@hra-ui/state';
 import { takeUntil } from 'rxjs';
 
 /** Main FTU page */
@@ -29,6 +29,8 @@ import { takeUntil } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FtuComponent {
+  readonly isFullscreen = selectSnapshot(ScreenModeSelectors.isFullScreen);
+
   /** Set the illustration from the id query parameter */
   constructor() {
     const queryParams$ = inject(ActivatedRoute).queryParams.pipe(takeUntil(injectDestroy$()));
