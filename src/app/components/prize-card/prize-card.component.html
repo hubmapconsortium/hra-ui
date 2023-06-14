@@ -11,7 +11,7 @@
         </div>
         <mat-divider *ngIf="prize.matDivider"></mat-divider>
         <div class="winner" *ngFor="let win of prize.winner">
-            <div>
+            <div class="kaggle-id">
                 <markdown><b>Winner: </b>{{win.winner}}</markdown>
             </div>
             <div><markdown>{{win.kaggleId}}</markdown></div>

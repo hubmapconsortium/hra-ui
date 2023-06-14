@@ -4,4 +4,10 @@
     mat-card{
         margin-bottom: 0.5rem;
     }
+
+    a:hover {
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        color: #444C65;
+    }
 }

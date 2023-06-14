@@ -1,12 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { EMPTY, map, Observable } from 'rxjs';
-import { tissueData } from 'src/app/pages/tissue-info-page/tissue-info-page.content';
-import { TableDataService } from 'src/app/services/table-data/tabledata.service';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { Component, EventEmitter, HostBinding, Input, NgZone, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { delay, distinctUntilChanged, EMPTY, map, mergeWith, Observable, of, startWith, Subject, tap } from 'rxjs';
+import { TableDataService } from '../../services/table-data/tabledata.service';
+import { runInZone } from '../../shared/run-in-zone';
 import { ChooseVersion } from '../choose-version/choose-version';
 import { ExtraHeader, HeaderData } from '../table/header';
 import { TableData } from '../table/table';
+
+
+const TABLE_SCROLL_END_MARGIN = 10;
 
 @Component({
   selector: 'table-version',
@@ -14,6 +16,26 @@ import { TableData } from '../table/table';
   styleUrls: ['./table-version.component.scss']
 })
 export class TableVersionComponent {
+  @ViewChild('table', { static: true, read: CdkScrollable })
+  set tableScroller(scrollable: CdkScrollable) {
+    const isAtEnd = () => scrollable.measureScrollOffset('end') <= TABLE_SCROLL_END_MARGIN;
+    const initialAtEnd = of(undefined).pipe(
+      delay(100),
+      map(isAtEnd)
+    );
+    const obs = scrollable.elementScrolled().pipe(
+      map(isAtEnd),
+      mergeWith(initialAtEnd),
+      startWith(true),
+      distinctUntilChanged(),
+      runInZone(this.zone)
+    );
+
+    obs.subscribe(val => (this.tableScrollAtEnd = val));
+  }
+
+  @HostBinding('class.scroll-end') tableScrollAtEnd = false;
+
   @Input() versionData: ChooseVersion[];
   @Input() versionChooserDisabled = false;
   @Input() isTotal = false;
@@ -53,7 +75,7 @@ export class TableVersionComponent {
   private _additionalHeaders: ExtraHeader[] = [];
   private _cellHeaders: ExtraHeader[] = [];
 
-  constructor(private readonly dataService: TableDataService) { }
+  constructor(private readonly dataService: TableDataService, private readonly zone: NgZone) { }
   
   ngOnInit(): void {
     this.setData(this.release = this.versionData[0]);

@@ -6,9 +6,9 @@
 
 - type: announcement
   announcementCard:
-  - message: "The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in "
-    route: 'v1.3'
-    routeText: '4th Release Notes.'
+  - message: "The 5th Release of the Human Reference Atlas (v1.4) is now available! See what's new in HRA v1.4 in "
+    route: 'v1.4'
+    routeText: '5th Release Notes.'
     emoji: '🎉'
 
 - type: margin
@@ -18,7 +18,7 @@
   pageData:
   - heading: Overview
     descriptions: |
-      A millitome is a device designed to hold a freshly procured human organ and facilitate cutting it into many small tissue blocks for usage in single cell analysis. 
+      A millitome is a device designed to hold a freshly procured human organ and facilitate cutting it into many small tissue blocks for usage in single-cell analysis. 
       A millitome has discrete, equally placed cutting grooves in three dimensions (x, y, and z) to guide a carbon steel cutting knife to produce standard size slices or cubes of tissue material. 
       Millitomes are used to create uniformly sized tissue blocks that match the shape and size of organs from the
       <a href="https://humanatlas.io/3d-reference-library" target="_blank">CCF 3D Reference Object Library</a>.

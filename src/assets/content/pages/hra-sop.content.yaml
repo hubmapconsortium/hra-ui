@@ -6,9 +6,9 @@
 
 - type: announcement
   announcementCard:
-  - message: "The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in "
-    route: 'v1.3'
-    routeText: '4th Release Notes.'
+  - message: "The 5th Release of the Human Reference Atlas (v1.4) is now available! See what's new in HRA v1.4 in "
+    route: 'v1.4'
+    routeText: '5th Release Notes.'
     emoji: '🎉'
 
 - type: margin
@@ -41,19 +41,19 @@
       
       > [Using a Millitome](https://doi.org/10.5281/zenodo.7382703)
 
-      Anatomical Structures and Cell Type Segmentation
+      Anatomical Structures and Cell-Type Segmentation
 
       > [Manual Segmentation of Tissue](https://doi.org/10.5281/zenodo.5565027)
 
       > Running a Kaggle Competition
 
-      Anatomical Structures and Cell Type Annotation
+      Anatomical Structures and Cell-Type Annotation
 
-      > Computing Cell Type Populations from Cell by Gene Matrices
+      > Computing Cell-Type Populations from Cell by Gene Matrices
 
-      > Computing Cell Type Populations from CODEX Data
+      > Computing Cell-Type Populations from CODEX Data
 
-      > Using Cell Type Population Data in HRA Interfaces
+      > Using Cell-Type Population Data in HRA Interfaces
 
       [Vasculature Common Coordinate Framework](https://docs.google.com/document/d/1DNYeE7eQ0fGj-OSMQ5ccM2sLWqUg2BpEZwoG6l6aSvY/edit#heading=h.4ou04n97ttbd)
 
@@ -61,7 +61,7 @@
 
       > Connecting Blood Vasculature With FTUs
 
-      > Blood vasculature that does not connect with ASCT+B Tables
+      > Blood Vasculature That Does Not Connect with ASCT+B Tables
 
       Vasculature Computations
 

@@ -6,9 +6,9 @@
 
 - type: announcement
   announcementCard:
-  - message: "The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in "
-    route: 'v1.3'
-    routeText: '4th Release Notes.'
+  - message: "The 5th Release of the Human Reference Atlas (v1.4) is now available! See what's new in HRA v1.4 in "
+    route: 'v1.4'
+    routeText: '5th Release Notes.'
     emoji: '🎉'
 
 - type: margin
@@ -25,7 +25,7 @@
       3D Reference Object Library</a>, the ontology can be found on
       <a href="https://bioportal.bioontology.org/ontologies/CCF">BioPortal</a>, and the code is available on 
       <a href="https://github.com/hubmapconsortium/ccf-ui">GitHub</a>. The registration data is used in 
-      current versions of the Common Coordinate Framework and the on 
+      current versions of the Common Coordinate Framework and on the 
       <a href="https://hubmapconsortium.github.io/ccf-ui/">Exploration User Interface (EUI)</a> developed within HuBMAP.
 
 - type: button
@@ -55,7 +55,7 @@
   - heading: How to use the Registration User Interface
     descriptions: |
         - Enter their name to track data provenance.
-        - Select a reference organ via the organ carousal (kidney, heart, spleen, colon).
+        - Select a reference organ via the organ carousel (kidney, heart, spleen, colon).
         - Select a set of common tissue extraction sites.
         - Size the tissue block in three dimensions.
         - Enter information on tissue section thickness.

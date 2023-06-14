@@ -86,7 +86,8 @@
         - type: downloadButton
           styles:
             margin-bottom: 1rem
-          href: assets/images/hra-release-calendar.svg
+            text-decoration: none
+          href: assets/images/hra-release-calendar.jpg
           text: Download JPG
           icon: download
         - type: image
@@ -107,8 +108,8 @@
               **What's New**
 
               The Human Reference Atlas now includes [count when ready] reference organs with [count when ready] anatomical structures.
-              - 5 new ASCT+B Tables: Spinal cord, trachea, bronchus, skeleton, muscular system
-              - 6 revised ASCT+B Tables: Blood vasculature, eye, lymph vasculature, brain, kidney, lung
+              - 5 new ASCT+B tables: Spinal cord, trachea, bronchus, skeleton, muscular system
+              - 6 revised ASCT+B tables: Blood vasculature, eye, lymph vasculature, brain, kidney, lung
               - 10 new 3D Reference Objects for four organs: Palatine tonsil, trachea, bronchus, larynx
               - 4 revised 3D Reference Objects for one organ: Eye
               - 2 new 2D Functional Tissue Unit (FTU) Illustrations: Red pulp of spleen, white pulp of spleen
@@ -130,14 +131,14 @@
             descriptions: |
               **ASCT+B Reporter & OMAPs Support**
 
-              Want to visualize Anatomical Structure, Biomarker, and Cell Type (ASCT+B) Tables? The ASCT+B Reporter has been upgraded to 
+              Want to visualize anatomical structure, biomarker, and cell type (ASCT+B) tables? The ASCT+B Reporter has been upgraded to 
               support the creation of OMAPs. Check out ASCT+B Reporter to see the interconnectedness.
         - type: button
           styles:
               margin-bottom: 2rem
           buttonData:
           text: Use the ASCT+B Reporter
-          url: https://humanatlas.io/asctb-tables
+          url: https://hubmapconsortium.github.io/ccf-asct-reporter/
         - type: divider
           styles:
             margin-bottom: 1rem
@@ -161,7 +162,7 @@
             margin-bottom: 2rem
           buttonData:
           text: Learn about the VCCF
-          url: https://humanatlas.io/asctb-tables
+          url: https://humanatlas.io/vccf
         - type: divider
           styles:
               margin-bottom: 1rem
@@ -174,14 +175,14 @@
             descriptions: |
               **ASCT+B Ontology Validations**
 
-              How are ASCT+B Tables validated? We use Ubergraph to check all relationships experts have asserted in the tables against 
+              How are ASCT+B tables validated? We use Ubergraph to check all relationships experts have asserted in the tables against 
               established ontologies (namely Uberon and Cell Ontology). Check out the results in GitHub.
         - type: button
           styles:
             margin-bottom: 2rem
           buttonData:
           text: Validation Tools GitHub Repository
-          url: https://humanatlas.io/asctb-tables
+          url: https://hubmapconsortium.github.io/ccf-validation-tools/
         - type: divider
           styles:
             margin-bottom: 1rem
@@ -201,7 +202,7 @@
             margin-bottom: 2rem
           buttonData:
           text: 'Preview: Human Atlas Stories'
-          url: https://humanatlas.io/asctb-tables
+          url: https://hubmapconsortium.github.io/hra-previews/pilots/pilot4.html
         - type: divider
           styles:
             margin-bottom: 1rem
@@ -221,7 +222,7 @@
             margin-bottom: 2rem
           buttonData:
           text: 'Preview: HRA-KG 2.0 Beta GitHub Repository'
-          url: https://humanatlas.io/asctb-tables
+          url: https://github.com/hubmapconsortium/hra-kg/releases
         - type: divider
           styles:
             margin-bottom: 1rem
@@ -276,3 +277,8 @@
 
               Every six months, a new version of Human Reference Atlas data is released together with user interfaces that make it possible 
               to visually explore the atlas or programmatically access the data. The 6th release is in December. Thanks for reading!
+        - type: image
+          imageSource: assets/images/4th_release_outro.svg
+
+- type: margin
+  bottom: 6.5rem

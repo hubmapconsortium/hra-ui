@@ -3,7 +3,16 @@
   width: fit-content;
 
   .mat-raised-button:hover {
-    background-color: #e4e9e9;
+    background: rgba(103, 80, 164, 0.08);
+  }
+
+  .mat-raised-button:focus,
+  .mat-raised-button:active {
+    background: rgba(103, 80, 164, 0.12);
+  }
+
+  .mat-raised-button:disabled {
+    background: rgba(29, 27, 32, 0.12);
   }
 
   .mat-raised-button {
@@ -20,6 +29,10 @@
     height: 40px;
     background-color: #F7F2FA;
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  }
+
+  .icon {
+    margin-right: 11px;
   }
 
   a:-webkit-any-link {

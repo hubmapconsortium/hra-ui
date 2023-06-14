@@ -57,6 +57,6 @@
     <contact-card *ngSwitchCase="'contact-card'" [contactCard]="def['contactData']"></contact-card>
     <a *ngSwitchCase="'downloadButton'" mat-raised-button [style]="def['styles']" [href]="def['href']" download
         class="download-button">
-        <span class="material-symbols-outlined">{{def["icon"]}}</span>{{def['text']}}
+        <span class="material-symbols-outlined icon">{{def["icon"]}}</span>{{def['text']}}
     </a>
 </ng-container>

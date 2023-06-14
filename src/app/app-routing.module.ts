@@ -159,14 +159,14 @@ const routes: Routes = [
     },
     resolve: { content: ContentResolver },
   },
-  {
-    path: 'usage-metrics',
-    component: PageComponent,
-    data: {
-      contentFile: 'hra-usage-metrics.content',
-    },
-    resolve: { content: ContentResolver },
-  },
+  // {
+  //   path: 'usage-metrics',
+  //   component: PageComponent,
+  //   data: {
+  //     contentFile: 'hra-usage-metrics.content',
+  //   },
+  //   resolve: { content: ContentResolver },
+  // },
   {
     path: 'ccf-tissue-info-page/:organ',
     component: TissueInfoPageComponent,

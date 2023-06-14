@@ -6,10 +6,10 @@
 
 - type: announcement
   announcementCard:
-    - message: "The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in "
-      route: "v1.3"
-      routeText: "4th Release Notes."
-      emoji: "🎉"
+  - message: "The 5th Release of the Human Reference Atlas (v1.4) is now available! See what's new in HRA v1.4 in "
+    route: 'v1.4'
+    routeText: '5th Release Notes.'
+    emoji: '🎉'
 
 - type: margin
   bottom: 2.5rem
@@ -18,7 +18,7 @@
   pageData:
     - heading: Overview
       descriptions: |
-        When you think of “life hacks,” normally you’d imagine productivity techniques. But how about the kind that helps you understand your body at a molecular level? It may be possible! Researchers must first determine the function and relationships among the 37 trillion cells that make up the human body. A better understanding of our cellular composition could help people live healthier, longer lives.
+        When you think of “life hacks,” normally you'd imagine productivity techniques. But how about the kind that helps you understand your body at a molecular level? It may be possible! Researchers must first determine the function and relationships among the 37 trillion cells that make up the human body. A better understanding of our cellular composition could help people live healthier, longer lives.
 
 
         A previous <a href="https://www.kaggle.com/c/hubmap-kidney-segmentation">Kaggle competition</a> aimed to segment cell population neighborhoods that perform an organ’s main physiologic function, also called functional tissue units (FTUs). Manually segmenting FTUs (e.g., glomeruli in kidney or alveoli in the lung) is a time-consuming process. In the average kidney, there are over 1 million glomeruli FTUs. While there are existing cell and FTU segmentation methods, we want to push the boundaries by building algorithms that generalize across different organs and are robust across different dataset differences.
@@ -161,7 +161,7 @@
   pageData:
   - heading: Acknowledgments
     descriptions: |
-      We would like to thank the many individuals that made this competition possible including:
+      We would like to thank the many individuals that made this competition possible, including:
 
       <strong>Organizers:</strong> Andrea de Souza (Eli Lilly and Company), Katy Börner, Yashvardhan Jain (Indiana University), Emma Lundberg (Science for Life Laboratory), Cecilia Lindskog (Uppsala University, Sweden), Amy Kemper (Google).
 
@@ -169,7 +169,7 @@
 
       <strong>Kaggle Sponsors:</strong> Google, Genentech (A member of the Roche Group), and Indiana University.
 
-      <strong>Kaggle Judges:</strong> Zorina Galis (NIH), Carolina Wahlby (Uppsala University, Sweden), Artem Sokolov (Harvard), Constantin Kappel (Leica Microsystems) , Anna Kreshuk (EMBL), Blue Lake (UC San Diego), David Van Valen (CalTech), and Nathan Heath Patterson (Vanderbilt School of Medicine).
+      <strong>Kaggle Judges:</strong> Zorina Galis (NIH), Carolina Wahlby (Uppsala University, Sweden), Artem Sokolov (Harvard), Constantin Kappel (Leica Microsystems), Anna Kreshuk (EMBL), Blue Lake (UC San Diego), David Van Valen (CalTech), and Nathan Heath Patterson (Vanderbilt School of Medicine).
 
       <strong>Funders:</strong> This work has been funded in part by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671 and VU HuBMAP under award 1U54DK120058-01.
 

@@ -24,6 +24,17 @@ export class PageElementComponent {
     }));
    }
 
+   ngOnInit(): void {
+    window.addEventListener('scroll', () => {
+      const scrollPosition = window.pageYOffset;
+      if (scrollPosition > 220) {
+        this.scrolled = true;
+      } else {
+        this.scrolled = false;
+      }
+    });
+  }
+
   clicked(card: LongCard): void {
     this.router.navigate([card.route])
   }
