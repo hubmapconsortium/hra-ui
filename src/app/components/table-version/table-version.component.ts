@@ -39,6 +39,7 @@ export class TableVersionComponent {
   @Input() versionData: ChooseVersion[];
   @Input() versionChooserDisabled = false;
   @Input() isTotal = false;
+  @Input() isDownload: boolean = false;
 
   @Input() set headerInfo(items: HeaderData[]) {
     this._headerInfo = this.createCellFunctions(items);
@@ -83,6 +84,7 @@ export class TableVersionComponent {
 
   setData(version: ChooseVersion): void {
     const data = this.dataService.getData(version.file, this.displayedColumnsData);
+    this.release = version;
     this.tableData = data.pipe(map(result => result.data));
     this.columns = data.pipe(map(result => result.columns));
   }

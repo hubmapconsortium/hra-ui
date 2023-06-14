@@ -54,6 +54,7 @@
     file: release1.csv
     version: 1
   isTotal: true
+  isDownload: true
   headerInfo:
   - columnDef: Organ
     header: Organ

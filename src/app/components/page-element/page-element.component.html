@@ -29,7 +29,7 @@
     <table-version *ngSwitchCase="'tableVersion'" [isTotal]="def['isTotal']"
         [versionChooserDisabled]="def['versionChooserDisabled']" [headerInfo]="def['headerInfo']"
         [versionData]="def['versionData']" [additionalHeaders]="def['additionalHeaders']"
-        [cellHeaders]="def['cellHeaders']" [isTotal]="def['isTotal']"></table-version>
+        [cellHeaders]="def['cellHeaders']" [isTotal]="def['isTotal']" [isDownload]="def['isDownload']"></table-version>
     <mat-card *ngSwitchCase="'matCard'" [style]="def['styles']">
         <page-element *ngFor="let comp of def['components']" [def]="comp"></page-element>
     </mat-card>
