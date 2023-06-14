@@ -1,6 +1,6 @@
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { Component, EventEmitter, HostBinding, Input, NgZone, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
-import { distinctUntilChanged, EMPTY, map, Observable, startWith, tap } from 'rxjs';
+import { delay, distinctUntilChanged, EMPTY, map, mergeWith, Observable, of, startWith, Subject, tap } from 'rxjs';
 import { TableDataService } from '../../services/table-data/tabledata.service';
 import { runInZone } from '../../shared/run-in-zone';
 import { ChooseVersion } from '../choose-version/choose-version';
@@ -18,9 +18,15 @@ const TABLE_SCROLL_END_MARGIN = 10;
 export class TableVersionComponent {
   @ViewChild('table', { static: true, read: CdkScrollable })
   set tableScroller(scrollable: CdkScrollable) {
+    const isAtEnd = () => scrollable.measureScrollOffset('end') <= TABLE_SCROLL_END_MARGIN;
+    const initialAtEnd = of(undefined).pipe(
+      delay(100),
+      map(isAtEnd)
+    );
     const obs = scrollable.elementScrolled().pipe(
-      map(() => scrollable.measureScrollOffset('end') <= TABLE_SCROLL_END_MARGIN),
-      startWith(false),
+      map(isAtEnd),
+      mergeWith(initialAtEnd),
+      startWith(true),
       distinctUntilChanged(),
       runInZone(this.zone)
     );
