@@ -109,7 +109,7 @@ export class TwoDimRefPageComponent implements OnInit {
   }
 
   setFtu(organName: OrganData["name"]): void {
-    const data = this.dataService.getData('ftu-cell-count.csv', this.displayedColumnsData);
+    const data = this.dataService.getData('ftu-cell-count-5th-release.csv', this.displayedColumnsData);
     this.tableData = data.pipe(
       map(result => result.data),
       map(data => data.filter(record => iCaseEquals(record['Organ'] as string, organName)))
