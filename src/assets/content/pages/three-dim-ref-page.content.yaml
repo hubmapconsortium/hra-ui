@@ -3,6 +3,9 @@ headerData:
   title: 3D Reference Object Library
   subtitle: Open source 3D organs crosswalked to ASCT+B tables used for tissue registration and exploration
 
+announcementDetails:
+- message: 'Warning: DOI registration in progress. HRA v1.4 DOI URLs will not work until further notice.'
+
 overviewData:
 - heading: Overview
   descriptions: |

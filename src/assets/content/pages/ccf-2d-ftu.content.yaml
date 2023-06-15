@@ -3,6 +3,8 @@ twoDimHeaderCardDetails:
   title: 2D Functional Tissue Unit (FTU) Illustrations
   subtitle: Open-source 2D reference illustrations of functional tissue units (FTUs) mapped to ASCT+B tables used for single-cell data exploration
 
+announcementDetails:
+- message: 'Warning: DOI registration in progress. HRA v1.4 DOI URLs will not work until further notice.'
 
 overviewData:
 - heading: Overview
