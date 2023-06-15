@@ -28,6 +28,8 @@
 
 - type: image
   imageSource: assets/images/cell_pop_body_image.svg
+  styles:
+    width: 100%
 
 - type: page-data
   pageData:

@@ -80,9 +80,8 @@
 
 
 - type: styled-group
-  styles:
-    display: flex
-    flex-direction: row
+  class:
+    three-dim-space
   components:
   - type: page-data
     pageData: 

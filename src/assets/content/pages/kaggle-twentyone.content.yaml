@@ -59,6 +59,8 @@
   components:
     - type: image
       imageSource: assets/images/accuracy_prizes.svg
+      styles:
+        width: 100%
 
 - type: prizeCard
   prizeCard:

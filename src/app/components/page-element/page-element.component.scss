@@ -116,6 +116,11 @@
     z-index: 10;
   }
 
+  .three-dim-space {
+    display: flex;
+    flex-direction: row;
+  }
+
   @media (max-width: 26.75rem) {
     menu-tree {
       display: block;
@@ -127,6 +132,10 @@
 
     ccf-page-header {
       margin-top: 4rem !important;
+    }
+
+    .three-dim-space {
+      flex-wrap: wrap;
     }
   }
 }
