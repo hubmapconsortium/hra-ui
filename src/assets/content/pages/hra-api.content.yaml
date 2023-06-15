@@ -31,7 +31,7 @@
   styles:
     display: flex
     justify-content: center
-    padding: 0rem 5rem
+    width: 100%
 
 - type: margin
   bottom: 2.5rem

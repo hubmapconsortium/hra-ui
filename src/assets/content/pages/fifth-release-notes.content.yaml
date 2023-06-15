@@ -279,6 +279,8 @@
               to visually explore the atlas or programmatically access the data. The 6th release is in December. Thanks for reading!
         - type: image
           imageSource: assets/images/4th_release_outro.svg
+          styles:
+            width: 100%
 
 - type: margin
   bottom: 6.5rem

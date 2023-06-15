@@ -37,9 +37,11 @@
     imageSource: assets/images/millitome_1.svg
     styles:
       padding-right: 3rem
+      width: 100%
   - type: image
     imageSource: assets/images/millitome_2.svg
     styles:
+      width: 100%
 
 - type: margin
   bottom: 2.5rem
