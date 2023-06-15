@@ -38,6 +38,9 @@
 
 - type: tableVersion
   versionData:
+  - release: 5th HRA Release (v1.4), June 2023
+    file: release5.csv
+    version: 5
   - release: 4th HRA Release (v1.3), December 2022
     file: release4.csv
     version: 4
@@ -50,6 +53,8 @@
   - release: 1st HRA Release (v1.0), March 2021
     file: release1.csv
     version: 1
+  isTotal: true
+  isDownload: true
   headerInfo:
   - columnDef: Organ
     header: Organ
