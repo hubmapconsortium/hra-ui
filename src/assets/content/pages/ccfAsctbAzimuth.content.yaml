@@ -1,7 +1,7 @@
 - type: header
   headerCard:
     - image: assets/images/asctb_azimuth.svg
-      title: ASCT+B cell-types Data from Azimuth Reference Data with Summaries
+      title: ASCT+B Cell-Types Data from Azimuth Reference Data with Summaries
       subtitle: Crosswalks from Azimuth cell annotation tool to ASCT+B tables with cell population data
 
 - type: announcement
@@ -136,7 +136,7 @@
   pageData:
     - heading: Azimuth CT Counts
       descriptions: |
-        Data from <a href="https://github.com/satijalab/azimuth_website">https://github.com/satijalab/azimuth_website</a> has been parsed to derive cell-type counts:
+        Data from <a href="https://github.com/satijalab/azimuth_website">https://github.com/satijalab/azimuth_website</a> has been parsed to derive cell-type counts.
 
         Code is available on <a href="https://github.com/hubmapconsortium/asctb-azimuth-data-comparison">GitHub</a>.
 

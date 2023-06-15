@@ -121,6 +121,12 @@
     flex-direction: row;
   }
 
+  @media (max-width: 50rem) {
+    .image {
+      width: 100%;
+    }
+  }
+
   @media (max-width: 26.75rem) {
     menu-tree {
       display: block;
