@@ -107,7 +107,7 @@
             descriptions: |
               **What's New**
 
-              The Human Reference Atlas now includes [count when ready] reference organs with [count when ready] anatomical structures.
+              The Human Reference Atlas now includes 66 reference organs with 4,279 anatomical structures from ASCT+B Tables.
               - 5 new ASCT+B tables: Spinal cord, trachea, bronchus, skeleton, muscular system
               - 6 revised ASCT+B tables: Blood vasculature, eye, lymph vasculature, brain, kidney, lung
               - 10 new 3D Reference Objects for four organs: Palatine tonsil, trachea, bronchus, larynx
@@ -119,6 +119,7 @@
               - 2 Physiological organ system tables: Male and female
               - 3 Azimuth crosswalks: Kidney, lung, heart
               - 24 Atlas-to-Atlas projections to/from 500 donor kidney, Allen brain, SPARC heart, SPARC colon, 1D Helmsley colon
+
         - type: divider
           styles:
             margin-bottom: 1rem
