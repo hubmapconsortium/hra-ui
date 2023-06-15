@@ -99,13 +99,13 @@
       count: 66
       text: organs
     - image: assets/images/anatomical-structures.svg
-      count: 4,244
+      count: 4,279
       text: anatomical structures
     - image: assets/images/cell-types.svg
-      count: 1,202
+      count: 1,209
       text: cell types
     - image: assets/images/biomarkers.svg
-      count: 2,324
+      count: 2,089
       text: biomarkers
     - image: assets/images/omap.svg
       count: 13
