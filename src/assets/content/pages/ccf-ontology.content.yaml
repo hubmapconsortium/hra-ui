@@ -22,7 +22,7 @@
   - heading: Overview
     descriptions: |
       The CCF Ontology comprises a Clinical Ontology, Semantic Ontology, and Spatial Ontology, 
-      see (**Figure 1**). Collectively, the three ontologies make up the CCF Ontology (also called union ontology) 
+      (see **Figure 1**). Collectively, the three ontologies make up the CCF Ontology (also called union ontology) 
       that supports spatially and semantically explicit search, filter, and browsing in the HuBMAP Portal.
 
 - type: simpleImage
@@ -37,7 +37,7 @@
   pageData:
   - heading:
     descriptions: |
-      **Clinical Ontology.** Captures CCF relevant clinical and other metadata such as donor sex, age, tissue
+      **Clinical Ontology.** Captures CCF-relevant clinical and other metadata such as donor sex, age, tissue
       sample author, and technology used. It does not capture all metadata associated with HuBMAP data.
     
       **Semantic Ontology.** Mirrors the ASCT+B tables and includes the CCF Anatomical Structures Partonomy of anatomical structures and the 

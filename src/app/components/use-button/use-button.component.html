@@ -1,8 +1,9 @@
 <a *ngIf="buttonData.url; else: route" mat-raised-button href={{buttonData.url}} target="_blank">
-    <span class="material-symbols-outlined icon">{{buttonData.icon}}</span>
+    <span *ngIf="buttonData.icon" class="material-symbols-outlined icon">{{buttonData.icon}}</span>
     {{buttonData.text.trim()}}
 </a>
 <ng-template #route>
     <a mat-raised-button [routerLink]="['',buttonData.route]">
-        <span class="material-symbols-outlined icon">{{buttonData.icon}}</span>{{buttonData.text.trim()}}</a>
+        <span *ngIf="buttonData.icon" class="material-symbols-outlined icon">{{buttonData.icon}}</span>
+        {{buttonData.text.trim()}}</a>
 </ng-template>

@@ -25,6 +25,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MenuTreeModule } from '../menu-tree/menu-tree.module';
 import { MatDividerModule } from '@angular/material/divider';
 import { ContactCardModule } from '../contact-card/contact-card.module';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
     declarations: [PageElementComponent],
     imports: [
@@ -53,7 +54,8 @@ import { ContactCardModule } from '../contact-card/contact-card.module';
         MatSidenavModule,
         MenuTreeModule,
         MatDividerModule,
-        ContactCardModule
+        ContactCardModule,
+        MatIconModule
     ],
     exports: [PageElementComponent]
 })
