@@ -6,9 +6,9 @@
 
 - type: announcement
   announcementCard:
-  - message: "The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in "
-    route: 'v1.3'
-    routeText: '4th Release Notes.'
+  - message: "The 5th Release of the Human Reference Atlas (v1.4) is now available! See what's new in HRA v1.4 in "
+    route: 'v1.4'
+    routeText: '5th Release Notes.'
     emoji: '🎉'
 
 - type: margin
@@ -17,14 +17,16 @@
 - type: page-data
   pageData:
   - heading: Overview
-    descriptions: The Human Reference Atlas-Vasculature Common Coordinate Framework (HRA-VCCF) dataset is the first open, computer-readable, and comprehensive database of the adult human blood vasculature. It contains a list of blood vessels and their branching relationships, as well as associated cell types and biomarkers, the vessel type, anastomoses, portal systems, microvasculature, functional tissue units, links to 3D reference objects, and mappings to anatomical structures the vessels supply or drain. Future versions will add variants, vessel geometries, and other properties. This database is used to derive the blood vasculature ASCT+B table; and, it can be used as a coordinate system for describing the location within the body--a Vasculature Common Coordinate Framework (VCCF).
+    descriptions: The Human Reference Atlas-Vasculature Common Coordinate Framework (HRA-VCCF) dataset is the first open, computer-readable, and comprehensive database of the adult human blood vasculature. 
+      It contains a list of blood vessels and their branching relationships, as well as associated cell types and biomarkers, the vessel type, anastomoses, portal systems, microvasculature, functional tissue units, 
+      links to 3D reference objects, vessel geometries (length, diameter), and mappings to anatomical structures the vessels supply or drain. This database is used to derive the blood vasculature ASCT+B table; and, 
+      it can be used as a coordinate system for describing the location within the body--a Vasculature Common Coordinate Framework (VCCF).
 
 - type: page-data
   pageData:
   - heading: HRA-VCCF Data Files
     descriptions: |
-      The HRA-VCCF is available as comma-separated values at 
-      https://github.com/hubmapconsortium/hra-vccf
+      The HRA-VCCF is available as comma-separated values in <a href="https://github.com/hubmapconsortium/hra-vccf" target="_blank">GitHub</a>.
 
 - type: page-data
   pageData:
@@ -39,7 +41,7 @@
 - type: page-data
   pageData:
   - heading: License
-    descriptions: The HRA-VCCF is released under Creative Commons Attribution 4.0 International (CC BY 4.0)
+    descriptions: The HRA-VCCF is released under Creative Commons Attribution 4.0 International (CC BY 4.0).
 
 - type: page-data
   pageData:
@@ -47,12 +49,18 @@
     descriptions: |
       If you use the HRA-VCCF, please cite this effort as follows:
       
-      Boppana A, Lee S, Malhotra R, Halushka M, Quardokus EM, Herr BW II, Börner K, Weber GM. Anatomical structures, cell types, and biomarkers of the healthy human blood vasculature. bioRxiv. March 1, 2022. Doi: 10.1101/2022.02.28.482302.
+      Boppana, Avinash, Sujin Lee, Rajeev Malhotra, Marc Halushka, Ellen M. Quardokus, Bruce W. Herr II, Katy Börner, and Griffin M. Weber. 2022.
+      "<a href="https://cns.iu.edu/docs/publications/2022-Boppana_ASCT+B.pdf" target="_blank">
+      Anatomical structures, cell types, and biomarkers of the healthy human blood vasculature</a>." <i>bioRxiv</i>, March 1, 2022. doi: 10.1101/2022.02.28.482302.
 
 - type: page-data
   pageData:
   - heading: References
     descriptions: |
-      Weber GM, Ju Y, Börner K. Considerations for Using the Vasculature as a Coordinate System to Map All the Cells in the Human Body. Front Cardiovasc Med. 2020 Mar 13;7:29. doi: 10.3389/fcvm.2020.00029. PMID: 32232057; PMCID: PMC7082726.
+      Weber Griffin M., Yingnan Ju, and Katy Börner. 2020.
+      "<a href="https://www.frontiersin.org/articles/10.3389/fcvm.2020.00029/full" target="_blank">Considerations for Using the Vasculature as a Coordinate System to Map All the Cells in the Human Body.</a>"
+      <i>Frontiers in Cardiovascular Medicine</i> 7: 29. doi: 10.3389/fcvm.2020.00029.
 
-      Boppana A, Lee S, Malhotra R, Halushka M, Quardokus EM, Herr BW II, Börner K, Weber GM. Anatomical structures, cell types, and biomarkers of the healthy human blood vasculature. bioRxiv. March 1, 2022. Doi: 10.1101/2022.02.28.482302.
+      Boppana, Avinash, Sujin Lee, Rajeev Malhotra, Marc Halushka, Ellen M. Quardokus, Bruce W. Herr II, Katy Börner, and Griffin M. Weber. 2022.
+      "<a href="https://cns.iu.edu/docs/publications/2022-Boppana_ASCT+B.pdf" target="_blank">Anatomical structures, cell types, and biomarkers of the healthy human blood vasculature.</a>"
+      <i>bioRxiv</i>." March 1, 2022. doi: 10.1101/2022.02.28.482302.

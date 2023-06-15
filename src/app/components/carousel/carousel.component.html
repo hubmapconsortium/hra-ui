@@ -4,10 +4,9 @@
       <div class="slide-info">
         <div class="content-titles">{{info.title}}</div>
         <div class="content-body">{{info.body}}</div>
-        <a *ngIf="info.url; else route" mat-stroked-button class="get-button" [href]="info.url" target="_blank">Get
-          Started</a>
+        <a *ngIf="info.url; else route" mat-stroked-button class="get-button" [href]="info.url" target="_blank">{{info.buttonText}}</a>
         <ng-template #route>
-          <a mat-stroked-button class="get-button" [routerLink]="['',info.route]">Get Started</a>
+          <a mat-stroked-button class="get-button" [routerLink]="['',info.route]">{{info.buttonText}}</a>
         </ng-template>
       </div>
       <div class="slide-image">

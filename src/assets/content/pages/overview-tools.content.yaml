@@ -4,14 +4,13 @@
 
 - type: announcement
   announcementCard:
-  - message: "The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in "
-    route: "v1.3"
-    routeText: "4th Release Notes."
-    emoji: "🎉"
+  - message: "The 5th Release of the Human Reference Atlas (v1.4) is now available! See what's new in HRA v1.4 in "
+    route: 'v1.4'
+    routeText: '5th Release Notes.'
+    emoji: '🎉'
 
 - type: simpleTile
   description:
-  - title: A **Common Coordinate Framework (CCF)** for a human body provides a unique address for each cell in the human body. It is similar to the latitude-longtitude system used to navigate a world map.
   - title: A **Human Reference Atlas (HRA)** is a comprehensive, high-resolution, three-dimensional atlas of all the cells in the healthy human body. The Human Reference Atlas provides standard terminologies and data structures for describing specimens, biological structures, and spatial positions linked to existing ontologies.
 
 - type: margin
@@ -20,7 +19,7 @@
 - type: longCard
   longButtonItems:
   - icon: assets/images/asctb_reporter.svg
-    title: CCF Anatomical Structures, Cell Types and Biomarkers (ASCT+B) Reporter
+    title: CCF Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Reporter
     body: A visualization tool for human organ experts to explore and compare ASCT+B Tables
     route: asctb-reporter
   - icon: assets/images/cell_graphs.svg
@@ -47,7 +46,7 @@
     title: Human Reference Atlas Application Programming Interfaces
     body: Query and interact with the HRA using Python, JavaScript, SPARQL, REST, and more
     route: api
-  - icon: assets/images/hra_usage.svg
-    title: Human Reference Atlas Usage Metrics
-    body: Data and statistics on which tools and consortia are using the Human Reference Atlas
-    route: usage-metrics
+  # - icon: assets/images/hra_usage.svg
+  #   title: Human Reference Atlas Usage Metrics
+  #   body: Data and statistics on which tools and consortia are using the Human Reference Atlas
+  #   route: usage-metrics

@@ -159,14 +159,14 @@ const routes: Routes = [
     },
     resolve: { content: ContentResolver },
   },
-  {
-    path: 'usage-metrics',
-    component: PageComponent,
-    data: {
-      contentFile: 'hra-usage-metrics.content',
-    },
-    resolve: { content: ContentResolver },
-  },
+  // {
+  //   path: 'usage-metrics',
+  //   component: PageComponent,
+  //   data: {
+  //     contentFile: 'hra-usage-metrics.content',
+  //   },
+  //   resolve: { content: ContentResolver },
+  // },
   {
     path: 'ccf-tissue-info-page/:organ',
     component: TissueInfoPageComponent,
@@ -236,6 +236,14 @@ const routes: Routes = [
     },
     resolve: { content: ContentResolver }
   },
+  {
+    path: 'release-notes/v1.4', 
+    component: PageComponent,
+    data: {
+      contentFile: 'fifth-release-notes.content'
+    },
+    resolve: { content: ContentResolver }
+  },
   { path: '', redirectTo: '', pathMatch: 'full' },
   {
     path: '**',
@@ -247,7 +255,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,
+    {
+      scrollPositionRestoration: 'enabled',
+      anchorScrolling: 'enabled',
+      scrollOffset: [0, 64],
+      onSameUrlNavigation: 'reload'
+    })],
   exports: [RouterModule],
 })
 export class AppRoutingModule { }

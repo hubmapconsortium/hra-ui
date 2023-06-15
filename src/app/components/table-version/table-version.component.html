@@ -1,6 +1,13 @@
-<ccf-choose-version *ngIf="!versionChooserDisabled" [releaseDate]="versionData" [selectedDate]="release"
-    (selectedVersion)="setData($event)" class="description"></ccf-choose-version>
-<ccf-table [typeCount]="(tableData | async) ?? []" [displayedColumns]="(columns | async) ?? []" [columns]="headerInfo"
-    [isTotal]="isTotal" [isOrgan]="true" [additionalHeaders]="additionalHeaders"
+<div class="download-csv-xlsx">
+    <ccf-choose-version *ngIf="!versionChooserDisabled" [releaseDate]="versionData" [selectedDate]="release"
+        (selectedVersion)="setData($event)" class="version"></ccf-choose-version>
+        <div style="flex-grow:1;"></div>
+    <a *ngIf="isDownload" mat-raised-button [href]="'assets/table-data/'+release.file" download class="download-btn">
+        <span class="material-symbols-outlined">download</span>Download CSV</a>
+    <!-- <a *ngIf="isDownload" mat-raised-button [href]="'assets/table-data/'+release.file" download class="download-btn">
+        <span class="material-symbols-outlined">download</span>Download XLSX</a> -->
+</div>
+<ccf-table cdkScrollable [typeCount]="(tableData | async) ?? []" [displayedColumns]="(columns | async) ?? []"
+    [columns]="headerInfo" [isTotal]="isTotal" [isOrgan]="true" [additionalHeaders]="additionalHeaders"
     [additionalColumnsData]="additionalColumnsData" [cellHeaders]="cellHeaders" [cellHeadersData]="cellHeadersData"
-    class="description"></ccf-table>
+    class="table" #table></ccf-table>

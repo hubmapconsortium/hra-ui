@@ -6,9 +6,9 @@
 
 - type: announcement
   announcementCard:
-  - message: "The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in "
-    route: 'v1.3'
-    routeText: '4th Release Notes.'
+  - message: "The 5th Release of the Human Reference Atlas (v1.4) is now available! See what's new in HRA v1.4 in "
+    route: 'v1.4'
+    routeText: '5th Release Notes.'
     emoji: '🎉'
 
 - type: margin
@@ -18,19 +18,18 @@
   pageData:
   - heading: Overview
     descriptions: |
-      A millitome is a device designed to hold a freshly procured organ and facilitate cutting it into many small tissue blocks for usage in single cell analysis. 
-      A millitome has discrete equally placed cutting grooves in both the x and y directions to guide a carbon steel cutting knife to produce standard size slices or cubes of tissue material. 
-      Millitomes are used to create uniformly sized tissue blocks that match the shape and size of organs from the 
+      A millitome is a device designed to hold a freshly procured human organ and facilitate cutting it into many small tissue blocks for usage in single-cell analysis. 
+      A millitome has discrete, equally placed cutting grooves in three dimensions (x, y, and z) to guide a carbon steel cutting knife to produce standard size slices or cubes of tissue material. 
+      Millitomes are used to create uniformly sized tissue blocks that match the shape and size of organs from the
       <a href="https://humanatlas.io/3d-reference-library" target="_blank">CCF 3D Reference Object Library</a>.
-
 
       This page allows you to download complete millitome sets for 3D-printing.
 
+      Specific download packages are accessed by selecting the organ (i.e., VH_F_Kidney_L = female kidney, left). 
+      Each organ folder contains three compressed download packages, distinguished by sample block size (i.e., VH_F_Kidney_L_20 = female kidney, left, 20mm block size).
 
-      Specific download packages are accessed by selecting the organ (i.e. VH_F_Kidney_L = female kidney, left). Each organ folder contains three compressed download packages, distinguished by block size (i.e. VH_F_Kidney_L_20 = female kidney, left, 20mm block size).
-
-
-      Each package contains three 3D-printable .STL files, one each for “small”, “medium” and “large” organ sizes to cover a wide range of variations (i.e. VH_F_Kidney_L_20_Medium = female kidney, left, 20mm block size, medium size). Also included in each package is a .CSV file to record data about the sample blocks taken from the organ.
+      Each package contains six 3D-printable .STL files for the requested organ, three each for the bottom and top half. Each millitome comes in three size variations to cover a range of organ sizes: large (115%), medium (100%), small (85%). 
+      Also included in each package are six matching lookup files in .CSV file format to record data about the sample blocks taken from the organ.
 
 - type: styled-group
   components:
@@ -38,9 +37,10 @@
     imageSource: assets/images/millitome_1.svg
     styles:
       padding-right: 3rem
+    class: image
   - type: image
     imageSource: assets/images/millitome_2.svg
-    styles:
+    class: image
 
 - type: margin
   bottom: 2.5rem

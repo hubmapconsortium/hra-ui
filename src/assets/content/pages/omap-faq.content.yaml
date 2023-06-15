@@ -24,7 +24,7 @@
           3. [Which multiplexed antibody-based imaging techniques are supported?](faq/omap#which-multiplexed-antibody-based-imaging-techniques-are-supported)
           4. [Are OMAPs just for healthy human tissues?](faq/omap#are-omaps-just-for-healthy-human-tissues)
           5. [How many antibodies are included in an OMAP?](faq/omap#how-many-antibodies-are-included-in-an-omap)
-          6. [How do I cite an existing OMAP](faq/omap#how-do-i-cite-an-existing-omap)
+          6. [How do I cite an existing OMAP?](faq/omap#how-do-i-cite-an-existing-omap)
           7. [How do I cite OMAPs overall?](faq/omap#how-do-i-cite-omaps-overall)
       2. Authoring OMAPs
           1. [How do I author an OMAP?](faq/omap#how-do-i-author-an-omap)
@@ -33,8 +33,8 @@
           4. [How do I report imaging methods that employ oligo-conjugated antibodies and fluorescent reporters for marker detection?](faq/omap#how-do-i-report-imaging-methods-that-employ-oligo-conjugated-antibodies-and-fluorescent-reporters-for-marker-detection)
           5. [Should I include antigen retrieval conditions for OMAPs designed for Formalin Fixed Paraffin Embedded (FFPE) specimens?](faq/omap#should-i-include-antigen-retrieval-conditions-for-omaps-designed-for-formalin-fixed-paraffin-embedded-ffpe-specimens)
           6. [How do I report the use of unconjugated primaries detected with secondary antibodies?](faq/omap#how-do-i-report-the-use-of-unconjugated-primaries-detected-with-secondary-antibodies)
-          7. [How do I report antibodies used for non-cyclic, non-fluorescent based methods such as imaging mass cytometry?](faq/omap#how-do-i-report-antibodies-used-for-non-cyclic-non-fluorescent-based-methods-such-as-imaging-mass-cytometry)
-          8. [How do I report the use of custom reagents conjugated in house or purchased from a vendor?](faq/omap#how-do-i-report-the-use-of-custom-reagents-conjugated-in-house-or-purchased-from-a-vendor)
+          7. [How do I report antibodies used for non-cyclic, non-fluorescent-based methods such as imaging mass cytometry?](faq/omap#how-do-i-report-antibodies-used-for-non-cyclic-non-fluorescent-based-methods-such-as-imaging-mass-cytometry)
+          8. [How do I report the use of custom reagents conjugated in-house or purchased from a vendor?](faq/omap#how-do-i-report-the-use-of-custom-reagents-conjugated-in-house-or-purchased-from-a-vendor)
           9. [Should I include an OMAP in my manuscript that uses multiplexed antibody-based imaging?](faq/omap#should-i-include-an-omap-in-my-manuscript-that-uses-multiplexed-antibody-based-imaging)
           10. [As an OMAP author who has published my OMAP with a peer reviewed journal, why should I also publish my OMAP on the HuBMAP HRA Portal?](faq/omap#as-an-omap-author-who-has-published-my-omap-with-a-peer-reviewed-journal-why-should-i-also-publish-my-omap-on-the-hubmap-hra-portal)
           11. [Do OMAPs need to accompany published work featuring multiplexed antibody-based imaging?](faq/omap#do-omaps-need-to-accompany-published-work-featuring-multiplexed-antibody-based-imaging)
@@ -52,7 +52,7 @@
       Consortium and parallel efforts in the field of cytometry to construct peer reviewed Optimized Multicolor Immunofluorescence Panels (OMIPs).
 
       #### **How are OMAPs different from other validated antibody resources?**
-      OMAPs provide experimental details relevant for their successful application, e.g., tissue preservation method, imaging method, antigen retrieval conditions, and antibody cycling order. 
+      OMAPs provide experimental details relevant for their successful application (e.g., tissue preservation method, imaging method, antigen retrieval conditions, and antibody cycling order).
       The end result is an assembly of expertly curated antibodies that work together in a single tissue section. By analogy, OMAPs are recipes and validated antibodies are ingredients. See for validated antibody resources: 
       the [HuBMAP Antibody Validation Report](https://avr.hubmapconsortium.org/) and [Human Protein Atlas](https://www.proteinatlas.org/humanproteome/tissue).
 
@@ -69,8 +69,10 @@
       Each OMAP has a digital object identifier (DOI) which can be used to cite it found on the [HRA portal](https://hubmapconsortium.github.io/ccf/pages/omap.html). Please cite OMAPs that you used and/or built upon. Thank you!
 
       #### **How do I cite OMAPs overall?**
-      Please cite: Hickey, John W., Elizabeth K. Neumann, Andrea J. Radtke, Jeannie M. Camarillo, Rebecca T. Beuschel, Alexandre Albanese, Elizabeth McDonough, et al. “Spatial Mapping of Protein Composition and Tissue Organization: A Primer for Multiplexed Antibody-Based Imaging.” 
-      Nature Methods, November 22, 2021. [https://doi.org/10.1038/s41592-021-01316-y](https://doi.org/10.1038/s41592-021-01316-y)
+      Please cite: 
+      Hickey, John W., Elizabeth K. Neumann, Andrea J. Radtke, Jeannie M. Camarillo, Rebecca T. Beuschel, Alexandre Albanese, Elizabeth McDonough, et al. 
+      "<a href="https://doi.org/10.1038/s41592-021-01316-y" target="_blank">Spatial Mapping of Protein Composition and Tissue Organization: A Primer for Multiplexed Antibody-Based Imaging.</a>"
+      <i>Nature Methods</i> 19 (3): 284-295.
 
 - type: page-data
   pageData:
@@ -96,10 +98,10 @@
       No, OMAP authors do not need to be affiliated with HuBMAP. Our initial set of OMAPs were authored by members of several consortia, including the Human Protein Atlas (HPA), Human Cell Atlas (HCA), and LungMap. We additionally welcome contributions from industry leaders and technology developers in the spatial biology field.
 
       #### **Is there a working group I may join to support authoring an OMAP?**
-      Yes, please join the Affinity Reagents Working Group by completing this form to indicate your interest: [https://forms.gle/Y2TVAcadSNn8Tdks7](https://forms.gle/Y2TVAcadSNn8Tdks7)
+      Yes, please join the Affinity Reagents Working Group by completing this form to indicate your interest: [https://forms.gle/Y2TVAcadSNn8Tdks7](https://forms.gle/Y2TVAcadSNn8Tdks7).
 
       #### **How do I report imaging methods that employ oligo-conjugated antibodies and fluorescent reporters for marker detection?**
-      Please list 'Oligonucleotide' in the conjugate field of the OMAP Table and specify the cycle number and fluorophore, e.g., Cy3, Cy5, etc., in the corresponding fields. 
+      Please list 'Oligonucleotide' in the conjugate field of the OMAP Table and specify the cycle number and fluorophore (e.g., Cy3, Cy5, etc.) in the corresponding fields. 
       For examples, see [CODEX OMAPs for the human intestines, pancreas, and kidney](https://hubmapconsortium.github.io/ccf/pages/omap.html).
 
       #### **Should I include antigen retrieval conditions for OMAPs designed for Formalin Fixed Paraffin Embedded (FFPE) specimens?**
@@ -107,16 +109,16 @@
       [Lung Cell DIVE OMAP](https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-lung-celldive.html).
 
       #### **How do I report the use of unconjugated primaries detected with secondary antibodies?**
-      For unconjugated primary antibodies, specify which fluorophore in the 'conjugate' field of the OMAP Table and include “secondary detection,” e.g., “Cy3 secondary detection.” For secondary antibodies leave the following fields blank: uniprot_accession_number, HGNC_ID, and target_name. 
+      For unconjugated primary antibodies, specify which fluorophore in the 'conjugate' field of the OMAP Table and include “secondary detection,” (e.g., “Cy3 secondary detection”). For secondary antibodies, leave the following fields blank: uniprot_accession_number, HGNC_ID, and target_name. 
       In the 'rationale' field, please state “Used for detection of (insert unconjugated primary antibody here).” For examples, please see
       [Skin Cell DIVE OMAP, specifically UCH-L1 primary antibody and Cy3 secondary antibody](https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-skin-celldive.html).
 
-      #### **How do I report antibodies used for non-cyclic, non-fluorescent based methods such as imaging mass cytometry?**
+      #### **How do I report antibodies used for non-cyclic, non-fluorescent-based methods such as imaging mass cytometry?**
       Please list the metal conjugates used in the 'conjugate' field of the OMAP Table and list “1” for cycle number. For example of how to report non-cyclic imaging methods employing metal-labeled antibodies, please see 
       [Liver SIMS OMAP](https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-liver-sim.html)
 
-      #### **How do I report the use of custom reagents conjugated in house or purchased from a vendor?**
-      Please include the catalog number for the unconjugated antibody and specify "unconjugated,” e.g., “338502 (Unconjugated).” Under 'conjugate' field, list the fluorophore, specify “custom,” and add the conjugation kit catalog number, if applicable. For examples, 
+      #### **How do I report the use of custom reagents conjugated in-house or purchased from a vendor?**
+      Please include the catalog number for the unconjugated antibody and specify "unconjugated”—e.g., “338502 (Unconjugated).” Under 'conjugate' field, list the fluorophore, specify “custom,” and add the conjugation kit catalog number, if applicable. For examples, 
       please see [Lymph Node IBEX OMAP](https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-lymph-node-ibex.html). Additionally, please create 
       [Research Resource Identifiers (RRIDs) for all custom reagents](https://scicrunch.org/resources).
 
@@ -131,15 +133,15 @@
       We appreciate the time and dedication it takes to construct an OMAP de novo and hope that the HuBMAP HRA Portal will provide greater visibility for your work while helping others with their multiplexed imaging studies.
 
       #### **Do OMAPs need to accompany published work featuring multiplexed antibody-based imaging?**
-      No, we will accept OMAPs created for ongoing work as long as authors provide links to publicly available protocols, preprints, and datasets, e.g., protocols.io, bioRxiv, and Zenodo. These requirements help facilitate external review of OMAPs and cultivate community confidence in OMAPs. 
+      No, we will accept OMAPs created for ongoing work as long as authors provide links to publicly available protocols, preprints, and datasets, (e.g., protocols.io, bioRxiv, and Zenodo). These requirements help facilitate external review of OMAPs and cultivate community confidence in OMAPs. 
       We welcome unpublished OMAPs authored by industry leaders as long as relevant protocols and representative datasets are provided.
 
       #### **Can I make changes to an existing OMAP?**
       Once published on the HuBMAP HRA Portal we cannot support major changes to an existing OMAP. In certain circumstances, we will accept revised OMAPs that correct minor changes such as typos. 
-      However, please carefully review your OMAP before submission. You can expand on your existing OMAP - see Can I expand upon an existing OMAP?
+      However, please carefully review your OMAP before submission. You can expand on your existing OMAP—see Can I expand upon an existing OMAP?
 
       #### **Can I expand upon an existing OMAP?**
-      Yes, please cite the original OMAP as a foundation and detail changes in the OMAP Description Document, e.g., additional antibodies included, alternative clones used, changes to the order in which antibodies are applied (if applicable), or conjugation kits used. 
+      Yes, please cite the original OMAP as a foundation and detail changes in the OMAP Description Document—e.g., additional antibodies included, alternative clones used, changes to the order in which antibodies are applied (if applicable), or conjugation kits used. 
       Additionally, the OMAP may be designed for a different sample type (e.g., FFPE if the original is for fixed frozen) or health state (e.g., aging, malignancy if the original is for a healthy adult). 
       In the latter example, the new OMAP must describe the unique cell types and cell states not covered by the existing OMAP for that tissue or organ. The expanded OMAP will receive a new number ID and DOI.
 

@@ -38,11 +38,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
       {
         menuName: 'Organ Mapping Antibody Panels (OMAPs)',
         route: 'omap',
-        disabled: true
-      },
-      {
-        menuName: '4th Release Notes',
-        route: 'release-notes/v1.3',
+        disabled: true,
         divider: true
       },
       {
@@ -100,11 +96,11 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         route: 'api',
         disabled: true
       },
-      {
-        menuName: 'Usage Metrics',
-        route: 'usage-metrics',
-        disabled: true
-      }
+      // {
+      //   menuName: 'Usage Metrics',
+      //   route: 'usage-metrics',
+      //   disabled: true
+      // }
     ]
   },
   {
@@ -143,6 +139,16 @@ export const NAVIGATION_ITEMS: NavItems[] = [
       {
         menuName: '24 Hour Human Reference Atlas Event',
         url: 'https://humanatlas.io/events/2022-24h/'
+      },
+      {
+        menuName: 'Release Notes',
+        route: 'overview-training-outreach',
+        fragment: 'release-notes'
+      },
+      {
+        menuName: 'Previews',
+        route: 'overview-training-outreach',
+        fragment: 'previews'
       }
 
     ]

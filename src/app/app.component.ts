@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'ccf-root',
@@ -8,11 +9,14 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'ccf';
 
+  constructor(private readonly router: Router, private readonly activated: ActivatedRoute) {}
+
   onPageChange() {
-    window.scroll({ 
-            top: 0, 
-            left: 0, 
-            behavior: 'auto' 
-     });
+    setTimeout(() => {
+      this.router.navigate([], {
+        relativeTo: this.activated,
+        preserveFragment: true
+      });
+    })
  }
 }

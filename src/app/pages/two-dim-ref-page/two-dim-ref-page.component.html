@@ -9,7 +9,7 @@
 <ccf-two-dim-image [cardTitle]="cardTitle" [tissueData]="organData" [isMultirow]="true"></ccf-two-dim-image>
 <div class="table-heading-container">
     <div class="content-title">{{tableTitle}}</div>
-    <a mat-raised-button href="assets/table-data/ftu-cell-count.csv">
+    <a mat-raised-button href="assets/table-data/ftu-cell-count-5th-release.csv">
         <span class="material-symbols-outlined">download</span>Download CSV</a>
 </div>
 <ccf-table [typeCount]="(tableData | async) ?? []" [displayedColumns]="(columns | async) ?? []" [columns]="headerInfo" [isTotal]="true" class="description"></ccf-table>

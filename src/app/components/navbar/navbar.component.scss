@@ -42,8 +42,8 @@ a {
   padding-left: 1rem;
   padding-right: 1rem;
 
-  &:hover{
-    background: rgba(0,0,0,.04);
+  &:hover {
+    background: rgba(0, 0, 0, 0.04);
   }
 }
 
@@ -54,4 +54,12 @@ a {
 
 .mat-button-focus-overlay {
   display: none;
+}
+
+.route-link {
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 0.005em;
+  color: #444a65;
 }

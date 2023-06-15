@@ -1,21 +1,38 @@
 :host {
   display: block;
+  width: fit-content;
 
   .mat-raised-button:hover {
-    background-color: #e4e9e9;
+    background: rgba(103, 80, 164, 0.08);
+  }
+
+  .mat-raised-button:focus,
+  .mat-raised-button:active {
+    background: rgba(103, 80, 164, 0.12);
+  }
+
+  .mat-raised-button:disabled {
+    background: rgba(29, 27, 32, 0.12);
   }
 
   .mat-raised-button {
-    background-color: #fafafa;
-    border: 0.063rem solid #444c65;
-    border-radius: 0.125rem;
-    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
     font-size: 0.875rem;
-    letter-spacing: 0.005rem;
-    color: #444c65;
-    box-shadow: unset;
-    white-space: normal;
-    text-align: left;
+    padding: 0rem 1.5rem;
+    margin-left: 1px;
+    min-width: 124px;
+    color: #444C65;
+    border-radius: 6.25rem;
+    height: 40px;
+    background-color: #F7F2FA;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  }
+
+  .icon {
+    margin-right: 11px;
   }
 
   a:-webkit-any-link {
@@ -24,7 +41,7 @@
 
   @media (max-width: 26.75rem) {
     .mat-raised-button {
-      width: calc(100vw - 2rem);
+      width: calc(100vw - 2.5rem);
       line-height: 1.25rem;
       padding: 0.5rem 1rem;
     }

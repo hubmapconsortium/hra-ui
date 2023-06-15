@@ -34,16 +34,16 @@ fourthReleaseStats:
 hraHourEvent:
 - heading:
   descriptions: |
-    **HRA 24 Hour Event**
+    **HRA 24-Hour Event**
 
-    Check out the videos from our 24 hour live HRA Event that happened on December 9-10, 2022. There is plenty of great content about atlasing.
+    Check out the videos from our 24-Hour live HRA Event that happened on December 9-10, 2022. There is plenty of great content about atlasing.
 
 hourEventUseButton:
-  text: HRA 24 Hour Event Videos
+  text: HRA 24-Hour Event Videos
   url: https://www.youtube.com/playlist?list=PL-CUnYVIy7DOVqQbrzhnLEtY8uoVHKXOI
 
 hourEventPageButton:
-  text: HRA 24 Hour Event Page
+  text: HRA 24-Hour Event Page
   url: https://humanatlas.io/events/2022-24h/
 
 hraReleaseCalendar:
@@ -58,7 +58,7 @@ asctbTables:
   descriptions: |
     **ASCT+B Tables**
 
-    What is an ASCT+B table? 26 tables describe human anatomy, connect Anatomical Structures to Cell Types to Biomarkers.
+    What is an ASCT+B table? 26 tables describe human anatomy, connect anatomical structures to cell types to biomarkers.
 
 asctbTablesButton:
   text: Use the ASCT+B Tables
@@ -67,9 +67,9 @@ asctbTablesButton:
 asctbReporter:
 - heading:
   descriptions: |
-    **ASCTB+Reporter**
+    **ASCT+B Reporter**
 
-    Want to visualize ASCT+B Tables? Check out ASCT+B Reporter to see the interconnectedness.
+    Want to visualize ASCT+B tables? Check out ASCT+B Reporter to see the interconnectedness.
 
 asctbReporterButton:
   text: Use the ASCT+B Reporter
@@ -80,7 +80,7 @@ ontologyValidations:
   descriptions: |
     **ASCT+B Ontology Validations**
 
-    How are ASCT+B Tables validated? We use Ubergraph to check all relationships experts have asserted in the tables against established ontologies (namely Uberon and Cell Ontology). Check out the results in GitHub.
+    How are ASCT+B tables validated? We use Ubergraph to check all relationships experts have asserted in the tables against established ontologies (namely Uberon and Cell Ontology). Check out the results in GitHub.
 
 ontologyValidationsButton:
   text: Validation Tools GitHub Repository
@@ -168,7 +168,7 @@ navigationItems:
   id: intro
 - menuName: "What's New"
   id: whats-new
-- menuName: HRA 24 Hour Event
+- menuName: HRA 24-Hour Event
   id: 24-hr-event
 - menuName: HRA Release Calendar
   id: hra-release-calendar

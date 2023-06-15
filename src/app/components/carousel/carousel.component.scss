@@ -85,11 +85,20 @@
   }
 
   .get-button {
-    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    color: black;
-    border: 0.063rem solid #444c65;
-    border-radius: 0.125rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    padding: 0rem 1.5rem;
+    margin-left: 1px;
+    min-width: 124px;
+    color: #444C65;
+    border-radius: 6.25rem;
+    height: 40px;
+    background-color: #F7F2FA;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
   }
 
   .swiper-button-prev {
@@ -111,7 +120,7 @@
 
   .swiper-button-next {
     top: 97%;
-    left: 18%;
+    left: 10%;
     color: #444a65;
     background-image: url(../../../assets/images/swiper_right.svg);
     background-repeat: no-repeat;
@@ -134,7 +143,7 @@
 
   @media (max-width: 75rem) {
     .swiper-button-next {
-      right: calc(100vw - 264px);
+      right: calc(100vw - 164px);
       left: unset;
     }
   }
@@ -160,7 +169,7 @@
 
     .swiper-button-next {
       left: unset;
-      right: calc(100vw - 417px);
+      right: calc(100vw - 244px);
     }
 
     .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
@@ -185,7 +194,7 @@
     }
 
     .swiper-button-next {
-      left: 21rem;
+      left: 12rem;
       right: unset;
     }
 

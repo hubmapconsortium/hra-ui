@@ -24,9 +24,10 @@
         color: rgb(33,33,33)
         font-weight: 300
         letter-spacing: 0.005rem
+        margin-bottom: 0.5rem
       class: landing-title
     - type: text
-      text: 3D Multiscale Biomolecular Human Reference Atlas Construction, Visualization and Usage
+      text: 3D Multiscale Biomolecular Human Reference Atlas Construction, Visualization, and Usage
       styles:
         font-size: 1.75rem
         font-weight: 300
@@ -36,14 +37,13 @@
 
 - type: announcement
   announcementCard:
-  - message: "The 4th Release of the Human Reference Atlas (v1.3) is now available! See what's new in HRA v1.3 in "
-    route: 'v1.3'
-    routeText: '4th Release Notes.'
+  - message: "The 5th Release of the Human Reference Atlas (v1.4) is now available! See what's new in HRA v1.4 in "
+    route: 'v1.4'
+    routeText: '5th Release Notes.'
     emoji: '🎉'
 
 - type: simpleTile
   description:
-  - title: "A <span class=\"hra-bold\">Common Coordinate Framework (CCF)</span> for a human body provides a unique address for each cell in the human body. It is similar to the latitude-longitude system used to navigate a world map."
   - title: "A <span class=\"hra-bold\">Human Reference Atlas (HRA)</span> is a comprehensive, high-resolution, three-dimensional atlas of all the cells in the healthy human body. The Human Reference Atlas provides standard terminologies and data structures for describing specimens, biological structures, and spatial positions linked to existing ontologies."
 
 - type: margin
@@ -53,30 +53,33 @@
   containerStyles:
     width: min(77rem,calc(100vw - 32px))
   carouselInfo:
-    - title: Map the human body at single cell resolution
-      body: Learn more about the thousands of experts building a Human Reference Atlas.
+    - title: Map the human body at single-cell resolution
+      body: Learn more about the thousands of experts building the Human Reference Atlas.
       image: assets/images/carousel1.svg
       url: https://doi.org/10.1038/s41556-021-00788-6
-    - title: Contribute data to the Human Reference Atlas
-      body: Register your data spatially using the Registration User Interface tool.
-      image: assets/images/carousel2.svg
-      route: registration-user-interface
+      buttonText: View Paper
+    # - title: Contribute data to the Human Reference Atlas
+    #   body: Register your data spatially using the Registration User Interface tool.
+    #   image: assets/images/carousel2.svg
+    #   route: registration-user-interface
     - title: Compare data to the Human Reference Atlas
       body: Use the ASCT+B Reporter tool to explore data in the context of the Human Reference Atlas.
       image: assets/images/carousel3.svg
       route: asctb-reporter
-    - title: Search for a cell type, gene, or protein
-      body: Explore cell type populations with via Cell Type Population graph tool.
-      image: assets/images/carousel4.svg
-      route: cell-population-graphs
-    - title: Search for data across levels-from the whole body down to single cells
-      body: Explore Human Reference Atlas data with the Exploration User Interface tool.
-      image: assets/images/carousel5.svg
-      route: exploration-user-interface
+      buttonText: Learn More
+    # - title: Search for a cell type, gene, or protein
+    #   body: Explore cell type populations with via Cell Type Population graph tool.
+    #   image: assets/images/carousel4.svg
+    #   route: cell-population-graphs
+    # - title: Search for data across levels-from the whole body down to single cells
+    #   body: Explore Human Reference Atlas data with the Exploration User Interface tool.
+    #   image: assets/images/carousel5.svg
+    #   route: exploration-user-interface
     - title: Learn more about the Human BioMolecular Atlas Program
       body: Explore HuBMAP data, code, and documentation using the HuBMAP Data Portal.
       image: assets/images/carousel6.svg
       url: https://portal.hubmapconsortium.org/
+      buttonText: HuBMAP Data Portal
 
 - type: margin
   bottom: 2.5rem
@@ -93,22 +96,22 @@
       count: 1,000+
       text: publications
     - image: assets/images/organs_metric.svg
-      count: 56
+      count: 66
       text: organs
     - image: assets/images/anatomical-structures.svg
-      count: 2,665
+      count: 4,279
       text: anatomical structures
     - image: assets/images/cell-types.svg
-      count: 953
+      count: 1,209
       text: cell types
     - image: assets/images/biomarkers.svg
-      count: 2,842
+      count: 2,089
       text: biomarkers
     - image: assets/images/omap.svg
-      count: 7
+      count: 13
       text: organ mapping antibody panels
     - image: assets/images/ftu.svg
-      count: 19
+      count: 21
       text: functional tissue units
 
 - type: margin
@@ -128,7 +131,7 @@
 - type: sectionCard
   cardsInfo:
     - title: Data
-      description: Research the data constructing Human Reference Atlas
+      description: Research the data constructing the Human Reference Atlas
       image: assets/images/data_svg.svg
       gif: assets/images/data_gif.gif
       route: overview-data

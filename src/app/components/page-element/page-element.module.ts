@@ -21,6 +21,11 @@ import { SectionCardModule } from '../section-card/section-card.module';
 import { TableVersionModule } from '../table-version/table-version.module';
 import { MatCardModule } from '@angular/material/card';
 import { PrizeCardModule } from '../prize-card/prize-card.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MenuTreeModule } from '../menu-tree/menu-tree.module';
+import { MatDividerModule } from '@angular/material/divider';
+import { ContactCardModule } from '../contact-card/contact-card.module';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
     declarations: [PageElementComponent],
     imports: [
@@ -45,7 +50,12 @@ import { PrizeCardModule } from '../prize-card/prize-card.module';
         SectionCardModule,
         TableVersionModule,
         MatCardModule,
-        PrizeCardModule
+        PrizeCardModule,
+        MatSidenavModule,
+        MenuTreeModule,
+        MatDividerModule,
+        ContactCardModule,
+        MatIconModule
     ],
     exports: [PageElementComponent]
 })

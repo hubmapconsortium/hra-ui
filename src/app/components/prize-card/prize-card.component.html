@@ -11,11 +11,11 @@
         </div>
         <mat-divider *ngIf="prize.matDivider"></mat-divider>
         <div class="winner" *ngFor="let win of prize.winner">
-            <div>
+            <div class="kaggle-id">
                 <markdown><b>Winner: </b>{{win.winner}}</markdown>
             </div>
             <div><markdown>{{win.kaggleId}}</markdown></div>
-            <div *ngIf="win.button">
+            <div *ngIf="win.button" class="buttons">
                 <a mat-stroked-button class="solution-button" *ngFor="let button of win.button"
                     [href]="button.link" target="_blank">{{button.label}}</a>
             </div>
