@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Announcement } from 'src/app/components/announcement-card/announcement-card';
 import { UseButton } from 'src/app/components/use-button/use-button';
 import { ChooseVersion } from '../../components/choose-version/choose-version';
 import { PageDataItems } from '../../components/page-data/page-data';
@@ -9,6 +10,7 @@ import { OrganData, VersionOrgans } from '../../components/two-dim-image/two-dim
 
 interface ThreeDimRefPage {
   headerData: PageHeaderItems[];
+  announcementDetails: Announcement[];
   overviewData: PageDataItems[];
   organCsvButton: UseButton;
   versionData: ChooseVersion[];
@@ -41,6 +43,7 @@ export class ThreeDimRefPageComponent {
   organData: OrganData[];
   information: VersionOrgans;
   data = this.route.snapshot.data['content'] as ThreeDimRefPage;
+  announcementDetails = this.data.announcementDetails;
   overviewData = this.data.overviewData;
   organCsvButton = this.data.organCsvButton;
   headerData = this.data.headerData;

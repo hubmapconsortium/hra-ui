@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { EMPTY, map, Observable } from 'rxjs';
+import { Announcement } from 'src/app/components/announcement-card/announcement-card';
 import { HeaderData } from 'src/app/components/table/header';
 import { TableData } from 'src/app/components/table/table';
 import { TableDataService } from 'src/app/services/table-data/tabledata.service';
@@ -13,6 +14,7 @@ import { OrganData, VersionOrgans } from '../../components/two-dim-image/two-dim
 
 interface TwoDimensionReference {
   twoDimHeaderCardDetails: PageHeaderItems[];
+  announcementDetails: Announcement[];
   overviewData: PageDataItems[];
   sopData: SopLinks;
   termsOfUseData: PageDataItems[];
@@ -44,6 +46,7 @@ export class TwoDimRefPageComponent implements OnInit {
   data = this.route.snapshot.data['content'] as TwoDimensionReference;
 
   twoDimHeaderCardDetails = this.data.twoDimHeaderCardDetails;
+  announcementDetails = this.data.announcementDetails;
   overviewData = this.data.overviewData;
   sopData = this.data.sopData;
   termsOfUseData = this.data.termsOfUseData;
