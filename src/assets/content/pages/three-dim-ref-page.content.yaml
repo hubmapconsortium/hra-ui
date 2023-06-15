@@ -4,7 +4,11 @@ headerData:
   subtitle: Open source 3D organs crosswalked to ASCT+B tables used for tissue registration and exploration
 
 announcementDetails:
-- message: 'Warning: DOI registration in progress. HRA v1.4 DOI URLs will not work until further notice.'
+  - message: "The 5th Release of the Human Reference Atlas (v1.4) is now available! See what's new in HRA v1.4 in "
+    route: 'v1.4'
+    routeText: '5th Release Notes.'
+    emoji: '🎉'
+  - message: 'Warning: DOI registration in progress. HRA v1.4 DOI URLs will not work until further notice.'
 
 overviewData:
 - heading: Overview
