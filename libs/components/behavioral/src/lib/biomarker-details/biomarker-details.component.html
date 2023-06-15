@@ -5,7 +5,7 @@
   </mat-icon>
 </hra-label-box>
 
-<mat-tab-group class="table" mat-stretch-tabs="false" color="accent">
+<mat-tab-group class="table" [class.table-fullscreen]="isTableFullScreen" mat-stretch-tabs="false" color="accent">
   <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="tab.label">
     <hra-biomarker-table [data]="tab.rows" [columns]="tab.columns"></hra-biomarker-table>
   </mat-tab>
