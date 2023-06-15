@@ -52,4 +52,23 @@
   .margin {
     margin-right: 1rem;
   }
+
+  @media (max-width: 26.75rem) {
+    &:not(.scroll-end)::after {
+      top: 8rem;
+    }
+
+    .download-csv-xlsx {
+      flex-wrap: wrap;
+    }
+
+    .version {
+      margin-bottom: 2rem;
+    }
+
+    .download-btn {
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+  }
 }
