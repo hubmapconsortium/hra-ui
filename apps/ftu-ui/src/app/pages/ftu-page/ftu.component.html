@@ -1,5 +1,6 @@
 <hra-fullscreen-container class="content-container" [fullscreen]="isFullscreen()">
-  <ftu-medical-illustration-behavior class="illustration"> </ftu-medical-illustration-behavior>
+  <ftu-medical-illustration-behavior [class.display]="isFullscreen()" class="illustration">
+  </ftu-medical-illustration-behavior>
 
   <hra-fullscreen-content class="fullscreen-content-container">
     <ftu-biomarker-details class="illustration-details"> </ftu-biomarker-details>
