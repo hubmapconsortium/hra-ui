@@ -200,27 +200,27 @@ threeDimOrganInfo:
     - name: Female, L
       image:
       expandedImage: 
-      url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/eye-female-left.html
+      url: https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/ref-organs/3d-vh-f-eye-l.html
       alt: Eye, Female, L
-      threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Eye_L.glb
+      threeDimImage: https://hubmapconsortium.github.io/ccf-releases/v1.4/models/3d-vh-f-eye-l.glb
     - name: Female, R
       image: 
       expandedImage:
-      url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/eye-female-right.html
+      url: https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/ref-organs/3d-vh-f-eye-r.html
       alt: Eye, Female, R
-      threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Eye_R.glb
+      threeDimImage: https://hubmapconsortium.github.io/ccf-releases/v1.4/models/3d-vh-f-eye-r.glb
     - name: Male, L
       image:
       expandedImage:
-      url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/eye-male-left.html
+      url: https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/ref-organs/3d-vh-m-eye-l.html
       alt: Eye, Male, L
-      threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Eye_L.glb
+      threeDimImage: https://hubmapconsortium.github.io/ccf-releases/v1.4/models/3d-vh-m-eye-l.glb
     - name: Male, R
       image:
       expandedImage:
-      url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/eye-male-right.html
+      url: https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/ref-organs/3d-vh-m-eye-r.html
       alt: Eye, Male, R
-      threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Eye_R.glb
+      threeDimImage: https://hubmapconsortium.github.io/ccf-releases/v1.4/models/3d-vh-m-eye-r.glb
   - name: Extrapulmonary Bronchus
     image: assets/images/extrapulmonaryBronchus.svg
     tissueData:
