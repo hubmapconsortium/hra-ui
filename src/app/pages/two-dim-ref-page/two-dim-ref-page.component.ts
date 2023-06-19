@@ -22,12 +22,12 @@ interface TwoDimensionReference {
   citationData: PageDataItems[];
   twoDimFtuLibObjects: PageDataItems[];
   disclaimer: PageDataItems[];
-  filterImages: OrganData[];
+  // filterImages: OrganData[];
   versionData: ChooseVersion[];
   placeholderDate: string;
   organData: OrganData[];
   info: VersionOrgans;
-  version: ChooseVersion;
+  // version: ChooseVersion;
   organInfo: VersionOrgans[];
   headerInfo: HeaderData[];
   displayedColumnsData: string[];
@@ -54,14 +54,14 @@ export class TwoDimRefPageComponent implements OnInit {
   citationData = this.data.citationData;
   twoDimFtuLibObjects = this.data.twoDimFtuLibObjects;
   disclaimer = this.data.disclaimer;
-  filterImages = this.data.filterImages;
+  // filterImages = this.data.filterImages;
   cardTitle = "";
   tableTitle = "";
   versionData = this.data.versionData;
   placeholderDate = this.data.placeholderDate;
   organData = this.data.organData;
   info = this.data.info;
-  version = this.data.version;
+  // version = this.data.version;
   organInfo = this.data.organInfo;
   headerInfo = this.data.headerInfo.map((data) => ({
     ...data,
@@ -70,6 +70,8 @@ export class TwoDimRefPageComponent implements OnInit {
   displayedColumnsData = this.data.headerInfo.map(h=>h.columnDef);
   tableData: Observable<TableData[]> = EMPTY;
   columns: Observable<string[]> = EMPTY;
+  filterImages: OrganData[];
+  version: ChooseVersion;
 
   constructor(private router: Router, private readonly route: ActivatedRoute, private readonly dataService: TableDataService) { }
 

@@ -59,4 +59,6 @@
         class="download-button">
         <span class="material-symbols-outlined icon">{{def["icon"]}}</span>{{def['text']}}
     </a>
+    <ccf-organ-version *ngSwitchCase="'organ-version'" [versionData]="def['versionData']"
+    [organInfo]="def['organInfo']"></ccf-organ-version>
 </ng-container>

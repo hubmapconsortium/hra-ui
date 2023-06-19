@@ -1,1 +1,3 @@
-<p>organ-version works!</p>
+<ccf-choose-version [releaseDate]="versionData" [selectedDate]="version" (selectedVersion)="setVersion($event.version)" class="description"></ccf-choose-version>
+<ccf-organ-tabs [tabs]="filterImages" [currentOrgan]="organData[0].name" (organName)="setOrgan($event)" (organName)="setFtu($event)" [panelClass]="'panelClass'"></ccf-organ-tabs>
+<ccf-two-dim-image [cardTitle]="cardTitle" [tissueData]="organData" [isMultirow]="true"></ccf-two-dim-image>

@@ -11,6 +11,7 @@ import { BottomToolbarModule } from './components/bottom-toolbar/bottom-toolbar.
 import { CardWithHeaderModule } from './components/card-with-header/card-with-header.module';
 import { CountInfoCardModule } from './components/count-info-card/count-info-card.module';
 import { MenuTreeModule } from './components/menu-tree/menu-tree.module';
+import { OrganVersionModule } from './components/organ-version/organ-version.module';
 import { PageDataModule } from './components/page-data/page-data.module';
 import { PageElementModule } from './components/page-element/page-element.module';
 import { PageHeaderModule } from './components/page-header/page-header.module';
@@ -99,7 +100,8 @@ import { VccfModule } from './pages/vccf/vccf.module';
     PageElementModule,
     PageModule,
     CardWithHeaderModule,
-    TableVersionModule
+    TableVersionModule,
+    OrganVersionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
