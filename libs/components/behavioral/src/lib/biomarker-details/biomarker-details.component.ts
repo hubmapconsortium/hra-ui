@@ -62,8 +62,12 @@ export class BiomarkerDetailsComponent {
   /** List of sources with titles and links displayed to the user */
   readonly source = selectSnapshot(SourceListSelectors.getSourceList);
 
+  /** A dispatcher function to set the screen mode */
   private readonly setScreenMode = dispatch(ScreenModeAction.Set);
 
+  /** A function that toggles isTableFullScreen and
+   * calls the setScreenMode function.
+   */
   toggleFullscreen(): void {
     this.isTableFullScreen = !this.isTableFullScreen;
     this.setScreenMode(this.isTableFullScreen);
