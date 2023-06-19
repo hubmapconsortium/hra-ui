@@ -2,7 +2,12 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { InteractiveSvgComponent } from '@hra-ui/components/molecules';
-import { MedicalIllustrationActions, MedicalIllustrationSelectors } from '@hra-ui/state';
+import {
+  MedicalIllustrationActions,
+  MedicalIllustrationSelectors,
+  SourceListActions,
+  SourceListSelectors,
+} from '@hra-ui/state';
 
 /**
  * Behavior component for medical illustration component
@@ -30,4 +35,8 @@ export class MedicalIllustrationBehaviorComponent {
    * Updates the active node on node hover
    */
   readonly updateNode = dispatch(MedicalIllustrationActions.SetActiveNode);
+
+  readonly getSources = selectSnapshot(SourceListSelectors.getSourceList);
+
+  readonly updateSources = dispatch(SourceListActions.Set);
 }
