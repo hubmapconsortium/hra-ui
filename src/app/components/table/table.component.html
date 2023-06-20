@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="dataSource" matSort [matSortActive]="firstColumnId" matSortDirection="asc"  class="mat-elevation-z8 data-table">
+<table mat-table [dataSource]="dataSource" matSort [matSortActive]="firstColumnId" matSortDirection=""  class="mat-elevation-z8 data-table">
   <ng-container *ngIf="cellHeaders?.length">
     <ng-container *ngFor="let cells of cellHeaders" [matColumnDef]="cells.columnDef">
       <th mat-header-cell *matHeaderCellDef [attr.colspan]="cells.colspan ?? 1" [attr.rowspan]="cells.rowspan ?? 1"
