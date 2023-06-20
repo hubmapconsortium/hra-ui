@@ -116,9 +116,6 @@
               - 1 new Vasculature Geometry: Blood vasculature
               - 6 new Organ Mapping Antibody Panels (OMAPs): Placenta term IMC, Kidney CODEX, Tonsil MACSima, Spleen IBEX, Retina IBEX, Pancreas CODEX
               - 7 revised Organ Mapping Antibody Panels (OMAPs): Lymph Node IBEX, Intestines CODEX, Kidney CODEX, Skin Cell DIVE, Liver SIMS, Pancreas CODEX, Lung Cell DIVE
-              - 2 Physiological organ system tables: Male and female
-              - 3 Azimuth crosswalks: Kidney, lung, heart
-              - 24 Atlas-to-Atlas projections to/from 500 donor kidney, Allen brain, SPARC heart, SPARC colon, 1D Helmsley colon
 
         - type: divider
           styles:
