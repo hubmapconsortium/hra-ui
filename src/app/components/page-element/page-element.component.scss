@@ -167,3 +167,10 @@
     padding-left: 1rem;
   }
 }
+
+::ng-deep .panelClass {
+  position: relative;
+  top: 40px;
+  left: 1rem;
+  min-width: unset !important;
+}

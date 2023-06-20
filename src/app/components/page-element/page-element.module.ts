@@ -26,6 +26,7 @@ import { MenuTreeModule } from '../menu-tree/menu-tree.module';
 import { MatDividerModule } from '@angular/material/divider';
 import { ContactCardModule } from '../contact-card/contact-card.module';
 import { MatIconModule } from '@angular/material/icon';
+import { OrganVersionModule } from '../organ-version/organ-version.module';
 @NgModule({
     declarations: [PageElementComponent],
     imports: [
@@ -55,7 +56,8 @@ import { MatIconModule } from '@angular/material/icon';
         MenuTreeModule,
         MatDividerModule,
         ContactCardModule,
-        MatIconModule
+        MatIconModule,
+        OrganVersionModule
     ],
     exports: [PageElementComponent]
 })
