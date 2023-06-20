@@ -89,6 +89,9 @@
 - type: tableVersion
   isTotal: true
   versionData:
+  - release: '5th HRA Release (v1.4), June 2023'
+    file: omaps_release5.csv
+    version: '5'
   - release: '4th HRA Release (v1.3), December 2022'
     file: omaps_release4.csv
     version: '4'
