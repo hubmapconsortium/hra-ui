@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { OrganVersionComponent } from './organ-version.component';
 import { OrganTabsModule } from '../organ-tabs/organ-tabs.module';
 import { TwoDimImageModule } from '../two-dim-image/two-dim-image.module';
+import { TableModule } from '../table/table.module';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { TwoDimImageModule } from '../two-dim-image/two-dim-image.module';
         CommonModule,
         ChooseVersionModule,
         OrganTabsModule,
-        TwoDimImageModule
+        TwoDimImageModule,
+        TableModule
     ],
     exports: [OrganVersionComponent]
 })

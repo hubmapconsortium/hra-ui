@@ -18,26 +18,32 @@ function iCaseEquals(str1: string, str2: string): boolean {
 })
 export class OrganVersionComponent {
   @Input() versionData: ChooseVersion[];
-  organData: OrganData[];
-  @Input() cardTitle= "";
-  @Input() headerInfo: HeaderData[]=[];
+  @Input() organInfo: VersionOrgans[];
+  @Input() tableRequired: boolean;
+  @Input() headerInfo: HeaderData[] = [];
+
   info: VersionOrgans;
+  organData: OrganData[];
+  cardTitle = "";
   tableData: Observable<TableData[]> = EMPTY;
   columns: Observable<string[]> = EMPTY;
-  tableTitle: string="";
+  tableTitle: string = "";
   filterImages: OrganData[];
   version: ChooseVersion;
-  @Input() organInfo: VersionOrgans[];
 
-  displayedColumnsData = this.headerInfo.map(h=>h.columnDef);
+  displayedColumnsData: string[] = [];
 
   constructor(private router: Router, private readonly route: ActivatedRoute, private readonly dataService: TableDataService) { }
-
 
   ngOnInit(): void {
     const [{ version: defaultVersion, organData: [{ name: defaultOrgan }] }] = this.organInfo;
     const { version = defaultVersion, organ = defaultOrgan } = this.route.snapshot.queryParams;
 
+    this.headerInfo = this.headerInfo.map((data) => ({
+      ...data,
+      cell: new Function('element', `return ${data.cell}`) as HeaderData['cell']
+    }));
+    this.displayedColumnsData = this.headerInfo.map(h => h.columnDef);
     this.setVersion(`${version}`, `${organ}`);
     this.setFtu(this.organData[0].name);
   }
@@ -79,6 +85,6 @@ export class OrganVersionComponent {
       map((data) => data.filter(record => iCaseEquals(record['Organ'] as string, organName)))
     );
     this.columns = data.pipe(map(result => result.columns));
-    this.tableTitle = organName+' Functional Tissue Units: Anatomical Structures & Cell Types'
+    this.tableTitle = organName + ' Functional Tissue Units: Anatomical Structures & Cell Types'
   }
 }

@@ -55,7 +55,7 @@ const routes: Routes = [
   },
   {
     path: '2d-ftu-illustrations',
-    component: TwoDimRefPageComponent,
+    component: PageComponent,
     data: {
       contentFile: 'ccf-2d-ftu.content',
     },

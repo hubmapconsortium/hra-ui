@@ -11,6 +11,7 @@ import { ChooseVersionModule } from '../../components/choose-version/choose-vers
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
 import { TableModule } from 'src/app/components/table/table.module';
 import { MatButtonModule } from '@angular/material/button';
+import { PageRendererModule } from 'src/app/components/page-renderer/page-renderer.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MatButtonModule } from '@angular/material/button';
     ChooseVersionModule,
     AnnouncementCardModule,
     TableModule,
-    MatButtonModule
+    MatButtonModule,
+    PageRendererModule
   ],
   providers: [],
   bootstrap: []
