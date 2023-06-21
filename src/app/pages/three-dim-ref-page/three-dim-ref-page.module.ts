@@ -10,6 +10,7 @@ import { SopLinksModule } from '../../components/sop-links/sop-links.module';
 import { TwoDimImageModule } from '../../components/two-dim-image/two-dim-image.module';
 import { AnnouncementCardModule } from '../../components/announcement-card/announcement-card.module';
 import { UseButtonModule } from 'src/app/components/use-button/use-button.module';
+import { PageRendererModule } from 'src/app/components/page-renderer/page-renderer.module';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { UseButtonModule } from 'src/app/components/use-button/use-button.module
         SopLinksModule,
         TwoDimImageModule,
         AnnouncementCardModule,
-        UseButtonModule
+        UseButtonModule,
+        PageRendererModule
     ],
     providers: [],
     bootstrap: [],
