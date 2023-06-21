@@ -14,7 +14,7 @@ import {
 } from '@hra-ui/components/atoms';
 import { BiomarkerTableDataCardComponent, DataItem, SourceListComponent } from '@hra-ui/components/molecules';
 import { BiomarkerTableComponent, DataCell, DataRow } from '@hra-ui/components/organisms';
-import { ResourceIds as Ids, ResourceTypes as RTypes, SourceListSelectors } from '@hra-ui/state';
+import { ResourceIds as Ids, ResourceTypes as RTypes, SourceRefsSelectors } from '@hra-ui/state';
 
 /** Tab data */
 export interface BiomarkerTab {
@@ -74,7 +74,7 @@ export class BiomarkerDetailsComponent implements OnChanges {
   readonly sizes = selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>;
 
   /** List of sources with titles and links displayed to the user */
-  readonly source = selectSnapshot(SourceListSelectors.getSourceList);
+  readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);
 
   /** Changes the selected tab when the user clicks on any other tab */
   ngOnChanges(changes: SimpleChanges): void {
