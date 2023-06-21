@@ -83,16 +83,16 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         disabled: true
       },
       {
-        menuName: 'HRA Organ VR Gallery',
+        menuName: 'Organ Gallery in VR',
         route: 'hra-organ-gallery-in-vr'
       },
       {
-        menuName: 'HRA Millitome',
+        menuName: 'Millitome',
         route: 'hra-millitome',
         disabled: true
       },
       {
-        menuName: 'Application Programming Interfaces',
+        menuName: 'Application Programming Interfaces (APIs)',
         route: 'api',
         disabled: true
       },
