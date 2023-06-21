@@ -9,3 +9,4 @@ export * from './lib/source-refs';
 export * from './lib/state-analytics-plugin';
 export * from './lib/state.module';
 export * from './lib/tissue-library';
+export * from './lib/active-ftu';
