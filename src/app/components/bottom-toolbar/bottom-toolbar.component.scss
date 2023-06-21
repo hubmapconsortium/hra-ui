@@ -23,27 +23,35 @@
 
   .bottom-bar {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
     font-size: 0.875rem;
     font-weight: 400;
     line-height: 1.063rem;
     padding: 0rem 1.5rem;
-  }
-
-  mat-toolbar {
     background-color: #c2cae5;
     max-width: 77rem;
     position: relative;
     min-height: 5.563rem;
     padding: unset;
+    height: unset;
+  }
+
+  .disclaimer {
+    white-space: normal;
+    text-align: center;
+    margin: 4.5rem 0rem;
+  }
+
+  .contact-copyright {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 5rem;
   }
 
   ::ng-deep span > mat-icon {
     font-size: 1.313rem;
-  }
-
-  p {
-    margin-top: 0.1rem;
   }
   
   a:-webkit-any-link {
@@ -55,7 +63,7 @@
     align-items: center;
 
     mat-icon {
-      padding-right: 0.2rem;
+      padding-right: 2rem;
     }
 
     p {
@@ -63,16 +71,31 @@
     }
   }
 
-  @media (max-width: 24.56rem) {
+  @media (max-width: 80rem) {
+    .contact-copyright {
+      padding: 0rem 1rem 5rem 1rem;
+      margin: unset;
+    }
+  }
+
+  @media (max-width: 26.75rem) {
     .bottom-bar {
-      flex-direction: column-reverse;
       justify-content: center;
     }
 
     .bottom-button {
       position: unset;
-      margin-top: 0.5rem;
       margin-right: unset;
+      margin-bottom: 4.5rem;
+    }
+
+    .contact-copyright {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .disclaimer {
+      margin: 4.5rem 1rem;
     }
   }
 }
