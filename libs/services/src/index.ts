@@ -7,6 +7,7 @@ export {
   DataFileReference,
   SourceReference,
 } from './lib/ftu-data/ftu-data.model';
+export * as FtuDataSchemas from './lib/ftu-data/ftu-data.model';
 
 export * from './lib/contact/contact.service';
 export * from './lib/contact/contact.mock';
