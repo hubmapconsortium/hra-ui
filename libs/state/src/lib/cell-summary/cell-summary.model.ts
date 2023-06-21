@@ -1,4 +1,4 @@
-import { CellSummary } from '@hra-ui/services';
+import { CellSummary, FtuDataSchemas } from '@hra-ui/services';
 import { StateContext } from '@ngxs/store';
 import { z } from 'zod';
 
@@ -16,7 +16,7 @@ export type Context = StateContext<CellSummaryModel>;
 const AGGREGATE_CELL = z.object({
   color: z.string(),
   size: z.number().nonnegative(),
-  data: z.unknown(),
+  data: FtuDataSchemas.CELL_SUMMARY_ROW,
 });
 
 const AGGREGATE_ROW = z.tuple([z.string(), z.number().optional()]).rest(AGGREGATE_CELL.optional());
