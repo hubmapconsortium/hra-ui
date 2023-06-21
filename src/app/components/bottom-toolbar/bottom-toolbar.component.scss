@@ -35,6 +35,7 @@
     min-height: 5.563rem;
     padding: unset;
     height: unset;
+    overflow: hidden;
   }
 
   .disclaimer {
@@ -78,9 +79,10 @@
     }
   }
 
-  @media (max-width: 26.75rem) {
-    .bottom-bar {
-      justify-content: center;
+  @media (max-width: 40rem) {
+    .contact-copyright {
+      flex-direction: column;
+      align-items: center;
     }
 
     .bottom-button {
@@ -88,10 +90,11 @@
       margin-right: unset;
       margin-bottom: 4.5rem;
     }
+  }
 
-    .contact-copyright {
-      flex-direction: column;
-      align-items: center;
+  @media (max-width: 26.75rem) {
+    .bottom-bar {
+      justify-content: center;
     }
 
     .disclaimer {
