@@ -1,9 +1,9 @@
+import { CellSummaryModel } from './cell-summary.model';
 import { CellSummarySelectors } from './cell-summary.selectors';
-import { CellSummaryStateModel } from './cell-summary.model';
 import { aggregateData, summariesData } from './cell-summary.spec';
 
 describe('CellSummarySelectors', () => {
-  const state: CellSummaryStateModel = {
+  const state: CellSummaryModel = {
     summaries: summariesData,
     aggregate: aggregateData,
   };

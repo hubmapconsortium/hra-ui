@@ -3,9 +3,9 @@ import { NgxsModule, NGXS_PLUGINS } from '@ngxs/store';
 import { CellSummaryState } from './cell-summary';
 import { ContactState } from './contact';
 import { DownloadState } from './download';
-import { MedicalIllustrationState } from './medical-illustration';
+import { IllustratorState } from './illustrator';
 import { ScreenModeState } from './screen-mode';
-import { SourceListState } from './source-list';
+import { SourceRefsState } from './source-refs';
 import { StateAnalyticsPluginService } from './state-analytics-plugin';
 import { TissueLibraryState } from './tissue-library';
 
@@ -16,9 +16,9 @@ import { TissueLibraryState } from './tissue-library';
       CellSummaryState,
       ContactState,
       DownloadState,
-      MedicalIllustrationState,
+      IllustratorState,
       ScreenModeState,
-      SourceListState,
+      SourceRefsState,
       TissueLibraryState,
     ]),
   ],

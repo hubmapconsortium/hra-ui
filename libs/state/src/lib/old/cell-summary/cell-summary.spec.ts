@@ -1,7 +1,14 @@
 import { StateContext } from '@ngxs/store';
 import { mock } from 'jest-mock-extended';
 import { ComputeAggregate, SetData } from './cell-summary.actions';
-import { Aggregate, AggregateRowEntry, Cell, CellSummaryStateModel, GradientPoint } from './cell-summary.model';
+// import { Aggregate, AggregateRowEntry, Cell, CellSummaryStateModel, GradientPoint } from './cell-summary.model';
+import {
+  CellSummaryAggregate,
+  Cell,
+  CellSummaryAggregateRow,
+  CellSummaryModel,
+  GradientPoint,
+} from './cell-summary.model';
 import { CellSummaryState } from './cell-summary.state';
 
 function createCell(cid: string, clabel: string, bid: string, blabel: string, count = 0, percentage = 0): Cell {
@@ -19,7 +26,7 @@ function createCell(cid: string, clabel: string, bid: string, blabel: string, co
   };
 }
 
-function createAggregateEntry(data: Cell): AggregateRowEntry {
+function createAggregateEntry(data: Cell): CellSummaryAggregateRow {
   return { color: '', size: 0, data };
 }
 
@@ -39,7 +46,7 @@ export const summariesData = {
   },
 };
 
-export const aggregateData: Aggregate = {
+export const aggregateData: CellSummaryAggregate = {
   summary1: {
     label: 'Summary 1',
     columns: ['Biomarker 1', 'Biomarker 2', 'Biomarker 3'],
@@ -67,11 +74,11 @@ export const aggregateData: Aggregate = {
 };
 
 describe('CellSummaryState', () => {
-  let ctx: StateContext<CellSummaryStateModel>;
+  let ctx: StateContext<CellSummaryModel>;
   let state: CellSummaryState;
 
   beforeEach(() => {
-    ctx = mock<StateContext<CellSummaryStateModel>>();
+    ctx = mock<StateContext<CellSummaryModel>>();
     state = new CellSummaryState();
   });
 
