@@ -21,6 +21,7 @@ export class OrganVersionComponent {
   @Input() organInfo: VersionOrgans[];
   @Input() tableRequired: boolean;
   @Input() headerInfo: HeaderData[] = [];
+  @Input() isMultiRow: boolean;
 
   info: VersionOrgans;
   organData: OrganData[];
@@ -38,14 +39,18 @@ export class OrganVersionComponent {
   ngOnInit(): void {
     const [{ version: defaultVersion, organData: [{ name: defaultOrgan }] }] = this.organInfo;
     const { version = defaultVersion, organ = defaultOrgan } = this.route.snapshot.queryParams;
-
-    this.headerInfo = this.headerInfo.map((data) => ({
-      ...data,
-      cell: new Function('element', `return ${data.cell}`) as HeaderData['cell']
-    }));
-    this.displayedColumnsData = this.headerInfo.map(h => h.columnDef);
-    this.setVersion(`${version}`, `${organ}`);
-    this.setFtu(this.organData[0].name);
+    if (this.headerInfo) {
+      this.headerInfo = this.headerInfo.map((data) => ({
+        ...data,
+        cell: new Function('element', `return ${data.cell}`) as HeaderData['cell']
+      }));
+      this.displayedColumnsData = this.headerInfo.map(h => h.columnDef);
+      this.setVersion(`${version}`, `${organ}`);
+      this.setFtu(this.organData[0].name);
+    }
+    else {
+      this.setVersion(`${version}`, `${organ}`);
+    }
   }
 
   setVersion(version: string, organ?: string): void {
@@ -65,7 +70,12 @@ export class OrganVersionComponent {
       this.setOrgan(organData[0].name);
     } else {
       this.organData = data;
-      this.cardTitle = data[0].name + ' Functional Tissue Units';
+      if (this.headerInfo) {
+        this.cardTitle = data[0].name + ' Functional Tissue Units';
+      }
+      else {
+        this.cardTitle = data[0].name;
+      }
       this.updateQueryParams({ version, organ });
     }
   }

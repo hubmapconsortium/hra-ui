@@ -2,8 +2,8 @@
     class="description"></ccf-choose-version>
 <ccf-organ-tabs [tabs]="filterImages" [currentOrgan]="organData[0].name" (organName)="setOrgan($event)"
     (organName)="setFtu($event)" [panelClass]="'panelClass'"></ccf-organ-tabs>
-<ccf-two-dim-image [cardTitle]="cardTitle" [tissueData]="organData" [isMultirow]="true"></ccf-two-dim-image>
-<div class="table-heading-container" *ngIf="tableTitle">
+<ccf-two-dim-image [cardTitle]="cardTitle" [tissueData]="organData" [isMultirow]="isMultiRow"></ccf-two-dim-image>
+<div class="table-heading-container" *ngIf="tableRequired">
     <div class="content-title">{{tableTitle}}</div>
     <a mat-raised-button href="assets/table-data/ftu-cell-count-5th-release.csv" class="download-btn">
         <span class="material-symbols-outlined">download</span>Download CSV</a>
