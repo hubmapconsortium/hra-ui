@@ -62,6 +62,11 @@ export const SOURCE_REFERENCE = z.object({
   link: z.string().url(),
 });
 
+export const SVG_REFERENCE = z.object({
+  label: z.string(),
+  node_name: z.string(),
+});
+
 // ---------------------------------------
 // Model types
 // ---------------------------------------
@@ -77,3 +82,5 @@ export type CellSummary = z.infer<typeof CELL_SUMMARY>;
 export type DataFileReference = z.infer<typeof DATA_FILE_REFERENCE>;
 
 export type SourceReference = z.infer<typeof SOURCE_REFERENCE>;
+
+export type SvgReference = z.infer<typeof SVG_REFERENCE>;
