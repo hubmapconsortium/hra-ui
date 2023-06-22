@@ -1,194 +1,504 @@
-headerData:
-- image: assets/images/4th_release.svg
-  title: 4th Release Notes
-  subtitle: See what's new in the 4th Release of the Human Reference Atlas (v1.3)
+- type: menuTree
+  styles:
+    margin-top: 2rem
+  positions:
+    - originX: end
+      originY: top
+      overlayX: start
+      overlayY: top
+      offsetX: 4
+      offsetY: 0
+  mobileNavigationItems:
+    - menuName: Table of Contents
+      id: "'"
+    - menuName: Introduction
+      id: intro
+    - menuName: "What's New"
+      id: whats-new
+    - menuName: HRA 24-Hour Event
+      id: 24-hr-event
+    - menuName: HRA Release Calendar
+      id: hra-release-calendar
+    - menuName: ASCT+B Tables
+      id: asctb-tables
+    - menuName: ASCT+B Reporter
+      id: asctb-reporter
+    - menuName: ASCT+B Ontology Validations
+      id: asctb-ontology-validations
+    - menuName: 3D Reference Objects
+      id: 3d-reference-objects
+    - menuName: Exploration User Interface
+      id: exploration-user-interface
+    - menuName: Registration User Interface
+      id: registration-user-interface
+    - menuName: VR Organ Gallery
+      id: vr-organ-gallery
+    - menuName: Previews
+      id: previews
+    - menuName: Contact Us
+      id: contact-us
+    - menuName: Outro
+      id: outro
 
-fourthReleaseIntro:
-- heading:
-  descriptions: |
-    **Introduction**
+- type: header
+  styles:
+    margin-top: 2rem
+  headerCard:
+    - image: assets/images/4th_release.svg
+      title: 4th Release Notes
+      subtitle: See what's new in the 4th Release of the Human Reference Atlas (v1.3)
 
-    HuBMAP's Indiana University Mapping Component (MC-IU) has published the 4th Release of the Human Reference Atlas (v1.3), a digital atlas of the human body that lets users query & explore key anatomical structures, cell types, and biomarkers down to the cellular level.
+- type: drawer
+  navigationItems:
+    - menuName: Introduction
+      id: intro
+    - menuName: "What's New"
+      id: whats-new
+    - menuName: HRA 24-Hour Event
+      id: 24-hr-event
+    - menuName: HRA Release Calendar
+      id: hra-release-calendar
+    - menuName: ASCT+B Tables
+      id: asctb-tables
+    - menuName: ASCT+B Reporter
+      id: asctb-reporter
+    - menuName: ASCT+B Ontology Validations
+      id: asctb-ontology-validations
+    - menuName: 3D Reference Objects
+      id: 3d-reference-objects
+    - menuName: Exploration User Interface
+      id: exploration-user-interface
+    - menuName: Registration User Interface
+      id: registration-user-interface
+    - menuName: VR Organ Gallery
+      id: vr-organ-gallery
+    - menuName: Previews
+      id: previews
+    - menuName: Contact Us
+      id: contact-us
+    - menuName: Outro
+      id: outro
+  drawerStyles:
+    background-color: unset
+  components:
+    - type: styled-group
+      components:
+        - type: text
+          styles:
+            font-size: 1.5rem
+            line-height: 34px
+            font-weight: 300
+          text: December 15th, 2022
+        - type: styled-group
+          id: intro
+          components:
+            - type: page-data
+              styles:
+                margin-bottom: unset
+              pageData:
+                - heading:
+                  descriptions: |
+                    **Introduction**
 
-fourthReleaseStats:
-- heading:
-  descriptions: |
-    **What's New**
+                    HuBMAP's Indiana University Mapping Component (MC-IU) has published the 4th Release of the Human Reference Atlas (v1.3), 
+                    a digital atlas of the human body that lets users query & explore key anatomical structures, 
+                    cell types, and biomarkers down to the cellular level.
+        - type: image
+          imageSource: assets/images/intro_gif.gif
+          styles:
+            margin-bottom: 2rem
+        - type: divider
+          styles:
+            margin-bottom: 1rem
+    - type: styled-group
+      id: whats-new
+      components:
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: |
+                **What's New**
 
-    * The Human Reference Atlas now includes **57 reference organs** with **1,588 anatomical structures**.
-    * **The following reference organs were added:** 
-        * left/right female mammary glands
-        * update to skin to accommodate addition of mammary glands and future skeletal muscle additions in legs
-        * landmark organs added for mammary gland registration user interface (RUI) support: sternum, manubrium, xiphoid process, axillary tail of breast, lower outer quadrant of breast, lower inner quadrant of breast, upper outer quadrant of breast, lower inner quadrant of breast
-    * **13 ASCT+B tables were revised:** blood; blood vasculature; bone marrow; brain; eye; heart; large intestine; lymph vasculature; ovary; pancreas; small intestine, spleen; thymus
-    * **19 2D functional tissue unit (FTU) reference illustrations were added** to support Functional Tissue Unit (FTU) Explorer.
-        * **kidney:** nephron, renal corpuscle, cortical collecting duct, outer medullary collecting duct, inner medullary collecting duct, thick ascending loop of Henle, thin ascending loop of Henle, thin descending loop of Henle
-        * **large intestine:** crypt of Lieberkuhn
-        * **liver:** liver lobule
-        * **lung:** alveoli, bronchial submucosal gland
-        * **pancreas:** acinus, islets of Langerhans, intercalated duct
-        * **prostate:** prostate glandular acinus
-        * **skin:** epidermal ridge, dermal papilla
-        * **thymus:** thymus lobule
+                * The Human Reference Atlas now includes **57 reference organs** with **1,588 anatomical structures**.
+                * **The following reference organs were added:**
+                    * left/right female mammary glands
+                    * update to skin to accommodate addition of mammary glands and future skeletal muscle additions in legs
+                    * landmark organs added for mammary gland registration user interface (RUI) support: sternum, manubrium, xiphoid process, axillary tail of breast, lower outer quadrant of breast, lower inner quadrant of breast, upper outer quadrant of breast, lower inner quadrant of breast
+                * **13 ASCT+B tables were revised:** blood; blood vasculature; bone marrow; brain; eye; heart; large intestine; lymph vasculature; ovary; pancreas; small intestine, spleen; thymus
+                * **19 2D functional tissue unit (FTU) reference illustrations were added** to support Functional Tissue Unit (FTU) Explorer.
+                    * **kidney:** nephron, renal corpuscle, cortical collecting duct, outer medullary collecting duct, inner medullary collecting duct, thick ascending loop of Henle, thin ascending loop of Henle, thin descending loop of Henle
+                    * **large intestine:** crypt of Lieberkuhn
+                    * **liver:** liver lobule
+                    * **lung:** alveoli, bronchial submucosal gland
+                    * **pancreas:** acinus, islets of Langerhans, intercalated duct
+                    * **prostate:** prostate glandular acinus
+                    * **skin:** epidermal ridge, dermal papilla
+                    * **thymus:** thymus lobule
+        - type: divider
+          styles:
+            margin-bottom: 1rem
+    - type: styled-group
+      id: 24-hr-event
+      components:
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: |
+                **HRA 24-Hour Event**
 
-hraHourEvent:
-- heading:
-  descriptions: |
-    **HRA 24-Hour Event**
+                Check out the videos from our 24-Hour live HRA Event that happened on December 9-10, 2022. There is plenty of great content about atlasing.
+        - type: button
+          text: HRA 24-Hour Event Page
+          url: https://humanatlas.io/events/2022-24h/
+          styles:
+            margin-bottom: 1rem
+        - type: button
+          text: HRA 24-Hour Event Videos
+          url: https://www.youtube.com/playlist?list=PL-CUnYVIy7DOVqQbrzhnLEtY8uoVHKXOI
+        - type: divider
+          styles:
+            margin-bottom: 1rem
+    - type: styled-group
+      id: hra-release-calendar
+      components:
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: |
+                **HRA Release Calendar**
 
-    Check out the videos from our 24-Hour live HRA Event that happened on December 9-10, 2022. There is plenty of great content about atlasing.
+                Download the new HRA Release Calendar to stay on top of deadlines!
+          styles:
+            margin-bottom: 1rem
+        - type: downloadButton
+          text: Download JPG
+          href: assets/images/hra-release-calendar.jpg
+          icon: download
+          styles:
+            margin-bottom: 1rem
+            text-decoration: none
+        - type: image
+          imageSource: assets/images/hra-release-calendar.jpg
+          styles:
+            margin-bottom: 2rem
+            width: 100%
+        - type: divider
+          styles:
+            margin-bottom: 1rem
+    - type: styled-group
+      id: asctb-tables
+      components:
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: |
+                **ASCT+B Tables**
 
-hourEventUseButton:
-  text: HRA 24-Hour Event Videos
-  url: https://www.youtube.com/playlist?list=PL-CUnYVIy7DOVqQbrzhnLEtY8uoVHKXOI
+                What is an ASCT+B table? 26 tables describe human anatomy, connect anatomical structures to cell types to biomarkers.
+          styles:
+            margin-bottom: 1rem
+        - type: button
+          text: Use the ASCT+B Tables
+          url: https://humanatlas.io/asctb-tables
+          styles:
+            margin-bottom: 1rem
+        - type: image
+          imageSource: assets/images/4th_release_asctb_table.svg
+          styles:
+            width: 100%
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: |
+                **Fig 1.** Processes, anatomical structures, cell types, biomarkers and disease 
+                 relevant for understanding proteinuria, in kidney. The example shows 
+                 how the ASCT+B tables help link clinicopathology information and 
+                 ontology data. Read more at 
+                 <a href="https://www.nature.com/articles/s41556-021-00788-6" target="_blank">
+                 Anatomical structures, cell types and biomarkers of the Human 
+                 Reference Atlas</a>
+          styles:
+            margin-bottom: 1rem
+        - type: divider
+          styles:
+            margin-bottom: 1rem
+    - type: styled-group
+      id: asctb-reporter
+      components:
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: |
+                **ASCT+B Reporter**
 
-hourEventPageButton:
-  text: HRA 24-Hour Event Page
-  url: https://humanatlas.io/events/2022-24h/
+                Want to visualize ASCT+B tables? Check out ASCT+B Reporter to see the interconnectedness.
+          styles:
+            margin-bottom: 1rem
+        - type: button
+          text: Use the ASCT+B Reporter
+          url: https://humanatlas.io/asctb-reporter
+        - type: image
+          imageSource: assets/images/4th_release_asctb_reporter.svg
+          styles:
+            width: 100%
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: |
+                <strong>Fig 2.</strong>
+                An exemplary ASCT+B table showing anatomical structures (AS) and cell
+                types (CT) and some biomarkers (B) for the glomerulus in the kidneys,
+                annotated with the names of the three entity types (anatomical
+                structures, cell types and biomarkers) and four relationship types
+                (<i>part_of, is_a, located_in</i> and characterize). Note that the <i>is_a</i>
+                relationship exists for cell types and biomarkers. Read more at
+                <a href="https://www.nature.com/articles/s41556-021-00788-6" target="_blank">
+                  Anatomical structures, cell types and biomarkers of the Human
+                  Reference Atlas</a>.
+          styles:
+            margin-bottom: 1rem
+        - type: divider
+          styles:
+            margin-bottom: 1rem
+    - type: styled-group
+      id: asctb-ontology-validations
+      components:
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: |
+                **ASCT+B Ontology Validations**
 
-hraReleaseCalendar:
-- heading:
-  descriptions: |
-    **HRA Release Calendar**
+                How are ASCT+B tables validated? We use Ubergraph to check all relationships experts have asserted in the tables against established ontologies (namely Uberon and Cell Ontology). Check out the results in GitHub.
+          styles:
+            margin-bottom: 1rem
+        - type: button
+          text: Validation Tools GitHub Repository
+          url: https://hubmapconsortium.github.io/ccf-validation-tools/
+        - type: divider
+          styles:
+            margin-bottom: 1rem
+    - type: styled-group
+      id: 3d-reference-objects
+      components:
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: |
+                **3D Reference Objects**
 
-    Download the new HRA Release Calendar to stay on top of deadlines!
+                3D Reference Objects are models representing human organs registered with real data (tissue blocks) attached to them.
+          styles:
+            margin-bottom: 1rem
+        - type: button
+          text: 4th Release 3D Reference Objects
+          url: https://humanatlas.io/3d-reference-library
+        - type: image
+          imageSource: assets/images/4th_release_3d.gif
+          styles:
+            width: 100%
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: |
+                **Fig 3.** A user interacts with a 3D Reference Object in the HRA Portal.
+          styles:
+            margin-bottom: 1rem
+        - type: divider
+          styles:
+            margin-bottom: 1rem
+    - type: styled-group
+      id: exploration-user-interface
+      components:
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: |
+                **Exploration User Interface**
 
-asctbTables:
-- heading:
-  descriptions: |
-    **ASCT+B Tables**
+                Check out the Exploration User Interface (EUI) to see our 3D Reference Objects in action.
+          styles:
+            margin-bottom: 1rem
+        - type: button
+          text: Use the Exploration User Interface
+          url: https://humanatlas.io/exploration-user-interface
+        - type: image
+          imageSource: assets/images/4th_release_eui.svg
+          styles:
+            width: 100%
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: |
+                **Fig 4.** 3D Reference Objects featured within the Exploration User Interface.
+          styles:
+            margin-bottom: 1rem
+        - type: divider
+          styles:
+            margin-bottom: 1rem
+    - type: styled-group
+      id: registration-user-interface
+      components:
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: |
+                **Registration User Interface**
 
-    What is an ASCT+B table? 26 tables describe human anatomy, connect anatomical structures to cell types to biomarkers.
+                Use the RUI to spatially place your tissue block data.
+          styles:
+            margin-bottom: 1rem
+        - type: button
+          text: Use the Registration User Interface
+          url: https://humanatlas.io/registration-user-interface
+        - type: image
+          imageSource: assets/images/4th_release_rui_gif.gif
+          styles:
+            width: 100%
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: |
+                **Fig 5.** A user registers a tissue block within a 3D Reference Object of the heart in the Registration User Interface.
+          styles:
+            margin-bottom: 1rem
+        - type: divider
+          styles:
+            margin-bottom: 1rem
+    - type: styled-group
+      id: vr-organ-gallery
+      components:
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: |
+                **VR Organ Gallery**
 
-asctbTablesButton:
-  text: Use the ASCT+B Tables
-  url: https://humanatlas.io/asctb-tables
+                Want to explore 3D organs in virtual reality? Check out the VR Organ Gallery.
+          styles:
+            margin-bottom: 1rem
+        - type: button
+          text: VR Organ Gallery
+          url: https://humanatlas.io/hra-organ-gallery-in-vr
+        - type: image
+          imageSource: assets/images/ccf-og-1.png
+          styles:
+            width: 100%
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: |
+                **Fig 6.** Three stages. Top left: the whole body is visible. Top right: a gallery of individual organs. Bottom left and center: A user explodes an organ into individual anatomical structures. Bottom right: a user explores cells around a kidney in a virtual box.
+          styles:
+            margin-bottom: 1rem
+        - type: divider
+          styles:
+            margin-bottom: 1rem
+    - type: styled-group
+      id: previews
+      components:
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: |
+                **Previews**
 
-asctbReporter:
-- heading:
-  descriptions: |
-    **ASCT+B Reporter**
+                Starting from an accessible overview of the Atlas project, readers will
+                be able to link to the HRA topics, concepts, and practices they wish to
+                explore in more detail.
+          styles:
+            margin-bottom: 1rem
+        - type: button
+          text: "Preview: Scrollytelling Series"
+          url: https://hubmapconsortium.github.io/hra-previews/pilots/pilot4.html
+          styles:
+            margin-bottom: 1rem
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: Comparing Tabula Sapiens to the Human Reference Atlas.
+          styles:
+            margin-bottom: 1rem
+        - type: button
+          text: "Preview: Comparing Tabula Sapiens to the Human Reference Atlas"
+          url: https://hubmapconsortium.github.io/hra-previews/pilots/pilot5.html
+          styles:
+            margin-bottom: 1rem
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: Kaggle competition results are used to develop and optimize machine learning algorithms that can segment functional tissue units (FTUs).
+          styles:
+            margin-bottom: 1rem
+        - type: button
+          text: "Preview: FTU Segmentation"
+          url: https://hubmapconsortium.github.io/hra-previews/pilots/pilot6.html
+          styles:
+            margin-bottom: 1rem
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: Tissue Block annotation provides even better collision detection when registering with the RUI.
+          styles:
+            margin-bottom: 1rem
+        - type: button
+          text: "Preview: CCF Tissue Block Annotation: Mesh-Level Collision Detection"
+          url: https://hubmapconsortium.github.io/hra-previews/pilots/pilot7.html
+        - type: divider
+          styles:
+            margin-bottom: 1rem
+    - type: styled-group
+      id: contact-us
+      components:
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: |
+                **Contact Us**
 
-    Want to visualize ASCT+B tables? Check out ASCT+B Reporter to see the interconnectedness.
+                Interested in contributing or using the HRA?
+          styles:
+            margin-bottom: 1rem
+        - type: button
+          text: Contact the HRA Team
+          url: mailto:infoccf@indiana.edu
+          icon: mail_outline
+        - type: contact-card
+          contactData:
+            - image: assets/images/katy_borner.svg
+              name: Katy Börner
+              field: Research
+              role: MC-IU PI, CNS Director
+              email: katy@indiana.edu
+            - image: assets/images/bruce_herr.svg
+              name: Bruce Herr II
+              field: Development
+              role: Sr. Systems Architect, PM
+              email: bherr@indiana.edu
+            - image: assets/images/andreas_buckle.svg
+              name: Andreas Bueckle
+              field: Research
+              role: Research Scientist
+              email: abueckle@iu.edu
+        - type: divider
+          styles:
+            margin-bottom: 1rem
+            margin-top: 2rem
+    - type: styled-group
+      id: outro
+      components:
+        - type: page-data
+          pageData:
+            - heading:
+              descriptions: |
+                **Outro**
 
-asctbReporterButton:
-  text: Use the ASCT+B Reporter
-  url: https://humanatlas.io/asctb-reporter
-
-ontologyValidations:
-- heading:
-  descriptions: |
-    **ASCT+B Ontology Validations**
-
-    How are ASCT+B tables validated? We use Ubergraph to check all relationships experts have asserted in the tables against established ontologies (namely Uberon and Cell Ontology). Check out the results in GitHub.
-
-ontologyValidationsButton:
-  text: Validation Tools GitHub Repository
-  url: https://hubmapconsortium.github.io/ccf-validation-tools/
-
-threeDimRefObjects:
-- heading:
-  descriptions: |
-    **3D Reference Objects**
-
-    3D Reference Objects are models representing human organs registered with real data (tissue blocks) attached to them.
-
-threeDimRefObjectsButton:
-  text: 4th Release 3D Reference Objects
-  url: https://humanatlas.io/3d-reference-library
-
-explorationUserInterface:
-- heading:
-  descriptions: |
-    **Exploration User Interface**
-
-    Check out the Exploration User Interface (EUI) to see our 3D Reference Objects in action.
-
-explorationUserInterfaceButton:
-  text: Use the Exploration User Interface
-  url: https://humanatlas.io/exploration-user-interface
-
-registrationUserInterface:
-- heading:
-  descriptions: |
-    **Registration User Interface**
-
-    Use the RUI to spatially place your tissue block data.
-
-registrationUserInterfaceButton:
-  text: Use the Registration User Interface
-  url: https://humanatlas.io/registration-user-interface
-
-vrOrganGallery:
-- heading: 
-  descriptions: |
-    **VR Organ Gallery**
-
-    Want to explore 3D organs in virtual reality? Check out the VR Organ Gallery.
-
-vrOrganGalleryButton:
-  text: VR Organ Gallery
-  url: https://humanatlas.io/hra-organ-gallery-in-vr
-
-previewScrollytellingButton:
-  text: 'Preview: Scrollytelling Series'
-  url: https://hubmapconsortium.github.io/hra-previews/pilots/pilot4.html
-
-previewComparingTabula:
-  text: 'Preview: Comparing Tabula Sapiens to the Human Reference Atlas'
-  url: https://hubmapconsortium.github.io/hra-previews/pilots/pilot5.html
-
-previewFtuSegmentation:
-  text: 'Preview: FTU Segmentation'
-  url: https://hubmapconsortium.github.io/hra-previews/pilots/pilot6.html
-
-previewCcfTissueBlock:
-  text: 'Preview: CCF Tissue Block Annotation: Mesh-Level Collision Detection'
-  url: https://hubmapconsortium.github.io/hra-previews/pilots/pilot7.html
-
-contactCardData:
-- image: assets/images/katy_borner.svg
-  name: Katy Börner
-  field: Research
-  role: MC-IU PI, CNS Director
-  email: katy@indiana.edu
-- image: assets/images/bruce_herr.svg
-  name: Bruce Herr II
-  field: Development
-  role: Sr. Systems Architect, PM
-  email: bherr@indiana.edu
-- image: assets/images/andreas_buckle.svg
-  name: Andreas Bueckle
-  field: Research
-  role: Research Scientist
-  email: abueckle@iu.edu
-
-navigationItems:
-- menuName: Introduction
-  id: intro
-- menuName: "What's New"
-  id: whats-new
-- menuName: HRA 24-Hour Event
-  id: 24-hr-event
-- menuName: HRA Release Calendar
-  id: hra-release-calendar
-- menuName: ASCT+B Tables
-  id: asctb-tables
-- menuName: ASCT+B Reporter
-  id: asctb-reporter
-- menuName: ASCT+B Ontology Validations
-  id: asctb-ontology-validations
-- menuName: 3D Reference Objects
-  id: 3d-reference-objects
-- menuName: Exploration User Interface
-  id: exploration-user-interface
-- menuName: Registration User Interface
-  id: registration-user-interface
-- menuName: VR Organ Gallery
-  id: vr-organ-gallery
-- menuName: Previews
-  id: previews
-- menuName: Contact Us
-  id: contact-us
-- menuName: Outro
-  id: outro
+                Every six months, a new version of Human Reference Atlas data is
+                released together with user interfaces that make it possible to visually
+                explore the atlas or programmatically access the data. The 5th release
+                is in May. Thanks for reading!
+        - type: image
+          imageSource: assets/images/4th_release_outro.svg
+          styles:
+            margin-bottom: 2.5rem
+            width: 100%

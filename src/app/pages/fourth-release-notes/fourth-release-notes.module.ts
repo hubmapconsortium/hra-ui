@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuTreeModule } from 'src/app/components/menu-tree/menu-tree.module';
+import { PageRendererModule } from 'src/app/components/page-renderer/page-renderer.module';
 
 import { AppRoutingModule } from '../../app-routing.module';
 import { ContactCardModule } from '../../components/contact-card/contact-card.module';
@@ -36,7 +37,8 @@ import { FourthReleaseNotesComponent } from './fourth-release-notes.component';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
-    MenuTreeModule
+    MenuTreeModule,
+    PageRendererModule
   ],
   providers: [],
   bootstrap: []
