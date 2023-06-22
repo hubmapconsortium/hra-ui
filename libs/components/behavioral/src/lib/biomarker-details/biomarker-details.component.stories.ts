@@ -3,7 +3,7 @@ import { BiomarkerDetailsComponent } from './biomarker-details.component';
 import { MatIconModule } from '@angular/material/icon';
 import { DataItem } from '@hra-ui/components/molecules';
 import { DataRow, DataCell } from '@hra-ui/components/organisms';
-import { SourceListActions, SourceListState } from '@hra-ui/state';
+import { SourceRefsActions, SourceRefsState } from '@hra-ui/state';
 import { ResourceRegistryActions, ResourceRegistryState } from '@hra-ui/cdk/state';
 
 export function createDataItem(label: string, value: string): DataItem {
@@ -15,11 +15,11 @@ export default {
   component: BiomarkerDetailsComponent,
   parameters: {
     state: {
-      states: [ResourceRegistryState, SourceListState],
+      states: [ResourceRegistryState, SourceRefsState],
       actions: [
         new ResourceRegistryActions.LoadFromYaml('assets/resources/gradient.yml'),
         new ResourceRegistryActions.LoadFromYaml('assets/resources/size.yml'),
-        new SourceListActions.Add([{ title: 'foobar', link: 'abc' }]),
+        // new SourceRefsActions.Load({ title: 'foobar', link: 'abc' }), TODO
       ],
     },
   },
