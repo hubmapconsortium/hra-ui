@@ -1,6 +1,6 @@
 - type: header
   headerCard:
-  - title: Application Programming Interfaces (API)
+  - title: Application Programming Interfaces (APIs)
     subtitle: Query and interact with the HRA using Python, JavaScript, SPARQL, REST,
       and more
     image: assets/images/hra_api.svg
