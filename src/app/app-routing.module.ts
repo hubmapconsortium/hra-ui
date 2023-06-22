@@ -68,7 +68,7 @@ const routes: Routes = [
     resolve: { content: ContentResolver },
   },
   {
-    path: 'hra-millitome',
+    path: 'millitome',
     component: PageComponent,
     data: {
       contentFile: 'hra-millitome.content',
@@ -173,7 +173,7 @@ const routes: Routes = [
     resolve: { content: ContentResolver },
   },
   {
-    path: 'hra-organ-gallery-in-vr',
+    path: 'organ-gallery-in-vr',
     component: PageComponent,
     data: {
       contentFile: 'ccf-organ-vr-gallery.content',
