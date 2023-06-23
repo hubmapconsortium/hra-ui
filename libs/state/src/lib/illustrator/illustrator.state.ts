@@ -1,42 +1,67 @@
 import { inject, Injectable } from '@angular/core';
-import { FtuDataService, Url } from '@hra-ui/services';
+import { FtuDataService, IllustrationMappingItem, Url } from '@hra-ui/services';
 import { Action, State, StateContext } from '@ngxs/store';
-import { Observable, tap } from 'rxjs';
+import { forkJoin, Observable, tap } from 'rxjs';
 import { ClearSelection, Load, Reset, SetSelection } from './illustrator.actions';
 
 export interface IllustratorModel {
   url?: Url;
-  selected?: unknown; // TODO type
-  // TODO mapping
+  selected?: IllustrationMappingItem;
+  mapping: IllustrationMappingItem[];
 }
 
 type Context = StateContext<IllustratorModel>;
 
+/**
+ * State handling medical illustrators
+ */
 @State<IllustratorModel>({
   name: 'illustrator',
-  defaults: {},
+  defaults: {
+    mapping: [],
+  },
 })
 @Injectable()
 export class IllustratorState {
+  /**
+   * Data service of Ftu
+   */
   private readonly dataService = inject(FtuDataService);
 
+  /**
+   * Loads the current state with the url and mapping.
+   * The url and mapping are forked together using forkJoin.
+   * It also cancels any uncompleted actions to the state.
+   */
   @Action(Load, { cancelUncompleted: true })
   load({ patchState }: Context, { iri }: Load): Observable<unknown> {
-    return this.dataService.getIllustrationUrl(iri).pipe(tap((url) => patchState({ url, selected: undefined })));
+    const url$ = this.dataService.getIllustrationUrl(iri);
+    const mapping$ = this.dataService.getIllustrationMapping(iri);
+    const result$ = forkJoin({ url: url$, mapping: mapping$ });
+    return result$.pipe(tap((result) => patchState({ ...result, selected: undefined })));
   }
 
+  /**
+   * Sets the current selection to the state
+   */
   @Action(SetSelection)
   setSelection({ patchState }: Context, { selected }: SetSelection): void {
     patchState({ selected });
   }
 
+  /**
+   * Clears the current selection from the state
+   */
   @Action(ClearSelection)
   clearSelection({ patchState }: Context): void {
     patchState({ selected: undefined });
   }
 
+  /**
+   * Resets the mapping for the current state
+   */
   @Action(Reset)
   reset({ setState }: Context): void {
-    setState({});
+    setState({ mapping: [] });
   }
 }
