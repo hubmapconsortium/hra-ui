@@ -5,6 +5,7 @@ export {
   CellSummary,
   CellSummaryRow,
   DataFileReference,
+  IllustrationMappingItem,
   SourceReference,
 } from './lib/ftu-data/ftu-data.model';
 export * as FtuDataSchemas from './lib/ftu-data/ftu-data.model';
