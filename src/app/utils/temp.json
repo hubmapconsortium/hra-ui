@@ -1,0 +1,464 @@
+{
+  "$ref": "#/definitions/mySchema",
+  "definitions": {
+    "mySchema": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "announcement"
+              },
+              "message": {
+                "type": "string"
+              },
+              "route": {
+                "type": "string"
+              },
+              "routeText": {
+                "type": "string"
+              },
+              "emoji": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "message"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "board-members"
+              },
+              "image": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "image",
+              "description"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "carousel"
+              },
+              "title": {
+                "type": "string"
+              },
+              "body": {
+                "type": "string"
+              },
+              "image": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              },
+              "route": {
+                "type": "string"
+              },
+              "buttonText": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "title",
+              "body",
+              "image"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "contact-card"
+              },
+              "field": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "role": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "image": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "field",
+              "name",
+              "role",
+              "email",
+              "image"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "count-card"
+              },
+              "image": {
+                "type": "string"
+              },
+              "count": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "image",
+              "count",
+              "text"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "long-card"
+              },
+              "icon": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "body": {
+                "type": "string"
+              },
+              "route": {
+                "type": "string"
+              },
+              "color": {
+                "type": "string"
+              },
+              "externalLink": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "icon",
+              "title",
+              "body"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "long-card-with-title"
+              },
+              "heading": {
+                "type": "string"
+              },
+              "cardData": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/mySchema/items/anyOf/5"
+                }
+              },
+              "title-size": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "heading",
+              "cardData",
+              "title-size"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "page-data"
+              },
+              "heading": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "heading",
+              "description"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "page-header"
+              },
+              "title": {
+                "type": "string"
+              },
+              "subtitle": {
+                "type": "string"
+              },
+              "icon": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "title",
+              "subtitle",
+              "icon"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "prize-card"
+              },
+              "title": {
+                "type": "string"
+              },
+              "presentedBy": {
+                "type": "string"
+              },
+              "orgImage": {
+                "type": "string"
+              },
+              "winner": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "winner": {
+                      "type": "string"
+                    },
+                    "kaggleId": {
+                      "type": "string"
+                    },
+                    "button": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "label": {
+                            "type": "string"
+                          },
+                          "link": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "label",
+                          "link"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "winner",
+                    "kaggleId"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "userImage": {
+                "type": "string"
+              },
+              "matDivider": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "type",
+              "title",
+              "winner",
+              "matDivider"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "section-card"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "image": {
+                "type": "string"
+              },
+              "gif": {
+                "type": "string"
+              },
+              "route": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "title",
+              "description",
+              "image",
+              "gif",
+              "route"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "simple-image"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "image": {
+                "type": "string"
+              },
+              "imageDialog": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "title",
+              "description",
+              "image",
+              "imageDialog"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "sop-links"
+              },
+              "title": {
+                "type": "string"
+              },
+              "href": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "urls": {
+                      "type": "string"
+                    },
+                    "href": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "urls",
+                    "href"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "type",
+              "title",
+              "href"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "player"
+              },
+              "height": {
+                "type": "number"
+              },
+              "width": {
+                "type": "number"
+              },
+              "title": {
+                "type": "string"
+              },
+              "videoId": {
+                "type": "string"
+              },
+              "playerTitle": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "height",
+              "width",
+              "title",
+              "videoId",
+              "playerTitle"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

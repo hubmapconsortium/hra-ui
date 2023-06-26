@@ -73,7 +73,7 @@
       styles:
         width: 100%
 
-- type: prizeCard
+- type: prize-card
   prizeCard:
     - title: "First Prize: (15,000)"
       matDivider: false
@@ -117,7 +117,7 @@
     padding-top: 1.5rem
 
 
-- type: prizeCard
+- type: prize-card
   prizeCard:
   - title: Scientific Prizes (2 x $10,000)
     matDivider: false
@@ -135,7 +135,7 @@
       - label: Code Notebook
         link: https://www.kaggle.com/code/gray98/learning-with-noisy-label
 
-- type: prizeCard
+- type: prize-card
   prizeCard:
   - title: Diversity Prize ($10,000)
     matDivider: false,

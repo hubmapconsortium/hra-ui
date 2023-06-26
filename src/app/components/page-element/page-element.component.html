@@ -7,15 +7,15 @@
     <ccf-use-button *ngSwitchCase="'button'" [buttonData]="$any(def)" class="button-container" [style]="def['styles']">
     </ccf-use-button>
     <ccf-sop-links *ngSwitchCase="'sop-links'" [links]="def['sopData']"></ccf-sop-links>
-    <ccf-board-members *ngSwitchCase="'boardMembers'" [membersData]="def['boardMembersData']"></ccf-board-members>
-    <ccf-card-button-long *ngSwitchCase="'longCard'" [longButtonItems]="def['longButtonItems']"
+    <ccf-board-members *ngSwitchCase="'board-members'" [membersData]="def['boardMembersData']"></ccf-board-members>
+    <ccf-card-button-long *ngSwitchCase="'long-card'" [longButtonItems]="def['longButtonItems']"
         (cardRoutes)="clicked($event)"></ccf-card-button-long>
     <ccf-simple-tile *ngSwitchCase="'simpleTile'" [definitions]="def['description']"></ccf-simple-tile>
     <youtube-model *ngSwitchCase="'player'" [playerData]="def['youtubePlayer']"></youtube-model>
     <div *ngSwitchCase="'title'" [class]="def['class']" [style]="def['styles']">{{ def['title'] }}</div>
     <div *ngSwitchCase="'margin'" [style.margin-top]="def['top']" [style.margin-bottom]="def['bottom']"></div>
     <card-with-header *ngSwitchCase="'cardBlock'" [cardBlockData]="def['cardWithTitle']"></card-with-header>
-    <ccf-simple-image *ngSwitchCase="'simpleImage'" [imageInfo]="def['imageData']"></ccf-simple-image>
+    <ccf-simple-image *ngSwitchCase="'simple-image'" [imageInfo]="def['imageData']"></ccf-simple-image>
     <img *ngSwitchCase="'image'" [src]="def['imageSource']" [class]="def['class']" [style]="def['styles']">
     <div *ngSwitchCase="'text'" [style]="def['styles']" [class]="def['class']">{{def['text']}}</div>
     <div *ngSwitchCase="'styled-group'" [style]="def['styles']" [class]="def['class']" [id]="def['id']">
@@ -24,7 +24,7 @@
     <div *ngSwitchCase="'carousel'" [style]="def['containerStyles']">
         <ccf-carousel [carouselInfo]="def['carouselInfo']"></ccf-carousel>
     </div>
-    <count-info-card *ngSwitchCase="'countCard'" [cardInformation]="def['countCardInfo']"></count-info-card>
+    <count-info-card *ngSwitchCase="'count-card'" [cardInformation]="def['countCardInfo']"></count-info-card>
     <ccf-section-card *ngSwitchCase="'sectionCard'" [cards]="def['cardsInfo']"></ccf-section-card>
     <table-version *ngSwitchCase="'tableVersion'" [isTotal]="def['isTotal']"
         [versionChooserDisabled]="def['versionChooserDisabled']" [headerInfo]="def['headerInfo']"
@@ -33,7 +33,7 @@
     <mat-card *ngSwitchCase="'matCard'" [style]="def['styles']">
         <page-element *ngFor="let comp of def['components']" [def]="comp"></page-element>
     </mat-card>
-    <ccf-prize-card *ngSwitchCase="'prizeCard'" [prizeCard]="def['prizeCard']"></ccf-prize-card>
+    <ccf-prize-card *ngSwitchCase="'prize-card'" [prizeCard]="def['prizeCard']"></ccf-prize-card>
     <div *ngSwitchCase="'datasets'" [style]="def['styles']">
         <a *ngFor="let link of def['links']" [href]="link['href']" [title]="link['title']"
             [class]="link['class']">{{link['data']}}</a>

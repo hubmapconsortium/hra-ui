@@ -62,7 +62,7 @@
       styles:
         width: 100%
 
-- type: prizeCard
+- type: prize-card
   prizeCard:
   - title: 1st Place ($18,000)
     presentedBy: Geri Studebaker
@@ -107,7 +107,7 @@
     padding-bottom: 1rem
     padding-top: 1.5rem
 
-- type: prizeCard
+- type: prize-card
   prizeCard:
     - title: Scientific Prize ($15,000)
       presentedBy: Ryan Copping
@@ -171,7 +171,7 @@
     padding-bottom: 1rem
     padding-top: 1.5rem
 
-- type: prizeCard
+- type: prize-card
   prizeCard:
   - title: Team Players!
     matDivider: false

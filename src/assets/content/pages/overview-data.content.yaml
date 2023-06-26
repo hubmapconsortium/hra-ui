@@ -9,7 +9,7 @@
 - type: margin
   bottom: 3.5rem
 
-- type: longCard
+- type: long-card
   longButtonItems:
   - icon: assets/images/asctb_table.svg
     title: Anatomical Structures, Cell Types and Biomarkers (ASCT+B) Tables

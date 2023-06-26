@@ -84,7 +84,7 @@
 - type: margin
   bottom: 2.5rem
 
-- type: countCard
+- type: count-card
   countCardInfo:
     - image: assets/images/consortia.svg
       count: 17

@@ -25,13 +25,13 @@
       (see **Figure 1**). Collectively, the three ontologies make up the CCF Ontology (also called union ontology) 
       that supports spatially and semantically explicit search, filter, and browsing in the HuBMAP Portal.
 
-- type: simpleImage
+- type: simple-image
   imageData:
   - title: Common Coordinate Framework Knowledge Architecture
     description: |
       **Figure 1.** Tissue samples and datasets are annotated using the CCF Clinical, CCF Semantic, and CCF Spatial Ontologies.
     image: assets/images/ontology.svg
-    image_dialog: assets/images/ontology.svg
+    imageDialog: assets/images/ontology.svg
   
 - type: page-data
   pageData:
@@ -47,13 +47,13 @@
       single-cell level—in correspondence to the HuBMAP Atlas reference system, shown below in **Figure 2.**
       Note that all anatomical structures are semantically annotated using terms from the Semantic Ontology.
 
-- type: simpleImage
+- type: simple-image
   imageData:
   - title: Spatial Ontology
     description: |
       **Figure 2.** Spatial placement of anatomical structures in relation to the HuBMAP Atlas reference system. Note that spatial entities can use different coordinate systems that are “mapped” into the common reference system.
     image: assets/images/spatial_ontology.svg
-    image_dialog: assets/images/spatial_ontology.svg
+    imageDialog: assets/images/spatial_ontology.svg
 
 - type: margin
   bottom: 2.5rem
