@@ -8,24 +8,24 @@
     </ccf-use-button>
     <ccf-sop-links *ngSwitchCase="'sop-links'" [links]="def['sopData']"></ccf-sop-links>
     <ccf-board-members *ngSwitchCase="'board-members'" [membersData]="def['boardMembersData']"></ccf-board-members>
-    <ccf-card-button-long *ngSwitchCase="'long-card'" [longButtonItems]="def['longButtonItems']"
+    <ccf-card-button-long *ngSwitchCase="'long-card'" [longButtonItems]="def['longCardItems']"
         (cardRoutes)="clicked($event)"></ccf-card-button-long>
-    <ccf-simple-tile *ngSwitchCase="'simpleTile'" [definitions]="def['description']"></ccf-simple-tile>
+    <ccf-simple-tile *ngSwitchCase="'simple-tile'" [definitions]="def['description']"></ccf-simple-tile>
     <youtube-model *ngSwitchCase="'player'" [playerData]="def['youtubePlayer']"></youtube-model>
     <div *ngSwitchCase="'title'" [class]="def['class']" [style]="def['styles']">{{ def['title'] }}</div>
     <div *ngSwitchCase="'margin'" [style.margin-top]="def['top']" [style.margin-bottom]="def['bottom']"></div>
-    <card-with-header *ngSwitchCase="'cardBlock'" [cardBlockData]="def['cardWithTitle']"></card-with-header>
+    <card-with-header *ngSwitchCase="'long-card-with-title'" [cardBlockData]="def['longCardWithTitleData']"></card-with-header>
     <ccf-simple-image *ngSwitchCase="'simple-image'" [imageInfo]="def['imageData']"></ccf-simple-image>
     <img *ngSwitchCase="'image'" [src]="def['imageSource']" [class]="def['class']" [style]="def['styles']">
     <div *ngSwitchCase="'text'" [style]="def['styles']" [class]="def['class']">{{def['text']}}</div>
     <div *ngSwitchCase="'styled-group'" [style]="def['styles']" [class]="def['class']" [id]="def['id']">
         <page-element *ngFor="let comp of def['components']" [def]="comp"></page-element>
     </div>
-    <div *ngSwitchCase="'carousel'" [style]="def['containerStyles']">
+    <div *ngSwitchCase="'carousel'" [style]="def['carouselContainerStyles']">
         <ccf-carousel [carouselInfo]="def['carouselInfo']"></ccf-carousel>
     </div>
     <count-info-card *ngSwitchCase="'count-card'" [cardInformation]="def['countCardInfo']"></count-info-card>
-    <ccf-section-card *ngSwitchCase="'sectionCard'" [cards]="def['cardsInfo']"></ccf-section-card>
+    <ccf-section-card *ngSwitchCase="'section-card'" [cards]="def['cardsInfo']"></ccf-section-card>
     <table-version *ngSwitchCase="'tableVersion'" [isTotal]="def['isTotal']"
         [versionChooserDisabled]="def['versionChooserDisabled']" [headerInfo]="def['headerInfo']"
         [versionData]="def['versionData']" [additionalHeaders]="def['additionalHeaders']"

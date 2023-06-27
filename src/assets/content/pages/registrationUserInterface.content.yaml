@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=../../../app/utils/temp.json
+
 - type: header
   headerCard:
   - image: assets/images/rui.svg
@@ -34,9 +36,9 @@
 
 - type: sop-links
   sopData:
-    title: Standard Operating Procedures (SOP)
+    sopTitle: Standard Operating Procedures (SOP)
     href:
-    - urls: ' SOP: Using the Registration User Interface'
+    - title: ' SOP: Using the Registration User Interface'
       href: https://doi.org/10.5281/zenodo.5575776
 
 - type: margin

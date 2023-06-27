@@ -1,10 +1,10 @@
 <div class="sop-title">
-    {{links.title}}
+    {{links.sopTitle}}
 </div>
 <div class="sop-items">
     <ul>
         <li *ngFor="let link of links.href">
-            <a class="text" href={{link.href}} target="_blank">{{link.urls}}</a>
+            <a class="text" href={{link.href}} target="_blank">{{link.title}}</a>
         </li>
     </ul>
 </div>

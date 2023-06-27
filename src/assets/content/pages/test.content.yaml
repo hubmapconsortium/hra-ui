@@ -1,7 +1,202 @@
 # yaml-language-server: $schema=../../../app/utils/temp.json
 
 
-- type: page-data
-  heading: ''
-  description: ''
+- type: announcement
+  announcementCard:
+    - message: "The 5th Release of the Human Reference Atlas (v1.4) is now available! See what's new in HRA v1.4 in "
+      route: 'v1.4'
+      routeText: '5th Release Notes.'
+      emoji: '🎉'
+  
+- type: board-members
+  boardMembersData:
+    - image: assets/images/kristin.svg
+      description: |
+        <a href="https://www.broadinstitute.org/bios/kristin-ardlie">Kristin Ardlie</a>, Ph.D., Director of the GTEx Laboratory Data Analysis and Coordination Center at the Broad Institute of MIT and Harvard, where she is an institute scientist. She was responsible for the generation, quality control, and analysis of RNA sequence data for ca. 20,000 tissues to characterize the relationship between genetic variation and the regulation of gene expression across human tissues.
+    - image: assets/images/kristin.svg
+      description: |
+        <a href="https://www.broadinstitute.org/bios/kristin-ardlie">Kristin Ardlie</a>, Ph.D., Director of the GTEx Laboratory Data Analysis and Coordination Center at the Broad Institute of MIT and Harvard, where she is an institute scientist. She was responsible for the generation, quality control, and analysis of RNA sequence data for ca. 20,000 tissues to characterize the relationship between genetic variation and the regulation of gene expression across human tissues.
 
+- type: button
+  text: Hellosssss
+  url: https://zenodo.org/record/5639623
+  styles:
+    margin-bottom: 1rem
+
+- type: carousel
+  carouselContainerStyles:
+    width: min(77rem,calc(100vw - 32px))
+  carouselInfo:
+    - title: My First Slide
+      body: its my body
+      image: assets/images/4th_release_asctb_table.svg
+      buttonText: Learn More
+    - title: My Second Slide
+      body: its my body2
+      image: assets/images/carousel3.svg
+      buttonText: Learn More NO
+
+- type: contact-card
+  contactData:
+    - image: assets/images/katy_borner.svg
+      name: Katy Börner
+      field: Research
+      role: MC-IU PI, CNS Director
+      email: katy@indiana.edu
+    - image: assets/images/bruce_herr.svg
+      name: Bruce Herr II
+      field: Development
+      role: Sr. Systems Architect, PM
+      email: bherr@indiana.edu
+    - image: assets/images/andreas_buckle.svg
+      name: Andreas Bueckle
+      field: Research
+      role: Research Scientist
+      email: abueckle@iu.edu
+
+- type: count-card
+  countCardInfo:
+    - image: assets/images/consortia.svg
+      count: 17
+      text: consortia
+    - image: assets/images/experts.svg
+      count: 250+
+      text: experts
+    - image: assets/images/publications.svg
+      count: 1,000+
+      text: publications
+    - image: assets/images/organs_metric.svg
+      count: 66
+      text: organs
+    - image: assets/images/anatomical-structures.svg
+      count: 4,279
+      text: anatomical structures
+    - image: assets/images/cell-types.svg
+      count: 1,209
+      text: cell types
+    - image: assets/images/biomarkers.svg
+      count: 2,089
+      text: biomarkers
+    - image: assets/images/omap.svg
+      count: 13
+      text: organ mapping antibody panels
+    - image: assets/images/ftu.svg
+      count: 21
+      text: functional tissue units
+
+- type: sop-links
+  sopData:
+    sopTitle: MY FIRST SOP
+    href:
+      - title: LINK
+        href: https://portal.hubmapconsortium.org/
+
+- type: long-card
+  longCardItems:
+    - icon: assets/images/asctb_table.svg
+      title: Anatomical Structures, Cell Types and Biomarkers (ASCT+B) Tables
+      body: Data tables containing hierarchical anatomical structures, cell types, and biomarkers
+      route: asctb-tables
+    - icon: assets/images/asctb_azimuth.svg
+      title: ASCT+B Cell Types Data from Azimuth Reference Data with Summaries
+      body: Crosswalks from Azimuth cell annotation tool to ASCT+B tables with cell population data
+      route: asctb-azimuth
+    - icon: assets/images/vccf.svg
+      title: Vasculature Common Coordinate Framework
+      body: The first open, computer-readable, and comprehensive database of the adult human blood vasculature
+      route: vccf
+    - icon: assets/images/two_dim_library.svg
+      title: 2D Functional Tissue Unit (FTU) Illustrations
+      body: Open-source 2D illustrations of Functional Tissue Units (FTUs) crosswalked to ASCT+B tables used for single cell data exploration
+      route: 2d-ftu-illustrations
+    - icon: assets/images/three_dim_library.svg
+      title: 3D Reference Object Library
+      body: Open-source 3D organs crosswalked to ASCT+B tables used for tissue registration and exploration
+      route: 3d-reference-library
+    - icon: assets/images/omaps.svg
+      title: Organ Mapping Antibody Panels (OMAPs)
+      body: Spatial mapping using the anatomical structures and cell types present in diverse organs using multiplexed antibody-based imaging
+      route: omap
+    - icon: assets/images/hubmap_data_portal.svg
+      title: HuBMAP Data Portal
+      externalLink: https://portal.hubmapconsortium.org/
+      body: HuBMAP Data Portal is the central resource for discovery, visualization, and download of single-cell tissue data generated by the consortium
+    - icon: assets/images/4th_release.svg
+      title: 5th Release Notes
+      body: See what's new in the 5th Release (v1.4) of the Human Reference Atlas
+      route: release-notes/v1.4
+
+- type: long-card-with-title
+  longCardWithTitleData:
+    - heading: MAIN TITLE
+      cardData:
+        - icon: assets/images/hra_api.svg
+          title: Human Reference Atlas Application Programming Interfaces
+          body: Query and interact with the HRA using Python, JavaScript, SPARQL, REST, and more
+          route: api
+      headerSize: 'font-size: 1.5rem'
+      id: main-title
+
+- type: page-data
+  pageData:
+    - heading: Overview
+      descriptions: |
+        Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) tables aim to capture the nested part_of structure of anatomical human body parts, the typology of cells, and the biomarkers used to identify cell types (e.g., gene, protein, lipid or metabolic markers). The tables are authored and reviewed by an international team of anatomists, pathologists, physicians, and other experts.
+
+- type: header
+  headerCard:
+    - image: assets/images/omaps.svg
+      title: Organ Mapping Antibody Panels (OMAPs)
+      subtitle: Validated panels for diverse organs to run multiplexed antibody-based imaging that generates semantic ASCT+B table term annotations
+
+- type: prize-card
+  prizeCard:
+    - title: FIRST
+      winner:
+        - winner: <a href="www.github.com">BK</a>
+          button:
+            - label: Code Repository
+              link: www.github.com
+            - label: Summary Repository
+              link: www.github.com
+        - winner: <a href="www.github.com">BK</a>
+          button:
+            - label: Code Repository
+              link: www.github.com
+            - label: Summary Repository
+              link: www.github.com
+      matDivider: false
+
+- type: section-card
+  cardsInfo:
+    - title: Data
+      description: Research the data constructing the Human Reference Atlas
+      image: assets/images/data_svg.svg
+      gif: assets/images/data_gif.gif
+      route: overview-data
+
+- type: simple-image
+  imageData:
+    - title: Common Coordinate Framework Knowledge Architecture
+      description: |
+        **Figure 1.** Tissue samples and datasets are annotated using the CCF Clinical, CCF Semantic, and CCF Spatial Ontologies.
+      image: assets/images/ontology.svg
+      imageDialog: assets/images/ontology.svg
+
+- type: simple-tile
+  description:
+    - title: A <span class="hra-bold">Common Coordinate Framework (CCF)</span> for a human body provides a unique address for each cell in the human body. It is similar to the latitude-longtitude system used to navigate a world map.
+
+- type: title
+  title: THIS IS THE TITLE
+  styles:
+    font-size: 2rem
+    font-weight: 300
+
+- type: player
+  youtubePlayer:
+    height: 584
+    width: 1232
+    title: YT PLAYER
+    videoId: YAHJqvD3Q_8
+    playerTitle: JUST PLAY IT

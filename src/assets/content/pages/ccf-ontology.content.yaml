@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=../../../app/utils/temp.json
+
 - type: title
   title: Common Coordinate Framework Ontology
   class: page-title
@@ -9,7 +11,7 @@
     routeText: '5th Release Notes.'
     emoji: '🎉'
 
-- type: simpleTile
+- type: simple-tile
   description:
   - title: A <span class="hra-bold">Common Coordinate Framework (CCF)</span> for a human body provides a unique address for each cell in the human body. It is similar to the latitude-longtitude system used to navigate a world map.
   - title: A <span class="hra-bold">Human Reference Atlas (HRA)</span> is a comprehensive, high-resolution, three-dimensional atlas of all the cells in the healthy human body. The Human Reference Atlas provides standard terminologies and data structures for describing specimens, biological structures, and spatial positions linked to existing ontologies.
@@ -35,11 +37,11 @@
   
 - type: page-data
   pageData:
-  - heading:
+  - heading: ''
     descriptions: |
       **Clinical Ontology.** Captures CCF-relevant clinical and other metadata such as donor sex, age, tissue
       sample author, and technology used. It does not capture all metadata associated with HuBMAP data.
-    
+
       **Semantic Ontology.** Mirrors the ASCT+B tables and includes the CCF Anatomical Structures Partonomy of anatomical structures and the 
       CCF Cell Types Ontology. Sources of ontology terms are UBERON, FMA, and Cell Ontology (CL).
       
@@ -58,8 +60,8 @@
 - type: margin
   bottom: 2.5rem
 
-- type: cardBlock
-  cardWithTitle:
+- type: long-card-with-title
+  longCardWithTitleData:
   - heading: Related Tools
     cardData:
     - icon: assets/images/hra_api.svg

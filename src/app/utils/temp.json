@@ -12,22 +12,43 @@
                 "type": "string",
                 "const": "announcement"
               },
-              "message": {
-                "type": "string"
+              "announcementCard": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "route": {
+                      "type": "string"
+                    },
+                    "routeText": {
+                      "type": "string"
+                    },
+                    "emoji": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
               },
-              "route": {
-                "type": "string"
-              },
-              "routeText": {
-                "type": "string"
-              },
-              "emoji": {
-                "type": "string"
+              "styles": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": [
+                    "string",
+                    "number"
+                  ]
+                }
               }
             },
             "required": [
               "type",
-              "message"
+              "announcementCard"
             ],
             "additionalProperties": false
           },
@@ -38,17 +59,61 @@
                 "type": "string",
                 "const": "board-members"
               },
-              "image": {
-                "type": "string"
+              "boardMembersData": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "image": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "image",
+                    "description"
+                  ],
+                  "additionalProperties": false
+                }
               },
-              "description": {
-                "type": "string"
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
             "required": [
               "type",
-              "image",
-              "description"
+              "boardMembersData"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "button"
+              },
+              "text": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              },
+              "route": {
+                "type": "string"
+              },
+              "icon": {
+                "type": "string"
+              },
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
+              }
+            },
+            "required": [
+              "type",
+              "text"
             ],
             "additionalProperties": false
           },
@@ -59,30 +124,59 @@
                 "type": "string",
                 "const": "carousel"
               },
-              "title": {
-                "type": "string"
+              "carouselContainerStyles": {
+                "type": "object",
+                "properties": {
+                  "width": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "width"
+                ],
+                "additionalProperties": false
               },
-              "body": {
-                "type": "string"
+              "carouselInfo": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "body": {
+                      "type": "string"
+                    },
+                    "image": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "route": {
+                      "type": "string"
+                    },
+                    "buttonText": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "body",
+                    "image",
+                    "buttonText"
+                  ],
+                  "additionalProperties": false
+                }
               },
-              "image": {
-                "type": "string"
-              },
-              "url": {
-                "type": "string"
-              },
-              "route": {
-                "type": "string"
-              },
-              "buttonText": {
-                "type": "string"
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
             "required": [
               "type",
-              "title",
-              "body",
-              "image"
+              "carouselContainerStyles",
+              "carouselInfo"
             ],
             "additionalProperties": false
           },
@@ -93,29 +187,44 @@
                 "type": "string",
                 "const": "contact-card"
               },
-              "field": {
-                "type": "string"
+              "contactData": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "field": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "image": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "field",
+                    "name",
+                    "role",
+                    "email",
+                    "image"
+                  ],
+                  "additionalProperties": false
+                }
               },
-              "name": {
-                "type": "string"
-              },
-              "role": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "image": {
-                "type": "string"
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
             "required": [
               "type",
-              "field",
-              "name",
-              "role",
-              "email",
-              "image"
+              "contactData"
             ],
             "additionalProperties": false
           },
@@ -126,21 +235,59 @@
                 "type": "string",
                 "const": "count-card"
               },
-              "image": {
-                "type": "string"
+              "countCardInfo": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "image": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": [
+                        "number",
+                        "string"
+                      ]
+                    },
+                    "text": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "image",
+                    "count",
+                    "text"
+                  ],
+                  "additionalProperties": false
+                }
               },
-              "count": {
-                "type": "string"
-              },
-              "text": {
-                "type": "string"
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
             "required": [
               "type",
-              "image",
-              "count",
-              "text"
+              "countCardInfo"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "image"
+              },
+              "imageSource": {
+                "type": "string"
+              },
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
+              }
+            },
+            "required": [
+              "type",
+              "imageSource"
             ],
             "additionalProperties": false
           },
@@ -151,30 +298,44 @@
                 "type": "string",
                 "const": "long-card"
               },
-              "icon": {
-                "type": "string"
+              "longCardItems": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "icon": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "body": {
+                      "type": "string"
+                    },
+                    "route": {
+                      "type": "string"
+                    },
+                    "color": {
+                      "type": "string"
+                    },
+                    "externalLink": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "icon",
+                    "title"
+                  ],
+                  "additionalProperties": false
+                }
               },
-              "title": {
-                "type": "string"
-              },
-              "body": {
-                "type": "string"
-              },
-              "route": {
-                "type": "string"
-              },
-              "color": {
-                "type": "string"
-              },
-              "externalLink": {
-                "type": "string"
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
             "required": [
               "type",
-              "icon",
-              "title",
-              "body"
+              "longCardItems"
             ],
             "additionalProperties": false
           },
@@ -185,27 +346,60 @@
                 "type": "string",
                 "const": "long-card-with-title"
               },
-              "heading": {
-                "type": "string"
-              },
-              "cardData": {
+              "longCardWithTitleData": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/mySchema/items/anyOf/5"
+                  "type": "object",
+                  "properties": {
+                    "heading": {
+                      "type": "string"
+                    },
+                    "cardData": {
+                      "$ref": "#/definitions/mySchema/items/anyOf/7/properties/longCardItems"
+                    },
+                    "headerSize": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "heading",
+                    "cardData"
+                  ],
+                  "additionalProperties": false
                 }
-              },
-              "title-size": {
-                "type": "string"
-              },
-              "id": {
-                "type": "string"
               }
             },
             "required": [
               "type",
-              "heading",
-              "cardData",
-              "title-size"
+              "longCardWithTitleData"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "margin"
+              },
+              "top": {
+                "type": "string"
+              },
+              "bottom": {
+                "type": "string"
+              },
+              "left": {
+                "type": "string"
+              },
+              "right": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type"
             ],
             "additionalProperties": false
           },
@@ -216,17 +410,31 @@
                 "type": "string",
                 "const": "page-data"
               },
-              "heading": {
-                "type": "string"
+              "pageData": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "heading": {
+                      "type": "string"
+                    },
+                    "descriptions": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "descriptions"
+                  ],
+                  "additionalProperties": false
+                }
               },
-              "description": {
-                "type": "string"
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
             "required": [
               "type",
-              "heading",
-              "description"
+              "pageData"
             ],
             "additionalProperties": false
           },
@@ -235,23 +443,38 @@
             "properties": {
               "type": {
                 "type": "string",
-                "const": "page-header"
+                "const": "header"
               },
-              "title": {
-                "type": "string"
+              "headerCard": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "subtitle": {
+                      "type": "string"
+                    },
+                    "image": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "subtitle",
+                    "image"
+                  ],
+                  "additionalProperties": false
+                }
               },
-              "subtitle": {
-                "type": "string"
-              },
-              "icon": {
-                "type": "string"
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
             "required": [
               "type",
-              "title",
-              "subtitle",
-              "icon"
+              "headerCard"
             ],
             "additionalProperties": false
           },
@@ -262,65 +485,79 @@
                 "type": "string",
                 "const": "prize-card"
               },
-              "title": {
-                "type": "string"
-              },
-              "presentedBy": {
-                "type": "string"
-              },
-              "orgImage": {
-                "type": "string"
-              },
-              "winner": {
+              "prizeCard": {
                 "type": "array",
                 "items": {
                   "type": "object",
                   "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "presentedBy": {
+                      "type": "string"
+                    },
+                    "orgImage": {
+                      "type": "string"
+                    },
                     "winner": {
-                      "type": "string"
-                    },
-                    "kaggleId": {
-                      "type": "string"
-                    },
-                    "button": {
                       "type": "array",
                       "items": {
                         "type": "object",
                         "properties": {
-                          "label": {
+                          "winner": {
                             "type": "string"
                           },
-                          "link": {
+                          "kaggleId": {
                             "type": "string"
+                          },
+                          "button": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "label": {
+                                  "type": "string"
+                                },
+                                "link": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "label",
+                                "link"
+                              ],
+                              "additionalProperties": false
+                            }
                           }
                         },
                         "required": [
-                          "label",
-                          "link"
+                          "winner"
                         ],
                         "additionalProperties": false
                       }
+                    },
+                    "userImage": {
+                      "type": "string"
+                    },
+                    "matDivider": {
+                      "type": "boolean"
                     }
                   },
                   "required": [
+                    "title",
                     "winner",
-                    "kaggleId"
+                    "matDivider"
                   ],
                   "additionalProperties": false
                 }
               },
-              "userImage": {
-                "type": "string"
-              },
-              "matDivider": {
-                "type": "boolean"
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
             "required": [
               "type",
-              "title",
-              "winner",
-              "matDivider"
+              "prizeCard"
             ],
             "additionalProperties": false
           },
@@ -331,29 +568,44 @@
                 "type": "string",
                 "const": "section-card"
               },
-              "title": {
-                "type": "string"
+              "cardsInfo": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "image": {
+                      "type": "string"
+                    },
+                    "gif": {
+                      "type": "string"
+                    },
+                    "route": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "description",
+                    "image",
+                    "gif",
+                    "route"
+                  ],
+                  "additionalProperties": false
+                }
               },
-              "description": {
-                "type": "string"
-              },
-              "image": {
-                "type": "string"
-              },
-              "gif": {
-                "type": "string"
-              },
-              "route": {
-                "type": "string"
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
             "required": [
               "type",
-              "title",
-              "description",
-              "image",
-              "gif",
-              "route"
+              "cardsInfo"
             ],
             "additionalProperties": false
           },
@@ -364,25 +616,69 @@
                 "type": "string",
                 "const": "simple-image"
               },
-              "title": {
-                "type": "string"
+              "imageData": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "image": {
+                      "type": "string"
+                    },
+                    "imageDialog": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "description",
+                    "image",
+                    "imageDialog"
+                  ],
+                  "additionalProperties": false
+                }
               },
-              "description": {
-                "type": "string"
-              },
-              "image": {
-                "type": "string"
-              },
-              "imageDialog": {
-                "type": "string"
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
             "required": [
               "type",
-              "title",
-              "description",
-              "image",
-              "imageDialog"
+              "imageData"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "simple-tile"
+              },
+              "description": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "title"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "type",
+              "description"
             ],
             "additionalProperties": false
           },
@@ -393,33 +689,65 @@
                 "type": "string",
                 "const": "sop-links"
               },
-              "title": {
-                "type": "string"
-              },
-              "href": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "urls": {
-                      "type": "string"
-                    },
-                    "href": {
-                      "type": "string"
-                    }
+              "sopData": {
+                "type": "object",
+                "properties": {
+                  "sopTitle": {
+                    "type": "string"
                   },
-                  "required": [
-                    "urls",
-                    "href"
-                  ],
-                  "additionalProperties": false
-                }
+                  "href": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "title": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "title",
+                        "href"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "sopTitle",
+                  "href"
+                ],
+                "additionalProperties": false
               }
             },
             "required": [
               "type",
-              "title",
-              "href"
+              "sopData"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "title"
+              },
+              "class": {
+                "type": "string"
+              },
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "title"
             ],
             "additionalProperties": false
           },
@@ -430,29 +758,41 @@
                 "type": "string",
                 "const": "player"
               },
-              "height": {
-                "type": "number"
+              "youtubePlayer": {
+                "type": "object",
+                "properties": {
+                  "height": {
+                    "type": "number"
+                  },
+                  "width": {
+                    "type": "number"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "videoId": {
+                    "type": "string"
+                  },
+                  "playerTitle": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "height",
+                  "width",
+                  "title",
+                  "videoId",
+                  "playerTitle"
+                ],
+                "additionalProperties": false
               },
-              "width": {
-                "type": "number"
-              },
-              "title": {
-                "type": "string"
-              },
-              "videoId": {
-                "type": "string"
-              },
-              "playerTitle": {
-                "type": "string"
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
             "required": [
               "type",
-              "height",
-              "width",
-              "title",
-              "videoId",
-              "playerTitle"
+              "youtubePlayer"
             ],
             "additionalProperties": false
           }

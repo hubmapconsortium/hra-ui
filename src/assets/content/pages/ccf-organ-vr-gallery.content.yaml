@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=../../../app/utils/temp.json
+
 - type: header
   headerCard:
   - title: Organ Gallery in VR
@@ -22,7 +24,6 @@
       The HRA Organ Gallery has two main use cases: 1) introducing both novice and expert users to the HuBMAP data available via the HuBMAP Data Portal, and 2) providing quality assurance and quality control (QA/QC) for HRA data providers. 
       More use cases are under development. Further information can be found in this <a href="https://doi.org/10.1101/2023.02.13.528002" target="_blank">recent preprint title</a>.
       Figure 1 compares the user interface for exploring the HRA via the [Exploration User Interface (EUI)](https://portal.hubmapconsortium.org/ccf-eui) to how it appears in the HRA Organ Gallery when using a Meta Quest 2.
-    image: assets/images/OrganGallery.jpg
 
 - type: image
   imageSource: assets/images/OrganGallery.jpg
@@ -31,7 +32,7 @@
 
 - type: page-data
   pageData:
-  - heading:
+  - heading: ''
     descriptions: |
       <strong>Figure 1.</strong>
       <span class="hra-bold"> 2D vs. VR. (A)</span>: A user looks at the HRA with the 
@@ -68,8 +69,8 @@
 
       Please email Andreas Bueckle (abueckle@iu.edu) if you are interested in contributing your input to the research and development of the HRA Organ Gallery.
 
-- type: text
-  text: Video Demo
+- type: title
+  title: Video Demo
   styles: 
     font-size: 1.5rem
     font-weight: 300

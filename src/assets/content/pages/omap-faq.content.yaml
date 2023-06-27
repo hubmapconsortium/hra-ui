@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=../../../app/utils/temp.json
+
 - type: margin
   top: 3.5rem
 
@@ -9,7 +11,7 @@
   headerCard:
   - image: assets/images/omap_faq.svg
     title: Frequently Asked Questions (FAQs) for Organ Mapping Antibody Panels (OMAPs)
-    subtitle: 
+    subtitle: ''
 
 - type: margin
   bottom: 2.5rem

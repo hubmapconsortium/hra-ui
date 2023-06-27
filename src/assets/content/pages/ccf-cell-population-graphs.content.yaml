@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=../../../app/utils/temp.json
+
 - type: header
   headerCard:
   - image: assets/images/cell_graphs.svg
@@ -33,7 +35,7 @@
 
 - type: page-data
   pageData:
-  - heading:
+  - heading: ''
     descriptions: |
       <strong>Figure 1.</strong> Ten datasets from the 
       <a href="https://www.biorxiv.org/content/10.1101/2022.03.30.486438v1" target="_blank">

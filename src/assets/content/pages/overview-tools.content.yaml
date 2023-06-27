@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=../../../app/utils/temp.json
+
 - type: title
   title: Human Reference Atlas Tools
   class: page-title
@@ -9,7 +11,7 @@
     routeText: '5th Release Notes.'
     emoji: '🎉'
 
-- type: simpleTile
+- type: simple-tile
   description:
   - title: A **Human Reference Atlas (HRA)** is a comprehensive, high-resolution, three-dimensional atlas of all the cells in the healthy human body. The Human Reference Atlas provides standard terminologies and data structures for describing specimens, biological structures, and spatial positions linked to existing ontologies.
 
@@ -17,7 +19,7 @@
   bottom: 3.5rem
 
 - type: long-card
-  longButtonItems:
+  longCardItems:
   - icon: assets/images/asctb_reporter.svg
     title: Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Reporter
     body: A visualization tool for human organ experts to explore and compare ASCT+B Tables

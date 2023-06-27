@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=../../../app/utils/temp.json
+
 - type: header
   headerCard:
   - image: assets/images/omaps.svg
@@ -47,9 +49,9 @@
 
 - type: sop-links
   sopData:
-    title: Standard Operating Procedures (SOP)
+    sopTitle: Standard Operating Procedures (SOP)
     href:
-      - urls: 'SOP: Construction of Organ Mapping Antibody Panels for Multiplexed Antibody-Based Imaging of Human Tissues'
+      - title: 'SOP: Construction of Organ Mapping Antibody Panels for Multiplexed Antibody-Based Imaging of Human Tissues'
         href: https://doi.org/10.5281/zenodo.5749882
 
 - type: margin
@@ -57,11 +59,11 @@
 
 - type: sop-links
   sopData:
-    title: OMAP Construction Templates
+    sopTitle: OMAP Construction Templates
     href:
-      - urls: OMAP Table Template harmonized with Antibody Validation Reports
+      - title: OMAP Table Template harmonized with Antibody Validation Reports
         href: https://hubmapconsortium.github.io/ccf/pages/omap-extras/omap-table-template.xlsx
-      - urls: OMAP Description Document Template
+      - title: OMAP Description Document Template
         href: https://hubmapconsortium.github.io/ccf/pages/omap-extras/omap-description-document-template.docx
 
 - type: margin
@@ -69,9 +71,9 @@
 
 - type: sop-links
   sopData:
-    title: Frequently Asked Questions (FAQs)
+    sopTitle: Frequently Asked Questions (FAQs)
     href:
-      - urls: Frequently Asked Questions (FAQs) for OMAPs
+      - title: Frequently Asked Questions (FAQs) for OMAPs
         href: /faq/omap
 
 - type: margin

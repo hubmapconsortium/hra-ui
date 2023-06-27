@@ -42,7 +42,7 @@
     routeText: '5th Release Notes.'
     emoji: '🎉'
 
-- type: simpleTile
+- type: simple-tile
   description:
   - title: "A <span class=\"hra-bold\">Human Reference Atlas (HRA)</span> is a comprehensive, high-resolution, three-dimensional atlas of all the cells in the healthy human body. The Human Reference Atlas provides standard terminologies and data structures for describing specimens, biological structures, and spatial positions linked to existing ontologies."
 
@@ -50,7 +50,7 @@
   bottom: 2.5rem
     
 - type: carousel
-  containerStyles:
+  carouselContainerStyles:
     width: min(77rem,calc(100vw - 32px))
   carouselInfo:
     - title: Map the human body at single-cell resolution
@@ -128,7 +128,7 @@
 - type: margin
   bottom: 2rem
 
-- type: sectionCard
+- type: section-card
   cardsInfo:
     - title: Data
       description: Research the data constructing the Human Reference Atlas
