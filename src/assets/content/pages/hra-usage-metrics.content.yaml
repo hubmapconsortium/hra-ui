@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=../../../app/utils/temp.json
+
 - type: header
   headerCard:
   - image: assets/images/hra_usage.svg
@@ -53,8 +55,8 @@
 - type: margin
   bottom: 2.5rem
 
-- type: text
-  text: CCF Ontology (including published glb files) production requests for May
+- type: title
+  title: CCF Ontology (including published glb files) production requests for May
   styles:
     font-size: 1.5rem
     font-weight: 300
@@ -69,8 +71,8 @@
 - type: margin
   bottom: 2.5rem
 
-- type: text
-  text: CCF API Requests for May
+- type: title
+  title: CCF API Requests for May
   styles:
     font-size: 1.5rem
     font-weight: 300
@@ -85,8 +87,8 @@
 - type: margin
   bottom: 2.5rem
 
-- type: text
-  text: CCF Ontology Bioportal Visits
+- type: title
+  title: CCF Ontology Bioportal Visits
   styles:
     font-size: 1.5rem
     font-weight: 300

@@ -37,7 +37,7 @@
   pageData:
   - heading: ''
     descriptions: |
-      <strong>Figure 1.</strong> Ten datasets from the 
+      **Figure 1.** Ten datasets from the 
       <a href="https://www.biorxiv.org/content/10.1101/2022.03.30.486438v1" target="_blank">
           Human Digital Twin
       </a>paper by Soumya et al.

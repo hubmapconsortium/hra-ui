@@ -1,5 +1,87 @@
 # yaml-language-server: $schema=../../../app/utils/temp.json
 
+- type: tableVersion
+  versionChooserDisabled: false
+  versionData:
+  - release: 5th HRA Release (v1.4), June 2023
+    file: release5.csv
+    version: 5
+  - release: 4th HRA Release (v1.3), December 2022
+    file: release4.csv
+    version: 4
+  - release: 3rd HRA Release (v1.2), June 2022
+    file: release3.csv
+    version: 3
+  - release: 2nd HRA Release (v1.1), December 2021
+    file: release2.csv
+    version: 2
+  - release: 1st HRA Release (v1.0), March 2021
+    file: release1.csv
+    version: 1
+  isTotal: true
+  isDownload: true
+  headerInfo:
+  - columnDef: Organ
+    header: Organ
+    cell: |
+      `<a class="cell-link" href="${element['url'] || 'TODO:Please add a url column to this.csv!'}">
+        ${element['Organ']}
+      </a>`
+    isTotalRequired: true
+    alignment: start
+  - columnDef: 'tableVersion'
+    header: 'Table Version'
+    cell: "`${element['tableVersion']}`"
+    alignment: end
+  - columnDef: 'AS'
+    header: '#AS'
+    cell: "`${element['AS']}`"
+  - columnDef: 'CT'
+    header: '#CT'
+    cell: "`${element['CT']}`"
+  - columnDef: 'B_Total'
+    header: '#B Total'
+    cell: "`${element['B_Total']}`"
+  - columnDef: 'BG'
+    header: '#BG'
+    cell: "`${element['BG']}`"
+  - columnDef: 'BP'
+    header: '#BP'
+    cell: "`${element['BP']}`"
+  - columnDef: 'BM'
+    header: '#BM'
+    cell: "`${element['BM']}`"
+  - columnDef: 'BF'
+    header: '#BF'
+    cell: "`${element['BF']}`"
+  - columnDef: 'BL'
+    header: '#BL'
+    cell: "`${element['BL']}`"
+  - columnDef: 'ASWithNoLink'
+    header: '#AS With NoLink'
+    cell: "`${element['ASWithNoLink']}`"
+  - columnDef: 'CTWithNoLink'
+    header: '#CT With NoLink'
+    cell: "`${element['CTWithNoLink']}`"
+  - columnDef: 'BWithNoLink'
+    header: '#B With NoLink'
+    cell: "`${element['BWithNoLink']}`"
+  - columnDef: 'ASWithNoCT'
+    header: '#AS With NoCT'
+    cell: "`${element['ASWithNoCT']}`"
+  - columnDef: 'CTWithNoB'
+    header: '#CT With NoB'
+    cell: "`${element['CTWithNoB']}`"
+  - columnDef: 'AS_AS'
+    header: '#AS-AS'
+    cell: "`${element['AS_AS']}`"
+  - columnDef: 'AS_CT'
+    header: '#AS-CT'
+    cell: "`${element['AS_CT']}`"
+  - columnDef: 'CT_BM'
+    header: '#CT-BM'
+    cell: "`${element['CT_BM']}`"
+
 
 - type: announcement
   announcementCard:
@@ -200,3 +282,141 @@
     title: YT PLAYER
     videoId: YAHJqvD3Q_8
     playerTitle: JUST PLAY IT
+
+- type: styled-group
+  class: main-content
+  styles:
+    margin-top: 2.5rem
+    padding-bottom: 1rem
+    display: flex
+    flex-direction: row
+  components:
+    - type: image
+      imageSource: assets/images/hubmap_dude.svg
+      styles:
+        height: 4.375rem
+        width: 3.125rem
+        object-fit: contain
+    - type: styled-group
+      components:
+      - type: title
+        title: Human Reference Atlas
+        styles:
+          font-size: 2.25rem
+          line-height: 2.125rem
+          color: rgb(33,33,33)
+          font-weight: 300
+          letter-spacing: 0.005rem
+          margin-bottom: 0.5rem
+        class: landing-title
+      - type: title
+        title: 3D Multiscale Biomolecular Human Reference Atlas Construction, Visualization, and Usage
+        styles:
+          font-size: 1.75rem
+          font-weight: 300
+          color: rgb(68,68,101)
+          line-height: 2.125rem
+        class: landing-subtitle
+
+- type: organ-version
+  isMultiRow: true
+  tableRequired: true
+  versionData:
+    - release: 5th HRA Release (v1.4), June 2023
+      version: "1.4"
+    - release: 4th HRA Release (v1.3), December 2022
+      version: "1.3"
+    - release: 3rd HRA Release (v1.2), June 2022
+      version: "1.2"
+  headerInfo:
+    - columnDef: FTU Label in Uberon
+      header: FTU Label in Uberon
+      cell: "`${element['FTU Label in Uberon']}`"
+      alignment: start
+    - columnDef: FTU ID in Uberon
+      header: FTU ID in Uberon
+      cell: "`${element['FTU ID in Uberon']}`"
+      alignment: start
+    - columnDef: CT Label in CL
+      header: CT Label in CL
+      cell: "`${element['CT Label in CL']}`"
+      alignment: start
+    - columnDef: CT ID in CL
+      header: CT ID in CL
+      cell: "`${element['CT ID in CL']}`"
+      alignment: start
+    - columnDef: CT Label in 2D Object
+      header: CT Label in 2D Object
+      cell: "`${element['CT Label in 2D Object']}`"
+      alignment: start
+      isTotalRequired: true
+    - columnDef: "#CT"
+      header: "#CT"
+      cell: "`${element['#CT']}`"
+      alignment: end
+    - columnDef: "#AS"
+      header: "#AS"
+      cell: "`${element['#AS']}`"
+      alignment: end
+  organInfo:
+  - version: "1.4"
+    organData:
+      - name: Kidney
+        image: assets/images/kidney.svg
+        tissueData:
+          - name: Ascending Thin Loop Of Henle
+            image: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.svg
+            expandedImage: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.svg
+            url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.html
+            svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.svg
+            ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.ai
+            png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.png
+          - name: Cortical Collecting Duct
+            image: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.svg
+            expandedImage: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.svg
+            url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.html
+            svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.svg
+            ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.ai
+            png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.png
+          - name: Descending Thin Loop Of Henle
+            image: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.svg
+            expandedImage: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.svg
+            url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.html
+            svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.svg
+            ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.ai
+            png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.png
+          - name: Inner Medullary Collecting Duct
+            image: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.svg
+            expandedImage: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.svg
+            url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.html
+            svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.svg
+            ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.ai
+            png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.png
+          - name: Nephron
+            image: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-nephron.svg
+            expandedImage: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-nephron.svg
+            url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-nephron.html
+            svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-nephron.svg
+            ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-nephron.ai
+            png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-nephron.png
+          - name: Outer Medullary Collecting Duct
+            image: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.svg
+            expandedImage: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.svg
+            url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.html
+            svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.svg
+            ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.ai
+            png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.png
+          - name: Renal Corpuscle
+            image: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-renal-corpuscle.svg
+            expandedImage: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-renal-corpuscle.svg
+            url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-renal-corpuscle.html
+            svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-renal-corpuscle.svg
+            ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-renal-corpuscle.ai
+            png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-renal-corpuscle.png
+          - name: Thick Ascending Loop Of Henle
+            image: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.svg
+            expandedImage: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.svg
+            url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.html
+            svg: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.svg
+            ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.ai
+            png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.png

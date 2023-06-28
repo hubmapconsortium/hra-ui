@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=../../../app/utils/temp.json
+
 - type: header
   headerCard:
   - image: assets/images/asctb_table.svg
@@ -25,11 +27,11 @@
 
 - type: sop-links
   sopData:
-    title: Standard Operating Procedures (SOP)
+    sopTitle: Standard Operating Procedures (SOP)
     href:
-    - urls: 'SOP: Authoring Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Tables'
+    - title: 'SOP: Authoring Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Tables'
       href: https://zenodo.org/record/7382751#.ZFPCXXbMK3A
-    - urls: 'SOP: ASCT+B Table Communications'
+    - title: 'SOP: ASCT+B Table Communications'
       href: https://zenodo.org/record/5639623#.ZFPCYHbMK3A
 
 - type: margin
@@ -41,6 +43,7 @@
     descriptions: The below table lists for each organ the number of anatomical structures (#AS), the number of cell types (#CT), the number of biomarkers (#B), the number of <i>part_of</i> relationships between AS, the number of located_in links between CT and AS, and the number of CT and B (i.e., which B characterize a CT).
 
 - type: tableVersion
+  versionChooserDisabled: false
   versionData:
   - release: 5th HRA Release (v1.4), June 2023
     file: release5.csv

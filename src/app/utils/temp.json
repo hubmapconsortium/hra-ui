@@ -18,16 +18,20 @@
                   "type": "object",
                   "properties": {
                     "message": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "The message to be displayed on the card"
                     },
                     "route": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Route for another release notes page"
                     },
                     "routeText": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Text to be clicked to redirect to different route"
                     },
                     "emoji": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "To add emoji if required"
                     }
                   },
                   "required": [
@@ -65,10 +69,12 @@
                   "type": "object",
                   "properties": {
                     "image": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "URL for the image of the board member"
                     },
                     "description": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Introduction of the board member"
                     }
                   },
                   "required": [
@@ -96,16 +102,20 @@
                 "const": "button"
               },
               "text": {
-                "type": "string"
+                "type": "string",
+                "description": "Text on the button"
               },
               "url": {
-                "type": "string"
+                "type": "string",
+                "description": "External URL for the button"
               },
               "route": {
-                "type": "string"
+                "type": "string",
+                "description": "Route for the another page in current project"
               },
               "icon": {
-                "type": "string"
+                "type": "string",
+                "description": "Icon on the button"
               },
               "styles": {
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
@@ -115,7 +125,8 @@
               "type",
               "text"
             ],
-            "additionalProperties": false
+            "additionalProperties": false,
+            "description": "OPTIONAL PARAMS: text, url, route, icon"
           },
           {
             "type": "object",
@@ -278,11 +289,14 @@
                 "type": "string",
                 "const": "image"
               },
-              "imageSource": {
-                "type": "string"
-              },
               "styles": {
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
+              },
+              "class": {
+                "type": "string"
+              },
+              "imageSource": {
+                "type": "string"
               }
             },
             "required": [
@@ -408,6 +422,160 @@
             "properties": {
               "type": {
                 "type": "string",
+                "const": "organ-version"
+              },
+              "isMultiRow": {
+                "type": "boolean"
+              },
+              "tableRequired": {
+                "type": "boolean"
+              },
+              "versionData": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "release": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": [
+                        "number",
+                        "string"
+                      ]
+                    },
+                    "file": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "release",
+                    "version"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "headerInfo": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "header": {
+                      "type": "string"
+                    },
+                    "columnDef": {
+                      "type": "string"
+                    },
+                    "cell": {},
+                    "isTotalRequired": {
+                      "type": "boolean"
+                    },
+                    "sorting": {
+                      "type": "boolean"
+                    },
+                    "alignment": {
+                      "type": "string"
+                    },
+                    "justifyContent": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "header",
+                    "columnDef"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "organInfo": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "version": {
+                      "type": "string"
+                    },
+                    "organData": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "image": {
+                            "type": "string"
+                          },
+                          "tissueData": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string"
+                                },
+                                "image": {
+                                  "type": "string"
+                                },
+                                "expandedImage": {
+                                  "type": "string"
+                                },
+                                "threeDimImage": {
+                                  "type": "string"
+                                },
+                                "alt": {
+                                  "type": "string"
+                                },
+                                "url": {
+                                  "type": "string"
+                                },
+                                "svg": {
+                                  "type": "string"
+                                },
+                                "ai": {
+                                  "type": "string"
+                                },
+                                "png": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "name",
+                                "url"
+                              ],
+                              "additionalProperties": false
+                            }
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "image"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "version"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "type",
+              "isMultiRow",
+              "tableRequired",
+              "versionData",
+              "organInfo"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
                 "const": "page-data"
               },
               "pageData": {
@@ -423,6 +591,7 @@
                     }
                   },
                   "required": [
+                    "heading",
                     "descriptions"
                   ],
                   "additionalProperties": false
@@ -725,6 +894,96 @@
             "required": [
               "type",
               "sopData"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "styled-group"
+              },
+              "class": {
+                "type": "string"
+              },
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
+              },
+              "components": {
+                "$ref": "#/definitions/mySchema"
+              }
+            },
+            "required": [
+              "type",
+              "components"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "tableVersion"
+              },
+              "isTotal": {
+                "type": "boolean"
+              },
+              "isDownload": {
+                "type": "boolean"
+              },
+              "versionChooserDisabled": {
+                "type": "boolean"
+              },
+              "headerInfo": {
+                "$ref": "#/definitions/mySchema/items/anyOf/10/properties/headerInfo"
+              },
+              "versionData": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/mySchema/items/anyOf/10/properties/versionData/items"
+                }
+              },
+              "additionalHeaders": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "columnDef": {
+                      "type": "string"
+                    },
+                    "header": {
+                      "type": "string"
+                    },
+                    "colspan": {
+                      "type": "number"
+                    },
+                    "rowspan": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "columnDef",
+                    "header"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "cellHeaders": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/mySchema/items/anyOf/19/properties/additionalHeaders/items"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "isTotal",
+              "isDownload",
+              "versionChooserDisabled",
+              "headerInfo",
+              "versionData"
             ],
             "additionalProperties": false
           },

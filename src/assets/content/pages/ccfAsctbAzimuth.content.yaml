@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=../../../app/utils/temp.json
+
 - type: header
   headerCard:
     - image: assets/images/asctb_azimuth.svg
@@ -39,8 +41,10 @@
         Data from <a href="https://github.com/satijalab/azimuth_website" target="_blank">https://github.com/satijalab/azimuth_website</a> has been parsed to derive cell-type typologies:
 
 - type: tableVersion
+  isDownload: false
   versionData:
-    - release:
+    - release: ''
+      version: ''
       file: azimuth.csv
   headerInfo:
     - columnDef: organ

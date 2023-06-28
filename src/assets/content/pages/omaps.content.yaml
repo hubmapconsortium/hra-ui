@@ -89,6 +89,8 @@
   class: card-title
 
 - type: tableVersion
+  isDownload: false
+  versionChooserDisabled: false
   isTotal: true
   versionData:
   - release: '5th HRA Release (v1.4), June 2023'
