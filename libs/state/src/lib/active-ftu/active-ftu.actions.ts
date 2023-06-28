@@ -6,6 +6,10 @@ const Action = ActionGroup('ActiveFtu');
 
 /** Loads the Iri */
 export class Load extends Action('Load') {
+  /**
+   * Creates an instance of set iri.
+   * @param iri
+   */
   constructor(readonly iri: Iri) {
     super();
   }

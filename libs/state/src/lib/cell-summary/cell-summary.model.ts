@@ -13,7 +13,9 @@ export type CellSummaryAggregate = z.infer<typeof AGGREGATE>;
  * having the summaries and aggregrates
  */
 export interface CellSummaryModel {
+  /** Array of summaries of the Cell Summary */
   summaries: CellSummary[];
+  /** Array of aggregates of the Cell Summary */
   aggregates: CellSummaryAggregate[];
 }
 

@@ -4,9 +4,16 @@ import { Action, State, StateContext } from '@ngxs/store';
 import { forkJoin, Observable, tap } from 'rxjs';
 import { ClearSelection, Load, Reset, SetSelection } from './illustrator.actions';
 
+/**
+ * interface for the Illustrator Model that contains the url, selected
+ * and mapping fields
+ */
 export interface IllustratorModel {
+  /** Illustration URL */
   url?: Url;
+  /** Selected Illustrator Item */
   selected?: IllustrationMappingItem;
+  /** Array of Illustrartor Items */
   mapping: IllustrationMappingItem[];
 }
 

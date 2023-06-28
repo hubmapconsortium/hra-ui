@@ -6,6 +6,7 @@ const Action = ActionGroup('CellSummary');
 
 /** loads the given Iri to the state */
 export class Load extends Action('Load') {
+  /** Intializes the set iri */
   constructor(readonly iri: Iri) {
     super();
   }

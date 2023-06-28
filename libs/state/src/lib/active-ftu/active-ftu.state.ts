@@ -10,13 +10,15 @@ import { Clear, Load, Reset } from './active-ftu.actions';
 /**
  * Interface for ActiveFtuModel */
 export interface ActiveFtuModel {
+  /** Iri for the current Ftu  */
   iri?: Iri;
 }
 
 type Context = StateContext<ActiveFtuModel>;
 
 /**
- * State to handle active FTU selection */
+ * State to handle active FTU selection
+ */
 @State<ActiveFtuModel>({
   name: 'activeFtu',
   defaults: {},

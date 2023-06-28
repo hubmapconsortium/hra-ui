@@ -8,6 +8,7 @@ const Action = ActionGroup('Illustrator');
  * Loads the state with the current Iri
  */
 export class Load extends Action('Load') {
+  /** Intializes the set iri */
   constructor(readonly iri: Iri) {
     super();
   }
@@ -17,6 +18,7 @@ export class Load extends Action('Load') {
  * Sets the selection for the Item in the current state
  */
 export class SetSelection extends Action('Set Selection') {
+  /** Initializes the Mapping Item */
   constructor(readonly selected: IllustrationMappingItem) {
     super();
   }
