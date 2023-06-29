@@ -77,7 +77,7 @@ export class TableVersionComponent {
   private _cellHeaders: ExtraHeader[] = [];
 
   constructor(private readonly dataService: TableDataService, private readonly zone: NgZone) { }
-  
+
   ngOnInit(): void {
     this.setData(this.release = this.versionData[0]);
   }
