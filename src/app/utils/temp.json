@@ -125,8 +125,7 @@
               "type",
               "text"
             ],
-            "additionalProperties": false,
-            "description": "OPTIONAL PARAMS: text, url, route, icon"
+            "additionalProperties": false
           },
           {
             "type": "object",
@@ -153,22 +152,28 @@
                   "type": "object",
                   "properties": {
                     "title": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Title of the slide"
                     },
                     "body": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Subtitle of the slide"
                     },
                     "image": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Image of the slide"
                     },
                     "url": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "External URL for the button"
                     },
                     "route": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Route of the page for the button"
                     },
                     "buttonText": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Text for the button"
                     }
                   },
                   "required": [
@@ -204,19 +209,24 @@
                   "type": "object",
                   "properties": {
                     "field": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Field of work of the contact"
                     },
                     "name": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Name of the contact"
                     },
                     "role": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Role/ Position of the contact"
                     },
                     "email": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Email ID of the contact"
                     },
                     "image": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Image of the contact"
                     }
                   },
                   "required": [
@@ -252,16 +262,19 @@
                   "type": "object",
                   "properties": {
                     "image": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Icon for the card"
                     },
                     "count": {
                       "type": [
                         "number",
                         "string"
-                      ]
+                      ],
+                      "description": "Count of the card"
                     },
                     "text": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Title of the card"
                     }
                   },
                   "required": [
@@ -287,16 +300,34 @@
             "properties": {
               "type": {
                 "type": "string",
-                "const": "image"
+                "const": "divider"
               },
               "styles": {
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
+              }
+            },
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "image"
               },
               "class": {
-                "type": "string"
+                "type": "string",
+                "description": "Class name of the class defined in the CSS file"
               },
               "imageSource": {
-                "type": "string"
+                "type": "string",
+                "description": "URL for the image"
+              },
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
             "required": [
@@ -318,22 +349,28 @@
                   "type": "object",
                   "properties": {
                     "icon": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Icon of the card"
                     },
                     "title": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Title of the card"
                     },
                     "body": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Subtitle of the card"
                     },
                     "route": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Route for the card to be redirected"
                     },
                     "color": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Background color for the icon if necessary"
                     },
                     "externalLink": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "External URL to be redirected"
                     }
                   },
                   "required": [
@@ -366,16 +403,19 @@
                   "type": "object",
                   "properties": {
                     "heading": {
-                      "type": "string"
-                    },
-                    "cardData": {
-                      "$ref": "#/definitions/mySchema/items/anyOf/7/properties/longCardItems"
+                      "type": "string",
+                      "description": "Title of the Card"
                     },
                     "headerSize": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Size of the title of the card"
+                    },
+                    "cardData": {
+                      "$ref": "#/definitions/mySchema/items/anyOf/8/properties/longCardItems"
                     },
                     "id": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Unique ID for the title of the card"
                     }
                   },
                   "required": [
@@ -415,7 +455,8 @@
             "required": [
               "type"
             ],
-            "additionalProperties": false
+            "additionalProperties": false,
+            "description": "To add margin around any component."
           },
           {
             "type": "object",
@@ -425,10 +466,12 @@
                 "const": "organ-version"
               },
               "isMultiRow": {
-                "type": "boolean"
+                "type": "boolean",
+                "description": "True if want to display organs one below other. False if want to display organs beside one another"
               },
               "tableRequired": {
-                "type": "boolean"
+                "type": "boolean",
+                "description": "True of want to display data table"
               },
               "versionData": {
                 "type": "array",
@@ -436,16 +479,19 @@
                   "type": "object",
                   "properties": {
                     "release": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Label for release and release date,year"
                     },
                     "version": {
                       "type": [
                         "number",
                         "string"
-                      ]
+                      ],
+                      "description": "Version Number of the release"
                     },
                     "file": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Name of the csv file"
                     }
                   },
                   "required": [
@@ -453,7 +499,8 @@
                     "version"
                   ],
                   "additionalProperties": false
-                }
+                },
+                "description": "Release name, source csv file and version number"
               },
               "headerInfo": {
                 "type": "array",
@@ -461,23 +508,27 @@
                   "type": "object",
                   "properties": {
                     "header": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Column name"
                     },
                     "columnDef": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Definition of the column"
                     },
-                    "cell": {},
+                    "cell": {
+                      "description": "Code to display the cell data"
+                    },
                     "isTotalRequired": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "description": "True of want the total to be displayed"
                     },
                     "sorting": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "description": "True if sorting is required"
                     },
                     "alignment": {
-                      "type": "string"
-                    },
-                    "justifyContent": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Alignment of the data (start or end)"
                     }
                   },
                   "required": [
@@ -485,7 +536,8 @@
                     "columnDef"
                   ],
                   "additionalProperties": false
-                }
+                },
+                "description": "Names of columns and their definitions"
               },
               "organInfo": {
                 "type": "array",
@@ -493,7 +545,8 @@
                   "type": "object",
                   "properties": {
                     "version": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "HRA Release version (1.3/1.4/etc)"
                     },
                     "organData": {
                       "type": "array",
@@ -501,10 +554,12 @@
                         "type": "object",
                         "properties": {
                           "name": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "Name of the organ"
                           },
                           "image": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "Icon/Image of the organ"
                           },
                           "tissueData": {
                             "type": "array",
@@ -512,31 +567,40 @@
                               "type": "object",
                               "properties": {
                                 "name": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "description": "Name of the Tissue"
                                 },
                                 "image": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "description": "URL of the image of the Tissue"
                                 },
                                 "expandedImage": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "description": "URL of the image of the Tissue when dialog is open"
                                 },
                                 "threeDimImage": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "description": "URL of the 3D model file (.glb)"
                                 },
                                 "alt": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "description": "Alternate text for the image"
                                 },
                                 "url": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "description": "URL for the metadata button"
                                 },
                                 "svg": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "description": "URL to download the SVG file of the tissue"
                                 },
                                 "ai": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "description": "URL to download the AI file of the tissue"
                                 },
                                 "png": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "description": "URL to download the PNG file of the tissue"
                                 }
                               },
                               "required": [
@@ -544,7 +608,8 @@
                                 "url"
                               ],
                               "additionalProperties": false
-                            }
+                            },
+                            "description": "Tissue data for the above organ"
                           }
                         },
                         "required": [
@@ -552,14 +617,16 @@
                           "image"
                         ],
                         "additionalProperties": false
-                      }
+                      },
+                      "description": "Organ data for the version"
                     }
                   },
                   "required": [
                     "version"
                   ],
                   "additionalProperties": false
-                }
+                },
+                "description": "Version Number and Organ data for the same version"
               }
             },
             "required": [
@@ -584,10 +651,12 @@
                   "type": "object",
                   "properties": {
                     "heading": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Title of the data"
                     },
                     "descriptions": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Description of the data"
                     }
                   },
                   "required": [
@@ -620,13 +689,16 @@
                   "type": "object",
                   "properties": {
                     "title": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Title of the card"
                     },
                     "subtitle": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Subtitle of the card"
                     },
                     "image": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Icon of the card"
                     }
                   },
                   "required": [
@@ -660,13 +732,16 @@
                   "type": "object",
                   "properties": {
                     "title": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Title of the card (eg. Position in the competition)"
                     },
                     "presentedBy": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Name of the person who presented"
                     },
                     "orgImage": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Logo/Image of the organization"
                     },
                     "winner": {
                       "type": "array",
@@ -674,10 +749,12 @@
                         "type": "object",
                         "properties": {
                           "winner": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "Name of the winner"
                           },
                           "kaggleId": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "Kaggle ID of the winner"
                           },
                           "button": {
                             "type": "array",
@@ -685,10 +762,12 @@
                               "type": "object",
                               "properties": {
                                 "label": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "description": "Text on the button"
                                 },
                                 "link": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "description": "URL for the button"
                                 }
                               },
                               "required": [
@@ -706,10 +785,12 @@
                       }
                     },
                     "userImage": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Images of all the participants"
                     },
                     "matDivider": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "description": "True if divider is needed"
                     }
                   },
                   "required": [
@@ -743,19 +824,24 @@
                   "type": "object",
                   "properties": {
                     "title": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Title of the card"
                     },
                     "description": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Subtitle of the card"
                     },
                     "image": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "URL of the Image of the card"
                     },
                     "gif": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "URL for the GIF on the card"
                     },
                     "route": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Route to redirect the card"
                     }
                   },
                   "required": [
@@ -791,16 +877,20 @@
                   "type": "object",
                   "properties": {
                     "title": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Title of the image on the card"
                     },
                     "description": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Description of the image"
                     },
                     "image": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "URL of the image"
                     },
                     "imageDialog": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "URL of the image to be displayed on the dialog"
                     }
                   },
                   "required": [
@@ -835,7 +925,8 @@
                   "type": "object",
                   "properties": {
                     "title": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Message to be displayed inside the tile"
                     }
                   },
                   "required": [
@@ -862,7 +953,8 @@
                 "type": "object",
                 "properties": {
                   "sopTitle": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Title of the links"
                   },
                   "href": {
                     "type": "array",
@@ -870,10 +962,12 @@
                       "type": "object",
                       "properties": {
                         "title": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Label for the link"
                         },
                         "href": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "URL for the link"
                         }
                       },
                       "required": [
@@ -904,14 +998,16 @@
                 "type": "string",
                 "const": "styled-group"
               },
+              "components": {
+                "$ref": "#/definitions/mySchema",
+                "description": "To add components recursively"
+              },
               "class": {
-                "type": "string"
+                "type": "string",
+                "description": "Class name defined in the css file"
               },
               "styles": {
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
-              },
-              "components": {
-                "$ref": "#/definitions/mySchema"
               }
             },
             "required": [
@@ -928,22 +1024,30 @@
                 "const": "tableVersion"
               },
               "isTotal": {
-                "type": "boolean"
+                "type": "boolean",
+                "description": "True if want to display total below the table in the last row"
               },
               "isDownload": {
-                "type": "boolean"
+                "type": "boolean",
+                "description": "True if want to download the table data csv file"
               },
               "versionChooserDisabled": {
-                "type": "boolean"
+                "type": "boolean",
+                "description": "To show/hide the version select input"
               },
               "headerInfo": {
-                "$ref": "#/definitions/mySchema/items/anyOf/10/properties/headerInfo"
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/mySchema/items/anyOf/11/properties/headerInfo/items"
+                },
+                "description": "Names of columns and their definitions"
               },
               "versionData": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/mySchema/items/anyOf/10/properties/versionData/items"
-                }
+                  "$ref": "#/definitions/mySchema/items/anyOf/11/properties/versionData/items"
+                },
+                "description": "Release name, source csv file and version number"
               },
               "additionalHeaders": {
                 "type": "array",
@@ -951,16 +1055,20 @@
                   "type": "object",
                   "properties": {
                     "columnDef": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Definition of the column"
                     },
                     "header": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Column name"
                     },
                     "colspan": {
-                      "type": "number"
+                      "type": "number",
+                      "description": "Number of columns to span"
                     },
                     "rowspan": {
-                      "type": "number"
+                      "type": "number",
+                      "description": "Number of rows to span"
                     }
                   },
                   "required": [
@@ -968,13 +1076,15 @@
                     "header"
                   ],
                   "additionalProperties": false
-                }
+                },
+                "description": "Additional column names and definitions if any"
               },
               "cellHeaders": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/mySchema/items/anyOf/19/properties/additionalHeaders/items"
-                }
+                  "$ref": "#/definitions/mySchema/items/anyOf/20/properties/additionalHeaders/items"
+                },
+                "description": "Additional column names and definitions if any"
               }
             },
             "required": [
@@ -994,14 +1104,15 @@
                 "type": "string",
                 "const": "title"
               },
-              "class": {
+              "title": {
                 "type": "string"
+              },
+              "class": {
+                "type": "string",
+                "description": "Class name defined in the css file"
               },
               "styles": {
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
-              },
-              "title": {
-                "type": "string"
               }
             },
             "required": [
@@ -1021,25 +1132,25 @@
                 "type": "object",
                 "properties": {
                   "height": {
-                    "type": "number"
+                    "type": "number",
+                    "description": "Height of the youtube player",
+                    "default": 584
                   },
                   "width": {
-                    "type": "number"
-                  },
-                  "title": {
-                    "type": "string"
+                    "type": "number",
+                    "description": "Width of the youtube player",
+                    "default": 1232
                   },
                   "videoId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "ID of the youtube video"
                   },
                   "playerTitle": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Title of the player"
                   }
                 },
                 "required": [
-                  "height",
-                  "width",
-                  "title",
                   "videoId",
                   "playerTitle"
                 ],

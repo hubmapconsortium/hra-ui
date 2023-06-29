@@ -1,4 +1,3 @@
-import { calculateObjectSize } from 'bson';
 import { z } from 'zod';
 
 const Styles = z.record(z.union([z.string(), z.number()]))
@@ -80,29 +79,28 @@ export const CountCard = z.object({
 })
 
 export const Divider = z.object({
+    type: z.literal('divider'),
     styles: Styles.optional()
 })
 
 const ExtraHeader = z.object({
-    columnDef: z.string(),
-    header: z.string(),
-    colspan: z.number().optional(),
-    rowspan: z.number().optional(),
+    columnDef: z.string({ description: 'Definition of the column' }),
+    header: z.string({ description: 'Column name' }),
+    colspan: z.number().optional().describe('Number of columns to span'),
+    rowspan: z.number().optional().describe('Number of rows to span'),
 })
 
 const HeaderData = z.object({
-    header: z.string(),
-    columnDef: z.string(),
-    cell: z.unknown(),
-    isTotalRequired: z.boolean(),
-    sorting: z.boolean(),
-    alignment: z.string(),
-    justifyContent: z.string(),
+    header: z.string({ description: 'Column name' }),
+    columnDef: z.string({ description: 'Definition of the column' }),
+    cell: z.unknown().describe('Code to display the cell data'),
+    isTotalRequired: z.boolean({ description: 'True of want the total to be displayed' }),
+    sorting: z.boolean({ description: 'True if sorting is required' }),
+    alignment: z.string({ description: 'Alignment of the data (start or end)' })
 }).partial({
     isTotalRequired: true,
     sorting: true,
-    alignment: true,
-    justifyContent: true
+    alignment: true
 }).array()
 
 export const Image = z.object({
@@ -209,10 +207,10 @@ export const SectionCard = z.object({
 export const ImageInCard = z.object({
     type: z.literal('simple-image'),
     imageData: z.object({
-        title: z.string(),
-        description: z.string(),
-        image: z.string(),
-        imageDialog: z.string()
+        title: z.string({ description: 'Title of the image on the card' }),
+        description: z.string({ description: 'Description of the image' }),
+        image: z.string({ description: 'URL of the image' }),
+        imageDialog: z.string({ description: 'URL of the image to be displayed on the dialog' })
     }).array(),
     styles: Styles.optional()
 })
@@ -223,7 +221,7 @@ export const Margin = z.object({
     bottom: z.string(),
     left: z.string(),
     right: z.string()
-}).partial({
+}, { description: 'To add margin around any component.' }).partial({
     top: true,
     bottom: true,
     left: true,
@@ -232,100 +230,105 @@ export const Margin = z.object({
 
 //// VERSION ORGANS START
 const TissueData = z.object({
-    name: z.string(),
-    image: z.string().optional(),
-    expandedImage: z.string().optional(),
-    threeDimImage: z.string().optional(),
-    alt: z.string().optional(),
-    url: z.string(),
-    svg: z.string().optional(),
-    ai: z.string().optional(),
-    png: z.string().optional(),
+    name: z.string({ description: 'Name of the Tissue' }),
+    image: z.string({ description: 'URL of the image of the Tissue' }),
+    expandedImage: z.string({ description: 'URL of the image of the Tissue when dialog is open' }),
+    threeDimImage: z.string({ description: 'URL of the 3D model file (.glb)' }),
+    alt: z.string({ description: 'Alternate text for the image' }),
+    url: z.string({ description: 'URL for the metadata button' }),
+    svg: z.string({ description: 'URL to download the SVG file of the tissue' }),
+    ai: z.string({ description: 'URL to download the AI file of the tissue' }),
+    png: z.string({ description: 'URL to download the PNG file of the tissue' }),
+}).partial({
+    image: true,
+    expandedImage: true,
+    threeDimImage: true,
+    alt: true,
+    svg: true,
+    ai: true,
+    png: true
 });
 
 const OrganData = z.object({
-    name: z.string(),
-    image: z.string(),
-    tissueData: z.lazy(() => TissueData.array()).optional()
+    name: z.string({ description: 'Name of the organ' }),
+    image: z.string({ description: 'Icon/Image of the organ' }),
+    tissueData: z.lazy(() => TissueData.array()).optional().describe('Tissue data for the above organ')
 });
 
 const VersionOrgans = z.object({
-    version: z.string(),
-    organData: OrganData.array().optional()
+    version: z.string({ description: 'HRA Release version (1.3/1.4/etc)' }),
+    organData: OrganData.array().optional().describe('Organ data for the version')
 });
 
 export const OrganVersion = z.object({
     type: z.literal('organ-version'),
-    isMultiRow: z.boolean(),
-    tableRequired: z.boolean(),
-    versionData: z.lazy(() => VersionSelector.array()),
-    headerInfo: HeaderData.optional(),
-    organInfo: VersionOrgans.array()
+    isMultiRow: z.boolean({ description: 'True if want to display organs one below other. False if want to display organs beside one another' }),
+    tableRequired: z.boolean({ description: 'True of want to display data table' }),
+    versionData: z.lazy(() => VersionSelector.array()).describe('Release name, source csv file and version number'),
+    headerInfo: HeaderData.optional().describe('Names of columns and their definitions'),
+    organInfo: VersionOrgans.array().describe('Version Number and Organ data for the same version')
 })
 
 ///VERSION ORGANS END
 
-///table version start
-
 export const TableVersion = z.object({
     type: z.literal('tableVersion'),
-    isTotal: z.boolean(),
-    isDownload: z.boolean(),
-    versionChooserDisabled: z.boolean(),
-    headerInfo: HeaderData,
-    versionData: z.lazy(() => VersionSelector.array()),
-    additionalHeaders: ExtraHeader.array().optional(),
-    cellHeaders: ExtraHeader.array().optional()
+    isTotal: z.boolean({ description: 'True if want to display total below the table in the last row' }),
+    isDownload: z.boolean({ description: 'True if want to download the table data csv file' }),
+    versionChooserDisabled: z.boolean({ description: 'To show/hide the version select input' }),
+    headerInfo: HeaderData.describe('Names of columns and their definitions'),
+    versionData: z.lazy(() => VersionSelector.array()).describe('Release name, source csv file and version number'),
+    additionalHeaders: ExtraHeader.array().optional().describe('Additional column names and definitions if any'),
+    cellHeaders: ExtraHeader.array().optional().describe('Additional column names and definitions if any')
 })
 
 export const SimpleTile = z.object({
     type: z.literal('simple-tile'),
     description: z.object({
-        title: z.string()
+        title: z.string({ description: 'Message to be displayed inside the tile' })
     }).array()
 })
 
 export const SopLinks = z.object({
     type: z.literal('sop-links'),
     sopData: z.object({
-        sopTitle: z.string(),
+        sopTitle: z.string({ description: 'Title of the links' }),
         href: z.object({
-            title: z.string(),
-            href: z.string()
+            title: z.string({ description: 'Label for the link' }),
+            href: z.string({ description: 'URL for the link' })
         }).array()
     })
 })
 
 export const Title = z.object({
     type: z.literal('title'),
-    class: z.string().optional(),
-    styles: Styles.optional(),
-    title: z.string()
+    title: z.string('Title/Text to be displayed'),
+    class: z.string().optional().describe('Class name defined in the css file'),
+    styles: Styles.optional()
 })
 
 const VersionSelector = z.object({
-    release: z.string(),
-    version: z.number().or(z.string()),
-    file: z.string().optional()
+    release: z.string({ description: 'Label for release and release date,year' }),
+    version: z.number().or(z.string()).describe('Version Number of the release'),
+    file: z.string().optional().describe('Name of the csv file')
 })
 
 export const YoutubePlayer = z.object({
     type: z.literal('player'),
     youtubePlayer: z.object({
-        height: z.number(),
-        width: z.number(),
-        title: z.string(),
-        videoId: z.string(),
-        playerTitle: z.string()
+        height: z.number({ description: 'Height of the youtube player' }).default(584),
+        width: z.number({ description: 'Width of the youtube player' }).default(1232),
+        videoId: z.string({ description: 'ID of the youtube video' }),
+        playerTitle: z.string({ description: 'Title of the player' })
     }),
     styles: Styles.optional()
 })
 
 const StyledGroup = z.object({
     type: z.literal('styled-group'),
-    class: z.string().optional(),
-    styles: Styles.optional(),
-    components: z.lazy(() => PageSpec)
+    components: z.lazy(() => PageSpec).describe('To add components recursively'),
+    class: z.string({ description: 'Class name defined in the css file' }).optional(),
+    styles: Styles.optional()
 });
 
 export const PageSpec = z.discriminatedUnion('type', [
@@ -335,6 +338,7 @@ export const PageSpec = z.discriminatedUnion('type', [
     CarouselSlides,
     ContactCard,
     CountCard,
+    Divider,
     Image,
     LongCard,
     LongCardWithTitle,

@@ -35,7 +35,6 @@
   youtubePlayer:
     height: 584
     width: 1232
-    title: Overview
     videoId:  YAHJqvD3Q_8
     playerTitle:  "Tutorial: Exploration User Interface 1.7.0 Demo"
 
@@ -52,7 +51,6 @@
   youtubePlayer:
     height: 584
     width: 1232
-    title: Spatial Search
     videoId: UfxMpzatowE
     playerTitle: "Tutorial: Spatial Search in the CCF Exploration User Interface"
 

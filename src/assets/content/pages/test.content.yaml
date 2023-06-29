@@ -118,6 +118,8 @@
       image: assets/images/carousel3.svg
       buttonText: Learn More NO
 
+- type: divider
+
 - type: contact-card
   contactData:
     - image: assets/images/katy_borner.svg
@@ -279,7 +281,6 @@
   youtubePlayer:
     height: 584
     width: 1232
-    title: YT PLAYER
     videoId: YAHJqvD3Q_8
     playerTitle: JUST PLAY IT
 

@@ -46,7 +46,6 @@
 
 - type: player
   youtubePlayer:
-    title: Overview
     videoId: gY3_-LIoKaU
     playerTitle: Tutorial
     height: 584
