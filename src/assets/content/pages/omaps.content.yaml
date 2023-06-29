@@ -90,7 +90,7 @@
   isTotal: true
   versionData:
   - release: '5th HRA Release (v1.4), June 2023'
-    file: omaps_release5.csv
+    file: omaps_release5_rep_data.csv
     version: '5'
   - release: '4th HRA Release (v1.3), December 2022'
     file: omaps_release4.csv
@@ -119,11 +119,16 @@
     cell: "`${element['imagingMethod']}`"
     alignment: start
   - columnDef: csv
-    header: Download
+    header: Download OMAP
     cell: "`<a class=\"cell-link\" href=\"${element['csv'] || 'TODO:Please add a url column to this .csv!'}\">CSV</a> | <a class=\"cell-link\" href=\"${element['xlsx'] || 'TODO:Please add a url column to this .csv!'}\">XLSX</a>`"
     sorting: false
     isTotalRequired: true
     alignment: "start"
+  - columnDef: representativeDataset
+    header: Representative Dataset
+    cell: "element['representativeDataset'] ? `<a class=\"cell-link\" href=\"${element['representativeDataset']}\">Link</a>` : ''"
+    isTotalRequired: false
+    alignment: start
   - columnDef: 'as'
     header: '#AS'
     cell: "`${element['as']}`"
