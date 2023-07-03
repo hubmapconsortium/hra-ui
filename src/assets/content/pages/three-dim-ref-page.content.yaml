@@ -278,8 +278,8 @@
               url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/liver-male.html
               alt: Liver, male
               threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Liver.glb
-        - name: Lungs
-          image: assets/images/lungs.svg
+        - name: Lung
+          image: assets/images/lung.svg
           tissueData:
             - name: Female
               image:
