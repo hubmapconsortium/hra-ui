@@ -28,7 +28,7 @@
   .hra-header {
     font-weight: 300;
     font-size: 2rem;
-    color: #C2CAE6;
+    color: #c2cae6;
     letter-spacing: -0.025em;
     line-height: 2.438rem;
     text-decoration: none;
@@ -89,17 +89,24 @@
 }
 
 ::ng-deep {
-  .mat-parent-node {
-    padding-left: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+  .mat-nested-tree-node,
+  .mat-tree-node {
+    display: block;
+    padding: 1rem 2rem 1rem 2rem;
   }
 
-  .mat-nested-tree-node div.menu-name {
-    padding-left: 2rem;
-  }
+  .mat-nested-tree-node {
+    .mat-tree-node {
+      padding: 1rem;
+      position: relative;
+    }
 
-  div.menu-name {
-    padding-left: 1rem;
+    .mat-divider {
+      // width: calc(100% + 40px);
+      position: absolute;
+      bottom: 0;
+      left: -2rem;
+      right: -2rem;
+    }
   }
 }
