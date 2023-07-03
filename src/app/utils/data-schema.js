@@ -78,9 +78,30 @@ export const CountCard = z.object({
     styles: Styles.optional()
 })
 
+export const Datasets = z.object({
+    type: z.literal('datasets'),
+    links: z.object({
+        class: z.string({ description: 'Class name defined in the css file' }),
+        href: z.string({ description: 'URL of the item' }),
+        title: z.string({ description: 'Tooltip title for the item' }),
+        data: z.string({ description: 'Label for the item' })
+    }).array(),
+    styles: Styles.optional()
+})
+
 export const Divider = z.object({
     type: z.literal('divider'),
     styles: Styles.optional()
+})
+
+export const Drawer = z.object({
+    type: z.literal('drawer'),
+    navigationItems: z.object({
+        menuName: z.string({ description: 'Label of the menu item' }),
+        id: z.string({ description: 'ID of the menu item' })
+    }).array(),
+    drawerStyles: Styles,
+    components: z.lazy(() => PageSpec).describe('To add components recursively')
 })
 
 const ExtraHeader = z.object({
@@ -108,6 +129,17 @@ export const Image = z.object({
     class: z.string({ description: 'Class name of the class defined in the CSS file' }).optional(),
     imageSource: z.string({ description: 'URL for the image' }),
     styles: Styles.optional(),
+})
+
+export const ImageInCard = z.object({
+    type: z.literal('simple-image'),
+    imageData: z.object({
+        title: z.string({ description: 'Title of the image on the card' }),
+        description: z.string({ description: 'Description of the image' }),
+        image: z.string({ description: 'URL of the image' }),
+        imageDialog: z.string({ description: 'URL of the image to be displayed on the dialog' })
+    }).array(),
+    styles: Styles.optional()
 })
 
 const LongCardItems = z.object({
@@ -141,6 +173,57 @@ export const LongCardWithTitle = z.object({
         headerSize: true,
         id: true
     }).array()
+})
+
+export const Margin = z.object({
+    type: z.literal('margin'),
+    top: z.string(),
+    bottom: z.string(),
+    left: z.string(),
+    right: z.string()
+}, { description: 'To add margin around any component.' }).partial({
+    top: true,
+    bottom: true,
+    left: true,
+    right: true,
+})
+
+export const MatCard = z.object({
+    type: z.literal('mat-card'),
+    components: z.lazy(() => PageSpec).describe('To add components recursively'),
+    styles: Styles.optional()
+})
+
+export const MenuTree = z.object({
+    type: z.literal('menu-tree'),
+    positions: z.object({
+        originX: z.string(),
+        originY: z.string(),
+        overlayX: z.string(),
+        overlayY: z.string(),
+        offsetX: z.number(),
+        offsetY: z.number()
+    }).array(),
+    mobileNavigationItems: z.object({
+        menuName: z.string(),
+        id: z.string()
+    }).array(),
+    styles: Styles.optional()
+})
+
+const OrganData = z.object({
+    name: z.string({ description: 'Name of the organ' }),
+    image: z.string({ description: 'Icon/Image of the organ' }),
+    tissueData: z.lazy(() => TissueData.array()).optional().describe('Tissue data for the above organ')
+});
+
+export const OrganVersion = z.object({
+    type: z.literal('organ-version'),
+    isMultiRow: z.boolean({ description: 'True if want to display organs one below other. False if want to display organs beside one another' }),
+    tableRequired: z.boolean({ description: 'True of want to display data table' }),
+    versionData: z.lazy(() => VersionSelector.array()).describe('Release name, source csv file and version number'),
+    headerInfo: HeaderData.optional().describe('Names of columns and their definitions'),
+    organInfo: z.lazy(() => VersionOrgans.array()).describe('Version Number and Organ data for the same version')
 })
 
 export const PageData = z.object({
@@ -182,7 +265,7 @@ export const PrizeCard = z.object({
         presentedBy: z.string({ description: 'Name of the person who presented' }),
         orgImage: z.string({ description: 'Logo/Image of the organization' }),
         winner: PrizeWinner.array(),
-        userImage: z.string({ description: 'Images of all the participants' }),
+        userImage: z.string({ description: 'Images of all the participants' }).array(),
         matDivider: z.boolean({ description: 'True if divider is needed' })
     }).partial({
         presentedBy: true,
@@ -204,31 +287,43 @@ export const SectionCard = z.object({
     styles: Styles.optional()
 })
 
-export const ImageInCard = z.object({
-    type: z.literal('simple-image'),
-    imageData: z.object({
-        title: z.string({ description: 'Title of the image on the card' }),
-        description: z.string({ description: 'Description of the image' }),
-        image: z.string({ description: 'URL of the image' }),
-        imageDialog: z.string({ description: 'URL of the image to be displayed on the dialog' })
-    }).array(),
+export const SimpleTile = z.object({
+    type: z.literal('simple-tile'),
+    description: z.object({
+        title: z.string({ description: 'Message to be displayed inside the tile' })
+    }).array()
+})
+
+export const SopLinks = z.object({
+    type: z.literal('sop-links'),
+    sopData: z.object({
+        sopTitle: z.string({ description: 'Title of the links' }),
+        href: z.object({
+            title: z.string({ description: 'Label for the link' }),
+            href: z.string({ description: 'URL for the link' })
+        }).array()
+    })
+})
+
+const StyledGroup = z.object({
+    type: z.literal('styled-group'),
+    components: z.lazy(() => PageSpec).describe('To add components recursively'),
+    id: z.string({ description: 'ID of the page element' }).optional(),
+    class: z.string({ description: 'Class name defined in the css file' }).optional(),
     styles: Styles.optional()
+});
+
+export const TableVersion = z.object({
+    type: z.literal('table-version'),
+    isTotal: z.boolean({ description: 'True if want to display total below the table in the last row' }),
+    isDownload: z.boolean({ description: 'True if want to download the table data csv file' }),
+    versionChooserDisabled: z.boolean({ description: 'To show/hide the version select input' }),
+    headerInfo: HeaderData.describe('Names of columns and their definitions'),
+    versionData: z.lazy(() => VersionSelector.array()).describe('Release name, source csv file and version number'),
+    additionalHeaders: ExtraHeader.array().optional().describe('Additional column names and definitions if any'),
+    cellHeaders: ExtraHeader.array().optional().describe('Additional column names and definitions if any')
 })
 
-export const Margin = z.object({
-    type: z.literal('margin'),
-    top: z.string(),
-    bottom: z.string(),
-    left: z.string(),
-    right: z.string()
-}, { description: 'To add margin around any component.' }).partial({
-    top: true,
-    bottom: true,
-    left: true,
-    right: true,
-})
-
-//// VERSION ORGANS START
 const TissueData = z.object({
     name: z.string({ description: 'Name of the Tissue' }),
     image: z.string({ description: 'URL of the image of the Tissue' }),
@@ -249,63 +344,17 @@ const TissueData = z.object({
     png: true
 });
 
-const OrganData = z.object({
-    name: z.string({ description: 'Name of the organ' }),
-    image: z.string({ description: 'Icon/Image of the organ' }),
-    tissueData: z.lazy(() => TissueData.array()).optional().describe('Tissue data for the above organ')
-});
-
-const VersionOrgans = z.object({
-    version: z.string({ description: 'HRA Release version (1.3/1.4/etc)' }),
-    organData: OrganData.array().optional().describe('Organ data for the version')
-});
-
-export const OrganVersion = z.object({
-    type: z.literal('organ-version'),
-    isMultiRow: z.boolean({ description: 'True if want to display organs one below other. False if want to display organs beside one another' }),
-    tableRequired: z.boolean({ description: 'True of want to display data table' }),
-    versionData: z.lazy(() => VersionSelector.array()).describe('Release name, source csv file and version number'),
-    headerInfo: HeaderData.optional().describe('Names of columns and their definitions'),
-    organInfo: VersionOrgans.array().describe('Version Number and Organ data for the same version')
-})
-
-///VERSION ORGANS END
-
-export const TableVersion = z.object({
-    type: z.literal('tableVersion'),
-    isTotal: z.boolean({ description: 'True if want to display total below the table in the last row' }),
-    isDownload: z.boolean({ description: 'True if want to download the table data csv file' }),
-    versionChooserDisabled: z.boolean({ description: 'To show/hide the version select input' }),
-    headerInfo: HeaderData.describe('Names of columns and their definitions'),
-    versionData: z.lazy(() => VersionSelector.array()).describe('Release name, source csv file and version number'),
-    additionalHeaders: ExtraHeader.array().optional().describe('Additional column names and definitions if any'),
-    cellHeaders: ExtraHeader.array().optional().describe('Additional column names and definitions if any')
-})
-
-export const SimpleTile = z.object({
-    type: z.literal('simple-tile'),
-    description: z.object({
-        title: z.string({ description: 'Message to be displayed inside the tile' })
-    }).array()
-})
-
-export const SopLinks = z.object({
-    type: z.literal('sop-links'),
-    sopData: z.object({
-        sopTitle: z.string({ description: 'Title of the links' }),
-        href: z.object({
-            title: z.string({ description: 'Label for the link' }),
-            href: z.string({ description: 'URL for the link' })
-        }).array()
-    })
-})
-
 export const Title = z.object({
     type: z.literal('title'),
     title: z.string('Title/Text to be displayed'),
     class: z.string().optional().describe('Class name defined in the css file'),
     styles: Styles.optional()
 })
+
+const VersionOrgans = z.object({
+    version: z.string({ description: 'HRA Release version (1.3/1.4/etc)' }),
+    organData: OrganData.array().optional().describe('Organ data for the version')
+});
 
 const VersionSelector = z.object({
     release: z.string({ description: 'Label for release and release date,year' }),
@@ -324,13 +373,6 @@ export const YoutubePlayer = z.object({
     styles: Styles.optional()
 })
 
-const StyledGroup = z.object({
-    type: z.literal('styled-group'),
-    components: z.lazy(() => PageSpec).describe('To add components recursively'),
-    class: z.string({ description: 'Class name defined in the css file' }).optional(),
-    styles: Styles.optional()
-});
-
 export const PageSpec = z.discriminatedUnion('type', [
     AnnouncementCard,
     BoardMembers,
@@ -338,17 +380,21 @@ export const PageSpec = z.discriminatedUnion('type', [
     CarouselSlides,
     ContactCard,
     CountCard,
+    Datasets,
     Divider,
+    Drawer,
     Image,
+    ImageInCard,
     LongCard,
     LongCardWithTitle,
     Margin,
+    MatCard,
+    MenuTree,
     OrganVersion,
     PageData,
     PageHeaderCard,
     PrizeCard,
     SectionCard,
-    ImageInCard,
     SimpleTile,
     SopLinks,
     StyledGroup,

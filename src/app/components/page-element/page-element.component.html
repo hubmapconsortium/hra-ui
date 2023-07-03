@@ -26,11 +26,11 @@
     </div>
     <count-info-card *ngSwitchCase="'count-card'" [cardInformation]="def['countCardInfo']"></count-info-card>
     <ccf-section-card *ngSwitchCase="'section-card'" [cards]="def['cardsInfo']"></ccf-section-card>
-    <table-version *ngSwitchCase="'tableVersion'" [isTotal]="def['isTotal']"
+    <table-version *ngSwitchCase="'table-version'" [isTotal]="def['isTotal']"
         [versionChooserDisabled]="def['versionChooserDisabled']" [headerInfo]="def['headerInfo']"
         [versionData]="def['versionData']" [additionalHeaders]="def['additionalHeaders']"
         [cellHeaders]="def['cellHeaders']" [isTotal]="def['isTotal']" [isDownload]="def['isDownload']"></table-version>
-    <mat-card *ngSwitchCase="'matCard'" [style]="def['styles']">
+    <mat-card *ngSwitchCase="'mat-card'" [style]="def['styles']">
         <page-element *ngFor="let comp of def['components']" [def]="comp"></page-element>
     </mat-card>
     <ccf-prize-card *ngSwitchCase="'prize-card'" [prizeCard]="def['prizeCard']"></ccf-prize-card>
@@ -38,7 +38,7 @@
         <a *ngFor="let link of def['links']" [href]="link['href']" [title]="link['title']"
             [class]="link['class']">{{link['data']}}</a>
     </div>
-    <menu-tree *ngSwitchCase="'menuTree'" class="menu" [style]="def['styles']"
+    <menu-tree *ngSwitchCase="'menu-tree'" class="menu" [style]="def['styles']"
         [treeItems]="def['mobileNavigationItems']" [icon]="def['icon']" [overlayClass]="'overlay-position'"
         [treeClass]="'tree-class'" [positions]="def['positions']"></menu-tree>
     <mat-drawer-container *ngSwitchCase="'drawer'" [autosize]="true">
@@ -55,10 +55,6 @@
     </mat-drawer-container>
     <mat-divider *ngSwitchCase="'divider'" [style]="def['styles']"></mat-divider>
     <contact-card *ngSwitchCase="'contact-card'" [contactCard]="def['contactData']"></contact-card>
-    <a *ngSwitchCase="'downloadButton'" mat-raised-button [style]="def['styles']" [href]="def['href']" download
-        class="download-button">
-        <span class="material-symbols-outlined icon">{{def["icon"]}}</span>{{def['text']}}
-    </a>
     <ccf-organ-version *ngSwitchCase="'organ-version'" [versionData]="def['versionData']"
         [isMultiRow]="def['isMultiRow']" [organInfo]="def['organInfo']" [tableRequired]="def['tableRequired']"
         [headerInfo]="def['headerInfo']"></ccf-organ-version>

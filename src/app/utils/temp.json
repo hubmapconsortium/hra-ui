@@ -300,6 +300,54 @@
             "properties": {
               "type": {
                 "type": "string",
+                "const": "datasets"
+              },
+              "links": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "class": {
+                      "type": "string",
+                      "description": "Class name defined in the css file"
+                    },
+                    "href": {
+                      "type": "string",
+                      "description": "URL of the item"
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "Tooltip title for the item"
+                    },
+                    "data": {
+                      "type": "string",
+                      "description": "Label for the item"
+                    }
+                  },
+                  "required": [
+                    "class",
+                    "href",
+                    "title",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
+              }
+            },
+            "required": [
+              "type",
+              "links"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
                 "const": "divider"
               },
               "styles": {
@@ -308,6 +356,50 @@
             },
             "required": [
               "type"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "drawer"
+              },
+              "navigationItems": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "menuName": {
+                      "type": "string",
+                      "description": "Label of the menu item"
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "ID of the menu item"
+                    }
+                  },
+                  "required": [
+                    "menuName",
+                    "id"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "drawerStyles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
+              },
+              "components": {
+                "$ref": "#/definitions/mySchema",
+                "description": "To add components recursively"
+              }
+            },
+            "required": [
+              "type",
+              "navigationItems",
+              "drawerStyles",
+              "components"
             ],
             "additionalProperties": false
           },
@@ -333,6 +425,54 @@
             "required": [
               "type",
               "imageSource"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "simple-image"
+              },
+              "imageData": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "description": "Title of the image on the card"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Description of the image"
+                    },
+                    "image": {
+                      "type": "string",
+                      "description": "URL of the image"
+                    },
+                    "imageDialog": {
+                      "type": "string",
+                      "description": "URL of the image to be displayed on the dialog"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "description",
+                    "image",
+                    "imageDialog"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
+              }
+            },
+            "required": [
+              "type",
+              "imageData"
             ],
             "additionalProperties": false
           },
@@ -411,7 +551,7 @@
                       "description": "Size of the title of the card"
                     },
                     "cardData": {
-                      "$ref": "#/definitions/mySchema/items/anyOf/8/properties/longCardItems"
+                      "$ref": "#/definitions/mySchema/items/anyOf/11/properties/longCardItems"
                     },
                     "id": {
                       "type": "string",
@@ -457,6 +597,99 @@
             ],
             "additionalProperties": false,
             "description": "To add margin around any component."
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "mat-card"
+              },
+              "components": {
+                "$ref": "#/definitions/mySchema",
+                "description": "To add components recursively"
+              },
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
+              }
+            },
+            "required": [
+              "type",
+              "components"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "menu-tree"
+              },
+              "positions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "originX": {
+                      "type": "string"
+                    },
+                    "originY": {
+                      "type": "string"
+                    },
+                    "overlayX": {
+                      "type": "string"
+                    },
+                    "overlayY": {
+                      "type": "string"
+                    },
+                    "offsetX": {
+                      "type": "number"
+                    },
+                    "offsetY": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "originX",
+                    "originY",
+                    "overlayX",
+                    "overlayY",
+                    "offsetX",
+                    "offsetY"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "mobileNavigationItems": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "menuName": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "menuName",
+                    "id"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
+              }
+            },
+            "required": [
+              "type",
+              "positions",
+              "mobileNavigationItems"
+            ],
+            "additionalProperties": false
           },
           {
             "type": "object",
@@ -785,7 +1018,11 @@
                       }
                     },
                     "userImage": {
-                      "type": "string",
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "description": "Images of all the participants"
+                      },
                       "description": "Images of all the participants"
                     },
                     "matDivider": {
@@ -861,54 +1098,6 @@
             "required": [
               "type",
               "cardsInfo"
-            ],
-            "additionalProperties": false
-          },
-          {
-            "type": "object",
-            "properties": {
-              "type": {
-                "type": "string",
-                "const": "simple-image"
-              },
-              "imageData": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "title": {
-                      "type": "string",
-                      "description": "Title of the image on the card"
-                    },
-                    "description": {
-                      "type": "string",
-                      "description": "Description of the image"
-                    },
-                    "image": {
-                      "type": "string",
-                      "description": "URL of the image"
-                    },
-                    "imageDialog": {
-                      "type": "string",
-                      "description": "URL of the image to be displayed on the dialog"
-                    }
-                  },
-                  "required": [
-                    "title",
-                    "description",
-                    "image",
-                    "imageDialog"
-                  ],
-                  "additionalProperties": false
-                }
-              },
-              "styles": {
-                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
-              }
-            },
-            "required": [
-              "type",
-              "imageData"
             ],
             "additionalProperties": false
           },
@@ -1002,6 +1191,10 @@
                 "$ref": "#/definitions/mySchema",
                 "description": "To add components recursively"
               },
+              "id": {
+                "type": "string",
+                "description": "ID of the page element"
+              },
               "class": {
                 "type": "string",
                 "description": "Class name defined in the css file"
@@ -1021,7 +1214,7 @@
             "properties": {
               "type": {
                 "type": "string",
-                "const": "tableVersion"
+                "const": "table-version"
               },
               "isTotal": {
                 "type": "boolean",
@@ -1038,14 +1231,14 @@
               "headerInfo": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/mySchema/items/anyOf/11/properties/headerInfo/items"
+                  "$ref": "#/definitions/mySchema/items/anyOf/16/properties/headerInfo/items"
                 },
                 "description": "Names of columns and their definitions"
               },
               "versionData": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/mySchema/items/anyOf/11/properties/versionData/items"
+                  "$ref": "#/definitions/mySchema/items/anyOf/16/properties/versionData/items"
                 },
                 "description": "Release name, source csv file and version number"
               },
@@ -1082,7 +1275,7 @@
               "cellHeaders": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/mySchema/items/anyOf/20/properties/additionalHeaders/items"
+                  "$ref": "#/definitions/mySchema/items/anyOf/24/properties/additionalHeaders/items"
                 },
                 "description": "Additional column names and definitions if any"
               }

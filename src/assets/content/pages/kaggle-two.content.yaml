@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=../../../app/utils/temp.json
+
 - type: header
   headerCard:
     - title: "Kaggle #2: HuBMAP + HPA - Hacking the Human Body"
@@ -45,9 +47,8 @@
   youtubePlayer:
     height: 584
     width: 1232
-    title:
     videoId: AF--edMjvss
-    playerTitle:
+    playerTitle: ''
 
 - type: title
   title: Winning Teams
@@ -64,7 +65,7 @@
     padding-bottom: 1rem
     padding-top: 1.5rem
 
-- type: matCard
+- type: mat-card
   styles:
     margin-bottom: 1rem
   components:
@@ -138,7 +139,7 @@
 - type: prize-card
   prizeCard:
   - title: Diversity Prize ($10,000)
-    matDivider: false,
+    matDivider: false
     winner:
     - winner: 'Team: Nghi Huynh, Yuan Hong, Matteo Cacciola'
       button:

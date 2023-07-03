@@ -1,6 +1,38 @@
 # yaml-language-server: $schema=../../../app/utils/temp.json
 
-- type: tableVersion
+
+- type: mat-card
+  components:
+    - type: page-data
+      pageData:
+        - heading: Hi
+          descriptions: HELLLO
+
+
+- type: datasets
+  styles:
+    display: flex
+    justify-content: space-between
+    margin-top: 2rem
+  links:
+    - class: noclass
+      href: https://portal.hubmapconsortium.org/browse/dataset/d63f77a8a5b4c23a328f526517a52ff9
+      title: custom title
+      data: customData
+    - class: noclass
+      href: https://portal.hubmapconsortium.org/browse/dataset/d63f77a8a5b4c23a328f526517a52ff9
+      title: custom title
+      data: customData
+    - class: noclass
+      href: https://portal.hubmapconsortium.org/browse/dataset/d63f77a8a5b4c23a328f526517a52ff9
+      title: custom title
+      data: customData
+    - class: noclass
+      href: https://portal.hubmapconsortium.org/browse/dataset/d63f77a8a5b4c23a328f526517a52ff9
+      title: custom title
+      data: customData
+
+- type: table-version
   versionChooserDisabled: false
   versionData:
   - release: 5th HRA Release (v1.4), June 2023

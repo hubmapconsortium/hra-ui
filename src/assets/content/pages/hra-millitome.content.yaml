@@ -57,7 +57,7 @@
     letter-spacing: .005rem
     padding-bottom: 1.5rem
 
-- type: tableVersion
+- type: table-version
   isDownload: false
   versionData:
     - release: ''
