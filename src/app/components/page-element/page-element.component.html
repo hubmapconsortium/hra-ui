@@ -39,7 +39,7 @@
             [class]="link['class']">{{link['data']}}</a>
     </div>
     <menu-tree *ngSwitchCase="'menu-tree'" class="menu" [style]="def['styles']"
-        [treeItems]="def['mobileNavigationItems']" [icon]="def['icon']" [overlayClass]="'overlay-position'"
+        [treeItems]="def['mobileNavigationItems']" [icon]="def['icon']" [overlayClass]="def['overlay-class']"
         [treeClass]="'tree-class'" [positions]="def['positions']"></menu-tree>
     <mat-drawer-container *ngSwitchCase="'drawer'" [autosize]="true">
         <mat-drawer mode="side" opened [style]="def['drawerStyles']">

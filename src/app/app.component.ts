@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AppComponent {
   title = 'ccf';
 
-  constructor(private readonly router: Router, private readonly activated: ActivatedRoute) {}
+  constructor(private readonly router: Router, private readonly activated: ActivatedRoute) { }
 
   onPageChange() {
     setTimeout(() => {
@@ -18,5 +18,10 @@ export class AppComponent {
         preserveFragment: true
       });
     })
- }
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'auto'
+    });
+  }
 }

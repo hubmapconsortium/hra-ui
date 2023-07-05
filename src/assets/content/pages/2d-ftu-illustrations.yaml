@@ -182,7 +182,7 @@
               ai: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-liver-liver-lobule.ai
               png: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-liver-liver-lobule.png
         - name: Lung
-          image: assets/images/lungs.svg
+          image: assets/images/lung.svg
           tissueData:
             - name: Bronchial Submucosal Gland
               image: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-bronchial-submucosal-gland.svg

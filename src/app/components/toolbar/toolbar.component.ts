@@ -19,7 +19,7 @@ export class ToolbarComponent {
       overlayX: 'end',
       overlayY: 'top',
       offsetX: 16,
-      offsetY: 8
+      offsetY: 13
     }
   ];
 }
