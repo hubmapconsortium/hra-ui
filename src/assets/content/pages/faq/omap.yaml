@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=../../../app/utils/temp.json
+# yaml-language-server: $schema=../../../../app/utils/temp.json
 
 - type: margin
   top: 3.5rem
