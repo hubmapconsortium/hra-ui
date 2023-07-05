@@ -1,5 +1,7 @@
-- type: menuTree
-  overlay-class: overlay-position-fourth-release
+# yaml-language-server: $schema=../../../../app/utils/temp.json
+
+- type: menu-tree
+  overlayClass: overlay-position-fourth-release
   styles:
     margin-top: 2rem
   positions:

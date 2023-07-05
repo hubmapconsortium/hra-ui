@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=../../../../app/utils/temp.json
 
 - type: menu-tree
-  overlay-class: overlay-position-fifth-release
+  overlayClass: overlay-position-fifth-release
   styles:
     margin-top: 2rem
   positions:

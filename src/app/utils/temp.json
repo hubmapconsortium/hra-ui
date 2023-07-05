@@ -626,6 +626,9 @@
                 "type": "string",
                 "const": "menu-tree"
               },
+              "overlayClass": {
+                "type": "string"
+              },
               "positions": {
                 "type": "array",
                 "items": {
@@ -686,6 +689,7 @@
             },
             "required": [
               "type",
+              "overlayClass",
               "positions",
               "mobileNavigationItems"
             ],

@@ -196,6 +196,7 @@ export const MatCard = z.object({
 
 export const MenuTree = z.object({
     type: z.literal('menu-tree'),
+    overlayClass: z.string(),
     positions: z.object({
         originX: z.string(),
         originY: z.string(),
