@@ -1,4 +1,5 @@
 - type: menuTree
+  overlay-class: overlay-position-fifth-release
   styles:
     margin-top: 2rem
   positions:

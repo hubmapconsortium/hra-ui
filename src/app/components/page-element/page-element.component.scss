@@ -162,6 +162,17 @@
     }
   }
 
+  .overlay-position-fifth-release, .overlay-position-fourth-release {
+    max-height: calc(100vh - 4.5rem);
+
+    .mat-tree-node {
+      display: block;
+      padding: unset;
+      font-weight: 500;
+      color: #0a6ebd;
+    }
+  }
+
   .tree-class .table-of-contents {
     padding: 0.75rem 0rem;
     padding-left: 1rem;
