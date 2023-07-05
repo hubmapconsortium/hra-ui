@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ErrorHandler, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, map, Observable, switchMap } from 'rxjs';
+import { catchError, distinctUntilChanged, map, Observable, switchMap } from 'rxjs';
 import { ContentService } from '../../services/content/content.service';
 import { PageDef } from '../page-element/page-def';
 
@@ -20,7 +20,9 @@ export class PageComponent {
     private readonly route: ActivatedRoute,
     private readonly errorHandler: ErrorHandler,
     private readonly contentService: ContentService
-  ) { }
+  ) {
+    this.addScrollToTopListener();
+  }
 
   private resolveData(): Observable<PageDef[]> {
     const loadData = (file: string) => this.contentService.getContent<PageDef[]>(file).pipe(
@@ -39,6 +41,22 @@ export class PageComponent {
       map(url => this.getFileName(url)),
       switchMap(loadData)
     )
+  }
+
+  private addScrollToTopListener(): void {
+    this.route.url.pipe(distinctUntilChanged()).subscribe(() => {
+      setTimeout(() => {
+        this.router.navigate([], {
+          relativeTo: this.route,
+          preserveFragment: true
+        });
+      })
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+    });
   }
 
   private getFileName(url: string): string {
