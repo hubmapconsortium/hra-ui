@@ -1,5 +1,7 @@
-- type: menuTree
-  overlay-class: overlay-position-fifth-release
+# yaml-language-server: $schema=../../../../app/utils/temp.json
+
+- type: menu-tree
+  overlayClass: overlay-position-fifth-release
   styles:
     margin-top: 2rem
   positions:
@@ -63,12 +65,12 @@
   components:
   - type: styled-group
     components:
-    - type: text
+    - type: title
       styles: 
         font-size: 1.5rem
         line-height: 34px
         font-weight: 300
-      text: June 15th, 2023
+      title: June 15th, 2023
     - type: styled-group
       id: intro
       components:
@@ -76,7 +78,7 @@
           styles:
             margin-bottom: unset
           pageData:
-          - heading:
+          - heading: ''
             descriptions: |
               **Introduction**
 
@@ -84,11 +86,11 @@
               a digital atlas of the human body that lets users query & explore key anatomical structures, cell types, and biomarkers down to the cellular level.
 
               Download the Human Reference Atlas (HRA) Release Calendar to stay on top of deadlines.
-        - type: downloadButton
+        - type: button
           styles:
             margin-bottom: 1rem
             text-decoration: none
-          href: assets/images/hra-release-calendar.jpg
+          url: assets/images/hra-release-calendar.jpg
           text: Download JPG
           icon: download
         - type: image
@@ -104,7 +106,7 @@
       components:
         - type: page-data
           pageData:
-          - heading:
+          - heading: ''
             descriptions: |
               **What's New**
 
@@ -126,7 +128,7 @@
       components:
         - type: page-data
           pageData:
-          - heading:
+          - heading: ''
             descriptions: |
               **ASCT+B Reporter & OMAPs Support**
 
@@ -135,7 +137,6 @@
         - type: button
           styles:
               margin-bottom: 2rem
-          buttonData:
           text: Use the ASCT+B Reporter
           url: https://hubmapconsortium.github.io/ccf-asct-reporter/
         - type: divider
@@ -146,7 +147,7 @@
       components:
         - type: page-data
           pageData:
-          - heading:
+          - heading: ''
             descriptions: |
               **Vasculature Common Coordinate Framework (VCCF) Updates**
 
@@ -159,7 +160,6 @@
         - type: button
           styles:
             margin-bottom: 2rem
-          buttonData:
           text: Learn about the VCCF
           url: https://humanatlas.io/vccf
         - type: divider
@@ -170,7 +170,7 @@
       components:
         - type: page-data
           pageData:
-          - heading:
+          - heading: ''
             descriptions: |
               **ASCT+B Ontology Validations**
 
@@ -179,7 +179,6 @@
         - type: button
           styles:
             margin-bottom: 2rem
-          buttonData:
           text: Validation Tools GitHub Repository
           url: https://hubmapconsortium.github.io/ccf-validation-tools/
         - type: divider
@@ -190,7 +189,7 @@
       components:
         - type: page-data
           pageData:
-          - heading:
+          - heading: ''
             descriptions: |
               **Previews**
 
@@ -199,7 +198,6 @@
         - type: button
           styles:
             margin-bottom: 2rem
-          buttonData:
           text: 'Preview: Human Atlas Stories'
           url: https://hubmapconsortium.github.io/hra-previews/pilots/pilot4.html
         - type: divider
@@ -210,7 +208,7 @@
       components:
         - type: page-data
           pageData:
-          - heading:
+          - heading: ''
             descriptions: |
               **Human Reference Atlas Knowledge Graph (HRA-KG) 2.0 Beta**
 
@@ -219,7 +217,6 @@
         - type: button
           styles:
             margin-bottom: 2rem
-          buttonData:
           text: 'Preview: HRA-KG 2.0 Beta GitHub Repository'
           url: https://github.com/hubmapconsortium/hra-kg/releases
         - type: divider
@@ -232,7 +229,7 @@
           styles:
               margin-bottom: unset
           pageData:
-          - heading:
+          - heading: ''
             descriptions: |
               **Contact Us**
 
@@ -240,7 +237,6 @@
         - type: button
           styles:
             margin-bottom: 2rem
-          buttonData:
           text: Contact the HRA Team
           url: mailto:infoccf@indiana.edu
           icon: email
@@ -270,7 +266,7 @@
       components:
         - type: page-data
           pageData:
-          - heading:
+          - heading: ''
             descriptions: |
               **Outro**
 

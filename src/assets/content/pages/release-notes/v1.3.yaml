@@ -1,5 +1,7 @@
-- type: menuTree
-  overlay-class: overlay-position-fourth-release
+# yaml-language-server: $schema=../../../../app/utils/temp.json
+
+- type: menu-tree
+  overlayClass: overlay-position-fourth-release
   styles:
     margin-top: 2rem
   positions:
@@ -84,12 +86,12 @@
   components:
     - type: styled-group
       components:
-        - type: text
+        - type: title
           styles:
             font-size: 1.5rem
             line-height: 34px
             font-weight: 300
-          text: December 15th, 2022
+          title: December 15th, 2022
         - type: styled-group
           id: intro
           components:
@@ -97,7 +99,7 @@
               styles:
                 margin-bottom: unset
               pageData:
-                - heading:
+                - heading: ''
                   descriptions: |
                     **Introduction**
 
@@ -116,7 +118,7 @@
       components:
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: |
                 **What's New**
 
@@ -143,7 +145,7 @@
       components:
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: |
                 **HRA 24-Hour Event**
 
@@ -164,16 +166,16 @@
       components:
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: |
                 **HRA Release Calendar**
 
                 Download the new HRA Release Calendar to stay on top of deadlines!
           styles:
             margin-bottom: 1rem
-        - type: downloadButton
+        - type: button
           text: Download JPG
-          href: assets/images/hra-release-calendar.jpg
+          url: assets/images/hra-release-calendar.jpg
           icon: download
           styles:
             margin-bottom: 1rem
@@ -191,7 +193,7 @@
       components:
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: |
                 **ASCT+B Tables**
 
@@ -209,7 +211,7 @@
             width: 100%
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: |
                 **Fig 1.** Processes, anatomical structures, cell types, biomarkers and disease 
                  relevant for understanding proteinuria, in kidney. The example shows 
@@ -228,7 +230,7 @@
       components:
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: |
                 **ASCT+B Reporter**
 
@@ -244,7 +246,7 @@
             width: 100%
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: |
                 <strong>Fig 2.</strong>
                 An exemplary ASCT+B table showing anatomical structures (AS) and cell
@@ -266,7 +268,7 @@
       components:
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: |
                 **ASCT+B Ontology Validations**
 
@@ -284,7 +286,7 @@
       components:
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: |
                 **3D Reference Objects**
 
@@ -300,7 +302,7 @@
             width: 100%
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: |
                 **Fig 3.** A user interacts with a 3D Reference Object in the HRA Portal.
           styles:
@@ -313,7 +315,7 @@
       components:
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: |
                 **Exploration User Interface**
 
@@ -329,7 +331,7 @@
             width: 100%
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: |
                 **Fig 4.** 3D Reference Objects featured within the Exploration User Interface.
           styles:
@@ -342,7 +344,7 @@
       components:
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: |
                 **Registration User Interface**
 
@@ -358,7 +360,7 @@
             width: 100%
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: |
                 **Fig 5.** A user registers a tissue block within a 3D Reference Object of the heart in the Registration User Interface.
           styles:
@@ -371,7 +373,7 @@
       components:
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: |
                 **VR Organ Gallery**
 
@@ -387,7 +389,7 @@
             width: 100%
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: |
                 **Fig 6.** Three stages. Top left: the whole body is visible. Top right: a gallery of individual organs. Bottom left and center: A user explodes an organ into individual anatomical structures. Bottom right: a user explores cells around a kidney in a virtual box.
           styles:
@@ -400,7 +402,7 @@
       components:
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: |
                 **Previews**
 
@@ -416,7 +418,7 @@
             margin-bottom: 1rem
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: Comparing Tabula Sapiens to the Human Reference Atlas.
           styles:
             margin-bottom: 1rem
@@ -427,7 +429,7 @@
             margin-bottom: 1rem
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: Kaggle competition results are used to develop and optimize machine learning algorithms that can segment functional tissue units (FTUs).
           styles:
             margin-bottom: 1rem
@@ -438,7 +440,7 @@
             margin-bottom: 1rem
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: Tissue Block annotation provides even better collision detection when registering with the RUI.
           styles:
             margin-bottom: 1rem
@@ -453,7 +455,7 @@
       components:
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: |
                 **Contact Us**
 
@@ -490,7 +492,7 @@
       components:
         - type: page-data
           pageData:
-            - heading:
+            - heading: ''
               descriptions: |
                 **Outro**
 

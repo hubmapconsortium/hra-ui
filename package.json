@@ -1,6 +1,7 @@
 {
   "name": "ccf",
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -23,6 +24,7 @@
     "@angular/router": "^14.0.0",
     "@angular/youtube-player": "^14.2.1",
     "@google/model-viewer": "^2.0.2",
+    "commander": "^11.0.0",
     "js-yaml": "^4.1.0",
     "ngx-google-analytics": "^14.0.1",
     "ngx-markdown": "^14.0.1",
@@ -30,6 +32,8 @@
     "rxjs": "~7.5.0",
     "swiper": "^8.3.0",
     "tslib": "^2.3.0",
+    "zod": "^3.21.4",
+    "zod-to-json-schema": "^3.21.2",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

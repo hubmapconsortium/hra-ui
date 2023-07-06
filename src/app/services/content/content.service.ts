@@ -10,12 +10,12 @@ import { load } from 'js-yaml';
 export class ContentService {
   constructor(private http: HttpClient) { }
 
-  getContent<T = object>(fileName: string): Observable<T | unknown> {
+  getContent<T = object>(fileName: string): Observable<T> {
     return this.http
       .get(`assets/content/pages/${fileName}.yaml`, {
         observe: 'body',
         responseType: 'text',
       })
-      .pipe(map((yamlString) => load(yamlString)));
+      .pipe(map((yamlString) => load(yamlString) as T));
   }
 }

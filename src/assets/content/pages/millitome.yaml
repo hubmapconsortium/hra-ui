@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=../../../app/utils/temp.json
+
 - type: header
   headerCard:
   - title: Millitome
@@ -55,9 +57,11 @@
     letter-spacing: .005rem
     padding-bottom: 1.5rem
 
-- type: tableVersion
+- type: table-version
+  isDownload: false
   versionData:
-    - release:
+    - release: ''
+      version: ''
       file: hra-millitome.csv
   versionChooserDisabled: true
   isTotal: false

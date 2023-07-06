@@ -7,7 +7,6 @@ export interface HeaderData {
   isTotalRequired?: boolean;
   sorting?: boolean;
   alignment?: string;
-  justifyContent?: string;
 }
 
 export interface ExtraHeader {

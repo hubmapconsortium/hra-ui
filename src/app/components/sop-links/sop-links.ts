@@ -1,9 +1,9 @@
 export interface SopLinks {
-    title: string;
+    sopTitle: string;
     href: Links[];
 }
 
 interface Links {
-    urls: string
+    title: string
     href: string;
 }
