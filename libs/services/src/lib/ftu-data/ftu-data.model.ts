@@ -28,16 +28,19 @@ const PERCENTAGE = z.number().gte(0, PERCENTAGE_RANGE_ERROR).lte(1, PERCENTAGE_R
 // Model schemas
 // ---------------------------------------
 
+/** Zod Schema for a cell object */
 export const CELL = z.object({
   id: IRI,
   label: z.string(),
 });
 
+/** Zod Schema for a BIOMARKER */
 export const BIOMARKER = z.object({
   id: IRI,
   label: z.string(),
 });
 
+/** Zod Schema for a CELL_SUMMARY_ROW */
 export const CELL_SUMMARY_ROW = z.object({
   cell: IRI,
   biomarker: IRI,
@@ -45,6 +48,7 @@ export const CELL_SUMMARY_ROW = z.object({
   percentage: PERCENTAGE,
 });
 
+/** Zod Schema for a CELL_SUMMARY */
 export const CELL_SUMMARY = z.object({
   label: z.string(),
   cells: CELL.array(),
@@ -52,16 +56,19 @@ export const CELL_SUMMARY = z.object({
   summaries: CELL_SUMMARY_ROW.array(),
 });
 
+/** Zod Schema for a DATA_FILE_REFERENCE */
 export const DATA_FILE_REFERENCE = z.object({
   format: z.string(),
   url: URL,
 });
 
+/** Zod Schema for a SOURCE_REFERENCE */
 export const SOURCE_REFERENCE = z.object({
   label: z.string(),
   link: z.string().url(),
 });
 
+/** Zod Schema for a ILLUSTRATION_MAPPING_ITEM */
 export const ILLUSTRATION_MAPPING_ITEM = z.object({
   label: z.string(),
   name: z.string(),
@@ -71,16 +78,23 @@ export const ILLUSTRATION_MAPPING_ITEM = z.object({
 // Model types
 // ---------------------------------------
 
+/** Type for a cell */
 export type Cell = z.infer<typeof CELL>;
 
+/** Type for a Biomarker */
 export type Biomarker = z.infer<typeof BIOMARKER>;
 
+/** Type for a CellSummaryRow */
 export type CellSummaryRow = z.infer<typeof CELL_SUMMARY_ROW>;
 
+/** Type for a CellSummary */
 export type CellSummary = z.infer<typeof CELL_SUMMARY>;
 
+/** Type for a DataFileReference */
 export type DataFileReference = z.infer<typeof DATA_FILE_REFERENCE>;
 
+/** Type for a SourceReference */
 export type SourceReference = z.infer<typeof SOURCE_REFERENCE>;
 
+/** Type for a IllustrationMappingItem */
 export type IllustrationMappingItem = z.infer<typeof ILLUSTRATION_MAPPING_ITEM>;
