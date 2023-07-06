@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=../../../app/utils/temp.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/pages.schema.json
 
 - type: title
   title: Human Reference Atlas Data
