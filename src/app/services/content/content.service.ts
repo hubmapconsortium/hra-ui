@@ -22,13 +22,6 @@ export class ContentService {
       .pipe(
         map((yamlString) => load(yamlString)),
         map((data) => PageSpec.parse(data) as PageDef[])
-        // map((data) => {
-        //   try {
-        //     return PageSpec.parse(data) as PageDef[];
-        //   } catch (error) {
-        //     return []
-        //   }
-        // })
       );
   }
 }
