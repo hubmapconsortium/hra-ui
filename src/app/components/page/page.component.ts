@@ -25,14 +25,14 @@ export class PageComponent {
   }
 
   private resolveData(): Observable<PageDef[]> {
-    const loadData = (file: string) => this.contentService.getContent<PageDef[]>(file).pipe(
+    const loadData = (file: string) => this.contentService.getContent(file).pipe(
       catchError((error) => {
         if (!(error instanceof HttpErrorResponse) || error.status !== 404) {
           this.errorHandler.handleError(error);
         }
 
         this.router.navigateByUrl('');
-        return this.contentService.getContent<PageDef[]>(this.LANDING_PAGE_FILE);
+        return this.contentService.getContent(this.LANDING_PAGE_FILE);
       })
     );
 
