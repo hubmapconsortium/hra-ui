@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { createLinkId } from '@hra-ui/cdk/state';
 import { Observable, of } from 'rxjs';
-import { TissueData, TissueLibraryService } from './tissue-library.service';
+import { TissueLibraryService } from './tissue-library.service';
+import { BRAND } from 'zod';
+import { TissueLibrary } from './tissue-library.model';
 
 /** Create a new id from a label */
 function createNodeId(label: string, parent: string): string {
@@ -139,8 +141,8 @@ export const MOCK_TISSUE_DATA = {
   providedIn: 'root',
 })
 export class MockTissueLibraryService extends TissueLibraryService {
-  /** Implementation of {@link TissueLibraryService.getTissues} */
-  getTissues(): Observable<TissueData> {
-    return of(MOCK_TISSUE_DATA as TissueData);
+  /** Implementation of {@link TissueLibraryService.getTissueLibrary} */
+  override getTissueLibrary(): Observable<TissueLibrary> {
+    return of(MOCK_TISSUE_DATA as TissueLibrary);
   }
 }

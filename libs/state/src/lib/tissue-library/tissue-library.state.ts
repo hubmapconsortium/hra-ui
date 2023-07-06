@@ -20,6 +20,6 @@ export class TissueLibraryState {
    */
   @Action(Load)
   setActive(ctx: TissueLibraryContext): Observable<unknown> {
-    return this.dataService.getTissues().pipe(tap((data) => ctx.setState(data)));
+    return this.dataService.getTissueLibrary().pipe(tap((data) => ctx.setState(data)));
   }
 }

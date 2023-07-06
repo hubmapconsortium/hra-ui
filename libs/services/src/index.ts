@@ -8,7 +8,7 @@ export {
   IllustrationMappingItem,
   SourceReference,
 } from './lib/ftu-data/ftu-data.model';
-export * as FtuDataSchemas from './lib/ftu-data/ftu-data.model';
+export { Tissue, TissueLibrary } from './lib/tissue-library/tissue-library.model';
 
 export * from './lib/contact/contact.service';
 export * from './lib/contact/contact.mock';
@@ -18,3 +18,5 @@ export * from './lib/tissue-library/tissue-library.service';
 export * from './lib/tissue-library/tissue-library.mock';
 export * from './lib/tissue-ftu/tissue-ftu.service';
 export * from './lib/tissue-ftu/tissue-ftu.mock';
+
+export * as FtuDataSchemas from './lib/ftu-data/ftu-data.model';

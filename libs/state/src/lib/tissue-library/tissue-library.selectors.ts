@@ -1,4 +1,4 @@
-import { Iri, TissueItem } from '@hra-ui/services';
+import { Iri, Tissue } from '@hra-ui/services';
 import { Selector } from '@ngxs/store';
 import { TissueLibraryModel } from './tissue-library.model';
 import { TissueLibraryState } from './tissue-library.state';
@@ -11,7 +11,7 @@ export class TissueLibrarySelectors {
    * @returns node data of the type of TisseData.
    */
   @Selector([TissueLibraryState])
-  static tissues(state: TissueLibraryModel): Record<Iri, TissueItem> {
-    return state.nodes as Record<Iri, TissueItem>;
+  static tissues(state: TissueLibraryModel): Record<Iri, Tissue> {
+    return state.nodes as Record<Iri, Tissue>;
   }
 }

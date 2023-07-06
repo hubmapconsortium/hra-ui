@@ -24,7 +24,7 @@ export class MedicalIllustrationBehaviorComponent {
   /**
    * Current mapping file
    */
-  // readonly getMapping = selectSnapshot(IllustratorSelectors.); TODO
+  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);
 
   /**
    * Updates the active node on node hover
