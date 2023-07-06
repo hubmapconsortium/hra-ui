@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, ErrorHandler, OnInit } from '@angular/core';
+import { Component, ErrorHandler, isDevMode, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, distinctUntilChanged, map, Observable, switchMap } from 'rxjs';
 import { ContentService } from '../../services/content/content.service';
@@ -27,10 +27,9 @@ export class PageComponent {
   private resolveData(): Observable<PageDef[]> {
     const loadData = (file: string) => this.contentService.getContent(file).pipe(
       catchError((error) => {
-        if (!(error instanceof HttpErrorResponse) || error.status !== 404) {
+        if (isDevMode() && (!(error instanceof HttpErrorResponse) || error.status !== 404)) {
           this.errorHandler.handleError(error);
         }
-
         this.router.navigateByUrl('');
         return this.contentService.getContent(this.LANDING_PAGE_FILE);
       })
