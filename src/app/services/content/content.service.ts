@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { load } from 'js-yaml';
+import { PageDef } from 'src/app/components/page-element/page-def';
+// @ts-ignore TODO: Fix typings
+import { PageSpec } from 'src/app/utils/data-schema.js';
 
 @Injectable({
   providedIn: 'root',
@@ -10,12 +13,15 @@ import { load } from 'js-yaml';
 export class ContentService {
   constructor(private http: HttpClient) { }
 
-  getContent<T = object>(fileName: string): Observable<T> {
+  getContent(fileName: string): Observable<PageDef[]> {
     return this.http
       .get(`assets/content/pages/${fileName}.yaml`, {
         observe: 'body',
         responseType: 'text',
       })
-      .pipe(map((yamlString) => load(yamlString) as T));
+      .pipe(
+        map((yamlString) => load(yamlString)),
+        map((data) => PageSpec.parse(data) as PageDef[])
+      );
   }
 }
