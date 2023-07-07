@@ -269,43 +269,13 @@
         },
         {
             "name": "NodeMapEntry",
-            "id": "interface-NodeMapEntry-4d116933a3cdbd3939f6a5ae395d2b11ac346115b010de653d695c6323307da5053683b6c40be1c5096a7a4e80ac688f2fe3a4e958e908afa6e8ce88a2cd92f5",
+            "id": "interface-NodeMapEntry-ec82f0ba880f3c77112d43cf3ca5ab4a3c7c6dedc47c3b51b903fff54cbfc796563cc464c90248a57211b09c705dbb41fdc8753cefe25eccb33c8699f44aab8d",
             "file": "src/lib/interactive-svg/interactive-svg.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  inject,\n  Input,\n  OnDestroy,\n  Output,\n  Renderer2,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';\nimport { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';\nimport { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';\n\n/** Delay before tooltip becomes visible */\nconst HOVER_DELAY = 200;\n\n/** Tooltip position settings */\nconst TOOLTIP_POSITIONS: ConnectedPosition[] = [\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'start',\n    overlayY: 'center',\n    offsetX: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'end',\n    overlayY: 'center',\n    offsetX: -8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'top',\n    offsetY: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'bottom',\n    offsetY: -8,\n  },\n];\n\n/** Node tooltip data */\nexport interface NodeTooltipData {\n  /** Node name */\n  node: string;\n  /** Center point of hovered node in screen coordinates */\n  origin: { x: number; y: number };\n}\n\n/** Interface for node entries */\nexport interface NodeMapEntry {\n  /** Organ label */\n  organ_label: string;\n  /** Organ id */\n  organ_id: string;\n  /** Anatomical structure */\n  anatomical_structure_of: string;\n  /** Spatial entity source */\n  source_spatial_entity: string;\n  /** Node name */\n  node_name: string;\n  /** Node label */\n  label: string;\n  /** Ontology id */\n  OntologyID: string;\n  /** Link to represenation */\n  representation_of: string;\n  /** File of single 2dftu */\n  'svg file of single 2DFTU': string;\n  /** if asctb exists */\n  exist_asctb: string;\n  /** Type */\n  type: string;\n  /** REF/1 */\n  'REF/1': string;\n  /** REF/1/DOI */\n  'REF/1/DOI': string;\n  /** REF/1/NOTES */\n  'REF/1/NOTES': string;\n  /** Inset # */\n  'Inset #': string;\n}\n\n/**\n * Interactive SVG component\n */\n@Component({\n  selector: 'hra-interactive-svg',\n  standalone: true,\n  imports: [CommonModule, InlineSVGModule, OverlayModule],\n  templateUrl: './interactive-svg.component.html',\n  styleUrls: ['./interactive-svg.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestroy {\n  /** SVG url */\n  @Input() url?: string;\n\n  /** Mapping info */\n  @Input() mapping: T[] = [];\n\n  /** Emits node id when hovered */\n  @Output() readonly nodeHover = new EventEmitter<T>();\n\n  /** SVG script eval mode */\n  readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;\n\n  /** Tooltip position settings */\n  readonly TOOLTIP_POSITIONS = TOOLTIP_POSITIONS;\n\n  /** Observable of node hover data or undefined when there is no active hover */\n  readonly nodeHoverData$ = new BehaviorSubject<NodeTooltipData | undefined>(undefined);\n\n  /** Observable of node hover with a timer */\n  readonly nodeHoverDelayedData$ = this.nodeHoverData$.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));\n\n  /** Custom renderer */\n  private readonly renderer = inject(Renderer2);\n\n  /** Destroys */\n  private destroy$ = new Subject<void>();\n\n  /**\n   * Clears observables on destroy\n   */\n  ngOnDestroy(): void {\n    this.clear();\n  }\n\n  /**\n   * Sets SVG element\n   * @param el SVG element\n   */\n  setSvgElement(el: SVGElement): void {\n    this.clear();\n    const crosswalkEl = el.querySelector('[id^=\"Crosswalk\"]');\n    if (crosswalkEl) {\n      // Move to front (i.e. last child in svg)\n      this.renderer.appendChild(el, crosswalkEl);\n      this.attachCrosswalkHover(crosswalkEl);\n    }\n  }\n\n  /**\n   * Removes underscores from id\n   * @param name Node name\n   * @returns node name without underscores\n   */\n  formatNodeName(name: string): string {\n    return name.replace(/_/g, ' ');\n  }\n\n  /**\n   * Attaches crosswalk hover\n   * @param el element\n   */\n  private attachCrosswalkHover(el: Element): void {\n    this.attachEvent(el, 'mouseover').subscribe(this.onCrosswalkHover.bind(this));\n    this.attachEvent(el, 'mouseout').subscribe(() => this.nodeHoverData$.next(undefined));\n  }\n\n  /**\n   * Finds matching node in data from a hovered element\n   * @param event Mouse event\n   */\n  private onCrosswalkHover(event: MouseEvent): void {\n    const node = this.getNode(event);\n    if (node) {\n      this.nodeHoverData$.next({\n        node: node['label'],\n        origin: {\n          x: event.clientX,\n          y: event.clientY,\n        },\n      });\n      this.nodeHover.emit(node); //emits node entry\n    }\n  }\n\n  /**\n   * Clears observables\n   */\n  private clear(): void {\n    this.destroy$.next();\n    this.destroy$.complete();\n    this.destroy$ = new Subject();\n  }\n\n  /**\n   * Returns entry from mapping if target, parent, or grandparent id matches the node name\n   * @param event Event\n   * @returns Node entry that matches the target id\n   */\n  private getNode(event: Event): T | undefined {\n    const targetId = (event.target as Element).id;\n    const parentId = (event.target as Element).parentElement?.id ?? '';\n    const grandparentId = (event.target as Element).parentElement?.parentElement?.id ?? '';\n    const idCollection = [targetId, parentId, grandparentId];\n    for (const id of idCollection) {\n      const decodedID = this.decodeId(id);\n      const match = this.mapping.find(\n        (item) => item['node_name']?.toLowerCase() === decodedID.toLowerCase() //search mapping by node_name for matching node entry\n      );\n      if (match) {\n        return match;\n      }\n    }\n    return undefined;\n  }\n\n  /**\n   * Decodes id into a normal string\n   * @param id Undecoded ID\n   * @returns id\n   */\n  private decodeId(id: string): string {\n    const replacer = (_match: string, hex: string) => String.fromCharCode(Number.parseInt(hex, 16));\n    return id.replace(/_x([\\da-f]+)_/gi, replacer);\n  }\n\n  /**\n   * Attaches an event listener\n   * @template K\n   * @param el Element\n   * @param event Event\n   * @returns Observable\n   */\n  private attachEvent<K extends keyof SVGElementEventMap>(el: Element, event: K): Observable<SVGElementEventMap[K]> {\n    const { renderer, destroy$ } = this;\n    const add = (handler: NodeEventHandler) => renderer.listen(el, event, handler);\n    const remove = (_handler: NodeEventHandler, unlisten: () => void) => unlisten();\n    return fromEventPattern<SVGElementEventMap[K]>(add, remove).pipe(takeUntil(destroy$));\n  }\n}\n",
+            "sourceCode": "import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  inject,\n  Input,\n  OnDestroy,\n  Output,\n  Renderer2,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';\nimport { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';\nimport { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';\n\n/** Delay before tooltip becomes visible */\nconst HOVER_DELAY = 200;\n\n/** Tooltip position settings */\nconst TOOLTIP_POSITIONS: ConnectedPosition[] = [\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'start',\n    overlayY: 'center',\n    offsetX: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'end',\n    overlayY: 'center',\n    offsetX: -8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'top',\n    offsetY: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'bottom',\n    offsetY: -8,\n  },\n];\n\n/** Node tooltip data */\nexport interface NodeTooltipData {\n  /** Node name */\n  node: string;\n  /** Center point of hovered node in screen coordinates */\n  origin: { x: number; y: number };\n}\n\n/** Interface for node entries */\nexport interface NodeMapEntry {\n  /** Node label */\n  label: string;\n  /** Node name */\n  name: string;\n}\n\n/**\n * Interactive SVG component\n */\n@Component({\n  selector: 'hra-interactive-svg',\n  standalone: true,\n  imports: [CommonModule, InlineSVGModule, OverlayModule],\n  templateUrl: './interactive-svg.component.html',\n  styleUrls: ['./interactive-svg.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestroy {\n  /** SVG url */\n  @Input() url?: string;\n\n  /** Mapping info */\n  @Input() mapping: T[] = [];\n\n  /** Emits node id when hovered */\n  @Output() readonly nodeHover = new EventEmitter<T>();\n\n  /** SVG script eval mode */\n  readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;\n\n  /** Tooltip position settings */\n  readonly TOOLTIP_POSITIONS = TOOLTIP_POSITIONS;\n\n  /** Observable of node hover data or undefined when there is no active hover */\n  readonly nodeHoverData$ = new BehaviorSubject<NodeTooltipData | undefined>(undefined);\n\n  /** Observable of node hover with a timer */\n  readonly nodeHoverDelayedData$ = this.nodeHoverData$.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));\n\n  /** Custom renderer */\n  private readonly renderer = inject(Renderer2);\n\n  /** Destroys */\n  private destroy$ = new Subject<void>();\n\n  /**\n   * Clears observables on destroy\n   */\n  ngOnDestroy(): void {\n    this.clear();\n  }\n\n  /**\n   * Sets SVG element\n   * @param el SVG element\n   */\n  setSvgElement(el: SVGElement): void {\n    this.clear();\n    const crosswalkEl = el.querySelector('[id^=\"Crosswalk\"]');\n    if (crosswalkEl) {\n      // Move to front (i.e. last child in svg)\n      this.renderer.appendChild(el, crosswalkEl);\n      this.attachCrosswalkHover(crosswalkEl);\n    }\n  }\n\n  /**\n   * Removes underscores from id\n   * @param name Node name\n   * @returns node name without underscores\n   */\n  formatNodeName(name: string): string {\n    return name.replace(/_/g, ' ');\n  }\n\n  /**\n   * Attaches crosswalk hover\n   * @param el element\n   */\n  private attachCrosswalkHover(el: Element): void {\n    this.attachEvent(el, 'mouseover').subscribe(this.onCrosswalkHover.bind(this));\n    this.attachEvent(el, 'mouseout').subscribe(() => this.nodeHoverData$.next(undefined));\n  }\n\n  /**\n   * Finds matching node in data from a hovered element\n   * @param event Mouse event\n   */\n  private onCrosswalkHover(event: MouseEvent): void {\n    const node = this.getNode(event);\n    if (node) {\n      this.nodeHoverData$.next({\n        node: node.label,\n        origin: {\n          x: event.clientX,\n          y: event.clientY,\n        },\n      });\n      this.nodeHover.emit(node); //emits node entry\n    }\n  }\n\n  /**\n   * Clears observables\n   */\n  private clear(): void {\n    this.destroy$.next();\n    this.destroy$.complete();\n    this.destroy$ = new Subject();\n  }\n\n  /**\n   * Returns entry from mapping if target, parent, or grandparent id matches the node name\n   * @param event Event\n   * @returns Node entry that matches the target id\n   */\n  private getNode(event: Event): T | undefined {\n    const targetId = (event.target as Element).id;\n    const parentId = (event.target as Element).parentElement?.id ?? '';\n    const grandparentId = (event.target as Element).parentElement?.parentElement?.id ?? '';\n    const idCollection = [targetId, parentId, grandparentId];\n    for (const id of idCollection) {\n      const decodedID = this.decodeId(id);\n      const match = this.mapping.find(\n        (item) => item.name?.toLowerCase() === decodedID.toLowerCase() //search mapping by name for matching node entry\n      );\n      if (match) {\n        return match;\n      }\n    }\n    return undefined;\n  }\n\n  /**\n   * Decodes id into a normal string\n   * @param id Undecoded ID\n   * @returns id\n   */\n  private decodeId(id: string): string {\n    const replacer = (_match: string, hex: string) => String.fromCharCode(Number.parseInt(hex, 16));\n    return id.replace(/_x([\\da-f]+)_/gi, replacer);\n  }\n\n  /**\n   * Attaches an event listener\n   * @template K\n   * @param el Element\n   * @param event Event\n   * @returns Observable\n   */\n  private attachEvent<K extends keyof SVGElementEventMap>(el: Element, event: K): Observable<SVGElementEventMap[K]> {\n    const { renderer, destroy$ } = this;\n    const add = (handler: NodeEventHandler) => renderer.listen(el, event, handler);\n    const remove = (_handler: NodeEventHandler, unlisten: () => void) => unlisten();\n    return fromEventPattern<SVGElementEventMap[K]>(add, remove).pipe(takeUntil(destroy$));\n  }\n}\n",
             "properties": [
-                {
-                    "name": "anatomical_structure_of",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "<p>Anatomical structure</p>\n",
-                    "line": 68,
-                    "rawdescription": "\nAnatomical structure"
-                },
-                {
-                    "name": "exist_asctb",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "<p>if asctb exists</p>\n",
-                    "line": 82,
-                    "rawdescription": "\nif asctb exists"
-                },
-                {
-                    "name": "Inset #",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "<p>Inset #</p>\n",
-                    "line": 92,
-                    "rawdescription": "\nInset #"
-                },
                 {
                     "name": "label",
                     "deprecated": false,
@@ -313,118 +283,18 @@
                     "type": "string",
                     "optional": false,
                     "description": "<p>Node label</p>\n",
-                    "line": 74,
+                    "line": 64,
                     "rawdescription": "\nNode label"
                 },
                 {
-                    "name": "node_name",
+                    "name": "name",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "string",
                     "optional": false,
                     "description": "<p>Node name</p>\n",
-                    "line": 72,
-                    "rawdescription": "\nNode name"
-                },
-                {
-                    "name": "OntologyID",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "<p>Ontology id</p>\n",
-                    "line": 76,
-                    "rawdescription": "\nOntology id"
-                },
-                {
-                    "name": "organ_id",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "<p>Organ id</p>\n",
                     "line": 66,
-                    "rawdescription": "\nOrgan id"
-                },
-                {
-                    "name": "organ_label",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "<p>Organ label</p>\n",
-                    "line": 64,
-                    "rawdescription": "\nOrgan label"
-                },
-                {
-                    "name": "REF/1",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "<p>REF/1</p>\n",
-                    "line": 86,
-                    "rawdescription": "\nREF/1"
-                },
-                {
-                    "name": "REF/1/DOI",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "<p>REF/1/DOI</p>\n",
-                    "line": 88,
-                    "rawdescription": "\nREF/1/DOI"
-                },
-                {
-                    "name": "REF/1/NOTES",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "<p>REF/1/NOTES</p>\n",
-                    "line": 90,
-                    "rawdescription": "\nREF/1/NOTES"
-                },
-                {
-                    "name": "representation_of",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "<p>Link to represenation</p>\n",
-                    "line": 78,
-                    "rawdescription": "\nLink to represenation"
-                },
-                {
-                    "name": "source_spatial_entity",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "<p>Spatial entity source</p>\n",
-                    "line": 70,
-                    "rawdescription": "\nSpatial entity source"
-                },
-                {
-                    "name": "svg file of single 2DFTU",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "<p>File of single 2dftu</p>\n",
-                    "line": 80,
-                    "rawdescription": "\nFile of single 2dftu"
-                },
-                {
-                    "name": "type",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "<p>Type</p>\n",
-                    "line": 84,
-                    "rawdescription": "\nType"
+                    "rawdescription": "\nNode name"
                 }
             ],
             "indexSignatures": [],
@@ -435,12 +305,12 @@
         },
         {
             "name": "NodeTooltipData",
-            "id": "interface-NodeTooltipData-4d116933a3cdbd3939f6a5ae395d2b11ac346115b010de653d695c6323307da5053683b6c40be1c5096a7a4e80ac688f2fe3a4e958e908afa6e8ce88a2cd92f5",
+            "id": "interface-NodeTooltipData-ec82f0ba880f3c77112d43cf3ca5ab4a3c7c6dedc47c3b51b903fff54cbfc796563cc464c90248a57211b09c705dbb41fdc8753cefe25eccb33c8699f44aab8d",
             "file": "src/lib/interactive-svg/interactive-svg.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  inject,\n  Input,\n  OnDestroy,\n  Output,\n  Renderer2,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';\nimport { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';\nimport { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';\n\n/** Delay before tooltip becomes visible */\nconst HOVER_DELAY = 200;\n\n/** Tooltip position settings */\nconst TOOLTIP_POSITIONS: ConnectedPosition[] = [\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'start',\n    overlayY: 'center',\n    offsetX: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'end',\n    overlayY: 'center',\n    offsetX: -8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'top',\n    offsetY: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'bottom',\n    offsetY: -8,\n  },\n];\n\n/** Node tooltip data */\nexport interface NodeTooltipData {\n  /** Node name */\n  node: string;\n  /** Center point of hovered node in screen coordinates */\n  origin: { x: number; y: number };\n}\n\n/** Interface for node entries */\nexport interface NodeMapEntry {\n  /** Organ label */\n  organ_label: string;\n  /** Organ id */\n  organ_id: string;\n  /** Anatomical structure */\n  anatomical_structure_of: string;\n  /** Spatial entity source */\n  source_spatial_entity: string;\n  /** Node name */\n  node_name: string;\n  /** Node label */\n  label: string;\n  /** Ontology id */\n  OntologyID: string;\n  /** Link to represenation */\n  representation_of: string;\n  /** File of single 2dftu */\n  'svg file of single 2DFTU': string;\n  /** if asctb exists */\n  exist_asctb: string;\n  /** Type */\n  type: string;\n  /** REF/1 */\n  'REF/1': string;\n  /** REF/1/DOI */\n  'REF/1/DOI': string;\n  /** REF/1/NOTES */\n  'REF/1/NOTES': string;\n  /** Inset # */\n  'Inset #': string;\n}\n\n/**\n * Interactive SVG component\n */\n@Component({\n  selector: 'hra-interactive-svg',\n  standalone: true,\n  imports: [CommonModule, InlineSVGModule, OverlayModule],\n  templateUrl: './interactive-svg.component.html',\n  styleUrls: ['./interactive-svg.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestroy {\n  /** SVG url */\n  @Input() url?: string;\n\n  /** Mapping info */\n  @Input() mapping: T[] = [];\n\n  /** Emits node id when hovered */\n  @Output() readonly nodeHover = new EventEmitter<T>();\n\n  /** SVG script eval mode */\n  readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;\n\n  /** Tooltip position settings */\n  readonly TOOLTIP_POSITIONS = TOOLTIP_POSITIONS;\n\n  /** Observable of node hover data or undefined when there is no active hover */\n  readonly nodeHoverData$ = new BehaviorSubject<NodeTooltipData | undefined>(undefined);\n\n  /** Observable of node hover with a timer */\n  readonly nodeHoverDelayedData$ = this.nodeHoverData$.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));\n\n  /** Custom renderer */\n  private readonly renderer = inject(Renderer2);\n\n  /** Destroys */\n  private destroy$ = new Subject<void>();\n\n  /**\n   * Clears observables on destroy\n   */\n  ngOnDestroy(): void {\n    this.clear();\n  }\n\n  /**\n   * Sets SVG element\n   * @param el SVG element\n   */\n  setSvgElement(el: SVGElement): void {\n    this.clear();\n    const crosswalkEl = el.querySelector('[id^=\"Crosswalk\"]');\n    if (crosswalkEl) {\n      // Move to front (i.e. last child in svg)\n      this.renderer.appendChild(el, crosswalkEl);\n      this.attachCrosswalkHover(crosswalkEl);\n    }\n  }\n\n  /**\n   * Removes underscores from id\n   * @param name Node name\n   * @returns node name without underscores\n   */\n  formatNodeName(name: string): string {\n    return name.replace(/_/g, ' ');\n  }\n\n  /**\n   * Attaches crosswalk hover\n   * @param el element\n   */\n  private attachCrosswalkHover(el: Element): void {\n    this.attachEvent(el, 'mouseover').subscribe(this.onCrosswalkHover.bind(this));\n    this.attachEvent(el, 'mouseout').subscribe(() => this.nodeHoverData$.next(undefined));\n  }\n\n  /**\n   * Finds matching node in data from a hovered element\n   * @param event Mouse event\n   */\n  private onCrosswalkHover(event: MouseEvent): void {\n    const node = this.getNode(event);\n    if (node) {\n      this.nodeHoverData$.next({\n        node: node['label'],\n        origin: {\n          x: event.clientX,\n          y: event.clientY,\n        },\n      });\n      this.nodeHover.emit(node); //emits node entry\n    }\n  }\n\n  /**\n   * Clears observables\n   */\n  private clear(): void {\n    this.destroy$.next();\n    this.destroy$.complete();\n    this.destroy$ = new Subject();\n  }\n\n  /**\n   * Returns entry from mapping if target, parent, or grandparent id matches the node name\n   * @param event Event\n   * @returns Node entry that matches the target id\n   */\n  private getNode(event: Event): T | undefined {\n    const targetId = (event.target as Element).id;\n    const parentId = (event.target as Element).parentElement?.id ?? '';\n    const grandparentId = (event.target as Element).parentElement?.parentElement?.id ?? '';\n    const idCollection = [targetId, parentId, grandparentId];\n    for (const id of idCollection) {\n      const decodedID = this.decodeId(id);\n      const match = this.mapping.find(\n        (item) => item['node_name']?.toLowerCase() === decodedID.toLowerCase() //search mapping by node_name for matching node entry\n      );\n      if (match) {\n        return match;\n      }\n    }\n    return undefined;\n  }\n\n  /**\n   * Decodes id into a normal string\n   * @param id Undecoded ID\n   * @returns id\n   */\n  private decodeId(id: string): string {\n    const replacer = (_match: string, hex: string) => String.fromCharCode(Number.parseInt(hex, 16));\n    return id.replace(/_x([\\da-f]+)_/gi, replacer);\n  }\n\n  /**\n   * Attaches an event listener\n   * @template K\n   * @param el Element\n   * @param event Event\n   * @returns Observable\n   */\n  private attachEvent<K extends keyof SVGElementEventMap>(el: Element, event: K): Observable<SVGElementEventMap[K]> {\n    const { renderer, destroy$ } = this;\n    const add = (handler: NodeEventHandler) => renderer.listen(el, event, handler);\n    const remove = (_handler: NodeEventHandler, unlisten: () => void) => unlisten();\n    return fromEventPattern<SVGElementEventMap[K]>(add, remove).pipe(takeUntil(destroy$));\n  }\n}\n",
+            "sourceCode": "import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  inject,\n  Input,\n  OnDestroy,\n  Output,\n  Renderer2,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';\nimport { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';\nimport { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';\n\n/** Delay before tooltip becomes visible */\nconst HOVER_DELAY = 200;\n\n/** Tooltip position settings */\nconst TOOLTIP_POSITIONS: ConnectedPosition[] = [\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'start',\n    overlayY: 'center',\n    offsetX: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'end',\n    overlayY: 'center',\n    offsetX: -8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'top',\n    offsetY: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'bottom',\n    offsetY: -8,\n  },\n];\n\n/** Node tooltip data */\nexport interface NodeTooltipData {\n  /** Node name */\n  node: string;\n  /** Center point of hovered node in screen coordinates */\n  origin: { x: number; y: number };\n}\n\n/** Interface for node entries */\nexport interface NodeMapEntry {\n  /** Node label */\n  label: string;\n  /** Node name */\n  name: string;\n}\n\n/**\n * Interactive SVG component\n */\n@Component({\n  selector: 'hra-interactive-svg',\n  standalone: true,\n  imports: [CommonModule, InlineSVGModule, OverlayModule],\n  templateUrl: './interactive-svg.component.html',\n  styleUrls: ['./interactive-svg.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestroy {\n  /** SVG url */\n  @Input() url?: string;\n\n  /** Mapping info */\n  @Input() mapping: T[] = [];\n\n  /** Emits node id when hovered */\n  @Output() readonly nodeHover = new EventEmitter<T>();\n\n  /** SVG script eval mode */\n  readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;\n\n  /** Tooltip position settings */\n  readonly TOOLTIP_POSITIONS = TOOLTIP_POSITIONS;\n\n  /** Observable of node hover data or undefined when there is no active hover */\n  readonly nodeHoverData$ = new BehaviorSubject<NodeTooltipData | undefined>(undefined);\n\n  /** Observable of node hover with a timer */\n  readonly nodeHoverDelayedData$ = this.nodeHoverData$.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));\n\n  /** Custom renderer */\n  private readonly renderer = inject(Renderer2);\n\n  /** Destroys */\n  private destroy$ = new Subject<void>();\n\n  /**\n   * Clears observables on destroy\n   */\n  ngOnDestroy(): void {\n    this.clear();\n  }\n\n  /**\n   * Sets SVG element\n   * @param el SVG element\n   */\n  setSvgElement(el: SVGElement): void {\n    this.clear();\n    const crosswalkEl = el.querySelector('[id^=\"Crosswalk\"]');\n    if (crosswalkEl) {\n      // Move to front (i.e. last child in svg)\n      this.renderer.appendChild(el, crosswalkEl);\n      this.attachCrosswalkHover(crosswalkEl);\n    }\n  }\n\n  /**\n   * Removes underscores from id\n   * @param name Node name\n   * @returns node name without underscores\n   */\n  formatNodeName(name: string): string {\n    return name.replace(/_/g, ' ');\n  }\n\n  /**\n   * Attaches crosswalk hover\n   * @param el element\n   */\n  private attachCrosswalkHover(el: Element): void {\n    this.attachEvent(el, 'mouseover').subscribe(this.onCrosswalkHover.bind(this));\n    this.attachEvent(el, 'mouseout').subscribe(() => this.nodeHoverData$.next(undefined));\n  }\n\n  /**\n   * Finds matching node in data from a hovered element\n   * @param event Mouse event\n   */\n  private onCrosswalkHover(event: MouseEvent): void {\n    const node = this.getNode(event);\n    if (node) {\n      this.nodeHoverData$.next({\n        node: node.label,\n        origin: {\n          x: event.clientX,\n          y: event.clientY,\n        },\n      });\n      this.nodeHover.emit(node); //emits node entry\n    }\n  }\n\n  /**\n   * Clears observables\n   */\n  private clear(): void {\n    this.destroy$.next();\n    this.destroy$.complete();\n    this.destroy$ = new Subject();\n  }\n\n  /**\n   * Returns entry from mapping if target, parent, or grandparent id matches the node name\n   * @param event Event\n   * @returns Node entry that matches the target id\n   */\n  private getNode(event: Event): T | undefined {\n    const targetId = (event.target as Element).id;\n    const parentId = (event.target as Element).parentElement?.id ?? '';\n    const grandparentId = (event.target as Element).parentElement?.parentElement?.id ?? '';\n    const idCollection = [targetId, parentId, grandparentId];\n    for (const id of idCollection) {\n      const decodedID = this.decodeId(id);\n      const match = this.mapping.find(\n        (item) => item.name?.toLowerCase() === decodedID.toLowerCase() //search mapping by name for matching node entry\n      );\n      if (match) {\n        return match;\n      }\n    }\n    return undefined;\n  }\n\n  /**\n   * Decodes id into a normal string\n   * @param id Undecoded ID\n   * @returns id\n   */\n  private decodeId(id: string): string {\n    const replacer = (_match: string, hex: string) => String.fromCharCode(Number.parseInt(hex, 16));\n    return id.replace(/_x([\\da-f]+)_/gi, replacer);\n  }\n\n  /**\n   * Attaches an event listener\n   * @template K\n   * @param el Element\n   * @param event Event\n   * @returns Observable\n   */\n  private attachEvent<K extends keyof SVGElementEventMap>(el: Element, event: K): Observable<SVGElementEventMap[K]> {\n    const { renderer, destroy$ } = this;\n    const add = (handler: NodeEventHandler) => renderer.listen(el, event, handler);\n    const remove = (_handler: NodeEventHandler, unlisten: () => void) => unlisten();\n    return fromEventPattern<SVGElementEventMap[K]>(add, remove).pipe(takeUntil(destroy$));\n  }\n}\n",
             "properties": [
                 {
                     "name": "node",
@@ -517,13 +387,23 @@
         },
         {
             "name": "SourceListItem",
-            "id": "interface-SourceListItem-4874510b6764d560fb198c485649d9eade797bb14c94270715b0b603c61b9dfb3ddc2a78e1202e122b2d537d4cb4ccb94644be557a7c8ab1387e8764addbd532",
+            "id": "interface-SourceListItem-24b618907122d675c2e036f49ffc06a5d944dbdff9b9ea84c2641c7559be0fd32adce3dda8265697032cc933b0dbd641cfbb81f0216622f9c562ee3abd45cb97",
             "file": "src/lib/source-list/source-list.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from '@angular/material/table';\n\n/** SourceListItem interface contains title and link to the dataset for the SourceList*/\nexport interface SourceListItem {\n  /** Title of the dataset in the SourceList */\n  title: string;\n\n  /** Link to the dataset in the SourceList */\n  link: string;\n}\n\n/** This component shows list of sources with title and links to the datasets */\n@Component({\n  selector: 'hra-source-list',\n  standalone: true,\n  imports: [CommonModule, MatTableModule],\n  templateUrl: './source-list.component.html',\n  styleUrls: ['./source-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SourceListComponent {\n  /** List of sources with titles and links displayed to the user */\n  @Input() sources: SourceListItem[] = [];\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from '@angular/material/table';\n\n/** SourceListItem interface contains title and link to the dataset for the SourceList*/\nexport interface SourceListItem {\n  /** Title of the dataset in the SourceList */\n  label: string;\n\n  /** Link to the dataset in the SourceList */\n  link: string;\n}\n\n/** This component shows list of sources with title and links to the datasets */\n@Component({\n  selector: 'hra-source-list',\n  standalone: true,\n  imports: [CommonModule, MatTableModule],\n  templateUrl: './source-list.component.html',\n  styleUrls: ['./source-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SourceListComponent {\n  /** List of sources with titles and links displayed to the user */\n  @Input() sources: SourceListItem[] = [];\n}\n",
             "properties": [
+                {
+                    "name": "label",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Title of the dataset in the SourceList</p>\n",
+                    "line": 8,
+                    "rawdescription": "\nTitle of the dataset in the SourceList"
+                },
                 {
                     "name": "link",
                     "deprecated": false,
@@ -533,16 +413,6 @@
                     "description": "<p>Link to the dataset in the SourceList</p>\n",
                     "line": 11,
                     "rawdescription": "\nLink to the dataset in the SourceList"
-                },
-                {
-                    "name": "title",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "<p>Title of the dataset in the SourceList</p>\n",
-                    "line": 8,
-                    "rawdescription": "\nTitle of the dataset in the SourceList"
                 }
             ],
             "indexSignatures": [],
@@ -1363,7 +1233,7 @@
         },
         {
             "name": "InteractiveSvgComponent",
-            "id": "component-InteractiveSvgComponent-4d116933a3cdbd3939f6a5ae395d2b11ac346115b010de653d695c6323307da5053683b6c40be1c5096a7a4e80ac688f2fe3a4e958e908afa6e8ce88a2cd92f5",
+            "id": "component-InteractiveSvgComponent-ec82f0ba880f3c77112d43cf3ca5ab4a3c7c6dedc47c3b51b903fff54cbfc796563cc464c90248a57211b09c705dbb41fdc8753cefe25eccb33c8699f44aab8d",
             "file": "src/lib/interactive-svg/interactive-svg.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -1390,7 +1260,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nMapping info",
                     "description": "<p>Mapping info</p>\n",
-                    "line": 112,
+                    "line": 86,
                     "type": "T[]",
                     "decorators": []
                 },
@@ -1400,7 +1270,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nSVG url",
                     "description": "<p>SVG url</p>\n",
-                    "line": 109,
+                    "line": 83,
                     "type": "string",
                     "decorators": []
                 }
@@ -1413,7 +1283,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nEmits node id when hovered",
                     "description": "<p>Emits node id when hovered</p>\n",
-                    "line": 115,
+                    "line": 89,
                     "type": "EventEmitter"
                 }
             ],
@@ -1426,7 +1296,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>SVG script eval mode</p>\n",
-                    "line": 118,
+                    "line": 92,
                     "rawdescription": "\nSVG script eval mode",
                     "modifierKind": [
                         144
@@ -1440,7 +1310,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Observable of node hover data or undefined when there is no active hover</p>\n",
-                    "line": 124,
+                    "line": 98,
                     "rawdescription": "\nObservable of node hover data or undefined when there is no active hover",
                     "modifierKind": [
                         144
@@ -1454,7 +1324,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Observable of node hover with a timer</p>\n",
-                    "line": 127,
+                    "line": 101,
                     "rawdescription": "\nObservable of node hover with a timer",
                     "modifierKind": [
                         144
@@ -1468,7 +1338,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Tooltip position settings</p>\n",
-                    "line": 121,
+                    "line": 95,
                     "rawdescription": "\nTooltip position settings",
                     "modifierKind": [
                         144
@@ -1489,7 +1359,7 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 161,
+                    "line": 135,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nRemoves underscores from id\n",
@@ -1497,8 +1367,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 3905,
-                                "end": 3909,
+                                "pos": 3280,
+                                "end": 3284,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -1509,8 +1379,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 3899,
-                                "end": 3904,
+                                "pos": 3274,
+                                "end": 3279,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -1521,8 +1391,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 3926,
-                                "end": 3933,
+                                "pos": 3301,
+                                "end": 3308,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -1546,7 +1416,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 146,
+                    "line": 120,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nSets SVG element\n",
@@ -1554,8 +1424,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 3534,
-                                "end": 3536,
+                                "pos": 2909,
+                                "end": 2911,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -1566,8 +1436,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 3528,
-                                "end": 3533,
+                                "pos": 2903,
+                                "end": 2908,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -1586,7 +1456,7 @@
             "description": "<p>Interactive SVG component</p>\n",
             "rawdescription": "\n\nInteractive SVG component\n",
             "type": "component",
-            "sourceCode": "import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  inject,\n  Input,\n  OnDestroy,\n  Output,\n  Renderer2,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';\nimport { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';\nimport { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';\n\n/** Delay before tooltip becomes visible */\nconst HOVER_DELAY = 200;\n\n/** Tooltip position settings */\nconst TOOLTIP_POSITIONS: ConnectedPosition[] = [\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'start',\n    overlayY: 'center',\n    offsetX: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'end',\n    overlayY: 'center',\n    offsetX: -8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'top',\n    offsetY: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'bottom',\n    offsetY: -8,\n  },\n];\n\n/** Node tooltip data */\nexport interface NodeTooltipData {\n  /** Node name */\n  node: string;\n  /** Center point of hovered node in screen coordinates */\n  origin: { x: number; y: number };\n}\n\n/** Interface for node entries */\nexport interface NodeMapEntry {\n  /** Organ label */\n  organ_label: string;\n  /** Organ id */\n  organ_id: string;\n  /** Anatomical structure */\n  anatomical_structure_of: string;\n  /** Spatial entity source */\n  source_spatial_entity: string;\n  /** Node name */\n  node_name: string;\n  /** Node label */\n  label: string;\n  /** Ontology id */\n  OntologyID: string;\n  /** Link to represenation */\n  representation_of: string;\n  /** File of single 2dftu */\n  'svg file of single 2DFTU': string;\n  /** if asctb exists */\n  exist_asctb: string;\n  /** Type */\n  type: string;\n  /** REF/1 */\n  'REF/1': string;\n  /** REF/1/DOI */\n  'REF/1/DOI': string;\n  /** REF/1/NOTES */\n  'REF/1/NOTES': string;\n  /** Inset # */\n  'Inset #': string;\n}\n\n/**\n * Interactive SVG component\n */\n@Component({\n  selector: 'hra-interactive-svg',\n  standalone: true,\n  imports: [CommonModule, InlineSVGModule, OverlayModule],\n  templateUrl: './interactive-svg.component.html',\n  styleUrls: ['./interactive-svg.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestroy {\n  /** SVG url */\n  @Input() url?: string;\n\n  /** Mapping info */\n  @Input() mapping: T[] = [];\n\n  /** Emits node id when hovered */\n  @Output() readonly nodeHover = new EventEmitter<T>();\n\n  /** SVG script eval mode */\n  readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;\n\n  /** Tooltip position settings */\n  readonly TOOLTIP_POSITIONS = TOOLTIP_POSITIONS;\n\n  /** Observable of node hover data or undefined when there is no active hover */\n  readonly nodeHoverData$ = new BehaviorSubject<NodeTooltipData | undefined>(undefined);\n\n  /** Observable of node hover with a timer */\n  readonly nodeHoverDelayedData$ = this.nodeHoverData$.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));\n\n  /** Custom renderer */\n  private readonly renderer = inject(Renderer2);\n\n  /** Destroys */\n  private destroy$ = new Subject<void>();\n\n  /**\n   * Clears observables on destroy\n   */\n  ngOnDestroy(): void {\n    this.clear();\n  }\n\n  /**\n   * Sets SVG element\n   * @param el SVG element\n   */\n  setSvgElement(el: SVGElement): void {\n    this.clear();\n    const crosswalkEl = el.querySelector('[id^=\"Crosswalk\"]');\n    if (crosswalkEl) {\n      // Move to front (i.e. last child in svg)\n      this.renderer.appendChild(el, crosswalkEl);\n      this.attachCrosswalkHover(crosswalkEl);\n    }\n  }\n\n  /**\n   * Removes underscores from id\n   * @param name Node name\n   * @returns node name without underscores\n   */\n  formatNodeName(name: string): string {\n    return name.replace(/_/g, ' ');\n  }\n\n  /**\n   * Attaches crosswalk hover\n   * @param el element\n   */\n  private attachCrosswalkHover(el: Element): void {\n    this.attachEvent(el, 'mouseover').subscribe(this.onCrosswalkHover.bind(this));\n    this.attachEvent(el, 'mouseout').subscribe(() => this.nodeHoverData$.next(undefined));\n  }\n\n  /**\n   * Finds matching node in data from a hovered element\n   * @param event Mouse event\n   */\n  private onCrosswalkHover(event: MouseEvent): void {\n    const node = this.getNode(event);\n    if (node) {\n      this.nodeHoverData$.next({\n        node: node['label'],\n        origin: {\n          x: event.clientX,\n          y: event.clientY,\n        },\n      });\n      this.nodeHover.emit(node); //emits node entry\n    }\n  }\n\n  /**\n   * Clears observables\n   */\n  private clear(): void {\n    this.destroy$.next();\n    this.destroy$.complete();\n    this.destroy$ = new Subject();\n  }\n\n  /**\n   * Returns entry from mapping if target, parent, or grandparent id matches the node name\n   * @param event Event\n   * @returns Node entry that matches the target id\n   */\n  private getNode(event: Event): T | undefined {\n    const targetId = (event.target as Element).id;\n    const parentId = (event.target as Element).parentElement?.id ?? '';\n    const grandparentId = (event.target as Element).parentElement?.parentElement?.id ?? '';\n    const idCollection = [targetId, parentId, grandparentId];\n    for (const id of idCollection) {\n      const decodedID = this.decodeId(id);\n      const match = this.mapping.find(\n        (item) => item['node_name']?.toLowerCase() === decodedID.toLowerCase() //search mapping by node_name for matching node entry\n      );\n      if (match) {\n        return match;\n      }\n    }\n    return undefined;\n  }\n\n  /**\n   * Decodes id into a normal string\n   * @param id Undecoded ID\n   * @returns id\n   */\n  private decodeId(id: string): string {\n    const replacer = (_match: string, hex: string) => String.fromCharCode(Number.parseInt(hex, 16));\n    return id.replace(/_x([\\da-f]+)_/gi, replacer);\n  }\n\n  /**\n   * Attaches an event listener\n   * @template K\n   * @param el Element\n   * @param event Event\n   * @returns Observable\n   */\n  private attachEvent<K extends keyof SVGElementEventMap>(el: Element, event: K): Observable<SVGElementEventMap[K]> {\n    const { renderer, destroy$ } = this;\n    const add = (handler: NodeEventHandler) => renderer.listen(el, event, handler);\n    const remove = (_handler: NodeEventHandler, unlisten: () => void) => unlisten();\n    return fromEventPattern<SVGElementEventMap[K]>(add, remove).pipe(takeUntil(destroy$));\n  }\n}\n",
+            "sourceCode": "import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  inject,\n  Input,\n  OnDestroy,\n  Output,\n  Renderer2,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';\nimport { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';\nimport { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';\n\n/** Delay before tooltip becomes visible */\nconst HOVER_DELAY = 200;\n\n/** Tooltip position settings */\nconst TOOLTIP_POSITIONS: ConnectedPosition[] = [\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'start',\n    overlayY: 'center',\n    offsetX: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'end',\n    overlayY: 'center',\n    offsetX: -8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'top',\n    offsetY: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'bottom',\n    offsetY: -8,\n  },\n];\n\n/** Node tooltip data */\nexport interface NodeTooltipData {\n  /** Node name */\n  node: string;\n  /** Center point of hovered node in screen coordinates */\n  origin: { x: number; y: number };\n}\n\n/** Interface for node entries */\nexport interface NodeMapEntry {\n  /** Node label */\n  label: string;\n  /** Node name */\n  name: string;\n}\n\n/**\n * Interactive SVG component\n */\n@Component({\n  selector: 'hra-interactive-svg',\n  standalone: true,\n  imports: [CommonModule, InlineSVGModule, OverlayModule],\n  templateUrl: './interactive-svg.component.html',\n  styleUrls: ['./interactive-svg.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestroy {\n  /** SVG url */\n  @Input() url?: string;\n\n  /** Mapping info */\n  @Input() mapping: T[] = [];\n\n  /** Emits node id when hovered */\n  @Output() readonly nodeHover = new EventEmitter<T>();\n\n  /** SVG script eval mode */\n  readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;\n\n  /** Tooltip position settings */\n  readonly TOOLTIP_POSITIONS = TOOLTIP_POSITIONS;\n\n  /** Observable of node hover data or undefined when there is no active hover */\n  readonly nodeHoverData$ = new BehaviorSubject<NodeTooltipData | undefined>(undefined);\n\n  /** Observable of node hover with a timer */\n  readonly nodeHoverDelayedData$ = this.nodeHoverData$.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));\n\n  /** Custom renderer */\n  private readonly renderer = inject(Renderer2);\n\n  /** Destroys */\n  private destroy$ = new Subject<void>();\n\n  /**\n   * Clears observables on destroy\n   */\n  ngOnDestroy(): void {\n    this.clear();\n  }\n\n  /**\n   * Sets SVG element\n   * @param el SVG element\n   */\n  setSvgElement(el: SVGElement): void {\n    this.clear();\n    const crosswalkEl = el.querySelector('[id^=\"Crosswalk\"]');\n    if (crosswalkEl) {\n      // Move to front (i.e. last child in svg)\n      this.renderer.appendChild(el, crosswalkEl);\n      this.attachCrosswalkHover(crosswalkEl);\n    }\n  }\n\n  /**\n   * Removes underscores from id\n   * @param name Node name\n   * @returns node name without underscores\n   */\n  formatNodeName(name: string): string {\n    return name.replace(/_/g, ' ');\n  }\n\n  /**\n   * Attaches crosswalk hover\n   * @param el element\n   */\n  private attachCrosswalkHover(el: Element): void {\n    this.attachEvent(el, 'mouseover').subscribe(this.onCrosswalkHover.bind(this));\n    this.attachEvent(el, 'mouseout').subscribe(() => this.nodeHoverData$.next(undefined));\n  }\n\n  /**\n   * Finds matching node in data from a hovered element\n   * @param event Mouse event\n   */\n  private onCrosswalkHover(event: MouseEvent): void {\n    const node = this.getNode(event);\n    if (node) {\n      this.nodeHoverData$.next({\n        node: node.label,\n        origin: {\n          x: event.clientX,\n          y: event.clientY,\n        },\n      });\n      this.nodeHover.emit(node); //emits node entry\n    }\n  }\n\n  /**\n   * Clears observables\n   */\n  private clear(): void {\n    this.destroy$.next();\n    this.destroy$.complete();\n    this.destroy$ = new Subject();\n  }\n\n  /**\n   * Returns entry from mapping if target, parent, or grandparent id matches the node name\n   * @param event Event\n   * @returns Node entry that matches the target id\n   */\n  private getNode(event: Event): T | undefined {\n    const targetId = (event.target as Element).id;\n    const parentId = (event.target as Element).parentElement?.id ?? '';\n    const grandparentId = (event.target as Element).parentElement?.parentElement?.id ?? '';\n    const idCollection = [targetId, parentId, grandparentId];\n    for (const id of idCollection) {\n      const decodedID = this.decodeId(id);\n      const match = this.mapping.find(\n        (item) => item.name?.toLowerCase() === decodedID.toLowerCase() //search mapping by name for matching node entry\n      );\n      if (match) {\n        return match;\n      }\n    }\n    return undefined;\n  }\n\n  /**\n   * Decodes id into a normal string\n   * @param id Undecoded ID\n   * @returns id\n   */\n  private decodeId(id: string): string {\n    const replacer = (_match: string, hex: string) => String.fromCharCode(Number.parseInt(hex, 16));\n    return id.replace(/_x([\\da-f]+)_/gi, replacer);\n  }\n\n  /**\n   * Attaches an event listener\n   * @template K\n   * @param el Element\n   * @param event Event\n   * @returns Observable\n   */\n  private attachEvent<K extends keyof SVGElementEventMap>(el: Element, event: K): Observable<SVGElementEventMap[K]> {\n    const { renderer, destroy$ } = this;\n    const add = (handler: NodeEventHandler) => renderer.listen(el, event, handler);\n    const remove = (_handler: NodeEventHandler, unlisten: () => void) => unlisten();\n    return fromEventPattern<SVGElementEventMap[K]>(add, remove).pipe(takeUntil(destroy$));\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1956,7 +1826,7 @@
         },
         {
             "name": "SourceListComponent",
-            "id": "component-SourceListComponent-4874510b6764d560fb198c485649d9eade797bb14c94270715b0b603c61b9dfb3ddc2a78e1202e122b2d537d4cb4ccb94644be557a7c8ab1387e8764addbd532",
+            "id": "component-SourceListComponent-24b618907122d675c2e036f49ffc06a5d944dbdff9b9ea84c2641c7559be0fd32adce3dda8265697032cc933b0dbd641cfbb81f0216622f9c562ee3abd45cb97",
             "file": "src/lib/source-list/source-list.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1996,7 +1866,7 @@
             "description": "<p>This component shows list of sources with title and links to the datasets</p>\n",
             "rawdescription": "\nThis component shows list of sources with title and links to the datasets",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from '@angular/material/table';\n\n/** SourceListItem interface contains title and link to the dataset for the SourceList*/\nexport interface SourceListItem {\n  /** Title of the dataset in the SourceList */\n  title: string;\n\n  /** Link to the dataset in the SourceList */\n  link: string;\n}\n\n/** This component shows list of sources with title and links to the datasets */\n@Component({\n  selector: 'hra-source-list',\n  standalone: true,\n  imports: [CommonModule, MatTableModule],\n  templateUrl: './source-list.component.html',\n  styleUrls: ['./source-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SourceListComponent {\n  /** List of sources with titles and links displayed to the user */\n  @Input() sources: SourceListItem[] = [];\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from '@angular/material/table';\n\n/** SourceListItem interface contains title and link to the dataset for the SourceList*/\nexport interface SourceListItem {\n  /** Title of the dataset in the SourceList */\n  label: string;\n\n  /** Link to the dataset in the SourceList */\n  link: string;\n}\n\n/** This component shows list of sources with title and links to the datasets */\n@Component({\n  selector: 'hra-source-list',\n  standalone: true,\n  imports: [CommonModule, MatTableModule],\n  templateUrl: './source-list.component.html',\n  styleUrls: ['./source-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SourceListComponent {\n  /** List of sources with titles and links displayed to the user */\n  @Input() sources: SourceListItem[] = [];\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {

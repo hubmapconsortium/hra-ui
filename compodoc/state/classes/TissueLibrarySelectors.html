@@ -188,7 +188,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Record&lt;Iri, TissueItem&gt;</code>
+                        <b>Returns : </b>    <code>Record&lt;Iri, Tissue&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -209,7 +209,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Iri, TissueItem } from &#x27;@hra-ui/services&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Iri, Tissue } from &#x27;@hra-ui/services&#x27;;
 import { Selector } from &#x27;@ngxs/store&#x27;;
 import { TissueLibraryModel } from &#x27;./tissue-library.model&#x27;;
 import { TissueLibraryState } from &#x27;./tissue-library.state&#x27;;
@@ -222,8 +222,8 @@ export class TissueLibrarySelectors {
    * @returns node data of the type of TisseData.
    */
   @Selector([TissueLibraryState])
-  static tissues(state: TissueLibraryModel): Record&lt;Iri, TissueItem&gt; {
-    return state.nodes as Record&lt;Iri, TissueItem&gt;;
+  static tissues(state: TissueLibraryModel): Record&lt;Iri, Tissue&gt; {
+    return state.nodes as Record&lt;Iri, Tissue&gt;;
   }
 }
 </code></pre>

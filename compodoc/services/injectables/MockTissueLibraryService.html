@@ -92,7 +92,8 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getTissues" >getTissues</a>
+                                    <span class="modifier"></span>
+                                <a href="#getTissueLibrary" >getTissueLibrary</a>
                             </li>
                         </ul>
                     </td>
@@ -116,16 +117,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getTissues"></a>
+                    <a name="getTissueLibrary"></a>
                     <span class="name">
-                        <span ><b>getTissues</b></span>
-                        <a href="#getTissues"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier"></span>
+                        <span ><b>getTissueLibrary</b></span>
+                        <a href="#getTissueLibrary"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getTissues()</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getTissueLibrary()</code>
                 </td>
             </tr>
 
@@ -138,7 +141,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/TissueLibraryService.html#source" target="_self" >TissueLibraryService:143</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/TissueLibraryService.html#source" target="_self" >TissueLibraryService:162</a></code>
 </div>
                 </td>
             </tr>
@@ -146,11 +149,11 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Implementation of <a href="TissueLibraryService.getTissues">TissueLibraryService.getTissues</a></p>
+                    <div class="io-description"><p>Implementation of <a href="TissueLibraryService.getTissueLibrary">TissueLibraryService.getTissueLibrary</a></p>
 </div>
 
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#TissueData" target="_self" >Observable&lt;TissueData&gt;</a></code>
+                        <b>Returns : </b>    <code>Observable&lt;TissueLibrary&gt;</code>
 
                     </div>
                 </td>
@@ -166,7 +169,21 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { createLinkId } from &#x27;@hra-ui/cdk/state&#x27;;
 import { Observable, of } from &#x27;rxjs&#x27;;
-import { TissueData, TissueLibraryService } from &#x27;./tissue-library.service&#x27;;
+import { TissueLibraryService } from &#x27;./tissue-library.service&#x27;;
+import { Tissue, TissueLibrary } from &#x27;./tissue-library.model&#x27;;
+import { Iri, Url } from &#x27;../shared/common.model&#x27;;
+
+/**
+ * Extended tissue
+ */
+interface ExtendedTissue extends Tissue {
+  /** Base Id */
+  representation_of: string;
+  /** Objecy to stoe the file URL */
+  object: {
+    file: Url;
+  };
+}
 
 /** Create a new id from a label */
 function createNodeId(label: string, parent: string): string {
@@ -174,7 +191,12 @@ function createNodeId(label: string, parent: string): string {
 }
 
 /** Create a new node */
-function defineNode(label: string, parent: string, url?: string, ...children: [label: string, url: string][]): object {
+function defineNode(
+  label: string,
+  parent: string,
+  url?: string,
+  ...children: [label: string, url: string][]
+): Record&lt;Iri, ExtendedTissue&gt; {
   const id &#x3D; createNodeId(label, parent);
   const childNodes &#x3D; children.reduce(
     (acc, [childLabel, childUrl]) &#x3D;&gt; ({
@@ -206,7 +228,7 @@ const BASE_ID &#x3D; &#x27;https://example.com/&#x27;;
 
 /** Mock tissue data */
 export const MOCK_TISSUE_DATA &#x3D; {
-  root: BASE_ID,
+  root: BASE_ID as Iri,
   nodes: Object.assign(
     {},
     defineNode(
@@ -296,7 +318,7 @@ export const MOCK_TISSUE_DATA &#x3D; {
       &#x27;Thymus Lobule&#x27;,
       &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.svg&#x27;,
     ])
-  ),
+  ) as Record&lt;Iri, ExtendedTissue&gt;,
 };
 
 /** Mock implementation of {@link TissueLibraryService} */
@@ -304,9 +326,9 @@ export const MOCK_TISSUE_DATA &#x3D; {
   providedIn: &#x27;root&#x27;,
 })
 export class MockTissueLibraryService extends TissueLibraryService {
-  /** Implementation of {@link TissueLibraryService.getTissues} */
-  getTissues(): Observable&lt;TissueData&gt; {
-    return of(MOCK_TISSUE_DATA as TissueData);
+  /** Implementation of {@link TissueLibraryService.getTissueLibrary} */
+  override getTissueLibrary(): Observable&lt;TissueLibrary&gt; {
+    return of(MOCK_TISSUE_DATA as TissueLibrary);
   }
 }
 </code></pre>

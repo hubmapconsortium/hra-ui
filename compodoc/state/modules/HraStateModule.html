@@ -80,13 +80,14 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
-import { NgxsModule, NGXS_PLUGINS } from &#x27;@ngxs/store&#x27;;
+import { NGXS_PLUGINS, NgxsModule } from &#x27;@ngxs/store&#x27;;
+import { ActiveFtuState } from &#x27;./active-ftu&#x27;;
 import { CellSummaryState } from &#x27;./cell-summary&#x27;;
 import { ContactState } from &#x27;./contact&#x27;;
 import { DownloadState } from &#x27;./download&#x27;;
-import { MedicalIllustrationState } from &#x27;./medical-illustration&#x27;;
+import { IllustratorState } from &#x27;./illustrator&#x27;;
 import { ScreenModeState } from &#x27;./screen-mode&#x27;;
-import { SourceListState } from &#x27;./source-list&#x27;;
+import { SourceRefsState } from &#x27;./source-refs&#x27;;
 import { StateAnalyticsPluginService } from &#x27;./state-analytics-plugin&#x27;;
 import { TissueLibraryState } from &#x27;./tissue-library&#x27;;
 
@@ -94,12 +95,13 @@ import { TissueLibraryState } from &#x27;./tissue-library&#x27;;
 @NgModule({
   imports: [
     NgxsModule.forFeature([
+      ActiveFtuState,
       CellSummaryState,
       ContactState,
       DownloadState,
-      MedicalIllustrationState,
+      IllustratorState,
       ScreenModeState,
-      SourceListState,
+      SourceRefsState,
       TissueLibraryState,
     ]),
   ],

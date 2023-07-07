@@ -249,7 +249,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:112</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:86</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -276,7 +276,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:109</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:83</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -306,7 +306,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:115</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:89</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -345,8 +345,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="161"
-                            class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:161</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="135"
+                            class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:135</a></div>
                 </td>
             </tr>
 
@@ -422,8 +422,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="146"
-                            class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:146</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="120"
+                            class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:120</a></div>
                 </td>
             </tr>
 
@@ -503,7 +503,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:118</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:92</a></div>
                         </td>
                     </tr>
 
@@ -535,7 +535,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:124</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:98</a></div>
                         </td>
                     </tr>
 
@@ -567,7 +567,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:127</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:101</a></div>
                         </td>
                     </tr>
 
@@ -599,7 +599,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:121</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:95</a></div>
                         </td>
                     </tr>
 
@@ -680,36 +680,10 @@ export interface NodeTooltipData {
 
 /** Interface for node entries */
 export interface NodeMapEntry {
-  /** Organ label */
-  organ_label: string;
-  /** Organ id */
-  organ_id: string;
-  /** Anatomical structure */
-  anatomical_structure_of: string;
-  /** Spatial entity source */
-  source_spatial_entity: string;
-  /** Node name */
-  node_name: string;
   /** Node label */
   label: string;
-  /** Ontology id */
-  OntologyID: string;
-  /** Link to represenation */
-  representation_of: string;
-  /** File of single 2dftu */
-  &#x27;svg file of single 2DFTU&#x27;: string;
-  /** if asctb exists */
-  exist_asctb: string;
-  /** Type */
-  type: string;
-  /** REF/1 */
-  &#x27;REF/1&#x27;: string;
-  /** REF/1/DOI */
-  &#x27;REF/1/DOI&#x27;: string;
-  /** REF/1/NOTES */
-  &#x27;REF/1/NOTES&#x27;: string;
-  /** Inset # */
-  &#x27;Inset #&#x27;: string;
+  /** Node name */
+  name: string;
 }
 
 /**
@@ -799,7 +773,7 @@ export class InteractiveSvgComponent&lt;T extends NodeMapEntry&gt; implements On
     const node &#x3D; this.getNode(event);
     if (node) {
       this.nodeHoverData$.next({
-        node: node[&#x27;label&#x27;],
+        node: node.label,
         origin: {
           x: event.clientX,
           y: event.clientY,
@@ -831,7 +805,7 @@ export class InteractiveSvgComponent&lt;T extends NodeMapEntry&gt; implements On
     for (const id of idCollection) {
       const decodedID &#x3D; this.decodeId(id);
       const match &#x3D; this.mapping.find(
-        (item) &#x3D;&gt; item[&#x27;node_name&#x27;]?.toLowerCase() &#x3D;&#x3D;&#x3D; decodedID.toLowerCase() //search mapping by node_name for matching node entry
+        (item) &#x3D;&gt; item.name?.toLowerCase() &#x3D;&#x3D;&#x3D; decodedID.toLowerCase() //search mapping by name for matching node entry
       );
       if (match) {
         return match;

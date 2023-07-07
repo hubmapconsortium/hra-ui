@@ -64,7 +64,34 @@
                             <a href="#BASE_ID" title="src/lib/tissue-library/tissue-library.mock.ts" ><b>BASE_ID</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-library.mock.ts)</a>
                         </li>
                         <li>
-                            <a href="#IRI" title="src/lib/tissue-library/tissue-library.service.ts" ><b>IRI</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-library.service.ts)</a>
+                            <a href="#BIOMARKER" title="src/lib/ftu-data/ftu-data.model.ts" ><b>BIOMARKER</b>&nbsp;&nbsp;&nbsp;(src/.../ftu-data.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CELL" title="src/lib/ftu-data/ftu-data.model.ts" ><b>CELL</b>&nbsp;&nbsp;&nbsp;(src/.../ftu-data.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CELL_SUMMARY" title="src/lib/ftu-data/ftu-data.model.ts" ><b>CELL_SUMMARY</b>&nbsp;&nbsp;&nbsp;(src/.../ftu-data.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CELL_SUMMARY_ROW" title="src/lib/ftu-data/ftu-data.model.ts" ><b>CELL_SUMMARY_ROW</b>&nbsp;&nbsp;&nbsp;(src/.../ftu-data.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#COUNT" title="src/lib/ftu-data/ftu-data.model.ts" ><b>COUNT</b>&nbsp;&nbsp;&nbsp;(src/.../ftu-data.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#COUNT_INTEGER_ERROR" title="src/lib/ftu-data/ftu-data.model.ts" ><b>COUNT_INTEGER_ERROR</b>&nbsp;&nbsp;&nbsp;(src/.../ftu-data.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#COUNT_RANGE_ERROR" title="src/lib/ftu-data/ftu-data.model.ts" ><b>COUNT_RANGE_ERROR</b>&nbsp;&nbsp;&nbsp;(src/.../ftu-data.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DATA_FILE_REFERENCE" title="src/lib/ftu-data/ftu-data.model.ts" ><b>DATA_FILE_REFERENCE</b>&nbsp;&nbsp;&nbsp;(src/.../ftu-data.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ILLUSTRATION_MAPPING_ITEM" title="src/lib/ftu-data/ftu-data.model.ts" ><b>ILLUSTRATION_MAPPING_ITEM</b>&nbsp;&nbsp;&nbsp;(src/.../ftu-data.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#IRI" title="src/lib/shared/common.model.ts" ><b>IRI</b>&nbsp;&nbsp;&nbsp;(src/.../common.model.ts)</a>
                         </li>
                         <li>
                             <a href="#MOCK_REFERENCE_ORGANS" title="src/lib/tissue-ftu/tissue-ftu.mock.ts" ><b>MOCK_REFERENCE_ORGANS</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-ftu.mock.ts)</a>
@@ -76,13 +103,25 @@
                             <a href="#MOCK_TISSUE_DATA" title="src/lib/tissue-library/tissue-library.mock.ts" ><b>MOCK_TISSUE_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-library.mock.ts)</a>
                         </li>
                         <li>
+                            <a href="#PERCENTAGE" title="src/lib/ftu-data/ftu-data.model.ts" ><b>PERCENTAGE</b>&nbsp;&nbsp;&nbsp;(src/.../ftu-data.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PERCENTAGE_RANGE_ERROR" title="src/lib/ftu-data/ftu-data.model.ts" ><b>PERCENTAGE_RANGE_ERROR</b>&nbsp;&nbsp;&nbsp;(src/.../ftu-data.model.ts)</a>
+                        </li>
+                        <li>
                             <a href="#REFERENCE_ORGAN" title="src/lib/tissue-ftu/tissue-ftu.service.ts" ><b>REFERENCE_ORGAN</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-ftu.service.ts)</a>
                         </li>
                         <li>
-                            <a href="#TISSUE_DATA_SCHEMA" title="src/lib/tissue-library/tissue-library.service.ts" ><b>TISSUE_DATA_SCHEMA</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-library.service.ts)</a>
+                            <a href="#SOURCE_REFERENCE" title="src/lib/ftu-data/ftu-data.model.ts" ><b>SOURCE_REFERENCE</b>&nbsp;&nbsp;&nbsp;(src/.../ftu-data.model.ts)</a>
                         </li>
                         <li>
-                            <a href="#TISSUE_ITEM_SCHEMA" title="src/lib/tissue-library/tissue-library.service.ts" ><b>TISSUE_ITEM_SCHEMA</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-library.service.ts)</a>
+                            <a href="#TISSUE" title="src/lib/tissue-library/tissue-library.model.ts" ><b>TISSUE</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-library.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TISSUE_LIBRARY" title="src/lib/tissue-library/tissue-library.model.ts" ><b>TISSUE_LIBRARY</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-library.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#URL" title="src/lib/shared/common.model.ts" ><b>URL</b>&nbsp;&nbsp;&nbsp;(src/.../common.model.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -145,7 +184,7 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
-  root: BASE_ID,
+  root: BASE_ID as Iri,
   nodes: Object.assign(
     {},
     defineNode(
@@ -235,7 +274,7 @@
       &#x27;Thymus Lobule&#x27;,
       &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.svg&#x27;,
     ])
-  ),
+  ) as Record&lt;Iri, ExtendedTissue&gt;,
 }</code>
                     </td>
                 </tr>
@@ -250,7 +289,365 @@
         </tbody>
     </table>
 </section>
-    <h3>src/lib/tissue-library/tissue-library.service.ts</h3>
+    <h3>src/lib/ftu-data/ftu-data.model.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BIOMARKER"></a>
+                    <span class="name">
+                        <span ><b>BIOMARKER</b></span>
+                        <a href="#BIOMARKER"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  id: IRI,
+  label: z.string(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Zod Schema for a BIOMARKER</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CELL"></a>
+                    <span class="name">
+                        <span ><b>CELL</b></span>
+                        <a href="#CELL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  id: IRI,
+  label: z.string(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Zod Schema for a cell object</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CELL_SUMMARY"></a>
+                    <span class="name">
+                        <span ><b>CELL_SUMMARY</b></span>
+                        <a href="#CELL_SUMMARY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  label: z.string(),
+  cells: CELL.array(),
+  biomarkers: BIOMARKER.array(),
+  summaries: CELL_SUMMARY_ROW.array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Zod Schema for a CELL_SUMMARY</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CELL_SUMMARY_ROW"></a>
+                    <span class="name">
+                        <span ><b>CELL_SUMMARY_ROW</b></span>
+                        <a href="#CELL_SUMMARY_ROW"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  cell: IRI,
+  biomarker: IRI,
+  count: COUNT,
+  percentage: PERCENTAGE,
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Zod Schema for a CELL_SUMMARY_ROW</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="COUNT"></a>
+                    <span class="name">
+                        <span ><b>COUNT</b></span>
+                        <a href="#COUNT"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.number().int(COUNT_INTEGER_ERROR).nonnegative(COUNT_RANGE_ERROR)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>A integer greater than or equal to zero</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="COUNT_INTEGER_ERROR"></a>
+                    <span class="name">
+                        <span ><b>COUNT_INTEGER_ERROR</b></span>
+                        <a href="#COUNT_INTEGER_ERROR"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Count must be an integer&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Error message for non integer counts</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="COUNT_RANGE_ERROR"></a>
+                    <span class="name">
+                        <span ><b>COUNT_RANGE_ERROR</b></span>
+                        <a href="#COUNT_RANGE_ERROR"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Count must be greater than or equal to 0&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Error message for negative counts</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DATA_FILE_REFERENCE"></a>
+                    <span class="name">
+                        <span ><b>DATA_FILE_REFERENCE</b></span>
+                        <a href="#DATA_FILE_REFERENCE"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  format: z.string(),
+  url: URL,
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Zod Schema for a DATA_FILE_REFERENCE</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ILLUSTRATION_MAPPING_ITEM"></a>
+                    <span class="name">
+                        <span ><b>ILLUSTRATION_MAPPING_ITEM</b></span>
+                        <a href="#ILLUSTRATION_MAPPING_ITEM"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  label: z.string(),
+  name: z.string(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Zod Schema for a ILLUSTRATION_MAPPING_ITEM</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PERCENTAGE"></a>
+                    <span class="name">
+                        <span ><b>PERCENTAGE</b></span>
+                        <a href="#PERCENTAGE"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.number().gte(0, PERCENTAGE_RANGE_ERROR).lte(1, PERCENTAGE_RANGE_ERROR)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>A number between 0 and 1 inclusive</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PERCENTAGE_RANGE_ERROR"></a>
+                    <span class="name">
+                        <span ><b>PERCENTAGE_RANGE_ERROR</b></span>
+                        <a href="#PERCENTAGE_RANGE_ERROR"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Percentage must be between 0 and 1 (inclusive)&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Error message for negative counts</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SOURCE_REFERENCE"></a>
+                    <span class="name">
+                        <span ><b>SOURCE_REFERENCE</b></span>
+                        <a href="#SOURCE_REFERENCE"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  label: z.string(),
+  link: z.string().url(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Zod Schema for a SOURCE_REFERENCE</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/lib/shared/common.model.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -265,13 +662,13 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.string().url().brand(&#x27;IRI&#x27;)</code>
+                        <i>Default value : </i><code>URL.brand(&#x27;IRI&#x27;)</code>
                     </td>
                 </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>A validator that ensures string representing valid URLS, specifically marked as IRI are accepted</p>
+                    <div class="io-description"><p>Same as an URL</p>
 </div>
                 </td>
             </tr>
@@ -282,59 +679,22 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="TISSUE_DATA_SCHEMA"></a>
+                    <a name="URL"></a>
                     <span class="name">
-                        <span ><b>TISSUE_DATA_SCHEMA</b></span>
-                        <a href="#TISSUE_DATA_SCHEMA"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>URL</b></span>
+                        <a href="#URL"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  root: IRI,
-  nodes: z.record(IRI, TISSUE_ITEM_SCHEMA),
-})</code>
+                        <i>Default value : </i><code>z.string().url().brand(&#x27;URL&#x27;)</code>
                     </td>
                 </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>A Schema which defines the root and its nodes</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="TISSUE_ITEM_SCHEMA"></a>
-                    <span class="name">
-                        <span ><b>TISSUE_ITEM_SCHEMA</b></span>
-                        <a href="#TISSUE_ITEM_SCHEMA"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  &#x27;@type&#x27;: z.string(),
-  &#x27;@id&#x27;: IRI,
-  id: IRI,
-  parent: IRI.or(z.literal(&#x27;&#x27;)),
-  label: z.string(),
-  synonymLabels: z.string().array(),
-  children: IRI.array(),
-})</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Tissue data schema which defines the type, id, parent, synonmynLabels and children</p>
+                    <div class="io-description"><p>Any url</p>
 </div>
                 </td>
             </tr>
@@ -450,6 +810,69 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Reference organ type</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/lib/tissue-library/tissue-library.model.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TISSUE"></a>
+                    <span class="name">
+                        <span ><b>TISSUE</b></span>
+                        <a href="#TISSUE"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  id: IRI,
+  label: z.string(),
+  parent: IRI,
+  children: IRI.array().default([]),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>zod Schema Object for a Tissue</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TISSUE_LIBRARY"></a>
+                    <span class="name">
+                        <span ><b>TISSUE_LIBRARY</b></span>
+                        <a href="#TISSUE_LIBRARY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  root: IRI,
+  nodes: z.record(IRI, TISSUE),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>zod Schema Object for a Tissue Library</p>
 </div>
                 </td>
             </tr>

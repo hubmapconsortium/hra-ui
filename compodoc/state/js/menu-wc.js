@@ -69,7 +69,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
-                                <a href="classes/Add.html" data-type="entity-link" >Add</a>
+                                <a href="classes/ActiveFtuSelectors.html" data-type="entity-link" >ActiveFtuSelectors</a>
                             </li>
                             <li class="link">
                                 <a href="classes/AddEntry.html" data-type="entity-link" >AddEntry</a>
@@ -78,10 +78,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/CellSummarySelectors.html" data-type="entity-link" >CellSummarySelectors</a>
                             </li>
                             <li class="link">
+                                <a href="classes/Clear.html" data-type="entity-link" >Clear</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/ClearEntries.html" data-type="entity-link" >ClearEntries</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ComputeAggregate.html" data-type="entity-link" >ComputeAggregate</a>
+                                <a href="classes/ClearSelection.html" data-type="entity-link" >ClearSelection</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ComputeAggregates.html" data-type="entity-link" >ComputeAggregates</a>
                             </li>
                             <li class="link">
                                 <a href="classes/Download.html" data-type="entity-link" >Download</a>
@@ -90,19 +96,37 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/DownloadSelectors.html" data-type="entity-link" >DownloadSelectors</a>
                             </li>
                             <li class="link">
+                                <a href="classes/IllustratorSelectors.html" data-type="entity-link" >IllustratorSelectors</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/Load.html" data-type="entity-link" >Load</a>
                             </li>
                             <li class="link">
                                 <a href="classes/Load-1.html" data-type="entity-link" >Load</a>
                             </li>
                             <li class="link">
-                                <a href="classes/LoadReferenceOrgans.html" data-type="entity-link" >LoadReferenceOrgans</a>
+                                <a href="classes/Load-2.html" data-type="entity-link" >Load</a>
                             </li>
                             <li class="link">
-                                <a href="classes/MedicalIllustrationSelectors.html" data-type="entity-link" >MedicalIllustrationSelectors</a>
+                                <a href="classes/Load-3.html" data-type="entity-link" >Load</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/Load-4.html" data-type="entity-link" >Load</a>
                             </li>
                             <li class="link">
                                 <a href="classes/RegisterFormat.html" data-type="entity-link" >RegisterFormat</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/Reset.html" data-type="entity-link" >Reset</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/Reset-1.html" data-type="entity-link" >Reset</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/Reset-2.html" data-type="entity-link" >Reset</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/Reset-3.html" data-type="entity-link" >Reset</a>
                             </li>
                             <li class="link">
                                 <a href="classes/ScreenModeSelectors.html" data-type="entity-link" >ScreenModeSelectors</a>
@@ -114,25 +138,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/Set.html" data-type="entity-link" >Set</a>
                             </li>
                             <li class="link">
-                                <a href="classes/Set-1.html" data-type="entity-link" >Set</a>
+                                <a href="classes/SetSelection.html" data-type="entity-link" >SetSelection</a>
                             </li>
                             <li class="link">
-                                <a href="classes/SetActiveNode.html" data-type="entity-link" >SetActiveNode</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SetData.html" data-type="entity-link" >SetData</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SetMapping.html" data-type="entity-link" >SetMapping</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SetUri.html" data-type="entity-link" >SetUri</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SetUriFromIRI.html" data-type="entity-link" >SetUriFromIRI</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SourceListSelectors.html" data-type="entity-link" >SourceListSelectors</a>
+                                <a href="classes/SourceRefsSelectors.html" data-type="entity-link" >SourceRefsSelectors</a>
                             </li>
                             <li class="link">
                                 <a href="classes/TissueLibrarySelectors.html" data-type="entity-link" >TissueLibrarySelectors</a>
@@ -148,6 +157,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </div>
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
                                 <li class="link">
+                                    <a href="injectables/ActiveFtuState.html" data-type="entity-link" >ActiveFtuState</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/CellSummaryState.html" data-type="entity-link" >CellSummaryState</a>
                                 </li>
                                 <li class="link">
@@ -157,13 +169,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/DownloadState.html" data-type="entity-link" >DownloadState</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/MedicalIllustrationState.html" data-type="entity-link" >MedicalIllustrationState</a>
+                                    <a href="injectables/IllustratorState.html" data-type="entity-link" >IllustratorState</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/ScreenModeState.html" data-type="entity-link" >ScreenModeState</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/SourceListState.html" data-type="entity-link" >SourceListState</a>
+                                    <a href="injectables/SourceRefsState.html" data-type="entity-link" >SourceRefsState</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/StateAnalyticsPluginService.html" data-type="entity-link" >StateAnalyticsPluginService</a>
@@ -182,22 +194,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
-                                <a href="interfaces/CellSummaryStateModel.html" data-type="entity-link" >CellSummaryStateModel</a>
+                                <a href="interfaces/ActiveFtuModel.html" data-type="entity-link" >ActiveFtuModel</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/GradientPoint.html" data-type="entity-link" >GradientPoint</a>
+                                <a href="interfaces/CellSummaryModel.html" data-type="entity-link" >CellSummaryModel</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/MedicalIllustrationModel.html" data-type="entity-link" >MedicalIllustrationModel</a>
+                                <a href="interfaces/IllustratorModel.html" data-type="entity-link" >IllustratorModel</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/ScreenModeModel.html" data-type="entity-link" >ScreenModeModel</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/SizePoint.html" data-type="entity-link" >SizePoint</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/Source.html" data-type="entity-link" >Source</a>
                             </li>
                         </ul>
                     </li>

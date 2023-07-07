@@ -364,7 +364,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>selectSnapshot(SourceListSelectors.getSourceList)</code>
+                        <i>Default value : </i><code>selectSnapshot(SourceRefsSelectors.sourceReferences)</code>
                     </td>
                 </tr>
                     <tr>
@@ -436,7 +436,7 @@ import {
 } from &#x27;@hra-ui/components/atoms&#x27;;
 import { BiomarkerTableDataCardComponent, SourceListComponent } from &#x27;@hra-ui/components/molecules&#x27;;
 import { BiomarkerTableComponent } from &#x27;@hra-ui/components/organisms&#x27;;
-import { CellSummarySelectors, ResourceIds as Ids, ResourceTypes as RTypes, SourceListSelectors } from &#x27;@hra-ui/state&#x27;;
+import { CellSummarySelectors, ResourceIds as Ids, ResourceTypes as RTypes, SourceRefsSelectors } from &#x27;@hra-ui/state&#x27;;
 
 /** The component displays the biomarker details which includes the details, gradient legends, size legends and source lists*/
 @Component({
@@ -481,7 +481,7 @@ export class BiomarkerDetailsComponent {
   readonly sizes &#x3D; selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, &#x27;sizes&#x27; as const, [])&lt;SizeLegend[]&gt;;
 
   /** List of sources with titles and links displayed to the user */
-  readonly source &#x3D; selectSnapshot(SourceListSelectors.getSourceList);
+  readonly source &#x3D; selectSnapshot(SourceRefsSelectors.sourceReferences);
 }
 </code></pre>
     </div>
@@ -496,7 +496,7 @@ export class BiomarkerDetailsComponent {
 
 &lt;mat-tab-group class&#x3D;&quot;table&quot; mat-stretch-tabs&#x3D;&quot;false&quot; color&#x3D;&quot;accent&quot;&gt;
   &lt;mat-tab *ngFor&#x3D;&quot;let tab of tabs()&quot; labelClass&#x3D;&quot;table-tab-header&quot; [label]&#x3D;&quot;tab.label&quot;&gt;
-    &lt;hra-biomarker-table [data]&#x3D;&quot;tab.rows&quot; [columns]&#x3D;&quot;tab.columns&quot;&gt;&lt;/hra-biomarker-table&gt;
+    &lt;hra-biomarker-table [data]&#x3D;&quot;$any(tab.rows)&quot; [columns]&#x3D;&quot;tab.columns&quot;&gt;&lt;/hra-biomarker-table&gt;
   &lt;/mat-tab&gt;
 &lt;/mat-tab-group&gt;
 
@@ -664,7 +664,7 @@ export class BiomarkerDetailsComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-label-box class="table-header">  Cell Types by Gene Biomarkers  <mat-icon (click)="this.isTableFullScreen = !this.isTableFullScreen" class="end">    {{ isTableFullScreen ? \'close_fullscreen\' : \'open_in_full\' }}  </mat-icon></hra-label-box><mat-tab-group class="table" mat-stretch-tabs="false" color="accent">  <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="tab.label">    <hra-biomarker-table [data]="tab.rows" [columns]="tab.columns"></hra-biomarker-table>  </mat-tab></mat-tab-group><hra-label-box class="legend-header gradient">  Biomarker Expression Mean in FTU  <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="gradientHoverInfo()">info_outlined</mat-icon></hra-label-box><div class="legend gradient">  <hra-gradient-legend [gradient]="gradients()" class="content"></hra-gradient-legend></div><hra-label-box class="legend-header size">  Percentage of Cells in FTU  <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="sizeHoverInfo()">info_outlined</mat-icon></hra-label-box><div class="legend size">  <hra-size-legend [sizes]="sizes()" class="content"></hra-size-legend></div><hra-label-box class="source-list-header">  Source Data  <mat-icon class="end">expand_more</mat-icon></hra-label-box><div class="source-list">  <hra-source-list [sources]="source()" class="content"></hra-source-list></div><ng-template #infoTooltip let-tooltip>  <div class="biomarker-details info-tooltip">    {{ tooltip }}  </div></ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-label-box class="table-header">  Cell Types by Gene Biomarkers  <mat-icon (click)="this.isTableFullScreen = !this.isTableFullScreen" class="end">    {{ isTableFullScreen ? \'close_fullscreen\' : \'open_in_full\' }}  </mat-icon></hra-label-box><mat-tab-group class="table" mat-stretch-tabs="false" color="accent">  <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="tab.label">    <hra-biomarker-table [data]="$any(tab.rows)" [columns]="tab.columns"></hra-biomarker-table>  </mat-tab></mat-tab-group><hra-label-box class="legend-header gradient">  Biomarker Expression Mean in FTU  <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="gradientHoverInfo()">info_outlined</mat-icon></hra-label-box><div class="legend gradient">  <hra-gradient-legend [gradient]="gradients()" class="content"></hra-gradient-legend></div><hra-label-box class="legend-header size">  Percentage of Cells in FTU  <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="sizeHoverInfo()">info_outlined</mat-icon></hra-label-box><div class="legend size">  <hra-size-legend [sizes]="sizes()" class="content"></hra-size-legend></div><hra-label-box class="source-list-header">  Source Data  <mat-icon class="end">expand_more</mat-icon></hra-label-box><div class="source-list">  <hra-source-list [sources]="source()" class="content"></hra-source-list></div><ng-template #infoTooltip let-tooltip>  <div class="biomarker-details info-tooltip">    {{ tooltip }}  </div></ng-template></div>'
     var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'BiomarkerDetailsComponent'};

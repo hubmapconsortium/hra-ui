@@ -9,7 +9,7 @@
     "components": [
         {
             "name": "BiomarkerDetailsComponent",
-            "id": "component-BiomarkerDetailsComponent-45221c1ec8a85622b19bf947835305069c08adf5eb6798608c6db43afe6c019e016730de8dbe22a50591f232bbec1d7bab5bb1f8db3c993b53f2a0641e067f53",
+            "id": "component-BiomarkerDetailsComponent-c533b654ca64c42fc7154a6af683bb8390448e965d3593329fa6287b58e6dab3eb67cd20f4a0e20c7d57019d7ee5a972927a1f45545ccd3c4a588b9ef1f6e794",
             "file": "src/lib/biomarker-details/biomarker-details.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -98,7 +98,7 @@
                 },
                 {
                     "name": "source",
-                    "defaultValue": "selectSnapshot(SourceListSelectors.getSourceList)",
+                    "defaultValue": "selectSnapshot(SourceRefsSelectors.sourceReferences)",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -133,7 +133,7 @@
             "description": "<p>The component displays the biomarker details which includes the details, gradient legends, size legends and source lists</p>\n",
             "rawdescription": "\nThe component displays the biomarker details which includes the details, gradient legends, size legends and source lists",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTabsModule } from '@angular/material/tabs';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport {\n  GradientLegendComponent,\n  GradientPoint,\n  LabelBoxComponent,\n  SizeLegend,\n  SizeLegendComponent,\n} from '@hra-ui/components/atoms';\nimport { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/components/molecules';\nimport { BiomarkerTableComponent } from '@hra-ui/components/organisms';\nimport { CellSummarySelectors, ResourceIds as Ids, ResourceTypes as RTypes, SourceListSelectors } from '@hra-ui/state';\n\n/** The component displays the biomarker details which includes the details, gradient legends, size legends and source lists*/\n@Component({\n  selector: 'ftu-biomarker-details',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatIconModule,\n    MatTabsModule,\n\n    BiomarkerTableComponent,\n    BiomarkerTableDataCardComponent,\n    GradientLegendComponent,\n    HoverDirective,\n    LabelBoxComponent,\n    SizeLegendComponent,\n    SourceListComponent,\n  ],\n  templateUrl: './biomarker-details.component.html',\n  styleUrls: ['./biomarker-details.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerDetailsComponent {\n  /** Table tabs */\n  readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);\n\n  /** Info to be shown on the tooltip for Gradient Legend */\n  readonly gradientHoverInfo = selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);\n\n  /** Info to be shown on the tooltip for Size Legend */\n  readonly sizeHoverInfo = selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo);\n\n  /** Indicates if the table is fully shown, defaults to false*/\n  isTableFullScreen = false;\n\n  /** Gradient colors along with their stop points */\n  readonly gradients = selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, 'points' as const, [])<\n    GradientPoint[]\n  >;\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  readonly sizes = selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>;\n\n  /** List of sources with titles and links displayed to the user */\n  readonly source = selectSnapshot(SourceListSelectors.getSourceList);\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTabsModule } from '@angular/material/tabs';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport {\n  GradientLegendComponent,\n  GradientPoint,\n  LabelBoxComponent,\n  SizeLegend,\n  SizeLegendComponent,\n} from '@hra-ui/components/atoms';\nimport { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/components/molecules';\nimport { BiomarkerTableComponent } from '@hra-ui/components/organisms';\nimport { CellSummarySelectors, ResourceIds as Ids, ResourceTypes as RTypes, SourceRefsSelectors } from '@hra-ui/state';\n\n/** The component displays the biomarker details which includes the details, gradient legends, size legends and source lists*/\n@Component({\n  selector: 'ftu-biomarker-details',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatIconModule,\n    MatTabsModule,\n\n    BiomarkerTableComponent,\n    BiomarkerTableDataCardComponent,\n    GradientLegendComponent,\n    HoverDirective,\n    LabelBoxComponent,\n    SizeLegendComponent,\n    SourceListComponent,\n  ],\n  templateUrl: './biomarker-details.component.html',\n  styleUrls: ['./biomarker-details.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerDetailsComponent {\n  /** Table tabs */\n  readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);\n\n  /** Info to be shown on the tooltip for Gradient Legend */\n  readonly gradientHoverInfo = selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);\n\n  /** Info to be shown on the tooltip for Size Legend */\n  readonly sizeHoverInfo = selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo);\n\n  /** Indicates if the table is fully shown, defaults to false*/\n  isTableFullScreen = false;\n\n  /** Gradient colors along with their stop points */\n  readonly gradients = selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, 'points' as const, [])<\n    GradientPoint[]\n  >;\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  readonly sizes = selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>;\n\n  /** List of sources with titles and links displayed to the user */\n  readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -142,7 +142,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<hra-label-box class=\"table-header\">\n  Cell Types by Gene Biomarkers\n  <mat-icon (click)=\"this.isTableFullScreen = !this.isTableFullScreen\" class=\"end\">\n    {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}\n  </mat-icon>\n</hra-label-box>\n\n<mat-tab-group class=\"table\" mat-stretch-tabs=\"false\" color=\"accent\">\n  <mat-tab *ngFor=\"let tab of tabs()\" labelClass=\"table-tab-header\" [label]=\"tab.label\">\n    <hra-biomarker-table [data]=\"tab.rows\" [columns]=\"tab.columns\"></hra-biomarker-table>\n  </mat-tab>\n</mat-tab-group>\n\n<hra-label-box class=\"legend-header gradient\">\n  Biomarker Expression Mean in FTU\n  <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"gradientHoverInfo()\">info_outlined</mat-icon>\n</hra-label-box>\n<div class=\"legend gradient\">\n  <hra-gradient-legend [gradient]=\"gradients()\" class=\"content\"></hra-gradient-legend>\n</div>\n\n<hra-label-box class=\"legend-header size\">\n  Percentage of Cells in FTU\n  <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"sizeHoverInfo()\">info_outlined</mat-icon>\n</hra-label-box>\n<div class=\"legend size\">\n  <hra-size-legend [sizes]=\"sizes()\" class=\"content\"></hra-size-legend>\n</div>\n\n<hra-label-box class=\"source-list-header\">\n  Source Data\n  <mat-icon class=\"end\">expand_more</mat-icon>\n</hra-label-box>\n<div class=\"source-list\">\n  <hra-source-list [sources]=\"source()\" class=\"content\"></hra-source-list>\n</div>\n\n<ng-template #infoTooltip let-tooltip>\n  <div class=\"biomarker-details info-tooltip\">\n    {{ tooltip }}\n  </div>\n</ng-template>\n"
+            "templateData": "<hra-label-box class=\"table-header\">\n  Cell Types by Gene Biomarkers\n  <mat-icon (click)=\"this.isTableFullScreen = !this.isTableFullScreen\" class=\"end\">\n    {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}\n  </mat-icon>\n</hra-label-box>\n\n<mat-tab-group class=\"table\" mat-stretch-tabs=\"false\" color=\"accent\">\n  <mat-tab *ngFor=\"let tab of tabs()\" labelClass=\"table-tab-header\" [label]=\"tab.label\">\n    <hra-biomarker-table [data]=\"$any(tab.rows)\" [columns]=\"tab.columns\"></hra-biomarker-table>\n  </mat-tab>\n</mat-tab-group>\n\n<hra-label-box class=\"legend-header gradient\">\n  Biomarker Expression Mean in FTU\n  <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"gradientHoverInfo()\">info_outlined</mat-icon>\n</hra-label-box>\n<div class=\"legend gradient\">\n  <hra-gradient-legend [gradient]=\"gradients()\" class=\"content\"></hra-gradient-legend>\n</div>\n\n<hra-label-box class=\"legend-header size\">\n  Percentage of Cells in FTU\n  <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"sizeHoverInfo()\">info_outlined</mat-icon>\n</hra-label-box>\n<div class=\"legend size\">\n  <hra-size-legend [sizes]=\"sizes()\" class=\"content\"></hra-size-legend>\n</div>\n\n<hra-label-box class=\"source-list-header\">\n  Source Data\n  <mat-icon class=\"end\">expand_more</mat-icon>\n</hra-label-box>\n<div class=\"source-list\">\n  <hra-source-list [sources]=\"source()\" class=\"content\"></hra-source-list>\n</div>\n\n<ng-template #infoTooltip let-tooltip>\n  <div class=\"biomarker-details info-tooltip\">\n    {{ tooltip }}\n  </div>\n</ng-template>\n"
         },
         {
             "name": "ContactBehaviorComponent",
@@ -863,7 +863,7 @@
         },
         {
             "name": "MedicalIllustrationBehaviorComponent",
-            "id": "component-MedicalIllustrationBehaviorComponent-4d072a2c669b13a37a474273087cb45cdda4f473bc10c094aa6cf71f81f9e6a3c48ee4397549130ffd073b7fca89b671fa38908be91e7101f307dce040c8d05f",
+            "id": "component-MedicalIllustrationBehaviorComponent-4b424e5963d0941a8dbbe3e6594961981f1b4596e2967712aa5f15f96165721e2d95440f3f10d27e1bf08b244186f15af079fce8d0e8123187c8649ea046cff3",
             "file": "src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -885,7 +885,7 @@
             "propertiesClass": [
                 {
                     "name": "currentUrl",
-                    "defaultValue": "selectSnapshot(MedicalIllustrationSelectors.url)",
+                    "defaultValue": "selectSnapshot(IllustratorSelectors.url)",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -898,8 +898,8 @@
                     ]
                 },
                 {
-                    "name": "getMapping",
-                    "defaultValue": "selectSnapshot(MedicalIllustrationSelectors.mapping)",
+                    "name": "mapping",
+                    "defaultValue": "selectSnapshot(IllustratorSelectors.mapping)",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -913,7 +913,7 @@
                 },
                 {
                     "name": "updateNode",
-                    "defaultValue": "dispatch(MedicalIllustrationActions.SetActiveNode)",
+                    "defaultValue": "dispatch(IllustratorActions.SetSelection)",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -934,7 +934,7 @@
             "description": "<p>Behavior component for medical illustration component</p>\n",
             "rawdescription": "\n\nBehavior component for medical illustration component\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { InteractiveSvgComponent } from '@hra-ui/components/molecules';\nimport { MedicalIllustrationActions, MedicalIllustrationSelectors } from '@hra-ui/state';\n\n/**\n * Behavior component for medical illustration component\n */\n@Component({\n  selector: 'ftu-medical-illustration-behavior',\n  standalone: true,\n  imports: [CommonModule, InteractiveSvgComponent],\n  templateUrl: './medical-illustration-behavior.component.html',\n  styleUrls: ['./medical-illustration-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MedicalIllustrationBehaviorComponent {\n  /**\n   * Current illustration url\n   */\n  readonly currentUrl = selectSnapshot(MedicalIllustrationSelectors.url);\n\n  /**\n   * Current mapping file\n   */\n  readonly getMapping = selectSnapshot(MedicalIllustrationSelectors.mapping);\n\n  /**\n   * Updates the active node on node hover\n   */\n  readonly updateNode = dispatch(MedicalIllustrationActions.SetActiveNode);\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { InteractiveSvgComponent } from '@hra-ui/components/molecules';\nimport { IllustratorActions, IllustratorSelectors } from '@hra-ui/state';\n\n/**\n * Behavior component for medical illustration component\n */\n@Component({\n  selector: 'ftu-medical-illustration-behavior',\n  standalone: true,\n  imports: [CommonModule, InteractiveSvgComponent],\n  templateUrl: './medical-illustration-behavior.component.html',\n  styleUrls: ['./medical-illustration-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MedicalIllustrationBehaviorComponent {\n  /**\n   * Current illustration url\n   */\n  readonly currentUrl = selectSnapshot(IllustratorSelectors.url);\n\n  /**\n   * Current mapping file\n   */\n  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);\n\n  /**\n   * Updates the active node on node hover\n   */\n  readonly updateNode = dispatch(IllustratorActions.SetSelection);\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -943,11 +943,11 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<hra-interactive-svg [url]=\"currentUrl()\" [mapping]=\"getMapping()\" (nodeHover)=\"updateNode($event)\">\n</hra-interactive-svg>\n"
+            "templateData": "<hra-interactive-svg [url]=\"currentUrl()\" [mapping]=\"mapping()\" (nodeHover)=\"updateNode($event)\"> </hra-interactive-svg>\n"
         },
         {
             "name": "TissueLibraryBehaviorComponent",
-            "id": "component-TissueLibraryBehaviorComponent-93b57608533323cc0faeb9dac3062d79932873f60ab75de35b17be69c83c43f3899557a0c57cf3d3653276d6f764b845942c7ed507bff89456893ec1e74317b4",
+            "id": "component-TissueLibraryBehaviorComponent-f59f79eeefa7371b88d47482034c0da33b31f84a3c59bb3a75f3acde5d3362cd17ff22119c1b4ae8fb0dd1f7c09b3f6bf6c41baedefd383399c70314385023ed",
             "file": "src/lib/tissue-library-behavior/tissue-library-behavior.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -971,7 +971,7 @@
                     "name": "selected",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "TissueItem",
+                    "type": "Tissue",
                     "optional": true,
                     "description": "<p>Selected  of tissue library behavior component</p>\n",
                     "line": 28,
@@ -1000,7 +1000,7 @@
             "description": "<p>Component for Tissue Library Behavior</p>\n",
             "rawdescription": "\n\nComponent for Tissue Library Behavior\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { select$, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { TissueTreeListComponent } from '@hra-ui/components/molecules';\nimport { TissueItem } from '@hra-ui/services';\nimport { MedicalIllustrationSelectors, TissueLibrarySelectors } from '@hra-ui/state';\nimport { LabelBoxComponent } from '@hra-ui/components/atoms';\n\n/**\n * Component for Tissue Library Behavior\n */\n@Component({\n  selector: 'ftu-tissue-library-behavior',\n  standalone: true,\n  imports: [CommonModule, LabelBoxComponent, TissueTreeListComponent],\n  templateUrl: './tissue-library-behavior.component.html',\n  styleUrls: ['./tissue-library-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueLibraryBehaviorComponent {\n  /**\n   * Input for tissues data\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n  /**\n   * Selected  of tissue library behavior component\n   */\n  selected?: TissueItem;\n\n  /**\n   * Sets the TissueItem instance as undefined if\n   * the url is undefined\n   */\n  constructor() {\n    select$(MedicalIllustrationSelectors.url).subscribe((url) => {\n      if (url === undefined) {\n        this.selected = undefined;\n      }\n    });\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { select$, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { TissueTreeListComponent } from '@hra-ui/components/molecules';\nimport { Tissue } from '@hra-ui/services';\nimport { IllustratorSelectors, TissueLibrarySelectors } from '@hra-ui/state';\nimport { LabelBoxComponent } from '@hra-ui/components/atoms';\n\n/**\n * Component for Tissue Library Behavior\n */\n@Component({\n  selector: 'ftu-tissue-library-behavior',\n  standalone: true,\n  imports: [CommonModule, LabelBoxComponent, TissueTreeListComponent],\n  templateUrl: './tissue-library-behavior.component.html',\n  styleUrls: ['./tissue-library-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueLibraryBehaviorComponent {\n  /**\n   * Input for tissues data\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n  /**\n   * Selected  of tissue library behavior component\n   */\n  selected?: Tissue;\n\n  /**\n   * Sets the TissueItem instance as undefined if\n   * the url is undefined\n   */\n  constructor() {\n    select$(IllustratorSelectors.url).subscribe((url) => {\n      if (url === undefined) {\n        this.selected = undefined;\n      }\n    });\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {

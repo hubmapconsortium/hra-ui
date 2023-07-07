@@ -144,7 +144,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#getMapping" >getMapping</a>
+                                <a href="#mapping" >mapping</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
@@ -188,7 +188,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>selectSnapshot(MedicalIllustrationSelectors.url)</code>
+                        <i>Default value : </i><code>selectSnapshot(IllustratorSelectors.url)</code>
                     </td>
                 </tr>
                     <tr>
@@ -210,17 +210,17 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getMapping"></a>
+                    <a name="mapping"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
-                        <span ><b>getMapping</b></span>
-                        <a href="#getMapping"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>mapping</b></span>
+                        <a href="#mapping"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>selectSnapshot(MedicalIllustrationSelectors.mapping)</code>
+                        <i>Default value : </i><code>selectSnapshot(IllustratorSelectors.mapping)</code>
                     </td>
                 </tr>
                     <tr>
@@ -252,7 +252,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>dispatch(MedicalIllustrationActions.SetActiveNode)</code>
+                        <i>Default value : </i><code>dispatch(IllustratorActions.SetSelection)</code>
                     </td>
                 </tr>
                     <tr>
@@ -280,7 +280,7 @@
 import { ChangeDetectionStrategy, Component } from &#x27;@angular/core&#x27;;
 import { dispatch, selectSnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
 import { InteractiveSvgComponent } from &#x27;@hra-ui/components/molecules&#x27;;
-import { MedicalIllustrationActions, MedicalIllustrationSelectors } from &#x27;@hra-ui/state&#x27;;
+import { IllustratorActions, IllustratorSelectors } from &#x27;@hra-ui/state&#x27;;
 
 /**
  * Behavior component for medical illustration component
@@ -297,24 +297,23 @@ export class MedicalIllustrationBehaviorComponent {
   /**
    * Current illustration url
    */
-  readonly currentUrl &#x3D; selectSnapshot(MedicalIllustrationSelectors.url);
+  readonly currentUrl &#x3D; selectSnapshot(IllustratorSelectors.url);
 
   /**
    * Current mapping file
    */
-  readonly getMapping &#x3D; selectSnapshot(MedicalIllustrationSelectors.mapping);
+  readonly mapping &#x3D; selectSnapshot(IllustratorSelectors.mapping);
 
   /**
    * Updates the active node on node hover
    */
-  readonly updateNode &#x3D; dispatch(MedicalIllustrationActions.SetActiveNode);
+  readonly updateNode &#x3D; dispatch(IllustratorActions.SetSelection);
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;hra-interactive-svg [url]&#x3D;&quot;currentUrl()&quot; [mapping]&#x3D;&quot;getMapping()&quot; (nodeHover)&#x3D;&quot;updateNode($event)&quot;&gt;
-&lt;/hra-interactive-svg&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;hra-interactive-svg [url]&#x3D;&quot;currentUrl()&quot; [mapping]&#x3D;&quot;mapping()&quot; (nodeHover)&#x3D;&quot;updateNode($event)&quot;&gt; &lt;/hra-interactive-svg&gt;
 </code></pre>
     </div>
 
@@ -353,7 +352,7 @@ export class MedicalIllustrationBehaviorComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-interactive-svg [url]="currentUrl()" [mapping]="getMapping()" (nodeHover)="updateNode($event)"></hra-interactive-svg></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-interactive-svg [url]="currentUrl()" [mapping]="mapping()" (nodeHover)="updateNode($event)"> </hra-interactive-svg></div>'
     var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'MedicalIllustrationBehaviorComponent'};

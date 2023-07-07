@@ -72,7 +72,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/ContactService.html" data-type="entity-link" >ContactService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/FtuDataService.html" data-type="entity-link" >FtuDataService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/MockContactService.html" data-type="entity-link" >MockContactService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/MockFtuDataService.html" data-type="entity-link" >MockFtuDataService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/MockTissueFtuService.html" data-type="entity-link" >MockTissueFtuService</a>
@@ -98,6 +104,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
                                 <a href="interfaces/ContactMessage.html" data-type="entity-link" >ContactMessage</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ExtendedTissue.html" data-type="entity-link" >ExtendedTissue</a>
                             </li>
                         </ul>
                     </li>

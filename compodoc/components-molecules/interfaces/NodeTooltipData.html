@@ -258,36 +258,10 @@ export interface NodeTooltipData {
 
 /** Interface for node entries */
 export interface NodeMapEntry {
-  /** Organ label */
-  organ_label: string;
-  /** Organ id */
-  organ_id: string;
-  /** Anatomical structure */
-  anatomical_structure_of: string;
-  /** Spatial entity source */
-  source_spatial_entity: string;
-  /** Node name */
-  node_name: string;
   /** Node label */
   label: string;
-  /** Ontology id */
-  OntologyID: string;
-  /** Link to represenation */
-  representation_of: string;
-  /** File of single 2dftu */
-  &#x27;svg file of single 2DFTU&#x27;: string;
-  /** if asctb exists */
-  exist_asctb: string;
-  /** Type */
-  type: string;
-  /** REF/1 */
-  &#x27;REF/1&#x27;: string;
-  /** REF/1/DOI */
-  &#x27;REF/1/DOI&#x27;: string;
-  /** REF/1/NOTES */
-  &#x27;REF/1/NOTES&#x27;: string;
-  /** Inset # */
-  &#x27;Inset #&#x27;: string;
+  /** Node name */
+  name: string;
 }
 
 /**
@@ -377,7 +351,7 @@ export class InteractiveSvgComponent&lt;T extends NodeMapEntry&gt; implements On
     const node &#x3D; this.getNode(event);
     if (node) {
       this.nodeHoverData$.next({
-        node: node[&#x27;label&#x27;],
+        node: node.label,
         origin: {
           x: event.clientX,
           y: event.clientY,
@@ -409,7 +383,7 @@ export class InteractiveSvgComponent&lt;T extends NodeMapEntry&gt; implements On
     for (const id of idCollection) {
       const decodedID &#x3D; this.decodeId(id);
       const match &#x3D; this.mapping.find(
-        (item) &#x3D;&gt; item[&#x27;node_name&#x27;]?.toLowerCase() &#x3D;&#x3D;&#x3D; decodedID.toLowerCase() //search mapping by node_name for matching node entry
+        (item) &#x3D;&gt; item.name?.toLowerCase() &#x3D;&#x3D;&#x3D; decodedID.toLowerCase() //search mapping by name for matching node entry
       );
       if (match) {
         return match;
