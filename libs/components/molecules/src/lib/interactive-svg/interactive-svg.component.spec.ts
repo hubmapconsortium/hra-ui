@@ -67,26 +67,13 @@ describe('InteractiveSvgComponent', () => {
     const event2 = { target: path2, clientX: 10, clientY: 20 };
     const event3 = { target: path3, clientX: 10, clientY: 20 };
     const testNode: NodeMapEntry = {
-      organ_label: 'Kidney',
-      organ_id: 'UBERON:0002113',
-      anatomical_structure_of: '#FTUCorticalCollectingDuct',
-      source_spatial_entity: '#2DRefObjects',
-      node_name: 'Cortical_Collecting_Duct_Principal_Cell_1',
+      name: 'Cortical_Collecting_Duct_Principal_Cell_1',
       label: 'kidney cortex collecting duct principal cell',
-      OntologyID: 'CL:1000714',
-      representation_of: 'http://purl.obolibrary.org/obo/CL_1000714',
-      'svg file of single 2DFTU': '2d-ftu-kidney-cortical-collecting-duct',
-      exist_asctb: '1',
-      type: 'CT',
-      'REF/1': '',
-      'REF/1/DOI': '',
-      'REF/1/NOTES': '',
-      'Inset #': '',
     };
     const testMapping: NodeMapEntry[] = [
       testNode,
-      { ...testNode, node_name: 'Cortical_Collecting_Duct_Principal_Cell_2' },
-      { ...testNode, node_name: 'Cortical_Collecting_Duct_Principal_Cell_3' },
+      { ...testNode, name: 'Cortical_Collecting_Duct_Principal_Cell_2' },
+      { ...testNode, name: 'Cortical_Collecting_Duct_Principal_Cell_3' },
     ];
 
     it('should emit hover event on mouseover', async () => {
