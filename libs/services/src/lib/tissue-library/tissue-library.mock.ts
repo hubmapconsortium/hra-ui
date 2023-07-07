@@ -2,8 +2,20 @@ import { Injectable } from '@angular/core';
 import { createLinkId } from '@hra-ui/cdk/state';
 import { Observable, of } from 'rxjs';
 import { TissueLibraryService } from './tissue-library.service';
-import { BRAND } from 'zod';
-import { TissueLibrary } from './tissue-library.model';
+import { Tissue, TissueLibrary } from './tissue-library.model';
+import { Iri, Url } from '../shared/common.model';
+
+/**
+ * Extended tissue
+ */
+interface ExtendedTissue extends Tissue {
+  /** Base Id */
+  representation_of: string;
+  /** Objecy to stoe the file URL */
+  object: {
+    file: Url;
+  };
+}
 
 /** Create a new id from a label */
 function createNodeId(label: string, parent: string): string {
@@ -11,7 +23,12 @@ function createNodeId(label: string, parent: string): string {
 }
 
 /** Create a new node */
-function defineNode(label: string, parent: string, url?: string, ...children: [label: string, url: string][]): object {
+function defineNode(
+  label: string,
+  parent: string,
+  url?: string,
+  ...children: [label: string, url: string][]
+): Record<Iri, ExtendedTissue> {
   const id = createNodeId(label, parent);
   const childNodes = children.reduce(
     (acc, [childLabel, childUrl]) => ({
@@ -43,7 +60,7 @@ const BASE_ID = 'https://example.com/';
 
 /** Mock tissue data */
 export const MOCK_TISSUE_DATA = {
-  root: BASE_ID,
+  root: BASE_ID as Iri,
   nodes: Object.assign(
     {},
     defineNode(
@@ -133,7 +150,7 @@ export const MOCK_TISSUE_DATA = {
       'Thymus Lobule',
       'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.svg',
     ])
-  ),
+  ) as Record<Iri, ExtendedTissue>,
 };
 
 /** Mock implementation of {@link TissueLibraryService} */

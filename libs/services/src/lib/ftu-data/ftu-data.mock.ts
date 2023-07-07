@@ -1,8 +1,9 @@
+import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Iri, Url } from '../shared/common.model';
+import { MOCK_TISSUE_DATA } from '../tissue-library/tissue-library.mock';
 import { CellSummary, DataFileReference, IllustrationMappingItem, SourceReference } from './ftu-data.model';
 import { FtuDataService } from './ftu-data.service';
-import { Injectable } from '@angular/core';
 
 /**
 This class represents a mock implementation of the FtuDataService class.
@@ -18,9 +19,7 @@ export class MockFtuDataService extends FtuDataService {
   @returns An Observable that emits the mock URL.
   */
   override getIllustrationUrl(iri: Iri): Observable<Url> {
-    return of(
-      'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.svg' as Url
-    );
+    return of(MOCK_TISSUE_DATA.nodes[iri].object.file);
   }
 
   /**

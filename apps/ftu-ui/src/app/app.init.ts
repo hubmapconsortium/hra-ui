@@ -22,6 +22,5 @@ export function initFactory(): () => Observable<unknown> {
       new LinkRegistryActions.LoadFromYaml('assets/links.yml'),
       new ResourceRegistryActions.LoadFromYaml('assets/resources.yml'),
       new TissueLibraryActions.Load(),
-      new IllustratorActions.Load('assets/TEMP/mapping.csv' as Iri),
     ]);
 }

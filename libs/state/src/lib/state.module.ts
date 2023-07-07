@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { NgxsModule, NGXS_PLUGINS } from '@ngxs/store';
+import { NGXS_PLUGINS, NgxsModule } from '@ngxs/store';
+import { ActiveFtuState } from './active-ftu';
 import { CellSummaryState } from './cell-summary';
 import { ContactState } from './contact';
 import { DownloadState } from './download';
@@ -13,6 +14,7 @@ import { TissueLibraryState } from './tissue-library';
 @NgModule({
   imports: [
     NgxsModule.forFeature([
+      ActiveFtuState,
       CellSummaryState,
       ContactState,
       DownloadState,
