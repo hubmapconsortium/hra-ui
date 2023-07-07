@@ -71,8 +71,6 @@ export function computeAggregate(summary: CellSummary): CellSummaryAggregate {
   for (const [cell, row] of rowsByCell.entries()) {
     row[0] = getLabel(cells, cell, 'cell');
     row[1] = getTotalCount(row);
-
-    // TODO update entries with interpolation etc.
   }
 
   const columns = Array.from(columnIndexByBiomarker.keys()).map((id) => getLabel(biomarkers, id, 'biomarker'));

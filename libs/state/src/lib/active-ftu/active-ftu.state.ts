@@ -39,7 +39,6 @@ export class ActiveFtuState {
         new CellSummaryActions.Load(iri),
         new IllustratorActions.Load(iri),
         new SourceRefsActions.Load(iri),
-        // TODO dispatch url loading, etc.
       ]).pipe(tap(() => patchState({ iri })));
     }
   }
