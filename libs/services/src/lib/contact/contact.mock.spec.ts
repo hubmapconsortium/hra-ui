@@ -17,7 +17,7 @@ describe('ContactService', () => {
 
   it('should print log', () => {
     const message = 'Message received. Content: ' + JSON.stringify(testMessage);
-    const spy = jest.spyOn(console, 'log');
+    const spy = jest.spyOn(console, 'log').mockImplementation(() => undefined);
     service.sendMessage(testMessage);
     expect(spy).toHaveBeenCalledWith(message);
   });

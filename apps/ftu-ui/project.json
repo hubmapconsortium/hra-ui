@@ -24,6 +24,8 @@
       },
       "configurations": {
         "production": {
+          "baseHref": "/hra-ui/apps/ftu-ui/",
+          "outputHashing": "none",
           "budgets": [
             {
               "type": "initial",
@@ -35,8 +37,7 @@
               "maximumWarning": "2kb",
               "maximumError": "4kb"
             }
-          ],
-          "outputHashing": "all"
+          ]
         },
         "development": {
           "buildOptimizer": false,
