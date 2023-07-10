@@ -137,6 +137,10 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         disabled: true
       },
       {
+        menuName: 'Kaggle #3: HuBMAP - Hacking the Human Vasculature',
+        url: 'https://www.kaggle.com/competitions/hubmap-hacking-the-human-vasculature'
+      },
+      {
         menuName: '24 Hour Human Reference Atlas Event',
         url: 'https://humanatlas.io/events/2022-24h/'
       },
