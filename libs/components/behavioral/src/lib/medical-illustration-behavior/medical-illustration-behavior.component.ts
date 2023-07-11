@@ -35,8 +35,13 @@ export class MedicalIllustrationBehaviorComponent {
    * Updates the active node on node hover
    */
   readonly updateNode = dispatch(MedicalIllustrationActions.SetActiveNode);
-
+  /**
+   * Gets the List of Sources from SourceListSelectors
+   */
   readonly getSources = selectSnapshot(SourceListSelectors.getSourceList);
 
+  /**
+   * Update sources of medical illustration behavior component
+   */
   readonly updateSources = dispatch(SourceListActions.Set);
 }
