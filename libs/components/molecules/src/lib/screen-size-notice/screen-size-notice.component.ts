@@ -22,6 +22,9 @@ export class ScreenSizeNoticeComponent {
    */
   @Input() content = '';
 
+  /**
+   * Input  of screen size notice component
+   */
   @Input() portal = EMPTY_LINK;
 
   /** Emits when the proceed button is clicked */
