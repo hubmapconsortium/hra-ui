@@ -5,7 +5,7 @@ describe('TissueLibraryService', () => {
   const service = new MockTissueLibraryService();
 
   it('returns mock tissue data', async () => {
-    const data = await firstValueFrom(service.getTissues());
+    const data = await firstValueFrom(service.getTissueLibrary());
     expect(data).toBeDefined();
   });
 });
