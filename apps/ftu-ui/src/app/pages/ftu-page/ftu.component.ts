@@ -8,7 +8,7 @@ import {
   MedicalIllustrationBehaviorComponent,
 } from '@hra-ui/components/behavioral';
 import { FullscreenContainerComponent, FullscreenContentComponent } from '@hra-ui/components/molecules';
-import { MedicalIllustrationActions, ScreenModeSelectors } from '@hra-ui/state';
+import { ActiveFtuActions, ScreenModeSelectors } from '@hra-ui/state';
 import { takeUntil } from 'rxjs';
 
 /** Main FTU page */
@@ -34,7 +34,7 @@ export class FtuComponent {
   /** Set the illustration from the id query parameter */
   constructor() {
     const queryParams$ = inject(ActivatedRoute).queryParams.pipe(takeUntil(injectDestroy$()));
-    const setUriFromIri = dispatch(MedicalIllustrationActions.SetUriFromIRI);
+    const setUriFromIri = dispatch(ActiveFtuActions.Load);
     queryParams$.subscribe((queryParams) => setUriFromIri(queryParams['id']));
   }
 }

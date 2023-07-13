@@ -15,7 +15,7 @@ import {
 } from '@hra-ui/components/atoms';
 import { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/components/molecules';
 import { BiomarkerTableComponent } from '@hra-ui/components/organisms';
-import { CellSummarySelectors, ResourceIds as Ids, ResourceTypes as RTypes, SourceListSelectors } from '@hra-ui/state';
+import { CellSummarySelectors, ResourceIds as Ids, ResourceTypes as RTypes, SourceRefsSelectors } from '@hra-ui/state';
 
 /** The component displays the biomarker details which includes the details, gradient legends, size legends and source lists*/
 @Component({
@@ -60,7 +60,7 @@ export class BiomarkerDetailsComponent {
   readonly sizes = selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>;
 
   /** List of sources with titles and links displayed to the user */
-  readonly source = selectSnapshot(SourceListSelectors.getSourceList);
+  readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);
 
   /** A dispatcher function to set the screen mode */
   private readonly setScreenMode = dispatch(ScreenModeAction.Set);
