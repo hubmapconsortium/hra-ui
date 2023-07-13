@@ -1,4 +1,4 @@
-import { Component, HostBinding, HostListener, OnInit, inject } from '@angular/core';
+import { AfterViewInit, Component, HostBinding, inject } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { StorageId, StorageSelectors } from '@hra-ui/cdk/state';
@@ -8,14 +8,16 @@ import { ScreenNoticeBehaviorComponent } from '@hra-ui/components/behavioral';
   selector: 'ftu-ui-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [MatDialog, MatDialogModule],
+  providers: [MatDialogModule],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements AfterViewInit {
   @HostBinding('class.mat-typography') readonly matTypography = true;
+
+  readonly SMALL_VIEWPORT_THRESHOLD = 480; // In pixels
 
   screenSizeNoticeOpen = false;
 
-  private readonly screenSizeNoticeShown = selectQuerySnapshot(
+  private readonly hasShownSmallViewportNotice = selectQuerySnapshot(
     StorageSelectors.get,
     StorageId.Local,
     'screen-size-notice'
@@ -23,18 +25,12 @@ export class AppComponent implements OnInit {
 
   private readonly dialog = inject(MatDialog);
 
-  ngOnInit(): void {
-    this.openModalIfViewportLessThan480px();
+  ngAfterViewInit(): void {
+    this.detectSmallViewport();
   }
 
-  @HostListener('window:resize', ['$event'])
-  onWindowResize(): void {
-    this.openModalIfViewportLessThan480px();
-  }
-
-  openModalIfViewportLessThan480px(): void {
-    const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
-    if (viewportWidth <= 480 && !this.screenSizeNoticeShown()) {
+  detectSmallViewport(): void {
+    if (window.innerWidth <= this.SMALL_VIEWPORT_THRESHOLD && !this.hasShownSmallViewportNotice()) {
       const dialogConfig: MatDialogConfig = {
         width: '312px',
         disableClose: false,

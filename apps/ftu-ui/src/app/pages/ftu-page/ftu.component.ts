@@ -30,7 +30,7 @@ import { takeUntil } from 'rxjs';
 })
 export class FtuComponent {
   /** Set the illustration from the id query parameter */
-  constructor(private dialog: MatDialog) {
+  constructor() {
     const queryParams$ = inject(ActivatedRoute).queryParams.pipe(takeUntil(injectDestroy$()));
     const setUriFromIri = dispatch(MedicalIllustrationActions.SetUriFromIRI);
     queryParams$.subscribe((queryParams) => setUriFromIri(queryParams['id']));
