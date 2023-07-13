@@ -5,6 +5,8 @@ import { MockTissueLibraryService } from './tissue-library/tissue-library.mock';
 import { TissueLibraryService } from './tissue-library/tissue-library.service';
 import { TissueFtuService } from './tissue-ftu/tissue-ftu.service';
 import { MockTissueFtuService } from './tissue-ftu/tissue-ftu.mock';
+import { FtuDataService } from './ftu-data/ftu-data.service';
+import { MockFtuDataService } from './ftu-data/ftu-data.mock';
 
 @NgModule({
   providers: [
@@ -20,6 +22,10 @@ import { MockTissueFtuService } from './tissue-ftu/tissue-ftu.mock';
     {
       provide: TissueFtuService,
       useExisting: MockTissueFtuService,
+    },
+    {
+      provide: FtuDataService,
+      useExisting: MockFtuDataService,
     },
   ],
 })

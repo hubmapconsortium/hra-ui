@@ -2,12 +2,8 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { InteractiveSvgComponent } from '@hra-ui/components/molecules';
-import {
-  MedicalIllustrationActions,
-  MedicalIllustrationSelectors,
-  SourceListActions,
-  SourceListSelectors,
-} from '@hra-ui/state';
+import { SourceRefsActions, SourceRefsSelectors } from '@hra-ui/state';
+import { IllustratorActions, IllustratorSelectors } from '@hra-ui/state';
 
 /**
  * Behavior component for medical illustration component
@@ -24,24 +20,25 @@ export class MedicalIllustrationBehaviorComponent {
   /**
    * Current illustration url
    */
-  readonly currentUrl = selectSnapshot(MedicalIllustrationSelectors.url);
+  readonly currentUrl = selectSnapshot(IllustratorSelectors.url);
 
   /**
    * Current mapping file
    */
-  readonly getMapping = selectSnapshot(MedicalIllustrationSelectors.mapping);
+  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);
 
   /**
    * Updates the active node on node hover
    */
-  readonly updateNode = dispatch(MedicalIllustrationActions.SetActiveNode);
+  readonly updateNode = dispatch(IllustratorActions.SetSelection);
+
   /**
    * Gets the List of Sources from SourceListSelectors
    */
-  readonly getSources = selectSnapshot(SourceListSelectors.getSourceList);
+  readonly getSources = selectSnapshot(SourceRefsSelectors.sourceReferences);
 
   /**
    * Update sources of medical illustration behavior component
    */
-  readonly updateSources = dispatch(SourceListActions.Set);
+  readonly updateSources = dispatch(SourceRefsActions.Load);
 }

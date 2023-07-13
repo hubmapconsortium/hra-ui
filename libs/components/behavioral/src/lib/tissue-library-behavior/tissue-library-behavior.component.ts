@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { select$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { TissueTreeListComponent } from '@hra-ui/components/molecules';
-import { TissueItem } from '@hra-ui/services';
-import { MedicalIllustrationSelectors, TissueLibrarySelectors } from '@hra-ui/state';
+import { Tissue } from '@hra-ui/services';
+import { IllustratorSelectors, TissueLibrarySelectors } from '@hra-ui/state';
 import { LabelBoxComponent } from '@hra-ui/components/atoms';
 
 /**
@@ -25,14 +25,14 @@ export class TissueLibraryBehaviorComponent {
   /**
    * Selected  of tissue library behavior component
    */
-  selected?: TissueItem;
+  selected?: Tissue;
 
   /**
    * Sets the TissueItem instance as undefined if
    * the url is undefined
    */
   constructor() {
-    select$(MedicalIllustrationSelectors.url).subscribe((url) => {
+    select$(IllustratorSelectors.url).subscribe((url) => {
       if (url === undefined) {
         this.selected = undefined;
       }
