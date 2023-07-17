@@ -13,6 +13,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { initFactory } from './app.init';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,8 @@ import { initFactory } from './app.init';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+
+    MatDialogModule,
 
     InlineSVGModule.forRoot(),
     MarkdownModule.forRoot({

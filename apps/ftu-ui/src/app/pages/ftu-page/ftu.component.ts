@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { dispatch, injectDestroy$ } from '@hra-ui/cdk/injectors';
 import {
@@ -17,7 +18,6 @@ import { takeUntil } from 'rxjs';
   standalone: true,
   imports: [
     CommonModule,
-
     BiomarkerDetailsComponent,
     FooterBehaviorComponent,
     FullscreenContainerComponent,
