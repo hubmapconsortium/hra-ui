@@ -76,11 +76,11 @@
           image: assets/images/blood_vasculature.svg
           tissueData:
             - name: Female
-              url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/blood-vasculature-female.html
+              url: https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/ref-organs/3d-vh-f-blood-vasculature.html
               alt: The Vasculature, blood, female
               threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Blood_Vasculature.glb
             - name: Male         
-              url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/blood-vasculature-male.html
+              url: https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/ref-organs/3d-vh-m-blood-vasculature.html
               alt: The Vasculature, blood, male
               threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Blood_Vasculature.glb
         - name: Bone Marrow
@@ -222,11 +222,11 @@
           image: assets/images/lung.svg
           tissueData:
             - name: Female
-              url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/lung-female.html
+              url: https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/ref-organs/3d-vh-f-lung.html
               alt: The Lungs, female
               threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Lung.glb
             - name: Male
-              url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/lung-male.html
+              url: https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/ref-organs/3d-vh-m-lung.html
               alt: The Lungs, male
               threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Lung.glb
         - name: Lymph Node
@@ -407,7 +407,6 @@
           image: assets/images/urinary_bladder.svg
           tissueData:
             - name: Female
-              
               url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/urinary-bladder-female.html
               alt: The urinary bladder, female
               threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Urinary_Bladder.glb
@@ -420,7 +419,6 @@
           image: assets/images/uterus.svg
           tissueData:
             - name: Female
-              
               url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/uterus-female.html
               alt: The uterus, female
               threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Uterus.glb
@@ -428,13 +426,11 @@
           image: assets/images/all_organs.svg
           tissueData:
             - name: Female
-              
-              url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/3d-vh-f-united.html
+              url: https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/ref-organs/3d-vh-f-united.html
               alt: All organs, female
               threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.3/3d-vh-f-united.glb
             - name: Male
-              
-              url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/vh-male-united.html
+              url: https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/ref-organs/3d-vh-m-united.html
               alt: All organs, male
               threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_United.glb
     - version: "1.3"
