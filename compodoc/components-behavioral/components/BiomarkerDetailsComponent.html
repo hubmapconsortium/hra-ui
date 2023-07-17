@@ -169,6 +169,20 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#toggleFullscreen" >toggleFullscreen</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
@@ -183,7 +197,52 @@
 
 
 
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleFullscreen"></a>
+                    <span class="name">
+                        <span ><b>toggleFullscreen</b></span>
+                        <a href="#toggleFullscreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleFullscreen()</code>
+                </td>
+            </tr>
 
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:71</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>A function that toggles isTableFullScreen and
+calls the setScreenMode function.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
     <section>
     
     <h3 id="inputs">
@@ -208,7 +267,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -242,7 +301,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:54</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -273,7 +332,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -305,7 +364,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -337,7 +396,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:59</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -369,7 +428,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:62</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -401,7 +460,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -425,8 +484,9 @@ import { ChangeDetectionStrategy, Component } from &#x27;@angular/core&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { MatTabsModule } from &#x27;@angular/material/tabs&#x27;;
 import { HoverDirective } from &#x27;@hra-ui/cdk&#x27;;
-import { selectQuerySnapshot, selectSnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
+import { dispatch, selectQuerySnapshot, selectSnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
 import { ResourceRegistrySelectors as RR } from &#x27;@hra-ui/cdk/state&#x27;;
+import { ScreenModeAction } from &#x27;@hra-ui/state&#x27;;
 import {
   GradientLegendComponent,
   GradientPoint,
@@ -482,6 +542,17 @@ export class BiomarkerDetailsComponent {
 
   /** List of sources with titles and links displayed to the user */
   readonly source &#x3D; selectSnapshot(SourceRefsSelectors.sourceReferences);
+
+  /** A dispatcher function to set the screen mode */
+  private readonly setScreenMode &#x3D; dispatch(ScreenModeAction.Set);
+
+  /** A function that toggles isTableFullScreen and
+   * calls the setScreenMode function.
+   */
+  toggleFullscreen(): void {
+    this.isTableFullScreen &#x3D; !this.isTableFullScreen;
+    this.setScreenMode(this.isTableFullScreen);
+  }
 }
 </code></pre>
     </div>
@@ -489,12 +560,12 @@ export class BiomarkerDetailsComponent {
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;hra-label-box class&#x3D;&quot;table-header&quot;&gt;
   Cell Types by Gene Biomarkers
-  &lt;mat-icon (click)&#x3D;&quot;this.isTableFullScreen &#x3D; !this.isTableFullScreen&quot; class&#x3D;&quot;end&quot;&gt;
+  &lt;mat-icon (click)&#x3D;&quot;toggleFullscreen()&quot; class&#x3D;&quot;end&quot;&gt;
     {{ isTableFullScreen ? &#x27;close_fullscreen&#x27; : &#x27;open_in_full&#x27; }}
   &lt;/mat-icon&gt;
 &lt;/hra-label-box&gt;
 
-&lt;mat-tab-group class&#x3D;&quot;table&quot; mat-stretch-tabs&#x3D;&quot;false&quot; color&#x3D;&quot;accent&quot;&gt;
+&lt;mat-tab-group class&#x3D;&quot;table&quot; [class.table-fullscreen]&#x3D;&quot;isTableFullScreen&quot; mat-stretch-tabs&#x3D;&quot;false&quot; color&#x3D;&quot;accent&quot;&gt;
   &lt;mat-tab *ngFor&#x3D;&quot;let tab of tabs()&quot; labelClass&#x3D;&quot;table-tab-header&quot; [label]&#x3D;&quot;tab.label&quot;&gt;
     &lt;hra-biomarker-table [data]&#x3D;&quot;$any(tab.rows)&quot; [columns]&#x3D;&quot;tab.columns&quot;&gt;&lt;/hra-biomarker-table&gt;
   &lt;/mat-tab&gt;
@@ -664,8 +735,8 @@ export class BiomarkerDetailsComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-label-box class="table-header">  Cell Types by Gene Biomarkers  <mat-icon (click)="this.isTableFullScreen = !this.isTableFullScreen" class="end">    {{ isTableFullScreen ? \'close_fullscreen\' : \'open_in_full\' }}  </mat-icon></hra-label-box><mat-tab-group class="table" mat-stretch-tabs="false" color="accent">  <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="tab.label">    <hra-biomarker-table [data]="$any(tab.rows)" [columns]="tab.columns"></hra-biomarker-table>  </mat-tab></mat-tab-group><hra-label-box class="legend-header gradient">  Biomarker Expression Mean in FTU  <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="gradientHoverInfo()">info_outlined</mat-icon></hra-label-box><div class="legend gradient">  <hra-gradient-legend [gradient]="gradients()" class="content"></hra-gradient-legend></div><hra-label-box class="legend-header size">  Percentage of Cells in FTU  <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="sizeHoverInfo()">info_outlined</mat-icon></hra-label-box><div class="legend size">  <hra-size-legend [sizes]="sizes()" class="content"></hra-size-legend></div><hra-label-box class="source-list-header">  Source Data  <mat-icon class="end">expand_more</mat-icon></hra-label-box><div class="source-list">  <hra-source-list [sources]="source()" class="content"></hra-source-list></div><ng-template #infoTooltip let-tooltip>  <div class="biomarker-details info-tooltip">    {{ tooltip }}  </div></ng-template></div>'
-    var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
+        var COMPONENT_TEMPLATE = '<div><hra-label-box class="table-header">  Cell Types by Gene Biomarkers  <mat-icon (click)="toggleFullscreen()" class="end">    {{ isTableFullScreen ? \'close_fullscreen\' : \'open_in_full\' }}  </mat-icon></hra-label-box><mat-tab-group class="table" [class.table-fullscreen]="isTableFullScreen" mat-stretch-tabs="false" color="accent">  <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="tab.label">    <hra-biomarker-table [data]="$any(tab.rows)" [columns]="tab.columns"></hra-biomarker-table>  </mat-tab></mat-tab-group><hra-label-box class="legend-header gradient">  Biomarker Expression Mean in FTU  <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="gradientHoverInfo()">info_outlined</mat-icon></hra-label-box><div class="legend gradient">  <hra-gradient-legend [gradient]="gradients()" class="content"></hra-gradient-legend></div><hra-label-box class="legend-header size">  Percentage of Cells in FTU  <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="sizeHoverInfo()">info_outlined</mat-icon></hra-label-box><div class="legend size">  <hra-size-legend [sizes]="sizes()" class="content"></hra-size-legend></div><hra-label-box class="source-list-header">  Source Data  <mat-icon class="end">expand_more</mat-icon></hra-label-box><div class="source-list">  <hra-source-list [sources]="source()" class="content"></hra-source-list></div><ng-template #infoTooltip let-tooltip>  <div class="biomarker-details info-tooltip">    {{ tooltip }}  </div></ng-template></div>'
+    var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'ScreenNoticeBehaviorComponent', 'selector': 'ftu-ui-screen-notice-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'BiomarkerDetailsComponent'};
 </script>

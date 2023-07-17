@@ -478,6 +478,8 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
 
 :host {
   display: block;
+  max-height: 16.5rem;
+  max-width: 43rem;
 
   .sr-only {
     @include utils.sr-only();
@@ -557,6 +559,8 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
   border-radius: 0.5rem;
   box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
   background-color: vars.$primary-contrast-rgb;
+  overflow: auto;
+  max-width: fit-content;
 }
 </code></pre>
     </div>

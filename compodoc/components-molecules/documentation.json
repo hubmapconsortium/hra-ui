@@ -1752,7 +1752,7 @@
         },
         {
             "name": "ScreenSizeNoticeComponent",
-            "id": "component-ScreenSizeNoticeComponent-5703bd8b1cc8230fd2afb96b7d917f103baec1d78e31f4b9ec95dc1564ce9ef7dbe965f41c1a676ad68faf75355914b4da2d7c7f2f467743124f0af4d888d723",
+            "id": "component-ScreenSizeNoticeComponent-6b641a220201d969fb228ecf72f5e7a8fc87da742b8a53350bc9c27cea9c54a6493313826b99ec8c34dfd7004772a27748e45af5b0c9ead80bdf168a781117f8",
             "file": "src/lib/screen-size-notice/screen-size-notice.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1771,28 +1771,29 @@
             "viewProviders": [],
             "inputsClass": [
                 {
-                    "name": "contentUrl",
+                    "name": "content",
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nInput for passing screen size notice content\n",
                     "description": "<p>Input for passing screen size notice content</p>\n",
-                    "line": 22,
+                    "line": 23,
                     "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "portal",
+                    "defaultValue": "EMPTY_LINK",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nInput  of screen size notice component\n",
+                    "description": "<p>Input  of screen size notice component</p>\n",
+                    "line": 28,
+                    "type": "any",
                     "decorators": []
                 }
             ],
             "outputsClass": [
-                {
-                    "name": "portalClick",
-                    "defaultValue": "new EventEmitter<void>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\nEmits when the portal button is clicked",
-                    "description": "<p>Emits when the portal button is clicked</p>\n",
-                    "line": 28,
-                    "type": "EventEmitter"
-                },
                 {
                     "name": "proceedClick",
                     "defaultValue": "new EventEmitter<void>()",
@@ -1800,7 +1801,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nEmits when the proceed button is clicked",
                     "description": "<p>Emits when the proceed button is clicked</p>\n",
-                    "line": 25,
+                    "line": 31,
                     "type": "EventEmitter"
                 }
             ],
@@ -1813,16 +1814,16 @@
             "description": "<p>The screen size notice component displays a notice for the users specifying the required screen size</p>\n",
             "rawdescription": "\n\nThe screen size notice component displays a notice for the users specifying the required screen size\n",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MarkdownModule } from 'ngx-markdown';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\n\n/**\n * The screen size notice component displays a notice for the users specifying the required screen size\n */\n@Component({\n  selector: 'hra-screen-size-notice',\n  standalone: true,\n  imports: [CommonModule, MarkdownModule, MatButtonModule, MatIconModule],\n  templateUrl: './screen-size-notice.component.html',\n  styleUrls: ['./screen-size-notice.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ScreenSizeNoticeComponent {\n  /**\n   * Input for passing screen size notice content\n   */\n  @Input() contentUrl = '';\n\n  /** Emits when the proceed button is clicked */\n  @Output() readonly proceedClick = new EventEmitter<void>();\n\n  /** Emits when the portal button is clicked */\n  @Output() readonly portalClick = new EventEmitter<void>();\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MarkdownModule } from 'ngx-markdown';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { EMPTY_LINK, LinkDirective } from '@hra-ui/cdk';\n\n/**\n * The screen size notice component displays a notice for the users specifying the required screen size\n */\n@Component({\n  selector: 'hra-screen-size-notice',\n  standalone: true,\n  imports: [CommonModule, MarkdownModule, MatButtonModule, MatIconModule, LinkDirective],\n  templateUrl: './screen-size-notice.component.html',\n  styleUrls: ['./screen-size-notice.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ScreenSizeNoticeComponent {\n  /**\n   * Input for passing screen size notice content\n   */\n  @Input() content = '';\n\n  /**\n   * Input  of screen size notice component\n   */\n  @Input() portal = EMPTY_LINK;\n\n  /** Emits when the proceed button is clicked */\n  @Output() readonly proceedClick = new EventEmitter<void>();\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: none;\n\n  .header-close {\n    position: absolute;\n    top: 1rem;\n    right: 1rem;\n  }\n\n  h3 {\n    margin: 0 0 1rem 0;\n    font-weight: 700;\n  }\n\n  .btn-stroked {\n    font-weight: 700;\n    margin-bottom: 1rem;\n    margin-top: 1rem;\n    padding: 0.75rem 0;\n    letter-spacing: 0.5px;\n  }\n\n  .btn-flat {\n    font-weight: 700;\n    font-size: 16px;\n    padding: 0.75rem 0;\n    letter-spacing: 0.5px;\n  }\n\n  .content {\n    font-size: 1rem;\n    line-height: 1.5rem;\n    letter-spacing: 0.5px;\n  }\n\n  @media (max-width: 480px) {\n    display: flex;\n    position: relative;\n    border-radius: 0.5rem;\n    padding: 1.5rem;\n    box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);\n    flex-direction: column;\n  }\n}\n",
+                    "data": ":host {\n  display: none;\n  position: relative;\n  border-radius: 0.5rem;\n  padding: 1.5rem;\n  box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);\n  flex-direction: column;\n\n  .header-close {\n    position: absolute;\n    top: 1rem;\n    right: 1rem;\n  }\n\n  h3 {\n    margin: 0 0 1rem 0;\n    font-weight: 700;\n  }\n\n  .btn-stroked {\n    font-weight: 700;\n    margin-bottom: 1rem;\n    margin-top: 1rem;\n    padding: 0.75rem 0;\n    letter-spacing: 0.5px;\n  }\n\n  .btn-flat {\n    font-weight: 700;\n    font-size: 16px;\n    padding: 0.75rem 0;\n    letter-spacing: 0.5px;\n    color: white;\n  }\n\n  .content {\n    font-size: 1rem;\n    line-height: 1.5rem;\n    letter-spacing: 0.5px;\n  }\n\n  @media (max-width: 480px) {\n    display: flex;\n    position: relative;\n    border-radius: 0.5rem;\n    padding: 1.5rem;\n    box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);\n    flex-direction: column;\n  }\n}\n",
                     "styleUrl": "./screen-size-notice.component.scss"
                 }
             ],
             "stylesData": "",
-            "templateData": "<h3>Screen Size Notice</h3>\n<button mat-icon-button class=\"header-close\">\n  <mat-icon>close</mat-icon>\n</button>\n<markdown [src]=\"contentUrl\" class=\"content\"></markdown>\n<button mat-stroked-button color=\"accent\" class=\"btn-stroked\" (click)=\"proceedClick.emit()\">\n  Proceed to FTU Explorer\n</button>\n<button mat-flat-button color=\"primary\" class=\"btn-flat\" (click)=\"portalClick.emit()\">\n  Human Reference Atlas Portal\n</button>\n"
+            "templateData": "<h3>Screen Size Notice</h3>\n<button mat-icon-button class=\"header-close\" (click)=\"proceedClick.emit()\">\n  <mat-icon>close</mat-icon>\n</button>\n<markdown [data]=\"content\" class=\"content\"></markdown>\n<button mat-stroked-button color=\"accent\" class=\"btn-stroked\" (click)=\"proceedClick.emit()\">\n  Proceed to FTU Explorer\n</button>\n<a mat-flat-button color=\"primary\" class=\"btn-flat\" [hraLink]=\"portal\"> Human Reference Atlas Portal </a>\n"
         },
         {
             "name": "SourceListComponent",

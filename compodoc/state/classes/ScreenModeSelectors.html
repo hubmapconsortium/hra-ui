@@ -136,14 +136,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Selector()<br /></code>
+                    <code>@Selector([&#x27;ScreenModeState&#x27;])<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/lib/screen-mode/screen-mode.selectors.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="15"
+                            class="link-to-prism">src/lib/screen-mode/screen-mode.selectors.ts:15</a></div>
                 </td>
             </tr>
 
@@ -206,6 +206,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Selector } from &#x27;@ngxs/store&#x27;;
 import { ScreenModeModel } from &#x27;./screen-mode.model&#x27;;
+import { ScreenModeState } from &#x27;./screen-mode.state&#x27;;
 
 /**
  * Screen mode selectors
@@ -216,7 +217,7 @@ export class ScreenModeSelectors {
    * @param state
    * @returns true if full screen
    */
-  @Selector()
+  @Selector([ScreenModeState])
   static isFullScreen(state: ScreenModeModel): boolean {
     return state.isFullScreen;
   }
