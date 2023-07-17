@@ -387,12 +387,12 @@
         },
         {
             "name": "SourceListItem",
-            "id": "interface-SourceListItem-24b618907122d675c2e036f49ffc06a5d944dbdff9b9ea84c2641c7559be0fd32adce3dda8265697032cc933b0dbd641cfbb81f0216622f9c562ee3abd45cb97",
+            "id": "interface-SourceListItem-215bd5e84824aad97c2f5022f708d001268b9f88e2973b3d60c6279c91b42c48345e76fd835593ceba69aff4d908ae7297f906a70fa631f51d24b2ad0f311db3",
             "file": "src/lib/source-list/source-list.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from '@angular/material/table';\n\n/** SourceListItem interface contains title and link to the dataset for the SourceList*/\nexport interface SourceListItem {\n  /** Title of the dataset in the SourceList */\n  label: string;\n\n  /** Link to the dataset in the SourceList */\n  link: string;\n}\n\n/** This component shows list of sources with title and links to the datasets */\n@Component({\n  selector: 'hra-source-list',\n  standalone: true,\n  imports: [CommonModule, MatTableModule],\n  templateUrl: './source-list.component.html',\n  styleUrls: ['./source-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SourceListComponent {\n  /** List of sources with titles and links displayed to the user */\n  @Input() sources: SourceListItem[] = [];\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from '@angular/material/table';\nimport { MatIconModule } from '@angular/material/icon';\n\n/** SourceListItem interface contains title and link to the dataset for the SourceList*/\nexport interface SourceListItem {\n  /** Title of the dataset in the SourceList */\n  label: string;\n\n  /** Link to the dataset in the SourceList */\n  link: string;\n}\n\n/** This component shows list of sources with title and links to the datasets */\n@Component({\n  selector: 'hra-source-list',\n  standalone: true,\n  imports: [CommonModule, MatTableModule, MatIconModule],\n  templateUrl: './source-list.component.html',\n  styleUrls: ['./source-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SourceListComponent {\n  /** List of sources with titles and links displayed to the user */\n  @Input() sources: SourceListItem[] = [];\n  /**\n   * Show table of source list component which toggles to true or false\n   * based on click\n   */\n  showTable = true;\n\n  /**\n   * It changes the value of showTable to false if value it true\n   * and vice versa\n   */\n  toggleTable(): void {\n    this.showTable = !this.showTable;\n  }\n}\n",
             "properties": [
                 {
                     "name": "label",
@@ -401,7 +401,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "<p>Title of the dataset in the SourceList</p>\n",
-                    "line": 8,
+                    "line": 9,
                     "rawdescription": "\nTitle of the dataset in the SourceList"
                 },
                 {
@@ -411,7 +411,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "<p>Link to the dataset in the SourceList</p>\n",
-                    "line": 11,
+                    "line": 12,
                     "rawdescription": "\nLink to the dataset in the SourceList"
                 }
             ],
@@ -1817,16 +1817,16 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: flex;\n  position: relative;\n  border-radius: 0.5rem;\n  padding: 1.5rem;\n  box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);\n  flex-direction: column;\n\n  .header-close {\n    position: absolute;\n    top: 1rem;\n    right: 1rem;\n  }\n\n  h2 {\n    margin: 0 0 1rem 0;\n  }\n\n  .btn-stroked {\n    font-weight: 700;\n    margin-bottom: 1rem;\n    margin-top: 1rem;\n  }\n\n  .btn-flat {\n    font-weight: 700;\n  }\n\n  .content {\n    font-size: 1rem;\n  }\n}\n",
+                    "data": ":host {\n  display: none;\n\n  .header-close {\n    position: absolute;\n    top: 1rem;\n    right: 1rem;\n  }\n\n  h3 {\n    margin: 0 0 1rem 0;\n    font-weight: 700;\n  }\n\n  .btn-stroked {\n    font-weight: 700;\n    margin-bottom: 1rem;\n    margin-top: 1rem;\n    padding: 0.75rem 0;\n    letter-spacing: 0.5px;\n  }\n\n  .btn-flat {\n    font-weight: 700;\n    font-size: 16px;\n    padding: 0.75rem 0;\n    letter-spacing: 0.5px;\n  }\n\n  .content {\n    font-size: 1rem;\n    line-height: 1.5rem;\n    letter-spacing: 0.5px;\n  }\n\n  @media (max-width: 480px) {\n    display: flex;\n    position: relative;\n    border-radius: 0.5rem;\n    padding: 1.5rem;\n    box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);\n    flex-direction: column;\n  }\n}\n",
                     "styleUrl": "./screen-size-notice.component.scss"
                 }
             ],
             "stylesData": "",
-            "templateData": "<h2>Screen Size Notice</h2>\n<button mat-icon-button class=\"header-close\">\n  <mat-icon>close</mat-icon>\n</button>\n<markdown [src]=\"contentUrl\" class=\"content\"></markdown>\n<button mat-stroked-button color=\"primary\" class=\"btn-stroked\" (click)=\"proceedClick.emit()\">\n  Proceed to FTU Explorer\n</button>\n<button mat-flat-button color=\"primary\" class=\"btn-flat\" (click)=\"portalClick.emit()\">\n  Human Reference Atlas Portal\n</button>\n"
+            "templateData": "<h3>Screen Size Notice</h3>\n<button mat-icon-button class=\"header-close\">\n  <mat-icon>close</mat-icon>\n</button>\n<markdown [src]=\"contentUrl\" class=\"content\"></markdown>\n<button mat-stroked-button color=\"accent\" class=\"btn-stroked\" (click)=\"proceedClick.emit()\">\n  Proceed to FTU Explorer\n</button>\n<button mat-flat-button color=\"primary\" class=\"btn-flat\" (click)=\"portalClick.emit()\">\n  Human Reference Atlas Portal\n</button>\n"
         },
         {
             "name": "SourceListComponent",
-            "id": "component-SourceListComponent-24b618907122d675c2e036f49ffc06a5d944dbdff9b9ea84c2641c7559be0fd32adce3dda8265697032cc933b0dbd641cfbb81f0216622f9c562ee3abd45cb97",
+            "id": "component-SourceListComponent-215bd5e84824aad97c2f5022f708d001268b9f88e2973b3d60c6279c91b42c48345e76fd835593ceba69aff4d908ae7297f906a70fa631f51d24b2ad0f311db3",
             "file": "src/lib/source-list/source-list.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1851,14 +1851,39 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nList of sources with titles and links displayed to the user",
                     "description": "<p>List of sources with titles and links displayed to the user</p>\n",
-                    "line": 25,
+                    "line": 26,
                     "type": "SourceListItem[]",
                     "decorators": []
                 }
             ],
             "outputsClass": [],
-            "propertiesClass": [],
-            "methodsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "showTable",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Show table of source list component which toggles to true or false\nbased on click</p>\n",
+                    "line": 31,
+                    "rawdescription": "\n\nShow table of source list component which toggles to true or false\nbased on click\n"
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "toggleTable",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 37,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nIt changes the value of showTable to false if value it true\nand vice versa\n",
+                    "description": "<p>It changes the value of showTable to false if value it true\nand vice versa</p>\n"
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -1866,16 +1891,16 @@
             "description": "<p>This component shows list of sources with title and links to the datasets</p>\n",
             "rawdescription": "\nThis component shows list of sources with title and links to the datasets",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from '@angular/material/table';\n\n/** SourceListItem interface contains title and link to the dataset for the SourceList*/\nexport interface SourceListItem {\n  /** Title of the dataset in the SourceList */\n  label: string;\n\n  /** Link to the dataset in the SourceList */\n  link: string;\n}\n\n/** This component shows list of sources with title and links to the datasets */\n@Component({\n  selector: 'hra-source-list',\n  standalone: true,\n  imports: [CommonModule, MatTableModule],\n  templateUrl: './source-list.component.html',\n  styleUrls: ['./source-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SourceListComponent {\n  /** List of sources with titles and links displayed to the user */\n  @Input() sources: SourceListItem[] = [];\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from '@angular/material/table';\nimport { MatIconModule } from '@angular/material/icon';\n\n/** SourceListItem interface contains title and link to the dataset for the SourceList*/\nexport interface SourceListItem {\n  /** Title of the dataset in the SourceList */\n  label: string;\n\n  /** Link to the dataset in the SourceList */\n  link: string;\n}\n\n/** This component shows list of sources with title and links to the datasets */\n@Component({\n  selector: 'hra-source-list',\n  standalone: true,\n  imports: [CommonModule, MatTableModule, MatIconModule],\n  templateUrl: './source-list.component.html',\n  styleUrls: ['./source-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SourceListComponent {\n  /** List of sources with titles and links displayed to the user */\n  @Input() sources: SourceListItem[] = [];\n  /**\n   * Show table of source list component which toggles to true or false\n   * based on click\n   */\n  showTable = true;\n\n  /**\n   * It changes the value of showTable to false if value it true\n   * and vice versa\n   */\n  toggleTable(): void {\n    this.showTable = !this.showTable;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use 'utils';\n\n:host {\n  display: block;\n\n  .mat-mdc-cell {\n    vertical-align: top;\n    border: none;\n    padding: 0.25rem 0.875rem;\n    font-size: 1rem;\n  }\n\n  .sr-only {\n    @include utils.sr-only();\n  }\n}\n",
+                    "data": "@use 'utils';\n@use 'variables' as vars;\n\n:host {\n  display: block;\n\n  @include utils.define-flex-filler();\n\n  h1 {\n    margin: 0;\n  }\n\n  .text {\n    margin-left: 2rem;\n    margin-right: 30rem;\n    font-weight: 400;\n    color: vars.$primary;\n  }\n\n  .mat-mdc-cell {\n    vertical-align: top;\n    border: none;\n    padding: 0.25rem 0.875rem;\n    font-size: 1rem;\n  }\n\n  .filler {\n    width: 30rem;\n  }\n\n  .sr-only {\n    @include utils.sr-only();\n  }\n\n  .toggle {\n    margin-bottom: 1rem;\n    display: flex;\n    align-items: center;\n    border: none;\n    width: 43rem;\n    height: 3.5rem;\n    padding: 1rem, 2rem;\n  }\n\n  .hidden {\n    display: none;\n  }\n}\n",
                     "styleUrl": "./source-list.component.scss"
                 }
             ],
             "stylesData": "",
-            "templateData": "<table mat-table [dataSource]=\"sources\">\n  <caption class=\"sr-only\">\n    Source List Table with Title and Links\n  </caption>\n\n  <!-- Position Column -->\n  <ng-container matColumnDef=\"link\">\n    <th class=\"sr-only\" mat-header-cell *matHeaderCellDef>Item Number</th>\n    <td mat-cell *matCellDef=\"let element; let i = index\">{{ i + 1 }}.</td>\n  </ng-container>\n\n  <!-- Data Column -->\n  <ng-container matColumnDef=\"title\">\n    <th class=\"sr-only\" mat-header-cell *matHeaderCellDef>Title and Link</th>\n    <td mat-cell *matCellDef=\"let element\">\n      {{ element.title }}\n      <br />\n      <a [href]=\"element.link\" target=\"_blank\">{{ element.link }}</a>\n    </td>\n  </ng-container>\n\n  <tr mat-row *matRowDef=\"let row; columns: ['link', 'title']\"></tr>\n</table>\n"
+            "templateData": "<button mat-icon-button class=\"toggle\" (click)=\"toggleTable()\">\n  <h1 class=\"text\">Source Data</h1>\n  <mat-icon>\n    {{ showTable ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}\n  </mat-icon>\n</button>\n\n<table mat-table [dataSource]=\"sources\" [class.hidden]=\"!showTable\">\n  <caption class=\"sr-only\">\n    Source List Table with Title and Links\n  </caption>\n\n  <!-- Position Column -->\n  <ng-container matColumnDef=\"link\">\n    <th class=\"sr-only\" mat-header-cell *matHeaderCellDef>Item Number</th>\n    <td mat-cell *matCellDef=\"let element; let i = index\">{{ i + 1 }}.</td>\n  </ng-container>\n\n  <!-- Data Column -->\n  <ng-container matColumnDef=\"title\">\n    <th class=\"sr-only\" mat-header-cell *matHeaderCellDef>Title and Link</th>\n    <td mat-cell *matCellDef=\"let element\">\n      {{ element.title }}\n      <br />\n      <a [href]=\"element.link\" target=\"_blank\">{{ element.link }}</a>\n    </td>\n  </ng-container>\n\n  <tr mat-row *matRowDef=\"let row; columns: ['link', 'title']\"></tr>\n</table>\n"
         },
         {
             "name": "TissueTreeListComponent",

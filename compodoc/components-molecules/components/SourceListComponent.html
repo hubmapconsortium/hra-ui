@@ -130,7 +130,35 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#showTable" >showTable</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#toggleTable" >toggleTable</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -178,7 +206,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/lib/source-list/source-list.component.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/lib/source-list/source-list.component.ts:26</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -193,7 +221,90 @@
 
 
 
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleTable"></a>
+                    <span class="name">
+                        <span ><b>toggleTable</b></span>
+                        <a href="#toggleTable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleTable()</code>
+                </td>
+            </tr>
 
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/lib/source-list/source-list.component.ts:37</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>It changes the value of showTable to false if value it true
+and vice versa</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showTable"></a>
+                    <span class="name">
+                        <span ><b>showTable</b></span>
+                        <a href="#showTable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/lib/source-list/source-list.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Show table of source list component which toggles to true or false
+based on click</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
 
 </div>
 
@@ -202,6 +313,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Input } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { MatTableModule } from &#x27;@angular/material/table&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 
 /** SourceListItem interface contains title and link to the dataset for the SourceList*/
 export interface SourceListItem {
@@ -216,7 +328,7 @@ export interface SourceListItem {
 @Component({
   selector: &#x27;hra-source-list&#x27;,
   standalone: true,
-  imports: [CommonModule, MatTableModule],
+  imports: [CommonModule, MatTableModule, MatIconModule],
   templateUrl: &#x27;./source-list.component.html&#x27;,
   styleUrls: [&#x27;./source-list.component.scss&#x27;],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -224,12 +336,32 @@ export interface SourceListItem {
 export class SourceListComponent {
   /** List of sources with titles and links displayed to the user */
   @Input() sources: SourceListItem[] &#x3D; [];
+  /**
+   * Show table of source list component which toggles to true or false
+   * based on click
+   */
+  showTable &#x3D; true;
+
+  /**
+   * It changes the value of showTable to false if value it true
+   * and vice versa
+   */
+  toggleTable(): void {
+    this.showTable &#x3D; !this.showTable;
+  }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;table mat-table [dataSource]&#x3D;&quot;sources&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;button mat-icon-button class&#x3D;&quot;toggle&quot; (click)&#x3D;&quot;toggleTable()&quot;&gt;
+  &lt;h1 class&#x3D;&quot;text&quot;&gt;Source Data&lt;/h1&gt;
+  &lt;mat-icon&gt;
+    {{ showTable ? &#x27;keyboard_arrow_down&#x27; : &#x27;keyboard_arrow_up&#x27; }}
+  &lt;/mat-icon&gt;
+&lt;/button&gt;
+
+&lt;table mat-table [dataSource]&#x3D;&quot;sources&quot; [class.hidden]&#x3D;&quot;!showTable&quot;&gt;
   &lt;caption class&#x3D;&quot;sr-only&quot;&gt;
     Source List Table with Title and Links
   &lt;/caption&gt;
@@ -260,9 +392,23 @@ export class SourceListComponent {
                     <code>./source-list.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss">@use &#x27;utils&#x27;;
+@use &#x27;variables&#x27; as vars;
 
 :host {
   display: block;
+
+  @include utils.define-flex-filler();
+
+  h1 {
+    margin: 0;
+  }
+
+  .text {
+    margin-left: 2rem;
+    margin-right: 30rem;
+    font-weight: 400;
+    color: vars.$primary;
+  }
 
   .mat-mdc-cell {
     vertical-align: top;
@@ -271,8 +417,26 @@ export class SourceListComponent {
     font-size: 1rem;
   }
 
+  .filler {
+    width: 30rem;
+  }
+
   .sr-only {
     @include utils.sr-only();
+  }
+
+  .toggle {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    border: none;
+    width: 43rem;
+    height: 3.5rem;
+    padding: 1rem, 2rem;
+  }
+
+  .hidden {
+    display: none;
   }
 }
 </code></pre>
@@ -303,7 +467,7 @@ export class SourceListComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><table mat-table [dataSource]="sources">  <caption class="sr-only">    Source List Table with Title and Links  </caption>  <!-- Position Column -->  <ng-container matColumnDef="link">    <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Number</th>    <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}.</td>  </ng-container>  <!-- Data Column -->  <ng-container matColumnDef="title">    <th class="sr-only" mat-header-cell *matHeaderCellDef>Title and Link</th>    <td mat-cell *matCellDef="let element">      {{ element.title }}      <br />      <a [href]="element.link" target="_blank">{{ element.link }}</a>    </td>  </ng-container>  <tr mat-row *matRowDef="let row; columns: [\'link\', \'title\']"></tr></table></div>'
+        var COMPONENT_TEMPLATE = '<div><button mat-icon-button class="toggle" (click)="toggleTable()">  <h1 class="text">Source Data</h1>  <mat-icon>    {{ showTable ? \'keyboard_arrow_down\' : \'keyboard_arrow_up\' }}  </mat-icon></button><table mat-table [dataSource]="sources" [class.hidden]="!showTable">  <caption class="sr-only">    Source List Table with Title and Links  </caption>  <!-- Position Column -->  <ng-container matColumnDef="link">    <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Number</th>    <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}.</td>  </ng-container>  <!-- Data Column -->  <ng-container matColumnDef="title">    <th class="sr-only" mat-header-cell *matHeaderCellDef>Title and Link</th>    <td mat-cell *matCellDef="let element">      {{ element.title }}      <br />      <a [href]="element.link" target="_blank">{{ element.link }}</a>    </td>  </ng-container>  <tr mat-row *matRowDef="let row; columns: [\'link\', \'title\']"></tr></table></div>'
     var COMPONENTS = [{'name': 'BiomarkerTableDataCardComponent', 'selector': 'hra-biomarker-table-data-card'},{'name': 'BiomarkerTableDataIconComponent', 'selector': 'hra-biomarker-table-data-icon'},{'name': 'ContactModalComponent', 'selector': 'hra-contact-modal'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenContainerComponent', 'selector': 'hra-fullscreen-container'},{'name': 'FullscreenContentComponent', 'selector': 'hra-fullscreen-content'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InteractiveSvgComponent', 'selector': 'hra-interactive-svg'},{'name': 'LandingPageInDepthComponent', 'selector': 'hra-landing-page-in-depth'},{'name': 'LandingPageIntroComponent', 'selector': 'hra-landing-page-intro'},{'name': 'MetricsComponent', 'selector': 'hra-metrics'},{'name': 'ScreenSizeNoticeComponent', 'selector': 'hra-screen-size-notice'},{'name': 'SourceListComponent', 'selector': 'hra-source-list'},{'name': 'TissueTreeListComponent', 'selector': 'hra-tissue-tree-list'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SourceListComponent'};

@@ -305,12 +305,12 @@ export class ScreenSizeNoticeComponent {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;h2&gt;Screen Size Notice&lt;/h2&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;h3&gt;Screen Size Notice&lt;/h3&gt;
 &lt;button mat-icon-button class&#x3D;&quot;header-close&quot;&gt;
   &lt;mat-icon&gt;close&lt;/mat-icon&gt;
 &lt;/button&gt;
 &lt;markdown [src]&#x3D;&quot;contentUrl&quot; class&#x3D;&quot;content&quot;&gt;&lt;/markdown&gt;
-&lt;button mat-stroked-button color&#x3D;&quot;primary&quot; class&#x3D;&quot;btn-stroked&quot; (click)&#x3D;&quot;proceedClick.emit()&quot;&gt;
+&lt;button mat-stroked-button color&#x3D;&quot;accent&quot; class&#x3D;&quot;btn-stroked&quot; (click)&#x3D;&quot;proceedClick.emit()&quot;&gt;
   Proceed to FTU Explorer
 &lt;/button&gt;
 &lt;button mat-flat-button color&#x3D;&quot;primary&quot; class&#x3D;&quot;btn-flat&quot; (click)&#x3D;&quot;portalClick.emit()&quot;&gt;
@@ -324,12 +324,7 @@ export class ScreenSizeNoticeComponent {
                     <code>./screen-size-notice.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss">:host {
-  display: flex;
-  position: relative;
-  border-radius: 0.5rem;
-  padding: 1.5rem;
-  box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
-  flex-direction: column;
+  display: none;
 
   .header-close {
     position: absolute;
@@ -337,22 +332,39 @@ export class ScreenSizeNoticeComponent {
     right: 1rem;
   }
 
-  h2 {
+  h3 {
     margin: 0 0 1rem 0;
+    font-weight: 700;
   }
 
   .btn-stroked {
     font-weight: 700;
     margin-bottom: 1rem;
     margin-top: 1rem;
+    padding: 0.75rem 0;
+    letter-spacing: 0.5px;
   }
 
   .btn-flat {
     font-weight: 700;
+    font-size: 16px;
+    padding: 0.75rem 0;
+    letter-spacing: 0.5px;
   }
 
   .content {
     font-size: 1rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 480px) {
+    display: flex;
+    position: relative;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
+    flex-direction: column;
   }
 }
 </code></pre>
@@ -383,7 +395,7 @@ export class ScreenSizeNoticeComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><h2>Screen Size Notice</h2><button mat-icon-button class="header-close">  <mat-icon>close</mat-icon></button><markdown [src]="contentUrl" class="content"></markdown><button mat-stroked-button color="primary" class="btn-stroked" (click)="proceedClick.emit()">  Proceed to FTU Explorer</button><button mat-flat-button color="primary" class="btn-flat" (click)="portalClick.emit()">  Human Reference Atlas Portal</button></div>'
+        var COMPONENT_TEMPLATE = '<div><h3>Screen Size Notice</h3><button mat-icon-button class="header-close">  <mat-icon>close</mat-icon></button><markdown [src]="contentUrl" class="content"></markdown><button mat-stroked-button color="accent" class="btn-stroked" (click)="proceedClick.emit()">  Proceed to FTU Explorer</button><button mat-flat-button color="primary" class="btn-flat" (click)="portalClick.emit()">  Human Reference Atlas Portal</button></div>'
     var COMPONENTS = [{'name': 'BiomarkerTableDataCardComponent', 'selector': 'hra-biomarker-table-data-card'},{'name': 'BiomarkerTableDataIconComponent', 'selector': 'hra-biomarker-table-data-icon'},{'name': 'ContactModalComponent', 'selector': 'hra-contact-modal'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenContainerComponent', 'selector': 'hra-fullscreen-container'},{'name': 'FullscreenContentComponent', 'selector': 'hra-fullscreen-content'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InteractiveSvgComponent', 'selector': 'hra-interactive-svg'},{'name': 'LandingPageInDepthComponent', 'selector': 'hra-landing-page-in-depth'},{'name': 'LandingPageIntroComponent', 'selector': 'hra-landing-page-intro'},{'name': 'MetricsComponent', 'selector': 'hra-metrics'},{'name': 'ScreenSizeNoticeComponent', 'selector': 'hra-screen-size-notice'},{'name': 'SourceListComponent', 'selector': 'hra-source-list'},{'name': 'TissueTreeListComponent', 'selector': 'hra-tissue-tree-list'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ScreenSizeNoticeComponent'};
