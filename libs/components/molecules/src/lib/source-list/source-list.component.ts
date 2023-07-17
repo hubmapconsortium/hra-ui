@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 /** SourceListItem interface contains title and link to the dataset for the SourceList*/
 export interface SourceListItem {
   /** Title of the dataset in the SourceList */
-  title: string;
+  label: string;
 
   /** Link to the dataset in the SourceList */
   link: string;
