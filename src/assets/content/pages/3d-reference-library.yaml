@@ -1691,19 +1691,19 @@
         - label: 3D Reference Model Ontology Mapping
           links:
             - label: CSV
-              link: https://doi.org/10.48539/HBM527.RCXM.366
+              link: https://doi.org/10.48539/hbm527.rcxm.366
         - label: Extraction sites (male)
           links:
             - label: GLB
-              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1/Extraction%20Sites
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Male/v1.0/Extraction%20Sites
             - label: FBX
-              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1/Extraction%20Sites
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Male/v1.0/Extraction%20Sites
         - label: Extraction sites (female)
           links:
             - label: GLB
-              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.0/Extraction%20Sites
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Female/v1.0/Extraction%20Sites
             - label: FBX
-              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.0/Extraction%20Sites
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Female/v1.0/Extraction%20Sites
         - label: Reference Organs (female)
           links:
             - label: GLB
@@ -1721,15 +1721,15 @@
         - label: Extraction sites (male)
           links:
             - label: GLB
-              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.1/Extraction%20Sites
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Male/v1.1/Extraction%20Sites
             - label: FBX
-              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.1/Extraction%20Sites
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Male/v1.1/Extraction%20Sites
         - label: Extraction sites (female)
           links:
             - label: GLB
-              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.1/Extraction%20Sites
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Female/v1.0/Extraction%20Sites
             - label: FBX
-              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.1/Extraction%20Sites
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Female/v1.0/Extraction%20Sites
         - label: Reference Organs (female)
           links:
             - label: GLB
@@ -1747,15 +1747,15 @@
         - label: Extraction sites (male)
           links:
             - label: GLB
-              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.2/Extraction%20Sites
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Male/v1.2/Extraction%20Sites
             - label: FBX
-              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.2/Extraction%20Sites
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Male/v1.2/Extraction%20Sites
         - label: Extraction sites (female)
           links:
             - label: GLB
-              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.2/Extraction%20Sites
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Female/v1.2/Extraction%20Sites
             - label: FBX
-              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.2/Extraction%20Sites
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Female/v1.2/Extraction%20Sites
         - label: Reference Organs (female)
           links:
             - label: GLB
@@ -1769,19 +1769,13 @@
         - label: 3D Reference Model Ontology Mapping
           links:
             - label: CSV
-              link: https://doi.org/10.48539/HBM858.DNFV.736
-        - label: Extraction sites (male)
-          links:
-            - label: GLB
-              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.2/Extraction%20Sites
-            - label: FBX
-              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.2/Extraction%20Sites
+              link: https://doi.org/10.48539/HBM766.SDNC.676
         - label: Extraction sites (female)
           links:
             - label: GLB
-              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Female/v1.3
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Female/v1.3/VHF_extraction_landmarks
             - label: FBX
-              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Female/v1.3
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Female/v1.3/VHF_extraction_landmarks
         - label: Reference Organs (female)
           links:
             - label: GLB
@@ -1795,7 +1789,19 @@
         - label: 3D Reference Model Ontology Mapping
           links:
             - label: CSV
-              link: https://doi.org/10.48539/HBM858.DNFV.736
+              link: https://doi.org/10.48539/HBM622.BDXN.589
+        - label: Extraction sites (female)
+          links:
+            - label: GLB
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Female/v1.4/VHF_extraction_landmarks
+            - label: FBX
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Female/v1.4/VHF_extraction_landmarks
+        - label: Extraction sites (male)
+          links:
+            - label: GLB
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Male/v1.4/VHM_extraction_landmarks
+            - label: FBX
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Male/v1.4/VHM_extraction_landmarks
         - label: Reference Organs (female)
           links:
             - label: GLB
