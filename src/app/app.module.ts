@@ -10,6 +10,7 @@ import { AnnouncementCardModule } from './components/announcement-card/announcem
 import { BottomToolbarModule } from './components/bottom-toolbar/bottom-toolbar.module';
 import { CardWithHeaderModule } from './components/card-with-header/card-with-header.module';
 import { CountInfoCardModule } from './components/count-info-card/count-info-card.module';
+import { DownloadFtuModule } from './components/download-ftu/download-ftu.module';
 import { MenuTreeModule } from './components/menu-tree/menu-tree.module';
 import { OrganVersionModule } from './components/organ-version/organ-version.module';
 import { PageDataModule } from './components/page-data/page-data.module';
@@ -101,7 +102,8 @@ import { VccfModule } from './pages/vccf/vccf.module';
     PageModule,
     CardWithHeaderModule,
     TableVersionModule,
-    OrganVersionModule
+    OrganVersionModule,
+    DownloadFtuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

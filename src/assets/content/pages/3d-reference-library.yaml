@@ -1664,6 +1664,142 @@
         <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html" target="_blank"><i>HuBMAP CCF 3D Reference Object Library.</i></a>
         Accessed June 1, 2023
 
+- type: download-ftu
+  versions:
+    - release: 5th HRA Release (v1.4), June 2023
+      version: "5"
+    - release: 4th HRA Release (v1.3), December 2022
+      version: "4"
+    - release: 3rd HRA Release (v1.2), June 2022
+      version: "3"
+    - release: 2nd HRA Release (v1.1), December 2021
+      version: "2"
+    - release: 1st HRA Release (v1.0), March 2021
+      version: "1"
+  versionedData:
+    - version: "1"
+      rows:
+        - label: 3D Reference Model Ontology Mapping
+          links:
+            - label: CSV
+              link: https://doi.org/10.48539/HBM527.RCXM.366
+        - label: Extraction sites (male)
+          links:
+            - label: GLB
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1/Extraction%20Sites
+            - label: FBX
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1/Extraction%20Sites
+        - label: Extraction sites (female)
+          links:
+            - label: GLB
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.0/Extraction%20Sites
+            - label: FBX
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.0/Extraction%20Sites
+        - label: Reference Organs (female)
+          links:
+            - label: GLB
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.0/models
+        - label: Reference Organs (male)
+          links:
+            - label: GLB
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.0/models
+    - version: "2"
+      rows:
+        - label: 3D Reference Model Ontology Mapping
+          links:
+            - label: CSV
+              link: https://doi.org/10.48539/HBM263.FWKR.367
+        - label: Extraction sites (male)
+          links:
+            - label: GLB
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.1/Extraction%20Sites
+            - label: FBX
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.1/Extraction%20Sites
+        - label: Extraction sites (female)
+          links:
+            - label: GLB
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.1/Extraction%20Sites
+            - label: FBX
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.1/Extraction%20Sites
+        - label: Reference Organs (female)
+          links:
+            - label: GLB
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.1/models
+        - label: Reference Organs (male)
+          links:
+            - label: GLB
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.1/models
+    - version: "3"
+      rows:
+        - label: 3D Reference Model Ontology Mapping
+          links:
+            - label: CSV
+              link: https://doi.org/10.48539/HBM858.DNFV.736
+        - label: Extraction sites (male)
+          links:
+            - label: GLB
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.2/Extraction%20Sites
+            - label: FBX
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.2/Extraction%20Sites
+        - label: Extraction sites (female)
+          links:
+            - label: GLB
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.2/Extraction%20Sites
+            - label: FBX
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.2/Extraction%20Sites
+        - label: Reference Organs (female)
+          links:
+            - label: GLB
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/models
+        - label: Reference Organs (male)
+          links:
+            - label: GLB
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/models
+    - version: "4"
+      rows:
+        - label: 3D Reference Model Ontology Mapping
+          links:
+            - label: CSV
+              link: https://doi.org/10.48539/HBM858.DNFV.736
+        - label: Extraction sites (male)
+          links:
+            - label: GLB
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.2/Extraction%20Sites
+            - label: FBX
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.2/Extraction%20Sites
+        - label: Extraction sites (female)
+          links:
+            - label: GLB
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Female/v1.3
+            - label: FBX
+              link: https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Female/v1.3
+        - label: Reference Organs (female)
+          links:
+            - label: GLB
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.3/models
+        - label: Reference Organs (male)
+          links:
+            - label: GLB
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.3/models
+    - version: "5"
+      rows:
+        - label: 3D Reference Model Ontology Mapping
+          links:
+            - label: CSV
+              link: https://doi.org/10.48539/HBM858.DNFV.736
+        - label: Reference Organs (female)
+          links:
+            - label: GLB
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.4/models
+        - label: Reference Organs (male)
+          links:
+            - label: GLB
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.4/models
+            
+
+- type: margin
+  bottom: 3.5rem
+
 - type: page-data
   pageData:
     - heading: Reference Organs

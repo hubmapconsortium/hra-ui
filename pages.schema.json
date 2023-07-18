@@ -364,6 +364,95 @@
             "properties": {
               "type": {
                 "type": "string",
+                "const": "download-ftu"
+              },
+              "versions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "release": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "release",
+                    "version"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "versionedData": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "version": {
+                      "type": "string",
+                      "description": "Version Number of the data"
+                    },
+                    "rows": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "label": {
+                            "type": "string",
+                            "description": "Header of the links"
+                          },
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "label": {
+                                  "type": "string",
+                                  "description": "Label for the link"
+                                },
+                                "link": {
+                                  "type": "string",
+                                  "description": "URL for the label"
+                                }
+                              },
+                              "required": [
+                                "label",
+                                "link"
+                              ],
+                              "additionalProperties": false
+                            }
+                          }
+                        },
+                        "required": [
+                          "label",
+                          "links"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "version",
+                    "rows"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "type",
+              "versions",
+              "versionedData"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
                 "const": "drawer"
               },
               "navigationItems": {
@@ -551,7 +640,7 @@
                       "description": "Size of the title of the card"
                     },
                     "cardData": {
-                      "$ref": "#/definitions/mySchema/items/anyOf/11/properties/longCardItems"
+                      "$ref": "#/definitions/mySchema/items/anyOf/12/properties/longCardItems"
                     },
                     "id": {
                       "type": "string",
@@ -1235,14 +1324,14 @@
               "headerInfo": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/mySchema/items/anyOf/16/properties/headerInfo/items"
+                  "$ref": "#/definitions/mySchema/items/anyOf/17/properties/headerInfo/items"
                 },
                 "description": "Names of columns and their definitions"
               },
               "versionData": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/mySchema/items/anyOf/16/properties/versionData/items"
+                  "$ref": "#/definitions/mySchema/items/anyOf/17/properties/versionData/items"
                 },
                 "description": "Release name, source csv file and version number"
               },
@@ -1256,8 +1345,7 @@
                       "description": "Definition of the column"
                     },
                     "header": {
-                      "type": "string",
-                      "description": "Column name"
+                      "$ref": "#/definitions/mySchema/items/anyOf/17/properties/headerInfo/items/properties/header"
                     },
                     "colspan": {
                       "type": "number",
@@ -1279,7 +1367,7 @@
               "cellHeaders": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/mySchema/items/anyOf/24/properties/additionalHeaders/items"
+                  "$ref": "#/definitions/mySchema/items/anyOf/25/properties/additionalHeaders/items"
                 },
                 "description": "Additional column names and definitions if any"
               }
