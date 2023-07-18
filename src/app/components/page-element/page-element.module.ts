@@ -27,6 +27,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { ContactCardModule } from '../contact-card/contact-card.module';
 import { MatIconModule } from '@angular/material/icon';
 import { OrganVersionModule } from '../organ-version/organ-version.module';
+import { DownloadFtuModule } from '../download-ftu/download-ftu.module';
 @NgModule({
     declarations: [PageElementComponent],
     imports: [
@@ -57,7 +58,8 @@ import { OrganVersionModule } from '../organ-version/organ-version.module';
         MatDividerModule,
         ContactCardModule,
         MatIconModule,
-        OrganVersionModule
+        OrganVersionModule,
+        DownloadFtuModule
     ],
     exports: [PageElementComponent]
 })

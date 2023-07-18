@@ -14,6 +14,7 @@ export class ContentService {
   constructor(private http: HttpClient) { }
 
   getContent(fileName: string): Observable<PageDef[]> {
+    fileName = fileName.split("?")[0];
     return this.http
       .get(`assets/content/pages/${fileName}.yaml`, {
         observe: 'body',

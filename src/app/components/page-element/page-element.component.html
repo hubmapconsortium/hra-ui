@@ -14,7 +14,8 @@
     <youtube-model *ngSwitchCase="'player'" [playerData]="def['youtubePlayer']"></youtube-model>
     <div *ngSwitchCase="'title'" [class]="def['class']" [style]="def['styles']">{{ def['title'] }}</div>
     <div *ngSwitchCase="'margin'" [style.margin-top]="def['top']" [style.margin-bottom]="def['bottom']"></div>
-    <card-with-header *ngSwitchCase="'long-card-with-title'" [cardBlockData]="def['longCardWithTitleData']"></card-with-header>
+    <card-with-header *ngSwitchCase="'long-card-with-title'" [cardBlockData]="def['longCardWithTitleData']">
+    </card-with-header>
     <ccf-simple-image *ngSwitchCase="'simple-image'" [imageInfo]="def['imageData']"></ccf-simple-image>
     <img *ngSwitchCase="'image'" [src]="def['imageSource']" [class]="def['class']" [style]="def['styles']">
     <div *ngSwitchCase="'text'" [style]="def['styles']" [class]="def['class']">{{def['text']}}</div>
@@ -58,4 +59,6 @@
     <ccf-organ-version *ngSwitchCase="'organ-version'" [versionData]="def['versionData']"
         [isMultiRow]="def['isMultiRow']" [organInfo]="def['organInfo']" [tableRequired]="def['tableRequired']"
         [headerInfo]="def['headerInfo']"></ccf-organ-version>
+    <ccf-download-ftu *ngSwitchCase="'download-ftu'" [data]="def['versionedData']"
+        [versions]="def['versions']"></ccf-download-ftu>
 </ng-container>

@@ -1,6 +1,15 @@
 import { z } from 'zod';
 
+// ---------------------------
+// Common types
+// ---------------------------
+
+const ColumnName = z.string({ description: 'Column name' });
 const Styles = z.record(z.union([z.string(), z.number()]))
+const VersionEntry = z.object({
+    release: z.string(),
+    version: z.string()
+});
 
 export const AnnouncementCard = z.object({
     type: z.literal('announcement'),
@@ -94,6 +103,21 @@ export const Divider = z.object({
     styles: Styles.optional()
 })
 
+export const DownloadFtu = z.object({
+    type: z.literal('download-ftu'),
+    versions: VersionEntry.array({ description: 'Release and version Information' }),
+    versionedData: z.object({
+        version: z.string({ description: 'Version Number of the data' }),
+        rows: z.object({
+            label: z.string({ description: 'Header of the links' }),
+            links: z.object({
+                label: z.string({ description: 'Label for the link' }),
+                link: z.string({ description: 'URL for the label' })
+            }).array()
+        }).array()
+    }).array()
+})
+
 export const Drawer = z.object({
     type: z.literal('drawer'),
     navigationItems: z.object({
@@ -106,13 +130,13 @@ export const Drawer = z.object({
 
 const ExtraHeader = z.object({
     columnDef: z.string({ description: 'Definition of the column' }),
-    header: z.string({ description: 'Column name' }),
+    header: ColumnName,
     colspan: z.number().optional().describe('Number of columns to span'),
     rowspan: z.number().optional().describe('Number of rows to span'),
 })
 
 const HeaderData = z.object({
-    header: z.string({ description: 'Column name' }),
+    header: ColumnName,
     columnDef: z.string({ description: 'Definition of the column' }),
     cell: z.unknown().describe('Code to display the cell data'),
     isTotalRequired: z.boolean({ description: 'True of want the total to be displayed' }),
@@ -383,6 +407,7 @@ export const PageSpec = z.discriminatedUnion('type', [
     CountCard,
     Datasets,
     Divider,
+    DownloadFtu,
     Drawer,
     Image,
     ImageInCard,

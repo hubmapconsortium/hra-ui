@@ -9,7 +9,7 @@ import { ChooseVersion } from './choose-version';
 export class ChooseVersionComponent {
   @Input() releaseDate: ChooseVersion[] = [];
 
-  @Input() selectedDate: ChooseVersion;
+  @Input() selectedDate?: ChooseVersion;
 
   @Output() selectedVersion = new EventEmitter<ChooseVersion>;
 }

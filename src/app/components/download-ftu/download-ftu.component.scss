@@ -1,0 +1,30 @@
+:host {
+  .download-table {
+    width: 100%;
+    box-shadow: none;
+    border: 1px solid #e0e0e0;
+
+    td {
+      font-weight: 300;
+    }
+
+    th {
+      font-weight: 500;
+      font-size: 0.875rem;
+      color: black;
+      &:last-child {
+        display: flex;
+        height: inherit;
+        align-items: center;
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .mat-sort-header-arrow {
+    opacity: 1 !important;
+    color: black;
+    margin: 0 0 3px 6px !important;
+  }
+}

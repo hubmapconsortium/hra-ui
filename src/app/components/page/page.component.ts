@@ -34,7 +34,6 @@ export class PageComponent {
         return this.contentService.getContent(this.LANDING_PAGE_FILE);
       })
     );
-
     return this.route.url.pipe(
       map(() => this.router.routerState.snapshot.url),
       map(url => this.getFileName(url)),
