@@ -78,11 +78,11 @@
             - name: Female
               url: https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/ref-organs/3d-vh-f-blood-vasculature.html
               alt: The Vasculature, blood, female
-              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Blood_Vasculature.glb
+              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.4/3d-vh-f-blood-vasculature.glb
             - name: Male         
               url: https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/ref-organs/3d-vh-m-blood-vasculature.html
               alt: The Vasculature, blood, male
-              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Blood_Vasculature.glb
+              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.4/3d-vh-m-blood-vasculature.glb
         - name: Bone Marrow
           image: assets/images/bone_marrow.svg
           tissueData:
@@ -224,11 +224,11 @@
             - name: Female
               url: https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/ref-organs/3d-vh-f-lung.html
               alt: The Lungs, female
-              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Lung.glb
+              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.4/3d-vh-f-lung.glb
             - name: Male
               url: https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/ref-organs/3d-vh-m-lung.html
               alt: The Lungs, male
-              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Lung.glb
+              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.4/3d-vh-m-lung.glb
         - name: Lymph Node
           image: assets/images/lymph_node.svg
           tissueData:
@@ -428,11 +428,11 @@
             - name: Female
               url: https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/ref-organs/3d-vh-f-united.html
               alt: All organs, female
-              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.3/3d-vh-f-united.glb
+              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.4/3d-vh-f-united.glb
             - name: Male
               url: https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/ref-organs/3d-vh-m-united.html
               alt: All organs, male
-              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_United.glb
+              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.4/3d-vh-m-united.glb
     - version: "1.3"
       organData:
         - name: Allen Brain
@@ -1688,10 +1688,10 @@
   versionedData:
     - version: "1"
       rows:
-        - label: 3D Reference Model Ontology Mapping
+        - label: 3D Models Crosswalk
           links:
             - label: CSV
-              link: https://doi.org/10.48539/hbm527.rcxm.366
+              link: https://hubmapconsortium.github.io/ccf-releases/v1.0/models/ASCT-B_3D_Models_Mapping.csv
         - label: Extraction sites (male)
           links:
             - label: GLB
@@ -1714,10 +1714,10 @@
               link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.0/models
     - version: "2"
       rows:
-        - label: 3D Reference Model Ontology Mapping
+        - label: 3D Models Crosswalk
           links:
             - label: CSV
-              link: https://doi.org/10.48539/HBM263.FWKR.367
+              link: https://hubmapconsortium.github.io/ccf-releases/v1.1/models/ASCT-B_3D_Models_Mapping.csv
         - label: Extraction sites (male)
           links:
             - label: GLB
@@ -1740,10 +1740,10 @@
               link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.1/models
     - version: "3"
       rows:
-        - label: 3D Reference Model Ontology Mapping
+        - label: 3D Models Crosswalk
           links:
             - label: CSV
-              link: https://doi.org/10.48539/HBM858.DNFV.736
+              link: https://hubmapconsortium.github.io/ccf-releases/v1.2/models/ASCT-B_3D_Models_Mapping.csv
         - label: Extraction sites (male)
           links:
             - label: GLB
@@ -1766,10 +1766,10 @@
               link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/models
     - version: "4"
       rows:
-        - label: 3D Reference Model Ontology Mapping
+        - label: 3D Models Crosswalk
           links:
             - label: CSV
-              link: https://doi.org/10.48539/HBM766.SDNC.676
+              link: https://github.com/hubmapconsortium/ccf-releases/blob/main/v1.3/models/asct-b-3d-models-mapping.csv
         - label: Extraction sites (female)
           links:
             - label: GLB
@@ -1786,10 +1786,10 @@
               link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.3/models
     - version: "5"
       rows:
-        - label: 3D Reference Model Ontology Mapping
+        - label: 3D Models Crosswalk
           links:
             - label: CSV
-              link: https://doi.org/10.48539/HBM622.BDXN.589
+              link: https://github.com/hubmapconsortium/ccf-releases/blob/main/v1.4/models/asct-b-3d-models-crosswalk.csv
         - label: Extraction sites (female)
           links:
             - label: GLB

@@ -522,35 +522,22 @@
   versionedData:
     - version: "3"
       rows:
-        - label: 'Functional Tissue Unit Illustrations'
-          links:
-            - label: SVG
-              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
-        - label: 'ASCT+B to 2D FTU mapping'
+        - label: 2D Models Crosswalk
           links:
             - label: CSV
-              link: https://doi.org/10.48539/HBM984.MZSG.873
+              link: https://hubmapconsortium.github.io/ccf-releases/v1.2/2d-ftu/ASCT-B_ftu_2D_illustration_mapping.csv
     - version: "4"
       rows:
-        - label: Functional Tissue Unit Illustrations
+        - label: 2D Models Crosswalk
           links: 
-            - link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.3/2d-ftu
-              label: SVG
-            - link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.3/2d-ftu
-              label: AI
-        - label: ASCT+B to 2D FTU mapping
-          links: 
-            - link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.3/2d-ftu
+            - link: https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/asct-b-2d-models-mapping.csv
               label: CSV
     - version: "5"
       rows:
-        - label: Functional Tissue Unit Illustrations
+        - label: 2D Models Crosswalk
           links: 
-            - link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.4/2d-ftu
-              label: SVG
-            - link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.4/2d-ftu
-              label: AI
-
+            - link: https://hubmapconsortium.github.io/ccf-releases/v1.4/2d-ftu/asct-b-2d-models-crosswalk.csv
+              label: CSV
 - type: margin
   bottom: 3.5rem
 
