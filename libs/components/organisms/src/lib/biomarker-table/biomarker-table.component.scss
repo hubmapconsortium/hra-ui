@@ -10,14 +10,13 @@
     @include utils.sr-only();
   }
 
+  .table {
+    margin-left: -1px;
+  }
   .table th {
     background-color: #fff7f8;
     color: #59264d;
     text-align: right;
-
-    border-top: 0.063rem solid #d3d3d3;
-    border-bottom: 0.063rem solid #d3d3d3;
-    border-left: 0.063rem solid #d3d3d3;
   }
 
   .table td {
@@ -26,7 +25,7 @@
   }
 
   .table tr:first-child td {
-    border-top: 0.063rem solid #d3d3d3;
+    border-top: 0rem solid #d3d3d3;
   }
 
   tr > td:first-child {
@@ -76,6 +75,10 @@
       margin: auto;
     }
   }
+}
+
+::ng-deep .mat-mdc-tab-header {
+  margin-left: -1px !important;
 }
 
 ::ng-deep .biomarker-table-hover.full-column-name {
