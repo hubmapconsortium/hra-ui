@@ -1664,6 +1664,15 @@
         <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html" target="_blank"><i>HuBMAP CCF 3D Reference Object Library.</i></a>
         Accessed June 1, 2023
 
+- type: title
+  title: Reference Organ File Downloads
+  styles:
+    font-weight: 300
+    font-size: 1.5rem
+    line-height: 34px
+    padding-bottom: 1rem
+    padding-top: 1.5rem
+
 - type: download-ftu
   versions:
     - release: 5th HRA Release (v1.4), June 2023
@@ -1799,50 +1808,6 @@
 
 - type: margin
   bottom: 3.5rem
-
-- type: page-data
-  pageData:
-    - heading: Reference Organs
-      descriptions: |
-        Download v1.4 organs in GLB format.
-
-        <a href="https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.3/models" target="_blank">Download v1.3 organs</a> in GLB format.
-
-        <a href="https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/models" target="_blank">Download v1.2 organs</a> in GLB format.
-
-        <a href="https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.1/models" target="_blank">Download v1.1 organs</a> in GLB format.
-
-        <a href="https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.0/models" target="_blank">Download v1.0 organs</a> in GLB format.
-
-        Download v1.4 extraction sites for female in GLB and FBX format.
-
-        <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/main/VH_Female/v1.3" target="_blank">Download v1.3 extraction sites for female</a> in GLB and FBX format.
-
-        <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.2/Extraction%20Sites" target="_blank">Download v1.2 extraction sites for female</a> in GLB and FBX format.
-
-        <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.1/Extraction%20Sites" target="_blank">Download v1.1 extraction sites for female</a> in GLB and FBX format.
-
-        <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Female/V1.0/Extraction%20Sites" target="_blank">Download v1.0 extraction sites for female</a> in GLB and FBX format.
-
-        Download v1.4 extraction sites for male in GLB and FBX format.
-
-        <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.2/Extraction%20Sites" target="_blank">Download v1.3 extraction sites for male</a> in GLB and FBX format.
-
-        <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.2/Extraction%20Sites" target="_blank">Download v1.2 extraction sites for male</a> in GLB and FBX format.
-
-        <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1.1/Extraction%20Sites" target="_blank">Download v1.1 extraction sites for male</a> in GLB and FBX format.
-
-        <a href="https://github.com/hubmapconsortium/ccf-3d-reference-object-library/tree/master/VH_Male/V1/Extraction%20Sites" target="_blank">Download v1.0 extraction sites for male</a> in GLB and FBX format.
-
-        <a href="https://doi.org/10.48539/HBM858.DNFV.736" target="_blank">3D reference model ontology mapping v1.4</a> in CSV format.
-
-        <a href="https://doi.org/10.48539/HBM858.DNFV.736" target="_blank">3D reference model ontology mapping v1.3</a> in CSV format.
-
-        <a href="https://doi.org/10.48539/HBM858.DNFV.736" target="_blank">3D reference model ontology mapping v1.2</a> in CSV format.
-
-        <a href="https://doi.org/10.48539/HBM263.FWKR.367" target="_blank">3D reference model ontology mapping v1.1</a> in CSV format.
-
-        <a href="https://doi.org/10.48539/HBM527.RCXM.366" target="_blank">3D reference model ontology mapping v1.0</a> in CSV format.
 
 - type: page-data
   pageData:
