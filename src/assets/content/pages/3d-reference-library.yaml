@@ -1710,6 +1710,17 @@
 
 - type: page-data
   pageData:
+    - heading: Organ Icon Downloads
+      descriptions: Human Reference Atlas Organ icons are available freely on GitHub.
+  styles:
+    margin-bottom: 1rem
+
+- type: button
+  text: HRA Organ Icons GitHub Repository
+  url: https://github.com/cns-iu/md-icons/tree/main/other-icons/organs
+
+- type: page-data
+  pageData:
     - heading: References
       descriptions: |
         Börner, Katy, Sarah A. Teichmann, Ellen M. Quardokus, James C. Gee, Kristen Browne, David Osumi-Sutherland, Bruce W. Herr, et al. 2021.
