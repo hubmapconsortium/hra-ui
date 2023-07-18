@@ -519,6 +519,17 @@
 
 - type: page-data
   pageData:
+    - heading: Organ Icon Downloads
+      descriptions: Human Reference Atlas Organ icons are available freely on GitHub.
+  styles:
+    margin-bottom: 1rem
+
+- type: button
+  text: HRA Organ Icons GitHub Repository
+  url: https://github.com/cns-iu/md-icons/tree/main/other-icons/organs
+
+- type: page-data
+  pageData:
     - heading: Terms of Use
       descriptions: |
         HuBMAP data are supplied with no warranties, expressed or implied, including without limitation, any warranty of merchantability or fitness for a particular purpose or non-infringement. No warranty with respect to the HuBMAP infrastructure is provided, including without limitation, any uptime warranty.
