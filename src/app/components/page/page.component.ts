@@ -58,6 +58,6 @@ export class PageComponent {
   }
 
   private getFileName(url: string): string {
-    return url.slice(1).split('#')[0] || this.LANDING_PAGE_FILE;
+    return url.slice(1).split('#')[0].split('?')[0] || this.LANDING_PAGE_FILE;
   }
 }
