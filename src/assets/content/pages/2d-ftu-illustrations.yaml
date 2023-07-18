@@ -13,10 +13,6 @@
       routeText: "5th Release Notes."
       emoji: "🎉"
 
-- type: announcement
-  announcementCard:
-    - message: "Warning: DOI registration in progress. HRA v1.4 DOI URLs will not work until further notice."
-
 - type: margin
   bottom: 2.5rem
 
@@ -557,6 +553,17 @@
 
 - type: margin
   bottom: 3.5rem
+
+- type: page-data
+  pageData:
+    - heading: Organ Icon Downloads
+      descriptions: Human Reference Atlas Organ icons are available freely on GitHub.
+  styles:
+    margin-bottom: 1rem
+
+- type: button
+  text: HRA Organ Icons GitHub Repository
+  url: https://github.com/cns-iu/md-icons/tree/main/other-icons/organs
 
 - type: page-data
   pageData:
