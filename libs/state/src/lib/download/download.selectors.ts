@@ -1,5 +1,6 @@
 import { Selector } from '@ngxs/store';
 import { DownloadFormat, DownloadModel } from './download.model';
+import { DownloadState } from './download.state';
 
 /**
  * Available format selectors
@@ -10,7 +11,7 @@ export class DownloadSelectors {
    * @param state
    * @returns
    */
-  @Selector()
+  @Selector([DownloadState])
   static formats(state: DownloadModel): DownloadFormat[] {
     const { formats, entries } = state;
     const hasData = (format: DownloadFormat | undefined): format is DownloadFormat =>
