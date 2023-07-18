@@ -533,7 +533,7 @@
         - label: 'ASCT+B to 2D FTU mapping'
           links:
             - label: CSV
-              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.3/2d-ftu
+              link: https://doi.org/10.48539/HBM984.MZSG.873
     - version: "4"
       rows:
         - label: Functional Tissue Unit Illustrations
