@@ -1,11 +1,9 @@
 <h3>Screen Size Notice</h3>
-<button mat-icon-button class="header-close">
+<button mat-icon-button class="header-close" (click)="proceedClick.emit()">
   <mat-icon>close</mat-icon>
 </button>
-<markdown [src]="contentUrl" class="content"></markdown>
+<markdown [data]="content" class="content"></markdown>
 <button mat-stroked-button color="accent" class="btn-stroked" (click)="proceedClick.emit()">
   Proceed to FTU Explorer
 </button>
-<button mat-flat-button color="primary" class="btn-flat" (click)="portalClick.emit()">
-  Human Reference Atlas Portal
-</button>
+<a mat-flat-button color="primary" class="btn-flat" [hraLink]="portal"> Human Reference Atlas Portal </a>
