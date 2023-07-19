@@ -9,11 +9,14 @@
       &.mat-primary {
         background-color: vars.$primary-rgb;
         color: vars.$primary-contrast-rgb;
+        padding: 16px 20px 16px 20px;
+        border: 0px;
       }
 
       &.mdc-button:focus {
         background-color: vars.$primary-rgb;
         border: 0.25rem solid #ffaa00;
+        padding: 12px 16px 12px 16px;
       }
 
       &.mdc-button:hover {
@@ -24,6 +27,7 @@
         background-color: white;
         border: 0.125rem solid vars.$primary-darker-rgb;
         color: white;
+        padding: 14px 18px 14px 18px;
       }
 
       &.mdc-button:active span.mat-mdc-button-ripple {
@@ -40,12 +44,14 @@
         background-color: vars.$primary-contrast-rgb;
         border: 0.125rem vars.$primary-lighter-rgb solid;
         color: vars.$primary-rgb;
+        padding: 16px 20px 16px 20px;
       }
 
       &.mat-accent:focus {
         background-color: white;
         color: vars.$primary-rgb;
         border: 0.25rem solid #ffaa00;
+        padding: 12px 16px 12px 16px;
       }
 
       &.mat-accent:hover {
@@ -58,6 +64,7 @@
         background-color: white;
         border: 0.125rem solid vars.$primary-rgb;
         color: white;
+        padding: 14px 18px 14px 18px;
       }
 
       &.mat-accent:active span.mat-mdc-button-ripple {
@@ -68,6 +75,7 @@
       &.mat-accent:disabled {
         background-color: #e7e7e5;
         border: 0.063rem #9d9e9a solid;
+        color: #9d9e9a;
       }
 
       .mat-mdc-button-persistent-ripple::before {

@@ -15,19 +15,19 @@ const Template =
   (args: object) => ({
     props: args,
     template,
-    styles: [
-      `
-      button, a {
-        width: 200px;
-      }
-    `,
-    ],
   });
 
 //Basic button
 export const Basic = Template(`<button mat-button [color]="palette" [disabled]="disabled">Button</button>`);
 Basic.args = {
   palette: 'primary',
+  disabled: false,
+};
+
+//Secondary button
+export const Secondary = Template(`<button mat-button [color]="palette" [disabled]="disabled">Button</button>`);
+Secondary.args = {
+  palette: 'accent',
   disabled: false,
 };
 
