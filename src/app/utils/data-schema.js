@@ -106,6 +106,8 @@ export const Divider = z.object({
 export const DownloadFtu = z.object({
     type: z.literal('download-ftu'),
     versions: VersionEntry.array({ description: 'Release and version Information' }),
+    displayMetadata: z.boolean().optional(),
+    columnLabels: z.record(z.string(), z.string()).optional(),
     versionedData: z.object({
         version: z.string({ description: 'Version Number of the data' }),
         rows: z.object({
@@ -113,7 +115,9 @@ export const DownloadFtu = z.object({
             links: z.object({
                 label: z.string({ description: 'Label for the link' }),
                 link: z.string({ description: 'URL for the label' })
-            }).array()
+            }).array(),
+            releaseVersion: z.string().optional(),
+            dot: z.string().optional().describe("Digital Object Type")
         }).array()
     }).array()
 })
