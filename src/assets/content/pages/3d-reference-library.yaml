@@ -1818,7 +1818,7 @@
 - type: page-data
   pageData:
     - heading: Organ Icon Downloads
-      descriptions: Human Reference Atlas Organ icons are available freely on GitHub.
+      descriptions: Human Reference Atlas organ icons are available freely on GitHub.
   styles:
     margin-bottom: 1rem
 
