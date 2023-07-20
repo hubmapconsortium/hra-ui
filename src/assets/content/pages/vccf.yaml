@@ -30,6 +30,86 @@
     descriptions: |
       The HRA-VCCF is available as comma-separated values in <a href="https://github.com/hubmapconsortium/hra-vccf" target="_blank">GitHub</a>.
 
+- type: download-ftu
+  versions:
+    - release: '5th HRA Release (v1.4), June 2023'
+      version: '5'
+  displayMetadata: true
+  versionedData:
+    - version: '5'
+      rows:
+        - label: Blood Vasculature Female
+          url: https://doi.org/10.48539/HBM232.FSRK.728
+          links:
+            - label: GLB
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
+          releaseVersion: v1.2
+          dot: 3D Reference Object
+        - label: Blood Vasculature Male
+          url: https://doi.org/10.48539/HBM686.LBDQ.998
+          links:
+            - label: GLB
+              link: https://doi.org/10.48539/HBM984.MZSG.873
+          releaseVersion: v1.2
+          dot: 3D Reference Object
+        - label: Blood Vasculature Organ Crosswalk
+          url: https://doi.org/10.48539/HBM577.MCCB.463
+          links:
+            - label: CSV
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
+            - label: XLSX
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
+          releaseVersion: v1.0
+          dot: Crosswalk
+        - label: Blood Vasculature Geometry
+          url: https://doi.org/10.48539/HBM796.WLLL.599
+          links:
+            - label: CSV
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
+            - label: XLSX
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
+          releaseVersion: v1.0
+          dot: Vascular Geometry
+        - label: Blood Vasculature
+          url: https://doi.org/10.48539/HBM279.CXVW.525
+          links:
+            - label: CSV
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
+            - label: XLSX
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
+          releaseVersion: v1.4
+          dot: ASCT+B Table
+        - label: Lymph Vasculature
+          url: https://doi.org/10.48539/HBM738.GKLM.876
+          links:
+            - label: CSV
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
+            - label: XLSX
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
+          releaseVersion: v1.3
+          dot: ASCT+B Table
+        - label: Muscular System
+          url: https://doi.org/10.48539/HBM944.CLLD.594
+          links:
+            - label: CSV
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
+            - label: XLSX
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
+          releaseVersion: v1.0
+          dot: ASCT+B Table
+        - label: Skeleton
+          url: https://doi.org/10.48539/HBM233.TRCP.638
+          links:
+            - label: CSV
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
+            - label: XLSX
+              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
+          releaseVersion: v1.0
+          dot: ASCT+B Table
+
+- type: margin
+  bottom: 3.5rem
+
 - type: page-data
   pageData:
   - heading: Terms Of Use
@@ -53,78 +133,6 @@
       
       Boppana, Avinash, Sujin Lee, Rajeev Malhotra, Marc Halushka, Ellen M. Quardokus, Bruce W. Herr II, Katy Börner, and Griffin M. Weber. 2022.
       "<a href="https://cns.iu.edu/docs/publications/2022-Boppana_ASCT+B.pdf" target="_blank">Anatomical structures, cell types, and biomarkers of the healthy human blood vasculature</a>." <i>bioRxiv</i>, March 1, 2022. doi: 10.1101/2022.02.28.482302.
-
-- type: download-ftu
-  versions:
-    - release: '5th HRA Release (v1.4), June 2023'
-      version: '5'
-  displayMetadata: true
-  versionedData:
-    - version: '5'
-      rows:
-        - label: Blood Vasculature Female
-          links:
-            - label: GLB
-              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
-          releaseVersion: v1.2
-          dot: 3D Reference Object
-        - label: Blood Vasculature Male
-          links:
-            - label: GLB
-              link: https://doi.org/10.48539/HBM984.MZSG.873
-          releaseVersion: v1.2
-          dot: 3D Reference Object
-        - label: Blood Vasculature Organ Crosswalk
-          links:
-            - label: CSV
-              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
-            - label: XLSX
-              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
-          releaseVersion: v1.0
-          dot: Crosswalk
-        - label: Blood Vasculature Geometry
-          links:
-            - label: CSV
-              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
-            - label: XLSX
-              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
-          releaseVersion: v1.0
-          dot: Vascular Geometry
-        - label: Blood Vasculature
-          links:
-            - label: CSV
-              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
-            - label: XLSX
-              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
-          releaseVersion: v1.4
-          dot: ASCT+B Table
-        - label: Lymph Vasculature
-          links:
-            - label: CSV
-              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
-            - label: XLSX
-              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
-          releaseVersion: v1.3
-          dot: ASCT+B Table
-        - label: Muscular System
-          links:
-            - label: CSV
-              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
-            - label: XLSX
-              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
-          releaseVersion: v1.0
-          dot: ASCT+B Table
-        - label: Skeleton
-          links:
-            - label: CSV
-              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
-            - label: XLSX
-              link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/2d-ftu
-          releaseVersion: v1.0
-          dot: ASCT+B Table
-
-- type: margin
-  bottom: 3.5rem
 
 - type: page-data
   pageData:

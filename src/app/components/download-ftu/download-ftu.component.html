@@ -5,7 +5,12 @@
   <ng-container matColumnDef="label">
     <th mat-header-cell *matHeaderCellDef mat-sort-header="label">{{columnLabels.type}}</th>
     <td mat-cell *matCellDef="let row">
-      {{ row.label }}
+      <ng-container *ngIf="row.url; else noLink">
+        <a [href]="row.url" target="_blank">{{ row.label }}</a>
+      </ng-container>
+      <ng-template #noLink>
+        {{ row.label }}
+      </ng-template>
     </td>
   </ng-container>
 
@@ -27,7 +32,7 @@
     <td mat-cell *matCellDef="let row">
       {{ row.releaseVersion }}
     </td>
-    
+
   </ng-container>
   <ng-container *ngIf="displayMetadata" matColumnDef="digitalObjectType">
     <th mat-header-cell *matHeaderCellDef mat-sort-header="digitalObjectType">{{columnLabels.digitalObjectType}}</th>

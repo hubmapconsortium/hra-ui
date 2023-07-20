@@ -117,7 +117,8 @@ export const DownloadFtu = z.object({
                 link: z.string({ description: 'URL for the label' })
             }).array(),
             releaseVersion: z.string().optional(),
-            dot: z.string().optional().describe("Digital Object Type")
+            dot: z.string().optional().describe("Digital Object Type"),
+            url: z.string({ description: 'URL for Organ or its type' }).optional()
         }).array()
     }).array()
 })
