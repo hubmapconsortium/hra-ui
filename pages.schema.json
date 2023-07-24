@@ -385,6 +385,21 @@
                   "additionalProperties": false
                 }
               },
+              "displayMetadata": {
+                "type": "boolean"
+              },
+              "columnLabels": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "default": {
+                  "type": "Type",
+                  "download": "Download",
+                  "releaseVersion": "Release Version",
+                  "digitalObjectType": "Digital Object Type"
+                }
+              },
               "versionedData": {
                 "type": "array",
                 "items": {
@@ -423,6 +438,17 @@
                               ],
                               "additionalProperties": false
                             }
+                          },
+                          "releaseVersion": {
+                            "type": "string"
+                          },
+                          "dot": {
+                            "type": "string",
+                            "description": "Digital Object Type"
+                          },
+                          "url": {
+                            "type": "string",
+                            "description": "URL for Organ or its type"
                           }
                         },
                         "required": [

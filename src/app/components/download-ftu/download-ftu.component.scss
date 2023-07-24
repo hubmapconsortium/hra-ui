@@ -12,11 +12,21 @@
       font-weight: 500;
       font-size: 0.875rem;
       color: black;
-      &:last-child {
-        display: flex;
-        height: inherit;
-        align-items: center;
-      }
+    }
+  }
+
+  .mat-column-links {
+    display: flex;
+    height: inherit;
+    align-items: center;
+  }
+
+  .organ-link,
+  .download-link {
+    &:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      color: #444c65;
     }
   }
 }
