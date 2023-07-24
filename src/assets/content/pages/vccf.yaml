@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/pages.schema.json
+##yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/pages.schema.json
 
 - type: header
   headerCard:
@@ -29,6 +29,200 @@
   - heading: HRA-VCCF Data Files
     descriptions: |
       The HRA-VCCF is available as comma-separated values in <a href="https://github.com/hubmapconsortium/hra-vccf" target="_blank">GitHub</a>.
+
+- type: download-ftu
+  versions:
+    - release: '5th HRA Release (v1.4), June 2023'
+      version: '5'
+    - release: '4th HRA Release (v1.3), December 2022'
+      version: '4'
+    - release: 3rd HRA Release (v1.2), June 2022
+      version: '3'
+    - release: 2nd HRA Release (v1.1), December 2021
+      version: '2'
+    - release: 1st HRA Release (v1.0), March 2021
+      version: '1'
+  displayMetadata: true
+  columnLabels:
+    type: Organ
+    download: Download HRA-VCCF File
+    releaseVersion: Release Version
+    digitalObjectType: Digital Object Type
+  versionedData:
+    - version: '5'
+      rows:
+        - label: Blood Vasculature Female
+          url: https://doi.org/10.48539/HBM232.FSRK.728
+          links:
+            - label: GLB
+              link: https://ccf-ontology.hubmapconsortium.org/objects/v1.4/3d-vh-f-blood-vasculature.glb
+          releaseVersion: v1.2
+          dot: 3D Reference Object
+        - label: Blood Vasculature Male
+          url: https://doi.org/10.48539/HBM686.LBDQ.998
+          links:
+            - label: GLB
+              link: https://ccf-ontology.hubmapconsortium.org/objects/v1.4/3d-vh-m-blood-vasculature.glb
+          releaseVersion: v1.2
+          dot: 3D Reference Object
+        - label: Blood Vasculature Organ Crosswalk
+          url: https://doi.org/10.48539/HBM577.MCCB.463
+          links:
+            - label: CSV
+              link: https://hubmapconsortium.github.io/ccf-releases/v1.4/asct-b/blood-vasculature-organ-crosswalk.csv
+          releaseVersion: v1.0
+          dot: Crosswalk
+        - label: Blood Vasculature Geometry
+          url: https://doi.org/10.48539/HBM796.WLLL.599
+          links:
+            - label: CSV
+              link: https://hubmapconsortium.github.io/ccf-releases/v1.4/vascular-geometry/blood-vasculature-geometry.csv
+          releaseVersion: v1.0
+          dot: Vascular Geometry
+        - label: Blood Vasculature
+          url: https://doi.org/10.48539/HBM279.CXVW.525
+          links:
+            - label: CSV
+              link: https://hubmapconsortium.github.io/ccf-releases/v1.4/asct-b/asct-b-vh-blood-vasculature.csv
+          releaseVersion: v1.4
+          dot: ASCT+B Table
+        - label: Lymph Vasculature
+          url: https://doi.org/10.48539/HBM738.GKLM.876
+          links:
+            - label: CSV
+              link: https://hubmapconsortium.github.io/ccf-releases/v1.4/asct-b/asct-b-vh-lymph-vasculature.csv
+          releaseVersion: v1.3
+          dot: ASCT+B Table
+        - label: Muscular System
+          url: https://doi.org/10.48539/HBM944.CLLD.594
+          links:
+            - label: CSV
+              link: https://hubmapconsortium.github.io/ccf-releases/v1.4/asct-b/asct-b-vh-muscular-system.csv
+          releaseVersion: v1.0
+          dot: ASCT+B Table
+        - label: Skeleton
+          url: https://doi.org/10.48539/HBM233.TRCP.638
+          links:
+            - label: CSV
+              link: https://hubmapconsortium.github.io/ccf-releases/v1.4/asct-b/asct-b-vh-skeleton.csv
+          releaseVersion: v1.0
+          dot: ASCT+B Table
+    - version: '4'
+      rows:
+        - label: Blood Vasculature Female
+          url: https://doi.org/10.48539/HBM232.FSRK.728
+          links:
+            - label: GLB
+              link: https://hubmapconsortium.github.io/ccf-releases/v1.3/models/VH_F_Blood_Vasculature.glb
+          releaseVersion: v1.2
+          dot: 3D Reference Object
+        - label: Blood Vasculature Male
+          url: https://doi.org/10.48539/HBM686.LBDQ.998
+          links:
+            - label: GLB
+              link: https://hubmapconsortium.github.io/ccf-releases/v1.3/models/VH_M_Blood_Vasculature.glb
+          releaseVersion: v1.2
+          dot: 3D Reference Object
+        - label: Blood Vasculature
+          url: https://doi.org/10.48539/HBM948.FMZR.475
+          links:
+            - label: CSV
+              link: https://hubmapconsortium.github.io/ccf-releases/v1.3/asct-b/asct-b-vh-blood-vasculature.csv
+          releaseVersion: v1.3
+          dot: ASCT+B Table
+        - label: Lymph Vasculature
+          url: https://doi.org/10.48539/HBM469.NHVB.448
+          links:
+            - label: CSV
+              link: https://hubmapconsortium.github.io/ccf-releases/v1.3/asct-b/asct-b-vh-lymph-vasculature.csv
+          releaseVersion: v1.2
+          dot: ASCT+B Table
+    - version: '3'
+      rows:
+        - label: Blood Vasculature Female
+          url: https://doi.org/10.48539/HBM232.FSRK.728
+          links:
+            - label: GLB
+              link: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Blood_Vasculature.glb
+          releaseVersion: v1.2
+          dot: 3D Reference Object
+        - label: Blood Vasculature Male
+          url: https://doi.org/10.48539/HBM686.LBDQ.998
+          links:
+            - label: GLB
+              link: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Blood_Vasculature.glb
+          releaseVersion: v1.2
+          dot: 3D Reference Object
+        - label: Blood Vasculature
+          url: https://doi.org/10.48539/HBM954.HNGT.899
+          links:
+            - label: CSV
+              link: https://hubmapconsortium.github.io/ccf-releases/v1.2/asct-b/ASCT-B_VH_Blood_Vasculature.csv
+          releaseVersion: v1.2
+          dot: ASCT+B Table
+        - label: Lymph Vasculature
+          url: https://doi.org/10.48539/HBM577.JGGH.294
+          links:
+            - label: CSV
+              link: https://hubmapconsortium.github.io/ccf-releases/v1.2/asct-b/ASCT-B_VH_Lymph_Vasculature.csv
+          releaseVersion: v1.1
+          dot: ASCT+B Table
+    - version: '2'
+      rows:
+        - label: Blood Vasculature Female
+          url: https://doi.org/10.48539/HBM542.RNFN.859
+          links:
+            - label: GLB
+              link: https://ccf-ontology.hubmapconsortium.org/objects/v1.1/VH_F_Blood_Vasculature.glb
+          releaseVersion: v1.1
+          dot: 3D Reference Object
+        - label: Blood Vasculature Male
+          url: https://doi.org/10.48539/HBM624.HZFZ.385
+          links:
+            - label: GLB
+              link: https://ccf-ontology.hubmapconsortium.org/objects/v1.1/VH_M_Blood_Vasculature.glb
+          releaseVersion: v1.1
+          dot: 3D Reference Object
+        - label: Blood Vasculature
+          url: https://doi.org/10.48539/HBM655.DGSW.887
+          links:
+            - label: CSV
+              link: https://hubmapconsortium.github.io/ccf-releases/v1.1/asct-b/ASCT-B_VH_Blood_Vasculature.csv
+          releaseVersion: v1.1
+          dot: ASCT+B Table
+        - label: Lymph Vasculature
+          url: 	https://doi.org/10.48539/HBM559.TDMB.283
+          links:
+            - label: CSV
+              link: https://hubmapconsortium.github.io/ccf-releases/v1.1/asct-b/ASCT-B_VH_Lymph_Vasculature.csv
+          releaseVersion: v1.0
+          dot: ASCT+B Table
+    - version: '1'
+      rows:
+        - label: Vasculature Female
+          url: https://doi.org/10.48539/hbm253.dkwb.737
+          links:
+            - label: GLB
+              link: https://ccf-ontology.hubmapconsortium.org/objects/v1.0/VH_F_Vasculature.glb
+          releaseVersion: v1.0
+          dot: 3D Reference Object
+        - label: Vasculature Male
+          url: https://doi.org/10.48539/hbm784.zdzf.357
+          links:
+            - label: GLB
+              link: https://ccf-ontology.hubmapconsortium.org/objects/v1.0/VH_M_Vasculature.glb
+          releaseVersion: v1.0
+          dot: 3D Reference Object
+        - label: Vasculature
+          url: https://doi.org/10.48539/hbm426.gzpn.888
+          links:
+            - label: CSV
+              link: https://hubmapconsortium.github.io/ccf-releases/v1.0/asct-b/ASCT-B_VH_Vasculature.csv
+          releaseVersion: v1.0
+          dot: ASCT+B Table
+
+- type: margin
+  bottom: 3.5rem
 
 - type: page-data
   pageData:

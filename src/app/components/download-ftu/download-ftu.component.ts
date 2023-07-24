@@ -10,7 +10,7 @@ import { FtuData, FtuVersionData } from './download-ftu';
   styleUrls: ['./download-ftu.component.scss']
 })
 export class DownloadFtuComponent {
-  @ViewChild(MatSort, {static: true})
+  @ViewChild(MatSort, { static: true })
   set sort(value: MatSort) {
     this.selectedData.sort = value;
   }
@@ -29,6 +29,21 @@ export class DownloadFtuComponent {
   }
   get data(): FtuVersionData[] {
     return this._data;
+  }
+
+  @Input() columnLabels = {
+    type: 'Type',
+    download: 'Download',
+    releaseVersion: 'Release Version',
+    digitalObjectType: 'Digital Object Type'
+  }
+
+  @Input() displayMetadata: boolean = false;
+
+  get displayedColumns(): string[] {
+    return ['label', 'links'].concat(
+      this.displayMetadata ? ['releaseVersion', 'digitalObjectType'] : [],
+    )
   }
 
   selectedVersion?: ChooseVersion;
