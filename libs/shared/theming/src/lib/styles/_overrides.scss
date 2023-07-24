@@ -12,6 +12,10 @@
         border: 2px solid;
         border-color: vars.$primary-rgb;
 
+        & > .mat-mdc-button-persistent-ripple::before {
+          opacity: 0 !important;
+        }
+
         & > .mat-mdc-focus-indicator {
           margin: 2px;
         }
@@ -43,9 +47,6 @@
             border: 0;
             border-radius: 4px;
           }
-          & > .mat-mdc-button-persistent-ripple {
-            background-color: #ffffff;
-          }
         }
 
         &:disabled {
@@ -61,6 +62,10 @@
         color: vars.$primary-rgb;
         border: 2px solid;
         border-color: vars.$primary-lighter-rgb;
+
+        & > .mat-mdc-button-persistent-ripple::before {
+          opacity: 0 !important;
+        }
 
         & > .mat-mdc-focus-indicator {
           margin: 2px;
@@ -79,7 +84,7 @@
         }
 
         &:hover {
-          background-color: vars.$primary-contrast-rgb;
+          background-color: vars.$primary-50-rgb;
           border-color: vars.$primary-lighter-rgb;
           color: vars.$primary-rgb;
         }
@@ -93,9 +98,6 @@
             margin: 2px;
             border: 0;
             border-radius: 4px;
-          }
-          & > .mat-mdc-button-persistent-ripple {
-            background-color: #ffffff;
           }
         }
 
