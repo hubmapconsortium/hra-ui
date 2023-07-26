@@ -388,6 +388,9 @@
               "displayMetadata": {
                 "type": "boolean"
               },
+              "downloadIcon": {
+                "type": "string"
+              },
               "columnLabels": {
                 "type": "object",
                 "additionalProperties": {
