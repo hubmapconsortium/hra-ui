@@ -519,6 +519,7 @@
       version: '4'
     - release: '3rd HRA Release (v1.2), June 2022'
       version: '3'
+  downloadIcon: file_download
   versionedData:
     - version: "3"
       rows:

@@ -1685,6 +1685,7 @@
       version: "2"
     - release: 1st HRA Release (v1.0), March 2021
       version: "1"
+  downloadIcon: file_download
   versionedData:
     - version: "1"
       rows:

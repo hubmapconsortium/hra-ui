@@ -38,6 +38,8 @@ export class DownloadFtuComponent {
     digitalObjectType: 'Digital Object Type'
   }
 
+  @Input() downloadIcon: string;
+
   @Input() displayMetadata: boolean = false;
 
   get displayedColumns(): string[] {

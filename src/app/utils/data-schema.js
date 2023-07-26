@@ -107,6 +107,7 @@ export const DownloadFtu = z.object({
     type: z.literal('download-ftu'),
     versions: VersionEntry.array({ description: 'Release and version Information' }),
     displayMetadata: z.boolean().optional(),
+    downloadIcon: z.string().optional(),
     columnLabels: z.record(z.string(), z.string()).optional().default({
         type: 'Type',
         download: 'Download',
