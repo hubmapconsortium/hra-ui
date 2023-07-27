@@ -33,9 +33,12 @@
 
 ::ng-deep {
   .mat-sort-header-arrow {
-    margin: 0 0 3px 6px !important;
-    transform: rotate(180deg) !important;
+    color: #ebebeb !important;
     opacity: 0.57 !important;
-    color: #EBEBEB;
+    transform: rotate(180deg) !important;
+  }
+
+  .mat-sort-header-sorted .mat-sort-header-arrow {
+    color: #212121 !important;
   }
 }
