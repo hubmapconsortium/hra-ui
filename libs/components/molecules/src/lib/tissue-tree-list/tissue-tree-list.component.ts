@@ -114,6 +114,9 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
     if ('nodes' in changes) {
       this.dataSource.data = this.findRootNodes();
     }
+    if ('selected' in changes) {
+      //
+    }
   }
 
   /**
