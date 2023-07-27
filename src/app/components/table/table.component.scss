@@ -70,7 +70,6 @@ $border-color: #e0e0e0;
     .table-cell,
     .table-footer {
       @include default-font();
-      min-width: 6.125rem;
       color: $text-color;
       text-overflow: ellipsis;
       white-space: normal;
@@ -150,6 +149,10 @@ $border-color: #e0e0e0;
       text-align: left !important;
       padding-left: 1rem;
       padding-right: unset !important;
+    }
+
+    ::ng-deep .mat-column-Organ {
+      min-width: 12rem;
     }
   }
 }
