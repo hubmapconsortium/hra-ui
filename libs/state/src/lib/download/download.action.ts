@@ -58,5 +58,3 @@ export class Download extends Action('Download') {
     super();
   }
 }
-
-// Add a load action which clears out state first and takes an iri and adds it to the state
