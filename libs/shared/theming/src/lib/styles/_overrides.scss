@@ -9,69 +9,103 @@
       &.mat-primary {
         background-color: vars.$primary-rgb;
         color: vars.$primary-contrast-rgb;
-      }
+        border: 2px solid;
+        border-color: vars.$primary-rgb;
 
-      &.mdc-button:focus {
-        background-color: vars.$primary-rgb;
-        border: 0.25rem solid #ffaa00;
-      }
+        & > .mat-mdc-button-persistent-ripple::before {
+          opacity: 0 !important;
+        }
 
-      &.mdc-button:hover {
-        background-color: vars.$primary-darker-rgb;
-      }
+        & > .mat-mdc-focus-indicator {
+          margin: 2px;
+        }
 
-      &.mdc-button:active {
-        background-color: white;
-        border: 0.125rem solid vars.$primary-darker-rgb;
-        color: white;
-      }
+        &:focus:not(:hover) {
+          background-color: #ffaa00;
+          border-color: #ffaa00;
 
-      &.mdc-button:active span.mat-mdc-button-ripple {
-        background-color: vars.$primary-darker-rgb;
-        margin: 0.25rem;
-      }
+          & > .mat-mdc-focus-indicator {
+            background-color: vars.$primary-rgb;
+            margin: 0;
+            border: 2px solid #ffaa00;
+          }
+        }
 
-      &.mdc-button:disabled {
-        background-color: vars.$primary-lighter-rgb;
-        color: vars.$primary-rgb;
+        &:hover {
+          background-color: vars.$primary-darker-rgb;
+          border-color: vars.$primary-darker-rgb;
+          color: vars.$primary-darker-contrast-rgb;
+        }
+
+        &:active {
+          background-color: white;
+          border-color: vars.$primary-darker-rgb;
+
+          & > .mat-mdc-focus-indicator {
+            background-color: vars.$primary-darker-rgb;
+            margin: 2px;
+            border: 0;
+            border-radius: 4px;
+          }
+        }
+
+        &:disabled {
+          background-color: vars.$primary-lighter-rgb;
+          border-color: vars.$primary-lighter-rgb;
+          color: vars.$primary-rgb;
+          color: #63b1d3;
+        }
       }
 
       &.mat-accent {
         background-color: vars.$primary-contrast-rgb;
-        border: 0.125rem vars.$primary-lighter-rgb solid;
         color: vars.$primary-rgb;
-      }
+        border: 2px solid;
+        border-color: vars.$primary-lighter-rgb;
 
-      &.mat-accent:focus {
-        background-color: white;
-        color: vars.$primary-rgb;
-        border: 0.25rem solid #ffaa00;
-      }
+        & > .mat-mdc-button-persistent-ripple::before {
+          opacity: 0 !important;
+        }
 
-      &.mat-accent:hover {
-        background-color: vars.$primary-lighter-rgb;
-        border: 0.125rem vars.$primary-lighter-rgb solid;
-        color: vars.$primary-darker-rgb;
-      }
+        & > .mat-mdc-focus-indicator {
+          margin: 2px;
+        }
 
-      &.mat-accent:active {
-        background-color: white;
-        border: 0.125rem solid vars.$primary-rgb;
-        color: white;
-      }
+        &:focus:not(:hover) {
+          background-color: #ffaa00;
+          border-color: #ffaa00;
+          color: vars.$primary-rgb;
 
-      &.mat-accent:active span.mat-mdc-button-ripple {
-        background-color: vars.$primary-rgb;
-        margin: 0.25rem;
-      }
+          & > .mat-mdc-focus-indicator {
+            background-color: vars.$primary-contrast-rgb;
+            margin: 0;
+            border: 2px solid #ffaa00;
+          }
+        }
 
-      &.mat-accent:disabled {
-        background-color: #e7e7e5;
-        border: 0.063rem #9d9e9a solid;
-      }
+        &:hover {
+          background-color: vars.$primary-50-rgb;
+          border-color: vars.$primary-lighter-rgb;
+          color: vars.$primary-rgb;
+        }
 
-      .mat-mdc-button-persistent-ripple::before {
-        opacity: 0 !important;
+        &:active {
+          border-color: vars.$primary-darker-rgb;
+          color: white;
+
+          & > .mat-mdc-focus-indicator {
+            background-color: vars.$primary-darker-rgb;
+            margin: 2px;
+            border: 0;
+            border-radius: 4px;
+          }
+        }
+
+        &:disabled {
+          background-color: #e7e7e5;
+          border-color: #e7e7e5;
+          color: #9d9e9a;
+        }
       }
     }
 
