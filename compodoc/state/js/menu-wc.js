@@ -114,6 +114,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/Load-4.html" data-type="entity-link" >Load</a>
                             </li>
                             <li class="link">
+                                <a href="classes/Load-5.html" data-type="entity-link" >Load</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/RegisterFormat.html" data-type="entity-link" >RegisterFormat</a>
                             </li>
                             <li class="link">

@@ -62,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/lib/tissue-library/tissue-library.actions.ts</code>
+            <code>src/lib/source-refs/source-refs.actions.ts</code>
         </p>
 
 
@@ -70,7 +70,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>action of loading tissue data into the TissueLibrary state</p>
+                <p>Action to load the state with the current Iri</p>
 
             </p>
 
@@ -78,6 +78,56 @@
 
 
 
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(iri: Iri)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/lib/source-refs/source-refs.actions.ts:10</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Intializes the set iri</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>iri</td>
+                                                  
+                                                        <td>
+                                                                    <code>Iri</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
 
 
@@ -90,10 +140,26 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Action } from &#x27;@hra-ui/cdk/state&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ActionGroup } from &#x27;@hra-ui/cdk/state&#x27;;
+import { Iri } from &#x27;@hra-ui/services&#x27;;
 
-/** action of loading tissue data into the TissueLibrary state */
-export class Load extends Action(&#x27;[TissueLibrary] Load Tissue Data&#x27;) {}
+/** Action base class factory */
+const Action &#x3D; ActionGroup(&#x27;SourceRefs&#x27;);
+
+/**
+ * Action to load the state with the current Iri
+ */
+export class Load extends Action(&#x27;Load&#x27;) {
+  /** Intializes the set iri */
+  constructor(readonly iri: Iri) {
+    super();
+  }
+}
+
+/**
+ * Action to reset the state
+ */
+export class Reset extends Action(&#x27;Reset&#x27;) {}
 </code></pre>
     </div>
 </div>

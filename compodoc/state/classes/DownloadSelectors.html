@@ -136,14 +136,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Selector()<br /></code>
+                    <code>@Selector([&#x27;DownloadState&#x27;])<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/lib/download/download.selectors.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="15"
+                            class="link-to-prism">src/lib/download/download.selectors.ts:15</a></div>
                 </td>
             </tr>
 
@@ -205,6 +205,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Selector } from &#x27;@ngxs/store&#x27;;
 import { DownloadFormat, DownloadModel } from &#x27;./download.model&#x27;;
+import { DownloadState } from &#x27;./download.state&#x27;;
 
 /**
  * Available format selectors
@@ -215,7 +216,7 @@ export class DownloadSelectors {
    * @param state
    * @returns
    */
-  @Selector()
+  @Selector([DownloadState])
   static formats(state: DownloadModel): DownloadFormat[] {
     const { formats, entries } &#x3D; state;
     const hasData &#x3D; (format: DownloadFormat | undefined): format is DownloadFormat &#x3D;&gt;

@@ -165,6 +165,7 @@ import { CellSummaryActions } from &#x27;../cell-summary&#x27;;
 import { IllustratorActions, IllustratorState } from &#x27;../illustrator&#x27;;
 import { SourceRefsActions, SourceRefsState } from &#x27;../source-refs&#x27;;
 import { Clear, Load, Reset } from &#x27;./active-ftu.actions&#x27;;
+import { DownloadActions } from &#x27;../download&#x27;;
 
 /**
  * Interface for ActiveFtuModel */
@@ -197,6 +198,7 @@ export class ActiveFtuState {
       return dispatch([
         new CellSummaryActions.Load(iri),
         new IllustratorActions.Load(iri),
+        new DownloadActions.Load(iri),
         new SourceRefsActions.Load(iri),
       ]).pipe(tap(() &#x3D;&gt; patchState({ iri })));
     }

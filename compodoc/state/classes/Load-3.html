@@ -62,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/lib/source-refs/source-refs.actions.ts</code>
+            <code>src/lib/illustrator/illustrator.actions.ts</code>
         </p>
 
 
@@ -70,7 +70,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Action to load the state with the current Iri</p>
+                <p>Loads the state with the current Iri</p>
 
             </p>
 
@@ -89,7 +89,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/lib/source-refs/source-refs.actions.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/lib/illustrator/illustrator.actions.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -141,13 +141,13 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ActionGroup } from &#x27;@hra-ui/cdk/state&#x27;;
-import { Iri } from &#x27;@hra-ui/services&#x27;;
+import { IllustrationMappingItem, Iri } from &#x27;@hra-ui/services&#x27;;
 
 /** Action base class factory */
-const Action &#x3D; ActionGroup(&#x27;SourceRefs&#x27;);
+const Action &#x3D; ActionGroup(&#x27;Illustrator&#x27;);
 
 /**
- * Action to load the state with the current Iri
+ * Loads the state with the current Iri
  */
 export class Load extends Action(&#x27;Load&#x27;) {
   /** Intializes the set iri */
@@ -157,7 +157,22 @@ export class Load extends Action(&#x27;Load&#x27;) {
 }
 
 /**
- * Action to reset the state
+ * Sets the selection for the Item in the current state
+ */
+export class SetSelection extends Action(&#x27;Set Selection&#x27;) {
+  /** Initializes the Mapping Item */
+  constructor(readonly selected: IllustrationMappingItem) {
+    super();
+  }
+}
+
+/**
+ * Clears the selection for the current state
+ */
+export class ClearSelection extends Action(&#x27;Clear Selection&#x27;) {}
+
+/**
+ * Resets the state
  */
 export class Reset extends Action(&#x27;Reset&#x27;) {}
 </code></pre>

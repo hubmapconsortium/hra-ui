@@ -139,8 +139,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/lib/active-ftu/active-ftu.state.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/lib/active-ftu/active-ftu.state.ts:52</a></div>
                 </td>
             </tr>
 
@@ -216,8 +216,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/lib/active-ftu/active-ftu.state.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/lib/active-ftu/active-ftu.state.ts:37</a></div>
                 </td>
             </tr>
 
@@ -306,8 +306,8 @@ with the current iri</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/lib/active-ftu/active-ftu.state.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/lib/active-ftu/active-ftu.state.ts:61</a></div>
                 </td>
             </tr>
 
@@ -371,6 +371,7 @@ import { CellSummaryActions } from &#x27;../cell-summary&#x27;;
 import { IllustratorActions, IllustratorState } from &#x27;../illustrator&#x27;;
 import { SourceRefsActions, SourceRefsState } from &#x27;../source-refs&#x27;;
 import { Clear, Load, Reset } from &#x27;./active-ftu.actions&#x27;;
+import { DownloadActions } from &#x27;../download&#x27;;
 
 /**
  * Interface for ActiveFtuModel */
@@ -403,6 +404,7 @@ export class ActiveFtuState {
       return dispatch([
         new CellSummaryActions.Load(iri),
         new IllustratorActions.Load(iri),
+        new DownloadActions.Load(iri),
         new SourceRefsActions.Load(iri),
       ]).pipe(tap(() &#x3D;&gt; patchState({ iri })));
     }

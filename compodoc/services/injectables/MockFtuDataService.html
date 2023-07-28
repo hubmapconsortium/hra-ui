@@ -498,7 +498,7 @@ It overrides the methods from the parent class to provide mock data for testing 
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:55</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:60</a></code>
 </div>
                 </td>
             </tr>
@@ -608,7 +608,12 @@ export class MockFtuDataService extends FtuDataService {
   @returns An Observable that emits an DataFileReference array.
   */
   override getDataFileReferences(iri: Iri): Observable&lt;DataFileReference[]&gt; {
-    return of([]);
+    return of([
+      {
+        format: &#x27;svg&#x27;,
+        url: MOCK_TISSUE_DATA.nodes[iri].object.file,
+      },
+    ]);
   }
   /**
   Overrides the getSourceReferences method to return an empty array.
