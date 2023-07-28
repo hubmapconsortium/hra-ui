@@ -45,7 +45,12 @@ export class MockFtuDataService extends FtuDataService {
   @returns An Observable that emits an DataFileReference array.
   */
   override getDataFileReferences(iri: Iri): Observable<DataFileReference[]> {
-    return of([]);
+    return of([
+      {
+        format: 'svg',
+        url: MOCK_TISSUE_DATA.nodes[iri].object.file,
+      },
+    ]);
   }
   /**
   Overrides the getSourceReferences method to return an empty array.

@@ -1,5 +1,6 @@
 import { ActionGroup } from '@hra-ui/cdk/state';
 import { DownloadEntry, DownloadFormat, DownloadFormatId } from './download.model';
+import { Iri } from '@hra-ui/services';
 
 /**Action Group for Download Action */
 const Action = ActionGroup('Download');
@@ -13,6 +14,19 @@ export class RegisterFormat extends Action('Register Format') {
    * @param format
    */
   constructor(readonly format: DownloadFormat) {
+    super();
+  }
+}
+
+/**
+ * Action to load entries from data service
+ */
+export class Load extends Action('Load') {
+  /**
+   * Creates a action to load from the enteries from the data service
+   * @param iri Organ Iri for which the entries are loaded
+   */
+  constructor(readonly iri: Iri) {
     super();
   }
 }

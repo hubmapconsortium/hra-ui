@@ -4,9 +4,10 @@ import { Action, NgxsOnInit, State } from '@ngxs/store';
 import produce from 'immer';
 import { Observable, tap } from 'rxjs';
 
+import { FtuDataService, Iri } from '@hra-ui/services';
 import { PNG_FORMAT, SVG_FORMAT } from './builtin-formats';
-import { AddEntry, ClearEntries, Download, RegisterFormat } from './download.action';
-import { DownloadContext, DownloadFormatId, DownloadModel } from './download.model';
+import { AddEntry, ClearEntries, Download, Load, RegisterFormat } from './download.action';
+import { createDownloadFormatId, DownloadContext, DownloadFormatId, DownloadModel } from './download.model';
 
 /**
  * Download State Model used to convert
@@ -28,6 +29,11 @@ export class DownloadState implements NgxsOnInit {
   private readonly http = inject(HttpClient);
 
   /**
+   * Data service of download state
+   */
+  private readonly dataService = inject(FtuDataService);
+
+  /**
    * Ngxs on init and registry default format
    * @param ctx
    */
@@ -46,6 +52,28 @@ export class DownloadState implements NgxsOnInit {
       produce((draft) => {
         draft.formats[format.id] = format;
       })
+    );
+  }
+
+  /**
+   * Action to add the Organs IRI from the data service
+   * @param ctx Context
+   * @param iri Organ Data
+   * @returns
+   */
+  @Action(Load)
+  load(ctx: DownloadContext, { iri }: Load): Observable<unknown> {
+    return this.dataService.getDataFileReferences(iri).pipe(
+      tap((items) =>
+        ctx.setState(
+          produce((draft) => {
+            draft.entries = {};
+            for (const { format, url } of items) {
+              draft.entries[createDownloadFormatId(format)] = { type: 'url', url };
+            }
+          })
+        )
+      )
     );
   }
 

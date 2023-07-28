@@ -6,6 +6,7 @@ import { CellSummaryActions } from '../cell-summary';
 import { IllustratorActions, IllustratorState } from '../illustrator';
 import { SourceRefsActions, SourceRefsState } from '../source-refs';
 import { Clear, Load, Reset } from './active-ftu.actions';
+import { DownloadActions } from '../download';
 
 /**
  * Interface for ActiveFtuModel */
@@ -38,6 +39,7 @@ export class ActiveFtuState {
       return dispatch([
         new CellSummaryActions.Load(iri),
         new IllustratorActions.Load(iri),
+        new DownloadActions.Load(iri),
         new SourceRefsActions.Load(iri),
       ]).pipe(tap(() => patchState({ iri })));
     }
