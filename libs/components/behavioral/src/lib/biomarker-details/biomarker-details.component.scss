@@ -92,9 +92,11 @@
 
 ::ng-deep .biomarker-details.info-tooltip {
   display: flex;
-  padding: 1rem 1.5rem;
+  padding: 1rem;
+  border: 1px solid #a8a3a3;
   border-radius: 0.5rem;
-  box-shadow: 0.063rem 0.125rem;
+  box-shadow: 1px 2px 16px 2px #00000029;
   background-color: vars.$primary-contrast-rgb;
   max-width: 21rem;
+  font-size: small;
 }
