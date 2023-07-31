@@ -115,7 +115,7 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
       this.dataSource.data = this.findRootNodes();
     }
     if ('selected' in changes) {
-      //
+      this.expandPath(this.findPathToSelectedNode());
     }
   }
 
@@ -153,5 +153,17 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
     }
 
     return Object.values(nodes);
+  }
+
+  private findPathToSelectedNode(): DataNode<K>[] {
+    if (this.selected === undefined) {
+      return [];
+    }
+    return []; // TODO
+  }
+
+  private expandPath(path: DataNode<K>[]): void {
+    const nodes = this.control.dataNodes.filter((node) => path.includes(node.data));
+    nodes.forEach((node) => this.control.expand(node));
   }
 }
