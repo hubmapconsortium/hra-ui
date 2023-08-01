@@ -20,8 +20,10 @@ LandingPageIntroDescription:
     A functional tissue unit (FTU) is the smallest tissue organization that performs a unique physiologic function
     and is replicated multiple times in a whole organ. Explore medical illustrations of FTUs to view cell type populations
     by gene, protein, and lipid biomarkers. The FTU Explorer features experimental datasets from
-    <a href='' target='_blank'>HuBMAP</a>, <a href='' target='_blank'>CellxGene</a>, <a href='' target='_blank'>NeMO</a>,
-    and <a href='' target='_blank'>GTEx</a>.
+    <a href='https://portal.hubmapconsortium.org/' target='_blank'>HuBMAP</a>,
+    <a href='https://cellxgene.cziscience.com/' target='_blank'>CellxGene</a>,
+    <a href='' target='_blank'>NeMO</a>,
+    and <a href='https://gtexportal.org/' target='_blank'>GTEx</a>.
 
 LandingPageIntroPartners:
   type: markdown
@@ -51,20 +53,20 @@ Metrics:
     - description: consortia
       value: '17'
       icon: assets/resources/metric-icons/diversity.svg
-    - description: publications
-      value: '1,000+'
-      icon: assets/resources/metric-icons/publications.svg
     - description: experts
       value: '250+'
       icon: assets/resources/metric-icons/experts.svg
+    - description: publications
+      value: '1,000+'
+      icon: assets/resources/metric-icons/publications.svg
     - description: anatomical structures
-      value: '2,665'
+      value: '4,279'
       icon: assets/resources/metric-icons/structures.svg
     - description: cell types
-      value: '953'
+      value: '1,209'
       icon: assets/resources/metric-icons/celltypes.svg
     - description: biomarkers
-      value: '2,842'
+      value: '2,089'
       icon: assets/resources/metric-icons/biomarkers.svg
 
 LandingPageDepthTitle:
