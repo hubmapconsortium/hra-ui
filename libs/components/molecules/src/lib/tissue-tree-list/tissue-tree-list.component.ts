@@ -154,14 +154,15 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
    * @returns remaining nodes which are root nodes.
    */
   private findRootNodes(): T[] {
-    const nodes = { ...this.nodes };
+    const { nodes } = this;
+    const roots = { ...this.nodes };
     for (const key in nodes) {
       for (const child of nodes[key].children ?? []) {
-        delete nodes[child];
+        delete roots[child];
       }
     }
 
-    return Object.values(nodes);
+    return Object.values(roots);
   }
 
   /**
