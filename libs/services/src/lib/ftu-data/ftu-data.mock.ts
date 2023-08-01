@@ -65,7 +65,7 @@ export class MockFtuDataService extends FtuDataService {
   @returns An Observable that emits an IllustrationMappingItem array.
   */
   override getIllustrationMapping(iri: Iri): Observable<IllustrationMappingItem[]> {
-    return of(testMapping);
+    return of([]);
   }
 
   /**
