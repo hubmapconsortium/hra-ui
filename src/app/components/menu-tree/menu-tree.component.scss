@@ -46,20 +46,19 @@
   justify-content: center;
 }
 
-.mat-nested-tree-node:not([aria-expanded="true"]):hover, .mat-tree-node:hover {
+.mat-nested-tree-node:not([aria-expanded="true"]):hover,
+.mat-tree > .mat-tree-node:hover {
   background: rgba(0, 0, 0, 0.04);
 }
 
 .mat-tree-node {
-  & > * {
-    z-index: 1;
-  }
+  z-index: 1;
+}
 
-  &[aria-level="2"]:hover::after {
-    position: absolute;
-    content: '';
-    inset: 0 -2rem;
-    z-index: 0;
-    background: rgba(0, 0, 0, 0.04);
-  }
+.mat-tree-node[aria-level="2"]:hover::after {
+  position: absolute;
+  content: '';
+  inset: 0 -2rem;
+  z-index: -1;
+  background: rgba(0, 0, 0, 0.04);
 }
