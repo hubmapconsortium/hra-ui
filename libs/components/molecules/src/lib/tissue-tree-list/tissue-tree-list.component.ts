@@ -140,6 +140,9 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
     }
   }
 
+  /**
+   * Resets selection and collapes all nodes of the tree.
+   */
   resetSelection(): void {
     this.selected = undefined;
     this.control.collapseAll();
@@ -161,11 +164,19 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
     return Object.values(nodes);
   }
 
+  /**
+   * expands the tree nodes based on the path provided.
+   * @param path is given as an input.
+   */
   private expandPath(path: DataNode<K>[]): void {
     const nodes = this.control.dataNodes.filter((node) => path.includes(node.data));
     nodes.forEach((node) => this.control.expand(node));
   }
 
+  /**
+   * It used the logic of depth first search to find the target node.
+   * returns the path to the target node.
+   */
   private dfsFindPath(nodes: T[], target: T, path: T[] = []): T[] {
     for (const node of nodes) {
       path.push(node);
