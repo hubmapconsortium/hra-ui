@@ -2,7 +2,7 @@ import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { MetricsComponent } from './metrics.component';
 
 export default {
-  title: 'Molecule/MetricsComponent',
+  title: 'MetricsComponent',
   component: MetricsComponent,
   decorators: [
     moduleMetadata({

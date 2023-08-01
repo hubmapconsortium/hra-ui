@@ -4,7 +4,7 @@ import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dial
 import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import { ContactData, ContactModalComponent, InfoModalComponent } from '@hra-ui/components/molecules';
-import { ResourceIds as Ids, SendMessage } from '@hra-ui/state';
+import { ResourceIds as Ids, ContactActions } from '@hra-ui/state';
 
 /** A Component for contact behavior which sends the message entered by the user and shows an acknowledgement */
 @Component({
@@ -29,7 +29,7 @@ export class ContactBehaviorComponent {
   readonly description = selectQuerySnapshot(RR.anyText, Ids.ContactAcknowledgement);
 
   /** A dispatcher function to send message entered by user */
-  readonly sendMessage = dispatch(SendMessage);
+  readonly sendMessage = dispatch(ContactActions.SendMessage);
 
   /** A dialog box which shows user an acknowledgement after clicking on submit */
   private readonly dialog = inject(MatDialog);

@@ -2,7 +2,7 @@ import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { InfoModalComponent } from './info-modal.component';
 
 export default {
-  title: 'Molecule/InfoModalComponent',
+  title: 'InfoModalComponent',
   component: InfoModalComponent,
   decorators: [
     moduleMetadata({

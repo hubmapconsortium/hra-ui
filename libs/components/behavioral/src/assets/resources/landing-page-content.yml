@@ -1,0 +1,54 @@
+LandingPageIntroTitle:
+  type: markdown
+  markdown: 'Welcome to the Functional Tissue Unit Explorer'
+LandingPageIntroDescription:
+  type: markdown
+  markdown: "A functional tissue unit (FTU) is the smallest tissue organization that performs a unique physiologic function and is replicated multiple times in a whole organ. Explore medical illustrations of FTUs to view cell type populations by gene, protein, and lipid biomarkers. The FTU Explorer features experimental datasets from <a href='' target='_blank'>HuBMAP</a>, <a href='' target='_blank'>CellxGene</a>, <a href='' target='_blank'>NeMO</a>, and <a href='' target='_blank'>GTEx</a>."
+LandingPageIntroPartners:
+  type: markdown
+  markdown: "A special thanks to our partners: The FTU Explorer was designed in close collaboration with <a href='' target='_blank'>Kidney Precision Medicine Project</a> and <a href=''>European Bioinformatics Institute.</a>"
+LandingPageIntroMoreText:
+  type: markdown
+  markdown: 'Explore FTUs'
+LandingPageIntroImg:
+  type: url
+  url: 'assets/welcome.svg'
+MetricsLogo:
+  type: url
+  url: 'assets/logo.svg'
+MetricsTitle:
+  type: text
+  text: Metrics of the Human Reference Atlas
+LandingPageDepthTitle:
+  type: markdown
+  markdown: Explore Medical Illustrations of the Human Reference Atlas
+LandingPageDepthImg:
+  type: url
+  url: 'assets/2d-ftu-pancreas-islets-langerhans.svg'
+LandingPageDepthDescription:
+  type: markdown
+  markdown: 'The 2D Functional Tissue Unit Library provides anatomically correct illustrations of functional tissue units (FTUs). The illustrations are developed by a specialist in 2D medical illustration and approved by organ experts. Illustrations are created using terms from the Anatomical Structures, Cell Types, and Biomarker (ASCT+B) table for each organ. Subject matter experts collaborate on a list of anatomical structures and/or cell types to be included in each FTU'
+LandingPageDepthMoreText:
+  type: markdown
+  markdown: Read more about this effort
+Metrics:
+  type: metrics
+  metrics:
+    - description: consortia
+      value: '17'
+      icon: 'assets/diversity.svg'
+    - description: publications
+      value: '1,000+'
+      icon: 'assets/publications.svg'
+    - description: experts
+      value: '250+'
+      icon: 'assets/experts.svg'
+    - description: anatomical structures
+      value: '2,665'
+      icon: 'assets/structures.svg'
+    - description: cell types
+      value: '953'
+      icon: 'assets/celltypes.svg'
+    - description: biomarkers
+      value: '2,842'
+      icon: 'assets/biomarkers.svg'

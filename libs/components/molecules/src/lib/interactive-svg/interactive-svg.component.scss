@@ -17,4 +17,11 @@
     fill: hsl(0deg 100% 50%);
     mix-blend-mode: saturation;
   }
+
+  .hover-active & g > g:hover {
+    :is(path, polygon, polyline) {
+      fill: hsl(0deg 100% 50%);
+      mix-blend-mode: saturation;
+    }
+  }
 }

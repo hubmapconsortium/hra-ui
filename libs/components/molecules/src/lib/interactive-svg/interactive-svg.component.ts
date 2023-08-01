@@ -58,6 +58,14 @@ export interface NodeTooltipData {
   origin: { x: number; y: number };
 }
 
+/** Interface for node entries */
+export interface NodeMapEntry {
+  /** Node label */
+  label: string;
+  /** Node name */
+  name: string;
+}
+
 /**
  * Interactive SVG component
  */
@@ -70,12 +78,15 @@ export interface NodeTooltipData {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class InteractiveSvgComponent implements OnDestroy {
+export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestroy {
   /** SVG url */
   @Input() url?: string;
 
+  /** Mapping info */
+  @Input() mapping: T[] = [];
+
   /** Emits node id when hovered */
-  @Output() readonly nodeHover = new EventEmitter<string>();
+  @Output() readonly nodeHover = new EventEmitter<T>();
 
   /** SVG script eval mode */
   readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;
@@ -139,16 +150,16 @@ export class InteractiveSvgComponent implements OnDestroy {
    * @param event Mouse event
    */
   private onCrosswalkHover(event: MouseEvent): void {
-    const id = this.decodeId(this.getId(event));
-    if (id) {
-      this.nodeHover.emit(id);
+    const node = this.getNode(event);
+    if (node) {
       this.nodeHoverData$.next({
-        node: id,
+        node: node.label,
         origin: {
           x: event.clientX,
           y: event.clientY,
         },
       });
+      this.nodeHover.emit(node); //emits node entry
     }
   }
 
@@ -162,13 +173,25 @@ export class InteractiveSvgComponent implements OnDestroy {
   }
 
   /**
-   * Returns parent id from event target
+   * Returns entry from mapping if target, parent, or grandparent id matches the node name
    * @param event Event
-   * @returns Parent id
+   * @returns Node entry that matches the target id
    */
-  private getId(event: Event): string {
-    const parentEl = (event.target as Element).parentElement as Element;
-    return parentEl.id;
+  private getNode(event: Event): T | undefined {
+    const targetId = (event.target as Element).id;
+    const parentId = (event.target as Element).parentElement?.id ?? '';
+    const grandparentId = (event.target as Element).parentElement?.parentElement?.id ?? '';
+    const idCollection = [targetId, parentId, grandparentId];
+    for (const id of idCollection) {
+      const decodedID = this.decodeId(id);
+      const match = this.mapping.find(
+        (item) => item.name?.toLowerCase() === decodedID.toLowerCase() //search mapping by name for matching node entry
+      );
+      if (match) {
+        return match;
+      }
+    }
+    return undefined;
   }
 
   /**

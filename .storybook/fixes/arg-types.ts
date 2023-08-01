@@ -1,4 +1,4 @@
-import { AngularFramework, Args } from '@storybook/angular';
+import { AngularRenderer, Args } from '@storybook/angular';
 import { ArgTypesEnhancer, StrictArgTypes, StrictInputType } from '@storybook/csf';
 
 function parseDefaultValue(type: StrictInputType): unknown {
@@ -37,7 +37,7 @@ function parseDefaultValue(type: StrictInputType): unknown {
 }
 
 // Fix for: https://github.com/storybookjs/storybook/issues/17004
-export function fixArgTypes(): ArgTypesEnhancer<AngularFramework, Args> {
+export function fixArgTypes(): ArgTypesEnhancer<AngularRenderer, Args> {
   return (context) => {
     const argTypes: StrictArgTypes<Args> = { ...context.argTypes };
     const exclude = [...(context.parameters['controls']?.exclude ?? [])];

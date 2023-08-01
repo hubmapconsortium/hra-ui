@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { injectOnDestroy } from '@hra-ui/cdk/injectors';
+import { injectDestroy$ } from '@hra-ui/cdk/injectors';
 import { map, takeUntil } from 'rxjs';
 
 /**
@@ -25,7 +25,7 @@ export class EmailInputComponent {
   @Output() readonly emailChange = new EventEmitter<string | undefined>();
 
   /** Observable emitting when the component is destroyed */
-  readonly destroy$ = injectOnDestroy();
+  readonly destroy$ = injectDestroy$();
 
   /**  A control to validate the email. */
   readonly control = new FormControl('', {

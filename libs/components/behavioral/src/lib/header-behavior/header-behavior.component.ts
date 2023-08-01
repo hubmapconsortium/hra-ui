@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import { HeaderComponent } from '@hra-ui/components/molecules';
-import { ResourceIds as Ids } from '@hra-ui/state';
+import { ResourceIds as Ids, LinkIds } from '@hra-ui/state';
 
 /** Component for Header Behavior */
 @Component({
@@ -29,4 +29,14 @@ export class HeaderBehaviorComponent {
    * Input for app title to show on the left side.
    */
   readonly appTitle = selectQuerySnapshot(RR.anyText, Ids.AppTitle);
+
+  /**
+   * Input for product title link for user click action
+   */
+  readonly productTitleLink = LinkIds.ProductTitle;
+
+  /**
+   * Input for about link for user click action.
+   */
+  readonly aboutLink = LinkIds.About;
 }

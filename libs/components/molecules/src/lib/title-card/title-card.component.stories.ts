@@ -2,7 +2,7 @@ import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { TitleCardComponent } from './title-card.component';
 
 export default {
-  title: 'Molecule/TitleCardComponent',
+  title: 'TitleCardComponent',
   component: TitleCardComponent,
   decorators: [
     moduleMetadata({

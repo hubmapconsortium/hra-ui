@@ -11,3 +11,10 @@
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+
+// Adds flex filler element styles.
+@mixin define-flex-filler($class: '.filler') {
+  #{$class} {
+    flex-grow: 1;
+  }
+}

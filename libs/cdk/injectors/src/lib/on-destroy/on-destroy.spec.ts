@@ -1,76 +1,60 @@
-import { ComponentRef, ElementRef, inject, NgModuleRef, Type, ViewContainerRef, ViewRef } from '@angular/core';
-import { DeepMockProxy, mock, mockDeep, MockProxy } from 'jest-mock-extended';
-import { last } from 'rxjs';
+import { ComponentRef, ElementRef, NgModuleRef, ViewContainerRef } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { mockDeep } from 'jest-mock-extended';
+import { Observable } from 'rxjs';
+import { DestructorScope } from './destructor-subject';
+import { injectDestroy$ } from './on-destroy';
 
-import { injectOnDestroy } from './on-destroy';
-
-jest.mock('@angular/core', () => {
-  const originalModule = jest.requireActual('@angular/core');
-
-  return {
-    __esModule: true,
-    ...originalModule,
-    inject: jest.fn(),
-  };
-});
-
-describe(injectOnDestroy, () => {
-  const mockedInject = jest.mocked(inject);
-  let viewContainer: MockProxy<ViewContainerRef>;
-  let component: DeepMockProxy<ComponentRef<unknown>>;
+describe('injectDestroy$()', () => {
+  function setKeyWithScope<T = unknown>(
+    keyToken: unknown = NgModuleRef,
+    scopeToken: unknown = NgModuleRef,
+    keyImpl?: object,
+    scopeImpl?: object
+  ) {
+    const key = mockDeep(keyImpl);
+    const scope = mockDeep<DestructorScope & T>(scopeImpl as never);
+    TestBed.overrideProvider(keyToken, { useValue: key });
+    TestBed.overrideProvider(scopeToken, { useValue: scope });
+    return [key, scope] satisfies [unknown, unknown];
+  }
 
   beforeEach(() => {
-    mockedInject.mockReset();
-    viewContainer = mock<ViewContainerRef>({ length: 1 });
-    component = mockDeep<ComponentRef<unknown>>();
-
-    viewContainer.get.mockImplementation(() => ({} as ViewRef));
-    viewContainer.createComponent.mockReturnValue(component);
+    TestBed.resetTestingModule();
+    setKeyWithScope();
   });
 
-  it('attaches cleanup to the current view', () => {
-    mockedInject.mockReturnValue(viewContainer);
-    injectOnDestroy();
-    expect(component.hostView.onDestroy).toHaveBeenCalled();
+  it('should return an observable', () => {
+    const res = TestBed.runInInjectionContext(injectDestroy$);
+    expect(res).toBeInstanceOf(Observable);
   });
 
-  it('creates a single observable when called multiple times', () => {
-    mockedInject.mockReturnValue(viewContainer);
-    viewContainer.get.mockReturnValue(component.hostView);
-    injectOnDestroy();
-    injectOnDestroy();
-    expect(component.hostView.onDestroy).toHaveBeenCalledTimes(1);
+  it('should return the same observable when run multiple times in the same context', () => {
+    const res1 = TestBed.runInInjectionContext(injectDestroy$);
+    const res2 = TestBed.runInInjectionContext(injectDestroy$);
+    expect(res1).toBe(res2);
   });
 
-  it('emits and completes when the view is destroyed', (done) => {
-    mockedInject.mockReturnValue(viewContainer);
-    injectOnDestroy().pipe(last()).subscribe({
-      error: done.fail,
-      complete: done,
+  it('should use the dom element as key if it exists', () => {
+    const spy = jest.fn(() => ({}));
+    setKeyWithScope(ElementRef, undefined, {
+      get nativeElement() {
+        return spy();
+      },
+      set nativeElement(value: unknown) {
+        // Do nothing
+      },
     });
 
-    component.hostView.onDestroy.mock.lastCall[0]();
+    TestBed.runInInjectionContext(injectDestroy$);
+    expect(spy).toHaveBeenCalled();
   });
 
-  it('attaches to the closest module if there is no view', () => {
-    const module = mock<NgModuleRef<unknown>>();
-    mockedInject.mockReturnValueOnce(null).mockReturnValueOnce(module);
-    injectOnDestroy();
-    expect(module.onDestroy).toHaveBeenCalled();
-  });
-
-  it('attaches a host component that removes itself from the dom', () => {
-    mockedInject.mockReturnValue(viewContainer);
-    injectOnDestroy();
-
-    const ref = mockDeep<ElementRef<HTMLElement>>();
-    const type = viewContainer.createComponent.mock.lastCall[0] as unknown as Type<unknown>;
-
-    mockedInject.mockReturnValue({ nativeElement: null });
-    expect(() => new type()).not.toThrow();
-
-    mockedInject.mockReturnValue(ref);
-    expect(() => new type()).not.toThrow();
-    expect(ref.nativeElement.remove).toHaveBeenCalled();
+  it('should use the view container as scope if it exists', () => {
+    const ref = mockDeep<ComponentRef<unknown>>({ location: { nativeElement: null } });
+    const [, vcr] = setKeyWithScope<ViewContainerRef>(NgModuleRef, ViewContainerRef);
+    vcr.createComponent.mockReturnValue(ref);
+    TestBed.runInInjectionContext(injectDestroy$);
+    expect(ref.onDestroy).toHaveBeenCalled();
   });
 });

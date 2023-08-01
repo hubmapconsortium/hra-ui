@@ -1,0 +1,164 @@
+@use 'variables' as vars;
+
+@mixin init() {
+  @at-root {
+    button.mdc-button {
+      font-weight: 700;
+      font-size: 1rem;
+
+      &.mat-primary {
+        background-color: vars.$primary-rgb;
+        color: vars.$primary-contrast-rgb;
+        border: 2px solid;
+        border-color: vars.$primary-rgb;
+
+        & > .mat-mdc-button-persistent-ripple::before {
+          opacity: 0 !important;
+        }
+
+        & > .mat-mdc-focus-indicator {
+          margin: 2px;
+        }
+
+        &:focus:not(:hover) {
+          background-color: #ffaa00;
+          border-color: #ffaa00;
+
+          & > .mat-mdc-focus-indicator {
+            background-color: vars.$primary-rgb;
+            margin: 0;
+            border: 2px solid #ffaa00;
+          }
+        }
+
+        &:hover {
+          background-color: vars.$primary-darker-rgb;
+          border-color: vars.$primary-darker-rgb;
+          color: vars.$primary-darker-contrast-rgb;
+        }
+
+        &:active {
+          background-color: white;
+          border-color: vars.$primary-darker-rgb;
+
+          & > .mat-mdc-focus-indicator {
+            background-color: vars.$primary-darker-rgb;
+            margin: 2px;
+            border: 0;
+            border-radius: 4px;
+          }
+        }
+
+        &:disabled {
+          background-color: vars.$primary-lighter-rgb;
+          border-color: vars.$primary-lighter-rgb;
+          color: vars.$primary-rgb;
+          color: #63b1d3;
+        }
+      }
+
+      &.mat-accent {
+        background-color: vars.$primary-contrast-rgb;
+        color: vars.$primary-rgb;
+        border: 2px solid;
+        border-color: vars.$primary-lighter-rgb;
+
+        & > .mat-mdc-button-persistent-ripple::before {
+          opacity: 0 !important;
+        }
+
+        & > .mat-mdc-focus-indicator {
+          margin: 2px;
+        }
+
+        &:focus:not(:hover) {
+          background-color: #ffaa00;
+          border-color: #ffaa00;
+          color: vars.$primary-rgb;
+
+          & > .mat-mdc-focus-indicator {
+            background-color: vars.$primary-contrast-rgb;
+            margin: 0;
+            border: 2px solid #ffaa00;
+          }
+        }
+
+        &:hover {
+          background-color: vars.$primary-50-rgb;
+          border-color: vars.$primary-lighter-rgb;
+          color: vars.$primary-rgb;
+        }
+
+        &:active {
+          border-color: vars.$primary-darker-rgb;
+          color: white;
+
+          & > .mat-mdc-focus-indicator {
+            background-color: vars.$primary-darker-rgb;
+            margin: 2px;
+            border: 0;
+            border-radius: 4px;
+          }
+        }
+
+        &:disabled {
+          background-color: #e7e7e5;
+          border-color: #e7e7e5;
+          color: #9d9e9a;
+        }
+      }
+    }
+
+    a.mdc-button {
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: underline;
+
+      &.mdc-button {
+        text-decoration-color: vars.$primary-rgb;
+        color: vars.$primary-rgb;
+      }
+
+      &.mdc-button:focus {
+        color: vars.$primary-rgb;
+        border: 0.25rem solid #ffaa00;
+      }
+
+      &.mdc-button:hover {
+        background: none;
+        text-decoration-color: vars.$primary-darker-rgb;
+        color: vars.$primary-darker-rgb;
+      }
+
+      &.mdc-button:active {
+        border: solid vars.$primary-darker-rgb;
+        text-decoration-color: #990000;
+        color: #990000;
+      }
+
+      &.mdc-button:active span.mat-mdc-button-ripple {
+        background-color: white;
+      }
+
+      &.mdc-button[disabled] {
+        color: #9d9e9a;
+        text-decoration: underline #9d9e9a;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      width: 0.5rem;
+      height: 0.5rem;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f8f9fa;
+      border: 0.063rem solid #d3d3d3;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #a0abb4;
+      border-radius: 0.5rem;
+    }
+  }
+}

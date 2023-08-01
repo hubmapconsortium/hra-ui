@@ -1,0 +1,52 @@
+<table class="table" mat-table [dataSource]="dataSource">
+  <caption class="sr-only">
+    Cell type table by Biomarker
+  </caption>
+
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef>Cell Type</th>
+
+    <td class="type" mat-cell *matCellDef="let element">
+      {{ element[0] }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="count">
+    <th class="count" mat-header-cell *matHeaderCellDef>Cell Count</th>
+
+    <td class="count" mat-cell *matCellDef="let element">
+      {{ element[1] !== undefined ? (element[1] | number) : 'no data' }}
+    </td>
+  </ng-container>
+
+  <ng-container *ngFor="let column of columns; let index = index" [matColumnDef]="column">
+    <th class="icon-header" mat-header-cell *matHeaderCellDef [hraHover]="columnHover" [hraHoverData]="column">
+      {{ column }}
+    </th>
+
+    <td class="icon-cell" mat-cell *matCellDef="let element">
+      <hra-biomarker-table-data-icon
+        class="icon"
+        *ngIf="element[index + 2] !== undefined"
+        [color]="element[index + 2].color"
+        [size]="element[index + 2].size"
+        [hraHover]="dataHover"
+        [hraHoverData]="element[index + 2].data"
+      >
+      </hra-biomarker-table-data-icon>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsWithTypeAndCount"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnsWithTypeAndCount"></tr>
+</table>
+
+<ng-template #columnHover let-columnName>
+  <div class="biomarker-table-hover full-column-name">
+    {{ columnName }}
+  </div>
+</ng-template>
+
+<ng-template #dataHover let-data>
+  <hra-biomarker-table-data-card [data]="data"> </hra-biomarker-table-data-card>
+</ng-template>

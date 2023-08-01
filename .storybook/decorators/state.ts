@@ -1,7 +1,6 @@
-import { APP_INITIALIZER } from '@angular/core';
-import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { APP_INITIALIZER, importProvidersFrom } from '@angular/core';
 import { NgxsModule, Store } from '@ngxs/store';
-import { AngularFramework, moduleMetadata } from '@storybook/angular';
+import { AngularRenderer, applicationConfig } from '@storybook/angular';
 import type { DecoratorFunction } from '@storybook/csf';
 
 export interface StateConfig {
@@ -9,16 +8,16 @@ export interface StateConfig {
   actions?: unknown[];
 }
 
-export function addState<TArgs = unknown>(): DecoratorFunction<AngularFramework, TArgs> {
+export function addState(): DecoratorFunction<AngularRenderer> {
   return (fn, ctx) => {
     const config: StateConfig | undefined = ctx.parameters['state'];
     if (!config) {
-      return fn();
+      return fn(ctx);
     }
 
-    return moduleMetadata({
-      imports: [NgxsModule.forRoot(config.states, {}), NgxsLoggerPluginModule.forRoot()],
+    return applicationConfig({
       providers: [
+        importProvidersFrom(NgxsModule.forFeature(config.states)),
         {
           provide: APP_INITIALIZER,
           multi: true,

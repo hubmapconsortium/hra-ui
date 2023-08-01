@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/angular';
 import { RequiredInputComponent } from './required-input.component';
 
 export default {
-  title: 'Atom/RequiredInputComponent',
+  title: 'RequiredInputComponent',
   component: RequiredInputComponent,
 } as Meta<RequiredInputComponent>;
 

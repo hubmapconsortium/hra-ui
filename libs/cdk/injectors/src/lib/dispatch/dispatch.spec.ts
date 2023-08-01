@@ -1,41 +1,82 @@
-import { inject } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { Any } from '@hra-ui/utils/types';
 import { Store } from '@ngxs/store';
-import { mock, mockFn } from 'jest-mock-extended';
-import { dispatch } from './dispatch';
+import { mockFn } from 'jest-mock-extended';
+import { isObservable, lastValueFrom, of } from 'rxjs';
+import { dispatch, dispatch$, dispatchAction, dispatchAction$ } from './dispatch';
 
-jest.mock('@angular/core');
+const boundArgs = ['q', {}, 'w'];
+const dispatchArgs = [1, 'a', true];
+const actionInstance = { type: 'test' };
+const actionType = mockFn().mockReturnValue(actionInstance);
+const storeDispatch = mockFn().mockReturnValue(of(undefined));
 
-describe(dispatch, () => {
-  const actionInstance = { type: 'test' };
-  const actionType = mockFn().mockReturnValue(actionInstance);
-  const store = mock<Store>();
-  jest.mocked(inject).mockReturnValue(store);
+beforeEach(() => {
+  jest.clearAllMocks();
+  TestBed.overrideProvider(Store, { useValue: { dispatch: storeDispatch } });
+});
 
-  afterEach(() => jest.clearAllMocks());
+function commonTests<R, InitArgs extends Any[], Args extends Any[]>(
+  create: (...args: InitArgs) => (...args: Args) => R,
+  initArgs: InitArgs,
+  args: Args
+): void {
+  let fn: (...args: Args) => R;
 
-  it('should create a new action instance on each call', () => {
-    const fn = dispatch(actionType);
-    fn();
-    expect(actionType).toHaveBeenCalledTimes(1);
-    fn();
-    expect(actionType).toHaveBeenCalledTimes(2);
-  });
-
-  it('should forward arguments to the action constructor', () => {
-    const args = [1, 'a', true];
-    const fn = dispatch(actionType);
-    fn(...args);
-    expect(actionType).toHaveBeenCalledWith(...args);
+  beforeEach(() => {
+    fn = TestBed.runInInjectionContext(() => create(...initArgs));
   });
 
   it('should dispatch the action', () => {
-    const fn = dispatch(actionType);
-    fn();
-    expect(store.dispatch).toHaveBeenCalledWith(actionInstance);
+    fn(...args);
+    expect(storeDispatch).toHaveBeenCalledWith(actionInstance);
   });
 
-  it('should return the action instance', () => {
-    const fn = dispatch(actionType);
-    expect(fn()).toBe(actionInstance);
+  it('should return the dispatched actions', async () => {
+    const res = fn(...args);
+    const resAction = isObservable(res) ? await lastValueFrom(res) : res;
+    expect(resAction).toEqual(actionInstance);
   });
+}
+
+function commonActionArgumentTests<R, InitArgs extends Any[], Args extends Any[]>(
+  create: (...args: InitArgs) => (...args: Args) => R,
+  initArgs: InitArgs,
+  args: Args
+): void {
+  let fn: (...args: Args) => R;
+
+  beforeEach(() => {
+    fn = TestBed.runInInjectionContext(() => create(...initArgs));
+  });
+
+  it('should create a new action instance on each call', () => {
+    fn(...args);
+    expect(actionType).toHaveBeenCalledTimes(1);
+    fn(...args);
+    expect(actionType).toHaveBeenCalledTimes(2);
+  });
+
+  it('should forward bound and regular arguments to the action constructor', () => {
+    fn(...args);
+    expect(actionType).toHaveBeenCalledWith(...initArgs.slice(1), ...args);
+  });
+}
+
+describe('dispatch(type, ...boundArgs)(...args)', () => {
+  commonActionArgumentTests(dispatch, [actionType, ...boundArgs], dispatchArgs);
+  commonTests(dispatch, [actionType, ...boundArgs], dispatchArgs);
+});
+
+describe('dispatch$(type, ...boundArgs)(...args)', () => {
+  commonActionArgumentTests(dispatch$, [actionType, ...boundArgs], dispatchArgs);
+  commonTests(dispatch$, [actionType, ...boundArgs], dispatchArgs);
+});
+
+describe('dispatchAction(type, ...boundArgs)(...args)', () => {
+  commonTests(dispatchAction, [], [actionInstance]);
+});
+
+describe('dispatchAction(type, ...boundArgs)(...args)', () => {
+  commonTests(dispatchAction$, [], [actionInstance]);
 });

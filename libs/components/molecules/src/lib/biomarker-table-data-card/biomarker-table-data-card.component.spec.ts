@@ -1,7 +1,7 @@
 import { MatTableModule } from '@angular/material/table';
 import { Shallow } from 'shallow-render';
 import { BiomarkerTableDataCardComponent, SectionItem } from './biomarker-table-data-card.component';
-import { data } from './biomarker-table-data-card.stories';
+import { data } from './biomarker-table-data-card.component.stories';
 
 describe('BiomarkerTableDataCardComponent', () => {
   let shallow: Shallow<BiomarkerTableDataCardComponent>;

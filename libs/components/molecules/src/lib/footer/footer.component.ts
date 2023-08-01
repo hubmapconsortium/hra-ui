@@ -4,6 +4,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import { MatListModule } from '@angular/material/list';
+import { LinkDirective } from '@hra-ui/cdk';
+import { EMPTY_LINK } from '@hra-ui/cdk/state';
 
 /**
  * Base type for different download format options.
@@ -42,7 +44,7 @@ const DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [
 @Component({
   selector: 'hra-footer',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, OverlayModule, MatListModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, OverlayModule, MatListModule, LinkDirective],
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -57,23 +59,23 @@ export class FooterComponent<T extends DownloadFormat = DownloadFormat> {
   /** Input for product title to displayed on the left side. */
   @Input() productTitle = '';
 
+  /** Input for HRA Portal link */
+  @Input() hraPortal = EMPTY_LINK;
+
+  /** Input for Illustration metadata page link in HRA Portal */
+  @Input() illustrationMetadata = EMPTY_LINK;
+
+  /** Input for embed link in HRA Portal */
+  @Input() embed = EMPTY_LINK;
+
   /** Different download formats options displayed to the user */
   @Input() downloadFormats: T[] = [];
 
   /** Emits the selected download format */
   @Output() readonly download = new EventEmitter<T>();
 
-  /** Emits when the illustration button is clicked */
-  @Output() readonly illustrationClick = new EventEmitter<void>();
-
-  /** Emits when the embed button is clicked */
-  @Output() readonly embedClick = new EventEmitter<void>();
-
   /** Emits when the contact button is clicked */
   @Output() readonly contactClick = new EventEmitter<void>();
-
-  /** Emits when the hra portal button is clicked */
-  @Output() readonly hraPortalClick = new EventEmitter<void>();
 
   /** Download list popup overlay positioning */
   readonly DOWNLOADS_LIST_POSITION = DOWNLOADS_LIST_POSITION;

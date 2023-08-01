@@ -2,18 +2,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 1.5rem;
+  padding: 2rem 0 0 0;
+  background: #f8f9fa;
+  gap: 0.5rem;
 
   .logo {
     height: 2.75rem;
-    padding: 0.563rem 0.188rem 0.563rem 0.188rem;
   }
 
   .header-title {
-    color: #243142;
     font-size: 2rem;
-    font-weight: 400;
-    margin-bottom: 0.5rem;
+    line-height: 2.5rem;
   }
 
   .metrics {
@@ -21,32 +20,31 @@
     flex-direction: row;
     overflow-x: auto;
     max-width: 100%;
-    gap: 1.75rem;
+    gap: 2rem;
+    padding: 2rem 1.75rem;
 
     .metric {
       display: flex;
       flex-direction: column;
       align-items: center;
-      height: 14.75rem;
       min-width: 14.25rem;
-      width: auto;
-      margin: 2rem 0;
+      height: 14.75rem;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
 
-      .metric-logo {
-        height: 3rem;
-        width: 3rem;
-        margin: 2rem 5.625rem;
+      .logo {
+        margin-bottom: 2rem;
       }
 
-      .metric-value {
-        margin: 0rem 0rem 0.25rem 0rem;
+      .value {
         font-size: 3rem;
-        font-weight: 400;
+        line-height: 4rem;
+        margin-bottom: 0.25rem;
       }
 
-      .metric-description {
+      .description {
         font-size: 1rem;
-        font-weight: 400;
+        text-align: center;
       }
     }
   }

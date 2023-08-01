@@ -2,7 +2,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { mock } from 'jest-mock-extended';
 import { Add, AddFromYaml, AddMany, LoadFromYaml, LoadMarkdown } from './resource-registry.actions';
-import { createResourceId, ResourceRegistryContext, ResourceType } from './resource-registry.model';
+import { BuiltinResourceType, createResourceId, ResourceRegistryContext } from './resource-registry.model';
 import { ResourceRegistryState } from './resource-registry.state';
 
 describe('ResourceRegistryState', () => {
@@ -28,13 +28,13 @@ describe('ResourceRegistryState', () => {
       state.addOne(
         ctx,
         new Add(createResourceId('test'), {
-          type: ResourceType.Markdown,
+          type: BuiltinResourceType.Markdown,
           markdown: 'foobar',
         })
       );
       expect(ctx.patchState).toHaveBeenLastCalledWith({
         [createResourceId('test')]: {
-          type: ResourceType.Markdown,
+          type: BuiltinResourceType.Markdown,
           markdown: 'foobar',
         },
       });
@@ -45,11 +45,11 @@ describe('ResourceRegistryState', () => {
     it('should add many entries', () => {
       const entries = {
         [createResourceId('test1')]: {
-          type: ResourceType.Markdown,
+          type: BuiltinResourceType.Markdown,
           markdown: 'foobar',
         },
         [createResourceId('test2')]: {
-          type: ResourceType.Url,
+          type: BuiltinResourceType.Url,
           url: url,
         },
       };
@@ -70,7 +70,7 @@ describe('ResourceRegistryState', () => {
       state.addYaml(ctx, new AddFromYaml(yaml));
       expect(ctx.patchState).toHaveBeenCalledWith({
         [createResourceId('test')]: {
-          type: ResourceType.Markdown,
+          type: BuiltinResourceType.Markdown,
           markdown: 'foobar',
         },
       });
