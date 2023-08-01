@@ -115,7 +115,8 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
       this.dataSource.data = this.findRootNodes();
     }
     if ('selected' in changes) {
-      this.expandPath(this.findPathToSelectedNode());
+      const path = this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];
+      this.expandPath(path);
     }
   }
 
@@ -139,6 +140,11 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
     }
   }
 
+  resetSelection(): void {
+    this.selected = undefined;
+    this.control.collapseAll();
+  }
+
   /**
    * It creates a copy of the input nodes object.
    * It iterates over it and removes all the children nodes from it.
@@ -155,15 +161,27 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
     return Object.values(nodes);
   }
 
-  private findPathToSelectedNode(): DataNode<K>[] {
-    if (this.selected === undefined) {
-      return [];
-    }
-    return []; // TODO
-  }
-
   private expandPath(path: DataNode<K>[]): void {
     const nodes = this.control.dataNodes.filter((node) => path.includes(node.data));
     nodes.forEach((node) => this.control.expand(node));
+  }
+
+  private dfsFindPath(nodes: T[], target: T, path: T[] = []): T[] {
+    for (const node of nodes) {
+      path.push(node);
+      if (node === target) {
+        return path;
+      }
+
+      const savedLength = path.length;
+      const children = node.children?.map((id) => this.nodes[id]) ?? [];
+      if (this.dfsFindPath(children, target, path).length > savedLength) {
+        return path;
+      }
+
+      path.pop();
+    }
+
+    return path;
   }
 }
