@@ -16,6 +16,8 @@
     id: intro
   - menuName: What's New
     id: whats-new
+  - menuName: HRA Diversity
+    id: hra-diversity
   - menuName: ASCT+B Reporter & OMAPs
     id: asctb-reporter-omaps
   - menuName: VCCF Updates 
@@ -46,6 +48,8 @@
       id: intro
     - menuName: What's New
       id: whats-new
+    - menuName: HRA Diversity
+      id: hra-diversity
     - menuName: ASCT+B Reporter & OMAPs
       id: asctb-reporter-omaps
     - menuName: VCCF Updates 
@@ -120,6 +124,56 @@
               - 6 new Organ Mapping Antibody Panels (OMAPs): Placenta term IMC, Kidney CODEX, Tonsil MACSima, Spleen IBEX, Retina IBEX, Pancreas CODEX
               - 7 revised Organ Mapping Antibody Panels (OMAPs): Lymph Node IBEX, Intestines CODEX, Kidney CODEX, Skin Cell DIVE, Liver SIMS, Pancreas CODEX, Lung Cell DIVE
 
+        - type: divider
+          styles:
+            margin-bottom: 1rem
+    - type: styled-group
+      id: hra-diversity
+      components:
+        - type: page-data
+          pageData:
+          - heading: ''
+            descriptions: |
+              **Human Reference Atlas Diversity**
+
+              The Human Reference Atlas diversity survey was designed to provide a baseline measurement of the diversity of the people building and using the Human Reference Atlas. 
+              The survey is conducted annually to measure how the Human Reference Atlas community evolves over time. 
+              This baseline survey was shared with 297 individuals and the response rate was 7.7%. 
+              The first survey was run in April of 2023 and the survey will be rerun in March-April of 2024.\
+              Respondents hold the following roles in the Human Reference Atlas:
+              - ASCT+B Table author
+              - ASCT+B Table reviewer
+              - Infrastructure designer
+              - Interface designer
+              - Organizer
+              - User
+              - Interface tester
+              - Other
+              - I prefer not to respond
+
+              **Gender and sexual orientation**\
+              Female: 52%\
+              Male: 48%\
+              Identify as LGBTIA+: 4.3%
+
+              **Ethnicity and race**\
+              White: 82.6%\
+              Asian: 13%\
+              Hispanic, Latino, or Spanish: 4.3%
+
+              **Disability**\
+              5.3%
+
+              **Continent of residence**\
+              North America: 19\
+              Europe: 3\
+              Australia/Oceania: 1
+
+              **Socio-economic background**\
+              Individuals from disadvantaged backgrounds, as defined using 
+              <a href="https://extramural-diversity.nih.gov/diversity-matters/disadvantaged-backgrounds" target="_blank">National Institutes of Health criteria</a>: 47%
+
+              The survey used to gather this information can be found <a href="https://drive.google.com/file/d/1_Sv27z4rmg92Fin_JuCSrO0JlaBQSRwK/view?usp=share_link" target="_blank">here</a>.
         - type: divider
           styles:
             margin-bottom: 1rem
