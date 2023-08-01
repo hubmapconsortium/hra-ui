@@ -27,10 +27,19 @@ export class MedicalIllustrationBehaviorComponent {
    */
   readonly mapping = selectSnapshot(IllustratorSelectors.mapping);
 
+  /**
+   * Iri  of medical illustration behavior component
+   */
   readonly iri = selectSnapshot(ActiveFtuSelectors.iri);
 
+  /**
+   * Get all tissues
+   */
   readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);
 
+  /**
+   * Gets tissue title from the list of tissues
+   */
   get tissueTitle(): string {
     const iri = this.iri();
     const tissues = this.tissues();

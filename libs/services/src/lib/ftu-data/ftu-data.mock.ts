@@ -6,6 +6,9 @@ import { CellSummary, DataFileReference, IllustrationMappingItem, SourceReferenc
 import { FtuDataService } from './ftu-data.service';
 import { MOCK_SUMMARIES } from '../tissue-ftu/tissue-ftu.mock';
 
+/**
+ * Dummy data for Source References
+ */
 const sourceReferences = [
   {
     label: 'Owner Title',
@@ -18,6 +21,9 @@ const sourceReferences = [
   },
 ];
 
+/**
+ * Dummy data extract om Mock Data of tissue mock
+ */
 const CELL_SUMMARY_DATA: CellSummary[] = Object.values(MOCK_SUMMARIES).map((summary) => ({
   label: summary.label,
   cells: summary.entries.map((entry) => ({
@@ -35,16 +41,6 @@ const CELL_SUMMARY_DATA: CellSummary[] = Object.values(MOCK_SUMMARIES).map((summ
     percentage: entry.percentage,
   })),
 }));
-
-const testNode = {
-  name: 'Cortical_Collecting_Duct_Principal_Cell_1',
-  label: 'kidney cortex collecting duct principal cell',
-};
-const testMapping = [
-  testNode,
-  { ...testNode, name: 'Cortical_Collecting_Duct_Principal_Cell_2' },
-  { ...testNode, name: 'Cortical_Collecting_Duct_Principal_Cell_3' },
-];
 
 /**
 This class represents a mock implementation of the FtuDataService class.
