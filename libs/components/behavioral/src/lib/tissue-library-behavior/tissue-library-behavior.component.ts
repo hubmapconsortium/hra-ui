@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { select$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { TissueTreeListComponent } from '@hra-ui/components/molecules';
 import { Tissue } from '@hra-ui/services';
@@ -18,6 +18,9 @@ import { LabelBoxComponent } from '@hra-ui/components/atoms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TissueLibraryBehaviorComponent {
+  @ViewChild('list', { static: true })
+  readonly list!: TissueTreeListComponent<never, never>;
+
   /**
    * Input for tissues data
    */
@@ -34,6 +37,9 @@ export class TissueLibraryBehaviorComponent {
   constructor() {
     select$(ActiveFtuSelectors.iri).subscribe((iri) => {
       this.selected = iri && this.tissues()[iri];
+      if (iri === undefined) {
+        this.list.resetSelection();
+      }
     });
   }
 }
