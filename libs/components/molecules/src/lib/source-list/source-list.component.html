@@ -20,7 +20,7 @@
   <ng-container matColumnDef="title">
     <th class="sr-only" mat-header-cell *matHeaderCellDef>Title and Link</th>
     <td mat-cell *matCellDef="let element">
-      {{ element.title }}
+      {{ element.label }}
       <br />
       <a [href]="element.link" target="_blank">{{ element.link }}</a>
     </td>
