@@ -1,21 +1,23 @@
-import { inject, Injector, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { DoBootstrap, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
+import { BrowserModule } from '@angular/platform-browser';
+import { InteractiveSvgComponent } from '@hra-ui/components/molecules';
 
-import { AppComponent } from './app.component';
+import { AppWebComponent } from './app-web-component.component';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule],
-  providers: [],
-  bootstrap: [],
+  imports: [BrowserModule, InteractiveSvgComponent, HttpClientModule],
+  declarations: [AppWebComponent],
 })
-export class AppModule {
-  constructor() {
-    const MedicalIllustration = createCustomElement(AppComponent, {
-      injector: inject(Injector),
+export class AppModule implements DoBootstrap {
+  constructor(private injector: Injector) {}
+
+  ngDoBootstrap(): void {
+    const appElement = createCustomElement(AppWebComponent, {
+      injector: this.injector,
     });
 
-    customElements.define('hra-medical-illustration', MedicalIllustration);
+    customElements.define('hra-illustration-wc', appElement);
   }
 }
