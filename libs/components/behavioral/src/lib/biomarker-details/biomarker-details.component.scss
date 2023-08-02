@@ -3,13 +3,12 @@
 :host {
   display: grid;
   grid-template-columns: 21.5rem 21.5rem auto;
-  grid-template-rows: 3.5rem auto 3rem 5rem 3.5rem auto;
+  grid-template-rows: 3.5rem auto 3rem 5rem 26rem auto;
   grid-template-areas:
     'table-header table-header table-header'
     'table table table'
     'gradient-legend-header size-legend-header .'
     'gradient-legend size-legend .'
-    'source-list-header source-list-header source-list-header'
     'source-list source-list source-list';
 
   .table-header {
@@ -73,16 +72,15 @@
     }
   }
 
-  .source-list-header {
-    grid-area: source-list-header;
-    color: vars.$dark-primary-text;
-    border-top: 0.063rem solid #d3d3d3;
-    border-bottom: 0.063rem solid #d3d3d3;
-  }
+  // .source-list-header {
+  //   grid-area: source-list-header;
+  //   color: vars.$dark-primary-text;
+  //   border-top: 0.063rem solid #d3d3d3;
+  //   border-bottom: 0.063rem solid #d3d3d3;
+  // }
 
   .source-list {
     grid-area: source-list;
-    padding: 1rem 1.125rem;
 
     .content {
       width: min-content;
