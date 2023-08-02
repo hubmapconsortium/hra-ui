@@ -20,7 +20,7 @@
   pageData:
     - heading: Overview
       descriptions: |
-        <a href="https://hubmapconsortium.github.io/ccf/pages/ccf-anatomical-structures.html">ASCT+B tables</a> represent cell-by-gene (CxG) relationships that are also captured in the HuBMAP <a href="https://azimuth.hubmapconsortium.org/" target="_blank">Azimuth references</a>.
+        <a href="https://humanatlas.io/asctb-tables" target="_blank">ASCT+B tables</a> represent cell-by-gene (CxG) relationships that are also captured in the HuBMAP <a href="https://azimuth.hubmapconsortium.org/" target="_blank">Azimuth references</a>.
         This site provides the cell-type typology for all existing Azimuth annotated reference datasets; the Azimuth cell-type typology trees can be visualized in the <a href="https://hubmapconsortium.github.io/ccf-asct-reporter/">ASCT+B Reporter</a>.
 
         We also provide easy access to results for comparing CxG in ASCT+B vs. CxG in Azimuth. In Jan 2022, Azimuth supports single-cell RNA-seq data exclusively. As more experimental data becomes available and additional types of data are supported (e.g., proteins, lipids, metabolites), data differences will decrease.
