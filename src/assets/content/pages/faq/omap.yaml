@@ -68,7 +68,7 @@
       An ideal panel will be as comprehensive as possible (40-60 markers or more as technology advances). However, we welcome OMAPs that capture most anatomical structures and cell types present in a tissue and, at a minimum, allow for the characterization of 10 biomarkers in a single tissue section.
 
       #### **How do I cite an existing OMAP?**
-      Each OMAP has a digital object identifier (DOI) which can be used to cite it found on the [HRA portal](https://hubmapconsortium.github.io/ccf/pages/omap.html). Please cite OMAPs that you used and/or built upon. Thank you!
+      Each OMAP has a digital object identifier (DOI) which can be used to cite it found on the [HRA portal](https://humanatlas.io/omap). Please cite OMAPs that you used and/or built upon. Thank you!
 
       #### **How do I cite OMAPs overall?**
       Please cite: 
@@ -104,7 +104,7 @@
 
       #### **How do I report imaging methods that employ oligo-conjugated antibodies and fluorescent reporters for marker detection?**
       Please list 'Oligonucleotide' in the conjugate field of the OMAP Table and specify the cycle number and fluorophore (e.g., Cy3, Cy5, etc.) in the corresponding fields. 
-      For examples, see [CODEX OMAPs for the human intestines, pancreas, and kidney](https://hubmapconsortium.github.io/ccf/pages/omap.html).
+      For examples, see [CODEX OMAPs for the human intestines, pancreas, and kidney](https://humanatlas.io/omap).
 
       #### **Should I include antigen retrieval conditions for OMAPs designed for Formalin Fixed Paraffin Embedded (FFPE) specimens?**
       Yes. Please include the method (buffer, temperature, device used for antigen retrieval) in the OMAP Description Document. Please include links to relevant protocols in the OMAP Description Document and OMAP Table. For an example, see 
