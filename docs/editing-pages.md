@@ -1,8 +1,3 @@
-<style>
-  h1 {
-    border-bottom: none;
-  }
-</style>
 # Editing the humanatlas.io content
 ### This document provides a step-by-step guide on how to edit content on pages using YAML files for humanatlas.io. YAML files are used to define the content of pages on the website. By following these instructions, you can contribute to the Human Atlas project and help improve its content.
 
