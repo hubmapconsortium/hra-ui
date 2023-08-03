@@ -43,12 +43,12 @@ export class ContactBehaviorComponent {
   /** A function which sends/dispatches a message which contains email, subject, and message. And also opens the acknowledgement dialog box. */
   submit(message: ContactData): void {
     this.sendMessage(message);
+    this.selfRef?.close();
     this.postRef = this.dialog.open(this.postMessageTemplate);
   }
 
   /** A function which closes the 'Contact us' dialog and the acknowledgement dialog.  */
   close(): void {
     this.postRef?.close();
-    this.selfRef?.close();
   }
 }
