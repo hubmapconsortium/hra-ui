@@ -11,7 +11,6 @@
 3. If not installed, install the YAML Extenstion (search 'redhat.vscode-yaml' in Extensions Marketplace)
 ![Extension](src/assets/images/extension.png)
 4. Navigate to Source Control and create a new branch off the main/develop branch.
-![Source Control](src/assets/images/sourceControl.png)
 ![Create Branch From](src/assets/images/createBranchFrom.png)
 5. Enter your branch name and press Enter
 6. Select the reference branch(main/develop) for your new branch and click 'Switch to Branch' to switch to your new branch.
