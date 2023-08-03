@@ -3,7 +3,6 @@
 * Production URL: https://humanatlas.io/
 * Staging URL: https://humanatlas-io.netlify.app/
 
+## Editing content on pages
 
-# Edit YAML Files
-
-* [Steps to update the YAML files](UPDATE.md)
+Steps to update content for pages on humanatlas.io is documented [here](docs/editing-pages.md)
