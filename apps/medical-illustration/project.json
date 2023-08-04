@@ -17,6 +17,9 @@
         "inlineStyleLanguage": "scss",
         "assets": ["apps/medical-illustration/src/favicon.ico", "apps/medical-illustration/src/assets"],
         "styles": ["apps/medical-illustration/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
+        },
         "scripts": []
       },
       "configurations": {
@@ -86,5 +89,6 @@
       }
     }
   },
-  "tags": ["app", "webcomponent"]
+  "tags": ["app", "webcomponent"],
+  "implicitDependencies": ["shared-theming"]
 }

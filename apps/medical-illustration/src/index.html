@@ -2,21 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>MedicalIllustration</title>
+    <title>Medical Illustration Web Component</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <script>
       window.addEventListener('DOMContentLoaded', () => {
         const illustration = document.querySelector('hra-illustration-wc');
-        illustration.url =
-          'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.svg';
-
-        illustration.addEventListener('mouseover', (event) => {
-          console.log('mouseover', event);
-        });
-
-        console.log('Illustration loaded:', illustration);
+        illustration.input = 'https://purl.humanatlas.io/2d-ftu/large-intestine-crypt-lieberkuhn';
       });
     </script>
   </head>
