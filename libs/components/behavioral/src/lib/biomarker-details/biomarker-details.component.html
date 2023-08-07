@@ -7,7 +7,12 @@
 
 <mat-tab-group class="table" [class.table-fullscreen]="isTableFullScreen" mat-stretch-tabs="false" color="accent">
   <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="tab.label">
-    <hra-biomarker-table [data]="$any(tab.rows)" [columns]="tab.columns"></hra-biomarker-table>
+    <hra-biomarker-table
+      [data]="$any(tab.rows)"
+      [columns]="tab.columns"
+      [gradient]="gradients()"
+      [sizes]="sizes()"
+    ></hra-biomarker-table>
   </mat-tab>
 </mat-tab-group>
 

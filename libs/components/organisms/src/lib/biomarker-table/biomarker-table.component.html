@@ -28,8 +28,8 @@
       <hra-biomarker-table-data-icon
         class="icon"
         *ngIf="element[index + 2] !== undefined"
-        [color]="element[index + 2].color"
-        [size]="element[index + 2].size"
+        [color]="getColor(element[index + 2].color)"
+        [size]="getSize(element[index + 2].size)"
         [hraHover]="dataHover"
         [hraHoverData]="element[index + 2].data"
       >
