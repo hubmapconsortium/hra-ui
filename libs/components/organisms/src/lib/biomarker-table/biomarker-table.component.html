@@ -25,6 +25,7 @@
     </th>
 
     <td class="icon-cell" mat-cell *matCellDef="let element">
+      <span *ngIf="!element[index + 2]">No Data</span>
       <hra-biomarker-table-data-icon
         class="icon"
         *ngIf="element[index + 2] !== undefined"
