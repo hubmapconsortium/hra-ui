@@ -61,17 +61,6 @@
   organInfo:
     - version: "1.4"
       organData:
-        - name: Allen Brain
-          image: assets/images/brain.svg
-          tissueData:
-            - name: Female
-              url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/brain-female.html
-              alt: The Allen brain, female
-              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/Allen_F_Brain.glb
-            - name: Male              
-              url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/brain-male.html
-              alt: The Allen brain, male
-              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/Allen_M_Brain.glb
         - name: Blood Vasculature
           image: assets/images/blood_vasculature.svg
           tissueData:
@@ -94,6 +83,28 @@
               url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/pelvis-male.html
               alt: The pelvis, male
               threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Pelvis.glb
+        - name: Allen Brain
+          image: assets/images/brain.svg
+          tissueData:
+            - name: Female
+              url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/brain-female.html
+              alt: The Allen brain, female
+              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/Allen_F_Brain.glb
+            - name: Male              
+              url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/brain-male.html
+              alt: The Allen brain, male
+              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/Allen_M_Brain.glb
+        - name: Extrapulmonary Bronchus
+          image: assets/images/extrapulmonaryBronchus.svg
+          tissueData:
+            - name: Female
+              url: https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/ref-organs/3d-vh-f-main-bronchus.html
+              alt: The Extrapulmonary Bronchus, female
+              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.4/3d-vh-f-main-bronchus.glb
+            - name: Male
+              url: https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/ref-organs/3d-vh-m-main-bronchus.html
+              alt: The Extrapulmonary Bronchus, male
+              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.4/3d-vh-m-main-bronchus.glb
         - name: Eye
           image: assets/images/eye.svg
           tissueData:
@@ -113,17 +124,6 @@
               url: https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/ref-organs/3d-vh-m-eye-r.html
               alt: Eye, Male, R
               threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.4/3d-vh-m-eye-r.glb
-        - name: Extrapulmonary Bronchus
-          image: assets/images/extrapulmonaryBronchus.svg
-          tissueData:
-            - name: Female
-              url: https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/ref-organs/3d-vh-f-main-bronchus.html
-              alt: The Extrapulmonary Bronchus, female
-              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.4/3d-vh-f-main-bronchus.glb
-            - name: Male
-              url: https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/ref-organs/3d-vh-m-main-bronchus.html
-              alt: The Extrapulmonary Bronchus, male
-              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.4/3d-vh-m-main-bronchus.glb
         - name: Fallopian Tube
           image: assets/images/fallopian_tube.svg
           tissueData:
@@ -435,19 +435,6 @@
               threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.4/3d-vh-m-united.glb
     - version: "1.3"
       organData:
-        - name: Allen Brain
-          image: assets/images/brain.svg
-          tissueData:
-            - name: Female
-              
-              url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/brain-female.html
-              alt: The Allen brain, female
-              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/Allen_F_Brain.glb
-            - name: Male
-              
-              url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/brain-male.html
-              alt: The Allen brain, male
-              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/Allen_M_Brain.glb
         - name: Blood Vasculature
           image: assets/images/blood_vasculature.svg
           tissueData:
@@ -474,6 +461,19 @@
               url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/pelvis-male.html
               alt: The pelvis, male
               threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Pelvis.glb
+        - name: Allen Brain
+          image: assets/images/brain.svg
+          tissueData:
+            - name: Female
+              
+              url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/brain-female.html
+              alt: The Allen brain, female
+              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/Allen_F_Brain.glb
+            - name: Male
+              
+              url: https://hubmapconsortium.github.io/ccf-releases/v1.3/docs/ref-organs/brain-male.html
+              alt: The Allen brain, male
+              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/Allen_M_Brain.glb
         - name: Eye
           image: assets/images/eye.svg
           tissueData:
@@ -800,19 +800,6 @@
               threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_United.glb
     - version: "1.2"
       organData:
-        - name: Allen Brain
-          image: assets/images/brain.svg
-          tissueData:
-            - name: Female
-              
-              url: https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/ref-organs/brain-female.html
-              alt: The Allen brain, female
-              threeDimImage: https://hubmapconsortium.github.io/ccf-releases/v1.2/models/Allen_F_Brain.glb
-            - name: Male
-              
-              url: https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/ref-organs/brain-male.html
-              alt: All organs, male
-              threeDimImage: https://hubmapconsortium.github.io/ccf-releases/v1.2/models/Allen_M_Brain.glb
         - name: Blood Vasculature
           image: assets/images/blood_vasculature.svg
           tissueData:
@@ -839,6 +826,19 @@
               url: https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/ref-organs/pelvis-male.html
               alt: The pelvis, male
               threeDimImage: https://hubmapconsortium.github.io/ccf-releases/v1.2/models/VH_M_Pelvis.glb
+        - name: Allen Brain
+          image: assets/images/brain.svg
+          tissueData:
+            - name: Female
+              
+              url: https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/ref-organs/brain-female.html
+              alt: The Allen brain, female
+              threeDimImage: https://hubmapconsortium.github.io/ccf-releases/v1.2/models/Allen_F_Brain.glb
+            - name: Male
+              
+              url: https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/ref-organs/brain-male.html
+              alt: All organs, male
+              threeDimImage: https://hubmapconsortium.github.io/ccf-releases/v1.2/models/Allen_M_Brain.glb
         - name: Eye
           image: assets/images/eye.svg
           tissueData:
