@@ -9,7 +9,7 @@ import { CellEntry, JsonLd, OrganData } from './models';
 @Component({
   selector: 'hra-root-wc',
   template:
-    '<hra-interactive-svg [url]="url$ | async" [mapping]="mapping$ | async" (nodeHover)="onHover.emit($event)" (nodeClick)="onClick.emit($event)"></hra-interactive-svg>',
+    '<hra-interactive-svg [url]="(url$ | async) || undefined" [mapping]="(mapping$ | async) || undefined" (nodeHover)="onHover.emit($event)" (nodeClick)="onClick.emit($event)"></hra-interactive-svg>',
   styleUrls: ['app-web-component.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -40,7 +40,12 @@ export class AppWebComponent implements OnInit {
           //input is id
           const currentOrganData = result['@graph'].find((entry) => entry['@id'] === this.src);
           if (currentOrganData) {
-            this.url$.next(currentOrganData.illustration_files[0].file);
+            const illustrationFile = currentOrganData.illustration_files.find(
+              (file) => file['file_format'] === 'image/svg+xml'
+            );
+            if (illustrationFile) {
+              this.url$.next(illustrationFile.file);
+            }
             this.mapping$.next(this.cellEntryToNodeEntry(currentOrganData.mapping));
           }
         } else {

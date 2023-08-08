@@ -80,10 +80,10 @@ export interface NodeMapEntry {
 })
 export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestroy {
   /** SVG url */
-  @Input() url: string | null = null;
+  @Input() url?: string;
 
   /** Mapping info */
-  @Input() mapping: T[] | null = [];
+  @Input() mapping?: T[] = [];
 
   /** Emits node id when hovered */
   @Output() readonly nodeHover = new EventEmitter<T>();
