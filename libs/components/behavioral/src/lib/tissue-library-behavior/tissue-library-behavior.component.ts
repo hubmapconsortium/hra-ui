@@ -18,6 +18,9 @@ import { LabelBoxComponent } from '@hra-ui/components/atoms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TissueLibraryBehaviorComponent {
+  /**
+   * Reference to the TissueTreeListComponent.
+   */
   @ViewChild('list', { static: true })
   readonly list!: TissueTreeListComponent<never, never>;
 
@@ -35,6 +38,9 @@ export class TissueLibraryBehaviorComponent {
    * the url is undefined
    */
   constructor() {
+    /** Get iris from the observable else reset selection if
+     * iri is undefined
+     */
     select$(ActiveFtuSelectors.iri).subscribe((iri) => {
       this.selected = iri && this.tissues()[iri];
       if (iri === undefined) {
