@@ -40,15 +40,6 @@ export class ContactBehaviorComponent {
   /** Dialog box which references the acknowledgement dialog box */
   private postRef?: MatDialogRef<void>;
 
-  /**
-   * It will call the setDisableClose() function.
-   */
-  constructor() {
-    this.selfRef?.afterOpened().subscribe(() => {
-      this.setDisableClose();
-    });
-  }
-
   /** A function which sends/dispatches a message which contains email, subject, and message. And also opens the acknowledgement dialog box. */
   submit(message: ContactData): void {
     this.sendMessage(message);
@@ -60,12 +51,5 @@ export class ContactBehaviorComponent {
   close(): void {
     this.postRef?.close();
     this.selfRef?.close();
-  }
-
-  /** A function which sets the disableClose property to be true. */
-  setDisableClose(): void {
-    if (this.selfRef) {
-      this.selfRef.disableClose = true;
-    }
   }
 }
