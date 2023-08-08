@@ -1,66 +1,67 @@
 /* eslint-disable @angular-eslint/no-output-on-prefix */
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
-import { dispatch } from '@hra-ui/cdk/injectors';
+import { HttpClient } from '@angular/common/http';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { NodeMapEntry } from '@hra-ui/components/molecules';
-import { IllustratorActions } from '@hra-ui/state';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 
-import AllIllustrationData from '../assets/TEMP/illustration-data.json';
-
-export interface OrganData {
-  [key: string]: unknown;
-  illustration_files: IllustrationFileData[];
-  mapping: CellEntry[];
-}
-
-export interface IllustrationFileData {
-  [key: string]: unknown;
-  file: string;
-}
-
-export interface CellEntry {
-  [key: string]: unknown;
-  label: string;
-  svgId: string;
-}
+import { CellEntry, JsonLd, OrganData } from './models';
 
 @Component({
   selector: 'hra-root-wc',
   template:
-    '<hra-interactive-svg [url]="url" [mapping]="mapping" (nodeHover)="onHover.emit($event)"></hra-interactive-svg>',
+    '<hra-interactive-svg [url]="url$ | async" [mapping]="mapping$ | async" (nodeHover)="onHover.emit($event)" (nodeClick)="onClick.emit($event)"></hra-interactive-svg>',
   styleUrls: ['app-web-component.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppWebComponent implements OnChanges {
-  readonly updateNode = dispatch(IllustratorActions.SetSelection);
+export class AppWebComponent implements OnInit {
+  /** Http client */
+  private readonly http = inject(HttpClient);
 
-  @Input() input: OrganData | string = '';
+  @Input() src: OrganData | string = '';
+
+  @Input() lookupSrc: string | JsonLd = '';
 
   @Output() readonly onHover = new EventEmitter<NodeMapEntry>();
 
-  url = '';
+  @Output() readonly onClick = new EventEmitter<NodeMapEntry>();
 
-  mapping: NodeMapEntry[] = [];
+  readonly url$ = new BehaviorSubject<string>('');
 
-  ngOnChanges() {
-    if (typeof this.input === 'string') {
-      //input is id
-      const currentOrganData = AllIllustrationData['@graph'].find((entry) => entry['@id'] === this.input);
-      if (currentOrganData) {
-        this.url = currentOrganData.illustration_files[0].file;
-        this.mapping = this.cellEntryToNodeEntry(currentOrganData.mapping);
-      }
-    } else {
-      //input is organ data
-      this.url = this.input.illustration_files[0].file;
-      this.mapping = this.cellEntryToNodeEntry(this.input.mapping);
-    }
+  readonly mapping$ = new BehaviorSubject<NodeMapEntry[]>([]);
+
+  ngOnInit() {
+    this.setData().subscribe();
   }
 
+  setData(): Observable<JsonLd> {
+    return this.http.get<JsonLd>('../assets/TEMP/2d-ftu-illustrations.jsonld').pipe(
+      tap((result) => {
+        if (typeof this.src === 'string') {
+          //input is id
+          const currentOrganData = result['@graph'].find((entry) => entry['@id'] === this.src);
+          if (currentOrganData) {
+            this.url$.next(currentOrganData.illustration_files[0].file);
+            this.mapping$.next(this.cellEntryToNodeEntry(currentOrganData.mapping));
+          }
+        } else {
+          //input is organ data
+          this.url$.next(this.src.illustration_files[0].file);
+          this.mapping$.next(this.cellEntryToNodeEntry(this.src.mapping));
+        }
+      })
+    );
+  }
+
+  /**
+   * Converts cell entry in data entry to node entry
+   * @param data Array of cell entries
+   * @returns Array of node entries
+   */
   private cellEntryToNodeEntry(data: CellEntry[]): NodeMapEntry[] {
     return data.map((entry) => {
       return {
         label: entry.label,
-        name: entry.svgId,
+        name: entry.svg_id,
       };
     });
   }

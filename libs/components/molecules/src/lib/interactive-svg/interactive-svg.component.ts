@@ -80,13 +80,16 @@ export interface NodeMapEntry {
 })
 export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestroy {
   /** SVG url */
-  @Input() url?: string;
+  @Input() url: string | null = null;
 
   /** Mapping info */
-  @Input() mapping: T[] = [];
+  @Input() mapping: T[] | null = [];
 
   /** Emits node id when hovered */
   @Output() readonly nodeHover = new EventEmitter<T>();
+
+  /** Emits node id when clicked */
+  @Output() readonly nodeClick = new EventEmitter<T>();
 
   /** SVG script eval mode */
   readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;
@@ -141,15 +144,16 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestro
    * @param el element
    */
   private attachCrosswalkHover(el: Element): void {
-    this.attachEvent(el, 'mouseover').subscribe(this.onCrosswalkHover.bind(this));
+    this.attachEvent(el, 'mouseover').subscribe((event) => this.onCrosswalkHover(event, 'hover'));
     this.attachEvent(el, 'mouseout').subscribe(() => this.nodeHoverData$.next(undefined));
+    this.attachEvent(el, 'click').subscribe((event) => this.onCrosswalkHover(event, 'click'));
   }
 
   /**
    * Finds matching node in data from a hovered element
    * @param event Mouse event
    */
-  private onCrosswalkHover(event: MouseEvent): void {
+  private onCrosswalkHover(event: MouseEvent, type: 'click' | 'hover'): void {
     const node = this.getNode(event);
     if (node) {
       this.nodeHoverData$.next({
@@ -159,7 +163,11 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestro
           y: event.clientY,
         },
       });
-      this.nodeHover.emit(node); //emits node entry
+      if (type === 'hover') {
+        this.nodeHover.emit(node); //emits node entry
+      } else {
+        this.nodeClick.emit(node); //emits node entry
+      }
     }
   }
 
@@ -184,11 +192,13 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestro
     const idCollection = [targetId, parentId, grandparentId];
     for (const id of idCollection) {
       const decodedID = this.decodeId(id);
-      const match = this.mapping.find(
-        (item) => item.name?.toLowerCase() === decodedID.toLowerCase() //search mapping by name for matching node entry
-      );
-      if (match) {
-        return match;
+      if (this.mapping) {
+        const match = this.mapping.find(
+          (item) => item.name?.toLowerCase() === decodedID.toLowerCase() //search mapping by name for matching node entry
+        );
+        if (match) {
+          return match;
+        }
       }
     }
     return undefined;
