@@ -1,0 +1,27 @@
+{
+  "@context": [
+    "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data-processor/ccf-context.jsonld",
+    {
+      "UBERON": {
+        "@id": "http://purl.obolibrary.org/obo/UBERON_",
+        "@prefix": true
+      },
+      "illustration_files": {
+        "@id": "ccf:has_illustration_file",
+        "@type": "@id"
+      },
+      "mapping": {
+        "@id": "ccf:has_illustration_node",
+        "@type": "@id"
+      },
+      "organ_id": {
+        "@id": "ccf:organ_id",
+        "@type": "@id"
+      },
+      "data_sources": {
+        "@id": "ccf:has_data_source",
+        "@type": "@id"
+      }
+    }
+  ]
+}
