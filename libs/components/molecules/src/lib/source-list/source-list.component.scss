@@ -10,13 +10,6 @@
     margin: 0;
   }
 
-  .text {
-    margin-left: 2rem;
-    margin-right: 30rem;
-    font-weight: 400;
-    color: vars.$primary;
-  }
-
   .mat-mdc-cell {
     vertical-align: top;
     border: none;
@@ -32,14 +25,24 @@
     @include utils.sr-only();
   }
 
+  .table-content {
+    max-height: 21rem;
+    overflow: auto;
+  }
+
   .toggle {
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
-    border: none;
     width: 43rem;
     height: 3.5rem;
-    padding: 1rem, 2rem;
+    grid-area: source-list-header;
+    color: var(--dark-primary-text);
+    border-top: 0.063rem solid #d3d3d3;
+    border-bottom: 0.063rem solid #d3d3d3;
+    .mat-icon {
+      margin-left: 32rem;
+    }
   }
 
   .hidden {
