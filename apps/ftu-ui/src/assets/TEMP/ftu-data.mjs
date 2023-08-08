@@ -40,7 +40,7 @@ async function getFtuDatasets(datasetsApi = FTU_DATASET_METADATA_API, cellSummar
     const ftuInfo = (results[dataset.ftu] = results[dataset.ftu] || {
       '@id': dataset.ftu,
       '@type': 'FtuIllustration',
-      data_sources: []
+      data_sources: [],
     });
 
     ftuInfo.data_sources.push({
@@ -66,13 +66,13 @@ async function getFtuCellSummaries(datasetsApi = FTU_DATASET_METADATA_API, cellS
 
   const results = {};
   for (const summary of summaries) {
-    const ftuSummary = results[summary.ftu] = results[summary.ftu] || {
+    const ftuSummary = (results[summary.ftu] = results[summary.ftu] || {
       '@type': 'CellSummary',
       ['cell_source']: summary.ftu,
       ['annotation_method']: 'Aggregation',
       ['biomarker_type']: 'gene',
       summary: [],
-    };
+    });
 
     ftuSummary.summary.push({
       '@type': 'CellSummaryRow',
@@ -96,12 +96,28 @@ async function main() {
   const datasets = await getFtuDatasets();
   const summaries = await getFtuCellSummaries();
 
-  writeFileSync('ftu-datasets.jsonld', JSON.stringify({
-    ...CONTEXT, '@graph': datasets
-  }, null, 2));
+  writeFileSync(
+    'ftu-datasets.jsonld',
+    JSON.stringify(
+      {
+        ...CONTEXT,
+        '@graph': datasets,
+      },
+      null,
+      2
+    )
+  );
 
-  writeFileSync('ftu-cell-summaries.jsonld', JSON.stringify({
-    ...CONTEXT, '@graph': summaries
-  }, null, 2));
+  writeFileSync(
+    'ftu-cell-summaries.jsonld',
+    JSON.stringify(
+      {
+        ...CONTEXT,
+        '@graph': summaries,
+      },
+      null,
+      2
+    )
+  );
 }
 main();
