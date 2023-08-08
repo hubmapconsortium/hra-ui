@@ -141,7 +141,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/TissueFtuService.html#source" target="_self" >TissueFtuService:93</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/TissueFtuService.html#source" target="_self" >TissueFtuService:97</a></code>
 </div>
                 </td>
             </tr>
@@ -186,7 +186,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/TissueFtuService.html#source" target="_self" >TissueFtuService:88</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/TissueFtuService.html#source" target="_self" >TissueFtuService:92</a></code>
 </div>
                 </td>
             </tr>
@@ -251,7 +251,7 @@ function createCell(
 const MOCK_REFERENCE_ORGANS &#x3D; Object.values(MOCK_TISSUE_DATA.nodes).filter(isReferenceOrgan);
 
 /** Mock summary data */
-const MOCK_SUMMARIES &#x3D; {
+export const MOCK_SUMMARIES &#x3D; {
   summary1: {
     label: &#x27;Summary 1&#x27;,
     entries: [
@@ -289,6 +289,10 @@ const MOCK_SUMMARIES &#x3D; {
   summary2: {
     label: &#x27;Summary 2&#x27;,
     entries: [createCell(&#x27;cell1&#x27;, &#x27;Cell 1&#x27;, &#x27;biomarker2&#x27;, &#x27;Biomarker 2&#x27;, 20, 1)],
+  },
+  summary3: {
+    label: &#x27;Summary 3&#x27;,
+    entries: [],
   },
 };
 

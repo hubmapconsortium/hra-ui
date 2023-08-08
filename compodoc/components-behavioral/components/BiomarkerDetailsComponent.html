@@ -587,10 +587,6 @@ export class BiomarkerDetailsComponent {
   &lt;hra-size-legend [sizes]&#x3D;&quot;sizes()&quot; class&#x3D;&quot;content&quot;&gt;&lt;/hra-size-legend&gt;
 &lt;/div&gt;
 
-&lt;hra-label-box class&#x3D;&quot;source-list-header&quot;&gt;
-  Source Data
-  &lt;mat-icon class&#x3D;&quot;end&quot;&gt;expand_more&lt;/mat-icon&gt;
-&lt;/hra-label-box&gt;
 &lt;div class&#x3D;&quot;source-list&quot;&gt;
   &lt;hra-source-list [sources]&#x3D;&quot;source()&quot; class&#x3D;&quot;content&quot;&gt;&lt;/hra-source-list&gt;
 &lt;/div&gt;
@@ -612,13 +608,12 @@ export class BiomarkerDetailsComponent {
 :host {
   display: grid;
   grid-template-columns: 21.5rem 21.5rem auto;
-  grid-template-rows: 3.5rem auto 3rem 5rem 3.5rem auto;
+  grid-template-rows: 3.5rem auto 3rem 5rem auto;
   grid-template-areas:
     &#x27;table-header table-header table-header&#x27;
     &#x27;table table table&#x27;
     &#x27;gradient-legend-header size-legend-header .&#x27;
     &#x27;gradient-legend size-legend .&#x27;
-    &#x27;source-list-header source-list-header source-list-header&#x27;
     &#x27;source-list source-list source-list&#x27;;
 
   .table-header {
@@ -682,16 +677,8 @@ export class BiomarkerDetailsComponent {
     }
   }
 
-  .source-list-header {
-    grid-area: source-list-header;
-    color: vars.$dark-primary-text;
-    border-top: 0.063rem solid #d3d3d3;
-    border-bottom: 0.063rem solid #d3d3d3;
-  }
-
   .source-list {
     grid-area: source-list;
-    padding: 1rem 1.125rem;
 
     .content {
       width: min-content;
@@ -737,7 +724,7 @@ export class BiomarkerDetailsComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-label-box class="table-header">  Cell Types by Gene Biomarkers  <mat-icon (click)="toggleFullscreen()" class="end">    {{ isTableFullScreen ? \'close_fullscreen\' : \'open_in_full\' }}  </mat-icon></hra-label-box><mat-tab-group class="table" [class.table-fullscreen]="isTableFullScreen" mat-stretch-tabs="false" color="accent">  <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="tab.label">    <hra-biomarker-table [data]="$any(tab.rows)" [columns]="tab.columns"></hra-biomarker-table>  </mat-tab></mat-tab-group><hra-label-box class="legend-header gradient">  Biomarker Expression Mean in FTU  <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="gradientHoverInfo()">info_outlined</mat-icon></hra-label-box><div class="legend gradient">  <hra-gradient-legend [gradient]="gradients()" class="content"></hra-gradient-legend></div><hra-label-box class="legend-header size">  Percentage of Cells in FTU  <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="sizeHoverInfo()">info_outlined</mat-icon></hra-label-box><div class="legend size">  <hra-size-legend [sizes]="sizes()" class="content"></hra-size-legend></div><hra-label-box class="source-list-header">  Source Data  <mat-icon class="end">expand_more</mat-icon></hra-label-box><div class="source-list">  <hra-source-list [sources]="source()" class="content"></hra-source-list></div><ng-template #infoTooltip let-tooltip>  <div class="biomarker-details info-tooltip">    {{ tooltip }}  </div></ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-label-box class="table-header">  Cell Types by Gene Biomarkers  <mat-icon (click)="toggleFullscreen()" class="end">    {{ isTableFullScreen ? \'close_fullscreen\' : \'open_in_full\' }}  </mat-icon></hra-label-box><mat-tab-group class="table" [class.table-fullscreen]="isTableFullScreen" mat-stretch-tabs="false" color="accent">  <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="tab.label">    <hra-biomarker-table [data]="$any(tab.rows)" [columns]="tab.columns"></hra-biomarker-table>  </mat-tab></mat-tab-group><hra-label-box class="legend-header gradient">  Biomarker Expression Mean in FTU  <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="gradientHoverInfo()">info_outlined</mat-icon></hra-label-box><div class="legend gradient">  <hra-gradient-legend [gradient]="gradients()" class="content"></hra-gradient-legend></div><hra-label-box class="legend-header size">  Percentage of Cells in FTU  <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="sizeHoverInfo()">info_outlined</mat-icon></hra-label-box><div class="legend size">  <hra-size-legend [sizes]="sizes()" class="content"></hra-size-legend></div><div class="source-list">  <hra-source-list [sources]="source()" class="content"></hra-source-list></div><ng-template #infoTooltip let-tooltip>  <div class="biomarker-details info-tooltip">    {{ tooltip }}  </div></ng-template></div>'
     var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'ScreenNoticeBehaviorComponent', 'selector': 'ftu-ui-screen-notice-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'BiomarkerDetailsComponent'};

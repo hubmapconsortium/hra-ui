@@ -150,12 +150,12 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use 'variables' as vars;\n\n:host {\n  display: grid;\n  grid-template-columns: 21.5rem 21.5rem auto;\n  grid-template-rows: 3.5rem auto 3rem 5rem 3.5rem auto;\n  grid-template-areas:\n    'table-header table-header table-header'\n    'table table table'\n    'gradient-legend-header size-legend-header .'\n    'gradient-legend size-legend .'\n    'source-list-header source-list-header source-list-header'\n    'source-list source-list source-list';\n\n  .table-header {\n    grid-area: table-header;\n    border-bottom: 0.063rem solid #d3d3d3;\n  }\n\n  .table {\n    grid-area: table;\n    max-width: 100%;\n    overflow: auto;\n\n    ::ng-deep .table-tab-header {\n      padding-left: 1rem;\n      padding-right: 1rem;\n      border-left: 0.063rem solid #d3d3d3;\n\n      &:last-child {\n        border-right: 0.063rem solid #d3d3d3;\n      }\n\n      &.mdc-tab-indicator--active {\n        background-color: #f8f9fa;\n      }\n    }\n  }\n\n  .legend-header {\n    color: vars.$dark-primary-text;\n    border-top: 0.063rem solid #d3d3d3;\n    border-bottom: 0.063rem solid #d3d3d3;\n    border-right: 0.063rem solid #d3d3d3;\n\n    &.gradient {\n      grid-area: gradient-legend-header;\n    }\n\n    &.size {\n      grid-area: size-legend-header;\n    }\n\n    .icon {\n      margin-left: 0.6rem;\n    }\n  }\n\n  .legend {\n    padding: 1rem 2rem;\n    border-right: 0.063rem solid #d3d3d3;\n\n    &.gradient {\n      grid-area: gradient-legend;\n\n      .content {\n        width: 10rem;\n      }\n    }\n\n    &.size {\n      grid-area: size-legend;\n    }\n  }\n\n  .source-list-header {\n    grid-area: source-list-header;\n    color: vars.$dark-primary-text;\n    border-top: 0.063rem solid #d3d3d3;\n    border-bottom: 0.063rem solid #d3d3d3;\n  }\n\n  .source-list {\n    grid-area: source-list;\n    padding: 1rem 1.125rem;\n\n    .content {\n      width: min-content;\n    }\n  }\n}\n\n::ng-deep .biomarker-details.info-tooltip {\n  display: flex;\n  padding: 1rem;\n  border: 1px solid #a8a3a3;\n  border-radius: 0.5rem;\n  box-shadow: 1px 2px 16px 2px #00000029;\n  background-color: vars.$primary-contrast-rgb;\n  max-width: 21rem;\n  font-size: small;\n}\n",
+                    "data": "@use 'variables' as vars;\n\n:host {\n  display: grid;\n  grid-template-columns: 21.5rem 21.5rem auto;\n  grid-template-rows: 3.5rem auto 3rem 5rem auto;\n  grid-template-areas:\n    'table-header table-header table-header'\n    'table table table'\n    'gradient-legend-header size-legend-header .'\n    'gradient-legend size-legend .'\n    'source-list source-list source-list';\n\n  .table-header {\n    grid-area: table-header;\n    border-bottom: 0.063rem solid #d3d3d3;\n  }\n\n  .table {\n    grid-area: table;\n    max-width: 100%;\n    overflow: auto;\n\n    ::ng-deep .table-tab-header {\n      padding-left: 1rem;\n      padding-right: 1rem;\n      border-left: 0.063rem solid #d3d3d3;\n\n      &:last-child {\n        border-right: 0.063rem solid #d3d3d3;\n      }\n\n      &.mdc-tab-indicator--active {\n        background-color: #f8f9fa;\n      }\n    }\n  }\n\n  .legend-header {\n    color: vars.$dark-primary-text;\n    border-top: 0.063rem solid #d3d3d3;\n    border-bottom: 0.063rem solid #d3d3d3;\n    border-right: 0.063rem solid #d3d3d3;\n\n    &.gradient {\n      grid-area: gradient-legend-header;\n    }\n\n    &.size {\n      grid-area: size-legend-header;\n    }\n\n    .icon {\n      margin-left: 0.6rem;\n    }\n  }\n\n  .legend {\n    padding: 1rem 2rem;\n    border-right: 0.063rem solid #d3d3d3;\n\n    &.gradient {\n      grid-area: gradient-legend;\n\n      .content {\n        width: 10rem;\n      }\n    }\n\n    &.size {\n      grid-area: size-legend;\n    }\n  }\n\n  .source-list {\n    grid-area: source-list;\n\n    .content {\n      width: min-content;\n    }\n  }\n}\n\n::ng-deep .biomarker-details.info-tooltip {\n  display: flex;\n  padding: 1rem;\n  border: 1px solid #a8a3a3;\n  border-radius: 0.5rem;\n  box-shadow: 1px 2px 16px 2px #00000029;\n  background-color: vars.$primary-contrast-rgb;\n  max-width: 21rem;\n  font-size: small;\n}\n",
                     "styleUrl": "./biomarker-details.component.scss"
                 }
             ],
             "stylesData": "",
-            "templateData": "<hra-label-box class=\"table-header\">\n  Cell Types by Gene Biomarkers\n  <mat-icon (click)=\"toggleFullscreen()\" class=\"end\">\n    {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}\n  </mat-icon>\n</hra-label-box>\n\n<mat-tab-group class=\"table\" [class.table-fullscreen]=\"isTableFullScreen\" mat-stretch-tabs=\"false\" color=\"accent\">\n  <mat-tab *ngFor=\"let tab of tabs()\" labelClass=\"table-tab-header\" [label]=\"tab.label\">\n    <hra-biomarker-table [data]=\"$any(tab.rows)\" [columns]=\"tab.columns\"></hra-biomarker-table>\n  </mat-tab>\n</mat-tab-group>\n\n<hra-label-box class=\"legend-header gradient\">\n  Biomarker Expression Mean in FTU\n  <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"gradientHoverInfo()\">info_outlined</mat-icon>\n</hra-label-box>\n<div class=\"legend gradient\">\n  <hra-gradient-legend [gradient]=\"gradients()\" class=\"content\"></hra-gradient-legend>\n</div>\n\n<hra-label-box class=\"legend-header size\">\n  Percentage of Cells in FTU\n  <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"sizeHoverInfo()\">info_outlined</mat-icon>\n</hra-label-box>\n<div class=\"legend size\">\n  <hra-size-legend [sizes]=\"sizes()\" class=\"content\"></hra-size-legend>\n</div>\n\n<hra-label-box class=\"source-list-header\">\n  Source Data\n  <mat-icon class=\"end\">expand_more</mat-icon>\n</hra-label-box>\n<div class=\"source-list\">\n  <hra-source-list [sources]=\"source()\" class=\"content\"></hra-source-list>\n</div>\n\n<ng-template #infoTooltip let-tooltip>\n  <div class=\"biomarker-details info-tooltip\">\n    {{ tooltip }}\n  </div>\n</ng-template>\n"
+            "templateData": "<hra-label-box class=\"table-header\">\n  Cell Types by Gene Biomarkers\n  <mat-icon (click)=\"toggleFullscreen()\" class=\"end\">\n    {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}\n  </mat-icon>\n</hra-label-box>\n\n<mat-tab-group class=\"table\" [class.table-fullscreen]=\"isTableFullScreen\" mat-stretch-tabs=\"false\" color=\"accent\">\n  <mat-tab *ngFor=\"let tab of tabs()\" labelClass=\"table-tab-header\" [label]=\"tab.label\">\n    <hra-biomarker-table [data]=\"$any(tab.rows)\" [columns]=\"tab.columns\"></hra-biomarker-table>\n  </mat-tab>\n</mat-tab-group>\n\n<hra-label-box class=\"legend-header gradient\">\n  Biomarker Expression Mean in FTU\n  <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"gradientHoverInfo()\">info_outlined</mat-icon>\n</hra-label-box>\n<div class=\"legend gradient\">\n  <hra-gradient-legend [gradient]=\"gradients()\" class=\"content\"></hra-gradient-legend>\n</div>\n\n<hra-label-box class=\"legend-header size\">\n  Percentage of Cells in FTU\n  <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"sizeHoverInfo()\">info_outlined</mat-icon>\n</hra-label-box>\n<div class=\"legend size\">\n  <hra-size-legend [sizes]=\"sizes()\" class=\"content\"></hra-size-legend>\n</div>\n\n<div class=\"source-list\">\n  <hra-source-list [sources]=\"source()\" class=\"content\"></hra-source-list>\n</div>\n\n<ng-template #infoTooltip let-tooltip>\n  <div class=\"biomarker-details info-tooltip\">\n    {{ tooltip }}\n  </div>\n</ng-template>\n"
         },
         {
             "name": "ContactBehaviorComponent",
@@ -876,7 +876,7 @@
         },
         {
             "name": "MedicalIllustrationBehaviorComponent",
-            "id": "component-MedicalIllustrationBehaviorComponent-4b424e5963d0941a8dbbe3e6594961981f1b4596e2967712aa5f15f96165721e2d95440f3f10d27e1bf08b244186f15af079fce8d0e8123187c8649ea046cff3",
+            "id": "component-MedicalIllustrationBehaviorComponent-610a4972f7d0224528bb33d8be1519ef978347288113323673781462c123ae7594b429f92410f36f2473af99ae029b522543385a8ad435ade8c087e7cb998a2b",
             "file": "src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -904,8 +904,22 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Current illustration url</p>\n",
-                    "line": 22,
+                    "line": 23,
                     "rawdescription": "\n\nCurrent illustration url\n",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "iri",
+                    "defaultValue": "selectSnapshot(ActiveFtuSelectors.iri)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Iri  of medical illustration behavior component</p>\n",
+                    "line": 33,
+                    "rawdescription": "\n\nIri  of medical illustration behavior component\n",
                     "modifierKind": [
                         144
                     ]
@@ -918,8 +932,22 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Current mapping file</p>\n",
-                    "line": 27,
+                    "line": 28,
                     "rawdescription": "\n\nCurrent mapping file\n",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "tissues",
+                    "defaultValue": "selectSnapshot(TissueLibrarySelectors.tissues)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Get all tissues</p>\n",
+                    "line": 38,
+                    "rawdescription": "\n\nGet all tissues\n",
                     "modifierKind": [
                         144
                     ]
@@ -932,7 +960,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Updates the active node on node hover</p>\n",
-                    "line": 32,
+                    "line": 52,
                     "rawdescription": "\n\nUpdates the active node on node hover\n",
                     "modifierKind": [
                         144
@@ -947,16 +975,29 @@
             "description": "<p>Behavior component for medical illustration component</p>\n",
             "rawdescription": "\n\nBehavior component for medical illustration component\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { InteractiveSvgComponent } from '@hra-ui/components/molecules';\nimport { IllustratorActions, IllustratorSelectors } from '@hra-ui/state';\n\n/**\n * Behavior component for medical illustration component\n */\n@Component({\n  selector: 'ftu-medical-illustration-behavior',\n  standalone: true,\n  imports: [CommonModule, InteractiveSvgComponent],\n  templateUrl: './medical-illustration-behavior.component.html',\n  styleUrls: ['./medical-illustration-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MedicalIllustrationBehaviorComponent {\n  /**\n   * Current illustration url\n   */\n  readonly currentUrl = selectSnapshot(IllustratorSelectors.url);\n\n  /**\n   * Current mapping file\n   */\n  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);\n\n  /**\n   * Updates the active node on node hover\n   */\n  readonly updateNode = dispatch(IllustratorActions.SetSelection);\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { LabelBoxComponent } from '@hra-ui/components/atoms';\nimport { InteractiveSvgComponent } from '@hra-ui/components/molecules';\nimport { ActiveFtuSelectors, IllustratorActions, IllustratorSelectors, TissueLibrarySelectors } from '@hra-ui/state';\n\n/**\n * Behavior component for medical illustration component\n */\n@Component({\n  selector: 'ftu-medical-illustration-behavior',\n  standalone: true,\n  imports: [CommonModule, InteractiveSvgComponent, LabelBoxComponent],\n  templateUrl: './medical-illustration-behavior.component.html',\n  styleUrls: ['./medical-illustration-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MedicalIllustrationBehaviorComponent {\n  /**\n   * Current illustration url\n   */\n  readonly currentUrl = selectSnapshot(IllustratorSelectors.url);\n\n  /**\n   * Current mapping file\n   */\n  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);\n\n  /**\n   * Iri  of medical illustration behavior component\n   */\n  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);\n\n  /**\n   * Get all tissues\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueTitle(): string {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    return iri ? tissues[iri].label : '';\n  }\n\n  /**\n   * Updates the active node on node hover\n   */\n  readonly updateNode = dispatch(IllustratorActions.SetSelection);\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: block;\n}\n",
+                    "data": ":host {\n  display: block;\n  hra-label-box {\n    border-bottom: 0.063rem solid #d3d3d3;\n  }\n}\n",
                     "styleUrl": "./medical-illustration-behavior.component.scss"
                 }
             ],
             "stylesData": "",
-            "templateData": "<hra-interactive-svg [url]=\"currentUrl()\" [mapping]=\"mapping()\" (nodeHover)=\"updateNode($event)\"> </hra-interactive-svg>\n"
+            "accessors": {
+                "tissueTitle": {
+                    "name": "tissueTitle",
+                    "getSignature": {
+                        "name": "tissueTitle",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 43,
+                        "rawdescription": "\n\nGets tissue title from the list of tissues\n",
+                        "description": "<p>Gets tissue title from the list of tissues</p>\n"
+                    }
+                }
+            },
+            "templateData": "<hra-label-box>{{ tissueTitle }}</hra-label-box>\n<hra-interactive-svg [url]=\"currentUrl()\" [mapping]=\"mapping()\" (nodeHover)=\"updateNode($event)\"> </hra-interactive-svg>\n"
         },
         {
             "name": "ScreenNoticeBehaviorComponent",

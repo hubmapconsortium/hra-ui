@@ -102,6 +102,12 @@
                                             link
                                         </a>
                                 </li>
+                                <li>
+                                        <a href="#title" 
+>
+                                            title
+                                        </a>
+                                </li>
                             </ul>
                         </td>
                     </tr>
@@ -146,7 +152,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Title of the dataset in the SourceList</p>
+                                    <div class="io-description"><p>Label of the dataset in the SourceList</p>
 </div>
                                 </td>
                             </tr>
@@ -191,6 +197,45 @@
                             </tr>
                         </tbody>
                     </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="title"></a>
+                                        <span class="name "><b>title</b>
+                                            <a href="#title">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>title:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Title of the dataset in the SourceList</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
             </section>
     </div>
 
@@ -200,10 +245,14 @@
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { MatTableModule } from &#x27;@angular/material/table&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { LabelBoxComponent } from &#x27;@hra-ui/components/atoms&#x27;;
 
 /** SourceListItem interface contains title and link to the dataset for the SourceList*/
 export interface SourceListItem {
   /** Title of the dataset in the SourceList */
+  title: string;
+
+  /** Label of the dataset in the SourceList */
   label: string;
 
   /** Link to the dataset in the SourceList */
@@ -214,7 +263,7 @@ export interface SourceListItem {
 @Component({
   selector: &#x27;hra-source-list&#x27;,
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatIconModule],
+  imports: [CommonModule, MatTableModule, MatIconModule, LabelBoxComponent],
   templateUrl: &#x27;./source-list.component.html&#x27;,
   styleUrls: [&#x27;./source-list.component.scss&#x27;],
   changeDetection: ChangeDetectionStrategy.OnPush,

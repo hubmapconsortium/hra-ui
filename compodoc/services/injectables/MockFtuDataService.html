@@ -158,7 +158,7 @@ It overrides the methods from the parent class to provide mock data for testing 
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:39</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:111</a></code>
 </div>
                 </td>
             </tr>
@@ -243,7 +243,7 @@ It overrides the methods from the parent class to provide mock data for testing 
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:47</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:119</a></code>
 </div>
                 </td>
             </tr>
@@ -328,7 +328,7 @@ It overrides the methods from the parent class to provide mock data for testing 
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:30</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:102</a></code>
 </div>
                 </td>
             </tr>
@@ -413,7 +413,7 @@ It overrides the methods from the parent class to provide mock data for testing 
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:21</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:93</a></code>
 </div>
                 </td>
             </tr>
@@ -498,7 +498,7 @@ It overrides the methods from the parent class to provide mock data for testing 
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:60</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:132</a></code>
 </div>
                 </td>
             </tr>
@@ -567,6 +567,78 @@ import { Iri, Url } from &#x27;../shared/common.model&#x27;;
 import { MOCK_TISSUE_DATA } from &#x27;../tissue-library/tissue-library.mock&#x27;;
 import { CellSummary, DataFileReference, IllustrationMappingItem, SourceReference } from &#x27;./ftu-data.model&#x27;;
 import { FtuDataService } from &#x27;./ftu-data.service&#x27;;
+import { MOCK_SUMMARIES } from &#x27;../tissue-ftu/tissue-ftu.mock&#x27;;
+
+/**
+ * Dummy data for Source References
+ */
+const sourceReferences &#x3D; [
+  {
+    title: &#x27;Kidney Precision Medicine Project&#x27;,
+    label: &#x27;Ancillary Study Data, Clinical Data, HRT Codebook&#x27;,
+    link: &#x27;google.com&#x27;,
+  },
+  {
+    title: &#x27;[Dataset Owner Title]&#x27;,
+    label: &#x27;&lt;Dataset Title + Link to Dataset&gt;&#x27;,
+    link: &#x27;google.com&#x27;,
+  },
+  {
+    title: &#x27;[Dataset Owner Title]&#x27;,
+    label: &#x27;&lt;Dataset Title + Link to Dataset&gt;&#x27;,
+    link: &#x27;google.com&#x27;,
+  },
+  {
+    title:
+      &#x27;[Dataset Owner Title but extremely long and wraps around to the next line as you can see here in this example]&#x27;,
+    label:
+      &#x27;&lt;Extremely long dataset title that wraps around to the next line as you can see in this example + link to dataset&gt;&#x27;,
+    link: &#x27;google.com&#x27;,
+  },
+  {
+    title: &#x27;Kidney Precision Medicine Project&#x27;,
+    label: &#x27;Ancillary Study Data, Clinical Data, HRT Codebook&#x27;,
+    link: &#x27;google.com&#x27;,
+  },
+  {
+    title: &#x27;[Dataset Owner Title]&#x27;,
+    label: &#x27;&lt;Dataset Title + Link to Dataset&gt;&#x27;,
+    link: &#x27;google.com&#x27;,
+  },
+  {
+    title: &#x27;[Dataset Owner Title]&#x27;,
+    label: &#x27;&lt;Dataset Title + Link to Dataset&gt;&#x27;,
+    link: &#x27;google.com&#x27;,
+  },
+  {
+    title:
+      &#x27;[Dataset Owner Title but extremely long and wraps around to the next line as you can see here in this example]&#x27;,
+    label:
+      &#x27;&lt;Extremely long dataset title that wraps around to the next line as you can see in this example + link to dataset&gt;&#x27;,
+    link: &#x27;google.com&#x27;,
+  },
+];
+
+/**
+ * Dummy data extract om Mock Data of tissue mock
+ */
+const CELL_SUMMARY_DATA: CellSummary[] &#x3D; Object.values(MOCK_SUMMARIES).map((summary) &#x3D;&gt; ({
+  label: summary.label,
+  cells: summary.entries.map((entry) &#x3D;&gt; ({
+    id: entry.cell.id as Iri,
+    label: entry.cell.label,
+  })),
+  biomarkers: summary.entries.map((entry) &#x3D;&gt; ({
+    id: entry.biomarker.id as Iri,
+    label: entry.biomarker.label,
+  })),
+  summaries: summary.entries.map((entry) &#x3D;&gt; ({
+    cell: entry.cell.id as Iri,
+    biomarker: entry.biomarker.id as Iri,
+    count: entry.count,
+    percentage: entry.percentage,
+  })),
+}));
 
 /**
 This class represents a mock implementation of the FtuDataService class.
@@ -600,7 +672,7 @@ export class MockFtuDataService extends FtuDataService {
   @returns An Observable that emits an CellSummary array.
   */
   override getCellSummaries(iri: Iri): Observable&lt;CellSummary[]&gt; {
-    return of([]);
+    return of(CELL_SUMMARY_DATA);
   }
   /**
   Overrides the getDataFileReferences method to return an DataFileReference array.
@@ -621,7 +693,7 @@ export class MockFtuDataService extends FtuDataService {
   @returns An Observable that emits an empty array.
   */
   override getSourceReferences(iri: Iri): Observable&lt;SourceReference[]&gt; {
-    return of([]);
+    return of(sourceReferences);
   }
 }
 </code></pre>
