@@ -50,5 +50,6 @@ export class ContactBehaviorComponent {
   /** A function which closes the 'Contact us' dialog and the acknowledgement dialog.  */
   close(): void {
     this.postRef?.close();
+    this.selfRef?.close();
   }
 }
