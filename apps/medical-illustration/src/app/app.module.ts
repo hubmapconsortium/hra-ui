@@ -4,7 +4,7 @@ import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { InteractiveSvgComponent } from '@hra-ui/components/molecules';
 
-import { AppWebComponent } from './app-web-component.component';
+import { AppWebComponent } from './app-web-component';
 
 @NgModule({
   imports: [BrowserModule, InteractiveSvgComponent, HttpClientModule],
