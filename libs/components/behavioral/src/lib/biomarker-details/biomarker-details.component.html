@@ -8,11 +8,18 @@
 <mat-tab-group class="table" [class.table-fullscreen]="isTableFullScreen" mat-stretch-tabs="false" color="accent">
   <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="tab.label">
     <hra-biomarker-table
+      *ngIf="tab.rows.length !== 0"
       [data]="$any(tab.rows)"
       [columns]="tab.columns"
       [gradient]="gradients()"
       [sizes]="sizes()"
+      [tissueInfo]="tissueInfo"
     ></hra-biomarker-table>
+    <hra-empty-biomarker
+      *ngIf="tab.rows.length === 0"
+      [collaborateText]="collaborateText"
+      [message]="message"
+    ></hra-empty-biomarker>
   </mat-tab>
 </mat-tab-group>
 
