@@ -10,6 +10,12 @@ const VersionEntry = z.object({
     release: z.string(),
     version: z.string()
 });
+const defaultDatasetsStyles = {
+    "display": "flex",
+    "flex-flow": "row wrap",
+    "justify-content": "space-between",
+    "padding-bottom": "2.5rem",
+}
 
 export const AnnouncementCard = z.object({
     type: z.literal('announcement'),
@@ -18,11 +24,16 @@ export const AnnouncementCard = z.object({
         route: z.string({ description: 'Route for another release notes page' }),
         routeText: z.string({ description: 'Text to be clicked to redirect to different route' }),
         emoji: z.string({ description: 'To add emoji if required' })
-    }).partial({
-        route: true,
-        routeText: true,
-        emoji: true,
-    }).array(),
+    })
+        .describe(`The announcementCard field has three optional fields:
+            - route: Route of the page where user will be redirected to when clicked on it.
+            - routeText: Label for the route where we want the user to click.
+            - emoji: Paste any emoji in this field if required.`)
+        .partial({
+            route: true,
+            routeText: true,
+            emoji: true,
+        }).array(),
     styles: Styles.optional()
 })
 
@@ -35,8 +46,14 @@ export const BoardMembers = z.object({
     styles: Styles.optional()
 })
 
+const buttonDescription = `This object has the following properties as optional.
+- url: External link to redirect the page to when button is pressed.
+- route: Route Name of the page to redirect to when the button is pressed.
+- icon: icon name for the icon to be displayed on the button.
+- styles: Additional styling for the button.`
+
 export const Button = z.object({
-    type: z.literal('button'),
+    type: z.literal('button', { description: buttonDescription }),
     text: z.string({ description: 'Text on the button' }),
     url: z.string({ description: 'External URL for the button' }),
     route: z.string({ description: 'Route for the another page in current project' }),
@@ -47,12 +64,12 @@ export const Button = z.object({
     route: true,
     icon: true,
     styles: true
-})
+}).describe(buttonDescription)
 
 export const CarouselSlides = z.object({
     type: z.literal('carousel'),
     carouselContainerStyles: z.object({
-        width: z.string()
+        width: z.string().describe('Width of the container for carousel')
     }),
     carouselInfo: z.object({
         title: z.string({ description: 'Title of the slide' }),
@@ -61,7 +78,11 @@ export const CarouselSlides = z.object({
         url: z.string({ description: 'External URL for the button' }).optional(),
         route: z.string({ description: 'Route of the page for the button' }).optional(),
         buttonText: z.string({ description: 'Text for the button' })
-    }).array(),
+    }).describe(`This object has the following optional fields.
+    - url: External Link to redirect to when the button is pressed.
+    - route: Name of the route of the page to be loaded when button is pressed.
+    
+    Enter either url or route.`).array(),
     styles: Styles.optional()
 })
 
@@ -90,25 +111,30 @@ export const CountCard = z.object({
 export const Datasets = z.object({
     type: z.literal('datasets'),
     links: z.object({
-        class: z.string({ description: 'Class name defined in the css file' }),
-        href: z.string({ description: 'URL of the item' }),
+        class: z.string({ description: 'Class name defined in the css file' }).default('datasets'),
+        href: z.string({ description: 'URL of the items' }),
         title: z.string({ description: 'Tooltip title for the item' }),
         data: z.string({ description: 'Label for the item' })
     }).array(),
-    styles: Styles.optional()
-})
+    styles: Styles.default(defaultDatasetsStyles)
+}).required("styles")
 
 export const Divider = z.object({
     type: z.literal('divider'),
     styles: Styles.optional()
 })
 
+const downloadFtuDescription = `This object has the following fields as optional.
+- displayMetaData: True if you want to display Release Version and Digital Object type. If you set this to true, make sure to add releaseVersion and dot properties in rows object.
+- downloadIcon: name of the icon you want to display in download column header
+- columnLabels: Object of column definition and column headers for the table
+`
 export const DownloadFtu = z.object({
-    type: z.literal('download-ftu'),
-    versions: VersionEntry.array({ description: 'Release and version Information' }),
-    displayMetadata: z.boolean().optional(),
-    downloadIcon: z.string().optional(),
-    columnLabels: z.record(z.string(), z.string()).optional().default({
+    type: z.literal('download-ftu', { description: downloadFtuDescription }),
+    versions: VersionEntry.array().describe('Release name and version number.'),
+    displayMetadata: z.boolean({ description: 'Flag to display the Release Version and Digital Object type' }).optional(),
+    downloadIcon: z.string({ description: 'Icon name to display the icon' }).optional(),
+    columnLabels: z.record(z.string(), z.string(), { description: 'Object of column definition and column header label' }).optional().default({
         type: 'Type',
         download: 'Download',
         releaseVersion: 'Release Version',
@@ -117,17 +143,20 @@ export const DownloadFtu = z.object({
     versionedData: z.object({
         version: z.string({ description: 'Version Number of the data' }),
         rows: z.object({
-            label: z.string({ description: 'Header of the links' }),
+            label: z.string({ description: 'Label for the Organ/Type column' }),
             links: z.object({
-                label: z.string({ description: 'Label for the link' }),
-                link: z.string({ description: 'URL for the label' })
+                label: z.string({ description: 'Label for the link in the download column' }),
+                link: z.string({ description: 'URL for the label in the download column' })
             }).array(),
-            releaseVersion: z.string().optional(),
-            dot: z.string().optional().describe("Digital Object Type"),
+            releaseVersion: z.string({ description: 'Table Data for release version column.' }).optional(),
+            dot: z.string().optional().describe("Table data for Digital Object Type column."),
             url: z.string({ description: 'URL for Organ or its type' }).optional()
-        }).array()
-    }).array()
-})
+        }).describe(`Following properties in this object are optional:
+        - releaseVersion: Release version of the organ.
+        - dot: Digital object type of the organ.
+        - url: External link to be embedded in the organ.`).array()
+    }).describe(`Add version and rows data for the table`).array()
+}).describe(downloadFtuDescription)
 
 export const Drawer = z.object({
     type: z.literal('drawer'),
@@ -144,7 +173,7 @@ const ExtraHeader = z.object({
     header: ColumnName,
     colspan: z.number().optional().describe('Number of columns to span'),
     rowspan: z.number().optional().describe('Number of rows to span'),
-})
+}).describe(`colspan and rowspan are optional fields. Add appropriate number to span the cells accordingly.`)
 
 const HeaderData = z.object({
     header: ColumnName,
@@ -157,14 +186,17 @@ const HeaderData = z.object({
     isTotalRequired: true,
     sorting: true,
     alignment: true
-}).array()
+}).array().describe(`The following fields are optional in this object.
+- isTotalRequired: True if want to display the sum of column numbers below the table.
+- sorting: True if sorting required on the column.
+- alignment: Alignment of the data (start or end)`)
 
 export const Image = z.object({
     type: z.literal('image'),
     class: z.string({ description: 'Class name of the class defined in the CSS file' }).optional(),
     imageSource: z.string({ description: 'URL for the image' }),
     styles: Styles.optional(),
-})
+}).describe(`Property 'class' is optional. It is the class name for the image. Define this class in page-element.component.scss`)
 
 export const ImageInCard = z.object({
     type: z.literal('simple-image'),
@@ -189,7 +221,11 @@ const LongCardItems = z.object({
     externalLink: true,
     color: true,
     body: true
-}).array()
+}).describe(`Properties mentioned here are optional. Either use route or externalLink
+- route: route for the page to be redirected
+- externalLink: URL of the page to be opened when the card is clicked
+- color: background color of the image
+- body: Subtitle for the card`).array()
 
 export const LongCard = z.object({
     type: z.literal('long-card'),
@@ -201,13 +237,15 @@ export const LongCardWithTitle = z.object({
     type: z.literal('long-card-with-title'),
     longCardWithTitleData: z.object({
         heading: z.string({ description: 'Title of the Card' }),
-        headerSize: z.string({ description: 'Size of the title of the card' }),
+        headerSize: Styles.describe('Inline styles for the title of the card'),
+        id: z.string({ description: 'Unique ID for the title of the card' }),
         cardData: LongCardItems,
-        id: z.string({ description: 'Unique ID for the title of the card' })
     }).partial({
         headerSize: true,
         id: true
-    }).array()
+    }).describe(`Properties mentioned here are optional
+    - headerSize: Pass inline styles for the header of the card
+    - id: Pass id as an attribute to the title of the card`).array()
 })
 
 export const Margin = z.object({
@@ -216,7 +254,7 @@ export const Margin = z.object({
     bottom: z.string(),
     left: z.string(),
     right: z.string()
-}, { description: 'To add margin around any component.' }).partial({
+}, { description: 'To add margin around any component. Add top/ bottom/ left/ right and margin value' }).partial({
     top: true,
     bottom: true,
     left: true,
@@ -249,17 +287,36 @@ export const MenuTree = z.object({
 
 const OrganData = z.object({
     name: z.string({ description: 'Name of the organ' }),
-    image: z.string({ description: 'Icon/Image of the organ' }),
-    tissueData: z.lazy(() => TissueData.array()).optional().describe('Tissue data for the above organ')
+    image: z.string({ description: 'Path to the Icon/Image of the organ' }),
+    tissueData: z.lazy(() => TissueData.array()).optional()
+        .describe(`Tissue data for the above organ.
+    Following properties are optional in this object.
+    - image: URL of the image of the tissue.
+    - expandedImage: URL of the image to be shown in the modal, when it is clicked.
+    - threeDimImage: URL of the 3D object (.glb) file.
+    - alt: Alternate text for the image.
+    - url: URL for the metadata button.
+    - svg: URL to download the SVG file of the tissue.
+    - ai: URL to download the AI file of the tissue.
+    - png: URL to download the PNG file of the tissue.`)
 });
 
+const organVersionDescription = `This object has the following fields as optional
+- headerInfo: this is the data about column headers and their definition. Add this data if you want to display data table`
+
 export const OrganVersion = z.object({
-    type: z.literal('organ-version'),
+    type: z.literal('organ-version', { description: organVersionDescription }),
     isMultiRow: z.boolean({ description: 'True if want to display organs one below other. False if want to display organs beside one another' }),
     tableRequired: z.boolean({ description: 'True of want to display data table' }),
-    versionData: z.lazy(() => VersionSelector.array()).describe('Release name, source csv file and version number'),
-    headerInfo: HeaderData.optional().describe('Names of columns and their definitions'),
-    organInfo: z.lazy(() => VersionOrgans.array()).describe('Version Number and Organ data for the same version')
+    versionData: z.lazy(() => VersionSelector.array()).describe(`Release name, source csv file and version number
+    Property 'file' is optional. If required, add property 'file' ans pass the path to the CSV file. It is only required if tableRequired is True.`),
+    headerInfo: HeaderData.optional()
+        .describe(`Names of columns and their definitions
+        There are three optional values in this object:
+        - isTotalRequired: To display total at the end of the table
+        - sorting: To enable sorting in the table
+        - alignment: start or end to align data left or right`),
+    organInfo: z.lazy(() => VersionOrgans.array()).describe(organVersionDescription)
 })
 
 export const PageData = z.object({
@@ -285,6 +342,7 @@ const PrizeButton = z.object({
     label: z.string({ description: 'Text on the button' }),
     link: z.string({ description: 'URL for the button' })
 })
+
 const PrizeWinner = z.object({
     winner: z.string({ description: 'Name of the winner' }),
     kaggleId: z.string({ description: 'Kaggle ID of the winner' }),
@@ -300,16 +358,24 @@ export const PrizeCard = z.object({
         title: z.string({ description: 'Title of the card (eg. Position in the competition)' }),
         presentedBy: z.string({ description: 'Name of the person who presented' }),
         orgImage: z.string({ description: 'Logo/Image of the organization' }),
-        winner: PrizeWinner.array(),
+        winner: PrizeWinner
+            .describe(`
+                The following properties are optional in this object:
+                - button: Data of buttons to show on the Prize Card.
+                - kaggleId: kaggle id's of the winners.`).array(),
         userImage: z.string({ description: 'Images of all the participants' }).array(),
         matDivider: z.boolean({ description: 'True if divider is needed' })
     }).partial({
         presentedBy: true,
         orgImage: true,
         userImage: true
-    }).array(),
+    }).describe(`
+        The following properties are optional in this object:
+        - presentedBy: Name of the presenter.
+        - orgImage: URL to the image of the organization.
+        - userImage: URL(s) to the image of the participants.`).array(),
     styles: Styles.optional()
-})
+});
 
 export const SectionCard = z.object({
     type: z.literal('section-card'),
@@ -341,24 +407,32 @@ export const SopLinks = z.object({
     })
 })
 
+const styledGroup = `This object has the following properties as optional:
+- id: Label for the id attribute for the component
+- class: Class name defined in the css file for this component.`
 const StyledGroup = z.object({
-    type: z.literal('styled-group'),
+    type: z.literal('styled-group', { description: styledGroup }),
     components: z.lazy(() => PageSpec).describe('To add components recursively'),
     id: z.string({ description: 'ID of the page element' }).optional(),
     class: z.string({ description: 'Class name defined in the css file' }).optional(),
     styles: Styles.optional()
-});
+}).describe(styledGroup);
 
 export const TableVersion = z.object({
     type: z.literal('table-version'),
     isTotal: z.boolean({ description: 'True if want to display total below the table in the last row' }),
     isDownload: z.boolean({ description: 'True if want to download the table data csv file' }),
     versionChooserDisabled: z.boolean({ description: 'To show/hide the version select input' }),
-    headerInfo: HeaderData.describe('Names of columns and their definitions'),
+    headerInfo: HeaderData.describe(`The following fields are optional in this object.
+    - isTotalRequired: True if want to display the sum of column numbers below the table.
+    - sorting: True if sorting required on the column.
+    - alignment: Alignment of the data (start or end)`),
     versionData: z.lazy(() => VersionSelector.array()).describe('Release name, source csv file and version number'),
     additionalHeaders: ExtraHeader.array().optional().describe('Additional column names and definitions if any'),
     cellHeaders: ExtraHeader.array().optional().describe('Additional column names and definitions if any')
-})
+}).describe(`This object has the following properties as optional:
+- additionalHeaders: Add details here to display additional table header for the table.
+- cellHeaders: Add details here to display cell headers for the table.`)
 
 const TissueData = z.object({
     name: z.string({ description: 'Name of the Tissue' }),
@@ -380,16 +454,19 @@ const TissueData = z.object({
     png: true
 });
 
+const titleDescription = `Properties 'class' and 'styles' are optional. Add styling in styles to apply styles to the title.`
 export const Title = z.object({
-    type: z.literal('title'),
+    type: z.literal('title', { description: titleDescription }),
     title: z.string('Title/Text to be displayed'),
     class: z.string().optional().describe('Class name defined in the css file'),
     styles: Styles.optional()
-})
+}).describe(titleDescription)
 
 const VersionOrgans = z.object({
     version: z.string({ description: 'HRA Release version (1.3/1.4/etc)' }),
-    organData: OrganData.array().optional().describe('Organ data for the version')
+    organData: OrganData.array().optional()
+        .describe(`Organ data for the version.
+        Property tissueData in this object is optional. Add tissue data to display details about tissues for each organ.`)
 });
 
 const VersionSelector = z.object({
