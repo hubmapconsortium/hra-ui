@@ -37,8 +37,10 @@
                   "required": [
                     "message"
                   ],
-                  "additionalProperties": false
-                }
+                  "additionalProperties": false,
+                  "description": "The announcementCard field has three optional fields:\n            - route: Route of the page where user will be redirected to when clicked on it.\n            - routeText: Label for the route where we want the user to click.\n            - emoji: Paste any emoji in this field if required."
+                },
+                "description": "The announcementCard field has three optional fields:\n            - route: Route of the page where user will be redirected to when clicked on it.\n            - routeText: Label for the route where we want the user to click.\n            - emoji: Paste any emoji in this field if required."
               },
               "styles": {
                 "type": "object",
@@ -99,7 +101,8 @@
             "properties": {
               "type": {
                 "type": "string",
-                "const": "button"
+                "const": "button",
+                "description": "This object has the following properties as optional.\n    - url: External link to redirect the page to when button is pressed.\n    - route: Route Name of the page to redirect to when the button is pressed.\n    - icon: icon name for the icon to be displayed on the button.\n    - styles: Additional styling for the button."
               },
               "text": {
                 "type": "string",
@@ -125,7 +128,8 @@
               "type",
               "text"
             ],
-            "additionalProperties": false
+            "additionalProperties": false,
+            "description": "This object has the following properties as optional.\n- url: External link to redirect the page to when button is pressed.\n- route: Route Name of the page to redirect to when the button is pressed.\n- icon: icon name for the icon to be displayed on the button.\n- styles: Additional styling for the button.\n\nEnter either url or route."
           },
           {
             "type": "object",
@@ -138,7 +142,8 @@
                 "type": "object",
                 "properties": {
                   "width": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Width of the container for carousel"
                   }
                 },
                 "required": [
@@ -182,8 +187,10 @@
                     "image",
                     "buttonText"
                   ],
-                  "additionalProperties": false
-                }
+                  "additionalProperties": false,
+                  "description": "This object has the following optional fields.\n    - url: External Link to redirect to when the button is pressed.\n    - route: Name of the route of the page to be loaded when button is pressed.\n    \n    Enter either url or route."
+                },
+                "description": "This object has the following optional fields.\n    - url: External Link to redirect to when the button is pressed.\n    - route: Name of the route of the page to be loaded when button is pressed.\n    \n    Enter either url or route."
               },
               "styles": {
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
@@ -302,6 +309,21 @@
                 "type": "string",
                 "const": "datasets"
               },
+              "styles": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": [
+                    "string",
+                    "number"
+                  ]
+                },
+                "default": {
+                  "display": "flex",
+                  "flex-flow": "row wrap",
+                  "justify-content": "space-between",
+                  "padding-bottom": "2.5rem"
+                }
+              },
               "links": {
                 "type": "array",
                 "items": {
@@ -309,11 +331,12 @@
                   "properties": {
                     "class": {
                       "type": "string",
-                      "description": "Class name defined in the css file"
+                      "description": "Class name defined in the css file",
+                      "default": "datasets"
                     },
                     "href": {
                       "type": "string",
-                      "description": "URL of the item"
+                      "description": "URL of the items"
                     },
                     "title": {
                       "type": "string",
@@ -325,16 +348,12 @@
                     }
                   },
                   "required": [
-                    "class",
                     "href",
                     "title",
                     "data"
                   ],
                   "additionalProperties": false
                 }
-              },
-              "styles": {
-                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
             "required": [
@@ -364,7 +383,8 @@
             "properties": {
               "type": {
                 "type": "string",
-                "const": "download-ftu"
+                "const": "download-ftu",
+                "description": "This object has the following fields as optional.\n    - displayMetaData: True if you want to display Release Version and Digital Object type. If you set this to true, make sure to add releaseVersion and dot properties in rows object.\n    - downloadIcon: name of the icon you want to display in download column header\n    - columnLabels: Object of column definition and column headers for the table\n    "
               },
               "versions": {
                 "type": "array",
@@ -383,19 +403,23 @@
                     "version"
                   ],
                   "additionalProperties": false
-                }
+                },
+                "description": "Release name and version number."
               },
               "displayMetadata": {
-                "type": "boolean"
+                "type": "boolean",
+                "description": "Flag to display the Release Version and Digital Object type"
               },
               "downloadIcon": {
-                "type": "string"
+                "type": "string",
+                "description": "Icon name to display the icon"
               },
               "columnLabels": {
                 "type": "object",
                 "additionalProperties": {
                   "type": "string"
                 },
+                "description": "Object of column definition and column header label",
                 "default": {
                   "type": "Type",
                   "download": "Download",
@@ -419,7 +443,7 @@
                         "properties": {
                           "label": {
                             "type": "string",
-                            "description": "Header of the links"
+                            "description": "Label for the Organ/Type column"
                           },
                           "links": {
                             "type": "array",
@@ -428,11 +452,11 @@
                               "properties": {
                                 "label": {
                                   "type": "string",
-                                  "description": "Label for the link"
+                                  "description": "Label for the link in the download column"
                                 },
                                 "link": {
                                   "type": "string",
-                                  "description": "URL for the label"
+                                  "description": "URL for the label in the download column"
                                 }
                               },
                               "required": [
@@ -443,11 +467,12 @@
                             }
                           },
                           "releaseVersion": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "Table Data for release version column."
                           },
                           "dot": {
                             "type": "string",
-                            "description": "Digital Object Type"
+                            "description": "Table data for Digital Object Type column."
                           },
                           "url": {
                             "type": "string",
@@ -458,16 +483,20 @@
                           "label",
                           "links"
                         ],
-                        "additionalProperties": false
-                      }
+                        "additionalProperties": false,
+                        "description": "Following properties in this object are optional:\n        - releaseVersion: Release version of the organ.\n        - dot: Digital object type of the organ.\n        - url: External link to be embedded in the organ."
+                      },
+                      "description": "Following properties in this object are optional:\n        - releaseVersion: Release version of the organ.\n        - dot: Digital object type of the organ.\n        - url: External link to be embedded in the organ."
                     }
                   },
                   "required": [
                     "version",
                     "rows"
                   ],
-                  "additionalProperties": false
-                }
+                  "additionalProperties": false,
+                  "description": "Add version and rows data for the table"
+                },
+                "description": "Add version and rows data for the table"
               }
             },
             "required": [
@@ -475,7 +504,8 @@
               "versions",
               "versionedData"
             ],
-            "additionalProperties": false
+            "additionalProperties": false,
+            "description": "This object has the following fields as optional.\n- displayMetaData: True if you want to display Release Version and Digital Object type. If you set this to true, make sure to add releaseVersion and dot properties in rows object.\n- downloadIcon: name of the icon you want to display in download column header\n- columnLabels: Object of column definition and column headers for the table"
           },
           {
             "type": "object",
@@ -544,7 +574,8 @@
               "type",
               "imageSource"
             ],
-            "additionalProperties": false
+            "additionalProperties": false,
+            "description": "Property 'class' is optional. It is the class name for the image. Define this class in page-element.component.scss"
           },
           {
             "type": "object",
@@ -635,8 +666,10 @@
                     "icon",
                     "title"
                   ],
-                  "additionalProperties": false
-                }
+                  "additionalProperties": false,
+                  "description": "Properties mentioned here are optional. Either use route or externalLink\n- route: route for the page to be redirected\n- externalLink: URL of the page to be opened when the card is clicked\n- color: background color of the image\n- body: Subtitle for the card"
+                },
+                "description": "Properties mentioned here are optional. Either use route or externalLink\n- route: route for the page to be redirected\n- externalLink: URL of the page to be opened when the card is clicked\n- color: background color of the image\n- body: Subtitle for the card"
               },
               "styles": {
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
@@ -665,23 +698,28 @@
                       "description": "Title of the Card"
                     },
                     "headerSize": {
-                      "type": "string",
-                      "description": "Size of the title of the card"
-                    },
-                    "cardData": {
-                      "$ref": "#/definitions/mySchema/items/anyOf/12/properties/longCardItems"
+                      "type": "object",
+                      "additionalProperties": {
+                        "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles/additionalProperties"
+                      },
+                      "description": "Inline styles for the title of the card"
                     },
                     "id": {
                       "type": "string",
                       "description": "Unique ID for the title of the card"
+                    },
+                    "cardData": {
+                      "$ref": "#/definitions/mySchema/items/anyOf/12/properties/longCardItems"
                     }
                   },
                   "required": [
                     "heading",
                     "cardData"
                   ],
-                  "additionalProperties": false
-                }
+                  "additionalProperties": false,
+                  "description": "Properties mentioned here are optional\n    - headerSize: Pass inline styles for the header of the card\n    - id: Pass id as an attribute to the title of the card"
+                },
+                "description": "Properties mentioned here are optional\n    - headerSize: Pass inline styles for the header of the card\n    - id: Pass id as an attribute to the title of the card"
               }
             },
             "required": [
@@ -714,7 +752,7 @@
               "type"
             ],
             "additionalProperties": false,
-            "description": "To add margin around any component."
+            "description": "To add margin around any component. Add top/ bottom/ left/ right and margin value"
           },
           {
             "type": "object",
@@ -818,7 +856,8 @@
             "properties": {
               "type": {
                 "type": "string",
-                "const": "organ-version"
+                "const": "organ-version",
+                "description": "This object has the following fields as optional\n        - headerInfo: this is the data about column headers and their definition. Add this data if you want to display data table"
               },
               "isMultiRow": {
                 "type": "boolean",
@@ -855,7 +894,7 @@
                   ],
                   "additionalProperties": false
                 },
-                "description": "Release name, source csv file and version number"
+                "description": "Release name, source csv file and version number\n    Property 'file' is optional. If required, add property 'file' ans pass the path to the CSV file. It is only required if tableRequired is True."
               },
               "headerInfo": {
                 "type": "array",
@@ -892,7 +931,7 @@
                   ],
                   "additionalProperties": false
                 },
-                "description": "Names of columns and their definitions"
+                "description": "Names of columns and their definitions\n        There are three optional values in this object:\n        - isTotalRequired: To display total at the end of the table\n        - sorting: To enable sorting in the table\n        - alignment: start or end to align data left or right"
               },
               "organInfo": {
                 "type": "array",
@@ -914,7 +953,7 @@
                           },
                           "image": {
                             "type": "string",
-                            "description": "Icon/Image of the organ"
+                            "description": "Path to the Icon/Image of the organ"
                           },
                           "tissueData": {
                             "type": "array",
@@ -964,7 +1003,7 @@
                               ],
                               "additionalProperties": false
                             },
-                            "description": "Tissue data for the above organ"
+                            "description": "Tissue data for the above organ.\n    Following properties are optional in this object.\n    - image: URL of the image of the tissue.\n    - expandedImage: URL of the image to be shown in the modal, when it is clicked.\n    - threeDimImage: URL of the 3D object (.glb) file.\n    - alt: Alternate text for the image.\n    - url: URL for the metadata button.\n    - svg: URL to download the SVG file of the tissue.\n    - ai: URL to download the AI file of the tissue.\n    - png: URL to download the PNG file of the tissue."
                           }
                         },
                         "required": [
@@ -973,7 +1012,7 @@
                         ],
                         "additionalProperties": false
                       },
-                      "description": "Organ data for the version"
+                      "description": "Organ data for the version.\n        Property tissueData in this object is optional. Add tissue data to display details about tissues for each organ."
                     }
                   },
                   "required": [
@@ -981,7 +1020,7 @@
                   ],
                   "additionalProperties": false
                 },
-                "description": "Version Number and Organ data for the same version"
+                "description": "Version Number and Organ data for the same version. \n        The following properties are optional in this object:\n        - organData: Add data to display name, image and tissue data for the organ."
               }
             },
             "required": [
@@ -1136,8 +1175,10 @@
                         "required": [
                           "winner"
                         ],
-                        "additionalProperties": false
-                      }
+                        "additionalProperties": false,
+                        "description": "\n                The following properties are optional in this object:\n                - button: Data of buttons to show on the Prize Card.\n                - kaggleId: kaggle id's of the winners."
+                      },
+                      "description": "\n                The following properties are optional in this object:\n                - button: Data of buttons to show on the Prize Card.\n                - kaggleId: kaggle id's of the winners."
                     },
                     "userImage": {
                       "type": "array",
@@ -1157,8 +1198,10 @@
                     "winner",
                     "matDivider"
                   ],
-                  "additionalProperties": false
-                }
+                  "additionalProperties": false,
+                  "description": "\n        The following properties are optional in this object:\n        - presentedBy: Name of the presenter.\n        - orgImage: URL to the image of the organization.\n        - userImage: URL(s) to the image of the participants."
+                },
+                "description": "\n        The following properties are optional in this object:\n        - presentedBy: Name of the presenter.\n        - orgImage: URL to the image of the organization.\n        - userImage: URL(s) to the image of the participants."
               },
               "styles": {
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
@@ -1307,7 +1350,8 @@
             "properties": {
               "type": {
                 "type": "string",
-                "const": "styled-group"
+                "const": "styled-group",
+                "description": "This object has the following properties as optional:\n                    - id: Label for the id attribute for the component\n                    - class: Class name defined in the css file for this component."
               },
               "components": {
                 "$ref": "#/definitions/mySchema",
@@ -1329,7 +1373,8 @@
               "type",
               "components"
             ],
-            "additionalProperties": false
+            "additionalProperties": false,
+            "description": "This object has the following properties as optional:\n- id: Label for the id attribute for the component\n- class: Class name defined in the css file for this component."
           },
           {
             "type": "object",
@@ -1355,7 +1400,7 @@
                 "items": {
                   "$ref": "#/definitions/mySchema/items/anyOf/17/properties/headerInfo/items"
                 },
-                "description": "Names of columns and their definitions"
+                "description": "The following fields are optional in this object.\n    - isTotalRequired: True if want to display the sum of column numbers below the table.\n    - sorting: True if sorting required on the column.\n    - alignment: Alignment of the data (start or end)"
               },
               "versionData": {
                 "type": "array",
@@ -1389,7 +1434,8 @@
                     "columnDef",
                     "header"
                   ],
-                  "additionalProperties": false
+                  "additionalProperties": false,
+                  "description": "colspan and rowspan are optional fields. Add appropriate number to span the cells accordingly."
                 },
                 "description": "Additional column names and definitions if any"
               },
@@ -1409,14 +1455,16 @@
               "headerInfo",
               "versionData"
             ],
-            "additionalProperties": false
+            "additionalProperties": false,
+            "description": "This object has the following properties as optional:\n- additionalHeaders: Add details here to display additional table header for the table.\n- cellHeaders: Add details here to display cell headers for the table."
           },
           {
             "type": "object",
             "properties": {
               "type": {
                 "type": "string",
-                "const": "title"
+                "const": "title",
+                "description": "Properties 'class' and 'styles' are optional. Add styling in styles to apply styles to the title."
               },
               "title": {
                 "type": "string"
@@ -1433,7 +1481,8 @@
               "type",
               "title"
             ],
-            "additionalProperties": false
+            "additionalProperties": false,
+            "description": "Properties 'class' and 'styles' are optional. Add styling in styles to apply styles to the title."
           },
           {
             "type": "object",
