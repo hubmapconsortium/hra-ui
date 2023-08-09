@@ -46,14 +46,14 @@ export const BoardMembers = z.object({
     styles: Styles.optional()
 })
 
+const buttonDescription = `This object has the following properties as optional.
+- url: External link to redirect the page to when button is pressed.
+- route: Route Name of the page to redirect to when the button is pressed.
+- icon: icon name for the icon to be displayed on the button.
+- styles: Additional styling for the button.`
+
 export const Button = z.object({
-    type: z.literal('button', {
-        description: `This object has the following properties as optional.
-    - url: External link to redirect the page to when button is pressed.
-    - route: Route Name of the page to redirect to when the button is pressed.
-    - icon: icon name for the icon to be displayed on the button.
-    - styles: Additional styling for the button.`
-    }),
+    type: z.literal('button', { description: buttonDescription }),
     text: z.string({ description: 'Text on the button' }),
     url: z.string({ description: 'External URL for the button' }),
     route: z.string({ description: 'Route for the another page in current project' }),
@@ -64,13 +64,7 @@ export const Button = z.object({
     route: true,
     icon: true,
     styles: true
-}).describe(`This object has the following properties as optional.
-- url: External link to redirect the page to when button is pressed.
-- route: Route Name of the page to redirect to when the button is pressed.
-- icon: icon name for the icon to be displayed on the button.
-- styles: Additional styling for the button.
-
-Enter either url or route.`)
+}).describe(buttonDescription)
 
 export const CarouselSlides = z.object({
     type: z.literal('carousel'),
@@ -116,13 +110,13 @@ export const CountCard = z.object({
 
 export const Datasets = z.object({
     type: z.literal('datasets'),
-    styles: z.record(z.union([z.string(), z.number()])).default(defaultDatasetsStyles),
     links: z.object({
         class: z.string({ description: 'Class name defined in the css file' }).default('datasets'),
         href: z.string({ description: 'URL of the items' }),
         title: z.string({ description: 'Tooltip title for the item' }),
         data: z.string({ description: 'Label for the item' })
     }).array(),
+    styles: Styles.default(defaultDatasetsStyles)
 }).required("styles")
 
 export const Divider = z.object({
@@ -130,13 +124,13 @@ export const Divider = z.object({
     styles: Styles.optional()
 })
 
+const downloadFtuDescription = `This object has the following fields as optional.
+- displayMetaData: True if you want to display Release Version and Digital Object type. If you set this to true, make sure to add releaseVersion and dot properties in rows object.
+- downloadIcon: name of the icon you want to display in download column header
+- columnLabels: Object of column definition and column headers for the table
+`
 export const DownloadFtu = z.object({
-    type: z.literal('download-ftu', {
-        description: `This object has the following fields as optional.
-    - displayMetaData: True if you want to display Release Version and Digital Object type. If you set this to true, make sure to add releaseVersion and dot properties in rows object.
-    - downloadIcon: name of the icon you want to display in download column header
-    - columnLabels: Object of column definition and column headers for the table
-    `}),
+    type: z.literal('download-ftu', { description: downloadFtuDescription }),
     versions: VersionEntry.array().describe('Release name and version number.'),
     displayMetadata: z.boolean({ description: 'Flag to display the Release Version and Digital Object type' }).optional(),
     downloadIcon: z.string({ description: 'Icon name to display the icon' }).optional(),
@@ -162,10 +156,7 @@ export const DownloadFtu = z.object({
         - dot: Digital object type of the organ.
         - url: External link to be embedded in the organ.`).array()
     }).describe(`Add version and rows data for the table`).array()
-}).describe(`This object has the following fields as optional.
-- displayMetaData: True if you want to display Release Version and Digital Object type. If you set this to true, make sure to add releaseVersion and dot properties in rows object.
-- downloadIcon: name of the icon you want to display in download column header
-- columnLabels: Object of column definition and column headers for the table`)
+}).describe(downloadFtuDescription)
 
 export const Drawer = z.object({
     type: z.literal('drawer'),
@@ -310,11 +301,11 @@ const OrganData = z.object({
     - png: URL to download the PNG file of the tissue.`)
 });
 
+const organVersionDescription = `This object has the following fields as optional
+- headerInfo: this is the data about column headers and their definition. Add this data if you want to display data table`
+
 export const OrganVersion = z.object({
-    type: z.literal('organ-version', {
-        description: `This object has the following fields as optional
-        - headerInfo: this is the data about column headers and their definition. Add this data if you want to display data table`}
-    ),
+    type: z.literal('organ-version', { description: organVersionDescription }),
     isMultiRow: z.boolean({ description: 'True if want to display organs one below other. False if want to display organs beside one another' }),
     tableRequired: z.boolean({ description: 'True of want to display data table' }),
     versionData: z.lazy(() => VersionSelector.array()).describe(`Release name, source csv file and version number
@@ -325,11 +316,7 @@ export const OrganVersion = z.object({
         - isTotalRequired: To display total at the end of the table
         - sorting: To enable sorting in the table
         - alignment: start or end to align data left or right`),
-    organInfo: z.lazy(() => VersionOrgans.array())
-        .describe(`Version Number and Organ data for the same version. 
-        The following properties are optional in this object:
-        - organData: Add data to display name, image and tissue data for the organ.`
-        )
+    organInfo: z.lazy(() => VersionOrgans.array()).describe(organVersionDescription)
 })
 
 export const PageData = z.object({
@@ -420,18 +407,16 @@ export const SopLinks = z.object({
     })
 })
 
+const styledGroup = `This object has the following properties as optional:
+- id: Label for the id attribute for the component
+- class: Class name defined in the css file for this component.`
 const StyledGroup = z.object({
-    type: z.literal('styled-group', {
-        description: `This object has the following properties as optional:
-                    - id: Label for the id attribute for the component
-                    - class: Class name defined in the css file for this component.`}),
+    type: z.literal('styled-group', { description: styledGroup }),
     components: z.lazy(() => PageSpec).describe('To add components recursively'),
     id: z.string({ description: 'ID of the page element' }).optional(),
     class: z.string({ description: 'Class name defined in the css file' }).optional(),
     styles: Styles.optional()
-}).describe(`This object has the following properties as optional:
-- id: Label for the id attribute for the component
-- class: Class name defined in the css file for this component.`);
+}).describe(styledGroup);
 
 export const TableVersion = z.object({
     type: z.literal('table-version'),
@@ -469,13 +454,13 @@ const TissueData = z.object({
     png: true
 });
 
+const titleDescription = `Properties 'class' and 'styles' are optional. Add styling in styles to apply styles to the title.`
 export const Title = z.object({
-    type: z.literal('title',
-        { description: `Properties 'class' and 'styles' are optional. Add styling in styles to apply styles to the title.` }),
+    type: z.literal('title', { description: titleDescription }),
     title: z.string('Title/Text to be displayed'),
     class: z.string().optional().describe('Class name defined in the css file'),
     styles: Styles.optional()
-}).describe(`Properties 'class' and 'styles' are optional. Add styling in styles to apply styles to the title.`)
+}).describe(titleDescription)
 
 const VersionOrgans = z.object({
     version: z.string({ description: 'HRA Release version (1.3/1.4/etc)' }),
