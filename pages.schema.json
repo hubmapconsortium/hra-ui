@@ -102,7 +102,7 @@
               "type": {
                 "type": "string",
                 "const": "button",
-                "description": "This object has the following properties as optional.\n    - url: External link to redirect the page to when button is pressed.\n    - route: Route Name of the page to redirect to when the button is pressed.\n    - icon: icon name for the icon to be displayed on the button.\n    - styles: Additional styling for the button."
+                "description": "This object has the following properties as optional.\n- url: External link to redirect the page to when button is pressed.\n- route: Route Name of the page to redirect to when the button is pressed.\n- icon: icon name for the icon to be displayed on the button.\n- styles: Additional styling for the button."
               },
               "text": {
                 "type": "string",
@@ -129,7 +129,7 @@
               "text"
             ],
             "additionalProperties": false,
-            "description": "This object has the following properties as optional.\n- url: External link to redirect the page to when button is pressed.\n- route: Route Name of the page to redirect to when the button is pressed.\n- icon: icon name for the icon to be displayed on the button.\n- styles: Additional styling for the button.\n\nEnter either url or route."
+            "description": "This object has the following properties as optional.\n- url: External link to redirect the page to when button is pressed.\n- route: Route Name of the page to redirect to when the button is pressed.\n- icon: icon name for the icon to be displayed on the button.\n- styles: Additional styling for the button."
           },
           {
             "type": "object",
@@ -309,21 +309,6 @@
                 "type": "string",
                 "const": "datasets"
               },
-              "styles": {
-                "type": "object",
-                "additionalProperties": {
-                  "type": [
-                    "string",
-                    "number"
-                  ]
-                },
-                "default": {
-                  "display": "flex",
-                  "flex-flow": "row wrap",
-                  "justify-content": "space-between",
-                  "padding-bottom": "2.5rem"
-                }
-              },
               "links": {
                 "type": "array",
                 "items": {
@@ -353,6 +338,15 @@
                     "data"
                   ],
                   "additionalProperties": false
+                }
+              },
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles",
+                "default": {
+                  "display": "flex",
+                  "flex-flow": "row wrap",
+                  "justify-content": "space-between",
+                  "padding-bottom": "2.5rem"
                 }
               }
             },
@@ -384,7 +378,7 @@
               "type": {
                 "type": "string",
                 "const": "download-ftu",
-                "description": "This object has the following fields as optional.\n    - displayMetaData: True if you want to display Release Version and Digital Object type. If you set this to true, make sure to add releaseVersion and dot properties in rows object.\n    - downloadIcon: name of the icon you want to display in download column header\n    - columnLabels: Object of column definition and column headers for the table\n    "
+                "description": "This object has the following fields as optional.\n- displayMetaData: True if you want to display Release Version and Digital Object type. If you set this to true, make sure to add releaseVersion and dot properties in rows object.\n- downloadIcon: name of the icon you want to display in download column header\n- columnLabels: Object of column definition and column headers for the table\n"
               },
               "versions": {
                 "type": "array",
@@ -505,7 +499,7 @@
               "versionedData"
             ],
             "additionalProperties": false,
-            "description": "This object has the following fields as optional.\n- displayMetaData: True if you want to display Release Version and Digital Object type. If you set this to true, make sure to add releaseVersion and dot properties in rows object.\n- downloadIcon: name of the icon you want to display in download column header\n- columnLabels: Object of column definition and column headers for the table"
+            "description": "This object has the following fields as optional.\n- displayMetaData: True if you want to display Release Version and Digital Object type. If you set this to true, make sure to add releaseVersion and dot properties in rows object.\n- downloadIcon: name of the icon you want to display in download column header\n- columnLabels: Object of column definition and column headers for the table\n"
           },
           {
             "type": "object",
@@ -857,7 +851,7 @@
               "type": {
                 "type": "string",
                 "const": "organ-version",
-                "description": "This object has the following fields as optional\n        - headerInfo: this is the data about column headers and their definition. Add this data if you want to display data table"
+                "description": "This object has the following fields as optional\n- headerInfo: this is the data about column headers and their definition. Add this data if you want to display data table"
               },
               "isMultiRow": {
                 "type": "boolean",
@@ -1020,7 +1014,7 @@
                   ],
                   "additionalProperties": false
                 },
-                "description": "Version Number and Organ data for the same version. \n        The following properties are optional in this object:\n        - organData: Add data to display name, image and tissue data for the organ."
+                "description": "This object has the following fields as optional\n- headerInfo: this is the data about column headers and their definition. Add this data if you want to display data table"
               }
             },
             "required": [
@@ -1351,7 +1345,7 @@
               "type": {
                 "type": "string",
                 "const": "styled-group",
-                "description": "This object has the following properties as optional:\n                    - id: Label for the id attribute for the component\n                    - class: Class name defined in the css file for this component."
+                "description": "This object has the following properties as optional:\n- id: Label for the id attribute for the component\n- class: Class name defined in the css file for this component."
               },
               "components": {
                 "$ref": "#/definitions/mySchema",
