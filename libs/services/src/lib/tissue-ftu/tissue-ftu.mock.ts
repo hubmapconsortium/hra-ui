@@ -83,6 +83,10 @@ export const MOCK_SUMMARIES = {
     label: 'Summary 3',
     entries: [],
   },
+  summary3: {
+    label: 'Summary 3',
+    entries: [],
+  },
 };
 
 /** Implementation of TissueFtuService */
