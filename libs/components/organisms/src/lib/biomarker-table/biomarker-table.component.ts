@@ -61,6 +61,9 @@ export type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
+  /**
+   * Input: TissueInfo carrying the details of the tissue open
+   */
   @Input() tissueInfo: TissueInfo | undefined;
 
   /** Columns for the table */
@@ -174,6 +177,12 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
     return this.lerp(value, minSize, maxSize);
   }
 
+  /**
+   * rocesses the object for hover data for Table Cell
+   * @param index index of the row of the datasource
+   * @param row row of the datasource
+   * @returns
+   */
   getHoverData([index, row]: [number | undefined, DataRow<T>]): DataItem[][] {
     if (index === undefined) {
       return [];
