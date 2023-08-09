@@ -18,6 +18,15 @@ import { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/co
 import { BiomarkerTableComponent, TissueInfo } from '@hra-ui/components/organisms';
 import { CellSummarySelectors, ResourceIds as Ids, ResourceTypes as RTypes, SourceRefsSelectors } from '@hra-ui/state';
 
+/**
+ * PlaceHolder for Empty Tissue Info
+ */
+const EMPTY_TISSUE_INFO: TissueInfo = {
+  id: '',
+  label: '',
+  datasetCount: 0,
+};
+
 /** The component displays the biomarker details which includes the details, gradient legends, size legends and source lists*/
 @Component({
   selector: 'ftu-biomarker-details',
@@ -80,11 +89,11 @@ export class BiomarkerDetailsComponent {
   get tissueInfo(): TissueInfo {
     const iri = this.iri();
     const tissues = this.tissues();
-    return {
-      tissueID: iri ? tissues[iri].id : '', //TODO: replace with UBERON ID
-      tissueName: iri ? tissues[iri].label : '',
-      numberOfDataSets: 10, // TODO: replace with actual Data sets number
-    };
+    if (iri === undefined) {
+      return EMPTY_TISSUE_INFO;
+    }
+    const { id, label } = tissues[iri];
+    return { id, label, datasetCount: 10 };
   }
 
   /**

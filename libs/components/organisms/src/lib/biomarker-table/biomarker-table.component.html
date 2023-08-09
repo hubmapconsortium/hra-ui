@@ -27,19 +27,17 @@
     <td class="icon-cell" mat-cell *matCellDef="let element">
       <hra-biomarker-table-data-icon
         class="icon"
-        *ngIf="element[index + 2] !== undefined"
+        *ngIf="element[index + 2] !== undefined; else emptyCell"
         [color]="getColor(element[index + 2].color)"
         [size]="getSize(element[index + 2].size)"
         [hraHover]="dataHover"
         [hraHoverData]="[index + 2, element]"
       >
       </hra-biomarker-table-data-icon>
-      <div
-        class="emptyFiller"
-        *ngIf="element[index + 2] === undefined"
-        [hraHover]="dataHover"
-        [hraHoverData]="[undefined, undefined]"
-      ></div>
+
+      <ng-template #emptyCell>
+        <div class="empty" [hraHover]="dataHover" [hraHoverData]="[index + 2, element]"></div>
+      </ng-template>
     </td>
   </ng-container>
 

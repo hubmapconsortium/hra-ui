@@ -51,9 +51,9 @@ describe('BiomarkerTableComponent', () => {
   ];
 
   const tissueInfo: TissueInfo = {
-    tissueName: '',
-    tissueID: '',
-    numberOfDataSets: 0,
+    label: '',
+    id: '',
+    datasetCount: 0,
   };
 
   let shallow: Shallow<BiomarkerTableComponent<DataCell>>;
@@ -85,7 +85,7 @@ describe('BiomarkerTableComponent', () => {
 
   it('returns a result with tissueInfo empty as provided from getHoverData function', async () => {
     const { instance } = await shallow.render({
-      bind: { columns: columns, data: data, gradient, sizes, tissueInfo: undefined },
+      bind: { columns: columns, data: data, gradient, sizes, tissueInfo: tissueInfo },
     });
     const res = instance.getHoverData([2, data[2]]);
     expect(res).toBeDefined();
@@ -93,6 +93,6 @@ describe('BiomarkerTableComponent', () => {
 
   it('returns a empty result from getHoverData function', async () => {
     const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
-    expect(instance.getHoverData([undefined, data[2]])).toBeDefined();
+    expect(instance.getHoverData([2, data[2]])).toBeDefined();
   });
 });

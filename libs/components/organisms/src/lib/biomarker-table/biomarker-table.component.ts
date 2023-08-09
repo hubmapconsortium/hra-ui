@@ -34,12 +34,12 @@ export interface DataCell {
  * Details of the Tissue
  */
 export interface TissueInfo {
-  /** Name of the Tissue */
-  tissueName: string;
   /** ID of the Tissue */
-  tissueID: string;
+  id: string;
+  /** Name of the Tissue */
+  label: string;
   /** Number of datasets for this Tissue */
-  numberOfDataSets: number;
+  datasetCount: number;
 }
 
 /** Describes the composition of a single row in the table */
@@ -64,7 +64,11 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   /**
    * Input: TissueInfo carrying the details of the tissue open
    */
-  @Input() tissueInfo: TissueInfo | undefined;
+  @Input() tissueInfo: TissueInfo = {
+    id: '',
+    label: '',
+    datasetCount: 0,
+  };
 
   /** Columns for the table */
   @Input() columns: string[] = [];
@@ -183,18 +187,23 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
    * @param row row of the datasource
    * @returns
    */
-  getHoverData([index, row]: [number | undefined, DataRow<T>]): DataItem[][] {
-    if (index === undefined) {
+  getHoverData([index, row]: [number, DataRow<T>]): DataItem[][] {
+    if (row[index] === undefined) {
       return [];
     }
+
+    const {
+      tissueInfo: { id, label, datasetCount },
+    } = this;
     const {
       data: { cell, biomarker, meanExpression },
     } = row[index] as T;
+
     return [
       [
-        { label: 'Functional Tissue Unit Name', value: this.tissueInfo?.tissueName ?? '' },
-        { label: 'Uberon ID', value: this.tissueInfo?.tissueID ?? '' },
-        { label: '#Datasets', value: '' + this.tissueInfo?.numberOfDataSets ?? '0' },
+        { label: 'Functional Tissue Unit Name', value: label },
+        { label: 'Uberon ID', value: id },
+        { label: '#Datasets', value: `${datasetCount}` },
       ],
       [
         { label: 'Cell Type Name', value: row[0] },
