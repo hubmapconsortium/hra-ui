@@ -6,7 +6,13 @@
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <script></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const illustration = document.querySelector('hra-illustration-wc');
+        illustration.lookupSrc = '../assets/TEMP/2d-ftu-illustrations.jsonld';
+        illustration.illustrationSrc = 'https://purl.humanatlas.io/2d-ftu/large-intestine-crypt-lieberkuhn';
+      });
+    </script>
   </head>
   <body>
     <hra-illustration-wc></hra-illustration-wc>

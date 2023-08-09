@@ -43,7 +43,7 @@ export class AppWebComponent implements OnChanges {
     if (typeof this.lookupSrc === 'string') {
       this.getData(this.illustrationSrc, this.lookupSrc).subscribe();
     } else {
-      // If lookupSrc is a json file
+      // if lookupSrc is a json file
       this.setUrlAndMapping(this.lookupSrc, this.illustrationSrc);
     }
   }
@@ -69,7 +69,7 @@ export class AppWebComponent implements OnChanges {
    */
   private setUrlAndMapping(illustrationFile: JsonLd, illustrationSrc: IllustrationData | string) {
     if (typeof illustrationSrc === 'string') {
-      //input src is id
+      // input src is id
       const currentOrganData = illustrationFile['@graph'].find((entry) => entry['@id'] === this.illustrationSrc);
       if (currentOrganData) {
         const illustrationFile = currentOrganData.illustration_files.find(
@@ -81,7 +81,7 @@ export class AppWebComponent implements OnChanges {
         }
       }
     } else {
-      //input src is organ data
+      // input src is organ data
       this.url$.next(illustrationSrc.illustration_files[0].file);
       this.mapping$.next(this.cellEntryToNodeEntry(illustrationSrc.mapping));
     }
