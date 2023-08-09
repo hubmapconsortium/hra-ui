@@ -23,7 +23,23 @@ export interface DataCell {
   /** Represents the size of the icon */
   size: number;
   /** Represents the data for the data card */
-  data: DataItem[][];
+  data: {
+    cell: string;
+    biomarker: string;
+    meanExpression: number;
+  };
+}
+
+/**
+ * Details of the Tissue
+ */
+export interface TissueInfo {
+  /** Name of the Tissue */
+  tissueName: string;
+  /** ID of the Tissue */
+  tissueID: string;
+  /** Number of datasets for this Tissue */
+  numberOfDataSets: number;
 }
 
 /** Describes the composition of a single row in the table */
@@ -45,6 +61,8 @@ export type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
+  @Input() tissueInfo: TissueInfo | undefined;
+
   /** Columns for the table */
   @Input() columns: string[] = [];
 
@@ -154,5 +172,31 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   getSize(value: number): number {
     const { minSize, maxSize } = this.getMinMaxSize(value);
     return this.lerp(value, minSize, maxSize);
+  }
+
+  getHoverData([index, row]: [number | undefined, DataRow<T>]): DataItem[][] {
+    if (index === undefined) {
+      return [];
+    }
+    const {
+      data: { cell, biomarker, meanExpression },
+    } = row[index] as T;
+    return [
+      [
+        { label: 'Functional Tissue Unit Name', value: this.tissueInfo?.tissueName ?? '' },
+        { label: 'Uberon ID', value: this.tissueInfo?.tissueID ?? '' },
+        { label: '#Datasets', value: '' + this.tissueInfo?.numberOfDataSets ?? '0' },
+      ],
+      [
+        { label: 'Cell Type Name', value: row[0] },
+        { label: 'CL ID', value: cell },
+        { label: 'Number of Cells', value: `${row[1]}` },
+      ],
+      [
+        { label: 'Gene Name', value: this.columns[index - 2] },
+        { label: 'HGNC ID', value: biomarker },
+        { label: 'Mean Expression Value', value: meanExpression.toFixed(6) },
+      ],
+    ];
   }
 }
