@@ -28,7 +28,7 @@
       * CCF API
         * Production: <https://ccf-api.hubmapconsortium.org>
         * Staging: <https://r5i95k35v5.us-east-2.awsapprunner.com>
-        * OpenAPI Specification: [ccf-api-spec.yaml](ccf-api-spec.yaml)
+        * OpenAPI Specification: [ccf-api-spec.yaml](https://github.com/hubmapconsortium/ccf-ui/blob/main/ccf-api-spec.yaml)
       * CCF API Client Libraries:
         * JavaScript: ![npm (scoped)](https://img.shields.io/npm/v/@ccf-openapi/js-client)  [@ccf-openapi/js-client](https://www.npmjs.com/package/@ccf-openapi/js-client)
         * TypeScript: ![npm (scoped)](https://img.shields.io/npm/v/@ccf-openapi/ts-client)  [@ccf-openapi/ts-client](https://www.npmjs.com/package/@ccf-openapi/ts-client)
