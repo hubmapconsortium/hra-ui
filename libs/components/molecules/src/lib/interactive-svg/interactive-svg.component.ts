@@ -76,7 +76,7 @@ export interface NodeMapEntry {
   templateUrl: './interactive-svg.component.html',
   styleUrls: ['./interactive-svg.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestroy {
   /** SVG url */
