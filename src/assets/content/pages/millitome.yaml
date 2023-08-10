@@ -37,11 +37,13 @@
   components:
   - type: image
     imageSource: assets/images/millitome_1.svg
+    alt: Millitome 3D
     styles:
       padding-right: 3rem
     class: image
   - type: image
     imageSource: assets/images/millitome_2.svg
+    alt: Millitome 3D
     class: image
 
 - type: margin

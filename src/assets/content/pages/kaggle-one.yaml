@@ -61,6 +61,7 @@
   components:
     - type: image
       imageSource: assets/images/accuracy_prizes.svg
+      alt: Accuracy Prizes
       styles:
         width: 100%
 

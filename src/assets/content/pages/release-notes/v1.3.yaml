@@ -108,6 +108,7 @@
                     cell types, and biomarkers down to the cellular level.
         - type: image
           imageSource: assets/images/intro_gif.gif
+          alt: Introduction
           styles:
             margin-bottom: 2rem
         - type: divider
@@ -182,6 +183,7 @@
             text-decoration: none
         - type: image
           imageSource: assets/images/hra-release-calendar.jpg
+          alt: HRA Release Calendar
           styles:
             margin-bottom: 2rem
             width: 100%
@@ -207,6 +209,7 @@
             margin-bottom: 1rem
         - type: image
           imageSource: assets/images/4th_release_asctb_table.svg
+          alt: ASCTB Table
           styles:
             width: 100%
         - type: page-data
@@ -242,6 +245,7 @@
           url: https://humanatlas.io/asctb-reporter
         - type: image
           imageSource: assets/images/4th_release_asctb_reporter.svg
+          alt: ASCTB Reporter
           styles:
             width: 100%
         - type: page-data
@@ -298,6 +302,7 @@
           url: https://humanatlas.io/3d-reference-library
         - type: image
           imageSource: assets/images/4th_release_3d.gif
+          alt: 3D Reference Objects
           styles:
             width: 100%
         - type: page-data
@@ -327,6 +332,7 @@
           url: https://humanatlas.io/exploration-user-interface
         - type: image
           imageSource: assets/images/4th_release_eui.svg
+          alt: Exploration User Interface
           styles:
             width: 100%
         - type: page-data
@@ -356,6 +362,7 @@
           url: https://humanatlas.io/registration-user-interface
         - type: image
           imageSource: assets/images/4th_release_rui_gif.gif
+          alt: Registration User Interface
           styles:
             width: 100%
         - type: page-data
@@ -385,6 +392,7 @@
           url: https://humanatlas.io/hra-organ-gallery-in-vr
         - type: image
           imageSource: assets/images/ccf-og-1.png
+          alt: VR Organ Gallery
           styles:
             width: 100%
         - type: page-data
@@ -502,6 +510,7 @@
                 is in May. Thanks for reading!
         - type: image
           imageSource: assets/images/4th_release_outro.svg
+          alt: Outro
           styles:
             margin-bottom: 2.5rem
             width: 100%

@@ -30,6 +30,7 @@
 
 - type: image
   imageSource: assets/images/cell_pop_body_image.svg
+  alt: Cell Population Graphs
   styles:
     width: 100%
 

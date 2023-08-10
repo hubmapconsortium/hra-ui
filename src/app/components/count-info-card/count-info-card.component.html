@@ -1,6 +1,6 @@
 <mat-card *ngFor="let cardInfo of cardInformation">
     <mat-card-content>
-      <img [src]="cardInfo.image">
+      <img [src]="cardInfo.image" [alt]="cardInfo.alt">
       <p class="card-count">{{cardInfo.count}}</p>
       <p class="card-text">{{cardInfo.text}}</p>
     </mat-card-content>

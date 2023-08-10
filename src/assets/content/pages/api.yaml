@@ -30,6 +30,7 @@
 
 - type: image
   imageSource: assets/images/api_interface.svg
+  alt: hra api
   styles:
     display: flex
     justify-content: center

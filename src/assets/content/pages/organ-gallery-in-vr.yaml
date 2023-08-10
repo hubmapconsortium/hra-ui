@@ -27,6 +27,7 @@
 
 - type: image
   imageSource: assets/images/OrganGallery.jpg
+  alt: VR Organ Gallery
   styles:
     width: 100%
 
