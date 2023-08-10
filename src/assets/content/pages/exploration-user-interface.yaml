@@ -97,3 +97,4 @@
         - Reset: Click the Reset Camera View button or the Reset Probing Sphere button to start fresh.
   - type: image
     imageSource: assets/images/nav3dSpace.svg
+    alt: Naivigate 3D Space

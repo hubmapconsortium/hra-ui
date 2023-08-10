@@ -179,13 +179,18 @@
                     "buttonText": {
                       "type": "string",
                       "description": "Text for the button"
+                    },
+                    "alt": {
+                      "type": "string",
+                      "description": "Alternative text for the carousel image."
                     }
                   },
                   "required": [
                     "title",
                     "body",
                     "image",
-                    "buttonText"
+                    "buttonText",
+                    "alt"
                   ],
                   "additionalProperties": false,
                   "description": "This object has the following optional fields.\n    - url: External Link to redirect to when the button is pressed.\n    - route: Name of the route of the page to be loaded when button is pressed.\n    \n    Enter either url or route."
@@ -282,12 +287,17 @@
                     "text": {
                       "type": "string",
                       "description": "Title of the card"
+                    },
+                    "alt": {
+                      "type": "string",
+                      "description": "Alternative text for the image"
                     }
                   },
                   "required": [
                     "image",
                     "count",
-                    "text"
+                    "text",
+                    "alt"
                   ],
                   "additionalProperties": false
                 }
@@ -560,13 +570,18 @@
                 "type": "string",
                 "description": "URL for the image"
               },
+              "alt": {
+                "type": "string",
+                "description": "Alternative text for the image"
+              },
               "styles": {
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
             "required": [
               "type",
-              "imageSource"
+              "imageSource",
+              "alt"
             ],
             "additionalProperties": false,
             "description": "Property 'class' is optional. It is the class name for the image. Define this class in page-element.component.scss"

@@ -10,6 +10,7 @@
   components:
     - type: image
       imageSource: assets/images/hubmap_dude.svg
+      alt: Hubmap Logo
       styles:
         height: 4.375rem
         width: 3.125rem
@@ -59,6 +60,7 @@
       image: assets/images/carousel1.svg
       url: https://doi.org/10.1038/s41556-021-00788-6
       buttonText: View Paper
+      alt: Map the human body at single-cell resolution
     # - title: Contribute data to the Human Reference Atlas
     #   body: Register your data spatially using the Registration User Interface tool.
     #   image: assets/images/carousel2.svg
@@ -68,6 +70,7 @@
       image: assets/images/carousel3.svg
       route: asctb-reporter
       buttonText: Learn More
+      alt: Compare data to the Human Reference Atlas
     # - title: Search for a cell type, gene, or protein
     #   body: Explore cell type populations with via Cell Type Population graph tool.
     #   image: assets/images/carousel4.svg
@@ -81,6 +84,7 @@
       image: assets/images/carousel6.svg
       url: https://portal.hubmapconsortium.org/
       buttonText: HuBMAP Data Portal
+      alt: Learn more about the Human BioMolecular Atlas Program
 
 - type: margin
   bottom: 2.5rem
@@ -90,30 +94,39 @@
     - image: assets/images/consortia.svg
       count: 17
       text: consortia
+      alt: Consortia
     - image: assets/images/experts.svg
       count: 250+
       text: experts
+      alt: Experts
     - image: assets/images/publications.svg
       count: 1,000+
       text: publications
+      alt: Publications
     - image: assets/images/organs_metric.svg
       count: 66
       text: organs
+      alt: Organs
     - image: assets/images/anatomical-structures.svg
       count: 4,279
       text: anatomical structures
+      alt: Anatomical Structures
     - image: assets/images/cell-types.svg
       count: 1,209
       text: cell types
+      alt: Cell Types
     - image: assets/images/biomarkers.svg
       count: 2,089
       text: biomarkers
+      alt: Biomarkers
     - image: assets/images/omap.svg
       count: 13
       text: organ mapping antibody panels
+      alt: Omap
     - image: assets/images/ftu.svg
       count: 21
       text: functional tissue units
+      alt: Functional Tissue Units
 
 - type: margin
   bottom: 3.5rem

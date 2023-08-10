@@ -77,7 +77,8 @@ export const CarouselSlides = z.object({
         image: z.string({ description: 'Image of the slide' }),
         url: z.string({ description: 'External URL for the button' }).optional(),
         route: z.string({ description: 'Route of the page for the button' }).optional(),
-        buttonText: z.string({ description: 'Text for the button' })
+        buttonText: z.string({ description: 'Text for the button' }),
+        alt: z.string({ description: 'Alternative text for the carousel image.' })
     }).describe(`This object has the following optional fields.
     - url: External Link to redirect to when the button is pressed.
     - route: Name of the route of the page to be loaded when button is pressed.
@@ -103,7 +104,8 @@ export const CountCard = z.object({
     countCardInfo: z.object({
         image: z.string({ description: 'Icon for the card' }),
         count: z.number({ description: 'Count of the card' }).or(z.string()),
-        text: z.string({ description: 'Title of the card' })
+        text: z.string({ description: 'Title of the card' }),
+        alt: z.string({ description: 'Alternative text for the image' })
     }).array(),
     styles: Styles.optional()
 })
@@ -195,6 +197,7 @@ export const Image = z.object({
     type: z.literal('image'),
     class: z.string({ description: 'Class name of the class defined in the CSS file' }).optional(),
     imageSource: z.string({ description: 'URL for the image' }),
+    alt: z.string({ description: 'Alternative text for the image' }),
     styles: Styles.optional(),
 }).describe(`Property 'class' is optional. It is the class name for the image. Define this class in page-element.component.scss`)
 

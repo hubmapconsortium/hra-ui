@@ -99,6 +99,7 @@
           icon: download
         - type: image
           imageSource: assets/images/hra-release-calendar.svg
+          alt: HRA Release Calendar
           styles:
             margin-bottom: 2rem
             width: 100%
@@ -328,6 +329,7 @@
               to visually explore the atlas or programmatically access the data. The 6th release is in December. Thanks for reading!
         - type: image
           imageSource: assets/images/4th_release_outro.svg
+          alt: Outro
           styles:
             width: 100%
 

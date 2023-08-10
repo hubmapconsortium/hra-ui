@@ -17,7 +17,7 @@
     <card-with-header *ngSwitchCase="'long-card-with-title'" [cardBlockData]="def['longCardWithTitleData']">
     </card-with-header>
     <ccf-simple-image *ngSwitchCase="'simple-image'" [imageInfo]="def['imageData']"></ccf-simple-image>
-    <img *ngSwitchCase="'image'" [src]="def['imageSource']" [class]="def['class']" [style]="def['styles']">
+    <img *ngSwitchCase="'image'" [src]="def['imageSource']" [class]="def['class']" [style]="def['styles']" [alt]="def['alt']">
     <div *ngSwitchCase="'text'" [style]="def['styles']" [class]="def['class']">{{def['text']}}</div>
     <div *ngSwitchCase="'styled-group'" [style]="def['styles']" [class]="def['class']" [id]="def['id']">
         <page-element *ngFor="let comp of def['components']" [def]="comp"></page-element>
