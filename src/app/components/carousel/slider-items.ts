@@ -5,4 +5,5 @@ export interface SliderItems {
     url?: string,
     route?: string;
     buttonText: string;
+    alt: string;
 }
