@@ -68,7 +68,8 @@
       title: Human Reference Atlas Application Programming Interfaces
       body: Query and interact with the HRA using Python, JavaScript, SPARQL, REST, and more
       route: api
-    headerSize: 'font-size: 1.5rem'
+    headerSize: 
+      font-size: 1.5rem
   - heading: CCF Ontology on the Web
     cardData:
     - icon: assets/images/ontology_lookup_service.svg
@@ -81,7 +82,8 @@
       body: The world's most comprehensive repository of biomedical ontologies
       externalLink: "https://bioportal.bioontology.org/ontologies/CCF"
       color: rgb(34,73,120)
-    headerSize: 'font-size: 1.5rem'
+    headerSize: 
+      font-size: 1.5rem
 
 - type: margin
   bottom: 2.5rem
