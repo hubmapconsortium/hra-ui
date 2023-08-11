@@ -24,6 +24,8 @@ export class AppWebComponent implements OnChanges {
   /** Illustration info: can be illustration id or illustration data object */
   @Input() illustrationSrc: string | IllustrationData = '';
 
+  @Input() highlightedNodeGroup = '';
+
   /** Emits node data when node hovered */
   @Output() readonly nodeHovered = new EventEmitter<NodeMapEntry>();
 
@@ -36,10 +38,13 @@ export class AppWebComponent implements OnChanges {
   /** Mapping data */
   readonly mapping$ = new BehaviorSubject<NodeMapEntry[]>([]);
 
+  readonly highlight$ = new BehaviorSubject<string>('');
+
   /**
    * Sets illustration url and mapping data on input changes
    */
   ngOnChanges() {
+    this.highlight$.next(this.highlightedNodeGroup);
     if (typeof this.lookupSrc === 'string') {
       this.getData(this.illustrationSrc, this.lookupSrc).subscribe();
     } else {
@@ -82,8 +87,15 @@ export class AppWebComponent implements OnChanges {
       }
     } else {
       // input src is organ data
-      this.url$.next(illustrationSrc.illustration_files[0].file);
-      this.mapping$.next(this.cellEntryToNodeEntry(illustrationSrc.mapping));
+      if (illustrationSrc) {
+        const illustrationFile = illustrationSrc.illustration_files.find(
+          (file) => file['file_format'] === 'image/svg+xml'
+        );
+        if (illustrationFile) {
+          this.url$.next(illustrationFile.file);
+          this.mapping$.next(this.cellEntryToNodeEntry(illustrationSrc.mapping));
+        }
+      }
     }
   }
 

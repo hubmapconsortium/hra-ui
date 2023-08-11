@@ -6,9 +6,11 @@ import {
   EventEmitter,
   inject,
   Input,
+  OnChanges,
   OnDestroy,
   Output,
   Renderer2,
+  SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
 import { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';
@@ -78,12 +80,14 @@ export interface NodeMapEntry {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.ShadowDom,
 })
-export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestroy {
+export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChanges, OnDestroy {
   /** SVG url */
   @Input() url?: string;
 
   /** Mapping info */
   @Input() mapping?: T[] = [];
+
+  @Input() highlightedNodeGroup?: string;
 
   /** Emits node id when hovered */
   @Output() readonly nodeHover = new EventEmitter<T>();
@@ -109,6 +113,36 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestro
   /** Destroys */
   private destroy$ = new Subject<void>();
 
+  private crosswalkEl?: Element;
+
+  private highlightedGroupId? = '';
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('highlightedNodeGroup' in changes && this.crosswalkEl) {
+      const cellMatch = this.mapping?.find((entry) => entry.label === this.highlightedNodeGroup);
+      const name = cellMatch?.name || '';
+      const childId = name.replace(/_/g, '_x5F_');
+      const parentElement = childId ? this.crosswalkEl.querySelectorAll(`#${childId}`)[0].parentElement : undefined;
+      // const grandparentElementId = parentElement?.parentElement?.id ?? '';
+      // const ids = [childId, parentElement?.id, grandparentElementId]
+      // console.log(ids)
+      if (parentElement) {
+        this.highlightedGroupId = parentElement.id;
+        const crosswalkMatch = this.crosswalkEl.querySelectorAll(
+          `#${this.highlightedGroupId} > :is(path, polygon, polyline)`
+        );
+        crosswalkMatch.forEach((element) =>
+          element.setAttribute('style', 'fill: hsl(0deg 100% 50%);mix-blend-mode: saturation;')
+        );
+      } else {
+        const crosswalkMatch = this.crosswalkEl.querySelectorAll(
+          `#${this.highlightedGroupId} > :is(path, polygon, polyline)`
+        );
+        crosswalkMatch.forEach((element) => element.setAttribute('style', ''));
+      }
+    }
+  }
+
   /**
    * Clears observables on destroy
    */
@@ -122,11 +156,11 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestro
    */
   setSvgElement(el: SVGElement): void {
     this.clear();
-    const crosswalkEl = el.querySelector('[id^="Crosswalk"]');
-    if (crosswalkEl) {
+    this.crosswalkEl = el.querySelector('[id^="Crosswalk"]') || undefined;
+    if (this.crosswalkEl) {
       // Move to front (i.e. last child in svg)
-      this.renderer.appendChild(el, crosswalkEl);
-      this.attachCrosswalkHover(crosswalkEl);
+      this.renderer.appendChild(el, this.crosswalkEl);
+      this.attachCrosswalkHover(this.crosswalkEl);
     }
   }
 

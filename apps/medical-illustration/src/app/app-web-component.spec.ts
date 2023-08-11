@@ -43,27 +43,6 @@ describe('AppWebComponent', () => {
         label: 'kidney loop of Henle thin ascending limb epithelial cell',
         representation_of: 'http://purl.obolibrary.org/obo/CL_1001107',
       },
-      {
-        '@id': 'https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle#Ascending_Thin_Limb_Cell_2',
-        '@type': 'FtuIllustrationNode',
-        svg_id: 'Ascending_Thin_Limb_Cell_2',
-        label: 'kidney loop of Henle thin ascending limb epithelial cell',
-        representation_of: 'http://purl.obolibrary.org/obo/CL_1001107',
-      },
-      {
-        '@id': 'https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle#Ascending_Thin_Limb_Cell_3',
-        '@type': 'FtuIllustrationNode',
-        svg_id: 'Ascending_Thin_Limb_Cell_3',
-        label: 'kidney loop of Henle thin ascending limb epithelial cell',
-        representation_of: 'http://purl.obolibrary.org/obo/CL_1001107',
-      },
-      {
-        '@id': 'https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle#Ascending_Vasa_Recta',
-        '@type': 'FtuIllustrationNode',
-        svg_id: 'Ascending_Vasa_Recta',
-        label: 'vasa recta ascending limb cell',
-        representation_of: 'http://purl.obolibrary.org/obo/CL_1001131',
-      },
     ],
   };
 
