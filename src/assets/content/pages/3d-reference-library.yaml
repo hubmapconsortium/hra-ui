@@ -596,7 +596,7 @@
               alt: Liver, male
               threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_M_Liver.glb
         - name: Lungs
-          image: assets/images/lungs.svg
+          image: assets/images/lung.svg
           tissueData:
             - name: Female
               
@@ -961,7 +961,7 @@
               alt: Liver, male
               threeDimImage: https://hubmapconsortium.github.io/ccf-releases/v1.2/models/VH_M_Liver.glb
         - name: Lungs
-          image: assets/images/lungs.svg
+          image: assets/images/lung.svg
           tissueData:
             - name: Female
               
@@ -1300,7 +1300,7 @@
               alt: The large intestine, male
               threeDimImage: https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-releases@main/v1.1/models/VH_M_Liver.glb
         - name: Lungs
-          image: assets/images/lungs.svg
+          image: assets/images/lung.svg
           tissueData:
             - name: Female
               
@@ -1533,7 +1533,7 @@
               alt: The kidney, right, male
               threeDimImage: https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-releases@main/v1.0/models/VH_M_Kidney_Right.glb
         - name: Lungs
-          image: assets/images/lungs.svg
+          image: assets/images/lung.svg
           tissueData:
             - name: Female
               
