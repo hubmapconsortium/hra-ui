@@ -73,6 +73,7 @@ export const SOURCE_REFERENCE = z.object({
 export const ILLUSTRATION_MAPPING_ITEM = z.object({
   label: z.string(),
   name: z.string(),
+  id: z.string(),
 });
 
 // ---------------------------------------
