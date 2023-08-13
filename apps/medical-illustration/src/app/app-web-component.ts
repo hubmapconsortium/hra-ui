@@ -24,7 +24,8 @@ export class AppWebComponent implements OnChanges {
   /** Illustration info: can be illustration id or illustration data object */
   @Input() illustrationSrc: string | IllustrationData = '';
 
-  @Input() highlightedNodeGroup = '';
+  /** Ontology id to highlight */
+  @Input() highlightId = '';
 
   /** Emits node data when node hovered */
   @Output() readonly nodeHovered = new EventEmitter<NodeMapEntry>();
@@ -32,19 +33,20 @@ export class AppWebComponent implements OnChanges {
   /** Emits node data when node clicked */
   @Output() readonly nodeClicked = new EventEmitter<NodeMapEntry>();
 
-  /** Illustration svg url */
+  /** Illustration svg url behavior subject */
   readonly url$ = new BehaviorSubject<string>('');
 
-  /** Mapping data */
+  /** Mapping data behavior subject */
   readonly mapping$ = new BehaviorSubject<NodeMapEntry[]>([]);
 
+  /** Highlighted ontology id behavior subject */
   readonly highlight$ = new BehaviorSubject<string>('');
 
   /**
    * Sets illustration url and mapping data on input changes
    */
   ngOnChanges() {
-    this.highlight$.next(this.highlightedNodeGroup);
+    this.highlight$.next(this.highlightId);
     if (typeof this.lookupSrc === 'string') {
       this.getData(this.illustrationSrc, this.lookupSrc).subscribe();
     } else {
@@ -106,9 +108,11 @@ export class AppWebComponent implements OnChanges {
    */
   private cellEntryToNodeEntry(data: CellEntry[]): NodeMapEntry[] {
     return data.map((entry) => {
+      const id = entry.representation_of.split('/').slice(-1)[0];
       return {
         label: entry.label,
         name: entry.svg_id,
+        id: id,
       };
     });
   }

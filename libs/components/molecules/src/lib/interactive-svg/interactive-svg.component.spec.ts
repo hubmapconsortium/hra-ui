@@ -69,6 +69,7 @@ describe('InteractiveSvgComponent', () => {
     const testNode: NodeMapEntry = {
       name: 'Cortical_Collecting_Duct_Principal_Cell_1',
       label: 'kidney cortex collecting duct principal cell',
+      id: '000000',
     };
     const testMapping: NodeMapEntry[] = [
       testNode,

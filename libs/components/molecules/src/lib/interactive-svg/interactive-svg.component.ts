@@ -66,6 +66,8 @@ export interface NodeMapEntry {
   label: string;
   /** Node name */
   name: string;
+  /** Ontology id of cell type */
+  id: string;
 }
 
 /**
@@ -87,7 +89,8 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
   /** Mapping info */
   @Input() mapping?: T[] = [];
 
-  @Input() highlightedNodeGroup?: string;
+  /** Highlighted ontology id */
+  @Input() highlightId?: string;
 
   /** Emits node id when hovered */
   @Output() readonly nodeHover = new EventEmitter<T>();
@@ -113,34 +116,46 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
   /** Destroys */
   private destroy$ = new Subject<void>();
 
+  /** Crosswalk element of svg */
   private crosswalkEl?: Element;
 
-  private highlightedGroupId? = '';
-
+  /**
+   * Updates the highlighting based on current highlight id
+   * @param changes
+   */
   ngOnChanges(changes: SimpleChanges): void {
-    if ('highlightedNodeGroup' in changes && this.crosswalkEl) {
-      const cellMatch = this.mapping?.find((entry) => entry.label === this.highlightedNodeGroup);
-      const name = cellMatch?.name || '';
-      const childId = name.replace(/_/g, '_x5F_');
-      const parentElement = childId ? this.crosswalkEl.querySelectorAll(`#${childId}`)[0].parentElement : undefined;
-      // const grandparentElementId = parentElement?.parentElement?.id ?? '';
-      // const ids = [childId, parentElement?.id, grandparentElementId]
-      // console.log(ids)
-      if (parentElement) {
-        this.highlightedGroupId = parentElement.id;
-        const crosswalkMatch = this.crosswalkEl.querySelectorAll(
-          `#${this.highlightedGroupId} > :is(path, polygon, polyline)`
-        );
-        crosswalkMatch.forEach((element) =>
-          element.setAttribute('style', 'fill: hsl(0deg 100% 50%);mix-blend-mode: saturation;')
-        );
-      } else {
-        const crosswalkMatch = this.crosswalkEl.querySelectorAll(
-          `#${this.highlightedGroupId} > :is(path, polygon, polyline)`
-        );
-        crosswalkMatch.forEach((element) => element.setAttribute('style', ''));
+    if ('highlightId' in changes && this.crosswalkEl) {
+      this.resetHighlight();
+      const cellMatch = this.mapping?.find((entry) => entry.id === this.highlightId); // find the matching cell data in mapping
+      let crosswalkMatch: NodeListOf<Element>;
+      if (cellMatch) {
+        const name = cellMatch.name;
+        const childId = name.replace(/_/g, '_x5F_'); // get the id of the matching cell in svg
+        const elementMatch = this.crosswalkEl.querySelectorAll(`#${childId}`)[0]; //find the element of the matching cell in svg
+        if (elementMatch) {
+          if (elementMatch.nodeName === 'g') {
+            // highlights children if g element
+            crosswalkMatch = this.crosswalkEl.querySelectorAll(`#${childId} :is(path, polygon, polyline)`);
+          } else {
+            // highlights siblings if path, polygon, or polyline element
+            const parentId = elementMatch.parentElement?.id ?? '';
+            crosswalkMatch = this.crosswalkEl.querySelectorAll(`#${parentId} :is(path, polygon, polyline)`);
+          }
+          crosswalkMatch.forEach((element) =>
+            element.setAttribute('style', 'fill: hsl(0deg 100% 50%);mix-blend-mode: saturation;')
+          );
+        }
       }
     }
+  }
+
+  /**
+   * Resets all highlighted elements in the svg
+   */
+  private resetHighlight(): void {
+    this.crosswalkEl
+      ?.querySelectorAll('path, polygon, polyline')
+      .forEach((element) => element.setAttribute('style', ''));
   }
 
   /**
@@ -178,16 +193,16 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
    * @param el element
    */
   private attachCrosswalkHover(el: Element): void {
-    this.attachEvent(el, 'mouseover').subscribe((event) => this.onCrosswalkHover(event, 'hover'));
+    this.attachEvent(el, 'mouseover').subscribe((event) => this.onCrosswalkHover(event));
     this.attachEvent(el, 'mouseout').subscribe(() => this.nodeHoverData$.next(undefined));
-    this.attachEvent(el, 'click').subscribe((event) => this.onCrosswalkHover(event, 'click'));
+    this.attachEvent(el, 'click').subscribe((event) => this.nodeClick.emit(this.getNode(event)));
   }
 
   /**
    * Finds matching node in data from a hovered element
    * @param event Mouse event
    */
-  private onCrosswalkHover(event: MouseEvent, type: 'click' | 'hover'): void {
+  private onCrosswalkHover(event: MouseEvent): void {
     const node = this.getNode(event);
     if (node) {
       this.nodeHoverData$.next({
@@ -197,12 +212,8 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
           y: event.clientY,
         },
       });
-      if (type === 'hover') {
-        this.nodeHover.emit(node); //emits node entry
-      } else {
-        this.nodeClick.emit(node); //emits node entry
-      }
     }
+    this.nodeHover.emit(node); //emits node entry
   }
 
   /**
