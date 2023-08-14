@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { select$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { TissueTreeListComponent } from '@hra-ui/components/molecules';
 import { Tissue } from '@hra-ui/services';
-import { IllustratorSelectors, TissueLibrarySelectors } from '@hra-ui/state';
+import { ActiveFtuSelectors, TissueLibrarySelectors } from '@hra-ui/state';
 import { LabelBoxComponent } from '@hra-ui/components/atoms';
 
 /**
@@ -19,6 +19,12 @@ import { LabelBoxComponent } from '@hra-ui/components/atoms';
 })
 export class TissueLibraryBehaviorComponent {
   /**
+   * Reference to the TissueTreeListComponent.
+   */
+  @ViewChild('list', { static: true })
+  readonly list!: TissueTreeListComponent<never, never>;
+
+  /**
    * Input for tissues data
    */
   readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);
@@ -32,9 +38,13 @@ export class TissueLibraryBehaviorComponent {
    * the url is undefined
    */
   constructor() {
-    select$(IllustratorSelectors.url).subscribe((url) => {
-      if (url === undefined) {
-        this.selected = undefined;
+    /** Get iris from the observable else reset selection if
+     * iri is undefined
+     */
+    select$(ActiveFtuSelectors.iri).subscribe((iri) => {
+      this.selected = iri && this.tissues()[iri];
+      if (iri === undefined) {
+        this.list.resetSelection();
       }
     });
   }
