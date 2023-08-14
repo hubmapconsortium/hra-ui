@@ -6,10 +6,11 @@ import { TissueLibraryBehaviorComponent } from './tissue-library-behavior.compon
 jest.mock('@hra-ui/cdk/injectors');
 
 describe('TissueLibraryBehaviorComponent', () => {
+  const TISSUES = { test: {} };
   const urlSubject = new Subject<string | undefined>();
   let shallow: Shallow<TissueLibraryBehaviorComponent>;
 
-  jest.mocked(selectSnapshot).mockReturnValue(jest.fn().mockReturnValue([]));
+  jest.mocked(selectSnapshot).mockReturnValue(jest.fn().mockReturnValue(TISSUES));
   jest.mocked(select$).mockReturnValue(urlSubject);
 
   beforeEach(async () => {
@@ -18,6 +19,12 @@ describe('TissueLibraryBehaviorComponent', () => {
 
   it('should create', async () => {
     await expect(shallow.render()).resolves.toBeDefined();
+  });
+
+  it('should set the current selection when it changes', async () => {
+    const { instance } = await shallow.render();
+    urlSubject.next('test');
+    expect(instance.selected).toBe(TISSUES.test);
   });
 
   it('should clear the selection when the medical illustration url becomes undefined', async () => {
