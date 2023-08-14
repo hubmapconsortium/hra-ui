@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import { FooterComponent } from '@hra-ui/components/molecules';
 import { DownloadActions, DownloadSelectors, ResourceIds as Ids, LinkIds } from '@hra-ui/state';
-
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
 /** A component for footer behavior which provides functionality for various buttons in footer */
@@ -44,6 +43,8 @@ export class FooterBehaviorComponent {
 
   /** A function which opens the contact modal dialog box */
   contact(): void {
-    this.dialog.open(ContactBehaviorComponent);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    this.dialog.open(ContactBehaviorComponent, dialogConfig);
   }
 }
