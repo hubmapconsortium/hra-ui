@@ -54,7 +54,7 @@ export class ActiveFtuState {
   }
 
   /**
-   * Action to rese the states for
+   * Action to reset the states for
    * Cell summary, Illustrator and Source Refs
    */
   @Action(Reset)
