@@ -1,6 +1,9 @@
 # Editing the humanatlas.io content
 ### This document provides a step-by-step guide on how to edit content on pages using YAML files for humanatlas.io. YAML files are used to define the content of pages on the website. By following these instructions, you can contribute to the Human Atlas project and help improve its content.
 
+### Video Tutorial: Steps to Add/Edit content on humanatlas.io pages.
+https://github.com/cns-iu/humanatlas.io/assets/53601863/7d1039f8-fd0f-4701-ae8e-df027b5ed032
+
 ### Steps to Add/Edit YAML Files
 
 1. Open https://humanatlas.io/
