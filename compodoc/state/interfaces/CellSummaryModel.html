@@ -225,7 +225,7 @@ export type Context &#x3D; StateContext&lt;CellSummaryModel&gt;;
  * the data
  */
 const AGGREGATE_CELL &#x3D; z.object({
-  color: z.string(),
+  color: z.number().nonnegative(),
   size: z.number().nonnegative(),
   data: FtuDataSchemas.CELL_SUMMARY_ROW,
 });

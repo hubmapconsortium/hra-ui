@@ -6255,6 +6255,9 @@ button.mdc-button.mat-primary {
   border: 2px solid;
   border-color: var(--palette-primary-500-rgb);
 }
+button.mdc-button.mat-primary > .mat-icon {
+  z-index: 1;
+}
 button.mdc-button.mat-primary > .mat-mdc-button-persistent-ripple::before {
   opacity: 0 !important;
 }

@@ -3,12 +3,12 @@
     "interfaces": [
         {
             "name": "GradientPoint",
-            "id": "interface-GradientPoint-0121dabc61d822bbf39b93ef45616878d1b4846724b8a426b4f2880d25983e5e9b4151a4f4c393584208d474e9e35b5568aa54bc73eacd8f8562e86cbc7df405",
+            "id": "interface-GradientPoint-deca5c57881562b1c16d34b446006d52194dfce42a4093fe366ac3fcbeaf7291e08172915aac95fc2938e856084da0fe61a29b9897eb6da4ca9edd58116c7198",
             "file": "src/lib/gradient-legend/gradient-legend.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/** An interface of gradient colors along with their percentages for the gradient bar. */\nexport interface GradientPoint {\n  /** Gradient color at a specific percentage */\n  color: string;\n  /** Percentage point along the gradient bar */\n  percentage: number;\n}\n\n/** Gradient legend for biomarkers */\n@Component({\n  selector: 'hra-gradient-legend',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './gradient-legend.component.html',\n  styleUrls: ['./gradient-legend.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class GradientLegendComponent {\n  /** Gradient colors along with their stop points */\n  @Input() gradient: GradientPoint[] = [];\n\n  /** Computes the css linear-gradient function for the gradient bar */\n  get gradientCss(): string {\n    const stops = this.gradient.map(({ color, percentage }) => `${color} ${percentage}%`).join(',');\n    return `linear-gradient(270deg, ${stops})`;\n  }\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/** An interface of gradient colors along with their percentages for the gradient bar. */\nexport interface GradientPoint {\n  /** Gradient color at a specific percentage */\n  color: string;\n  /** Percentage point along the gradient bar */\n  percentage: number;\n}\n\n/** Gradient legend for biomarkers */\n@Component({\n  selector: 'hra-gradient-legend',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './gradient-legend.component.html',\n  styleUrls: ['./gradient-legend.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class GradientLegendComponent {\n  /** Gradient colors along with their stop points */\n  @Input() gradient: GradientPoint[] = [];\n\n  /** Computes the css linear-gradient function for the gradient bar */\n  get gradientCss(): string {\n    const stops = this.gradient.map(({ color, percentage }) => `${color} ${percentage}%`).join(',');\n    return `linear-gradient(90deg, ${stops})`;\n  }\n}\n",
             "properties": [
                 {
                     "name": "color",
@@ -259,7 +259,7 @@
         },
         {
             "name": "GradientLegendComponent",
-            "id": "component-GradientLegendComponent-0121dabc61d822bbf39b93ef45616878d1b4846724b8a426b4f2880d25983e5e9b4151a4f4c393584208d474e9e35b5568aa54bc73eacd8f8562e86cbc7df405",
+            "id": "component-GradientLegendComponent-deca5c57881562b1c16d34b446006d52194dfce42a4093fe366ac3fcbeaf7291e08172915aac95fc2938e856084da0fe61a29b9897eb6da4ca9edd58116c7198",
             "file": "src/lib/gradient-legend/gradient-legend.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -299,7 +299,7 @@
             "description": "<p>Gradient legend for biomarkers</p>\n",
             "rawdescription": "\nGradient legend for biomarkers",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/** An interface of gradient colors along with their percentages for the gradient bar. */\nexport interface GradientPoint {\n  /** Gradient color at a specific percentage */\n  color: string;\n  /** Percentage point along the gradient bar */\n  percentage: number;\n}\n\n/** Gradient legend for biomarkers */\n@Component({\n  selector: 'hra-gradient-legend',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './gradient-legend.component.html',\n  styleUrls: ['./gradient-legend.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class GradientLegendComponent {\n  /** Gradient colors along with their stop points */\n  @Input() gradient: GradientPoint[] = [];\n\n  /** Computes the css linear-gradient function for the gradient bar */\n  get gradientCss(): string {\n    const stops = this.gradient.map(({ color, percentage }) => `${color} ${percentage}%`).join(',');\n    return `linear-gradient(270deg, ${stops})`;\n  }\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/** An interface of gradient colors along with their percentages for the gradient bar. */\nexport interface GradientPoint {\n  /** Gradient color at a specific percentage */\n  color: string;\n  /** Percentage point along the gradient bar */\n  percentage: number;\n}\n\n/** Gradient legend for biomarkers */\n@Component({\n  selector: 'hra-gradient-legend',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './gradient-legend.component.html',\n  styleUrls: ['./gradient-legend.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class GradientLegendComponent {\n  /** Gradient colors along with their stop points */\n  @Input() gradient: GradientPoint[] = [];\n\n  /** Computes the css linear-gradient function for the gradient bar */\n  get gradientCss(): string {\n    const stops = this.gradient.map(({ color, percentage }) => `${color} ${percentage}%`).join(',');\n    return `linear-gradient(90deg, ${stops})`;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {

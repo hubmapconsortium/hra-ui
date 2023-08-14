@@ -223,7 +223,7 @@ export class GradientLegendComponent {
   /** Computes the css linear-gradient function for the gradient bar */
   get gradientCss(): string {
     const stops &#x3D; this.gradient.map(({ color, percentage }) &#x3D;&gt; &#x60;${color} ${percentage}%&#x60;).join(&#x27;,&#x27;);
-    return &#x60;linear-gradient(270deg, ${stops})&#x60;;
+    return &#x60;linear-gradient(90deg, ${stops})&#x60;;
   }
 }
 </code></pre>

@@ -13,7 +13,7 @@ ExploreFTU:
   type: internal
   commands:
     - ftu/
-  extra:
+  extras:
     queryParams:
       id: https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle
 LandingPageReadMore:

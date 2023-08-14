@@ -626,7 +626,7 @@ and rows</p>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>z.object({
-  color: z.string(),
+  color: z.number().nonnegative(),
   size: z.number().nonnegative(),
   data: FtuDataSchemas.CELL_SUMMARY_ROW,
 })</code>
