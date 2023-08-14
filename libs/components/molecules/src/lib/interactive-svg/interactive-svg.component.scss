@@ -1,7 +1,7 @@
 hra-interactive-svg {
-  // &, .svg, svg {
-  //   // height: 65vh;
-  // }
+  svg {
+    max-height: calc(100vh - 10rem);
+  }
 
   [id^='Crosswalk'] {
     :is(path, polygon, polyline) {
