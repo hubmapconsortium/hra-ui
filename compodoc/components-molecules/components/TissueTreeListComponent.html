@@ -172,6 +172,9 @@
                                 <a href="#hasChild" >hasChild</a>
                             </li>
                             <li>
+                                <a href="#resetSelection" >resetSelection</a>
+                            </li>
+                            <li>
                                 <a href="#selectNode" >selectNode</a>
                             </li>
                         </ul>
@@ -342,8 +345,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="124"
-                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:124</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="128"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:128</a></div>
                 </td>
             </tr>
 
@@ -417,6 +420,45 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="resetSelection"></a>
+                    <span class="name">
+                        <span ><b>resetSelection</b></span>
+                        <a href="#resetSelection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>resetSelection()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="146"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:146</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Resets selection and collapes all nodes of the tree.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="selectNode"></a>
                     <span class="name">
                         <span ><b>selectNode</b></span>
@@ -433,8 +475,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="132"
-                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:132</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="136"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:136</a></div>
                 </td>
             </tr>
 
@@ -726,6 +768,10 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
     if (&#x27;nodes&#x27; in changes) {
       this.dataSource.data &#x3D; this.findRootNodes();
     }
+    if (&#x27;selected&#x27; in changes) {
+      const path &#x3D; this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];
+      this.expandPath(path);
+    }
   }
 
   /**
@@ -749,19 +795,60 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
   }
 
   /**
+   * Resets selection and collapes all nodes of the tree.
+   */
+  resetSelection(): void {
+    this.selected &#x3D; undefined;
+    this.control.collapseAll();
+  }
+
+  /**
    * It creates a copy of the input nodes object.
    * It iterates over it and removes all the children nodes from it.
    * @returns remaining nodes which are root nodes.
    */
   private findRootNodes(): T[] {
-    const nodes &#x3D; { ...this.nodes };
+    const { nodes } &#x3D; this;
+    const roots &#x3D; { ...this.nodes };
     for (const key in nodes) {
       for (const child of nodes[key].children ?? []) {
-        delete nodes[child];
+        delete roots[child];
       }
     }
 
-    return Object.values(nodes);
+    return Object.values(roots);
+  }
+
+  /**
+   * expands the tree nodes based on the path provided.
+   * @param path is given as an input.
+   */
+  private expandPath(path: DataNode&lt;K&gt;[]): void {
+    const nodes &#x3D; this.control.dataNodes.filter((node) &#x3D;&gt; path.includes(node.data));
+    nodes.forEach((node) &#x3D;&gt; this.control.expand(node));
+  }
+
+  /**
+   * It used the logic of depth first search to find the target node.
+   * returns the path to the target node.
+   */
+  private dfsFindPath(nodes: T[], target: T, path: T[] &#x3D; []): T[] {
+    for (const node of nodes) {
+      path.push(node);
+      if (node &#x3D;&#x3D;&#x3D; target) {
+        return path;
+      }
+
+      const savedLength &#x3D; path.length;
+      const children &#x3D; node.children?.map((id) &#x3D;&gt; this.nodes[id]) ?? [];
+      if (this.dfsFindPath(children, target, path).length &gt; savedLength) {
+        return path;
+      }
+
+      path.pop();
+    }
+
+    return path;
   }
 }
 </code></pre>

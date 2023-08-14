@@ -420,6 +420,10 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
     if (&#x27;nodes&#x27; in changes) {
       this.dataSource.data &#x3D; this.findRootNodes();
     }
+    if (&#x27;selected&#x27; in changes) {
+      const path &#x3D; this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];
+      this.expandPath(path);
+    }
   }
 
   /**
@@ -443,19 +447,60 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
   }
 
   /**
+   * Resets selection and collapes all nodes of the tree.
+   */
+  resetSelection(): void {
+    this.selected &#x3D; undefined;
+    this.control.collapseAll();
+  }
+
+  /**
    * It creates a copy of the input nodes object.
    * It iterates over it and removes all the children nodes from it.
    * @returns remaining nodes which are root nodes.
    */
   private findRootNodes(): T[] {
-    const nodes &#x3D; { ...this.nodes };
+    const { nodes } &#x3D; this;
+    const roots &#x3D; { ...this.nodes };
     for (const key in nodes) {
       for (const child of nodes[key].children ?? []) {
-        delete nodes[child];
+        delete roots[child];
       }
     }
 
-    return Object.values(nodes);
+    return Object.values(roots);
+  }
+
+  /**
+   * expands the tree nodes based on the path provided.
+   * @param path is given as an input.
+   */
+  private expandPath(path: DataNode&lt;K&gt;[]): void {
+    const nodes &#x3D; this.control.dataNodes.filter((node) &#x3D;&gt; path.includes(node.data));
+    nodes.forEach((node) &#x3D;&gt; this.control.expand(node));
+  }
+
+  /**
+   * It used the logic of depth first search to find the target node.
+   * returns the path to the target node.
+   */
+  private dfsFindPath(nodes: T[], target: T, path: T[] &#x3D; []): T[] {
+    for (const node of nodes) {
+      path.push(node);
+      if (node &#x3D;&#x3D;&#x3D; target) {
+        return path;
+      }
+
+      const savedLength &#x3D; path.length;
+      const children &#x3D; node.children?.map((id) &#x3D;&gt; this.nodes[id]) ?? [];
+      if (this.dfsFindPath(children, target, path).length &gt; savedLength) {
+        return path;
+      }
+
+      path.pop();
+    }
+
+    return path;
   }
 }
 </code></pre>
