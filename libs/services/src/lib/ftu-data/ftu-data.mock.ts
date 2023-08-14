@@ -74,6 +74,7 @@ const CELL_SUMMARY_DATA: CellSummary[] = Object.values(MOCK_SUMMARIES).map((summ
     biomarker: entry.biomarker.id as Iri,
     count: entry.count,
     percentage: entry.percentage,
+    meanExpression: entry.meanExpression,
   })),
 }));
 

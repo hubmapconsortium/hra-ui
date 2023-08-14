@@ -26,7 +26,7 @@ export type Context = StateContext<CellSummaryModel>;
  * the data
  */
 const AGGREGATE_CELL = z.object({
-  color: z.string(),
+  color: z.number().nonnegative(),
   size: z.number().nonnegative(),
   data: FtuDataSchemas.CELL_SUMMARY_ROW,
 });

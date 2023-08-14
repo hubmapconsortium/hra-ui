@@ -23,7 +23,7 @@ describe('GradientLegendComponent', () => {
 
     it('creates a linear css gradient', async () => {
       const { instance } = await shallow.render({ bind: { gradient } });
-      expect(instance.gradientCss).toEqual('linear-gradient(270deg, #ffffff 100%)');
+      expect(instance.gradientCss).toEqual('linear-gradient(90deg, #ffffff 100%)');
     });
   });
 });
