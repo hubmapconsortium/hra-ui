@@ -3,12 +3,11 @@
   position: relative;
   border-radius: 0.5rem;
   padding: 1.5rem;
-  box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
   flex-direction: column;
 
   .header-close {
     position: absolute;
-    top: 1rem;
+    top: 0.625rem;
     right: 1rem;
   }
 
@@ -41,10 +40,5 @@
 
   @media (max-width: 480px) {
     display: flex;
-    position: relative;
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
-    flex-direction: column;
   }
 }
