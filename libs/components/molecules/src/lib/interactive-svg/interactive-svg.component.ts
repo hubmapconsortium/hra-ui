@@ -212,8 +212,8 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
           y: event.clientY,
         },
       });
+      this.nodeHover.emit(node); //emits node entry
     }
-    this.nodeHover.emit(node); //emits node entry
   }
 
   /**
