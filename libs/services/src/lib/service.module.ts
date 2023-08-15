@@ -32,7 +32,7 @@ import { TissueLibraryService } from './tissue-library/tissue-library.service';
       useValue: {
         illustrations: 'assets/TEMP/2d-ftu-illustrations.jsonld',
         summaries: '',
-        datasets: '',
+        datasets: 'assets/TEMP/ftu-datasets.jsonld',
       },
     },
   ],

@@ -32,7 +32,9 @@ export const FTU_DATA_IMPL_FILE_FORMAT_MAPPING = new InjectionToken<Record<strin
 type IdItem = z.infer<typeof ID_ITEM>;
 type Graph<T> = { '@graph': T[] };
 type Illustrations = z.infer<typeof ILLUSTRATIONS>;
+type Datasets = z.infer<typeof DATASETS>;
 type IllusrationFiles = Illustrations['@graph'][number]['illustration_files'];
+type dataSources = Datasets['@graph'][number]['data_sources'];
 
 const ID_ITEM = z.object({
   '@id': IRI,
@@ -49,6 +51,19 @@ const ILLUSTRATIONS = z.object({
       .object({
         file: URL,
         file_format: z.string(),
+      })
+      .array(),
+  }).array(),
+});
+
+const DATASETS = z.object({
+  '@graph': ID_ITEM.extend({
+    '@id': IRI,
+    data_sources: z
+      .object({
+        label: z.string(),
+        description: z.string(),
+        link: z.string(),
       })
       .array(),
   }).array(),
@@ -93,7 +108,10 @@ export class FtuDataImplService extends FtuDataService {
   }
 
   override getSourceReferences(iri: Iri): Observable<SourceReference[]> {
-    return of([]);
+    return this.fetchData(iri, this.endpoints.datasets, DATASETS).pipe(
+      map((data) => this.findGraphItem(data, iri).data_sources),
+      map((data) => this.toSourceReferences(data))
+    );
   }
 
   private fetchData<T extends z.ZodTypeAny>(iri: Iri | undefined, url: Url, schema: T): Observable<z.infer<T>> {
@@ -141,6 +159,14 @@ export class FtuDataImplService extends FtuDataService {
       }
     }
 
+    return results;
+  }
+
+  private toSourceReferences(data: dataSources): SourceReference[] {
+    const results: SourceReference[] = [];
+    for (const { label, link, description } of data) {
+      results.push({ label, link, title: description });
+    }
     return results;
   }
 
