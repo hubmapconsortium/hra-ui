@@ -114,6 +114,10 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
     if ('nodes' in changes) {
       this.dataSource.data = this.findRootNodes();
     }
+    if ('selected' in changes) {
+      const path = this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];
+      this.expandPath(path);
+    }
   }
 
   /**
@@ -137,18 +141,59 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
   }
 
   /**
+   * Resets selection and collapes all nodes of the tree.
+   */
+  resetSelection(): void {
+    this.selected = undefined;
+    this.control.collapseAll();
+  }
+
+  /**
    * It creates a copy of the input nodes object.
    * It iterates over it and removes all the children nodes from it.
    * @returns remaining nodes which are root nodes.
    */
   private findRootNodes(): T[] {
-    const nodes = { ...this.nodes };
+    const { nodes } = this;
+    const roots = { ...this.nodes };
     for (const key in nodes) {
       for (const child of nodes[key].children ?? []) {
-        delete nodes[child];
+        delete roots[child];
       }
     }
 
-    return Object.values(nodes);
+    return Object.values(roots);
+  }
+
+  /**
+   * expands the tree nodes based on the path provided.
+   * @param path is given as an input.
+   */
+  private expandPath(path: DataNode<K>[]): void {
+    const nodes = this.control.dataNodes.filter((node) => path.includes(node.data));
+    nodes.forEach((node) => this.control.expand(node));
+  }
+
+  /**
+   * It used the logic of depth first search to find the target node.
+   * returns the path to the target node.
+   */
+  private dfsFindPath(nodes: T[], target: T, path: T[] = []): T[] {
+    for (const node of nodes) {
+      path.push(node);
+      if (node === target) {
+        return path;
+      }
+
+      const savedLength = path.length;
+      const children = node.children?.map((id) => this.nodes[id]) ?? [];
+      if (this.dfsFindPath(children, target, path).length > savedLength) {
+        return path;
+      }
+
+      path.pop();
+    }
+
+    return path;
   }
 }

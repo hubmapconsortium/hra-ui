@@ -38,7 +38,7 @@ function createCell(
 const MOCK_REFERENCE_ORGANS = Object.values(MOCK_TISSUE_DATA.nodes).filter(isReferenceOrgan);
 
 /** Mock summary data */
-const MOCK_SUMMARIES = {
+export const MOCK_SUMMARIES = {
   summary1: {
     label: 'Summary 1',
     entries: [
@@ -76,6 +76,10 @@ const MOCK_SUMMARIES = {
   summary2: {
     label: 'Summary 2',
     entries: [createCell('cell1', 'Cell 1', 'biomarker2', 'Biomarker 2', 20, 1)],
+  },
+  summary3: {
+    label: 'Summary 3',
+    entries: [],
   },
 };
 
