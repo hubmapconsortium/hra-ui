@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule, importProvidersFrom } from '@angular/core';
 import { NGXS_PLUGINS, NgxsModule } from '@ngxs/store';
 import { ActiveFtuState } from './active-ftu';
 import { CellSummaryState } from './cell-summary';
@@ -9,6 +9,11 @@ import { ScreenModeState } from './screen-mode';
 import { SourceRefsState } from './source-refs';
 import { StateAnalyticsPluginService } from './state-analytics-plugin';
 import { TissueLibraryState } from './tissue-library';
+import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
+
+export interface HraStateModuleOptions {
+  googleAnalyticsToken: string;
+}
 
 /** Provides all states */
 @NgModule({
@@ -23,6 +28,7 @@ import { TissueLibraryState } from './tissue-library';
       SourceRefsState,
       TissueLibraryState,
     ]),
+    NgxGoogleAnalyticsModule,
   ],
   providers: [
     {
@@ -32,4 +38,12 @@ import { TissueLibraryState } from './tissue-library';
     },
   ],
 })
-export class HraStateModule {}
+export class HraStateModule {
+  static forRoot(options: HraStateModuleOptions): ModuleWithProviders<HraStateModule> {
+    const analyticsProviders = importProvidersFrom(NgxGoogleAnalyticsModule.forRoot(options.googleAnalyticsToken));
+    return {
+      ngModule: HraStateModule,
+      providers: [analyticsProviders],
+    };
+  }
+}
