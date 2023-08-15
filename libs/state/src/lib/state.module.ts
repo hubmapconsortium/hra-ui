@@ -11,6 +11,7 @@ import { StateAnalyticsPluginService } from './state-analytics-plugin';
 import { TissueLibraryState } from './tissue-library';
 import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
 
+/** Interface for providing options for the hra state module */
 export interface HraStateModuleOptions {
   googleAnalyticsToken: string;
 }
@@ -39,6 +40,9 @@ export interface HraStateModuleOptions {
   ],
 })
 export class HraStateModule {
+  /** Static method for configuring the module
+   * Returns a configuration object with the module and the providers
+   */
   static forRoot(options: HraStateModuleOptions): ModuleWithProviders<HraStateModule> {
     const analyticsProviders = importProvidersFrom(NgxGoogleAnalyticsModule.forRoot(options.googleAnalyticsToken));
     return {
