@@ -34,6 +34,7 @@ export const TISSUE = z.object({
   label: z.string(),
   parent: IRI,
   children: IRI.array().default([]),
+  link: z.string().optional(),
 });
 
 /** Zod Schema for a tissue library object */

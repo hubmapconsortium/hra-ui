@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, InjectionToken, inject } from '@angular/core';
+import { createLinkId } from '@hra-ui/cdk/state';
 import { Observable, firstValueFrom, from, map, of } from 'rxjs';
 import { z } from 'zod';
 import { IRI, Iri, URL, Url } from '../shared/common.model';
@@ -40,6 +41,10 @@ const ID_ITEM = z.object({
 const ILLUSTRATIONS = z.object({
   '@graph': ID_ITEM.extend({
     '@id': IRI,
+    label: z.string(),
+    organ_id: z.string(),
+    organ_label: z.string(),
+    representation_of: z.string(),
     illustration_files: z
       .object({
         file: URL,
@@ -48,6 +53,9 @@ const ILLUSTRATIONS = z.object({
       .array(),
   }).array(),
 });
+
+const TISSUE_LINK = createLinkId('FTU');
+const BASE_IRI = 'https://purl.humanatlas.io/2d-ftu/' as Iri;
 
 @Injectable({
   providedIn: 'root',
@@ -60,11 +68,13 @@ export class FtuDataImplService extends FtuDataService {
   private cache = new Map<Url, Promise<unknown>>();
 
   override getTissueLibrary(): Observable<TissueLibrary> {
-    return of();
+    return this.fetchData(undefined, this.endpoints.illustrations, ILLUSTRATIONS).pipe(
+      map((data) => this.constructTissueLibrary(data['@graph']))
+    );
   }
 
   override getIllustrationUrl(iri: Iri): Observable<Url> {
-    return this.getDataFileReferences(iri).pipe(map(this.findIllustrationUrl));
+    return this.getDataFileReferences(iri).pipe(map((data) => this.findIllustrationUrl(data)));
   }
 
   override getIllustrationMapping(iri: Iri): Observable<IllustrationMappingItem[]> {
@@ -78,7 +88,7 @@ export class FtuDataImplService extends FtuDataService {
   override getDataFileReferences(iri: Iri): Observable<DataFileReference[]> {
     return this.fetchData(iri, this.endpoints.illustrations, ILLUSTRATIONS).pipe(
       map((data) => this.findGraphItem(data, iri).illustration_files),
-      map(this.toDataFileReferences)
+      map((data) => this.toDataFileReferences(data))
     );
   }
 
@@ -86,15 +96,15 @@ export class FtuDataImplService extends FtuDataService {
     return of([]);
   }
 
-  private fetchData<T extends z.ZodTypeAny>(iri: Iri, url: Url, schema: T): Observable<z.infer<T>> {
+  private fetchData<T extends z.ZodTypeAny>(iri: Iri | undefined, url: Url, schema: T): Observable<z.infer<T>> {
     const { http, cachedIri, cache } = this;
-    if (iri !== cachedIri) {
+    if (iri !== undefined && iri !== cachedIri) {
       this.cachedIri = iri;
       this.cache = new Map();
     }
 
     if (!cache.has(url)) {
-      const opts = { params: { id: iri }, responseType: 'json' as const };
+      const opts = { params: { id: iri ?? '' }, responseType: 'json' as const };
       const resp = http.get(url, opts).pipe(map((data) => schema.parse(data)));
       cache.set(url, firstValueFrom(resp));
     }
@@ -103,7 +113,7 @@ export class FtuDataImplService extends FtuDataService {
   }
 
   private findGraphItem<T extends IdItem>(data: Graph<T>, iri: Iri): T {
-    const item = data['@graph'].find((item) => item['@id'] === iri);
+    const item = data['@graph'].find(({ '@id': id }) => id === iri);
     if (item === undefined) {
       throw new Error(`Iri not found in data: ${iri}`);
     }
@@ -132,5 +142,16 @@ export class FtuDataImplService extends FtuDataService {
     }
 
     return results;
+  }
+
+  private constructTissueLibrary(items: Illustrations['@graph']): TissueLibrary {
+    const nodes: TissueLibrary['nodes'] = {};
+    for (const { '@id': id, label, organ_id, organ_label } of items) {
+      const parentId = (BASE_IRI + organ_id) as Iri;
+      nodes[parentId] ??= { id: parentId, label: organ_label, parent: BASE_IRI, children: [] };
+      nodes[id] = { id, label, parent: parentId, children: [], link: TISSUE_LINK };
+      nodes[parentId]?.children.push(id);
+    }
+    return { root: BASE_IRI, nodes };
   }
 }
