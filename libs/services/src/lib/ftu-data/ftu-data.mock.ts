@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Iri, Url } from '../shared/common.model';
+import { MOCK_SUMMARIES } from '../tissue-ftu/tissue-ftu.mock';
 import { MOCK_TISSUE_DATA } from '../tissue-library/tissue-library.mock';
 import {
   CellSummary,
@@ -10,8 +11,6 @@ import {
   TissueLibrary,
 } from './ftu-data.model';
 import { FtuDataService } from './ftu-data.service';
-import { MOCK_SUMMARIES } from '../tissue-ftu/tissue-ftu.mock';
-import { BRAND } from 'zod';
 
 /**
  * Dummy data for Source References
@@ -93,6 +92,10 @@ It overrides the methods from the parent class to provide mock data for testing 
   providedIn: 'root',
 })
 export class MockFtuDataService extends FtuDataService {
+  /**
+   * Overrides the getTissueLibrary method to return a mock data for the tissue tree
+   * @returns tissue library
+   */
   override getTissueLibrary(): Observable<TissueLibrary> {
     return of();
   }

@@ -12,6 +12,10 @@ import {
 /** Service for loading all data related to a single ftu */
 @Injectable()
 export abstract class FtuDataService {
+  /**
+   * Gets tissue library
+   * @returns tissue library
+   */
   abstract getTissueLibrary(): Observable<TissueLibrary>;
 
   /**
