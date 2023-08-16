@@ -65,7 +65,11 @@ export function computeAggregate(summary: CellSummary): CellSummaryAggregate {
     const row = getRow(rowsByCell, cell);
 
     expandRow(row, columnIndex);
-    row[columnIndex] = { color: '', size: 0, data: summary };
+    row[columnIndex] = {
+      color: summary.meanExpression,
+      size: summary.percentage,
+      data: summary,
+    };
   }
 
   for (const [cell, row] of rowsByCell.entries()) {

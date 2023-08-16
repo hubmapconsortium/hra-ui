@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
-import { dispatch, injectDestroy$ } from '@hra-ui/cdk/injectors';
+import { dispatch, injectDestroy$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { EMPTY, of } from 'rxjs';
 import { Shallow } from 'shallow-render';
 import { FtuComponent } from './ftu.component';
@@ -13,6 +13,7 @@ describe('AppComponent', () => {
 
   beforeEach(() => {
     shallow = new Shallow(FtuComponent).mock(ActivatedRoute, { queryParams: of({ id: 'abc' }) });
+    jest.mocked(selectSnapshot).mockReturnValue(jest.fn());
   });
 
   it('should create component', async () => {

@@ -27,13 +27,17 @@
     <td class="icon-cell" mat-cell *matCellDef="let element">
       <hra-biomarker-table-data-icon
         class="icon"
-        *ngIf="element[index + 2] !== undefined"
-        [color]="element[index + 2].color"
-        [size]="element[index + 2].size"
+        *ngIf="element[index + 2] !== undefined; else emptyCell"
+        [color]="getColor(element[index + 2].color)"
+        [size]="getSize(element[index + 2].size)"
         [hraHover]="dataHover"
-        [hraHoverData]="element[index + 2].data"
+        [hraHoverData]="[index + 2, element]"
       >
       </hra-biomarker-table-data-icon>
+
+      <ng-template #emptyCell>
+        <div class="empty" [hraHover]="dataHover" [hraHoverData]="[index + 2, element]"></div>
+      </ng-template>
     </td>
   </ng-container>
 
@@ -48,5 +52,5 @@
 </ng-template>
 
 <ng-template #dataHover let-data>
-  <hra-biomarker-table-data-card [data]="data"> </hra-biomarker-table-data-card>
+  <hra-biomarker-table-data-card [data]="getHoverData(data)"> </hra-biomarker-table-data-card>
 </ng-template>

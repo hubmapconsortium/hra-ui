@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostBinding, inject } from '@angular/core';
+import { AfterContentInit, Component, HostBinding, inject } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { StorageId, StorageSelectors } from '@hra-ui/cdk/state';
@@ -10,7 +10,7 @@ import { ScreenNoticeBehaviorComponent } from '@hra-ui/components/behavioral';
   styleUrls: ['./app.component.scss'],
   providers: [MatDialogModule],
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements AfterContentInit {
   @HostBinding('class.mat-typography') readonly matTypography = true;
 
   readonly SMALL_VIEWPORT_THRESHOLD = 480; // In pixels
@@ -25,7 +25,7 @@ export class AppComponent implements AfterViewInit {
 
   private readonly dialog = inject(MatDialog);
 
-  ngAfterViewInit(): void {
+  ngAfterContentInit(): void {
     this.detectSmallViewport();
   }
 
