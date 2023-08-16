@@ -13,6 +13,7 @@ import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
 
 /** Interface for providing options for the hra state module */
 export interface HraStateModuleOptions {
+  /** token string for google analytics*/
   googleAnalyticsToken: string;
 }
 
