@@ -31,7 +31,7 @@ import { TissueLibraryService } from './tissue-library/tissue-library.service';
       provide: FTU_DATA_IMPL_ENDPOINTS,
       useValue: {
         illustrations: 'assets/TEMP/2d-ftu-illustrations.jsonld',
-        summaries: '',
+        summaries: 'assets/TEMP/ftu-cell-summaries.jsonld',
         datasets: 'assets/TEMP/ftu-datasets.jsonld',
       },
     },

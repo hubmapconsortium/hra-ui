@@ -30,9 +30,11 @@ export const FTU_DATA_IMPL_FILE_FORMAT_MAPPING = new InjectionToken<Record<strin
 });
 
 type IdItem = z.infer<typeof ID_ITEM>;
+type CellSourceItem = z.infer<typeof CELL_SOURCE_ITEM>;
 type Graph<T> = { '@graph': T[] };
 type Illustrations = z.infer<typeof ILLUSTRATIONS>;
 type Datasets = z.infer<typeof DATASETS>;
+type Cell_Summary = z.infer<typeof CELL_SUMMARIES>;
 type IllusrationFiles = Illustrations['@graph'][number]['illustration_files'];
 type dataSources = Datasets['@graph'][number]['data_sources'];
 
@@ -53,6 +55,10 @@ const ILLUSTRATIONS = z.object({
         file_format: z.string(),
       })
       .array(),
+    mapping: z.object({
+      svg_id: z.string(),
+      label: z.string()
+    }).array(),
   }).array(),
 });
 
@@ -64,6 +70,29 @@ const DATASETS = z.object({
         label: z.string(),
         description: z.string(),
         link: z.string(),
+      })
+      .array(),
+  }).array(),
+});
+
+const CELL_SOURCE_ITEM = z.object({
+  cell_source: IRI,
+});
+
+const CELL_SUMMARIES = z.object({
+  '@graph': CELL_SOURCE_ITEM.extend({
+    cell_source: IRI,
+    biomarker_type: z.string(),
+    summary: z
+      .object({
+        cell_id: IRI,
+        cell_label: z.string(),
+        gene_id: IRI,
+        gene_label: z.string(),
+        mean_expression: z.number(),
+        count: z.number(),
+        percentage: z.number(),
+        dataset_count: z.number().optional(),
       })
       .array(),
   }).array(),
@@ -93,24 +122,31 @@ export class FtuDataImplService extends FtuDataService {
   }
 
   override getIllustrationMapping(iri: Iri): Observable<IllustrationMappingItem[]> {
-    return of([]);
+    return this.fetchData(iri, this.endpoints.illustrations, ILLUSTRATIONS).pipe(
+      map((data) => this.findGraphItem(data, iri).mapping),
+      map((data) => (data ? this.toIllustrationMapping(data) : []))
+    );
+
   }
 
   override getCellSummaries(iri: Iri): Observable<CellSummary[]> {
-    return of([]);
+    return this.fetchData(iri, this.endpoints.summaries, CELL_SUMMARIES).pipe(
+      map((data) => this.findCellSummaries(data, iri)),
+      map((data) => (data ? this.constructCellSummaries(data) : []))
+    );
   }
 
   override getDataFileReferences(iri: Iri): Observable<DataFileReference[]> {
     return this.fetchData(iri, this.endpoints.illustrations, ILLUSTRATIONS).pipe(
       map((data) => this.findGraphItem(data, iri).illustration_files),
-      map((data) => this.toDataFileReferences(data))
+      map((data) => (data ? this.toDataFileReferences(data) : []))
     );
   }
 
   override getSourceReferences(iri: Iri): Observable<SourceReference[]> {
     return this.fetchData(iri, this.endpoints.datasets, DATASETS).pipe(
       map((data) => this.findGraphItem(data, iri).data_sources),
-      map((data) => this.toSourceReferences(data))
+      map((data) => (data ? this.toSourceReferences(data) : []))
     );
   }
 
@@ -133,9 +169,19 @@ export class FtuDataImplService extends FtuDataService {
   private findGraphItem<T extends IdItem>(data: Graph<T>, iri: Iri): T {
     const item = data['@graph'].find(({ '@id': id }) => id === iri);
     if (item === undefined) {
-      throw new Error(`Iri not found in data: ${iri}`);
+      console.error(`Iri not found in data: ${iri}`);
+      return {} as T;
     }
 
+    return item;
+  }
+
+  private findCellSummaries<T extends CellSourceItem>(data: Graph<T>, iri: Iri): T[] {
+    const item = data['@graph'].filter(({ cell_source }) => cell_source === iri);
+    if (item === undefined || item.length == 0) {
+      console.error(`Cell Summary not found in data: ${iri}`);
+      return [];
+    }
     return item;
   }
 
@@ -144,10 +190,19 @@ export class FtuDataImplService extends FtuDataService {
     const svgFormat = fileFormatMapping['image/svg+xml'];
     const ref = files.find(({ format }) => format === svgFormat);
     if (ref === undefined) {
-      throw new Error('Illustration url not found');
+      console.error('Illustration url not found');
+      return '' as Url;
+    }
+    return ref.url;
+  }
+
+  private toIllustrationMapping(mappings: {label:string,svg_id:string}[]): IllustrationMappingItem[] {
+    const results: IllustrationMappingItem[] = [];
+    for (const { label, svg_id } of mappings) {
+      results.push({ label,id:svg_id });
     }
 
-    return ref.url;
+    return results;
   }
 
   private toDataFileReferences(data: IllusrationFiles): DataFileReference[] {
@@ -168,6 +223,36 @@ export class FtuDataImplService extends FtuDataService {
       results.push({ label, link, title: description });
     }
     return results;
+  }
+
+  private constructCellSummaries(data: Cell_Summary['@graph']): CellSummary[] {
+    const cellSummary: CellSummary[] = [];
+
+    data.forEach((summaryGroup) => {
+      const cells = summaryGroup.summary.map((entry) => ({
+        id: entry.cell_id as Iri,
+        label: entry.cell_label,
+      }));
+      const biomarkers = summaryGroup.summary.map((entry) => ({
+        id: entry.gene_id as Iri,
+        label: entry.gene_label,
+      }));
+      const summaries = summaryGroup.summary.map((entry) => ({
+        cell: entry.cell_id as Iri,
+        biomarker: entry.gene_id as Iri,
+        count: entry.count,
+        percentage: entry.percentage,
+        meanExpression: entry.mean_expression,
+        dataset_count: entry.dataset_count,
+      }));
+      cellSummary.push({
+        label: summaryGroup.biomarker_type,
+        cells,
+        biomarkers,
+        summaries,
+      });
+    });
+    return cellSummary;
   }
 
   private constructTissueLibrary(items: Illustrations['@graph']): TissueLibrary {

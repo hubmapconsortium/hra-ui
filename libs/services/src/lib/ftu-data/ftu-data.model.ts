@@ -62,6 +62,7 @@ export const CELL_SUMMARY_ROW = z.object({
   count: COUNT,
   percentage: PERCENTAGE,
   meanExpression: PERCENTAGE,
+  dataset_count: COUNT.optional(),
 });
 
 /** Zod Schema for a CELL_SUMMARY */
@@ -87,8 +88,8 @@ export const SOURCE_REFERENCE = z.object({
 
 /** Zod Schema for a ILLUSTRATION_MAPPING_ITEM */
 export const ILLUSTRATION_MAPPING_ITEM = z.object({
+  id: z.string(),
   label: z.string(),
-  name: z.string(),
 });
 
 // ---------------------------------------
