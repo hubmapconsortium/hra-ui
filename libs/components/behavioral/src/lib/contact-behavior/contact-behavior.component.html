@@ -1,4 +1,5 @@
 <hra-contact-modal
+  class="contact-modal"
   [productLogoUrl]="productLogoUrl()"
   [productTitle]="productTitle()"
   (submitClick)="submit($event)"
@@ -8,6 +9,7 @@
 
 <ng-template #postMessage>
   <hra-info-modal
+    class="info-modal"
     [productLogoUrl]="productLogoUrl()"
     [productTitle]="productTitle()"
     [description]="description()"

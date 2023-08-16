@@ -25,6 +25,6 @@ export class GradientLegendComponent {
   /** Computes the css linear-gradient function for the gradient bar */
   get gradientCss(): string {
     const stops = this.gradient.map(({ color, percentage }) => `${color} ${percentage}%`).join(',');
-    return `linear-gradient(270deg, ${stops})`;
+    return `linear-gradient(90deg, ${stops})`;
   }
 }

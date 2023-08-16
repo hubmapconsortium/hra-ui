@@ -12,6 +12,9 @@
 
   .table {
     margin-left: -1px;
+    .emptyFiller {
+      padding: 1.3rem;
+    }
   }
   .table th {
     background-color: #fff7f8;

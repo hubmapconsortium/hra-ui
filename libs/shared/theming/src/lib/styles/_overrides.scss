@@ -12,6 +12,10 @@
         border: 2px solid;
         border-color: vars.$primary-rgb;
 
+        & > .mat-icon {
+          z-index: 1;
+        }
+
         & > .mat-mdc-button-persistent-ripple::before {
           opacity: 0 !important;
         }

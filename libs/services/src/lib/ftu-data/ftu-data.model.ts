@@ -46,6 +46,7 @@ export const CELL_SUMMARY_ROW = z.object({
   biomarker: IRI,
   count: COUNT,
   percentage: PERCENTAGE,
+  meanExpression: PERCENTAGE,
 });
 
 /** Zod Schema for a CELL_SUMMARY */
