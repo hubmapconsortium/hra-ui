@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import {  MatTableDataSource } from '@angular/material/table';
 import { ChooseVersion } from '../choose-version/choose-version'
 import { FtuData, FtuVersionData } from './download-ftu';
 

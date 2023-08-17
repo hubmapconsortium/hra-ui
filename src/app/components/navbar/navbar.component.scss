@@ -1,14 +1,11 @@
 :host {
   display: block;
-  height: 100%;
 }
 
 ::ng-deep .menu-container {
+  position: relative;
+  top: 14px;
   max-width: 23.25rem !important;
-}
-
-.mat-button-focus-overlay {
-  display: none;
 }
 
 .navigation-title {
@@ -19,21 +16,19 @@
   letter-spacing: 0.005em;
 }
 
-.navigation-items > button,
-a {
+.navigation-items > a, button {
   color: #444c65;
-  letter-spacing: 0.005em;
-  line-height: 1.5rem;
-  font-size: 0.875rem;
-  letter-spacing: 0.5%;
+  --mat-menu-item-label-text-size: 14px;
+  --mat-menu-item-label-text-line-height: 200%
+  --mat-menu-item-label-text-weight: 300;
+  --mat-menu-item-label-text-tracking: 0.005em;
   word-wrap: normal;
-  line-height: 200%;
   overflow: visible;
+  min-height: 2rem;
   height: auto;
   text-align: left;
   max-width: 31.25rem;
   white-space: initial;
-  font-weight: 300;
   padding-top: 0.313rem;
   text-decoration: none;
 }
@@ -52,14 +47,11 @@ a {
   display: inline-block;
 }
 
-.mat-button-focus-overlay {
+.mat-mdc-button-focus-overlay {
   display: none;
 }
 
-.route-link {
-  text-decoration: none;
-  font-weight: 300;
-  font-size: 14px;
-  letter-spacing: 0.005em;
-  color: #444a65;
+.mat-mdc-unelevated-button.mat-primary {
+  --mat-mdc-button-persistent-ripple-color: none;
+  --mat-mdc-button-ripple-color: none;
 }

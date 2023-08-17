@@ -1,4 +1,4 @@
-<mat-tab-group mat-align-tabs="start" [disableRipple]="true" [selectedIndex]="selectedIndex" class="organ-tabs">
+<mat-tab-group mat-align-tabs="start" [disableRipple]="true" [selectedIndex]="selectedIndex" [disablePagination]="true" class="organ-tabs">
     <mat-tab *ngFor="let tab of tabs">
         <ng-template mat-tab-label>
             <img [src]="tab.image" class="organ-image" (click)="organName.emit(tab.name)">

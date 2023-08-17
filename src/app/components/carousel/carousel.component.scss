@@ -1,8 +1,8 @@
-@use "~swiper/scss";
-@use "~swiper/scss/autoplay";
-@use "~swiper/scss/effect-fade";
-@use "~swiper/scss/navigation";
-@use "~swiper/scss/pagination";
+@import "swiper/css";
+// @use "~swiper/scss/autoplay";
+// @use "~swiper/scss/effect-fade";
+// @use "~swiper/scss/navigation";
+// @use "~swiper/scss/pagination";
 @import "../../../styles.scss";
 
 :root {

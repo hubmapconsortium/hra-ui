@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, Router } from '@angular/router';
 import { EMPTY, Observable, of } from 'rxjs';
 import { TissueTableInfo } from '../../components/tissue-info-table/tissue-info-table';
 import { tissueData } from '../../pages/tissue-info-page/tissue-info-page.content';
@@ -7,7 +7,7 @@ import { tissueData } from '../../pages/tissue-info-page/tissue-info-page.conten
 @Injectable({
   providedIn: 'root'
 })
-export class TissueInfoResolverService implements Resolve<TissueTableInfo> {
+export class TissueInfoResolverService  {
 
   constructor(private readonly router: Router) { }
 

@@ -1,7 +1,7 @@
 :host {
   display: flex;
   flex-wrap: wrap;
-  ::ng-deep .mat-card-image {
+  ::ng-deep .mat-mdc-card-image {
     width: unset;
   }
 
@@ -14,6 +14,7 @@
         0 0.375rem 1.25rem 0 rgba(0, 0, 0, 0.19);
     }
     border: 1px solid #E0E0E0;
+    transition: 0.2s ease-in-out;
   }
 
   .contact-card:not(:last-child) {
@@ -27,7 +28,7 @@
     padding-bottom: 2rem;
   }
 
-  .mat-card-image {
+  .mat-mdc-card-image {
     height: 168px;
     width: 168px;
   }
@@ -64,6 +65,10 @@
     line-height: 24px;
   }
 
+  .mat-mdc-card-content {
+    padding: 0;
+  }
+
   @media (max-width: 80rem) {
     .contact-card {
       margin-bottom: 1rem;
@@ -83,7 +88,7 @@
       margin-bottom: 1.5rem;
     }
 
-    .mat-card-content {
+    .mat-mdc-card-content {
       text-align: center;
     }
 
