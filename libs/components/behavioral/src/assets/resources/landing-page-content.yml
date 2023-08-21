@@ -52,3 +52,15 @@ Metrics:
     - description: biomarkers
       value: '2,842'
       icon: 'assets/biomarkers.svg'
+LandingPageIntroWCTitle:
+  type: markdown
+  markdown: 'Welcome to the Functional Tissue Unit Explorer'
+LandingPageIntroWCDescription:
+  type: markdown
+  markdown: "Explore functional tissue units (FTUs) featuring experimental datasets and Human Reference Atlas (HRA) technologies."
+LandingPageIntroWCPartners:
+  type: markdown
+  markdown: "A special thanks to our partners: <a href='' target='_blank'>Kidney Precision Medicine Project</a> and <a href=''>European Bioinformatics Institute.</a>"
+LandingPageWCHeadingReadMore:
+  type: markdown
+  markdown: "Read more about this effort <a href=''>HRA Portal: FTU Explorer</a>"
