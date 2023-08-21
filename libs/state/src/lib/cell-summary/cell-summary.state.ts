@@ -24,7 +24,7 @@ export class CellSummaryState {
    * the state and cancels uncompleted action if any
    */
   @Action(Load, { cancelUncompleted: true })
-  load({ patchState, dispatch }: Context, { iri }: Load): Observable<unknown> | void {
+  load({ patchState, dispatch }: Context, { iri }: Load): Observable<unknown> {
     return this.dataService.getCellSummaries(iri).pipe(
       tap((summaries) => patchState({ summaries, aggregates: [] })),
       switchMap(() => dispatch(new ComputeAggregates()))
