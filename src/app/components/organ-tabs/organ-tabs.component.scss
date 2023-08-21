@@ -42,8 +42,12 @@
   }
 
   ::ng-deep {
-    .mat-mdc-tab-label-active::after,
-    .mat-mdc-tab-label:hover::after {
+    .mat-mdc-tab:hover .mdc-tab__ripple::before {
+      display: none;
+    }
+
+    .mdc-tab--active::after,
+    .mat-mdc-tab:hover::after {
       content: "";
       width: 100%;
       height: 0.5rem;
@@ -55,12 +59,24 @@
       border-bottom-right-radius: 0.25rem;
     }
 
-    .mat-tab-label-active::after {
+    .mdc-tab--active::after {
       background-color: #444c65;
     }
 
-    .mat-tab-label:not(.mat-tab-label-active):hover::after {
+    .mat-mdc-tab:not(.mdc-tab--active):hover::after {
       background-color: #c2cae5;
+    }
+
+    .organ-tabs .mdc-tab-indicator__content {
+      display: none;
+    }
+
+    .mat-mdc-tab-labels {
+      display: block;
+    }
+
+    .organ-tabs .mdc-tab {
+      display: inline-flex;
     }
   }
 
