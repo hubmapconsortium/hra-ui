@@ -1,0 +1,33 @@
+{
+  "name": "ftu-ui-small-wc-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/ftu-ui-small-wc-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/ftu-ui-small-wc-e2e/cypress.config.ts",
+        "devServerTarget": "ftu-ui-small-wc:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "ftu-ui-small-wc:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "ftu-ui-small-wc:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/ftu-ui-small-wc-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["ftu-ui-small-wc"]
+}
