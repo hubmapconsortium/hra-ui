@@ -31,7 +31,7 @@ export const FTU_DATA_IMPL_FILE_FORMAT_MAPPING = new InjectionToken<Record<strin
   factory: () => ({
     'image/svg+xml': 'svg',
     'image/png': 'png',
-    'application/pdf': 'pdf',
+    'application/pdf': 'ai',
   }),
 });
 
