@@ -11,22 +11,18 @@ import { MockProxy, mock } from 'jest-mock-extended';
 
 describe('ActiveFtuState', () => {
   const testIri = 'https://www.example.com/test-iri' as Iri;
-  // creating variables to hold instances of the below classes and dependencies
   let state: ActiveFtuState;
   let ctx: MockProxy<StateContext<ActiveFtuModel>>;
 
   beforeEach(() => {
-    // creating instances below
     state = new ActiveFtuState();
     ctx = mock();
-    // configuring return values
     ctx.getState.mockReturnValue({ iri: undefined });
     ctx.dispatch.mockReturnValue(of(undefined));
   });
 
   describe('load(ctx, action)', () => {
     it('should dispatch load actions on substates', () => {
-      // calling the load method
       state.load(ctx, new Load(testIri));
       expect(ctx.dispatch).toHaveBeenCalledWith([
         new CellSummaryActions.Load(testIri),
@@ -41,7 +37,6 @@ describe('ActiveFtuState', () => {
       if (!res) {
         fail('Expected load(ctx, action) to return an observable');
       }
-      // expecting patchState to update ctx with the current iri
       await firstValueFrom(res);
       expect(ctx.patchState).toHaveBeenCalledWith({ iri: testIri });
     });
@@ -49,7 +44,6 @@ describe('ActiveFtuState', () => {
     it('should do nothing if the iri is the same as the currently active iri', () => {
       ctx.getState.mockReturnValue({ iri: testIri });
       state.load(ctx, new Load(testIri));
-      // expecting to not have been called as the iri is the same
       expect(ctx.dispatch).not.toHaveBeenCalled();
     });
   });
@@ -57,14 +51,12 @@ describe('ActiveFtuState', () => {
   describe('clear(ctx)', () => {
     it('should clear the iri selection', () => {
       state.clear(ctx);
-      // expecting patchState to set the ctx with no iri
       expect(ctx.patchState).toHaveBeenCalledWith({ iri: undefined });
     });
   });
 
   describe('reset(ctx)', () => {
     it('should reset substates and return an observable', () => {
-      // calling the reset method
       state.reset(ctx);
       expect(ctx.dispatch).toHaveBeenCalledWith([
         new CellSummaryActions.Reset(),
