@@ -5,7 +5,6 @@ import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { TissueLibraryModel } from './tissue-library.model';
 import { StateContext } from '@ngxs/store';
-import { stat } from 'fs';
 
 describe('TissueLibraryState', () => {
   let state: TissueLibraryState;
