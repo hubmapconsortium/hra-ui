@@ -105,6 +105,10 @@
                                     <span class="modifier">Abstract</span>
                                 <a href="#getSourceReferences" >getSourceReferences</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Abstract</span>
+                                <a href="#getTissueLibrary" >getTissueLibrary</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -145,8 +149,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/lib/ftu-data/ftu-data.service.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/lib/ftu-data/ftu-data.service.ts:36</a></div>
                 </td>
             </tr>
 
@@ -224,8 +228,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/lib/ftu-data/ftu-data.service.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/lib/ftu-data/ftu-data.service.ts:42</a></div>
                 </td>
             </tr>
 
@@ -298,8 +302,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/lib/ftu-data/ftu-data.service.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/lib/ftu-data/ftu-data.service.ts:30</a></div>
                 </td>
             </tr>
 
@@ -377,8 +381,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="13"
-                            class="link-to-prism">src/lib/ftu-data/ftu-data.service.ts:13</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/lib/ftu-data/ftu-data.service.ts:25</a></div>
                 </td>
             </tr>
 
@@ -456,8 +460,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/lib/ftu-data/ftu-data.service.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/lib/ftu-data/ftu-data.service.ts:48</a></div>
                 </td>
             </tr>
 
@@ -508,6 +512,53 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTissueLibrary"></a>
+                    <span class="name">
+                        <span class="modifier">Abstract</span>
+                        <span ><b>getTissueLibrary</b></span>
+                        <a href="#getTissueLibrary"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getTissueLibrary()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/lib/ftu-data/ftu-data.service.ts:19</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets tissue library</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;TissueLibrary&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>tissue library</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -517,11 +568,23 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
 import { Iri, Url } from &#x27;../shared/common.model&#x27;;
-import { CellSummary, DataFileReference, IllustrationMappingItem, SourceReference } from &#x27;./ftu-data.model&#x27;;
+import {
+  CellSummary,
+  DataFileReference,
+  IllustrationMappingItem,
+  SourceReference,
+  TissueLibrary,
+} from &#x27;./ftu-data.model&#x27;;
 
 /** Service for loading all data related to a single ftu */
 @Injectable()
 export abstract class FtuDataService {
+  /**
+   * Gets tissue library
+   * @returns tissue library
+   */
+  abstract getTissueLibrary(): Observable&lt;TissueLibrary&gt;;
+
   /**
    * This method takes
    * @param iri and @returns an observable url

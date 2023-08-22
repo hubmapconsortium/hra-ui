@@ -270,6 +270,8 @@ export interface DataCell {
     cell: string;
     biomarker: string;
     meanExpression: number;
+    /** Number of datasets for this Tissue */
+    dataset_count: number;
   };
 }
 
@@ -281,8 +283,6 @@ export interface TissueInfo {
   id: string;
   /** Name of the Tissue */
   label: string;
-  /** Number of datasets for this Tissue */
-  datasetCount: number;
 }
 
 /** Describes the composition of a single row in the table */
@@ -310,7 +310,6 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
   @Input() tissueInfo: TissueInfo &#x3D; {
     id: &#x27;&#x27;,
     label: &#x27;&#x27;,
-    datasetCount: 0,
   };
 
   /** Columns for the table */
@@ -436,17 +435,17 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
     }
 
     const {
-      tissueInfo: { id, label, datasetCount },
+      tissueInfo: { id, label },
     } &#x3D; this;
     const {
-      data: { cell, biomarker, meanExpression },
+      data: { cell, biomarker, meanExpression, dataset_count },
     } &#x3D; row[index] as T;
 
     return [
       [
         { label: &#x27;Functional Tissue Unit Name&#x27;, value: label },
         { label: &#x27;Uberon ID&#x27;, value: id },
-        { label: &#x27;#Datasets&#x27;, value: &#x60;${datasetCount}&#x60; },
+        { label: &#x27;#Datasets&#x27;, value: &#x60;${dataset_count ?? 0}&#x60; },
       ],
       [
         { label: &#x27;Cell Type Name&#x27;, value: row[0] },

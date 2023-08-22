@@ -72,6 +72,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/ContactService.html" data-type="entity-link" >ContactService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/FtuDataImplService.html" data-type="entity-link" >FtuDataImplService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/FtuDataService.html" data-type="entity-link" >FtuDataService</a>
                                 </li>
                                 <li class="link">
@@ -107,6 +110,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/ExtendedTissue.html" data-type="entity-link" >ExtendedTissue</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FtuDataImplEndpoints.html" data-type="entity-link" >FtuDataImplEndpoints</a>
                             </li>
                         </ul>
                     </li>

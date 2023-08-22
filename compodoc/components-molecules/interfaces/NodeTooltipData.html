@@ -260,8 +260,8 @@ export interface NodeTooltipData {
 export interface NodeMapEntry {
   /** Node label */
   label: string;
-  /** Node name */
-  name: string;
+  /** Node id */
+  id: string;
 }
 
 /**
@@ -383,7 +383,7 @@ export class InteractiveSvgComponent&lt;T extends NodeMapEntry&gt; implements On
     for (const id of idCollection) {
       const decodedID &#x3D; this.decodeId(id);
       const match &#x3D; this.mapping.find(
-        (item) &#x3D;&gt; item.name?.toLowerCase() &#x3D;&#x3D;&#x3D; decodedID.toLowerCase() //search mapping by name for matching node entry
+        (item) &#x3D;&gt; item.id?.toLowerCase() &#x3D;&#x3D;&#x3D; decodedID.toLowerCase() //search mapping by name for matching node entry
       );
       if (match) {
         return match;
