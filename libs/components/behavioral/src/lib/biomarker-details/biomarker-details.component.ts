@@ -24,7 +24,6 @@ import { CellSummarySelectors, ResourceIds as Ids, ResourceTypes as RTypes, Sour
 const EMPTY_TISSUE_INFO: TissueInfo = {
   id: '',
   label: '',
-  datasetCount: 0,
 };
 
 /** The component displays the biomarker details which includes the details, gradient legends, size legends and source lists*/
@@ -93,7 +92,7 @@ export class BiomarkerDetailsComponent {
       return EMPTY_TISSUE_INFO;
     }
     const { id, label } = tissues[iri];
-    return { id, label, datasetCount: 10 };
+    return { id, label };
   }
 
   /**

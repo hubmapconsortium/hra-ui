@@ -57,7 +57,6 @@ describe('BiomarkerDetailsComponent', () => {
       expect(instance.tissueInfo).toEqual({
         id: TISSUES['test'].id,
         label: TISSUES['test'].label,
-        datasetCount: 10,
       });
     });
 
@@ -68,7 +67,6 @@ describe('BiomarkerDetailsComponent', () => {
       expect(instance.tissueInfo).toEqual({
         id: '',
         label: '',
-        datasetCount: 0,
       });
     });
   });
