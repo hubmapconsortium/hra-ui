@@ -1052,7 +1052,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: block;\n\n  &.fullscreen-on {\n    position: absolute;\n    inset: 0;\n    z-index: 100;\n  }\n}\n",
+                    "data": ":host {\n  display: block;\n  overflow-y: scroll;\n\n  &.fullscreen-on {\n    position: absolute;\n    inset: 0;\n    z-index: 100;\n  }\n}\n",
                     "styleUrl": "./fullscreen-content.component.scss"
                 }
             ],
@@ -1470,7 +1470,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".tooltip {\n  display: flex;\n  flex-direction: column;\n  background: white;\n  box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);\n  border-radius: 0.5rem;\n  padding: 1rem;\n}\n\n[id^='Crosswalk'] {\n  :is(path, polygon, polyline) {\n    fill: transparent;\n    stroke: transparent;\n  }\n\n  .hover-active & g:hover > :is(path, polygon, polyline) {\n    fill: hsl(0deg 100% 50%);\n    mix-blend-mode: saturation;\n  }\n\n  .hover-active & g > g:hover {\n    :is(path, polygon, polyline) {\n      fill: hsl(0deg 100% 50%);\n      mix-blend-mode: saturation;\n    }\n  }\n}\n",
+                    "data": "hra-interactive-svg {\n  svg {\n    max-height: calc(100vh - 10rem);\n  }\n\n  [id^='Crosswalk'] {\n    :is(path, polygon, polyline) {\n      fill: transparent;\n      stroke: transparent;\n    }\n\n    .hover-active & g:hover > :is(path, polygon, polyline) {\n      fill: hsl(0deg 100% 50%);\n      mix-blend-mode: saturation;\n    }\n\n    .hover-active & g > g:hover {\n      :is(path, polygon, polyline) {\n        fill: hsl(0deg 100% 50%);\n        mix-blend-mode: saturation;\n      }\n    }\n  }\n}\n\n.hra-interactive-svg-tooltip-panel .tooltip {\n  display: flex;\n  flex-direction: column;\n  background: white;\n  box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);\n  border-radius: 0.5rem;\n  padding: 1rem;\n}\n",
                     "styleUrl": "./interactive-svg.component.scss"
                 }
             ],
@@ -1906,7 +1906,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use 'utils';\n@use 'variables' as vars;\n\n:host {\n  display: block;\n\n  @include utils.define-flex-filler();\n\n  h1 {\n    margin: 0;\n  }\n\n  .mat-mdc-cell {\n    vertical-align: top;\n    border: none;\n    padding: 0.25rem 0.875rem;\n    font-size: 1rem;\n  }\n\n  .filler {\n    width: 30rem;\n  }\n\n  .sr-only {\n    @include utils.sr-only();\n  }\n\n  .table-content {\n    max-height: 21rem;\n    overflow: auto;\n  }\n\n  .toggle {\n    margin-bottom: 1rem;\n    display: flex;\n    align-items: center;\n    width: 43rem;\n    height: 3.5rem;\n    grid-area: source-list-header;\n    color: var(--dark-primary-text);\n    border-top: 0.063rem solid #d3d3d3;\n    border-bottom: 0.063rem solid #d3d3d3;\n    .mat-icon {\n      margin-left: 32rem;\n    }\n  }\n\n  .hidden {\n    display: none;\n  }\n}\n",
+                    "data": "@use 'utils';\n@use 'variables' as vars;\n\n:host {\n  display: block;\n\n  @include utils.define-flex-filler();\n\n  h1 {\n    margin: 0;\n  }\n\n  .mat-mdc-cell {\n    vertical-align: top;\n    border: none;\n    padding: 0.25rem 0.875rem;\n    font-size: 1rem;\n  }\n\n  .filler {\n    width: 30rem;\n  }\n\n  .sr-only {\n    @include utils.sr-only();\n  }\n\n  .table-content {\n    max-height: 8rem;\n    overflow: auto;\n  }\n\n  .toggle {\n    margin-bottom: 1rem;\n    display: flex;\n    align-items: center;\n    width: 43rem;\n    height: 3.5rem;\n    grid-area: source-list-header;\n    color: var(--dark-primary-text);\n    border-top: 0.063rem solid #d3d3d3;\n    border-bottom: 0.063rem solid #d3d3d3;\n    .mat-icon {\n      margin-left: 32rem;\n    }\n  }\n\n  .hidden {\n    display: none;\n  }\n}\n",
                     "styleUrl": "./source-list.component.scss"
                 }
             ],

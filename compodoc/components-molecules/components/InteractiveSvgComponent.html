@@ -872,32 +872,38 @@ export class InteractiveSvgComponent&lt;T extends NodeMapEntry&gt; implements On
                 <p class="comment">
                     <code>./interactive-svg.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">.tooltip {
+                <pre class="line-numbers"><code class="language-scss">hra-interactive-svg {
+  svg {
+    max-height: calc(100vh - 10rem);
+  }
+
+  [id^&#x3D;&#x27;Crosswalk&#x27;] {
+    :is(path, polygon, polyline) {
+      fill: transparent;
+      stroke: transparent;
+    }
+
+    .hover-active &amp; g:hover &gt; :is(path, polygon, polyline) {
+      fill: hsl(0deg 100% 50%);
+      mix-blend-mode: saturation;
+    }
+
+    .hover-active &amp; g &gt; g:hover {
+      :is(path, polygon, polyline) {
+        fill: hsl(0deg 100% 50%);
+        mix-blend-mode: saturation;
+      }
+    }
+  }
+}
+
+.hra-interactive-svg-tooltip-panel .tooltip {
   display: flex;
   flex-direction: column;
   background: white;
   box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
   border-radius: 0.5rem;
   padding: 1rem;
-}
-
-[id^&#x3D;&#x27;Crosswalk&#x27;] {
-  :is(path, polygon, polyline) {
-    fill: transparent;
-    stroke: transparent;
-  }
-
-  .hover-active &amp; g:hover &gt; :is(path, polygon, polyline) {
-    fill: hsl(0deg 100% 50%);
-    mix-blend-mode: saturation;
-  }
-
-  .hover-active &amp; g &gt; g:hover {
-    :is(path, polygon, polyline) {
-      fill: hsl(0deg 100% 50%);
-      mix-blend-mode: saturation;
-    }
-  }
 }
 </code></pre>
     </div>
