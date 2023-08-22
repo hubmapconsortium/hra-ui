@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { CellSummary, FtuDataService, Iri } from '@hra-ui/services';
+import { FtuDataService, Iri } from '@hra-ui/services';
 import { MockProxy, mock } from 'jest-mock-extended';
 import { CellSummaryState } from './cell-summary.state';
 import { of } from 'rxjs';
@@ -10,11 +10,6 @@ import { Load } from './cell-summary.actions';
 describe('CellSummaryState', () => {
   const testIri = 'https://www.example.com/test-iri' as Iri;
   let state: CellSummaryState;
-  const mockModel: CellSummaryModel = {
-    summaries: [],
-    aggregates: [],
-  };
-
   let ctx: MockProxy<StateContext<CellSummaryModel>>;
   let dataService: MockProxy<FtuDataService>;
 
@@ -43,19 +38,18 @@ describe('CellSummaryState', () => {
     });
   });
 
-  // describe('computeAggregates', () => {
-  //   it('should compute aggregrate data and update state', () => {
-  //     const mockSummaries: CellSummaryModel = []
-  //     ctx.getState.mockReturnValue({ summaries: mockSummaries });
-  //     state.computeAggregates(ctx);
-  //     expect(ctx.patchState).toHaveBeenCalledWith();
-  //   });
-  // });
+  describe('computeAggregates', () => {
+    it('should compute aggregrate data and update state', () => {
+      ctx.getState.mockReturnValue({ summaries: [], aggregates: [] });
+      state.computeAggregates(ctx);
+      expect(ctx.patchState).toHaveBeenCalledWith({ aggregates: [] });
+    });
+  });
 
-  // describe('reset', () => {
-  //   it('should reset summaries and aggregates', () => {
-  //     state.reset(ctx);
-  //     expect(ctx.patchState).toHaveBeenCalledWith({ aggregates: [], summaries: [] });
-  //   });
-  // });
+  describe('reset', () => {
+    it('should reset summaries and aggregates', () => {
+      state.reset(ctx);
+      expect(ctx.patchState).toHaveBeenCalledWith({ aggregates: [], summaries: [] });
+    });
+  });
 });
