@@ -180,8 +180,7 @@
 }
 
 ::ng-deep .panelClass {
-  position: relative;
-  top: 40px;
-  left: 1rem;
+  position: relative !important;
+  top: 1px;
   min-width: unset !important;
 }

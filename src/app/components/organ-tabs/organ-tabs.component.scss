@@ -24,8 +24,12 @@
     mix-blend-mode: multiply;
   }
 
-  ::ng-deep .mat-tab-label-active {
-    background: rgba(0, 0, 0, 0.04);
+  ::ng-deep {
+    .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+      background-color: rgba(0, 0, 0, 0.04);
+      border-top-left-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+    }
   }
 
   ::ng-deep .mat-ink-bar {
@@ -50,7 +54,7 @@
     .mat-mdc-tab:hover::after {
       content: "";
       width: 100%;
-      height: 0.5rem;
+      height: 0.4rem;
       position: absolute;
       left: 0;
       right: 0;
@@ -80,6 +84,7 @@
     }
   }
 
+  // organ select mobile styles
   .organ-select {
     display: none;
   }
@@ -100,7 +105,7 @@
       border: 1px solid #444c65;
       border-radius: 2px;
 
-      ::ng-deep .mat-select-trigger {
+      ::ng-deep .mat-mdc-select-trigger {
         height: 100%;
         justify-content: space-between;
         padding: 0rem 1rem;
@@ -124,5 +129,23 @@
     .organ-select {
       max-width: unset;
     }
+  }
+}
+
+
+::ng-deep {
+  .mat-mdc-option {
+    --mat-option-label-text-size: 0.875rem;
+    --mat-option-label-text-tracking: 0;
+    --mat-option-label-text-color: #444c65;
+  }
+
+  .panelClass {
+    position: relative;
+    top: 1px;
+  }
+
+  .panelClass .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled):not(.mat-mdc-option-multiple) {
+    background-color: unset;
   }
 }

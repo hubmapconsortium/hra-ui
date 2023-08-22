@@ -35,6 +35,7 @@
             font-weight: 300
             color: rgb(68,68,101)
             line-height: 2.125rem
+            letter-spacing: 0
           class: landing-subtitle
 
 - type: announcement

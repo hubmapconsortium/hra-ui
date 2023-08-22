@@ -36,7 +36,7 @@
 
 - type: header
   styles:
-    margin-top: 2rem
+    margin-top: 3rem
   headerCard:
   - image: assets/images/4th_release.svg
     title: 5th Release Notes
