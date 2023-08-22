@@ -7,7 +7,7 @@ describe('IllustratorSelectors', () => {
     url: 'https://www.example.com' as Url,
     selected: {
       label: ' ',
-      name: ' ',
+      id: ' ',
     },
     mapping: [],
   };
@@ -20,7 +20,7 @@ describe('IllustratorSelectors', () => {
   it('should return the selected item', () => {
     const testSelected: IllustrationMappingItem = {
       label: ' ',
-      name: ' ',
+      id: ' ',
     };
     const result = IllustratorSelectors.selected(state);
     expect(result).toEqual(testSelected);
