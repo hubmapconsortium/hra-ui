@@ -28,7 +28,7 @@ jobs:
         id: deploy
         uses: netlify/actions/cli@master
         with:
-          args: deploy --dir=deploy
+          args: deploy --dir=deploy --filter=ftu-ui
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
