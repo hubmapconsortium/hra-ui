@@ -24,17 +24,16 @@ jobs:
           main-branch-name: develop
           app-configuration: preview
 
-      - name: Deploy Preview
+      - name: Publish
         id: deploy
-        uses: jsmrcaga/action-netlify-deploy@v2.0.0
+        uses: netlify/actions/cli@master
         with:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          args: deploy --dir=deploy
+        env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          build_command: echo
-          install_command: echo
-          build_directory: deploy/
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
 
       - name: Create Deploy Comment
         uses: ./.github/actions/deploy-comment
         with:
-          deploy-url: ${{steps.deploy.outputs.NETLIFY_PREVIEW_URL}}
+          deploy-url: ${{steps.deploy.outputs.NETLIFY_URL}}
