@@ -13,7 +13,7 @@ const Template: Story<BiomarkerTableComponent<DataCell>> = (args: BiomarkerTable
 export const Primary = Template.bind({});
 Primary.args = {
   columns: ['RGMB', 'SOX9', 'CD44', 'LGR5', 'chromosome inavalitentte A'],
-  tissueInfo: { datasetCount: 10, id: '555', label: 'sampleDataset' },
+  tissueInfo: { id: '555', label: 'sampleDataset' },
   data: [
     [
       'absorptive cell',
@@ -21,7 +21,7 @@ Primary.args = {
       {
         color: '#9ca5ee',
         size: 0.56,
-        data: { cell: '', biomarker: '', meanExpression: 0 },
+        data: { cell: '', biomarker: '', meanExpression: 0, dataset_count: 0 },
       },
     ],
     [
@@ -30,7 +30,7 @@ Primary.args = {
       {
         color: '#00ffb2',
         size: 0.689,
-        data: { cell: '', biomarker: '', meanExpression: 0 },
+        data: { cell: '', biomarker: '', meanExpression: 0, dataset_count: 0 },
       },
     ],
     [
@@ -39,7 +39,7 @@ Primary.args = {
       {
         color: '#00ffb2',
         size: 0.689,
-        data: { cell: '', biomarker: '', meanExpression: 0 },
+        data: { cell: '', biomarker: '', meanExpression: 0, dataset_count: 0 },
       },
     ],
     [
@@ -48,7 +48,7 @@ Primary.args = {
       {
         color: '#00ffb2',
         size: 0.689,
-        data: { cell: '', biomarker: '', meanExpression: 0 },
+        data: { cell: '', biomarker: '', meanExpression: 0, dataset_count: 0 },
       },
     ],
   ],

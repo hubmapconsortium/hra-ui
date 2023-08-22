@@ -10,6 +10,7 @@ describe('BiomarkerTableComponent', () => {
     cell: 'cellName',
     biomarker: 'BioMarkerName',
     meanExpression: 0.1,
+    dataset_count: 0,
   };
   const data: DataRow<DataCell>[] = [
     ['absorptive cell', 2764, undefined, undefined],
@@ -53,7 +54,6 @@ describe('BiomarkerTableComponent', () => {
   const tissueInfo: TissueInfo = {
     label: '',
     id: '',
-    datasetCount: 0,
   };
 
   let shallow: Shallow<BiomarkerTableComponent<DataCell>>;
