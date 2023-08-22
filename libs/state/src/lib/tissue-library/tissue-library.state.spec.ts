@@ -1,6 +1,6 @@
 import { MockProxy, mock } from 'jest-mock-extended';
 import { TissueLibraryState } from './tissue-library.state';
-import { TissueLibraryService } from '@hra-ui/services';
+import { FtuDataService } from '@hra-ui/services';
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { TissueLibraryModel } from './tissue-library.model';
@@ -8,11 +8,11 @@ import { StateContext } from '@ngxs/store';
 
 describe('TissueLibraryState', () => {
   let state: TissueLibraryState;
-  let dataService: MockProxy<TissueLibraryService>;
+  let dataService: MockProxy<FtuDataService>;
   let ctx: MockProxy<StateContext<TissueLibraryModel>>;
 
   beforeEach(() => {
-    TestBed.overrideProvider(TissueLibraryService, {
+    TestBed.overrideProvider(FtuDataService, {
       useValue: (dataService = mock()),
     });
     ctx = mock();
