@@ -268,7 +268,7 @@ the state and cancels uncompleted action if any</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Observable | void</code>
+                        <b>Returns : </b>    <code>Observable&lt;&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -387,7 +387,7 @@ export class CellSummaryState {
    * the state and cancels uncompleted action if any
    */
   @Action(Load, { cancelUncompleted: true })
-  load({ patchState, dispatch }: Context, { iri }: Load): Observable&lt;unknown&gt; | void {
+  load({ patchState, dispatch }: Context, { iri }: Load): Observable&lt;unknown&gt; {
     return this.dataService.getCellSummaries(iri).pipe(
       tap((summaries) &#x3D;&gt; patchState({ summaries, aggregates: [] })),
       switchMap(() &#x3D;&gt; dispatch(new ComputeAggregates()))
