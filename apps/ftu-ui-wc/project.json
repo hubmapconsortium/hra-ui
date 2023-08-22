@@ -2,7 +2,7 @@
   "name": "ftu-ui-wc",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "hra-ui",
+  "prefix": "hra",
   "sourceRoot": "apps/ftu-ui-wc/src",
   "tags": [],
   "targets": {
