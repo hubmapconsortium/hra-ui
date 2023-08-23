@@ -16,10 +16,11 @@
     object-fit: fill;
   }
 
-  mat-card {
+  .mdc-card {
     padding: unset;
     margin-bottom: 0.063rem;
     display: flex;
+    flex-direction: row;
 
     &:hover {
       background: rgba(0, 0, 0, 0.04);

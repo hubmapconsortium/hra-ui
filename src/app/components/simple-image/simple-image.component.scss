@@ -46,7 +46,7 @@
   }
 
   @media (max-width: 26.75rem) {
-    .mat-card-header {
+    .mat-mdc-card-header {
       font-size: 1.125rem;
       padding: 1rem;
     }
@@ -62,9 +62,10 @@
 }
 
 ::ng-deep .custom-modal {
-  mat-dialog-container {
+  .mat-mdc-dialog-container .mdc-dialog__surface {
     display: flex;
     flex-direction: column;
+    padding: 1.5rem;
   }
 
   .mat-icon {
@@ -82,11 +83,13 @@
     display: none;
   }
 
-  .mat-dialog-title {
-    font-weight: 300;
-    font-size: 1.5rem;
-    line-height: 1.4202rem;
-    letter-spacing: 0.005rem;
+  .mdc-dialog__title {
+    display: flex;
+    --mdc-dialog-subhead-weight: 300;
+    --mdc-dialog-subhead-size: 1.5rem;
+    --mdc-dialog-subhead-line-height: 1.4202rem;
+    --mdc-dialog-subhead-tracking: 0.005rem;
     margin: unset;
+    padding: 0;
   }
 }

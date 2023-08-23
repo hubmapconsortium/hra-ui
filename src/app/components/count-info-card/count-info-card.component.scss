@@ -3,8 +3,9 @@
   font-weight: 300;
   flex-wrap: wrap;
 
-  .mat-card {
+  .count-card {
     display: flex;
+    flex-direction: row;
     height: 11.5rem;
     width: 7.6rem;
     justify-content: center;
@@ -16,11 +17,15 @@
     padding: unset;
   }
 
-  .mat-card:last-child {
+  .mat-mdc-card-content {
+    padding: 0;
+  }
+
+  .mat-mdc-card:last-child {
     margin-right: unset;
   }
 
-  .mat-card-content {
+  .mat-mdc-card-content {
     text-align: center;
   }
 
@@ -46,19 +51,19 @@
     grid-template-columns: 1fr 1fr 1fr;
     width: unset;
 
-    .mat-card {
+    .mat-mdc-card {
       width: unset;
       margin-right: 0.5rem;
       margin-bottom: 0.5rem;
     }
 
-    .mat-card:nth-child(3n) {
+    .mat-mdc-card:nth-child(3n) {
       margin-right: unset;
     }
   }
 
   @media (max-width: 25.125rem) {
-    .mat-card {
+    .mat-mdc-card {
       height: 14rem;
     }
   }

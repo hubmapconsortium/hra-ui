@@ -1,11 +1,15 @@
-<mat-card class="page-data" *ngFor="let msg of messages">
-    <div *ngIf="msg.route; else: text">
-        {{msg.message}}
-        <a [routerLink]="['/release-notes/',msg.route]">{{msg.routeText}}</a>
-        {{msg.emoji}}
-    </div>
-    <ng-template #text>
-        {{msg.message}}
-        {{msg.emoji}}
-    </ng-template>
+<mat-card class="mat-card" *ngFor="let msg of messages">
+    <mat-card-content>
+        <markdown>
+            <div *ngIf="msg.route; else: text">
+                {{msg.message}}
+                <a [routerLink]="['/release-notes/',msg.route]">{{msg.routeText}}</a>
+                {{msg.emoji}}
+            </div>
+            <ng-template #text>
+                {{msg.message}}
+                {{msg.emoji}}
+            </ng-template>
+        </markdown>
+    </mat-card-content>
 </mat-card>
