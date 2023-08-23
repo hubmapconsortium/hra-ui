@@ -203,6 +203,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/CellSummaryModel.html" data-type="entity-link" >CellSummaryModel</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/HraStateModuleOptions.html" data-type="entity-link" >HraStateModuleOptions</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/IllustratorModel.html" data-type="entity-link" >IllustratorModel</a>
                             </li>
                             <li class="link">
