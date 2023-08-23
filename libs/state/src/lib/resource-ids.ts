@@ -32,15 +32,6 @@ export const Metrics = createResourceId('Metrics');
 /** Message to display after submitting contact form */
 export const ContactAcknowledgement = createResourceId('ContactAcknowledgement');
 
-/** Landing Page Title id */
-export const LandingPageWCTitle = createResourceId('LandingPageIntroWCTitle');
-/** Landing Page Description id */
-export const LandingPageWCDescription = createResourceId('LandingPageIntroWCDescription');
-/** Landing Page Description Heading Read More */
-export const LandingPageWCHeadingReadMore = createResourceId('LandingPageWCHeadingReadMore');
-/** Landing Page Partners id */
-export const LandingPageWCPartners = createResourceId('LandingPageIntroWCPartners');
-
 /** App title id */
 export const AppTitle = createResourceId('AppTitle');
 

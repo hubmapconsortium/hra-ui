@@ -17,9 +17,9 @@ export class HraLandingPageIntroWcBehaviourComponent {
   /** select snapshot for Landing Page title */
   readonly landingPageIntroTitle = selectQuerySnapshot(RRS.anyText, RIds.LandingPageTitle);
   /** select snapshot for landing page intro description */
-  readonly landingPageIntroDescription = selectQuerySnapshot(RRS.markdown, RIds.LandingPageWCDescription);
+  readonly landingPageIntroDescription = selectQuerySnapshot(RRS.markdown, RIds.LandingPageDescription);
   /** select snapshot for landing page intro partners */
-  readonly landingPageHeaderReadMore = selectQuerySnapshot(RRS.markdown, RIds.LandingPageWCHeadingReadMore);
+  readonly landingPageHeaderReadMore = selectQuerySnapshot(RRS.markdown, RIds.LandingPageIntroMoreText);
   /** select snapshot for landing page intro partners */
-  readonly landingPageIntroPartners = selectQuerySnapshot(RRS.markdown, RIds.LandingPageWCPartners);
+  readonly landingPageIntroPartners = selectQuerySnapshot(RRS.markdown, RIds.LandingPagePartners);
 }

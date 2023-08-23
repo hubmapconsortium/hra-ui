@@ -1,25 +1,41 @@
-import { bootstrapApplication, createApplication } from '@angular/platform-browser';
-import { AppComponent } from './app/app.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { importProvidersFrom } from '@angular/core';
+import { APP_INITIALIZER, importProvidersFrom } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
+import { MatDialogModule } from '@angular/material/dialog';
+import { createApplication } from '@angular/platform-browser';
+import { CdkStateModule } from '@hra-ui/cdk/state';
+import { HraServiceModule } from '@hra-ui/services';
+import { HraStateModule } from '@hra-ui/state';
+import { ThemingModule } from '@hra-ui/theming';
 import { NgxsModule } from '@ngxs/store';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { MarkdownModule } from 'ngx-markdown';
-import { createCustomElement } from '@angular/elements';
-import { ThemingModule } from '@hra-ui/theming';
+import { AppComponent } from './app/app.component';
+import { initFactory } from './app/app.init';
 
 (async () => {
   const app = await createApplication({
     providers: [
       importProvidersFrom(
+        HttpClientModule,
+        MatDialogModule,
+
         InlineSVGModule.forRoot(),
-        NgxsModule.forRoot(),
         MarkdownModule.forRoot({
           loader: HttpClient,
         }),
+        NgxsModule.forRoot(),
+
         ThemingModule,
-        HttpClientModule
+        CdkStateModule,
+        HraServiceModule,
+        HraStateModule
       ),
+      {
+        provide: APP_INITIALIZER,
+        useFactory: initFactory,
+        multi: true,
+      },
     ],
   });
 
