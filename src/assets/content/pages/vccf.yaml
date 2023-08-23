@@ -19,9 +19,9 @@
 - type: page-data
   pageData:
   - heading: Overview
-    descriptions: The Human Reference Atlas-Vasculature Common Coordinate Framework (HRA-VCCF) dataset is the first open, computer-readable, and comprehensive database of the adult human blood vasculature. 
-      It contains a list of blood vessels and their branching relationships, as well as associated cell types and biomarkers, the vessel type, anastomoses, portal systems, microvasculature, functional tissue units, 
-      links to 3D reference objects, vessel geometries (length, diameter), and mappings to anatomical structures the vessels supply or drain. This database is used to derive the blood vasculature ASCT+B table; and, 
+    descriptions: The Human Reference Atlas-Vasculature Common Coordinate Framework (HRA-VCCF) dataset is the first open, computer-readable, and comprehensive database of the adult human blood vasculature.
+      It contains a list of blood vessels and their branching relationships, as well as associated cell types and biomarkers, the vessel type, anastomoses, portal systems, microvasculature, functional tissue units,
+      links to 3D reference objects, vessel geometries (length, diameter), and mappings to anatomical structures the vessels supply or drain. This database is used to derive the blood vasculature ASCT+B table; and,
       it can be used as a coordinate system for describing the location within the body--a Vasculature Common Coordinate Framework (VCCF).
 
 - type: page-data
@@ -228,8 +228,8 @@
   pageData:
   - heading: Terms Of Use
     descriptions: |
-      HuBMAP data are supplied with no warranties, expressed or implied, including without limitation, 
-      any warranty of merchantability or fitness for a particular purpose or non-infringement. No warranty 
+      HuBMAP data are supplied with no warranties, expressed or implied, including without limitation,
+      any warranty of merchantability or fitness for a particular purpose or non-infringement. No warranty
       with respect to the HuBMAP infrastructure is provided, including without limitation, any uptime warranty.
       The Parties make no representations that the use of the data will not infringe any patent or proprietary
       rights of third parties.
@@ -244,9 +244,8 @@
   - heading: Citation
     descriptions: |
       If you use the HRA-VCCF, please cite this effort as follows:
-      
-      Boppana, Avinash, Sujin Lee, Rajeev Malhotra, Marc Halushka, Ellen M. Quardokus, Bruce W. Herr II, Katy Börner, and Griffin M. Weber. 2022.
-      "<a href="https://cns.iu.edu/docs/publications/2023-Boppana_ASCT+Bs.pdf" target="_blank">Anatomical structures, cell types, and biomarkers of the healthy human blood vasculature</a>." <i>bioRxiv</i>, March 1, 2022. doi: 10.1101/2022.02.28.482302.
+
+      Avinash Boppana, Sujin Lee, Rajeev Malhotra, Marc Halushka, Katherine S Gustilo, Ellen M. Quardokus, Bruce W. Herr II, Katy Börner & Griffin M. Weber. Anatomical structures, cell types, and biomarkers of the healthy human blood vasculature. Scientific Data 10, 452 (2023). doi: <a href="https://doi.org/10.1038/s41597-023-02018-0">10.1038/s41597-023-02018-0</a>
 
 - type: page-data
   pageData:
@@ -256,6 +255,4 @@
       "<a href="https://www.frontiersin.org/articles/10.3389/fcvm.2020.00029/full" target="_blank">Considerations for Using the Vasculature as a Coordinate System to Map All the Cells in the Human Body.</a>"
       <i>Frontiers in Cardiovascular Medicine</i> 7: 29. doi: 10.3389/fcvm.2020.00029.
 
-      Boppana, Avinash, Sujin Lee, Rajeev Malhotra, Marc Halushka, Ellen M. Quardokus, Bruce W. Herr II, Katy Börner, and Griffin M. Weber. 2022.
-      "<a href="https://cns.iu.edu/docs/publications/2023-Boppana_ASCT+Bs.pdf" target="_blank">Anatomical structures, cell types, and biomarkers of the healthy human blood vasculature.</a>"
-      <i>bioRxiv</i>." March 1, 2022. doi: 10.1101/2022.02.28.482302.
+      Avinash Boppana, Sujin Lee, Rajeev Malhotra, Marc Halushka, Katherine S Gustilo, Ellen M. Quardokus, Bruce W. Herr II, Katy Börner & Griffin M. Weber. Anatomical structures, cell types, and biomarkers of the healthy human blood vasculature. Scientific Data 10, 452 (2023). doi: <a href="https://doi.org/10.1038/s41597-023-02018-0">10.1038/s41597-023-02018-0</a>
