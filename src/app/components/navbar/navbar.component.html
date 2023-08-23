@@ -3,7 +3,7 @@
     <button mat-flat-button [matMenuTriggerFor]="childMenu" [disabled]="item.disabled" disableRipple=true
       class="navigation-title" #menuTrigger="matMenuTrigger" color="primary">
       {{item.menuName}}
-      <mat-icon [class.inverse]="menuTrigger.menuOpen" iconPositionEnd>arrow_drop_down</mat-icon>
+      <mat-icon [class.inverse]="menuTrigger.menuOpen" iconPositionEnd id="arrow-icon">arrow_drop_down</mat-icon>
     </button>
 
     <mat-menu #childMenu="matMenu" class="menu-container" xPosition="after" yPosition="above">
