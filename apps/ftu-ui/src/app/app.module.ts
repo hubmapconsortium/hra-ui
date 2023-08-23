@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { initFactory } from './app.init';
 import { MatDialogModule } from '@angular/material/dialog';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,7 +35,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     AppRoutingModule,
     CdkStateModule,
     HraServiceModule,
-    HraStateModule,
+    HraStateModule.forRoot({
+      googleAnalyticsToken: environment.googleAnalyticsToken,
+    }),
 
     HeaderBehaviorComponent,
     TissueLibraryBehaviorComponent,
