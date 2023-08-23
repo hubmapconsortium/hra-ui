@@ -1,8 +1,9 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_INITIALIZER, Injector, NgModule, inject } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CdkStateModule } from '@hra-ui/cdk/state';
+import { createCustomElement } from '@angular/elements';
 import { HeaderBehaviorComponent, TissueLibraryBehaviorComponent } from '@hra-ui/components/behavioral';
 import { HraServiceModule } from '@hra-ui/services';
 import { HraStateModule } from '@hra-ui/state';
@@ -48,4 +49,11 @@ import { MatDialogModule } from '@angular/material/dialog';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    const FtuWebComponent = createCustomElement(AppComponent, {
+      injector: inject(Injector),
+    });
+    customElements.define('hra-ftu-wc', FtuWebComponent);
+  }
+}
