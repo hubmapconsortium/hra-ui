@@ -12,9 +12,19 @@ import {
   GradientPoint,
   SizeLegend,
 } from '@hra-ui/components/atoms';
-import { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/components/molecules';
+import {
+  BiomarkerTableDataCardComponent,
+  InteractiveSvgComponent,
+  SourceListComponent,
+} from '@hra-ui/components/molecules';
 import { TissueInfo, BiomarkerTableComponent } from '@hra-ui/components/organisms';
-import { ActiveFtuSelectors, TissueLibrarySelectors, ScreenModeAction } from '@hra-ui/state';
+import {
+  ActiveFtuSelectors,
+  TissueLibrarySelectors,
+  ScreenModeAction,
+  IllustratorActions,
+  IllustratorSelectors,
+} from '@hra-ui/state';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import { CellSummarySelectors, ResourceIds as Ids, ResourceTypes as RTypes, SourceRefsSelectors } from '@hra-ui/state';
 
@@ -44,12 +54,47 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
     SizeLegendComponent,
     SourceListComponent,
     EmptyBiomarkerComponent,
+    InteractiveSvgComponent,
   ],
   templateUrl: './biomarker-details-wc.component.html',
   styleUrls: ['./biomarker-details-wc.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BiomarkerDetailsWcComponent {
+  /**
+   * Current illustration url
+   */
+  readonly currentUrl = selectSnapshot(IllustratorSelectors.url);
+
+  /**
+   * Current mapping file
+   */
+  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);
+
+  /**
+   * Iri  of medical illustration behavior component
+   */
+  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);
+
+  /**
+   * Get all tissues
+   */
+  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);
+
+  /**
+   * Gets tissue title from the list of tissues
+   */
+  get tissueTitle(): string {
+    const iri = this.iri();
+    const tissues = this.tissues();
+    return iri ? tissues[iri].label : '';
+  }
+
+  /**
+   * Updates the active node on node hover
+   */
+  readonly updateNode = dispatch(IllustratorActions.SetSelection);
+
   /** Table tabs */
   readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);
 
@@ -72,17 +117,6 @@ export class BiomarkerDetailsWcComponent {
 
   /** List of sources with titles and links displayed to the user */
   readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);
-
-  /**
-   * Iri  of medical illustration behavior component
-   */
-  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);
-
-  /**
-   * Get all tissues
-   */
-  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);
-
   /**
    * Gets tissue title from the list of tissues
    */

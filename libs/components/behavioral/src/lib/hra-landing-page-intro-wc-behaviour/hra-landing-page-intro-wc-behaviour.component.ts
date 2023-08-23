@@ -6,7 +6,7 @@ import { selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceIds as RIds } from '@hra-ui/state';
 
 @Component({
-  selector: 'ftu-hra-ui-hra-landing-page-intro-wc-behaviour',
+  selector: 'ftu-wc-intro',
   standalone: true,
   imports: [CommonModule, HraLandingPageIntroWcComponent],
   templateUrl: './hra-landing-page-intro-wc-behaviour.component.html',

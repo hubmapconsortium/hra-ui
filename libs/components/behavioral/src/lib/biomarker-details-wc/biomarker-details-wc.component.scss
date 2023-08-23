@@ -1,19 +1,16 @@
 @use 'variables' as vars;
 
 :host {
-  display: grid;
-  grid-template-columns: 21.5rem 21.5rem auto;
-  grid-template-rows: 3.5rem 20rem 3rem 5rem auto;
-  grid-template-areas:
-    'table-header table-header table-header'
-    'table table table'
-    'gradient-legend-header size-legend-header .'
-    'gradient-legend size-legend .'
-    'source-list source-list source-list';
+  border: 0.063rem solid #d3d3d3;
+
+  ::ng-deep .extraTab {
+    border: 0.063rem solid #d3d3d3;
+    border-top: 0;
+  }
 
   .table-header {
     grid-area: table-header;
-    border-bottom: 0.063rem solid #d3d3d3;
+    border: 0.063rem solid #d3d3d3;
     width: 43rem;
     height: 3.5rem;
   }
@@ -22,6 +19,7 @@
     grid-area: table;
     max-width: 100%;
     overflow: auto;
+    border: 0.063rem solid #d3d3d3;
 
     ::ng-deep .table-tab-header {
       padding-left: 1rem;
@@ -36,6 +34,22 @@
       &.mdc-tab-indicator--active {
         background-color: #f8f9fa;
       }
+    }
+  }
+
+  hra-biomarker-table {
+    overflow-y: auto;
+    overflow-x: auto;
+  }
+
+  .legends {
+    display: inline-flex;
+    width: 100%;
+    .legends-right {
+      width: 50%;
+    }
+    .legends-left {
+      width: 50%;
     }
   }
 
