@@ -1,10 +1,14 @@
 import { AfterContentInit, Component, HostBinding, Input, inject } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
-import { dispatchAction$, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
-import { StorageId, StorageSelectors } from '@hra-ui/cdk/state';
+import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
+import {
+  LinkRegistryActions,
+  ResourceRegistryActions,
+  StorageId,
+  StorageSelectors,
+  createLinkId,
+} from '@hra-ui/cdk/state';
 import { ScreenNoticeBehaviorComponent } from '@hra-ui/components/behavioral';
-import { configureActions } from './action-config';
-import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -14,17 +18,21 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providers: [MatDialogModule],
 })
 export class AppComponent implements AfterContentInit {
-  @Input() linksSrcUrl = '';
-
-  @Input() resourcesSrcUrl = '';
-
-  readonly linksUrl$ = new BehaviorSubject<string>('');
-
-  readonly resourcesUrl$ = new BehaviorSubject<string>('');
-
   @HostBinding('class.mat-typography') readonly matTypography = true;
 
   readonly SMALL_VIEWPORT_THRESHOLD = 480; // In pixels
+
+  @Input() set linksYamlUrl(url: string) {
+    this.loadLinks(url);
+  }
+
+  @Input() set resourcesYamlUrl(url: string) {
+    this.loadResources(url);
+  }
+
+  @Input() set organIri(iri: string) {
+    this.navigateToOrgan(createLinkId('FTU'), { queryParams: { id: iri } });
+  }
 
   screenSizeNoticeOpen = false;
 
@@ -34,18 +42,14 @@ export class AppComponent implements AfterContentInit {
     'screen-size-notice'
   );
 
+  private readonly loadLinks = dispatch(LinkRegistryActions.LoadFromYaml);
+  private readonly loadResources = dispatch(ResourceRegistryActions.LoadFromYaml);
+  private readonly navigateToOrgan = dispatch(LinkRegistryActions.Navigate);
+
   private readonly dialog = inject(MatDialog);
 
   ngAfterContentInit(): void {
     this.detectSmallViewport();
-
-    if (!this.linksSrcUrl) {
-      this.linksSrcUrl = 'assets/links.yml';
-    }
-
-    if (!this.resourcesSrcUrl) {
-      this.resourcesSrcUrl = 'assets/resources.yml';
-    }
   }
 
   detectSmallViewport(): void {
