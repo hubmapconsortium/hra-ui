@@ -38,8 +38,7 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
 };
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'hra-ui-biomarker-details-wc',
+  selector: 'ftu-wc-biomarker-details',
   standalone: true,
   imports: [
     CommonModule,

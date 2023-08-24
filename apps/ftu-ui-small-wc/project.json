@@ -5,6 +5,7 @@
   "prefix": "hra",
   "sourceRoot": "apps/ftu-ui-small-wc/src",
   "tags": ["app"],
+  "implicitDependencies": ["shared-theming"],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",

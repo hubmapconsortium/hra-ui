@@ -19,7 +19,7 @@ export class HraLandingPageIntroWcBehaviourComponent {
   /** select snapshot for landing page intro description */
   readonly landingPageIntroDescription = selectQuerySnapshot(RRS.markdown, RIds.LandingPageDescription);
   /** select snapshot for landing page intro partners */
-  readonly landingPageHeaderReadMore = selectQuerySnapshot(RRS.markdown, RIds.LandingPageIntroMoreText);
+  readonly landingPageIntroReadMore = selectQuerySnapshot(RRS.markdown, RIds.LandingPageIntroReadMore);
   /** select snapshot for landing page intro partners */
   readonly landingPageIntroPartners = selectQuerySnapshot(RRS.markdown, RIds.LandingPagePartners);
 }

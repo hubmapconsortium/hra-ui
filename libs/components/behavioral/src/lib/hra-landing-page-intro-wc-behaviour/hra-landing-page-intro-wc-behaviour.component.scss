@@ -1,3 +1,10 @@
 :host {
   display: block;
+
+  .intro {
+    margin: 3.5rem 2rem;
+    display: inline-grid;
+    border: 1px solid #e2e7e9;
+    padding: 24px 32px 24px 32px;
+  }
 }

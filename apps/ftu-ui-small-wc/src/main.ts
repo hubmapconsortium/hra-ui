@@ -12,6 +12,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
 import { MarkdownModule } from 'ngx-markdown';
 import { AppComponent } from './app/app.component';
 import { initFactory } from './app/app.init';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 (async () => {
   const app = await createApplication({
@@ -19,6 +20,7 @@ import { initFactory } from './app/app.init';
       importProvidersFrom(
         HttpClientModule,
         MatDialogModule,
+        BrowserAnimationsModule,
 
         InlineSVGModule.forRoot(),
         MarkdownModule.forRoot({
