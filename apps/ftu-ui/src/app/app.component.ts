@@ -5,7 +5,8 @@ import { StorageId, StorageSelectors } from '@hra-ui/cdk/state';
 import { ScreenNoticeBehaviorComponent } from '@hra-ui/components/behavioral';
 
 @Component({
-  selector: 'ftu-ui-root',
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'hra-ftu-wc',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   providers: [MatDialogModule],
