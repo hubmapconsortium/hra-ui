@@ -13,14 +13,18 @@ import { MarkdownModule } from 'ngx-markdown';
 import { AppComponent } from './app/app.component';
 import { initFactory } from './app/app.init';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
+import { SimpleRouter } from './app/routing/simple-router.service';
 
 (async () => {
   const app = await createApplication({
     providers: [
       importProvidersFrom(
+        BrowserAnimationsModule,
         HttpClientModule,
         MatDialogModule,
-        BrowserAnimationsModule,
+        MatIconModule,
 
         InlineSVGModule.forRoot(),
         MarkdownModule.forRoot({
@@ -37,6 +41,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         provide: APP_INITIALIZER,
         useFactory: initFactory,
         multi: true,
+      },
+      {
+        // Replace full routing with a partial implementation
+        provide: Router,
+        useExisting: SimpleRouter,
       },
     ],
   });
