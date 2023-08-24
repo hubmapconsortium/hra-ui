@@ -1,8 +1,10 @@
-import { AfterContentInit, Component, HostBinding, inject } from '@angular/core';
+import { AfterContentInit, Component, HostBinding, Input, inject } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
-import { selectQuerySnapshot } from '@hra-ui/cdk/injectors';
+import { dispatchAction$, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { StorageId, StorageSelectors } from '@hra-ui/cdk/state';
 import { ScreenNoticeBehaviorComponent } from '@hra-ui/components/behavioral';
+import { configureActions } from './action-config';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -12,6 +14,14 @@ import { ScreenNoticeBehaviorComponent } from '@hra-ui/components/behavioral';
   providers: [MatDialogModule],
 })
 export class AppComponent implements AfterContentInit {
+  @Input() linksSrcUrl = '';
+
+  @Input() resourcesSrcUrl = '';
+
+  readonly linksUrl$ = new BehaviorSubject<string>('');
+
+  readonly resourcesUrl$ = new BehaviorSubject<string>('');
+
   @HostBinding('class.mat-typography') readonly matTypography = true;
 
   readonly SMALL_VIEWPORT_THRESHOLD = 480; // In pixels
@@ -28,6 +38,14 @@ export class AppComponent implements AfterContentInit {
 
   ngAfterContentInit(): void {
     this.detectSmallViewport();
+
+    if (!this.linksSrcUrl) {
+      this.linksSrcUrl = 'assets/links.yml';
+    }
+
+    if (!this.resourcesSrcUrl) {
+      this.resourcesSrcUrl = 'assets/resources.yml';
+    }
   }
 
   detectSmallViewport(): void {
