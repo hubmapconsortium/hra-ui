@@ -1,6 +1,6 @@
-import { AfterContentInit, Component, HostBinding, Input, inject } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, HostBinding, Input, Output, inject } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
-import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
+import { dispatch, select$, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import {
   LinkRegistryActions,
   ResourceRegistryActions,
@@ -9,6 +9,7 @@ import {
   createLinkId,
 } from '@hra-ui/cdk/state';
 import { ScreenNoticeBehaviorComponent } from '@hra-ui/components/behavioral';
+import { ActiveFtuSelectors } from '@hra-ui/state';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -33,6 +34,8 @@ export class AppComponent implements AfterContentInit {
   @Input() set organIri(iri: string) {
     this.navigateToOrgan(createLinkId('FTU'), { queryParams: { id: iri } });
   }
+
+  @Output() readonly organSelected = select$(ActiveFtuSelectors.iri);
 
   screenSizeNoticeOpen = false;
 
