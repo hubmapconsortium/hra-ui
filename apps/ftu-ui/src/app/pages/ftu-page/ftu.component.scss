@@ -20,7 +20,12 @@
         border-left: 0.063rem solid #d3d3d3;
       }
     }
+
+    & > :first-child {
+      width: 50%;
+    }
   }
+
   .display {
     display: none;
   }
