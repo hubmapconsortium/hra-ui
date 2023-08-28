@@ -2,7 +2,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, importProvidersFrom } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { MatDialogModule } from '@angular/material/dialog';
-import { createApplication } from '@angular/platform-browser';
+import { BrowserModule, createApplication } from '@angular/platform-browser';
 import { CdkStateModule } from '@hra-ui/cdk/state';
 import { HraServiceModule } from '@hra-ui/services';
 import { HraStateModule } from '@hra-ui/state';
@@ -15,12 +15,13 @@ import { initFactory } from './app/app.init';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
-import { SimpleRouter } from './app/routing/simple-router.service';
+import { NavigationLessRouter } from './app/routing/simple-router.service';
 
 (async () => {
   const app = await createApplication({
     providers: [
       importProvidersFrom(
+        BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
         MatDialogModule,
@@ -45,7 +46,7 @@ import { SimpleRouter } from './app/routing/simple-router.service';
       {
         // Replace full routing with a partial implementation
         provide: Router,
-        useExisting: SimpleRouter,
+        useExisting: NavigationLessRouter,
       },
     ],
   });
