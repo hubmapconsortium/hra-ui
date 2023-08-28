@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:data-schema-js": "tsc --target esnext -m nodenext src/app/utils/data-schema.ts",
+    "build:data-schema-js": "tsc --target esnext -m nodenext --skipLibCheck src/app/utils/data-schema.ts",
     "build:extract-json-schema": "node ./src/app/utils/cli.js json-schemas pages.schema.json",
     "build:json-schema": "npm-run-all build:data-schema-js build:extract-json-schema",
     "watch": "ng build --watch --configuration development",
