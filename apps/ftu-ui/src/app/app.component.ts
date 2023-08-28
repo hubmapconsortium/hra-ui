@@ -9,7 +9,7 @@ import {
   createLinkId,
 } from '@hra-ui/cdk/state';
 import { ScreenNoticeBehaviorComponent } from '@hra-ui/components/behavioral';
-import { ActiveFtuSelectors } from '@hra-ui/state';
+import { ActiveFtuSelectors, IllustratorActions } from '@hra-ui/state';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -36,6 +36,8 @@ export class AppComponent implements AfterContentInit {
   }
 
   @Output() readonly organSelected = select$(ActiveFtuSelectors.iri);
+
+  @Output() readonly nodeClicked = dispatch(IllustratorActions.SetSelection);
 
   screenSizeNoticeOpen = false;
 
