@@ -34,7 +34,7 @@ LandingPageIntroPartners:
 LandingPageIntroReadMore:
   type: markdown
   markdown: |
-  Read more about this effort at HRA Portal:<a href='' target='_blank'>Explore FTU</a> .
+    Read more about this effort at HRA Portal <a href='' target='_blank'>Explore FTU</a>.
 
 LandingPageIntroMoreText:
   type: text

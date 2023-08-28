@@ -34,7 +34,6 @@ import { CellSummarySelectors, ResourceIds as Ids, ResourceTypes as RTypes, Sour
 const EMPTY_TISSUE_INFO: TissueInfo = {
   id: '',
   label: '',
-  datasetCount: 0,
 };
 
 @Component({
@@ -126,7 +125,7 @@ export class BiomarkerDetailsWcComponent {
       return EMPTY_TISSUE_INFO;
     }
     const { id, label } = tissues[iri];
-    return { id, label, datasetCount: 10 };
+    return { id, label };
   }
 
   /**
