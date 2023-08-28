@@ -10,6 +10,7 @@ import { AppModule } from './app.module';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { mock } from 'jest-mock-extended';
 import { LinkRegistryActions } from '@hra-ui/cdk/state';
+import { ENVIRONMENT_INITIALIZER } from '@angular/core';
 
 jest.mock('@hra-ui/cdk/injectors');
 
@@ -28,7 +29,8 @@ describe('AppComponent', () => {
       .replaceModule(RouterModule, RouterTestingModule)
       .replaceModule(BrowserAnimationsModule, NoopAnimationsModule)
       .dontMock(MatDialogModule)
-      .provideMock({ provide: MatDialog, useValue: dialog });
+      .provideMock({ provide: MatDialog, useValue: dialog })
+      .dontMock(ENVIRONMENT_INITIALIZER);
   });
 
   it('should create component', async () => {

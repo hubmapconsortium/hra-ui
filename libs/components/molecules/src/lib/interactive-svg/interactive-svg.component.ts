@@ -62,8 +62,8 @@ export interface NodeTooltipData {
 export interface NodeMapEntry {
   /** Node label */
   label: string;
-  /** Node name */
-  name: string;
+  /** Node id */
+  id: string;
 }
 
 /**
@@ -185,7 +185,7 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestro
     for (const id of idCollection) {
       const decodedID = this.decodeId(id);
       const match = this.mapping.find(
-        (item) => item.name?.toLowerCase() === decodedID.toLowerCase() //search mapping by name for matching node entry
+        (item) => item.id?.toLowerCase() === decodedID.toLowerCase() //search mapping by name for matching node entry
       );
       if (match) {
         return match;
