@@ -13,6 +13,7 @@ export const DEFAULT_LOGGABLE_ACTIONS: unknown[] = [
   DownloadActions.Download,
   LinkRegistryActions.Navigate,
   ActiveFtuActions.Load,
-  IllustratorActions.SetSelection,
+  IllustratorActions.SetHover,
+  IllustratorActions.SetClicked,
   ScreenModeAction.Set,
 ];
