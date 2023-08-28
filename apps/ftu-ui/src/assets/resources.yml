@@ -22,14 +22,14 @@ LandingPageIntroDescription:
     by gene, protein, and lipid biomarkers. The FTU Explorer features experimental datasets from
     <a href='https://portal.hubmapconsortium.org/' target='_blank'>HuBMAP</a>,
     <a href='https://cellxgene.cziscience.com/' target='_blank'>CellxGene</a>,
-    <a href='' target='_blank'>NeMO</a>,
+    <a href='https://nemoarchive.org' target='_blank'>NeMO</a>,
     and <a href='https://gtexportal.org/' target='_blank'>GTEx</a>.
 
 LandingPageIntroPartners:
   type: markdown
   markdown: |
     A special thanks to our partners: The FTU Explorer was designed in close collaboration with
-    <a href='' target='_blank'>Kidney Precision Medicine Project</a> and <a href=''>European Bioinformatics Institute.</a>
+    <a href='https://www.kpmp.org' target='_blank'>Kidney Precision Medicine Project</a> and <a href='https://www.ebi.ac.uk' target="_blank">European Bioinformatics Institute.</a>
 
 LandingPageIntroReadMore:
   type: markdown

@@ -1,5 +1,6 @@
 :host {
   display: block;
+  overflow-y: scroll;
 
   &.fullscreen-on {
     position: absolute;

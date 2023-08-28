@@ -56,7 +56,7 @@ function defineNode(
 }
 
 /** Base node id */
-const BASE_ID = 'https://example.com/';
+const BASE_ID = 'https://purl.humanatlas.io/2d-ftu/';
 
 /** Mock tissue data */
 export const MOCK_TISSUE_DATA = {
