@@ -28,6 +28,7 @@ export class SetHover extends Action('Set Selection on Hover') {
  * Sets the selection for the Item in the current state on SetClicked
  */
 export class SetClicked extends Action(' Set Selection on Clicked') {
+  /** Initializes the Mapping Item */
   constructor(readonly selected: IllustrationMappingItem) {
     super();
   }
