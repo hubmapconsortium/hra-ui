@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, EventEmitter, HostBinding, Input, Output, inject } from '@angular/core';
+import { AfterContentInit, Component, HostBinding, Input, Output, inject } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { dispatch, select$, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import {
@@ -9,7 +9,7 @@ import {
   createLinkId,
 } from '@hra-ui/cdk/state';
 import { ScreenNoticeBehaviorComponent } from '@hra-ui/components/behavioral';
-import { ActiveFtuSelectors, IllustratorActions } from '@hra-ui/state';
+import { ActiveFtuSelectors, IllustratorSelectors } from '@hra-ui/state';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -37,7 +37,9 @@ export class AppComponent implements AfterContentInit {
 
   @Output() readonly organSelected = select$(ActiveFtuSelectors.iri);
 
-  @Output() readonly nodeClicked = dispatch(IllustratorActions.SetSelection);
+  @Output() readonly nodeHovered = select$(IllustratorSelectors.selected);
+
+  @Output() readonly nodeClicked = select$(IllustratorSelectors.selected);
 
   screenSizeNoticeOpen = false;
 
