@@ -41,6 +41,9 @@
         * JavaScript:
           * Basic Usage: <https://observablehq.com/@cns-iu/ccf-api-documentation-javascript>
           * Use case walkthrough: <https://observablehq.com/@cns-iu/ccf-api-usecase-javascript>
+      * grlc APIs (SPARQL queries plus OpenAPI endpoints [more info](http://grlc.io/)):
+        * grlc queries using the [CCF-API](https://ccf-api.hubmapconsortium.org/#/operations/sparql-post) SPARQL endpoint: <http://grlc.io/api/hubmapconsortium/ccf-grlc/ccf/>
+        * grlc queries using the [Ubergraph](https://github.com/INCATools/ubergraph) SPARQL endpoint: <http://grlc.io/api/hubmapconsortium/ccf-grlc/ubergraph/>
 
 - type: button
   text: Use the Human Reference Atlas APIs
