@@ -3,25 +3,52 @@
 :host {
   display: grid;
   width: 100%;
+  max-width: 71rem;
   height: 100%;
-  grid-template-columns: 21rem calc(100% - 21rem);
-  grid-template-rows: 11.3rem auto;
+  grid-template-columns: 21rem 50rem; //21rem calc(100% - 21rem);
+  grid-template-rows: 11.3rem 36.5rem 5rem;
   grid-template-areas:
     'header header'
-    'sidebar content';
+    'secondContent secondContent'
+    'footer footer';
 
   .header {
     grid-area: header;
     border-bottom: 0.0625rem solid rgba(vars.$dark-dividers);
+    .intro {
+      width: 70rem;
+    }
+  }
+  .secondContent {
+    grid-area: secondContent;
+    width: 71rem;
+    display: grid;
+    grid-template-areas: 'sidebar content';
+    grid-template-columns: 21rem 50rem;
+    max-height: 36.5rem;
   }
 
   .sidebar {
     grid-area: sidebar;
     border-right: 0.0625rem solid rgba(vars.$dark-dividers);
+    max-height: 36.5rem;
+    overflow: auto;
   }
 
   .page-content {
     grid-area: content;
+    display: contents;
+    width: 49rem;
+    max-height: 36.5rem;
+    overflow: auto;
+
+    .biomarker-details {
+      width: 50rem;
+
+      hra-biomarker-table {
+        max-height: 21.99rem;
+      }
+    }
   }
 
   .custom-overlay {
@@ -33,4 +60,32 @@
       display: none;
     }
   }
+
+  .footer {
+    grid-area: footer;
+  }
 }
+
+::ng-deep .mat-mdc-tab-body {
+  height: 30rem;
+}
+
+::ng-deep hra-biomarker-table {
+  max-width: unset !important;
+  max-height: calc(100% - 8rem) !important;
+}
+
+::ng-deep .content {
+  width: auto !important;
+  .toggle {
+    width: auto !important;
+  }
+  .table-content {
+    max-height: 25rem !important;
+  }
+}
+
+// :ng-deep .tissue-tree {
+//   max-height: 36.5rem;
+//   overflow: auto;
+// }
