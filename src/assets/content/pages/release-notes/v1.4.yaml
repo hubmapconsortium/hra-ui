@@ -305,9 +305,9 @@
           - image: assets/images/bruce_herr.svg
             name: Bruce Herr II
             field: Development
-            role: Sr. Systems Architect, PM
+            role: Technical Director
             email: bherr@indiana.edu
-          - image: assets/images/andreas_buckle.svg
+          - image: assets/images/andreas_bueckle.svg
             name: Andreas Bueckle
             field: Research
             role: Research Scientist
@@ -328,7 +328,7 @@
               Every six months, a new version of Human Reference Atlas data is released together with user interfaces that make it possible 
               to visually explore the atlas or programmatically access the data. The 6th release is in December. Thanks for reading!
         - type: image
-          imageSource: assets/images/4th_release_outro.svg
+          imageSource: assets/images/carousel1.svg
           alt: Outro
           styles:
             width: 100%
