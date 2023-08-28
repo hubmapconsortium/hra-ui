@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { FtuDataService, IllustrationMappingItem, Url } from '@hra-ui/services';
 import { Action, State, StateContext } from '@ngxs/store';
 import { forkJoin, Observable, tap } from 'rxjs';
-import { ClearSelection, Load, Reset, SetSelection } from './illustrator.actions';
+import { ClearSelection, Load, Reset, SetClicked, SetHover } from './illustrator.actions';
 
 /**
  * interface for the Illustrator Model that contains the url, selected
@@ -49,10 +49,18 @@ export class IllustratorState {
   }
 
   /**
-   * Sets the current selection to the state
+   * Sets the current selection to the state for SetHover
    */
-  @Action(SetSelection)
-  setSelection({ patchState }: Context, { selected }: SetSelection): void {
+  @Action(SetHover)
+  SetHover({ patchState }: Context, { selected }: SetHover): void {
+    patchState({ selected });
+  }
+
+  /**
+   * Sets the current selection to the state for SetClicked
+   */
+  @Action(SetClicked)
+  SetClicked({ patchState }: Context, { selected }: SetClicked): void {
     patchState({ selected });
   }
 

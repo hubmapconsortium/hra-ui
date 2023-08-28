@@ -18,7 +18,7 @@ export class IllustratorSelectors {
    * Returns the selected model of the illustrator
    */
   @Selector([IllustratorState])
-  static selected({ selected }: IllustratorModel): unknown | undefined {
+  static selected({ selected }: IllustratorModel): IllustrationMappingItem | undefined {
     return selected;
   }
 
