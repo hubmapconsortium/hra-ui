@@ -310,7 +310,7 @@
           - image: assets/images/andreas_bueckle.svg
             name: Andreas Bueckle
             field: Research
-            role: Research Scientist
+            role: Research Lead
             email: abueckle@iu.edu
         - type: divider
           styles:
