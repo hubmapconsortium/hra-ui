@@ -1,11 +1,8 @@
-<ftu-wc-intro class="header"></ftu-wc-intro>
-
-<ng-container>
-  <div class="secondContent">
-    <ftu-tissue-library-behavior class="sidebar"></ftu-tissue-library-behavior>
-    <div class="page-content">
-      <ftu-wc-biomarker-details class="biomarker-details"></ftu-wc-biomarker-details>
-    </div>
-  </div>
-</ng-container>
-<ftu-footer-behavior class="footer"></ftu-footer-behavior>
+<hra-fullscreen-container [fullscreen]="isFullscreen()">
+  <ftu-wc-intro class="header illustration" [class.display]="isFullscreen()"></ftu-wc-intro>
+  <ftu-tissue-library-behavior [class.display]="isFullscreen()" class="sidebar"></ftu-tissue-library-behavior>
+  <hra-fullscreen-content class="biomarker">
+    <ftu-wc-biomarker-details></ftu-wc-biomarker-details>
+  </hra-fullscreen-content>
+  <ftu-footer-behavior class="footer illustration" [class.display]="isFullscreen()"></ftu-footer-behavior>
+</hra-fullscreen-container>

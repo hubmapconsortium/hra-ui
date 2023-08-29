@@ -1,16 +1,35 @@
 @use 'variables' as vars;
 
 :host {
-  display: grid;
-  width: 100%;
-  max-width: 71rem;
   height: 100%;
-  grid-template-columns: 21rem 50rem; //21rem calc(100% - 21rem);
-  grid-template-rows: 11.3rem 36.5rem 5rem;
-  grid-template-areas:
-    'header header'
-    'secondContent secondContent'
-    'footer footer';
+  hra-fullscreen-container {
+    display: grid;
+    width: 100%;
+    max-width: 71rem;
+    height: 100%;
+    grid-template-columns: 21rem 50rem;
+    grid-template-rows: 11.3rem 36.5rem 5rem;
+    grid-template-areas:
+      'header header'
+      'sidebar biomarker'
+      'footer footer';
+  }
+
+  .display {
+    display: none;
+  }
+
+  :has(.fullscreen-on) {
+    display: block;
+    width: 71rem;
+    height: 52rem;
+    .table {
+      height: 52rem !important;
+    }
+    ::ng-deep .mat-mdc-tab-body {
+      height: 45rem;
+    }
+  }
 
   .header {
     grid-area: header;
@@ -19,51 +38,29 @@
       width: 70rem;
     }
   }
-  .secondContent {
-    grid-area: secondContent;
-    width: 71rem;
-    display: grid;
-    grid-template-areas: 'sidebar content';
-    grid-template-columns: 21rem 50rem;
-    max-height: 36.5rem;
-  }
 
   .sidebar {
     grid-area: sidebar;
     border-right: 0.0625rem solid rgba(vars.$dark-dividers);
     max-height: 36.5rem;
     overflow: auto;
+    width: 21rem;
   }
 
-  .page-content {
-    grid-area: content;
+  .biomarker {
+    grid-area: biomarker;
     display: contents;
-    width: 49rem;
+    width: 50rem;
     max-height: 36.5rem;
     overflow: auto;
-
-    .biomarker-details {
-      width: 50rem;
-
-      hra-biomarker-table {
-        max-height: 21.99rem;
-      }
-    }
-  }
-
-  .custom-overlay {
-    background-color: white;
-  }
-
-  .content-container {
-    &.hidden {
-      display: none;
-    }
   }
 
   .footer {
     grid-area: footer;
   }
+}
+::ng-deep .fullscreen-on {
+  position: initial !important;
 }
 
 ::ng-deep .mat-mdc-tab-body {
@@ -82,10 +79,10 @@
   }
   .table-content {
     max-height: 25rem !important;
+    overflow: initial !important;
   }
 }
 
-// :ng-deep .tissue-tree {
-//   max-height: 36.5rem;
-//   overflow: auto;
-// }
+::ng-deep .table-header {
+  width: auto !important;
+}

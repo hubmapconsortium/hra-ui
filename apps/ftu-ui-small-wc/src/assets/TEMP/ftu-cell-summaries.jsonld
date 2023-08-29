@@ -4427,6 +4427,56 @@
         },
         {
           "@type": "CellSummaryRow",
+          "cell_id": "https://purl.org/ccf/ASCTB-TEMP_ta",
+          "cell_label": "TA",
+          "gene_id": "https://purl.org/ccf/ASCTB-TEMP_dummy1",
+          "gene_label": "Dummy1",
+          "mean_expression": 0.7695419067711256,
+          "count": 21635,
+          "percentage": 0.022802030735050625
+        },
+        {
+          "@type": "CellSummaryRow",
+          "cell_id": "https://purl.org/ccf/ASCTB-TEMP_ta",
+          "cell_label": "TA",
+          "gene_id": "https://purl.org/ccf/ASCTB-TEMP_dummy2",
+          "gene_label": "Dummy2",
+          "mean_expression": 0.7695419067711256,
+          "count": 21635,
+          "percentage": 0.022802030735050625
+        },
+        {
+          "@type": "CellSummaryRow",
+          "cell_id": "https://purl.org/ccf/ASCTB-TEMP_ta",
+          "cell_label": "TA",
+          "gene_id": "https://purl.org/ccf/ASCTB-TEMP_dummy3",
+          "gene_label": "Dummy3",
+          "mean_expression": 0.7695419067711256,
+          "count": 21635,
+          "percentage": 0.022802030735050625
+        },
+        {
+          "@type": "CellSummaryRow",
+          "cell_id": "https://purl.org/ccf/ASCTB-TEMP_ta",
+          "cell_label": "TA",
+          "gene_id": "https://purl.org/ccf/ASCTB-TEMP_dummy4",
+          "gene_label": "Dummy4",
+          "mean_expression": 0.7695419067711256,
+          "count": 21635,
+          "percentage": 0.022802030735050625
+        },
+        {
+          "@type": "CellSummaryRow",
+          "cell_id": "https://purl.org/ccf/ASCTB-TEMP_ta",
+          "cell_label": "TA",
+          "gene_id": "https://purl.org/ccf/ASCTB-TEMP_dummy5",
+          "gene_label": "Dummy5",
+          "mean_expression": 0.7695419067711256,
+          "count": 21635,
+          "percentage": 0.022802030735050625
+        },
+        {
+          "@type": "CellSummaryRow",
           "cell_id": "https://purl.org/ccf/ASCTB-TEMP_cycling-ta",
           "cell_label": "Cycling TA",
           "gene_id": "https://purl.org/ccf/ASCTB-TEMP_dummy",
