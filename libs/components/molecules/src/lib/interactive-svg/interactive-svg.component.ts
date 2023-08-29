@@ -262,6 +262,11 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
     return id.replace(/_x([\da-f]+)_/gi, replacer);
   }
 
+  /**
+   * Turns normal string into decoded SVG id
+   * @param id id
+   * @returns Decoded id
+   */
   private unDecodeId(id: string): string {
     const replacer = (_match: string, pos: number) => `_x${id.charCodeAt(pos).toString(16).toUpperCase()}_`;
     return id.replace(/_/g, replacer);
