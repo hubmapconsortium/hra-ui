@@ -5,34 +5,26 @@
     <title>FTU Web Component</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <script src="ftu.js"></script>
+    <script src="hra-ftu-wc.js"></script>
     <script>
       window.addEventListener('DOMContentLoaded', () => {
         const ftu = document.getElementById('ftu');
         const linksUrl = '../assets/links.yml';
         const resourcesUrl = '../assets/resources.yml';
         const organIri = 'https://example.com/kidney';
-        const selectOrgan = (iri) => {
-          console.log('selected organ', iri);
+        const selectOrgan = (activeIri$) => {
+          activeIri$.subscribe();
+        };
+        const selectNode = (selectedNode$) => {
+          selectedNode$.subscribe();
         };
         let focusId = '';
 
-        function updateHighlight(node) {
-          if (node.detail) {
-            focusId = node.detail.id;
-            illustration.highlightId = focusId;
-            illustration2.highlightId = focusId;
-          } else {
-            focusId = '';
-            illustration.highlightId = '';
-            illustration2.highlightId = '';
-          }
-        }
         ftu.linksYamlUrl(linksUrl);
         ftu.resourcesYamlUrl(resourcesUrl);
         ftu.organIri(organIri);
         ftu.addEventListener('organSelected', selectOrgan);
-        ftu.addEventListener('nodeClicked', updateHighlight);
+        ftu.addEventListener('nodeClicked', selectNode);
       });
     </script>
   </head>
