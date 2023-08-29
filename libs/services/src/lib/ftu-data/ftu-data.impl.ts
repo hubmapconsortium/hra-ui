@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, InjectionToken, inject } from '@angular/core';
 import { createLinkId } from '@hra-ui/cdk/state';
-import { Observable, firstValueFrom, from, map, of } from 'rxjs';
+import { Observable, firstValueFrom, from, map } from 'rxjs';
 import { z } from 'zod';
 import { IRI, Iri, URL, Url } from '../shared/common.model';
 import {
@@ -127,7 +127,7 @@ export class FtuDataImplService extends FtuDataService {
   /** http client to read files */
   private readonly http = inject(HttpClient);
 
-  /** Endpoints injjector to the service */
+  /** Endpoints injector to the service */
   private readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS);
   /** Endpoint injection for file formats */
   private readonly fileFormatMapping = inject(FTU_DATA_IMPL_FILE_FORMAT_MAPPING);

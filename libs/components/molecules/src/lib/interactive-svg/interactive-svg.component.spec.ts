@@ -80,7 +80,7 @@ describe('InteractiveSvgComponent', () => {
     const testNode: NodeMapEntry = {
       id: 'Cortical_Collecting_Duct_Principal_Cell_1',
       label: 'kidney cortex collecting duct principal cell',
-      id: '000000',
+      ontologyId: 'CL_1000714',
     };
     const testMapping: NodeMapEntry[] = [
       testNode,
@@ -129,18 +129,18 @@ describe('InteractiveSvgComponent', () => {
 
   it('highlights elements based on highlightId', async () => {
     const testNode: NodeMapEntry = {
-      name: 'Cortical_Collecting_Duct_Principal_Cell_1',
+      id: 'Cortical_Collecting_Duct_Principal_Cell_1',
       label: 'kidney cortex collecting duct principal cell',
-      id: '000000',
+      ontologyId: 'CL_1000714',
     };
     const testMapping: NodeMapEntry[] = [
       testNode,
-      { ...testNode, name: 'Cortical_Collecting_Duct_Principal_Cell_2' },
-      { ...testNode, name: 'Cortical_Collecting_Duct_Principal_Cell_3' },
+      { ...testNode, id: 'Cortical_Collecting_Duct_Principal_Cell_2' },
+      { ...testNode, id: 'Cortical_Collecting_Duct_Principal_Cell_3' },
     ];
     const testChanges: SimpleChanges = {
       highlightId: {
-        currentValue: '000000',
+        currentValue: 'CL_1000714',
         firstChange: false,
         previousValue: undefined,
         isFirstChange: () => {
@@ -149,7 +149,7 @@ describe('InteractiveSvgComponent', () => {
       },
     };
 
-    const { instance } = await shallow.render({ bind: { mapping: testMapping, highlightId: '000000' } });
+    const { instance } = await shallow.render({ bind: { mapping: testMapping, highlightId: 'CL_1000714' } });
     instance.setSvgElement(svg);
     instance.ngOnChanges(testChanges);
     instance.setSvgElement(svg2);

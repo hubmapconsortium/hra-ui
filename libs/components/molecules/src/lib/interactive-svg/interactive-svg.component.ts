@@ -64,10 +64,10 @@ export interface NodeTooltipData {
 export interface NodeMapEntry {
   /** Node label */
   label: string;
-  /** Node name */
-  name: string;
+  /** Node id in svg */
+  id: string;
   /** Ontology id of cell type */
-  ontologyId: string;
+  ontologyId?: string;
 }
 
 /**
@@ -137,7 +137,7 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
     const cellMatch = this.mapping.find((entry) => entry.ontologyId === this.highlightId); // find the matching cell data in mapping
     let crosswalkMatch: NodeListOf<Element>;
     if (cellMatch && this.crosswalkEl) {
-      const name = cellMatch.name;
+      const name = cellMatch.id;
       const childId = this.unDecodeId(name); // get the id of the matching cell in svg
       const elementMatch = this.crosswalkEl.querySelectorAll(`#${childId}`)[0]; //find the element of the matching cell in svg
       if (elementMatch) {
@@ -243,7 +243,7 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
     for (const id of idCollection) {
       const decodedID = this.decodeId(id);
       const match = this.mapping.find(
-        (item) => item.name?.toLowerCase() === decodedID.toLowerCase() //search mapping by name for matching node entry
+        (item) => item.id?.toLowerCase() === decodedID.toLowerCase() //search mapping by name for matching node entry
       );
       if (match) {
         return match;

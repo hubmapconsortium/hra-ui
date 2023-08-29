@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnChanges, Output } from '@angular/core';
 import { NodeMapEntry } from '@hra-ui/components/molecules';
-import { FtuDataService } from '@hra-ui/services';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import { CellEntry, IllustrationData, JsonLd } from './models';
@@ -18,8 +17,6 @@ import { CellEntry, IllustrationData, JsonLd } from './models';
 export class AppWebComponent implements OnChanges {
   /** Http client */
   private readonly http = inject(HttpClient);
-
-  private readonly dataService = inject(FtuDataService);
 
   /** Ftu illustrations file: can be url or file object */
   @Input() lookupSrc: string | JsonLd = '';
@@ -109,7 +106,7 @@ export class AppWebComponent implements OnChanges {
     return data.map((entry) => {
       return {
         label: entry.label,
-        name: entry.svg_id,
+        id: entry.svg_id,
         ontologyId: entry.representation_of.split('/').slice(-1)[0],
       };
     });
