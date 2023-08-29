@@ -13,7 +13,7 @@ export class ContactState {
 
   /** An action method for sending a message. It uses SendMessage action class to send messages. */
   @Action(SendMessage)
-  sendMessage(_ctx: StateContext<void>, { message }: SendMessage): Observable<void> {
-    return this.contact.sendMessage(message);
+  sendMessage(_ctx: StateContext<void>, { message }: SendMessage): Observable<void> | void {
+    this.contact.sendMessage(message);
   }
 }

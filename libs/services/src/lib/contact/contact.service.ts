@@ -15,5 +15,5 @@ export interface ContactMessage {
 @Injectable()
 export abstract class ContactService {
   /** This method takes a ContactMessage object as an argument and returns an Observable  */
-  abstract sendMessage(message: ContactMessage): Observable<void>;
+  abstract sendMessage(message: ContactMessage): Observable<void> | void;
 }
