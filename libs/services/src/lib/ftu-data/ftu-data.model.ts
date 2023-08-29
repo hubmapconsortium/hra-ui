@@ -28,6 +28,21 @@ const PERCENTAGE = z.number().gte(0, PERCENTAGE_RANGE_ERROR).lte(1, PERCENTAGE_R
 // Model schemas
 // ---------------------------------------
 
+/** Zod Schema for a tissue object */
+export const TISSUE = z.object({
+  id: IRI,
+  label: z.string(),
+  parent: IRI,
+  children: IRI.array().default([]),
+  link: z.string().optional(),
+});
+
+/** Zod Schema for a tissue library object */
+export const TISSUE_LIBRARY = z.object({
+  root: IRI,
+  nodes: z.record(IRI, TISSUE),
+});
+
 /** Zod Schema for a cell object */
 export const CELL = z.object({
   id: IRI,
@@ -47,6 +62,7 @@ export const CELL_SUMMARY_ROW = z.object({
   count: COUNT,
   percentage: PERCENTAGE,
   meanExpression: PERCENTAGE,
+  dataset_count: COUNT.optional(),
 });
 
 /** Zod Schema for a CELL_SUMMARY */
@@ -72,6 +88,7 @@ export const SOURCE_REFERENCE = z.object({
 
 /** Zod Schema for a ILLUSTRATION_MAPPING_ITEM */
 export const ILLUSTRATION_MAPPING_ITEM = z.object({
+  id: z.string(),
   label: z.string(),
   name: z.string(),
   id: z.string(),
@@ -80,6 +97,12 @@ export const ILLUSTRATION_MAPPING_ITEM = z.object({
 // ---------------------------------------
 // Model types
 // ---------------------------------------
+
+/** Type for Tissue */
+export type Tissue = z.infer<typeof TISSUE>;
+
+/** Type for Tissue */
+export type TissueLibrary = z.infer<typeof TISSUE_LIBRARY>;
 
 /** Type for a cell */
 export type Cell = z.infer<typeof CELL>;

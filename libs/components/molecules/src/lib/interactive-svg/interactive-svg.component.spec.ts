@@ -78,14 +78,14 @@ describe('InteractiveSvgComponent', () => {
     const event2 = { target: path2, clientX: 10, clientY: 20 };
     const event3 = { target: path3, clientX: 10, clientY: 20 };
     const testNode: NodeMapEntry = {
-      name: 'Cortical_Collecting_Duct_Principal_Cell_1',
+      id: 'Cortical_Collecting_Duct_Principal_Cell_1',
       label: 'kidney cortex collecting duct principal cell',
       id: '000000',
     };
     const testMapping: NodeMapEntry[] = [
       testNode,
-      { ...testNode, name: 'Cortical_Collecting_Duct_Principal_Cell_2' },
-      { ...testNode, name: 'Cortical_Collecting_Duct_Principal_Cell_3' },
+      { ...testNode, id: 'Cortical_Collecting_Duct_Principal_Cell_2' },
+      { ...testNode, id: 'Cortical_Collecting_Duct_Principal_Cell_3' },
     ];
 
     it('should emit hover event on mouseover', async () => {

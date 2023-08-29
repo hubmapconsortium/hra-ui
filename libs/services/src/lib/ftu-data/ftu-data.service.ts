@@ -1,11 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Iri, Url } from '../shared/common.model';
-import { CellSummary, DataFileReference, IllustrationMappingItem, SourceReference } from './ftu-data.model';
+import {
+  CellSummary,
+  DataFileReference,
+  IllustrationMappingItem,
+  SourceReference,
+  TissueLibrary,
+} from './ftu-data.model';
 
 /** Service for loading all data related to a single ftu */
 @Injectable()
 export abstract class FtuDataService {
+  /**
+   * Gets tissue library
+   * @returns tissue library
+   */
+  abstract getTissueLibrary(): Observable<TissueLibrary>;
+
   /**
    * This method takes
    * @param iri and @returns an observable url
