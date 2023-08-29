@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnChanges, Output } from '@angular/core';
 import { NodeMapEntry } from '@hra-ui/components/molecules';
+import { FtuDataService } from '@hra-ui/services';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import { CellEntry, IllustrationData, JsonLd } from './models';
@@ -17,6 +18,8 @@ import { CellEntry, IllustrationData, JsonLd } from './models';
 export class AppWebComponent implements OnChanges {
   /** Http client */
   private readonly http = inject(HttpClient);
+
+  private readonly dataService = inject(FtuDataService);
 
   /** Ftu illustrations file: can be url or file object */
   @Input() lookupSrc: string | JsonLd = '';
@@ -36,17 +39,13 @@ export class AppWebComponent implements OnChanges {
   /** Illustration svg url behavior subject */
   readonly url$ = new BehaviorSubject<string>('');
 
-  /** Mapping data behavior subject */
-  readonly mapping$ = new BehaviorSubject<NodeMapEntry[]>([]);
-
-  /** Highlighted ontology id behavior subject */
-  readonly highlight$ = new BehaviorSubject<string>('');
+  /** Mapping data */
+  mapping: NodeMapEntry[] = [];
 
   /**
    * Sets illustration url and mapping data on input changes
    */
   ngOnChanges() {
-    this.highlight$.next(this.highlightId);
     if (typeof this.lookupSrc === 'string') {
       this.getData(this.illustrationSrc, this.lookupSrc).subscribe();
     } else {
@@ -84,7 +83,7 @@ export class AppWebComponent implements OnChanges {
         );
         if (illustrationFile) {
           this.url$.next(illustrationFile.file);
-          this.mapping$.next(this.cellEntryToNodeEntry(currentOrganData.mapping));
+          this.mapping = this.cellEntryToNodeEntry(currentOrganData.mapping);
         }
       }
     } else {
@@ -95,7 +94,7 @@ export class AppWebComponent implements OnChanges {
         );
         if (illustrationFile) {
           this.url$.next(illustrationFile.file);
-          this.mapping$.next(this.cellEntryToNodeEntry(illustrationSrc.mapping));
+          this.mapping = this.cellEntryToNodeEntry(illustrationSrc.mapping);
         }
       }
     }
@@ -108,11 +107,10 @@ export class AppWebComponent implements OnChanges {
    */
   private cellEntryToNodeEntry(data: CellEntry[]): NodeMapEntry[] {
     return data.map((entry) => {
-      const id = entry.representation_of.split('/').slice(-1)[0];
       return {
         label: entry.label,
         name: entry.svg_id,
-        id: id,
+        ontologyId: entry.representation_of.split('/').slice(-1)[0],
       };
     });
   }

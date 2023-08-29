@@ -1,7 +1,7 @@
 <hra-interactive-svg
   [url]="(url$ | async) || undefined"
-  [mapping]="(mapping$ | async) || undefined"
-  [highlightId]="(highlight$ | async) || undefined"
+  [mapping]="mapping"
+  [highlightId]="highlightId"
   (nodeHover)="nodeHovered.emit($event)"
   (nodeClick)="nodeClicked.emit($event)"
 ></hra-interactive-svg>

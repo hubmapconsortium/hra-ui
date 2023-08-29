@@ -67,7 +67,7 @@ export interface NodeMapEntry {
   /** Node name */
   name: string;
   /** Ontology id of cell type */
-  id: string;
+  ontologyId: string;
 }
 
 /**
@@ -87,7 +87,7 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
   @Input() url?: string;
 
   /** Mapping info */
-  @Input() mapping?: T[] = [];
+  @Input() mapping: T[] = [];
 
   /** Highlighted ontology id */
   @Input() highlightId?: string;
@@ -124,27 +124,32 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
    * @param changes
    */
   ngOnChanges(changes: SimpleChanges): void {
-    if ('highlightId' in changes && this.crosswalkEl) {
+    if ('highlightId' in changes) {
       this.resetHighlight();
-      const cellMatch = this.mapping?.find((entry) => entry.id === this.highlightId); // find the matching cell data in mapping
-      let crosswalkMatch: NodeListOf<Element>;
-      if (cellMatch) {
-        const name = cellMatch.name;
-        const childId = name.replace(/_/g, '_x5F_'); // get the id of the matching cell in svg
-        const elementMatch = this.crosswalkEl.querySelectorAll(`#${childId}`)[0]; //find the element of the matching cell in svg
-        if (elementMatch) {
-          if (elementMatch.nodeName === 'g') {
-            // highlights children if g element
-            crosswalkMatch = this.crosswalkEl.querySelectorAll(`#${childId} :is(path, polygon, polyline)`);
-          } else {
-            // highlights siblings if path, polygon, or polyline element
-            const parentId = elementMatch.parentElement?.id ?? '';
-            crosswalkMatch = this.crosswalkEl.querySelectorAll(`#${parentId} :is(path, polygon, polyline)`);
-          }
-          crosswalkMatch.forEach((element) =>
-            element.setAttribute('style', 'fill: hsl(0deg 100% 50%);mix-blend-mode: saturation;')
-          );
+      this.setHighlight();
+    }
+  }
+
+  /**
+   * Highlights cells that match highlightId
+   */
+  private setHighlight() {
+    const cellMatch = this.mapping.find((entry) => entry.ontologyId === this.highlightId); // find the matching cell data in mapping
+    let crosswalkMatch: NodeListOf<Element>;
+    if (cellMatch && this.crosswalkEl) {
+      const name = cellMatch.name;
+      const childId = this.unDecodeId(name); // get the id of the matching cell in svg
+      const elementMatch = this.crosswalkEl.querySelectorAll(`#${childId}`)[0]; //find the element of the matching cell in svg
+      if (elementMatch) {
+        if (elementMatch.nodeName === 'g') {
+          // highlights children if g element
+          crosswalkMatch = this.crosswalkEl.querySelectorAll(`#${childId} :is(path, polygon, polyline)`);
+        } else {
+          // highlights siblings if path, polygon, or polyline element
+          const parentId = elementMatch.parentElement?.id ?? '';
+          crosswalkMatch = this.crosswalkEl.querySelectorAll(`#${parentId} :is(path, polygon, polyline)`);
         }
+        crosswalkMatch.forEach((element) => element.classList.add('click-active'));
       }
     }
   }
@@ -155,7 +160,7 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
   private resetHighlight(): void {
     this.crosswalkEl
       ?.querySelectorAll('path, polygon, polyline')
-      .forEach((element) => element.setAttribute('style', ''));
+      .forEach((element) => element.classList.remove('click-active'));
   }
 
   /**
@@ -171,7 +176,7 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
    */
   setSvgElement(el: SVGElement): void {
     this.clear();
-    this.crosswalkEl = el.querySelector('[id^="Crosswalk"]') || undefined;
+    this.crosswalkEl = el.querySelector('[id^="Crosswalk"]') ?? undefined;
     if (this.crosswalkEl) {
       // Move to front (i.e. last child in svg)
       this.renderer.appendChild(el, this.crosswalkEl);
@@ -237,13 +242,11 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
     const idCollection = [targetId, parentId, grandparentId];
     for (const id of idCollection) {
       const decodedID = this.decodeId(id);
-      if (this.mapping) {
-        const match = this.mapping.find(
-          (item) => item.name?.toLowerCase() === decodedID.toLowerCase() //search mapping by name for matching node entry
-        );
-        if (match) {
-          return match;
-        }
+      const match = this.mapping.find(
+        (item) => item.name?.toLowerCase() === decodedID.toLowerCase() //search mapping by name for matching node entry
+      );
+      if (match) {
+        return match;
       }
     }
     return undefined;
@@ -257,6 +260,11 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
   private decodeId(id: string): string {
     const replacer = (_match: string, hex: string) => String.fromCharCode(Number.parseInt(hex, 16));
     return id.replace(/_x([\da-f]+)_/gi, replacer);
+  }
+
+  private unDecodeId(id: string): string {
+    const replacer = (_match: string, pos: number) => `_x${id.charCodeAt(pos).toString(16).toUpperCase()}_`;
+    return id.replace(/_/g, replacer);
   }
 
   /**
