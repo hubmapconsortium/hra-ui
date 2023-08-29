@@ -6,7 +6,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:json-schema": "node ./src/app/utils/cli.js json-schemas pages.schema.json",
+    "build:data-schema-js": "tsc --target esnext -m nodenext --skipLibCheck src/app/utils/data-schema.ts",
+    "build:extract-json-schema": "node ./src/app/utils/cli.js json-schemas pages.schema.json",
+    "build:json-schema": "npm-run-all build:data-schema-js build:extract-json-schema",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"
@@ -59,6 +61,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "npm-run-all": "^4.1.5",
     "typescript": "~4.9.5"
   },
   "browser": {

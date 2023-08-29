@@ -1,5 +1,5 @@
 import { writeFileSync } from 'fs';
-import { PageSpec } from '../utils/data-schema.js';
+import { PageSpec } from './data-schema.js';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 
 /**

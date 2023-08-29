@@ -4,8 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { load } from 'js-yaml';
 import { PageDef } from 'src/app/components/page-element/page-def';
-// @ts-ignore TODO: Fix typings
-import { PageSpec } from 'src/app/utils/data-schema.js';
+import { PageSpec } from 'src/app/utils/data-schema';
 
 @Injectable({
   providedIn: 'root',

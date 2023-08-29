@@ -1476,7 +1476,8 @@
                 "description": "Properties 'class' and 'styles' are optional. Add styling in styles to apply styles to the title."
               },
               "title": {
-                "type": "string"
+                "type": "string",
+                "description": "Title/Text to be displayed"
               },
               "class": {
                 "type": "string",
