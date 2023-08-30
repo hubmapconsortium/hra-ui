@@ -50,7 +50,6 @@ import { environment } from '../environments/environment';
       multi: true,
     },
   ],
-  bootstrap: [AppComponent],
 })
 export class AppModule implements DoBootstrap {
   constructor(private injector: Injector) {}
