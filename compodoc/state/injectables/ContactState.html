@@ -185,7 +185,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;void&gt;</code>
+                        <b>Returns : </b>    <code>Observable | void</code>
 
                     </div>
                     <div class="io-description">
@@ -216,7 +216,7 @@ export class ContactState {
 
   /** An action method for sending a message. It uses SendMessage action class to send messages. */
   @Action(SendMessage)
-  sendMessage(_ctx: StateContext&lt;void&gt;, { message }: SendMessage): Observable&lt;void&gt; {
+  sendMessage(_ctx: StateContext&lt;void&gt;, { message }: SendMessage): Observable&lt;void&gt; | void {
     return this.contact.sendMessage(message);
   }
 }

@@ -40,7 +40,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li >ContactService</li>
+  <li >ContactImplService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -58,7 +58,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/lib/contact/contact.service.ts</code>
+            <code>src/lib/contact/contact.impl.ts</code>
         </p>
 
 
@@ -66,10 +66,16 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>An abstract class representing a ContactService</p>
+                <p>ContactImplService - Angular service that handles sending emails from the contact modal</p>
 
             </p>
 
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                        <code><a href="../injectables/ContactService.html" target="_self" >ContactService</a></code>
+            </p>
 
 
             <section>
@@ -86,7 +92,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Abstract</span>
+                                    <span class="modifier"></span>
                                 <a href="#sendMessage" >sendMessage</a>
                             </li>
                         </ul>
@@ -113,7 +119,7 @@
                 <td class="col-md-4">
                     <a name="sendMessage"></a>
                     <span class="name">
-                        <span class="modifier">Abstract</span>
+                        <span class="modifier"></span>
                         <span ><b>sendMessage</b></span>
                         <a href="#sendMessage"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -129,15 +135,21 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/lib/contact/contact.service.ts:18</a></div>
+                    <div class="io-line">Inherited from         <code><a href="../injectables/ContactService.html" target="_self" >ContactService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/ContactService.html#source" target="_self" >ContactService:11</a></code>
+</div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>This method takes a ContactMessage object as an argument and returns an Observable</p>
+                    <div class="io-description"><p>Overrides the sendMessage method to send message via email to the recipient</p>
 </div>
 
                     <div class="io-description">
@@ -187,23 +199,23 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { ContactMessage, ContactService } from &#x27;./contact.service&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
 
-/** A interface contact which defines email, subject, and the message. */
-export interface ContactMessage {
-  /** A variable email which accepts the email entered by user */
-  email: string;
-  /** A variable subject which accepts the subject entered by user */
-  subject: string;
-  /** A variable message which accepts the message entered by user */
-  message: string;
-}
-
-/** An abstract class representing a ContactService */
-@Injectable()
-export abstract class ContactService {
-  /** This method takes a ContactMessage object as an argument and returns an Observable  */
-  abstract sendMessage(message: ContactMessage): Observable&lt;void&gt; | void;
+/** ContactImplService - Angular service that handles sending emails from the contact modal */
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class ContactImplService extends ContactService {
+  /** Overrides the sendMessage method to send message via email to the recipient */
+  override sendMessage(message: ContactMessage): Observable&lt;void&gt; | void {
+    const anchor &#x3D; document.createElement(&#x27;a&#x27;);
+    document.body.appendChild(anchor);
+    anchor.target &#x3D; &#x27;_blank&#x27;;
+    anchor.href &#x3D; &#x60;mailto:${message.email}?subject&#x3D;${message.subject}&amp;body&#x3D;${message.message}&#x60;;
+    anchor.click();
+    anchor.remove();
+  }
 }
 </code></pre>
     </div>
@@ -248,7 +260,7 @@ export abstract class ContactService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'ContactService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ContactImplService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
