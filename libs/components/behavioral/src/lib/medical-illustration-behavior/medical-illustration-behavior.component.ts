@@ -49,10 +49,10 @@ export class MedicalIllustrationBehaviorComponent {
   /**
    * Updates the active node on node hover
    */
-  readonly updateNodeonHover = dispatch(IllustratorActions.SetHover);
+  readonly updateNodeOnHover = dispatch(IllustratorActions.SetHover);
 
   /**
    * Updates the active node on node click
    */
-  readonly updateNodeonClicked = dispatch(IllustratorActions.SetHover);
+  readonly updateNodeOnClicked = dispatch(IllustratorActions.SetClicked);
 }
