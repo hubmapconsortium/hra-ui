@@ -120,6 +120,7 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
   /** Crosswalk element of svg */
   private crosswalkEl?: Element;
 
+  /** List of highlighted svg elements */
   private highlightedElements: Element[] = [];
 
   /**
