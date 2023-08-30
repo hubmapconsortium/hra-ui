@@ -1,0 +1,176 @@
+<ng-container [ngSwitch]="def.type">
+  <ccf-page-header
+    *ngSwitchCase="'header'"
+    [style]="def['styles']"
+    [headerCard]="def['headerCard']"
+    class="page-header"
+  ></ccf-page-header>
+  <ccf-page-data
+    *ngSwitchCase="'page-data'"
+    [data]="def['pageData']"
+    [style]="def['styles']"
+    class="description"
+  >
+  </ccf-page-data>
+  <announcement-card
+    *ngSwitchCase="'announcement'"
+    [messages]="def['announcementCard']"
+  ></announcement-card>
+  <ccf-use-button
+    *ngSwitchCase="'button'"
+    [buttonData]="$any(def)"
+    class="button-container"
+    [style]="def['styles']"
+  >
+  </ccf-use-button>
+  <ccf-sop-links
+    *ngSwitchCase="'sop-links'"
+    [links]="def['sopData']"
+  ></ccf-sop-links>
+  <ccf-board-members
+    *ngSwitchCase="'board-members'"
+    [membersData]="def['boardMembersData']"
+  ></ccf-board-members>
+  <ccf-card-button-long
+    *ngSwitchCase="'long-card'"
+    [longButtonItems]="def['longCardItems']"
+    (cardRoutes)="clicked($event)"
+  ></ccf-card-button-long>
+  <ccf-simple-tile
+    *ngSwitchCase="'simple-tile'"
+    [definitions]="def['description']"
+  ></ccf-simple-tile>
+  <youtube-model
+    *ngSwitchCase="'player'"
+    [playerData]="def['youtubePlayer']"
+  ></youtube-model>
+  <div *ngSwitchCase="'title'" [class]="def['class']" [style]="def['styles']">
+    {{ def['title'] }}
+  </div>
+  <div
+    *ngSwitchCase="'margin'"
+    [style.margin-top]="def['top']"
+    [style.margin-bottom]="def['bottom']"
+  ></div>
+  <card-with-header
+    *ngSwitchCase="'long-card-with-title'"
+    [cardBlockData]="def['longCardWithTitleData']"
+  >
+  </card-with-header>
+  <ccf-simple-image
+    *ngSwitchCase="'simple-image'"
+    [imageInfo]="def['imageData']"
+  ></ccf-simple-image>
+  <img
+    *ngSwitchCase="'image'"
+    [src]="def['imageSource']"
+    [class]="def['class']"
+    [style]="def['styles']"
+    [alt]="def['alt']"
+  />
+  <div *ngSwitchCase="'text'" [style]="def['styles']" [class]="def['class']">
+    {{ def['text'] }}
+  </div>
+  <div
+    *ngSwitchCase="'styled-group'"
+    [style]="def['styles']"
+    [class]="def['class']"
+    [id]="def['id']"
+  >
+    <page-element
+      *ngFor="let comp of def['components']"
+      [def]="comp"
+    ></page-element>
+  </div>
+  <div *ngSwitchCase="'carousel'" [style]="def['carouselContainerStyles']">
+    <ccf-carousel [carouselInfo]="def['carouselInfo']"></ccf-carousel>
+  </div>
+  <count-info-card
+    *ngSwitchCase="'count-card'"
+    [cardInformation]="def['countCardInfo']"
+  ></count-info-card>
+  <ccf-section-card
+    *ngSwitchCase="'section-card'"
+    [cards]="def['cardsInfo']"
+  ></ccf-section-card>
+  <table-version
+    *ngSwitchCase="'table-version'"
+    [isTotal]="def['isTotal']"
+    [versionChooserDisabled]="def['versionChooserDisabled']"
+    [headerInfo]="def['headerInfo']"
+    [versionData]="def['versionData']"
+    [additionalHeaders]="def['additionalHeaders']"
+    [cellHeaders]="def['cellHeaders']"
+    [isTotal]="def['isTotal']"
+    [isDownload]="def['isDownload']"
+  ></table-version>
+  <mat-card *ngSwitchCase="'mat-card'" [style]="def['styles']">
+    <page-element
+      *ngFor="let comp of def['components']"
+      [def]="comp"
+    ></page-element>
+  </mat-card>
+  <ccf-prize-card
+    *ngSwitchCase="'prize-card'"
+    [prizeCard]="def['prizeCard']"
+  ></ccf-prize-card>
+  <div *ngSwitchCase="'datasets'" [style]="def['styles']">
+    <a
+      *ngFor="let link of def['links']"
+      [href]="link['href']"
+      [title]="link['title']"
+      [class]="link['class']"
+      >{{ link['data'] }}</a
+    >
+  </div>
+  <menu-tree
+    *ngSwitchCase="'menu-tree'"
+    class="menu"
+    [style]="def['styles']"
+    [treeItems]="def['mobileNavigationItems']"
+    [icon]="def['icon']"
+    [overlayClass]="def['overlayClass']"
+    [treeClass]="'tree-class'"
+    [positions]="def['positions']"
+  ></menu-tree>
+  <mat-drawer-container *ngSwitchCase="'drawer'" [autosize]="true">
+    <mat-drawer mode="side" opened [style]="def['drawerStyles']">
+      <ul class="toc-list" [ngClass]="{ scrolled: scrolled }">
+        <li
+          *ngFor="let items of def['navigationItems']"
+          [value]="items"
+          (click)="scrollTo(items.id || '')"
+        >
+          {{ items.menuName }}
+        </li>
+      </ul>
+    </mat-drawer>
+    <mat-drawer-content>
+      <page-element
+        *ngFor="let comp of def['components']"
+        [def]="comp"
+      ></page-element>
+    </mat-drawer-content>
+  </mat-drawer-container>
+  <mat-divider *ngSwitchCase="'divider'" [style]="def['styles']"></mat-divider>
+  <contact-card
+    *ngSwitchCase="'contact-card'"
+    [contactCard]="def['contactData']"
+  ></contact-card>
+  <ccf-organ-version
+    *ngSwitchCase="'organ-version'"
+    [versionData]="def['versionData']"
+    [isMultiRow]="def['isMultiRow']"
+    [organInfo]="def['organInfo']"
+    [tableRequired]="def['tableRequired']"
+    [headerInfo]="def['headerInfo']"
+  ></ccf-organ-version>
+  <ccf-download-ftu
+    *ngSwitchCase="'download-ftu'"
+    [data]="def['versionedData']"
+    [versions]="def['versions']"
+    [displayMetadata]="def['displayMetadata']"
+    [columnLabels]="def['columnLabels']"
+    [downloadIcon]="def['downloadIcon']"
+  ></ccf-download-ftu>
+</ng-container>
