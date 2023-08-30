@@ -12,8 +12,7 @@ import { ScreenNoticeBehaviorComponent } from '@hra-ui/components/behavioral';
 import { ActiveFtuSelectors, IllustratorSelectors } from '@hra-ui/state';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'hra-ftu-wc',
+  selector: 'ftu-ui-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   providers: [MatDialogModule],
@@ -37,9 +36,9 @@ export class AppComponent implements AfterContentInit {
 
   @Output() readonly organSelected = select$(ActiveFtuSelectors.iri);
 
-  @Output() readonly nodeHovered = select$(IllustratorSelectors.selected);
+  @Output() readonly nodeHovered = select$(IllustratorSelectors.selectedOnHovered);
 
-  @Output() readonly nodeClicked = select$(IllustratorSelectors.selected);
+  @Output() readonly nodeClicked = select$(IllustratorSelectors.selectedOnClicked);
 
   screenSizeNoticeOpen = false;
 
