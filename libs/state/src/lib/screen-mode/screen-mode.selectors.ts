@@ -15,4 +15,9 @@ export class ScreenModeSelectors {
   static isFullScreen(state: ScreenModeModel): boolean {
     return state.isFullScreen;
   }
+
+  @Selector([ScreenModeState])
+  static size(state: ScreenModeModel): 'small' | 'large' {
+    return state.size;
+  }
 }

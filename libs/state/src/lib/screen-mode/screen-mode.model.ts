@@ -2,4 +2,6 @@
 export interface ScreenModeModel {
   /** Whether in fullscreen */
   isFullScreen: boolean;
+
+  size: 'small' | 'large';
 }

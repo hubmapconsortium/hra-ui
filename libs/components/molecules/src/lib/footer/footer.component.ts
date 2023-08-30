@@ -51,7 +51,9 @@ const DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [
 })
 export class FooterComponent<T extends DownloadFormat = DownloadFormat> {
   /** Host binding of footer component */
-  @HostBinding('class') @Input() size: 'small' | 'large' = 'large';
+  @HostBinding('class')
+  @Input()
+  size: 'small' | 'large' = 'large';
 
   /** Input for product logo URL to displayed on the left side. */
   @Input() productLogoUrl = '';

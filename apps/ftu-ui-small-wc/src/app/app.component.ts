@@ -9,7 +9,7 @@ import {
   TissueLibraryBehaviorComponent,
 } from '@hra-ui/components/behavioral';
 import { FullscreenContainerComponent, FullscreenContentComponent } from '@hra-ui/components/molecules';
-import { ActiveFtuSelectors, IllustratorSelectors, ScreenModeSelectors } from '@hra-ui/state';
+import { ActiveFtuSelectors, IllustratorSelectors, ScreenModeAction, ScreenModeSelectors } from '@hra-ui/state';
 
 @Component({
   selector: 'hra-root',
@@ -33,6 +33,10 @@ export class AppComponent {
 
   readonly isFullscreen = selectSnapshot(ScreenModeSelectors.isFullScreen);
 
+  constructor() {
+    this.setScreenSmall('small');
+  }
+
   @Input() set linksYamlUrl(url: string) {
     this.loadLinks(url);
   }
@@ -54,4 +58,5 @@ export class AppComponent {
   private readonly loadLinks = dispatch(LinkRegistryActions.LoadFromYaml);
   private readonly loadResources = dispatch(ResourceRegistryActions.LoadFromYaml);
   private readonly navigateToOrgan = dispatch(LinkRegistryActions.Navigate);
+  private readonly setScreenSmall = dispatch(ScreenModeAction.SetSize);
 }
