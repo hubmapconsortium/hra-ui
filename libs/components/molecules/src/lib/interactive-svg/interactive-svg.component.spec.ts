@@ -35,9 +35,11 @@ describe('InteractiveSvgComponent', () => {
     mockedInject.mockReset().mockReturnValue(renderer);
     renderer.listen.mockReturnValue(() => undefined);
     svg.querySelector.mockReturnValue(crosswalk);
+    crosswalk.querySelector.mockReturnValue(nodeList[0]);
     crosswalk.querySelectorAll.mockReturnValue(nodeList);
 
     svg2.querySelector.mockReturnValue(crosswalk2);
+    crosswalk2.querySelector.mockReturnValue(nodeList2[0]);
     crosswalk2.querySelectorAll.mockReturnValue(nodeList2);
   });
 
@@ -118,6 +120,15 @@ describe('InteractiveSvgComponent', () => {
       const handler = renderer.listen.mock.calls.find((args) => args[1] === 'mouseout')?.[2];
       handler?.(event);
       expect(instance.nodeHoverData$.next).toHaveBeenCalledWith(undefined);
+    });
+
+    it('should emit nodeClick on click', async () => {
+      const { instance, outputs } = await shallow.render({ bind: { mapping: testMapping } });
+      instance.setSvgElement(svg);
+
+      const handler = renderer.listen.mock.calls.find((args) => args[1] === 'click')?.[2];
+      handler?.(event);
+      expect(outputs.nodeClick.emit).toHaveBeenCalledWith(testMapping[0]);
     });
   });
 
