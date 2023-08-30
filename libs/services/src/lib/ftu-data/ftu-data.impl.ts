@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, InjectionToken, inject } from '@angular/core';
+import { inject, Injectable, InjectionToken } from '@angular/core';
 import { createLinkId } from '@hra-ui/cdk/state';
-import { Observable, firstValueFrom, from, map } from 'rxjs';
+import { firstValueFrom, from, map, Observable } from 'rxjs';
 import { z } from 'zod';
+
 import { IRI, Iri, URL, Url } from '../shared/common.model';
 import {
   CellSummary,
@@ -67,6 +68,7 @@ const ILLUSTRATIONS = z.object({
       .object({
         svg_id: z.string(),
         label: z.string(),
+        representation_of: z.string(),
       })
       .array(),
   }).array(),
@@ -279,10 +281,13 @@ export class FtuDataImplService extends FtuDataService {
    * @param mappings
    * @returns illustration mapping
    */
-  private toIllustrationMapping(mappings: { label: string; svg_id: string }[]): IllustrationMappingItem[] {
+  private toIllustrationMapping(
+    mappings: { label: string; svg_id: string; representation_of: string }[]
+  ): IllustrationMappingItem[] {
+    const ontologyIdPrefix = 'http://purl.obolibrary.org/obo/';
     const results: IllustrationMappingItem[] = [];
-    for (const { label, svg_id } of mappings) {
-      results.push({ label, id: svg_id });
+    for (const { label, svg_id, representation_of } of mappings) {
+      results.push({ label, id: svg_id, ontologyId: representation_of.slice(ontologyIdPrefix.length) });
     }
 
     return results;

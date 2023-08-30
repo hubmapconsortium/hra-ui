@@ -16,18 +16,6 @@
     [cdkConnectedOverlayViewportMargin]="16"
     [cdkConnectedOverlayOpen]="true"
   >
-    <div
-      class="tooltip"
-      style="
-        display: flex;
-        flex-direction: column;
-        background: white;
-        box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
-        border-radius: 0.5rem;
-        padding: 1rem;
-      "
-    >
-      {{ formatNodeName(hover.node) }}
-    </div>
+    <hra-ui-tooltip [text]="formatNodeName(hover.node)"></hra-ui-tooltip>
   </ng-template>
 </ng-container>

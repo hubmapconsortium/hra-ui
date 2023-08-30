@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { AppWebComponent } from './app-web-component';
 import { IllustrationData, JsonLd } from './models';
+import { ChangeDetectorRef } from '@angular/core';
 
 describe('AppWebComponent', () => {
   let component: AppWebComponent;
@@ -54,7 +55,7 @@ describe('AppWebComponent', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [AppWebComponent],
+      providers: [AppWebComponent, ChangeDetectorRef],
     });
 
     jest.clearAllMocks();

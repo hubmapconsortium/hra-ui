@@ -1,7 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnChanges, Output } from '@angular/core';
-import { NodeMapEntry } from '@hra-ui/components/molecules';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  OnChanges,
+  Output,
+} from '@angular/core';
+import { IllustrationMappingItem } from '@hra-ui/services';
+import { Observable, tap } from 'rxjs';
 
 import { CellEntry, IllustrationData, JsonLd } from './models';
 
@@ -28,16 +37,17 @@ export class AppWebComponent implements OnChanges {
   @Input() highlightId = '';
 
   /** Emits node data when node hovered */
-  @Output() readonly nodeHovered = new EventEmitter<NodeMapEntry>();
+  @Output() readonly nodeHovered = new EventEmitter<IllustrationMappingItem>();
 
   /** Emits node data when node clicked */
-  @Output() readonly nodeClicked = new EventEmitter<NodeMapEntry>();
+  @Output() readonly nodeClicked = new EventEmitter<IllustrationMappingItem>();
 
-  /** Illustration svg url behavior subject */
-  readonly url$ = new BehaviorSubject<string>('');
+  url = '';
 
   /** Mapping data */
-  mapping: NodeMapEntry[] = [];
+  mapping: IllustrationMappingItem[] = [];
+
+  private readonly cdr = inject(ChangeDetectorRef);
 
   /**
    * Sets illustration url and mapping data on input changes
@@ -58,7 +68,7 @@ export class AppWebComponent implements OnChanges {
    * @returns Observable
    */
   private getData(illustrationSrc: IllustrationData | string, lookupSrc: string): Observable<JsonLd> {
-    return this.http.get<JsonLd>(lookupSrc).pipe(
+    return this.http.get<JsonLd>(lookupSrc, { responseType: 'json' }).pipe(
       tap((result) => {
         this.setUrlAndMapping(result, illustrationSrc);
       })
@@ -67,32 +77,33 @@ export class AppWebComponent implements OnChanges {
 
   /**
    * Finds and sets illustration url and mapping data
-   * @param illustrationFile Illustration data file
-   * @param illustrationSrc Illustration src
+   * @param illustrationFile Illustration jsonld
+   * @param illustrationSrc Illustration data
    */
   private setUrlAndMapping(illustrationFile: JsonLd, illustrationSrc: IllustrationData | string) {
     if (typeof illustrationSrc === 'string') {
       // input src is id
       const currentOrganData = illustrationFile['@graph'].find((entry) => entry['@id'] === this.illustrationSrc);
-      if (currentOrganData) {
-        const illustrationFile = currentOrganData.illustration_files.find(
-          (file) => file['file_format'] === 'image/svg+xml'
-        );
-        if (illustrationFile) {
-          this.url$.next(illustrationFile.file);
-          this.mapping = this.cellEntryToNodeEntry(currentOrganData.mapping);
-        }
-      }
+      this.setUrlandMappingValues(currentOrganData);
     } else {
       // input src is organ data
-      if (illustrationSrc) {
-        const illustrationFile = illustrationSrc.illustration_files.find(
-          (file) => file['file_format'] === 'image/svg+xml'
-        );
-        if (illustrationFile) {
-          this.url$.next(illustrationFile.file);
-          this.mapping = this.cellEntryToNodeEntry(illustrationSrc.mapping);
-        }
+      this.setUrlandMappingValues(illustrationSrc);
+    }
+  }
+
+  /**
+   * Sets url and mapping values
+   * @param illustrationSrc Illustration data
+   */
+  private setUrlandMappingValues(illustrationSrc?: IllustrationData) {
+    if (illustrationSrc) {
+      const illustrationFile = illustrationSrc.illustration_files.find(
+        (file) => file['file_format'] === 'image/svg+xml'
+      );
+      if (illustrationFile) {
+        this.url = illustrationFile.file;
+        this.mapping = this.cellEntryToNodeEntry(illustrationSrc.mapping);
+        this.cdr.markForCheck();
       }
     }
   }
@@ -102,7 +113,7 @@ export class AppWebComponent implements OnChanges {
    * @param data Array of cell entries
    * @returns Array of node entries
    */
-  private cellEntryToNodeEntry(data: CellEntry[]): NodeMapEntry[] {
+  private cellEntryToNodeEntry(data: CellEntry[]): IllustrationMappingItem[] {
     return data.map((entry) => {
       return {
         label: entry.label,

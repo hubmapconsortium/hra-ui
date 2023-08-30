@@ -1,5 +1,5 @@
 <hra-interactive-svg
-  [url]="(url$ | async) || undefined"
+  [url]="url"
   [mapping]="mapping"
   [highlightId]="highlightId"
   (nodeHover)="nodeHovered.emit($event)"

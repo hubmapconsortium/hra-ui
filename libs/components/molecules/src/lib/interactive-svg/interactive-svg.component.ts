@@ -13,6 +13,7 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
+import { TooltipComponent } from '@hra-ui/components/atoms';
 import { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';
 import { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';
 import { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';
@@ -67,7 +68,7 @@ export interface NodeMapEntry {
   /** Node id in svg */
   id: string;
   /** Ontology id of cell type */
-  ontologyId?: string;
+  ontologyId: string;
 }
 
 /**
@@ -76,7 +77,7 @@ export interface NodeMapEntry {
 @Component({
   selector: 'hra-interactive-svg',
   standalone: true,
-  imports: [CommonModule, InlineSVGModule, OverlayModule],
+  imports: [CommonModule, InlineSVGModule, OverlayModule, TooltipComponent],
   templateUrl: './interactive-svg.component.html',
   styleUrls: ['./interactive-svg.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -119,6 +120,8 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
   /** Crosswalk element of svg */
   private crosswalkEl?: Element;
 
+  private highlightedElements: Element[] = [];
+
   /**
    * Updates the highlighting based on current highlight id
    * @param changes
@@ -134,33 +137,33 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
    * Highlights cells that match highlightId
    */
   private setHighlight() {
-    const cellMatch = this.mapping.find((entry) => entry.ontologyId === this.highlightId); // find the matching cell data in mapping
-    let crosswalkMatch: NodeListOf<Element>;
-    if (cellMatch && this.crosswalkEl) {
-      const name = cellMatch.id;
-      const childId = this.unDecodeId(name); // get the id of the matching cell in svg
-      const elementMatch = this.crosswalkEl.querySelectorAll(`#${childId}`)[0]; //find the element of the matching cell in svg
-      if (elementMatch) {
-        if (elementMatch.nodeName === 'g') {
-          // highlights children if g element
-          crosswalkMatch = this.crosswalkEl.querySelectorAll(`#${childId} :is(path, polygon, polyline)`);
-        } else {
-          // highlights siblings if path, polygon, or polyline element
-          const parentId = elementMatch.parentElement?.id ?? '';
-          crosswalkMatch = this.crosswalkEl.querySelectorAll(`#${parentId} :is(path, polygon, polyline)`);
-        }
-        crosswalkMatch.forEach((element) => element.classList.add('click-active'));
-      }
+    const { mapping, highlightId, crosswalkEl } = this;
+    const entry = mapping.find(({ ontologyId }) => ontologyId === highlightId);
+    if (!entry || !crosswalkEl) {
+      return;
     }
+
+    let id = this.encodeId(entry.id);
+    const element = crosswalkEl.querySelector(`#${id}`);
+    if (!element) {
+      return;
+    } else if (element.nodeName !== 'g') {
+      id = element.parentElement?.id ?? '';
+    }
+
+    const elements = crosswalkEl.querySelectorAll(`#${id} :is(path, polygon, polyline)`);
+    this.highlightedElements = Array.from(elements);
+    elements.forEach((el) => el.classList.add('click-active'));
   }
 
   /**
    * Resets all highlighted elements in the svg
    */
   private resetHighlight(): void {
-    this.crosswalkEl
-      ?.querySelectorAll('path, polygon, polyline')
-      .forEach((element) => element.classList.remove('click-active'));
+    for (const el of this.highlightedElements) {
+      el.classList.remove('click-active');
+    }
+    this.highlightedElements = [];
   }
 
   /**
@@ -265,11 +268,11 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
   /**
    * Turns normal string into decoded SVG id
    * @param id id
-   * @returns Decoded id
+   * @returns Encoded id
    */
-  private unDecodeId(id: string): string {
-    const replacer = (_match: string, pos: number) => `_x${id.charCodeAt(pos).toString(16).toUpperCase()}_`;
-    return id.replace(/_/g, replacer);
+  private encodeId(id: string): string {
+    const replacer = (match: string) => `_x${match.charCodeAt(0).toString(16).toUpperCase()}_`;
+    return id.replace(/[^a-z0-9-]/gi, replacer);
   }
 
   /**
