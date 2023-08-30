@@ -47,7 +47,7 @@ describe('IllustratorState', () => {
         id: 'Mock Name',
       };
       state.SetHover(ctx, new SetHover(mockSelected));
-      expect(ctx.patchState).toHaveBeenCalledWith({ selected: mockSelected });
+      expect(ctx.patchState).toHaveBeenCalledWith({ selectedOnHover: mockSelected });
     });
   });
 
@@ -58,7 +58,7 @@ describe('IllustratorState', () => {
         id: 'Mock Name',
       };
       state.SetClicked(ctx, new SetClicked(mockSelected));
-      expect(ctx.patchState).toHaveBeenCalledWith({ selected: mockSelected });
+      expect(ctx.patchState).toHaveBeenCalledWith({ selectedOnClick: mockSelected });
     });
   });
 
