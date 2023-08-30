@@ -119,7 +119,7 @@ export const Datasets = z.object({
         data: z.string({ description: 'Label for the item' })
     }).array(),
     styles: Styles.default(defaultDatasetsStyles)
-}).required("styles")
+}).required({ styles: true })
 
 export const Divider = z.object({
     type: z.literal('divider'),
@@ -291,7 +291,7 @@ export const MenuTree = z.object({
 const OrganData = z.object({
     name: z.string({ description: 'Name of the organ' }),
     image: z.string({ description: 'Path to the Icon/Image of the organ' }),
-    tissueData: z.lazy(() => TissueData.array()).optional()
+    tissueData: z.lazy(() => TissueData).array().optional()
         .describe(`Tissue data for the above organ.
     Following properties are optional in this object.
     - image: URL of the image of the tissue.
@@ -311,7 +311,7 @@ export const OrganVersion = z.object({
     type: z.literal('organ-version', { description: organVersionDescription }),
     isMultiRow: z.boolean({ description: 'True if want to display organs one below other. False if want to display organs beside one another' }),
     tableRequired: z.boolean({ description: 'True of want to display data table' }),
-    versionData: z.lazy(() => VersionSelector.array()).describe(`Release name, source csv file and version number
+    versionData: z.lazy(() => VersionSelector).array().describe(`Release name, source csv file and version number
     Property 'file' is optional. If required, add property 'file' ans pass the path to the CSV file. It is only required if tableRequired is True.`),
     headerInfo: HeaderData.optional()
         .describe(`Names of columns and their definitions
@@ -319,7 +319,7 @@ export const OrganVersion = z.object({
         - isTotalRequired: To display total at the end of the table
         - sorting: To enable sorting in the table
         - alignment: start or end to align data left or right`),
-    organInfo: z.lazy(() => VersionOrgans.array()).describe(organVersionDescription)
+    organInfo: z.lazy(() => VersionOrgans).array().describe(organVersionDescription)
 })
 
 export const PageData = z.object({
@@ -460,7 +460,7 @@ const TissueData = z.object({
 const titleDescription = `Properties 'class' and 'styles' are optional. Add styling in styles to apply styles to the title.`
 export const Title = z.object({
     type: z.literal('title', { description: titleDescription }),
-    title: z.string('Title/Text to be displayed'),
+    title: z.string({ description: 'Title/Text to be displayed' }),
     class: z.string().optional().describe('Class name defined in the css file'),
     styles: Styles.optional()
 }).describe(titleDescription)
@@ -489,7 +489,7 @@ export const YoutubePlayer = z.object({
     styles: Styles.optional()
 })
 
-export const PageSpec = z.discriminatedUnion('type', [
+export const PageSpec: any = z.discriminatedUnion('type', [
     AnnouncementCard,
     BoardMembers,
     Button,

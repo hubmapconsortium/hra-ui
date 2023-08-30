@@ -13,7 +13,6 @@ import { RouterModule } from '@angular/router';
         RouterModule,
         MatButtonModule,
         BrowserModule,
-        
     ],
     exports: [
         CarouselComponent

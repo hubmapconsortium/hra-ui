@@ -1,6 +1,6 @@
 <button mat-icon-button (click)="this.isOpen = !this.isOpen" cdkOverlayOrigin #trigger="cdkOverlayOrigin"
   class="menu-tree-button" [disableRipple]="true">
-  <mat-icon *ngIf="icon; else: default">{{icon}}</mat-icon>
+  <mat-icon *ngIf="icon; else: default" class="menu-icon">{{icon}}</mat-icon>
   <ng-template #default>
     <mat-icon>{{isOpen ? 'menu' : 'menu'}}</mat-icon>
   </ng-template>

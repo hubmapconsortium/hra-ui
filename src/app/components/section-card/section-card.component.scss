@@ -5,8 +5,9 @@
   flex-wrap: wrap;
   justify-content: space-between;
 
-  mat-card {
+  .mat-mdc-card {
     padding: 0rem;
+    // background: white;
   }
 
   mat-card-content {

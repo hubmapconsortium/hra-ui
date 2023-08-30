@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule, SecurityContext } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-google-analytics';
 import { MarkdownModule } from 'ngx-markdown';
 import { environment } from 'src/environments/environment';
@@ -28,7 +29,8 @@ import { TissueInfoPageModule } from './pages/tissue-info-page/tissue-info-page.
     NgxGoogleAnalyticsRouterModule,
     MarkdownModule.forRoot({ sanitize: SecurityContext.NONE }),
     PageRendererModule,
-    PageModule
+    PageModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8,7 +8,7 @@ import { MarkdownModule } from 'ngx-markdown';
     imports: [
         MatCardModule,
         BrowserModule,
-        MarkdownModule
+        MarkdownModule,
     ],
     exports: [SimpleTileComponent]
 })
