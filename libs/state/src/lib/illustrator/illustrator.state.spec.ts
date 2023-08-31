@@ -45,6 +45,7 @@ describe('IllustratorState', () => {
       const mockSelected: IllustrationMappingItem = {
         label: 'Mock Label',
         id: 'Mock Name',
+        ontologyId: 'Mock id',
       };
       state.setSelection(ctx, new SetSelection(mockSelected));
       expect(ctx.patchState).toHaveBeenCalledWith({ selected: mockSelected });
