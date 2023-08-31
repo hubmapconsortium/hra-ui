@@ -5,7 +5,9 @@
 
   .row {
     min-height: 2rem;
-
+    &.child {
+      padding: 5px 0 5px 64px;
+    }
     &.selected {
       background-color: vars.$accent-lighter-rgb;
     }

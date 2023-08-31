@@ -15,11 +15,21 @@ export class Load extends Action('Load') {
 }
 
 /**
- * Sets the selection for the Item in the current state
+ * Sets the selection for the Item in the current state on SetHover
  */
-export class SetSelection extends Action('Set Selection') {
+export class SetHover extends Action('Set Selection on Hover') {
   /** Initializes the Mapping Item */
-  constructor(readonly selected: IllustrationMappingItem) {
+  constructor(readonly selectedOnHover: IllustrationMappingItem) {
+    super();
+  }
+}
+
+/**
+ * Sets the selection for the Item in the current state on SetClicked
+ */
+export class SetClicked extends Action('Set Selection on Clicked') {
+  /** Initializes the Mapping Item */
+  constructor(readonly selectedOnClick: IllustrationMappingItem) {
     super();
   }
 }

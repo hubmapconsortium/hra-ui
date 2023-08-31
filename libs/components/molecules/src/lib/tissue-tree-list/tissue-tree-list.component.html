@@ -5,6 +5,7 @@
     matTreeNodePaddingIndent="64"
     [class.selected]="node.data === selected"
     class="row"
+    [class.child]="hasChild"
     tabIndex="0"
   >
     <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>
