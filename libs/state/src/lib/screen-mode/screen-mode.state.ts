@@ -27,7 +27,11 @@ export class ScreenModeState {
       })
     );
   }
-
+  /**
+   * Actions screen mode state
+   * @param { setState } State Context
+   * @param { size } Action regarding screen
+   */
   @Action(SetSize)
   SetSize({ setState }: StateContext<ScreenModeModel>, { size }: SetSize): void {
     setState(

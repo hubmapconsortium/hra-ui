@@ -36,6 +36,7 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   label: '',
 };
 
+/** Component for Biomarker Table Details Web component */
 @Component({
   selector: 'ftu-wc-biomarker-details',
   standalone: true,

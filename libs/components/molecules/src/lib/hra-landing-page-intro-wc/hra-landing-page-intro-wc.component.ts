@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MarkdownModule } from 'ngx-markdown';
 
+/** Component for LandingPage Intro - Web coomponent */
 @Component({
   selector: 'hra-ui-hra-landing-page-intro-wc',
   standalone: true,

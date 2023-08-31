@@ -5,6 +5,7 @@ import { ResourceRegistrySelectors as RRS } from '@hra-ui/cdk/state';
 import { selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceIds as RIds } from '@hra-ui/state';
 
+/** Component for LandingPage Intro Behaviour: Web component */
 @Component({
   selector: 'ftu-wc-intro',
   standalone: true,

@@ -37,7 +37,7 @@ export class FooterBehaviorComponent {
 
   /** A dispatcher function to download file in specified format */
   readonly download = dispatch(DownloadActions.Download);
-
+  /** Selects the current value of the available ScreenMode Size */
   readonly size = selectSnapshot(ScreenModeSelectors.size);
 
   /** A dialog box which shows contact modal after clicking on contact */
