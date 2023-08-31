@@ -14,3 +14,5 @@ export * from './lib/screen-size-notice/screen-size-notice.component';
 export * from './lib/source-list/source-list.component';
 export * from './lib/tissue-tree-list/tissue-tree-list.component';
 export * from './lib/title-card/title-card.component';
+
+export * from './lib/hra-landing-page-intro-wc/hra-landing-page-intro-wc.component';

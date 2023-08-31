@@ -1,0 +1,31 @@
+@use 'variables' as vars;
+
+:host {
+  gap: 8px;
+  padding: 24px, 32px, 24px, 32px;
+  .title {
+    font-size: 20px;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+
+  .description .partners .readMore {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+}
+::ng-deep p {
+  margin: 0;
+}
+
+::ng-deep a {
+  color: vars.$primary-rgb;
+  font-weight: 700;
+}

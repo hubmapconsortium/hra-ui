@@ -1,5 +1,6 @@
 import { AfterContentInit, Component, HostBinding, Input, Output, inject } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { dispatch, select$, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import {
   LinkRegistryActions,
@@ -53,6 +54,10 @@ export class AppComponent implements AfterContentInit {
   private readonly navigateToOrgan = dispatch(LinkRegistryActions.Navigate);
 
   private readonly dialog = inject(MatDialog);
+
+  constructor() {
+    inject(Router).initialNavigation();
+  }
 
   ngAfterContentInit(): void {
     this.detectSmallViewport();

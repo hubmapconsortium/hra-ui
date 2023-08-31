@@ -4,7 +4,7 @@ import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/d
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import { FooterComponent } from '@hra-ui/components/molecules';
-import { DownloadActions, DownloadSelectors, ResourceIds as Ids, LinkIds } from '@hra-ui/state';
+import { DownloadActions, DownloadSelectors, ResourceIds as Ids, LinkIds, ScreenModeSelectors } from '@hra-ui/state';
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
 /** A component for footer behavior which provides functionality for various buttons in footer */
@@ -37,6 +37,8 @@ export class FooterBehaviorComponent {
 
   /** A dispatcher function to download file in specified format */
   readonly download = dispatch(DownloadActions.Download);
+  /** Selects the current value of the available ScreenMode Size */
+  readonly size = selectSnapshot(ScreenModeSelectors.size);
 
   /** A dialog box which shows contact modal after clicking on contact */
   private readonly dialog = inject(MatDialog);
