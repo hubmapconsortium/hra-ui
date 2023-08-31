@@ -631,6 +631,59 @@
             ],
             "stylesData": "",
             "templateData": "<div *ngFor=\"let text of sizes\" class=\"item\">\n  <div class=\"filler\"></div>\n  <div class=\"circle\" style=\"--size: {{ text.radius }}rem\"></div>\n  <div class=\"filler\"></div>\n  <div class=\"label\">{{ text.label }}</div>\n</div>\n"
+        },
+        {
+            "name": "TooltipComponent",
+            "id": "component-TooltipComponent-35a19c31cdbb6f67cbbe51d580825640d777ebbf9ef5a43ffc434e7c6af568cda589a5102fcf51027aafecb8ac12123b9ce1a5d04d81c51fa5198963c1c082f1",
+            "file": "src/lib/tooltip/tooltip.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-ui-tooltip",
+            "styleUrls": [
+                "./tooltip.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./tooltip.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "text",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nText to display\n",
+                    "description": "<p>Text to display</p>\n",
+                    "line": 19,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Tooltips for illustrations</p>\n",
+            "rawdescription": "\n\nTooltips for illustrations\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/**\n * Tooltips for illustrations\n */\n@Component({\n  selector: 'hra-ui-tooltip',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './tooltip.component.html',\n  styleUrls: ['./tooltip.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TooltipComponent {\n  /**\n   * Text to display\n   */\n  @Input() text = '';\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  .tooltip {\n    display: flex;\n    flex-direction: column;\n    background: white;\n    box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);\n    border-radius: 0.5rem;\n    padding: 1rem;\n  }\n}\n",
+                    "styleUrl": "./tooltip.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<div class=\"tooltip\">{{ text }}</div>\n"
         }
     ],
     "modules": [],

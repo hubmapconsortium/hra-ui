@@ -74,6 +74,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <li class="link">
                                 <a href="components/SizeLegendComponent.html" data-type="entity-link" >SizeLegendComponent</a>
                             </li>
+                            <li class="link">
+                                <a href="components/TooltipComponent.html" data-type="entity-link" >TooltipComponent</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="chapter">

@@ -581,6 +581,7 @@
       .object({
         svg_id: z.string(),
         label: z.string(),
+        representation_of: z.string(),
       })
       .array(),
   }).array(),
@@ -883,6 +884,7 @@
                         <i>Default value : </i><code>z.object({
   id: z.string(),
   label: z.string(),
+  ontologyId: z.string(),
 })</code>
                     </td>
                 </tr>
