@@ -166,6 +166,10 @@
                                     <span class="modifier">Readonly</span>
                                 <a href="#productTitle" >productTitle</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#size" >size</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -223,8 +227,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/lib/footer-behavior/footer-behavior.component.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/lib/footer-behavior/footer-behavior.component.ts:47</a></div>
                 </td>
             </tr>
 
@@ -472,6 +476,38 @@
 
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="size"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>size</b></span>
+                        <a href="#size"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>selectSnapshot(ScreenModeSelectors.size)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/footer-behavior/footer-behavior.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Selects the current value of the available ScreenMode Size</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
 </section>
 
 </div>
@@ -484,7 +520,7 @@ import { MatDialog, MatDialogConfig, MatDialogModule } from &#x27;@angular/mater
 import { dispatch, selectQuerySnapshot, selectSnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
 import { ResourceRegistrySelectors as RR } from &#x27;@hra-ui/cdk/state&#x27;;
 import { FooterComponent } from &#x27;@hra-ui/components/molecules&#x27;;
-import { DownloadActions, DownloadSelectors, ResourceIds as Ids, LinkIds } from &#x27;@hra-ui/state&#x27;;
+import { DownloadActions, DownloadSelectors, ResourceIds as Ids, LinkIds, ScreenModeSelectors } from &#x27;@hra-ui/state&#x27;;
 import { ContactBehaviorComponent } from &#x27;../contact-behavior/contact-behavior.component&#x27;;
 
 /** A component for footer behavior which provides functionality for various buttons in footer */
@@ -517,6 +553,8 @@ export class FooterBehaviorComponent {
 
   /** A dispatcher function to download file in specified format */
   readonly download &#x3D; dispatch(DownloadActions.Download);
+  /** Selects the current value of the available ScreenMode Size */
+  readonly size &#x3D; selectSnapshot(ScreenModeSelectors.size);
 
   /** A dialog box which shows contact modal after clicking on contact */
   private readonly dialog &#x3D; inject(MatDialog);
@@ -541,6 +579,7 @@ export class FooterBehaviorComponent {
   [downloadFormats]&#x3D;&quot;downloadFormats()&quot;
   (contactClick)&#x3D;&quot;contact()&quot;
   (download)&#x3D;&quot;download($event.id)&quot;
+  [size]&#x3D;&quot;size()&quot;
 &gt;
 &lt;/hra-footer&gt;
 </code></pre>
@@ -581,8 +620,8 @@ export class FooterBehaviorComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-footer  [productLogoUrl]="productLogoUrl()"  [productTitle]="productTitle()"  [hraPortal]="hraPortal"  [illustrationMetadata]="illustrationMetadata"  [embed]="embed"  [downloadFormats]="downloadFormats()"  (contactClick)="contact()"  (download)="download($event.id)"></hra-footer></div>'
-    var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'ScreenNoticeBehaviorComponent', 'selector': 'ftu-ui-screen-notice-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
+        var COMPONENT_TEMPLATE = '<div><hra-footer  [productLogoUrl]="productLogoUrl()"  [productTitle]="productTitle()"  [hraPortal]="hraPortal"  [illustrationMetadata]="illustrationMetadata"  [embed]="embed"  [downloadFormats]="downloadFormats()"  (contactClick)="contact()"  (download)="download($event.id)"  [size]="size()"></hra-footer></div>'
+    var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'BiomarkerDetailsWcComponent', 'selector': 'ftu-wc-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'HraLandingPageIntroWcBehaviourComponent', 'selector': 'ftu-wc-intro'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'ScreenNoticeBehaviorComponent', 'selector': 'ftu-ui-screen-notice-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'FooterBehaviorComponent'};
 </script>

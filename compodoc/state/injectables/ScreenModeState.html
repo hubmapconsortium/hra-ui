@@ -88,6 +88,9 @@
                             <li>
                                 <a href="#set" >set</a>
                             </li>
+                            <li>
+                                <a href="#SetSize" >SetSize</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -133,8 +136,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/lib/screen-mode/screen-mode.state.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/lib/screen-mode/screen-mode.state.ts:23</a></div>
                 </td>
             </tr>
 
@@ -194,6 +197,94 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SetSize"></a>
+                    <span class="name">
+                        <span ><b>SetSize</b></span>
+                        <a href="#SetSize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>SetSize(undefined: <a href="../interfaces/ScreenModeModel.html" target="_self">StateContext&lt;ScreenModeModel&gt;</a>, undefined: <a href="../classes/SetSize.html" target="_self">SetSize</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Action(SetSize)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/lib/screen-mode/screen-mode.state.ts:36</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Actions screen mode state</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                                <code><a href="../interfaces/ScreenModeModel.html" target="_self" >StateContext&lt;ScreenModeModel&gt;</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                                <code><a href="../classes/SetSize.html" target="_self" >SetSize</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -203,7 +294,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { Action, State, StateContext } from &#x27;@ngxs/store&#x27;;
 import produce from &#x27;immer&#x27;;
-import { Set } from &#x27;./screen-mode.actions&#x27;;
+import { Set, SetSize } from &#x27;./screen-mode.actions&#x27;;
 import { ScreenModeModel } from &#x27;./screen-mode.model&#x27;;
 
 /** State storing the screen mode */
@@ -211,6 +302,7 @@ import { ScreenModeModel } from &#x27;./screen-mode.model&#x27;;
   name: &#x27;screenmode&#x27;,
   defaults: {
     isFullScreen: false,
+    size: &#x27;large&#x27;,
   },
 })
 @Injectable()
@@ -225,6 +317,19 @@ export class ScreenModeState {
     setState(
       produce((draft: ScreenModeModel) &#x3D;&gt; {
         draft.isFullScreen &#x3D; isFullScreen;
+      })
+    );
+  }
+  /**
+   * Actions screen mode state
+   * @param { setState } State Context
+   * @param { size } Action regarding screen
+   */
+  @Action(SetSize)
+  SetSize({ setState }: StateContext&lt;ScreenModeModel&gt;, { size }: SetSize): void {
+    setState(
+      produce((draft: ScreenModeModel) &#x3D;&gt; {
+        draft.size &#x3D; size;
       })
     );
   }

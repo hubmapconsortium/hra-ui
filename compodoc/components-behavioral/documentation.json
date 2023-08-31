@@ -227,6 +227,292 @@
             "templateData": "<hra-label-box class=\"table-header\">\n  Cell Types by Gene Biomarkers\n  <mat-icon (click)=\"toggleFullscreen()\" class=\"end\">\n    {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}\n  </mat-icon>\n</hra-label-box>\n\n<mat-tab-group class=\"table\" [class.table-fullscreen]=\"isTableFullScreen\" mat-stretch-tabs=\"false\" color=\"accent\">\n  <mat-tab *ngFor=\"let tab of tabs()\" labelClass=\"table-tab-header\" [label]=\"tab.label\">\n    <hra-biomarker-table\n      *ngIf=\"tab.rows.length !== 0\"\n      [data]=\"$any(tab.rows)\"\n      [columns]=\"tab.columns\"\n      [gradient]=\"gradients()\"\n      [sizes]=\"sizes()\"\n      [tissueInfo]=\"tissueInfo\"\n    ></hra-biomarker-table>\n    <hra-empty-biomarker\n      *ngIf=\"tab.rows.length === 0\"\n      [collaborateText]=\"collaborateText\"\n      [message]=\"message\"\n    ></hra-empty-biomarker>\n  </mat-tab>\n</mat-tab-group>\n\n<hra-label-box class=\"legend-header gradient\">\n  Biomarker Expression Mean in FTU\n  <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"gradientHoverInfo()\">info_outlined</mat-icon>\n</hra-label-box>\n<div class=\"legend gradient\">\n  <hra-gradient-legend [gradient]=\"gradients()\" class=\"content\"></hra-gradient-legend>\n</div>\n\n<hra-label-box class=\"legend-header size\">\n  Percentage of Cells in FTU\n  <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"sizeHoverInfo()\">info_outlined</mat-icon>\n</hra-label-box>\n<div class=\"legend size\">\n  <hra-size-legend [sizes]=\"sizes()\" class=\"content\"></hra-size-legend>\n</div>\n\n<div class=\"source-list\">\n  <hra-source-list [sources]=\"source()\" class=\"content\"></hra-source-list>\n</div>\n\n<ng-template #infoTooltip let-tooltip>\n  <div class=\"biomarker-details info-tooltip\">\n    {{ tooltip }}\n  </div>\n</ng-template>\n"
         },
         {
+            "name": "BiomarkerDetailsWcComponent",
+            "id": "component-BiomarkerDetailsWcComponent-23b281ecdbeccbab1f36b78fe9188e1016a565a0a462d735ad19f143e753278b009fd29b85a043d3e29f7d0f0e9b0529f3a5b724b0d8f08ca17a3d467c0be29f",
+            "file": "src/lib/biomarker-details-wc/biomarker-details-wc.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ftu-wc-biomarker-details",
+            "styleUrls": [
+                "./biomarker-details-wc.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./biomarker-details-wc.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "collaborateText",
+                    "defaultValue": "'Collaborate with the HRA Team'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>button text of empty biomarker component.</p>\n",
+                    "line": 143,
+                    "rawdescription": "\n\nbutton text of empty biomarker component.\n",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "currentUrl",
+                    "defaultValue": "selectSnapshot(IllustratorSelectors.url)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Current illustration url</p>\n",
+                    "line": 69,
+                    "rawdescription": "\n\nCurrent illustration url\n",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "gradientHoverInfo",
+                    "defaultValue": "selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Info to be shown on the tooltip for Gradient Legend</p>\n",
+                    "line": 109,
+                    "rawdescription": "\nInfo to be shown on the tooltip for Gradient Legend",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "gradients",
+                    "defaultValue": "selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, 'points' as const, [])<\n    GradientPoint[]\n  >",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Gradient colors along with their stop points</p>\n",
+                    "line": 118,
+                    "rawdescription": "\nGradient colors along with their stop points",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "iri",
+                    "defaultValue": "selectSnapshot(ActiveFtuSelectors.iri)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Iri  of medical illustration behavior component</p>\n",
+                    "line": 79,
+                    "rawdescription": "\n\nIri  of medical illustration behavior component\n",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "isTableFullScreen",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Indicates if the table is fully shown, defaults to false</p>\n",
+                    "line": 115,
+                    "rawdescription": "\nIndicates if the table is fully shown, defaults to false"
+                },
+                {
+                    "name": "mapping",
+                    "defaultValue": "selectSnapshot(IllustratorSelectors.mapping)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Current mapping file</p>\n",
+                    "line": 74,
+                    "rawdescription": "\n\nCurrent mapping file\n",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "message",
+                    "defaultValue": "`We currently do not have cell type data for this biomarker.\n<br><br> Please contact us to discuss your dataset.`",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>message markdown of empty biomarker component.</p>\n",
+                    "line": 148,
+                    "rawdescription": "\n\nmessage markdown of empty biomarker component.\n",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "sizeHoverInfo",
+                    "defaultValue": "selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Info to be shown on the tooltip for Size Legend</p>\n",
+                    "line": 112,
+                    "rawdescription": "\nInfo to be shown on the tooltip for Size Legend",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "sizes",
+                    "defaultValue": "selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Taking input for the radius of the circle and the label to be displayed.</p>\n",
+                    "line": 123,
+                    "rawdescription": "\nTaking input for the radius of the circle and the label to be displayed.",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "source",
+                    "defaultValue": "selectSnapshot(SourceRefsSelectors.sourceReferences)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>List of sources with titles and links displayed to the user</p>\n",
+                    "line": 126,
+                    "rawdescription": "\nList of sources with titles and links displayed to the user",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "tabs",
+                    "defaultValue": "selectSnapshot(CellSummarySelectors.aggregates)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Table tabs</p>\n",
+                    "line": 106,
+                    "rawdescription": "\nTable tabs",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "tissues",
+                    "defaultValue": "selectSnapshot(TissueLibrarySelectors.tissues)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Get all tissues</p>\n",
+                    "line": 84,
+                    "rawdescription": "\n\nGet all tissues\n",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "updateNodeOnClicked",
+                    "defaultValue": "dispatch(IllustratorActions.SetClicked)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Updates the active node on node click</p>\n",
+                    "line": 103,
+                    "rawdescription": "\n\nUpdates the active node on node click\n",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "updateNodeOnHover",
+                    "defaultValue": "dispatch(IllustratorActions.SetHover)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Updates the active node on node hover</p>\n",
+                    "line": 98,
+                    "rawdescription": "\n\nUpdates the active node on node hover\n",
+                    "modifierKind": [
+                        144
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "toggleFullscreen",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 157,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nA function that toggles isTableFullScreen and\ncalls the setScreenMode function.\n",
+                    "description": "<p>A function that toggles isTableFullScreen and\ncalls the setScreenMode function.</p>\n"
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Component for Biomarker Table Details Web component</p>\n",
+            "rawdescription": "\nComponent for Biomarker Table Details Web component",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTabsModule } from '@angular/material/tabs';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { selectSnapshot, selectQuerySnapshot, dispatch } from '@hra-ui/cdk/injectors';\nimport {\n  GradientLegendComponent,\n  LabelBoxComponent,\n  SizeLegendComponent,\n  EmptyBiomarkerComponent,\n  GradientPoint,\n  SizeLegend,\n} from '@hra-ui/components/atoms';\nimport {\n  BiomarkerTableDataCardComponent,\n  InteractiveSvgComponent,\n  SourceListComponent,\n} from '@hra-ui/components/molecules';\nimport { TissueInfo, BiomarkerTableComponent } from '@hra-ui/components/organisms';\nimport {\n  ActiveFtuSelectors,\n  TissueLibrarySelectors,\n  ScreenModeAction,\n  IllustratorActions,\n  IllustratorSelectors,\n  CellSummarySelectors,\n  ResourceIds as Ids,\n  ResourceTypes as RTypes,\n  SourceRefsSelectors,\n} from '@hra-ui/state';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\n\n/**\n * PlaceHolder for Empty Tissue Info\n */\nconst EMPTY_TISSUE_INFO: TissueInfo = {\n  id: '',\n  label: '',\n};\n\n/** Component for Biomarker Table Details Web component */\n@Component({\n  selector: 'ftu-wc-biomarker-details',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatIconModule,\n    MatTabsModule,\n\n    BiomarkerTableComponent,\n    BiomarkerTableDataCardComponent,\n    GradientLegendComponent,\n    HoverDirective,\n    LabelBoxComponent,\n    SizeLegendComponent,\n    SourceListComponent,\n    EmptyBiomarkerComponent,\n    InteractiveSvgComponent,\n  ],\n  templateUrl: './biomarker-details-wc.component.html',\n  styleUrls: ['./biomarker-details-wc.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerDetailsWcComponent {\n  /**\n   * Current illustration url\n   */\n  readonly currentUrl = selectSnapshot(IllustratorSelectors.url);\n\n  /**\n   * Current mapping file\n   */\n  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);\n\n  /**\n   * Iri  of medical illustration behavior component\n   */\n  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);\n\n  /**\n   * Get all tissues\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueTitle(): string {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    return iri ? tissues[iri].label : '';\n  }\n\n  /**\n   * Updates the active node on node hover\n   */\n  readonly updateNodeOnHover = dispatch(IllustratorActions.SetHover);\n\n  /**\n   * Updates the active node on node click\n   */\n  readonly updateNodeOnClicked = dispatch(IllustratorActions.SetClicked);\n\n  /** Table tabs */\n  readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);\n\n  /** Info to be shown on the tooltip for Gradient Legend */\n  readonly gradientHoverInfo = selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);\n\n  /** Info to be shown on the tooltip for Size Legend */\n  readonly sizeHoverInfo = selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo);\n\n  /** Indicates if the table is fully shown, defaults to false*/\n  isTableFullScreen = false;\n\n  /** Gradient colors along with their stop points */\n  readonly gradients = selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, 'points' as const, [])<\n    GradientPoint[]\n  >;\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  readonly sizes = selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>;\n\n  /** List of sources with titles and links displayed to the user */\n  readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueInfo(): TissueInfo {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    if (iri === undefined) {\n      return EMPTY_TISSUE_INFO;\n    }\n    const { id, label } = tissues[iri];\n    return { id, label };\n  }\n\n  /**\n   * button text of empty biomarker component.\n   */\n  readonly collaborateText = 'Collaborate with the HRA Team';\n\n  /**\n   * message markdown of empty biomarker component.\n   */\n  readonly message = `We currently do not have cell type data for this biomarker.\n<br><br> Please contact us to discuss your dataset.`;\n\n  /** A dispatcher function to set the screen mode */\n  private readonly setScreenMode = dispatch(ScreenModeAction.Set);\n\n  /** A function that toggles isTableFullScreen and\n   * calls the setScreenMode function.\n   */\n  toggleFullscreen(): void {\n    this.isTableFullScreen = !this.isTableFullScreen;\n    this.setScreenMode(this.isTableFullScreen);\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use 'variables' as vars;\n\n:host {\n  border: 0.063rem solid #d3d3d3;\n\n  ::ng-deep .extraTab {\n    border: 0.063rem solid #d3d3d3;\n    border-top: 0;\n  }\n\n  .table-header {\n    grid-area: table-header;\n    border: 0.063rem solid #d3d3d3;\n    width: 43rem;\n    height: 3.5rem;\n  }\n\n  .table {\n    grid-area: table;\n    max-width: 100%;\n    overflow: auto;\n    border: 0.063rem solid #d3d3d3;\n\n    ::ng-deep .table-tab-header {\n      padding-left: 1rem;\n      padding-right: 1rem;\n      border-left: 0.063rem solid #d3d3d3;\n      border-bottom: 0.063rem solid #d3d3d3;\n\n      &:last-child {\n        border-right: 0.063rem solid #d3d3d3;\n      }\n\n      &.mdc-tab-indicator--active {\n        background-color: #f8f9fa;\n      }\n    }\n  }\n\n  hra-biomarker-table {\n    overflow-y: auto;\n    overflow-x: auto;\n  }\n\n  .legends {\n    display: inline-flex;\n    width: 100%;\n    .legends-right {\n      width: 50%;\n    }\n    .legends-left {\n      width: 50%;\n    }\n  }\n\n  .legend-header {\n    color: vars.$dark-primary-text;\n    border-top: 0.063rem solid #d3d3d3;\n    border-bottom: 0.063rem solid #d3d3d3;\n    border-right: 0.063rem solid #d3d3d3;\n\n    &.gradient {\n      grid-area: gradient-legend-header;\n    }\n\n    &.size {\n      grid-area: size-legend-header;\n    }\n\n    .icon {\n      margin-left: 0.6rem;\n    }\n  }\n\n  .legend {\n    padding: 1rem 2rem;\n    border-right: 0.063rem solid #d3d3d3;\n\n    &.gradient {\n      grid-area: gradient-legend;\n\n      .content {\n        width: 10rem;\n      }\n    }\n\n    &.size {\n      grid-area: size-legend;\n    }\n  }\n\n  .source-list {\n    grid-area: source-list;\n\n    .content {\n      width: min-content;\n    }\n  }\n}\n\n::ng-deep .biomarker-details.info-tooltip {\n  display: flex;\n  padding: 1rem;\n  border: 1px solid #a8a3a3;\n  border-radius: 0.5rem;\n  box-shadow: 1px 2px 16px 2px #00000029;\n  background-color: vars.$primary-contrast-rgb;\n  max-width: 21rem;\n  font-size: small;\n}\n",
+                    "styleUrl": "./biomarker-details-wc.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "accessors": {
+                "tissueTitle": {
+                    "name": "tissueTitle",
+                    "getSignature": {
+                        "name": "tissueTitle",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 89,
+                        "rawdescription": "\n\nGets tissue title from the list of tissues\n",
+                        "description": "<p>Gets tissue title from the list of tissues</p>\n"
+                    }
+                },
+                "tissueInfo": {
+                    "name": "tissueInfo",
+                    "getSignature": {
+                        "name": "tissueInfo",
+                        "type": "",
+                        "returnType": "TissueInfo",
+                        "line": 130,
+                        "rawdescription": "\n\nGets tissue title from the list of tissues\n",
+                        "description": "<p>Gets tissue title from the list of tissues</p>\n"
+                    }
+                }
+            },
+            "templateData": "<hra-label-box class=\"table-header\">\n  {{ tissueTitle }}: FTU Illustration\n  <mat-icon (click)=\"toggleFullscreen()\" class=\"end\">\n    {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}\n  </mat-icon>\n</hra-label-box>\n\n<mat-tab-group class=\"table\" [class.table-fullscreen]=\"isTableFullScreen\" mat-stretch-tabs=\"false\" color=\"accent\">\n  <mat-tab labelClass=\"extraTab\" label=\"FTU Illustration\">\n    <hra-interactive-svg\n      [url]=\"currentUrl()\"\n      [mapping]=\"mapping()\"\n      (nodeHover)=\"updateNodeOnHover($event)\"\n      (nodeClick)=\"updateNodeOnClicked($event)\"\n    >\n    </hra-interactive-svg>\n  </mat-tab>\n  <mat-tab *ngFor=\"let tab of tabs()\" labelClass=\"table-tab-header\" [label]=\"tab.label\">\n    <hra-biomarker-table\n      *ngIf=\"tab.rows.length !== 0\"\n      [data]=\"$any(tab.rows)\"\n      [columns]=\"tab.columns\"\n      [gradient]=\"gradients()\"\n      [sizes]=\"sizes()\"\n      [tissueInfo]=\"tissueInfo\"\n    ></hra-biomarker-table>\n\n    <div *ngIf=\"tab.rows.length !== 0\" class=\"legends\">\n      <div class=\"legends-left\">\n        <hra-label-box class=\"legend-header gradient\">\n          Biomarker Expression Mean in FTU\n          <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"gradientHoverInfo()\">info_outlined</mat-icon>\n        </hra-label-box>\n        <div class=\"legend gradient\">\n          <hra-gradient-legend [gradient]=\"gradients()\" class=\"content\"></hra-gradient-legend>\n        </div>\n      </div>\n\n      <div class=\"legends-right\">\n        <hra-label-box class=\"legend-header size\">\n          Percentage of Cells in FTU\n          <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"sizeHoverInfo()\">info_outlined</mat-icon>\n        </hra-label-box>\n        <div class=\"legend size\">\n          <hra-size-legend [sizes]=\"sizes()\" class=\"content\"></hra-size-legend>\n        </div>\n      </div>\n    </div>\n    <hra-empty-biomarker\n      *ngIf=\"tab.rows.length === 0\"\n      [collaborateText]=\"collaborateText\"\n      [message]=\"message\"\n    ></hra-empty-biomarker>\n  </mat-tab>\n  <mat-tab labelClass=\"extraTab\" label=\"Source Data\">\n    <div class=\"source-list\">\n      <hra-source-list [sources]=\"source()\" class=\"content\"></hra-source-list>\n    </div>\n\n    <ng-template #infoTooltip let-tooltip>\n      <div class=\"biomarker-details info-tooltip\">\n        {{ tooltip }}\n      </div>\n    </ng-template>\n  </mat-tab>\n</mat-tab-group>\n"
+        },
+        {
             "name": "ContactBehaviorComponent",
             "id": "component-ContactBehaviorComponent-b9d5e223798d92be933b5dbadc75b1d6c247f7b00beb75f933bb07b0a4949d22458ee53931ca654d0b255f40508dbf23ef4e516e2f80368415a86fdfe44d60b6",
             "file": "src/lib/contact-behavior/contact-behavior.component.ts",
@@ -388,7 +674,7 @@
         },
         {
             "name": "FooterBehaviorComponent",
-            "id": "component-FooterBehaviorComponent-40fb239d2f5d63559ed01a906d6e4e15d8b354395ff588736be920ea320eb8690c99eced7537541b1877204f3badef734418f253ac305b0a139d12cfaf2a0d63",
+            "id": "component-FooterBehaviorComponent-d9ecf51e28e6cdbe2f77b2f819a2e3df3acd0382e946f213975e78af53f6c11b1a7a013fefb862cfa9449b9973d2ea3497fa9687d6c04eb492751c2a83c17410",
             "file": "src/lib/footer-behavior/footer-behavior.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -505,6 +791,20 @@
                     "modifierKind": [
                         144
                     ]
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "selectSnapshot(ScreenModeSelectors.size)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Selects the current value of the available ScreenMode Size</p>\n",
+                    "line": 41,
+                    "rawdescription": "\nSelects the current value of the available ScreenMode Size",
+                    "modifierKind": [
+                        144
+                    ]
                 }
             ],
             "methodsClass": [
@@ -514,7 +814,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 45,
+                    "line": 47,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nA function which opens the contact modal dialog box",
@@ -528,7 +828,7 @@
             "description": "<p>A component for footer behavior which provides functionality for various buttons in footer</p>\n",
             "rawdescription": "\nA component for footer behavior which provides functionality for various buttons in footer",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject } from '@angular/core';\nimport { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';\nimport { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { FooterComponent } from '@hra-ui/components/molecules';\nimport { DownloadActions, DownloadSelectors, ResourceIds as Ids, LinkIds } from '@hra-ui/state';\nimport { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';\n\n/** A component for footer behavior which provides functionality for various buttons in footer */\n@Component({\n  selector: 'ftu-footer-behavior',\n  standalone: true,\n  imports: [CommonModule, MatDialogModule, FooterComponent, ContactBehaviorComponent],\n  templateUrl: './footer-behavior.component.html',\n  styleUrls: ['./footer-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FooterBehaviorComponent {\n  /** Input for product logo URL to displayed on the left side. */\n  readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);\n\n  /** Input for product title to displayed on the left side. */\n  readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);\n\n  /** Selects a snapshot of the current value of the available download formats */\n  readonly downloadFormats = selectSnapshot(DownloadSelectors.formats);\n\n  /** Hra portal link routing after clicking on HRA Portal */\n  readonly hraPortal = LinkIds.Portal;\n\n  /** Metadata page link routing after clicking on Illustration */\n  readonly illustrationMetadata = LinkIds.Illustration;\n\n  /** Embed link routing after clicking on Embed */\n  readonly embed = LinkIds.Embed;\n\n  /** A dispatcher function to download file in specified format */\n  readonly download = dispatch(DownloadActions.Download);\n\n  /** A dialog box which shows contact modal after clicking on contact */\n  private readonly dialog = inject(MatDialog);\n\n  /** A function which opens the contact modal dialog box */\n  contact(): void {\n    const dialogConfig = new MatDialogConfig();\n    dialogConfig.disableClose = true;\n    this.dialog.open(ContactBehaviorComponent, dialogConfig);\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject } from '@angular/core';\nimport { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';\nimport { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { FooterComponent } from '@hra-ui/components/molecules';\nimport { DownloadActions, DownloadSelectors, ResourceIds as Ids, LinkIds, ScreenModeSelectors } from '@hra-ui/state';\nimport { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';\n\n/** A component for footer behavior which provides functionality for various buttons in footer */\n@Component({\n  selector: 'ftu-footer-behavior',\n  standalone: true,\n  imports: [CommonModule, MatDialogModule, FooterComponent, ContactBehaviorComponent],\n  templateUrl: './footer-behavior.component.html',\n  styleUrls: ['./footer-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FooterBehaviorComponent {\n  /** Input for product logo URL to displayed on the left side. */\n  readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);\n\n  /** Input for product title to displayed on the left side. */\n  readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);\n\n  /** Selects a snapshot of the current value of the available download formats */\n  readonly downloadFormats = selectSnapshot(DownloadSelectors.formats);\n\n  /** Hra portal link routing after clicking on HRA Portal */\n  readonly hraPortal = LinkIds.Portal;\n\n  /** Metadata page link routing after clicking on Illustration */\n  readonly illustrationMetadata = LinkIds.Illustration;\n\n  /** Embed link routing after clicking on Embed */\n  readonly embed = LinkIds.Embed;\n\n  /** A dispatcher function to download file in specified format */\n  readonly download = dispatch(DownloadActions.Download);\n  /** Selects the current value of the available ScreenMode Size */\n  readonly size = selectSnapshot(ScreenModeSelectors.size);\n\n  /** A dialog box which shows contact modal after clicking on contact */\n  private readonly dialog = inject(MatDialog);\n\n  /** A function which opens the contact modal dialog box */\n  contact(): void {\n    const dialogConfig = new MatDialogConfig();\n    dialogConfig.disableClose = true;\n    this.dialog.open(ContactBehaviorComponent, dialogConfig);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -537,7 +837,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<hra-footer\n  [productLogoUrl]=\"productLogoUrl()\"\n  [productTitle]=\"productTitle()\"\n  [hraPortal]=\"hraPortal\"\n  [illustrationMetadata]=\"illustrationMetadata\"\n  [embed]=\"embed\"\n  [downloadFormats]=\"downloadFormats()\"\n  (contactClick)=\"contact()\"\n  (download)=\"download($event.id)\"\n>\n</hra-footer>\n"
+            "templateData": "<hra-footer\n  [productLogoUrl]=\"productLogoUrl()\"\n  [productTitle]=\"productTitle()\"\n  [hraPortal]=\"hraPortal\"\n  [illustrationMetadata]=\"illustrationMetadata\"\n  [embed]=\"embed\"\n  [downloadFormats]=\"downloadFormats()\"\n  (contactClick)=\"contact()\"\n  (download)=\"download($event.id)\"\n  [size]=\"size()\"\n>\n</hra-footer>\n"
         },
         {
             "name": "HeaderBehaviorComponent",
@@ -650,6 +950,104 @@
             ],
             "stylesData": "",
             "templateData": "<hra-header\n  [productLogoUrl]=\"productLogoUrl()\"\n  [productTitle]=\"productTitle()\"\n  [appTitle]=\"appTitle()\"\n  [productTitleLink]=\"productTitleLink\"\n  [aboutLink]=\"aboutLink\"\n>\n</hra-header>\n"
+        },
+        {
+            "name": "HraLandingPageIntroWcBehaviourComponent",
+            "id": "component-HraLandingPageIntroWcBehaviourComponent-b8c2509d12b92bff8ab139855b712563f2a92e8aa91e8ecc05714063b91b1765ade0e9c6e691367a2eaa4724d94d6dfe4ade28c89da03cfcf6eae21630452b23",
+            "file": "src/lib/hra-landing-page-intro-wc-behaviour/hra-landing-page-intro-wc-behaviour.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ftu-wc-intro",
+            "styleUrls": [
+                "./hra-landing-page-intro-wc-behaviour.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./hra-landing-page-intro-wc-behaviour.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "landingPageIntroDescription",
+                    "defaultValue": "selectQuerySnapshot(RRS.markdown, RIds.LandingPageDescription)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>select snapshot for landing page intro description</p>\n",
+                    "line": 21,
+                    "rawdescription": "\nselect snapshot for landing page intro description",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "landingPageIntroPartners",
+                    "defaultValue": "selectQuerySnapshot(RRS.markdown, RIds.LandingPagePartners)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>select snapshot for landing page intro partners</p>\n",
+                    "line": 25,
+                    "rawdescription": "\nselect snapshot for landing page intro partners",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "landingPageIntroReadMore",
+                    "defaultValue": "selectQuerySnapshot(RRS.markdown, RIds.LandingPageIntroReadMore)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>select snapshot for landing page intro partners</p>\n",
+                    "line": 23,
+                    "rawdescription": "\nselect snapshot for landing page intro partners",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "landingPageIntroTitle",
+                    "defaultValue": "selectQuerySnapshot(RRS.anyText, RIds.LandingPageTitle)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>select snapshot for Landing Page title</p>\n",
+                    "line": 19,
+                    "rawdescription": "\nselect snapshot for Landing Page title",
+                    "modifierKind": [
+                        144
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Component for LandingPage Intro Behaviour: Web component</p>\n",
+            "rawdescription": "\nComponent for LandingPage Intro Behaviour: Web component",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { HraLandingPageIntroWcComponent } from '@hra-ui/components/molecules';\nimport { ResourceRegistrySelectors as RRS } from '@hra-ui/cdk/state';\nimport { selectQuerySnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceIds as RIds } from '@hra-ui/state';\n\n/** Component for LandingPage Intro Behaviour: Web component */\n@Component({\n  selector: 'ftu-wc-intro',\n  standalone: true,\n  imports: [CommonModule, HraLandingPageIntroWcComponent],\n  templateUrl: './hra-landing-page-intro-wc-behaviour.component.html',\n  styleUrls: ['./hra-landing-page-intro-wc-behaviour.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HraLandingPageIntroWcBehaviourComponent {\n  /** select snapshot for Landing Page title */\n  readonly landingPageIntroTitle = selectQuerySnapshot(RRS.anyText, RIds.LandingPageTitle);\n  /** select snapshot for landing page intro description */\n  readonly landingPageIntroDescription = selectQuerySnapshot(RRS.markdown, RIds.LandingPageDescription);\n  /** select snapshot for landing page intro partners */\n  readonly landingPageIntroReadMore = selectQuerySnapshot(RRS.markdown, RIds.LandingPageIntroReadMore);\n  /** select snapshot for landing page intro partners */\n  readonly landingPageIntroPartners = selectQuerySnapshot(RRS.markdown, RIds.LandingPagePartners);\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: block;\n\n  .intro {\n    display: inline-grid;\n    border: 1px solid #e2e7e9;\n    padding: 24px 32px 24px 32px;\n    width: 71rem;\n  }\n}\n",
+                    "styleUrl": "./hra-landing-page-intro-wc-behaviour.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<hra-ui-hra-landing-page-intro-wc\n  class=\"intro\"\n  [description]=\"landingPageIntroDescription()\"\n  [partners]=\"landingPageIntroPartners()\"\n  [readMore]=\"landingPageIntroReadMore()\"\n  [title]=\"landingPageIntroTitle()\"\n></hra-ui-hra-landing-page-intro-wc>\n"
         },
         {
             "name": "LandingPageContentComponent",
@@ -1257,7 +1655,7 @@
                 "line": 34,
                 "rawdescription": "\n\nSets the TissueItem instance as undefined if\nthe url is undefined\n"
             },
-            "templateData": "<hra-label-box class=\"label\">FTU Library</hra-label-box>\n<hra-tissue-tree-list [nodes]=\"tissues()\" [(selected)]=\"selected\" #list> </hra-tissue-tree-list>\n"
+            "templateData": "<hra-label-box class=\"label\">FTU Library</hra-label-box>\n<hra-tissue-tree-list class=\"tissue-tree\" [nodes]=\"tissues()\" [(selected)]=\"selected\" #list> </hra-tissue-tree-list>\n"
         }
     ],
     "modules": [],
@@ -1268,6 +1666,18 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/lib/biomarker-details/biomarker-details.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "TissueInfo",
+                "defaultValue": "{\n  id: '',\n  label: '',\n}",
+                "rawdescription": "PlaceHolder for Empty Tissue Info",
+                "description": "<p>PlaceHolder for Empty Tissue Info</p>\n"
+            },
+            {
+                "name": "EMPTY_TISSUE_INFO",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/lib/biomarker-details-wc/biomarker-details-wc.component.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "TissueInfo",
@@ -1286,6 +1696,20 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "src/lib/biomarker-details/biomarker-details.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TissueInfo",
+                    "defaultValue": "{\n  id: '',\n  label: '',\n}",
+                    "rawdescription": "PlaceHolder for Empty Tissue Info",
+                    "description": "<p>PlaceHolder for Empty Tissue Info</p>\n"
+                }
+            ],
+            "src/lib/biomarker-details-wc/biomarker-details-wc.component.ts": [
+                {
+                    "name": "EMPTY_TISSUE_INFO",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/lib/biomarker-details-wc/biomarker-details-wc.component.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "TissueInfo",

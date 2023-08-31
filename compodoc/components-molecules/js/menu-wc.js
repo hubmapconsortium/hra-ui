@@ -75,6 +75,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/HeaderComponent.html" data-type="entity-link" >HeaderComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/HraLandingPageIntroWcComponent.html" data-type="entity-link" >HraLandingPageIntroWcComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/InfoModalComponent.html" data-type="entity-link" >InfoModalComponent</a>
                             </li>
                             <li class="link">

@@ -57,6 +57,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/BiomarkerDetailsComponent.html" data-type="entity-link" >BiomarkerDetailsComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/BiomarkerDetailsWcComponent.html" data-type="entity-link" >BiomarkerDetailsWcComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/ContactBehaviorComponent.html" data-type="entity-link" >ContactBehaviorComponent</a>
                             </li>
                             <li class="link">
@@ -64,6 +67,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/HeaderBehaviorComponent.html" data-type="entity-link" >HeaderBehaviorComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/HraLandingPageIntroWcBehaviourComponent.html" data-type="entity-link" >HraLandingPageIntroWcBehaviourComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/LandingPageContentComponent.html" data-type="entity-link" >LandingPageContentComponent</a>

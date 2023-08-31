@@ -141,12 +141,12 @@
         },
         {
             "name": "DownloadFormat",
-            "id": "interface-DownloadFormat-8b2546c471b258bf6a1366f32f76e1cfb6e5e130e40f5f54fc777c49dd8b4011c994505ca83bf52ee5f6c022571a4285701658442b10a1c9ed863ea4777b6c0e",
+            "id": "interface-DownloadFormat-45c5a61fc5d68c201808fb76ff867f9a7cf8e42e6ef95ae08b440dbd37ce63eb4c77c3da0597ef90973854d65522a3ba496eeb5eccbe75750c1fd2f5abf52e6b",
             "file": "src/lib/footer/footer.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatButtonModule } from '@angular/material/button';\nimport { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { MatListModule } from '@angular/material/list';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { EMPTY_LINK } from '@hra-ui/cdk/state';\n\n/**\n * Base type for different download format options.\n */\nexport interface DownloadFormat {\n  /**\n   * User readable format label\n   */\n  label: string;\n}\n\n/**\n * Positioning value for the download list popup\n */\nconst DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [\n  {\n    panelClass: 'above',\n    originX: 'start',\n    originY: 'top',\n    overlayX: 'start',\n    overlayY: 'bottom',\n    offsetY: 0,\n  },\n  {\n    panelClass: 'below',\n    originX: 'start',\n    originY: 'bottom',\n    overlayX: 'start',\n    overlayY: 'top',\n  },\n];\n\n/**\n * Component for footer that displays its content at the bottom of the page with different action buttons.\n */\n@Component({\n  selector: 'hra-footer',\n  standalone: true,\n  imports: [CommonModule, MatButtonModule, MatIconModule, OverlayModule, MatListModule, LinkDirective],\n  templateUrl: './footer.component.html',\n  styleUrls: ['./footer.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FooterComponent<T extends DownloadFormat = DownloadFormat> {\n  /** Host binding of footer component */\n  @HostBinding('class') @Input() size: 'small' | 'large' = 'large';\n\n  /** Input for product logo URL to displayed on the left side. */\n  @Input() productLogoUrl = '';\n\n  /** Input for product title to displayed on the left side. */\n  @Input() productTitle = '';\n\n  /** Input for HRA Portal link */\n  @Input() hraPortal = EMPTY_LINK;\n\n  /** Input for Illustration metadata page link in HRA Portal */\n  @Input() illustrationMetadata = EMPTY_LINK;\n\n  /** Input for embed link in HRA Portal */\n  @Input() embed = EMPTY_LINK;\n\n  /** Different download formats options displayed to the user */\n  @Input() downloadFormats: T[] = [];\n\n  /** Emits the selected download format */\n  @Output() readonly download = new EventEmitter<T>();\n\n  /** Emits when the contact button is clicked */\n  @Output() readonly contactClick = new EventEmitter<void>();\n\n  /** Download list popup overlay positioning */\n  readonly DOWNLOADS_LIST_POSITION = DOWNLOADS_LIST_POSITION;\n\n  /** Gets whether the footer required is small */\n  get isSmall(): boolean {\n    return this.size === 'small';\n  }\n\n  /** Whether the download list panel is open */\n  downloadListOpen = false;\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatButtonModule } from '@angular/material/button';\nimport { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { MatListModule } from '@angular/material/list';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { EMPTY_LINK } from '@hra-ui/cdk/state';\n\n/**\n * Base type for different download format options.\n */\nexport interface DownloadFormat {\n  /**\n   * User readable format label\n   */\n  label: string;\n}\n\n/**\n * Positioning value for the download list popup\n */\nconst DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [\n  {\n    panelClass: 'above',\n    originX: 'start',\n    originY: 'top',\n    overlayX: 'start',\n    overlayY: 'bottom',\n    offsetY: 0,\n  },\n  {\n    panelClass: 'below',\n    originX: 'start',\n    originY: 'bottom',\n    overlayX: 'start',\n    overlayY: 'top',\n  },\n];\n\n/**\n * Component for footer that displays its content at the bottom of the page with different action buttons.\n */\n@Component({\n  selector: 'hra-footer',\n  standalone: true,\n  imports: [CommonModule, MatButtonModule, MatIconModule, OverlayModule, MatListModule, LinkDirective],\n  templateUrl: './footer.component.html',\n  styleUrls: ['./footer.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FooterComponent<T extends DownloadFormat = DownloadFormat> {\n  /** Host binding of footer component */\n  @HostBinding('class')\n  @Input()\n  size: 'small' | 'large' = 'large';\n\n  /** Input for product logo URL to displayed on the left side. */\n  @Input() productLogoUrl = '';\n\n  /** Input for product title to displayed on the left side. */\n  @Input() productTitle = '';\n\n  /** Input for HRA Portal link */\n  @Input() hraPortal = EMPTY_LINK;\n\n  /** Input for Illustration metadata page link in HRA Portal */\n  @Input() illustrationMetadata = EMPTY_LINK;\n\n  /** Input for embed link in HRA Portal */\n  @Input() embed = EMPTY_LINK;\n\n  /** Different download formats options displayed to the user */\n  @Input() downloadFormats: T[] = [];\n\n  /** Emits the selected download format */\n  @Output() readonly download = new EventEmitter<T>();\n\n  /** Emits when the contact button is clicked */\n  @Output() readonly contactClick = new EventEmitter<void>();\n\n  /** Download list popup overlay positioning */\n  readonly DOWNLOADS_LIST_POSITION = DOWNLOADS_LIST_POSITION;\n\n  /** Gets whether the footer required is small */\n  get isSmall(): boolean {\n    return this.size === 'small';\n  }\n\n  /** Whether the download list panel is open */\n  downloadListOpen = false;\n}\n",
             "properties": [
                 {
                     "name": "label",
@@ -752,7 +752,7 @@
         },
         {
             "name": "FooterComponent",
-            "id": "component-FooterComponent-8b2546c471b258bf6a1366f32f76e1cfb6e5e130e40f5f54fc777c49dd8b4011c994505ca83bf52ee5f6c022571a4285701658442b10a1c9ed863ea4777b6c0e",
+            "id": "component-FooterComponent-45c5a61fc5d68c201808fb76ff867f9a7cf8e42e6ef95ae08b440dbd37ce63eb4c77c3da0597ef90973854d65522a3ba496eeb5eccbe75750c1fd2f5abf52e6b",
             "file": "src/lib/footer/footer.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -777,7 +777,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nDifferent download formats options displayed to the user",
                     "description": "<p>Different download formats options displayed to the user</p>\n",
-                    "line": 72,
+                    "line": 74,
                     "type": "T[]",
                     "decorators": []
                 },
@@ -788,7 +788,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nInput for embed link in HRA Portal",
                     "description": "<p>Input for embed link in HRA Portal</p>\n",
-                    "line": 69,
+                    "line": 71,
                     "type": "any",
                     "decorators": []
                 },
@@ -799,7 +799,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nInput for HRA Portal link",
                     "description": "<p>Input for HRA Portal link</p>\n",
-                    "line": 63,
+                    "line": 65,
                     "type": "any",
                     "decorators": []
                 },
@@ -810,7 +810,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nInput for Illustration metadata page link in HRA Portal",
                     "description": "<p>Input for Illustration metadata page link in HRA Portal</p>\n",
-                    "line": 66,
+                    "line": 68,
                     "type": "any",
                     "decorators": []
                 },
@@ -821,7 +821,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nInput for product logo URL to displayed on the left side.",
                     "description": "<p>Input for product logo URL to displayed on the left side.</p>\n",
-                    "line": 57,
+                    "line": 59,
                     "type": "string",
                     "decorators": []
                 },
@@ -832,7 +832,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nInput for product title to displayed on the left side.",
                     "description": "<p>Input for product title to displayed on the left side.</p>\n",
-                    "line": 60,
+                    "line": 62,
                     "type": "string",
                     "decorators": []
                 },
@@ -843,7 +843,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nHost binding of footer component",
                     "description": "<p>Host binding of footer component</p>\n",
-                    "line": 54,
+                    "line": 56,
                     "type": "\"small\" | \"large\"",
                     "decorators": []
                 }
@@ -856,7 +856,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nEmits when the contact button is clicked",
                     "description": "<p>Emits when the contact button is clicked</p>\n",
-                    "line": 78,
+                    "line": 80,
                     "type": "EventEmitter"
                 },
                 {
@@ -866,7 +866,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nEmits the selected download format",
                     "description": "<p>Emits the selected download format</p>\n",
-                    "line": 75,
+                    "line": 77,
                     "type": "EventEmitter"
                 }
             ],
@@ -879,7 +879,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Whether the download list panel is open</p>\n",
-                    "line": 89,
+                    "line": 91,
                     "rawdescription": "\nWhether the download list panel is open"
                 },
                 {
@@ -890,7 +890,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Download list popup overlay positioning</p>\n",
-                    "line": 81,
+                    "line": 83,
                     "rawdescription": "\nDownload list popup overlay positioning",
                     "modifierKind": [
                         144
@@ -905,7 +905,7 @@
             "description": "<p>Component for footer that displays its content at the bottom of the page with different action buttons.</p>\n",
             "rawdescription": "\n\nComponent for footer that displays its content at the bottom of the page with different action buttons.\n",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatButtonModule } from '@angular/material/button';\nimport { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { MatListModule } from '@angular/material/list';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { EMPTY_LINK } from '@hra-ui/cdk/state';\n\n/**\n * Base type for different download format options.\n */\nexport interface DownloadFormat {\n  /**\n   * User readable format label\n   */\n  label: string;\n}\n\n/**\n * Positioning value for the download list popup\n */\nconst DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [\n  {\n    panelClass: 'above',\n    originX: 'start',\n    originY: 'top',\n    overlayX: 'start',\n    overlayY: 'bottom',\n    offsetY: 0,\n  },\n  {\n    panelClass: 'below',\n    originX: 'start',\n    originY: 'bottom',\n    overlayX: 'start',\n    overlayY: 'top',\n  },\n];\n\n/**\n * Component for footer that displays its content at the bottom of the page with different action buttons.\n */\n@Component({\n  selector: 'hra-footer',\n  standalone: true,\n  imports: [CommonModule, MatButtonModule, MatIconModule, OverlayModule, MatListModule, LinkDirective],\n  templateUrl: './footer.component.html',\n  styleUrls: ['./footer.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FooterComponent<T extends DownloadFormat = DownloadFormat> {\n  /** Host binding of footer component */\n  @HostBinding('class') @Input() size: 'small' | 'large' = 'large';\n\n  /** Input for product logo URL to displayed on the left side. */\n  @Input() productLogoUrl = '';\n\n  /** Input for product title to displayed on the left side. */\n  @Input() productTitle = '';\n\n  /** Input for HRA Portal link */\n  @Input() hraPortal = EMPTY_LINK;\n\n  /** Input for Illustration metadata page link in HRA Portal */\n  @Input() illustrationMetadata = EMPTY_LINK;\n\n  /** Input for embed link in HRA Portal */\n  @Input() embed = EMPTY_LINK;\n\n  /** Different download formats options displayed to the user */\n  @Input() downloadFormats: T[] = [];\n\n  /** Emits the selected download format */\n  @Output() readonly download = new EventEmitter<T>();\n\n  /** Emits when the contact button is clicked */\n  @Output() readonly contactClick = new EventEmitter<void>();\n\n  /** Download list popup overlay positioning */\n  readonly DOWNLOADS_LIST_POSITION = DOWNLOADS_LIST_POSITION;\n\n  /** Gets whether the footer required is small */\n  get isSmall(): boolean {\n    return this.size === 'small';\n  }\n\n  /** Whether the download list panel is open */\n  downloadListOpen = false;\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatButtonModule } from '@angular/material/button';\nimport { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { MatListModule } from '@angular/material/list';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { EMPTY_LINK } from '@hra-ui/cdk/state';\n\n/**\n * Base type for different download format options.\n */\nexport interface DownloadFormat {\n  /**\n   * User readable format label\n   */\n  label: string;\n}\n\n/**\n * Positioning value for the download list popup\n */\nconst DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [\n  {\n    panelClass: 'above',\n    originX: 'start',\n    originY: 'top',\n    overlayX: 'start',\n    overlayY: 'bottom',\n    offsetY: 0,\n  },\n  {\n    panelClass: 'below',\n    originX: 'start',\n    originY: 'bottom',\n    overlayX: 'start',\n    overlayY: 'top',\n  },\n];\n\n/**\n * Component for footer that displays its content at the bottom of the page with different action buttons.\n */\n@Component({\n  selector: 'hra-footer',\n  standalone: true,\n  imports: [CommonModule, MatButtonModule, MatIconModule, OverlayModule, MatListModule, LinkDirective],\n  templateUrl: './footer.component.html',\n  styleUrls: ['./footer.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FooterComponent<T extends DownloadFormat = DownloadFormat> {\n  /** Host binding of footer component */\n  @HostBinding('class')\n  @Input()\n  size: 'small' | 'large' = 'large';\n\n  /** Input for product logo URL to displayed on the left side. */\n  @Input() productLogoUrl = '';\n\n  /** Input for product title to displayed on the left side. */\n  @Input() productTitle = '';\n\n  /** Input for HRA Portal link */\n  @Input() hraPortal = EMPTY_LINK;\n\n  /** Input for Illustration metadata page link in HRA Portal */\n  @Input() illustrationMetadata = EMPTY_LINK;\n\n  /** Input for embed link in HRA Portal */\n  @Input() embed = EMPTY_LINK;\n\n  /** Different download formats options displayed to the user */\n  @Input() downloadFormats: T[] = [];\n\n  /** Emits the selected download format */\n  @Output() readonly download = new EventEmitter<T>();\n\n  /** Emits when the contact button is clicked */\n  @Output() readonly contactClick = new EventEmitter<void>();\n\n  /** Download list popup overlay positioning */\n  readonly DOWNLOADS_LIST_POSITION = DOWNLOADS_LIST_POSITION;\n\n  /** Gets whether the footer required is small */\n  get isSmall(): boolean {\n    return this.size === 'small';\n  }\n\n  /** Whether the download list panel is open */\n  downloadListOpen = false;\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -921,7 +921,7 @@
                         "name": "isSmall",
                         "type": "boolean",
                         "returnType": "boolean",
-                        "line": 84,
+                        "line": 86,
                         "rawdescription": "\nGets whether the footer required is small",
                         "description": "<p>Gets whether the footer required is small</p>\n"
                     }
@@ -1164,6 +1164,92 @@
             ],
             "stylesData": "",
             "templateData": "<a class=\"product\" matRipple [hraLink]=\"productTitleLink\">\n  <img class=\"logo image\" [src]=\"productLogoUrl\" alt=\"Prodoct Logo\" aria-hidden=\"true\" />\n  <h1 class=\"text\">{{ productTitle }}</h1>\n</a>\n<h1 class=\"app text\">{{ appTitle }}</h1>\n\n<div class=\"filler\"></div>\n\n<a mat-flat-button class=\"about\" [hraLink]=\"aboutLink\">\n  <mat-icon class=\"icon\">info_outlined</mat-icon>\n  <span class=\"text\">About</span>\n</a>\n"
+        },
+        {
+            "name": "HraLandingPageIntroWcComponent",
+            "id": "component-HraLandingPageIntroWcComponent-57ba89b5fa60bec2ad59de1cc52e4d3002935eab8da7f77895b1d7b507237df7df5d8fa2fec4dd3ba498b8d06fc5f70758beb2ba67ccbb24f2819798948e81d4",
+            "file": "src/lib/hra-landing-page-intro-wc/hra-landing-page-intro-wc.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-ui-hra-landing-page-intro-wc",
+            "styleUrls": [
+                "./hra-landing-page-intro-wc.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./hra-landing-page-intro-wc.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "description",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nDescription for FTU Explorer",
+                    "description": "<p>Description for FTU Explorer</p>\n",
+                    "line": 19,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "partners",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nThank you message to partners",
+                    "description": "<p>Thank you message to partners</p>\n",
+                    "line": 22,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "readMore",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nIntro Image file url",
+                    "description": "<p>Intro Image file url</p>\n",
+                    "line": 25,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nIntro title for FTU Explorer",
+                    "description": "<p>Intro title for FTU Explorer</p>\n",
+                    "line": 16,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Component for LandingPage Intro - Web coomponent</p>\n",
+            "rawdescription": "\nComponent for LandingPage Intro - Web coomponent",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MarkdownModule } from 'ngx-markdown';\n\n/** Component for LandingPage Intro - Web coomponent */\n@Component({\n  selector: 'hra-ui-hra-landing-page-intro-wc',\n  standalone: true,\n  imports: [CommonModule, MarkdownModule],\n  templateUrl: './hra-landing-page-intro-wc.component.html',\n  styleUrls: ['./hra-landing-page-intro-wc.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HraLandingPageIntroWcComponent {\n  /** Intro title for FTU Explorer */\n  @Input() title = '';\n\n  /** Description for FTU Explorer */\n  @Input() description = '';\n\n  /** Thank you message to partners */\n  @Input() partners = '';\n\n  /** Intro Image file url */\n  @Input() readMore = '';\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use 'variables' as vars;\n\n:host {\n  gap: 8px;\n  padding: 24px, 32px, 24px, 32px;\n  .title {\n    font-size: 20px;\n    font-family: Inter;\n    font-weight: 400;\n    line-height: 24px;\n    letter-spacing: 0em;\n    text-align: left;\n  }\n\n  .description .partners .readMore {\n    font-family: Inter;\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 24px;\n    letter-spacing: 0em;\n    text-align: left;\n  }\n}\n::ng-deep p {\n  margin: 0;\n}\n\n::ng-deep a {\n  color: vars.$primary-rgb;\n  font-weight: 700;\n}\n",
+                    "styleUrl": "./hra-landing-page-intro-wc.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<h1 class=\"title\">{{ title }}</h1>\n\n<markdown class=\"description\" [data]=\"description\"></markdown>\n\n<markdown class=\"readMore\" [data]=\"readMore\"></markdown>\n\n<markdown class=\"partners\" [data]=\"partners\"></markdown>\n"
         },
         {
             "name": "InfoModalComponent",

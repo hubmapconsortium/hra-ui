@@ -94,6 +94,10 @@
                                     <span class="modifier">Static</span>
                                 <a href="#isFullScreen" >isFullScreen</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#size" >size</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -194,6 +198,87 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="size"></a>
+                    <span class="name">
+                        <span class="modifier">Static</span>
+                        <span ><b>size</b></span>
+                        <a href="#size"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>size(state: <a href="../interfaces/ScreenModeModel.html" target="_self">ScreenModeModel</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Selector([&#x27;ScreenModeState&#x27;])<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/lib/screen-mode/screen-mode.selectors.ts:24</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Selectors screen mode selectors</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>state</td>
+                                    <td>
+                                                <code><a href="../interfaces/ScreenModeModel.html" target="_self" >ScreenModeModel</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>&quot;small&quot; | &quot;large&quot;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>size of value &#39;small&#39; | &#39;large&#39;</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
 
@@ -220,6 +305,15 @@ export class ScreenModeSelectors {
   @Selector([ScreenModeState])
   static isFullScreen(state: ScreenModeModel): boolean {
     return state.isFullScreen;
+  }
+  /**
+   * Selectors screen mode selectors
+   * @param state
+   * @returns size of value &#x27;small&#x27; | &#x27;large&#x27;
+   */
+  @Selector([ScreenModeState])
+  static size(state: ScreenModeModel): &#x27;small&#x27; | &#x27;large&#x27; {
+    return state.size;
   }
 }
 </code></pre>

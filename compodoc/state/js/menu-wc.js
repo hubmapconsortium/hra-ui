@@ -150,6 +150,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/SetIllustrationUrl.html" data-type="entity-link" >SetIllustrationUrl</a>
                             </li>
                             <li class="link">
+                                <a href="classes/SetSize.html" data-type="entity-link" >SetSize</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/SourceRefsSelectors.html" data-type="entity-link" >SourceRefsSelectors</a>
                             </li>
                             <li class="link">

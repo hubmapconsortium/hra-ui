@@ -204,7 +204,9 @@ const DOWNLOADS_LIST_POSITION: ConnectedPosition[] &#x3D; [
 })
 export class FooterComponent&lt;T extends DownloadFormat &#x3D; DownloadFormat&gt; {
   /** Host binding of footer component */
-  @HostBinding(&#x27;class&#x27;) @Input() size: &#x27;small&#x27; | &#x27;large&#x27; &#x3D; &#x27;large&#x27;;
+  @HostBinding(&#x27;class&#x27;)
+  @Input()
+  size: &#x27;small&#x27; | &#x27;large&#x27; &#x3D; &#x27;large&#x27;;
 
   /** Input for product logo URL to displayed on the left side. */
   @Input() productLogoUrl &#x3D; &#x27;&#x27;;
