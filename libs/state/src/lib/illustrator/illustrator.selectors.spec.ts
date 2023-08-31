@@ -5,7 +5,12 @@ import { IllustratorSelectors } from './illustrator.selectors';
 describe('IllustratorSelectors', () => {
   const state: IllustratorModel = {
     url: 'https://www.example.com' as Url,
-    selected: {
+    selectedOnHover: {
+      label: ' ',
+      id: ' ',
+      ontologyId: ' ',
+    },
+    selectedOnClick: {
       label: ' ',
       id: ' ',
       ontologyId: ' ',
@@ -18,14 +23,24 @@ describe('IllustratorSelectors', () => {
     expect(result).toEqual(testUrl);
   });
 
-  it('should return the selected item', () => {
-    const testSelected: IllustrationMappingItem = {
+  it('should return the selected item on hover', () => {
+    const testSelectedOnHover: IllustrationMappingItem = {
       label: ' ',
       id: ' ',
       ontologyId: ' ',
     };
-    const result = IllustratorSelectors.selected(state);
-    expect(result).toEqual(testSelected);
+    const result = IllustratorSelectors.selectedOnHovered(state);
+    expect(result).toEqual(testSelectedOnHover);
+  });
+
+  it('should return the selected item on click', () => {
+    const testSelectedOnClick: IllustrationMappingItem = {
+      label: ' ',
+      id: ' ',
+      ontologyId: ' ',
+    };
+    const result = IllustratorSelectors.selectedOnClicked(state);
+    expect(result).toEqual(testSelectedOnClick);
   });
 
   it('should return the mapping', () => {

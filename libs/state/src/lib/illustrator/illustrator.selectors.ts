@@ -15,11 +15,19 @@ export class IllustratorSelectors {
   }
 
   /**
-   * Returns the selected model of the illustrator
+   * Returns the selected model of the illustrator on hover
    */
   @Selector([IllustratorState])
-  static selected({ selected }: IllustratorModel): unknown | undefined {
-    return selected;
+  static selectedOnHovered({ selectedOnHover }: IllustratorModel): IllustrationMappingItem | undefined {
+    return selectedOnHover;
+  }
+
+  /**
+   * Returns the selected model of the illustrator on click
+   */
+  @Selector([IllustratorState])
+  static selectedOnClicked({ selectedOnClick }: IllustratorModel): IllustrationMappingItem | undefined {
+    return selectedOnClick;
   }
 
   /**

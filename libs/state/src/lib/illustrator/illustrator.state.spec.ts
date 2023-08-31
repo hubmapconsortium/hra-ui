@@ -2,7 +2,7 @@ import { MockProxy, mock } from 'jest-mock-extended';
 import { IllustratorModel, IllustratorState } from './illustrator.state';
 import { StateContext } from '@ngxs/store';
 import { FtuDataService, IllustrationMappingItem, Iri, Url } from '@hra-ui/services';
-import { Load, SetSelection } from './illustrator.actions';
+import { Load, SetClicked, SetHover } from './illustrator.actions';
 import { firstValueFrom, of } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
 
@@ -40,15 +40,27 @@ describe('IllustratorState', () => {
     });
   });
 
-  describe('setSelection(ctx, action)', () => {
-    it('should set selected item', async () => {
+  describe('setHover(ctx, action)', () => {
+    it('should set selected item on hovered', async () => {
       const mockSelected: IllustrationMappingItem = {
         label: 'Mock Label',
         id: 'Mock Name',
         ontologyId: 'Mock id',
       };
-      state.setSelection(ctx, new SetSelection(mockSelected));
-      expect(ctx.patchState).toHaveBeenCalledWith({ selected: mockSelected });
+      state.SetHover(ctx, new SetHover(mockSelected));
+      expect(ctx.patchState).toHaveBeenCalledWith({ selectedOnHover: mockSelected });
+    });
+  });
+
+  describe('seClicked(ctx, action)', () => {
+    it('should set selected item on clicked', async () => {
+      const mockSelected: IllustrationMappingItem = {
+        label: 'Mock Label',
+        id: 'Mock Name',
+        ontologyId: 'Mock id',
+      };
+      state.SetClicked(ctx, new SetClicked(mockSelected));
+      expect(ctx.patchState).toHaveBeenCalledWith({ selectedOnClick: mockSelected });
     });
   });
 

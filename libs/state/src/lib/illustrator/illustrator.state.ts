@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { FtuDataService, IllustrationMappingItem, Url } from '@hra-ui/services';
 import { Action, State, StateContext } from '@ngxs/store';
 import { forkJoin, Observable, tap } from 'rxjs';
-import { ClearSelection, Load, Reset, SetSelection } from './illustrator.actions';
+import { ClearSelection, Load, Reset, SetClicked, SetHover } from './illustrator.actions';
 
 /**
  * interface for the Illustrator Model that contains the url, selected
@@ -11,8 +11,10 @@ import { ClearSelection, Load, Reset, SetSelection } from './illustrator.actions
 export interface IllustratorModel {
   /** Illustration URL */
   url?: Url;
-  /** Selected Illustrator Item */
-  selected?: IllustrationMappingItem;
+  /** Selected Illustrator Item on hover */
+  selectedOnHover?: IllustrationMappingItem;
+  /** Selected Illustrator Item on click */
+  selectedOnClick?: IllustrationMappingItem;
   /** Array of Illustrartor Items */
   mapping: IllustrationMappingItem[];
 }
@@ -45,15 +47,25 @@ export class IllustratorState {
     const url$ = this.dataService.getIllustrationUrl(iri);
     const mapping$ = this.dataService.getIllustrationMapping(iri);
     const result$ = forkJoin({ url: url$, mapping: mapping$ });
-    return result$.pipe(tap((result) => patchState({ ...result, selected: undefined })));
+    return result$.pipe(
+      tap((result) => patchState({ ...result, selectedOnHover: undefined, selectedOnClick: undefined }))
+    );
   }
 
   /**
-   * Sets the current selection to the state
+   * Sets the current selection to the state for SetHover
    */
-  @Action(SetSelection)
-  setSelection({ patchState }: Context, { selected }: SetSelection): void {
-    patchState({ selected });
+  @Action(SetHover)
+  SetHover({ patchState }: Context, { selectedOnHover }: SetHover): void {
+    patchState({ selectedOnHover });
+  }
+
+  /**
+   * Sets the current selection to the state for SetClicked
+   */
+  @Action(SetClicked)
+  SetClicked({ patchState }: Context, { selectedOnClick }: SetClicked): void {
+    patchState({ selectedOnClick });
   }
 
   /**
@@ -61,7 +73,7 @@ export class IllustratorState {
    */
   @Action(ClearSelection)
   clearSelection({ patchState }: Context): void {
-    patchState({ selected: undefined });
+    patchState({ selectedOnHover: undefined, selectedOnClick: undefined });
   }
 
   /**
