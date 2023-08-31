@@ -29,4 +29,21 @@
   .display {
     display: none;
   }
+  .fullscreen-on::ng-deep {
+    ftu-biomarker-details {
+      grid-template-columns: 33.5rem 33.5rem auto;
+      hra-source-list {
+        width: unset !important;
+        hra-label-box {
+          width: auto;
+        }
+      }
+    }
+    hra-label-box.table-header {
+      width: auto;
+    }
+    hra-biomarker-table {
+      max-width: none;
+    }
+  }
 }
