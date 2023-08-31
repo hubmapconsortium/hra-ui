@@ -7,7 +7,12 @@
 
 <mat-tab-group class="table" [class.table-fullscreen]="isTableFullScreen" mat-stretch-tabs="false" color="accent">
   <mat-tab labelClass="extraTab" label="FTU Illustration">
-    <hra-interactive-svg [url]="currentUrl()" [mapping]="mapping()" (nodeHover)="updateNode($event)">
+    <hra-interactive-svg
+      [url]="currentUrl()"
+      [mapping]="mapping()"
+      (nodeHover)="updateNodeOnHover($event)"
+      (nodeClick)="updateNodeOnClicked($event)"
+    >
     </hra-interactive-svg>
   </mat-tab>
   <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="tab.label">

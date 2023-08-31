@@ -51,9 +51,9 @@ export class AppComponent {
 
   @Output() readonly organSelected = select$(ActiveFtuSelectors.iri);
 
-  @Output() readonly nodeHovered = select$(IllustratorSelectors.selected);
+  @Output() readonly nodeHovered = select$(IllustratorSelectors.selectedOnHovered);
 
-  @Output() readonly nodeClicked = select$(IllustratorSelectors.selected);
+  @Output() readonly nodeClicked = select$(IllustratorSelectors.selectedOnClicked);
 
   private readonly loadLinks = dispatch(LinkRegistryActions.LoadFromYaml);
   private readonly loadResources = dispatch(ResourceRegistryActions.LoadFromYaml);

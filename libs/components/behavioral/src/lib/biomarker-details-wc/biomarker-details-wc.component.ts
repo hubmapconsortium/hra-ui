@@ -95,7 +95,12 @@ export class BiomarkerDetailsWcComponent {
   /**
    * Updates the active node on node hover
    */
-  readonly updateNode = dispatch(IllustratorActions.SetSelection);
+  readonly updateNodeOnHover = dispatch(IllustratorActions.SetHover);
+
+  /**
+   * Updates the active node on node click
+   */
+  readonly updateNodeOnClicked = dispatch(IllustratorActions.SetClicked);
 
   /** Table tabs */
   readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);
