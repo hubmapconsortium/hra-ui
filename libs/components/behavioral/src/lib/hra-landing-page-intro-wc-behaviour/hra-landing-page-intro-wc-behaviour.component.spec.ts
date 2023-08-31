@@ -1,21 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
+import { Shallow } from 'shallow-render';
 import { HraLandingPageIntroWcBehaviourComponent } from './hra-landing-page-intro-wc-behaviour.component';
+import { ResourceRegistrySelectors } from '@hra-ui/cdk/state';
+
+jest.mock('@hra-ui/cdk/injectors');
 
 describe('HraLandingPageIntroWcBehaviourComponent', () => {
-  let component: HraLandingPageIntroWcBehaviourComponent;
-  let fixture: ComponentFixture<HraLandingPageIntroWcBehaviourComponent>;
+  let shallow: Shallow<HraLandingPageIntroWcBehaviourComponent>;
+  jest.mocked(selectQuerySnapshot).mockReturnValue(jest.fn());
+  jest.mocked(dispatch).mockReturnValue(jest.fn());
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [HraLandingPageIntroWcBehaviourComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(HraLandingPageIntroWcBehaviourComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    shallow = new Shallow(HraLandingPageIntroWcBehaviourComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  afterEach(() => jest.clearAllMocks());
+
+  it('should create HraLandingPageIntroWcBehaviourComponent', async () => {
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 });

@@ -1,23 +1,47 @@
-import { TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { Router } from '@angular/router';
+import { dispatch, dispatchAction$, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { of } from 'rxjs';
+import { Shallow } from 'shallow-render';
 import { AppComponent } from './app.component';
+import { initFactory } from './app.init';
+import { NavigationLessRouter } from './routing/simple-router.service';
+
+jest.mock('@hra-ui/cdk/injectors');
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [AppComponent],
-    }).compileComponents();
+  let shallow: Shallow<AppComponent>;
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+
+    jest.mocked(selectSnapshot).mockReturnValue(jest.fn());
+    jest.mocked(dispatch).mockReturnValue(jest.fn());
+
+    shallow = new Shallow(AppComponent)
+      .provideMock(Router, NavigationLessRouter)
+      .replaceModule(BrowserAnimationsModule, NoopAnimationsModule);
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Welcome ftu-ui-small-wc');
+  it('should create component', async () => {
+    expect(shallow.render()).resolves.toBeDefined();
   });
 
-  it(`should have as title 'ftu-ui-small-wc'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('ftu-ui-small-wc');
+  describe('initFactory()', () => {
+    const dispatcher = jest.fn().mockReturnValue(of(undefined));
+    jest.mocked(dispatchAction$).mockReturnValue(dispatcher);
+
+    afterEach(() => jest.clearAllMocks());
+
+    it('should dispatch actions', () => {
+      const init = initFactory();
+      init();
+      expect(dispatcher).toHaveBeenCalled();
+    });
+  });
+
+  it('should dispatch actions after input', async () => {
+    await shallow.render({ bind: { linksYamlUrl: '', resourcesYamlUrl: '', organIri: '' } });
+    expect(dispatch).toHaveBeenCalled();
   });
 });

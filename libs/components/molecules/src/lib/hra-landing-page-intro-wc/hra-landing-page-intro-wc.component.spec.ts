@@ -1,21 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { LinkDirective } from '@hra-ui/cdk';
+import { selectQuerySnapshot } from '@hra-ui/cdk/injectors';
+import { Shallow } from 'shallow-render';
 import { HraLandingPageIntroWcComponent } from './hra-landing-page-intro-wc.component';
 
+jest.mock('@hra-ui/cdk/injectors');
+jest.mocked(selectQuerySnapshot).mockReturnValue(() => undefined as never);
+
 describe('HraLandingPageIntroWcComponent', () => {
-  let component: HraLandingPageIntroWcComponent;
-  let fixture: ComponentFixture<HraLandingPageIntroWcComponent>;
+  let shallow: Shallow<HraLandingPageIntroWcComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [HraLandingPageIntroWcComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(HraLandingPageIntroWcComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    shallow = new Shallow(HraLandingPageIntroWcComponent).dontMock(LinkDirective);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create HraLandingPageIntroWcComponent', async () => {
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 });

@@ -4,6 +4,7 @@ import { ScreenModeSelectors } from './screen-mode.selectors';
 describe('ScreenMode Selectors', () => {
   const state: ScreenModeModel = {
     isFullScreen: false,
+    size: 'small',
   };
 
   it('should return screenmode isFullscreen', () => {
