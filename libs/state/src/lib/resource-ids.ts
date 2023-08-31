@@ -13,6 +13,8 @@ export const LandingPageDescription = createResourceId('LandingPageIntroDescript
 export const LandingPagePartners = createResourceId('LandingPageIntroPartners');
 /** Landing Page More Text id */
 export const LandingPageIntroMoreText = createResourceId('LandingPageIntroMoreText');
+/** Landing Page Read More text (For web components) */
+export const LandingPageIntroReadMore = createResourceId('LandingPageIntroReadMore');
 /** Landing Page Intro Image id */
 export const LandingPageIntroImg = createResourceId('LandingPageIntroImg');
 /** Metrics Logo id */

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>FTU Web Component</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script src="ftu-ui-small-wc.js"></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const ftu = document.getElementById('ftu');
+        const linksUrl = '../assets/links.yml';
+        const resourcesUrl = '../assets/resources.yml';
+        const organIri = 'https://example.com/kidney';
+        const selectOrgan = (activeIri) => {
+          console.log('selected organ', activeIri);
+        };
+        const selectNode = (selectedNode) => {
+          console.log('selected node', selectedNode);
+        };
+        let focusId = '';
+        ftu.linksYamlUrl(linksUrl);
+        ftu.resourcesYamlUrl(resourcesUrl);
+        ftu.organIri(organIri);
+        ftu.addEventListener('organSelected', selectOrgan);
+        ftu.addEventListener('nodeClicked', selectNode);
+      });
+    </script>
+  </head>
+  <body>
+    <ftu-hra-small-wc id="ftu"></ftu-hra-small-wc>
+  </body>
+</html>

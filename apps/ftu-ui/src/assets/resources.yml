@@ -31,6 +31,11 @@ LandingPageIntroPartners:
     A special thanks to our partners: The FTU Explorer was designed in close collaboration with
     <a href='https://www.kpmp.org' target='_blank'>Kidney Precision Medicine Project</a> and <a href='https://www.ebi.ac.uk' target="_blank">European Bioinformatics Institute.</a>
 
+LandingPageIntroReadMore:
+  type: markdown
+  markdown: |
+    Read more about this effort at HRA Portal <a href='' target='_blank'>Explore FTU</a>.
+
 LandingPageIntroMoreText:
   type: text
   text: Explore FTUs

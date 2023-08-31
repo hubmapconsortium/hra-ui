@@ -1,0 +1,66 @@
+<hra-label-box class="table-header">
+  {{ tissueTitle }}: FTU Illustration
+  <mat-icon (click)="toggleFullscreen()" class="end">
+    {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}
+  </mat-icon>
+</hra-label-box>
+
+<mat-tab-group class="table" [class.table-fullscreen]="isTableFullScreen" mat-stretch-tabs="false" color="accent">
+  <mat-tab labelClass="extraTab" label="FTU Illustration">
+    <hra-interactive-svg
+      [url]="currentUrl()"
+      [mapping]="mapping()"
+      (nodeHover)="updateNodeOnHover($event)"
+      (nodeClick)="updateNodeOnClicked($event)"
+    >
+    </hra-interactive-svg>
+  </mat-tab>
+  <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="tab.label">
+    <hra-biomarker-table
+      *ngIf="tab.rows.length !== 0"
+      [data]="$any(tab.rows)"
+      [columns]="tab.columns"
+      [gradient]="gradients()"
+      [sizes]="sizes()"
+      [tissueInfo]="tissueInfo"
+    ></hra-biomarker-table>
+
+    <div *ngIf="tab.rows.length !== 0" class="legends">
+      <div class="legends-left">
+        <hra-label-box class="legend-header gradient">
+          Biomarker Expression Mean in FTU
+          <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="gradientHoverInfo()">info_outlined</mat-icon>
+        </hra-label-box>
+        <div class="legend gradient">
+          <hra-gradient-legend [gradient]="gradients()" class="content"></hra-gradient-legend>
+        </div>
+      </div>
+
+      <div class="legends-right">
+        <hra-label-box class="legend-header size">
+          Percentage of Cells in FTU
+          <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="sizeHoverInfo()">info_outlined</mat-icon>
+        </hra-label-box>
+        <div class="legend size">
+          <hra-size-legend [sizes]="sizes()" class="content"></hra-size-legend>
+        </div>
+      </div>
+    </div>
+    <hra-empty-biomarker
+      *ngIf="tab.rows.length === 0"
+      [collaborateText]="collaborateText"
+      [message]="message"
+    ></hra-empty-biomarker>
+  </mat-tab>
+  <mat-tab labelClass="extraTab" label="Source Data">
+    <div class="source-list">
+      <hra-source-list [sources]="source()" class="content"></hra-source-list>
+    </div>
+
+    <ng-template #infoTooltip let-tooltip>
+      <div class="biomarker-details info-tooltip">
+        {{ tooltip }}
+      </div>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
