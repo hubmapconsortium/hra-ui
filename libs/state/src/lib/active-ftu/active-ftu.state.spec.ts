@@ -1,6 +1,6 @@
 import { StateContext } from '@ngxs/store';
 import { firstValueFrom, of } from 'rxjs';
-import { Load } from './active-ftu.actions';
+import { Load, SetIllustrationUrl } from './active-ftu.actions';
 import { ActiveFtuModel, ActiveFtuState } from './active-ftu.state';
 import { IllustratorActions } from '../illustrator';
 import { SourceRefsActions } from '../source-refs';
@@ -8,6 +8,8 @@ import { CellSummaryActions } from '../cell-summary';
 import { DownloadActions } from '../download';
 import { Iri } from '@hra-ui/services';
 import { MockProxy, mock } from 'jest-mock-extended';
+import { LinkRegistryActions, LinkType } from '@hra-ui/cdk/state';
+import { Illustration } from '../link-ids';
 
 describe('ActiveFtuState', () => {
   const testIri = 'https://www.example.com/test-iri' as Iri;
@@ -29,6 +31,7 @@ describe('ActiveFtuState', () => {
         new IllustratorActions.Load(testIri),
         new DownloadActions.Load(testIri),
         new SourceRefsActions.Load(testIri),
+        new SetIllustrationUrl(testIri),
       ]);
     });
 
@@ -45,6 +48,17 @@ describe('ActiveFtuState', () => {
       ctx.getState.mockReturnValue({ iri: testIri });
       state.load(ctx, new Load(testIri));
       expect(ctx.dispatch).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('setIllustrationUrl(ctx)', () => {
+    it('set the illustartion url and dispatch action', () => {
+      const mockurl = 'https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/2d-ftu/2d-ftu-test-iri.html';
+      ctx.getState.mockReturnValue({ iri: testIri });
+      state.setIllustrationUrl(ctx, new SetIllustrationUrl(testIri));
+      expect(ctx.dispatch).toHaveBeenCalledWith(
+        new LinkRegistryActions.Add(Illustration, { type: LinkType.External, url: mockurl })
+      );
     });
   });
 
