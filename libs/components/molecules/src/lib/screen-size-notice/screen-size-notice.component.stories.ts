@@ -17,5 +17,5 @@ const Template: Story<ScreenSizeNoticeComponent> = (args: ScreenSizeNoticeCompon
 
 export const Primary = Template.bind({});
 Primary.args = {
-  contentUrl: 'assets/screen-size-notice-content.md',
+  content: 'assets/screen-size-notice-content.md',
 };

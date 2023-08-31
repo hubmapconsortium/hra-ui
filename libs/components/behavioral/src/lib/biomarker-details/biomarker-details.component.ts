@@ -3,9 +3,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { HoverDirective } from '@hra-ui/cdk';
-import { selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
+import { ActiveFtuSelectors, ScreenModeAction, TissueLibrarySelectors } from '@hra-ui/state';
 import {
+  EmptyBiomarkerComponent,
   GradientLegendComponent,
   GradientPoint,
   LabelBoxComponent,
@@ -13,8 +15,16 @@ import {
   SizeLegendComponent,
 } from '@hra-ui/components/atoms';
 import { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/components/molecules';
-import { BiomarkerTableComponent } from '@hra-ui/components/organisms';
-import { CellSummarySelectors, ResourceIds as Ids, ResourceTypes as RTypes, SourceListSelectors } from '@hra-ui/state';
+import { BiomarkerTableComponent, TissueInfo } from '@hra-ui/components/organisms';
+import { CellSummarySelectors, ResourceIds as Ids, ResourceTypes as RTypes, SourceRefsSelectors } from '@hra-ui/state';
+
+/**
+ * PlaceHolder for Empty Tissue Info
+ */
+const EMPTY_TISSUE_INFO: TissueInfo = {
+  id: '',
+  label: '',
+};
 
 /** The component displays the biomarker details which includes the details, gradient legends, size legends and source lists*/
 @Component({
@@ -32,6 +42,7 @@ import { CellSummarySelectors, ResourceIds as Ids, ResourceTypes as RTypes, Sour
     LabelBoxComponent,
     SizeLegendComponent,
     SourceListComponent,
+    EmptyBiomarkerComponent,
   ],
   templateUrl: './biomarker-details.component.html',
   styleUrls: ['./biomarker-details.component.scss'],
@@ -59,5 +70,50 @@ export class BiomarkerDetailsComponent {
   readonly sizes = selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>;
 
   /** List of sources with titles and links displayed to the user */
-  readonly source = selectSnapshot(SourceListSelectors.getSourceList);
+  readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);
+
+  /**
+   * Iri  of medical illustration behavior component
+   */
+  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);
+
+  /**
+   * Get all tissues
+   */
+  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);
+
+  /**
+   * Gets tissue title from the list of tissues
+   */
+  get tissueInfo(): TissueInfo {
+    const iri = this.iri();
+    const tissues = this.tissues();
+    if (iri === undefined) {
+      return EMPTY_TISSUE_INFO;
+    }
+    const { id, label } = tissues[iri];
+    return { id, label };
+  }
+
+  /**
+   * button text of empty biomarker component.
+   */
+  readonly collaborateText = 'Collaborate with the HRA Team';
+
+  /**
+   * message markdown of empty biomarker component.
+   */
+  readonly message = `We currently do not have cell type data for this biomarker.
+  <br><br> Please contact us to discuss your dataset.`;
+
+  /** A dispatcher function to set the screen mode */
+  private readonly setScreenMode = dispatch(ScreenModeAction.Set);
+
+  /** A function that toggles isTableFullScreen and
+   * calls the setScreenMode function.
+   */
+  toggleFullscreen(): void {
+    this.isTableFullScreen = !this.isTableFullScreen;
+    this.setScreenMode(this.isTableFullScreen);
+  }
 }

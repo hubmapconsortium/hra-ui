@@ -1,3 +1,19 @@
 :host {
   display: block;
+
+  .contact-modal {
+    width: 41rem;
+    height: 40rem;
+  }
+
+  .info-modal {
+    width: 35rem;
+    height: 11.8rem;
+  }
+
+  @media screen and (max-height: 328px) {
+    .contact-modal {
+      height: calc(100vh - 2rem);
+    }
+  }
 }

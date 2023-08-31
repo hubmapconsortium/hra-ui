@@ -1,35 +1,21 @@
 import { ActionGroup } from '@hra-ui/cdk/state';
-import { CellSummary } from './cell-summary.model';
+import { Iri } from '@hra-ui/services';
 
-/** Base action factory */
-const Action = ActionGroup('ResourceRegistry');
+/** Action base class factory */
+const Action = ActionGroup('CellSummary');
 
-/** Set data to store */
-export class SetData extends Action('SetData') {
-  /**
-   * Defines the SetData action, which sets data to the store.
-   * @param data - The data to set to the store.
-   */
-  constructor(readonly data: CellSummary) {
-    super();
-  }
-}
-
-/** Loads cell summaries */
+/** loads the given Iri to the state */
 export class Load extends Action('Load') {
-  /** Create a Load action */
-  constructor(readonly id: unknown) {
+  /** Intializes the set iri */
+  constructor(readonly iri: Iri) {
     super();
   }
 }
 
-/** Compute aggregate of the given data and store to state */
-export class ComputeAggregate extends Action('ComputeAggregate') {
-  /**
-   * Defines the ComputeAggregate action, which computes aggregate data for the given summaries.
-   * @param summaries - The cell summary data to compute aggregate for.
-   */
-  constructor(readonly summaries: CellSummary) {
-    super();
-  }
-}
+/**
+ * Compute aggregate of the given data and store to state */
+export class ComputeAggregates extends Action('Compute Aggregates') {}
+
+/**
+ * Action to reset the current state */
+export class Reset extends Action('Reset') {}

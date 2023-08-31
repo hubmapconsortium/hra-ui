@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { TissueLibraryService } from '@hra-ui/services';
+import { FtuDataService } from '@hra-ui/services';
 import { Action, State } from '@ngxs/store';
 import { Observable, tap } from 'rxjs';
 import { Load } from './tissue-library.actions';
@@ -12,7 +12,8 @@ import { TissueLibraryContext, TissueLibraryModel } from './tissue-library.model
 @Injectable()
 export class TissueLibraryState {
   /** injects the TissueLibraryService into a private readonly property */
-  private readonly dataService = inject(TissueLibraryService);
+  private readonly dataService = inject(FtuDataService);
+
   /**
    * Loads the tissue data into the current state
    * @param ctx The state context instance
@@ -20,6 +21,6 @@ export class TissueLibraryState {
    */
   @Action(Load)
   setActive(ctx: TissueLibraryContext): Observable<unknown> {
-    return this.dataService.getTissues().pipe(tap((data) => ctx.setState(data)));
+    return this.dataService.getTissueLibrary().pipe(tap((data) => ctx.setState(data)));
   }
 }

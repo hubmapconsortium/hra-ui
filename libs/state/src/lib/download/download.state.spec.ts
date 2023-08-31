@@ -13,6 +13,7 @@ import {
   createDownloadFormatId,
 } from './download.model';
 import { DownloadState } from './download.state';
+import { FtuDataService } from '@hra-ui/services';
 
 describe('DownlodState', () => {
   const urlFull = 'http://base.com/abcd.svg';
@@ -61,7 +62,7 @@ describe('DownlodState', () => {
 
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [DownloadState],
+      providers: [DownloadState, FtuDataService],
     });
 
     ctx.getState.mockImplementation(() => latest);

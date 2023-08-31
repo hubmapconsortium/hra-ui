@@ -1,26 +1,27 @@
 ProductTitle:
   type: internal
   commands:
-    - '/'
+    - /
 FTU:
   type: internal
   commands:
-    - 'ftu/'
+    - ftu/
 About:
   type: external
-  url: https://www.example.com
+  url: https://humanatlas.io/
 ExploreFTU:
-  type: external
-  url: https://www.example.com
+  type: internal
+  commands:
+    - ftu/
+  extras:
+    queryParams:
+      id: https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle
 LandingPageReadMore:
   type: external
-  url: https://www.example.com
+  url: https://humanatlas.io/2d-ftu-illustrations
 Portal:
   type: external
-  url: https://www.example.com
-Illustration:
-  type: external
-  url: https://www.example.com
+  url: https://humanatlas.io/
 Embed:
   type: external
-  url: https://www.example.com
+  url: https://github.com/hubmapconsortium/hra-ui#readme

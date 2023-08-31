@@ -1,13 +1,25 @@
 <hra-label-box class="table-header">
   Cell Types by Gene Biomarkers
-  <mat-icon (click)="this.isTableFullScreen = !this.isTableFullScreen" class="end">
+  <mat-icon (click)="toggleFullscreen()" class="end">
     {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}
   </mat-icon>
 </hra-label-box>
 
-<mat-tab-group class="table" mat-stretch-tabs="false" color="accent">
+<mat-tab-group class="table" [class.table-fullscreen]="isTableFullScreen" mat-stretch-tabs="false" color="accent">
   <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="tab.label">
-    <hra-biomarker-table [data]="tab.rows" [columns]="tab.columns"></hra-biomarker-table>
+    <hra-biomarker-table
+      *ngIf="tab.rows.length !== 0"
+      [data]="$any(tab.rows)"
+      [columns]="tab.columns"
+      [gradient]="gradients()"
+      [sizes]="sizes()"
+      [tissueInfo]="tissueInfo"
+    ></hra-biomarker-table>
+    <hra-empty-biomarker
+      *ngIf="tab.rows.length === 0"
+      [collaborateText]="collaborateText"
+      [message]="message"
+    ></hra-empty-biomarker>
   </mat-tab>
 </mat-tab-group>
 
@@ -27,10 +39,6 @@
   <hra-size-legend [sizes]="sizes()" class="content"></hra-size-legend>
 </div>
 
-<hra-label-box class="source-list-header">
-  Source Data
-  <mat-icon class="end">expand_more</mat-icon>
-</hra-label-box>
 <div class="source-list">
   <hra-source-list [sources]="source()" class="content"></hra-source-list>
 </div>

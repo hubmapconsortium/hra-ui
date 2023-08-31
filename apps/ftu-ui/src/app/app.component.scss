@@ -23,4 +23,14 @@
   .page-content {
     grid-area: content;
   }
+
+  .custom-overlay {
+    background-color: white;
+  }
+
+  .content-container {
+    &.hidden {
+      display: none;
+    }
+  }
 }

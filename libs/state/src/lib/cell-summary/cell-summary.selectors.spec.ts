@@ -1,24 +1,19 @@
+import { CellSummaryModel } from './cell-summary.model';
 import { CellSummarySelectors } from './cell-summary.selectors';
-import { CellSummaryStateModel } from './cell-summary.model';
-import { aggregateData, summariesData } from './cell-summary.spec';
 
 describe('CellSummarySelectors', () => {
-  const state: CellSummaryStateModel = {
-    summaries: summariesData,
-    aggregate: aggregateData,
+  const state: CellSummaryModel = {
+    summaries: [],
+    aggregates: [],
   };
 
-  describe('getAggregateData', () => {
-    it('should return the aggregate data', () => {
-      const aggregate = CellSummarySelectors.aggregates(state);
-      expect(aggregate).toEqual(Object.values(state.aggregate));
-    });
+  it('should return the aggregate data from the state', () => {
+    const result = CellSummarySelectors.aggregates(state);
+    expect(result).toEqual(state.aggregates);
   });
 
-  describe('getSummariesData', () => {
-    it('should return the summaries data', () => {
-      const summaries = CellSummarySelectors.summaries(state);
-      expect(summaries).toEqual(state.summaries);
-    });
+  it('should return the summaries data from the state', () => {
+    const result = CellSummarySelectors.summaries(state);
+    expect(result).toEqual(state.summaries);
   });
 });

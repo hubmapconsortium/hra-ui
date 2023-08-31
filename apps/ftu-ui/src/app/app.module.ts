@@ -1,8 +1,9 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_INITIALIZER, DoBootstrap, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CdkStateModule } from '@hra-ui/cdk/state';
+import { createCustomElement } from '@angular/elements';
 import { HeaderBehaviorComponent, TissueLibraryBehaviorComponent } from '@hra-ui/components/behavioral';
 import { HraServiceModule } from '@hra-ui/services';
 import { HraStateModule } from '@hra-ui/state';
@@ -13,6 +14,8 @@ import { MarkdownModule } from 'ngx-markdown';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { initFactory } from './app.init';
+import { MatDialogModule } from '@angular/material/dialog';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +23,8 @@ import { initFactory } from './app.init';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+
+    MatDialogModule,
 
     InlineSVGModule.forRoot(),
     MarkdownModule.forRoot({
@@ -31,7 +36,9 @@ import { initFactory } from './app.init';
     AppRoutingModule,
     CdkStateModule,
     HraServiceModule,
-    HraStateModule,
+    HraStateModule.forRoot({
+      googleAnalyticsToken: environment.googleAnalyticsToken,
+    }),
 
     HeaderBehaviorComponent,
     TissueLibraryBehaviorComponent,
@@ -43,6 +50,15 @@ import { initFactory } from './app.init';
       multi: true,
     },
   ],
-  bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule implements DoBootstrap {
+  constructor(private readonly injector: Injector) {}
+
+  ngDoBootstrap(): void {
+    const FtuWebComponent = createCustomElement(AppComponent, {
+      injector: this.injector,
+    });
+
+    customElements.define('hra-ftu-wc', FtuWebComponent);
+  }
+}

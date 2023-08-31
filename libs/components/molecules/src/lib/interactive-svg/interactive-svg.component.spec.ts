@@ -1,5 +1,5 @@
 import { OverlayModule } from '@angular/cdk/overlay';
-import { inject, Renderer2 } from '@angular/core';
+import { inject, Renderer2, SimpleChanges } from '@angular/core';
 import { mock, MockProxy } from 'jest-mock-extended';
 import { Shallow } from 'shallow-render';
 
@@ -19,6 +19,12 @@ describe('InteractiveSvgComponent', () => {
   const mockedInject = jest.mocked(inject);
   const svg = mock<SVGSVGElement>();
   const crosswalk = mock<SVGGElement>();
+  const nodeList = mock<NodeListOf<Element>>({ 0: { nodeName: 'g' } });
+
+  const svg2 = mock<SVGSVGElement>();
+  const crosswalk2 = mock<SVGGElement>();
+  const nodeList2 = mock<NodeListOf<Element>>({ 0: { nodeName: 'path' } });
+
   let renderer: MockProxy<Renderer2>;
   let shallow: Shallow<InteractiveSvgComponent<NodeMapEntry>>;
 
@@ -29,6 +35,12 @@ describe('InteractiveSvgComponent', () => {
     mockedInject.mockReset().mockReturnValue(renderer);
     renderer.listen.mockReturnValue(() => undefined);
     svg.querySelector.mockReturnValue(crosswalk);
+    crosswalk.querySelector.mockReturnValue(nodeList[0]);
+    crosswalk.querySelectorAll.mockReturnValue(nodeList);
+
+    svg2.querySelector.mockReturnValue(crosswalk2);
+    crosswalk2.querySelector.mockReturnValue(nodeList2[0]);
+    crosswalk2.querySelectorAll.mockReturnValue(nodeList2);
   });
 
   it('should create', async () => {
@@ -47,6 +59,7 @@ describe('InteractiveSvgComponent', () => {
       instance.setSvgElement(svg);
       expect(renderer.listen).toHaveBeenCalledWith(crosswalk, 'mouseover', expect.any(Function));
       expect(renderer.listen).toHaveBeenCalledWith(crosswalk, 'mouseout', expect.any(Function));
+      expect(renderer.listen).toHaveBeenCalledWith(crosswalk, 'click', expect.any(Function));
     });
   });
 
@@ -67,26 +80,14 @@ describe('InteractiveSvgComponent', () => {
     const event2 = { target: path2, clientX: 10, clientY: 20 };
     const event3 = { target: path3, clientX: 10, clientY: 20 };
     const testNode: NodeMapEntry = {
-      organ_label: 'Kidney',
-      organ_id: 'UBERON:0002113',
-      anatomical_structure_of: '#FTUCorticalCollectingDuct',
-      source_spatial_entity: '#2DRefObjects',
-      node_name: 'Cortical_Collecting_Duct_Principal_Cell_1',
+      id: 'Cortical_Collecting_Duct_Principal_Cell_1',
       label: 'kidney cortex collecting duct principal cell',
-      OntologyID: 'CL:1000714',
-      representation_of: 'http://purl.obolibrary.org/obo/CL_1000714',
-      'svg file of single 2DFTU': '2d-ftu-kidney-cortical-collecting-duct',
-      exist_asctb: '1',
-      type: 'CT',
-      'REF/1': '',
-      'REF/1/DOI': '',
-      'REF/1/NOTES': '',
-      'Inset #': '',
+      ontologyId: 'CL_1000714',
     };
     const testMapping: NodeMapEntry[] = [
       testNode,
-      { ...testNode, node_name: 'Cortical_Collecting_Duct_Principal_Cell_2' },
-      { ...testNode, node_name: 'Cortical_Collecting_Duct_Principal_Cell_3' },
+      { ...testNode, id: 'Cortical_Collecting_Duct_Principal_Cell_2' },
+      { ...testNode, id: 'Cortical_Collecting_Duct_Principal_Cell_3' },
     ];
 
     it('should emit hover event on mouseover', async () => {
@@ -120,11 +121,49 @@ describe('InteractiveSvgComponent', () => {
       handler?.(event);
       expect(instance.nodeHoverData$.next).toHaveBeenCalledWith(undefined);
     });
+
+    it('should emit nodeClick on click', async () => {
+      const { instance, outputs } = await shallow.render({ bind: { mapping: testMapping } });
+      instance.setSvgElement(svg);
+
+      const handler = renderer.listen.mock.calls.find((args) => args[1] === 'click')?.[2];
+      handler?.(event);
+      expect(outputs.nodeClick.emit).toHaveBeenCalledWith(testMapping[0]);
+    });
   });
 
   it('remove underscores from node names', async () => {
     const { instance } = await shallow.render();
     instance.formatNodeName('test_node');
     expect(instance.formatNodeName('test_node')).toEqual('test node');
+  });
+
+  it('highlights elements based on highlightId', async () => {
+    const testNode: NodeMapEntry = {
+      id: 'Cortical_Collecting_Duct_Principal_Cell_1',
+      label: 'kidney cortex collecting duct principal cell',
+      ontologyId: 'CL_1000714',
+    };
+    const testMapping: NodeMapEntry[] = [
+      testNode,
+      { ...testNode, id: 'Cortical_Collecting_Duct_Principal_Cell_2' },
+      { ...testNode, id: 'Cortical_Collecting_Duct_Principal_Cell_3' },
+    ];
+    const testChanges: SimpleChanges = {
+      highlightId: {
+        currentValue: 'CL_1000714',
+        firstChange: false,
+        previousValue: undefined,
+        isFirstChange: () => {
+          return false;
+        },
+      },
+    };
+
+    const { instance } = await shallow.render({ bind: { mapping: testMapping, highlightId: 'CL_1000714' } });
+    instance.setSvgElement(svg);
+    instance.ngOnChanges(testChanges);
+    instance.setSvgElement(svg2);
+    instance.ngOnChanges(testChanges);
   });
 });

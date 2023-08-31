@@ -1,6 +1,6 @@
 import { dispatchAction$ } from '@hra-ui/cdk/injectors';
 import { LinkRegistryActions, LinkType, ResourceRegistryActions } from '@hra-ui/cdk/state';
-import { LinkIds, MedicalIllustrationActions, SourceListActions, TissueLibraryActions } from '@hra-ui/state';
+import { LinkIds, TissueLibraryActions } from '@hra-ui/state';
 import { Observable } from 'rxjs';
 
 /**
@@ -21,8 +21,5 @@ export function initFactory(): () => Observable<unknown> {
       new LinkRegistryActions.LoadFromYaml('assets/links.yml'),
       new ResourceRegistryActions.LoadFromYaml('assets/resources.yml'),
       new TissueLibraryActions.Load(),
-      new MedicalIllustrationActions.LoadReferenceOrgans(),
-      new MedicalIllustrationActions.SetMapping('assets/TEMP/mapping.csv'),
-      new SourceListActions.Set([{ title: 'Source 1', link: 'https://www.example.com/' }]),
     ]);
 }

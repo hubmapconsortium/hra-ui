@@ -1,7 +1,14 @@
 @use 'utils';
+@use 'variables' as vars;
 
 :host {
   display: block;
+
+  @include utils.define-flex-filler();
+
+  h1 {
+    margin: 0;
+  }
 
   .mat-mdc-cell {
     vertical-align: top;
@@ -10,7 +17,35 @@
     font-size: 1rem;
   }
 
+  .filler {
+    width: 30rem;
+  }
+
   .sr-only {
     @include utils.sr-only();
+  }
+
+  .table-content {
+    height: calc(100vh - 25rem);
+    overflow: auto;
+  }
+
+  .toggle {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    width: 43rem;
+    height: 3.5rem;
+    grid-area: source-list-header;
+    color: var(--dark-primary-text);
+    border-top: 0.063rem solid #d3d3d3;
+    border-bottom: 0.063rem solid #d3d3d3;
+    .mat-icon {
+      margin-left: 32rem;
+    }
+  }
+
+  .hidden {
+    display: none;
   }
 }

@@ -20,14 +20,16 @@ LandingPageIntroDescription:
     A functional tissue unit (FTU) is the smallest tissue organization that performs a unique physiologic function
     and is replicated multiple times in a whole organ. Explore medical illustrations of FTUs to view cell type populations
     by gene, protein, and lipid biomarkers. The FTU Explorer features experimental datasets from
-    <a href='' target='_blank'>HuBMAP</a>, <a href='' target='_blank'>CellxGene</a>, <a href='' target='_blank'>NeMO</a>,
-    and <a href='' target='_blank'>GTEx</a>.
+    <a href='https://portal.hubmapconsortium.org/' target='_blank'>HuBMAP</a>,
+    <a href='https://cellxgene.cziscience.com/' target='_blank'>CellxGene</a>,
+    <a href='https://nemoarchive.org' target='_blank'>NeMO</a>,
+    and <a href='https://gtexportal.org/' target='_blank'>GTEx</a>.
 
 LandingPageIntroPartners:
   type: markdown
   markdown: |
     A special thanks to our partners: The FTU Explorer was designed in close collaboration with
-    <a href='' target='_blank'>Kidney Precision Medicine Project</a> and <a href=''>European Bioinformatics Institute.</a>
+    <a href='https://www.kpmp.org' target='_blank'>Kidney Precision Medicine Project</a> and <a href='https://www.ebi.ac.uk' target="_blank">European Bioinformatics Institute.</a>
 
 LandingPageIntroMoreText:
   type: text
@@ -51,20 +53,20 @@ Metrics:
     - description: consortia
       value: '17'
       icon: assets/resources/metric-icons/diversity.svg
-    - description: publications
-      value: '1,000+'
-      icon: assets/resources/metric-icons/publications.svg
     - description: experts
       value: '250+'
       icon: assets/resources/metric-icons/experts.svg
+    - description: publications
+      value: '1,000+'
+      icon: assets/resources/metric-icons/publications.svg
     - description: anatomical structures
-      value: '2,665'
+      value: '4,279'
       icon: assets/resources/metric-icons/structures.svg
     - description: cell types
-      value: '953'
+      value: '1,209'
       icon: assets/resources/metric-icons/celltypes.svg
     - description: biomarkers
-      value: '2,842'
+      value: '2,089'
       icon: assets/resources/metric-icons/biomarkers.svg
 
 LandingPageDepthTitle:
@@ -96,11 +98,11 @@ GradientLegendInfo:
 GradientLegend:
   type: gradient
   points:
-    - color: '#00385F'
+    - color: '#EDFAFD'
       percentage: 0
     - color: '#63B1D3'
       percentage: 49.78
-    - color: '#EDFAFD'
+    - color: '#00385F'
       percentage: 100
 
 SizeLegendInfo:
@@ -118,3 +120,14 @@ SizeLegend:
       radius: 1
     - label: '100%'
       radius: 1.5
+
+ScreenSizeNoticeContent:
+  type: markdown
+  markdown: |
+    Functional Tissue Unit (FTU) Explorer is best utilized from a tablet or desktop.
+    The interface is not intended for this screen size. Proceed with this in mind, or,
+    read more about the FTU Explorer effort at the Human Reference Atlas (HRA) Portal.
+
+ContactAcknowledgement:
+  type: text
+  text: We received your message. Please allow two business days for a <br> response to each inquiry. Thanks for your time and expertise!

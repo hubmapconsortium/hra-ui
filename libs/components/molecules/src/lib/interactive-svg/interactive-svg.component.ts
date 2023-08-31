@@ -6,11 +6,14 @@ import {
   EventEmitter,
   inject,
   Input,
+  OnChanges,
   OnDestroy,
   Output,
   Renderer2,
+  SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
+import { TooltipComponent } from '@hra-ui/components/atoms';
 import { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';
 import { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';
 import { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';
@@ -60,36 +63,12 @@ export interface NodeTooltipData {
 
 /** Interface for node entries */
 export interface NodeMapEntry {
-  /** Organ label */
-  organ_label: string;
-  /** Organ id */
-  organ_id: string;
-  /** Anatomical structure */
-  anatomical_structure_of: string;
-  /** Spatial entity source */
-  source_spatial_entity: string;
-  /** Node name */
-  node_name: string;
   /** Node label */
   label: string;
-  /** Ontology id */
-  OntologyID: string;
-  /** Link to represenation */
-  representation_of: string;
-  /** File of single 2dftu */
-  'svg file of single 2DFTU': string;
-  /** if asctb exists */
-  exist_asctb: string;
-  /** Type */
-  type: string;
-  /** REF/1 */
-  'REF/1': string;
-  /** REF/1/DOI */
-  'REF/1/DOI': string;
-  /** REF/1/NOTES */
-  'REF/1/NOTES': string;
-  /** Inset # */
-  'Inset #': string;
+  /** Node id in svg */
+  id: string;
+  /** Ontology id of cell type */
+  ontologyId: string;
 }
 
 /**
@@ -98,21 +77,27 @@ export interface NodeMapEntry {
 @Component({
   selector: 'hra-interactive-svg',
   standalone: true,
-  imports: [CommonModule, InlineSVGModule, OverlayModule],
+  imports: [CommonModule, InlineSVGModule, OverlayModule, TooltipComponent],
   templateUrl: './interactive-svg.component.html',
   styleUrls: ['./interactive-svg.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
-export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestroy {
+export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChanges, OnDestroy {
   /** SVG url */
   @Input() url?: string;
 
   /** Mapping info */
   @Input() mapping: T[] = [];
 
+  /** Highlighted ontology id */
+  @Input() highlightId?: string;
+
   /** Emits node id when hovered */
   @Output() readonly nodeHover = new EventEmitter<T>();
+
+  /** Emits node id when clicked */
+  @Output() readonly nodeClick = new EventEmitter<T>();
 
   /** SVG script eval mode */
   readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;
@@ -132,6 +117,56 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestro
   /** Destroys */
   private destroy$ = new Subject<void>();
 
+  /** Crosswalk element of svg */
+  private crosswalkEl?: Element;
+
+  /** List of highlighted svg elements */
+  private highlightedElements: Element[] = [];
+
+  /**
+   * Updates the highlighting based on current highlight id
+   * @param changes
+   */
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('highlightId' in changes) {
+      this.resetHighlight();
+      this.setHighlight();
+    }
+  }
+
+  /**
+   * Highlights cells that match highlightId
+   */
+  private setHighlight() {
+    const { mapping, highlightId, crosswalkEl } = this;
+    const entry = mapping.find(({ ontologyId }) => ontologyId === highlightId);
+    if (!entry || !crosswalkEl) {
+      return;
+    }
+
+    let id = this.encodeId(entry.id);
+    const element = crosswalkEl.querySelector(`#${id}`);
+    if (!element) {
+      return;
+    } else if (element.nodeName !== 'g') {
+      id = element.parentElement?.id ?? '';
+    }
+
+    const elements = crosswalkEl.querySelectorAll(`#${id} :is(path, polygon, polyline)`);
+    this.highlightedElements = Array.from(elements);
+    elements.forEach((el) => el.classList.add('click-active'));
+  }
+
+  /**
+   * Resets all highlighted elements in the svg
+   */
+  private resetHighlight(): void {
+    for (const el of this.highlightedElements) {
+      el.classList.remove('click-active');
+    }
+    this.highlightedElements = [];
+  }
+
   /**
    * Clears observables on destroy
    */
@@ -145,11 +180,11 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestro
    */
   setSvgElement(el: SVGElement): void {
     this.clear();
-    const crosswalkEl = el.querySelector('[id^="Crosswalk"]');
-    if (crosswalkEl) {
+    this.crosswalkEl = el.querySelector('[id^="Crosswalk"]') ?? undefined;
+    if (this.crosswalkEl) {
       // Move to front (i.e. last child in svg)
-      this.renderer.appendChild(el, crosswalkEl);
-      this.attachCrosswalkHover(crosswalkEl);
+      this.renderer.appendChild(el, this.crosswalkEl);
+      this.attachCrosswalkHover(this.crosswalkEl);
     }
   }
 
@@ -167,8 +202,9 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestro
    * @param el element
    */
   private attachCrosswalkHover(el: Element): void {
-    this.attachEvent(el, 'mouseover').subscribe(this.onCrosswalkHover.bind(this));
+    this.attachEvent(el, 'mouseover').subscribe((event) => this.onCrosswalkHover(event));
     this.attachEvent(el, 'mouseout').subscribe(() => this.nodeHoverData$.next(undefined));
+    this.attachEvent(el, 'click').subscribe((event) => this.nodeClick.emit(this.getNode(event)));
   }
 
   /**
@@ -179,7 +215,7 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestro
     const node = this.getNode(event);
     if (node) {
       this.nodeHoverData$.next({
-        node: node['label'],
+        node: node.label,
         origin: {
           x: event.clientX,
           y: event.clientY,
@@ -211,7 +247,7 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestro
     for (const id of idCollection) {
       const decodedID = this.decodeId(id);
       const match = this.mapping.find(
-        (item) => item['node_name']?.toLowerCase() === decodedID.toLowerCase() //search mapping by node_name for matching node entry
+        (item) => item.id?.toLowerCase() === decodedID.toLowerCase() //search mapping by name for matching node entry
       );
       if (match) {
         return match;
@@ -228,6 +264,16 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnDestro
   private decodeId(id: string): string {
     const replacer = (_match: string, hex: string) => String.fromCharCode(Number.parseInt(hex, 16));
     return id.replace(/_x([\da-f]+)_/gi, replacer);
+  }
+
+  /**
+   * Turns normal string into decoded SVG id
+   * @param id id
+   * @returns Encoded id
+   */
+  private encodeId(id: string): string {
+    const replacer = (match: string) => `_x${match.charCodeAt(0).toString(16).toUpperCase()}_`;
+    return id.replace(/[^a-z0-9-]/gi, replacer);
   }
 
   /**

@@ -1,23 +1,32 @@
-<table mat-table [dataSource]="sources">
-  <caption class="sr-only">
-    Source List Table with Title and Links
-  </caption>
+<hra-label-box class="toggle" (click)="toggleTable()">
+  Source Data
+  <mat-icon class="end">
+    {{ showTable ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}
+  </mat-icon>
+</hra-label-box>
 
-  <!-- Position Column -->
-  <ng-container matColumnDef="link">
-    <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Number</th>
-    <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}.</td>
-  </ng-container>
+<div class="table-content">
+  <table mat-table [dataSource]="sources" [class.hidden]="!showTable">
+    <caption class="sr-only">
+      Source List Table with Title and Links
+    </caption>
 
-  <!-- Data Column -->
-  <ng-container matColumnDef="title">
-    <th class="sr-only" mat-header-cell *matHeaderCellDef>Title and Link</th>
-    <td mat-cell *matCellDef="let element">
-      {{ element.title }}
-      <br />
-      <a [href]="element.link" target="_blank">{{ element.link }}</a>
-    </td>
-  </ng-container>
+    <!-- Position Column -->
+    <ng-container matColumnDef="link">
+      <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Number</th>
+      <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}.</td>
+    </ng-container>
 
-  <tr mat-row *matRowDef="let row; columns: ['link', 'title']"></tr>
-</table>
+    <!-- Data Column -->
+    <ng-container matColumnDef="title">
+      <th class="sr-only" mat-header-cell *matHeaderCellDef>Title and Link</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.title }}
+        <br />
+        <a [href]="element.link" target="_blank">{{ element.label }}</a>
+      </td>
+    </ng-container>
+
+    <tr mat-row *matRowDef="let row; columns: ['link', 'title']"></tr>
+  </table>
+</div>
