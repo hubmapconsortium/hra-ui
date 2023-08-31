@@ -661,7 +661,7 @@ export class LinkRegistryState {
   /** Http service for link loading */
   private readonly http &#x3D; inject(HttpClient);
   /** Injects angular router */
-  private readonly router &#x3D; inject(Router);
+  private readonly router &#x3D; inject(Router, { optional: true });
   /** Injects ngZone for routing */
   private readonly zone &#x3D; inject(NgZone);
 
@@ -739,7 +739,7 @@ export class LinkRegistryState {
    * @param entry Internal Link Entry with commands and extras
    */
   private async navigateToInternal(entry: InternalLinkEntry, extras: UrlCreationOptions): Promise&lt;void&gt; {
-    await this.zone.run(() &#x3D;&gt; this.router.navigate(entry.commands, { ...entry.extras, ...extras }));
+    await this.zone.run(() &#x3D;&gt; this.router?.navigate(entry.commands, { ...entry.extras, ...extras }));
   }
 
   /**

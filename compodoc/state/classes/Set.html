@@ -157,6 +157,17 @@ export class Set extends Action(&#x27;[Screenmode] Set Screenmode&#x27;) {
     super();
   }
 }
+
+/** Update the screen mode */
+export class SetSize extends Action(&#x27;[Screenmode] Set Size&#x27;) {
+  /**
+   * Creates an instance of Set
+   * @param size Whether the mode is small/large to toggle the footer behaviour
+   */
+  constructor(readonly size: &#x27;small&#x27; | &#x27;large&#x27;) {
+    super();
+  }
+}
 </code></pre>
     </div>
 </div>

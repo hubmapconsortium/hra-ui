@@ -370,7 +370,7 @@ export class TissueLibraryBehaviorComponent {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;hra-label-box class&#x3D;&quot;label&quot;&gt;FTU Library&lt;/hra-label-box&gt;
-&lt;hra-tissue-tree-list [nodes]&#x3D;&quot;tissues()&quot; [(selected)]&#x3D;&quot;selected&quot; #list&gt; &lt;/hra-tissue-tree-list&gt;
+&lt;hra-tissue-tree-list class&#x3D;&quot;tissue-tree&quot; [nodes]&#x3D;&quot;tissues()&quot; [(selected)]&#x3D;&quot;selected&quot; #list&gt; &lt;/hra-tissue-tree-list&gt;
 </code></pre>
     </div>
 
@@ -415,8 +415,8 @@ export class TissueLibraryBehaviorComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-label-box class="label">FTU Library</hra-label-box><hra-tissue-tree-list [nodes]="tissues()" [(selected)]="selected" #list> </hra-tissue-tree-list></div>'
-    var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'ScreenNoticeBehaviorComponent', 'selector': 'ftu-ui-screen-notice-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
+        var COMPONENT_TEMPLATE = '<div><hra-label-box class="label">FTU Library</hra-label-box><hra-tissue-tree-list class="tissue-tree" [nodes]="tissues()" [(selected)]="selected" #list> </hra-tissue-tree-list></div>'
+    var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'BiomarkerDetailsWcComponent', 'selector': 'ftu-wc-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'HraLandingPageIntroWcBehaviourComponent', 'selector': 'ftu-wc-intro'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'ScreenNoticeBehaviorComponent', 'selector': 'ftu-ui-screen-notice-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TissueLibraryBehaviorComponent'};
 </script>

@@ -149,7 +149,7 @@
     "injectables": [
         {
             "name": "LinkRegistryState",
-            "id": "injectable-LinkRegistryState-bfead2a3009612d204eed412fc8c69ca7e9f57b2d1fb4f3e57f693bfbc6e17c6534b44ee940a3c06f4dbac199304d4c5f8e04da519502d0f560b0c3b2d5d5175",
+            "id": "injectable-LinkRegistryState-b37e5428b2389fadb722624de33c6e4366fe24d94941b86e08c58ba2167a6e863002542c94b564c5ac03cba9122d8a463f2c34e1d925aed7babf8aa973f35fbb",
             "file": "state/src/link-registry/link-registry.state.ts",
             "properties": [],
             "methods": [
@@ -185,8 +185,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 1594,
-                                "end": 1597,
+                                "pos": 1614,
+                                "end": 1617,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -197,8 +197,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 1588,
-                                "end": 1593,
+                                "pos": 1608,
+                                "end": 1613,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -249,8 +249,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 1339,
-                                "end": 1342,
+                                "pos": 1359,
+                                "end": 1362,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -261,8 +261,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 1333,
-                                "end": 1338,
+                                "pos": 1353,
+                                "end": 1358,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -320,8 +320,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 1838,
-                                "end": 1841,
+                                "pos": 1858,
+                                "end": 1861,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -332,8 +332,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 1832,
-                                "end": 1837,
+                                "pos": 1852,
+                                "end": 1857,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -352,8 +352,8 @@
                         },
                         {
                             "name": {
-                                "pos": 1913,
-                                "end": 1921,
+                                "pos": 1933,
+                                "end": 1941,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -365,8 +365,8 @@
                             "deprecationMessage": "",
                             "optional": true,
                             "tagName": {
-                                "pos": 1907,
-                                "end": 1912,
+                                "pos": 1927,
+                                "end": 1932,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -409,8 +409,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 2338,
-                                "end": 2341,
+                                "pos": 2358,
+                                "end": 2361,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -421,8 +421,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 2332,
-                                "end": 2337,
+                                "pos": 2352,
+                                "end": 2357,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -441,8 +441,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 2415,
-                                "end": 2422,
+                                "pos": 2435,
+                                "end": 2442,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -488,8 +488,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 2806,
-                                "end": 2809,
+                                "pos": 2826,
+                                "end": 2829,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -500,8 +500,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 2800,
-                                "end": 2805,
+                                "pos": 2820,
+                                "end": 2825,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -520,8 +520,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 2878,
-                                "end": 2885,
+                                "pos": 2898,
+                                "end": 2905,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -537,7 +537,7 @@
             "deprecationMessage": "",
             "description": "<p>State for keeping track of links globally</p>\n",
             "rawdescription": "\nState for keeping track of links globally",
-            "sourceCode": "import { HttpClient } from '@angular/common/http';\nimport { inject, Injectable, NgZone } from '@angular/core';\nimport { Router, UrlCreationOptions } from '@angular/router';\nimport { createExternalUrl } from '@hra-ui/utils';\nimport { UnionMember } from '@hra-ui/utils/types';\nimport { Action, State } from '@ngxs/store';\nimport { load } from 'js-yaml';\nimport { map, Observable } from 'rxjs';\nimport { Add, AddFromYaml, AddMany, LoadFromYaml, Navigate } from './link-registry.actions';\nimport {\n  ExternalLinkEntry,\n  InternalLinkEntry,\n  LinkEntry,\n  LinkId,\n  LinkRegistryContext,\n  LinkRegistryModel,\n  LinkType,\n  LINK_REGISTRY_SCHEMA,\n} from './link-registry.model';\n\n/** Query function for link entry optionally with type specified */\nexport type LinkRegistryQuery = <T extends LinkType | string = string>(\n  id: LinkId,\n  type?: T\n) => UnionMember<LinkEntry, 'type', T> | undefined;\n\n/** State for keeping track of links globally */\n@State<LinkRegistryModel>({\n  name: 'linkRegistry',\n  defaults: {},\n})\n@Injectable()\nexport class LinkRegistryState {\n  /** Http service for link loading */\n  private readonly http = inject(HttpClient);\n  /** Injects angular router */\n  private readonly router = inject(Router);\n  /** Injects ngZone for routing */\n  private readonly zone = inject(NgZone);\n\n  /**\n   * Add a single entry\n   * @param ctx State context\n   * @param action Action with id and entry to add\n   */\n  @Action(Add)\n  addOne(ctx: LinkRegistryContext, { id, entry }: Add): void {\n    this.addMany(ctx, new AddMany({ [id]: entry }));\n  }\n\n  /**\n   * Add multiple entries\n   * @param ctx State context\n   * @param action Action with entries to add\n   */\n  @Action(AddMany)\n  addMany(ctx: LinkRegistryContext, { entries }: AddMany): void {\n    ctx.patchState(entries);\n  }\n\n  /**\n   * Parse and add entries from yaml\n   * @param ctx State context\n   * @param action Action with raw yaml data\n   * @param filename Optional url/filename from which the data was loaded (for improved error messages)\n   */\n  @Action(AddFromYaml)\n  addYaml(ctx: LinkRegistryContext, { yaml }: AddFromYaml, filename?: string): void {\n    const data = load(yaml, { filename });\n    const entries = LINK_REGISTRY_SCHEMA.parse(data);\n    this.addMany(ctx, new AddMany(entries));\n  }\n\n  /**\n   * Load and add entries from an external yaml file\n   * @param ctx State context\n   * @param action Action with the external file url\n   * @returns An observable that completes when the entries has been added\n   */\n  @Action(LoadFromYaml)\n  loadYaml(ctx: LinkRegistryContext, { url }: LoadFromYaml): Observable<void> {\n    return this.http\n      .get(url, { responseType: 'text' })\n      .pipe(map((data) => this.addYaml(ctx, new AddFromYaml(data), url)));\n  }\n\n  /**\n   * Navigate to Internal or External urls from id\n   * @param ctx State context\n   * @param param1 Navigate action with link id\n   * @returns A promise\n   */\n  @Action(Navigate)\n  async navigate(ctx: LinkRegistryContext, { id, extras }: Navigate): Promise<void> {\n    const entry = ctx.getState()[id];\n    switch (entry?.type) {\n      case LinkType.Internal:\n        await this.navigateToInternal(entry, extras);\n        break;\n\n      case LinkType.External:\n        this.navigateToExternal(entry, extras);\n        break;\n\n      default:\n        throw new Error(`Cannot navigate to non-existing link '${id}'`);\n    }\n  }\n\n  /**\n   * Method to navigate to an internal link using Angular router\n   * @param entry Internal Link Entry with commands and extras\n   */\n  private async navigateToInternal(entry: InternalLinkEntry, extras: UrlCreationOptions): Promise<void> {\n    await this.zone.run(() => this.router.navigate(entry.commands, { ...entry.extras, ...extras }));\n  }\n\n  /**\n   * Method to navigate to an external link using window\n   * @param entry External link entry with url, target, and rel\n   */\n  private navigateToExternal(entry: ExternalLinkEntry, extras: UrlCreationOptions): void {\n    const url = createExternalUrl(entry.url, extras);\n    window.open(url, entry.target, entry.rel);\n  }\n}\n",
+            "sourceCode": "import { HttpClient } from '@angular/common/http';\nimport { inject, Injectable, NgZone } from '@angular/core';\nimport { Router, UrlCreationOptions } from '@angular/router';\nimport { createExternalUrl } from '@hra-ui/utils';\nimport { UnionMember } from '@hra-ui/utils/types';\nimport { Action, State } from '@ngxs/store';\nimport { load } from 'js-yaml';\nimport { map, Observable } from 'rxjs';\nimport { Add, AddFromYaml, AddMany, LoadFromYaml, Navigate } from './link-registry.actions';\nimport {\n  ExternalLinkEntry,\n  InternalLinkEntry,\n  LinkEntry,\n  LinkId,\n  LinkRegistryContext,\n  LinkRegistryModel,\n  LinkType,\n  LINK_REGISTRY_SCHEMA,\n} from './link-registry.model';\n\n/** Query function for link entry optionally with type specified */\nexport type LinkRegistryQuery = <T extends LinkType | string = string>(\n  id: LinkId,\n  type?: T\n) => UnionMember<LinkEntry, 'type', T> | undefined;\n\n/** State for keeping track of links globally */\n@State<LinkRegistryModel>({\n  name: 'linkRegistry',\n  defaults: {},\n})\n@Injectable()\nexport class LinkRegistryState {\n  /** Http service for link loading */\n  private readonly http = inject(HttpClient);\n  /** Injects angular router */\n  private readonly router = inject(Router, { optional: true });\n  /** Injects ngZone for routing */\n  private readonly zone = inject(NgZone);\n\n  /**\n   * Add a single entry\n   * @param ctx State context\n   * @param action Action with id and entry to add\n   */\n  @Action(Add)\n  addOne(ctx: LinkRegistryContext, { id, entry }: Add): void {\n    this.addMany(ctx, new AddMany({ [id]: entry }));\n  }\n\n  /**\n   * Add multiple entries\n   * @param ctx State context\n   * @param action Action with entries to add\n   */\n  @Action(AddMany)\n  addMany(ctx: LinkRegistryContext, { entries }: AddMany): void {\n    ctx.patchState(entries);\n  }\n\n  /**\n   * Parse and add entries from yaml\n   * @param ctx State context\n   * @param action Action with raw yaml data\n   * @param filename Optional url/filename from which the data was loaded (for improved error messages)\n   */\n  @Action(AddFromYaml)\n  addYaml(ctx: LinkRegistryContext, { yaml }: AddFromYaml, filename?: string): void {\n    const data = load(yaml, { filename });\n    const entries = LINK_REGISTRY_SCHEMA.parse(data);\n    this.addMany(ctx, new AddMany(entries));\n  }\n\n  /**\n   * Load and add entries from an external yaml file\n   * @param ctx State context\n   * @param action Action with the external file url\n   * @returns An observable that completes when the entries has been added\n   */\n  @Action(LoadFromYaml)\n  loadYaml(ctx: LinkRegistryContext, { url }: LoadFromYaml): Observable<void> {\n    return this.http\n      .get(url, { responseType: 'text' })\n      .pipe(map((data) => this.addYaml(ctx, new AddFromYaml(data), url)));\n  }\n\n  /**\n   * Navigate to Internal or External urls from id\n   * @param ctx State context\n   * @param param1 Navigate action with link id\n   * @returns A promise\n   */\n  @Action(Navigate)\n  async navigate(ctx: LinkRegistryContext, { id, extras }: Navigate): Promise<void> {\n    const entry = ctx.getState()[id];\n    switch (entry?.type) {\n      case LinkType.Internal:\n        await this.navigateToInternal(entry, extras);\n        break;\n\n      case LinkType.External:\n        this.navigateToExternal(entry, extras);\n        break;\n\n      default:\n        throw new Error(`Cannot navigate to non-existing link '${id}'`);\n    }\n  }\n\n  /**\n   * Method to navigate to an internal link using Angular router\n   * @param entry Internal Link Entry with commands and extras\n   */\n  private async navigateToInternal(entry: InternalLinkEntry, extras: UrlCreationOptions): Promise<void> {\n    await this.zone.run(() => this.router?.navigate(entry.commands, { ...entry.extras, ...extras }));\n  }\n\n  /**\n   * Method to navigate to an external link using window\n   * @param entry External link entry with url, target, and rel\n   */\n  private navigateToExternal(entry: ExternalLinkEntry, extras: UrlCreationOptions): void {\n    const url = createExternalUrl(entry.url, extras);\n    window.open(url, entry.target, entry.rel);\n  }\n}\n",
             "type": "injectable"
         },
         {
