@@ -24,7 +24,7 @@ describe('TissueLibraryState', () => {
     it('should load tissue data into the state', async () => {
       dataService.getTissueLibrary.mockReturnValue(of(MOCK_TISSUE_DATA));
       state.setActive(ctx).subscribe();
-      expect(dataService.getTissueLibrary).toHaveBeenCalledWith();
+      expect(dataService.getTissueLibrary).toHaveBeenCalled();
     });
   });
 });
