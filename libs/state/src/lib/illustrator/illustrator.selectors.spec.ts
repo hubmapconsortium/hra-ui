@@ -8,6 +8,7 @@ describe('IllustratorSelectors', () => {
     selectedOnHover: {
       label: ' ',
       id: ' ',
+      ontologyId: ' ',
     },
     selectedOnClick: {
       label: ' ',
@@ -36,6 +37,7 @@ describe('IllustratorSelectors', () => {
     const testSelectedOnClick: IllustrationMappingItem = {
       label: ' ',
       id: ' ',
+      ontologyId: ' ',
     };
     const result = IllustratorSelectors.selectedOnClicked(state);
     expect(result).toEqual(testSelectedOnClick);
