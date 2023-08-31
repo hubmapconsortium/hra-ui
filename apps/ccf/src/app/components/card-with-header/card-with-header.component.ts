@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CardBlock, LongCard } from '../card-button-long/long-card';
 
@@ -10,9 +10,5 @@ import { CardBlock, LongCard } from '../card-button-long/long-card';
 export class CardWithHeaderComponent {
   @Input() cardBlockData: CardBlock[];
 
-  constructor(private router: Router, route: ActivatedRoute) {}
-
-  clicked(card: LongCard): void {
-    this.router.navigate([card.route]);
-  }
+  readonly router = inject(Router);
 }

@@ -4,6 +4,6 @@
   </div>
   <ccf-card-button-long
     [longButtonItems]="cardBlock.cardData"
-    (cardRoutes)="clicked($event)"
+    (cardRoutes)="router.navigate([$event.route])"
   ></ccf-card-button-long>
 </ng-container>
