@@ -16,8 +16,6 @@
     [cdkConnectedOverlayViewportMargin]="16"
     [cdkConnectedOverlayOpen]="true"
   >
-    <div class="tooltip">
-      {{ formatNodeName(hover.node) }}
-    </div>
+    <hra-ui-tooltip [text]="formatNodeName(hover.node)"></hra-ui-tooltip>
   </ng-template>
 </ng-container>
