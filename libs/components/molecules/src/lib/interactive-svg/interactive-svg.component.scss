@@ -1,5 +1,10 @@
+.svg {
+  max-height: calc(100vh - 14rem);
+  overflow-y: auto;
+}
 svg {
   max-height: calc(100vh - 10rem);
+  width: 100%;
 }
 
 [id^='Crosswalk'] {
