@@ -52,7 +52,7 @@ import { environment } from '../environments/environment';
   ],
 })
 export class AppModule implements DoBootstrap {
-  constructor(private injector: Injector) {}
+  constructor(private readonly injector: Injector) {}
 
   ngDoBootstrap(): void {
     const FtuWebComponent = createCustomElement(AppComponent, {
