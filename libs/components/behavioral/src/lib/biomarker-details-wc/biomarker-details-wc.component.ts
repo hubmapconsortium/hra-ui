@@ -24,9 +24,12 @@ import {
   ScreenModeAction,
   IllustratorActions,
   IllustratorSelectors,
+  CellSummarySelectors,
+  ResourceIds as Ids,
+  ResourceTypes as RTypes,
+  SourceRefsSelectors,
 } from '@hra-ui/state';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
-import { CellSummarySelectors, ResourceIds as Ids, ResourceTypes as RTypes, SourceRefsSelectors } from '@hra-ui/state';
 
 /**
  * PlaceHolder for Empty Tissue Info

@@ -1,8 +1,6 @@
 import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { Shallow } from 'shallow-render';
 import { HraLandingPageIntroWcBehaviourComponent } from './hra-landing-page-intro-wc-behaviour.component';
-import { ResourceRegistrySelectors } from '@hra-ui/cdk/state';
-
 jest.mock('@hra-ui/cdk/injectors');
 
 describe('HraLandingPageIntroWcBehaviourComponent', () => {
