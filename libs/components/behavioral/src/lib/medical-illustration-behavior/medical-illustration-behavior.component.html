@@ -1,3 +1,8 @@
 <hra-label-box>{{ tissueTitle }}</hra-label-box>
-<hra-interactive-svg [url]="currentUrl()" [mapping]="mapping()" (nodeHover)="updateNodeOnHover($event)">
+<hra-interactive-svg
+  [url]="currentUrl()"
+  [mapping]="mapping()"
+  (nodeHover)="updateNodeOnHover($event)"
+  (nodeClick)="updateNodeOnClicked($event)"
+>
 </hra-interactive-svg>
