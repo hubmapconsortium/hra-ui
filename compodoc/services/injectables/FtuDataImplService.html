@@ -1,0 +1,1071 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>services</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">services</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >FtuDataImplService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/lib/ftu-data/ftu-data.impl.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>FtuDataImplService - Angular service for handling FTU (Functional Tissue Unit) data operations.</p>
+
+            </p>
+
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                        <code><a href="../injectables/FtuDataService.html" target="_self" >FtuDataService</a></code>
+            </p>
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getCellSummaries" >getCellSummaries</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getDataFileReferences" >getDataFileReferences</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getIllustrationMapping" >getIllustrationMapping</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getIllustrationUrl" >getIllustrationUrl</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getSourceReferences" >getSourceReferences</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getTissueLibrary" >getTissueLibrary</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCellSummaries"></a>
+                    <span class="name">
+                        <span class="modifier"></span>
+                        <span ><b>getCellSummaries</b></span>
+                        <a href="#getCellSummaries"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getCellSummaries(iri: <a href="../undefineds/Iri.html" target="_self">Iri</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../injectables/FtuDataService.html" target="_self" >FtuDataService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:177</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Overrides the getCellSummaries method to return an CellSummary array.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>iri</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#Iri" target="_self" >Iri</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The Iri of the illustration.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;CellSummary[]&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>An Observable that emits an CellSummary array.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDataFileReferences"></a>
+                    <span class="name">
+                        <span class="modifier"></span>
+                        <span ><b>getDataFileReferences</b></span>
+                        <a href="#getDataFileReferences"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getDataFileReferences(iri: <a href="../undefineds/Iri.html" target="_self">Iri</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../injectables/FtuDataService.html" target="_self" >FtuDataService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:189</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Overrides the getDataFileReferences method to return an DataFileReference array.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>iri</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#Iri" target="_self" >Iri</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The Iri of the illustration.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#DataFileReference" target="_self" >Observable&lt;DataFileReference[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>An Observable that emits an DataFileReference array.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getIllustrationMapping"></a>
+                    <span class="name">
+                        <span class="modifier"></span>
+                        <span ><b>getIllustrationMapping</b></span>
+                        <a href="#getIllustrationMapping"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getIllustrationMapping(iri: <a href="../undefineds/Iri.html" target="_self">Iri</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../injectables/FtuDataService.html" target="_self" >FtuDataService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:165</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Overrides the getIllustrationMapping method to return an IllustrationMappingItem array.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>iri</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#Iri" target="_self" >Iri</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The Iri of the illustration.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#IllustrationMappingItem" target="_self" >Observable&lt;IllustrationMappingItem[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>An Observable that emits an IllustrationMappingItem array.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getIllustrationUrl"></a>
+                    <span class="name">
+                        <span class="modifier"></span>
+                        <span ><b>getIllustrationUrl</b></span>
+                        <a href="#getIllustrationUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getIllustrationUrl(iri: <a href="../undefineds/Iri.html" target="_self">Iri</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../injectables/FtuDataService.html" target="_self" >FtuDataService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:156</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Overrides the getIllustrationUrl method to return a mock URL for the given Iri.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>iri</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#Iri" target="_self" >Iri</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The Iri of the illustration.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#Url" target="_self" >Observable&lt;Url&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>An Observable that emits the mock URL.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSourceReferences"></a>
+                    <span class="name">
+                        <span class="modifier"></span>
+                        <span ><b>getSourceReferences</b></span>
+                        <a href="#getSourceReferences"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getSourceReferences(iri: <a href="../undefineds/Iri.html" target="_self">Iri</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../injectables/FtuDataService.html" target="_self" >FtuDataService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:201</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Overrides the getSourceReferences method to return an empty array.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>iri</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#Iri" target="_self" >Iri</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The Iri of the illustration.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#SourceReference" target="_self" >Observable&lt;SourceReference[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>An Observable that emits an empty array.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTissueLibrary"></a>
+                    <span class="name">
+                        <span class="modifier"></span>
+                        <span ><b>getTissueLibrary</b></span>
+                        <a href="#getTissueLibrary"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getTissueLibrary()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../injectables/FtuDataService.html" target="_self" >FtuDataService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:145</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Overrides the getTissueLibrary method to return a data for the tissue Library tree.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;TissueLibrary&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>An Observable that emits the tissue Tree data.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
+import { inject, Injectable, InjectionToken } from &#x27;@angular/core&#x27;;
+import { createLinkId } from &#x27;@hra-ui/cdk/state&#x27;;
+import { Observable, firstValueFrom, from, map } from &#x27;rxjs&#x27;;
+import { z } from &#x27;zod&#x27;;
+
+import { IRI, Iri, URL, Url } from &#x27;../shared/common.model&#x27;;
+import {
+  CellSummary,
+  DataFileReference,
+  IllustrationMappingItem,
+  SourceReference,
+  TissueLibrary,
+} from &#x27;./ftu-data.model&#x27;;
+import { FtuDataService } from &#x27;./ftu-data.service&#x27;;
+
+/** Endpoints for Injecting input path */
+export interface FtuDataImplEndpoints {
+  /** Endpoint for File having Cell illustrations data */
+  illustrations: Url;
+  /** Endpoint for File having Cell Summaries data */
+  summaries: Url;
+  /** Endpoint for File having Cell Source References data */
+  datasets: Url;
+}
+/** Constant  to read the endpoints */
+export const FTU_DATA_IMPL_ENDPOINTS &#x3D; new InjectionToken&lt;FtuDataImplEndpoints&gt;(&#x27;Endpoints&#x27;);
+
+/** Input to different file formats supported */
+export const FTU_DATA_IMPL_FILE_FORMAT_MAPPING &#x3D; new InjectionToken&lt;Record&lt;string, string&gt;&gt;(&#x27;Mapping of file formats&#x27;, {
+  providedIn: &#x27;root&#x27;,
+  factory: () &#x3D;&gt; ({
+    &#x27;image/svg+xml&#x27;: &#x27;svg&#x27;,
+    &#x27;image/png&#x27;: &#x27;png&#x27;,
+    &#x27;application/pdf&#x27;: &#x27;ai&#x27;,
+  }),
+});
+
+type IdItem &#x3D; z.infer&lt;typeof ID_ITEM&gt;;
+type CellSourceItem &#x3D; z.infer&lt;typeof CELL_SOURCE_ITEM&gt;;
+type Graph&lt;T&gt; &#x3D; { &#x27;@graph&#x27;: T[] };
+type Illustrations &#x3D; z.infer&lt;typeof ILLUSTRATIONS&gt;;
+type Datasets &#x3D; z.infer&lt;typeof DATASETS&gt;;
+type Cell_Summary &#x3D; z.infer&lt;typeof CELL_SUMMARIES&gt;;
+type IllusrationFiles &#x3D; Illustrations[&#x27;@graph&#x27;][number][&#x27;illustration_files&#x27;];
+type dataSources &#x3D; Datasets[&#x27;@graph&#x27;][number][&#x27;data_sources&#x27;];
+
+/** Base ID Object */
+const ID_ITEM &#x3D; z.object({
+  &#x27;@id&#x27;: IRI,
+});
+
+/** ILLUSTRATIONS Object reflecting the format in the file*/
+const ILLUSTRATIONS &#x3D; z.object({
+  &#x27;@graph&#x27;: ID_ITEM.extend({
+    &#x27;@id&#x27;: IRI,
+    label: z.string(),
+    organ_id: z.string(),
+    organ_label: z.string(),
+    representation_of: z.string(),
+    illustration_files: z
+      .object({
+        file: URL,
+        file_format: z.string(),
+      })
+      .array(),
+    mapping: z
+      .object({
+        svg_id: z.string(),
+        label: z.string(),
+        representation_of: z.string(),
+      })
+      .array(),
+  }).array(),
+});
+
+/** DATASETS Object reflecting the format in the file*/
+const DATASETS &#x3D; z.object({
+  &#x27;@graph&#x27;: ID_ITEM.extend({
+    &#x27;@id&#x27;: IRI,
+    data_sources: z
+      .object({
+        label: z.string(),
+        description: z.string(),
+        link: z.string(),
+      })
+      .array(),
+  }).array(),
+});
+
+/** Base CELL_SOURCE_ITEM Object  having cell_source */
+const CELL_SOURCE_ITEM &#x3D; z.object({
+  cell_source: IRI,
+});
+
+/** CELL_SUMMARIES zod Object reflecting the format in the file*/
+const CELL_SUMMARIES &#x3D; z.object({
+  &#x27;@graph&#x27;: CELL_SOURCE_ITEM.extend({
+    cell_source: IRI,
+    biomarker_type: z.string(),
+    summary: z
+      .object({
+        cell_id: IRI,
+        cell_label: z.string(),
+        gene_id: IRI,
+        gene_label: z.string(),
+        mean_expression: z.number(),
+        count: z.number(),
+        percentage: z.number(),
+        dataset_count: z.number().optional(),
+      })
+      .array(),
+  }).array(),
+});
+
+/** Creates clickable link for the tissue tree element */
+const TISSUE_LINK &#x3D; createLinkId(&#x27;FTU&#x27;);
+
+/** Provides Base/root url for the tissue tree */
+const BASE_IRI &#x3D; &#x27;https://purl.humanatlas.io/2d-ftu/&#x27; as Iri;
+
+/**
+ * FtuDataImplService - Angular service for handling FTU (Functional Tissue Unit) data operations.
+ */
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class FtuDataImplService extends FtuDataService {
+  /** http client to read files */
+  private readonly http &#x3D; inject(HttpClient);
+
+  /** Endpoints injector to the service */
+  private readonly endpoints &#x3D; inject(FTU_DATA_IMPL_ENDPOINTS);
+  /** Endpoint injection for file formats */
+  private readonly fileFormatMapping &#x3D; inject(FTU_DATA_IMPL_FILE_FORMAT_MAPPING);
+  /** Stores the last retrived Tissue Iri */
+  private cachedIri?: Iri;
+  /** Stores the last retrived data for tissue */
+  private cache &#x3D; new Map&lt;Url, Promise&lt;unknown&gt;&gt;();
+
+  /**
+  Overrides the getTissueLibrary method to return a data for the tissue Library tree.
+  @returns An Observable that emits the tissue Tree data.
+  */
+  override getTissueLibrary(): Observable&lt;TissueLibrary&gt; {
+    return this.fetchData(undefined, this.endpoints.illustrations, ILLUSTRATIONS).pipe(
+      map((data) &#x3D;&gt; this.constructTissueLibrary(data[&#x27;@graph&#x27;]))
+    );
+  }
+
+  /**
+  Overrides the getIllustrationUrl method to return a mock URL for the given Iri.
+  @param iri The Iri of the illustration.
+  @returns An Observable that emits the mock URL.
+  */
+  override getIllustrationUrl(iri: Iri): Observable&lt;Url&gt; {
+    return this.getDataFileReferences(iri).pipe(map((data) &#x3D;&gt; this.findIllustrationUrl(data)));
+  }
+
+  /**
+  Overrides the getIllustrationMapping method to return an IllustrationMappingItem array.
+  @param iri The Iri of the illustration.
+  @returns An Observable that emits an IllustrationMappingItem array.
+  */
+  override getIllustrationMapping(iri: Iri): Observable&lt;IllustrationMappingItem[]&gt; {
+    return this.fetchData(iri, this.endpoints.illustrations, ILLUSTRATIONS).pipe(
+      map((data) &#x3D;&gt; this.findGraphItem(data, iri).mapping),
+      map((data) &#x3D;&gt; (data ? this.toIllustrationMapping(data) : []))
+    );
+  }
+
+  /**
+  Overrides the getCellSummaries method to return an CellSummary array.
+  @param iri The Iri of the illustration.
+  @returns An Observable that emits an CellSummary array.
+  */
+  override getCellSummaries(iri: Iri): Observable&lt;CellSummary[]&gt; {
+    return this.fetchData(iri, this.endpoints.summaries, CELL_SUMMARIES).pipe(
+      map((data) &#x3D;&gt; this.findCellSummaries(data, iri)),
+      map((data) &#x3D;&gt; (data ? this.constructCellSummaries(data) : []))
+    );
+  }
+
+  /**
+  Overrides the getDataFileReferences method to return an DataFileReference array.
+  @param iri The Iri of the illustration.
+  @returns An Observable that emits an DataFileReference array.
+  */
+  override getDataFileReferences(iri: Iri): Observable&lt;DataFileReference[]&gt; {
+    return this.fetchData(iri, this.endpoints.illustrations, ILLUSTRATIONS).pipe(
+      map((data) &#x3D;&gt; this.findGraphItem(data, iri).illustration_files),
+      map((data) &#x3D;&gt; (data ? this.toDataFileReferences(data) : []))
+    );
+  }
+
+  /**
+  Overrides the getSourceReferences method to return an empty array.
+  @param iri The Iri of the illustration.
+  @returns An Observable that emits an empty array.
+  */
+  override getSourceReferences(iri: Iri): Observable&lt;SourceReference[]&gt; {
+    return this.fetchData(iri, this.endpoints.datasets, DATASETS).pipe(
+      map((data) &#x3D;&gt; this.findGraphItem(data, iri).data_sources),
+      map((data) &#x3D;&gt; (data ? this.toSourceReferences(data) : []))
+    );
+  }
+
+  /**
+   * Fetchs data after reading the file and parses with the requested schema
+   * @template T : Schema to be formated
+   * @param iri : Tissue iri
+   * @param url : File Url
+   * @param schema :  Format needed to be extracted
+   * @returns data
+   */
+  private fetchData&lt;T extends z.ZodTypeAny&gt;(iri: Iri | undefined, url: Url, schema: T): Observable&lt;z.infer&lt;T&gt;&gt; {
+    const { http, cachedIri, cache } &#x3D; this;
+    if (iri !&#x3D;&#x3D; undefined &amp;&amp; iri !&#x3D;&#x3D; cachedIri) {
+      this.cachedIri &#x3D; iri;
+      this.cache &#x3D; new Map();
+    }
+    if (!cache.has(url)) {
+      const opts &#x3D; { params: { id: iri ?? &#x27;&#x27; }, responseType: &#x27;json&#x27; as const };
+      const resp &#x3D; http.get(url, opts).pipe(map((data) &#x3D;&gt; schema.parse(data)));
+      cache.set(url, firstValueFrom(resp));
+    }
+    return from(cache.get(url) as Promise&lt;z.infer&lt;T&gt;&gt;);
+  }
+
+  /**
+   * Finds object inside the @graph tag for the requested id element
+   * @template T
+   * @param data
+   * @param iri
+   * @returns graph item
+   */
+  private findGraphItem&lt;T extends IdItem&gt;(data: Graph&lt;T&gt;, iri: Iri): T {
+    const item &#x3D; data[&#x27;@graph&#x27;].find(({ &#x27;@id&#x27;: id }) &#x3D;&gt; id &#x3D;&#x3D;&#x3D; iri);
+    if (item &#x3D;&#x3D;&#x3D; undefined) {
+      console.error(&#x60;Iri not found in data: ${iri}&#x60;);
+      return {} as T;
+    }
+
+    return item;
+  }
+
+  /**
+   * Finds cell summaries from fetched Data based on cell_source field
+   * @template T
+   * @param data
+   * @param iri
+   * @returns cell summaries
+   */
+  private findCellSummaries&lt;T extends CellSourceItem&gt;(data: Graph&lt;T&gt;, iri: Iri): T[] {
+    const item &#x3D; data[&#x27;@graph&#x27;].filter(({ cell_source }) &#x3D;&gt; cell_source &#x3D;&#x3D;&#x3D; iri);
+    if (item &#x3D;&#x3D;&#x3D; undefined || item.length &#x3D;&#x3D; 0) {
+      console.error(&#x60;Cell Summary not found in data: ${iri}&#x60;);
+      return [];
+    }
+    return item;
+  }
+
+  /**
+   * Finds illustration url and formates it to Url
+   * @param files
+   * @returns illustration url
+   */
+  private findIllustrationUrl(files: DataFileReference[]): Url {
+    const { fileFormatMapping } &#x3D; this;
+    const svgFormat &#x3D; fileFormatMapping[&#x27;image/svg+xml&#x27;];
+    const ref &#x3D; files.find(({ format }) &#x3D;&gt; format &#x3D;&#x3D;&#x3D; svgFormat);
+    if (ref &#x3D;&#x3D;&#x3D; undefined) {
+      console.error(&#x27;Illustration url not found&#x27;);
+      return &#x27;&#x27; as Url;
+    }
+    return ref.url;
+  }
+
+  /**
+   * To illustration mapping for each tissue open
+   * @param mappings
+   * @returns illustration mapping
+   */
+  private toIllustrationMapping(
+    mappings: { label: string; svg_id: string; representation_of: string }[]
+  ): IllustrationMappingItem[] {
+    const ontologyIdPrefix &#x3D; &#x27;http://purl.obolibrary.org/obo/&#x27;;
+    const results: IllustrationMappingItem[] &#x3D; [];
+    for (const { label, svg_id, representation_of } of mappings) {
+      results.push({ label, id: svg_id, ontologyId: representation_of.slice(ontologyIdPrefix.length) });
+    }
+
+    return results;
+  }
+
+  /**
+   * Formates data to array of DataFileReference format
+   * @param data
+   * @returns data file references
+   */
+  private toDataFileReferences(data: IllusrationFiles): DataFileReference[] {
+    const { fileFormatMapping: formats } &#x3D; this;
+    const results: DataFileReference[] &#x3D; [];
+    for (const { file, file_format } of data) {
+      if (file_format in formats) {
+        results.push({ format: formats[file_format], url: file });
+      }
+    }
+
+    return results;
+  }
+
+  /**
+   * Formats data from &#x27;dataSources&#x27; to &#x27;SourceReferences&#x27;[] format
+   * @param data
+   * @returns source references
+   */
+  private toSourceReferences(data: dataSources): SourceReference[] {
+    const results: SourceReference[] &#x3D; [];
+    for (const { label, link, description } of data) {
+      results.push({ label, link, title: description });
+    }
+    return results;
+  }
+
+  /**
+   * constructCellSummaries : Formates Cell Summary after etching the data
+   * @param data
+   * @returns
+   */
+  private constructCellSummaries(data: Cell_Summary[&#x27;@graph&#x27;]): CellSummary[] {
+    const cellSummary: CellSummary[] &#x3D; [];
+
+    data.forEach((summaryGroup) &#x3D;&gt; {
+      const cells &#x3D; summaryGroup.summary.map((entry) &#x3D;&gt; ({
+        id: entry.cell_id as Iri,
+        label: entry.cell_label,
+      }));
+      const biomarkers &#x3D; summaryGroup.summary.map((entry) &#x3D;&gt; ({
+        id: entry.gene_id as Iri,
+        label: entry.gene_label,
+      }));
+      const summaries &#x3D; summaryGroup.summary.map((entry) &#x3D;&gt; ({
+        cell: entry.cell_id as Iri,
+        biomarker: entry.gene_id as Iri,
+        count: entry.count,
+        percentage: entry.percentage,
+        meanExpression: entry.mean_expression,
+        dataset_count: entry.dataset_count,
+      }));
+      cellSummary.push({
+        label: summaryGroup.biomarker_type,
+        cells,
+        biomarkers,
+        summaries,
+      });
+    });
+    return cellSummary;
+  }
+
+  /**
+   * Constructs tissue library ,forming parent and child nodes
+   * @param items
+   * @returns
+   */
+  private constructTissueLibrary(items: Illustrations[&#x27;@graph&#x27;]): TissueLibrary {
+    const nodes: TissueLibrary[&#x27;nodes&#x27;] &#x3D; {};
+    for (const { &#x27;@id&#x27;: id, label, organ_id, organ_label } of items) {
+      const parentId &#x3D; (BASE_IRI + organ_id) as Iri;
+      nodes[parentId] ??&#x3D; { id: parentId, label: organ_label, parent: BASE_IRI, children: [] };
+      nodes[id] &#x3D; { id, label, parent: parentId, children: [], link: TISSUE_LINK };
+      nodes[parentId]?.children.push(id);
+    }
+    return { root: BASE_IRI, nodes };
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'FtuDataImplService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

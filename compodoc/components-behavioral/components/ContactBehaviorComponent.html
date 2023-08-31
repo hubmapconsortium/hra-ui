@@ -218,8 +218,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/lib/contact-behavior/contact-behavior.component.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/lib/contact-behavior/contact-behavior.component.ts:51</a></div>
                 </td>
             </tr>
 
@@ -535,6 +535,7 @@ export class ContactBehaviorComponent {
   /** A function which sends/dispatches a message which contains email, subject, and message. And also opens the acknowledgement dialog box. */
   submit(message: ContactData): void {
     this.sendMessage(message);
+    this.selfRef?.close();
     this.postRef &#x3D; this.dialog.open(this.postMessageTemplate);
   }
 
@@ -549,6 +550,7 @@ export class ContactBehaviorComponent {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;hra-contact-modal
+  class&#x3D;&quot;contact-modal&quot;
   [productLogoUrl]&#x3D;&quot;productLogoUrl()&quot;
   [productTitle]&#x3D;&quot;productTitle()&quot;
   (submitClick)&#x3D;&quot;submit($event)&quot;
@@ -558,6 +560,7 @@ export class ContactBehaviorComponent {
 
 &lt;ng-template #postMessage&gt;
   &lt;hra-info-modal
+    class&#x3D;&quot;info-modal&quot;
     [productLogoUrl]&#x3D;&quot;productLogoUrl()&quot;
     [productTitle]&#x3D;&quot;productTitle()&quot;
     [description]&#x3D;&quot;description()&quot;
@@ -574,6 +577,22 @@ export class ContactBehaviorComponent {
                 </p>
                 <pre class="line-numbers"><code class="language-scss">:host {
   display: block;
+
+  .contact-modal {
+    width: 41rem;
+    height: 40rem;
+  }
+
+  .info-modal {
+    width: 35rem;
+    height: 11.8rem;
+  }
+
+  @media screen and (max-height: 328px) {
+    .contact-modal {
+      height: calc(100vh - 2rem);
+    }
+  }
 }
 </code></pre>
     </div>
@@ -603,8 +622,8 @@ export class ContactBehaviorComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-contact-modal  [productLogoUrl]="productLogoUrl()"  [productTitle]="productTitle()"  (submitClick)="submit($event)"  (closeClick)="close()"></hra-contact-modal><ng-template #postMessage>  <hra-info-modal    [productLogoUrl]="productLogoUrl()"    [productTitle]="productTitle()"    [description]="description()"    (closeClick)="close()"  >  </hra-info-modal></ng-template></div>'
-    var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
+        var COMPONENT_TEMPLATE = '<div><hra-contact-modal  class="contact-modal"  [productLogoUrl]="productLogoUrl()"  [productTitle]="productTitle()"  (submitClick)="submit($event)"  (closeClick)="close()"></hra-contact-modal><ng-template #postMessage>  <hra-info-modal    class="info-modal"    [productLogoUrl]="productLogoUrl()"    [productTitle]="productTitle()"    [description]="description()"    (closeClick)="close()"  >  </hra-info-modal></ng-template></div>'
+    var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'ScreenNoticeBehaviorComponent', 'selector': 'ftu-ui-screen-notice-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ContactBehaviorComponent'};
 </script>

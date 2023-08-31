@@ -132,7 +132,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>aggregates(state: <a href="../injectables/CellSummaryState.html" target="_self">CellSummaryStateModel</a>)</code>
+                    <code>aggregates(state: <a href="../interfaces/CellSummaryModel.html" target="_self">CellSummaryModel</a>)</code>
                 </td>
             </tr>
 
@@ -146,8 +146,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="9"
-                            class="link-to-prism">src/lib/cell-summary/cell-summary.selectors.ts:9</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="10"
+                            class="link-to-prism">src/lib/cell-summary/cell-summary.selectors.ts:10</a></div>
                 </td>
             </tr>
 
@@ -172,7 +172,7 @@
                                 <tr>
                                     <td>state</td>
                                     <td>
-                                                <code><a href="../injectables/CellSummaryState.html" target="_self" >CellSummaryStateModel</a></code>
+                                                <code><a href="../interfaces/CellSummaryModel.html" target="_self" >CellSummaryModel</a></code>
                                     </td>
 
                                     <td>
@@ -187,7 +187,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>[]</code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#CellSummaryAggregate" target="_self" >CellSummaryAggregate[]</a></code>
 
                     </div>
                     <div class="io-description">
@@ -212,7 +212,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>summaries(state: <a href="../injectables/CellSummaryState.html" target="_self">CellSummaryStateModel</a>)</code>
+                    <code>summaries(state: <a href="../interfaces/CellSummaryModel.html" target="_self">CellSummaryModel</a>)</code>
                 </td>
             </tr>
 
@@ -226,8 +226,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="15"
-                            class="link-to-prism">src/lib/cell-summary/cell-summary.selectors.ts:15</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="16"
+                            class="link-to-prism">src/lib/cell-summary/cell-summary.selectors.ts:16</a></div>
                 </td>
             </tr>
 
@@ -252,7 +252,7 @@
                                 <tr>
                                     <td>state</td>
                                     <td>
-                                                <code><a href="../injectables/CellSummaryState.html" target="_self" >CellSummaryStateModel</a></code>
+                                                <code><a href="../interfaces/CellSummaryModel.html" target="_self" >CellSummaryModel</a></code>
                                     </td>
 
                                     <td>
@@ -267,7 +267,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#CellSummary" target="_self" >CellSummary</a></code>
+                        <b>Returns : </b>    <code>CellSummary[]</code>
 
                     </div>
                     <div class="io-description">
@@ -288,20 +288,21 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Selector } from &#x27;@ngxs/store&#x27;;
-import { Aggregate, CellSummaryStateModel, CellSummary } from &#x27;./cell-summary.model&#x27;;
+import { CellSummary } from &#x27;@hra-ui/services&#x27;;
+import { CellSummaryModel, CellSummaryAggregate } from &#x27;./cell-summary.model&#x27;;
 import { CellSummaryState } from &#x27;./cell-summary.state&#x27;;
 
 /** selectors for the CellSummary state */
 export class CellSummarySelectors {
   /** get the aggregate data from the state */
   @Selector([CellSummaryState])
-  static aggregates(state: CellSummaryStateModel): Aggregate[string][] {
-    return Object.values(state.aggregate);
+  static aggregates(state: CellSummaryModel): CellSummaryAggregate[] {
+    return state.aggregates;
   }
 
   /** get the summaries data from the state */
   @Selector([CellSummaryState])
-  static summaries(state: CellSummaryStateModel): CellSummary {
+  static summaries(state: CellSummaryModel): CellSummary[] {
     return state.summaries;
   }
 }

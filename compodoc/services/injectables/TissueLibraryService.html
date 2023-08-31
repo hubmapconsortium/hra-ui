@@ -66,7 +66,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>An abstract class representing a TissueLibraryService</p>
+                <p>Service for loading the tissue library</p>
 
             </p>
 
@@ -87,7 +87,7 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Abstract</span>
-                                <a href="#getTissues" >getTissues</a>
+                                <a href="#getTissueLibrary" >getTissueLibrary</a>
                             </li>
                         </ul>
                     </td>
@@ -111,37 +111,37 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getTissues"></a>
+                    <a name="getTissueLibrary"></a>
                     <span class="name">
                         <span class="modifier">Abstract</span>
-                        <span ><b>getTissues</b></span>
-                        <a href="#getTissues"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>getTissueLibrary</b></span>
+                        <a href="#getTissueLibrary"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getTissues()</code>
+                    <code>getTissueLibrary()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/lib/tissue-library/tissue-library.service.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="9"
+                            class="link-to-prism">src/lib/tissue-library/tissue-library.service.ts:9</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>This method returns an Observable of the type of TissueData</p>
+                    <div class="io-description"><p>Loads the entire tissue library</p>
 </div>
 
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#TissueData" target="_self" >Observable&lt;TissueData&gt;</a></code>
+                        <b>Returns : </b>    <code>Observable&lt;TissueLibrary&gt;</code>
 
                     </div>
                 </td>
@@ -156,54 +156,13 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
-import { z } from &#x27;zod&#x27;;
+import { TissueLibrary } from &#x27;./tissue-library.model&#x27;;
 
-/**
- * A type of Iri which is infered from the IRI
- */
-export type Iri &#x3D; z.infer&lt;typeof IRI&gt;;
-
-/**
- * A type of TissueItem which is infered from the Tissue Item Schema
- */
-export type TissueItem &#x3D; z.infer&lt;typeof TISSUE_ITEM_SCHEMA&gt;;
-
-/**
- * A type of TissueData which is infered from the Tissue Data Schema
- */
-export type TissueData &#x3D; z.infer&lt;typeof TISSUE_DATA_SCHEMA&gt;;
-
-/**
- * A validator that ensures string representing valid URLS, specifically marked as IRI are accepted
- */
-export const IRI &#x3D; z.string().url().brand(&#x27;IRI&#x27;);
-
-/**
- * Tissue data schema which defines the type, id, parent, synonmynLabels and children
- */
-export const TISSUE_ITEM_SCHEMA &#x3D; z.object({
-  &#x27;@type&#x27;: z.string(),
-  &#x27;@id&#x27;: IRI,
-  id: IRI,
-  parent: IRI.or(z.literal(&#x27;&#x27;)),
-  label: z.string(),
-  synonymLabels: z.string().array(),
-  children: IRI.array(),
-});
-
-/**
- * A Schema which defines the root and its nodes
- */
-export const TISSUE_DATA_SCHEMA &#x3D; z.object({
-  root: IRI,
-  nodes: z.record(IRI, TISSUE_ITEM_SCHEMA),
-});
-
-/** An abstract class representing a TissueLibraryService*/
+/** Service for loading the tissue library */
 @Injectable()
 export abstract class TissueLibraryService {
-  /** This method returns an Observable of the type of TissueData */
-  abstract getTissues(): Observable&lt;TissueData&gt;;
+  /** Loads the entire tissue library */
+  abstract getTissueLibrary(): Observable&lt;TissueLibrary&gt;;
 }
 </code></pre>
     </div>

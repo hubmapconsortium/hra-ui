@@ -223,8 +223,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/lib/footer-behavior/footer-behavior.component.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/lib/footer-behavior/footer-behavior.component.ts:45</a></div>
                 </td>
             </tr>
 
@@ -267,7 +267,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/lib/footer-behavior/footer-behavior.component.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/lib/footer-behavior/footer-behavior.component.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -299,7 +299,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/lib/footer-behavior/footer-behavior.component.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/lib/footer-behavior/footer-behavior.component.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -331,7 +331,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/lib/footer-behavior/footer-behavior.component.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/lib/footer-behavior/footer-behavior.component.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -363,7 +363,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/lib/footer-behavior/footer-behavior.component.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/lib/footer-behavior/footer-behavior.component.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -395,7 +395,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/lib/footer-behavior/footer-behavior.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/lib/footer-behavior/footer-behavior.component.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -427,7 +427,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/lib/footer-behavior/footer-behavior.component.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/lib/footer-behavior/footer-behavior.component.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -459,7 +459,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/lib/footer-behavior/footer-behavior.component.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/lib/footer-behavior/footer-behavior.component.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -480,12 +480,11 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
 import { ChangeDetectionStrategy, Component, inject } from &#x27;@angular/core&#x27;;
-import { MatDialog, MatDialogModule } from &#x27;@angular/material/dialog&#x27;;
+import { MatDialog, MatDialogConfig, MatDialogModule } from &#x27;@angular/material/dialog&#x27;;
 import { dispatch, selectQuerySnapshot, selectSnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
 import { ResourceRegistrySelectors as RR } from &#x27;@hra-ui/cdk/state&#x27;;
 import { FooterComponent } from &#x27;@hra-ui/components/molecules&#x27;;
 import { DownloadActions, DownloadSelectors, ResourceIds as Ids, LinkIds } from &#x27;@hra-ui/state&#x27;;
-
 import { ContactBehaviorComponent } from &#x27;../contact-behavior/contact-behavior.component&#x27;;
 
 /** A component for footer behavior which provides functionality for various buttons in footer */
@@ -524,7 +523,9 @@ export class FooterBehaviorComponent {
 
   /** A function which opens the contact modal dialog box */
   contact(): void {
-    this.dialog.open(ContactBehaviorComponent);
+    const dialogConfig &#x3D; new MatDialogConfig();
+    dialogConfig.disableClose &#x3D; true;
+    this.dialog.open(ContactBehaviorComponent, dialogConfig);
   }
 }
 </code></pre>
@@ -581,7 +582,7 @@ export class FooterBehaviorComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><hra-footer  [productLogoUrl]="productLogoUrl()"  [productTitle]="productTitle()"  [hraPortal]="hraPortal"  [illustrationMetadata]="illustrationMetadata"  [embed]="embed"  [downloadFormats]="downloadFormats()"  (contactClick)="contact()"  (download)="download($event.id)"></hra-footer></div>'
-    var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
+    var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'ScreenNoticeBehaviorComponent', 'selector': 'ftu-ui-screen-notice-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'FooterBehaviorComponent'};
 </script>

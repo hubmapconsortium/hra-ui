@@ -278,7 +278,7 @@ export class GradientLegendComponent {
   /** Computes the css linear-gradient function for the gradient bar */
   get gradientCss(): string {
     const stops &#x3D; this.gradient.map(({ color, percentage }) &#x3D;&gt; &#x60;${color} ${percentage}%&#x60;).join(&#x27;,&#x27;);
-    return &#x60;linear-gradient(270deg, ${stops})&#x60;;
+    return &#x60;linear-gradient(90deg, ${stops})&#x60;;
   }
 }
 </code></pre>
@@ -343,7 +343,7 @@ export class GradientLegendComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="gradient-bar" [style.background]="gradientCss"></div><div class="legend">  <div class="start">0.0</div>  <div class="filler"></div>  <div class="end">1.0</div></div></div>'
-    var COMPONENTS = [{'name': 'EmailInputComponent', 'selector': 'hra-email-input'},{'name': 'EmptyBiomarkerComponent', 'selector': 'hra-empty-biomarker'},{'name': 'GradientLegendComponent', 'selector': 'hra-gradient-legend'},{'name': 'LabelBoxComponent', 'selector': 'hra-label-box'},{'name': 'RequiredInputComponent', 'selector': 'hra-required-input'},{'name': 'RequiredTextboxComponent', 'selector': 'hra-required-textbox'},{'name': 'SizeLegendComponent', 'selector': 'hra-size-legend'}];
+    var COMPONENTS = [{'name': 'EmailInputComponent', 'selector': 'hra-email-input'},{'name': 'EmptyBiomarkerComponent', 'selector': 'hra-empty-biomarker'},{'name': 'GradientLegendComponent', 'selector': 'hra-gradient-legend'},{'name': 'LabelBoxComponent', 'selector': 'hra-label-box'},{'name': 'RequiredInputComponent', 'selector': 'hra-required-input'},{'name': 'RequiredTextboxComponent', 'selector': 'hra-required-textbox'},{'name': 'SizeLegendComponent', 'selector': 'hra-size-legend'},{'name': 'TooltipComponent', 'selector': 'hra-ui-tooltip'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'GradientLegendComponent'};
 </script>

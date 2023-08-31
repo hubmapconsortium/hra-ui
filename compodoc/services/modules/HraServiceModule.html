@@ -73,27 +73,28 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
-import { MockContactService } from &#x27;./contact/contact.mock&#x27;;
+import { ContactImplService } from &#x27;./contact/contact.impl&#x27;;
 import { ContactService } from &#x27;./contact/contact.service&#x27;;
-import { MockTissueLibraryService } from &#x27;./tissue-library/tissue-library.mock&#x27;;
-import { TissueLibraryService } from &#x27;./tissue-library/tissue-library.service&#x27;;
-import { TissueFtuService } from &#x27;./tissue-ftu/tissue-ftu.service&#x27;;
-import { MockTissueFtuService } from &#x27;./tissue-ftu/tissue-ftu.mock&#x27;;
+import { FTU_DATA_IMPL_ENDPOINTS, FtuDataImplService } from &#x27;./ftu-data/ftu-data.impl&#x27;;
+import { FtuDataService } from &#x27;./ftu-data/ftu-data.service&#x27;;
 
 @NgModule({
   providers: [
-    // TODO replace with real services
     {
       provide: ContactService,
-      useExisting: MockContactService,
+      useExisting: ContactImplService,
     },
     {
-      provide: TissueLibraryService,
-      useExisting: MockTissueLibraryService,
+      provide: FtuDataService,
+      useExisting: FtuDataImplService,
     },
     {
-      provide: TissueFtuService,
-      useExisting: MockTissueFtuService,
+      provide: FTU_DATA_IMPL_ENDPOINTS,
+      useValue: {
+        illustrations: &#x27;assets/TEMP/2d-ftu-illustrations.jsonld&#x27;,
+        summaries: &#x27;assets/TEMP/ftu-cell-summaries.jsonld&#x27;,
+        datasets: &#x27;assets/TEMP/ftu-datasets.jsonld&#x27;,
+      },
     },
   ],
 })

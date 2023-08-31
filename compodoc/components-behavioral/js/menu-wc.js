@@ -72,7 +72,23 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/MedicalIllustrationBehaviorComponent.html" data-type="entity-link" >MedicalIllustrationBehaviorComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/ScreenNoticeBehaviorComponent.html" data-type="entity-link" >ScreenNoticeBehaviorComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/TissueLibraryBehaviorComponent.html" data-type="entity-link" >TissueLibraryBehaviorComponent</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#miscellaneous-links"'
+                            : 'data-target="#xs-miscellaneous-links"' }>
+                            <span class="icon ion-ios-cube"></span>
+                            <span>Miscellaneous</span>
+                            <span class="icon ion-ios-arrow-down"></span>
+                        </div>
+                        <ul class="links collapse " ${ isNormalMode ? 'id="miscellaneous-links"' : 'id="xs-miscellaneous-links"' }>
+                            <li class="link">
+                                <a href="miscellaneous/variables.html" data-type="entity-link">Variables</a>
                             </li>
                         </ul>
                     </li>

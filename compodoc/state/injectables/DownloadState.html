@@ -97,6 +97,9 @@ format and download to user.</p>
                                 <a href="#download" >download</a>
                             </li>
                             <li>
+                                <a href="#load" >load</a>
+                            </li>
+                            <li>
                                 <a href="#ngxsOnInit" >ngxsOnInit</a>
                             </li>
                             <li>
@@ -147,8 +150,8 @@ format and download to user.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/lib/download/download.state.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/lib/download/download.state.ts:86</a></div>
                 </td>
             </tr>
 
@@ -236,8 +239,8 @@ format and download to user.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">src/lib/download/download.state.ts:71</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/lib/download/download.state.ts:99</a></div>
                 </td>
             </tr>
 
@@ -314,8 +317,8 @@ format and download to user.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/lib/download/download.state.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="113"
+                            class="link-to-prism">src/lib/download/download.state.ts:113</a></div>
                 </td>
             </tr>
 
@@ -380,6 +383,102 @@ format and download to user.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="load"></a>
+                    <span class="name">
+                        <span ><b>load</b></span>
+                        <a href="#load"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>load(ctx: <a href="../classes/Download.html" target="_self">DownloadContext</a>, undefined: <a href="../classes/Load.html" target="_self">Load</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Action(Load)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">src/lib/download/download.state.ts:65</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Action to add the Organs IRI from the data service</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ctx</td>
+                                    <td>
+                                                <code><a href="../classes/Download.html" target="_self" >DownloadContext</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Context</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                                <code><a href="../classes/Load.html" target="_self" >Load</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="ngxsOnInit"></a>
                     <span class="name">
                         <span ><b>ngxsOnInit</b></span>
@@ -396,8 +495,8 @@ format and download to user.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/lib/download/download.state.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/lib/download/download.state.ts:40</a></div>
                 </td>
             </tr>
 
@@ -474,8 +573,8 @@ format and download to user.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/lib/download/download.state.ts:44</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/lib/download/download.state.ts:50</a></div>
                 </td>
             </tr>
 
@@ -548,9 +647,10 @@ import { Action, NgxsOnInit, State } from &#x27;@ngxs/store&#x27;;
 import produce from &#x27;immer&#x27;;
 import { Observable, tap } from &#x27;rxjs&#x27;;
 
+import { FtuDataService, Iri } from &#x27;@hra-ui/services&#x27;;
 import { PNG_FORMAT, SVG_FORMAT } from &#x27;./builtin-formats&#x27;;
-import { AddEntry, ClearEntries, Download, RegisterFormat } from &#x27;./download.action&#x27;;
-import { DownloadContext, DownloadFormatId, DownloadModel } from &#x27;./download.model&#x27;;
+import { AddEntry, ClearEntries, Download, Load, RegisterFormat } from &#x27;./download.action&#x27;;
+import { createDownloadFormatId, DownloadContext, DownloadFormatId, DownloadModel } from &#x27;./download.model&#x27;;
 
 /**
  * Download State Model used to convert
@@ -572,6 +672,11 @@ export class DownloadState implements NgxsOnInit {
   private readonly http &#x3D; inject(HttpClient);
 
   /**
+   * Data service of download state
+   */
+  private readonly dataService &#x3D; inject(FtuDataService);
+
+  /**
    * Ngxs on init and registry default format
    * @param ctx
    */
@@ -590,6 +695,28 @@ export class DownloadState implements NgxsOnInit {
       produce((draft) &#x3D;&gt; {
         draft.formats[format.id] &#x3D; format;
       })
+    );
+  }
+
+  /**
+   * Action to add the Organs IRI from the data service
+   * @param ctx Context
+   * @param iri Organ Data
+   * @returns
+   */
+  @Action(Load)
+  load(ctx: DownloadContext, { iri }: Load): Observable&lt;unknown&gt; {
+    return this.dataService.getDataFileReferences(iri).pipe(
+      tap((items) &#x3D;&gt;
+        ctx.setState(
+          produce((draft) &#x3D;&gt; {
+            draft.entries &#x3D; {};
+            for (const { format, url } of items) {
+              draft.entries[createDownloadFormatId(format)] &#x3D; { type: &#x27;url&#x27;, url };
+            }
+          })
+        )
+      )
     );
   }
 

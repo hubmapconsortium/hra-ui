@@ -69,6 +69,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <li class="link">
                                 <a href="interfaces/DataCell.html" data-type="entity-link" >DataCell</a>
                             </li>
+                            <li class="link">
+                                <a href="interfaces/TissueInfo.html" data-type="entity-link" >TissueInfo</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="chapter">

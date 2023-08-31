@@ -74,34 +74,123 @@
             </div>
         </div>
 
+        <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="forRoot"></a>
+                    <span class="name">
+                        <span class="modifier">Static</span>
+                        <span ><b>forRoot</b></span>
+                        <a href="#forRoot"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>forRoot(options: <a href="../interfaces/HraStateModuleOptions.html" target="_self">HraStateModuleOptions</a>)</code>
+                </td>
+            </tr>
 
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/lib/state.module.ts:47</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Static method for configuring the module
+Returns a configuration object with the module and the providers</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>options</td>
+                                    <td>
+                                                <code><a href="../interfaces/HraStateModuleOptions.html" target="_self" >HraStateModuleOptions</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>ModuleWithProviders&lt;HraStateModule&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
-import { NgxsModule, NGXS_PLUGINS } from &#x27;@ngxs/store&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ModuleWithProviders, NgModule, importProvidersFrom } from &#x27;@angular/core&#x27;;
+import { NGXS_PLUGINS, NgxsModule } from &#x27;@ngxs/store&#x27;;
+import { ActiveFtuState } from &#x27;./active-ftu&#x27;;
 import { CellSummaryState } from &#x27;./cell-summary&#x27;;
 import { ContactState } from &#x27;./contact&#x27;;
 import { DownloadState } from &#x27;./download&#x27;;
-import { MedicalIllustrationState } from &#x27;./medical-illustration&#x27;;
+import { IllustratorState } from &#x27;./illustrator&#x27;;
 import { ScreenModeState } from &#x27;./screen-mode&#x27;;
-import { SourceListState } from &#x27;./source-list&#x27;;
+import { SourceRefsState } from &#x27;./source-refs&#x27;;
 import { StateAnalyticsPluginService } from &#x27;./state-analytics-plugin&#x27;;
 import { TissueLibraryState } from &#x27;./tissue-library&#x27;;
+import { NgxGoogleAnalyticsModule } from &#x27;ngx-google-analytics&#x27;;
+
+/** Interface for providing options for the hra state module */
+export interface HraStateModuleOptions {
+  /** token string for google analytics*/
+  googleAnalyticsToken: string;
+}
 
 /** Provides all states */
 @NgModule({
   imports: [
     NgxsModule.forFeature([
+      ActiveFtuState,
       CellSummaryState,
       ContactState,
       DownloadState,
-      MedicalIllustrationState,
+      IllustratorState,
       ScreenModeState,
-      SourceListState,
+      SourceRefsState,
       TissueLibraryState,
     ]),
+    NgxGoogleAnalyticsModule,
   ],
   providers: [
     {
@@ -111,7 +200,18 @@ import { TissueLibraryState } from &#x27;./tissue-library&#x27;;
     },
   ],
 })
-export class HraStateModule {}
+export class HraStateModule {
+  /** Static method for configuring the module
+   * Returns a configuration object with the module and the providers
+   */
+  static forRoot(options: HraStateModuleOptions): ModuleWithProviders&lt;HraStateModule&gt; {
+    const analyticsProviders &#x3D; importProvidersFrom(NgxGoogleAnalyticsModule.forRoot(options.googleAnalyticsToken));
+    return {
+      ngModule: HraStateModule,
+      providers: [analyticsProviders],
+    };
+  }
+}
 </code></pre>
     </div>
 </div>

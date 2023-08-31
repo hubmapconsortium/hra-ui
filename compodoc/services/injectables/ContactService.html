@@ -170,7 +170,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;void&gt;</code>
+                        <b>Returns : </b>    <code>Observable | void</code>
 
                     </div>
                     <div class="io-description">
@@ -203,7 +203,7 @@ export interface ContactMessage {
 @Injectable()
 export abstract class ContactService {
   /** This method takes a ContactMessage object as an argument and returns an Observable  */
-  abstract sendMessage(message: ContactMessage): Observable&lt;void&gt;;
+  abstract sendMessage(message: ContactMessage): Observable&lt;void&gt; | void;
 }
 </code></pre>
     </div>
