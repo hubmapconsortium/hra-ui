@@ -26,15 +26,15 @@
   }
 
   .table-content {
-    height: calc(100vh - 25rem);
+    max-height: 5rem;
     overflow: auto;
   }
 
   .toggle {
     margin-bottom: 1rem;
+    padding: 0.75rem 0.5rem;
     display: flex;
     align-items: center;
-    width: 43rem;
     height: 3.5rem;
     grid-area: source-list-header;
     color: var(--dark-primary-text);

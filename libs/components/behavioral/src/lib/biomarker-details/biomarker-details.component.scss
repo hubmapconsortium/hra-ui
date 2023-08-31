@@ -2,8 +2,8 @@
 
 :host {
   display: grid;
-  grid-template-columns: 21.5rem 21.5rem auto;
-  grid-template-rows: 3.5rem 19.5rem 3rem 5rem auto;
+  grid-template-columns: 21.5rem 18.5rem auto;
+  grid-template-rows: 3.5rem minmax(5rem, 2fr) 3rem 5rem minmax(5rem, 1fr);
   grid-template-areas:
     'table-header table-header table-header'
     'table table table'
@@ -14,7 +14,7 @@
   .table-header {
     grid-area: table-header;
     border-bottom: 0.063rem solid #d3d3d3;
-    width: 43rem;
+    width: calc(100% - 3%);
     height: 3.5rem;
   }
 
@@ -79,7 +79,6 @@
     grid-area: source-list;
 
     .content {
-      width: min-content;
     }
   }
 }

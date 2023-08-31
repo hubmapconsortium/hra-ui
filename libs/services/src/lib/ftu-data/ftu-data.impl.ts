@@ -119,6 +119,11 @@ const TISSUE_LINK = createLinkId('FTU');
 /** Provides Base/root url for the tissue tree */
 const BASE_IRI = 'https://purl.humanatlas.io/2d-ftu/' as Iri;
 
+/** Capitalizes the first character */
+function capitalize(str: string): string {
+  return str.slice(0, 1).toUpperCase() + str.slice(1);
+}
+
 /**
  * FtuDataImplService - Angular service for handling FTU (Functional Tissue Unit) data operations.
  */
@@ -349,7 +354,7 @@ export class FtuDataImplService extends FtuDataService {
         dataset_count: entry.dataset_count,
       }));
       cellSummary.push({
-        label: summaryGroup.biomarker_type,
+        label: `${capitalize(summaryGroup.biomarker_type)} Biomarkers`,
         cells,
         biomarkers,
         summaries,
