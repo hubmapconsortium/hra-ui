@@ -90,6 +90,7 @@ export const SOURCE_REFERENCE = z.object({
 export const ILLUSTRATION_MAPPING_ITEM = z.object({
   id: z.string(),
   label: z.string(),
+  ontologyId: z.string(),
 });
 
 // ---------------------------------------

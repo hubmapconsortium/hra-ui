@@ -8,6 +8,7 @@ describe('IllustratorSelectors', () => {
     selected: {
       label: ' ',
       id: ' ',
+      ontologyId: ' ',
     },
     mapping: [],
   };
@@ -21,6 +22,7 @@ describe('IllustratorSelectors', () => {
     const testSelected: IllustrationMappingItem = {
       label: ' ',
       id: ' ',
+      ontologyId: ' ',
     };
     const result = IllustratorSelectors.selected(state);
     expect(result).toEqual(testSelected);
