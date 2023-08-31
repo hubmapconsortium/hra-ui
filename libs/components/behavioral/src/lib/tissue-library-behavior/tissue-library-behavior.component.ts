@@ -22,7 +22,7 @@ export class TissueLibraryBehaviorComponent {
    * Reference to the TissueTreeListComponent.
    */
   @ViewChild('list', { static: true })
-  readonly list!: TissueTreeListComponent<never, never>;
+  readonly list?: TissueTreeListComponent<never, never>;
 
   /**
    * Input for tissues data
@@ -44,7 +44,7 @@ export class TissueLibraryBehaviorComponent {
     select$(ActiveFtuSelectors.iri).subscribe((iri) => {
       this.selected = iri && this.tissues()[iri];
       if (iri === undefined) {
-        this.list.resetSelection();
+        this.list?.resetSelection();
       }
     });
   }
