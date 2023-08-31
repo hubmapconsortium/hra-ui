@@ -1,27 +1,14 @@
 import { NgModule } from '@angular/core';
-import { MockContactService } from './contact/contact.mock';
+import { ContactImplService } from './contact/contact.impl';
 import { ContactService } from './contact/contact.service';
 import { FTU_DATA_IMPL_ENDPOINTS, FtuDataImplService } from './ftu-data/ftu-data.impl';
 import { FtuDataService } from './ftu-data/ftu-data.service';
-import { MockTissueFtuService } from './tissue-ftu/tissue-ftu.mock';
-import { TissueFtuService } from './tissue-ftu/tissue-ftu.service';
-import { MockTissueLibraryService } from './tissue-library/tissue-library.mock';
-import { TissueLibraryService } from './tissue-library/tissue-library.service';
 
 @NgModule({
   providers: [
-    // TODO replace with real services
     {
       provide: ContactService,
-      useExisting: MockContactService,
-    },
-    {
-      provide: TissueLibraryService,
-      useExisting: MockTissueLibraryService,
-    },
-    {
-      provide: TissueFtuService,
-      useExisting: MockTissueFtuService,
+      useExisting: ContactImplService,
     },
     {
       provide: FtuDataService,
