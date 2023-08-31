@@ -1,8 +1,15 @@
-import { AfterContentInit, Component, HostBinding, inject } from '@angular/core';
+import { AfterContentInit, Component, HostBinding, Input, Output, inject } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
-import { selectQuerySnapshot } from '@hra-ui/cdk/injectors';
-import { StorageId, StorageSelectors } from '@hra-ui/cdk/state';
+import { dispatch, select$, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
+import {
+  LinkRegistryActions,
+  ResourceRegistryActions,
+  StorageId,
+  StorageSelectors,
+  createLinkId,
+} from '@hra-ui/cdk/state';
 import { ScreenNoticeBehaviorComponent } from '@hra-ui/components/behavioral';
+import { ActiveFtuSelectors, IllustratorSelectors } from '@hra-ui/state';
 
 @Component({
   selector: 'ftu-ui-root',
@@ -15,6 +22,24 @@ export class AppComponent implements AfterContentInit {
 
   readonly SMALL_VIEWPORT_THRESHOLD = 480; // In pixels
 
+  @Input() set linksYamlUrl(url: string) {
+    this.loadLinks(url);
+  }
+
+  @Input() set resourcesYamlUrl(url: string) {
+    this.loadResources(url);
+  }
+
+  @Input() set organIri(iri: string) {
+    this.navigateToOrgan(createLinkId('FTU'), { queryParams: { id: iri } });
+  }
+
+  @Output() readonly organSelected = select$(ActiveFtuSelectors.iri);
+
+  @Output() readonly nodeHovered = select$(IllustratorSelectors.selectedOnHovered);
+
+  @Output() readonly nodeClicked = select$(IllustratorSelectors.selectedOnClicked);
+
   screenSizeNoticeOpen = false;
 
   private readonly hasShownSmallViewportNotice = selectQuerySnapshot(
@@ -22,6 +47,10 @@ export class AppComponent implements AfterContentInit {
     StorageId.Local,
     'screen-size-notice'
   );
+
+  private readonly loadLinks = dispatch(LinkRegistryActions.LoadFromYaml);
+  private readonly loadResources = dispatch(ResourceRegistryActions.LoadFromYaml);
+  private readonly navigateToOrgan = dispatch(LinkRegistryActions.Navigate);
 
   private readonly dialog = inject(MatDialog);
 

@@ -6,9 +6,10 @@
   "prefix": "ftu",
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "ngx-build-plus:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "singleBundle": true,
         "outputPath": "dist/apps/ftu-ui",
         "index": "apps/ftu-ui/src/index.html",
         "main": "apps/ftu-ui/src/main.ts",
