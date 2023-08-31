@@ -12,11 +12,14 @@
         const linksUrl = '../assets/links.yml';
         const resourcesUrl = '../assets/resources.yml';
         const organIri = 'https://example.com/kidney';
-        const selectOrgan = (activeIri$) => {
-          activeIri$.subscribe();
+        const selectOrgan = (activeIri) => {
+          console.log('selected organ iri', activeIri);
         };
-        const selectNode = (selectedNode$) => {
-          selectedNode$.subscribe();
+        const selectNode = (selectedNode) => {
+          console.log('selected node', selectedNode);
+        };
+        const hoverNode = (node) => {
+          console.log('node hover', node);
         };
         let focusId = '';
 
@@ -25,6 +28,7 @@
         ftu.organIri(organIri);
         ftu.addEventListener('organSelected', selectOrgan);
         ftu.addEventListener('nodeClicked', selectNode);
+        ftu.addEventListener('nodeHovered', hoverNode);
       });
     </script>
   </head>
