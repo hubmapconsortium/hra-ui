@@ -77,6 +77,9 @@ export class FooterComponent<T extends DownloadFormat = DownloadFormat> {
   /** Emits when the contact button is clicked */
   @Output() readonly contactClick = new EventEmitter<void>();
 
+  /** Emits when the illustration button is clicked */
+  @Output() readonly illustrationClick = new EventEmitter<void>();
+
   /** Download list popup overlay positioning */
   readonly DOWNLOADS_LIST_POSITION = DOWNLOADS_LIST_POSITION;
 

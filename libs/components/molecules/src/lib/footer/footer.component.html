@@ -6,7 +6,7 @@
 </div>
 <div class="filler" *ngIf="isSmall"></div>
 
-<button class="button" mat-stroked-button color="accent" [hraLink]="illustrationMetadata">
+<button class="button" mat-stroked-button color="accent" (click)="illustrationClick.emit()">
   <mat-icon>info_outlined</mat-icon>
   Illustration
 </button>
