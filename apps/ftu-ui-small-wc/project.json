@@ -11,7 +11,7 @@
       "executor": "ngx-build-plus:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "singleBundle":true,
+        "singleBundle": true,
         "outputPath": "dist/apps/ftu-ui-small-wc",
         "index": "apps/ftu-ui-small-wc/src/index.html",
         "main": "apps/ftu-ui-small-wc/src/main.ts",
