@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { EMPTY, Observable, map } from 'rxjs';
-import { TableDataService } from 'src/app/services/table-data/tabledata.service';
+import { TableDataService } from '../../services/table-data/tabledata.service';
 import { ChooseVersion } from '../choose-version/choose-version';
 import { HeaderData } from '../table/header';
 import { TableData } from '../table/table';
@@ -16,7 +16,7 @@ function iCaseEquals(str1: string, str2: string): boolean {
   templateUrl: './organ-version.component.html',
   styleUrls: ['./organ-version.component.scss'],
 })
-export class OrganVersionComponent {
+export class OrganVersionComponent implements OnInit {
   @Input() versionData: ChooseVersion[];
   @Input() organInfo: VersionOrgans[];
   @Input() tableRequired: boolean;

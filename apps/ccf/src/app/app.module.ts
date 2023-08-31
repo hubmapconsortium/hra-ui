@@ -7,7 +7,7 @@ import {
   NgxGoogleAnalyticsRouterModule,
 } from 'ngx-google-analytics';
 import { MarkdownModule } from 'ngx-markdown';
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BottomToolbarModule } from './components/bottom-toolbar/bottom-toolbar.module';

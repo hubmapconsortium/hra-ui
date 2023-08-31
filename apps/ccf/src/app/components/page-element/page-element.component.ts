@@ -1,5 +1,5 @@
 import { ViewportScroller } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LongCard } from '../card-button-long/long-card';
@@ -10,7 +10,7 @@ import { PageDef } from './page-def';
   templateUrl: './page-element.component.html',
   styleUrls: ['./page-element.component.scss'],
 })
-export class PageElementComponent {
+export class PageElementComponent implements OnInit {
   @Input() def: PageDef;
   private subscriptions = new Subscription();
   icon = 'list';

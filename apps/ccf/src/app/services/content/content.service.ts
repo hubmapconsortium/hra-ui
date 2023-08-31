@@ -4,8 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { load } from 'js-yaml';
 import { PageDef } from "../../components/page-element/page-def"
-import { PageSpec } from 'src/app/utils/data-schema';
-import {} from '@components/'
+import { PageSpec } from '../../utils/data-schema';
 
 @Injectable({
   providedIn: 'root',

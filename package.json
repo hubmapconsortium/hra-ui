@@ -3,15 +3,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "ng": "ng",
-    "start": "nx serve ccf",
-    "build": "nx build ccf",
     "build:data-schema-js": "tsc --target esnext -m nodenext --skipLibCheck src/app/utils/data-schema.ts",
     "build:extract-json-schema": "node ./src/app/utils/cli.js json-schemas pages.schema.json",
-    "build:json-schema": "npm-run-all build:data-schema-js build:extract-json-schema",
-    "watch": "nx build --watch --configuration development",
-    "test": "nx test",
-    "lint": "nx lint"
+    "build:json-schema": "npm-run-all build:data-schema-js build:extract-json-schema"
   },
   "private": true,
   "dependencies": {
