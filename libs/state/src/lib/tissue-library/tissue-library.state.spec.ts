@@ -1,6 +1,6 @@
 import { MockProxy, mock } from 'jest-mock-extended';
 import { TissueLibraryState } from './tissue-library.state';
-import { FtuDataService } from '@hra-ui/services';
+import { FtuDataService, MOCK_TISSUE_DATA } from '@hra-ui/services';
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { TissueLibraryModel } from './tissue-library.model';
@@ -22,9 +22,8 @@ describe('TissueLibraryState', () => {
 
   describe('setActive(ctx)', () => {
     it('should load tissue data into the state', async () => {
-      await state.setActive(ctx).subscribe();
-      dataService.getTissueLibrary.mockReturnValue(of());
-
+      dataService.getTissueLibrary.mockReturnValue(of(MOCK_TISSUE_DATA));
+      state.setActive(ctx).subscribe();
       expect(dataService.getTissueLibrary).toHaveBeenCalledWith();
     });
   });
