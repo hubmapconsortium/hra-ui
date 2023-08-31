@@ -45,6 +45,7 @@ describe('IllustratorState', () => {
       const mockSelected: IllustrationMappingItem = {
         label: 'Mock Label',
         id: 'Mock Name',
+        ontologyId: 'Mock id',
       };
       state.SetHover(ctx, new SetHover(mockSelected));
       expect(ctx.patchState).toHaveBeenCalledWith({ selectedOnHover: mockSelected });
