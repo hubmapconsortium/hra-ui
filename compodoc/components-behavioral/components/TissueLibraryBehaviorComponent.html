@@ -140,6 +140,7 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Readonly</span>
+                                    <span class="modifier">Optional</span>
                                 <a href="#list" >list</a>
                             </li>
                             <li>
@@ -206,6 +207,7 @@ the url is undefined</p>
                     <a name="list"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
+                            <span class="modifier">Optional</span>
                         <span ><b>list</b></span>
                         <a href="#list"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -336,7 +338,7 @@ export class TissueLibraryBehaviorComponent {
    * Reference to the TissueTreeListComponent.
    */
   @ViewChild(&#x27;list&#x27;, { static: true })
-  readonly list!: TissueTreeListComponent&lt;never, never&gt;;
+  readonly list?: TissueTreeListComponent&lt;never, never&gt;;
 
   /**
    * Input for tissues data
@@ -358,7 +360,7 @@ export class TissueLibraryBehaviorComponent {
     select$(ActiveFtuSelectors.iri).subscribe((iri) &#x3D;&gt; {
       this.selected &#x3D; iri &amp;&amp; this.tissues()[iri];
       if (iri &#x3D;&#x3D;&#x3D; undefined) {
-        this.list.resetSelection();
+        this.list?.resetSelection();
       }
     });
   }

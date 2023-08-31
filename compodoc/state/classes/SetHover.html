@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >SetSelection</li>
+  <li >SetHover</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -70,7 +70,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Sets the selection for the Item in the current state</p>
+                <p>Sets the selection for the Item in the current state on SetHover</p>
 
             </p>
 
@@ -84,7 +84,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(selected: <a href="../s/Illustration.html" target="_self">IllustrationMappingItem</a>)</code>
+<code>constructor(selectedOnHover: <a href="../s/Illustration.html" target="_self">IllustrationMappingItem</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -109,7 +109,7 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>selected</td>
+                                                        <td>selectedOnHover</td>
                                                   
                                                         <td>
                                                                         <code><a href="../miscellaneous/variables.html#Illustration" target="_self" >IllustrationMappingItem</a></code>
@@ -157,11 +157,21 @@ export class Load extends Action(&#x27;Load&#x27;) {
 }
 
 /**
- * Sets the selection for the Item in the current state
+ * Sets the selection for the Item in the current state on SetHover
  */
-export class SetSelection extends Action(&#x27;Set Selection&#x27;) {
+export class SetHover extends Action(&#x27;Set Selection on Hover&#x27;) {
   /** Initializes the Mapping Item */
-  constructor(readonly selected: IllustrationMappingItem) {
+  constructor(readonly selectedOnHover: IllustrationMappingItem) {
+    super();
+  }
+}
+
+/**
+ * Sets the selection for the Item in the current state on SetClicked
+ */
+export class SetClicked extends Action(&#x27;Set Selection on Clicked&#x27;) {
+  /** Initializes the Mapping Item */
+  constructor(readonly selectedOnClick: IllustrationMappingItem) {
     super();
   }
 }
@@ -213,7 +223,7 @@ export class Reset extends Action(&#x27;Reset&#x27;) {}
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'SetSelection.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'SetHover.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

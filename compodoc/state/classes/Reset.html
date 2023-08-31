@@ -107,6 +107,17 @@ export class Load extends Action(&#x27;Load&#x27;) {
   }
 }
 
+/** Action to set the illustration url of the active FTU */
+export class SetIllustrationUrl extends Action(&#x27;Set Illustration Url&#x27;) {
+  /**
+   * Creates an instance of set iri.
+   * @param iri
+   */
+  constructor(readonly iri: Iri) {
+    super();
+  }
+}
+
 /** Clears the Iri */
 export class Clear extends Action(&#x27;Clear&#x27;) {}
 

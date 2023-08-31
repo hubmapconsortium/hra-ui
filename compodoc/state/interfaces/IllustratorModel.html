@@ -99,9 +99,16 @@ and mapping fields</p>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#selected" 
+                                        <a href="#selectedOnClick" 
 >
-                                            selected
+                                            selectedOnClick
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#selectedOnHover" 
+>
+                                            selectedOnHover
                                         </a>
                                 </li>
                                 <li>
@@ -165,9 +172,9 @@ and mapping fields</p>
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="selected"></a>
-                                        <span class="name "><b>selected</b>
-                                            <a href="#selected">
+                                        <a name="selectedOnClick"></a>
+                                        <span class="name "><b>selectedOnClick</b>
+                                            <a href="#selectedOnClick">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -175,7 +182,7 @@ and mapping fields</p>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>selected:         <code><a href="../miscellaneous/variables.html#Illustration" target="_self" >IllustrationMappingItem</a></code>
+                                        <code>selectedOnClick:         <code><a href="../miscellaneous/variables.html#Illustration" target="_self" >IllustrationMappingItem</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -199,7 +206,51 @@ and mapping fields</p>
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Selected Illustrator Item</p>
+                                    <div class="io-description"><p>Selected Illustrator Item on click</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="selectedOnHover"></a>
+                                        <span class="name "><b>selectedOnHover</b>
+                                            <a href="#selectedOnHover">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>selectedOnHover:         <code><a href="../miscellaneous/variables.html#Illustration" target="_self" >IllustrationMappingItem</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/variables.html#Illustration" target="_self" >IllustrationMappingItem</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Selected Illustrator Item on hover</p>
 </div>
                                 </td>
                             </tr>
@@ -258,7 +309,7 @@ and mapping fields</p>
 import { FtuDataService, IllustrationMappingItem, Url } from &#x27;@hra-ui/services&#x27;;
 import { Action, State, StateContext } from &#x27;@ngxs/store&#x27;;
 import { forkJoin, Observable, tap } from &#x27;rxjs&#x27;;
-import { ClearSelection, Load, Reset, SetSelection } from &#x27;./illustrator.actions&#x27;;
+import { ClearSelection, Load, Reset, SetClicked, SetHover } from &#x27;./illustrator.actions&#x27;;
 
 /**
  * interface for the Illustrator Model that contains the url, selected
@@ -267,8 +318,10 @@ import { ClearSelection, Load, Reset, SetSelection } from &#x27;./illustrator.ac
 export interface IllustratorModel {
   /** Illustration URL */
   url?: Url;
-  /** Selected Illustrator Item */
-  selected?: IllustrationMappingItem;
+  /** Selected Illustrator Item on hover */
+  selectedOnHover?: IllustrationMappingItem;
+  /** Selected Illustrator Item on click */
+  selectedOnClick?: IllustrationMappingItem;
   /** Array of Illustrartor Items */
   mapping: IllustrationMappingItem[];
 }
@@ -301,15 +354,25 @@ export class IllustratorState {
     const url$ &#x3D; this.dataService.getIllustrationUrl(iri);
     const mapping$ &#x3D; this.dataService.getIllustrationMapping(iri);
     const result$ &#x3D; forkJoin({ url: url$, mapping: mapping$ });
-    return result$.pipe(tap((result) &#x3D;&gt; patchState({ ...result, selected: undefined })));
+    return result$.pipe(
+      tap((result) &#x3D;&gt; patchState({ ...result, selectedOnHover: undefined, selectedOnClick: undefined }))
+    );
   }
 
   /**
-   * Sets the current selection to the state
+   * Sets the current selection to the state for SetHover
    */
-  @Action(SetSelection)
-  setSelection({ patchState }: Context, { selected }: SetSelection): void {
-    patchState({ selected });
+  @Action(SetHover)
+  SetHover({ patchState }: Context, { selectedOnHover }: SetHover): void {
+    patchState({ selectedOnHover });
+  }
+
+  /**
+   * Sets the current selection to the state for SetClicked
+   */
+  @Action(SetClicked)
+  SetClicked({ patchState }: Context, { selectedOnClick }: SetClicked): void {
+    patchState({ selectedOnClick });
   }
 
   /**
@@ -317,7 +380,7 @@ export class IllustratorState {
    */
   @Action(ClearSelection)
   clearSelection({ patchState }: Context): void {
-    patchState({ selected: undefined });
+    patchState({ selectedOnHover: undefined, selectedOnClick: undefined });
   }
 
   /**

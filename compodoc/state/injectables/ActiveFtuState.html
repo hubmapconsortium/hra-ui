@@ -94,6 +94,9 @@
                             <li>
                                 <a href="#reset" >reset</a>
                             </li>
+                            <li>
+                                <a href="#setIllustrationUrl" >setIllustrationUrl</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -139,8 +142,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/lib/active-ftu/active-ftu.state.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/lib/active-ftu/active-ftu.state.ts:67</a></div>
                 </td>
             </tr>
 
@@ -216,8 +219,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/lib/active-ftu/active-ftu.state.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/lib/active-ftu/active-ftu.state.ts:39</a></div>
                 </td>
             </tr>
 
@@ -306,8 +309,8 @@ with the current iri</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">src/lib/active-ftu/active-ftu.state.ts:61</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/lib/active-ftu/active-ftu.state.ts:76</a></div>
                 </td>
             </tr>
 
@@ -357,6 +360,95 @@ Cell summary, Illustrator and Source Refs</p>
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setIllustrationUrl"></a>
+                    <span class="name">
+                        <span ><b>setIllustrationUrl</b></span>
+                        <a href="#setIllustrationUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setIllustrationUrl(undefined: <a href="../undefineds/Context.html" target="_self">Context</a>, undefined: <a href="../classes/SetIllustrationUrl.html" target="_self">SetIllustrationUrl</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Action(SetIllustrationUrl)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/lib/active-ftu/active-ftu.state.ts:56</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This Action computes the url and dispatches the LinkRegistry Action to add
+the link to the registry for navigation</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#Context" target="_self" >Context</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                                <code><a href="../classes/SetIllustrationUrl.html" target="_self" >SetIllustrationUrl</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable | void</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -370,8 +462,10 @@ import { Observable, tap } from &#x27;rxjs&#x27;;
 import { CellSummaryActions } from &#x27;../cell-summary&#x27;;
 import { IllustratorActions, IllustratorState } from &#x27;../illustrator&#x27;;
 import { SourceRefsActions, SourceRefsState } from &#x27;../source-refs&#x27;;
-import { Clear, Load, Reset } from &#x27;./active-ftu.actions&#x27;;
+import { Clear, Load, Reset, SetIllustrationUrl } from &#x27;./active-ftu.actions&#x27;;
 import { DownloadActions } from &#x27;../download&#x27;;
+import { LinkRegistryActions, LinkType } from &#x27;@hra-ui/cdk/state&#x27;;
+import { Illustration } from &#x27;../link-ids&#x27;;
 
 /**
  * Interface for ActiveFtuModel */
@@ -406,8 +500,21 @@ export class ActiveFtuState {
         new IllustratorActions.Load(iri),
         new DownloadActions.Load(iri),
         new SourceRefsActions.Load(iri),
+        new SetIllustrationUrl(iri),
       ]).pipe(tap(() &#x3D;&gt; patchState({ iri })));
     }
+  }
+
+  /**
+   * This Action computes the url and dispatches the LinkRegistry Action to add
+   * the link to the registry for navigation
+   */
+  @Action(SetIllustrationUrl)
+  setIllustrationUrl({ dispatch }: Context, { iri }: SetIllustrationUrl): Observable&lt;void&gt; | void {
+    const BASE_URL &#x3D; &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/2d-ftu/&#x27;;
+    const [name] &#x3D; iri.split(&#x27;/&#x27;).slice(-1);
+    const url &#x3D; &#x60;${BASE_URL}2d-ftu-${name}.html&#x60;;
+    return dispatch(new LinkRegistryActions.Add(Illustration, { type: LinkType.External, url }));
   }
 
   /**

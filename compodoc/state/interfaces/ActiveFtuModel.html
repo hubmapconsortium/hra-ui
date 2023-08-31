@@ -164,8 +164,10 @@ import { Observable, tap } from &#x27;rxjs&#x27;;
 import { CellSummaryActions } from &#x27;../cell-summary&#x27;;
 import { IllustratorActions, IllustratorState } from &#x27;../illustrator&#x27;;
 import { SourceRefsActions, SourceRefsState } from &#x27;../source-refs&#x27;;
-import { Clear, Load, Reset } from &#x27;./active-ftu.actions&#x27;;
+import { Clear, Load, Reset, SetIllustrationUrl } from &#x27;./active-ftu.actions&#x27;;
 import { DownloadActions } from &#x27;../download&#x27;;
+import { LinkRegistryActions, LinkType } from &#x27;@hra-ui/cdk/state&#x27;;
+import { Illustration } from &#x27;../link-ids&#x27;;
 
 /**
  * Interface for ActiveFtuModel */
@@ -200,8 +202,21 @@ export class ActiveFtuState {
         new IllustratorActions.Load(iri),
         new DownloadActions.Load(iri),
         new SourceRefsActions.Load(iri),
+        new SetIllustrationUrl(iri),
       ]).pipe(tap(() &#x3D;&gt; patchState({ iri })));
     }
+  }
+
+  /**
+   * This Action computes the url and dispatches the LinkRegistry Action to add
+   * the link to the registry for navigation
+   */
+  @Action(SetIllustrationUrl)
+  setIllustrationUrl({ dispatch }: Context, { iri }: SetIllustrationUrl): Observable&lt;void&gt; | void {
+    const BASE_URL &#x3D; &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/2d-ftu/&#x27;;
+    const [name] &#x3D; iri.split(&#x27;/&#x27;).slice(-1);
+    const url &#x3D; &#x60;${BASE_URL}2d-ftu-${name}.html&#x60;;
+    return dispatch(new LinkRegistryActions.Add(Illustration, { type: LinkType.External, url }));
   }
 
   /**

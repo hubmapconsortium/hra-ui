@@ -156,7 +156,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#updateNode" >updateNode</a>
+                                <a href="#updateNodeOnClicked" >updateNodeOnClicked</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#updateNodeOnHover" >updateNodeOnHover</a>
                             </li>
                         </ul>
                     </td>
@@ -328,17 +332,49 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="updateNode"></a>
+                    <a name="updateNodeOnClicked"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
-                        <span ><b>updateNode</b></span>
-                        <a href="#updateNode"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>updateNodeOnClicked</b></span>
+                        <a href="#updateNodeOnClicked"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>dispatch(IllustratorActions.SetSelection)</code>
+                        <i>Default value : </i><code>dispatch(IllustratorActions.SetClicked)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Updates the active node on node click</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateNodeOnHover"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>updateNodeOnHover</b></span>
+                        <a href="#updateNodeOnHover"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>dispatch(IllustratorActions.SetHover)</code>
                     </td>
                 </tr>
                     <tr>
@@ -451,14 +487,25 @@ export class MedicalIllustrationBehaviorComponent {
   /**
    * Updates the active node on node hover
    */
-  readonly updateNode &#x3D; dispatch(IllustratorActions.SetSelection);
+  readonly updateNodeOnHover &#x3D; dispatch(IllustratorActions.SetHover);
+
+  /**
+   * Updates the active node on node click
+   */
+  readonly updateNodeOnClicked &#x3D; dispatch(IllustratorActions.SetClicked);
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;hra-label-box&gt;{{ tissueTitle }}&lt;/hra-label-box&gt;
-&lt;hra-interactive-svg [url]&#x3D;&quot;currentUrl()&quot; [mapping]&#x3D;&quot;mapping()&quot; (nodeHover)&#x3D;&quot;updateNode($event)&quot;&gt; &lt;/hra-interactive-svg&gt;
+&lt;hra-interactive-svg
+  [url]&#x3D;&quot;currentUrl()&quot;
+  [mapping]&#x3D;&quot;mapping()&quot;
+  (nodeHover)&#x3D;&quot;updateNodeOnHover($event)&quot;
+  (nodeClick)&#x3D;&quot;updateNodeOnClicked($event)&quot;
+&gt;
+&lt;/hra-interactive-svg&gt;
 </code></pre>
     </div>
 
@@ -502,7 +549,7 @@ export class MedicalIllustrationBehaviorComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-label-box>{{ tissueTitle }}</hra-label-box><hra-interactive-svg [url]="currentUrl()" [mapping]="mapping()" (nodeHover)="updateNode($event)"> </hra-interactive-svg></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-label-box>{{ tissueTitle }}</hra-label-box><hra-interactive-svg  [url]="currentUrl()"  [mapping]="mapping()"  (nodeHover)="updateNodeOnHover($event)"  (nodeClick)="updateNodeOnClicked($event)"></hra-interactive-svg></div>'
     var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'ScreenNoticeBehaviorComponent', 'selector': 'ftu-ui-screen-notice-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'MedicalIllustrationBehaviorComponent'};

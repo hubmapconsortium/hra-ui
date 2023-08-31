@@ -945,7 +945,7 @@
         },
         {
             "name": "MedicalIllustrationBehaviorComponent",
-            "id": "component-MedicalIllustrationBehaviorComponent-610a4972f7d0224528bb33d8be1519ef978347288113323673781462c123ae7594b429f92410f36f2473af99ae029b522543385a8ad435ade8c087e7cb998a2b",
+            "id": "component-MedicalIllustrationBehaviorComponent-6fea78f0a6011315eef3ff0e9cf3f451130b68d93388f1b8ff7f362f6c7f2ec8bbad2f6518d0329f94a749b1e02a1018129acf2b8340f015397957c3e0fd985d",
             "file": "src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1022,8 +1022,22 @@
                     ]
                 },
                 {
-                    "name": "updateNode",
-                    "defaultValue": "dispatch(IllustratorActions.SetSelection)",
+                    "name": "updateNodeOnClicked",
+                    "defaultValue": "dispatch(IllustratorActions.SetClicked)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Updates the active node on node click</p>\n",
+                    "line": 57,
+                    "rawdescription": "\n\nUpdates the active node on node click\n",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "updateNodeOnHover",
+                    "defaultValue": "dispatch(IllustratorActions.SetHover)",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -1044,7 +1058,7 @@
             "description": "<p>Behavior component for medical illustration component</p>\n",
             "rawdescription": "\n\nBehavior component for medical illustration component\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { LabelBoxComponent } from '@hra-ui/components/atoms';\nimport { InteractiveSvgComponent } from '@hra-ui/components/molecules';\nimport { ActiveFtuSelectors, IllustratorActions, IllustratorSelectors, TissueLibrarySelectors } from '@hra-ui/state';\n\n/**\n * Behavior component for medical illustration component\n */\n@Component({\n  selector: 'ftu-medical-illustration-behavior',\n  standalone: true,\n  imports: [CommonModule, InteractiveSvgComponent, LabelBoxComponent],\n  templateUrl: './medical-illustration-behavior.component.html',\n  styleUrls: ['./medical-illustration-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MedicalIllustrationBehaviorComponent {\n  /**\n   * Current illustration url\n   */\n  readonly currentUrl = selectSnapshot(IllustratorSelectors.url);\n\n  /**\n   * Current mapping file\n   */\n  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);\n\n  /**\n   * Iri  of medical illustration behavior component\n   */\n  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);\n\n  /**\n   * Get all tissues\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueTitle(): string {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    return iri ? tissues[iri].label : '';\n  }\n\n  /**\n   * Updates the active node on node hover\n   */\n  readonly updateNode = dispatch(IllustratorActions.SetSelection);\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { LabelBoxComponent } from '@hra-ui/components/atoms';\nimport { InteractiveSvgComponent } from '@hra-ui/components/molecules';\nimport { ActiveFtuSelectors, IllustratorActions, IllustratorSelectors, TissueLibrarySelectors } from '@hra-ui/state';\n\n/**\n * Behavior component for medical illustration component\n */\n@Component({\n  selector: 'ftu-medical-illustration-behavior',\n  standalone: true,\n  imports: [CommonModule, InteractiveSvgComponent, LabelBoxComponent],\n  templateUrl: './medical-illustration-behavior.component.html',\n  styleUrls: ['./medical-illustration-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MedicalIllustrationBehaviorComponent {\n  /**\n   * Current illustration url\n   */\n  readonly currentUrl = selectSnapshot(IllustratorSelectors.url);\n\n  /**\n   * Current mapping file\n   */\n  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);\n\n  /**\n   * Iri  of medical illustration behavior component\n   */\n  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);\n\n  /**\n   * Get all tissues\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueTitle(): string {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    return iri ? tissues[iri].label : '';\n  }\n\n  /**\n   * Updates the active node on node hover\n   */\n  readonly updateNodeOnHover = dispatch(IllustratorActions.SetHover);\n\n  /**\n   * Updates the active node on node click\n   */\n  readonly updateNodeOnClicked = dispatch(IllustratorActions.SetClicked);\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1066,7 +1080,7 @@
                     }
                 }
             },
-            "templateData": "<hra-label-box>{{ tissueTitle }}</hra-label-box>\n<hra-interactive-svg [url]=\"currentUrl()\" [mapping]=\"mapping()\" (nodeHover)=\"updateNode($event)\"> </hra-interactive-svg>\n"
+            "templateData": "<hra-label-box>{{ tissueTitle }}</hra-label-box>\n<hra-interactive-svg\n  [url]=\"currentUrl()\"\n  [mapping]=\"mapping()\"\n  (nodeHover)=\"updateNodeOnHover($event)\"\n  (nodeClick)=\"updateNodeOnClicked($event)\"\n>\n</hra-interactive-svg>\n"
         },
         {
             "name": "ScreenNoticeBehaviorComponent",
@@ -1153,7 +1167,7 @@
         },
         {
             "name": "TissueLibraryBehaviorComponent",
-            "id": "component-TissueLibraryBehaviorComponent-610abb3b7980e743eb12eb125deb48cf3e54258a140afe7c8a98d5b959c2aa3a89eb0c7544fa4cdef50838357d0802b14364b82df62efb66f4512530db3eb135",
+            "id": "component-TissueLibraryBehaviorComponent-1565978e9f70870b546b49f929236ee86c2eb9cc241e10b805863df59e4d66dca72495ffa8c27a7f282e396acc84f78b6724255570a4eab733a3af995543b47a",
             "file": "src/lib/tissue-library-behavior/tissue-library-behavior.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1178,7 +1192,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "TissueTreeListComponent<never | never>",
-                    "optional": false,
+                    "optional": true,
                     "description": "<p>Reference to the TissueTreeListComponent.</p>\n",
                     "line": 25,
                     "rawdescription": "\n\nReference to the TissueTreeListComponent.\n",
@@ -1225,7 +1239,7 @@
             "description": "<p>Component for Tissue Library Behavior</p>\n",
             "rawdescription": "\n\nComponent for Tissue Library Behavior\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';\nimport { select$, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { TissueTreeListComponent } from '@hra-ui/components/molecules';\nimport { Tissue } from '@hra-ui/services';\nimport { ActiveFtuSelectors, TissueLibrarySelectors } from '@hra-ui/state';\nimport { LabelBoxComponent } from '@hra-ui/components/atoms';\n\n/**\n * Component for Tissue Library Behavior\n */\n@Component({\n  selector: 'ftu-tissue-library-behavior',\n  standalone: true,\n  imports: [CommonModule, LabelBoxComponent, TissueTreeListComponent],\n  templateUrl: './tissue-library-behavior.component.html',\n  styleUrls: ['./tissue-library-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueLibraryBehaviorComponent {\n  /**\n   * Reference to the TissueTreeListComponent.\n   */\n  @ViewChild('list', { static: true })\n  readonly list!: TissueTreeListComponent<never, never>;\n\n  /**\n   * Input for tissues data\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n  /**\n   * Selected  of tissue library behavior component\n   */\n  selected?: Tissue;\n\n  /**\n   * Sets the TissueItem instance as undefined if\n   * the url is undefined\n   */\n  constructor() {\n    /** Get iris from the observable else reset selection if\n     * iri is undefined\n     */\n    select$(ActiveFtuSelectors.iri).subscribe((iri) => {\n      this.selected = iri && this.tissues()[iri];\n      if (iri === undefined) {\n        this.list.resetSelection();\n      }\n    });\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';\nimport { select$, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { TissueTreeListComponent } from '@hra-ui/components/molecules';\nimport { Tissue } from '@hra-ui/services';\nimport { ActiveFtuSelectors, TissueLibrarySelectors } from '@hra-ui/state';\nimport { LabelBoxComponent } from '@hra-ui/components/atoms';\n\n/**\n * Component for Tissue Library Behavior\n */\n@Component({\n  selector: 'ftu-tissue-library-behavior',\n  standalone: true,\n  imports: [CommonModule, LabelBoxComponent, TissueTreeListComponent],\n  templateUrl: './tissue-library-behavior.component.html',\n  styleUrls: ['./tissue-library-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueLibraryBehaviorComponent {\n  /**\n   * Reference to the TissueTreeListComponent.\n   */\n  @ViewChild('list', { static: true })\n  readonly list?: TissueTreeListComponent<never, never>;\n\n  /**\n   * Input for tissues data\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n  /**\n   * Selected  of tissue library behavior component\n   */\n  selected?: Tissue;\n\n  /**\n   * Sets the TissueItem instance as undefined if\n   * the url is undefined\n   */\n  constructor() {\n    /** Get iris from the observable else reset selection if\n     * iri is undefined\n     */\n    select$(ActiveFtuSelectors.iri).subscribe((iri) => {\n      this.selected = iri && this.tissues()[iri];\n      if (iri === undefined) {\n        this.list?.resetSelection();\n      }\n    });\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {

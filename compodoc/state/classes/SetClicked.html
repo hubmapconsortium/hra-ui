@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >Load</li>
+  <li >SetClicked</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/lib/active-ftu/active-ftu.actions.ts</code>
+            <code>src/lib/illustrator/illustrator.actions.ts</code>
         </p>
 
 
@@ -70,7 +70,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Loads the Iri</p>
+                <p>Sets the selection for the Item in the current state on SetClicked</p>
 
             </p>
 
@@ -84,18 +84,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(iri: Iri)</code>
+<code>constructor(selectedOnClick: <a href="../s/Illustration.html" target="_self">IllustrationMappingItem</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/lib/active-ftu/active-ftu.actions.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/lib/illustrator/illustrator.actions.ts:30</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Creates an instance of set iri.</p>
+                            <div class="io-description"><p>Initializes the Mapping Item</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -109,10 +109,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>iri</td>
+                                                        <td>selectedOnClick</td>
                                                   
                                                         <td>
-                                                                    <code>Iri</code>
+                                                                        <code><a href="../miscellaneous/variables.html#Illustration" target="_self" >IllustrationMappingItem</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -141,37 +141,49 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ActionGroup } from &#x27;@hra-ui/cdk/state&#x27;;
-import { Iri } from &#x27;@hra-ui/services&#x27;;
+import { IllustrationMappingItem, Iri } from &#x27;@hra-ui/services&#x27;;
 
 /** Action base class factory */
-const Action &#x3D; ActionGroup(&#x27;ActiveFtu&#x27;);
+const Action &#x3D; ActionGroup(&#x27;Illustrator&#x27;);
 
-/** Loads the Iri */
+/**
+ * Loads the state with the current Iri
+ */
 export class Load extends Action(&#x27;Load&#x27;) {
-  /**
-   * Creates an instance of set iri.
-   * @param iri
-   */
+  /** Intializes the set iri */
   constructor(readonly iri: Iri) {
     super();
   }
 }
 
-/** Action to set the illustration url of the active FTU */
-export class SetIllustrationUrl extends Action(&#x27;Set Illustration Url&#x27;) {
-  /**
-   * Creates an instance of set iri.
-   * @param iri
-   */
-  constructor(readonly iri: Iri) {
+/**
+ * Sets the selection for the Item in the current state on SetHover
+ */
+export class SetHover extends Action(&#x27;Set Selection on Hover&#x27;) {
+  /** Initializes the Mapping Item */
+  constructor(readonly selectedOnHover: IllustrationMappingItem) {
     super();
   }
 }
 
-/** Clears the Iri */
-export class Clear extends Action(&#x27;Clear&#x27;) {}
+/**
+ * Sets the selection for the Item in the current state on SetClicked
+ */
+export class SetClicked extends Action(&#x27;Set Selection on Clicked&#x27;) {
+  /** Initializes the Mapping Item */
+  constructor(readonly selectedOnClick: IllustrationMappingItem) {
+    super();
+  }
+}
 
-/** Resets state */
+/**
+ * Clears the selection for the current state
+ */
+export class ClearSelection extends Action(&#x27;Clear Selection&#x27;) {}
+
+/**
+ * Resets the state
+ */
 export class Reset extends Action(&#x27;Reset&#x27;) {}
 </code></pre>
     </div>
@@ -211,7 +223,7 @@ export class Reset extends Action(&#x27;Reset&#x27;) {}
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'Load.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'SetClicked.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

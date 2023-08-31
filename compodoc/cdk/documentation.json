@@ -3658,11 +3658,11 @@
                 "name": "Action",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "state/src/storage/storage.actions.ts",
+                "file": "state/src/resource-registry/resource-registry.actions.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
-                "defaultValue": "ActionGroup('Storage')",
+                "defaultValue": "ActionGroup('ResourceRegistry')",
                 "rawdescription": "Base action factory",
                 "description": "<p>Base action factory</p>\n"
             },
@@ -3670,11 +3670,11 @@
                 "name": "Action",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "state/src/resource-registry/resource-registry.actions.ts",
+                "file": "state/src/storage/storage.actions.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
-                "defaultValue": "ActionGroup('ResourceRegistry')",
+                "defaultValue": "ActionGroup('Storage')",
                 "rawdescription": "Base action factory",
                 "description": "<p>Base action factory</p>\n"
             },
@@ -5976,20 +5976,6 @@
                     "description": "<p>Base action factory</p>\n"
                 }
             ],
-            "state/src/storage/storage.actions.ts": [
-                {
-                    "name": "Action",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "state/src/storage/storage.actions.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "ActionGroup('Storage')",
-                    "rawdescription": "Base action factory",
-                    "description": "<p>Base action factory</p>\n"
-                }
-            ],
             "state/src/resource-registry/resource-registry.actions.ts": [
                 {
                     "name": "Action",
@@ -6000,6 +5986,20 @@
                     "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "ActionGroup('ResourceRegistry')",
+                    "rawdescription": "Base action factory",
+                    "description": "<p>Base action factory</p>\n"
+                }
+            ],
+            "state/src/storage/storage.actions.ts": [
+                {
+                    "name": "Action",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "state/src/storage/storage.actions.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "ActionGroup('Storage')",
                     "rawdescription": "Base action factory",
                     "description": "<p>Base action factory</p>\n"
                 }
