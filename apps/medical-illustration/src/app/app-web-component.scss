@@ -1,0 +1,12 @@
+hra-interactive-svg {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+::ng-deep .svg,
+::ng-deep svg {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
