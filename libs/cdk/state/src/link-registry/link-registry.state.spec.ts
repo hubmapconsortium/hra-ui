@@ -4,6 +4,7 @@ import { mock } from 'jest-mock-extended';
 import { Add, AddFromYaml, AddMany, LoadFromYaml, Navigate } from './link-registry.actions';
 import { createLinkId, LinkRegistryContext, LinkRegistryModel, LinkType } from './link-registry.model';
 import { LinkRegistryState } from './link-registry.state';
+import { Router } from '@angular/router';
 
 describe('LinkRegistryState', () => {
   const url = 'http://test.url/';
@@ -100,9 +101,10 @@ describe('LinkRegistryState', () => {
 
   describe('navigate(ctx, action)', () => {
     it('should navigate to an internal url based on type', async () => {
-      jest.spyOn(state['router'], 'navigate');
+      const router = TestBed.inject(Router);
+      jest.spyOn(router, 'navigate');
       await state.navigate(ctx, new Navigate(createLinkId('')));
-      expect(state['router'].navigate).toHaveBeenCalledWith([''], {});
+      expect(router.navigate).toHaveBeenCalledWith([''], {});
     });
 
     it('should navigate to an external url based on type', async () => {

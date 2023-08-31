@@ -1,0 +1,88 @@
+@use 'variables' as vars;
+
+:host {
+  height: 100%;
+  hra-fullscreen-container {
+    display: grid;
+    width: 100%;
+    max-width: 71rem;
+    height: 100%;
+    grid-template-columns: 21rem 50rem;
+    grid-template-rows: 11.3rem 36.5rem 5rem;
+    grid-template-areas:
+      'header header'
+      'sidebar biomarker'
+      'footer footer';
+  }
+
+  .display {
+    display: none;
+  }
+
+  :has(.fullscreen-on) {
+    display: block;
+    width: 71rem;
+    height: 52rem;
+    .table {
+      height: 52rem !important;
+    }
+    ::ng-deep .mat-mdc-tab-body {
+      height: 45rem;
+    }
+  }
+
+  .header {
+    grid-area: header;
+    border-bottom: 0.0625rem solid rgba(vars.$dark-dividers);
+    .intro {
+      width: 70rem;
+    }
+  }
+
+  .sidebar {
+    grid-area: sidebar;
+    border-right: 0.0625rem solid rgba(vars.$dark-dividers);
+    max-height: 36.5rem;
+    overflow: auto;
+    width: 21rem;
+  }
+
+  .biomarker {
+    grid-area: biomarker;
+    display: contents;
+    width: 50rem;
+    max-height: 36.5rem;
+    overflow: auto;
+  }
+
+  .footer {
+    grid-area: footer;
+  }
+}
+::ng-deep .fullscreen-on {
+  position: initial !important;
+}
+
+::ng-deep .mat-mdc-tab-body {
+  height: 30rem;
+}
+
+::ng-deep hra-biomarker-table {
+  max-width: unset !important;
+  max-height: calc(100% - 8rem) !important;
+}
+
+::ng-deep .content {
+  width: auto !important;
+  .toggle {
+    width: auto !important;
+  }
+  .table-content {
+    max-height: 25rem !important;
+    overflow: initial !important;
+  }
+}
+
+::ng-deep .table-header {
+  width: auto !important;
+}

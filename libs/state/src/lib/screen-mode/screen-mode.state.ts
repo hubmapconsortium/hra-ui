@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
 import produce from 'immer';
-import { Set } from './screen-mode.actions';
+import { Set, SetSize } from './screen-mode.actions';
 import { ScreenModeModel } from './screen-mode.model';
 
 /** State storing the screen mode */
@@ -9,6 +9,7 @@ import { ScreenModeModel } from './screen-mode.model';
   name: 'screenmode',
   defaults: {
     isFullScreen: false,
+    size: 'large',
   },
 })
 @Injectable()
@@ -23,6 +24,19 @@ export class ScreenModeState {
     setState(
       produce((draft: ScreenModeModel) => {
         draft.isFullScreen = isFullScreen;
+      })
+    );
+  }
+  /**
+   * Actions screen mode state
+   * @param { setState } State Context
+   * @param { size } Action regarding screen
+   */
+  @Action(SetSize)
+  SetSize({ setState }: StateContext<ScreenModeModel>, { size }: SetSize): void {
+    setState(
+      produce((draft: ScreenModeModel) => {
+        draft.size = size;
       })
     );
   }

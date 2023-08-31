@@ -9,6 +9,7 @@ describe('ScreenMode State', () => {
   const action = new Set(true);
   let latest: ScreenModeModel = {
     isFullScreen: false,
+    size: 'small',
   };
   const ctx = mock<StateContext<ScreenModeModel>>();
 

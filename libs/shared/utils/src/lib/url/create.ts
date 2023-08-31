@@ -31,11 +31,15 @@ export function createInternalUrl(
   extras: UrlCreationOptions,
   isResourceUrl: boolean
 ): string | undefined {
-  const router = injector.get(Router);
-  const locationStrategy = injector.get(LocationStrategy);
+  const router = injector.get(Router, null);
+  const locationStrategy = injector.get(LocationStrategy, null);
   const sanitizer = injector.get(DomSanitizer);
   const route = extras.relativeTo ?? injector.get(ActivatedRoute, null);
   const securityContext = isResourceUrl ? SecurityContext.RESOURCE_URL : SecurityContext.URL;
+  if (!router || !locationStrategy) {
+    return undefined;
+  }
+
   const tree = router.createUrlTree(commands, {
     ...extras,
     relativeTo: route,
