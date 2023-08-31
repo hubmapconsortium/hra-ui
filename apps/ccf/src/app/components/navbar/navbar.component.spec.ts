@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Shallow } from 'shallow-render';
 import { NavbarComponent } from './navbar.component';
 
 describe('NavbarComponent', () => {
@@ -19,4 +19,11 @@ describe('NavbarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit itemClick event wwhen externalWindow is called', () => {
+    const url = 'https://humanatlas.io';
+    const spy = jest.spyOn(window, 'open');
+    component.externalWindow(url);
+    expect(spy).toHaveBeenCalledWith(url, '_blank');
+  })
 });
