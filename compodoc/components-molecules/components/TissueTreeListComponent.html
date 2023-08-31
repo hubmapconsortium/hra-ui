@@ -862,6 +862,7 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
     matTreeNodePaddingIndent&#x3D;&quot;64&quot;
     [class.selected]&#x3D;&quot;node.data &#x3D;&#x3D;&#x3D; selected&quot;
     class&#x3D;&quot;row&quot;
+    [class.child]&#x3D;&quot;hasChild&quot;
     tabIndex&#x3D;&quot;0&quot;
   &gt;
     &lt;ng-container [ngTemplateOutlet]&#x3D;&quot;label&quot; [ngTemplateOutletContext]&#x3D;&quot;node&quot;&gt; &lt;/ng-container&gt;
@@ -912,7 +913,9 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
 
   .row {
     min-height: 2rem;
-
+    &amp;.child {
+      padding: 5px 0 5px 64px;
+    }
     &amp;.selected {
       background-color: vars.$accent-lighter-rgb;
     }
@@ -970,7 +973,7 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-tree [dataSource]="dataSource" [treeControl]="control" class="tree">  <mat-tree-node    *matTreeNodeDef="let node; let level = level"    [matTreeNodePadding]="level"    matTreeNodePaddingIndent="64"    [class.selected]="node.data === selected"    class="row"    tabIndex="0"  >    <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>  </mat-tree-node>  <mat-tree-node    *matTreeNodeDef="let node; let level = level; when: hasChild"    class="row"    [class.selected]="node.data === selected"  >    <button mat-icon-button matTreeNodeToggle class="toggle" [attr.aria-label]="\'Toggle \' + node.label">      <mat-icon>        {{ control.isExpanded(node) ? \'keyboard_arrow_up\' : \'chevron_right\' }}      </mat-icon>    </button>    <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>  </mat-tree-node></mat-tree><ng-template let-label="label" let-data="data" #label>  <div class="label-container" matRipple [matRippleDisabled]="!data.link">    <a      *ngIf="data.link; else noLink"      [hraLink]="data.link"      [queryParams]="{ id: data.id }"      class="link"      (click)="selectNode(data)"    >      {{ label }}    </a>    <ng-template #noLink>      <span>{{ label }}</span>    </ng-template>  </div></ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-tree [dataSource]="dataSource" [treeControl]="control" class="tree">  <mat-tree-node    *matTreeNodeDef="let node; let level = level"    [matTreeNodePadding]="level"    matTreeNodePaddingIndent="64"    [class.selected]="node.data === selected"    class="row"    [class.child]="hasChild"    tabIndex="0"  >    <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>  </mat-tree-node>  <mat-tree-node    *matTreeNodeDef="let node; let level = level; when: hasChild"    class="row"    [class.selected]="node.data === selected"  >    <button mat-icon-button matTreeNodeToggle class="toggle" [attr.aria-label]="\'Toggle \' + node.label">      <mat-icon>        {{ control.isExpanded(node) ? \'keyboard_arrow_up\' : \'chevron_right\' }}      </mat-icon>    </button>    <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>  </mat-tree-node></mat-tree><ng-template let-label="label" let-data="data" #label>  <div class="label-container" matRipple [matRippleDisabled]="!data.link">    <a      *ngIf="data.link; else noLink"      [hraLink]="data.link"      [queryParams]="{ id: data.id }"      class="link"      (click)="selectNode(data)"    >      {{ label }}    </a>    <ng-template #noLink>      <span>{{ label }}</span>    </ng-template>  </div></ng-template></div>'
     var COMPONENTS = [{'name': 'BiomarkerTableDataCardComponent', 'selector': 'hra-biomarker-table-data-card'},{'name': 'BiomarkerTableDataIconComponent', 'selector': 'hra-biomarker-table-data-icon'},{'name': 'ContactModalComponent', 'selector': 'hra-contact-modal'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenContainerComponent', 'selector': 'hra-fullscreen-container'},{'name': 'FullscreenContentComponent', 'selector': 'hra-fullscreen-content'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InteractiveSvgComponent', 'selector': 'hra-interactive-svg'},{'name': 'LandingPageInDepthComponent', 'selector': 'hra-landing-page-in-depth'},{'name': 'LandingPageIntroComponent', 'selector': 'hra-landing-page-intro'},{'name': 'MetricsComponent', 'selector': 'hra-metrics'},{'name': 'ScreenSizeNoticeComponent', 'selector': 'hra-screen-size-notice'},{'name': 'SourceListComponent', 'selector': 'hra-source-list'},{'name': 'TissueTreeListComponent', 'selector': 'hra-tissue-tree-list'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TissueTreeListComponent'};
