@@ -26,12 +26,13 @@
   }
 
   .table-content {
-    height: calc(100vh - 25rem);
+    height: calc(100vh - 44rem);
     overflow: auto;
   }
 
   .toggle {
-    margin-bottom: 1rem;
+    // margin-bottom: 1rem;
+    // padding: 0.75rem 0.5rem;
     display: flex;
     align-items: center;
     width: 43rem;
@@ -47,5 +48,10 @@
 
   .hidden {
     display: none;
+  }
+
+  ::ng-deep .mdc-data-table__content {
+    display: block;
+    padding: 1rem 0rem;
   }
 }
