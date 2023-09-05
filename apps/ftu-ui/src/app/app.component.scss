@@ -22,6 +22,9 @@
 
   .page-content {
     grid-area: content;
+    &:has(ftu-ftu-page) {
+      overflow-y: hidden;
+    }
   }
 
   .custom-overlay {
