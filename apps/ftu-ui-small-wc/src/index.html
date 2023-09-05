@@ -21,10 +21,9 @@
         const selectNode = (selectedNode) => {
           console.log('selected node', selectedNode);
         };
-        let focusId = '';
-        ftu.linksYamlUrl(linksUrl);
-        ftu.resourcesYamlUrl(resourcesUrl);
-        ftu.organIri(organIri);
+        ftu.linksYamlUrl = linksUrl;
+        ftu.resourcesYamlUrl = resourcesUrl;
+        ftu.organIri = 'https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle';
         ftu.addEventListener('organSelected', selectOrgan);
         ftu.addEventListener('nodeClicked', selectNode);
       });

@@ -2,6 +2,16 @@
 
 :host {
   height: 100%;
+  font-family: 'Inter';
+
+  ::ng-deep .product-title {
+    width: max-content;
+    font-weight: 600;
+  }
+
+  ::ng-deep .small {
+    gap: 0.9rem;
+  }
   hra-fullscreen-container {
     display: grid;
     width: 100%;

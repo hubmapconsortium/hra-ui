@@ -20,12 +20,11 @@
     letter-spacing: 0em;
     text-align: left;
   }
-}
-::ng-deep p {
-  margin: 0;
-}
-
-::ng-deep a {
-  color: vars.$primary-rgb;
-  font-weight: 700;
+  ::ng-deep a {
+    color: vars.$primary-rgb;
+    font-weight: 700;
+  }
+  ::ng-deep p {
+    margin: 0;
+  }
 }
