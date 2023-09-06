@@ -76,6 +76,7 @@ describe('ActiveFtuState', () => {
         new CellSummaryActions.Reset(),
         new IllustratorActions.Reset(),
         new SourceRefsActions.Reset(),
+        new DownloadActions.ClearEntries(),
       ]);
     });
   });

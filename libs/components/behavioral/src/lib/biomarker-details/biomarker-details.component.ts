@@ -5,7 +5,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { HoverDirective } from '@hra-ui/cdk';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
-import { ActiveFtuSelectors, ScreenModeAction, TissueLibrarySelectors } from '@hra-ui/state';
+import { ActiveFtuSelectors, IllustratorSelectors, ScreenModeAction, TissueLibrarySelectors } from '@hra-ui/state';
 import {
   EmptyBiomarkerComponent,
   GradientLegendComponent,
@@ -81,6 +81,9 @@ export class BiomarkerDetailsComponent {
    * Get all tissues
    */
   readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);
+
+  /** Selects the cells hovered currently to highlight in table */
+  readonly selectedOnHovered = selectSnapshot(IllustratorSelectors.selectedOnHovered);
 
   /**
    * Gets tissue title from the list of tissues

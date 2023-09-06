@@ -2,6 +2,16 @@
 
 :host {
   height: 100%;
+  font-family: 'Inter';
+
+  ::ng-deep .product-title {
+    width: max-content;
+    font-weight: 600;
+  }
+
+  ::ng-deep .small {
+    gap: 0.9rem;
+  }
   hra-fullscreen-container {
     display: grid;
     width: 100%;
@@ -9,6 +19,7 @@
     height: 100%;
     grid-template-columns: 21rem 50rem;
     grid-template-rows: 11.3rem 36.5rem 5rem;
+    row-gap: 1rem;
     grid-template-areas:
       'header header'
       'sidebar biomarker'
@@ -45,6 +56,7 @@
     max-height: 36.5rem;
     overflow: auto;
     width: 21rem;
+    border-bottom: 0.0625rem solid rgba(var(--dark-dividers));
   }
 
   .biomarker {
@@ -85,4 +97,8 @@
 
 ::ng-deep .table-header {
   width: auto !important;
+}
+
+::ng-deep .svg {
+  max-height: fit-content !important;
 }
