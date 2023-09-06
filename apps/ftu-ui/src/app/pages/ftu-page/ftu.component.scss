@@ -32,7 +32,7 @@
   }
   .fullscreen-on::ng-deep {
     ftu-biomarker-details {
-      // grid-template-columns: 33.5rem 33.5rem auto;
+      grid-template-columns: 0.5fr 0.5fr 1fr;
       hra-source-list {
         width: unset !important;
         hra-label-box {
