@@ -87,9 +87,9 @@
           "cell_label": "vasa recta ascending limb cell",
           "gene_id": "https://purl.org/ccf/ASCTB-TEMP_dummy",
           "gene_label": "Dummy",
-          "mean_expression": 0.19043387860798267,
-          "count": 5849,
-          "percentage": 0.005995352551125525
+          "mean_expression": 0.0,
+          "count": 0,
+          "percentage": 0.0
         },
         {
           "@type": "CellSummaryRow",
