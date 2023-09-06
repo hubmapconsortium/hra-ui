@@ -9,10 +9,4 @@ import { UseButton } from './use-button';
 })
 export class UseButtonComponent {
   @Input() buttonData: UseButton;
-
-  targetBlank: SafeUrl;
-
-  constructor(private domSanitizer: DomSanitizer) {
-    this.targetBlank = this.domSanitizer.bypassSecurityTrustUrl('_blank');
-  }
 }

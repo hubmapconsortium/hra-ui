@@ -1,22 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ChooseVersion } from './choose-version';
 import { ChooseVersionComponent } from './choose-version.component';
+import { ChooseVersionModule } from './choose-version.module';
+import { Shallow } from 'shallow-render';
 
 describe('ChooseVersionComponent', () => {
-  let component: ChooseVersionComponent;
-  let fixture: ComponentFixture<ChooseVersionComponent>;
+  const version: ChooseVersion[] = [
+    {
+      release: "1",
+      version: "1"
+    }
+  ]
+  let shallow: Shallow<ChooseVersionComponent>
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ChooseVersionComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(ChooseVersionComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    shallow = new Shallow(ChooseVersionComponent, ChooseVersionModule)
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(shallow.render({ bind: { releaseDate: version } })).toBeTruthy();
   });
 });

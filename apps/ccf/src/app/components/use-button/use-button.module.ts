@@ -10,7 +10,6 @@ import { MatIconModule } from '@angular/material/icon';
   declarations: [UseButtonComponent],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     MatButtonModule,
     RouterModule,
     MatIconModule,

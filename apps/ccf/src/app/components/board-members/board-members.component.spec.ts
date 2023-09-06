@@ -1,22 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BoardMembersComponent } from './board-members.component';
+import { BoardMembersModule } from './board-members.module';
+import { Shallow } from 'shallow-render';
 
 describe('BoardMembersComponent', () => {
-  let component: BoardMembersComponent;
-  let fixture: ComponentFixture<BoardMembersComponent>;
+  let shallow: Shallow<BoardMembersComponent>
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [BoardMembersComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(BoardMembersComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    shallow = new Shallow(BoardMembersComponent, BoardMembersModule)
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(shallow.render()).toBeTruthy();
   });
 });

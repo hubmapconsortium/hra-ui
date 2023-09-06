@@ -1,22 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PrizeCardComponent } from './prize-card.component';
+import { PrizeCardModule } from './prize-card.module';
+
+import { Shallow } from 'shallow-render';
 
 describe('PrizeCardComponent', () => {
-  let component: PrizeCardComponent;
-  let fixture: ComponentFixture<PrizeCardComponent>;
+  let shallow: Shallow<PrizeCardComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [PrizeCardComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(PrizeCardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    shallow = new Shallow(PrizeCardComponent, PrizeCardModule)
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(shallow.render()).toBeTruthy();
   });
 });

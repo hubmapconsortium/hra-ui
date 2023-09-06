@@ -1,22 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CarouselComponent } from './carousel.component';
+import { CarouselModule } from './carousel.module';
+import { Shallow } from 'shallow-render';
 
 describe('CarouselComponent', () => {
-  let component: CarouselComponent;
-  let fixture: ComponentFixture<CarouselComponent>;
+  let shallow: Shallow<CarouselComponent>
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [CarouselComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(CarouselComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    shallow = new Shallow(CarouselComponent, CarouselModule)
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(shallow.render()).toBeTruthy();
   });
 });

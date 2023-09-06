@@ -13,7 +13,6 @@ import { MatIconModule } from '@angular/material/icon';
   declarations: [SimpleImageComponent],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     MatCardModule,
     MatDividerModule,
     MatDialogModule,

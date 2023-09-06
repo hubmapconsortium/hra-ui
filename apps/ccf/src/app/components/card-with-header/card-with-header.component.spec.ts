@@ -1,22 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardWithHeaderComponent } from './card-with-header.component';
+import { CardWithHeaderModule } from './card-with-header.module';
+
+import { Shallow } from 'shallow-render';
 
 describe('CardWithHeaderComponent', () => {
-  let component: CardWithHeaderComponent;
-  let fixture: ComponentFixture<CardWithHeaderComponent>;
+  let shallow: Shallow<CardWithHeaderComponent>
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [CardWithHeaderComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(CardWithHeaderComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    shallow = new Shallow(CardWithHeaderComponent, CardWithHeaderModule)
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(shallow.render()).toBeTruthy();
   });
 });

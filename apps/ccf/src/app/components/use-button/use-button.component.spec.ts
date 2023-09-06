@@ -1,22 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { UseButton } from './use-button';
 import { UseButtonComponent } from './use-button.component';
+import { UseButtonModule } from './use-button.module';
+import { Shallow } from 'shallow-render';
 
 describe('UseButtonComponent', () => {
-  let component: UseButtonComponent;
-  let fixture: ComponentFixture<UseButtonComponent>;
+  const data: UseButton = {
+    text: 'test',
+    url: 'https://example.com'
+  };
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [UseButtonComponent],
-    }).compileComponents();
+  let shallow: Shallow<UseButtonComponent>;
 
-    fixture = TestBed.createComponent(UseButtonComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    shallow = new Shallow(UseButtonComponent, UseButtonModule)
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async () => {
+    await expect(shallow.render({ bind: { buttonData: data } })).resolves.toBeDefined();
   });
 });

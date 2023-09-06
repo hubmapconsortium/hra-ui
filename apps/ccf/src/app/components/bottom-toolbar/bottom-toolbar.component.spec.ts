@@ -1,22 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BottomToolbarComponent } from './bottom-toolbar.component';
+import { BottomToolbarModule } from './bottom-toolbar.module';
+import { Shallow } from 'shallow-render';
 
 describe('BottomToolbarComponent', () => {
-  let component: BottomToolbarComponent;
-  let fixture: ComponentFixture<BottomToolbarComponent>;
+  let shallow: Shallow<BottomToolbarComponent>
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [BottomToolbarComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(BottomToolbarComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    shallow = new Shallow(BottomToolbarComponent, BottomToolbarModule)
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(shallow.render()).toBeTruthy();
   });
 });

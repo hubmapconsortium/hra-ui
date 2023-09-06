@@ -1,22 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContactCardComponent } from './contact-card.component';
+import { ContactCardModule } from './contact-card.module'
+import { Shallow } from 'shallow-render';
 
 describe('ContactCardComponent', () => {
-  let component: ContactCardComponent;
-  let fixture: ComponentFixture<ContactCardComponent>;
+  let shallow: Shallow<ContactCardComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ContactCardComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(ContactCardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    shallow = new Shallow(ContactCardComponent, ContactCardModule)
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(shallow.render()).toBeTruthy();
   });
 });

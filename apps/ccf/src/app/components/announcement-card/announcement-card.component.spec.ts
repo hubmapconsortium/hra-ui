@@ -1,22 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Announcement } from './announcement-card';
 import { AnnouncementCardComponent } from './announcement-card.component';
+import { AnnouncementCardModule } from './announcement-card.module';
+import { Shallow } from 'shallow-render';
 
 describe('AnnouncementCardComponent', () => {
-  let component: AnnouncementCardComponent;
-  let fixture: ComponentFixture<AnnouncementCardComponent>;
+  const card: Announcement[] = [{
+    message: 'Test Message'
+  }]
+  let shallow: Shallow<AnnouncementCardComponent>
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [AnnouncementCardComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(AnnouncementCardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    shallow = new Shallow(AnnouncementCardComponent, AnnouncementCardModule)
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async () => {
+    await expect(shallow.render({ bind: { messages: card } })).resolves.toBeDefined();
   });
 });

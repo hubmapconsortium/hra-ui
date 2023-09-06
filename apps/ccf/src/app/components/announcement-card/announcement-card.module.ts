@@ -9,7 +9,6 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [AnnouncementCardComponent],
   imports: [
-    BrowserAnimationsModule,
     BrowserModule,
     MarkdownModule.forChild(),
     MatCardModule,

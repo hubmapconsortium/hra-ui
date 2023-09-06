@@ -1,45 +1,30 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatDialog } from '@angular/material/dialog';
+import { Shallow } from 'shallow-render';
 import { SimpleImageComponent } from './simple-image.component';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { ImageData } from './simple-image';
+import { SimpleImageModule } from './simple-image.module';
+import { TemplateRef } from '@angular/core';
+import { mock } from 'jest-mock-extended';
 
 describe('SimpleImageComponent', () => {
-  let component: SimpleImageComponent;
-  let fixture: ComponentFixture<SimpleImageComponent>;
-  let dialogSpy: jest.SpyInstance;
+  let shallow: Shallow<SimpleImageComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [SimpleImageComponent],
-      imports: [MatDialogModule],
-      providers: [MatDialog]
-    }).compileComponents();
+  beforeEach(() => {
+    shallow = new Shallow(SimpleImageComponent, SimpleImageModule)
+      .mock(MatDialog, { open: () => {} });
   });
 
-  beforeEach(()=>{
-    fixture = TestBed.createComponent(SimpleImageComponent);
-    component = fixture.componentInstance;
-    dialogSpy = jest.spyOn(TestBed.inject(MatDialog), 'open');
-    fixture.detectChanges();
+  it('should create', async () => {
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should open image modal', ()=> {
-    const mockImageData: ImageData[] = [
-      { title: 'title 1.jpg', description: 'description 1', image: 'image 1', imageDialog: 'image1' },
-      { title: 'title 2.jpg', description: 'description 2', image: 'image 2', imageDialog: 'image2' },
-    ];
-
-    component.imageInfo = mockImageData;
-    fixture.detectChanges();
-
-    const buttonElement = fixture.nativeElement.querySelector('.open-button');
-    buttonElement.click();
-
-    expect(dialogSpy).toHaveBeenCalledWith(null, { panelClass: 'custom-modal' });
+  describe('openImageViewer(content)', () => {
+    it('should open image modal', async ()=> {
+      const { instance, inject } = await shallow.render();
+      const dialog = inject(MatDialog);
+      const template = mock<TemplateRef<unknown>>();
+      
+      instance.openImageViewer(template);
+      expect(dialog.open).toHaveBeenCalledWith(template, { panelClass: 'custom-modal' });
+    })
   })
 });
