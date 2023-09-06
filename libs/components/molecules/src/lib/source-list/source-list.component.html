@@ -5,8 +5,8 @@
   </mat-icon>
 </hra-label-box>
 
-<div class="table-content">
-  <table mat-table [dataSource]="sources" [class.hidden]="!showTable">
+<div class="table-content" [class.hidden]="!showTable">
+  <table mat-table [dataSource]="sources">
     <caption class="sr-only">
       Source List Table with Title and Links
     </caption>

@@ -3,7 +3,6 @@
 
 :host {
   display: block;
-  max-height: 16.5rem;
   max-width: 43rem;
 
   .sr-only {
@@ -12,13 +11,12 @@
 
   .table {
     margin-left: -1px;
-    .emptyFiller {
-      padding: 1.3rem;
-    }
+
     .highlight {
       background-color: gold;
     }
   }
+
   .table th {
     background-color: #fff7f8;
     color: #59264d;

@@ -75,6 +75,10 @@
   position: initial !important;
 }
 
+::ng-deep .fullscreen-on ftu-biomarker-details {
+  grid-template-columns: 0.5fr 0.5fr 1fr;
+}
+
 ::ng-deep .mat-mdc-tab-body {
   height: 30rem;
 }

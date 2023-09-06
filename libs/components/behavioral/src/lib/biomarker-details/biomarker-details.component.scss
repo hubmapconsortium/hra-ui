@@ -2,8 +2,8 @@
 
 :host {
   display: grid;
-  grid-template-columns: 21.5rem 21.5rem auto;
-  grid-template-rows: 3.5rem 19.5rem 3rem 5rem auto;
+  grid-template-columns: 1fr 1fr auto;
+  grid-template-rows: 3.5rem minmax(5rem, 2fr) 3rem 5rem minmax(5rem, 1fr);
   grid-template-areas:
     'table-header table-header table-header'
     'table table table'
@@ -11,10 +11,10 @@
     'gradient-legend size-legend .'
     'source-list source-list source-list';
   overflow-y: auto;
+
   .table-header {
     grid-area: table-header;
     border-bottom: 0.063rem solid #d3d3d3;
-    width: 43rem;
     height: 3.5rem;
   }
 
@@ -77,10 +77,6 @@
 
   .source-list {
     grid-area: source-list;
-
-    .content {
-      width: min-content;
-    }
   }
 }
 

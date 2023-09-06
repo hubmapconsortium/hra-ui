@@ -1625,7 +1625,7 @@
       "representation_of": "UBERON:0001984",
       "label": "crypt of Lieberkuhn of large intestine",
       "organ_id": "UBERON:0000059",
-      "organ_label": "LargeIntestine",
+      "organ_label": "Large intestine",
       "illustration_files": [
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/large-intestine-crypt-lieberkuhn#svg_file",

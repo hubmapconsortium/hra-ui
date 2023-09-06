@@ -1,10 +1,11 @@
 :host {
   display: block;
   height: 100%;
+  overflow-y: hidden;
 
   .content-container {
     display: flex;
-    height: calc(100vh - 5rem - 5rem);
+    height: calc(100% - 5rem - 1px);
 
     .illustration {
       flex-grow: 1;
@@ -31,7 +32,7 @@
   }
   .fullscreen-on::ng-deep {
     ftu-biomarker-details {
-      grid-template-columns: 33.5rem 33.5rem auto;
+      grid-template-columns: 0.5fr 0.5fr 1fr;
       hra-source-list {
         width: unset !important;
         hra-label-box {
