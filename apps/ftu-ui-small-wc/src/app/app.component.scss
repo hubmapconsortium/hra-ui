@@ -9,6 +9,7 @@
     height: 100%;
     grid-template-columns: 21rem 50rem;
     grid-template-rows: 11.3rem 36.5rem 5rem;
+    row-gap: 1rem;
     grid-template-areas:
       'header header'
       'sidebar biomarker'
@@ -45,6 +46,7 @@
     max-height: 36.5rem;
     overflow: auto;
     width: 21rem;
+    border-bottom: 0.0625rem solid rgba(var(--dark-dividers));
   }
 
   .biomarker {
