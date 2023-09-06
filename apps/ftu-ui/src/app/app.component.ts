@@ -1,17 +1,7 @@
-import {
-  AfterContentInit,
-  Component,
-  HostBinding,
-  Injector,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-  inject,
-} from '@angular/core';
+import { AfterContentInit, Component, HostBinding, Input, Output, inject } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { dispatch, dispatch$, select$, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
+import { dispatch, select$, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import {
   LinkRegistryActions,
   ResourceRegistryActions,
@@ -20,15 +10,7 @@ import {
   createLinkId,
 } from '@hra-ui/cdk/state';
 import { ScreenNoticeBehaviorComponent } from '@hra-ui/components/behavioral';
-import { FtuDataImplEndpoints, FTU_DATA_IMPL_ENDPOINTS, Iri } from '@hra-ui/services';
-import {
-  ActiveFtuActions,
-  ActiveFtuSelectors,
-  IllustratorSelectors,
-  TissueLibraryActions,
-  TissueLibrarySelectors,
-} from '@hra-ui/state';
-import { tap } from 'rxjs';
+import { ActiveFtuSelectors, IllustratorSelectors } from '@hra-ui/state';
 
 @Component({
   selector: 'ftu-ui-root',
@@ -36,14 +18,10 @@ import { tap } from 'rxjs';
   styleUrls: ['./app.component.scss'],
   providers: [MatDialogModule],
 })
-export class AppComponent implements AfterContentInit, OnChanges {
+export class AppComponent implements AfterContentInit {
   @HostBinding('class.mat-typography') readonly matTypography = true;
 
   readonly SMALL_VIEWPORT_THRESHOLD = 480; // In pixels
-  readonly tissues = select$(TissueLibrarySelectors.tissues);
-  @Input() datasetUrl = '';
-  @Input() illustrationsUrl = '';
-  @Input() summariesUrl = '';
 
   @Input() set linksYamlUrl(url: string) {
     this.loadLinks(url);
@@ -75,14 +53,6 @@ export class AppComponent implements AfterContentInit, OnChanges {
   private readonly loadResources = dispatch(ResourceRegistryActions.LoadFromYaml);
   private readonly navigateToOrgan = dispatch(LinkRegistryActions.Navigate);
 
-  private readonly reloadDataSets = dispatch(TissueLibraryActions.Load);
-  private readonly reloadActiveFtu = dispatch(ActiveFtuActions.Load);
-
-  private readonly reset = dispatch$(ActiveFtuActions.Reset);
-
-  private readonly injector = inject(Injector);
-  private endpoints?: FtuDataImplEndpoints;
-
   private readonly dialog = inject(MatDialog);
 
   constructor() {
@@ -105,37 +75,5 @@ export class AppComponent implements AfterContentInit, OnChanges {
       ref.afterClosed().subscribe(() => (this.screenSizeNoticeOpen = false));
       this.screenSizeNoticeOpen = true;
     }
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    this.endpoints = this.injector.get(FTU_DATA_IMPL_ENDPOINTS);
-    if ('datasetUrl' in changes) {
-      this.endpoints.datasets = this.datasetUrl as Iri;
-      this.endpoints.illustrations = this.illustrationsUrl as Iri;
-      this.endpoints.summaries = this.summariesUrl as Iri;
-      this.reset()
-        .pipe(
-          tap(() => {
-            this.reloadDataSets();
-            this.reloadActiveFtu(changes['organIri'].currentValue);
-          })
-        )
-        .subscribe();
-    }
-  }
-
-  showDefaultIri() {
-    this.tissues
-      .pipe(
-        tap((nodes) => {
-          for (const [key, { children }] of Object.entries(nodes)) {
-            if (children.length > 0 && key) {
-              this.organIri = children[0];
-              break;
-            }
-          }
-        })
-      )
-      .subscribe();
   }
 }
