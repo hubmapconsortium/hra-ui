@@ -18,20 +18,19 @@
         const selectNode = (selectedNode) => {
           console.log('selected node', selectedNode);
         };
+        ftu.linksYamlUrl = '../assets/links.yml';
+        ftu.resourcesYamlUrl = '../assets/resources.yml';
+        ftu.organIri = 'https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle';
+        ftu.datasetUrl = '../assets/TEMP/ftu-datasets.jsonld';
+        ftu.illustrationsUrl = '../assets/TEMP/2d-ftu-illustrations.jsonld';
+        ftu.summariesUrl = '../assets/TEMP/ftu-cell-summaries.jsonld';
         ftu.addEventListener('organSelected', selectOrgan);
         ftu.addEventListener('nodeClicked', selectNode);
       });
     </script>
   </head>
+
   <body>
-    <ftu-hra-small-wc
-      linksYamlUrl="../assets/links.yml"
-      resourcesUrl="../assets/resources.yml"
-      organIri="https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle"
-      illustrationsUrl="../assets/TEMP/2d-ftu-illustrations.jsonld"
-      summariesUrl="../assets/TEMP/ftu-cell-summaries.jsonld"
-      datasetUrl="../assets/TEMP/ftu-datasets.jsonld"
-      id="ftu"
-    ></ftu-hra-small-wc>
+    <ftu-hra-small-wc id="ftu"></ftu-hra-small-wc>
   </body>
 </html>
