@@ -163,6 +163,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
+                                <a href="#selectedOnHovered" >selectedOnHovered</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#sizeHoverInfo" >sizeHoverInfo</a>
                             </li>
                             <li>
@@ -252,8 +256,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="115"
-                            class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:115</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="118"
+                            class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:118</a></div>
                 </td>
             </tr>
 
@@ -303,7 +307,7 @@ calls the setScreenMode function.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:101</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:104</a></div>
                         </td>
                     </tr>
 
@@ -465,13 +469,45 @@ calls the setScreenMode function.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:106</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:109</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>message markdown of empty biomarker component.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedOnHovered"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>selectedOnHovered</b></span>
+                        <a href="#selectedOnHovered"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>selectSnapshot(IllustratorSelectors.selectedOnHovered)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Selects the cells hovered currently to highlight in table</p>
 </div>
                 </td>
             </tr>
@@ -660,7 +696,7 @@ calls the setScreenMode function.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:88</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/lib/biomarker-details/biomarker-details.component.ts:91</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -689,7 +725,7 @@ import { MatTabsModule } from &#x27;@angular/material/tabs&#x27;;
 import { HoverDirective } from &#x27;@hra-ui/cdk&#x27;;
 import { dispatch, selectQuerySnapshot, selectSnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
 import { ResourceRegistrySelectors as RR } from &#x27;@hra-ui/cdk/state&#x27;;
-import { ActiveFtuSelectors, ScreenModeAction, TissueLibrarySelectors } from &#x27;@hra-ui/state&#x27;;
+import { ActiveFtuSelectors, IllustratorSelectors, ScreenModeAction, TissueLibrarySelectors } from &#x27;@hra-ui/state&#x27;;
 import {
   EmptyBiomarkerComponent,
   GradientLegendComponent,
@@ -766,6 +802,9 @@ export class BiomarkerDetailsComponent {
    */
   readonly tissues &#x3D; selectSnapshot(TissueLibrarySelectors.tissues);
 
+  /** Selects the cells hovered currently to highlight in table */
+  readonly selectedOnHovered &#x3D; selectSnapshot(IllustratorSelectors.selectedOnHovered);
+
   /**
    * Gets tissue title from the list of tissues
    */
@@ -821,6 +860,7 @@ export class BiomarkerDetailsComponent {
       [gradient]&#x3D;&quot;gradients()&quot;
       [sizes]&#x3D;&quot;sizes()&quot;
       [tissueInfo]&#x3D;&quot;tissueInfo&quot;
+      [hightlightedCellName]&#x3D;&quot;selectedOnHovered()?.label ?? &#x27;&#x27;&quot;
     &gt;&lt;/hra-biomarker-table&gt;
     &lt;hra-empty-biomarker
       *ngIf&#x3D;&quot;tab.rows.length &#x3D;&#x3D;&#x3D; 0&quot;
@@ -874,7 +914,7 @@ export class BiomarkerDetailsComponent {
     &#x27;gradient-legend-header size-legend-header .&#x27;
     &#x27;gradient-legend size-legend .&#x27;
     &#x27;source-list source-list source-list&#x27;;
-
+  overflow-y: auto;
   .table-header {
     grid-area: table-header;
     border-bottom: 0.063rem solid #d3d3d3;
@@ -986,7 +1026,7 @@ export class BiomarkerDetailsComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-label-box class="table-header">  Cell Types by Gene Biomarkers  <mat-icon (click)="toggleFullscreen()" class="end">    {{ isTableFullScreen ? \'close_fullscreen\' : \'open_in_full\' }}  </mat-icon></hra-label-box><mat-tab-group class="table" [class.table-fullscreen]="isTableFullScreen" mat-stretch-tabs="false" color="accent">  <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="tab.label">    <hra-biomarker-table      *ngIf="tab.rows.length !== 0"      [data]="$any(tab.rows)"      [columns]="tab.columns"      [gradient]="gradients()"      [sizes]="sizes()"      [tissueInfo]="tissueInfo"    ></hra-biomarker-table>    <hra-empty-biomarker      *ngIf="tab.rows.length === 0"      [collaborateText]="collaborateText"      [message]="message"    ></hra-empty-biomarker>  </mat-tab></mat-tab-group><hra-label-box class="legend-header gradient">  Biomarker Expression Mean in FTU  <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="gradientHoverInfo()">info_outlined</mat-icon></hra-label-box><div class="legend gradient">  <hra-gradient-legend [gradient]="gradients()" class="content"></hra-gradient-legend></div><hra-label-box class="legend-header size">  Percentage of Cells in FTU  <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="sizeHoverInfo()">info_outlined</mat-icon></hra-label-box><div class="legend size">  <hra-size-legend [sizes]="sizes()" class="content"></hra-size-legend></div><div class="source-list">  <hra-source-list [sources]="source()" class="content"></hra-source-list></div><ng-template #infoTooltip let-tooltip>  <div class="biomarker-details info-tooltip">    {{ tooltip }}  </div></ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-label-box class="table-header">  Cell Types by Gene Biomarkers  <mat-icon (click)="toggleFullscreen()" class="end">    {{ isTableFullScreen ? \'close_fullscreen\' : \'open_in_full\' }}  </mat-icon></hra-label-box><mat-tab-group class="table" [class.table-fullscreen]="isTableFullScreen" mat-stretch-tabs="false" color="accent">  <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="tab.label">    <hra-biomarker-table      *ngIf="tab.rows.length !== 0"      [data]="$any(tab.rows)"      [columns]="tab.columns"      [gradient]="gradients()"      [sizes]="sizes()"      [tissueInfo]="tissueInfo"      [hightlightedCellName]="selectedOnHovered()?.label ?? \'\'"    ></hra-biomarker-table>    <hra-empty-biomarker      *ngIf="tab.rows.length === 0"      [collaborateText]="collaborateText"      [message]="message"    ></hra-empty-biomarker>  </mat-tab></mat-tab-group><hra-label-box class="legend-header gradient">  Biomarker Expression Mean in FTU  <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="gradientHoverInfo()">info_outlined</mat-icon></hra-label-box><div class="legend gradient">  <hra-gradient-legend [gradient]="gradients()" class="content"></hra-gradient-legend></div><hra-label-box class="legend-header size">  Percentage of Cells in FTU  <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="sizeHoverInfo()">info_outlined</mat-icon></hra-label-box><div class="legend size">  <hra-size-legend [sizes]="sizes()" class="content"></hra-size-legend></div><div class="source-list">  <hra-source-list [sources]="source()" class="content"></hra-source-list></div><ng-template #infoTooltip let-tooltip>  <div class="biomarker-details info-tooltip">    {{ tooltip }}  </div></ng-template></div>'
     var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'BiomarkerDetailsWcComponent', 'selector': 'ftu-wc-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'HraLandingPageIntroWcBehaviourComponent', 'selector': 'ftu-wc-intro'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'ScreenNoticeBehaviorComponent', 'selector': 'ftu-ui-screen-notice-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'BiomarkerDetailsComponent'};
