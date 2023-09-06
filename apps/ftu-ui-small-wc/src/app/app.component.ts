@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   Injector,
@@ -114,13 +113,6 @@ export class AppComponent implements OnInit, OnChanges {
         .subscribe();
     }
   }
-
-  // ngAfterViewInit(): void {
-  //   if (this.currentIri==='') {
-  //     this.showDefaultIri()
-  //   }
-
-  // }
 
   showDefaultIri() {
     this.tissues

@@ -119,10 +119,4 @@ export class BiomarkerDetailsComponent {
     this.isTableFullScreen = !this.isTableFullScreen;
     this.setScreenMode(this.isTableFullScreen);
   }
-
-  // constructor() {
-  //       setInterval(() => {
-  //     console.log(this.selectedOnHovered());
-  //   }, 2000);
-  // }
 }
