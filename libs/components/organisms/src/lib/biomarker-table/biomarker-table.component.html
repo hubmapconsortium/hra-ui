@@ -6,7 +6,7 @@
   <ng-container matColumnDef="type">
     <th mat-header-cell *matHeaderCellDef>Cell Type</th>
 
-    <td class="type" mat-cell *matCellDef="let element">
+    <td class="type" [class.highlight]="element[0] === hightlightedCellName" mat-cell *matCellDef="let element">
       {{ element[0] }}
     </td>
   </ng-container>
@@ -14,7 +14,7 @@
   <ng-container matColumnDef="count">
     <th class="count" mat-header-cell *matHeaderCellDef>Cell Count</th>
 
-    <td class="count" mat-cell *matCellDef="let element">
+    <td class="count" mat-cell *matCellDef="let element" [class.highlight]="element[0] === hightlightedCellName">
       {{ element[1] !== undefined ? (element[1] | number) : 'no data' }}
     </td>
   </ng-container>
@@ -24,7 +24,7 @@
       {{ column }}
     </th>
 
-    <td class="icon-cell" mat-cell *matCellDef="let element">
+    <td [class.highlight]="element[0] === hightlightedCellName" class="icon-cell" mat-cell *matCellDef="let element">
       <hra-biomarker-table-data-icon
         class="icon"
         *ngIf="element[index + 2] !== undefined; else emptyCell"

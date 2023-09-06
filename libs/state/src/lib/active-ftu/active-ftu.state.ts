@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { Iri } from '@hra-ui/services';
 import { Action, State, StateContext } from '@ngxs/store';
 import { Observable, tap } from 'rxjs';
-import { CellSummaryActions } from '../cell-summary';
+import { CellSummaryActions, CellSummaryState } from '../cell-summary';
 import { IllustratorActions, IllustratorState } from '../illustrator';
 import { SourceRefsActions, SourceRefsState } from '../source-refs';
 import { Clear, Load, Reset, SetIllustrationUrl } from './active-ftu.actions';
-import { DownloadActions } from '../download';
+import { DownloadActions, DownloadState } from '../download';
 import { LinkRegistryActions, LinkType } from '@hra-ui/cdk/state';
 import { Illustration } from '../link-ids';
 
@@ -25,7 +25,7 @@ type Context = StateContext<ActiveFtuModel>;
 @State<ActiveFtuModel>({
   name: 'activeFtu',
   defaults: {},
-  children: [IllustratorState, SourceRefsState],
+  children: [CellSummaryState, DownloadState, IllustratorState, SourceRefsState],
 })
 @Injectable()
 export class ActiveFtuState {
@@ -74,6 +74,11 @@ export class ActiveFtuState {
    */
   @Action(Reset)
   reset({ dispatch }: Context): Observable<void> {
-    return dispatch([new CellSummaryActions.Reset(), new IllustratorActions.Reset(), new SourceRefsActions.Reset()]);
+    return dispatch([
+      new CellSummaryActions.Reset(),
+      new IllustratorActions.Reset(),
+      new SourceRefsActions.Reset(),
+      new DownloadActions.ClearEntries(),
+    ]);
   }
 }
