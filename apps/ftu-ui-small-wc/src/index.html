@@ -18,12 +18,6 @@
         const selectNode = (selectedNode) => {
           console.log('selected node', selectedNode);
         };
-        ftu.linksYamlUrl = '../assets/links.yml';
-        ftu.resourcesYamlUrl = '../assets/resources.yml';
-        ftu.organIri = 'https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct';
-        ftu.datasetUrl = '../assets/TEMP/ftu-datasets.jsonld';
-        ftu.illustrationsUrl = '../assets/TEMP/2d-ftu-illustrations.jsonld';
-        ftu.summariesUrl = '../assets/TEMP/ftu-cell-summaries.jsonld';
         ftu.addEventListener('organSelected', selectOrgan);
         ftu.addEventListener('nodeClicked', selectNode);
       });
@@ -31,6 +25,16 @@
   </head>
 
   <body>
-    <ftu-hra-small-wc id="ftu"></ftu-hra-small-wc>
+    <ftu-hra-small-wc
+      id="ftu"
+      links-yaml-url="../assets/links.yml"
+      resources-yaml-url="../assets/resources.yml"
+      organ-iri="https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle"
+      dataset-url="../assets/TEMP/ftu-datasets.jsonld"
+      illustrations-url="../assets/TEMP/2d-ftu-illustrations.jsonld"
+      summaries-url="../assets/TEMP/ftu-cell-summaries.jsonld"
+      (organSelected)="selectOrgan()"
+      (nodeClicked)="selectNode()"
+    ></ftu-hra-small-wc>
   </body>
 </html>

@@ -90,7 +90,7 @@ export class AppComponent implements OnInit, OnChanges {
   private readonly reset = dispatch$(ActiveFtuActions.Reset);
 
   private readonly injector = inject(Injector);
-  private endpoints?: FtuDataImplEndpoints; // = inject(FTU_DATA_IMPL_ENDPOINTS);
+  private endpoints?: FtuDataImplEndpoints;
 
   ngOnInit() {
     this.endpoints = this.injector.get(FTU_DATA_IMPL_ENDPOINTS);
