@@ -23,13 +23,13 @@ LandingPageIntroPartners:
   type: markdown
   markdown: |
     The FTU Explorer was designed in close collaboration with
-    <a href='' target='_blank'>Kidney Precision Medicine Project</a> and <a href=''>European Bioinformatics Institute.</a>
+    <a href='https://www.kpmp.org' target='_blank'>Kidney Precision Medicine Project</a> and <a href='https://www.ebi.ac.uk'>European Bioinformatics Institute.</a>
 
 LandingPageIntroReadMore:
   type: markdown
   markdown: |
     Read more about this effort at
-    <a href='' target='_blank'>HRA Portal: FTU Explorer</a>
+    <a href='https://portal.hubmapconsortium.org/' target='_blank'>HRA Portal: FTU Explorer</a>
 
 LandingPageIntroMoreText:
   type: text

@@ -459,11 +459,11 @@ the link to the registry for navigation</p>
 import { Iri } from &#x27;@hra-ui/services&#x27;;
 import { Action, State, StateContext } from &#x27;@ngxs/store&#x27;;
 import { Observable, tap } from &#x27;rxjs&#x27;;
-import { CellSummaryActions } from &#x27;../cell-summary&#x27;;
+import { CellSummaryActions, CellSummaryState } from &#x27;../cell-summary&#x27;;
 import { IllustratorActions, IllustratorState } from &#x27;../illustrator&#x27;;
 import { SourceRefsActions, SourceRefsState } from &#x27;../source-refs&#x27;;
 import { Clear, Load, Reset, SetIllustrationUrl } from &#x27;./active-ftu.actions&#x27;;
-import { DownloadActions } from &#x27;../download&#x27;;
+import { DownloadActions, DownloadState } from &#x27;../download&#x27;;
 import { LinkRegistryActions, LinkType } from &#x27;@hra-ui/cdk/state&#x27;;
 import { Illustration } from &#x27;../link-ids&#x27;;
 
@@ -482,7 +482,7 @@ type Context &#x3D; StateContext&lt;ActiveFtuModel&gt;;
 @State&lt;ActiveFtuModel&gt;({
   name: &#x27;activeFtu&#x27;,
   defaults: {},
-  children: [IllustratorState, SourceRefsState],
+  children: [CellSummaryState, DownloadState, IllustratorState, SourceRefsState],
 })
 @Injectable()
 export class ActiveFtuState {
@@ -531,7 +531,12 @@ export class ActiveFtuState {
    */
   @Action(Reset)
   reset({ dispatch }: Context): Observable&lt;void&gt; {
-    return dispatch([new CellSummaryActions.Reset(), new IllustratorActions.Reset(), new SourceRefsActions.Reset()]);
+    return dispatch([
+      new CellSummaryActions.Reset(),
+      new IllustratorActions.Reset(),
+      new SourceRefsActions.Reset(),
+      new DownloadActions.ClearEntries(),
+    ]);
   }
 }
 </code></pre>

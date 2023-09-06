@@ -279,6 +279,9 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
   /** Taking input for the radius of the circle and the label to be displayed. */
   @Input() sizes: SizeLegend[] &#x3D; [];
 
+  /**Cell name which is hovered, used for highlighting */
+  @Input() hightlightedCellName &#x3D; &#x27;&#x27;;
+
   /** Getter method to provide the definations of the columns */
   get columnsWithTypeAndCount(): string[] {
     return [&#x27;type&#x27;, &#x27;count&#x27;, ...this.columns];

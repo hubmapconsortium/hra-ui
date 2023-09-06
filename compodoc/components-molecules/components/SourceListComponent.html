@@ -365,8 +365,8 @@ export class SourceListComponent {
   &lt;/mat-icon&gt;
 &lt;/hra-label-box&gt;
 
-&lt;div class&#x3D;&quot;table-content&quot;&gt;
-  &lt;table mat-table [dataSource]&#x3D;&quot;sources&quot; [class.hidden]&#x3D;&quot;!showTable&quot;&gt;
+&lt;div class&#x3D;&quot;table-content&quot; [class.hidden]&#x3D;&quot;!showTable&quot;&gt;
+  &lt;table mat-table [dataSource]&#x3D;&quot;sources&quot;&gt;
     &lt;caption class&#x3D;&quot;sr-only&quot;&gt;
       Source List Table with Title and Links
     &lt;/caption&gt;
@@ -402,50 +402,45 @@ export class SourceListComponent {
 
 :host {
   display: block;
-
-  @include utils.define-flex-filler();
-
-  h1 {
-    margin: 0;
-  }
-
-  .mat-mdc-cell {
-    vertical-align: top;
-    border: none;
-    padding: 0.25rem 0.875rem;
-    font-size: 1rem;
-  }
-
-  .filler {
-    width: 30rem;
-  }
+  height: 100%;
 
   .sr-only {
     @include utils.sr-only();
   }
 
-  .table-content {
-    height: calc(100vh - 25rem);
-    overflow: auto;
-  }
-
   .toggle {
-    margin-bottom: 1rem;
     display: flex;
     align-items: center;
-    width: 43rem;
     height: 3.5rem;
     grid-area: source-list-header;
     color: var(--dark-primary-text);
     border-top: 0.063rem solid #d3d3d3;
     border-bottom: 0.063rem solid #d3d3d3;
-    .mat-icon {
-      margin-left: 32rem;
-    }
   }
 
-  .hidden {
-    display: none;
+  .table-content {
+    height: calc(100% - 3.5rem);
+    overflow: auto;
+
+    &amp;.hidden {
+      display: none;
+    }
+
+    table {
+      height: 100%;
+    }
+
+    .mat-mdc-cell {
+      vertical-align: top;
+      border: none;
+      padding: 0.25rem 0.875rem;
+      font-size: 1rem;
+    }
+
+    ::ng-deep .mdc-data-table__content {
+      display: block;
+      padding: 1rem 0rem;
+    }
   }
 }
 </code></pre>
@@ -476,7 +471,7 @@ export class SourceListComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-label-box class="toggle" (click)="toggleTable()">  Source Data  <mat-icon class="end">    {{ showTable ? \'keyboard_arrow_down\' : \'keyboard_arrow_up\' }}  </mat-icon></hra-label-box><div class="table-content">  <table mat-table [dataSource]="sources" [class.hidden]="!showTable">    <caption class="sr-only">      Source List Table with Title and Links    </caption>    <!-- Position Column -->    <ng-container matColumnDef="link">      <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Number</th>      <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}.</td>    </ng-container>    <!-- Data Column -->    <ng-container matColumnDef="title">      <th class="sr-only" mat-header-cell *matHeaderCellDef>Title and Link</th>      <td mat-cell *matCellDef="let element">        {{ element.title }}        <br />        <a [href]="element.link" target="_blank">{{ element.label }}</a>      </td>    </ng-container>    <tr mat-row *matRowDef="let row; columns: [\'link\', \'title\']"></tr>  </table></div></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-label-box class="toggle" (click)="toggleTable()">  Source Data  <mat-icon class="end">    {{ showTable ? \'keyboard_arrow_down\' : \'keyboard_arrow_up\' }}  </mat-icon></hra-label-box><div class="table-content" [class.hidden]="!showTable">  <table mat-table [dataSource]="sources">    <caption class="sr-only">      Source List Table with Title and Links    </caption>    <!-- Position Column -->    <ng-container matColumnDef="link">      <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Number</th>      <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}.</td>    </ng-container>    <!-- Data Column -->    <ng-container matColumnDef="title">      <th class="sr-only" mat-header-cell *matHeaderCellDef>Title and Link</th>      <td mat-cell *matCellDef="let element">        {{ element.title }}        <br />        <a [href]="element.link" target="_blank">{{ element.label }}</a>      </td>    </ng-container>    <tr mat-row *matRowDef="let row; columns: [\'link\', \'title\']"></tr>  </table></div></div>'
     var COMPONENTS = [{'name': 'BiomarkerTableDataCardComponent', 'selector': 'hra-biomarker-table-data-card'},{'name': 'BiomarkerTableDataIconComponent', 'selector': 'hra-biomarker-table-data-icon'},{'name': 'ContactModalComponent', 'selector': 'hra-contact-modal'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenContainerComponent', 'selector': 'hra-fullscreen-container'},{'name': 'FullscreenContentComponent', 'selector': 'hra-fullscreen-content'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'HraLandingPageIntroWcComponent', 'selector': 'hra-ui-hra-landing-page-intro-wc'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InteractiveSvgComponent', 'selector': 'hra-interactive-svg'},{'name': 'LandingPageInDepthComponent', 'selector': 'hra-landing-page-in-depth'},{'name': 'LandingPageIntroComponent', 'selector': 'hra-landing-page-intro'},{'name': 'MetricsComponent', 'selector': 'hra-metrics'},{'name': 'ScreenSizeNoticeComponent', 'selector': 'hra-screen-size-notice'},{'name': 'SourceListComponent', 'selector': 'hra-source-list'},{'name': 'TissueTreeListComponent', 'selector': 'hra-tissue-tree-list'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SourceListComponent'};
