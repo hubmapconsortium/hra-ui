@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   Injector,
@@ -28,6 +29,7 @@ import {
   ScreenModeAction,
   ScreenModeSelectors,
   TissueLibraryActions,
+  TissueLibrarySelectors,
 } from '@hra-ui/state';
 import { tap } from 'rxjs';
 
@@ -52,7 +54,7 @@ export class AppComponent implements OnInit, OnChanges {
   title = 'ftu-ui-small-wc';
 
   readonly isFullscreen = selectSnapshot(ScreenModeSelectors.isFullScreen);
-
+  readonly tissues = select$(TissueLibrarySelectors.tissues);
   constructor() {
     this.setScreenSmall('small');
   }
@@ -66,7 +68,7 @@ export class AppComponent implements OnInit, OnChanges {
   }
 
   @Input() set organIri(iri: string) {
-    this.navigateToOrgan(createLinkId('FTU'), { queryParams: { id: iri } });
+    iri ? this.navigateToOrgan(createLinkId('FTU'), { queryParams: { id: iri } }) : this.showDefaultIri();
   }
 
   @Input() datasetUrl = '';
@@ -111,5 +113,27 @@ export class AppComponent implements OnInit, OnChanges {
         )
         .subscribe();
     }
+  }
+
+  // ngAfterViewInit(): void {
+  //   if (this.currentIri==='') {
+  //     this.showDefaultIri()
+  //   }
+
+  // }
+
+  showDefaultIri() {
+    this.tissues
+      .pipe(
+        tap((nodes) => {
+          for (const [key, { children }] of Object.entries(nodes)) {
+            if (children.length > 0 && key) {
+              this.organIri = children[0];
+              break;
+            }
+          }
+        })
+      )
+      .subscribe();
   }
 }
