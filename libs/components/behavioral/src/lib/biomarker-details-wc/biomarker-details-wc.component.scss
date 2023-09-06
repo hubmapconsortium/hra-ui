@@ -1,8 +1,6 @@
 @use 'variables' as vars;
 
 :host {
-  border: 0.063rem solid #d3d3d3;
-
   ::ng-deep .extraTab {
     border: 0.063rem solid #d3d3d3;
     border-top: 0;

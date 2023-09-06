@@ -10,7 +10,7 @@
     'gradient-legend-header size-legend-header .'
     'gradient-legend size-legend .'
     'source-list source-list source-list';
-
+  overflow-y: auto;
   .table-header {
     grid-area: table-header;
     border-bottom: 0.063rem solid #d3d3d3;

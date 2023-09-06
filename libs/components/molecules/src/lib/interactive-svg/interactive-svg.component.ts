@@ -203,7 +203,7 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
    */
   private attachCrosswalkHover(el: Element): void {
     this.attachEvent(el, 'mouseover').subscribe((event) => this.onCrosswalkHover(event));
-    this.attachEvent(el, 'mouseout').subscribe(() => this.nodeHoverData$.next(undefined));
+    this.attachEvent(el, 'mouseout').subscribe(() => this.onCrosswalkHover(undefined as never as MouseEvent));
     this.attachEvent(el, 'click').subscribe((event) => this.nodeClick.emit(this.getNode(event)));
   }
 
@@ -212,16 +212,21 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
    * @param event Mouse event
    */
   private onCrosswalkHover(event: MouseEvent): void {
-    const node = this.getNode(event);
-    if (node) {
-      this.nodeHoverData$.next({
-        node: node.label,
-        origin: {
-          x: event.clientX,
-          y: event.clientY,
-        },
-      });
-      this.nodeHover.emit(node); //emits node entry
+    if (event) {
+      const node = this.getNode(event);
+      if (node) {
+        this.nodeHoverData$.next({
+          node: node.label,
+          origin: {
+            x: event.clientX,
+            y: event.clientY,
+          },
+        });
+        this.nodeHover.emit(node); //emits node entry
+      }
+    } else {
+      this.nodeHoverData$.next(undefined);
+      this.nodeHover.emit();
     }
   }
 
