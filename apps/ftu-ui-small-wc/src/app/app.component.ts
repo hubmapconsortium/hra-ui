@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   Injector,
@@ -85,7 +84,7 @@ export class AppComponent implements OnInit, OnChanges {
   private readonly loadResources = dispatch(ResourceRegistryActions.LoadFromYaml);
   private readonly navigateToOrgan = dispatch(LinkRegistryActions.Navigate);
   private readonly setScreenSmall = dispatch(ScreenModeAction.SetSize);
-  private readonly reload_DataSets = dispatch(TissueLibraryActions.Load);
+  private readonly reloadDataSets = dispatch(TissueLibraryActions.Load);
   private readonly reloadActiveFtu = dispatch(ActiveFtuActions.Load);
 
   private readonly reset = dispatch$(ActiveFtuActions.Reset);
@@ -99,28 +98,20 @@ export class AppComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     this.endpoints = this.injector.get(FTU_DATA_IMPL_ENDPOINTS);
-    if ('dataset_EntryPoint' in changes) {
+    if ('datasetUrl' in changes) {
       this.endpoints.datasets = this.datasetUrl as Iri;
       this.endpoints.illustrations = this.illustrationsUrl as Iri;
       this.endpoints.summaries = this.summariesUrl as Iri;
-      this.organIri = changes['organIri'].currentValue;
       this.reset()
         .pipe(
           tap(() => {
-            this.reload_DataSets();
+            this.reloadDataSets();
             this.reloadActiveFtu(changes['organIri'].currentValue);
           })
         )
         .subscribe();
     }
   }
-
-  // ngAfterViewInit(): void {
-  //   if (this.currentIri==='') {
-  //     this.showDefaultIri()
-  //   }
-
-  // }
 
   showDefaultIri() {
     this.tissues
