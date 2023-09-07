@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { HoverDirective } from '@hra-ui/cdk';
@@ -17,6 +17,8 @@ import {
 import { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/components/molecules';
 import { BiomarkerTableComponent, TissueInfo } from '@hra-ui/components/organisms';
 import { CellSummarySelectors, ResourceIds as Ids, ResourceTypes as RTypes, SourceRefsSelectors } from '@hra-ui/state';
+import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
+import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
 /**
  * PlaceHolder for Empty Tissue Info
@@ -34,7 +36,7 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
     CommonModule,
     MatIconModule,
     MatTabsModule,
-
+    MatDialogModule,
     BiomarkerTableComponent,
     BiomarkerTableDataCardComponent,
     GradientLegendComponent,
@@ -109,11 +111,21 @@ export class BiomarkerDetailsComponent {
   /** A dispatcher function to set the screen mode */
   private readonly setScreenMode = dispatch(ScreenModeAction.Set);
 
+  /** A dialog box which shows contact modal after clicking on contact */
+  private readonly dialog = inject(MatDialog);
+
   /** A function that toggles isTableFullScreen and
    * calls the setScreenMode function.
    */
   toggleFullscreen(): void {
     this.isTableFullScreen = !this.isTableFullScreen;
     this.setScreenMode(this.isTableFullScreen);
+  }
+
+  /** A function which opens the contact modal dialog box */
+  collaborate(): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    this.dialog.open(ContactBehaviorComponent, dialogConfig);
   }
 }
