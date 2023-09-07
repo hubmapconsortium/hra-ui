@@ -3,7 +3,6 @@
 
 :host {
   display: block;
-  max-width: 43rem;
 
   .sr-only {
     @include utils.sr-only();
