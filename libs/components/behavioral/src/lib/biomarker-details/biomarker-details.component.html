@@ -1,6 +1,6 @@
 <hra-label-box class="table-header">
   Cell Types by Gene Biomarkers
-  <mat-icon (click)="toggleFullscreen()" class="end">
+  <mat-icon [@expandResize]="isTableFullScreen ? 'true' : 'false'" (click)="toggleFullscreen()" class="end">
     {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}
   </mat-icon>
 </hra-label-box>

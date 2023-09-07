@@ -1,7 +1,6 @@
 :host {
   display: block;
   overflow-y: hidden;
-  transition: width 0.5s ease;
   width: 50%;
 
   &.fullscreen-on {
