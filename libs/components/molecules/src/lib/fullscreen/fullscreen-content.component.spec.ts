@@ -1,12 +1,15 @@
 import { Shallow } from 'shallow-render';
 import { FullscreenContentComponent } from './fullscreen-content.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TestBed } from '@angular/core/testing';
 
 describe('FullscreenContentComponent', () => {
+  TestBed.configureTestingModule({
+    imports: [BrowserAnimationsModule],
+  });
   let shallow: Shallow<FullscreenContentComponent>;
   beforeEach(() => {
-    shallow = new Shallow(FullscreenContentComponent).dontMock(BrowserModule, BrowserAnimationsModule);
+    shallow = new Shallow(FullscreenContentComponent);
   });
 
   it('should create', async () => {
