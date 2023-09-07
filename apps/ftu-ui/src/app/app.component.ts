@@ -4,6 +4,8 @@ import {
   HostBinding,
   Injector,
   Input,
+  OnChanges,
+  OnInit,
   Output,
   SimpleChanges,
   inject,
@@ -36,7 +38,7 @@ import { tap } from 'rxjs';
   styleUrls: ['./app.component.scss'],
   providers: [MatDialogModule],
 })
-export class AppComponent implements AfterContentInit {
+export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   @HostBinding('class.mat-typography') readonly matTypography = true;
 
   readonly SMALL_VIEWPORT_THRESHOLD = 480; // In pixels
@@ -51,7 +53,7 @@ export class AppComponent implements AfterContentInit {
   }
 
   @Input() set organIri(iri: string) {
-    this.navigateToOrgan(createLinkId('FTU'), { queryParams: { id: iri } });
+    iri ? this.navigateToOrgan(createLinkId('FTU'), { queryParams: { id: iri } }) : this.showDefaultIri();
   }
 
   @Input() datasetUrl = '';
