@@ -9,7 +9,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   declarations: [ChooseVersionComponent],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     MatSelectModule,
     MatFormFieldModule,
   ],

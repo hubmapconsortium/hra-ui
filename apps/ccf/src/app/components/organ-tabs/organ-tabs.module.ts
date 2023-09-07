@@ -9,7 +9,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   declarations: [OrganTabsComponent],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     MatTabsModule,
     MatSelectModule,
     MatFormFieldModule,

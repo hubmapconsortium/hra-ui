@@ -1,22 +1,43 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OrganTabsComponent } from './organ-tabs.component';
+import { OrganTabsModule } from './organ-tabs.module';
+
+import { Shallow } from 'shallow-render';
+import { OrganData } from '../two-dim-image/two-dim-image';
 
 describe('OrganTabsComponent', () => {
-  let component: OrganTabsComponent;
-  let fixture: ComponentFixture<OrganTabsComponent>;
+  const tabsData: OrganData[] = [
+    {
+      name: 'test name',
+      image: 'testImg'
+    },
+    {
+      name: 'item2',
+      image: ''
+    }
+  ];
+
+  let shallow: Shallow<OrganTabsComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [OrganTabsComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(OrganTabsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    shallow = new Shallow(OrganTabsComponent, OrganTabsModule)
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(shallow.render()).toBeDefined();
+  });
+
+  describe('.selectedIndex', () => {
+    it('should return the index of the matching item', async () => {
+      const { instance } = await shallow.render({ bind: { tabs: tabsData } });
+      instance.currentOrgan = tabsData[1].name;
+      expect(instance.selectedIndex).toEqual(1);
+    });
+
+    it('should return 0 if there is no matching item', async () => {
+      const { instance } = await shallow.render({ bind: { tabs: tabsData } });
+      instance.currentOrgan = 'No match';
+      expect(instance.selectedIndex).toEqual(0);
+    });
   });
 });

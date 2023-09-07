@@ -1,10 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CardWithHeaderComponent } from './card-with-header.component';
 import { CardWithHeaderModule } from './card-with-header.module';
-
 import { Shallow } from 'shallow-render';
-
 describe('CardWithHeaderComponent', () => {
   let shallow: Shallow<CardWithHeaderComponent>
 

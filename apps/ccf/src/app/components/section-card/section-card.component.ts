@@ -8,6 +8,4 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class SectionCardComponent {
   @Input() public cards: SectionCardItems[] = [];
-
-  @Output() cardRoutes = new EventEmitter<SectionCardItems>();
 }

@@ -17,6 +17,6 @@ describe('ChooseVersionComponent', () => {
   });
 
   it('should create', () => {
-    expect(shallow.render({ bind: { releaseDate: version } })).toBeTruthy();
+    expect(shallow.render()).toBeDefined();
   });
 });

@@ -6,7 +6,7 @@ import { CardButtonLongModule } from '../card-button-long/card-button-long.modul
 
 @NgModule({
   declarations: [CardWithHeaderComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, CardButtonLongModule],
+  imports: [BrowserModule, CardButtonLongModule],
   exports: [CardWithHeaderComponent],
 })
 export class CardWithHeaderModule {}

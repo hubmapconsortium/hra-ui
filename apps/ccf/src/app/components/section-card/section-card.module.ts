@@ -9,7 +9,6 @@ import { RouterModule } from '@angular/router';
   imports: [
     MatCardModule,
     BrowserModule,
-    BrowserAnimationsModule,
     RouterModule,
   ],
   exports: [SectionCardComponent],

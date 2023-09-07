@@ -15,7 +15,6 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
   declarations: [MenuTreeComponent],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     CdkTreeModule,
     MatIconModule,
     OverlayModule,

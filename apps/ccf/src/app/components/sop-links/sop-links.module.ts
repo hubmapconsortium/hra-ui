@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [SopLinksComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, MatIconModule],
+  imports: [BrowserModule, MatIconModule],
   exports: [SopLinksComponent],
 })
 export class SopLinksModule {}

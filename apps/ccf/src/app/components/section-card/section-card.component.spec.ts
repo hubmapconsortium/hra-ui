@@ -20,10 +20,7 @@ describe('SectionCardComponent', () => {
     shallow = new Shallow(SectionCardComponent, SectionCardModule)
   });
 
-  it('should create', async () => { 
-    await expect(shallow.render({ bind: { cards: cards } })).resolves.toBeTruthy();
-    // const { instance, outputs } = await shallow.render({ bind: { cards: cards } })
-    // expect(instance.cards).toBeDefined();
-    // expect(outputs.cardRoutes.emit).toBeCalled()
+  it('should create', async () => {
+    await expect(shallow.render({ bind: { cards: cards } })).resolves.toBeDefined();
   });
 });
