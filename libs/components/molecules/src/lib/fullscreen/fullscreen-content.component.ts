@@ -1,12 +1,14 @@
 import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 /** A component that displays its content in fullscreen mode when its isFullScreen property is set to true */
 @Component({
   selector: 'hra-fullscreen-content',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BrowserModule, BrowserAnimationsModule],
   animations: [
     trigger('animateResize', [
       state(
