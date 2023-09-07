@@ -22,9 +22,6 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
         })
       ),
       transition('true <=> false', [animate('0.5s ease')]),
-      // transition('false => true', [
-      //   animate('0.5s ease')
-      // ]),
     ]),
   ],
   template: '<ng-content></ng-content>',
