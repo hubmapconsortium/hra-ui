@@ -1,12 +1,8 @@
 :host {
   display: block;
   overflow-y: hidden;
-  width: 50%;
 
   &.fullscreen-on {
-    position: absolute;
-    width: 100%;
-    right: 0;
     z-index: 100;
     background: #f8f9fa;
   }

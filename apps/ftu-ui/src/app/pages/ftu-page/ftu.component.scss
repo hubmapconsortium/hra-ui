@@ -7,8 +7,8 @@
     display: flex;
     height: calc(100% - 5rem - 1px);
 
-    .illustration.ng-animating {
-      flex-grow: 1;
+    .illustration {
+      width: 50%;
     }
 
     .fullscreen-content-container {
@@ -21,10 +21,6 @@
       .illustration-details {
         border-left: 0.063rem solid #d3d3d3;
       }
-    }
-
-    & > :first-child {
-      width: 50%;
     }
   }
 
