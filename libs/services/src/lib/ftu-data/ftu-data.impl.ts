@@ -335,7 +335,8 @@ export class FtuDataImplService extends FtuDataService {
    */
   private constructCellSummaries(data: Cell_Summary['@graph']): CellSummary[] {
     const cellSummary: CellSummary[] = [];
-
+    const defaultBiomarkerLables = ['gene', 'protein', 'lipid'];
+    const biomarkersPresent = new Set(data.map((summary) => summary.biomarker_type));
     data.forEach((summaryGroup) => {
       const cells = summaryGroup.summary.map((entry) => ({
         id: entry.cell_id as Iri,
@@ -359,18 +360,16 @@ export class FtuDataImplService extends FtuDataService {
         biomarkers,
         summaries,
       });
-      cellSummary.push({
-        label: `Protein Biomarkers`,
-        cells: [],
-        biomarkers: [],
-        summaries: [],
-      });
-      cellSummary.push({
-        label: `Lipid Biomarkers`,
-        cells: [],
-        biomarkers: [],
-        summaries: [],
-      });
+    });
+    defaultBiomarkerLables.forEach((defaultLabel) => {
+      if (!biomarkersPresent.has(defaultLabel)) {
+        cellSummary.push({
+          label: `${capitalize(defaultLabel)} Biomarkers`,
+          cells: [],
+          biomarkers: [],
+          summaries: [],
+        });
+      }
     });
     return cellSummary;
   }
