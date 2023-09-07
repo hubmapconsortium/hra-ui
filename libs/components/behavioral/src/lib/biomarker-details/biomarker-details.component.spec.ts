@@ -6,6 +6,8 @@ import { ActiveFtuSelectors, TissueLibrarySelectors } from '@hra-ui/state';
 import { calledWithFn } from 'jest-mock-extended';
 import { Shallow } from 'shallow-render';
 import { BiomarkerDetailsComponent } from './biomarker-details.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MarkdownModule } from 'ngx-markdown';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Any = any;
@@ -36,7 +38,9 @@ describe('BiomarkerDetailsComponent', () => {
     selectSnapshotSpy.calledWith(TissueLibrarySelectors.tissues).mockReturnValue(() => TISSUES);
     selectQuerySnapshotSpy.calledWith(ResourceRegistrySelectors.anyText).mockReturnValue(() => '');
 
-    shallow = new Shallow(BiomarkerDetailsComponent).dontMock(MatTableModule, HoverDirective);
+    shallow = new Shallow(BiomarkerDetailsComponent)
+      .import(MarkdownModule.forRoot())
+      .dontMock(MatTableModule, HoverDirective, MatDialogModule);
   });
 
   it('should create', async () => {
@@ -67,6 +71,15 @@ describe('BiomarkerDetailsComponent', () => {
       expect(instance.tissueInfo).toEqual({
         id: '',
         label: '',
+      });
+    });
+
+    describe('collaborate', () => {
+      it('should open the contact modal dialog box', async () => {
+        const { instance, inject } = await shallow.render();
+        const spy = jest.spyOn(inject(MatDialog), 'open');
+        instance.collaborate();
+        expect(spy).toHaveBeenCalled();
       });
     });
   });
