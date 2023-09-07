@@ -9,9 +9,32 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const ftu = document.getElementById('ftu');
+        const selectOrgan = (activeIri) => {
+          console.log('selected organ', activeIri);
+        };
+        const selectNode = (selectedNode) => {
+          console.log('selected node', selectedNode);
+        };
+        ftu.addEventListener('organSelected', selectOrgan);
+        ftu.addEventListener('nodeClicked', selectNode);
+      });
+    </script>
   </head>
 
   <body>
-    <hra-ftu-wc></hra-ftu-wc>
+    <hra-ftu-wc
+      id="ftu"
+      links-yaml-url="assets/links.yml"
+      resources-yaml-url="assets/resources.yml"
+      organ-iri="https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle"
+      dataset-url="assets/TEMP/ftu-datasets.jsonld"
+      illustrations-url="assets/TEMP/2d-ftu-illustrations.jsonld"
+      summaries-url="assets/TEMP/ftu-cell-summaries.jsonld"
+      (organSelected)="selectOrgan()"
+      (nodeClicked)="selectNode()"
+    ></hra-ftu-wc>
   </body>
 </html>
