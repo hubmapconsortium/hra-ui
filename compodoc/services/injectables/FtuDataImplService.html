@@ -161,7 +161,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:177</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:182</a></code>
 </div>
                 </td>
             </tr>
@@ -246,7 +246,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:189</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:194</a></code>
 </div>
                 </td>
             </tr>
@@ -331,7 +331,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:165</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:170</a></code>
 </div>
                 </td>
             </tr>
@@ -416,7 +416,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:156</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:161</a></code>
 </div>
                 </td>
             </tr>
@@ -501,7 +501,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:201</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:206</a></code>
 </div>
                 </td>
             </tr>
@@ -586,7 +586,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:145</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:150</a></code>
 </div>
                 </td>
             </tr>
@@ -737,6 +737,11 @@ const TISSUE_LINK &#x3D; createLinkId(&#x27;FTU&#x27;);
 
 /** Provides Base/root url for the tissue tree */
 const BASE_IRI &#x3D; &#x27;https://purl.humanatlas.io/2d-ftu/&#x27; as Iri;
+
+/** Capitalizes the first character */
+function capitalize(str: string): string {
+  return str.slice(0, 1).toUpperCase() + str.slice(1);
+}
 
 /**
  * FtuDataImplService - Angular service for handling FTU (Functional Tissue Unit) data operations.
@@ -943,7 +948,7 @@ export class FtuDataImplService extends FtuDataService {
   }
 
   /**
-   * constructCellSummaries : Formates Cell Summary after etching the data
+   * constructCellSummaries : Formates Cell Summary after fetching the data
    * @param data
    * @returns
    */
@@ -968,10 +973,22 @@ export class FtuDataImplService extends FtuDataService {
         dataset_count: entry.dataset_count,
       }));
       cellSummary.push({
-        label: summaryGroup.biomarker_type,
+        label: &#x60;${capitalize(summaryGroup.biomarker_type)} Biomarkers&#x60;,
         cells,
         biomarkers,
         summaries,
+      });
+      cellSummary.push({
+        label: &#x60;Protein Biomarkers&#x60;,
+        cells: [],
+        biomarkers: [],
+        summaries: [],
+      });
+      cellSummary.push({
+        label: &#x60;Lipid Biomarkers&#x60;,
+        cells: [],
+        biomarkers: [],
+        summaries: [],
       });
     });
     return cellSummary;

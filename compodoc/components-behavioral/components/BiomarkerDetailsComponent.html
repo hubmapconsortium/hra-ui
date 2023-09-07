@@ -851,7 +851,7 @@ export class BiomarkerDetailsComponent {
   &lt;/mat-icon&gt;
 &lt;/hra-label-box&gt;
 
-&lt;mat-tab-group class&#x3D;&quot;table&quot; [class.table-fullscreen]&#x3D;&quot;isTableFullScreen&quot; mat-stretch-tabs&#x3D;&quot;false&quot; color&#x3D;&quot;accent&quot;&gt;
+&lt;mat-tab-group class&#x3D;&quot;table&quot; [class.table-fullscreen]&#x3D;&quot;isTableFullScreen&quot; mat-stretch-tabs&#x3D;&quot;true&quot; color&#x3D;&quot;accent&quot;&gt;
   &lt;mat-tab *ngFor&#x3D;&quot;let tab of tabs()&quot; labelClass&#x3D;&quot;table-tab-header&quot; [label]&#x3D;&quot;tab.label&quot;&gt;
     &lt;hra-biomarker-table
       *ngIf&#x3D;&quot;tab.rows.length !&#x3D;&#x3D; 0&quot;
@@ -906,8 +906,8 @@ export class BiomarkerDetailsComponent {
 
 :host {
   display: grid;
-  grid-template-columns: 21.5rem 21.5rem auto;
-  grid-template-rows: 3.5rem 19.5rem 3rem 5rem auto;
+  grid-template-columns: 1fr 1fr auto;
+  grid-template-rows: 3.5rem minmax(5rem, 2fr) 3rem 5rem minmax(5rem, 1fr);
   grid-template-areas:
     &#x27;table-header table-header table-header&#x27;
     &#x27;table table table&#x27;
@@ -915,10 +915,10 @@ export class BiomarkerDetailsComponent {
     &#x27;gradient-legend size-legend .&#x27;
     &#x27;source-list source-list source-list&#x27;;
   overflow-y: auto;
+
   .table-header {
     grid-area: table-header;
     border-bottom: 0.063rem solid #d3d3d3;
-    width: 43rem;
     height: 3.5rem;
   }
 
@@ -981,10 +981,6 @@ export class BiomarkerDetailsComponent {
 
   .source-list {
     grid-area: source-list;
-
-    .content {
-      width: min-content;
-    }
   }
 }
 
@@ -1026,7 +1022,7 @@ export class BiomarkerDetailsComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-label-box class="table-header">  Cell Types by Gene Biomarkers  <mat-icon (click)="toggleFullscreen()" class="end">    {{ isTableFullScreen ? \'close_fullscreen\' : \'open_in_full\' }}  </mat-icon></hra-label-box><mat-tab-group class="table" [class.table-fullscreen]="isTableFullScreen" mat-stretch-tabs="false" color="accent">  <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="tab.label">    <hra-biomarker-table      *ngIf="tab.rows.length !== 0"      [data]="$any(tab.rows)"      [columns]="tab.columns"      [gradient]="gradients()"      [sizes]="sizes()"      [tissueInfo]="tissueInfo"      [hightlightedCellName]="selectedOnHovered()?.label ?? \'\'"    ></hra-biomarker-table>    <hra-empty-biomarker      *ngIf="tab.rows.length === 0"      [collaborateText]="collaborateText"      [message]="message"    ></hra-empty-biomarker>  </mat-tab></mat-tab-group><hra-label-box class="legend-header gradient">  Biomarker Expression Mean in FTU  <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="gradientHoverInfo()">info_outlined</mat-icon></hra-label-box><div class="legend gradient">  <hra-gradient-legend [gradient]="gradients()" class="content"></hra-gradient-legend></div><hra-label-box class="legend-header size">  Percentage of Cells in FTU  <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="sizeHoverInfo()">info_outlined</mat-icon></hra-label-box><div class="legend size">  <hra-size-legend [sizes]="sizes()" class="content"></hra-size-legend></div><div class="source-list">  <hra-source-list [sources]="source()" class="content"></hra-source-list></div><ng-template #infoTooltip let-tooltip>  <div class="biomarker-details info-tooltip">    {{ tooltip }}  </div></ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-label-box class="table-header">  Cell Types by Gene Biomarkers  <mat-icon (click)="toggleFullscreen()" class="end">    {{ isTableFullScreen ? \'close_fullscreen\' : \'open_in_full\' }}  </mat-icon></hra-label-box><mat-tab-group class="table" [class.table-fullscreen]="isTableFullScreen" mat-stretch-tabs="true" color="accent">  <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="tab.label">    <hra-biomarker-table      *ngIf="tab.rows.length !== 0"      [data]="$any(tab.rows)"      [columns]="tab.columns"      [gradient]="gradients()"      [sizes]="sizes()"      [tissueInfo]="tissueInfo"      [hightlightedCellName]="selectedOnHovered()?.label ?? \'\'"    ></hra-biomarker-table>    <hra-empty-biomarker      *ngIf="tab.rows.length === 0"      [collaborateText]="collaborateText"      [message]="message"    ></hra-empty-biomarker>  </mat-tab></mat-tab-group><hra-label-box class="legend-header gradient">  Biomarker Expression Mean in FTU  <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="gradientHoverInfo()">info_outlined</mat-icon></hra-label-box><div class="legend gradient">  <hra-gradient-legend [gradient]="gradients()" class="content"></hra-gradient-legend></div><hra-label-box class="legend-header size">  Percentage of Cells in FTU  <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="sizeHoverInfo()">info_outlined</mat-icon></hra-label-box><div class="legend size">  <hra-size-legend [sizes]="sizes()" class="content"></hra-size-legend></div><div class="source-list">  <hra-source-list [sources]="source()" class="content"></hra-source-list></div><ng-template #infoTooltip let-tooltip>  <div class="biomarker-details info-tooltip">    {{ tooltip }}  </div></ng-template></div>'
     var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'BiomarkerDetailsWcComponent', 'selector': 'ftu-wc-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'HraLandingPageIntroWcBehaviourComponent', 'selector': 'ftu-wc-intro'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'ScreenNoticeBehaviorComponent', 'selector': 'ftu-ui-screen-notice-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'BiomarkerDetailsComponent'};

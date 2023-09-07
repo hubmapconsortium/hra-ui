@@ -83,6 +83,16 @@
         },
         {
           "@type": "CellSummaryRow",
+          "cell_id": "https://purl.org/ccf/ASCTB-TEMP_vasa-recta-ascending-limb-cell",
+          "cell_label": "vasa recta ascending limb cell",
+          "gene_id": "https://purl.org/ccf/ASCTB-TEMP_dummy",
+          "gene_label": "Dummy",
+          "mean_expression": 0.0,
+          "count": 0,
+          "percentage": 0.0
+        },
+        {
+          "@type": "CellSummaryRow",
           "cell_id": "https://purl.org/ccf/ASCTB-TEMP_descending-thin-limb-type-2",
           "cell_label": "Descending Thin Limb Type 2",
           "gene_id": "https://purl.org/ccf/ASCTB-TEMP_dummy",
