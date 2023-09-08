@@ -169,12 +169,32 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#collaborateText" >collaborateText</a>
+                            </li>
+                            <li>
+                                <a href="#message" >message</a>
+                            </li>
+                            <li>
                                 <a href="#sources" >sources</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#collaborateClick" >collaborateClick</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
@@ -185,6 +205,70 @@
 
     <section>
     <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="collaborateText"></a>
+                        <b>collaborateText</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/lib/source-list/source-list.component.ts:34</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input  buttonon text of empty biomarker component.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="message"></a>
+                        <b>message</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/lib/source-list/source-list.component.ts:39</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input  message markdown of empty biomarker component.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -218,7 +302,36 @@
             </tbody>
         </table>
 </section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="collaborateClick"></a>
+                        <b>collaborateClick</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
 
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/lib/source-list/source-list.component.ts:47</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when the contact button is clicked</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
 
     <section>
@@ -246,8 +359,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/lib/source-list/source-list.component.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/lib/source-list/source-list.component.ts:53</a></div>
                 </td>
             </tr>
 
@@ -290,7 +403,7 @@ and vice versa</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/lib/source-list/source-list.component.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/lib/source-list/source-list.component.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -310,11 +423,11 @@ based on click</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Input } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { MatTableModule } from &#x27;@angular/material/table&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
-import { LabelBoxComponent } from &#x27;@hra-ui/components/atoms&#x27;;
+import { EmptyBiomarkerComponent, LabelBoxComponent } from &#x27;@hra-ui/components/atoms&#x27;;
 
 /** SourceListItem interface contains title and link to the dataset for the SourceList*/
 export interface SourceListItem {
@@ -332,7 +445,7 @@ export interface SourceListItem {
 @Component({
   selector: &#x27;hra-source-list&#x27;,
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatIconModule, LabelBoxComponent],
+  imports: [CommonModule, MatTableModule, MatIconModule, LabelBoxComponent, EmptyBiomarkerComponent],
   templateUrl: &#x27;./source-list.component.html&#x27;,
   styleUrls: [&#x27;./source-list.component.scss&#x27;],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -341,10 +454,22 @@ export class SourceListComponent {
   /** List of sources with titles and links displayed to the user */
   @Input() sources: SourceListItem[] &#x3D; [];
   /**
+   * Input  buttonon text of empty biomarker component.
+   */
+  @Input() collaborateText &#x3D; &#x27;&#x27;;
+
+  /**
+   * Input  message markdown of empty biomarker component.
+   */
+  @Input() message &#x3D; &#x27;&#x27;;
+  /**
    * Show table of source list component which toggles to true or false
    * based on click
    */
   showTable &#x3D; true;
+
+  /** Emits when the contact button is clicked */
+  @Output() readonly collaborateClick &#x3D; new EventEmitter&lt;void&gt;();
 
   /**
    * It changes the value of showTable to false if value it true
@@ -366,7 +491,7 @@ export class SourceListComponent {
 &lt;/hra-label-box&gt;
 
 &lt;div class&#x3D;&quot;table-content&quot; [class.hidden]&#x3D;&quot;!showTable&quot;&gt;
-  &lt;table mat-table [dataSource]&#x3D;&quot;sources&quot;&gt;
+  &lt;table *ngIf&#x3D;&quot;sources.length !&#x3D;&#x3D; 0&quot; mat-table [dataSource]&#x3D;&quot;sources&quot;&gt;
     &lt;caption class&#x3D;&quot;sr-only&quot;&gt;
       Source List Table with Title and Links
     &lt;/caption&gt;
@@ -389,6 +514,12 @@ export class SourceListComponent {
 
     &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: [&#x27;link&#x27;, &#x27;title&#x27;]&quot;&gt;&lt;/tr&gt;
   &lt;/table&gt;
+  &lt;hra-empty-biomarker
+    *ngIf&#x3D;&quot;sources.length &#x3D;&#x3D;&#x3D; 0&quot;
+    [collaborateText]&#x3D;&quot;collaborateText&quot;
+    [message]&#x3D;&quot;message&quot;
+    (collaborateClick)&#x3D;&quot;collaborateClick.emit()&quot;
+  &gt;&lt;/hra-empty-biomarker&gt;
 &lt;/div&gt;
 </code></pre>
     </div>
@@ -471,7 +602,7 @@ export class SourceListComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-label-box class="toggle" (click)="toggleTable()">  Source Data  <mat-icon class="end">    {{ showTable ? \'keyboard_arrow_down\' : \'keyboard_arrow_up\' }}  </mat-icon></hra-label-box><div class="table-content" [class.hidden]="!showTable">  <table mat-table [dataSource]="sources">    <caption class="sr-only">      Source List Table with Title and Links    </caption>    <!-- Position Column -->    <ng-container matColumnDef="link">      <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Number</th>      <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}.</td>    </ng-container>    <!-- Data Column -->    <ng-container matColumnDef="title">      <th class="sr-only" mat-header-cell *matHeaderCellDef>Title and Link</th>      <td mat-cell *matCellDef="let element">        {{ element.title }}        <br />        <a [href]="element.link" target="_blank">{{ element.label }}</a>      </td>    </ng-container>    <tr mat-row *matRowDef="let row; columns: [\'link\', \'title\']"></tr>  </table></div></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-label-box class="toggle" (click)="toggleTable()">  Source Data  <mat-icon class="end">    {{ showTable ? \'keyboard_arrow_down\' : \'keyboard_arrow_up\' }}  </mat-icon></hra-label-box><div class="table-content" [class.hidden]="!showTable">  <table *ngIf="sources.length !== 0" mat-table [dataSource]="sources">    <caption class="sr-only">      Source List Table with Title and Links    </caption>    <!-- Position Column -->    <ng-container matColumnDef="link">      <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Number</th>      <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}.</td>    </ng-container>    <!-- Data Column -->    <ng-container matColumnDef="title">      <th class="sr-only" mat-header-cell *matHeaderCellDef>Title and Link</th>      <td mat-cell *matCellDef="let element">        {{ element.title }}        <br />        <a [href]="element.link" target="_blank">{{ element.label }}</a>      </td>    </ng-container>    <tr mat-row *matRowDef="let row; columns: [\'link\', \'title\']"></tr>  </table>  <hra-empty-biomarker    *ngIf="sources.length === 0"    [collaborateText]="collaborateText"    [message]="message"    (collaborateClick)="collaborateClick.emit()"  ></hra-empty-biomarker></div></div>'
     var COMPONENTS = [{'name': 'BiomarkerTableDataCardComponent', 'selector': 'hra-biomarker-table-data-card'},{'name': 'BiomarkerTableDataIconComponent', 'selector': 'hra-biomarker-table-data-icon'},{'name': 'ContactModalComponent', 'selector': 'hra-contact-modal'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenContainerComponent', 'selector': 'hra-fullscreen-container'},{'name': 'FullscreenContentComponent', 'selector': 'hra-fullscreen-content'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'HraLandingPageIntroWcComponent', 'selector': 'hra-ui-hra-landing-page-intro-wc'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InteractiveSvgComponent', 'selector': 'hra-interactive-svg'},{'name': 'LandingPageInDepthComponent', 'selector': 'hra-landing-page-in-depth'},{'name': 'LandingPageIntroComponent', 'selector': 'hra-landing-page-intro'},{'name': 'MetricsComponent', 'selector': 'hra-metrics'},{'name': 'ScreenSizeNoticeComponent', 'selector': 'hra-screen-size-notice'},{'name': 'SourceListComponent', 'selector': 'hra-source-list'},{'name': 'TissueTreeListComponent', 'selector': 'hra-tissue-tree-list'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SourceListComponent'};

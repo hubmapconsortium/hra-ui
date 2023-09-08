@@ -397,12 +397,12 @@
         },
         {
             "name": "SourceListItem",
-            "id": "interface-SourceListItem-3e55f2d90acdd1770d63ee01d7cb04bfb862e234a989f6253c27f416e0d0d33c9fd51a594ccdd21bb13acf50a7076f9a951f5f110e2d6c319be91dfc009e7d61",
+            "id": "interface-SourceListItem-f0d0464b044f898be3752719190f2d8ad8511283d4daafb2f8b17bd0f4dfa0290abbbeb293819664c07134fcaee5a64313aaf72d69e335a063e244c2ba1d7c0c",
             "file": "src/lib/source-list/source-list.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from '@angular/material/table';\nimport { MatIconModule } from '@angular/material/icon';\nimport { LabelBoxComponent } from '@hra-ui/components/atoms';\n\n/** SourceListItem interface contains title and link to the dataset for the SourceList*/\nexport interface SourceListItem {\n  /** Title of the dataset in the SourceList */\n  title: string;\n\n  /** Label of the dataset in the SourceList */\n  label: string;\n\n  /** Link to the dataset in the SourceList */\n  link: string;\n}\n\n/** This component shows list of sources with title and links to the datasets */\n@Component({\n  selector: 'hra-source-list',\n  standalone: true,\n  imports: [CommonModule, MatTableModule, MatIconModule, LabelBoxComponent],\n  templateUrl: './source-list.component.html',\n  styleUrls: ['./source-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SourceListComponent {\n  /** List of sources with titles and links displayed to the user */\n  @Input() sources: SourceListItem[] = [];\n  /**\n   * Show table of source list component which toggles to true or false\n   * based on click\n   */\n  showTable = true;\n\n  /**\n   * It changes the value of showTable to false if value it true\n   * and vice versa\n   */\n  toggleTable(): void {\n    this.showTable = !this.showTable;\n  }\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from '@angular/material/table';\nimport { MatIconModule } from '@angular/material/icon';\nimport { EmptyBiomarkerComponent, LabelBoxComponent } from '@hra-ui/components/atoms';\n\n/** SourceListItem interface contains title and link to the dataset for the SourceList*/\nexport interface SourceListItem {\n  /** Title of the dataset in the SourceList */\n  title: string;\n\n  /** Label of the dataset in the SourceList */\n  label: string;\n\n  /** Link to the dataset in the SourceList */\n  link: string;\n}\n\n/** This component shows list of sources with title and links to the datasets */\n@Component({\n  selector: 'hra-source-list',\n  standalone: true,\n  imports: [CommonModule, MatTableModule, MatIconModule, LabelBoxComponent, EmptyBiomarkerComponent],\n  templateUrl: './source-list.component.html',\n  styleUrls: ['./source-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SourceListComponent {\n  /** List of sources with titles and links displayed to the user */\n  @Input() sources: SourceListItem[] = [];\n  /**\n   * Input  buttonon text of empty biomarker component.\n   */\n  @Input() collaborateText = '';\n\n  /**\n   * Input  message markdown of empty biomarker component.\n   */\n  @Input() message = '';\n  /**\n   * Show table of source list component which toggles to true or false\n   * based on click\n   */\n  showTable = true;\n\n  /** Emits when the contact button is clicked */\n  @Output() readonly collaborateClick = new EventEmitter<void>();\n\n  /**\n   * It changes the value of showTable to false if value it true\n   * and vice versa\n   */\n  toggleTable(): void {\n    this.showTable = !this.showTable;\n  }\n}\n",
             "properties": [
                 {
                     "name": "label",
@@ -730,7 +730,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: block;\n  position: relative;\n  padding-top: 2rem;\n  margin-right: 1.5rem;\n  margin-left: 1.5rem;\n\n  .product-logo {\n    display: flex;\n    align-items: center;\n\n    .product-logo-image {\n      margin-right: 1rem;\n    }\n\n    .product-title {\n      color: #990000;\n      margin: 0;\n      font-weight: 600;\n    }\n  }\n\n  .close {\n    position: absolute;\n    top: 1.5rem;\n    right: 0rem;\n  }\n\n  .submit {\n    margin-right: 1.5rem;\n  }\n\n  .submit,\n  .cancel {\n    width: 7.5rem;\n  }\n\n  .email {\n    margin-top: 1.25rem;\n  }\n\n  .message-field {\n    margin-top: 1rem;\n  }\n\n  .subject-field {\n    margin-top: 1rem;\n  }\n\n  .desc {\n    margin-top: 1.5rem;\n  }\n}\n",
+                    "data": ":host {\n  display: block;\n  position: relative;\n  padding-top: 2rem;\n  margin-right: 1.5rem;\n  margin-left: 1.5rem;\n  font-family: 'Inter';\n\n  .product-logo {\n    display: flex;\n    align-items: center;\n\n    .product-logo-image {\n      margin-right: 1rem;\n    }\n\n    .product-title {\n      color: #990000;\n      margin: 0;\n      font-weight: 600;\n    }\n  }\n\n  .close {\n    position: absolute;\n    top: 1.5rem;\n    right: 0rem;\n  }\n\n  .submit {\n    margin-right: 1.5rem;\n  }\n\n  .submit,\n  .cancel {\n    width: 7.5rem;\n  }\n\n  .email {\n    margin-top: 1.25rem;\n  }\n\n  .message-field {\n    margin-top: 1rem;\n  }\n\n  .subject-field {\n    margin-top: 1rem;\n  }\n\n  .desc {\n    margin-top: 1.5rem;\n  }\n}\n",
                     "styleUrl": "./contact-modal.component.scss"
                 }
             ],
@@ -1001,7 +1001,7 @@
         },
         {
             "name": "FullscreenContentComponent",
-            "id": "component-FullscreenContentComponent-6710fc01baaf0574ecee8c1610a0f285865856eb963b364d086ef5d9528a4680bd78469b881201a033e582734f9ab5cabb16aeef9e5e00bd2679e67b73a067d9",
+            "id": "component-FullscreenContentComponent-061cdd7c639f9c53e46272aaf23ed318885fbcf937978d8940b0f0baf165576129c5897204992603662d7b530bcd8d63a7d7a97602a18e97b7f1711f84c4725f",
             "file": "src/lib/fullscreen/fullscreen-content.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1028,12 +1028,16 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>This binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true</p>\n",
-                    "line": 15,
+                    "line": 40,
                     "rawdescription": "\nThis binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true",
                     "decorators": [
                         {
                             "name": "HostBinding",
                             "stringifiedArguments": "'class.fullscreen-on'"
+                        },
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'@animateResize'"
                         }
                     ]
                 }
@@ -1043,13 +1047,24 @@
             "deprecationMessage": "",
             "hostBindings": [
                 {
+                    "name": "@animateResize",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nThis binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true",
+                    "description": "<p>This binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true</p>\n",
+                    "line": 40,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
                     "name": "class.fullscreen-on",
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nThis binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true",
                     "description": "<p>This binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true</p>\n",
-                    "line": 15,
+                    "line": 40,
                     "type": "boolean",
                     "decorators": []
                 }
@@ -1058,11 +1073,11 @@
             "description": "<p>A component that displays its content in fullscreen mode when its isFullScreen property is set to true</p>\n",
             "rawdescription": "\nA component that displays its content in fullscreen mode when its isFullScreen property is set to true",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/** A component that displays its content in fullscreen mode when its isFullScreen property is set to true */\n@Component({\n  selector: 'hra-fullscreen-content',\n  standalone: true,\n  imports: [CommonModule],\n  template: '<ng-content></ng-content>',\n  styleUrls: ['./fullscreen-content.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FullscreenContentComponent {\n  /** This binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true */\n  @HostBinding('class.fullscreen-on') isFullScreen = false;\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { animate, state, style, transition, trigger } from '@angular/animations';\n\n/** A component that displays its content in fullscreen mode when its isFullScreen property is set to true */\n@Component({\n  selector: 'hra-fullscreen-content',\n  standalone: true,\n  imports: [CommonModule],\n  animations: [\n    trigger('animateResize', [\n      state(\n        'true',\n        style({\n          width: '100%',\n          position: 'absolute',\n          right: 0,\n        })\n      ),\n      state(\n        'false',\n        style({\n          width: '50%',\n          position: 'absolute',\n          right: 0,\n        })\n      ),\n      transition('true <=> false', [animate('0.5s ease')]),\n    ]),\n  ],\n  template: '<ng-content></ng-content>',\n  styleUrls: ['./fullscreen-content.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FullscreenContentComponent {\n  /** This binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true */\n  @HostBinding('class.fullscreen-on')\n  /** This binds the isFullScreen property to the @animateResize when isFullScreen is true */\n  @HostBinding('@animateResize')\n  isFullScreen = false;\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: block;\n  overflow-y: hidden;\n\n  &.fullscreen-on {\n    position: absolute;\n    inset: 0;\n    z-index: 100;\n  }\n}\n",
+                    "data": ":host {\n  display: block;\n  overflow-y: hidden;\n  transition: width 0.5s ease;\n  width: 50%;\n\n  &.fullscreen-on {\n    z-index: 100;\n    background: #f8f9fa;\n  }\n}\n",
                     "styleUrl": "./fullscreen-content.component.scss"
                 }
             ],
@@ -1158,7 +1173,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use 'utils';\n@use 'variables' as vars;\n\n:host {\n  display: flex;\n  align-items: center;\n  height: 5rem;\n  padding: 0 2rem 0 1rem;\n\n  @include utils.define-flex-filler();\n\n  h1 {\n    // Reset margins for h1 elements\n    margin: 0;\n  }\n\n  .product {\n    display: flex;\n    align-items: center;\n    text-decoration: none;\n    // Style the ripple animation\n    padding: 0 1rem;\n    border-radius: 0.25rem;\n\n    &:hover {\n      cursor: pointer;\n    }\n\n    .text {\n      margin-left: 1rem;\n      font-weight: 600;\n      color: vars.$accent-rgb;\n    }\n  }\n\n  .app {\n    margin-left: 0.5rem;\n  }\n\n  .about {\n    width: 9rem;\n    height: 3rem;\n\n    .icon {\n      width: 1.5rem;\n      height: 1.5rem;\n      font-size: 1.5rem;\n    }\n  }\n\n  @media (max-width: 30rem) {\n    height: 4.5rem;\n\n    .product .text,\n    .about .text {\n      @include utils.sr-only();\n    }\n\n    .product {\n      height: 2.5rem;\n      padding: 0 0.25rem;\n\n      .logo {\n        width: 1.5rem;\n        height: 1.5rem;\n      }\n    }\n\n    .app {\n      font-size: 1rem;\n      line-height: 1.5rem;\n    }\n\n    .about {\n      min-width: 2.5rem;\n      width: 2.5rem;\n      height: 2.5rem;\n      padding: 0;\n\n      .icon {\n        margin: 0;\n      }\n    }\n  }\n\n  @media (max-width: 20rem) {\n    padding: 0;\n  }\n}\n",
+                    "data": "@use 'utils';\n@use 'variables' as vars;\n\n:host {\n  display: flex;\n  align-items: center;\n  height: 5rem;\n  padding: 0 2rem 0 1rem;\n\n  @include utils.define-flex-filler();\n\n  h1 {\n    // Reset margins for h1 elements\n    margin: 0;\n  }\n\n  .product {\n    display: flex;\n    align-items: center;\n    text-decoration: none;\n    // Style the ripple animation\n    padding: 0 1rem;\n    border-radius: 0.25rem;\n\n    &:hover {\n      cursor: pointer;\n    }\n\n    .text {\n      margin-left: 1rem;\n      font-weight: 600;\n      color: vars.$accent-rgb;\n    }\n  }\n\n  .app {\n    margin-left: 0.5rem;\n  }\n\n  .about {\n    width: 9rem;\n    height: 3rem;\n    text-decoration: none;\n    span {\n      border-bottom: 1px solid var(--palette-primary-500-rgb);\n    }\n    .icon {\n      width: 1.5rem;\n      height: 1.5rem;\n      font-size: 1.5rem;\n    }\n  }\n\n  @media (max-width: 30rem) {\n    height: 4.5rem;\n\n    .product .text,\n    .about .text {\n      @include utils.sr-only();\n    }\n\n    .product {\n      height: 2.5rem;\n      padding: 0 0.25rem;\n\n      .logo {\n        width: 1.5rem;\n        height: 1.5rem;\n      }\n    }\n\n    .app {\n      font-size: 1rem;\n      line-height: 1.5rem;\n    }\n\n    .about {\n      min-width: 2.5rem;\n      width: 2.5rem;\n      height: 2.5rem;\n      padding: 0;\n\n      .icon {\n        margin: 0;\n      }\n    }\n  }\n\n  @media (max-width: 20rem) {\n    padding: 0;\n  }\n}\n",
                     "styleUrl": "./header.component.scss"
                 }
             ],
@@ -1586,7 +1601,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".svg {\n  max-height: calc(100vh - 14rem);\n  overflow-y: auto;\n}\nsvg {\n  max-height: calc(100vh - 10rem);\n  width: 100%;\n}\n\n[id^='Crosswalk'] {\n  :is(path, polygon, polyline) {\n    fill: transparent;\n    stroke: transparent;\n  }\n\n  .hover-active & g:hover > :is(path, polygon, polyline),\n  .hover-active & g > g:hover > :is(path, polygon, polyline),\n  .click-active {\n    fill: hsl(0deg 100% 50%);\n    mix-blend-mode: saturation;\n  }\n}\n",
+                    "data": ".svg {\n  max-height: calc(100vh - 14rem);\n  overflow-y: auto;\n}\nsvg {\n  max-height: calc(100vh - 10rem);\n  width: 100%;\n}\n\n[id^='Crosswalk'] {\n  :is(path, polygon, polyline) {\n    fill: transparent;\n    stroke: transparent;\n  }\n\n  .hover-active & g:hover > :is(path, polygon, polyline),\n  .hover-active & g > g:hover > :is(path, polygon, polyline),\n  .click-active {\n    fill: hsl(0deg 100% 50%);\n    mix-blend-mode: saturation;\n  }\n}\n\n::-webkit-scrollbar {\n  width: 0.5rem;\n  height: 0.5rem;\n}\n\n::-webkit-scrollbar-track {\n  background: #f8f9fa;\n  border: 0.063rem solid #d3d3d3;\n}\n\n::-webkit-scrollbar-thumb {\n  background: #a0abb4;\n  border-radius: 0.5rem;\n}\n",
                     "styleUrl": "./interactive-svg.component.scss"
                 }
             ],
@@ -1795,12 +1810,12 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use 'variables' as vars;\n\n:host {\n  display: grid;\n  grid-template-columns: 3fr 2fr;\n  grid-template-rows: auto auto 3rem 1fr;\n  align-items: start;\n  column-gap: 2rem;\n  row-gap: 2rem;\n\n  .title {\n    font-size: 3rem;\n    line-height: 4rem;\n    margin: 0;\n  }\n\n  .more-button {\n    width: fit-content;\n    height: 3rem;\n  }\n\n  .image {\n    grid-column: 2;\n    grid-row: 1 / span 4;\n    place-self: center;\n    width: 100%;\n    height: auto;\n  }\n\n  .description,\n  .partners {\n    ::ng-deep p {\n      margin: 0;\n    }\n\n    ::ng-deep a {\n      color: vars.$primary-rgb;\n      font-weight: 700;\n    }\n  }\n}\n",
+                    "data": "@use 'variables' as vars;\n\n:host {\n  display: grid;\n  grid-template-columns: 3fr 2fr;\n  grid-template-rows: auto auto 3rem 1fr;\n  align-items: start;\n  column-gap: 2rem;\n  row-gap: 2rem;\n\n  .title {\n    font-size: 3rem;\n    line-height: 4rem;\n    margin: 0;\n  }\n\n  .more-button {\n    width: fit-content;\n    height: 3rem;\n  }\n\n  .image {\n    grid-column: 2;\n    grid-row: 1 / span 4;\n    place-self: center;\n    width: 100%;\n    height: auto;\n  }\n\n  .description,\n  .partners {\n    ::ng-deep p {\n      margin: 0;\n    }\n\n    ::ng-deep a {\n      color: vars.$primary-rgb;\n      font-weight: 700;\n    }\n  }\n\n  .red-theme {\n    background-color: #990000;\n    border-color: #990000;\n    &:hover {\n      background-color: #990000;\n      border-color: #990000;\n\n      mat-icon {\n        transform: translateX(30%);\n        transition: 0.5s;\n      }\n    }\n\n    &:active,\n    &:focus,\n    &:focus:not(:hover) {\n      background-color: #990000;\n      border-color: #990000;\n\n      ::ng-deep .mat-mdc-focus-indicator {\n        background-color: #990000 !important;\n        border-color: #990000;\n      }\n    }\n  }\n}\n",
                     "styleUrl": "./landing-page-intro.component.scss"
                 }
             ],
             "stylesData": "",
-            "templateData": "<h1 class=\"title\">{{ title }}</h1>\n<markdown class=\"description\" [data]=\"description\"></markdown>\n\n<button mat-flat-button class=\"more-button\" color=\"primary\" [hraLink]=\"moreLink\">\n  {{ moreText }}\n  <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>\n</button>\n<markdown class=\"partners\" [data]=\"partners\"></markdown>\n\n<img class=\"image\" [src]=\"img\" alt=\"alt\" />\n"
+            "templateData": "<h1 class=\"title\">{{ title }}</h1>\n<markdown class=\"description\" [data]=\"description\"></markdown>\n\n<button mat-flat-button class=\"more-button red-theme\" color=\"primary\" [hraLink]=\"moreLink\">\n  {{ moreText }}\n  <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>\n</button>\n<markdown class=\"partners\" [data]=\"partners\"></markdown>\n\n<img class=\"image\" [src]=\"img\" alt=\"alt\" />\n"
         },
         {
             "name": "MetricsComponent",
@@ -1954,7 +1969,7 @@
         },
         {
             "name": "SourceListComponent",
-            "id": "component-SourceListComponent-3e55f2d90acdd1770d63ee01d7cb04bfb862e234a989f6253c27f416e0d0d33c9fd51a594ccdd21bb13acf50a7076f9a951f5f110e2d6c319be91dfc009e7d61",
+            "id": "component-SourceListComponent-f0d0464b044f898be3752719190f2d8ad8511283d4daafb2f8b17bd0f4dfa0290abbbeb293819664c07134fcaee5a64313aaf72d69e335a063e244c2ba1d7c0c",
             "file": "src/lib/source-list/source-list.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1973,6 +1988,28 @@
             "viewProviders": [],
             "inputsClass": [
                 {
+                    "name": "collaborateText",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nInput  buttonon text of empty biomarker component.\n",
+                    "description": "<p>Input  buttonon text of empty biomarker component.</p>\n",
+                    "line": 34,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "message",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nInput  message markdown of empty biomarker component.\n",
+                    "description": "<p>Input  message markdown of empty biomarker component.</p>\n",
+                    "line": 39,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
                     "name": "sources",
                     "defaultValue": "[]",
                     "deprecated": false,
@@ -1984,7 +2021,18 @@
                     "decorators": []
                 }
             ],
-            "outputsClass": [],
+            "outputsClass": [
+                {
+                    "name": "collaborateClick",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nEmits when the contact button is clicked",
+                    "description": "<p>Emits when the contact button is clicked</p>\n",
+                    "line": 47,
+                    "type": "EventEmitter"
+                }
+            ],
             "propertiesClass": [
                 {
                     "name": "showTable",
@@ -1994,7 +2042,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Show table of source list component which toggles to true or false\nbased on click</p>\n",
-                    "line": 35,
+                    "line": 44,
                     "rawdescription": "\n\nShow table of source list component which toggles to true or false\nbased on click\n"
                 }
             ],
@@ -2005,7 +2053,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 41,
+                    "line": 53,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nIt changes the value of showTable to false if value it true\nand vice versa\n",
@@ -2019,7 +2067,7 @@
             "description": "<p>This component shows list of sources with title and links to the datasets</p>\n",
             "rawdescription": "\nThis component shows list of sources with title and links to the datasets",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from '@angular/material/table';\nimport { MatIconModule } from '@angular/material/icon';\nimport { LabelBoxComponent } from '@hra-ui/components/atoms';\n\n/** SourceListItem interface contains title and link to the dataset for the SourceList*/\nexport interface SourceListItem {\n  /** Title of the dataset in the SourceList */\n  title: string;\n\n  /** Label of the dataset in the SourceList */\n  label: string;\n\n  /** Link to the dataset in the SourceList */\n  link: string;\n}\n\n/** This component shows list of sources with title and links to the datasets */\n@Component({\n  selector: 'hra-source-list',\n  standalone: true,\n  imports: [CommonModule, MatTableModule, MatIconModule, LabelBoxComponent],\n  templateUrl: './source-list.component.html',\n  styleUrls: ['./source-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SourceListComponent {\n  /** List of sources with titles and links displayed to the user */\n  @Input() sources: SourceListItem[] = [];\n  /**\n   * Show table of source list component which toggles to true or false\n   * based on click\n   */\n  showTable = true;\n\n  /**\n   * It changes the value of showTable to false if value it true\n   * and vice versa\n   */\n  toggleTable(): void {\n    this.showTable = !this.showTable;\n  }\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from '@angular/material/table';\nimport { MatIconModule } from '@angular/material/icon';\nimport { EmptyBiomarkerComponent, LabelBoxComponent } from '@hra-ui/components/atoms';\n\n/** SourceListItem interface contains title and link to the dataset for the SourceList*/\nexport interface SourceListItem {\n  /** Title of the dataset in the SourceList */\n  title: string;\n\n  /** Label of the dataset in the SourceList */\n  label: string;\n\n  /** Link to the dataset in the SourceList */\n  link: string;\n}\n\n/** This component shows list of sources with title and links to the datasets */\n@Component({\n  selector: 'hra-source-list',\n  standalone: true,\n  imports: [CommonModule, MatTableModule, MatIconModule, LabelBoxComponent, EmptyBiomarkerComponent],\n  templateUrl: './source-list.component.html',\n  styleUrls: ['./source-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SourceListComponent {\n  /** List of sources with titles and links displayed to the user */\n  @Input() sources: SourceListItem[] = [];\n  /**\n   * Input  buttonon text of empty biomarker component.\n   */\n  @Input() collaborateText = '';\n\n  /**\n   * Input  message markdown of empty biomarker component.\n   */\n  @Input() message = '';\n  /**\n   * Show table of source list component which toggles to true or false\n   * based on click\n   */\n  showTable = true;\n\n  /** Emits when the contact button is clicked */\n  @Output() readonly collaborateClick = new EventEmitter<void>();\n\n  /**\n   * It changes the value of showTable to false if value it true\n   * and vice versa\n   */\n  toggleTable(): void {\n    this.showTable = !this.showTable;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2028,7 +2076,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<hra-label-box class=\"toggle\" (click)=\"toggleTable()\">\n  Source Data\n  <mat-icon class=\"end\">\n    {{ showTable ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}\n  </mat-icon>\n</hra-label-box>\n\n<div class=\"table-content\" [class.hidden]=\"!showTable\">\n  <table mat-table [dataSource]=\"sources\">\n    <caption class=\"sr-only\">\n      Source List Table with Title and Links\n    </caption>\n\n    <!-- Position Column -->\n    <ng-container matColumnDef=\"link\">\n      <th class=\"sr-only\" mat-header-cell *matHeaderCellDef>Item Number</th>\n      <td mat-cell *matCellDef=\"let element; let i = index\">{{ i + 1 }}.</td>\n    </ng-container>\n\n    <!-- Data Column -->\n    <ng-container matColumnDef=\"title\">\n      <th class=\"sr-only\" mat-header-cell *matHeaderCellDef>Title and Link</th>\n      <td mat-cell *matCellDef=\"let element\">\n        {{ element.title }}\n        <br />\n        <a [href]=\"element.link\" target=\"_blank\">{{ element.label }}</a>\n      </td>\n    </ng-container>\n\n    <tr mat-row *matRowDef=\"let row; columns: ['link', 'title']\"></tr>\n  </table>\n</div>\n"
+            "templateData": "<hra-label-box class=\"toggle\" (click)=\"toggleTable()\">\n  Source Data\n  <mat-icon class=\"end\">\n    {{ showTable ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}\n  </mat-icon>\n</hra-label-box>\n\n<div class=\"table-content\" [class.hidden]=\"!showTable\">\n  <table *ngIf=\"sources.length !== 0\" mat-table [dataSource]=\"sources\">\n    <caption class=\"sr-only\">\n      Source List Table with Title and Links\n    </caption>\n\n    <!-- Position Column -->\n    <ng-container matColumnDef=\"link\">\n      <th class=\"sr-only\" mat-header-cell *matHeaderCellDef>Item Number</th>\n      <td mat-cell *matCellDef=\"let element; let i = index\">{{ i + 1 }}.</td>\n    </ng-container>\n\n    <!-- Data Column -->\n    <ng-container matColumnDef=\"title\">\n      <th class=\"sr-only\" mat-header-cell *matHeaderCellDef>Title and Link</th>\n      <td mat-cell *matCellDef=\"let element\">\n        {{ element.title }}\n        <br />\n        <a [href]=\"element.link\" target=\"_blank\">{{ element.label }}</a>\n      </td>\n    </ng-container>\n\n    <tr mat-row *matRowDef=\"let row; columns: ['link', 'title']\"></tr>\n  </table>\n  <hra-empty-biomarker\n    *ngIf=\"sources.length === 0\"\n    [collaborateText]=\"collaborateText\"\n    [message]=\"message\"\n    (collaborateClick)=\"collaborateClick.emit()\"\n  ></hra-empty-biomarker>\n</div>\n"
         },
         {
             "name": "TissueTreeListComponent",
@@ -2271,7 +2319,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use 'variables' as vars;\n\n:host {\n  display: block;\n\n  .row {\n    min-height: 2rem;\n    &.child {\n      padding: 5px 0 5px 64px;\n    }\n    &.selected {\n      background-color: vars.$accent-lighter-rgb;\n    }\n\n    .toggle {\n      width: 2rem;\n      height: 2rem;\n      padding: 0.25rem;\n    }\n\n    .label-container {\n      display: flex;\n      align-items: center;\n      height: 2rem;\n      padding: 0 1rem;\n      border-radius: 0.25rem;\n\n      .link {\n        cursor: pointer;\n        text-decoration: none;\n        color: rgba(vars.$dark-primary-text);\n      }\n    }\n\n    &.selected .label-container .link {\n      color: vars.$accent-rgb;\n    }\n  }\n}\n",
+                    "data": "@use 'variables' as vars;\n\n:host {\n  display: block;\n  max-height: calc(100% - 5rem);\n  overflow-y: auto;\n  .row {\n    min-height: 2rem;\n    &.child {\n      padding: 5px 0 5px 64px;\n    }\n    &.selected {\n      background-color: vars.$accent-lighter-rgb;\n    }\n\n    .toggle {\n      width: 2rem;\n      height: 2rem;\n      padding: 0.25rem;\n    }\n\n    .label-container {\n      display: flex;\n      align-items: center;\n      height: 2rem;\n      padding: 0 1rem;\n      border-radius: 0.25rem;\n\n      .link {\n        cursor: pointer;\n        text-decoration: none;\n        color: rgba(vars.$dark-primary-text);\n      }\n    }\n\n    &.selected .label-container .link {\n      color: vars.$accent-rgb;\n    }\n  }\n}\n",
                     "styleUrl": "./tissue-tree-list.component.scss"
                 }
             ],

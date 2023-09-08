@@ -9,7 +9,7 @@
     "components": [
         {
             "name": "BiomarkerDetailsComponent",
-            "id": "component-BiomarkerDetailsComponent-4ddd34a6ffcb4d2a3575142c67529a734acae1465ee0213546ce63c83a1632bd73b677b565158e111d0ac063b00d461fce2fce911c85b29c0057fa8cf776095e",
+            "id": "component-BiomarkerDetailsComponent-77362795c55e59d8109b5a13e3d57e4774ce01b5484ac21237c42d2857f2de4ecd80ec15ae66e99983246bdc3de1df675717253be566d7ba0efe1495a48c9f3c",
             "file": "src/lib/biomarker-details/biomarker-details.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -37,7 +37,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "<p>button text of empty biomarker component.</p>\n",
-                    "line": 104,
+                    "line": 106,
                     "rawdescription": "\n\nbutton text of empty biomarker component.\n",
                     "modifierKind": [
                         144
@@ -51,7 +51,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Info to be shown on the tooltip for Gradient Legend</p>\n",
-                    "line": 56,
+                    "line": 58,
                     "rawdescription": "\nInfo to be shown on the tooltip for Gradient Legend",
                     "modifierKind": [
                         144
@@ -65,7 +65,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Gradient colors along with their stop points</p>\n",
-                    "line": 65,
+                    "line": 67,
                     "rawdescription": "\nGradient colors along with their stop points",
                     "modifierKind": [
                         144
@@ -79,7 +79,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Iri  of medical illustration behavior component</p>\n",
-                    "line": 78,
+                    "line": 80,
                     "rawdescription": "\n\nIri  of medical illustration behavior component\n",
                     "modifierKind": [
                         144
@@ -93,7 +93,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Indicates if the table is fully shown, defaults to false</p>\n",
-                    "line": 62,
+                    "line": 64,
                     "rawdescription": "\nIndicates if the table is fully shown, defaults to false"
                 },
                 {
@@ -104,7 +104,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>message markdown of empty biomarker component.</p>\n",
-                    "line": 109,
+                    "line": 111,
                     "rawdescription": "\n\nmessage markdown of empty biomarker component.\n",
                     "modifierKind": [
                         144
@@ -118,7 +118,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Selects the cells hovered currently to highlight in table</p>\n",
-                    "line": 86,
+                    "line": 88,
                     "rawdescription": "\nSelects the cells hovered currently to highlight in table",
                     "modifierKind": [
                         144
@@ -132,7 +132,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Info to be shown on the tooltip for Size Legend</p>\n",
-                    "line": 59,
+                    "line": 61,
                     "rawdescription": "\nInfo to be shown on the tooltip for Size Legend",
                     "modifierKind": [
                         144
@@ -146,7 +146,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Taking input for the radius of the circle and the label to be displayed.</p>\n",
-                    "line": 70,
+                    "line": 72,
                     "rawdescription": "\nTaking input for the radius of the circle and the label to be displayed.",
                     "modifierKind": [
                         144
@@ -160,7 +160,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>List of sources with titles and links displayed to the user</p>\n",
-                    "line": 73,
+                    "line": 75,
                     "rawdescription": "\nList of sources with titles and links displayed to the user",
                     "modifierKind": [
                         144
@@ -174,7 +174,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Table tabs</p>\n",
-                    "line": 53,
+                    "line": 55,
                     "rawdescription": "\nTable tabs",
                     "modifierKind": [
                         144
@@ -188,7 +188,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Get all tissues</p>\n",
-                    "line": 83,
+                    "line": 85,
                     "rawdescription": "\n\nGet all tissues\n",
                     "modifierKind": [
                         144
@@ -197,12 +197,24 @@
             ],
             "methodsClass": [
                 {
+                    "name": "collaborate",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 129,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nA function which opens the contact modal dialog box",
+                    "description": "<p>A function which opens the contact modal dialog box</p>\n"
+                },
+                {
                     "name": "toggleFullscreen",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 118,
+                    "line": 123,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nA function that toggles isTableFullScreen and\ncalls the setScreenMode function.\n",
@@ -216,11 +228,11 @@
             "description": "<p>The component displays the biomarker details which includes the details, gradient legends, size legends and source lists</p>\n",
             "rawdescription": "\nThe component displays the biomarker details which includes the details, gradient legends, size legends and source lists",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTabsModule } from '@angular/material/tabs';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { ActiveFtuSelectors, IllustratorSelectors, ScreenModeAction, TissueLibrarySelectors } from '@hra-ui/state';\nimport {\n  EmptyBiomarkerComponent,\n  GradientLegendComponent,\n  GradientPoint,\n  LabelBoxComponent,\n  SizeLegend,\n  SizeLegendComponent,\n} from '@hra-ui/components/atoms';\nimport { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/components/molecules';\nimport { BiomarkerTableComponent, TissueInfo } from '@hra-ui/components/organisms';\nimport { CellSummarySelectors, ResourceIds as Ids, ResourceTypes as RTypes, SourceRefsSelectors } from '@hra-ui/state';\n\n/**\n * PlaceHolder for Empty Tissue Info\n */\nconst EMPTY_TISSUE_INFO: TissueInfo = {\n  id: '',\n  label: '',\n};\n\n/** The component displays the biomarker details which includes the details, gradient legends, size legends and source lists*/\n@Component({\n  selector: 'ftu-biomarker-details',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatIconModule,\n    MatTabsModule,\n\n    BiomarkerTableComponent,\n    BiomarkerTableDataCardComponent,\n    GradientLegendComponent,\n    HoverDirective,\n    LabelBoxComponent,\n    SizeLegendComponent,\n    SourceListComponent,\n    EmptyBiomarkerComponent,\n  ],\n  templateUrl: './biomarker-details.component.html',\n  styleUrls: ['./biomarker-details.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerDetailsComponent {\n  /** Table tabs */\n  readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);\n\n  /** Info to be shown on the tooltip for Gradient Legend */\n  readonly gradientHoverInfo = selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);\n\n  /** Info to be shown on the tooltip for Size Legend */\n  readonly sizeHoverInfo = selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo);\n\n  /** Indicates if the table is fully shown, defaults to false*/\n  isTableFullScreen = false;\n\n  /** Gradient colors along with their stop points */\n  readonly gradients = selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, 'points' as const, [])<\n    GradientPoint[]\n  >;\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  readonly sizes = selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>;\n\n  /** List of sources with titles and links displayed to the user */\n  readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);\n\n  /**\n   * Iri  of medical illustration behavior component\n   */\n  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);\n\n  /**\n   * Get all tissues\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n\n  /** Selects the cells hovered currently to highlight in table */\n  readonly selectedOnHovered = selectSnapshot(IllustratorSelectors.selectedOnHovered);\n\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueInfo(): TissueInfo {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    if (iri === undefined) {\n      return EMPTY_TISSUE_INFO;\n    }\n    const { id, label } = tissues[iri];\n    return { id, label };\n  }\n\n  /**\n   * button text of empty biomarker component.\n   */\n  readonly collaborateText = 'Collaborate with the HRA Team';\n\n  /**\n   * message markdown of empty biomarker component.\n   */\n  readonly message = `We currently do not have cell type data for this biomarker.\n  <br><br> Please contact us to discuss your dataset.`;\n\n  /** A dispatcher function to set the screen mode */\n  private readonly setScreenMode = dispatch(ScreenModeAction.Set);\n\n  /** A function that toggles isTableFullScreen and\n   * calls the setScreenMode function.\n   */\n  toggleFullscreen(): void {\n    this.isTableFullScreen = !this.isTableFullScreen;\n    this.setScreenMode(this.isTableFullScreen);\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject } from '@angular/core';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTabsModule } from '@angular/material/tabs';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { ActiveFtuSelectors, IllustratorSelectors, ScreenModeAction, TissueLibrarySelectors } from '@hra-ui/state';\nimport {\n  EmptyBiomarkerComponent,\n  GradientLegendComponent,\n  GradientPoint,\n  LabelBoxComponent,\n  SizeLegend,\n  SizeLegendComponent,\n} from '@hra-ui/components/atoms';\nimport { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/components/molecules';\nimport { BiomarkerTableComponent, TissueInfo } from '@hra-ui/components/organisms';\nimport { CellSummarySelectors, ResourceIds as Ids, ResourceTypes as RTypes, SourceRefsSelectors } from '@hra-ui/state';\nimport { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';\nimport { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';\n\n/**\n * PlaceHolder for Empty Tissue Info\n */\nconst EMPTY_TISSUE_INFO: TissueInfo = {\n  id: '',\n  label: '',\n};\n\n/** The component displays the biomarker details which includes the details, gradient legends, size legends and source lists*/\n@Component({\n  selector: 'ftu-biomarker-details',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatIconModule,\n    MatTabsModule,\n    MatDialogModule,\n    BiomarkerTableComponent,\n    BiomarkerTableDataCardComponent,\n    GradientLegendComponent,\n    HoverDirective,\n    LabelBoxComponent,\n    SizeLegendComponent,\n    SourceListComponent,\n    EmptyBiomarkerComponent,\n  ],\n  templateUrl: './biomarker-details.component.html',\n  styleUrls: ['./biomarker-details.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerDetailsComponent {\n  /** Table tabs */\n  readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);\n\n  /** Info to be shown on the tooltip for Gradient Legend */\n  readonly gradientHoverInfo = selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);\n\n  /** Info to be shown on the tooltip for Size Legend */\n  readonly sizeHoverInfo = selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo);\n\n  /** Indicates if the table is fully shown, defaults to false*/\n  isTableFullScreen = false;\n\n  /** Gradient colors along with their stop points */\n  readonly gradients = selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, 'points' as const, [])<\n    GradientPoint[]\n  >;\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  readonly sizes = selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>;\n\n  /** List of sources with titles and links displayed to the user */\n  readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);\n\n  /**\n   * Iri  of medical illustration behavior component\n   */\n  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);\n\n  /**\n   * Get all tissues\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n\n  /** Selects the cells hovered currently to highlight in table */\n  readonly selectedOnHovered = selectSnapshot(IllustratorSelectors.selectedOnHovered);\n\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueInfo(): TissueInfo {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    if (iri === undefined) {\n      return EMPTY_TISSUE_INFO;\n    }\n    const { id, label } = tissues[iri];\n    return { id, label };\n  }\n\n  /**\n   * button text of empty biomarker component.\n   */\n  readonly collaborateText = 'Collaborate with the HRA Team';\n\n  /**\n   * message markdown of empty biomarker component.\n   */\n  readonly message = `We currently do not have cell type data for this biomarker.\n  <br><br> Please contact us to discuss your dataset.`;\n\n  /** A dispatcher function to set the screen mode */\n  private readonly setScreenMode = dispatch(ScreenModeAction.Set);\n\n  /** A dialog box which shows contact modal after clicking on contact */\n  private readonly dialog = inject(MatDialog);\n\n  /** A function that toggles isTableFullScreen and\n   * calls the setScreenMode function.\n   */\n  toggleFullscreen(): void {\n    this.isTableFullScreen = !this.isTableFullScreen;\n    this.setScreenMode(this.isTableFullScreen);\n  }\n\n  /** A function which opens the contact modal dialog box */\n  collaborate(): void {\n    const dialogConfig = new MatDialogConfig();\n    dialogConfig.disableClose = true;\n    this.dialog.open(ContactBehaviorComponent, dialogConfig);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use 'variables' as vars;\n\n:host {\n  display: grid;\n  grid-template-columns: 1fr 1fr auto;\n  grid-template-rows: 3.5rem minmax(5rem, 2fr) 3rem 5rem minmax(5rem, 1fr);\n  grid-template-areas:\n    'table-header table-header table-header'\n    'table table table'\n    'gradient-legend-header size-legend-header .'\n    'gradient-legend size-legend .'\n    'source-list source-list source-list';\n  overflow-y: auto;\n\n  .table-header {\n    grid-area: table-header;\n    border-bottom: 0.063rem solid #d3d3d3;\n    height: 3.5rem;\n  }\n\n  .table {\n    grid-area: table;\n    max-width: 100%;\n    overflow: auto;\n\n    ::ng-deep .table-tab-header {\n      padding-left: 1rem;\n      padding-right: 1rem;\n      border-left: 0.063rem solid #d3d3d3;\n      border-bottom: 0.063rem solid #d3d3d3;\n\n      &:last-child {\n        border-right: 0.063rem solid #d3d3d3;\n      }\n\n      &.mdc-tab-indicator--active {\n        background-color: #f8f9fa;\n      }\n    }\n  }\n\n  .legend-header {\n    color: vars.$dark-primary-text;\n    border-top: 0.063rem solid #d3d3d3;\n    border-bottom: 0.063rem solid #d3d3d3;\n    border-right: 0.063rem solid #d3d3d3;\n\n    &.gradient {\n      grid-area: gradient-legend-header;\n    }\n\n    &.size {\n      grid-area: size-legend-header;\n    }\n\n    .icon {\n      margin-left: 0.6rem;\n    }\n  }\n\n  .legend {\n    padding: 1rem 2rem;\n    border-right: 0.063rem solid #d3d3d3;\n\n    &.gradient {\n      grid-area: gradient-legend;\n\n      .content {\n        width: 10rem;\n      }\n    }\n\n    &.size {\n      grid-area: size-legend;\n    }\n  }\n\n  .source-list {\n    grid-area: source-list;\n  }\n}\n\n::ng-deep .biomarker-details.info-tooltip {\n  display: flex;\n  padding: 1rem;\n  border: 1px solid #a8a3a3;\n  border-radius: 0.5rem;\n  box-shadow: 1px 2px 16px 2px #00000029;\n  background-color: vars.$primary-contrast-rgb;\n  max-width: 21rem;\n  font-size: small;\n}\n",
+                    "data": "@use 'variables' as vars;\n\n:host {\n  display: grid;\n  grid-template-columns: 1fr 1fr auto;\n  grid-template-rows: 3.5rem minmax(5rem, 2fr) 3rem 5rem minmax(5rem, 1fr);\n  grid-template-areas:\n    'table-header table-header table-header'\n    'table table table'\n    'gradient-legend-header size-legend-header .'\n    'gradient-legend size-legend .'\n    'source-list source-list source-list';\n  overflow-y: auto;\n\n  .table-header {\n    grid-area: table-header;\n    border-bottom: 0.063rem solid #d3d3d3;\n    height: 3.5rem;\n  }\n\n  .table {\n    grid-area: table;\n    max-width: 100%;\n    overflow: auto;\n    border-bottom: 0.063rem solid #d3d3d3;\n\n    ::ng-deep .table-tab-header {\n      padding-left: 1rem;\n      padding-right: 1rem;\n      border-left: 0.063rem solid #d3d3d3;\n      border-bottom: 0.063rem solid #d3d3d3;\n      background-color: white;\n\n      &:last-child {\n        border-right: 0.063rem solid #d3d3d3;\n      }\n\n      &.mdc-tab-indicator--active {\n        background-color: #f8f9fa;\n      }\n\n      &:hover {\n        background-color: #f8f9fa;\n      }\n    }\n  }\n\n  .legend-header {\n    color: vars.$dark-primary-text;\n    border-top: 0.063rem solid #d3d3d3;\n    border-bottom: 0.063rem solid #d3d3d3;\n    border-right: 0.063rem solid #d3d3d3;\n\n    &.gradient {\n      grid-area: gradient-legend-header;\n    }\n\n    &.size {\n      grid-area: size-legend-header;\n    }\n\n    .icon {\n      margin-left: 0.6rem;\n      width: unset;\n    }\n  }\n\n  .legend {\n    padding: 1rem 2rem;\n    border-right: 0.063rem solid #d3d3d3;\n\n    &.gradient {\n      grid-area: gradient-legend;\n\n      .content {\n        width: 10rem;\n      }\n    }\n\n    &.size {\n      grid-area: size-legend;\n    }\n  }\n\n  .source-list {\n    grid-area: source-list;\n  }\n\n  .cursor {\n    cursor: default;\n  }\n}\n\n::ng-deep .biomarker-details.info-tooltip {\n  display: flex;\n  padding: 1rem;\n  border: 1px solid #a8a3a3;\n  border-radius: 0.5rem;\n  box-shadow: 1px 2px 16px 2px #00000029;\n  background-color: vars.$primary-contrast-rgb;\n  max-width: 21rem;\n  font-size: small;\n  font-family: Inter;\n}\n",
                     "styleUrl": "./biomarker-details.component.scss"
                 }
             ],
@@ -232,17 +244,17 @@
                         "name": "tissueInfo",
                         "type": "",
                         "returnType": "TissueInfo",
-                        "line": 91,
+                        "line": 93,
                         "rawdescription": "\n\nGets tissue title from the list of tissues\n",
                         "description": "<p>Gets tissue title from the list of tissues</p>\n"
                     }
                 }
             },
-            "templateData": "<hra-label-box class=\"table-header\">\n  Cell Types by Gene Biomarkers\n  <mat-icon (click)=\"toggleFullscreen()\" class=\"end\">\n    {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}\n  </mat-icon>\n</hra-label-box>\n\n<mat-tab-group class=\"table\" [class.table-fullscreen]=\"isTableFullScreen\" mat-stretch-tabs=\"true\" color=\"accent\">\n  <mat-tab *ngFor=\"let tab of tabs()\" labelClass=\"table-tab-header\" [label]=\"tab.label\">\n    <hra-biomarker-table\n      *ngIf=\"tab.rows.length !== 0\"\n      [data]=\"$any(tab.rows)\"\n      [columns]=\"tab.columns\"\n      [gradient]=\"gradients()\"\n      [sizes]=\"sizes()\"\n      [tissueInfo]=\"tissueInfo\"\n      [hightlightedCellName]=\"selectedOnHovered()?.label ?? ''\"\n    ></hra-biomarker-table>\n    <hra-empty-biomarker\n      *ngIf=\"tab.rows.length === 0\"\n      [collaborateText]=\"collaborateText\"\n      [message]=\"message\"\n    ></hra-empty-biomarker>\n  </mat-tab>\n</mat-tab-group>\n\n<hra-label-box class=\"legend-header gradient\">\n  Biomarker Expression Mean in FTU\n  <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"gradientHoverInfo()\">info_outlined</mat-icon>\n</hra-label-box>\n<div class=\"legend gradient\">\n  <hra-gradient-legend [gradient]=\"gradients()\" class=\"content\"></hra-gradient-legend>\n</div>\n\n<hra-label-box class=\"legend-header size\">\n  Percentage of Cells in FTU\n  <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"sizeHoverInfo()\">info_outlined</mat-icon>\n</hra-label-box>\n<div class=\"legend size\">\n  <hra-size-legend [sizes]=\"sizes()\" class=\"content\"></hra-size-legend>\n</div>\n\n<div class=\"source-list\">\n  <hra-source-list [sources]=\"source()\" class=\"content\"></hra-source-list>\n</div>\n\n<ng-template #infoTooltip let-tooltip>\n  <div class=\"biomarker-details info-tooltip\">\n    {{ tooltip }}\n  </div>\n</ng-template>\n"
+            "templateData": "<hra-label-box class=\"table-header\">\n  Cell Types by Gene Biomarkers\n  <span (click)=\"toggleFullscreen()\" class=\"end material-symbols-outlined cursor\">\n    {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}\n  </span>\n</hra-label-box>\n\n<mat-tab-group class=\"table\" [class.table-fullscreen]=\"isTableFullScreen\" mat-stretch-tabs=\"true\" color=\"accent\">\n  <mat-tab *ngFor=\"let tab of tabs()\" labelClass=\"table-tab-header\" [label]=\"tab.label\">\n    <hra-biomarker-table\n      *ngIf=\"tab.rows.length !== 0\"\n      [data]=\"$any(tab.rows)\"\n      [columns]=\"tab.columns\"\n      [gradient]=\"gradients()\"\n      [sizes]=\"sizes()\"\n      [tissueInfo]=\"tissueInfo\"\n      [hightlightedCellName]=\"selectedOnHovered()?.label ?? ''\"\n    ></hra-biomarker-table>\n    <hra-empty-biomarker\n      *ngIf=\"tab.rows.length === 0\"\n      [collaborateText]=\"collaborateText\"\n      [message]=\"message\"\n      (collaborateClick)=\"collaborate()\"\n    ></hra-empty-biomarker>\n  </mat-tab>\n</mat-tab-group>\n\n<hra-label-box class=\"legend-header gradient\">\n  Biomarker Expression Mean in FTU\n  <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"gradientHoverInfo()\">info_outlined</mat-icon>\n</hra-label-box>\n<div class=\"legend gradient\">\n  <hra-gradient-legend [gradient]=\"gradients()\" class=\"content\"></hra-gradient-legend>\n</div>\n\n<hra-label-box class=\"legend-header size\">\n  Percentage of Cells in FTU\n  <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"sizeHoverInfo()\">info_outlined</mat-icon>\n</hra-label-box>\n<div class=\"legend size\">\n  <hra-size-legend [sizes]=\"sizes()\" class=\"content\"></hra-size-legend>\n</div>\n\n<div class=\"source-list\">\n  <hra-source-list\n    [collaborateText]=\"collaborateText\"\n    [message]=\"message\"\n    (collaborateClick)=\"collaborate()\"\n    [sources]=\"source()\"\n    class=\"content\"\n  ></hra-source-list>\n</div>\n\n<ng-template #infoTooltip let-tooltip>\n  <div class=\"biomarker-details info-tooltip\">\n    {{ tooltip }}\n  </div>\n</ng-template>\n"
         },
         {
             "name": "BiomarkerDetailsWcComponent",
-            "id": "component-BiomarkerDetailsWcComponent-23b281ecdbeccbab1f36b78fe9188e1016a565a0a462d735ad19f143e753278b009fd29b85a043d3e29f7d0f0e9b0529f3a5b724b0d8f08ca17a3d467c0be29f",
+            "id": "component-BiomarkerDetailsWcComponent-2a35b01614cd4a83a9546a33b9e03200b2f96e7d06e07e8803741ed0f77a8815075e35be5e35822c9fb46279ff45ee49dbbfc6fc96f328f11a42b7f9898a30ef",
             "file": "src/lib/biomarker-details-wc/biomarker-details-wc.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -270,7 +282,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "<p>button text of empty biomarker component.</p>\n",
-                    "line": 143,
+                    "line": 145,
                     "rawdescription": "\n\nbutton text of empty biomarker component.\n",
                     "modifierKind": [
                         144
@@ -284,7 +296,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Current illustration url</p>\n",
-                    "line": 69,
+                    "line": 71,
                     "rawdescription": "\n\nCurrent illustration url\n",
                     "modifierKind": [
                         144
@@ -298,7 +310,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Info to be shown on the tooltip for Gradient Legend</p>\n",
-                    "line": 109,
+                    "line": 111,
                     "rawdescription": "\nInfo to be shown on the tooltip for Gradient Legend",
                     "modifierKind": [
                         144
@@ -312,7 +324,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Gradient colors along with their stop points</p>\n",
-                    "line": 118,
+                    "line": 120,
                     "rawdescription": "\nGradient colors along with their stop points",
                     "modifierKind": [
                         144
@@ -326,7 +338,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Iri  of medical illustration behavior component</p>\n",
-                    "line": 79,
+                    "line": 81,
                     "rawdescription": "\n\nIri  of medical illustration behavior component\n",
                     "modifierKind": [
                         144
@@ -340,7 +352,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Indicates if the table is fully shown, defaults to false</p>\n",
-                    "line": 115,
+                    "line": 117,
                     "rawdescription": "\nIndicates if the table is fully shown, defaults to false"
                 },
                 {
@@ -351,7 +363,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Current mapping file</p>\n",
-                    "line": 74,
+                    "line": 76,
                     "rawdescription": "\n\nCurrent mapping file\n",
                     "modifierKind": [
                         144
@@ -365,7 +377,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>message markdown of empty biomarker component.</p>\n",
-                    "line": 148,
+                    "line": 150,
                     "rawdescription": "\n\nmessage markdown of empty biomarker component.\n",
                     "modifierKind": [
                         144
@@ -379,7 +391,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Info to be shown on the tooltip for Size Legend</p>\n",
-                    "line": 112,
+                    "line": 114,
                     "rawdescription": "\nInfo to be shown on the tooltip for Size Legend",
                     "modifierKind": [
                         144
@@ -393,7 +405,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Taking input for the radius of the circle and the label to be displayed.</p>\n",
-                    "line": 123,
+                    "line": 125,
                     "rawdescription": "\nTaking input for the radius of the circle and the label to be displayed.",
                     "modifierKind": [
                         144
@@ -407,7 +419,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>List of sources with titles and links displayed to the user</p>\n",
-                    "line": 126,
+                    "line": 128,
                     "rawdescription": "\nList of sources with titles and links displayed to the user",
                     "modifierKind": [
                         144
@@ -421,7 +433,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Table tabs</p>\n",
-                    "line": 106,
+                    "line": 108,
                     "rawdescription": "\nTable tabs",
                     "modifierKind": [
                         144
@@ -435,7 +447,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Get all tissues</p>\n",
-                    "line": 84,
+                    "line": 86,
                     "rawdescription": "\n\nGet all tissues\n",
                     "modifierKind": [
                         144
@@ -449,7 +461,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Updates the active node on node click</p>\n",
-                    "line": 103,
+                    "line": 105,
                     "rawdescription": "\n\nUpdates the active node on node click\n",
                     "modifierKind": [
                         144
@@ -463,7 +475,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Updates the active node on node hover</p>\n",
-                    "line": 98,
+                    "line": 100,
                     "rawdescription": "\n\nUpdates the active node on node hover\n",
                     "modifierKind": [
                         144
@@ -472,12 +484,24 @@
             ],
             "methodsClass": [
                 {
+                    "name": "collaborate",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 167,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nA function which opens the contact modal dialog box",
+                    "description": "<p>A function which opens the contact modal dialog box</p>\n"
+                },
+                {
                     "name": "toggleFullscreen",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 157,
+                    "line": 162,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nA function that toggles isTableFullScreen and\ncalls the setScreenMode function.\n",
@@ -491,7 +515,7 @@
             "description": "<p>Component for Biomarker Table Details Web component</p>\n",
             "rawdescription": "\nComponent for Biomarker Table Details Web component",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTabsModule } from '@angular/material/tabs';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { selectSnapshot, selectQuerySnapshot, dispatch } from '@hra-ui/cdk/injectors';\nimport {\n  GradientLegendComponent,\n  LabelBoxComponent,\n  SizeLegendComponent,\n  EmptyBiomarkerComponent,\n  GradientPoint,\n  SizeLegend,\n} from '@hra-ui/components/atoms';\nimport {\n  BiomarkerTableDataCardComponent,\n  InteractiveSvgComponent,\n  SourceListComponent,\n} from '@hra-ui/components/molecules';\nimport { TissueInfo, BiomarkerTableComponent } from '@hra-ui/components/organisms';\nimport {\n  ActiveFtuSelectors,\n  TissueLibrarySelectors,\n  ScreenModeAction,\n  IllustratorActions,\n  IllustratorSelectors,\n  CellSummarySelectors,\n  ResourceIds as Ids,\n  ResourceTypes as RTypes,\n  SourceRefsSelectors,\n} from '@hra-ui/state';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\n\n/**\n * PlaceHolder for Empty Tissue Info\n */\nconst EMPTY_TISSUE_INFO: TissueInfo = {\n  id: '',\n  label: '',\n};\n\n/** Component for Biomarker Table Details Web component */\n@Component({\n  selector: 'ftu-wc-biomarker-details',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatIconModule,\n    MatTabsModule,\n\n    BiomarkerTableComponent,\n    BiomarkerTableDataCardComponent,\n    GradientLegendComponent,\n    HoverDirective,\n    LabelBoxComponent,\n    SizeLegendComponent,\n    SourceListComponent,\n    EmptyBiomarkerComponent,\n    InteractiveSvgComponent,\n  ],\n  templateUrl: './biomarker-details-wc.component.html',\n  styleUrls: ['./biomarker-details-wc.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerDetailsWcComponent {\n  /**\n   * Current illustration url\n   */\n  readonly currentUrl = selectSnapshot(IllustratorSelectors.url);\n\n  /**\n   * Current mapping file\n   */\n  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);\n\n  /**\n   * Iri  of medical illustration behavior component\n   */\n  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);\n\n  /**\n   * Get all tissues\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueTitle(): string {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    return iri ? tissues[iri].label : '';\n  }\n\n  /**\n   * Updates the active node on node hover\n   */\n  readonly updateNodeOnHover = dispatch(IllustratorActions.SetHover);\n\n  /**\n   * Updates the active node on node click\n   */\n  readonly updateNodeOnClicked = dispatch(IllustratorActions.SetClicked);\n\n  /** Table tabs */\n  readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);\n\n  /** Info to be shown on the tooltip for Gradient Legend */\n  readonly gradientHoverInfo = selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);\n\n  /** Info to be shown on the tooltip for Size Legend */\n  readonly sizeHoverInfo = selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo);\n\n  /** Indicates if the table is fully shown, defaults to false*/\n  isTableFullScreen = false;\n\n  /** Gradient colors along with their stop points */\n  readonly gradients = selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, 'points' as const, [])<\n    GradientPoint[]\n  >;\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  readonly sizes = selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>;\n\n  /** List of sources with titles and links displayed to the user */\n  readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueInfo(): TissueInfo {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    if (iri === undefined) {\n      return EMPTY_TISSUE_INFO;\n    }\n    const { id, label } = tissues[iri];\n    return { id, label };\n  }\n\n  /**\n   * button text of empty biomarker component.\n   */\n  readonly collaborateText = 'Collaborate with the HRA Team';\n\n  /**\n   * message markdown of empty biomarker component.\n   */\n  readonly message = `We currently do not have cell type data for this biomarker.\n<br><br> Please contact us to discuss your dataset.`;\n\n  /** A dispatcher function to set the screen mode */\n  private readonly setScreenMode = dispatch(ScreenModeAction.Set);\n\n  /** A function that toggles isTableFullScreen and\n   * calls the setScreenMode function.\n   */\n  toggleFullscreen(): void {\n    this.isTableFullScreen = !this.isTableFullScreen;\n    this.setScreenMode(this.isTableFullScreen);\n  }\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, inject } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTabsModule } from '@angular/material/tabs';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { selectSnapshot, selectQuerySnapshot, dispatch } from '@hra-ui/cdk/injectors';\nimport {\n  GradientLegendComponent,\n  LabelBoxComponent,\n  SizeLegendComponent,\n  EmptyBiomarkerComponent,\n  GradientPoint,\n  SizeLegend,\n} from '@hra-ui/components/atoms';\nimport {\n  BiomarkerTableDataCardComponent,\n  InteractiveSvgComponent,\n  SourceListComponent,\n} from '@hra-ui/components/molecules';\nimport { TissueInfo, BiomarkerTableComponent } from '@hra-ui/components/organisms';\nimport {\n  ActiveFtuSelectors,\n  TissueLibrarySelectors,\n  ScreenModeAction,\n  IllustratorActions,\n  IllustratorSelectors,\n  CellSummarySelectors,\n  ResourceIds as Ids,\n  ResourceTypes as RTypes,\n  SourceRefsSelectors,\n} from '@hra-ui/state';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { MatDialog, MatDialogConfig } from '@angular/material/dialog';\nimport { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';\n\n/**\n * PlaceHolder for Empty Tissue Info\n */\nconst EMPTY_TISSUE_INFO: TissueInfo = {\n  id: '',\n  label: '',\n};\n\n/** Component for Biomarker Table Details Web component */\n@Component({\n  selector: 'ftu-wc-biomarker-details',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatIconModule,\n    MatTabsModule,\n\n    BiomarkerTableComponent,\n    BiomarkerTableDataCardComponent,\n    GradientLegendComponent,\n    HoverDirective,\n    LabelBoxComponent,\n    SizeLegendComponent,\n    SourceListComponent,\n    EmptyBiomarkerComponent,\n    InteractiveSvgComponent,\n  ],\n  templateUrl: './biomarker-details-wc.component.html',\n  styleUrls: ['./biomarker-details-wc.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerDetailsWcComponent {\n  /**\n   * Current illustration url\n   */\n  readonly currentUrl = selectSnapshot(IllustratorSelectors.url);\n\n  /**\n   * Current mapping file\n   */\n  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);\n\n  /**\n   * Iri  of medical illustration behavior component\n   */\n  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);\n\n  /**\n   * Get all tissues\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueTitle(): string {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    return iri ? tissues[iri].label : '';\n  }\n\n  /**\n   * Updates the active node on node hover\n   */\n  readonly updateNodeOnHover = dispatch(IllustratorActions.SetHover);\n\n  /**\n   * Updates the active node on node click\n   */\n  readonly updateNodeOnClicked = dispatch(IllustratorActions.SetClicked);\n\n  /** Table tabs */\n  readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);\n\n  /** Info to be shown on the tooltip for Gradient Legend */\n  readonly gradientHoverInfo = selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);\n\n  /** Info to be shown on the tooltip for Size Legend */\n  readonly sizeHoverInfo = selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo);\n\n  /** Indicates if the table is fully shown, defaults to false*/\n  isTableFullScreen = false;\n\n  /** Gradient colors along with their stop points */\n  readonly gradients = selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, 'points' as const, [])<\n    GradientPoint[]\n  >;\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  readonly sizes = selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>;\n\n  /** List of sources with titles and links displayed to the user */\n  readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueInfo(): TissueInfo {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    if (iri === undefined) {\n      return EMPTY_TISSUE_INFO;\n    }\n    const { id, label } = tissues[iri];\n    return { id, label };\n  }\n\n  /**\n   * button text of empty biomarker component.\n   */\n  readonly collaborateText = 'Collaborate with the HRA Team';\n\n  /**\n   * message markdown of empty biomarker component.\n   */\n  readonly message = `We currently do not have cell type data for this biomarker.\n<br><br> Please contact us to discuss your dataset.`;\n\n  /** A dispatcher function to set the screen mode */\n  private readonly setScreenMode = dispatch(ScreenModeAction.Set);\n\n  /** A dialog box which shows contact modal after clicking on contact */\n  private readonly dialog = inject(MatDialog);\n\n  /** A function that toggles isTableFullScreen and\n   * calls the setScreenMode function.\n   */\n  toggleFullscreen(): void {\n    this.isTableFullScreen = !this.isTableFullScreen;\n    this.setScreenMode(this.isTableFullScreen);\n  }\n  /** A function which opens the contact modal dialog box */\n  collaborate(): void {\n    const dialogConfig = new MatDialogConfig();\n    dialogConfig.disableClose = true;\n    this.dialog.open(ContactBehaviorComponent, dialogConfig);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -507,7 +531,7 @@
                         "name": "tissueTitle",
                         "type": "string",
                         "returnType": "string",
-                        "line": 89,
+                        "line": 91,
                         "rawdescription": "\n\nGets tissue title from the list of tissues\n",
                         "description": "<p>Gets tissue title from the list of tissues</p>\n"
                     }
@@ -518,13 +542,13 @@
                         "name": "tissueInfo",
                         "type": "",
                         "returnType": "TissueInfo",
-                        "line": 130,
+                        "line": 132,
                         "rawdescription": "\n\nGets tissue title from the list of tissues\n",
                         "description": "<p>Gets tissue title from the list of tissues</p>\n"
                     }
                 }
             },
-            "templateData": "<hra-label-box class=\"table-header\">\n  {{ tissueTitle }}: FTU Illustration\n  <mat-icon (click)=\"toggleFullscreen()\" class=\"end\">\n    {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}\n  </mat-icon>\n</hra-label-box>\n\n<mat-tab-group class=\"table\" [class.table-fullscreen]=\"isTableFullScreen\" mat-stretch-tabs=\"false\" color=\"accent\">\n  <mat-tab labelClass=\"extraTab\" label=\"FTU Illustration\">\n    <hra-interactive-svg\n      [url]=\"currentUrl()\"\n      [mapping]=\"mapping()\"\n      (nodeHover)=\"updateNodeOnHover($event)\"\n      (nodeClick)=\"updateNodeOnClicked($event)\"\n    >\n    </hra-interactive-svg>\n  </mat-tab>\n  <mat-tab *ngFor=\"let tab of tabs()\" labelClass=\"table-tab-header\" [label]=\"tab.label\">\n    <hra-biomarker-table\n      *ngIf=\"tab.rows.length !== 0\"\n      [data]=\"$any(tab.rows)\"\n      [columns]=\"tab.columns\"\n      [gradient]=\"gradients()\"\n      [sizes]=\"sizes()\"\n      [tissueInfo]=\"tissueInfo\"\n    ></hra-biomarker-table>\n\n    <div *ngIf=\"tab.rows.length !== 0\" class=\"legends\">\n      <div class=\"legends-left\">\n        <hra-label-box class=\"legend-header gradient\">\n          Biomarker Expression Mean in FTU\n          <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"gradientHoverInfo()\">info_outlined</mat-icon>\n        </hra-label-box>\n        <div class=\"legend gradient\">\n          <hra-gradient-legend [gradient]=\"gradients()\" class=\"content\"></hra-gradient-legend>\n        </div>\n      </div>\n\n      <div class=\"legends-right\">\n        <hra-label-box class=\"legend-header size\">\n          Percentage of Cells in FTU\n          <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"sizeHoverInfo()\">info_outlined</mat-icon>\n        </hra-label-box>\n        <div class=\"legend size\">\n          <hra-size-legend [sizes]=\"sizes()\" class=\"content\"></hra-size-legend>\n        </div>\n      </div>\n    </div>\n    <hra-empty-biomarker\n      *ngIf=\"tab.rows.length === 0\"\n      [collaborateText]=\"collaborateText\"\n      [message]=\"message\"\n    ></hra-empty-biomarker>\n  </mat-tab>\n  <mat-tab labelClass=\"extraTab\" label=\"Source Data\">\n    <div class=\"source-list\">\n      <hra-source-list [sources]=\"source()\" class=\"content\"></hra-source-list>\n    </div>\n\n    <ng-template #infoTooltip let-tooltip>\n      <div class=\"biomarker-details info-tooltip\">\n        {{ tooltip }}\n      </div>\n    </ng-template>\n  </mat-tab>\n</mat-tab-group>\n"
+            "templateData": "<hra-label-box class=\"table-header\">\n  {{ tissueTitle }}: FTU Illustration\n  <mat-icon (click)=\"toggleFullscreen()\" class=\"end\">\n    {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}\n  </mat-icon>\n</hra-label-box>\n\n<mat-tab-group class=\"table\" [class.table-fullscreen]=\"isTableFullScreen\" mat-stretch-tabs=\"false\" color=\"accent\">\n  <mat-tab labelClass=\"extraTab\" label=\"FTU Illustration\">\n    <hra-interactive-svg\n      [url]=\"currentUrl()\"\n      [mapping]=\"mapping()\"\n      (nodeHover)=\"updateNodeOnHover($event)\"\n      (nodeClick)=\"updateNodeOnClicked($event)\"\n    >\n    </hra-interactive-svg>\n  </mat-tab>\n  <mat-tab *ngFor=\"let tab of tabs()\" labelClass=\"table-tab-header\" [label]=\"tab.label\">\n    <hra-biomarker-table\n      *ngIf=\"tab.rows.length !== 0\"\n      [data]=\"$any(tab.rows)\"\n      [columns]=\"tab.columns\"\n      [gradient]=\"gradients()\"\n      [sizes]=\"sizes()\"\n      [tissueInfo]=\"tissueInfo\"\n    ></hra-biomarker-table>\n\n    <div *ngIf=\"tab.rows.length !== 0\" class=\"legends\">\n      <div class=\"legends-left\">\n        <hra-label-box class=\"legend-header gradient\">\n          Biomarker Expression Mean in FTU\n          <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"gradientHoverInfo()\">info_outlined</mat-icon>\n        </hra-label-box>\n        <div class=\"legend gradient\">\n          <hra-gradient-legend [gradient]=\"gradients()\" class=\"content\"></hra-gradient-legend>\n        </div>\n      </div>\n\n      <div class=\"legends-right\">\n        <hra-label-box class=\"legend-header size\">\n          Percentage of Cells in FTU\n          <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"sizeHoverInfo()\">info_outlined</mat-icon>\n        </hra-label-box>\n        <div class=\"legend size\">\n          <hra-size-legend [sizes]=\"sizes()\" class=\"content\"></hra-size-legend>\n        </div>\n      </div>\n    </div>\n    <hra-empty-biomarker\n      *ngIf=\"tab.rows.length === 0\"\n      [collaborateText]=\"collaborateText\"\n      [message]=\"message\"\n      (collaborateClick)=\"collaborate()\"\n    ></hra-empty-biomarker>\n  </mat-tab>\n  <mat-tab labelClass=\"extraTab\" label=\"Source Data\">\n    <div class=\"source-list\">\n      <hra-source-list\n        [collaborateText]=\"collaborateText\"\n        [message]=\"message\"\n        (collaborateClick)=\"collaborate()\"\n        [sources]=\"source()\"\n        class=\"content\"\n      ></hra-source-list>\n    </div>\n\n    <ng-template #infoTooltip let-tooltip>\n      <div class=\"biomarker-details info-tooltip\">\n        {{ tooltip }}\n      </div>\n    </ng-template>\n  </mat-tab>\n</mat-tab-group>\n"
         },
         {
             "name": "ContactBehaviorComponent",
@@ -1655,7 +1679,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: block;\n  overflow-y: auto;\n  .label {\n    border-bottom: 1px solid #e2e7e9;\n    width: 100%;\n    height: 3.5rem;\n  }\n}\n",
+                    "data": ":host {\n  display: block;\n  .label {\n    border-bottom: 1px solid #e2e7e9;\n    width: 100%;\n    height: 3.5rem;\n  }\n}\n",
                     "styleUrl": "./tissue-library-behavior.component.scss"
                 }
             ],

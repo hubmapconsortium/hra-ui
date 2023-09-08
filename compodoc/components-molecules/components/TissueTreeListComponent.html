@@ -910,7 +910,8 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
 
 :host {
   display: block;
-
+  max-height: calc(100% - 5rem);
+  overflow-y: auto;
   .row {
     min-height: 2rem;
     &amp;.child {
