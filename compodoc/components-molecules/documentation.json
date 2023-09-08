@@ -1077,7 +1077,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: block;\n  overflow-y: hidden;\n  transition: width 0.5s ease;\n  width: 50%;\n\n  &.fullscreen-on {\n    z-index: 100;\n    background: #f8f9fa;\n  }\n}\n",
+                    "data": ":host {\n  display: block;\n  overflow-y: hidden;\n\n  &.fullscreen-on {\n    z-index: 100;\n    background: #f8f9fa;\n  }\n}\n",
                     "styleUrl": "./fullscreen-content.component.scss"
                 }
             ],
