@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
-import { LabelBoxComponent } from '@hra-ui/components/atoms';
+import { EmptyBiomarkerComponent, LabelBoxComponent } from '@hra-ui/components/atoms';
 
 /** SourceListItem interface contains title and link to the dataset for the SourceList*/
 export interface SourceListItem {
@@ -20,7 +20,7 @@ export interface SourceListItem {
 @Component({
   selector: 'hra-source-list',
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatIconModule, LabelBoxComponent],
+  imports: [CommonModule, MatTableModule, MatIconModule, LabelBoxComponent, EmptyBiomarkerComponent],
   templateUrl: './source-list.component.html',
   styleUrls: ['./source-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,10 +29,22 @@ export class SourceListComponent {
   /** List of sources with titles and links displayed to the user */
   @Input() sources: SourceListItem[] = [];
   /**
+   * Input  buttonon text of empty biomarker component.
+   */
+  @Input() collaborateText = '';
+
+  /**
+   * Input  message markdown of empty biomarker component.
+   */
+  @Input() message = '';
+  /**
    * Show table of source list component which toggles to true or false
    * based on click
    */
   showTable = true;
+
+  /** Emits when the contact button is clicked */
+  @Output() readonly collaborateClick = new EventEmitter<void>();
 
   /**
    * It changes the value of showTable to false if value it true
