@@ -39,6 +39,15 @@
         background-color: #f8f9fa;
       }
     }
+
+    ::ng-deep .mdc-tab__text-label {
+      color: black !important;
+    }
+
+    ::ng-deep .mdc-tab-indicator__content--underline {
+      border-color: #990000 !important;
+      border-top-width: 4px !important;
+    }
   }
 
   .legend-header {
