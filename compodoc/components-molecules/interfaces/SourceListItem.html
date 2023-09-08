@@ -241,11 +241,11 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Input } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { MatTableModule } from &#x27;@angular/material/table&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
-import { LabelBoxComponent } from &#x27;@hra-ui/components/atoms&#x27;;
+import { EmptyBiomarkerComponent, LabelBoxComponent } from &#x27;@hra-ui/components/atoms&#x27;;
 
 /** SourceListItem interface contains title and link to the dataset for the SourceList*/
 export interface SourceListItem {
@@ -263,7 +263,7 @@ export interface SourceListItem {
 @Component({
   selector: &#x27;hra-source-list&#x27;,
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatIconModule, LabelBoxComponent],
+  imports: [CommonModule, MatTableModule, MatIconModule, LabelBoxComponent, EmptyBiomarkerComponent],
   templateUrl: &#x27;./source-list.component.html&#x27;,
   styleUrls: [&#x27;./source-list.component.scss&#x27;],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -272,10 +272,22 @@ export class SourceListComponent {
   /** List of sources with titles and links displayed to the user */
   @Input() sources: SourceListItem[] &#x3D; [];
   /**
+   * Input  buttonon text of empty biomarker component.
+   */
+  @Input() collaborateText &#x3D; &#x27;&#x27;;
+
+  /**
+   * Input  message markdown of empty biomarker component.
+   */
+  @Input() message &#x3D; &#x27;&#x27;;
+  /**
    * Show table of source list component which toggles to true or false
    * based on click
    */
   showTable &#x3D; true;
+
+  /** Emits when the contact button is clicked */
+  @Output() readonly collaborateClick &#x3D; new EventEmitter&lt;void&gt;();
 
   /**
    * It changes the value of showTable to false if value it true

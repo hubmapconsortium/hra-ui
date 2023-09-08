@@ -954,7 +954,8 @@ export class FtuDataImplService extends FtuDataService {
    */
   private constructCellSummaries(data: Cell_Summary[&#x27;@graph&#x27;]): CellSummary[] {
     const cellSummary: CellSummary[] &#x3D; [];
-
+    const defaultBiomarkerLables &#x3D; [&#x27;gene&#x27;, &#x27;protein&#x27;, &#x27;lipid&#x27;];
+    const biomarkersPresent &#x3D; new Set(data.map((summary) &#x3D;&gt; summary.biomarker_type.toLowerCase()));
     data.forEach((summaryGroup) &#x3D;&gt; {
       const cells &#x3D; summaryGroup.summary.map((entry) &#x3D;&gt; ({
         id: entry.cell_id as Iri,
@@ -978,18 +979,16 @@ export class FtuDataImplService extends FtuDataService {
         biomarkers,
         summaries,
       });
-      cellSummary.push({
-        label: &#x60;Protein Biomarkers&#x60;,
-        cells: [],
-        biomarkers: [],
-        summaries: [],
-      });
-      cellSummary.push({
-        label: &#x60;Lipid Biomarkers&#x60;,
-        cells: [],
-        biomarkers: [],
-        summaries: [],
-      });
+    });
+    defaultBiomarkerLables.forEach((defaultLabel) &#x3D;&gt; {
+      if (!biomarkersPresent.has(defaultLabel)) {
+        cellSummary.push({
+          label: &#x60;${capitalize(defaultLabel)} Biomarkers&#x60;,
+          cells: [],
+          biomarkers: [],
+          summaries: [],
+        });
+      }
     });
     return cellSummary;
   }
@@ -1003,7 +1002,7 @@ export class FtuDataImplService extends FtuDataService {
     const nodes: TissueLibrary[&#x27;nodes&#x27;] &#x3D; {};
     for (const { &#x27;@id&#x27;: id, label, organ_id, organ_label } of items) {
       const parentId &#x3D; (BASE_IRI + organ_id) as Iri;
-      nodes[parentId] ??&#x3D; { id: parentId, label: organ_label.toLowerCase(), parent: BASE_IRI, children: [] };
+      nodes[parentId] ??&#x3D; { id: parentId, label: organ_label, parent: BASE_IRI, children: [] };
       nodes[id] &#x3D; { id, label: label.toLowerCase(), parent: parentId, children: [], link: TISSUE_LINK };
       nodes[parentId]?.children.push(id);
     }
