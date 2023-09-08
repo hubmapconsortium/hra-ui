@@ -5,6 +5,8 @@
     button.mdc-button {
       font-weight: 700;
       font-size: 1rem;
+      letter-spacing: initial;
+      line-height: 1.5rem;
 
       &.mat-primary {
         background-color: vars.$primary-rgb;

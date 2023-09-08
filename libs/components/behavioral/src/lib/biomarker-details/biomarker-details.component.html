@@ -1,8 +1,8 @@
 <hra-label-box class="table-header">
   Cell Types by Gene Biomarkers
-  <mat-icon (click)="toggleFullscreen()" class="end">
+  <span (click)="toggleFullscreen()" class="end material-symbols-outlined cursor">
     {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}
-  </mat-icon>
+  </span>
 </hra-label-box>
 
 <mat-tab-group class="table" [class.table-fullscreen]="isTableFullScreen" mat-stretch-tabs="true" color="accent">
@@ -42,7 +42,13 @@
 </div>
 
 <div class="source-list">
-  <hra-source-list [sources]="source()" class="content"></hra-source-list>
+  <hra-source-list
+    [collaborateText]="collaborateText"
+    [message]="message"
+    (collaborateClick)="collaborate()"
+    [sources]="source()"
+    class="content"
+  ></hra-source-list>
 </div>
 
 <ng-template #infoTooltip let-tooltip>

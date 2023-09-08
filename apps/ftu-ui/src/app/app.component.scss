@@ -20,10 +20,12 @@
     border-right: 0.0625rem solid rgba(vars.$dark-dividers);
   }
 
-  .page-content {
+  .page-content::ng-deep {
     grid-area: content;
-    &:has(ftu-ftu-page) {
-      overflow-y: hidden;
+    overflow-y: hidden;
+    ftu-landing {
+      max-height: 100%;
+      overflow-y: auto;
     }
   }
 
