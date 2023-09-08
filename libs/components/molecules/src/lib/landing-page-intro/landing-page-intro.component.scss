@@ -38,4 +38,30 @@
       font-weight: 700;
     }
   }
+
+  .red-theme {
+    background-color: #990000;
+    border-color: #990000;
+    &:hover {
+      background-color: #990000;
+      border-color: #990000;
+
+      mat-icon {
+        transform: translateX(30%);
+        transition: 0.5s;
+      }
+    }
+
+    &:active,
+    &:focus,
+    &:focus:not(:hover) {
+      background-color: #990000;
+      border-color: #990000;
+
+      ::ng-deep .mat-mdc-focus-indicator {
+        background-color: #990000 !important;
+        border-color: #990000;
+      }
+    }
+  }
 }
