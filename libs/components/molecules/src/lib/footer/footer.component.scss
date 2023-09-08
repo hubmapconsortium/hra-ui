@@ -58,3 +58,9 @@
     background-color: #ffffff;
   }
 }
+::ng-deep .download-button {
+  .mdc-button__label {
+    display: flex;
+    gap: 0.5rem;
+  }
+}

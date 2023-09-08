@@ -124,7 +124,7 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
         .pipe(
           tap(() => {
             this.reloadDataSets();
-            this.reloadActiveFtu(changes['organIri'].currentValue);
+            this.reloadActiveFtu(changes['organIri']?.currentValue);
           })
         )
         .subscribe();
