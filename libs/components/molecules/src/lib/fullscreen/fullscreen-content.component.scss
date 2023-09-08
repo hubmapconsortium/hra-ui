@@ -3,8 +3,7 @@
   overflow-y: hidden;
 
   &.fullscreen-on {
-    position: absolute;
-    inset: 0;
     z-index: 100;
+    background: #f8f9fa;
   }
 }

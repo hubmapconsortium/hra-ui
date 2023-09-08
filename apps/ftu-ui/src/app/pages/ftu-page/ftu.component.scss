@@ -8,41 +8,39 @@
     height: calc(100% - 5rem - 1px);
 
     .illustration {
-      flex-grow: 1;
+      width: 50%;
     }
 
     .fullscreen-content-container {
       &,
       .illustration-details {
         height: 100%;
+        background-color: #f8f9fa;
       }
 
       .illustration-details {
         border-left: 0.063rem solid #d3d3d3;
       }
     }
-
-    & > :first-child {
-      width: 50%;
-    }
   }
 
-  .display {
-    display: none;
-  }
   .fullscreen-on::ng-deep {
     ftu-biomarker-details {
       grid-template-columns: 0.5fr 0.5fr 1fr;
+
       hra-source-list {
         width: unset !important;
+
         hra-label-box {
           width: auto;
         }
       }
     }
+
     hra-label-box.table-header {
       width: auto;
     }
+
     hra-biomarker-table {
       max-width: none;
     }

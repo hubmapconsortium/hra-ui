@@ -20,6 +20,7 @@
       *ngIf="tab.rows.length === 0"
       [collaborateText]="collaborateText"
       [message]="message"
+      (collaborateClick)="collaborate()"
     ></hra-empty-biomarker>
   </mat-tab>
 </mat-tab-group>
