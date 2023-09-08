@@ -45,7 +45,6 @@
       &:hover {
         background-color: #f8f9fa;
       }
-
       .mat-tab__text-label {
         --palette-accent-500-rgb: #243142;
       }
@@ -101,6 +100,10 @@
   .source-list {
     grid-area: source-list;
   }
+
+  .cursor {
+    cursor: default;
+  }
 }
 
 ::ng-deep .biomarker-details.info-tooltip {
@@ -112,4 +115,5 @@
   background-color: vars.$primary-contrast-rgb;
   max-width: 21rem;
   font-size: small;
+  font-family: Inter;
 }

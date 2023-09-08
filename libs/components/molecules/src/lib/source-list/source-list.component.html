@@ -6,7 +6,7 @@
 </hra-label-box>
 
 <div class="table-content" [class.hidden]="!showTable">
-  <table mat-table [dataSource]="sources">
+  <table *ngIf="sources.length !== 0" mat-table [dataSource]="sources">
     <caption class="sr-only">
       Source List Table with Title and Links
     </caption>
@@ -29,4 +29,10 @@
 
     <tr mat-row *matRowDef="let row; columns: ['link', 'title']"></tr>
   </table>
+  <hra-empty-biomarker
+    *ngIf="sources.length === 0"
+    [collaborateText]="collaborateText"
+    [message]="message"
+    (collaborateClick)="collaborateClick.emit()"
+  ></hra-empty-biomarker>
 </div>
