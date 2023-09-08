@@ -49,10 +49,12 @@
 
     &.gradient {
       grid-area: gradient-legend-header;
+      font-size: 0.75rem;
     }
 
     &.size {
       grid-area: size-legend-header;
+      font-size: 0.75rem;
     }
 
     .icon {
