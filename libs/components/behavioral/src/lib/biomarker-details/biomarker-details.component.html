@@ -42,7 +42,13 @@
 </div>
 
 <div class="source-list">
-  <hra-source-list [sources]="source()" class="content"></hra-source-list>
+  <hra-source-list
+    [collaborateText]="collaborateText"
+    [message]="message"
+    (collaborateClick)="collaborate()"
+    [sources]="source()"
+    class="content"
+  ></hra-source-list>
 </div>
 
 <ng-template #infoTooltip let-tooltip>

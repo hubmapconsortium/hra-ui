@@ -2,7 +2,8 @@
 
 :host {
   display: block;
-
+  max-height: calc(100% - 5rem);
+  overflow-y: auto;
   .row {
     min-height: 2rem;
     &.child {

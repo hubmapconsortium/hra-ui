@@ -50,11 +50,18 @@
       *ngIf="tab.rows.length === 0"
       [collaborateText]="collaborateText"
       [message]="message"
+      (collaborateClick)="collaborate()"
     ></hra-empty-biomarker>
   </mat-tab>
   <mat-tab labelClass="extraTab" label="Source Data">
     <div class="source-list">
-      <hra-source-list [sources]="source()" class="content"></hra-source-list>
+      <hra-source-list
+        [collaborateText]="collaborateText"
+        [message]="message"
+        (collaborateClick)="collaborate()"
+        [sources]="source()"
+        class="content"
+      ></hra-source-list>
     </div>
 
     <ng-template #infoTooltip let-tooltip>

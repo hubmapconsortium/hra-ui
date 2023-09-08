@@ -335,7 +335,8 @@ export class FtuDataImplService extends FtuDataService {
    */
   private constructCellSummaries(data: Cell_Summary['@graph']): CellSummary[] {
     const cellSummary: CellSummary[] = [];
-
+    const defaultBiomarkerLables = ['gene', 'protein', 'lipid'];
+    const biomarkersPresent = new Set(data.map((summary) => summary.biomarker_type.toLowerCase()));
     data.forEach((summaryGroup) => {
       const cells = summaryGroup.summary.map((entry) => ({
         id: entry.cell_id as Iri,
@@ -359,18 +360,16 @@ export class FtuDataImplService extends FtuDataService {
         biomarkers,
         summaries,
       });
-      cellSummary.push({
-        label: `Protein Biomarkers`,
-        cells: [],
-        biomarkers: [],
-        summaries: [],
-      });
-      cellSummary.push({
-        label: `Lipid Biomarkers`,
-        cells: [],
-        biomarkers: [],
-        summaries: [],
-      });
+    });
+    defaultBiomarkerLables.forEach((defaultLabel) => {
+      if (!biomarkersPresent.has(defaultLabel)) {
+        cellSummary.push({
+          label: `${capitalize(defaultLabel)} Biomarkers`,
+          cells: [],
+          biomarkers: [],
+          summaries: [],
+        });
+      }
     });
     return cellSummary;
   }
@@ -384,7 +383,7 @@ export class FtuDataImplService extends FtuDataService {
     const nodes: TissueLibrary['nodes'] = {};
     for (const { '@id': id, label, organ_id, organ_label } of items) {
       const parentId = (BASE_IRI + organ_id) as Iri;
-      nodes[parentId] ??= { id: parentId, label: organ_label.toLowerCase(), parent: BASE_IRI, children: [] };
+      nodes[parentId] ??= { id: parentId, label: organ_label, parent: BASE_IRI, children: [] };
       nodes[id] = { id, label: label.toLowerCase(), parent: parentId, children: [], link: TISSUE_LINK };
       nodes[parentId]?.children.push(id);
     }
