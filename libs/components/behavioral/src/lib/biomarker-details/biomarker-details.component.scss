@@ -81,6 +81,10 @@
   .source-list {
     grid-area: source-list;
   }
+
+  .cursor {
+    cursor: default;
+  }
 }
 
 ::ng-deep .biomarker-details.info-tooltip {
@@ -92,4 +96,5 @@
   background-color: vars.$primary-contrast-rgb;
   max-width: 21rem;
   font-size: small;
+  font-family: Inter;
 }
