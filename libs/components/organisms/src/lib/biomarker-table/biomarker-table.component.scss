@@ -3,7 +3,6 @@
 
 :host {
   display: block;
-  max-width: 43rem;
 
   .sr-only {
     @include utils.sr-only();
@@ -13,7 +12,10 @@
     margin-left: -1px;
 
     .highlight {
-      background-color: gold;
+      background-color: #f8f9fa;
+    }
+    td.type {
+      text-transform: lowercase;
     }
   }
 
@@ -48,6 +50,7 @@
 
   tr > th:last-of-type {
     border-right: 0.063rem solid #d3d3d3;
+    border-left: solid #d3d3d3 1px;
   }
 
   .type {
@@ -62,6 +65,10 @@
     text-align: right;
     height: 3rem;
     min-width: 6.5rem;
+  }
+
+  .count:not(:first-child) {
+    border-left: solid #d3d3d3 1px;
   }
 
   .icon-header {
