@@ -1001,7 +1001,7 @@
         },
         {
             "name": "FullscreenContentComponent",
-            "id": "component-FullscreenContentComponent-6710fc01baaf0574ecee8c1610a0f285865856eb963b364d086ef5d9528a4680bd78469b881201a033e582734f9ab5cabb16aeef9e5e00bd2679e67b73a067d9",
+            "id": "component-FullscreenContentComponent-061cdd7c639f9c53e46272aaf23ed318885fbcf937978d8940b0f0baf165576129c5897204992603662d7b530bcd8d63a7d7a97602a18e97b7f1711f84c4725f",
             "file": "src/lib/fullscreen/fullscreen-content.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1028,12 +1028,16 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>This binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true</p>\n",
-                    "line": 15,
+                    "line": 40,
                     "rawdescription": "\nThis binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true",
                     "decorators": [
                         {
                             "name": "HostBinding",
                             "stringifiedArguments": "'class.fullscreen-on'"
+                        },
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'@animateResize'"
                         }
                     ]
                 }
@@ -1043,13 +1047,24 @@
             "deprecationMessage": "",
             "hostBindings": [
                 {
+                    "name": "@animateResize",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nThis binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true",
+                    "description": "<p>This binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true</p>\n",
+                    "line": 40,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
                     "name": "class.fullscreen-on",
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nThis binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true",
                     "description": "<p>This binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true</p>\n",
-                    "line": 15,
+                    "line": 40,
                     "type": "boolean",
                     "decorators": []
                 }
@@ -1058,11 +1073,11 @@
             "description": "<p>A component that displays its content in fullscreen mode when its isFullScreen property is set to true</p>\n",
             "rawdescription": "\nA component that displays its content in fullscreen mode when its isFullScreen property is set to true",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/** A component that displays its content in fullscreen mode when its isFullScreen property is set to true */\n@Component({\n  selector: 'hra-fullscreen-content',\n  standalone: true,\n  imports: [CommonModule],\n  template: '<ng-content></ng-content>',\n  styleUrls: ['./fullscreen-content.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FullscreenContentComponent {\n  /** This binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true */\n  @HostBinding('class.fullscreen-on') isFullScreen = false;\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { animate, state, style, transition, trigger } from '@angular/animations';\n\n/** A component that displays its content in fullscreen mode when its isFullScreen property is set to true */\n@Component({\n  selector: 'hra-fullscreen-content',\n  standalone: true,\n  imports: [CommonModule],\n  animations: [\n    trigger('animateResize', [\n      state(\n        'true',\n        style({\n          width: '100%',\n          position: 'absolute',\n          right: 0,\n        })\n      ),\n      state(\n        'false',\n        style({\n          width: '50%',\n          position: 'absolute',\n          right: 0,\n        })\n      ),\n      transition('true <=> false', [animate('0.5s ease')]),\n    ]),\n  ],\n  template: '<ng-content></ng-content>',\n  styleUrls: ['./fullscreen-content.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FullscreenContentComponent {\n  /** This binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true */\n  @HostBinding('class.fullscreen-on')\n  /** This binds the isFullScreen property to the @animateResize when isFullScreen is true */\n  @HostBinding('@animateResize')\n  isFullScreen = false;\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: block;\n  overflow-y: hidden;\n\n  &.fullscreen-on {\n    position: absolute;\n    inset: 0;\n    z-index: 100;\n  }\n}\n",
+                    "data": ":host {\n  display: block;\n  overflow-y: hidden;\n\n  &.fullscreen-on {\n    z-index: 100;\n    background: #f8f9fa;\n  }\n}\n",
                     "styleUrl": "./fullscreen-content.component.scss"
                 }
             ],
