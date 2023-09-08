@@ -10,7 +10,6 @@ import { MatSortModule } from '@angular/material/sort';
   declarations: [DownloadFtuComponent],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     ChooseVersionModule,
     MatTableModule,
     MatSortModule,
