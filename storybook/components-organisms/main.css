@@ -6248,6 +6248,8 @@ textarea.cdk-textarea-autosize-measuring-firefox {
 button.mdc-button {
   font-weight: 700;
   font-size: 1rem;
+  letter-spacing: initial;
+  line-height: 1.5rem;
 }
 button.mdc-button.mat-primary {
   background-color: var(--palette-primary-500-rgb);
