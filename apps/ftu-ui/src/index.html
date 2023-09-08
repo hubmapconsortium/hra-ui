@@ -13,6 +13,19 @@
     />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const ftu = document.getElementById('ftu');
+        const selectOrgan = (activeIri) => {
+          console.log('selected organ', activeIri);
+        };
+        const selectNode = (selectedNode) => {
+          console.log('selected node', selectedNode);
+        };
+        ftu.addEventListener('organSelected', selectOrgan);
+        ftu.addEventListener('nodeClicked', selectNode);
+      });
+    </script>
   </head>
 
   <body>
