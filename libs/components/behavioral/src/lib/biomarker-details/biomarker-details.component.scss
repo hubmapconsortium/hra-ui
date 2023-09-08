@@ -16,6 +16,7 @@
     grid-area: table-header;
     border-bottom: 0.063rem solid #d3d3d3;
     height: 3.5rem;
+    font-weight: 400;
   }
 
   .table {
@@ -30,6 +31,8 @@
       border-left: 0.063rem solid #d3d3d3;
       border-bottom: 0.063rem solid #d3d3d3;
       background-color: white;
+      font-weight: 400;
+      letter-spacing: 0;
 
       &:last-child {
         border-right: 0.063rem solid #d3d3d3;
@@ -42,6 +45,18 @@
       &:hover {
         background-color: #f8f9fa;
       }
+      .mat-tab__text-label {
+        --palette-accent-500-rgb: #243142;
+      }
+    }
+  }
+
+  ::ng-deep {
+    .table-tab-header > .mdc-tab__content > span {
+      color: vars.$primary;
+    }
+    .mat-mdc-tab-group.mat-accent .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
+      color: vars.$primary;
     }
   }
 
