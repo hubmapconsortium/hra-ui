@@ -731,7 +731,7 @@ export class FooterComponent&lt;T extends DownloadFormat &#x3D; DownloadFormat&g
 &lt;/button&gt;
 
 &lt;button
-  class&#x3D;&quot;button&quot;
+  class&#x3D;&quot;button download-button&quot;
   mat-stroked-button
   color&#x3D;&quot;accent&quot;
   (click)&#x3D;&quot;downloadListOpen &#x3D; !downloadListOpen&quot;
@@ -739,7 +739,7 @@ export class FooterComponent&lt;T extends DownloadFormat &#x3D; DownloadFormat&g
   cdkOverlayOrigin
   #anchor&#x3D;&quot;cdkOverlayOrigin&quot;
 &gt;
-  &lt;mat-icon&gt;download&lt;/mat-icon&gt;
+  &lt;span class&#x3D;&quot;material-symbols-outlined&quot;&gt; download &lt;/span&gt;
   Download
 &lt;/button&gt;
 
@@ -848,6 +848,12 @@ export class FooterComponent&lt;T extends DownloadFormat &#x3D; DownloadFormat&g
     background-color: #ffffff;
   }
 }
+::ng-deep .download-button {
+  .mdc-button__label {
+    display: flex;
+    gap: 0.5rem;
+  }
+}
 </code></pre>
     </div>
 
@@ -876,7 +882,7 @@ export class FooterComponent&lt;T extends DownloadFormat &#x3D; DownloadFormat&g
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div *ngIf="isSmall">  <a class="product-logo-link">    <img class="product-logo-image" [src]="productLogoUrl" alt="Prodoct Logo" />    <div class="product-title">{{ productTitle }}</div>  </a></div><div class="filler" *ngIf="isSmall"></div><button class="button" mat-stroked-button color="accent" [hraLink]="illustrationMetadata">  <mat-icon>info_outlined</mat-icon>  Illustration</button><button  class="button"  mat-stroked-button  color="accent"  (click)="downloadListOpen = !downloadListOpen"  type="button"  cdkOverlayOrigin  #anchor="cdkOverlayOrigin">  <mat-icon>download</mat-icon>  Download</button><button class="button" mat-stroked-button color="accent" [hraLink]="embed">  <mat-icon>code</mat-icon>  Embed</button><div class="filler" *ngIf="!isSmall"></div><button class="button" mat-stroked-button color="accent" (click)="contactClick.emit()">  <mat-icon>mail_outlined</mat-icon>  Contact</button><button class="button" mat-stroked-button color="accent" [hraLink]="hraPortal">  <mat-icon>open_in_new</mat-icon>  HRA Portal</button><ng-template  cdkConnectedOverlay  [cdkConnectedOverlayOrigin]="anchor"  [cdkConnectedOverlayOpen]="downloadListOpen"  [cdkConnectedOverlayPositions]="DOWNLOADS_LIST_POSITION"  [cdkConnectedOverlayOffsetX]="0"  cdkConnectedOverlayHasBackdrop="false"  cdkConnectedOverlayPush="false"  cdkConnectedOverlayPanelClass="download-options-panel"  (overlayOutsideClick)="downloadListOpen = false">  <mat-action-list>    <button      mat-list-item      *ngFor="let format of downloadFormats"      (click)="downloadListOpen = false; download.emit(format)"    >      {{ format.label }}    </button>  </mat-action-list></ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><div *ngIf="isSmall">  <a class="product-logo-link">    <img class="product-logo-image" [src]="productLogoUrl" alt="Prodoct Logo" />    <div class="product-title">{{ productTitle }}</div>  </a></div><div class="filler" *ngIf="isSmall"></div><button class="button" mat-stroked-button color="accent" [hraLink]="illustrationMetadata">  <mat-icon>info_outlined</mat-icon>  Illustration</button><button  class="button download-button"  mat-stroked-button  color="accent"  (click)="downloadListOpen = !downloadListOpen"  type="button"  cdkOverlayOrigin  #anchor="cdkOverlayOrigin">  <span class="material-symbols-outlined"> download </span>  Download</button><button class="button" mat-stroked-button color="accent" [hraLink]="embed">  <mat-icon>code</mat-icon>  Embed</button><div class="filler" *ngIf="!isSmall"></div><button class="button" mat-stroked-button color="accent" (click)="contactClick.emit()">  <mat-icon>mail_outlined</mat-icon>  Contact</button><button class="button" mat-stroked-button color="accent" [hraLink]="hraPortal">  <mat-icon>open_in_new</mat-icon>  HRA Portal</button><ng-template  cdkConnectedOverlay  [cdkConnectedOverlayOrigin]="anchor"  [cdkConnectedOverlayOpen]="downloadListOpen"  [cdkConnectedOverlayPositions]="DOWNLOADS_LIST_POSITION"  [cdkConnectedOverlayOffsetX]="0"  cdkConnectedOverlayHasBackdrop="false"  cdkConnectedOverlayPush="false"  cdkConnectedOverlayPanelClass="download-options-panel"  (overlayOutsideClick)="downloadListOpen = false">  <mat-action-list>    <button      mat-list-item      *ngFor="let format of downloadFormats"      (click)="downloadListOpen = false; download.emit(format)"    >      {{ format.label }}    </button>  </mat-action-list></ng-template></div>'
     var COMPONENTS = [{'name': 'BiomarkerTableDataCardComponent', 'selector': 'hra-biomarker-table-data-card'},{'name': 'BiomarkerTableDataIconComponent', 'selector': 'hra-biomarker-table-data-icon'},{'name': 'ContactModalComponent', 'selector': 'hra-contact-modal'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenContainerComponent', 'selector': 'hra-fullscreen-container'},{'name': 'FullscreenContentComponent', 'selector': 'hra-fullscreen-content'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'HraLandingPageIntroWcComponent', 'selector': 'hra-ui-hra-landing-page-intro-wc'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InteractiveSvgComponent', 'selector': 'hra-interactive-svg'},{'name': 'LandingPageInDepthComponent', 'selector': 'hra-landing-page-in-depth'},{'name': 'LandingPageIntroComponent', 'selector': 'hra-landing-page-intro'},{'name': 'MetricsComponent', 'selector': 'hra-metrics'},{'name': 'ScreenSizeNoticeComponent', 'selector': 'hra-screen-size-notice'},{'name': 'SourceListComponent', 'selector': 'hra-source-list'},{'name': 'TissueTreeListComponent', 'selector': 'hra-tissue-tree-list'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'FooterComponent'};
