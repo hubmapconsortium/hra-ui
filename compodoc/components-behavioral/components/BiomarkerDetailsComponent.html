@@ -1023,6 +1023,15 @@ export class BiomarkerDetailsComponent {
     .mat-mdc-tab-group.mat-accent .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
       color: vars.$primary;
     }
+
+    ::ng-deep .mdc-tab__text-label {
+      color: black !important;
+    }
+
+    ::ng-deep .mdc-tab-indicator__content--underline {
+      border-color: #990000 !important;
+      border-top-width: 4px !important;
+    }
   }
 
   .legend-header {
@@ -1033,10 +1042,12 @@ export class BiomarkerDetailsComponent {
 
     &amp;.gradient {
       grid-area: gradient-legend-header;
+      font-size: 0.75rem;
     }
 
     &amp;.size {
       grid-area: size-legend-header;
+      font-size: 0.75rem;
     }
 
     .icon {
