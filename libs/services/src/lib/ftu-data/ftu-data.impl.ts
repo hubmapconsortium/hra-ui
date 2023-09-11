@@ -383,8 +383,8 @@ export class FtuDataImplService extends FtuDataService {
     const nodes: TissueLibrary['nodes'] = {};
     for (const { '@id': id, label, organ_id, organ_label } of items) {
       const parentId = (BASE_IRI + organ_id) as Iri;
-      nodes[parentId] ??= { id: parentId, label: organ_label, parent: BASE_IRI, children: [] };
-      nodes[id] = { id, label: label.toLowerCase(), parent: parentId, children: [], link: TISSUE_LINK };
+      nodes[parentId] ??= { id: parentId, label: capitalize(organ_label), parent: BASE_IRI, children: [] };
+      nodes[id] = { id, label: label, parent: parentId, children: [], link: TISSUE_LINK };
       nodes[parentId]?.children.push(id);
     }
     return { root: BASE_IRI, nodes };
