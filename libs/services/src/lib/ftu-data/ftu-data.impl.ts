@@ -124,6 +124,7 @@ function capitalize(str: string): string {
   return str.slice(0, 1).toUpperCase() + str.slice(1);
 }
 
+/** Converts case to title case for organ name */
 function titleCase(name: string) {
   return name
     .split(' ')
