@@ -475,8 +475,8 @@ export class LandingPageIntroComponent {
     background-color: #990000;
     border-color: #990000;
     &amp;:hover {
-      background-color: #990000;
-      border-color: #990000;
+      background-color: #800000;
+      border-color: #800000;
 
       mat-icon {
         transform: translateX(30%);
@@ -485,8 +485,7 @@ export class LandingPageIntroComponent {
     }
 
     &amp;:active,
-    &amp;:focus,
-    &amp;:focus:not(:hover) {
+    &amp;:focus {
       background-color: #990000;
       border-color: #990000;
 
@@ -494,6 +493,21 @@ export class LandingPageIntroComponent {
         background-color: #990000 !important;
         border-color: #990000;
       }
+    }
+
+    &amp;:active {
+      background-color: #ffffff;
+      color: #990000;
+
+      ::ng-deep .mat-mdc-focus-indicator {
+        background-color: #ffffff !important;
+        border: 2px solid;
+      }
+    }
+
+    &amp;:disabled {
+      background-color: #ffd6db;
+      border: 1px solid #ffd6db;
     }
   }
 }

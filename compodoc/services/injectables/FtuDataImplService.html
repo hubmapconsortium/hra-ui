@@ -161,7 +161,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:182</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:190</a></code>
 </div>
                 </td>
             </tr>
@@ -246,7 +246,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:194</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:202</a></code>
 </div>
                 </td>
             </tr>
@@ -331,7 +331,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:170</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:178</a></code>
 </div>
                 </td>
             </tr>
@@ -416,7 +416,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:161</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:169</a></code>
 </div>
                 </td>
             </tr>
@@ -501,7 +501,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:206</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:214</a></code>
 </div>
                 </td>
             </tr>
@@ -586,7 +586,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:150</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:158</a></code>
 </div>
                 </td>
             </tr>
@@ -741,6 +741,14 @@ const BASE_IRI &#x3D; &#x27;https://purl.humanatlas.io/2d-ftu/&#x27; as Iri;
 /** Capitalizes the first character */
 function capitalize(str: string): string {
   return str.slice(0, 1).toUpperCase() + str.slice(1);
+}
+
+/** Converts case to title case for organ name */
+function titleCase(name: string) {
+  return name
+    .split(&#x27; &#x27;)
+    .map((l: string) &#x3D;&gt; l[0].toUpperCase() + l.slice(1))
+    .join(&#x27; &#x27;);
 }
 
 /**
@@ -1002,8 +1010,8 @@ export class FtuDataImplService extends FtuDataService {
     const nodes: TissueLibrary[&#x27;nodes&#x27;] &#x3D; {};
     for (const { &#x27;@id&#x27;: id, label, organ_id, organ_label } of items) {
       const parentId &#x3D; (BASE_IRI + organ_id) as Iri;
-      nodes[parentId] ??&#x3D; { id: parentId, label: organ_label, parent: BASE_IRI, children: [] };
-      nodes[id] &#x3D; { id, label: label.toLowerCase(), parent: parentId, children: [], link: TISSUE_LINK };
+      nodes[parentId] ??&#x3D; { id: parentId, label: titleCase(organ_label), parent: BASE_IRI, children: [] };
+      nodes[id] &#x3D; { id, label: label, parent: parentId, children: [], link: TISSUE_LINK };
       nodes[parentId]?.children.push(id);
     }
     return { root: BASE_IRI, nodes };

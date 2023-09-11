@@ -1166,6 +1166,29 @@ export class BiomarkerDetailsWcComponent {
   ::ng-deep .extraTab {
     border: 0.063rem solid #d3d3d3;
     border-top: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-left: 0.063rem solid #d3d3d3;
+    border-bottom: 0.063rem solid #d3d3d3;
+    background-color: white;
+    font-weight: 400;
+    letter-spacing: 0;
+    font-family: &#x27;Inter&#x27;;
+
+    &amp;:last-child {
+      border-right: 0.063rem solid #d3d3d3;
+    }
+
+    &amp;.mdc-tab-indicator--active {
+      background-color: #f8f9fa;
+    }
+
+    &amp;:hover {
+      background-color: #f8f9fa;
+    }
+    .mat-tab__text-label {
+      --palette-accent-500-rgb: #243142;
+    }
   }
 
   .table-header {
@@ -1186,6 +1209,9 @@ export class BiomarkerDetailsWcComponent {
       padding-right: 1rem;
       border-left: 0.063rem solid #d3d3d3;
       border-bottom: 0.063rem solid #d3d3d3;
+      background-color: white;
+      font-weight: 400;
+      letter-spacing: 0;
 
       &amp;:last-child {
         border-right: 0.063rem solid #d3d3d3;
@@ -1193,6 +1219,13 @@ export class BiomarkerDetailsWcComponent {
 
       &amp;.mdc-tab-indicator--active {
         background-color: #f8f9fa;
+      }
+
+      &amp;:hover {
+        background-color: #f8f9fa;
+      }
+      .mat-tab__text-label {
+        --palette-accent-500-rgb: #243142;
       }
     }
   }
@@ -1237,7 +1270,8 @@ export class BiomarkerDetailsWcComponent {
     border-right: 0.063rem solid #d3d3d3;
 
     &amp;.gradient {
-      grid-area: gradient-legend;
+      grid-area: gradient-legend-header;
+      font-size: 0.75rem;
 
       .content {
         width: 10rem;
@@ -1245,7 +1279,13 @@ export class BiomarkerDetailsWcComponent {
     }
 
     &amp;.size {
-      grid-area: size-legend;
+      grid-area: size-legend-header;
+      font-size: 0.75rem;
+    }
+
+    .icon {
+      margin-left: 0.6rem;
+      width: unset;
     }
   }
 
@@ -1255,6 +1295,9 @@ export class BiomarkerDetailsWcComponent {
     .content {
       width: min-content;
     }
+  }
+  .cursor {
+    cursor: default;
   }
 }
 
@@ -1267,6 +1310,31 @@ export class BiomarkerDetailsWcComponent {
   background-color: vars.$primary-contrast-rgb;
   max-width: 21rem;
   font-size: small;
+  font-family: Inter;
+}
+
+::ng-deep {
+  .table-tab-header &gt; .mdc-tab__content &gt; span {
+    color: vars.$primary;
+  }
+  .extraTab &gt; .mdc-tab__content &gt; span {
+    color: vars.$primary;
+  }
+  .mat-mdc-tab-group.mat-accent .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
+    color: vars.$primary;
+  }
+
+  .mdc-tab__text-label {
+    color: black !important;
+  }
+
+  .mdc-tab-indicator__content--underline {
+    border-color: #990000 !important;
+    border-top-width: 4px !important;
+  }
+  .mdc-tab__ripple::before {
+    opacity: 0 !important;
+  }
 }
 </code></pre>
     </div>
