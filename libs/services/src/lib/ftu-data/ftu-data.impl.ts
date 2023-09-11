@@ -127,7 +127,7 @@ function capitalize(str: string): string {
 function titleCase(name: string) {
   return name
     .split(' ')
-    .map((l: string) => l[0].toUpperCase() + l.substr(1))
+    .map((l: string) => l[0].toUpperCase() + l.slice(1))
     .join(' ');
 }
 
