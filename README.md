@@ -10,7 +10,8 @@
 ## Website Links
 
 - FTU User Interface (FTU)
-  - Production: <https://hubmapconsortium.github.io/hra-ui/apps/ftu-ui/>
+  - Production: <>
+  - Production (alt): <https://hubmapconsortium.github.io/hra-ui/apps/ftu-ui/>
   - Staging: <https://64f0c0ffc17975786b59d93a--hra-ui.netlify.app/apps/ftu-ui/>
 
 ## Background and More Information
