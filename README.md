@@ -1,6 +1,6 @@
 # Human Reference Atlas (HRA) and Functional Tissue Unit Explorer (FTU) - User Interfaces
 
-[![Tests]()]()
+[![Tests]()](https://github.com/hubmapconsortium/hra-ui/actions/workflows/ci.yml)
 [![GitHub last commit]()](https://github.com/hubmapconsortium/hra-ui/commits/develop)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 [![Quality Gate Status]()](https://sonarcloud.io/project/overview?id=hubmapconsortium_hra-ui)
