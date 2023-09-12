@@ -124,6 +124,14 @@ function capitalize(str: string): string {
   return str.slice(0, 1).toUpperCase() + str.slice(1);
 }
 
+/** Converts case to title case for organ name */
+function titleCase(name: string) {
+  return name
+    .split(' ')
+    .map((l: string) => l[0].toUpperCase() + l.slice(1))
+    .join(' ');
+}
+
 /**
  * FtuDataImplService - Angular service for handling FTU (Functional Tissue Unit) data operations.
  */
@@ -383,8 +391,8 @@ export class FtuDataImplService extends FtuDataService {
     const nodes: TissueLibrary['nodes'] = {};
     for (const { '@id': id, label, organ_id, organ_label } of items) {
       const parentId = (BASE_IRI + organ_id) as Iri;
-      nodes[parentId] ??= { id: parentId, label: organ_label, parent: BASE_IRI, children: [] };
-      nodes[id] = { id, label: label.toLowerCase(), parent: parentId, children: [], link: TISSUE_LINK };
+      nodes[parentId] ??= { id: parentId, label: titleCase(organ_label), parent: BASE_IRI, children: [] };
+      nodes[id] = { id, label: label, parent: parentId, children: [], link: TISSUE_LINK };
       nodes[parentId]?.children.push(id);
     }
     return { root: BASE_IRI, nodes };
