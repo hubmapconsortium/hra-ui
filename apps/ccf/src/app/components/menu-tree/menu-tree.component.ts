@@ -11,8 +11,10 @@ import { ConnectedPosition, Overlay } from '@angular/cdk/overlay';
   templateUrl: './menu-tree.component.html',
   styleUrls: ['./menu-tree.component.scss'],
 })
-export class MenuTreeComponent implements OnInit {
-  @Input() treeItems: NavItems[];
+export class MenuTreeComponent {
+  @Input() set treeItems(items: NavItems[]) {
+    this.dataSource.data = items;
+  }
   @Input() icon: string;
   @Input() overlayClass: string;
   @Input() treeClass: string;
@@ -29,10 +31,6 @@ export class MenuTreeComponent implements OnInit {
     private scroller: ViewportScroller,
     private readonly overlay: Overlay
   ) {}
-
-  ngOnInit(): void {
-    this.dataSource.data = this.treeItems;
-  }
 
   hasChild = (_: number, node: NavItems) =>
     !!node.children && node.children.length > 0;
