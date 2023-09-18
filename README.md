@@ -1,17 +1,15 @@
 # Human Reference Atlas (HRA) and Functional Tissue Unit Explorer (FTU) - User Interfaces
 
-[![Tests]()](https://github.com/hubmapconsortium/hra-ui/actions/workflows/ci.yml)
-[![GitHub last commit]()](https://github.com/hubmapconsortium/hra-ui/commits/develop)
+[![Tests](https://github.com/hubmapconsortium/ccf-ui/actions/workflows/tests.yml/badge.svg?branch=develop)](https://github.com/hubmapconsortium/hra-ui/actions/workflows/ci.yml)
+[![GitHub last commit](https://img.shields.io/github/last-commit/hubmapconsortium/hra-ui.svg)](https://github.com/hubmapconsortium/hra-ui/commits/develop)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
-[![Quality Gate Status]()](https://sonarcloud.io/project/overview?id=hubmapconsortium_hra-ui)
-[![SonarCloud Coverage]()](https://sonarcloud.io/component_measures?metric=Coverage&id=hubmapconsortium_hra-ui)
-[![Documentation Status]()]()
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=hubmapconsortium_hra-ui&metric=alert_status)](https://sonarcloud.io/project/overview?id=hubmapconsortium_hra-ui)
+[![SonarCloud Coverage](https://sonarcloud.io/api/project_badges/measure?project=hubmapconsortium_hra-ui&metric=coverage)](https://sonarcloud.io/component_measures?metric=Coverage&id=hubmapconsortium_hra-ui)
 
 ## Website Links
 
 - FTU User Interface (FTU)
-  - Production: <>
-  - Production (alt): <https://hubmapconsortium.github.io/hra-ui/apps/ftu-ui/>
+  - Production: <https://hubmapconsortium.github.io/hra-ui/apps/ftu-ui/>
   - Staging: <https://64f0c0ffc17975786b59d93a--hra-ui.netlify.app/apps/ftu-ui/>
 
 ## Background and More Information
