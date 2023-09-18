@@ -5,7 +5,7 @@
   width: 100%;
   height: 100%;
   grid-template-columns: 21rem calc(100% - 21rem);
-  grid-template-rows: 5rem auto;
+  grid-template-rows: 5rem max(100% - 5rem);
   grid-template-areas:
     'header header'
     'sidebar content';
@@ -20,8 +20,13 @@
     border-right: 0.0625rem solid rgba(vars.$dark-dividers);
   }
 
-  .page-content {
+  .page-content::ng-deep {
     grid-area: content;
+    overflow-y: hidden;
+    ftu-landing {
+      max-height: 100%;
+      overflow-y: auto;
+    }
   }
 
   .custom-overlay {

@@ -119,6 +119,19 @@ const TISSUE_LINK = createLinkId('FTU');
 /** Provides Base/root url for the tissue tree */
 const BASE_IRI = 'https://purl.humanatlas.io/2d-ftu/' as Iri;
 
+/** Capitalizes the first character */
+function capitalize(str: string): string {
+  return str.slice(0, 1).toUpperCase() + str.slice(1);
+}
+
+/** Converts case to title case for organ name */
+function titleCase(name: string) {
+  return name
+    .split(' ')
+    .map((l: string) => l[0].toUpperCase() + l.slice(1))
+    .join(' ');
+}
+
 /**
  * FtuDataImplService - Angular service for handling FTU (Functional Tissue Unit) data operations.
  */
@@ -324,13 +337,14 @@ export class FtuDataImplService extends FtuDataService {
   }
 
   /**
-   * constructCellSummaries : Formates Cell Summary after etching the data
+   * constructCellSummaries : Formates Cell Summary after fetching the data
    * @param data
    * @returns
    */
   private constructCellSummaries(data: Cell_Summary['@graph']): CellSummary[] {
     const cellSummary: CellSummary[] = [];
-
+    const defaultBiomarkerLables = ['gene', 'protein', 'lipid'];
+    const biomarkersPresent = new Set(data.map((summary) => summary.biomarker_type.toLowerCase()));
     data.forEach((summaryGroup) => {
       const cells = summaryGroup.summary.map((entry) => ({
         id: entry.cell_id as Iri,
@@ -349,11 +363,21 @@ export class FtuDataImplService extends FtuDataService {
         dataset_count: entry.dataset_count,
       }));
       cellSummary.push({
-        label: summaryGroup.biomarker_type,
+        label: `${capitalize(summaryGroup.biomarker_type)} Biomarkers`,
         cells,
         biomarkers,
         summaries,
       });
+    });
+    defaultBiomarkerLables.forEach((defaultLabel) => {
+      if (!biomarkersPresent.has(defaultLabel)) {
+        cellSummary.push({
+          label: `${capitalize(defaultLabel)} Biomarkers`,
+          cells: [],
+          biomarkers: [],
+          summaries: [],
+        });
+      }
     });
     return cellSummary;
   }
@@ -367,8 +391,8 @@ export class FtuDataImplService extends FtuDataService {
     const nodes: TissueLibrary['nodes'] = {};
     for (const { '@id': id, label, organ_id, organ_label } of items) {
       const parentId = (BASE_IRI + organ_id) as Iri;
-      nodes[parentId] ??= { id: parentId, label: organ_label, parent: BASE_IRI, children: [] };
-      nodes[id] = { id, label, parent: parentId, children: [], link: TISSUE_LINK };
+      nodes[parentId] ??= { id: parentId, label: titleCase(organ_label), parent: BASE_IRI, children: [] };
+      nodes[id] = { id, label: label, parent: parentId, children: [], link: TISSUE_LINK };
       nodes[parentId]?.children.push(id);
     }
     return { root: BASE_IRI, nodes };

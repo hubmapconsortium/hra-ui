@@ -38,4 +38,44 @@
       font-weight: 700;
     }
   }
+
+  .red-theme {
+    background-color: #990000;
+    border-color: #990000;
+    &:hover {
+      background-color: #800000;
+      border-color: #800000;
+
+      mat-icon {
+        transform: translateX(30%);
+        transition: 0.5s;
+      }
+    }
+
+    &:active,
+    &:focus {
+      background-color: #990000;
+      border-color: #990000;
+
+      ::ng-deep .mat-mdc-focus-indicator {
+        background-color: #990000 !important;
+        border-color: #990000;
+      }
+    }
+
+    &:active {
+      background-color: #ffffff;
+      color: #990000;
+
+      ::ng-deep .mat-mdc-focus-indicator {
+        background-color: #ffffff !important;
+        border: 2px solid;
+      }
+    }
+
+    &:disabled {
+      background-color: #ffd6db;
+      border: 1px solid #ffd6db;
+    }
+  }
 }

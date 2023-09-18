@@ -81,6 +81,9 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   /** Taking input for the radius of the circle and the label to be displayed. */
   @Input() sizes: SizeLegend[] = [];
 
+  /**Cell name which is hovered, used for highlighting */
+  @Input() hightlightedCellName = '';
+
   /** Getter method to provide the definations of the columns */
   get columnsWithTypeAndCount(): string[] {
     return ['type', 'count', ...this.columns];

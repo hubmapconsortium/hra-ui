@@ -40,7 +40,10 @@
   .about {
     width: 9rem;
     height: 3rem;
-
+    text-decoration: none;
+    span {
+      border-bottom: 1px solid var(--palette-primary-500-rgb);
+    }
     .icon {
       width: 1.5rem;
       height: 1.5rem;

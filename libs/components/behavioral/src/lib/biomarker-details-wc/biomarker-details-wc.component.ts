@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -30,6 +30,8 @@ import {
   SourceRefsSelectors,
 } from '@hra-ui/state';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
 /**
  * PlaceHolder for Empty Tissue Info
@@ -151,11 +153,20 @@ export class BiomarkerDetailsWcComponent {
   /** A dispatcher function to set the screen mode */
   private readonly setScreenMode = dispatch(ScreenModeAction.Set);
 
+  /** A dialog box which shows contact modal after clicking on contact */
+  private readonly dialog = inject(MatDialog);
+
   /** A function that toggles isTableFullScreen and
    * calls the setScreenMode function.
    */
   toggleFullscreen(): void {
     this.isTableFullScreen = !this.isTableFullScreen;
     this.setScreenMode(this.isTableFullScreen);
+  }
+  /** A function which opens the contact modal dialog box */
+  collaborate(): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    this.dialog.open(ContactBehaviorComponent, dialogConfig);
   }
 }

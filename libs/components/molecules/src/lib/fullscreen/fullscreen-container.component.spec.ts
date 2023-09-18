@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Shallow } from 'shallow-render';
 import { FullscreenContainerComponent } from './fullscreen-container.component';
 import { FullscreenContentComponent } from './fullscreen-content.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TestBed } from '@angular/core/testing';
 
 @Component({
   selector: 'hra-test',
@@ -22,6 +24,9 @@ describe('FullscreenContainerComponent', () => {
   let shallow: Shallow<TestComponent>;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [BrowserAnimationsModule],
+    });
     shallow = new Shallow(TestComponent).dontMock(FullscreenContainerComponent, FullscreenContentComponent);
   });
 

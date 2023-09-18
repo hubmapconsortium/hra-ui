@@ -9,6 +9,7 @@ FTU:
 About:
   type: external
   url: https://humanatlas.io/
+  target: _blank
 ExploreFTU:
   type: internal
   commands:
