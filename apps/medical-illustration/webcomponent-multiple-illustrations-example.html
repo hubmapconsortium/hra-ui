@@ -14,9 +14,11 @@
           if (node.detail) {
             focusId = node.detail.ontologyId;
             illustration.highlightId = focusId;
+            illustration2.highlightId = focusId;
           } else {
             focusId = '';
             illustration.highlightId = '';
+            illustration2.highlightId = '';
           }
         }
 
@@ -26,10 +28,18 @@
         illustration.addEventListener('nodeClicked', (node) => {
           updateHighlight(node);
         });
+
+        const illustration2 = document.getElementById('wc2');
+        illustration2.lookupSrc = illustrationsUrl;
+        illustration2.illustrationSrc = 'https://purl.humanatlas.io/2d-ftu/pancreas-pancreatic-acinus';
+        illustration2.addEventListener('nodeClicked', (node) => {
+          updateHighlight(node);
+        });
       });
     </script>
   </head>
   <body>
     <hra-illustration-wc id="wc1"></hra-illustration-wc>
+    <hra-illustration-wc id="wc2"></hra-illustration-wc>
   </body>
 </html>

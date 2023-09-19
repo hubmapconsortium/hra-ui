@@ -7,6 +7,7 @@ svg {
   width: 100%;
 }
 
+[id^='Crosswalk'] > #Crosswalk,
 [id^='Crosswalk'] {
   :is(path, polygon, polyline) {
     fill: transparent;
