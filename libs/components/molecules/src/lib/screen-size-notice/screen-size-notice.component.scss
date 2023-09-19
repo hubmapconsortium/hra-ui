@@ -38,7 +38,11 @@
     letter-spacing: 0.5px;
   }
 
-  @media (max-width: 480px) {
+  // @media (max-width: 480px) {
+  //   display: flex;
+  // }
+
+  @media (max-width: 1600px) {
     display: flex;
   }
 }

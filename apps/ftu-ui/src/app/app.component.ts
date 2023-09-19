@@ -2,6 +2,7 @@ import {
   AfterContentInit,
   Component,
   HostBinding,
+  HostListener,
   Injector,
   Input,
   OnChanges,
@@ -42,7 +43,9 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   @HostBinding('class.mat-typography') readonly matTypography = true;
 
   readonly SMALL_VIEWPORT_THRESHOLD = 480; // In pixels
+  readonly WINDOW_RESIZE_THRESHOLD = 1600; // In pixels
   readonly tissues = select$(TissueLibrarySelectors.tissues);
+  ref: any;
 
   @Input() set linksYamlUrl(url: string) {
     this.loadLinks(url);
@@ -88,8 +91,15 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
 
   private readonly dialog = inject(MatDialog);
 
+  // private readonly dialogRef = inject(MatDialogRef<ScreenNoticeBehaviorComponent>);
+
   constructor() {
     inject(Router).initialNavigation();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize(): void {
+    this.detectSmallViewport();
   }
 
   ngAfterContentInit(): void {
@@ -97,16 +107,21 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   }
 
   detectSmallViewport(): void {
-    if (window.innerWidth <= this.SMALL_VIEWPORT_THRESHOLD && !this.hasShownSmallViewportNotice()) {
+    if (window.innerWidth <= this.WINDOW_RESIZE_THRESHOLD && !this.hasShownSmallViewportNotice()) {
       const dialogConfig: MatDialogConfig = {
         width: '312px',
         disableClose: false,
         panelClass: 'custom-overlay',
       };
 
-      const ref = this.dialog.open(ScreenNoticeBehaviorComponent, dialogConfig);
-      ref.afterClosed().subscribe(() => (this.screenSizeNoticeOpen = false));
+      this.ref = this.dialog.open(ScreenNoticeBehaviorComponent, dialogConfig);
+      this.ref.afterClosed().subscribe(() => (this.screenSizeNoticeOpen = false));
       this.screenSizeNoticeOpen = true;
+    } else {
+      this.screenSizeNoticeOpen = false;
+      if (this.ref) {
+        this.dialog.closeAll();
+      }
     }
   }
 
