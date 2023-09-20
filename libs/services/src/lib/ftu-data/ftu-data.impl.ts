@@ -60,7 +60,7 @@ const ILLUSTRATIONS = z.object({
     representation_of: z.string(),
     illustration_files: z
       .object({
-        file: URL,
+        file: z.string(),
         file_format: z.string(),
       })
       .array(),
@@ -166,7 +166,7 @@ export class FtuDataImplService extends FtuDataService {
   @param iri The Iri of the illustration.
   @returns An Observable that emits the mock URL.
   */
-  override getIllustrationUrl(iri: Iri): Observable<Url> {
+  override getIllustrationUrl(iri: Iri): Observable<Url | string> {
     return this.getDataFileReferences(iri).pipe(map((data) => this.findIllustrationUrl(data)));
   }
 
@@ -278,7 +278,7 @@ export class FtuDataImplService extends FtuDataService {
    * @param files
    * @returns illustration url
    */
-  private findIllustrationUrl(files: DataFileReference[]): Url {
+  private findIllustrationUrl(files: DataFileReference[]): string {
     const { fileFormatMapping } = this;
     const svgFormat = fileFormatMapping['image/svg+xml'];
     const ref = files.find(({ format }) => format === svgFormat);

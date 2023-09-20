@@ -24,7 +24,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.svg",
+          "file": "assets/TEMP/temp-svgs/ascending_thin_loop_of_henle.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -82,7 +82,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.svg",
+          "file": "assets/TEMP/temp-svgs/cortical_collecting_duct_kidney.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -282,7 +282,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-inner-medullary-collecting-duct#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.svg",
+          "file": "assets/TEMP/temp-svgs/collecting_duct_inner_medullary_kidney.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -417,7 +417,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-nephron.svg",
+          "file": "assets/TEMP/temp-svgs/nephron_kidney_1-01.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -930,7 +930,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-outer-medullary-collecting-duct#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.svg",
+          "file": "assets/TEMP/temp-svgs/collecting_duct_outer_medullary_kidney.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -1522,7 +1522,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-thick-ascending-loop-of-henle#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.svg",
+          "file": "assets/TEMP/temp-svgs/thick_ascending_loop_of_henle_kidney.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -3080,7 +3080,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-liver-liver-lobule.svg",
+          "file": "assets/TEMP/temp-svgs/lobule_liver.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -4300,7 +4300,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-bronchial-submucosal-gland.svg",
+          "file": "assets/TEMP/temp-svgs/bronchial_submucosal_gland_lung.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -5289,7 +5289,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-pulmonary-alveolus.svg",
+          "file": "assets/TEMP/temp-svgs/alveolus_lung.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -5564,6 +5564,13 @@
           "svg_id": "Secondary_Crest_Myofibroblast",
           "label": "secondary crest myofibroblasts",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000186"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Capillary_Endothelial_Cell",
+          "label": "alveolar capillary type 1 endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL:4028002"
         }
       ]
     },
@@ -5578,7 +5585,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/pancreas-intercalated-duct#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-intercalated-duct.svg",
+          "file": "assets/TEMP/temp-svgs/intercalated_duct_pancreas-x-01.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -7572,7 +7579,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.svg",
+          "file": "assets/TEMP/temp-svgs/prostatic_glandular_acinus_prostate.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -11116,7 +11123,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-dermal-papilla#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-dermal-papilla.svg",
+          "file": "assets/TEMP/temp-svgs/dermal_papilla_skin.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -11405,6 +11412,13 @@
           "svg_id": "Skin_Fibroblast",
           "label": "skin fibroblast",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0002620"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-dermal-papilla#Blood_Vessel",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Blood_Vessel",
+          "label": "Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL:0000115"
         }
       ]
     },
@@ -11419,7 +11433,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.svg",
+          "file": "assets/TEMP/temp-svgs/epidermal_ridge_skin.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -11764,7 +11778,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/spleen-red-pulp#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://hubmapconsortium.github.io/ccf-releases/v1.4/2d-ftu/2d-ftu-spleen-red-pulp.svg",
+          "file": "assets/TEMP/temp-svgs/Red_Pulp_v4.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -12403,7 +12417,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/spleen-white-pulp#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://hubmapconsortium.github.io/ccf-releases/v1.4/2d-ftu/2d-ftu-spleen-white-pulp.svg",
+          "file": "assets/TEMP/temp-svgs/White_pulp_v4.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -13497,7 +13511,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.svg",
+          "file": "assets/TEMP/temp-svgs/lobule_thymus.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -16457,7 +16471,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Hassall's_Corpuscle",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hassall's_Corpuscle",
+          "svg_id": "Hassall_s_Corpuscle",
           "label": "Hassall's corpuscle",
           "representation_of": "http://purl.obolibrary.org/obo/UBERON_0003987"
         },
@@ -17027,6 +17041,13 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#B_Cell",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "B_Cell",
+          "label": "Memory B Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL:0000787"
         }
       ]
     }

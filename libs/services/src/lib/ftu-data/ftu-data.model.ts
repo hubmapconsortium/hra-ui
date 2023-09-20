@@ -76,7 +76,7 @@ export const CELL_SUMMARY = z.object({
 /** Zod Schema for a DATA_FILE_REFERENCE */
 export const DATA_FILE_REFERENCE = z.object({
   format: z.string(),
-  url: URL,
+  url: z.string(),
 });
 
 /** Zod Schema for a SOURCE_REFERENCE */
