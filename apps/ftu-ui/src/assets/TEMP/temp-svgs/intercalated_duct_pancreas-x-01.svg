@@ -140,19 +140,14 @@
 	.st130{fill:#F3F3F3;}
 	.st131{fill:#D3D3D3;}
 	.st132{fill:url(#SVGID_1_);stroke:#666666;stroke-width:3;stroke-miterlimit:10;}
-
-		.st133{fill:url(#SVGID_00000124880319216225649670000007098081657963411866_);stroke:#666666;stroke-width:3;stroke-miterlimit:10;}
-
-		.st134{fill:url(#SVGID_00000121965120991432741750000015246955199907953581_);stroke:#666666;stroke-width:3;stroke-miterlimit:10;}
-
-		.st135{fill:url(#SVGID_00000078016229512590288220000003994231376412359305_);stroke:#666666;stroke-width:3;stroke-miterlimit:10;}
-
-		.st136{fill:url(#SVGID_00000041990859803263112910000012564513586444639384_);stroke:#666666;stroke-width:3;stroke-miterlimit:10;}
+  .st133{fill:url(#SVGID_00000124880319216225649670000007098081657963411866_);stroke:#666666;stroke-width:3;stroke-miterlimit:10;}
+  .st134{fill:url(#SVGID_00000121965120991432741750000015246955199907953581_);stroke:#666666;stroke-width:3;stroke-miterlimit:10;}
+  .st135{fill:url(#SVGID_00000078016229512590288220000003994231376412359305_);stroke:#666666;stroke-width:3;stroke-miterlimit:10;}
+  .st136{fill:url(#SVGID_00000041990859803263112910000012564513586444639384_);stroke:#666666;stroke-width:3;stroke-miterlimit:10;}
 	.st137{fill:none;stroke:#000000;stroke-miterlimit:10;}
 	.st138{fill:none;stroke:#FFFFFF;stroke-miterlimit:10;}
 	.st139{fill:none;stroke:#000000;stroke-width:1.5;stroke-miterlimit:10;}
-
-		.st140{fill:url(#SVGID_00000041277477558370155180000010686591710106636222_);stroke:#231F20;stroke-width:0.9396;stroke-miterlimit:10;}
+	.st140{fill:url(#SVGID_00000041277477558370155180000010686591710106636222_);stroke:#231F20;stroke-width:0.9396;stroke-miterlimit:10;}
 	.st141{opacity:0.1;}
 	.st142{opacity:0.9;}
 	.st143{opacity:0.3;}

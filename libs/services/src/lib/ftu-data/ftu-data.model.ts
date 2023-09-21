@@ -89,6 +89,7 @@ export const SOURCE_REFERENCE = z.object({
 /** Zod Schema for a ILLUSTRATION_MAPPING_ITEM */
 export const ILLUSTRATION_MAPPING_ITEM = z.object({
   id: z.string(),
+  groupId: z.string(),
   label: z.string(),
   ontologyId: z.string(),
 });
