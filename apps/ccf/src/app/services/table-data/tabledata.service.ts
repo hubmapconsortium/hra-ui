@@ -13,7 +13,7 @@ export interface TableDataWithColumns {
   providedIn: 'root',
 })
 export class TableDataService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getData(
     file: string | undefined,

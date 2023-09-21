@@ -1,4 +1,3 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import {
   CUSTOM_ELEMENTS_SCHEMA,
@@ -17,7 +16,6 @@ import { RouterModule } from '@angular/router';
   declarations: [TwoDimImageComponent],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     RouterModule,
     MatCardModule,
     MatDividerModule,
