@@ -66,10 +66,6 @@ export class TableComponent {
     return hasAtLeastOneNumber;
   }
 
-  isTotalRequired(column: any): boolean {
-    return column.isTotalRequired;
-  }
-
   getAlignmentClass(column: HeaderData): string {
     return `alignment-${column.alignment ?? 'default'}`;
   }

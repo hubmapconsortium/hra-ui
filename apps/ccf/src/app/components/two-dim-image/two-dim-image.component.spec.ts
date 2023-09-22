@@ -38,7 +38,14 @@ describe('TwoDimImageComponent', () => {
     });
 
     it('should not open the image dialog when screensize is small', async () => {
-      
+      // const smallScreenSize = 60;
+      // const { instance } = await shallow.render();
+      // const spy = jest.spyOn(instance.imageRef.nativeElement, 'onclick');
+      // const template = mock<TemplateRef<unknown>>();
+      // const element = mock<ElementRef<unknown>>();
+      // instance.imageRef = element;
+      // instance.openImageViewer(template);
+      // expect(instance.imageRef.nativeElement.onclick).toBeNull();
     })
 
   })

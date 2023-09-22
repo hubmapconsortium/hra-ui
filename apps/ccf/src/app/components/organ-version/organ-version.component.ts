@@ -7,9 +7,7 @@ import { HeaderData } from '../table/header';
 import { TableData } from '../table/table';
 import { OrganData, VersionOrgans } from '../two-dim-image/two-dim-image';
 
-function iCaseEquals(str1: string, str2: string): boolean {
-  return str1.toLowerCase() === str2.toLowerCase();
-}
+
 
 @Component({
   selector: 'ccf-organ-version',
@@ -40,6 +38,10 @@ export class OrganVersionComponent implements OnInit {
     private readonly dataService: TableDataService
   ) {}
 
+  iCaseEquals(str1: string, str2: string): boolean {
+    return str1.toLowerCase() === str2.toLowerCase();
+  }
+
   ngOnInit(): void {
     const [
       {
@@ -67,7 +69,7 @@ export class OrganVersionComponent implements OnInit {
 
   setVersion(version: string, organ?: string): void {
     const info =
-      this.organInfo.find((item) => iCaseEquals(item.version, version)) ??
+      this.organInfo.find((item) => this.iCaseEquals(item.version, version)) ??
       this.organInfo[0];
     const choose = this.versionData.find(
       (item) => item.version === info.version
@@ -82,7 +84,7 @@ export class OrganVersionComponent implements OnInit {
     const {
       info: { organData, version },
     } = this;
-    const data = organData.filter((item) => iCaseEquals(item.name, organ));
+    const data = organData.filter((item) => this.iCaseEquals(item.name, organ));
 
     if (data.length === 0) {
       this.setOrgan(organData[0].name);
@@ -114,7 +116,7 @@ export class OrganVersionComponent implements OnInit {
       map((result) => result.data),
       map((data) =>
         data.filter((record) =>
-          iCaseEquals(record['Organ'] as string, organName)
+          this.iCaseEquals(record['Organ'] as string, organName)
         )
       )
     );

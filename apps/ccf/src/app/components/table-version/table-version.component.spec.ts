@@ -1,22 +1,34 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HeaderData } from '../table/header';
 import { TableVersionComponent } from './table-version.component';
+import { TableVersionModule } from './table-version.module';
+import { Shallow } from 'shallow-render';
 
 describe('TableVersionComponent', () => {
-  let component: TableVersionComponent;
-  let fixture: ComponentFixture<TableVersionComponent>;
+  let shallow: Shallow<TableVersionComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [TableVersionComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(TableVersionComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    shallow = new Shallow(TableVersionComponent, TableVersionModule)
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(shallow.render()).toBeTruthy();
   });
+
+  describe('getColumnDefs()', () => {
+    it('should return an array of column definitions', async () => {
+      const testItems: HeaderData[] = [
+        {
+          header: 'test1',
+          columnDef: 'test1',
+          cell: function () { }
+        },
+        {
+          header: 'test2',
+          columnDef: 'test2',
+          cell: function () { }
+        }
+      ];
+      const { instance } = await shallow.render();
+    })
+  })
 });
