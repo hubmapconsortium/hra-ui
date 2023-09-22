@@ -32,7 +32,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/ascending_thin_loop_of_henle.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-ascending-thin-loop-of-henle.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -94,7 +94,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/cortical_collecting_duct_kidney.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-cortical-collecting-duct.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -314,7 +314,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-inner-medullary-collecting-duct#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/collecting_duct_inner_medullary_kidney.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-inner-medullary-collecting-duct.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -1046,7 +1046,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-outer-medullary-collecting-duct#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/collecting_duct_outer_medullary_kidney.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-outer-medullary-collecting-duct.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -1794,7 +1794,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-thick-ascending-loop-of-henle#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/thick_ascending_loop_of_henle_kidney.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-thick-ascending-loop-of-henle.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -3566,7 +3566,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/lobule_liver.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-liver-liver-lobule.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -4956,7 +4956,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/Bronchial_submucosal_gland_v3_new.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-lung-bronchial-submucosal-gland.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -6242,7 +6242,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/alveolus_lung.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-lung-pulmonary-alveolus.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -6295,6 +6295,14 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Type_II_Pneumocyte_5",
           "@type": "FtuIllustrationNode",
           "svg_id": "Type_II_Pneumocyte_5",
+          "svg_group_id": "Type_II_Pneumocyte",
+          "label": "type II pneumocyte",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002063"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Type_II_Pneumocyte_6",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Type_II_Pneumocyte_6",
           "svg_group_id": "Type_II_Pneumocyte",
           "label": "type II pneumocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0002063"
@@ -6784,7 +6792,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/pancreas-intercalated-duct#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/intercalated_duct_pancreas-x-01.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-pancreas-intercalated-duct.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -8828,7 +8836,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/pancreas-pancreatic-acinus#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/pancreatic_acinus.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-pancreas-pancreatic-acinus.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -9066,7 +9074,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/prostatic_glandular_acinus_prostate.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-prostate-prostate-glandular-acinus.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -13112,7 +13120,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-dermal-papilla#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/dermal_papilla_skin.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-skin-dermal-papilla.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -13510,7 +13518,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/epidermal_ridge_skin.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-skin-epidermal-ridge.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -13900,7 +13908,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/spleen-red-pulp#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/Red_Pulp_v4.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-spleen-red-pulp.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -14626,7 +14634,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/spleen-white-pulp#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/White_pulp_v4.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-spleen-white-pulp.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -15872,7 +15880,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/Thymus_lobe_v4_copy-01.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-thymus-thymus-lobule.svg",
           "file_format": "image/svg+xml"
         },
         {

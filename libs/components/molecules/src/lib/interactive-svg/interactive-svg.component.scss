@@ -15,7 +15,6 @@ svg {
   }
 
   .hover-active & g:hover > :is(path, polygon, polyline),
-  .hover-active & g > g:hover > :is(path, polygon, polyline),
   .click-active {
     fill: hsl(0deg 100% 50%);
     mix-blend-mode: saturation;
