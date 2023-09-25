@@ -6,7 +6,7 @@ import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [BoardMembersComponent],
-  imports: [BrowserAnimationsModule, BrowserModule, MarkdownModule.forChild()],
+  imports: [BrowserModule, MarkdownModule.forChild()],
   exports: [BoardMembersComponent],
 })
 export class BoardMembersModule {}

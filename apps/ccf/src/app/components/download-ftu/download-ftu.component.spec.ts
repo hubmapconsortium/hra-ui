@@ -1,8 +1,11 @@
 import { DownloadFtuComponent } from './download-ftu.component';
 import { DownloadFtuModule } from './download-ftu.module';
 
-import { ChooseVersion } from '../choose-version/choose-version';
+import { NgFor, NgIf } from '@angular/common';
+import { MatSort } from '@angular/material/sort';
+import { MatHeaderRowDef, MatRowDef } from '@angular/material/table';
 import { Shallow } from 'shallow-render';
+import { ChooseVersion } from '../choose-version/choose-version';
 import { FtuVersionData } from './download-ftu';
 
 describe('DownloadFtuComponent', () => {
@@ -30,6 +33,9 @@ describe('DownloadFtuComponent', () => {
 
   beforeEach(async () => {
     shallow = new Shallow(DownloadFtuComponent, DownloadFtuModule)
+      .dontMock(MatSort, MatRowDef, MatHeaderRowDef)
+      .withStructuralDirective(NgFor)
+      .withStructuralDirective(NgIf)
   });
 
   it('should create', () => {
@@ -44,7 +50,7 @@ describe('DownloadFtuComponent', () => {
   describe('.data [get/set]', () => {
     it('should update the selection when set', async () => {
       const { instance } = await shallow.render();
-      const spy = spyOn(instance, 'updateSelection');
+      const spy = jest.spyOn(instance, 'updateSelection');
       instance.data = testData;
       expect(spy).toHaveBeenCalled();
     })

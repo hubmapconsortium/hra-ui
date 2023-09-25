@@ -1,5 +1,3 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ContactCardComponent } from './contact-card.component';
 import { ContactCardModule } from './contact-card.module'
 import { Shallow } from 'shallow-render';
@@ -11,7 +9,7 @@ describe('ContactCardComponent', () => {
     shallow = new Shallow(ContactCardComponent, ContactCardModule)
   });
 
-  it('should create', () => {
-    expect(shallow.render()).toBeTruthy();
+  it('should create', async() => {
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 });

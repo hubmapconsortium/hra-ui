@@ -1,12 +1,9 @@
 import {
   Component,
-  ElementRef,
   EventEmitter,
   Input,
-  OnInit,
   Output,
-  TemplateRef,
-  ViewChild,
+  TemplateRef
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FileDownloadService } from '../../services/file-download/file-download.service';
@@ -18,11 +15,10 @@ import { OrganData } from './two-dim-image';
   styleUrls: ['./two-dim-image.component.scss'],
 })
 export class TwoDimImageComponent {
-  @Input() cardTitle: string;
+  @Input() cardTitle = '';
   @Input() tissueData: OrganData[] = [];
-  @Input() isMultirow: boolean;
+  @Input() isMultirow = false;
   @Output() infoRoute = new EventEmitter<OrganData>();
-  @ViewChild('imageRef') imageRef: ElementRef;
 
   constructor(
     private dialog: MatDialog,
@@ -30,13 +26,10 @@ export class TwoDimImageComponent {
   ) {}
 
   openImageViewer(content: TemplateRef<unknown>): void {
-    const isSmallScreen =
-      window.innerWidth /
-        parseFloat(getComputedStyle(document.documentElement).fontSize) <
-      63;
-    if (isSmallScreen) {
-      this.imageRef.nativeElement.onclick = null;
-    } else {
+    const fontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    const isSmallScreen = window.innerWidth / fontSize < 63;
+
+    if (!isSmallScreen) {
       this.dialog.open(content, { panelClass: 'two-dim-image-modal' });
     }
   }

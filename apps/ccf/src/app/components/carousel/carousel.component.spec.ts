@@ -9,7 +9,7 @@ describe('CarouselComponent', () => {
     shallow = new Shallow(CarouselComponent, CarouselModule)
   });
 
-  it('should create', () => {
-    expect(shallow.render()).toBeTruthy();
+  it('should create', async () => {
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 });

@@ -1,14 +1,20 @@
-import { TableComponent } from './table.component';
-import { TableModule } from './table.module';
-import { TableData } from './table';
+import { NgFor, NgIf } from '@angular/common';
+import { MatSort } from '@angular/material/sort';
+import { MatHeaderRowDef, MatRowDef } from '@angular/material/table';
 import { Shallow } from 'shallow-render';
 import { HeaderData } from './header';
+import { TableData } from './table';
+import { TableComponent } from './table.component';
+import { TableModule } from './table.module';
 
 describe('TableComponent', () => {
   let shallow: Shallow<TableComponent>;
 
   beforeEach(async () => {
     shallow = new Shallow(TableComponent, TableModule)
+      .dontMock(MatSort, MatHeaderRowDef, MatRowDef)
+      .withStructuralDirective(NgFor)
+      .withStructuralDirective(NgIf)
   });
 
   it('should create', async () => {
@@ -78,6 +84,34 @@ describe('TableComponent', () => {
       const { instance } = await shallow.render();
       const formattedData = instance.formatData(null);
       expect(formattedData).toEqual('no data');
+    })
+  });
+
+  describe('isNumericColumn()', () => {
+    it('should return false when the column is labelled as tableVersion', async () => {
+      const { instance } = await shallow.render();
+      const testCol = 'tableVersion';
+      const isNumeric = instance.isNumericColumn(testCol);
+      expect(isNumeric).toBe(false);
+    });
+
+    it('should return false when type of value is not a number', async() => {
+      const testTableData: TableData[] = [{ 'key': '1' }];
+      const { instance } = await shallow.render({ bind: { typeCount: testTableData } });
+      expect(instance.isNumericColumn('key')).toBe(false);
+    })
+
+    it('should return true if column has atleast one number', async () => {
+      const testTableData: TableData[] = [{ 'key': 1 }];
+      const { instance } = await shallow.render({ bind: { typeCount: testTableData } });
+      expect(instance.isNumericColumn('key')).toBe(true);
+    })
+
+    it('todo', async () => {
+      const nullishNumber = null as unknown as number;
+      const testTableData: TableData[] = [{ 'key': nullishNumber }];
+      const { instance } = await shallow.render({ bind: { typeCount: testTableData } });
+      expect(instance.isNumericColumn('key')).toBe(false);
     })
   })
 });

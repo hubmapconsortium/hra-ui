@@ -1,22 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PageElementComponent } from './page-element.component';
+import { PageElementModule } from './page-element.module';
+import { Shallow } from 'shallow-render';
 
 describe('PageElementComponent', () => {
-  let component: PageElementComponent;
-  let fixture: ComponentFixture<PageElementComponent>;
+  let shallow: Shallow<PageElementComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [PageElementComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(PageElementComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    shallow = new Shallow(PageElementComponent, PageElementModule)
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async () => {
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 });

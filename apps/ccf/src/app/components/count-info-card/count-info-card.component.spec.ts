@@ -1,22 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CountInfoCardComponent } from './count-info-card.component';
+import { CountInfoCardModule } from './count-info-card.module';
+import { Shallow } from 'shallow-render';
 
 describe('CountInfoCardComponent', () => {
-  let component: CountInfoCardComponent;
-  let fixture: ComponentFixture<CountInfoCardComponent>;
+  let shallow: Shallow<CountInfoCardComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [CountInfoCardComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(CountInfoCardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    shallow = new Shallow(CountInfoCardComponent, CountInfoCardModule)
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async () => {
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 });

@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [CountInfoCardComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, MatCardModule],
+  imports: [BrowserModule, MatCardModule],
   exports: [CountInfoCardComponent],
 })
 export class CountInfoCardModule {}

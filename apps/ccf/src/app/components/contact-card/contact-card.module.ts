@@ -9,7 +9,6 @@ import { MatDividerModule } from '@angular/material/divider';
   declarations: [ContactCardComponent],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     MatCardModule,
     MatDividerModule,
   ],

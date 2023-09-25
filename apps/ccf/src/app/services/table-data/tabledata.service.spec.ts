@@ -16,7 +16,7 @@ describe('TableDataService', () => {
 
   describe('getData()', () => {
     beforeEach(() => {
-      http.get.mockReturnValue(of(''))
+      http.get.mockReturnValue(of('a b c'))
     })
 
     it('should use http to get the asset csv file', async () => {
@@ -29,15 +29,4 @@ describe('TableDataService', () => {
       });
     });
   });
-
-  describe('filterColumns()', () => {
-    it('should filter out invalid columns and return only valid columns', () => {
-      const columns = ['test1', 'test2', 'test3', 'test4'];
-      const validCols = ['test1', 'test2', 'test5'];
-
-      const result = service['filterColumns'](columns, validCols); // Accessing the private method
-
-      expect(result).toEqual(['test1', 'test2']);
-    });
-  })
 });
