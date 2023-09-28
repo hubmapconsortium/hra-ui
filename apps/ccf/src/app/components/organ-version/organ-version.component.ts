@@ -8,18 +8,17 @@ import { TableData } from '../table/table';
 import { OrganData, VersionOrgans } from '../two-dim-image/two-dim-image';
 
 
-
 @Component({
   selector: 'ccf-organ-version',
   templateUrl: './organ-version.component.html',
   styleUrls: ['./organ-version.component.scss'],
 })
 export class OrganVersionComponent implements OnInit {
-  @Input() versionData: ChooseVersion[];
-  @Input() organInfo: VersionOrgans[];
-  @Input() tableRequired: boolean;
+  @Input() versionData: ChooseVersion[] = [];
+  @Input() organInfo: VersionOrgans[] = [];
+  @Input() tableRequired: boolean = false;
   @Input() headerInfo: HeaderData[] = [];
-  @Input() isMultiRow: boolean;
+  @Input() isMultiRow: boolean = false;
 
   info: VersionOrgans;
   organData: OrganData[];
@@ -36,7 +35,7 @@ export class OrganVersionComponent implements OnInit {
     private router: Router,
     private readonly route: ActivatedRoute,
     private readonly dataService: TableDataService
-  ) {}
+  ) { }
 
   iCaseEquals(str1: string, str2: string): boolean {
     return str1.toLowerCase() === str2.toLowerCase();
@@ -51,7 +50,7 @@ export class OrganVersionComponent implements OnInit {
     ] = this.organInfo;
     const { version = defaultVersion, organ = defaultOrgan } =
       this.route.snapshot.queryParams;
-    if (this.headerInfo) {
+    if (this.headerInfo?.length > 0) {
       this.headerInfo = this.headerInfo.map((data) => ({
         ...data,
         cell: new Function(
@@ -90,7 +89,7 @@ export class OrganVersionComponent implements OnInit {
       this.setOrgan(organData[0].name);
     } else {
       this.organData = data;
-      if (this.headerInfo) {
+      if (this.headerInfo?.length > 0) {
         this.cardTitle = data[0].name + ' Functional Tissue Units';
       } else {
         this.cardTitle = data[0].name;

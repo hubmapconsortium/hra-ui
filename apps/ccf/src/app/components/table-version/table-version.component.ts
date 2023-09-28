@@ -1,13 +1,9 @@
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import {
   Component,
-  EventEmitter,
   HostBinding,
   Input,
   NgZone,
-  OnInit,
-  Output,
-  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import {
@@ -19,8 +15,6 @@ import {
   Observable,
   of,
   startWith,
-  Subject,
-  tap,
 } from 'rxjs';
 import { TableDataService } from '../../services/table-data/tabledata.service';
 import { runInZone } from '../../shared/run-in-zone';

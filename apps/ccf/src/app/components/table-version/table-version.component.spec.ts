@@ -1,3 +1,6 @@
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { TableDataService } from '../../services/table-data/tabledata.service';
+import { ChooseVersion } from '../choose-version/choose-version';
 import { HeaderData } from '../table/header';
 import { TableVersionComponent } from './table-version.component';
 import { TableVersionModule } from './table-version.module';
@@ -8,14 +11,16 @@ describe('TableVersionComponent', () => {
 
   beforeEach(async () => {
     shallow = new Shallow(TableVersionComponent, TableVersionModule)
+    .mock(TableDataService, {})
+    .mock(CdkScrollable, {measureScrollOffset:jest.fn(), elementScrolled: jest.fn()})
   });
 
-  it('should create', () => {
-    expect(shallow.render()).toBeTruthy();
+  it('should create', async () => {
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 
-  describe('getColumnDefs()', () => {
-    it('should return an array of column definitions', async () => {
+  describe('set headerInfo', () => {
+    it('should set header info and displayed columns', async () => {
       const testItems: HeaderData[] = [
         {
           header: 'test1',
@@ -28,7 +33,15 @@ describe('TableVersionComponent', () => {
           cell: function () { }
         }
       ];
-      const { instance } = await shallow.render();
+
+      const testVersionData: ChooseVersion[] = [
+        {
+          release: 'release 1',
+          version: '1.0'
+        }
+      ]
+      const { instance } = await shallow.render({ bind: { versionData: testVersionData } });
+      expect(instance.setData).toHaveBeenCalledWith(testVersionData[0])
     })
   })
 });
