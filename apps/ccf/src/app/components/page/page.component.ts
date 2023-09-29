@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, ErrorHandler, isDevMode, OnInit } from '@angular/core';
+import { Component, ErrorHandler, isDevMode } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   catchError,

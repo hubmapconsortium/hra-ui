@@ -1,5 +1,3 @@
-import { TestBed } from '@angular/core/testing';
-
 import { TableDataService } from './tabledata.service';
 import { MockProxy, mock } from 'jest-mock-extended';
 import { HttpClient } from '@angular/common/http';

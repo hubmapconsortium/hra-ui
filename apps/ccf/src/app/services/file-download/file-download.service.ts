@@ -1,4 +1,4 @@
-import { DOCUMENT, LOCATION_INITIALIZED } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { ErrorHandler, Inject, Injectable } from '@angular/core';
 
 @Injectable({

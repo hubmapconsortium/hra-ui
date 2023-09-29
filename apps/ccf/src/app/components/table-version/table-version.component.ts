@@ -4,6 +4,7 @@ import {
   HostBinding,
   Input,
   NgZone,
+  OnInit,
   ViewChild,
 } from '@angular/core';
 import {
@@ -29,11 +30,12 @@ const TABLE_SCROLL_END_MARGIN = 10;
   templateUrl: './table-version.component.html',
   styleUrls: ['./table-version.component.scss'],
 })
-export class TableVersionComponent {
+export class TableVersionComponent implements OnInit {
   @ViewChild('table', { static: true, read: CdkScrollable })
   set tableScroller(scrollable: CdkScrollable) {
     const isAtEnd = () =>
       scrollable.measureScrollOffset('end') <= TABLE_SCROLL_END_MARGIN;
+      
     const initialAtEnd = of(undefined).pipe(delay(100), map(isAtEnd));
     const obs = scrollable
       .elementScrolled()
