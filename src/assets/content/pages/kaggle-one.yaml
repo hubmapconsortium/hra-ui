@@ -32,6 +32,21 @@
 
       Please see <a href="https://www.kaggle.com/c/hubmap-kidney-segmentation">https://www.kaggle.com/c/hubmap-kidney-segmentation</a> for competition details.
 
+
+- type: page-data
+  pageData:
+  - heading: Publication
+    descriptions: |
+      The competition results are published in Nature Communications Biology at
+      <a href="https://www.nature.com/articles/s42003-023-04848-5" target="_blank">https://www.nature.com/articles/s42003-023-04848-5</a>.
+
+      See HuBMAP datasets and interactive visualizations on the <a href="https://portal.hubmapconsortium.org/browse/publication/eb975811a1a3005622c4da37d948117e" target="_blank">
+      HuBMAP Data Portal</a>.
+
+      <strong>Citation:</strong>  
+      Jain, Y., Godwin, L.L., Ju, Y. et al. Segmentation of human functional tissue units in support of a Human Reference Atlas. Commun Biol 6, 717 (2023).
+      <a href="https://doi.org/10.1038/s42003-023-04848-5" target="_blank">https://doi.org/10.1038/s42003-023-04848-5</a>.
+
 - type: page-data
   pageData:
   - heading: Awards Ceremony
@@ -353,6 +368,13 @@
       href: https://portal.hubmapconsortium.org/browse/dataset/0a13556dc03c91eca001161c82facf36
       title: HuBMAP ID that links to dataset
       data: HBM832.FQKR.463
+
+- type: page-data
+  pageData:
+  - heading: Code
+    descriptions: |
+      All code submitted by the winning teams is made publicly available as part of the scientific paper showcasing the results of the competition using the GitHub repository located 
+      at <a href="https://github.com/cns-iu/ccf-research-kaggle-2021" target="_blank">https://github.com/cns-iu/ccf-research-kaggle-2021</a>.
 
 - type: page-data
   pageData:
