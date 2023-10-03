@@ -108,20 +108,20 @@
 
       #### **Should I include antigen retrieval conditions for OMAPs designed for Formalin Fixed Paraffin Embedded (FFPE) specimens?**
       Yes. Please include the method (buffer, temperature, device used for antigen retrieval) in the OMAP Description Document. Please include links to relevant protocols in the OMAP Description Document and OMAP Table. For an example, see 
-      [Lung Cell DIVE OMAP](https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-lung-celldive.html).
+      [Lung Cell DIVE OMAP](https://cdn.humanatlas.io/ccf-releases/v1.2/docs/omap/omap-lung-celldive.html).
 
       #### **How do I report the use of unconjugated primaries detected with secondary antibodies?**
       For unconjugated primary antibodies, specify which fluorophore in the 'conjugate' field of the OMAP Table and include “secondary detection,” (e.g., “Cy3 secondary detection”). For secondary antibodies, leave the following fields blank: uniprot_accession_number, HGNC_ID, and target_name. 
       In the 'rationale' field, please state “Used for detection of (insert unconjugated primary antibody here).” For examples, please see
-      [Skin Cell DIVE OMAP, specifically UCH-L1 primary antibody and Cy3 secondary antibody](https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-skin-celldive.html).
+      [Skin Cell DIVE OMAP, specifically UCH-L1 primary antibody and Cy3 secondary antibody](https://cdn.humanatlas.io/ccf-releases/v1.2/docs/omap/omap-skin-celldive.html).
 
       #### **How do I report antibodies used for non-cyclic, non-fluorescent-based methods such as imaging mass cytometry?**
       Please list the metal conjugates used in the 'conjugate' field of the OMAP Table and list “1” for cycle number. For example of how to report non-cyclic imaging methods employing metal-labeled antibodies, please see 
-      [Liver SIMS OMAP](https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-liver-sim.html)
+      [Liver SIMS OMAP](https://cdn.humanatlas.io/ccf-releases/v1.2/docs/omap/omap-liver-sim.html)
 
       #### **How do I report the use of custom reagents conjugated in-house or purchased from a vendor?**
       Please include the catalog number for the unconjugated antibody and specify "unconjugated”—e.g., “338502 (Unconjugated).” Under 'conjugate' field, list the fluorophore, specify “custom,” and add the conjugation kit catalog number, if applicable. For examples, 
-      please see [Lymph Node IBEX OMAP](https://hubmapconsortium.github.io/ccf-releases/v1.2/docs/omap/omap-lymph-node-ibex.html). Additionally, please create 
+      please see [Lymph Node IBEX OMAP](https://cdn.humanatlas.io/ccf-releases/v1.2/docs/omap/omap-lymph-node-ibex.html). Additionally, please create 
       [Research Resource Identifiers (RRIDs) for all custom reagents](https://scicrunch.org/resources).
 
       #### **Should I include an OMAP in my manuscript that uses multiplexed antibody-based imaging?**
