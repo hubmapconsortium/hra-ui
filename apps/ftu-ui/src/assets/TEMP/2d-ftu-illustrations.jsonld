@@ -74,9 +74,41 @@
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001107"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle#Ascending_Vasa_Recta",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle#Ascending_Vasa_Recta_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Ascending_Vasa_Recta",
+          "svg_id": "Ascending_Vasa_Recta_1",
+          "svg_group_id": "Ascending_Vasa_Recta",
+          "label": "vasa recta ascending limb cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001131"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle#Ascending_Vasa_Recta_2",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Ascending_Vasa_Recta_2",
+          "svg_group_id": "Ascending_Vasa_Recta",
+          "label": "vasa recta ascending limb cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001131"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle#Ascending_Vasa_Recta_3",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Ascending_Vasa_Recta_3",
+          "svg_group_id": "Ascending_Vasa_Recta",
+          "label": "vasa recta ascending limb cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001131"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle#Ascending_Vasa_Recta_4",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Ascending_Vasa_Recta_4",
+          "svg_group_id": "Ascending_Vasa_Recta",
+          "label": "vasa recta ascending limb cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001131"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle#Ascending_Vasa_Recta_5",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Ascending_Vasa_Recta_5",
           "svg_group_id": "Ascending_Vasa_Recta",
           "label": "vasa recta ascending limb cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001131"
@@ -294,9 +326,25 @@
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001111"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-descending-thin-loop-of-henle#Descending_Vasa_Recta",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-descending-thin-loop-of-henle#Descending_Vasa_Recta_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Descending_Vasa_Recta",
+          "svg_id": "Descending_Vasa_Recta_1",
+          "svg_group_id": "Descending_Vasa_Recta",
+          "label": "vasa recta descending limb cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001285"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-descending-thin-loop-of-henle#Descending_Vasa_Recta_2",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Descending_Vasa_Recta_2",
+          "svg_group_id": "Descending_Vasa_Recta",
+          "label": "vasa recta descending limb cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001285"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-descending-thin-loop-of-henle#Descending_Vasa_Recta_3",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Descending_Vasa_Recta_3",
           "svg_group_id": "Descending_Vasa_Recta",
           "label": "vasa recta descending limb cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001285"
@@ -486,8 +534,8 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Thin_limb_1",
           "svg_group_id": "Thin_limb",
-          "label": "descending thin limb of loop of Henle",
-          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001289"
+          "label": "ascending thin limb of loop of Henle",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004193"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thin_limb_2",
@@ -498,36 +546,20 @@
           "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001289"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thin_limb_3",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thin_Limb_Cell_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Thin_limb_3",
+          "svg_id": "Thin_Limb_Cell_1",
           "svg_group_id": "Thin_limb",
-          "label": "ascending thin limb of loop of Henle",
-          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004193"
+          "label": "kidney loop of Henle thin ascending limb epithelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001107"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thin_limb_4",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thin_Limb_Cell_2",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Thin_limb_4",
+          "svg_id": "Thin_Limb_Cell_2",
           "svg_group_id": "Thin_limb",
-          "label": "ascending thin limb of loop of Henle",
-          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004193"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Connecting_Tubule_1",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Connecting_Tubule_1",
-          "svg_group_id": "Connecting_Tubule",
-          "label": "connecting tubule",
-          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0005097"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Connecting_Tubule_2",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Connecting_Tubule_2",
-          "svg_group_id": "Connecting_Tubule",
-          "label": "connecting tubule",
-          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0005097"
+          "label": "kidney loop of Henle thin descending limb epithelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001111"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct",
@@ -554,6 +586,118 @@
           "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001292"
         },
         {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_1",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_1",
+          "svg_group_id": "Distal_Convoluted_Tubule",
+          "label": "distal convoluted tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001292"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_2",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_2",
+          "svg_group_id": "Distal_Convoluted_Tubule",
+          "label": "distal convoluted tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001292"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_3",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_3",
+          "svg_group_id": "Distal_Convoluted_Tubule",
+          "label": "distal convoluted tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001292"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_4",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_4",
+          "svg_group_id": "Distal_Convoluted_Tubule",
+          "label": "distal convoluted tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001292"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_5",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_5",
+          "svg_group_id": "Distal_Convoluted_Tubule",
+          "label": "distal convoluted tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001292"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_6",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_6",
+          "svg_group_id": "Distal_Convoluted_Tubule",
+          "label": "distal convoluted tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001292"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_7",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_7",
+          "svg_group_id": "Distal_Convoluted_Tubule",
+          "label": "distal convoluted tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001292"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_8",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_8",
+          "svg_group_id": "Distal_Convoluted_Tubule",
+          "label": "distal convoluted tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001292"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_9",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_9",
+          "svg_group_id": "Distal_Convoluted_Tubule",
+          "label": "distal convoluted tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001292"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_10",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_10",
+          "svg_group_id": "Distal_Convoluted_Tubule",
+          "label": "distal convoluted tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001292"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_11",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_11",
+          "svg_group_id": "Distal_Convoluted_Tubule",
+          "label": "distal convoluted tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001292"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_12",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_12",
+          "svg_group_id": "Distal_Convoluted_Tubule",
+          "label": "distal convoluted tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001292"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_13",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_13",
+          "svg_group_id": "Distal_Convoluted_Tubule",
+          "label": "distal convoluted tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001292"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_14",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_14",
+          "svg_group_id": "Distal_Convoluted_Tubule",
+          "label": "distal convoluted tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001292"
+        },
+        {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Glomerulus_1",
           "@type": "FtuIllustrationNode",
           "svg_id": "Glomerulus_1",
@@ -570,68 +714,20 @@
           "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001229"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_1",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Connecting_Tubule_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Proximal_Tubule_1",
-          "svg_group_id": "Proximal_Tubule_S1",
-          "label": "proximal tubule",
-          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004134"
+          "svg_id": "Connecting_Tubule_1",
+          "svg_group_id": "Connecting_Tubule",
+          "label": "connecting tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0005097"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_2",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Connecting_Tubule_2",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Proximal_Tubule_2",
-          "svg_group_id": "Proximal_Tubule_S1",
-          "label": "proximal tubule",
-          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004134"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_3",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Proximal_Tubule_3",
-          "svg_group_id": "Proximal_Tubule_S2",
-          "label": "proximal tubule",
-          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004134"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_4",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Proximal_Tubule_4",
-          "svg_group_id": "Proximal_Tubule_S2",
-          "label": "proximal tubule",
-          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004134"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_5",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Proximal_Tubule_5",
-          "svg_group_id": "Proximal_Tubule_S3",
-          "label": "proximal tubule",
-          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004134"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_6",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Proximal_Tubule_6",
-          "svg_group_id": "Proximal_Tubule_S3",
-          "label": "proximal tubule",
-          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004134"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_limb_1",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Thick_Ascending_limb_1",
-          "svg_group_id": "Thick_Ascending_limb",
-          "label": "thick ascending limb of loop of Henle",
-          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001291"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_limb_2",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Thick_Ascending_limb_2",
-          "svg_group_id": "Thick_Ascending_limb",
-          "label": "thick ascending limb of loop of Henle",
-          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001291"
+          "svg_id": "Connecting_Tubule_2",
+          "svg_group_id": "Connecting_Tubule",
+          "label": "connecting tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0005097"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Connecting_Tubule_Cell_1",
@@ -762,105 +858,105 @@
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000768"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thin_Limb_Cell_1",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_limb_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Thin_Limb_Cell_1",
-          "svg_group_id": "Thin_Limb_Cell",
-          "label": "kidney loop of Henle thin ascending limb epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1001107"
+          "svg_id": "Thick_Ascending_limb_1",
+          "svg_group_id": "Thick_Ascending_limb",
+          "label": "thick ascending limb of loop of Henle",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001291"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thin_Limb_Cell_2",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_limb_2",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Thin_Limb_Cell_2",
-          "svg_group_id": "Thin_Limb_Cell",
-          "label": "kidney loop of Henle thin descending limb epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1001111"
+          "svg_id": "Thick_Ascending_limb_2",
+          "svg_group_id": "Thick_Ascending_limb",
+          "label": "thick ascending limb of loop of Henle",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001291"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_1",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_Cell_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Thick_Ascending_Limb_1",
+          "svg_id": "Thick_Ascending_Limb_Cell_1",
           "svg_group_id": "Thick_Ascending_Limb",
           "label": "kidney loop of Henle thick ascending limb epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001106"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_2",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_Cell_2",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Thick_Ascending_Limb_2",
+          "svg_id": "Thick_Ascending_Limb_Cell_2",
           "svg_group_id": "Thick_Ascending_Limb",
           "label": "kidney loop of Henle thick ascending limb epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001106"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_3",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_Cell_3",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Thick_Ascending_Limb_3",
+          "svg_id": "Thick_Ascending_Limb_Cell_3",
           "svg_group_id": "Thick_Ascending_Limb",
           "label": "kidney loop of Henle thick ascending limb epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001106"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_4",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_Cell_4",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Thick_Ascending_Limb_4",
+          "svg_id": "Thick_Ascending_Limb_Cell_4",
           "svg_group_id": "Thick_Ascending_Limb",
           "label": "kidney loop of Henle thick ascending limb epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001106"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_5",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_Cell_5",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Thick_Ascending_Limb_5",
+          "svg_id": "Thick_Ascending_Limb_Cell_5",
           "svg_group_id": "Thick_Ascending_Limb",
           "label": "kidney loop of Henle thick ascending limb epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001106"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_6",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_Cell_6",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Thick_Ascending_Limb_6",
+          "svg_id": "Thick_Ascending_Limb_Cell_6",
           "svg_group_id": "Thick_Ascending_Limb",
           "label": "kidney loop of Henle thick ascending limb epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001106"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_7",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_Cell_7",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Thick_Ascending_Limb_7",
+          "svg_id": "Thick_Ascending_Limb_Cell_7",
           "svg_group_id": "Thick_Ascending_Limb",
           "label": "kidney loop of Henle thick ascending limb epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001106"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_8",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_Cell_8",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Thick_Ascending_Limb_8",
+          "svg_id": "Thick_Ascending_Limb_Cell_8",
           "svg_group_id": "Thick_Ascending_Limb",
           "label": "kidney loop of Henle thick ascending limb epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001106"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_9",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_Cell_9",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Thick_Ascending_Limb_9",
+          "svg_id": "Thick_Ascending_Limb_Cell_9",
           "svg_group_id": "Thick_Ascending_Limb",
           "label": "kidney loop of Henle thick ascending limb epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001106"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_10",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_Cell_10",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Thick_Ascending_Limb_10",
+          "svg_id": "Thick_Ascending_Limb_Cell_10",
           "svg_group_id": "Thick_Ascending_Limb",
           "label": "kidney loop of Henle thick ascending limb epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001106"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_11",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_Cell_11",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Thick_Ascending_Limb_11",
+          "svg_id": "Thick_Ascending_Limb_Cell_11",
           "svg_group_id": "Thick_Ascending_Limb",
           "label": "kidney loop of Henle thick ascending limb epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001106"
@@ -870,109 +966,157 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Proximal_Tubule_1",
           "svg_group_id": "Proximal_Tubule_S1",
-          "label": "epithelial cell of proximal tubule",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002306"
+          "label": "proximal tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004134"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_2",
           "@type": "FtuIllustrationNode",
           "svg_id": "Proximal_Tubule_2",
           "svg_group_id": "Proximal_Tubule_S1",
-          "label": "epithelial cell of proximal tubule",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002306"
+          "label": "proximal tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004134"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_3",
           "@type": "FtuIllustrationNode",
           "svg_id": "Proximal_Tubule_3",
-          "svg_group_id": "Proximal_Tubule_S1",
-          "label": "epithelial cell of proximal tubule",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002306"
+          "svg_group_id": "Proximal_Tubule_S2",
+          "label": "proximal tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004134"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_4",
           "@type": "FtuIllustrationNode",
           "svg_id": "Proximal_Tubule_4",
-          "svg_group_id": "Proximal_Tubule_S1",
-          "label": "epithelial cell of proximal tubule",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002306"
+          "svg_group_id": "Proximal_Tubule_S2",
+          "label": "proximal tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004134"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_5",
           "@type": "FtuIllustrationNode",
           "svg_id": "Proximal_Tubule_5",
-          "svg_group_id": "Proximal_Tubule_S1",
-          "label": "epithelial cell of proximal tubule",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002306"
+          "svg_group_id": "Proximal_Tubule_S3",
+          "label": "proximal tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004134"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_6",
           "@type": "FtuIllustrationNode",
           "svg_id": "Proximal_Tubule_6",
+          "svg_group_id": "Proximal_Tubule_S3",
+          "label": "proximal tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004134"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_Cell_1",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Proximal_Tubule_Cell_1",
           "svg_group_id": "Proximal_Tubule_S1",
           "label": "epithelial cell of proximal tubule",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0002306"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_7",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_Cell_2",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Proximal_Tubule_7",
+          "svg_id": "Proximal_Tubule_Cell_2",
           "svg_group_id": "Proximal_Tubule_S1",
           "label": "epithelial cell of proximal tubule",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0002306"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_8",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_Cell_3",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Proximal_Tubule_8",
+          "svg_id": "Proximal_Tubule_Cell_3",
           "svg_group_id": "Proximal_Tubule_S1",
           "label": "epithelial cell of proximal tubule",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0002306"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_9",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_Cell_4",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Proximal_Tubule_9",
+          "svg_id": "Proximal_Tubule_Cell_4",
           "svg_group_id": "Proximal_Tubule_S1",
           "label": "epithelial cell of proximal tubule",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0002306"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_10",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_Cell_5",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Proximal_Tubule_10",
+          "svg_id": "Proximal_Tubule_Cell_5",
           "svg_group_id": "Proximal_Tubule_S1",
           "label": "epithelial cell of proximal tubule",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0002306"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_11",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_Cell_6",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Proximal_Tubule_11",
+          "svg_id": "Proximal_Tubule_Cell_6",
           "svg_group_id": "Proximal_Tubule_S1",
           "label": "epithelial cell of proximal tubule",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0002306"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_12",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_Cell_7",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Proximal_Tubule_12",
+          "svg_id": "Proximal_Tubule_Cell_7",
           "svg_group_id": "Proximal_Tubule_S1",
           "label": "epithelial cell of proximal tubule",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0002306"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_13",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_Cell_8",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Proximal_Tubule_13",
+          "svg_id": "Proximal_Tubule_Cell_8",
           "svg_group_id": "Proximal_Tubule_S1",
           "label": "epithelial cell of proximal tubule",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0002306"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_14",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_Cell_9",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Proximal_Tubule_14",
+          "svg_id": "Proximal_Tubule_Cell_9",
+          "svg_group_id": "Proximal_Tubule_S1",
+          "label": "epithelial cell of proximal tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002306"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_Cell_10",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Proximal_Tubule_Cell_10",
+          "svg_group_id": "Proximal_Tubule_S1",
+          "label": "epithelial cell of proximal tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002306"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_Cell_11",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Proximal_Tubule_Cell_11",
+          "svg_group_id": "Proximal_Tubule_S1",
+          "label": "epithelial cell of proximal tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002306"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_Cell_12",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Proximal_Tubule_Cell_12",
+          "svg_group_id": "Proximal_Tubule_S1",
+          "label": "epithelial cell of proximal tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002306"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_Cell_13",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Proximal_Tubule_Cell_13",
+          "svg_group_id": "Proximal_Tubule_S1",
+          "label": "epithelial cell of proximal tubule",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002306"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_Cell_14",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Proximal_Tubule_Cell_14",
           "svg_group_id": "Proximal_Tubule_S1",
           "label": "epithelial cell of proximal tubule",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0002306"
@@ -1337,6 +1481,14 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Glomerular_Mesangial_Cell_15",
           "@type": "FtuIllustrationNode",
           "svg_id": "Glomerular_Mesangial_Cell_15",
+          "svg_group_id": "Glomerular_Mesangial_Cell",
+          "label": "glomerular mesangial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000742"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Glomerular_Mesangial_Cell_16",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Glomerular_Mesangial_Cell_16",
           "svg_group_id": "Glomerular_Mesangial_Cell",
           "label": "glomerular mesangial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000742"
@@ -1758,25 +1910,473 @@
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001005"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Efferent_Arteriole_Endothelial_Cell",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_1",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
           "label": "Efferent Arteriole Endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Parietal_Epithelial_Cell",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_2",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Parietal_Epithelial_Cell",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_2",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_3",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_3",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_4",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_4",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_5",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_5",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_6",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_6",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_7",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_7",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_8",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_8",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_9",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_9",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_10",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_10",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_11",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_11",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_12",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_12",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_13",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_13",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_14",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_14",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_15",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_15",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_16",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_16",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_17",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_17",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_18",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_18",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_19",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_19",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_20",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_20",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_21",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_21",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_22",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_22",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_23",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_23",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_24",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_24",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_25",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_25",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_26",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_26",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_27",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_27",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Efferent_Arteriole_Endothelial_Cell_28",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Efferent_Arteriole_Endothelial_Cell_28",
+          "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
+          "label": "Efferent Arteriole Endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Parietal_Epithelial_Cell_1",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Parietal_Epithelial_Cell_1",
           "svg_group_id": "Parietal_Epithelial_Cell",
           "label": "Parietal Epithelial Cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Afferent_Arteriole_Endothelial_Cell",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Parietal_Epithelial_Cell_2",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Afferent_Arteriole_Endothelial_Cell",
+          "svg_id": "Parietal_Epithelial_Cell_2",
+          "svg_group_id": "Parietal_Epithelial_Cell",
+          "label": "Parietal Epithelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Parietal_Epithelial_Cell_3",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Parietal_Epithelial_Cell_3",
+          "svg_group_id": "Parietal_Epithelial_Cell",
+          "label": "Parietal Epithelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Parietal_Epithelial_Cell_4",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Parietal_Epithelial_Cell_4",
+          "svg_group_id": "Parietal_Epithelial_Cell",
+          "label": "Parietal Epithelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Parietal_Epithelial_Cell_5",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Parietal_Epithelial_Cell_5",
+          "svg_group_id": "Parietal_Epithelial_Cell",
+          "label": "Parietal Epithelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Parietal_Epithelial_Cell_6",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Parietal_Epithelial_Cell_6",
+          "svg_group_id": "Parietal_Epithelial_Cell",
+          "label": "Parietal Epithelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Parietal_Epithelial_Cell_7",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Parietal_Epithelial_Cell_7",
+          "svg_group_id": "Parietal_Epithelial_Cell",
+          "label": "Parietal Epithelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Parietal_Epithelial_Cell_8",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Parietal_Epithelial_Cell_8",
+          "svg_group_id": "Parietal_Epithelial_Cell",
+          "label": "Parietal Epithelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Parietal_Epithelial_Cell_9",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Parietal_Epithelial_Cell_9",
+          "svg_group_id": "Parietal_Epithelial_Cell",
+          "label": "Parietal Epithelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Parietal_Epithelial_Cell_10",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Parietal_Epithelial_Cell_10",
+          "svg_group_id": "Parietal_Epithelial_Cell",
+          "label": "Parietal Epithelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Parietal_Epithelial_Cell_11",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Parietal_Epithelial_Cell_11",
+          "svg_group_id": "Parietal_Epithelial_Cell",
+          "label": "Parietal Epithelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Parietal_Epithelial_Cell_12",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Parietal_Epithelial_Cell_12",
+          "svg_group_id": "Parietal_Epithelial_Cell",
+          "label": "Parietal Epithelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Afferent_Arteriole_Endothelial_Cell_1",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Afferent_Arteriole_Endothelial_Cell_1",
+          "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
+          "label": "Afferent Arteriole Endothelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Afferent_Arteriole_Endothelial_Cell_2",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Afferent_Arteriole_Endothelial_Cell_2",
+          "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
+          "label": "Afferent Arteriole Endothelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Afferent_Arteriole_Endothelial_Cell_3",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Afferent_Arteriole_Endothelial_Cell_3",
+          "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
+          "label": "Afferent Arteriole Endothelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Afferent_Arteriole_Endothelial_Cell_4",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Afferent_Arteriole_Endothelial_Cell_4",
+          "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
+          "label": "Afferent Arteriole Endothelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Afferent_Arteriole_Endothelial_Cell_5",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Afferent_Arteriole_Endothelial_Cell_5",
+          "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
+          "label": "Afferent Arteriole Endothelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Afferent_Arteriole_Endothelial_Cell_6",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Afferent_Arteriole_Endothelial_Cell_6",
+          "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
+          "label": "Afferent Arteriole Endothelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Afferent_Arteriole_Endothelial_Cell_7",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Afferent_Arteriole_Endothelial_Cell_7",
+          "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
+          "label": "Afferent Arteriole Endothelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Afferent_Arteriole_Endothelial_Cell_8",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Afferent_Arteriole_Endothelial_Cell_8",
+          "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
+          "label": "Afferent Arteriole Endothelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Afferent_Arteriole_Endothelial_Cell_9",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Afferent_Arteriole_Endothelial_Cell_9",
+          "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
+          "label": "Afferent Arteriole Endothelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Afferent_Arteriole_Endothelial_Cell_10",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Afferent_Arteriole_Endothelial_Cell_10",
+          "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
+          "label": "Afferent Arteriole Endothelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Afferent_Arteriole_Endothelial_Cell_11",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Afferent_Arteriole_Endothelial_Cell_11",
+          "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
+          "label": "Afferent Arteriole Endothelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Afferent_Arteriole_Endothelial_Cell_12",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Afferent_Arteriole_Endothelial_Cell_12",
+          "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
+          "label": "Afferent Arteriole Endothelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Afferent_Arteriole_Endothelial_Cell_13",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Afferent_Arteriole_Endothelial_Cell_13",
+          "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
+          "label": "Afferent Arteriole Endothelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Afferent_Arteriole_Endothelial_Cell_14",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Afferent_Arteriole_Endothelial_Cell_14",
+          "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
+          "label": "Afferent Arteriole Endothelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Afferent_Arteriole_Endothelial_Cell_15",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Afferent_Arteriole_Endothelial_Cell_15",
+          "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
+          "label": "Afferent Arteriole Endothelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Afferent_Arteriole_Endothelial_Cell_16",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Afferent_Arteriole_Endothelial_Cell_16",
+          "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
+          "label": "Afferent Arteriole Endothelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Afferent_Arteriole_Endothelial_Cell_17",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Afferent_Arteriole_Endothelial_Cell_17",
+          "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
+          "label": "Afferent Arteriole Endothelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Afferent_Arteriole_Endothelial_Cell_18",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Afferent_Arteriole_Endothelial_Cell_18",
+          "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
+          "label": "Afferent Arteriole Endothelial Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#Afferent_Arteriole_Endothelial_Cell_19",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Afferent_Arteriole_Endothelial_Cell_19",
           "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
           "label": "Afferent Arteriole Endothelial Cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
@@ -13552,9 +14152,833 @@
       ],
       "mapping": [
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell",
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Prickle_Cell",
+          "svg_id": "Prickle_Cell_1",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_2",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_2",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_3",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_3",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_4",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_4",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_5",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_5",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_6",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_6",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_7",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_7",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_8",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_8",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_9",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_9",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_10",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_10",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_11",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_11",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_12",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_12",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_13",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_13",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_14",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_14",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_15",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_15",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_16",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_16",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_17",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_17",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_18",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_18",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_19",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_19",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_20",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_20",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_21",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_21",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_22",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_22",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_23",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_23",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_24",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_24",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_25",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_25",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_26",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_26",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_27",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_27",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_28",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_28",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_29",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_29",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_30",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_30",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_31",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_31",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_32",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_32",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_33",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_33",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_34",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_34",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_35",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_35",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_36",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_36",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_37",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_37",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_38",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_38",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_39",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_39",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_40",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_40",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_41",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_41",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_42",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_42",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_43",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_43",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_44",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_44",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_45",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_45",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_46",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_46",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_47",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_47",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_48",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_48",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_49",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_49",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_50",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_50",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_51",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_51",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_52",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_52",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_53",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_53",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_54",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_54",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_55",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_55",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_56",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_56",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_57",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_57",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_58",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_58",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_59",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_59",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_60",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_60",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_61",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_61",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_62",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_62",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_63",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_63",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_64",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_64",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_65",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_65",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_66",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_66",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_67",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_67",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_68",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_68",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_69",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_69",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_70",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_70",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_71",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_71",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_72",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_72",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_73",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_73",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_74",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_74",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_75",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_75",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_76",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_76",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_77",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_77",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_78",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_78",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_79",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_79",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_80",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_80",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_81",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_81",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_82",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_82",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_83",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_83",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_84",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_84",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_85",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_85",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_86",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_86",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_87",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_87",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_88",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_88",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_89",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_89",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_90",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_90",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_91",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_91",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_92",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_92",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_93",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_93",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_94",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_94",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_95",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_95",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_96",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_96",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_97",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_97",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_98",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_98",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_99",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_99",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_100",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_100",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_101",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_101",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_102",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_102",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_103",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_103",
+          "svg_group_id": "Prickle_Cell",
+          "label": "prickle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Prickle_Cell_104",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Prickle_Cell_104",
           "svg_group_id": "Prickle_Cell",
           "label": "prickle cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000649"
