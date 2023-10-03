@@ -252,7 +252,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-descending-thin-loop-of-henle#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-descending-thin-loop-of-henle.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -464,7 +464,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-nephron.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-nephron.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -1204,7 +1204,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-renal-corpuscle.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-renal-corpuscle.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -9036,6 +9036,22 @@
           "svg_group_id": "Pancreatic_Acinar_Cell",
           "label": "pancreatic acinar cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0002064"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/pancreas-pancreatic-acinus#Centroacinar_Cell_1",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Centroacinar_Cell_1",
+          "svg_group_id": "Centroacinar_Cell",
+          "label": "pancreatic centro-acinar cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002080"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/pancreas-pancreatic-acinus#Centroacinar_Cell_2",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Centroacinar_Cell_2",
+          "svg_group_id": "Centroacinar_Cell",
+          "label": "pancreatic centro-acinar cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002080"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/pancreas-pancreatic-acinus#Tuft_Cell",
