@@ -39,6 +39,18 @@
 
 - type: page-data
   pageData:
+    - heading: Publication
+      descriptions: |
+        The competition results are published in Nature Communications at 
+        <a href="https://www.nature.com/articles/s41467-023-40291-0" target="_blank">https://www.nature.com/articles/s41467-023-40291-0</a>.
+
+        <strong>Citation:</strong>  
+        Jain, Y., Godwin, L.L., Joshi, S. et al. Segmenting functional tissue units across human organs using community-driven development of generalizable machine learning algorithms. 
+        Nat Commun 14, 4656 (2023).
+        <a href="https://doi.org/10.1038/s41467-023-40291-0" target="_blank">https://doi.org/10.1038/s41467-023-40291-0</a>
+
+- type: page-data
+  pageData:
     - heading: Awards Ceremony
       descriptions: |
         Judges announced winning teams at the annual HubMAP All-Hands Meeting and the HuBMAP Awards: Hacking the Human Body Kaggle ceremony.
@@ -155,10 +167,17 @@
   pageData:
   - heading: Datasets
     descriptions: |
-      All data used in the competition will be made publicly
+      All data used in the competition is publicly
       available as part of the scientific paper showcasing the results of the competition using the GitHub repository located at
       <a href="https://github.com/cns-iu/ccf-research-kaggle-2022">
       https://github.com/cns-iu/ccf-research-kaggle-2022</a>.
+
+- type: page-data
+  pageData:
+  - heading: Code
+    descriptions: |
+      All code submitted by the winning teams is made publicly available as part of the scientific paper showcasing the results of the competition using the GitHub repository 
+      located at <a href="https://github.com/cns-iu/ccf-research-kaggle-2022" target="_blank">https://github.com/cns-iu/ccf-research-kaggle-2022</a>.
 
 
 - type: page-data
