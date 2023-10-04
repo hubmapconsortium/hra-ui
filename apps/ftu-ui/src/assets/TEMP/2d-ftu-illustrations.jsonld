@@ -4184,364 +4184,260 @@
       ],
       "mapping": [
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Kupffer_Cell_1",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Portal_Fibroblast_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Kupffer_Cell_1",
-          "svg_group_id": "Kupffer_Cell",
-          "label": "Kupffer Cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000091"
+          "svg_id": "Hepatic_Portal_Fibroblast_1",
+          "svg_group_id": "Hepatic_Portal_Fibroblast",
+          "label": "hepatic portal fibroblast",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009100"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Hepatic_Sinusoid_1",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Portal_Fibroblast_2",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelial_Cell_Of_Hepatic_Sinusoid_1",
-          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid",
-          "label": "endothelial cell of hepatic sinusoid",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000398"
+          "svg_id": "Hepatic_Portal_Fibroblast_2",
+          "svg_group_id": "Hepatic_Portal_Fibroblast",
+          "label": "hepatic portal fibroblast",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009100"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Hepatic_Sinusoid_2",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Portal_Fibroblast_3",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelial_Cell_Of_Hepatic_Sinusoid_2",
-          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid",
-          "label": "endothelial cell of hepatic sinusoid",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000398"
+          "svg_id": "Hepatic_Portal_Fibroblast_3",
+          "svg_group_id": "Hepatic_Portal_Fibroblast",
+          "label": "hepatic portal fibroblast",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009100"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Hepatic_Sinusoid_3",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Portal_Fibroblast_4",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelial_Cell_Of_Hepatic_Sinusoid_3",
-          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid",
-          "label": "endothelial cell of hepatic sinusoid",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000398"
+          "svg_id": "Hepatic_Portal_Fibroblast_4",
+          "svg_group_id": "Hepatic_Portal_Fibroblast",
+          "label": "hepatic portal fibroblast",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009100"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Hepatic_Sinusoid_4",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Blood_Vessel_Smooth_Muscle_Cell_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelial_Cell_Of_Hepatic_Sinusoid_4",
-          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid",
-          "label": "endothelial cell of hepatic sinusoid",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000398"
+          "svg_id": "Blood_Vessel_Smooth_Muscle_Cell_1",
+          "svg_group_id": "Blood_Vessel_Smooth_Muscle_Cell",
+          "label": "blood vessel smooth muscle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0019018"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Stellate_Cell_1",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Blood_Vessel_Smooth_Muscle_Cell_2",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Stellate_Cell_1",
-          "svg_group_id": "Hepatic_Stellate_Cell",
-          "label": "hepatic stellate cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000632"
+          "svg_id": "Blood_Vessel_Smooth_Muscle_Cell_2",
+          "svg_group_id": "Blood_Vessel_Smooth_Muscle_Cell",
+          "label": "blood vessel smooth muscle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0019018"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Stellate_Cell_2",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Blood_Vessel_Smooth_Muscle_Cell_3",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Stellate_Cell_2",
-          "svg_group_id": "Hepatic_Stellate_Cell",
-          "label": "hepatic stellate cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000632"
+          "svg_id": "Blood_Vessel_Smooth_Muscle_Cell_3",
+          "svg_group_id": "Blood_Vessel_Smooth_Muscle_Cell",
+          "label": "blood vessel smooth muscle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0019018"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_1",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Blood_Vessel_Smooth_Muscle_Cell_4",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatocyte_1",
-          "svg_group_id": "Hepatocyte",
-          "label": "hepatocyte",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+          "svg_id": "Blood_Vessel_Smooth_Muscle_Cell_4",
+          "svg_group_id": "Blood_Vessel_Smooth_Muscle_Cell",
+          "label": "blood vessel smooth muscle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0019018"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_2",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Blood_Vessel_Smooth_Muscle_Cell_5",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatocyte_2",
-          "svg_group_id": "Hepatocyte",
-          "label": "hepatocyte",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+          "svg_id": "Blood_Vessel_Smooth_Muscle_Cell_5",
+          "svg_group_id": "Blood_Vessel_Smooth_Muscle_Cell",
+          "label": "blood vessel smooth muscle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0019018"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_3",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Blood_Vessel_Smooth_Muscle_Cell_6",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatocyte_3",
-          "svg_group_id": "Hepatocyte",
-          "label": "hepatocyte",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+          "svg_id": "Blood_Vessel_Smooth_Muscle_Cell_6",
+          "svg_group_id": "Blood_Vessel_Smooth_Muscle_Cell",
+          "label": "blood vessel smooth muscle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0019018"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_4",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Blood_Vessel_Smooth_Muscle_Cell_7",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatocyte_4",
-          "svg_group_id": "Hepatocyte",
-          "label": "hepatocyte",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+          "svg_id": "Blood_Vessel_Smooth_Muscle_Cell_7",
+          "svg_group_id": "Blood_Vessel_Smooth_Muscle_Cell",
+          "label": "blood vessel smooth muscle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0019018"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_5",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Blood_Vessel_Smooth_Muscle_Cell_8",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatocyte_5",
-          "svg_group_id": "Hepatocyte",
-          "label": "hepatocyte",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+          "svg_id": "Blood_Vessel_Smooth_Muscle_Cell_8",
+          "svg_group_id": "Blood_Vessel_Smooth_Muscle_Cell",
+          "label": "blood vessel smooth muscle cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0019018"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_6",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatocyte_6",
-          "svg_group_id": "Hepatocyte",
-          "label": "hepatocyte",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+          "svg_id": "Endothelial_Cell_1",
+          "svg_group_id": "Endothelial_Cell",
+          "label": "endothelial cell of artery",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000413"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_7",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_2",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatocyte_7",
-          "svg_group_id": "Hepatocyte",
-          "label": "hepatocyte",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+          "svg_id": "Endothelial_Cell_2",
+          "svg_group_id": "Endothelial_Cell",
+          "label": "endothelial cell of artery",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000413"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_8",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_3",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatocyte_8",
-          "svg_group_id": "Hepatocyte",
-          "label": "hepatocyte",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+          "svg_id": "Endothelial_Cell_3",
+          "svg_group_id": "Endothelial_Cell",
+          "label": "endothelial cell of artery",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000413"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_9",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_4",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatocyte_9",
-          "svg_group_id": "Hepatocyte",
-          "label": "hepatocyte",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+          "svg_id": "Endothelial_Cell_4",
+          "svg_group_id": "Endothelial_Cell",
+          "label": "endothelial cell of artery",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000413"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_10",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Stratified_Cuboidal_Epithelial_Cell_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatocyte_10",
-          "svg_group_id": "Hepatocyte",
-          "label": "hepatocyte",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+          "svg_id": "Stratified_Cuboidal_Epithelial_Cell_1",
+          "svg_group_id": "Stratified_Cuboidal_Epithelial_Cell",
+          "label": "stratified cuboidal epithelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000241"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_11",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Stratified_Cuboidal_Epithelial_Cell_2",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatocyte_11",
-          "svg_group_id": "Hepatocyte",
-          "label": "hepatocyte",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+          "svg_id": "Stratified_Cuboidal_Epithelial_Cell_2",
+          "svg_group_id": "Stratified_Cuboidal_Epithelial_Cell",
+          "label": "stratified cuboidal epithelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000241"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_12",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Stratified_Cuboidal_Epithelial_Cell_3",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatocyte_12",
-          "svg_group_id": "Hepatocyte",
-          "label": "hepatocyte",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+          "svg_id": "Stratified_Cuboidal_Epithelial_Cell_3",
+          "svg_group_id": "Stratified_Cuboidal_Epithelial_Cell",
+          "label": "stratified cuboidal epithelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000241"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_13",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Stratified_Cuboidal_Epithelial_Cell_4",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatocyte_13",
-          "svg_group_id": "Hepatocyte",
-          "label": "hepatocyte",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+          "svg_id": "Stratified_Cuboidal_Epithelial_Cell_4",
+          "svg_group_id": "Stratified_Cuboidal_Epithelial_Cell",
+          "label": "stratified cuboidal epithelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000241"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_14",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Stratified_Cuboidal_Epithelial_Cell_5",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatocyte_14",
-          "svg_group_id": "Hepatocyte",
-          "label": "hepatocyte",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+          "svg_id": "Stratified_Cuboidal_Epithelial_Cell_5",
+          "svg_group_id": "Stratified_Cuboidal_Epithelial_Cell",
+          "label": "stratified cuboidal epithelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000241"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_15",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Stratified_Cuboidal_Epithelial_Cell_6",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatocyte_15",
-          "svg_group_id": "Hepatocyte",
-          "label": "hepatocyte",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+          "svg_id": "Stratified_Cuboidal_Epithelial_Cell_6",
+          "svg_group_id": "Stratified_Cuboidal_Epithelial_Cell",
+          "label": "stratified cuboidal epithelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000241"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_16",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Stratified_Cuboidal_Epithelial_Cell_7",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatocyte_16",
-          "svg_group_id": "Hepatocyte",
-          "label": "hepatocyte",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+          "svg_id": "Stratified_Cuboidal_Epithelial_Cell_7",
+          "svg_group_id": "Stratified_Cuboidal_Epithelial_Cell",
+          "label": "stratified cuboidal epithelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000241"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_17",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Columnar_Cuboidal_epithelial_Cell_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatocyte_17",
-          "svg_group_id": "Hepatocyte",
-          "label": "hepatocyte",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+          "svg_id": "Columnar_Cuboidal_epithelial_Cell_1",
+          "svg_group_id": "Columnar_Cuboidal_epithelial_Cell",
+          "label": "columnar/cuboidal epithelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000075"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_18",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Columnar_Cuboidal_epithelial_Cell_2",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatocyte_18",
-          "svg_group_id": "Hepatocyte",
-          "label": "hepatocyte",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+          "svg_id": "Columnar_Cuboidal_epithelial_Cell_2",
+          "svg_group_id": "Columnar_Cuboidal_epithelial_Cell",
+          "label": "columnar/cuboidal epithelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000075"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_19",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Columnar_Cuboidal_epithelial_Cell_3",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatocyte_19",
-          "svg_group_id": "Hepatocyte",
-          "label": "hepatocyte",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+          "svg_id": "Columnar_Cuboidal_epithelial_Cell_3",
+          "svg_group_id": "Columnar_Cuboidal_epithelial_Cell",
+          "label": "columnar/cuboidal epithelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000075"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_20",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Columnar_Cuboidal_epithelial_Cell_4",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatocyte_20",
-          "svg_group_id": "Hepatocyte",
-          "label": "hepatocyte",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+          "svg_id": "Columnar_Cuboidal_epithelial_Cell_4",
+          "svg_group_id": "Columnar_Cuboidal_epithelial_Cell",
+          "label": "columnar/cuboidal epithelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000075"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_1",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Columnar_Cuboidal_epithelial_Cell_5",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Progenitor_Cell_1",
-          "svg_group_id": "Hepatic_Progenitor_Cell",
-          "label": "hepatic progenitor cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002196"
+          "svg_id": "Columnar_Cuboidal_epithelial_Cell_5",
+          "svg_group_id": "Columnar_Cuboidal_epithelial_Cell",
+          "label": "columnar/cuboidal epithelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000075"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_2",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Columnar_Cuboidal_epithelial_Cell_6",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Progenitor_Cell_2",
-          "svg_group_id": "Hepatic_Progenitor_Cell",
-          "label": "hepatic progenitor cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002196"
+          "svg_id": "Columnar_Cuboidal_epithelial_Cell_6",
+          "svg_group_id": "Columnar_Cuboidal_epithelial_Cell",
+          "label": "columnar/cuboidal epithelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000075"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_3",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Columnar_Cuboidal_epithelial_Cell_7",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Progenitor_Cell_3",
-          "svg_group_id": "Hepatic_Progenitor_Cell",
-          "label": "hepatic progenitor cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002196"
+          "svg_id": "Columnar_Cuboidal_epithelial_Cell_7",
+          "svg_group_id": "Columnar_Cuboidal_epithelial_Cell",
+          "label": "columnar/cuboidal epithelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000075"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_4",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Columnar_Cuboidal_epithelial_Cell_8",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Progenitor_Cell_4",
-          "svg_group_id": "Hepatic_Progenitor_Cell",
-          "label": "hepatic progenitor cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002196"
+          "svg_id": "Columnar_Cuboidal_epithelial_Cell_8",
+          "svg_group_id": "Columnar_Cuboidal_epithelial_Cell",
+          "label": "columnar/cuboidal epithelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000075"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_5",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Columnar_Cuboidal_epithelial_Cell_9",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Progenitor_Cell_5",
-          "svg_group_id": "Hepatic_Progenitor_Cell",
-          "label": "hepatic progenitor cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002196"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_6",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Progenitor_Cell_6",
-          "svg_group_id": "Hepatic_Progenitor_Cell",
-          "label": "hepatic progenitor cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002196"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_7",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Progenitor_Cell_7",
-          "svg_group_id": "Hepatic_Progenitor_Cell",
-          "label": "hepatic progenitor cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002196"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_8",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Progenitor_Cell_8",
-          "svg_group_id": "Hepatic_Progenitor_Cell",
-          "label": "hepatic progenitor cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002196"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_9",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Progenitor_Cell_9",
-          "svg_group_id": "Hepatic_Progenitor_Cell",
-          "label": "hepatic progenitor cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002196"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_10",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Progenitor_Cell_10",
-          "svg_group_id": "Hepatic_Progenitor_Cell",
-          "label": "hepatic progenitor cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002196"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_11",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Progenitor_Cell_11",
-          "svg_group_id": "Hepatic_Progenitor_Cell",
-          "label": "hepatic progenitor cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002196"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_12",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Progenitor_Cell_12",
-          "svg_group_id": "Hepatic_Progenitor_Cell",
-          "label": "hepatic progenitor cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002196"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_13",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Progenitor_Cell_13",
-          "svg_group_id": "Hepatic_Progenitor_Cell",
-          "label": "hepatic progenitor cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002196"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_14",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Progenitor_Cell_14",
-          "svg_group_id": "Hepatic_Progenitor_Cell",
-          "label": "hepatic progenitor cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002196"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_15",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Progenitor_Cell_15",
-          "svg_group_id": "Hepatic_Progenitor_Cell",
-          "label": "hepatic progenitor cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002196"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_16",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Progenitor_Cell_16",
-          "svg_group_id": "Hepatic_Progenitor_Cell",
-          "label": "hepatic progenitor cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002196"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_17",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Progenitor_Cell_17",
-          "svg_group_id": "Hepatic_Progenitor_Cell",
-          "label": "hepatic progenitor cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002196"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_18",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Progenitor_Cell_18",
-          "svg_group_id": "Hepatic_Progenitor_Cell",
-          "label": "hepatic progenitor cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0002196"
+          "svg_id": "Columnar_Cuboidal_epithelial_Cell_9",
+          "svg_group_id": "Columnar_Cuboidal_epithelial_Cell",
+          "label": "columnar/cuboidal epithelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000075"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Vein_Endothelial_Cell_1",
@@ -4648,418 +4544,298 @@
           "representation_of": "http://purl.obolibrary.org/obo/CL_0002543"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Columnar_Cubiodal_Epithelial_Cell_1",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Columnar_Cubiodal_Epithelial_Cell_1",
-          "svg_group_id": "Columnar_Cubiodal_Epithelial_Cell",
-          "label": "columnar/cuboidal epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000075"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Columnar_Cubiodal_Epithelial_Cell_2",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Columnar_Cubiodal_Epithelial_Cell_2",
-          "svg_group_id": "Columnar_Cubiodal_Epithelial_Cell",
-          "label": "columnar/cuboidal epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000075"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Columnar_Cubiodal_Epithelial_Cell_3",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Columnar_Cubiodal_Epithelial_Cell_3",
-          "svg_group_id": "Columnar_Cubiodal_Epithelial_Cell",
-          "label": "columnar/cuboidal epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000075"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Columnar_Cubiodal_Epithelial_Cell_4",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Columnar_Cubiodal_Epithelial_Cell_4",
-          "svg_group_id": "Columnar_Cubiodal_Epithelial_Cell",
-          "label": "columnar/cuboidal epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000075"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Columnar_Cubiodal_Epithelial_Cell_5",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Columnar_Cubiodal_Epithelial_Cell_5",
-          "svg_group_id": "Columnar_Cubiodal_Epithelial_Cell",
-          "label": "columnar/cuboidal epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000075"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Columnar_Cubiodal_Epithelial_Cell_6",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Columnar_Cubiodal_Epithelial_Cell_6",
-          "svg_group_id": "Columnar_Cubiodal_Epithelial_Cell",
-          "label": "columnar/cuboidal epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000075"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Columnar_Cubiodal_Epithelial_Cell_7",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Columnar_Cubiodal_Epithelial_Cell_7",
-          "svg_group_id": "Columnar_Cubiodal_Epithelial_Cell",
-          "label": "columnar/cuboidal epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000075"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Columnar_Cubiodal_Epithelial_Cell_8",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Columnar_Cubiodal_Epithelial_Cell_8",
-          "svg_group_id": "Columnar_Cubiodal_Epithelial_Cell",
-          "label": "columnar/cuboidal epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000075"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Columnar_Cubiodal_Epithelial_Cell_9",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Columnar_Cubiodal_Epithelial_Cell_9",
-          "svg_group_id": "Columnar_Cubiodal_Epithelial_Cell",
-          "label": "columnar/cuboidal epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000075"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Portal_Fibroblast_1",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Portal_Fibroblast_1",
-          "svg_group_id": "Hepatic_Portal_Fibroblast",
-          "label": "Hepatic portal fibroblast",
+          "svg_id": "Hepatic_Progenitor_Cell_1",
+          "svg_group_id": "Hepatic_Progenitor_Cell",
+          "label": "hepatic progenitor cell",
           "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Portal_Fibroblast_2",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_2",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Portal_Fibroblast_2",
-          "svg_group_id": "Hepatic_Portal_Fibroblast",
-          "label": "Hepatic portal fibroblast",
+          "svg_id": "Hepatic_Progenitor_Cell_2",
+          "svg_group_id": "Hepatic_Progenitor_Cell",
+          "label": "hepatic progenitor cell",
           "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Portal_Fibroblast_3",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_3",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Portal_Fibroblast_3",
-          "svg_group_id": "Hepatic_Portal_Fibroblast",
-          "label": "Hepatic portal fibroblast",
+          "svg_id": "Hepatic_Progenitor_Cell_3",
+          "svg_group_id": "Hepatic_Progenitor_Cell",
+          "label": "hepatic progenitor cell",
           "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Portal_Fibroblast_4",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_4",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Portal_Fibroblast_4",
-          "svg_group_id": "Hepatic_Portal_Fibroblast",
-          "label": "Hepatic portal fibroblast",
+          "svg_id": "Hepatic_Progenitor_Cell_4",
+          "svg_group_id": "Hepatic_Progenitor_Cell",
+          "label": "hepatic progenitor cell",
           "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Stratified_Cuboidal_Epithelial_Cell_1",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_5",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Stratified_Cuboidal_Epithelial_Cell_1",
-          "svg_group_id": "Stratified_Cuboidal_Epithelial_Cell",
-          "label": "stratified cuboidal epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000241"
+          "svg_id": "Hepatic_Progenitor_Cell_5",
+          "svg_group_id": "Hepatic_Progenitor_Cell",
+          "label": "hepatic progenitor cell",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Stratified_Cuboidal_Epithelial_Cell_2",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_6",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Stratified_Cuboidal_Epithelial_Cell_2",
-          "svg_group_id": "Stratified_Cuboidal_Epithelial_Cell",
-          "label": "stratified cuboidal epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000241"
+          "svg_id": "Hepatic_Progenitor_Cell_6",
+          "svg_group_id": "Hepatic_Progenitor_Cell",
+          "label": "hepatic progenitor cell",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Stratified_Cuboidal_Epithelial_Cell_3",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_7",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Stratified_Cuboidal_Epithelial_Cell_3",
-          "svg_group_id": "Stratified_Cuboidal_Epithelial_Cell",
-          "label": "stratified cuboidal epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000241"
+          "svg_id": "Hepatic_Progenitor_Cell_7",
+          "svg_group_id": "Hepatic_Progenitor_Cell",
+          "label": "hepatic progenitor cell",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Stratified_Cuboidal_Epithelial_Cell_4",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_8",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Stratified_Cuboidal_Epithelial_Cell_4",
-          "svg_group_id": "Stratified_Cuboidal_Epithelial_Cell",
-          "label": "stratified cuboidal epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000241"
+          "svg_id": "Hepatic_Progenitor_Cell_8",
+          "svg_group_id": "Hepatic_Progenitor_Cell",
+          "label": "hepatic progenitor cell",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Stratified_Cuboidal_Epithelial_Cell_5",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_9",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Stratified_Cuboidal_Epithelial_Cell_5",
-          "svg_group_id": "Stratified_Cuboidal_Epithelial_Cell",
-          "label": "stratified cuboidal epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000241"
+          "svg_id": "Hepatic_Progenitor_Cell_9",
+          "svg_group_id": "Hepatic_Progenitor_Cell",
+          "label": "hepatic progenitor cell",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Stratified_Cuboidal_Epithelial_Cell_6",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_10",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Stratified_Cuboidal_Epithelial_Cell_6",
-          "svg_group_id": "Stratified_Cuboidal_Epithelial_Cell",
-          "label": "stratified cuboidal epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000241"
+          "svg_id": "Hepatic_Progenitor_Cell_10",
+          "svg_group_id": "Hepatic_Progenitor_Cell",
+          "label": "hepatic progenitor cell",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Stratified_Cuboidal_Epithelial_Cell_7",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_11",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Stratified_Cuboidal_Epithelial_Cell_7",
-          "svg_group_id": "Stratified_Cuboidal_Epithelial_Cell",
-          "label": "stratified cuboidal epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000241"
+          "svg_id": "Hepatic_Progenitor_Cell_11",
+          "svg_group_id": "Hepatic_Progenitor_Cell",
+          "label": "hepatic progenitor cell",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Blood_Vessel_Smooth_Muscle_Cell_1",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_12",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Blood_Vessel_Smooth_Muscle_Cell_1",
-          "svg_group_id": "Blood_Vessel_Smooth_Muscle_Cell",
-          "label": "blood vessel smooth muscle cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0019018"
+          "svg_id": "Hepatic_Progenitor_Cell_12",
+          "svg_group_id": "Hepatic_Progenitor_Cell",
+          "label": "hepatic progenitor cell",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Blood_Vessel_Smooth_Muscle_Cell_2",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_13",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Blood_Vessel_Smooth_Muscle_Cell_2",
-          "svg_group_id": "Blood_Vessel_Smooth_Muscle_Cell",
-          "label": "blood vessel smooth muscle cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0019018"
+          "svg_id": "Hepatic_Progenitor_Cell_13",
+          "svg_group_id": "Hepatic_Progenitor_Cell",
+          "label": "hepatic progenitor cell",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Blood_Vessel_Smooth_Muscle_Cell_3",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_14",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Blood_Vessel_Smooth_Muscle_Cell_3",
-          "svg_group_id": "Blood_Vessel_Smooth_Muscle_Cell",
-          "label": "blood vessel smooth muscle cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0019018"
+          "svg_id": "Hepatic_Progenitor_Cell_14",
+          "svg_group_id": "Hepatic_Progenitor_Cell",
+          "label": "hepatic progenitor cell",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Blood_Vessel_Smooth_Muscle_Cell_4",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_15",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Blood_Vessel_Smooth_Muscle_Cell_4",
-          "svg_group_id": "Blood_Vessel_Smooth_Muscle_Cell",
-          "label": "blood vessel smooth muscle cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0019018"
+          "svg_id": "Hepatic_Progenitor_Cell_15",
+          "svg_group_id": "Hepatic_Progenitor_Cell",
+          "label": "hepatic progenitor cell",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Blood_Vessel_Smooth_Muscle_Cell_5",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_16",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Blood_Vessel_Smooth_Muscle_Cell_5",
-          "svg_group_id": "Blood_Vessel_Smooth_Muscle_Cell",
-          "label": "blood vessel smooth muscle cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0019018"
+          "svg_id": "Hepatic_Progenitor_Cell_16",
+          "svg_group_id": "Hepatic_Progenitor_Cell",
+          "label": "hepatic progenitor cell",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Blood_Vessel_Smooth_Muscle_Cell_6",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_17",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Blood_Vessel_Smooth_Muscle_Cell_6",
-          "svg_group_id": "Blood_Vessel_Smooth_Muscle_Cell",
-          "label": "blood vessel smooth muscle cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0019018"
+          "svg_id": "Hepatic_Progenitor_Cell_17",
+          "svg_group_id": "Hepatic_Progenitor_Cell",
+          "label": "hepatic progenitor cell",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Blood_Vessel_Smooth_Muscle_Cell_7",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Progenitor_Cell_18",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Blood_Vessel_Smooth_Muscle_Cell_7",
-          "svg_group_id": "Blood_Vessel_Smooth_Muscle_Cell",
-          "label": "blood vessel smooth muscle cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0019018"
+          "svg_id": "Hepatic_Progenitor_Cell_18",
+          "svg_group_id": "Hepatic_Progenitor_Cell",
+          "label": "hepatic progenitor cell",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Blood_Vessel_Smooth_Muscle_Cell_8",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Blood_Vessel_Smooth_Muscle_Cell_8",
-          "svg_group_id": "Blood_Vessel_Smooth_Muscle_Cell",
-          "label": "blood vessel smooth muscle cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0019018"
+          "svg_id": "Hepatoblast_1",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Artery_1",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_2",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelial_Cell_Of_Artery_1",
-          "svg_group_id": "Endothelial_Cell_Of_Artery",
-          "label": "endothelial cell of artery",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000413"
+          "svg_id": "Hepatoblast_2",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Artery_2",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_3",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelial_Cell_Of_Artery_2",
-          "svg_group_id": "Endothelial_Cell_Of_Artery",
-          "label": "endothelial cell of artery",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000413"
+          "svg_id": "Hepatoblast_3",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Artery_3",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_4",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelial_Cell_Of_Artery_3",
-          "svg_group_id": "Endothelial_Cell_Of_Artery",
-          "label": "endothelial cell of artery",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000413"
+          "svg_id": "Hepatoblast_4",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Artery_4",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_5",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelial_Cell_Of_Artery_4",
-          "svg_group_id": "Endothelial_Cell_Of_Artery",
-          "label": "endothelial cell of artery",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000413"
+          "svg_id": "Hepatoblast_5",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Artery_5",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_6",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelial_Cell_Of_Artery_5",
-          "svg_group_id": "Endothelial_Cell_Of_Artery",
-          "label": "endothelial cell of artery",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000413"
+          "svg_id": "Hepatoblast_6",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Artery_6",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_7",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelial_Cell_Of_Artery_6",
-          "svg_group_id": "Endothelial_Cell_Of_Artery",
-          "label": "endothelial cell of artery",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000413"
+          "svg_id": "Hepatoblast_7",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Artery_7",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_8",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelial_Cell_Of_Artery_7",
-          "svg_group_id": "Endothelial_Cell_Of_Artery",
-          "label": "endothelial cell of artery",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000413"
+          "svg_id": "Hepatoblast_8",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Artery_8",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_9",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelial_Cell_Of_Artery_8",
-          "svg_group_id": "Endothelial_Cell_Of_Artery",
-          "label": "endothelial cell of artery",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000413"
+          "svg_id": "Hepatoblast_9",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Artery_9",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_10",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelial_Cell_Of_Artery_9",
-          "svg_group_id": "Endothelial_Cell_Of_Artery",
-          "label": "endothelial cell of artery",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000413"
+          "svg_id": "Hepatoblast_10",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Artery_1",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_11",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelial_Cell_Of_Artery_1",
-          "svg_group_id": "Endothelial_Cell_Of_Artery-2",
-          "label": "endothelial cell of artery",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000413"
+          "svg_id": "Hepatoblast_11",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Artery_2",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_12",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelial_Cell_Of_Artery_2",
-          "svg_group_id": "Endothelial_Cell_Of_Artery-2",
-          "label": "endothelial cell of artery",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000413"
+          "svg_id": "Hepatoblast_12",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Artery_3",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_13",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelial_Cell_Of_Artery_3",
-          "svg_group_id": "Endothelial_Cell_Of_Artery-2",
-          "label": "endothelial cell of artery",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000413"
+          "svg_id": "Hepatoblast_13",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Artery_4",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_14",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelial_Cell_Of_Artery_4",
-          "svg_group_id": "Endothelial_Cell_Of_Artery-2",
-          "label": "endothelial cell of artery",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000413"
+          "svg_id": "Hepatoblast_14",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Artery_5",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_15",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelial_Cell_Of_Artery_5",
-          "svg_group_id": "Endothelial_Cell_Of_Artery-2",
-          "label": "endothelial cell of artery",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000413"
+          "svg_id": "Hepatoblast_15",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Artery_6",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_16",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelial_Cell_Of_Artery_6",
-          "svg_group_id": "Endothelial_Cell_Of_Artery-2",
-          "label": "endothelial cell of artery",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000413"
+          "svg_id": "Hepatoblast_16",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Artery_7",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_17",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelial_Cell_Of_Artery_7",
-          "svg_group_id": "Endothelial_Cell_Of_Artery-2",
-          "label": "endothelial cell of artery",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000413"
+          "svg_id": "Hepatoblast_17",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Stellate_Cell_1",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_18",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Stellate_Cell_1",
-          "svg_group_id": "Hepatic_Stellate_Cell-2",
-          "label": "hepatic stellate cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000632"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Stellate_Cell_2",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Stellate_Cell_2",
-          "svg_group_id": "Hepatic_Stellate_Cell-2",
-          "label": "hepatic stellate cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000632"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Stellate_Cell_3",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Hepatic_Stellate_Cell_3",
-          "svg_group_id": "Hepatic_Stellate_Cell-2",
-          "label": "hepatic stellate cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000632"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Kupffer_Cell_1",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Kupffer_Cell_1",
-          "svg_group_id": "Kupffer_Cell-2",
-          "label": "Kupffer Cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000091"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Kupffer_Cell_2",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Kupffer_Cell_2",
-          "svg_group_id": "Kupffer_Cell-2",
-          "label": "Kupffer Cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000091"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Kupffer_Cell_3",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Kupffer_Cell_3",
-          "svg_group_id": "Kupffer_Cell-2",
-          "label": "Kupffer Cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000091"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Kupffer_Cell_4",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Kupffer_Cell_4",
-          "svg_group_id": "Kupffer_Cell-2",
-          "label": "Kupffer Cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000091"
+          "svg_id": "Hepatoblast_18",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Hepatic_Sinusoid_1",
           "@type": "FtuIllustrationNode",
           "svg_id": "Endothelial_Cell_Of_Hepatic_Sinusoid_1",
-          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid-2",
+          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid",
           "label": "endothelial cell of hepatic sinusoid",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000398"
         },
@@ -5067,7 +4843,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Hepatic_Sinusoid_2",
           "@type": "FtuIllustrationNode",
           "svg_id": "Endothelial_Cell_Of_Hepatic_Sinusoid_2",
-          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid-2",
+          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid",
           "label": "endothelial cell of hepatic sinusoid",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000398"
         },
@@ -5075,7 +4851,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Hepatic_Sinusoid_3",
           "@type": "FtuIllustrationNode",
           "svg_id": "Endothelial_Cell_Of_Hepatic_Sinusoid_3",
-          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid-2",
+          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid",
           "label": "endothelial cell of hepatic sinusoid",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000398"
         },
@@ -5083,7 +4859,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Hepatic_Sinusoid_4",
           "@type": "FtuIllustrationNode",
           "svg_id": "Endothelial_Cell_Of_Hepatic_Sinusoid_4",
-          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid-2",
+          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid",
           "label": "endothelial cell of hepatic sinusoid",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000398"
         },
@@ -5091,7 +4867,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Hepatic_Sinusoid_5",
           "@type": "FtuIllustrationNode",
           "svg_id": "Endothelial_Cell_Of_Hepatic_Sinusoid_5",
-          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid-2",
+          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid",
           "label": "endothelial cell of hepatic sinusoid",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000398"
         },
@@ -5099,7 +4875,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Hepatic_Sinusoid_6",
           "@type": "FtuIllustrationNode",
           "svg_id": "Endothelial_Cell_Of_Hepatic_Sinusoid_6",
-          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid-2",
+          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid",
           "label": "endothelial cell of hepatic sinusoid",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000398"
         },
@@ -5107,7 +4883,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Hepatic_Sinusoid_7",
           "@type": "FtuIllustrationNode",
           "svg_id": "Endothelial_Cell_Of_Hepatic_Sinusoid_7",
-          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid-2",
+          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid",
           "label": "endothelial cell of hepatic sinusoid",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000398"
         },
@@ -5115,7 +4891,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Hepatic_Sinusoid_8",
           "@type": "FtuIllustrationNode",
           "svg_id": "Endothelial_Cell_Of_Hepatic_Sinusoid_8",
-          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid-2",
+          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid",
           "label": "endothelial cell of hepatic sinusoid",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000398"
         },
@@ -5123,15 +4899,111 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Hepatic_Sinusoid_9",
           "@type": "FtuIllustrationNode",
           "svg_id": "Endothelial_Cell_Of_Hepatic_Sinusoid_9",
-          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid-2",
+          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid",
           "label": "endothelial cell of hepatic sinusoid",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000398"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Hepatic_Sinusoid_10",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Endothelial_Cell_Of_Hepatic_Sinusoid_10",
+          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid",
+          "label": "endothelial cell of hepatic sinusoid",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000398"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Hepatic_Sinusoid_11",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Endothelial_Cell_Of_Hepatic_Sinusoid_11",
+          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid",
+          "label": "endothelial cell of hepatic sinusoid",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000398"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Hepatic_Sinusoid_12",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Endothelial_Cell_Of_Hepatic_Sinusoid_12",
+          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid",
+          "label": "endothelial cell of hepatic sinusoid",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000398"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Hepatic_Sinusoid_13",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Endothelial_Cell_Of_Hepatic_Sinusoid_13",
+          "svg_group_id": "Endothelial_Cell_Of_Hepatic_Sinusoid",
+          "label": "endothelial cell of hepatic sinusoid",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000398"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Stellate_Cell_1",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatic_Stellate_Cell_1",
+          "svg_group_id": "Hepatic_Stellate_Cell",
+          "label": "hepatic stellate cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000632"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Stellate_Cell_2",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatic_Stellate_Cell_2",
+          "svg_group_id": "Hepatic_Stellate_Cell",
+          "label": "hepatic stellate cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000632"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Stellate_Cell_3",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatic_Stellate_Cell_3",
+          "svg_group_id": "Hepatic_Stellate_Cell",
+          "label": "hepatic stellate cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000632"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatic_Stellate_Cell_4",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatic_Stellate_Cell_4",
+          "svg_group_id": "Hepatic_Stellate_Cell",
+          "label": "hepatic stellate cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000632"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Kupffer_Cell_1",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Kupffer_Cell_1",
+          "svg_group_id": "Kupffer_Cell",
+          "label": "Kupffer Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000091"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Kupffer_Cell_2",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Kupffer_Cell_2",
+          "svg_group_id": "Kupffer_Cell",
+          "label": "Kupffer Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000091"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Kupffer_Cell_3",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Kupffer_Cell_3",
+          "svg_group_id": "Kupffer_Cell",
+          "label": "Kupffer Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000091"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Kupffer_Cell_4",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Kupffer_Cell_4",
+          "svg_group_id": "Kupffer_Cell",
+          "label": "Kupffer Cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000091"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_1",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_1",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5139,7 +5011,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_2",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_2",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5147,7 +5019,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_3",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_3",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5155,7 +5027,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_4",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_4",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5163,7 +5035,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_5",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_5",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5171,7 +5043,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_6",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_6",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5179,7 +5051,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_7",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_7",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5187,7 +5059,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_8",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_8",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5195,7 +5067,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_9",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_9",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5203,7 +5075,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_10",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_10",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5211,7 +5083,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_11",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_11",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5219,7 +5091,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_12",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_12",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5227,7 +5099,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_13",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_13",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5235,7 +5107,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_14",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_14",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5243,7 +5115,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_15",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_15",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5251,7 +5123,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_16",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_16",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5259,7 +5131,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_17",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_17",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5267,7 +5139,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_18",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_18",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5275,7 +5147,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_19",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_19",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5283,7 +5155,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_20",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_20",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5291,7 +5163,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_21",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_21",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5299,7 +5171,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_22",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_22",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5307,7 +5179,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_23",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_23",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5315,7 +5187,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_24",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_24",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5323,7 +5195,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_25",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_25",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5331,7 +5203,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_26",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_26",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5339,7 +5211,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_27",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_27",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5347,7 +5219,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_28",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_28",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5355,7 +5227,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_29",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_29",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5363,7 +5235,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_30",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_30",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5371,7 +5243,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_31",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_31",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5379,7 +5251,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_32",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_32",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5387,7 +5259,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_33",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_33",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5395,7 +5267,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_34",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_34",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5403,7 +5275,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_35",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_35",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5411,7 +5283,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_36",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_36",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5419,7 +5291,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_37",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_37",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5427,7 +5299,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_38",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_38",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5435,7 +5307,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_39",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_39",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5443,7 +5315,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_40",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_40",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5451,7 +5323,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_41",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_41",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5459,7 +5331,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_42",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_42",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5467,7 +5339,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_43",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_43",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5475,7 +5347,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_44",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_44",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5483,7 +5355,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_45",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_45",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5491,7 +5363,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_46",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_46",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5499,7 +5371,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_47",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_47",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5507,7 +5379,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_48",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_48",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5515,7 +5387,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_49",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_49",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5523,7 +5395,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_50",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_50",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5531,7 +5403,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_51",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_51",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         },
@@ -5539,7 +5411,135 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_52",
           "@type": "FtuIllustrationNode",
           "svg_id": "Hepatocyte_52",
-          "svg_group_id": "Hepatocyte-2",
+          "svg_group_id": "Hepatocyte",
+          "label": "hepatocyte",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_53",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatocyte_53",
+          "svg_group_id": "Hepatocyte",
+          "label": "hepatocyte",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_54",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatocyte_54",
+          "svg_group_id": "Hepatocyte",
+          "label": "hepatocyte",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_55",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatocyte_55",
+          "svg_group_id": "Hepatocyte",
+          "label": "hepatocyte",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_56",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatocyte_56",
+          "svg_group_id": "Hepatocyte",
+          "label": "hepatocyte",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_57",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatocyte_57",
+          "svg_group_id": "Hepatocyte",
+          "label": "hepatocyte",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_58",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatocyte_58",
+          "svg_group_id": "Hepatocyte",
+          "label": "hepatocyte",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_59",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatocyte_59",
+          "svg_group_id": "Hepatocyte",
+          "label": "hepatocyte",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_60",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatocyte_60",
+          "svg_group_id": "Hepatocyte",
+          "label": "hepatocyte",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_61",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatocyte_61",
+          "svg_group_id": "Hepatocyte",
+          "label": "hepatocyte",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_62",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatocyte_62",
+          "svg_group_id": "Hepatocyte",
+          "label": "hepatocyte",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_63",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatocyte_63",
+          "svg_group_id": "Hepatocyte",
+          "label": "hepatocyte",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_64",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatocyte_64",
+          "svg_group_id": "Hepatocyte",
+          "label": "hepatocyte",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_65",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatocyte_65",
+          "svg_group_id": "Hepatocyte",
+          "label": "hepatocyte",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_66",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatocyte_66",
+          "svg_group_id": "Hepatocyte",
+          "label": "hepatocyte",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_67",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatocyte_67",
+          "svg_group_id": "Hepatocyte",
+          "label": "hepatocyte",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatocyte_68",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatocyte_68",
+          "svg_group_id": "Hepatocyte",
           "label": "hepatocyte",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000182"
         }
