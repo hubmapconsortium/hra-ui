@@ -10,7 +10,7 @@ import { ClearSelection, Load, Reset, SetClicked, SetHover } from './illustrator
  */
 export interface IllustratorModel {
   /** Illustration URL */
-  url?: Url;
+  url?: Url | string;
   /** Selected Illustrator Item on hover */
   selectedOnHover?: IllustrationMappingItem;
   /** Selected Illustrator Item on click */
