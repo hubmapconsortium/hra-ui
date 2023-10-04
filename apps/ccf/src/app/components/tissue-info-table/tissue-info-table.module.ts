@@ -1,4 +1,3 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { TissueInfoTableComponent } from './tissue-info-table.component';
@@ -10,7 +9,6 @@ import { MatSortModule } from '@angular/material/sort';
   declarations: [TissueInfoTableComponent],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     MatTableModule,
     MatSortModule,
     MarkdownModule.forChild(),

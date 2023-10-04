@@ -1,4 +1,3 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { PageElementComponent } from './page-element.component';
@@ -32,7 +31,6 @@ import { DownloadFtuModule } from '../download-ftu/download-ftu.module';
   declarations: [PageElementComponent],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     PageHeaderModule,
     PageDataModule,
     UseButtonModule,

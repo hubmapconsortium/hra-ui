@@ -1,5 +1,4 @@
 import { ChooseVersionComponent } from './choose-version.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
