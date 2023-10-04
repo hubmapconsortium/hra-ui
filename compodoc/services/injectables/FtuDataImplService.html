@@ -161,7 +161,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:190</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:191</a></code>
 </div>
                 </td>
             </tr>
@@ -246,7 +246,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:202</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:203</a></code>
 </div>
                 </td>
             </tr>
@@ -331,7 +331,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:178</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:179</a></code>
 </div>
                 </td>
             </tr>
@@ -416,7 +416,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:169</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:170</a></code>
 </div>
                 </td>
             </tr>
@@ -462,7 +462,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#Url" target="_self" >Observable&lt;Url&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#Url" target="_self" >Observable&lt;Url | string&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -501,7 +501,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:214</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:215</a></code>
 </div>
                 </td>
             </tr>
@@ -586,7 +586,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:158</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:159</a></code>
 </div>
                 </td>
             </tr>
@@ -679,13 +679,14 @@ const ILLUSTRATIONS &#x3D; z.object({
     representation_of: z.string(),
     illustration_files: z
       .object({
-        file: URL,
+        file: z.string(),
         file_format: z.string(),
       })
       .array(),
     mapping: z
       .object({
         svg_id: z.string(),
+        svg_group_id: z.string(),
         label: z.string(),
         representation_of: z.string(),
       })
@@ -785,7 +786,7 @@ export class FtuDataImplService extends FtuDataService {
   @param iri The Iri of the illustration.
   @returns An Observable that emits the mock URL.
   */
-  override getIllustrationUrl(iri: Iri): Observable&lt;Url&gt; {
+  override getIllustrationUrl(iri: Iri): Observable&lt;Url | string&gt; {
     return this.getDataFileReferences(iri).pipe(map((data) &#x3D;&gt; this.findIllustrationUrl(data)));
   }
 
@@ -897,7 +898,7 @@ export class FtuDataImplService extends FtuDataService {
    * @param files
    * @returns illustration url
    */
-  private findIllustrationUrl(files: DataFileReference[]): Url {
+  private findIllustrationUrl(files: DataFileReference[]): string {
     const { fileFormatMapping } &#x3D; this;
     const svgFormat &#x3D; fileFormatMapping[&#x27;image/svg+xml&#x27;];
     const ref &#x3D; files.find(({ format }) &#x3D;&gt; format &#x3D;&#x3D;&#x3D; svgFormat);
@@ -914,12 +915,17 @@ export class FtuDataImplService extends FtuDataService {
    * @returns illustration mapping
    */
   private toIllustrationMapping(
-    mappings: { label: string; svg_id: string; representation_of: string }[]
+    mappings: { label: string; svg_id: string; svg_group_id: string; representation_of: string }[]
   ): IllustrationMappingItem[] {
     const ontologyIdPrefix &#x3D; &#x27;http://purl.obolibrary.org/obo/&#x27;;
     const results: IllustrationMappingItem[] &#x3D; [];
-    for (const { label, svg_id, representation_of } of mappings) {
-      results.push({ label, id: svg_id, ontologyId: representation_of.slice(ontologyIdPrefix.length) });
+    for (const { label, svg_id, svg_group_id, representation_of } of mappings) {
+      results.push({
+        label,
+        id: svg_id,
+        groupId: svg_group_id,
+        ontologyId: representation_of.slice(ontologyIdPrefix.length),
+      });
     }
 
     return results;

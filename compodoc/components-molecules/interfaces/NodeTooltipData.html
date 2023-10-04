@@ -265,6 +265,8 @@ export interface NodeMapEntry {
   label: string;
   /** Node id in svg */
   id: string;
+  /** Node group id */
+  groupId: string;
   /** Ontology id of cell type */
   ontologyId: string;
 }
@@ -449,11 +451,18 @@ export class InteractiveSvgComponent&lt;T extends NodeMapEntry&gt; implements On
     const idCollection &#x3D; [targetId, parentId, grandparentId];
     for (const id of idCollection) {
       const decodedID &#x3D; this.decodeId(id);
-      const match &#x3D; this.mapping.find(
-        (item) &#x3D;&gt; item.id?.toLowerCase() &#x3D;&#x3D;&#x3D; decodedID.toLowerCase() //search mapping by name for matching node entry
+      const cellMatch &#x3D; this.mapping.find(
+        (item) &#x3D;&gt; item.id?.toLowerCase() &#x3D;&#x3D;&#x3D; decodedID.toLowerCase() //search mapping by cell name for matching node entry
       );
-      if (match) {
-        return match;
+      if (cellMatch) {
+        return cellMatch;
+      } else {
+        const groupMatch &#x3D; this.mapping.find(
+          (item) &#x3D;&gt; item.groupId?.toLowerCase() &#x3D;&#x3D;&#x3D; decodedID.toLowerCase() //search mapping by group name for matching node entry
+        );
+        if (groupMatch) {
+          return groupMatch;
+        }
       }
     }
     return undefined;

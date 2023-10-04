@@ -573,13 +573,14 @@
     representation_of: z.string(),
     illustration_files: z
       .object({
-        file: URL,
+        file: z.string(),
         file_format: z.string(),
       })
       .array(),
     mapping: z
       .object({
         svg_id: z.string(),
+        svg_group_id: z.string(),
         label: z.string(),
         representation_of: z.string(),
       })
@@ -854,7 +855,7 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>z.object({
   format: z.string(),
-  url: URL,
+  url: z.string(),
 })</code>
                     </td>
                 </tr>
@@ -883,6 +884,7 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>z.object({
   id: z.string(),
+  groupId: z.string(),
   label: z.string(),
   ontologyId: z.string(),
 })</code>
