@@ -7654,7 +7654,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/pancreas-islets-langerhans#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-islets-langerhans.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-pancreas-islets-langerhans.svg",
           "file_format": "image/svg+xml"
         },
         {
