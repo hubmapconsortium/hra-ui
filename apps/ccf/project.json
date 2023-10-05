@@ -57,11 +57,11 @@
           "namedChunks": true
         },
         "staging": {
-          "baseHref": "/apps/ccf/",
+          "baseHref": "/",
           "outputHashing": "none"
         },
         "preview": {
-          "baseHref": "/apps/ccf/",
+          "baseHref": "/",
           "buildOptimizer": false,
           "optimization": false,
           "vendorChunk": true,

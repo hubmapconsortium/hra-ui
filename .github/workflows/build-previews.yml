@@ -23,12 +23,14 @@ jobs:
         with:
           main-branch-name: develop
           app-configuration: preview
+          build-compodoc: false
+          build-storybook: false
 
       - name: Publish
         id: deploy
         uses: netlify/actions/cli@master
         with:
-          args: deploy --dir=deploy --filter=ftu-ui
+          args: deploy --dir=deploy/apps/ccf
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
