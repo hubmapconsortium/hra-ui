@@ -1,12 +1,12 @@
+import { NgFor, NgSwitchCase, ViewportScroller } from '@angular/common';
 import { Component, Input, NgModule, Type } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { from } from 'rxjs';
+import { Shallow } from 'shallow-render';
+import { LongCard } from '../card-button-long/long-card';
+import { PageDef } from './page-def';
 import { PageElementComponent } from './page-element.component';
 import { PageElementModule } from './page-element.module';
-import { Shallow } from 'shallow-render';
-import { NgFor, NgSwitchCase, ViewportScroller } from '@angular/common';
-import { PageDef } from './page-def';
-import { ActivatedRoute, Router } from '@angular/router';
-import { LongCard } from '../card-button-long/long-card';
-import { BehaviorSubject, Subscription, from, of } from 'rxjs';
 
 
 jest.mock('swiper', () => {

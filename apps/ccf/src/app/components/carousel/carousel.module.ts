@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CarouselComponent } from './carousel.component';
 import { MatButtonModule } from '@angular/material/button';
-import { SwiperModule } from 'swiper/angular/swiper-angular';
+import { SwiperModule } from 'swiper/angular';
 import { RouterModule } from '@angular/router';
 
 @NgModule({

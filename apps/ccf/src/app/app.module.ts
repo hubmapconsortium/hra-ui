@@ -15,13 +15,14 @@ import { PageRendererModule } from './components/page-renderer/page-renderer.mod
 import { PageModule } from './components/page/page.module';
 import { ToolbarModule } from './components/toolbar/toolbar.module';
 import { TissueInfoPageModule } from './pages/tissue-info-page/tissue-info-page.module';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     ToolbarModule,
     BottomToolbarModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     TissueInfoPageModule,

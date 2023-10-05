@@ -21,7 +21,8 @@
     "strictPropertyInitialization": false,
     "useDefineForClassFields": false,
     "paths": {
-      "@components/*": ["apps/ccf/src/app/components/*"]
+      "@components/*": ["apps/ccf/src/app/components/*"],
+      "swiper_angular": ["node_modules/swiper/angular"]
     },
     "rootDir": "."
   },
