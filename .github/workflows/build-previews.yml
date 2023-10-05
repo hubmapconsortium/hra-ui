@@ -38,4 +38,4 @@ jobs:
       - name: Create Deploy Comment
         uses: ./.github/actions/deploy-comment
         with:
-          deploy-url: ${{steps.deploy.outputs.NETLIFY_PREVIEW_URL}}
+          deploy-url: ${{steps.deploy.outputs.NETLIFY_URL}}
