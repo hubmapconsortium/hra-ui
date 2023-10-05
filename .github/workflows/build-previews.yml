@@ -36,7 +36,14 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
 
+      - name: Parse netlify output
+        id: parse_netlify_out
+        shell: bash
+        run: |
+          echo "${{steps.deploy.outputs.NETLIFY_OUTPUT}}" | \
+            perl -pe s'/^.*\ Website draft URL\:\ /URL=/g;s/\.app\ .*/\.app/g' >> "${GITHUB_OUTPUT}"
+
       - name: Create Deploy Comment
         uses: ./.github/actions/deploy-comment
         with:
-          deploy-url: ${{steps.deploy.outputs.NETLIFY_OUTPUT}}
+          deploy-url: ${{steps.parse_netlify_out.outputs.URL}}
