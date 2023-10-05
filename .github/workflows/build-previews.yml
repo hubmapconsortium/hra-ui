@@ -28,13 +28,10 @@ jobs:
 
       - name: Publish
         id: deploy
-        uses: jsmrcaga/action-netlify-deploy@v2.0.0
+        uses: South-Paw/action-netlify-cli@v2
         with:
-          build_directory: deploy/apps/ccf
-          install_command: ;
-          build_command: ;
-          # args: deploy --dir=deploy/apps/ccf
-        # env:
+          args: deploy --dir=deploy/apps/ccf
+        env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
 
