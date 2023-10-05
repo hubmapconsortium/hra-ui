@@ -119,7 +119,7 @@
       "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct",
       "@type": "FtuIllustration",
       "representation_of": "UBERON:0004203",
-      "label": "Cortical Collecting Duct",
+      "label": "cortical collecting duct",
       "organ_id": "UBERON:0002113",
       "organ_label": "Kidney",
       "illustration_files": [
@@ -264,9 +264,41 @@
           "representation_of": "http://purl.obolibrary.org/obo/CL_4030020"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct#Endothelium_Peritubular_Capillary",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct#Endothelium_Peritubular_Capillary_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelium_Peritubular_Capillary",
+          "svg_id": "Endothelium_Peritubular_Capillary_1",
+          "svg_group_id": "Endothelium_Peritubular_Capillary",
+          "label": "peritubular capillary endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001033"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct#Endothelium_Peritubular_Capillary_2",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Endothelium_Peritubular_Capillary_2",
+          "svg_group_id": "Endothelium_Peritubular_Capillary",
+          "label": "peritubular capillary endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001033"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct#Endothelium_Peritubular_Capillary_3",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Endothelium_Peritubular_Capillary_3",
+          "svg_group_id": "Endothelium_Peritubular_Capillary",
+          "label": "peritubular capillary endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001033"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct#Endothelium_Peritubular_Capillary_4",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Endothelium_Peritubular_Capillary_4",
+          "svg_group_id": "Endothelium_Peritubular_Capillary",
+          "label": "peritubular capillary endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001033"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct#Endothelium_Peritubular_Capillary_5",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Endothelium_Peritubular_Capillary_5",
           "svg_group_id": "Endothelium_Peritubular_Capillary",
           "label": "peritubular capillary endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001033"
@@ -492,9 +524,41 @@
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-inner-medullary-collecting-duct#Endothelium_Peritubular_Capillary",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-inner-medullary-collecting-duct#Endothelium_Peritubular_Capillary_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelium_Peritubular_Capillary",
+          "svg_id": "Endothelium_Peritubular_Capillary_1",
+          "svg_group_id": "Endothelium_Peritubular_Capillary",
+          "label": "peritubular capillary endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001033"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-inner-medullary-collecting-duct#Endothelium_Peritubular_Capillary_2",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Endothelium_Peritubular_Capillary_2",
+          "svg_group_id": "Endothelium_Peritubular_Capillary",
+          "label": "peritubular capillary endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001033"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-inner-medullary-collecting-duct#Endothelium_Peritubular_Capillary_3",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Endothelium_Peritubular_Capillary_3",
+          "svg_group_id": "Endothelium_Peritubular_Capillary",
+          "label": "peritubular capillary endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001033"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-inner-medullary-collecting-duct#Endothelium_Peritubular_Capillary_4",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Endothelium_Peritubular_Capillary_4",
+          "svg_group_id": "Endothelium_Peritubular_Capillary",
+          "label": "peritubular capillary endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001033"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-inner-medullary-collecting-duct#Endothelium_Peritubular_Capillary_5",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Endothelium_Peritubular_Capillary_5",
           "svg_group_id": "Endothelium_Peritubular_Capillary",
           "label": "peritubular capillary endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001033"
@@ -1328,9 +1392,41 @@
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-outer-medullary-collecting-duct#Endothelium_Peritubular_Capillary",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-outer-medullary-collecting-duct#Endothelium_Peritubular_Capillary_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Endothelium_Peritubular_Capillary",
+          "svg_id": "Endothelium_Peritubular_Capillary_1",
+          "svg_group_id": "Endothelium_Peritubular_Capillary",
+          "label": "peritubular capillary endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001033"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-outer-medullary-collecting-duct#Endothelium_Peritubular_Capillary_2",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Endothelium_Peritubular_Capillary_2",
+          "svg_group_id": "Endothelium_Peritubular_Capillary",
+          "label": "peritubular capillary endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001033"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-outer-medullary-collecting-duct#Endothelium_Peritubular_Capillary_3",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Endothelium_Peritubular_Capillary_3",
+          "svg_group_id": "Endothelium_Peritubular_Capillary",
+          "label": "peritubular capillary endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001033"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-outer-medullary-collecting-duct#Endothelium_Peritubular_Capillary_4",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Endothelium_Peritubular_Capillary_4",
+          "svg_group_id": "Endothelium_Peritubular_Capillary",
+          "label": "peritubular capillary endothelial cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001033"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-outer-medullary-collecting-duct#Endothelium_Peritubular_Capillary_5",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Endothelium_Peritubular_Capillary_5",
           "svg_group_id": "Endothelium_Peritubular_Capillary",
           "label": "peritubular capillary endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001033"
@@ -1914,7 +2010,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_1",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -1922,7 +2018,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_2",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -1930,7 +2026,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_3",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -1938,7 +2034,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_4",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -1946,7 +2042,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_5",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -1954,7 +2050,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_6",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -1962,7 +2058,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_7",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -1970,7 +2066,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_8",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -1978,7 +2074,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_9",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -1986,7 +2082,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_10",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -1994,7 +2090,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_11",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -2002,7 +2098,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_12",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -2010,7 +2106,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_13",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -2018,7 +2114,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_14",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -2026,7 +2122,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_15",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -2034,7 +2130,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_16",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -2042,7 +2138,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_17",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -2050,7 +2146,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_18",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -2058,7 +2154,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_19",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -2066,7 +2162,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_20",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -2074,7 +2170,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_21",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -2082,7 +2178,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_22",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -2090,7 +2186,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_23",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -2098,7 +2194,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_24",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -2106,7 +2202,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_25",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -2114,7 +2210,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_26",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -2122,7 +2218,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_27",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -2130,7 +2226,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Efferent_Arteriole_Endothelial_Cell_28",
           "svg_group_id": "Efferent_Arteriole_Endothelial_Cell",
-          "label": "Efferent Arteriole Endothelial cell",
+          "label": "efferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001099"
         },
         {
@@ -2138,7 +2234,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Parietal_Epithelial_Cell_1",
           "svg_group_id": "Parietal_Epithelial_Cell",
-          "label": "Parietal Epithelial Cell",
+          "label": "parietal epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
         },
         {
@@ -2146,7 +2242,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Parietal_Epithelial_Cell_2",
           "svg_group_id": "Parietal_Epithelial_Cell",
-          "label": "Parietal Epithelial Cell",
+          "label": "parietal epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
         },
         {
@@ -2154,7 +2250,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Parietal_Epithelial_Cell_3",
           "svg_group_id": "Parietal_Epithelial_Cell",
-          "label": "Parietal Epithelial Cell",
+          "label": "parietal epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
         },
         {
@@ -2162,7 +2258,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Parietal_Epithelial_Cell_4",
           "svg_group_id": "Parietal_Epithelial_Cell",
-          "label": "Parietal Epithelial Cell",
+          "label": "parietal epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
         },
         {
@@ -2170,7 +2266,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Parietal_Epithelial_Cell_5",
           "svg_group_id": "Parietal_Epithelial_Cell",
-          "label": "Parietal Epithelial Cell",
+          "label": "parietal epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
         },
         {
@@ -2178,7 +2274,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Parietal_Epithelial_Cell_6",
           "svg_group_id": "Parietal_Epithelial_Cell",
-          "label": "Parietal Epithelial Cell",
+          "label": "parietal epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
         },
         {
@@ -2186,7 +2282,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Parietal_Epithelial_Cell_7",
           "svg_group_id": "Parietal_Epithelial_Cell",
-          "label": "Parietal Epithelial Cell",
+          "label": "parietal epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
         },
         {
@@ -2194,7 +2290,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Parietal_Epithelial_Cell_8",
           "svg_group_id": "Parietal_Epithelial_Cell",
-          "label": "Parietal Epithelial Cell",
+          "label": "parietal epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
         },
         {
@@ -2202,7 +2298,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Parietal_Epithelial_Cell_9",
           "svg_group_id": "Parietal_Epithelial_Cell",
-          "label": "Parietal Epithelial Cell",
+          "label": "parietal epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
         },
         {
@@ -2210,7 +2306,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Parietal_Epithelial_Cell_10",
           "svg_group_id": "Parietal_Epithelial_Cell",
-          "label": "Parietal Epithelial Cell",
+          "label": "parietal epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
         },
         {
@@ -2218,7 +2314,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Parietal_Epithelial_Cell_11",
           "svg_group_id": "Parietal_Epithelial_Cell",
-          "label": "Parietal Epithelial Cell",
+          "label": "parietal epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
         },
         {
@@ -2226,7 +2322,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Parietal_Epithelial_Cell_12",
           "svg_group_id": "Parietal_Epithelial_Cell",
-          "label": "Parietal Epithelial Cell",
+          "label": "parietal epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000452"
         },
         {
@@ -2234,7 +2330,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Afferent_Arteriole_Endothelial_Cell_1",
           "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
-          "label": "Afferent Arteriole Endothelial Cell",
+          "label": "afferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
         },
         {
@@ -2242,7 +2338,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Afferent_Arteriole_Endothelial_Cell_2",
           "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
-          "label": "Afferent Arteriole Endothelial Cell",
+          "label": "afferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
         },
         {
@@ -2250,7 +2346,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Afferent_Arteriole_Endothelial_Cell_3",
           "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
-          "label": "Afferent Arteriole Endothelial Cell",
+          "label": "afferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
         },
         {
@@ -2258,7 +2354,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Afferent_Arteriole_Endothelial_Cell_4",
           "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
-          "label": "Afferent Arteriole Endothelial Cell",
+          "label": "afferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
         },
         {
@@ -2266,7 +2362,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Afferent_Arteriole_Endothelial_Cell_5",
           "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
-          "label": "Afferent Arteriole Endothelial Cell",
+          "label": "afferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
         },
         {
@@ -2274,7 +2370,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Afferent_Arteriole_Endothelial_Cell_6",
           "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
-          "label": "Afferent Arteriole Endothelial Cell",
+          "label": "afferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
         },
         {
@@ -2282,7 +2378,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Afferent_Arteriole_Endothelial_Cell_7",
           "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
-          "label": "Afferent Arteriole Endothelial Cell",
+          "label": "afferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
         },
         {
@@ -2290,7 +2386,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Afferent_Arteriole_Endothelial_Cell_8",
           "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
-          "label": "Afferent Arteriole Endothelial Cell",
+          "label": "afferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
         },
         {
@@ -2298,7 +2394,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Afferent_Arteriole_Endothelial_Cell_9",
           "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
-          "label": "Afferent Arteriole Endothelial Cell",
+          "label": "afferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
         },
         {
@@ -2306,7 +2402,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Afferent_Arteriole_Endothelial_Cell_10",
           "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
-          "label": "Afferent Arteriole Endothelial Cell",
+          "label": "afferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
         },
         {
@@ -2314,7 +2410,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Afferent_Arteriole_Endothelial_Cell_11",
           "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
-          "label": "Afferent Arteriole Endothelial Cell",
+          "label": "afferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
         },
         {
@@ -2322,7 +2418,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Afferent_Arteriole_Endothelial_Cell_12",
           "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
-          "label": "Afferent Arteriole Endothelial Cell",
+          "label": "afferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
         },
         {
@@ -2330,7 +2426,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Afferent_Arteriole_Endothelial_Cell_13",
           "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
-          "label": "Afferent Arteriole Endothelial Cell",
+          "label": "afferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
         },
         {
@@ -2338,7 +2434,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Afferent_Arteriole_Endothelial_Cell_14",
           "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
-          "label": "Afferent Arteriole Endothelial Cell",
+          "label": "afferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
         },
         {
@@ -2346,7 +2442,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Afferent_Arteriole_Endothelial_Cell_15",
           "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
-          "label": "Afferent Arteriole Endothelial Cell",
+          "label": "afferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
         },
         {
@@ -2354,7 +2450,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Afferent_Arteriole_Endothelial_Cell_16",
           "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
-          "label": "Afferent Arteriole Endothelial Cell",
+          "label": "afferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
         },
         {
@@ -2362,7 +2458,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Afferent_Arteriole_Endothelial_Cell_17",
           "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
-          "label": "Afferent Arteriole Endothelial Cell",
+          "label": "afferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
         },
         {
@@ -2370,7 +2466,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Afferent_Arteriole_Endothelial_Cell_18",
           "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
-          "label": "Afferent Arteriole Endothelial Cell",
+          "label": "afferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
         },
         {
@@ -2378,7 +2474,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Afferent_Arteriole_Endothelial_Cell_19",
           "svg_group_id": "Afferent_Arteriole_Endothelial_Cell",
-          "label": "Afferent Arteriole Endothelial Cell",
+          "label": "afferent arteriole endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001096"
         }
       ]
@@ -5578,7 +5674,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_1",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "Ciliated cell of submucosal gland",
+          "label": "ciliated cell of submucosal gland",
           "representation_of": ""
         },
         {
@@ -5586,7 +5682,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_2",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "Ciliated cell of submucosal gland",
+          "label": "ciliated cell of submucosal gland",
           "representation_of": ""
         },
         {
@@ -5594,7 +5690,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_3",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "Ciliated cell of submucosal gland",
+          "label": "ciliated cell of submucosal gland",
           "representation_of": ""
         },
         {
@@ -5602,7 +5698,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_4",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "Ciliated cell of submucosal gland",
+          "label": "ciliated cell of submucosal gland",
           "representation_of": ""
         },
         {
@@ -5610,7 +5706,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_5",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "Ciliated cell of submucosal gland",
+          "label": "ciliated cell of submucosal gland",
           "representation_of": ""
         },
         {
@@ -5618,7 +5714,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_6",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "Ciliated cell of submucosal gland",
+          "label": "ciliated cell of submucosal gland",
           "representation_of": ""
         },
         {
@@ -5626,7 +5722,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_7",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "Ciliated cell of submucosal gland",
+          "label": "ciliated cell of submucosal gland",
           "representation_of": ""
         },
         {
@@ -5634,7 +5730,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_8",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "Ciliated cell of submucosal gland",
+          "label": "ciliated cell of submucosal gland",
           "representation_of": ""
         },
         {
@@ -5642,7 +5738,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_9",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "Ciliated cell of submucosal gland",
+          "label": "ciliated cell of submucosal gland",
           "representation_of": ""
         },
         {
@@ -5650,7 +5746,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_10",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "Ciliated cell of submucosal gland",
+          "label": "ciliated cell of submucosal gland",
           "representation_of": ""
         },
         {
@@ -5658,7 +5754,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_11",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "Ciliated cell of submucosal gland",
+          "label": "ciliated cell of submucosal gland",
           "representation_of": ""
         },
         {
@@ -5666,7 +5762,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_12",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "Ciliated cell of submucosal gland",
+          "label": "ciliated cell of submucosal gland",
           "representation_of": ""
         },
         {
@@ -5674,7 +5770,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_13",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "Ciliated cell of submucosal gland",
+          "label": "ciliated cell of submucosal gland",
           "representation_of": ""
         },
         {
@@ -5682,7 +5778,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_14",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "Ciliated cell of submucosal gland",
+          "label": "ciliated cell of submucosal gland",
           "representation_of": ""
         },
         {
@@ -5690,7 +5786,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_15",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "Ciliated cell of submucosal gland",
+          "label": "ciliated cell of submucosal gland",
           "representation_of": ""
         },
         {
@@ -5698,7 +5794,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_16",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "Ciliated cell of submucosal gland",
+          "label": "ciliated cell of submucosal gland",
           "representation_of": ""
         },
         {
@@ -5706,7 +5802,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_Of_Submucosal_Gland_1",
           "svg_group_id": "Basal_Cell_Of_Submucosal_Gland",
-          "label": "Basal cell of submucosal gland",
+          "label": "basal cell of submucosal gland",
           "representation_of": "http://purl.obolibrary.org/obo/LMHA_00087"
         },
         {
@@ -5714,7 +5810,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_Of_Submucosal_Gland_2",
           "svg_group_id": "Basal_Cell_Of_Submucosal_Gland",
-          "label": "Basal cell of submucosal gland",
+          "label": "basal cell of submucosal gland",
           "representation_of": "http://purl.obolibrary.org/obo/LMHA_00087"
         },
         {
@@ -5722,7 +5818,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_Of_Submucosal_Gland_3",
           "svg_group_id": "Basal_Cell_Of_Submucosal_Gland",
-          "label": "Basal cell of submucosal gland",
+          "label": "basal cell of submucosal gland",
           "representation_of": "http://purl.obolibrary.org/obo/LMHA_00087"
         },
         {
@@ -5730,7 +5826,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_Of_Submucosal_Gland_4",
           "svg_group_id": "Basal_Cell_Of_Submucosal_Gland",
-          "label": "Basal cell of submucosal gland",
+          "label": "basal cell of submucosal gland",
           "representation_of": "http://purl.obolibrary.org/obo/LMHA_00087"
         },
         {
@@ -5738,7 +5834,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_Of_Submucosal_Gland_5",
           "svg_group_id": "Basal_Cell_Of_Submucosal_Gland",
-          "label": "Basal cell of submucosal gland",
+          "label": "basal cell of submucosal gland",
           "representation_of": "http://purl.obolibrary.org/obo/LMHA_00087"
         },
         {
@@ -5746,7 +5842,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_Of_Submucosal_Gland_6",
           "svg_group_id": "Basal_Cell_Of_Submucosal_Gland",
-          "label": "Basal cell of submucosal gland",
+          "label": "basal cell of submucosal gland",
           "representation_of": "http://purl.obolibrary.org/obo/LMHA_00087"
         },
         {
@@ -5754,7 +5850,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_Of_Submucosal_Gland_7",
           "svg_group_id": "Basal_Cell_Of_Submucosal_Gland",
-          "label": "Basal cell of submucosal gland",
+          "label": "basal cell of submucosal gland",
           "representation_of": "http://purl.obolibrary.org/obo/LMHA_00087"
         },
         {
@@ -5762,7 +5858,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_Of_Submucosal_Gland_8",
           "svg_group_id": "Basal_Cell_Of_Submucosal_Gland",
-          "label": "Basal cell of submucosal gland",
+          "label": "basal cell of submucosal gland",
           "representation_of": "http://purl.obolibrary.org/obo/LMHA_00087"
         },
         {
@@ -5770,7 +5866,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_Of_Submucosal_Gland_9",
           "svg_group_id": "Basal_Cell_Of_Submucosal_Gland",
-          "label": "Basal cell of submucosal gland",
+          "label": "basal cell of submucosal gland",
           "representation_of": "http://purl.obolibrary.org/obo/LMHA_00087"
         },
         {
@@ -5778,7 +5874,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_Of_Submucosal_Gland_10",
           "svg_group_id": "Basal_Cell_Of_Submucosal_Gland",
-          "label": "Basal cell of submucosal gland",
+          "label": "basal cell of submucosal gland",
           "representation_of": "http://purl.obolibrary.org/obo/LMHA_00087"
         },
         {
@@ -5786,7 +5882,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_Of_Submucosal_Gland_11",
           "svg_group_id": "Basal_Cell_Of_Submucosal_Gland",
-          "label": "Basal cell of submucosal gland",
+          "label": "basal cell of submucosal gland",
           "representation_of": "http://purl.obolibrary.org/obo/LMHA_00087"
         },
         {
@@ -5794,7 +5890,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_Of_Submucosal_Gland_12",
           "svg_group_id": "Basal_Cell_Of_Submucosal_Gland",
-          "label": "Basal cell of submucosal gland",
+          "label": "basal cell of submucosal gland",
           "representation_of": "http://purl.obolibrary.org/obo/LMHA_00087"
         },
         {
@@ -7638,7 +7734,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Pancreatic_Acinar_Cell",
           "svg_group_id": "Pancreatic_Acinar_Cell",
-          "label": "Pancreatic acinus",
+          "label": "pancreatic acinus",
           "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001263"
         }
       ]
@@ -7654,7 +7750,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/pancreas-islets-langerhans#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-islets-langerhans.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-pancreas-islets-langerhans.svg",
           "file_format": "image/svg+xml"
         },
         {
@@ -9364,7 +9460,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Capillary_Endothelial_Cell_1",
           "svg_group_id": "Capillary_Endothelial_Cell",
-          "label": "Capillary Endothelial Cell 3",
+          "label": "capillary endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0002144"
         },
         {
@@ -9372,7 +9468,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Capillary_Endothelial_Cell_2",
           "svg_group_id": "Capillary_Endothelial_Cell",
-          "label": "Capillary Endothelial Cell 3",
+          "label": "capillary endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0002144"
         },
         {
@@ -9380,7 +9476,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Capillary_Endothelial_Cell_3",
           "svg_group_id": "Capillary_Endothelial_Cell",
-          "label": "Capillary Endothelial Cell 3",
+          "label": "capillary endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0002144"
         },
         {
@@ -9388,7 +9484,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Capillary_Endothelial_Cell_4",
           "svg_group_id": "Capillary_Endothelial_Cell",
-          "label": "Capillary Endothelial Cell 3",
+          "label": "capillary endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0002144"
         },
         {
@@ -9396,7 +9492,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Capillary_Endothelial_Cell_5",
           "svg_group_id": "Capillary_Endothelial_Cell",
-          "label": "Capillary Endothelial Cell 3",
+          "label": "capillary endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0002144"
         },
         {
@@ -9404,7 +9500,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Capillary_Endothelial_Cell_6",
           "svg_group_id": "Capillary_Endothelial_Cell",
-          "label": "Capillary Endothelial Cell 3",
+          "label": "capillary endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0002144"
         },
         {
@@ -9412,16 +9508,24 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Capillary_Endothelial_Cell_7",
           "svg_group_id": "Capillary_Endothelial_Cell",
-          "label": "Capillary Endothelial Cell 3",
+          "label": "capillary endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0002144"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/pancreas-islets-langerhans#Macrophage",
+          "@id": "https://purl.humanatlas.io/2d-ftu/pancreas-islets-langerhans#Macrophage_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Macrophage",
+          "svg_id": "Macrophage_1",
           "svg_group_id": "Macrophage",
           "label": "macrophage",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000235"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/pancreas-islets-langerhans#Pericyte_1",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Pericyte_1",
+          "svg_group_id": "Pericyte",
+          "label": "pericyte",
+          "representation_of": ""
         }
       ]
     },
@@ -9708,826 +9812,810 @@
       ],
       "mapping": [
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_1",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_1",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_1",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_2",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_2",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_2",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_2",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_3",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_3",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_3",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_3",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_4",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_4",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_4",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_4",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_5",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_5",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_5",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_5",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_6",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_6",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_6",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_6",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_7",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_7",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_7",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_7",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_8",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_8",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_8",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_8",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_9",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_9",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_9",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_9",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_10",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_10",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_10",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_10",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_11",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_11",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_11",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_11",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_12",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_12",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_12",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_12",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_13",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_13",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_13",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_13",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_14",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_14",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_14",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_14",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_15",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_15",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_15",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_15",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_16",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_16",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_16",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_16",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_17",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_17",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_17",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_17",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_18",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_18",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_18",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_18",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_19",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_19",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_19",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_19",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_20",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_20",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_20",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_20",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_21",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_21",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_21",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_21",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_22",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_22",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_22",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_22",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_23",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_23",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_23",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_23",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_24",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_24",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_24",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_24",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_25",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_25",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_25",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_25",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_26",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_26",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_26",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_26",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_27",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_27",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_27",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_27",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_28",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_28",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_28",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_28",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_29",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_29",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_29",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_29",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_30",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_30",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_30",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_30",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_31",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_31",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_31",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_31",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_32",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_32",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_32",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_32",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_33",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_33",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_33",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_33",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_34",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_34",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_34",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_34",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_35",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_35",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_35",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_35",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_36",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_36",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_36",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_36",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_37",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_37",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_37",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_37",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_38",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_38",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_38",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_38",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_39",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_39",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_39",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_39",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_40",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_40",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_40",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_40",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_41",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_41",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_41",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_41",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_42",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_42",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_42",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_42",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_43",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_43",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_43",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_43",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_44",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_44",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_44",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_44",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_45",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_45",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_45",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_45",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_46",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_46",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_46",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_46",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_47",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_47",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_47",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_47",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_48",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_48",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_48",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_48",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_49",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_49",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_49",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_49",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_50",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_50",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_50",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_50",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_51",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_51",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_51",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_51",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_52",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_52",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_52",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_52",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_53",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_53",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_53",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_53",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_54",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_54",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_54",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_54",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_55",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_55",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_55",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_55",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_56",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_56",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_56",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_56",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_57",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_57",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_57",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_57",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_58",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_58",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_58",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_58",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_59",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_59",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_59",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_59",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_60",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_60",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_60",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_60",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_61",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_61",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_61",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_61",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_62",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_62",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_62",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_62",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_63",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_63",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_63",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_63",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_64",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_64",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_64",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_64",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_65",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_65",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_65",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_65",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_66",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_66",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_66",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_66",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_67",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_67",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_67",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_67",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_68",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_68",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_68",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_68",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_69",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_69",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_69",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_69",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_70",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_70",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_70",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_70",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_71",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_71",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_71",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_71",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_72",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_72",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_72",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_72",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_73",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_73",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_73",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_73",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_74",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_74",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_74",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_74",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_75",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_75",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_75",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_75",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_76",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_76",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_76",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_76",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_77",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_77",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_77",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_77",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_78",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_78",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_78",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_78",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_79",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_79",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_79",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_79",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_80",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_80",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_80",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_80",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_81",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_81",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_81",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_81",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_82",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_82",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_82",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_82",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_83",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_83",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_83",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_83",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_84",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_84",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_84",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_84",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_85",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_85",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_85",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_85",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_86",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_86",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_86",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_86",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_87",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_87",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_87",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_87",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_88",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_88",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_88",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_88",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_89",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_89",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_89",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_89",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_90",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_90",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_90",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_90",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_91",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_91",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_91",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_91",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_92",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_92",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_92",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_92",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_93",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_93",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_93",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_93",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_94",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_94",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_94",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_94",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_95",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_95",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_95",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_95",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_96",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_96",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_96",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_96",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_97",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_97",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_97",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_97",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_98",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_98",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_98",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_98",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_99",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_99",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_99",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_99",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_100",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_100",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_100",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_100",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_101",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_101",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_101",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
-          "label": "fibroblast of subepithelial connective tissue of prostatic gland",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_102",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_102",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
-          "label": "fibroblast of subepithelial connective tissue of prostatic gland",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Subepithelial_Connective_Tissue_103",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_103",
-          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue",
+          "svg_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland_101",
+          "svg_group_id": "Fibroblast_Of_Subepithelial_Connective_Tissue_Of_Prostatic_Gland",
           "label": "fibroblast of subepithelial connective tissue of prostatic gland",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000301"
         },
@@ -11148,6 +11236,22 @@
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000487"
         },
         {
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Smooth_Muscle_Cell_Of_Prostate_75",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Smooth_Muscle_Cell_Of_Prostate_75",
+          "svg_group_id": "Smooth_Muscle_Cell_Of_Prostate",
+          "label": "smooth muscle cell of prostate",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000487"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Smooth_Muscle_Cell_Of_Prostate_76",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Smooth_Muscle_Cell_Of_Prostate_76",
+          "svg_group_id": "Smooth_Muscle_Cell_Of_Prostate",
+          "label": "smooth muscle cell of prostate",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000487"
+        },
+        {
           "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Fibroblast_Of_Connective_Tissue_Of_Prostate_1",
           "@type": "FtuIllustrationNode",
           "svg_id": "Fibroblast_Of_Connective_Tissue_Of_Prostate_1",
@@ -11308,34 +11412,26 @@
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000299"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Prostate_Gland_Mircovascular_Endothelial_Cell_1",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Prostate_Gland_Microvascular_Endothelial_Cell_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Prostate_Gland_Mircovascular_Endothelial_Cell_1",
-          "svg_group_id": "Prostate_Gland_Mircovascular_Endothelial_Cell",
+          "svg_id": "Prostate_Gland_Microvascular_Endothelial_Cell_1",
+          "svg_group_id": "Prostate_Gland_Microvascular_Endothelial_Cell",
           "label": "prostate gland microvascular endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_2000059"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Prostate_Gland_Mircovascular_Endothelial_Cell_2",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Prostate_Gland_Microvascular_Endothelial_Cell_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Prostate_Gland_Mircovascular_Endothelial_Cell_2",
-          "svg_group_id": "Prostate_Gland_Mircovascular_Endothelial_Cell",
+          "svg_id": "Prostate_Gland_Microvascular_Endothelial_Cell_1",
+          "svg_group_id": "Prostate_Gland_Microvascular_Endothelial_Cell",
           "label": "prostate gland microvascular endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_2000059"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Prostate_Gland_Mircovascular_Endothelial_Cell_3",
+          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Prostate_Gland_Microvascular_Endothelial_Cell_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Prostate_Gland_Mircovascular_Endothelial_Cell_3",
-          "svg_group_id": "Prostate_Gland_Mircovascular_Endothelial_Cell",
-          "label": "prostate gland microvascular endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_2000059"
-        },
-        {
-          "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#Prostate_Gland_Mircovascular_Endothelial_Cell_4",
-          "@type": "FtuIllustrationNode",
-          "svg_id": "Prostate_Gland_Mircovascular_Endothelial_Cell_4",
-          "svg_group_id": "Prostate_Gland_Mircovascular_Endothelial_Cell",
+          "svg_id": "Prostate_Gland_Microvascular_Endothelial_Cell_1",
+          "svg_group_id": "Prostate_Gland_Microvascular_Endothelial_Cell",
           "label": "prostate gland microvascular endothelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_2000059"
         },
@@ -15818,7 +15914,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_1",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15826,7 +15922,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_2",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15834,7 +15930,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_3",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15842,7 +15938,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_4",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15850,7 +15946,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_5",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15858,7 +15954,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_6",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15866,7 +15962,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_7",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15874,7 +15970,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_8",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15882,7 +15978,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_9",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15890,7 +15986,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_10",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15898,7 +15994,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_11",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15906,7 +16002,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_12",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15914,7 +16010,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_13",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15922,7 +16018,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_14",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15930,7 +16026,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_15",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15938,7 +16034,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_16",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15946,7 +16042,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_17",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15954,7 +16050,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_18",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15962,7 +16058,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_19",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15970,7 +16066,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_20",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15978,7 +16074,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_21",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15986,7 +16082,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_22",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -15994,7 +16090,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_23",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -16002,7 +16098,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_24",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -16010,7 +16106,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_25",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -16018,7 +16114,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_26",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -16026,7 +16122,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_27",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -16034,7 +16130,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_28",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -16042,7 +16138,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_29",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -16050,7 +16146,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_30",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -16058,7 +16154,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_31",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular cell of splenic sinusoid",
           "representation_of": ""
         }
       ]
@@ -17040,7 +17136,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_1",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular Cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -17048,7 +17144,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_2",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular Cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -17056,7 +17152,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_3",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular Cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -17064,7 +17160,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_4",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular Cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -17072,7 +17168,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_5",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular Cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -17080,7 +17176,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_6",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular Cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -17088,7 +17184,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_7",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular Cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -17096,7 +17192,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_8",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular Cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -17104,7 +17200,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_9",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular Cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -17112,7 +17208,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_10",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular Cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -17120,7 +17216,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_11",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular Cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -17128,7 +17224,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_12",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular Cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -17136,7 +17232,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_13",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular Cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -17144,7 +17240,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Reticular_Cell_Of_Splenic_Sinusoid_14",
           "svg_group_id": "Reticular_Cell_Of_Splenic_Sinusoid",
-          "label": "Reticular Cell of splenic sinusoid",
+          "label": "reticular Cell of splenic sinusoid",
           "representation_of": ""
         },
         {
@@ -20814,7 +20910,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "B_Cell_1",
           "svg_group_id": "B_Cell",
-          "label": "Memory B cell",
+          "label": "memory B cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000787"
         },
         {
@@ -20822,7 +20918,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "B_Cell_2",
           "svg_group_id": "B_Cell",
-          "label": "Memory B cell",
+          "label": "memory B cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000787"
         },
         {
@@ -20830,7 +20926,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "B_Cell_3",
           "svg_group_id": "B_Cell",
-          "label": "Memory B cell",
+          "label": "memory B cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000787"
         },
         {
@@ -20838,7 +20934,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "B_Cell_4",
           "svg_group_id": "B_Cell",
-          "label": "Memory B cell",
+          "label": "memory B cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000787"
         },
         {
@@ -20846,7 +20942,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "B_Cell_5",
           "svg_group_id": "B_Cell",
-          "label": "Memory B cell",
+          "label": "memory B cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000787"
         },
         {
@@ -20854,7 +20950,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "B_Cell_6",
           "svg_group_id": "B_Cell",
-          "label": "Memory B cell",
+          "label": "memory B cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000787"
         },
         {
@@ -20862,7 +20958,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "B_Cell_7",
           "svg_group_id": "B_Cell",
-          "label": "Memory B cell",
+          "label": "memory B cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000787"
         },
         {
@@ -20870,7 +20966,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "B_Cell_8",
           "svg_group_id": "B_Cell",
-          "label": "Memory B cell",
+          "label": "memory B cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_0000787"
         },
         {
