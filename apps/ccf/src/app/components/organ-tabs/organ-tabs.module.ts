@@ -6,12 +6,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 @NgModule({
   declarations: [OrganTabsComponent],
-  imports: [
-    BrowserModule,
-    MatTabsModule,
-    MatSelectModule,
-    MatFormFieldModule,
-  ],
+  imports: [BrowserModule, MatTabsModule, MatSelectModule, MatFormFieldModule],
   exports: [OrganTabsComponent],
 })
 export class OrganTabsModule {}

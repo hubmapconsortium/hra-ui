@@ -7,12 +7,7 @@ import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [DownloadFtuComponent],
-  imports: [
-    BrowserModule,
-    ChooseVersionModule,
-    MatTableModule,
-    MatSortModule,
-  ],
+  imports: [BrowserModule, ChooseVersionModule, MatTableModule, MatSortModule],
   exports: [DownloadFtuComponent],
 })
 export class DownloadFtuModule {}

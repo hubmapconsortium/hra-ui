@@ -3,7 +3,7 @@ import { Component, Input, NgModule } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'swiper',
-  template: '<ng-content></ng-content>'
+  template: '<ng-content></ng-content>',
 })
 class SwiperComponent {
   @Input() config: any;
@@ -11,6 +11,6 @@ class SwiperComponent {
 
 @NgModule({
   declarations: [SwiperComponent],
-  exports: [SwiperComponent]
+  exports: [SwiperComponent],
 })
-export class SwiperModule { }
+export class SwiperModule {}

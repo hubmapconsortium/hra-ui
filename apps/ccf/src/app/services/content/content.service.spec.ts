@@ -14,17 +14,20 @@ describe('ContentService', () => {
 
   describe('getContent(file)', () => {
     beforeEach(() => {
-      http.get.mockReturnValue(of(''))
-    })
+      http.get.mockReturnValue(of(''));
+    });
 
     it('should use http to get the asset file', async () => {
       const fileName = 'test';
       const res = service.getContent(fileName);
       res.subscribe();
-      expect(http.get).toHaveBeenCalledWith(`assets/content/pages/${fileName}.yaml`, {
-        observe: 'body',
-        responseType: 'text',
-      });
+      expect(http.get).toHaveBeenCalledWith(
+        `assets/content/pages/${fileName}.yaml`,
+        {
+          observe: 'body',
+          responseType: 'text',
+        }
+      );
     });
-  })
+  });
 });

@@ -12,21 +12,22 @@ describe('DownloadFtuComponent', () => {
   const testData: FtuVersionData[] = [
     { version: '1.0', rows: [] },
     {
-      version: '2.0', rows: [
+      version: '2.0',
+      rows: [
         {
           label: '',
           url: '',
           links: [],
           releaseVersion: '',
-          dot: ''
-        }
-      ]
+          dot: '',
+        },
+      ],
     },
   ];
   const testVersions: ChooseVersion[] = [
     { version: '1.0', release: '1' },
     { version: '2.0', release: '2' },
-    { version: '3.0', release: '3' }
+    { version: '3.0', release: '3' },
   ];
 
   let shallow: Shallow<DownloadFtuComponent>;
@@ -35,7 +36,7 @@ describe('DownloadFtuComponent', () => {
     shallow = new Shallow(DownloadFtuComponent, DownloadFtuModule)
       .dontMock(MatSort, MatRowDef, MatHeaderRowDef)
       .withStructuralDirective(NgFor)
-      .withStructuralDirective(NgIf)
+      .withStructuralDirective(NgIf);
   });
 
   it('should create', () => {
@@ -45,7 +46,7 @@ describe('DownloadFtuComponent', () => {
   it('display metadata should be false by default', async () => {
     const { instance } = await shallow.render();
     expect(instance.displayMetadata).toBe(false);
-  })
+  });
 
   describe('.data [get/set]', () => {
     it('should update the selection when set', async () => {
@@ -53,15 +54,22 @@ describe('DownloadFtuComponent', () => {
       const spy = jest.spyOn(instance, 'updateSelection');
       instance.data = testData;
       expect(spy).toHaveBeenCalled();
-    })
+    });
   });
 
   describe('.displayedColumns [get]', () => {
     it('should return additional columns when displayMetadata is true', async () => {
-      const { instance } = await shallow.render({ bind: { displayMetadata: true } });
-      expect(instance.displayedColumns).toEqual(['label', 'links', 'releaseVersion', 'digitalObjectType'])
+      const { instance } = await shallow.render({
+        bind: { displayMetadata: true },
+      });
+      expect(instance.displayedColumns).toEqual([
+        'label',
+        'links',
+        'releaseVersion',
+        'digitalObjectType',
+      ]);
     });
-  })
+  });
 
   describe('updateSelection(selectedVersion?)', () => {
     it('should return early when versions or data are empty', async () => {
@@ -71,13 +79,17 @@ describe('DownloadFtuComponent', () => {
     });
 
     it('should update the current selection', async () => {
-      const { instance } = await shallow.render({ bind: { data: testData, versions: testVersions } });
+      const { instance } = await shallow.render({
+        bind: { data: testData, versions: testVersions },
+      });
       instance.updateSelection(testVersions[1]);
       expect(instance.selectedData.data).toEqual(testData[1].rows);
     });
 
     it('should update the current selection when versions do not match', async () => {
-      const { instance } = await shallow.render({ bind: { data: testData, versions: testVersions } });
+      const { instance } = await shallow.render({
+        bind: { data: testData, versions: testVersions },
+      });
       instance.updateSelection(testVersions[2]);
       expect(instance.selectedData.data).toEqual([]);
     });

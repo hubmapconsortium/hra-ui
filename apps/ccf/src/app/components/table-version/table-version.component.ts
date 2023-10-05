@@ -35,7 +35,7 @@ export class TableVersionComponent implements OnInit {
   set tableScroller(scrollable: CdkScrollable) {
     const isAtEnd = () =>
       scrollable.measureScrollOffset('end') <= TABLE_SCROLL_END_MARGIN;
-      
+
     const initialAtEnd = of(undefined).pipe(delay(100), map(isAtEnd));
     const obs = scrollable
       .elementScrolled()

@@ -9,8 +9,10 @@ describe('SimpleImageComponent', () => {
   let shallow: Shallow<SimpleImageComponent>;
 
   beforeEach(() => {
-    shallow = new Shallow(SimpleImageComponent, SimpleImageModule)
-      .mock(MatDialog, { open: () => {} });
+    shallow = new Shallow(SimpleImageComponent, SimpleImageModule).mock(
+      MatDialog,
+      { open: () => {} }
+    );
   });
 
   it('should create', async () => {
@@ -18,13 +20,15 @@ describe('SimpleImageComponent', () => {
   });
 
   describe('openImageViewer(content)', () => {
-    it('should open image modal', async ()=> {
+    it('should open image modal', async () => {
       const { instance, inject } = await shallow.render();
       const dialog = inject(MatDialog);
       const template = mock<TemplateRef<unknown>>();
-      
+
       instance.openImageViewer(template);
-      expect(dialog.open).toHaveBeenCalledWith(template, { panelClass: 'custom-modal' });
-    })
-  })
+      expect(dialog.open).toHaveBeenCalledWith(template, {
+        panelClass: 'custom-modal',
+      });
+    });
+  });
 });

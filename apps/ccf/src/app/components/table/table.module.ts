@@ -6,11 +6,7 @@ import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [TableComponent],
-  imports: [
-    BrowserModule,
-    MatTableModule,
-    MatSortModule,
-  ],
+  imports: [BrowserModule, MatTableModule, MatSortModule],
   exports: [TableComponent],
 })
 export class TableModule {}

@@ -2,16 +2,16 @@
 
 - type: header
   headerCard:
-    - title: "Kaggle #2: HuBMAP + HPA - Hacking the Human Body"
+    - title: 'Kaggle #2: HuBMAP + HPA - Hacking the Human Body'
       subtitle: Algorithm development challenges that engage teams from around the globe to develop code for Human Reference Atlas construction
       image: assets/images/kaggle.svg
 
 - type: announcement
   announcementCard:
-  - message: "The 5th Release of the Human Reference Atlas (v1.4) is now available! See what's new in HRA v1.4 in "
-    route: 'v1.4'
-    routeText: '5th Release Notes.'
-    emoji: '🎉'
+    - message: "The 5th Release of the Human Reference Atlas (v1.4) is now available! See what's new in HRA v1.4 in "
+      route: 'v1.4'
+      routeText: '5th Release Notes.'
+      emoji: '🎉'
 
 - type: margin
   bottom: 2.5rem
@@ -89,7 +89,7 @@
 
 - type: prize-card
   prizeCard:
-    - title: "First Prize: (15,000)"
+    - title: 'First Prize: (15,000)'
       matDivider: false
       winner:
         - winner: I need SegFormer - <a href="https://www.kaggle.com/opusen">Opusen</a>
@@ -120,7 +120,6 @@
             - label: Code Repository
               link: https://www.kaggle.com/code/vladimirsydor/hubmap-2021-inference-v1/notebook?scriptVersionId=106283407
 
-
 - type: title
   title: Judges Prizes
   styles:
@@ -130,70 +129,67 @@
     padding-bottom: 1rem
     padding-top: 1.5rem
 
+- type: prize-card
+  prizeCard:
+    - title: Scientific Prizes (2 x $10,000)
+      matDivider: false
+      winner:
+        - winner: 'Team: Seungcheul Kim'
+          button:
+            - label: Summary Notebook
+              link: https://www.kaggle.com/code/cheulkay/hubmap-hpa-presentation
+            - label: Code Notebook
+              link: https://www.kaggle.com/code/cheulkay/hubmap-inference
+        - winner: 'Team: Xiaoqi Jia'
+          button:
+            - label: Interface Notebook
+              link: https://www.kaggle.com/code/gray98/will-noisy-label-impede-the-performance-of-models
+            - label: Code Notebook
+              link: https://www.kaggle.com/code/gray98/learning-with-noisy-label
 
 - type: prize-card
   prizeCard:
-  - title: Scientific Prizes (2 x $10,000)
-    matDivider: false
-    winner:
-    - winner: 'Team: Seungcheul Kim'
-      button:
-      - label: Summary Notebook
-        link: https://www.kaggle.com/code/cheulkay/hubmap-hpa-presentation
-      - label: Code Notebook
-        link: https://www.kaggle.com/code/cheulkay/hubmap-inference
-    - winner: 'Team: Xiaoqi Jia'
-      button:
-      - label: Interface Notebook
-        link: https://www.kaggle.com/code/gray98/will-noisy-label-impede-the-performance-of-models
-      - label: Code Notebook
-        link: https://www.kaggle.com/code/gray98/learning-with-noisy-label
-
-- type: prize-card
-  prizeCard:
-  - title: Diversity Prize ($10,000)
-    matDivider: false
-    winner:
-    - winner: 'Team: Nghi Huynh, Yuan Hong, Matteo Cacciola'
-      button:
-      - label: Code Notebook
-        link: https://www.kaggle.com/code/nghihuynh/hubmap-hpa-methodology-submission
-
+    - title: Diversity Prize ($10,000)
+      matDivider: false
+      winner:
+        - winner: 'Team: Nghi Huynh, Yuan Hong, Matteo Cacciola'
+          button:
+            - label: Code Notebook
+              link: https://www.kaggle.com/code/nghihuynh/hubmap-hpa-methodology-submission
 
 - type: margin
   bottom: 2.5rem
 
 - type: page-data
   pageData:
-  - heading: Datasets
-    descriptions: |
-      All data used in the competition is publicly
-      available as part of the scientific paper showcasing the results of the competition using the GitHub repository located at
-      <a href="https://github.com/cns-iu/ccf-research-kaggle-2022">
-      https://github.com/cns-iu/ccf-research-kaggle-2022</a>.
+    - heading: Datasets
+      descriptions: |
+        All data used in the competition is publicly
+        available as part of the scientific paper showcasing the results of the competition using the GitHub repository located at
+        <a href="https://github.com/cns-iu/ccf-research-kaggle-2022">
+        https://github.com/cns-iu/ccf-research-kaggle-2022</a>.
 
 - type: page-data
   pageData:
-  - heading: Code
-    descriptions: |
-      All code submitted by the winning teams is made publicly available as part of the scientific paper showcasing the results of the competition using the GitHub repository 
-      located at <a href="https://github.com/cns-iu/ccf-research-kaggle-2022" target="_blank">https://github.com/cns-iu/ccf-research-kaggle-2022</a>.
-
+    - heading: Code
+      descriptions: |
+        All code submitted by the winning teams is made publicly available as part of the scientific paper showcasing the results of the competition using the GitHub repository 
+        located at <a href="https://github.com/cns-iu/ccf-research-kaggle-2022" target="_blank">https://github.com/cns-iu/ccf-research-kaggle-2022</a>.
 
 - type: page-data
   pageData:
-  - heading: Acknowledgments
-    descriptions: |
-      We would like to thank the many individuals that made this competition possible, including:
+    - heading: Acknowledgments
+      descriptions: |
+        We would like to thank the many individuals that made this competition possible, including:
 
-      <strong>Organizers:</strong> Andrea de Souza (Eli Lilly and Company), Katy Börner, Yashvardhan Jain (Indiana University), Emma Lundberg (Science for Life Laboratory), Cecilia Lindskog (Uppsala University, Sweden), Amy Kemper (Google).
+        <strong>Organizers:</strong> Andrea de Souza (Eli Lilly and Company), Katy Börner, Yashvardhan Jain (Indiana University), Emma Lundberg (Science for Life Laboratory), Cecilia Lindskog (Uppsala University, Sweden), Amy Kemper (Google).
 
-      <strong>Support Team:</strong> Lisel Record, Shriya Mandarapu (Indiana University), Trang Le (Stanford, Science for Life Laboratory).
+        <strong>Support Team:</strong> Lisel Record, Shriya Mandarapu (Indiana University), Trang Le (Stanford, Science for Life Laboratory).
 
-      <strong>Kaggle Sponsors:</strong> Google, Genentech (A member of the Roche Group), and Indiana University.
+        <strong>Kaggle Sponsors:</strong> Google, Genentech (A member of the Roche Group), and Indiana University.
 
-      <strong>Kaggle Judges:</strong> Zorina Galis (NIH), Carolina Wahlby (Uppsala University, Sweden), Artem Sokolov (Harvard), Constantin Kappel (Leica Microsystems), Anna Kreshuk (EMBL), Blue Lake (UC San Diego), David Van Valen (CalTech), and Nathan Heath Patterson (Vanderbilt School of Medicine).
+        <strong>Kaggle Judges:</strong> Zorina Galis (NIH), Carolina Wahlby (Uppsala University, Sweden), Artem Sokolov (Harvard), Constantin Kappel (Leica Microsystems), Anna Kreshuk (EMBL), Blue Lake (UC San Diego), David Van Valen (CalTech), and Nathan Heath Patterson (Vanderbilt School of Medicine).
 
-      <strong>Funders:</strong> This work has been funded in part by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671 and VU HuBMAP under award 1U54DK120058-01.
+        <strong>Funders:</strong> This work has been funded in part by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671 and VU HuBMAP under award 1U54DK120058-01.
 
-      This research has been funded in part by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671, NIH awards U54EY032442-01 and U54HG010426-01, National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK) award U54DK120058, U54DK120058, the NIDDK Kidney Precision Medicine Project grant U2CDK114886, and the Knut and Alice Wallenberg Foundation. The content is solely the responsibility of the authors and does not necessarily represent the official views of the National Institutes of Health.
+        This research has been funded in part by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671, NIH awards U54EY032442-01 and U54HG010426-01, National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK) award U54DK120058, U54DK120058, the NIDDK Kidney Precision Medicine Project grant U2CDK114886, and the Knut and Alice Wallenberg Foundation. The content is solely the responsibility of the authors and does not necessarily represent the official views of the National Institutes of Health.

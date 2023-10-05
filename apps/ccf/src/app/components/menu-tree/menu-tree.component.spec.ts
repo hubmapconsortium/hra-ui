@@ -14,16 +14,16 @@ describe('MenuTreeComponent', () => {
   let shallow: Shallow<MenuTreeComponent>;
   const testTreeItems: NavItems[] = [
     {
-      menuName: 'test'
-    }
+      menuName: 'test',
+    },
   ];
 
   beforeEach(async () => {
     shallow = new Shallow(MenuTreeComponent, MenuTreeModule).mock(Overlay, {
       scrollStrategies: {
-        block: jest.fn()
-      }
-    })
+        block: jest.fn(),
+      },
+    });
   });
 
   it('should create', () => {
@@ -42,7 +42,7 @@ describe('MenuTreeComponent', () => {
   describe('hasChild', () => {
     const testNode: NavItems = {
       menuName: 'test',
-      children: []
+      children: [],
     };
     it('should return if node has children', async () => {
       const { instance } = await shallow.render();
@@ -65,8 +65,8 @@ describe('MenuTreeComponent', () => {
     const mobileNavItems: NavItems[] = [
       {
         menuName: 'test',
-        id: 'test-id'
-      }
+        id: 'test-id',
+      },
     ];
 
     beforeEach(() => {
@@ -75,15 +75,17 @@ describe('MenuTreeComponent', () => {
         .withStructuralDirective(NgIf)
         .dontMock(MatTreeModule)
         .mock(Router, {
-          navigate: jest.fn()
+          navigate: jest.fn(),
         })
         .mock(ViewportScroller as never as Type<ViewportScroller>, {
-          scrollToAnchor: jest.fn()
+          scrollToAnchor: jest.fn(),
         });
     });
 
     it('should be called when the button is clicked', async () => {
-      const { instance, find } = await shallow.render({ bind: { treeItems: mobileNavItems } });
+      const { instance, find } = await shallow.render({
+        bind: { treeItems: mobileNavItems },
+      });
       jest.spyOn(instance, 'scrollTo');
       find('.table-of-contents').triggerEventHandler('click');
       expect(instance.scrollTo).toHaveBeenCalled();
@@ -108,21 +110,25 @@ describe('MenuTreeComponent', () => {
       instance.scrollAfterDetach();
       expect(spy).toBeCalledWith('test');
       expect(instance.scrollToId).toBe(undefined);
-    })
-  })
+    });
+  });
 
   describe('treeControl', () => {
     it('should instansiate object of nested tree control', async () => {
       const treeItems: NavItems[] = [
         {
           menuName: 'test',
-          children: []
-        }
+          children: [],
+        },
       ];
-      const { instance } = await shallow.render({ bind: { treeItems: treeItems } });
+      const { instance } = await shallow.render({
+        bind: { treeItems: treeItems },
+      });
       const treeControl = instance.treeControl;
       expect(treeControl).toBeInstanceOf(NestedTreeControl);
-      expect(treeControl.getChildren(treeItems[0])).toEqual(treeItems[0].children);
-    })
-  })
+      expect(treeControl.getChildren(treeItems[0])).toEqual(
+        treeItems[0].children
+      );
+    });
+  });
 });

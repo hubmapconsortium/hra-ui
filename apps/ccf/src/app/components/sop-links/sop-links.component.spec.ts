@@ -8,15 +8,17 @@ import { SopLinks } from './sop-links';
 describe('SopLinksComponent', () => {
   const sopLinks: SopLinks = {
     sopTitle: 'Test Title',
-    href: [{ title: 'Test Link Title', href: 'https:www.example.com' }]
-  }
+    href: [{ title: 'Test Link Title', href: 'https:www.example.com' }],
+  };
   let shallow: Shallow<SopLinksComponent>;
 
   beforeEach(async () => {
-    shallow = new Shallow(SopLinksComponent, SopLinksModule)
+    shallow = new Shallow(SopLinksComponent, SopLinksModule);
   });
 
   it('should create', async () => {
-    await expect(shallow.render({ bind: { links: sopLinks } })).resolves.toBeDefined();
+    await expect(
+      shallow.render({ bind: { links: sopLinks } })
+    ).resolves.toBeDefined();
   });
 });

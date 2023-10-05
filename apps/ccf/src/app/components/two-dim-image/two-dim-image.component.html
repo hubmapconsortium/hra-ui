@@ -86,10 +86,7 @@
           class="image-container"
           *ngIf="tissue.image; else threeDimensionContainer"
         >
-          <img
-            [src]="tissue.image"
-            (click)="openImageViewer(imageContent)"
-          />
+          <img [src]="tissue.image" (click)="openImageViewer(imageContent)" />
           <ng-template #imageContent>
             <div class="dialog-header">
               <div mat-dialog-title>{{ tissue.name }}</div>

@@ -6,10 +6,10 @@ describe('PageRendererComponent', () => {
   let shallow: Shallow<PageRendererComponent>;
 
   beforeEach(async () => {
-    shallow = new Shallow(PageRendererComponent, PageRendererModule)
+    shallow = new Shallow(PageRendererComponent, PageRendererModule);
   });
 
-  it('should create', async() => {
+  it('should create', async () => {
     await expect(shallow.render()).resolves.toBeDefined();
   });
 });

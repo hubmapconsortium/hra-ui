@@ -1,4 +1,3 @@
-
 import { OrganTabsComponent } from './organ-tabs.component';
 import { OrganTabsModule } from './organ-tabs.module';
 
@@ -9,18 +8,18 @@ describe('OrganTabsComponent', () => {
   const tabsData: OrganData[] = [
     {
       name: 'test name',
-      image: 'testImg'
+      image: 'testImg',
     },
     {
       name: 'item2',
-      image: ''
-    }
+      image: '',
+    },
   ];
 
   let shallow: Shallow<OrganTabsComponent>;
 
   beforeEach(async () => {
-    shallow = new Shallow(OrganTabsComponent, OrganTabsModule)
+    shallow = new Shallow(OrganTabsComponent, OrganTabsModule);
   });
 
   it('should create', () => {

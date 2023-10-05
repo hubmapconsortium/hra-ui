@@ -26,7 +26,7 @@ jobs:
           nx-command: run-many
           build-compodoc: false
           build-storybook: false
-  
+
       - name: Setup Netlify files
         run: |
           echo '/* /index.html 200' > deploy/apps/ccf/_redirects

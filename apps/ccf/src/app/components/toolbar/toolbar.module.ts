@@ -20,8 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatMenuModule,
     MatIconModule,
     MatDividerModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   exports: [ToolbarComponent],
 })
-export class ToolbarModule { }
+export class ToolbarModule {}

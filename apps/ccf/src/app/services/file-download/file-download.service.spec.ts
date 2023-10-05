@@ -3,7 +3,8 @@ import { DeepMockProxy, MockProxy, mock, mockDeep } from 'jest-mock-extended';
 import { ErrorHandler } from '@angular/core';
 
 describe('FileDownloadService', () => {
-  const url = 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.svg';
+  const url =
+    'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.svg';
   const data = new Blob(['test data']);
   const objectUrl = 'object url for data';
 
@@ -29,7 +30,7 @@ describe('FileDownloadService', () => {
     mockResponse.blob.mockResolvedValue(data);
     mockCreateObjectUrl.mockReturnValue(objectUrl);
     mockDocument.createElement.mockReturnValue(mockElement);
-    
+
     global.fetch = mockFetch;
     URL.createObjectURL = mockCreateObjectUrl;
     URL.revokeObjectURL = mockRevokeObjectUrl;
@@ -47,7 +48,7 @@ describe('FileDownloadService', () => {
 
   describe('download', () => {
     it('should fetch data', async () => {
-      const fetch = jest.spyOn(global, 'fetch')
+      const fetch = jest.spyOn(global, 'fetch');
       await service.download(url);
 
       expect(fetch).toHaveBeenCalledWith(url, {
@@ -62,7 +63,7 @@ describe('FileDownloadService', () => {
       await service.download(url);
       expect(URL.createObjectURL).toHaveBeenCalled();
       expect(URL.revokeObjectURL).toHaveBeenCalledWith(objectUrl);
-    })
+    });
 
     it('should download a file', async () => {
       const filename = 'sample.pdf';
@@ -70,7 +71,7 @@ describe('FileDownloadService', () => {
       expect(mockElement.href).toBeDefined();
       expect(mockElement.download).toEqual(filename);
       expect(mockElement.click).toHaveBeenCalled();
-    })
+    });
 
     it('should handle errors', async () => {
       const error = new Error('Download failed');

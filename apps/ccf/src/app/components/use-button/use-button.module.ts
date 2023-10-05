@@ -7,12 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [UseButtonComponent],
-  imports: [
-    BrowserModule,
-    MatButtonModule,
-    RouterModule,
-    MatIconModule,
-  ],
+  imports: [BrowserModule, MatButtonModule, RouterModule, MatIconModule],
   exports: [UseButtonComponent],
 })
 export class UseButtonModule {}

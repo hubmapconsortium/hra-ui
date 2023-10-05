@@ -11,16 +11,18 @@ describe('SectionCardComponent', () => {
       description: 'Test description',
       image: 'Test Image',
       gif: 'Test Gif',
-      route: 'Test route'
-    }
-  ]
+      route: 'Test route',
+    },
+  ];
   let shallow: Shallow<SectionCardComponent>;
 
   beforeEach(async () => {
-    shallow = new Shallow(SectionCardComponent, SectionCardModule)
+    shallow = new Shallow(SectionCardComponent, SectionCardModule);
   });
 
   it('should create', async () => {
-    await expect(shallow.render({ bind: { cards: cards } })).resolves.toBeDefined();
+    await expect(
+      shallow.render({ bind: { cards: cards } })
+    ).resolves.toBeDefined();
   });
 });

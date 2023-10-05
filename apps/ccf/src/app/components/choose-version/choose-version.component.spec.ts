@@ -3,10 +3,10 @@ import { ChooseVersionModule } from './choose-version.module';
 import { Shallow } from 'shallow-render';
 
 describe('ChooseVersionComponent', () => {
-  let shallow: Shallow<ChooseVersionComponent>
+  let shallow: Shallow<ChooseVersionComponent>;
 
   beforeEach(async () => {
-    shallow = new Shallow(ChooseVersionComponent, ChooseVersionModule)
+    shallow = new Shallow(ChooseVersionComponent, ChooseVersionModule);
   });
 
   it('should create', async () => {

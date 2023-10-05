@@ -9,7 +9,7 @@ describe('PrizeCardComponent', () => {
   let shallow: Shallow<PrizeCardComponent>;
 
   beforeEach(async () => {
-    shallow = new Shallow(PrizeCardComponent, PrizeCardModule)
+    shallow = new Shallow(PrizeCardComponent, PrizeCardModule);
   });
 
   it('should create', () => {

@@ -25,5 +25,5 @@ describe('NavbarComponent', () => {
     const spy = jest.spyOn(window, 'open');
     component.externalWindow(url);
     expect(spy).toHaveBeenCalledWith(url, '_blank');
-  })
+  });
 });

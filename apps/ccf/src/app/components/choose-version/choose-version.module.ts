@@ -6,11 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [ChooseVersionComponent],
-  imports: [
-    BrowserModule,
-    MatSelectModule,
-    MatFormFieldModule,
-  ],
+  imports: [BrowserModule, MatSelectModule, MatFormFieldModule],
   exports: [ChooseVersionComponent],
 })
 export class ChooseVersionModule {}

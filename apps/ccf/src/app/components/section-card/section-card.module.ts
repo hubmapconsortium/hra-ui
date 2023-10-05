@@ -5,11 +5,7 @@ import { SectionCardComponent } from './section-card.component';
 import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [SectionCardComponent],
-  imports: [
-    MatCardModule,
-    BrowserModule,
-    RouterModule,
-  ],
+  imports: [MatCardModule, BrowserModule, RouterModule],
   exports: [SectionCardComponent],
 })
 export class SectionCardModule {}

@@ -1,5 +1,8 @@
 import { CdkScrollable } from '@angular/cdk/scrolling';
-import { TableDataService, TableDataWithColumns } from '../../services/table-data/tabledata.service';
+import {
+  TableDataService,
+  TableDataWithColumns,
+} from '../../services/table-data/tabledata.service';
 import { ChooseVersion } from '../choose-version/choose-version';
 import { ExtraHeader, HeaderData } from '../table/header';
 import { TableVersionComponent } from './table-version.component';
@@ -31,7 +34,9 @@ describe('TableVersionComponent', () => {
         version: '1.0',
       },
     ];
-    await expect(shallow.render({ bind: { versionData: testVersionData } })).resolves.toBeDefined();
+    await expect(
+      shallow.render({ bind: { versionData: testVersionData } })
+    ).resolves.toBeDefined();
   });
 
   describe('ngOnInit()', () => {
@@ -90,17 +95,24 @@ describe('TableVersionComponent', () => {
     const testExtraHeaders: ExtraHeader[] = [
       {
         header: 'test extra header',
-        columnDef: 'testExtraHeader'
-      }
+        columnDef: 'testExtraHeader',
+      },
     ];
     it('should set the additional headers and its columns', async () => {
-      const { instance } = await shallow.render({ bind: { versionData: testVersionData, additionalHeaders: testExtraHeaders } });
-      expect(instance.additionalHeaders).toEqual(testExtraHeaders)
+      const { instance } = await shallow.render({
+        bind: {
+          versionData: testVersionData,
+          additionalHeaders: testExtraHeaders,
+        },
+      });
+      expect(instance.additionalHeaders).toEqual(testExtraHeaders);
     });
 
     it('should set the extra headers to empty array if not available', async () => {
-      const { instance } = await shallow.render({ bind: { versionData: testVersionData, additionalHeaders: undefined } });
-      expect(instance.additionalHeaders).toEqual([])
+      const { instance } = await shallow.render({
+        bind: { versionData: testVersionData, additionalHeaders: undefined },
+      });
+      expect(instance.additionalHeaders).toEqual([]);
     });
   });
 
@@ -115,34 +127,37 @@ describe('TableVersionComponent', () => {
     const testCellHeaders: ExtraHeader[] = [
       {
         header: 'test cell header',
-        columnDef: 'testCellHeader'
-      }
-    ]
+        columnDef: 'testCellHeader',
+      },
+    ];
     it('should set the cell headers and its columns', async () => {
-      const { instance } = await shallow.render({ bind: { versionData: testVersionData, cellHeaders: testCellHeaders } });
-      expect(instance.cellHeaders).toEqual(testCellHeaders)
-    })
+      const { instance } = await shallow.render({
+        bind: { versionData: testVersionData, cellHeaders: testCellHeaders },
+      });
+      expect(instance.cellHeaders).toEqual(testCellHeaders);
+    });
 
     it('should set the cell headers to empty array if not available', async () => {
-      const { instance } = await shallow.render({ bind: { versionData: testVersionData, cellHeaders: undefined } });
-      expect(instance.cellHeaders).toEqual([])
-    })
-  })
+      const { instance } = await shallow.render({
+        bind: { versionData: testVersionData, cellHeaders: undefined },
+      });
+      expect(instance.cellHeaders).toEqual([]);
+    });
+  });
 
   describe('setData', () => {
-
     const testVersionData: ChooseVersion[] = [
       {
         release: 'release 1',
         version: '1.0',
-        file: 'testFile.csv'
+        file: 'testFile.csv',
       },
     ];
 
     const expectedTableData: TableData[] = [
       {
-        'key': 'value'
-      }
+        key: 'value',
+      },
     ];
 
     const expectedColumns: string[] = ['Organ'];
@@ -151,13 +166,15 @@ describe('TableVersionComponent', () => {
       columns: ['Organ'],
       data: [
         {
-          'key': 'value'
-        }
-      ]
+          key: 'value',
+        },
+      ],
     };
 
     it('should set the data from the necessary csv file according to the version', async () => {
-      const { instance, inject } = await shallow.render({ bind: { versionData: testVersionData } });
+      const { instance, inject } = await shallow.render({
+        bind: { versionData: testVersionData },
+      });
       const service = inject(TableDataService);
       jest.mocked(service.getData).mockReturnValue(of(testGetData));
       instance.setData(testVersionData[0]);
@@ -165,6 +182,6 @@ describe('TableVersionComponent', () => {
       const columns = await firstValueFrom(instance.columns);
       expect(data).toEqual(expectedTableData);
       expect(columns).toEqual(expectedColumns);
-    })
-  })
+    });
+  });
 });

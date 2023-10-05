@@ -9,24 +9,28 @@ describe('SopLinksComponent', () => {
     width: 12,
     title: 'testTitle',
     videoId: 'testVideoId',
-    playerTitle: 'testPlayerTitle'
-  }
+    playerTitle: 'testPlayerTitle',
+  };
   let shallow: Shallow<YoutubeModelComponent>;
 
   beforeEach(async () => {
-    shallow = new Shallow(YoutubeModelComponent, YoutubeModelModule)
+    shallow = new Shallow(YoutubeModelComponent, YoutubeModelModule);
   });
 
   it('should create', async () => {
-    await expect(shallow.render({ bind: { playerData: testPlayerData } })).resolves.toBeDefined();
+    await expect(
+      shallow.render({ bind: { playerData: testPlayerData } })
+    ).resolves.toBeDefined();
   });
 
   describe('onResize()', () => {
     it('should call playerSize method', async () => {
-      const { instance } = await shallow.render({ bind: { playerData: testPlayerData } });
-      const spy = jest.spyOn(instance, 'playerSize')
+      const { instance } = await shallow.render({
+        bind: { playerData: testPlayerData },
+      });
+      const spy = jest.spyOn(instance, 'playerSize');
       instance.onResize();
-      expect(spy).toHaveBeenCalled()
-    })
-  })
+      expect(spy).toHaveBeenCalled();
+    });
+  });
 });

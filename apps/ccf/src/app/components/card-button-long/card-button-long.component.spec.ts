@@ -1,4 +1,3 @@
-
 import { CardButtonLongComponent } from './card-button-long.component';
 import { CardButtonLongModule } from './card-button-long.module';
 
@@ -11,15 +10,17 @@ describe('CardButtonLongComponent', () => {
     {
       icon: '',
       title: '',
-      body: ''
-    }
+      body: '',
+    },
   ];
 
-  let shallow: Shallow<CardButtonLongComponent>
+  let shallow: Shallow<CardButtonLongComponent>;
 
   beforeEach(async () => {
-    shallow = new Shallow(CardButtonLongComponent, CardButtonLongModule)
-      .withStructuralDirective(NgFor);
+    shallow = new Shallow(
+      CardButtonLongComponent,
+      CardButtonLongModule
+    ).withStructuralDirective(NgFor);
   });
 
   it('should create', () => {
@@ -28,11 +29,11 @@ describe('CardButtonLongComponent', () => {
 
   it('should emit', async () => {
     const { outputs, find } = await shallow.render({
-      bind: { longButtonItems: items }
+      bind: { longButtonItems: items },
     });
     const [card] = find('mat-card');
 
     card.triggerEventHandler('click');
     expect(outputs.cardRoutes.emit).toHaveBeenCalledWith(items[0]);
-  })
+  });
 });

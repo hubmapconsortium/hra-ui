@@ -7,7 +7,6 @@ import { HeaderData } from '../table/header';
 import { TableData } from '../table/table';
 import { OrganData, VersionOrgans } from '../two-dim-image/two-dim-image';
 
-
 @Component({
   selector: 'ccf-organ-version',
   templateUrl: './organ-version.component.html',
@@ -35,7 +34,7 @@ export class OrganVersionComponent implements OnInit {
     private router: Router,
     private readonly route: ActivatedRoute,
     private readonly dataService: TableDataService
-  ) { }
+  ) {}
 
   iCaseEquals(str1: string, str2: string): boolean {
     return str1.toLowerCase() === str2.toLowerCase();

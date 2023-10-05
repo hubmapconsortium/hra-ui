@@ -14,7 +14,7 @@ describe('TableComponent', () => {
     shallow = new Shallow(TableComponent, TableModule)
       .dontMock(MatSort, MatHeaderRowDef, MatRowDef)
       .withStructuralDirective(NgFor)
-      .withStructuralDirective(NgIf)
+      .withStructuralDirective(NgIf);
   });
 
   it('should create', async () => {
@@ -23,11 +23,13 @@ describe('TableComponent', () => {
 
   describe('set typeCount', () => {
     it('should set tableData to the datasource data', async () => {
-      const testTableData: TableData[] = [{ 'key': 1 }];
-      const { instance } = await shallow.render({ bind: { typeCount: testTableData } });
+      const testTableData: TableData[] = [{ key: 1 }];
+      const { instance } = await shallow.render({
+        bind: { typeCount: testTableData },
+      });
       expect(instance.dataSource.data).toEqual(testTableData);
     });
-  })
+  });
 
   describe('getTotal()', () => {
     it('should calculate and format the total correctly', async () => {
@@ -40,20 +42,21 @@ describe('TableComponent', () => {
       };
 
       const expectedTotal = '600';
-      const { instance } = await shallow.render({ bind: { typeCount: dataSource.data } });
+      const { instance } = await shallow.render({
+        bind: { typeCount: dataSource.data },
+      });
       const result = instance.getTotal('value');
       expect(result).toBe(expectedTotal);
     });
-
-  })
+  });
 
   describe('getAlignmentClass()', () => {
     const testColumn: HeaderData = {
       header: 'test',
       columnDef: 'test',
-      cell: function () { },
-      alignment: 'start'
-    }
+      cell: function () {},
+      alignment: 'start',
+    };
     it('should return the class name for a column', async () => {
       const { instance } = await shallow.render();
       const alignment = instance.getAlignmentClass(testColumn);
@@ -64,12 +67,12 @@ describe('TableComponent', () => {
       const testColumn: HeaderData = {
         header: 'test',
         columnDef: 'test',
-        cell: function () { }
-      }
+        cell: function () {},
+      };
       const { instance } = await shallow.render();
       const alignment = instance.getAlignmentClass(testColumn);
       expect(alignment).toEqual('alignment-default');
-    })
+    });
   });
 
   describe('formatData()', () => {
@@ -79,12 +82,11 @@ describe('TableComponent', () => {
       expect(formattedData).toEqual('test');
     });
 
-
     it('should return label `no data` if data is not present', async () => {
       const { instance } = await shallow.render();
       const formattedData = instance.formatData(null);
       expect(formattedData).toEqual('no data');
-    })
+    });
   });
 
   describe('isNumericColumn()', () => {
@@ -95,23 +97,29 @@ describe('TableComponent', () => {
       expect(isNumeric).toBe(false);
     });
 
-    it('should return false when type of value is not a number', async() => {
-      const testTableData: TableData[] = [{ 'key': '1' }];
-      const { instance } = await shallow.render({ bind: { typeCount: testTableData } });
+    it('should return false when type of value is not a number', async () => {
+      const testTableData: TableData[] = [{ key: '1' }];
+      const { instance } = await shallow.render({
+        bind: { typeCount: testTableData },
+      });
       expect(instance.isNumericColumn('key')).toBe(false);
-    })
+    });
 
     it('should return true if column has atleast one number', async () => {
-      const testTableData: TableData[] = [{ 'key': 1 }];
-      const { instance } = await shallow.render({ bind: { typeCount: testTableData } });
+      const testTableData: TableData[] = [{ key: 1 }];
+      const { instance } = await shallow.render({
+        bind: { typeCount: testTableData },
+      });
       expect(instance.isNumericColumn('key')).toBe(true);
-    })
+    });
 
     it('todo', async () => {
       const nullishNumber = null as unknown as number;
-      const testTableData: TableData[] = [{ 'key': nullishNumber }];
-      const { instance } = await shallow.render({ bind: { typeCount: testTableData } });
+      const testTableData: TableData[] = [{ key: nullishNumber }];
+      const { instance } = await shallow.render({
+        bind: { typeCount: testTableData },
+      });
       expect(instance.isNumericColumn('key')).toBe(false);
-    })
-  })
+    });
+  });
 });

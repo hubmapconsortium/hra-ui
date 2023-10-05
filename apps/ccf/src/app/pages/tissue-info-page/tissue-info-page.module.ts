@@ -6,11 +6,7 @@ import { PageDataModule } from '../../components/page-data/page-data.module';
 
 @NgModule({
   declarations: [TissueInfoPageComponent],
-  imports: [
-    BrowserModule,
-    TissueInfoTableModule,
-    PageDataModule,
-  ],
+  imports: [BrowserModule, TissueInfoTableModule, PageDataModule],
   providers: [],
   bootstrap: [],
 })

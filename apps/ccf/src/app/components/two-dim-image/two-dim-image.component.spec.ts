@@ -15,7 +15,7 @@ describe('TwoDimImageComponent', () => {
     shallow = new Shallow(TwoDimImageComponent, TwoDimImageModule)
       .withStructuralDirective(NgFor)
       .withStructuralDirective(NgIf)
-      .mock(FileDownloadService, { download: jest.fn() })
+      .mock(FileDownloadService, { download: jest.fn() });
   });
 
   it('should create', async () => {
@@ -31,38 +31,42 @@ describe('TwoDimImageComponent', () => {
           {
             name: 'test-tissue',
             url: './test-tissue',
-            image: './test-tissue.svg'
-          }
-        ]
-      }
+            image: './test-tissue.svg',
+          },
+        ],
+      },
     ];
     const template = mock<TemplateRef<unknown>>();
 
     beforeEach(() => {
-      shallow.mock(MatDialog, { open: () => { } });
-    })
+      shallow.mock(MatDialog, { open: () => {} });
+    });
 
     it('should open image dialog when clicked', async () => {
       const { instance, inject } = await shallow.render();
-      const dialog = inject(MatDialog)
+      const dialog = inject(MatDialog);
       instance.openImageViewer(template);
-      expect(dialog.open).toHaveBeenCalledWith(template, { panelClass: 'two-dim-image-modal' })
+      expect(dialog.open).toHaveBeenCalledWith(template, {
+        panelClass: 'two-dim-image-modal',
+      });
     });
 
     it('should not open the image dialog when screensize is small', async () => {
-      const { instance, inject } = await shallow.render({ bind: { tissueData: testData } });
+      const { instance, inject } = await shallow.render({
+        bind: { tissueData: testData },
+      });
       const dialog = inject(MatDialog);
 
       document.documentElement.style.fontSize = '16px';
       window.innerWidth = 10;
       instance.openImageViewer(template);
       expect(dialog.open).not.toHaveBeenCalled();
-    })
+    });
   });
 
   describe('downloadClick()', () => {
     it('should download the file', async () => {
-      const testUrl = './abc.svg'
+      const testUrl = './abc.svg';
       const { instance, inject } = await shallow.render();
       const service = inject(FileDownloadService);
       const event = mock<Event>();
@@ -71,6 +75,6 @@ describe('TwoDimImageComponent', () => {
 
       expect(event.preventDefault).toHaveBeenCalledWith();
       expect(service.download).toHaveBeenCalledWith(testUrl);
-    })
-  })
+    });
+  });
 });

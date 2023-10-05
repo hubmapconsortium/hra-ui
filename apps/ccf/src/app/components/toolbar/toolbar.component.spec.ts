@@ -7,7 +7,7 @@ describe('ToolbarComponent', () => {
   let shallow: Shallow<ToolbarComponent>;
 
   beforeEach(async () => {
-    shallow = new Shallow(ToolbarComponent, ToolbarModule)
+    shallow = new Shallow(ToolbarComponent, ToolbarModule);
   });
 
   it('should be', async () => {

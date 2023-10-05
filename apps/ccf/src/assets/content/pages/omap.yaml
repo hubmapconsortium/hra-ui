@@ -27,7 +27,7 @@
         <a href="https://onlinelibrary.wiley.com/doi/10.1002/cyto.a.20959">Roederer and Tárnok 2010</a>). In contrast to existing antibody validation resources such as the 
         <a href="https://avr.hubmapconsortium.org/">HuBMAP Antibody Validation Report</a> and <a href="https://www.proteinatlas.org/humanproteome/tissue">Human Protein Atlas</a>, OMAPs additionally provide experimental details relevant for their successful application (e.g., tissue preservation method, imaging method, antigen retrieval conditions, and antibody cycling order).
         The end result is an assembly of expertly curated antibodies that work together in a single tissue section. The panels presented here are authored and reviewed by experts in pathology, tissue biology, and multiplexed imaging. Information on antibody lots and recommended concentrations vary across experiments and, in the case of antibody dilutions, must be empirically determined.
-        
+
         To facilitate tissue mapping efforts within and beyond the HuBMAP community, OMAPs are designed for integration with the <a href="https://hubmapconsortium.github.io/ccf-asct-reporter" target="_blank">ASCT+B Reporter</a>
         (<a href="https://www.nature.com/articles/s41556-021-00788-6">Börner et al. 2021</a>), a state-of-the-art visualization tool <a href="https://hubmapconsortium.github.io/ccf-asct-reporter">https://hubmapconsortium.github.io/ccf-asct-reporter</a>.
         We strongly encourage inclusion of blood endothelial markers to empower construction of a human reference atlas using the vasculature common coordinate framework (VCCF), originally proposed by Dr. Zorina Galis 
@@ -108,7 +108,7 @@
       alignment: left
     - columnDef: organ
       header: Organ
-      cell: "`<a class=\"cell-link\" href=\"${element['url'] || 'TODO:Please add a url column to this .csv!'}\">${element['organ']}</a>`"
+      cell: '`<a class="cell-link" href="${element[''url''] || ''TODO:Please add a url column to this .csv!''}">${element[''organ'']}</a>`'
       alignment: start
     - columnDef: tissuePreservationMethod
       header: Tissue Preservation Method
@@ -120,27 +120,27 @@
       alignment: start
     - columnDef: csv
       header: Download OMAP
-      cell: "`<a class=\"cell-link\" href=\"${element['csv'] || 'TODO:Please add a url column to this .csv!'}\">CSV</a> | <a class=\"cell-link\" href=\"${element['xlsx'] || 'TODO:Please add a url column to this .csv!'}\">XLSX</a>`"
+      cell: '`<a class="cell-link" href="${element[''csv''] || ''TODO:Please add a url column to this .csv!''}">CSV</a> | <a class="cell-link" href="${element[''xlsx''] || ''TODO:Please add a url column to this .csv!''}">XLSX</a>`'
       sorting: false
       isTotalRequired: true
-      alignment: "start"
+      alignment: 'start'
     - columnDef: representativeDataset
       header: Representative Dataset
-      cell: "element['representativeDataset'] ? `<a class=\"cell-link\" href=\"${element['representativeDataset']}\">Link</a>` : ''"
+      cell: 'element[''representativeDataset''] ? `<a class="cell-link" href="${element[''representativeDataset'']}">Link</a>` : '''''
       isTotalRequired: false
       alignment: start
     - columnDef: 'as'
       header: '#AS'
       cell: "`${element['as']}`"
-      alignment: "end"
+      alignment: 'end'
     - columnDef: 'ct'
       header: '#CT'
       cell: "`${element['ct']}`"
-      alignment: "end"
+      alignment: 'end'
     - columnDef: 'bp'
       header: '#BP'
       cell: "`${element['bp']}`"
-      alignment: "end"
+      alignment: 'end'
 
 - type: page-data
   pageData:

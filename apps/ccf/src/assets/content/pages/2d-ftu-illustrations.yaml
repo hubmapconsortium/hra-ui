@@ -9,9 +9,9 @@
 - type: announcement
   announcementCard:
     - message: "The 5th Release of the Human Reference Atlas (v1.4) is now available! See what's new in HRA v1.4 in "
-      route: "v1.4"
-      routeText: "5th Release Notes."
-      emoji: "🎉"
+      route: 'v1.4'
+      routeText: '5th Release Notes.'
+      emoji: '🎉'
 
 - type: margin
   bottom: 2.5rem
@@ -42,7 +42,7 @@
   sopData:
     sopTitle: Standard Operating Procedures (SOP)
     href:
-      - title: "Style Guide: Human Reference Atlas 2D Functional Tissue Unit (FTU) Illustrations"
+      - title: 'Style Guide: Human Reference Atlas 2D Functional Tissue Unit (FTU) Illustrations'
         href: https://zenodo.org/record/6703377
 
 - type: margin
@@ -60,11 +60,11 @@
   tableRequired: true
   versionData:
     - release: 5th HRA Release (v1.4), June 2023
-      version: "1.4"
+      version: '1.4'
     - release: 4th HRA Release (v1.3), December 2022
-      version: "1.3"
+      version: '1.3'
     - release: 3rd HRA Release (v1.2), June 2022
-      version: "1.2"
+      version: '1.2'
   headerInfo:
     - columnDef: FTU Label in Uberon
       header: FTU Label in Uberon
@@ -87,16 +87,16 @@
       cell: "`${element['CT Label in 2D Object']}`"
       alignment: start
       isTotalRequired: true
-    - columnDef: "#CT"
-      header: "#CT"
+    - columnDef: '#CT'
+      header: '#CT'
       cell: "`${element['#CT']}`"
       alignment: end
-    - columnDef: "#AS"
-      header: "#AS"
+    - columnDef: '#AS'
+      header: '#AS'
       cell: "`${element['#AS']}`"
       alignment: end
   organInfo:
-    - version: "1.4"
+    - version: '1.4'
       organData:
         - name: Kidney
           image: assets/images/kidney.svg
@@ -272,7 +272,7 @@
               svg: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.svg
               ai: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.ai
               png: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.png
-    - version: "1.3"
+    - version: '1.3'
       organData:
         - name: Kidney
           image: assets/images/kidney.svg
@@ -431,7 +431,7 @@
               svg: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.svg
               ai: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.ai
               png: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.png
-    - version: "1.2"
+    - version: '1.2'
       organData:
         - name: Kidney
           image: assets/images/kidney.svg
@@ -521,22 +521,22 @@
       version: '3'
   downloadIcon: file_download
   versionedData:
-    - version: "3"
+    - version: '3'
       rows:
         - label: 2D Models Crosswalk
           links:
             - label: CSV
               link: https://cdn.humanatlas.io/hra-releases/v1.2/2d-ftu/ASCT-B_ftu_2D_illustration_mapping.csv
-    - version: "4"
+    - version: '4'
       rows:
         - label: 2D Models Crosswalk
-          links: 
+          links:
             - link: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/asct-b-2d-models-mapping.csv
               label: CSV
-    - version: "5"
+    - version: '5'
       rows:
         - label: 2D Models Crosswalk
-          links: 
+          links:
             - link: https://cdn.humanatlas.io/hra-releases/v1.4/2d-ftu/asct-b-2d-models-crosswalk.csv
               label: CSV
 - type: margin
@@ -579,4 +579,3 @@
 
         Bajema, Rachel, Supriya Bidanta, Ellen M. Quardokus, Bruce W. Herr II, and Katy Börner. 2022.
         <i><a href="https://humanatlas.io/2d-ftu-illustrations">HuBMAP CCF 2D Reference Object Library</a></i>. Accessed on December 15, 2022.
-        

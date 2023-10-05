@@ -3,7 +3,7 @@ import {
   EventEmitter,
   Input,
   Output,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FileDownloadService } from '../../services/file-download/file-download.service';
@@ -26,7 +26,9 @@ export class TwoDimImageComponent {
   ) {}
 
   openImageViewer(content: TemplateRef<unknown>): void {
-    const fontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    const fontSize = parseFloat(
+      getComputedStyle(document.documentElement).fontSize
+    );
     const isSmallScreen = window.innerWidth / fontSize < 63;
 
     if (!isSmallScreen) {

@@ -6,7 +6,7 @@ describe('CountInfoCardComponent', () => {
   let shallow: Shallow<CountInfoCardComponent>;
 
   beforeEach(async () => {
-    shallow = new Shallow(CountInfoCardComponent, CountInfoCardModule)
+    shallow = new Shallow(CountInfoCardComponent, CountInfoCardModule);
   });
 
   it('should create', async () => {

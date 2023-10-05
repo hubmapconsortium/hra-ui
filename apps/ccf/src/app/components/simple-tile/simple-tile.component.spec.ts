@@ -9,7 +9,7 @@ describe('SimpleTileComponent', () => {
   let shallow: Shallow<SimpleTileComponent>;
 
   beforeEach(async () => {
-    shallow = new Shallow(SimpleTileComponent, SimpleTileModule)
+    shallow = new Shallow(SimpleTileComponent, SimpleTileModule);
   });
 
   it('should create', async () => {
