@@ -12,33 +12,23 @@
           if (node.detail) {
             focusId = node.detail.ontologyId;
             illustration.highlightId = focusId;
-            illustration2.highlightId = focusId;
           } else {
             focusId = '';
             illustration.highlightId = '';
-            illustration2.highlightId = '';
           }
         }
 
-        const illustration = document.getElementById('wc1');
+        const illustration = document.getElementById('wc');
         illustration.lookupSrc = illustrationsUrl;
         illustration.illustrationSrc = 'https://purl.humanatlas.io/2d-ftu/pancreas-intercalated-duct';
         illustration.addEventListener('nodeClicked', (node) => {
-          updateHighlight(node);
-        });
-
-        const illustration2 = document.getElementById('wc2');
-        illustration2.lookupSrc = illustrationsUrl;
-        illustration2.illustrationSrc = 'https://purl.humanatlas.io/2d-ftu/pancreas-pancreatic-acinus';
-        illustration2.addEventListener('nodeClicked', (node) => {
           updateHighlight(node);
         });
       });
     </script>
   <style>html,body{display:flex;height:100%;width:100%;margin:0}hra-illustration-wc{display:flex;flex:1}</style><link rel="stylesheet" href="styles.60574260076aa62e.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.60574260076aa62e.css"></noscript></head>
   <body>
-    <hra-illustration-wc id="wc1"></hra-illustration-wc>
-    <hra-illustration-wc id="wc2"></hra-illustration-wc>
-  <script src="runtime.498e824764bf7e75.js" type="module"></script><script src="polyfills.3666b22a51d20829.js" type="module"></script><script src="main.7383887ce710276e.js" type="module"></script>
+    <hra-illustration-wc id="wc"></hra-illustration-wc>
+  <script src="runtime.498e824764bf7e75.js" type="module"></script><script src="polyfills.3666b22a51d20829.js" type="module"></script><script src="main.886f06e3e79f0dd9.js" type="module"></script>
 
 </body></html>

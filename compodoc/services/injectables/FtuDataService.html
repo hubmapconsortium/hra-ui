@@ -427,7 +427,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#Url" target="_self" >Observable&lt;Url&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#Url" target="_self" >Observable&lt;Url | string&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -589,7 +589,7 @@ export abstract class FtuDataService {
    * This method takes
    * @param iri and @returns an observable url
    */
-  abstract getIllustrationUrl(iri: Iri): Observable&lt;Url&gt;;
+  abstract getIllustrationUrl(iri: Iri): Observable&lt;Url | string&gt;;
   /**
    * This method takes
    * @param iri and @returns observable of IllustrationMappingItem

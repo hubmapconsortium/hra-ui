@@ -431,7 +431,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Url | undefined</code>
+                        <b>Returns : </b>    <code>Url | string | undefined</code>
 
                     </div>
                     <div class="io-description">
@@ -463,7 +463,7 @@ export class IllustratorSelectors {
    * Returns the url for the illustrator
    */
   @Selector([IllustratorState])
-  static url({ url }: IllustratorModel): Url | undefined {
+  static url({ url }: IllustratorModel): Url | string | undefined {
     return url;
   }
 

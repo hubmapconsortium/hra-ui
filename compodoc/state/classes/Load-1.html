@@ -62,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/lib/cell-summary/cell-summary.actions.ts</code>
+            <code>src/lib/download/download.action.ts</code>
         </p>
 
 
@@ -70,7 +70,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>loads the given Iri to the state</p>
+                <p>Action to load entries from data service</p>
 
             </p>
 
@@ -89,13 +89,13 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/lib/cell-summary/cell-summary.actions.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/lib/download/download.action.ts:24</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Intializes the set iri</p>
+                            <div class="io-description"><p>Creates a action to load from the enteries from the data service</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -105,6 +105,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -119,6 +120,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Organ Iri for which the entries are loaded</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -141,26 +146,65 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ActionGroup } from &#x27;@hra-ui/cdk/state&#x27;;
+import { DownloadEntry, DownloadFormat, DownloadFormatId } from &#x27;./download.model&#x27;;
 import { Iri } from &#x27;@hra-ui/services&#x27;;
 
-/** Action base class factory */
-const Action &#x3D; ActionGroup(&#x27;CellSummary&#x27;);
+/**Action Group for Download Action */
+const Action &#x3D; ActionGroup(&#x27;Download&#x27;);
 
-/** loads the given Iri to the state */
+/**
+ * Register format into state
+ */
+export class RegisterFormat extends Action(&#x27;Register Format&#x27;) {
+  /**
+   * Creates an instance of register format.
+   * @param format
+   */
+  constructor(readonly format: DownloadFormat) {
+    super();
+  }
+}
+
+/**
+ * Action to load entries from data service
+ */
 export class Load extends Action(&#x27;Load&#x27;) {
-  /** Intializes the set iri */
+  /**
+   * Creates a action to load from the enteries from the data service
+   * @param iri Organ Iri for which the entries are loaded
+   */
   constructor(readonly iri: Iri) {
     super();
   }
 }
 
 /**
- * Compute aggregate of the given data and store to state */
-export class ComputeAggregates extends Action(&#x27;Compute Aggregates&#x27;) {}
+ * Add entry into download state
+ */
+export class AddEntry extends Action(&#x27;Add&#x27;) {
+  /** Constructor for Addd Entry */
+  constructor(readonly id: DownloadFormatId, readonly entry: DownloadEntry) {
+    super();
+  }
+}
 
 /**
- * Action to reset the current state */
-export class Reset extends Action(&#x27;Reset&#x27;) {}
+ * Clear all entries from download state
+ */
+export class ClearEntries extends Action(&#x27;Clear&#x27;) {}
+
+/**
+ * Download file Action
+ */
+export class Download extends Action(&#x27;Download&#x27;) {
+  /**
+   * Creates an instance of download.
+   * @param selectedFormat
+   */
+  constructor(readonly format: DownloadFormatId) {
+    super();
+  }
+}
 </code></pre>
     </div>
 </div>

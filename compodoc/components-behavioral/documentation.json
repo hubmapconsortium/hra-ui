@@ -1703,7 +1703,7 @@
                 "name": "EMPTY_TISSUE_INFO",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/lib/biomarker-details/biomarker-details.component.ts",
+                "file": "src/lib/biomarker-details-wc/biomarker-details-wc.component.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "TissueInfo",
@@ -1715,7 +1715,7 @@
                 "name": "EMPTY_TISSUE_INFO",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/lib/biomarker-details-wc/biomarker-details-wc.component.ts",
+                "file": "src/lib/biomarker-details/biomarker-details.component.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "TissueInfo",
@@ -1728,12 +1728,12 @@
         "typealiases": [],
         "enumerations": [],
         "groupedVariables": {
-            "src/lib/biomarker-details/biomarker-details.component.ts": [
+            "src/lib/biomarker-details-wc/biomarker-details-wc.component.ts": [
                 {
                     "name": "EMPTY_TISSUE_INFO",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/lib/biomarker-details/biomarker-details.component.ts",
+                    "file": "src/lib/biomarker-details-wc/biomarker-details-wc.component.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "TissueInfo",
@@ -1742,12 +1742,12 @@
                     "description": "<p>PlaceHolder for Empty Tissue Info</p>\n"
                 }
             ],
-            "src/lib/biomarker-details-wc/biomarker-details-wc.component.ts": [
+            "src/lib/biomarker-details/biomarker-details.component.ts": [
                 {
                     "name": "EMPTY_TISSUE_INFO",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/lib/biomarker-details-wc/biomarker-details-wc.component.ts",
+                    "file": "src/lib/biomarker-details/biomarker-details.component.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "TissueInfo",
