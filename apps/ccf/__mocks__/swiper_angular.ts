@@ -16,4 +16,4 @@ class SwiperComponent {
 })
 export class SwiperModule {}
 
-Shallow.neverMock(SwiperComponent, SwiperModule)
+Shallow.neverMock(SwiperComponent, SwiperModule);

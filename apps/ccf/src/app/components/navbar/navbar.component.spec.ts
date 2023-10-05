@@ -8,8 +8,8 @@ describe('NavbarComponent', () => {
   let shallow: Shallow<NavbarComponent>;
 
   beforeEach(async () => {
-    shallow = new Shallow(NavbarComponent, ToolbarModule)
-    jest.spyOn(window, "open").mockImplementation();
+    shallow = new Shallow(NavbarComponent, ToolbarModule);
+    jest.spyOn(window, 'open').mockImplementation();
   });
 
   it('should create', async () => {

@@ -28,7 +28,7 @@ describe('TissueInfoComponent', () => {
       .withStructuralDirective(MatHeaderCellDef)
       .dontMock(MatSort)
       .dontMock(MatHeaderRowDef)
-      .dontMock(MatRowDef)
+      .dontMock(MatRowDef);
   });
 
   it('should create', async () => {

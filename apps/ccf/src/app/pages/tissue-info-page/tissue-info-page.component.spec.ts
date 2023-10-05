@@ -9,15 +9,17 @@ describe('TissueInfoPageComponent', () => {
   let shallow: Shallow<TissueInfoPageComponent>;
 
   beforeEach(async () => {
-    shallow = new Shallow(TissueInfoPageComponent, TissueInfoPageModule)
-    .mock(ActivatedRoute, {
-      snapshot: {
-        data: {}
+    shallow = new Shallow(TissueInfoPageComponent, TissueInfoPageModule).mock(
+      ActivatedRoute,
+      {
+        snapshot: {
+          data: {},
+        },
       }
-    })
+    );
   });
 
-  it('should create', async() => {
+  it('should create', async () => {
     await expect(shallow.render()).resolves.toBeTruthy();
   });
 });
