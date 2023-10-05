@@ -18,8 +18,7 @@ out_dir="$1"
 mkdir -p "${out_dir}"
 shift
 
-echo dist/*
-echo $@
+echo $(ls dist) $(ls dist/apps)
 
 while (( "$#" )); do
   if [[ -d $1 ]]; then
