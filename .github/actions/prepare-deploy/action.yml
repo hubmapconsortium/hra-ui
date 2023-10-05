@@ -1,0 +1,75 @@
+name: Prepare a deploy build
+description: Build apps, storybook, and compodoc and generates deploy files
+
+inputs:
+  main-branch-name:
+    description: Main branch name against which nx builds
+    required: true
+  app-configuration:
+    description: App build target configuration
+    required: true
+  nx-command:
+    description: Command used to build artifacts ('affected' or 'run-many')
+    required: false
+    default: affected
+  deploy-directory:
+    description: Deployment directory
+    required: false
+    default: deploy
+  skip-node-js:
+    description: Skip Node.js setup
+    required: false
+    default: 'false'
+  build-compodoc:
+    description: Whether to build code documentation
+    required: false
+    default: 'true'
+  build-storybook:
+    description: Whether to build storybook
+    required: false
+    default: 'true'
+
+runs:
+  using: composite
+  steps:
+    - name: Node.js setup
+      if: ${{ inputs.skip-node-js == 'false' }}
+      uses: ./.github/actions/setup-node-js
+    - name: Configure nx
+      uses: nrwl/nx-set-shas@v3
+      with:
+        main-branch-name: ${{ inputs.main-branch-name }}
+
+    - name: Build apps
+      shell: bash
+      run: npx nx ${{ inputs.nx-command }} --targets=build --configuration=${{ inputs.app-configuration }}
+    - name: Build compodoc
+      if: ${{ inputs.build-compodoc == 'true' }}
+      shell: bash
+      run: npx nx ${{ inputs.nx-command }} --targets=compodoc --configuration=ci
+
+    - name: Build storybook
+      if: ${{ inputs.build-storybook == 'true' }}
+      shell: bash
+      run: |
+        # Run one at a time due to https://github.com/nrwl/nx/issues/6842
+        # Will hopefully be fixed by backport of https://github.com/storybookjs/storybook/pull/19307
+        npx nx ${{ inputs.nx-command }} --targets=build-storybook --configuration=ci --parallel=false
+      env:
+        STORYBOOK_DISABLE_TELEMETRY: '1'
+
+    - name: Collect artifacts
+      id: collect
+      shell: bash
+      run: ${{ github.action_path }}/collect_artifacts.sh ${{ inputs.deploy-directory }} dist/{apps,compodoc,storybook}
+
+    - name: Generate index file
+      uses: cuchi/jinja2-action@v1.2.0
+      with:
+        template: ${{ github.action_path }}/index.html.j2
+        output_file: ${{ inputs.deploy-directory }}/index.html
+        strict: true
+        variables: |
+          apps=${{ steps.collect.outputs.apps }}
+          storybook=${{ inputs.build-storybook == 'true' && steps.collect.outputs.storybook || '' }}
+          compodoc=${{ inputs.build-compodoc == 'true' && steps.collect.outputs.compodoc || '' }}

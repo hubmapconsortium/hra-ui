@@ -1,46 +1,34 @@
-name: 'Staging Build'
+name: Staging Build
 
 on:
-  push:
+  workflow_run:
+    workflows: ['CI']
     branches: ['develop']
+    types:
+      - completed
 
 jobs:
   deploy:
-    name: 'Deploy'
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: develop
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - run: npm ci
-      - name: Build HRA Portal
-        run: npm run build -- --output-hashing=none --base-href=/
-      - name: Setup Netlify files
-        run: |
-          echo '/* /index.html 200' > dist/ccf/_redirects
-      - name: Setup additional pages
-        run: |
-          cp -r static/* dist/ccf/
-          cp dist/ccf/index.html dist/ccf/404.html
-          touch dist/ccf/.nojekyll
+          fetch-depth: 0
 
-      - uses: peaceiris/actions-gh-pages@v3
+      - name: Prepare Deploy
+        uses: ./.github/actions/prepare-deploy
+        with:
+          main-branch-name: develop
+          app-configuration: staging
+          nx-command: run-many
+
+      - name: Publish
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: dist/ccf
+          publish_dir: deploy
           publish_branch: staging
-          commit_message: "Staging deploy -- ${{ github.event.head_commit.message }}"
+          commit_message: 'Staging deploy -- ${{ github.event.head_commit.message }}'

@@ -55,6 +55,19 @@
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
+        },
+        "staging": {
+          "baseHref": "/apps/ccf/",
+          "outputHashing": "none"
+        },
+        "preview": {
+          "baseHref": "/apps/ccf/",
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
         }
       },
       "defaultConfiguration": "production"
