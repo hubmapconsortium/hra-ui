@@ -1,0 +1,69 @@
+:host {
+  display: block;
+}
+
+.mat-mdc-button-focus-overlay {
+  display: none;
+}
+
+.mat-mdc-unelevated-button.mat-primary {
+  --mat-mdc-button-persistent-ripple-color: none;
+  --mat-mdc-button-ripple-color: none;
+}
+
+.navigation-title {
+  height: 100%;
+  font-size: 0.875rem;
+  color: #ffffff;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+}
+
+.navigation-items > a,
+button {
+  color: #444c65;
+  --mat-menu-item-label-text-size: 14px;
+  --mat-menu-item-label-text-line-height: 200%;
+  --mat-menu-item-label-text-weight: 300;
+  --mat-menu-item-label-text-tracking: 0.005em;
+  word-wrap: normal;
+  overflow: visible;
+  min-height: 2rem;
+  height: auto;
+  text-align: left;
+  max-width: 31.25rem;
+  white-space: initial;
+  padding-top: 0.313rem;
+  text-decoration: none;
+  line-height: 1.5rem;
+}
+
+.external-link > a {
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.04);
+  }
+}
+
+.inverse {
+  transform: rotate(180deg);
+  display: inline-block;
+}
+
+::ng-deep {
+  .menu-container {
+    position: relative;
+    top: 14px;
+    max-width: 23.25rem !important;
+  }
+
+  #arrow-icon {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.5rem;
+    height: unset;
+    width: unset;
+  }
+}

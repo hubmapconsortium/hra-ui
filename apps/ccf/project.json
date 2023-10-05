@@ -1,0 +1,114 @@
+{
+  "name": "ccf",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  },
+  "sourceRoot": "apps/ccf/src",
+  "prefix": "ccf",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/apps/ccf",
+        "index": "apps/ccf/src/index.html",
+        "main": "apps/ccf/src/main.ts",
+        "polyfills": "apps/ccf/src/polyfills.ts",
+        "tsConfig": "apps/ccf/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/ccf/src/favicon.ico", "apps/ccf/src/assets"],
+        "styles": ["apps/ccf/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["node_modules/swiper"]
+        },
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "1mb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/ccf/src/environments/environment.ts",
+              "with": "apps/ccf/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        },
+        "staging": {
+          "baseHref": "/",
+          "outputHashing": "none"
+        },
+        "preview": {
+          "baseHref": "/",
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "ccf:build:production"
+        },
+        "development": {
+          "browserTarget": "ccf:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "ccf:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/ccf/**/*.ts", "apps/ccf/**/*.html"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/ccf/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  }
+}

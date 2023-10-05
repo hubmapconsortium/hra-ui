@@ -1,0 +1,48 @@
+name: Netlify Preview Deploy
+
+on:
+  pull_request:
+    types: ['opened', 'edited', 'synchronize']
+
+concurrency:
+  group: preview-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: 'Deploy'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Prepare Deploy
+        uses: ./.github/actions/prepare-deploy
+        with:
+          main-branch-name: develop
+          app-configuration: preview
+          build-compodoc: false
+          build-storybook: false
+
+      - name: Publish
+        id: deploy
+        uses: South-Paw/action-netlify-cli@v2
+        with:
+          args: deploy --dir=deploy/apps/ccf/ --filter=ccf
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+      - name: Parse netlify output
+        id: parse_netlify_out
+        shell: bash
+        run: |
+          echo "${{steps.deploy.outputs.NETLIFY_OUTPUT}}" | \
+            perl -pe s'/^.*\ Website draft URL\:\ /URL=/g;s/\.app\ .*/\.app/g' >> "${GITHUB_OUTPUT}"
+
+      - name: Create Deploy Comment
+        uses: ./.github/actions/deploy-comment
+        with:
+          deploy-url: ${{steps.parse_netlify_out.outputs.URL}}

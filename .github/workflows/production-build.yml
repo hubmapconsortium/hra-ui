@@ -1,39 +1,37 @@
-name: 'Production Build'
+name: Production Build
 
 on:
-  push:
+  workflow_run:
+    workflows: ['CI']
     branches: ['main']
+    types:
+      - completed
 
 jobs:
   deploy:
-    name: 'Deploy'
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: main
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+          fetch-depth: 0
+
+      - name: Prepare Deploy
+        uses: ./.github/actions/prepare-deploy
         with:
-          node-version: ${{ matrix.node-version }}
-      - uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - run: npm ci
-      - name: Build HRA Portal
-        run: npm run build -- --output-hashing=none --base-href=/
+          main-branch-name: main
+          app-configuration: production
+          nx-command: run-many
+          build-compodoc: false
+          build-storybook: false
+
       - name: Setup additional pages
         run: |
-          cp -r static/* dist/ccf/
-          cp dist/ccf/index.html dist/ccf/404.html
-          touch dist/ccf/.nojekyll
+          cp -r static/* deploy/apps/ccf/
+          cp deploy/apps/ccf/index.html deploy/apps/ccf/404.html
+          touch deploy/apps/ccf/.nojekyll
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -41,14 +39,15 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-          
+
       - name: Deploy to S3
         run: |
-          aws s3 sync --delete dist/ccf/ s3://${{ secrets.AWS_S3_BUCKET_NAME }}/humanatlas.io/
+          aws s3 sync --delete deploy/apps/ccf/ s3://${{ secrets.AWS_S3_BUCKET_NAME }}/humanatlas.io/
           aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/*"
 
-      - uses: peaceiris/actions-gh-pages@v3
+      - name: Publish
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: dist/ccf
-          commit_message: "Production deploy -- ${{ github.event.head_commit.message }}"
+          publish_dir: deploy/apps/ccf
+          commit_message: 'Production deploy -- ${{ github.event.head_commit.message }}'
