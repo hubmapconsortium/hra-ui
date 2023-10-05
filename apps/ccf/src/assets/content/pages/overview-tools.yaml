@@ -39,11 +39,11 @@
     - icon: assets/images/vr_gallery.svg
       title: Organ Gallery in VR
       body: An immersive application that allows users to explore 3D reference organs, anatomical structures, and cell types in virtual reality
-      route: hra-organ-gallery-in-vr
+      route: organ-gallery-in-vr
     - icon: assets/images/hra_milletome.svg
       title: Millitome
       body: A unique 3D printed tool and standard operating procedure for the uniform sectioning of organs
-      route: hra-millitome
+      route: millitome
     - icon: assets/images/hra_api.svg
       title: Application Programming Interfaces (APIs)
       body: Query and interact with the HRA using Python, JavaScript, SPARQL, REST, and more
