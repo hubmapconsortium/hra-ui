@@ -19,7 +19,8 @@
   letter-spacing: 0.005em;
 }
 
-.navigation-items > a, button {
+.navigation-items > a,
+button {
   color: #444c65;
   --mat-menu-item-label-text-size: 14px;
   --mat-menu-item-label-text-line-height: 200%;
@@ -57,7 +58,7 @@
     top: 14px;
     max-width: 23.25rem !important;
   }
-  
+
   #arrow-icon {
     display: inline-flex;
     align-items: center;
@@ -65,4 +66,4 @@
     height: unset;
     width: unset;
   }
-} 
+}
