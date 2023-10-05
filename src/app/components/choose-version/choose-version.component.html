@@ -1,6 +1,0 @@
-<mat-select class="versions" panelClass="versions-panel" [value]="selectedDate" disableOptionCentering disableRipple hideSingleSelectionIndicator>
-  <mat-option *ngFor="let date of releaseDate" [value]="date" class="mat-select-value-text" id="option-text"
-    (click)="selectedVersion.emit(date)">
-    {{ date.release }}
-  </mat-option>
-</mat-select>
