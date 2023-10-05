@@ -1,29 +1,26 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 import { NavbarComponent } from './navbar.component';
+import { ToolbarModule } from '../toolbar/toolbar.module';
+import { url } from 'inspector';
 
 describe('NavbarComponent', () => {
-  let component: NavbarComponent;
-  let fixture: ComponentFixture<NavbarComponent>;
+  let shallow: Shallow<NavbarComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [NavbarComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(NavbarComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    shallow = new Shallow(NavbarComponent, ToolbarModule)
+    jest.spyOn(window, "open").mockImplementation();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async () => {
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 
-  it('should emit itemClick event wwhen externalWindow is called', () => {
+  it('should emit itemClick event when externalWindow is called', async () => {
+    const { instance } = await shallow.render();
     const url = 'https://humanatlas.io';
-    const spy = jest.spyOn(window, 'open');
-    component.externalWindow(url);
-    expect(spy).toHaveBeenCalledWith(url, '_blank');
+    window.open = jest.fn();
+    instance.externalWindow(url);
+    expect(window.open).toHaveBeenCalledWith(url, '_blank');
   });
 });

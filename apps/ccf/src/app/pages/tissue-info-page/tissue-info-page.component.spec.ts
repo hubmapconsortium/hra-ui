@@ -1,22 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TissueInfoPageComponent } from './tissue-info-page.component';
+import { TissueInfoPageModule } from './tissue-info-page.module';
+import { Shallow } from 'shallow-render';
+import { ActivatedRoute } from '@angular/router';
 
 describe('TissueInfoPageComponent', () => {
-  let component: TissueInfoPageComponent;
-  let fixture: ComponentFixture<TissueInfoPageComponent>;
+  let shallow: Shallow<TissueInfoPageComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [TissueInfoPageComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(TissueInfoPageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    shallow = new Shallow(TissueInfoPageComponent, TissueInfoPageModule)
+    .mock(ActivatedRoute, {
+      snapshot: {
+        data: {}
+      }
+    })
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async() => {
+    await expect(shallow.render()).resolves.toBeTruthy();
   });
 });

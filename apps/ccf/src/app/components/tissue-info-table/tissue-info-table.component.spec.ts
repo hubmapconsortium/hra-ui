@@ -26,9 +26,9 @@ describe('TissueInfoComponent', () => {
     shallow = new Shallow(TissueInfoTableComponent, TissueInfoTableModule)
       .withStructuralDirective(NgFor)
       .withStructuralDirective(MatHeaderCellDef)
-      .withStructuralDirective(MatHeaderRowDef)
-      .withStructuralDirective(MatRowDef)
-      .dontMock(MatSort);
+      .dontMock(MatSort)
+      .dontMock(MatHeaderRowDef)
+      .dontMock(MatRowDef)
   });
 
   it('should create', async () => {
