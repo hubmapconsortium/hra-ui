@@ -30,7 +30,7 @@ jobs:
         id: deploy
         uses: South-Paw/action-netlify-cli@v2
         with:
-          args: deploy --dir=deploy/apps/ccf --filter=ccf
+          args: deploy --dir=deploy/apps/ccf/ --filter=ccf
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
