@@ -18,8 +18,6 @@ out_dir="$1"
 mkdir -p "${out_dir}"
 shift
 
-echo $(ls .)
-
 while (( "$#" )); do
   if [[ -d $1 ]]; then
     # Extract directory name (https://stackoverflow.com/a/1371283)
