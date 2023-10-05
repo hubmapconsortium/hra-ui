@@ -60,13 +60,14 @@ const ILLUSTRATIONS = z.object({
     representation_of: z.string(),
     illustration_files: z
       .object({
-        file: URL,
+        file: z.string(),
         file_format: z.string(),
       })
       .array(),
     mapping: z
       .object({
         svg_id: z.string(),
+        svg_group_id: z.string(),
         label: z.string(),
         representation_of: z.string(),
       })
@@ -166,7 +167,7 @@ export class FtuDataImplService extends FtuDataService {
   @param iri The Iri of the illustration.
   @returns An Observable that emits the mock URL.
   */
-  override getIllustrationUrl(iri: Iri): Observable<Url> {
+  override getIllustrationUrl(iri: Iri): Observable<Url | string> {
     return this.getDataFileReferences(iri).pipe(map((data) => this.findIllustrationUrl(data)));
   }
 
@@ -278,7 +279,7 @@ export class FtuDataImplService extends FtuDataService {
    * @param files
    * @returns illustration url
    */
-  private findIllustrationUrl(files: DataFileReference[]): Url {
+  private findIllustrationUrl(files: DataFileReference[]): string {
     const { fileFormatMapping } = this;
     const svgFormat = fileFormatMapping['image/svg+xml'];
     const ref = files.find(({ format }) => format === svgFormat);
@@ -295,12 +296,17 @@ export class FtuDataImplService extends FtuDataService {
    * @returns illustration mapping
    */
   private toIllustrationMapping(
-    mappings: { label: string; svg_id: string; representation_of: string }[]
+    mappings: { label: string; svg_id: string; svg_group_id: string; representation_of: string }[]
   ): IllustrationMappingItem[] {
     const ontologyIdPrefix = 'http://purl.obolibrary.org/obo/';
     const results: IllustrationMappingItem[] = [];
-    for (const { label, svg_id, representation_of } of mappings) {
-      results.push({ label, id: svg_id, ontologyId: representation_of.slice(ontologyIdPrefix.length) });
+    for (const { label, svg_id, svg_group_id, representation_of } of mappings) {
+      results.push({
+        label,
+        id: svg_id,
+        groupId: svg_group_id,
+        ontologyId: representation_of.slice(ontologyIdPrefix.length),
+      });
     }
 
     return results;

@@ -76,7 +76,7 @@ export const CELL_SUMMARY = z.object({
 /** Zod Schema for a DATA_FILE_REFERENCE */
 export const DATA_FILE_REFERENCE = z.object({
   format: z.string(),
-  url: URL,
+  url: z.string(),
 });
 
 /** Zod Schema for a SOURCE_REFERENCE */
@@ -89,6 +89,7 @@ export const SOURCE_REFERENCE = z.object({
 /** Zod Schema for a ILLUSTRATION_MAPPING_ITEM */
 export const ILLUSTRATION_MAPPING_ITEM = z.object({
   id: z.string(),
+  groupId: z.string(),
   label: z.string(),
   ontologyId: z.string(),
 });

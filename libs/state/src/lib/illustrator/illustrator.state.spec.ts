@@ -45,6 +45,7 @@ describe('IllustratorState', () => {
       const mockSelected: IllustrationMappingItem = {
         label: 'Mock Label',
         id: 'Mock Name',
+        groupId: 'Mock Group',
         ontologyId: 'Mock id',
       };
       state.SetHover(ctx, new SetHover(mockSelected));
@@ -57,6 +58,7 @@ describe('IllustratorState', () => {
       const mockSelected: IllustrationMappingItem = {
         label: 'Mock Label',
         id: 'Mock Name',
+        groupId: 'Mock Group',
         ontologyId: 'Mock id',
       };
       state.SetClicked(ctx, new SetClicked(mockSelected));

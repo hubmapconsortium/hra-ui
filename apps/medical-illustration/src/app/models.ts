@@ -32,5 +32,6 @@ export interface CellEntry {
   label: string;
   /** Cell id */
   svg_id: string;
+  svg_group_id: string;
   representation_of: string;
 }
