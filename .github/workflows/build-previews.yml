@@ -28,14 +28,17 @@ jobs:
 
       - name: Publish
         id: deploy
-        uses: netlify/actions/cli@master
+        uses: jsmrcaga/action-netlify-deploy@v2.0.0
         with:
-          args: deploy --dir=deploy/apps/ccf
-        env:
+          build_directory: deploy/apps/ccf
+          install_command: ;
+          build_command: ;
+          # args: deploy --dir=deploy/apps/ccf
+        # env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
 
       - name: Create Deploy Comment
         uses: ./.github/actions/deploy-comment
         with:
-          deploy-url: ${{steps.deploy.outputs.NETLIFY_URL}}
+          deploy-url: ${{steps.deploy.outputs.NETLIFY_PREVIEW_URL}}
