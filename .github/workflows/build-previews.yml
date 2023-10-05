@@ -23,7 +23,6 @@ jobs:
         with:
           main-branch-name: develop
           app-configuration: preview
-          nx-command: run-many
           build-compodoc: false
           build-storybook: false
 
