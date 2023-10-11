@@ -4784,6 +4784,150 @@
           "representation_of": ""
         },
         {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_1",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatoblast_1",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_2",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatoblast_2",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_3",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatoblast_3",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_4",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatoblast_4",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_5",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatoblast_5",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_6",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatoblast_6",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_7",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatoblast_7",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_8",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatoblast_8",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_9",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatoblast_9",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_10",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatoblast_10",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_11",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatoblast_11",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_12",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatoblast_12",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_13",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatoblast_13",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_14",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatoblast_14",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_15",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatoblast_15",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_16",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatoblast_16",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_17",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatoblast_17",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Hepatoblast_18",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Hepatoblast_18",
+          "svg_group_id": "Hepatoblast",
+          "label": "hepatoblast",
+          "representation_of": ""
+        },
+        {
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#Endothelial_Cell_Of_Hepatic_Sinusoid_1",
           "@type": "FtuIllustrationNode",
           "svg_id": "Endothelial_Cell_Of_Hepatic_Sinusoid_1",
