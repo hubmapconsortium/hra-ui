@@ -257,14 +257,12 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
         (item) => item.id?.toLowerCase() === decodedID.toLowerCase() //search mapping by cell name for matching node entry
       );
       if (cellMatch) {
-        console.log('cellMatch', cellMatch);
         return cellMatch;
       } else {
         const groupMatch = this.mapping.find(
           (item) => item.groupId?.toLowerCase() === decodedID.toLowerCase() //search mapping by group name for matching node entry
         );
         if (groupMatch) {
-          console.log('groupMatch', groupMatch);
           return groupMatch;
         }
       }
