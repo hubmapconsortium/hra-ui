@@ -598,7 +598,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Thin_limb_1",
           "svg_group_id": "Thin_limb",
-          "label": "ascending thin limb of loop of Henle",
+          "label": "thin limb of loop of Henle",
           "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004193"
         },
         {
@@ -606,7 +606,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Thin_limb_2",
           "svg_group_id": "Thin_limb",
-          "label": "descending thin limb of loop of Henle",
+          "label": "thin limb of loop of Henle",
           "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001289"
         },
         {
@@ -614,7 +614,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Thin_Limb_Cell_1",
           "svg_group_id": "Thin_limb",
-          "label": "kidney loop of Henle thin ascending limb epithelial cell",
+          "label": "kidney loop of Henle thin limb epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001107"
         },
         {
@@ -622,15 +622,15 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Thin_Limb_Cell_2",
           "svg_group_id": "Thin_limb",
-          "label": "kidney loop of Henle thin descending limb epithelial cell",
+          "label": "kidney loop of Henle thin limb epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001111"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Collecting_Duct",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Cortical_Collecting_Duct",
-          "svg_group_id": "Cortical_Collecting_Duct",
-          "label": "cortical collecting duct",
+          "svg_id": "Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
+          "label": "collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004203"
         },
         {
@@ -766,7 +766,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Glomerulus_1",
           "svg_group_id": "Glomerulus",
-          "label": "Renal Corpuscle",
+          "label": "renal corpuscle",
           "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001229"
         },
         {
@@ -774,7 +774,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Glomerulus_2",
           "svg_group_id": "Glomerulus",
-          "label": "Renal Corpuscle",
+          "label": "renal corpuscle",
           "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001229"
         },
         {
