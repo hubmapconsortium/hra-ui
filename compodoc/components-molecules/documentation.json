@@ -1611,7 +1611,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".svg {\n  max-height: calc(100vh - 14rem);\n  overflow-y: auto;\n}\nsvg {\n  max-height: calc(100vh - 10rem);\n  width: 100%;\n}\n\n[id^='Crosswalk'] > #Crosswalk,\n[id^='Crosswalk'] {\n  :is(path, polygon, polyline) {\n    fill: transparent;\n    stroke: transparent;\n  }\n\n  .hover-active & g:hover > :is(path, polygon, polyline),\n  .click-active {\n    fill: hsl(0deg 100% 50%);\n    mix-blend-mode: saturation;\n  }\n}\n\n::-webkit-scrollbar {\n  width: 0.5rem;\n  height: 0.5rem;\n}\n\n::-webkit-scrollbar-track {\n  background: #f8f9fa;\n  border: 0.063rem solid #d3d3d3;\n}\n\n::-webkit-scrollbar-thumb {\n  background: #a0abb4;\n  border-radius: 0.5rem;\n}\n",
+                    "data": ".svg {\n  max-height: calc(100vh - 14rem);\n  overflow-y: auto;\n}\nsvg {\n  max-height: calc(100vh - 10rem);\n  width: 100%;\n}\n\n#Crosswalk {\n  :is(path, polygon, polyline),\n  .hover-active & .inset-group:hover :is(path, polygon, polyline) {\n    fill: transparent;\n    stroke: transparent;\n  }\n\n  .hover-active & g:hover :is(path, polygon, polyline),\n  .hover-active & .inset-group > g:hover :is(path, polygon, polyline),\n  .click-active {\n    fill: hsl(0deg 100% 50%);\n    mix-blend-mode: saturation;\n  }\n}\n\n::-webkit-scrollbar {\n  width: 0.5rem;\n  height: 0.5rem;\n}\n\n::-webkit-scrollbar-track {\n  background: #f8f9fa;\n  border: 0.063rem solid #d3d3d3;\n}\n\n::-webkit-scrollbar-thumb {\n  background: #a0abb4;\n  border-radius: 0.5rem;\n}\n",
                     "styleUrl": "./interactive-svg.component.scss"
                 }
             ],

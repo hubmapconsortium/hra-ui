@@ -1026,14 +1026,15 @@ svg {
   width: 100%;
 }
 
-[id^&#x3D;&#x27;Crosswalk&#x27;] &gt; #Crosswalk,
-[id^&#x3D;&#x27;Crosswalk&#x27;] {
-  :is(path, polygon, polyline) {
+#Crosswalk {
+  :is(path, polygon, polyline),
+  .hover-active &amp; .inset-group:hover :is(path, polygon, polyline) {
     fill: transparent;
     stroke: transparent;
   }
 
-  .hover-active &amp; g:hover &gt; :is(path, polygon, polyline),
+  .hover-active &amp; g:hover :is(path, polygon, polyline),
+  .hover-active &amp; .inset-group &gt; g:hover :is(path, polygon, polyline),
   .click-active {
     fill: hsl(0deg 100% 50%);
     mix-blend-mode: saturation;
