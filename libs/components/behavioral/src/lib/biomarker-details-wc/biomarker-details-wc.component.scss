@@ -34,6 +34,14 @@
     border: 0.063rem solid #d3d3d3;
     width: 43rem;
     height: 3.5rem;
+    span {
+      cursor: pointer;
+      padding: 0.4rem;
+      &:hover {
+        background-color: #d3d3d3;
+        border-radius: 5px;
+      }
+    }
   }
 
   .table {
