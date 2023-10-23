@@ -5,6 +5,7 @@
     - image: assets/images/hra_usage.svg
       title: Human Reference Atlas Usage Metrics
       subtitle: Data and statistics on which tools and consortia are using the Human Reference Atlas
+      alt: Usage metrics icon
 
 - type: announcement
   announcementCard:

@@ -5,6 +5,7 @@ export interface LongCard {
   body: string;
   route?: string;
   color?: string;
+  alt: string;
 }
 
 export interface CardBlock {

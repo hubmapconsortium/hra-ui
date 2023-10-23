@@ -3,4 +3,5 @@ export interface ImageData {
   description: string;
   image: string;
   imageDialog: string;
+  alt: string;
 }

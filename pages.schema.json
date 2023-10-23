@@ -77,11 +77,16 @@
                     "description": {
                       "type": "string",
                       "description": "Introduction of the board member"
+                    },
+                    "alt": {
+                      "type": "string",
+                      "description": "alternate text for image"
                     }
                   },
                   "required": [
                     "image",
-                    "description"
+                    "description",
+                    "alt"
                   ],
                   "additionalProperties": false
                 }
@@ -239,6 +244,10 @@
                     "image": {
                       "type": "string",
                       "description": "Image of the contact"
+                    },
+                    "alt": {
+                      "type": "string",
+                      "description": "Alternate text for image"
                     }
                   },
                   "required": [
@@ -246,7 +255,8 @@
                     "name",
                     "role",
                     "email",
-                    "image"
+                    "image",
+                    "alt"
                   ],
                   "additionalProperties": false
                 }
@@ -613,13 +623,18 @@
                     "imageDialog": {
                       "type": "string",
                       "description": "URL of the image to be displayed on the dialog"
+                    },
+                    "alt": {
+                      "type": "string",
+                      "description": "Alternate text for image"
                     }
                   },
                   "required": [
                     "title",
                     "description",
                     "image",
-                    "imageDialog"
+                    "imageDialog",
+                    "alt"
                   ],
                   "additionalProperties": false
                 }
@@ -669,11 +684,16 @@
                     "externalLink": {
                       "type": "string",
                       "description": "External URL to be redirected"
+                    },
+                    "alt": {
+                      "type": "string",
+                      "description": "alternate text for card icon"
                     }
                   },
                   "required": [
                     "icon",
-                    "title"
+                    "title",
+                    "alt"
                   ],
                   "additionalProperties": false,
                   "description": "Properties mentioned here are optional. Either use route or externalLink\n- route: route for the page to be redirected\n- externalLink: URL of the page to be opened when the card is clicked\n- color: background color of the image\n- body: Subtitle for the card"
@@ -964,6 +984,10 @@
                             "type": "string",
                             "description": "Path to the Icon/Image of the organ"
                           },
+                          "alt": {
+                            "type": "string",
+                            "description": "Alternate text for icon"
+                          },
                           "tissueData": {
                             "type": "array",
                             "items": {
@@ -1017,7 +1041,8 @@
                         },
                         "required": [
                           "name",
-                          "image"
+                          "image",
+                          "alt"
                         ],
                         "additionalProperties": false
                       },
@@ -1102,12 +1127,17 @@
                     "image": {
                       "type": "string",
                       "description": "Icon of the card"
+                    },
+                    "alt": {
+                      "type": "string",
+                      "description": "Text Alternative for card image"
                     }
                   },
                   "required": [
                     "title",
                     "subtitle",
-                    "image"
+                    "image",
+                    "alt"
                   ],
                   "additionalProperties": false
                 }
@@ -1200,6 +1230,10 @@
                     "matDivider": {
                       "type": "boolean",
                       "description": "True if divider is needed"
+                    },
+                    "alt": {
+                      "type": "string",
+                      "description": "Alternate text for the org image"
                     }
                   },
                   "required": [

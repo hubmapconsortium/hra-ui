@@ -53,6 +53,7 @@ export const BoardMembers = z.object({
       description: z.string({
         description: 'Introduction of the board member',
       }),
+      alt: z.string({ description: 'alternate text for image' })
     })
     .array(),
   styles: Styles.optional(),
@@ -122,6 +123,7 @@ export const ContactCard = z.object({
       role: z.string({ description: 'Role/ Position of the contact' }),
       email: z.string({ description: 'Email ID of the contact' }),
       image: z.string({ description: 'Image of the contact' }),
+      alt: z.string({ description: 'Alternate text for image' })
     })
     .array(),
   styles: Styles.optional(),
@@ -303,6 +305,7 @@ export const ImageInCard = z.object({
       imageDialog: z.string({
         description: 'URL of the image to be displayed on the dialog',
       }),
+      alt: z.string({ description: 'Alternate text for image' })
     })
     .array(),
   styles: Styles.optional(),
@@ -318,6 +321,7 @@ const LongCardItems = z
       description: 'Background color for the icon if necessary',
     }),
     externalLink: z.string({ description: 'External URL to be redirected' }),
+    alt: z.string({ description: 'alternate text for card icon' })
   })
   .partial({
     route: true,
@@ -413,6 +417,7 @@ export const MenuTree = z.object({
 const OrganData = z.object({
   name: z.string({ description: 'Name of the organ' }),
   image: z.string({ description: 'Path to the Icon/Image of the organ' }),
+  alt: z.string({description: 'Alternate text for icon'}),
   tissueData: z
     .lazy(() => TissueData)
     .array()
@@ -473,6 +478,7 @@ export const PageHeaderCard = z.object({
       title: z.string({ description: 'Title of the card' }),
       subtitle: z.string({ description: 'Subtitle of the card' }),
       image: z.string({ description: 'Icon of the card' }),
+      alt: z.string({ description: 'Text Alternative for card image' })
     })
     .array(),
   styles: Styles.optional(),
@@ -515,11 +521,13 @@ export const PrizeCard = z.object({
         .string({ description: 'Images of all the participants' })
         .array(),
       matDivider: z.boolean({ description: 'True if divider is needed' }),
+      alt: z.string({ description: 'Alternate text for the org image' })
     })
     .partial({
       presentedBy: true,
       orgImage: true,
       userImage: true,
+      alt: true
     })
     .describe(
       `

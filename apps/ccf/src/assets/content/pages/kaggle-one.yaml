@@ -5,6 +5,7 @@
     - title: 'Kaggle #1: HuBMAP - Hacking the Kidney'
       subtitle: Algorithm development challenges that engage teams from around the globe to develop code for HRA construction
       image: assets/images/kaggle.svg
+      alt: Kaggle one icon
 
 - type: announcement
   announcementCard:
@@ -91,6 +92,7 @@
             - label: Solution WriteUp
               link: https://www.kaggle.com/c/hubmap-kidney-segmentation/discussion/238198
       orgImage: assets/images/google.svg
+      alt: Google organization image
       userImage:
         - assets/images/tikutiku.svg
     - title: 2nd Place ($10,000)
@@ -100,6 +102,7 @@
         - winner: Gleb
           kaggleId: <b>Kaggle IDs (no order):</b> bakeryproducts, kulyabin, and sherlockkay
       orgImage: assets/images/google.svg
+      alt: Google organization image
       userImage:
         - assets/images/bakeryproducts.svg
         - assets/images/kulyabin.svg
@@ -114,6 +117,7 @@
             - label: Solution Write-up
               link: https://www.kaggle.com/c/hubmap-kidney-segmentation/discussion/238013
       orgImage: assets/images/third_place_org.svg
+      alt: CAS organization image
 
 - type: title
   title: Judges Prizes
@@ -139,6 +143,7 @@
             - label: Presentation
               link: https://www.youtube.com/watch?v=uqyFPMnOB2g&list=PLuJUUASr8daMaDBweSiSbPXgzwUX_xoX_&index=3
       orgImage: assets/images/roche.svg
+      alt: Roche organization image
       userImage:
         - assets/images/optimo.svg
         - assets/images/theoviel.svg
@@ -156,6 +161,7 @@
             - label: Presentation
               link: https://www.youtube.com/watch?v=w6LpUDkXL0Q&list=PLuJUUASr8daMaDBweSiSbPXgzwUX_xoX_&index=2
       orgImage: assets/images/innovation_prize.svg
+      alt: Deerfield organization image
       userImage:
         - assets/images/matjes.svg
         - assets/images/theudas.svg
@@ -173,6 +179,7 @@
             - label: Presentation
               link: https://www.youtube.com/watch?v=pZTjzaP12Sc&list=PLuJUUASr8daMaDBweSiSbPXgzwUX_xoX_&index=5
       orgImage: assets/images/diversity_prize.svg
+      alt: Pistoia Alliance organization image
       userImage:
         - assets/images/Gavi_sr.svg
         - assets/images/Sophie.svg

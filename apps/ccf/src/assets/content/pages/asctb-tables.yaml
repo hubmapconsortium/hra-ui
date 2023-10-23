@@ -5,6 +5,7 @@
     - image: assets/images/asctb_table.svg
       title: Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Tables
       subtitle: Data tables containing hierarchical anatomical structures, cell types, and biomarkers from the Cell Ontology
+      alt: ASCT+B tables icon
 
 - type: announcement
   announcementCard:

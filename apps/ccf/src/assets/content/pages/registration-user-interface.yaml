@@ -5,6 +5,7 @@
     - image: assets/images/rui.svg
       title: Registration User Interface (RUI)
       subtitle: An interactive tool for registering tissue blocks spatially and annotating them semantically using ASCT+B Table terms
+      alt: Registration user interface icon
 
 - type: announcement
   announcementCard:

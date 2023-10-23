@@ -7,6 +7,7 @@ export interface PrizeCard {
   // button?: Button[],
   userImage?: string[];
   matDivider: boolean;
+  alt: string;
 }
 
 export interface Button {

@@ -13,6 +13,7 @@ export interface TissueData {
 export interface OrganData {
   name: string;
   image: string;
+  alt: string;
   tissueData?: TissueData[];
 }
 

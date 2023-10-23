@@ -5,6 +5,7 @@
     - image: assets/images/asctb_azimuth.svg
       title: ASCT+B Cell-Types Data from Azimuth Reference Data with Summaries
       subtitle: Crosswalks from Azimuth cell annotation tool to ASCT+B tables with cell population data
+      alt: ASCT+B Azimuth icon
 
 - type: announcement
   announcementCard:

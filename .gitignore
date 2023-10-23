@@ -7,7 +7,7 @@
 /bazel-out
 
 # data-schema.js is compiled on the fly
-src/app/utils/data-schema.js
+apps/ccf/src/app/utils/data-schema.js
 
 # Node
 /node_modules

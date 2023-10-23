@@ -4,7 +4,7 @@
     <div *ngIf="prize.presentedBy" class="presented-container">
       <div class="presented"><b>Presented by:</b> {{ prize.presentedBy }}</div>
       <div>
-        <img [src]="prize.orgImage" />
+        <img [src]="prize.orgImage" [alt]="prize.alt" />
       </div>
     </div>
     <mat-divider *ngIf="prize.matDivider"></mat-divider>

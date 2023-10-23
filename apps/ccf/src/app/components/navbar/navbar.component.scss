@@ -17,6 +17,14 @@
   color: #ffffff;
   font-weight: 500;
   letter-spacing: 0.005em;
+
+  .menu-button-icon {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.5rem;
+    height: unset;
+    width: unset;
+  }
 }
 
 .navigation-items > a,
@@ -57,13 +65,5 @@ button {
     position: relative;
     top: 14px;
     max-width: 23.25rem !important;
-  }
-
-  #arrow-icon {
-    display: inline-flex;
-    align-items: center;
-    font-size: 1.5rem;
-    height: unset;
-    width: unset;
   }
 }

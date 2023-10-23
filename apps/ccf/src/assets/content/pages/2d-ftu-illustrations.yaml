@@ -5,6 +5,7 @@
     - image: assets/images/two_dim_header.svg
       title: 2D Functional Tissue Unit (FTU) Illustrations
       subtitle: Open-source 2D reference illustrations of functional tissue units (FTUs) mapped to ASCT+B tables used for single-cell data exploration
+      alt: 2D Functional Tissue Unit Icon
 
 - type: announcement
   announcementCard:
@@ -100,6 +101,7 @@
       organData:
         - name: Kidney
           image: assets/images/kidney.svg
+          alt: A kidney icon
           tissueData:
             - name: Ascending Thin Loop Of Henle
               image: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.svg
@@ -159,6 +161,7 @@
               png: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.png
         - name: Large Intestine
           image: assets/images/large_intestine.svg
+          alt: A large intestine icon
           tissueData:
             - name: Crypt of Lieberkuhn
               image: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.svg
@@ -169,6 +172,7 @@
               png: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.png
         - name: Liver
           image: assets/images/liver.svg
+          alt: A liver icon
           tissueData:
             - name: Liver Lobule
               image: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-liver-liver-lobule.svg
@@ -179,6 +183,7 @@
               png: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-liver-liver-lobule.png
         - name: Lung
           image: assets/images/lung.svg
+          alt: A lung icon
           tissueData:
             - name: Bronchial Submucosal Gland
               image: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-lung-bronchial-submucosal-gland.svg
@@ -196,6 +201,7 @@
               png: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-lung-pulmonary-alveolus.png
         - name: Pancreas
           image: assets/images/pancreas.svg
+          alt: A pancreas icon
           tissueData:
             - name: Intercalated Duct
               image: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-pancreas-intercalated-duct.svg
@@ -220,6 +226,7 @@
               png: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-pancreas-islets-langerhans.png
         - name: Prostate
           image: assets/images/prostate.svg
+          alt: A prostate icon
           tissueData:
             - name: Prostate Glandular Acinus
               image: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.svg
@@ -230,6 +237,7 @@
               png: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.png
         - name: Skin
           image: assets/images/skin.svg
+          alt: A skin icon
           tissueData:
             - name: Dermal Papilla
               image: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-skin-dermal-papilla.svg
@@ -247,6 +255,7 @@
               png: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.png
         - name: Spleen
           image: assets/images/spleen.svg
+          alt: A spleen icon
           tissueData:
             - name: Red Pulp
               image: https://cdn.humanatlas.io/hra-releases/v1.4/2d-ftu/2d-ftu-spleen-red-pulp.svg
@@ -264,6 +273,7 @@
               png: https://cdn.humanatlas.io/hra-releases/v1.4/2d-ftu/2d-ftu-spleen-white-pulp.png
         - name: Thymus
           image: assets/images/thymus.svg
+          alt: A thymus icon
           tissueData:
             - name: Thymus Lobule
               image: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.svg
@@ -276,6 +286,7 @@
       organData:
         - name: Kidney
           image: assets/images/kidney.svg
+          alt: A kidney icon
           tissueData:
             - name: Ascending Thin Loop Of Henle
               image: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.svg
@@ -335,6 +346,7 @@
               png: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.png
         - name: Large Intestine
           image: assets/images/large_intestine.svg
+          alt: A large intestine icon
           tissueData:
             - name: Crypt of Lieberkuhn
               image: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.svg
@@ -345,6 +357,7 @@
               png: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.png
         - name: Liver
           image: assets/images/liver.svg
+          alt: A liver icon
           tissueData:
             - name: Liver Lobule
               image: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-liver-liver-lobule.svg
@@ -355,6 +368,7 @@
               png: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-liver-liver-lobule.png
         - name: Lung
           image: assets/images/lung.svg
+          alt: A lung icon
           tissueData:
             - name: Bronchial Submucosal Gland
               image: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-lung-bronchial-submucosal-gland.svg
@@ -372,6 +386,7 @@
               png: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-lung-pulmonary-alveolus.png
         - name: Pancreas
           image: assets/images/pancreas.svg
+          alt: A pancreas icon
           tissueData:
             - name: Intercalated Duct
               image: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-pancreas-intercalated-duct.svg
@@ -396,6 +411,7 @@
               png: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-pancreas-islets-langerhans.png
         - name: Prostate
           image: assets/images/prostate.svg
+          alt: A prostate icon
           tissueData:
             - name: Prostate Glandular Acinus
               image: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.svg
@@ -406,6 +422,7 @@
               png: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.png
         - name: Skin
           image: assets/images/skin.svg
+          alt: A skin icon
           tissueData:
             - name: Dermal Papilla
               image: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-skin-dermal-papilla.svg
@@ -423,6 +440,7 @@
               png: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.png
         - name: Thymus
           image: assets/images/thymus.svg
+          alt: A thymus icon
           tissueData:
             - name: Thymus Lobule
               image: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.svg
@@ -435,6 +453,7 @@
       organData:
         - name: Kidney
           image: assets/images/kidney.svg
+          alt: A kidney icon
           tissueData:
             - name: Nephron
               image: https://hubmapconsortium.github.io/ccf-2d-reference-object-library/v1.0/png/nephron_kidney.png
@@ -450,6 +469,7 @@
               png: https://hubmapconsortium.github.io/ccf-2d-reference-object-library/v1.0/png/renal_corpuscle_kidney.png
         - name: Large Intestine
           image: assets/images/large_intestine.svg
+          alt: A large intestine icon
           tissueData:
             - name: Crypt of Lieberkuhn
               image: https://hubmapconsortium.github.io/ccf-2d-reference-object-library/v1.0/png/crypt_lieberkuhn_large_intestine.png
@@ -459,6 +479,7 @@
               png: https://hubmapconsortium.github.io/ccf-2d-reference-object-library/v1.0/png/crypt_lieberkuhn_large_intestine.png
         - name: Liver
           image: assets/images/liver.svg
+          alt: A liver icon
           tissueData:
             - name: Liver Lobule
               image: https://hubmapconsortium.github.io/ccf-2d-reference-object-library/v1.0/png/liver_lobule_liver.png
@@ -468,6 +489,7 @@
               png: https://hubmapconsortium.github.io/ccf-2d-reference-object-library/v1.0/png/liver_lobule_liver.png
         - name: Lungs
           image: assets/images/lung.svg
+          alt: A lung icon
           tissueData:
             - name: Pulmonary Alveolus
               image: https://hubmapconsortium.github.io/ccf-2d-reference-object-library/v1.0/png/pulmonary_alveolus_lung.png
@@ -477,6 +499,7 @@
               png: https://hubmapconsortium.github.io/ccf-2d-reference-object-library/v1.0/png/pulmonary_alveolus_lung.png
         - name: Pancreas
           image: assets/images/pancreas.svg
+          alt: A pancreas icon
           tissueData:
             - name: Islets of Langerhans
               image: https://hubmapconsortium.github.io/ccf-2d-reference-object-library/v1.0/png/islets_langerhans_pancreas.png
@@ -486,6 +509,7 @@
               png: https://hubmapconsortium.github.io/ccf-2d-reference-object-library/v1.0/png/islets_langerhans_pancreas.png
         - name: Prostate
           image: assets/images/prostate.svg
+          alt: A prostate icon
           tissueData:
             - name: Prostate Glandular Acinus
               image: https://hubmapconsortium.github.io/ccf-2d-reference-object-library/v1.0/png/prostate_glandular_acinus_prostate.png
@@ -495,6 +519,7 @@
               png: https://hubmapconsortium.github.io/ccf-2d-reference-object-library/v1.0/png/prostate_glandular_acinus_prostate.png
         - name: Thymus
           image: assets/images/thymus.svg
+          alt: A thymus icon
           tissueData:
             - name: Thymus Lobule
               image: https://hubmapconsortium.github.io/ccf-2d-reference-object-library/v1.0/png/thymus_lobule_thymus.png

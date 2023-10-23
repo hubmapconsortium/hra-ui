@@ -16,7 +16,7 @@
 
   <ng-template let-isExternal #content>
     <div class="symbol" [style.background-color]="longButton.color">
-      <img [src]="longButton.icon" class="card-image" />
+      <img [src]="longButton.icon" [alt]="longButton.alt" class="card-image" />
     </div>
     <div class="body">
       <div class="nav-card-title">
