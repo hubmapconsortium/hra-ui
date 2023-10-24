@@ -101,11 +101,16 @@ const CELL_SUMMARIES = z.object({
     biomarker_type: z.string(),
     summary: z
       .object({
-        cell_id: IRI,
+        cell_id: z.string(),
         cell_label: z.string(),
-        gene_id: IRI,
-        gene_label: z.string(),
-        mean_expression: z.number(),
+        genes: z
+          .object({
+            '@type': z.string(),
+            gene_id: z.string(),
+            gene_label: z.string(),
+            mean_expression: z.number(),
+          })
+          .array(),
         count: z.number(),
         percentage: z.number(),
         dataset_count: z.number().optional(),
@@ -348,19 +353,31 @@ export class FtuDataImplService extends FtuDataService {
    * @returns
    */
   private constructCellSummaries(data: Cell_Summary['@graph']): CellSummary[] {
+    type SummaryItem = Cell_Summary['@graph'][number]['summary'][number];
     const cellSummary: CellSummary[] = [];
     const defaultBiomarkerLables = ['gene', 'protein', 'lipid'];
     const biomarkersPresent = new Set(data.map((summary) => summary.biomarker_type.toLowerCase()));
+    const expandGenes = (summary: SummaryItem) =>
+      summary.genes.map((gene) => ({
+        ...summary,
+        ...gene,
+      }));
+
     data.forEach((summaryGroup) => {
-      const cells = summaryGroup.summary.map((entry) => ({
+      const nestedSummaries = summaryGroup.summary.map(expandGenes);
+      const summary = nestedSummaries.reduce((acc, items) => acc.concat(items), [] as (typeof nestedSummaries)[number]);
+
+      const cells = summary.map((entry) => ({
         id: entry.cell_id as Iri,
         label: entry.cell_label,
       }));
-      const biomarkers = summaryGroup.summary.map((entry) => ({
+
+      const biomarkers = summary.map((entry) => ({
         id: entry.gene_id as Iri,
         label: entry.gene_label,
       }));
-      const summaries = summaryGroup.summary.map((entry) => ({
+
+      const summaries = summary.map((entry) => ({
         cell: entry.cell_id as Iri,
         biomarker: entry.gene_id as Iri,
         count: entry.count,
@@ -368,6 +385,7 @@ export class FtuDataImplService extends FtuDataService {
         meanExpression: entry.mean_expression,
         dataset_count: entry.dataset_count,
       }));
+
       cellSummary.push({
         label: `${capitalize(summaryGroup.biomarker_type)} Biomarkers`,
         cells,
@@ -375,6 +393,7 @@ export class FtuDataImplService extends FtuDataService {
         summaries,
       });
     });
+
     defaultBiomarkerLables.forEach((defaultLabel) => {
       if (!biomarkersPresent.has(defaultLabel)) {
         cellSummary.push({

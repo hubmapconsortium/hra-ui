@@ -38,6 +38,7 @@ export class CellSummaryState {
   computeAggregates({ getState, patchState }: Context): void {
     const { summaries } = getState();
     const aggregates = summaries.map(computeAggregate);
+    console.warn(aggregates);
     patchState({ aggregates });
   }
 

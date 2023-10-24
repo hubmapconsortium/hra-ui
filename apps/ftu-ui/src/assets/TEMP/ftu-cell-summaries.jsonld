@@ -68,7 +68,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "AC004381.6",
               "mean_expression": 52.06682
             },
@@ -224,13 +224,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "BZRAP1",
               "mean_expression": 52.0671
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C19orf60",
               "mean_expression": 52.06707
             },
@@ -260,7 +260,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC109B",
               "mean_expression": 52.06723
             },
@@ -272,7 +272,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06658
             },
@@ -398,7 +398,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CRAMP1L",
               "mean_expression": 52.06683
             },
@@ -548,7 +548,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM214B",
               "mean_expression": 52.06689
             },
@@ -752,7 +752,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KAL1",
               "mean_expression": 52.06692
             },
@@ -770,7 +770,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KIAA0100",
               "mean_expression": 52.06701
             },
@@ -1472,7 +1472,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "TCEB3",
               "mean_expression": 52.06681
             },
@@ -1508,7 +1508,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "TMEM159",
               "mean_expression": 52.06635
             },
@@ -2192,7 +2192,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06714
             },
@@ -2540,7 +2540,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "AC004381.6",
               "mean_expression": 52.06701
             },
@@ -2564,7 +2564,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "ACPP",
               "mean_expression": 52.06721
             },
@@ -2642,7 +2642,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "ADSS",
               "mean_expression": 52.06741
             },
@@ -2948,7 +2948,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "ARNTL2",
               "mean_expression": 52.06705
             },
@@ -2996,7 +2996,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "ASUN",
               "mean_expression": 52.06718
             },
@@ -3233,7 +3233,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "BZRAP1",
               "mean_expression": 52.06715
             },
@@ -3245,25 +3245,25 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C16orf80",
               "mean_expression": 52.06732
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C17orf85",
               "mean_expression": 52.06714
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C19orf10",
               "mean_expression": 52.06688
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C19orf60",
               "mean_expression": 52.06694
             },
@@ -3275,7 +3275,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C4orf27",
               "mean_expression": 52.06686
             },
@@ -3389,7 +3389,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC109B",
               "mean_expression": 52.06701
             },
@@ -3401,7 +3401,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.0671
             },
@@ -3578,7 +3578,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CECR5",
               "mean_expression": 52.06723
             },
@@ -3812,7 +3812,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CRAMP1L",
               "mean_expression": 52.06717
             },
@@ -3926,7 +3926,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CXorf56",
               "mean_expression": 52.06714
             },
@@ -4274,7 +4274,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "EFCAB1",
               "mean_expression": 52.06696
             },
@@ -4484,7 +4484,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM160A2",
               "mean_expression": 52.06723
             },
@@ -4502,13 +4502,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM214A",
               "mean_expression": 52.06776
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM214B",
               "mean_expression": 52.06696
             },
@@ -4526,13 +4526,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM65A",
               "mean_expression": 52.06689
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM65C",
               "mean_expression": 52.06688
             },
@@ -4868,7 +4868,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "GLTSCR1",
               "mean_expression": 52.06681
             },
@@ -4928,13 +4928,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "GPR116",
               "mean_expression": 52.06676
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "GPR124",
               "mean_expression": 52.06674
             },
@@ -5000,7 +5000,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "GUCY1B3",
               "mean_expression": 52.06687
             },
@@ -5264,7 +5264,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "IKBKAP",
               "mean_expression": 52.06703
             },
@@ -5396,13 +5396,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KAL1",
               "mean_expression": 52.06696
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KARS",
               "mean_expression": 52.06741
             },
@@ -5462,19 +5462,19 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KIAA0100",
               "mean_expression": 52.06736
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KIAA0556",
               "mean_expression": 52.06669
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KIAA2022",
               "mean_expression": 52.06747
             },
@@ -5660,7 +5660,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "LPHN1",
               "mean_expression": 52.067
             },
@@ -5966,7 +5966,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "MEF2BNB-MEF2B",
               "mean_expression": 52.06717
             },
@@ -6080,7 +6080,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "MPP5",
               "mean_expression": 52.067
             },
@@ -6098,7 +6098,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "MRE11A",
               "mean_expression": 52.06713
             },
@@ -6146,7 +6146,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "MRVI1",
               "mean_expression": 52.06693
             },
@@ -6704,7 +6704,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "PET112",
               "mean_expression": 52.06682
             },
@@ -7040,7 +7040,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "PPAP2A",
               "mean_expression": 52.06722
             },
@@ -7082,7 +7082,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "PQLC2",
               "mean_expression": 52.06708
             },
@@ -7214,7 +7214,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "PTPLAD1",
               "mean_expression": 52.06728
             },
@@ -7670,7 +7670,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "RTFDC1",
               "mean_expression": 52.06692
             },
@@ -7712,7 +7712,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "SARS",
               "mean_expression": 52.06678
             },
@@ -7814,7 +7814,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "SELO",
               "mean_expression": 52.06709
             },
@@ -7904,7 +7904,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "SKIV2L2",
               "mean_expression": 52.06694
             },
@@ -8066,7 +8066,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "SLC9A3R2",
               "mean_expression": 52.06674
             },
@@ -8540,7 +8540,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "TCEB3",
               "mean_expression": 52.06667
             },
@@ -8708,7 +8708,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "TMEM159",
               "mean_expression": 52.06696
             },
@@ -8726,7 +8726,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "TMEM206",
               "mean_expression": 52.06687
             },
@@ -8960,7 +8960,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "TSSC1",
               "mean_expression": 52.06712
             },
@@ -9068,7 +9068,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "UFD1L",
               "mean_expression": 52.06697
             },
@@ -9080,7 +9080,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "UHRF1BP1",
               "mean_expression": 52.06712
             },
@@ -9230,7 +9230,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "WAPAL",
               "mean_expression": 52.06667
             },
@@ -9242,7 +9242,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "WBSCR22",
               "mean_expression": 52.06703
             },
@@ -9284,7 +9284,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "WISP2",
               "mean_expression": 52.06755
             },
@@ -9548,7 +9548,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "ZNRD1",
               "mean_expression": 52.06694
             },
@@ -9596,7 +9596,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "AC004381.6",
               "mean_expression": 52.06705
             },
@@ -9686,13 +9686,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "BZRAP1",
               "mean_expression": 52.06708
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C19orf60",
               "mean_expression": 52.06754
             },
@@ -9716,13 +9716,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC109B",
               "mean_expression": 52.06686
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06683
             },
@@ -9842,7 +9842,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM214B",
               "mean_expression": 52.06672
             },
@@ -10418,7 +10418,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.0671
             },
@@ -10775,7 +10775,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "AC004381.6",
               "mean_expression": 52.06738
             },
@@ -10901,13 +10901,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "BZRAP1",
               "mean_expression": 52.06721
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C19orf60",
               "mean_expression": 52.06698
             },
@@ -10937,7 +10937,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC109B",
               "mean_expression": 52.06686
             },
@@ -10949,7 +10949,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06732
             },
@@ -11063,7 +11063,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CRAMP1L",
               "mean_expression": 52.06728
             },
@@ -11201,7 +11201,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM214B",
               "mean_expression": 52.06701
             },
@@ -11411,7 +11411,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KIAA0100",
               "mean_expression": 52.0671
             },
@@ -12251,7 +12251,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06701
             },
@@ -12545,7 +12545,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "AC004381.6",
               "mean_expression": 52.06692
             },
@@ -12659,13 +12659,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "BZRAP1",
               "mean_expression": 52.06703
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C19orf60",
               "mean_expression": 52.06723
             },
@@ -12695,7 +12695,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC109B",
               "mean_expression": 52.06696
             },
@@ -12707,7 +12707,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06686
             },
@@ -12803,7 +12803,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CRAMP1L",
               "mean_expression": 52.06693
             },
@@ -12911,7 +12911,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM214B",
               "mean_expression": 52.06724
             },
@@ -13055,7 +13055,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KIAA0100",
               "mean_expression": 52.06704
             },
@@ -13685,13 +13685,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC109B",
               "mean_expression": 52.06721
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06682
             },
@@ -14081,7 +14081,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "AC004381.6",
               "mean_expression": 52.06705
             },
@@ -14189,13 +14189,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "BZRAP1",
               "mean_expression": 52.06632
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C19orf60",
               "mean_expression": 52.06685
             },
@@ -14225,7 +14225,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC109B",
               "mean_expression": 52.06719
             },
@@ -14237,7 +14237,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06656
             },
@@ -14333,7 +14333,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CRAMP1L",
               "mean_expression": 52.06698
             },
@@ -14435,7 +14435,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM214B",
               "mean_expression": 52.06689
             },
@@ -14579,7 +14579,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KIAA0100",
               "mean_expression": 52.06738
             },
@@ -14685,7 +14685,7 @@
         },
         {
           "@type": "CellSummaryRow",
-          "cell_id": NaN,
+          "cell_id": "",
           "cell_label": "transformed_epithelial_cell",
           "genes": [
             {
@@ -14708,7 +14708,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "AC004381.6",
               "mean_expression": 52.06713
             },
@@ -14822,13 +14822,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "BZRAP1",
               "mean_expression": 52.0672
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C19orf60",
               "mean_expression": 52.06727
             },
@@ -14858,7 +14858,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC109B",
               "mean_expression": 52.0676
             },
@@ -14870,7 +14870,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06692
             },
@@ -14966,7 +14966,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CRAMP1L",
               "mean_expression": 52.06697
             },
@@ -15080,7 +15080,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM214B",
               "mean_expression": 52.06694
             },
@@ -15224,7 +15224,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KIAA0100",
               "mean_expression": 52.06679
             },
@@ -15791,7 +15791,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "AC004381.6",
               "mean_expression": 52.0667
             },
@@ -15851,7 +15851,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "BZRAP1",
               "mean_expression": 52.06756
             },
@@ -15875,13 +15875,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC109B",
               "mean_expression": 52.06743
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06672
             },
@@ -15983,7 +15983,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM214B",
               "mean_expression": 52.0668
             },
@@ -16436,13 +16436,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "AC004381.6",
               "mean_expression": 52.06708
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "ACPP",
               "mean_expression": 52.06688
             },
@@ -16460,7 +16460,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "ADSS",
               "mean_expression": 52.06693
             },
@@ -16616,7 +16616,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "ARNTL2",
               "mean_expression": 52.06719
             },
@@ -16748,13 +16748,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "BZRAP1",
               "mean_expression": 52.06723
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C19orf60",
               "mean_expression": 52.06702
             },
@@ -16808,7 +16808,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC109B",
               "mean_expression": 52.06695
             },
@@ -16820,7 +16820,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06693
             },
@@ -17036,7 +17036,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CRAMP1L",
               "mean_expression": 52.06694
             },
@@ -17084,7 +17084,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CXorf56",
               "mean_expression": 52.06721
             },
@@ -17246,7 +17246,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "EFCAB1",
               "mean_expression": 52.06692
             },
@@ -17324,7 +17324,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM214B",
               "mean_expression": 52.06698
             },
@@ -17486,7 +17486,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "GPR124",
               "mean_expression": 52.06721
             },
@@ -17678,7 +17678,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KAL1",
               "mean_expression": 52.06692
             },
@@ -17708,7 +17708,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KIAA0100",
               "mean_expression": 52.06674
             },
@@ -17996,7 +17996,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "MRE11A",
               "mean_expression": 52.06687
             },
@@ -18584,7 +18584,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "RTFDC1",
               "mean_expression": 52.0669
             },
@@ -18620,7 +18620,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "SARS",
               "mean_expression": 52.06734
             },
@@ -18956,7 +18956,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "TCEB3",
               "mean_expression": 52.06691
             },
@@ -19010,7 +19010,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "TMEM159",
               "mean_expression": 52.06699
             },
@@ -19088,7 +19088,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "TSSC1",
               "mean_expression": 52.06734
             },
@@ -19405,7 +19405,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "AC004381.6",
               "mean_expression": 52.06682
             },
@@ -19561,13 +19561,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "BZRAP1",
               "mean_expression": 52.0671
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C19orf60",
               "mean_expression": 52.06707
             },
@@ -19597,7 +19597,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC109B",
               "mean_expression": 52.06723
             },
@@ -19609,7 +19609,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06658
             },
@@ -19735,7 +19735,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CRAMP1L",
               "mean_expression": 52.06683
             },
@@ -19885,7 +19885,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM214B",
               "mean_expression": 52.06689
             },
@@ -20089,7 +20089,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KAL1",
               "mean_expression": 52.06692
             },
@@ -20107,7 +20107,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KIAA0100",
               "mean_expression": 52.06701
             },
@@ -20809,7 +20809,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "TCEB3",
               "mean_expression": 52.06681
             },
@@ -20845,7 +20845,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "TMEM159",
               "mean_expression": 52.06635
             },
@@ -21529,7 +21529,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06714
             },
@@ -21877,7 +21877,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "AC004381.6",
               "mean_expression": 52.06701
             },
@@ -21901,7 +21901,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "ACPP",
               "mean_expression": 52.06721
             },
@@ -21979,7 +21979,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "ADSS",
               "mean_expression": 52.06741
             },
@@ -22285,7 +22285,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "ARNTL2",
               "mean_expression": 52.06705
             },
@@ -22333,7 +22333,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "ASUN",
               "mean_expression": 52.06718
             },
@@ -22570,7 +22570,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "BZRAP1",
               "mean_expression": 52.06715
             },
@@ -22582,25 +22582,25 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C16orf80",
               "mean_expression": 52.06732
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C17orf85",
               "mean_expression": 52.06714
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C19orf10",
               "mean_expression": 52.06688
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C19orf60",
               "mean_expression": 52.06694
             },
@@ -22612,7 +22612,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C4orf27",
               "mean_expression": 52.06686
             },
@@ -22726,7 +22726,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC109B",
               "mean_expression": 52.06701
             },
@@ -22738,7 +22738,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.0671
             },
@@ -22915,7 +22915,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CECR5",
               "mean_expression": 52.06723
             },
@@ -23149,7 +23149,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CRAMP1L",
               "mean_expression": 52.06717
             },
@@ -23263,7 +23263,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CXorf56",
               "mean_expression": 52.06714
             },
@@ -23611,7 +23611,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "EFCAB1",
               "mean_expression": 52.06696
             },
@@ -23821,7 +23821,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM160A2",
               "mean_expression": 52.06723
             },
@@ -23839,13 +23839,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM214A",
               "mean_expression": 52.06776
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM214B",
               "mean_expression": 52.06696
             },
@@ -23863,13 +23863,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM65A",
               "mean_expression": 52.06689
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM65C",
               "mean_expression": 52.06688
             },
@@ -24205,7 +24205,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "GLTSCR1",
               "mean_expression": 52.06681
             },
@@ -24265,13 +24265,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "GPR116",
               "mean_expression": 52.06676
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "GPR124",
               "mean_expression": 52.06674
             },
@@ -24337,7 +24337,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "GUCY1B3",
               "mean_expression": 52.06687
             },
@@ -24601,7 +24601,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "IKBKAP",
               "mean_expression": 52.06703
             },
@@ -24733,13 +24733,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KAL1",
               "mean_expression": 52.06696
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KARS",
               "mean_expression": 52.06741
             },
@@ -24799,19 +24799,19 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KIAA0100",
               "mean_expression": 52.06736
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KIAA0556",
               "mean_expression": 52.06669
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KIAA2022",
               "mean_expression": 52.06747
             },
@@ -24997,7 +24997,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "LPHN1",
               "mean_expression": 52.067
             },
@@ -25303,7 +25303,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "MEF2BNB-MEF2B",
               "mean_expression": 52.06717
             },
@@ -25417,7 +25417,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "MPP5",
               "mean_expression": 52.067
             },
@@ -25435,7 +25435,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "MRE11A",
               "mean_expression": 52.06713
             },
@@ -25483,7 +25483,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "MRVI1",
               "mean_expression": 52.06693
             },
@@ -26041,7 +26041,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "PET112",
               "mean_expression": 52.06682
             },
@@ -26377,7 +26377,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "PPAP2A",
               "mean_expression": 52.06722
             },
@@ -26419,7 +26419,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "PQLC2",
               "mean_expression": 52.06708
             },
@@ -26551,7 +26551,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "PTPLAD1",
               "mean_expression": 52.06728
             },
@@ -27007,7 +27007,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "RTFDC1",
               "mean_expression": 52.06692
             },
@@ -27049,7 +27049,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "SARS",
               "mean_expression": 52.06678
             },
@@ -27151,7 +27151,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "SELO",
               "mean_expression": 52.06709
             },
@@ -27241,7 +27241,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "SKIV2L2",
               "mean_expression": 52.06694
             },
@@ -27403,7 +27403,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "SLC9A3R2",
               "mean_expression": 52.06674
             },
@@ -27877,7 +27877,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "TCEB3",
               "mean_expression": 52.06667
             },
@@ -28045,7 +28045,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "TMEM159",
               "mean_expression": 52.06696
             },
@@ -28063,7 +28063,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "TMEM206",
               "mean_expression": 52.06687
             },
@@ -28297,7 +28297,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "TSSC1",
               "mean_expression": 52.06712
             },
@@ -28405,7 +28405,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "UFD1L",
               "mean_expression": 52.06697
             },
@@ -28417,7 +28417,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "UHRF1BP1",
               "mean_expression": 52.06712
             },
@@ -28567,7 +28567,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "WAPAL",
               "mean_expression": 52.06667
             },
@@ -28579,7 +28579,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "WBSCR22",
               "mean_expression": 52.06703
             },
@@ -28621,7 +28621,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "WISP2",
               "mean_expression": 52.06755
             },
@@ -28885,7 +28885,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "ZNRD1",
               "mean_expression": 52.06694
             },
@@ -28933,7 +28933,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "AC004381.6",
               "mean_expression": 52.06705
             },
@@ -29023,13 +29023,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "BZRAP1",
               "mean_expression": 52.06708
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C19orf60",
               "mean_expression": 52.06754
             },
@@ -29053,13 +29053,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC109B",
               "mean_expression": 52.06686
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06683
             },
@@ -29179,7 +29179,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM214B",
               "mean_expression": 52.06672
             },
@@ -29755,7 +29755,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.0671
             },
@@ -30112,7 +30112,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "AC004381.6",
               "mean_expression": 52.06738
             },
@@ -30238,13 +30238,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "BZRAP1",
               "mean_expression": 52.06721
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C19orf60",
               "mean_expression": 52.06698
             },
@@ -30274,7 +30274,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC109B",
               "mean_expression": 52.06686
             },
@@ -30286,7 +30286,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06732
             },
@@ -30400,7 +30400,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CRAMP1L",
               "mean_expression": 52.06728
             },
@@ -30538,7 +30538,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM214B",
               "mean_expression": 52.06701
             },
@@ -30748,7 +30748,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KIAA0100",
               "mean_expression": 52.0671
             },
@@ -31588,7 +31588,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06701
             },
@@ -31882,7 +31882,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "AC004381.6",
               "mean_expression": 52.06692
             },
@@ -31996,13 +31996,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "BZRAP1",
               "mean_expression": 52.06703
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C19orf60",
               "mean_expression": 52.06723
             },
@@ -32032,7 +32032,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC109B",
               "mean_expression": 52.06696
             },
@@ -32044,7 +32044,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06686
             },
@@ -32140,7 +32140,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CRAMP1L",
               "mean_expression": 52.06693
             },
@@ -32248,7 +32248,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM214B",
               "mean_expression": 52.06724
             },
@@ -32392,7 +32392,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KIAA0100",
               "mean_expression": 52.06704
             },
@@ -33022,13 +33022,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC109B",
               "mean_expression": 52.06721
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06682
             },
@@ -33418,7 +33418,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "AC004381.6",
               "mean_expression": 52.06705
             },
@@ -33526,13 +33526,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "BZRAP1",
               "mean_expression": 52.06632
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C19orf60",
               "mean_expression": 52.06685
             },
@@ -33562,7 +33562,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC109B",
               "mean_expression": 52.06719
             },
@@ -33574,7 +33574,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06656
             },
@@ -33670,7 +33670,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CRAMP1L",
               "mean_expression": 52.06698
             },
@@ -33772,7 +33772,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM214B",
               "mean_expression": 52.06689
             },
@@ -33916,7 +33916,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KIAA0100",
               "mean_expression": 52.06738
             },
@@ -34022,7 +34022,7 @@
         },
         {
           "@type": "CellSummaryRow",
-          "cell_id": NaN,
+          "cell_id": "",
           "cell_label": "transformed_epithelial_cell",
           "genes": [
             {
@@ -34045,7 +34045,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "AC004381.6",
               "mean_expression": 52.06713
             },
@@ -34159,13 +34159,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "BZRAP1",
               "mean_expression": 52.0672
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C19orf60",
               "mean_expression": 52.06727
             },
@@ -34195,7 +34195,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC109B",
               "mean_expression": 52.0676
             },
@@ -34207,7 +34207,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06692
             },
@@ -34303,7 +34303,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CRAMP1L",
               "mean_expression": 52.06697
             },
@@ -34417,7 +34417,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM214B",
               "mean_expression": 52.06694
             },
@@ -34561,7 +34561,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KIAA0100",
               "mean_expression": 52.06679
             },
@@ -35128,7 +35128,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "AC004381.6",
               "mean_expression": 52.0667
             },
@@ -35188,7 +35188,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "BZRAP1",
               "mean_expression": 52.06756
             },
@@ -35212,13 +35212,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC109B",
               "mean_expression": 52.06743
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06672
             },
@@ -35320,7 +35320,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM214B",
               "mean_expression": 52.0668
             },
@@ -35773,13 +35773,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "AC004381.6",
               "mean_expression": 52.06708
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "ACPP",
               "mean_expression": 52.06688
             },
@@ -35797,7 +35797,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "ADSS",
               "mean_expression": 52.06693
             },
@@ -35953,7 +35953,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "ARNTL2",
               "mean_expression": 52.06719
             },
@@ -36085,13 +36085,13 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "BZRAP1",
               "mean_expression": 52.06723
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "C19orf60",
               "mean_expression": 52.06702
             },
@@ -36145,7 +36145,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC109B",
               "mean_expression": 52.06695
             },
@@ -36157,7 +36157,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CCDC132",
               "mean_expression": 52.06693
             },
@@ -36373,7 +36373,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CRAMP1L",
               "mean_expression": 52.06694
             },
@@ -36421,7 +36421,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "CXorf56",
               "mean_expression": 52.06721
             },
@@ -36583,7 +36583,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "EFCAB1",
               "mean_expression": 52.06692
             },
@@ -36661,7 +36661,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "FAM214B",
               "mean_expression": 52.06698
             },
@@ -36823,7 +36823,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "GPR124",
               "mean_expression": 52.06721
             },
@@ -37015,7 +37015,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KAL1",
               "mean_expression": 52.06692
             },
@@ -37045,7 +37045,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "KIAA0100",
               "mean_expression": 52.06674
             },
@@ -37333,7 +37333,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "MRE11A",
               "mean_expression": 52.06687
             },
@@ -37921,7 +37921,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "RTFDC1",
               "mean_expression": 52.0669
             },
@@ -37957,7 +37957,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "SARS",
               "mean_expression": 52.06734
             },
@@ -38293,7 +38293,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "TCEB3",
               "mean_expression": 52.06691
             },
@@ -38347,7 +38347,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "TMEM159",
               "mean_expression": 52.06699
             },
@@ -38425,7 +38425,7 @@
             },
             {
               "@type": "GeneExpression",
-              "gene_id": NaN,
+              "gene_id": "",
               "gene_label": "TSSC1",
               "mean_expression": 52.06734
             },
