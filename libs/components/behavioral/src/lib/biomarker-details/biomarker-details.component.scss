@@ -17,6 +17,14 @@
     border-bottom: 0.063rem solid #d3d3d3;
     height: 3.5rem;
     font-weight: 400;
+    span {
+      cursor: pointer;
+      padding: 0.4rem;
+      &:hover {
+        background-color: #d3d3d3;
+        border-radius: 5px;
+      }
+    }
   }
 
   .table {
