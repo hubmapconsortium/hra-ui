@@ -9,12 +9,12 @@ describe('OrganTabsComponent', () => {
     {
       name: 'test name',
       image: 'testImg',
-      alt: 'test alt'
+      alt: 'test alt',
     },
     {
       name: 'item2',
       image: '',
-      alt: 'test alt'
+      alt: 'test alt',
     },
   ];
 
