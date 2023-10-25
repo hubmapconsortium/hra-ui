@@ -11,6 +11,7 @@ describe('CardButtonLongComponent', () => {
       icon: '',
       title: '',
       body: '',
+      alt: ''
     },
   ];
 
