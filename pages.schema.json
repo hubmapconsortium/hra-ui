@@ -34,9 +34,7 @@
                       "description": "To add emoji if required"
                     }
                   },
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "additionalProperties": false,
                   "description": "The announcementCard field has three optional fields:\n            - route: Route of the page where user will be redirected to when clicked on it.\n            - routeText: Label for the route where we want the user to click.\n            - emoji: Paste any emoji in this field if required."
                 },
@@ -45,17 +43,11 @@
               "styles": {
                 "type": "object",
                 "additionalProperties": {
-                  "type": [
-                    "string",
-                    "number"
-                  ]
+                  "type": ["string", "number"]
                 }
               }
             },
-            "required": [
-              "type",
-              "announcementCard"
-            ],
+            "required": ["type", "announcementCard"],
             "additionalProperties": false
           },
           {
@@ -83,11 +75,7 @@
                       "description": "alternate text for image"
                     }
                   },
-                  "required": [
-                    "image",
-                    "description",
-                    "alt"
-                  ],
+                  "required": ["image", "description", "alt"],
                   "additionalProperties": false
                 }
               },
@@ -95,10 +83,7 @@
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
-            "required": [
-              "type",
-              "boardMembersData"
-            ],
+            "required": ["type", "boardMembersData"],
             "additionalProperties": false
           },
           {
@@ -129,10 +114,7 @@
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
-            "required": [
-              "type",
-              "text"
-            ],
+            "required": ["type", "text"],
             "additionalProperties": false,
             "description": "This object has the following properties as optional.\n- url: External link to redirect the page to when button is pressed.\n- route: Route Name of the page to redirect to when the button is pressed.\n- icon: icon name for the icon to be displayed on the button.\n- styles: Additional styling for the button."
           },
@@ -151,9 +133,7 @@
                     "description": "Width of the container for carousel"
                   }
                 },
-                "required": [
-                  "width"
-                ],
+                "required": ["width"],
                 "additionalProperties": false
               },
               "carouselInfo": {
@@ -190,13 +170,7 @@
                       "description": "Alternative text for the carousel image."
                     }
                   },
-                  "required": [
-                    "title",
-                    "body",
-                    "image",
-                    "buttonText",
-                    "alt"
-                  ],
+                  "required": ["title", "body", "image", "buttonText", "alt"],
                   "additionalProperties": false,
                   "description": "This object has the following optional fields.\n    - url: External Link to redirect to when the button is pressed.\n    - route: Name of the route of the page to be loaded when button is pressed.\n    \n    Enter either url or route."
                 },
@@ -206,11 +180,7 @@
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
-            "required": [
-              "type",
-              "carouselContainerStyles",
-              "carouselInfo"
-            ],
+            "required": ["type", "carouselContainerStyles", "carouselInfo"],
             "additionalProperties": false
           },
           {
@@ -265,10 +235,7 @@
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
-            "required": [
-              "type",
-              "contactData"
-            ],
+            "required": ["type", "contactData"],
             "additionalProperties": false
           },
           {
@@ -288,10 +255,7 @@
                       "description": "Icon for the card"
                     },
                     "count": {
-                      "type": [
-                        "number",
-                        "string"
-                      ],
+                      "type": ["number", "string"],
                       "description": "Count of the card"
                     },
                     "text": {
@@ -303,12 +267,7 @@
                       "description": "Alternative text for the image"
                     }
                   },
-                  "required": [
-                    "image",
-                    "count",
-                    "text",
-                    "alt"
-                  ],
+                  "required": ["image", "count", "text", "alt"],
                   "additionalProperties": false
                 }
               },
@@ -316,10 +275,7 @@
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
-            "required": [
-              "type",
-              "countCardInfo"
-            ],
+            "required": ["type", "countCardInfo"],
             "additionalProperties": false
           },
           {
@@ -352,11 +308,7 @@
                       "description": "Label for the item"
                     }
                   },
-                  "required": [
-                    "href",
-                    "title",
-                    "data"
-                  ],
+                  "required": ["href", "title", "data"],
                   "additionalProperties": false
                 }
               },
@@ -370,10 +322,7 @@
                 }
               }
             },
-            "required": [
-              "type",
-              "links"
-            ],
+            "required": ["type", "links"],
             "additionalProperties": false
           },
           {
@@ -387,9 +336,7 @@
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
-            "required": [
-              "type"
-            ],
+            "required": ["type"],
             "additionalProperties": false
           },
           {
@@ -412,10 +359,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "release",
-                    "version"
-                  ],
+                  "required": ["release", "version"],
                   "additionalProperties": false
                 },
                 "description": "Release name and version number."
@@ -473,10 +417,7 @@
                                   "description": "URL for the label in the download column"
                                 }
                               },
-                              "required": [
-                                "label",
-                                "link"
-                              ],
+                              "required": ["label", "link"],
                               "additionalProperties": false
                             }
                           },
@@ -493,31 +434,21 @@
                             "description": "URL for Organ or its type"
                           }
                         },
-                        "required": [
-                          "label",
-                          "links"
-                        ],
+                        "required": ["label", "links"],
                         "additionalProperties": false,
                         "description": "Following properties in this object are optional:\n        - releaseVersion: Release version of the organ.\n        - dot: Digital object type of the organ.\n        - url: External link to be embedded in the organ."
                       },
                       "description": "Following properties in this object are optional:\n        - releaseVersion: Release version of the organ.\n        - dot: Digital object type of the organ.\n        - url: External link to be embedded in the organ."
                     }
                   },
-                  "required": [
-                    "version",
-                    "rows"
-                  ],
+                  "required": ["version", "rows"],
                   "additionalProperties": false,
                   "description": "Add version and rows data for the table"
                 },
                 "description": "Add version and rows data for the table"
               }
             },
-            "required": [
-              "type",
-              "versions",
-              "versionedData"
-            ],
+            "required": ["type", "versions", "versionedData"],
             "additionalProperties": false,
             "description": "This object has the following fields as optional.\n- displayMetaData: True if you want to display Release Version and Digital Object type. If you set this to true, make sure to add releaseVersion and dot properties in rows object.\n- downloadIcon: name of the icon you want to display in download column header\n- columnLabels: Object of column definition and column headers for the table\n"
           },
@@ -542,10 +473,7 @@
                       "description": "ID of the menu item"
                     }
                   },
-                  "required": [
-                    "menuName",
-                    "id"
-                  ],
+                  "required": ["menuName", "id"],
                   "additionalProperties": false
                 }
               },
@@ -588,11 +516,7 @@
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
-            "required": [
-              "type",
-              "imageSource",
-              "alt"
-            ],
+            "required": ["type", "imageSource", "alt"],
             "additionalProperties": false,
             "description": "Property 'class' is optional. It is the class name for the image. Define this class in page-element.component.scss"
           },
@@ -643,10 +567,7 @@
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
-            "required": [
-              "type",
-              "imageData"
-            ],
+            "required": ["type", "imageData"],
             "additionalProperties": false
           },
           {
@@ -690,11 +611,7 @@
                       "description": "alternate text for card icon"
                     }
                   },
-                  "required": [
-                    "icon",
-                    "title",
-                    "alt"
-                  ],
+                  "required": ["icon", "title", "alt"],
                   "additionalProperties": false,
                   "description": "Properties mentioned here are optional. Either use route or externalLink\n- route: route for the page to be redirected\n- externalLink: URL of the page to be opened when the card is clicked\n- color: background color of the image\n- body: Subtitle for the card"
                 },
@@ -704,10 +621,7 @@
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
-            "required": [
-              "type",
-              "longCardItems"
-            ],
+            "required": ["type", "longCardItems"],
             "additionalProperties": false
           },
           {
@@ -741,20 +655,14 @@
                       "$ref": "#/definitions/mySchema/items/anyOf/12/properties/longCardItems"
                     }
                   },
-                  "required": [
-                    "heading",
-                    "cardData"
-                  ],
+                  "required": ["heading", "cardData"],
                   "additionalProperties": false,
                   "description": "Properties mentioned here are optional\n    - headerSize: Pass inline styles for the header of the card\n    - id: Pass id as an attribute to the title of the card"
                 },
                 "description": "Properties mentioned here are optional\n    - headerSize: Pass inline styles for the header of the card\n    - id: Pass id as an attribute to the title of the card"
               }
             },
-            "required": [
-              "type",
-              "longCardWithTitleData"
-            ],
+            "required": ["type", "longCardWithTitleData"],
             "additionalProperties": false
           },
           {
@@ -777,9 +685,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "type"
-            ],
+            "required": ["type"],
             "additionalProperties": false,
             "description": "To add margin around any component. Add top/ bottom/ left/ right and margin value"
           },
@@ -798,10 +704,7 @@
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
-            "required": [
-              "type",
-              "components"
-            ],
+            "required": ["type", "components"],
             "additionalProperties": false
           },
           {
@@ -861,10 +764,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "menuName",
-                    "id"
-                  ],
+                  "required": ["menuName", "id"],
                   "additionalProperties": false
                 }
               },
@@ -906,10 +806,7 @@
                       "description": "Label for release and release date,year"
                     },
                     "version": {
-                      "type": [
-                        "number",
-                        "string"
-                      ],
+                      "type": ["number", "string"],
                       "description": "Version Number of the release"
                     },
                     "file": {
@@ -917,10 +814,7 @@
                       "description": "Name of the csv file"
                     }
                   },
-                  "required": [
-                    "release",
-                    "version"
-                  ],
+                  "required": ["release", "version"],
                   "additionalProperties": false
                 },
                 "description": "Release name, source csv file and version number\n    Property 'file' is optional. If required, add property 'file' ans pass the path to the CSV file. It is only required if tableRequired is True."
@@ -954,10 +848,7 @@
                       "description": "Alignment of the data (start or end)"
                     }
                   },
-                  "required": [
-                    "header",
-                    "columnDef"
-                  ],
+                  "required": ["header", "columnDef"],
                   "additionalProperties": false
                 },
                 "description": "Names of columns and their definitions\n        There are three optional values in this object:\n        - isTotalRequired: To display total at the end of the table\n        - sorting: To enable sorting in the table\n        - alignment: start or end to align data left or right"
@@ -1030,28 +921,19 @@
                                   "description": "URL to download the PNG file of the tissue"
                                 }
                               },
-                              "required": [
-                                "name",
-                                "url"
-                              ],
+                              "required": ["name", "url"],
                               "additionalProperties": false
                             },
                             "description": "Tissue data for the above organ.\n    Following properties are optional in this object.\n    - image: URL of the image of the tissue.\n    - expandedImage: URL of the image to be shown in the modal, when it is clicked.\n    - threeDimImage: URL of the 3D object (.glb) file.\n    - alt: Alternate text for the image.\n    - url: URL for the metadata button.\n    - svg: URL to download the SVG file of the tissue.\n    - ai: URL to download the AI file of the tissue.\n    - png: URL to download the PNG file of the tissue."
                           }
                         },
-                        "required": [
-                          "name",
-                          "image",
-                          "alt"
-                        ],
+                        "required": ["name", "image", "alt"],
                         "additionalProperties": false
                       },
                       "description": "Organ data for the version.\n        Property tissueData in this object is optional. Add tissue data to display details about tissues for each organ."
                     }
                   },
-                  "required": [
-                    "version"
-                  ],
+                  "required": ["version"],
                   "additionalProperties": false
                 },
                 "description": "This object has the following fields as optional\n- headerInfo: this is the data about column headers and their definition. Add this data if you want to display data table"
@@ -1087,10 +969,7 @@
                       "description": "Description of the data"
                     }
                   },
-                  "required": [
-                    "heading",
-                    "descriptions"
-                  ],
+                  "required": ["heading", "descriptions"],
                   "additionalProperties": false
                 }
               },
@@ -1098,10 +977,7 @@
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
-            "required": [
-              "type",
-              "pageData"
-            ],
+            "required": ["type", "pageData"],
             "additionalProperties": false
           },
           {
@@ -1133,12 +1009,7 @@
                       "description": "Text Alternative for card image"
                     }
                   },
-                  "required": [
-                    "title",
-                    "subtitle",
-                    "image",
-                    "alt"
-                  ],
+                  "required": ["title", "subtitle", "image", "alt"],
                   "additionalProperties": false
                 }
               },
@@ -1146,10 +1017,7 @@
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
-            "required": [
-              "type",
-              "headerCard"
-            ],
+            "required": ["type", "headerCard"],
             "additionalProperties": false
           },
           {
@@ -1203,17 +1071,12 @@
                                   "description": "URL for the button"
                                 }
                               },
-                              "required": [
-                                "label",
-                                "link"
-                              ],
+                              "required": ["label", "link"],
                               "additionalProperties": false
                             }
                           }
                         },
-                        "required": [
-                          "winner"
-                        ],
+                        "required": ["winner"],
                         "additionalProperties": false,
                         "description": "\n                The following properties are optional in this object:\n                - button: Data of buttons to show on the Prize Card.\n                - kaggleId: kaggle id's of the winners."
                       },
@@ -1233,10 +1096,7 @@
                             "description": "Alternate text for user image"
                           }
                         },
-                        "required": [
-                          "image",
-                          "alt"
-                        ],
+                        "required": ["image", "alt"],
                         "additionalProperties": false
                       }
                     },
@@ -1249,11 +1109,7 @@
                       "description": "Alternate text for the org image"
                     }
                   },
-                  "required": [
-                    "title",
-                    "winner",
-                    "matDivider"
-                  ],
+                  "required": ["title", "winner", "matDivider"],
                   "additionalProperties": false,
                   "description": "\n        The following properties are optional in this object:\n        - presentedBy: Name of the presenter.\n        - orgImage: URL to the image of the organization.\n        - userImage: URL(s) to the image of the participants."
                 },
@@ -1263,10 +1119,7 @@
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
-            "required": [
-              "type",
-              "prizeCard"
-            ],
+            "required": ["type", "prizeCard"],
             "additionalProperties": false
           },
           {
@@ -1302,13 +1155,7 @@
                       "description": "Route to redirect the card"
                     }
                   },
-                  "required": [
-                    "title",
-                    "description",
-                    "image",
-                    "gif",
-                    "route"
-                  ],
+                  "required": ["title", "description", "image", "gif", "route"],
                   "additionalProperties": false
                 }
               },
@@ -1316,10 +1163,7 @@
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
-            "required": [
-              "type",
-              "cardsInfo"
-            ],
+            "required": ["type", "cardsInfo"],
             "additionalProperties": false
           },
           {
@@ -1339,17 +1183,12 @@
                       "description": "Message to be displayed inside the tile"
                     }
                   },
-                  "required": [
-                    "title"
-                  ],
+                  "required": ["title"],
                   "additionalProperties": false
                 }
               }
             },
-            "required": [
-              "type",
-              "description"
-            ],
+            "required": ["type", "description"],
             "additionalProperties": false
           },
           {
@@ -1380,25 +1219,16 @@
                           "description": "URL for the link"
                         }
                       },
-                      "required": [
-                        "title",
-                        "href"
-                      ],
+                      "required": ["title", "href"],
                       "additionalProperties": false
                     }
                   }
                 },
-                "required": [
-                  "sopTitle",
-                  "href"
-                ],
+                "required": ["sopTitle", "href"],
                 "additionalProperties": false
               }
             },
-            "required": [
-              "type",
-              "sopData"
-            ],
+            "required": ["type", "sopData"],
             "additionalProperties": false
           },
           {
@@ -1425,10 +1255,7 @@
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
-            "required": [
-              "type",
-              "components"
-            ],
+            "required": ["type", "components"],
             "additionalProperties": false,
             "description": "This object has the following properties as optional:\n- id: Label for the id attribute for the component\n- class: Class name defined in the css file for this component."
           },
@@ -1486,10 +1313,7 @@
                       "description": "Number of rows to span"
                     }
                   },
-                  "required": [
-                    "columnDef",
-                    "header"
-                  ],
+                  "required": ["columnDef", "header"],
                   "additionalProperties": false,
                   "description": "colspan and rowspan are optional fields. Add appropriate number to span the cells accordingly."
                 },
@@ -1534,10 +1358,7 @@
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
-            "required": [
-              "type",
-              "title"
-            ],
+            "required": ["type", "title"],
             "additionalProperties": false,
             "description": "Properties 'class' and 'styles' are optional. Add styling in styles to apply styles to the title."
           },
@@ -1570,20 +1391,14 @@
                     "description": "Title of the player"
                   }
                 },
-                "required": [
-                  "videoId",
-                  "playerTitle"
-                ],
+                "required": ["videoId", "playerTitle"],
                 "additionalProperties": false
               },
               "styles": {
                 "$ref": "#/definitions/mySchema/items/anyOf/0/properties/styles"
               }
             },
-            "required": [
-              "type",
-              "youtubePlayer"
-            ],
+            "required": ["type", "youtubePlayer"],
             "additionalProperties": false
           }
         ]

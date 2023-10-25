@@ -53,7 +53,7 @@ export const BoardMembers = z.object({
       description: z.string({
         description: 'Introduction of the board member',
       }),
-      alt: z.string({ description: 'alternate text for image' })
+      alt: z.string({ description: 'alternate text for image' }),
     })
     .array(),
   styles: Styles.optional(),
@@ -123,7 +123,7 @@ export const ContactCard = z.object({
       role: z.string({ description: 'Role/ Position of the contact' }),
       email: z.string({ description: 'Email ID of the contact' }),
       image: z.string({ description: 'Image of the contact' }),
-      alt: z.string({ description: 'Alternate text for image' })
+      alt: z.string({ description: 'Alternate text for image' }),
     })
     .array(),
   styles: Styles.optional(),
@@ -305,7 +305,7 @@ export const ImageInCard = z.object({
       imageDialog: z.string({
         description: 'URL of the image to be displayed on the dialog',
       }),
-      alt: z.string({ description: 'Alternate text for image' })
+      alt: z.string({ description: 'Alternate text for image' }),
     })
     .array(),
   styles: Styles.optional(),
@@ -321,7 +321,7 @@ const LongCardItems = z
       description: 'Background color for the icon if necessary',
     }),
     externalLink: z.string({ description: 'External URL to be redirected' }),
-    alt: z.string({ description: 'alternate text for card icon' })
+    alt: z.string({ description: 'alternate text for card icon' }),
   })
   .partial({
     route: true,
@@ -478,7 +478,7 @@ export const PageHeaderCard = z.object({
       title: z.string({ description: 'Title of the card' }),
       subtitle: z.string({ description: 'Subtitle of the card' }),
       image: z.string({ description: 'Icon of the card' }),
-      alt: z.string({ description: 'Text Alternative for card image' })
+      alt: z.string({ description: 'Text Alternative for card image' }),
     })
     .array(),
   styles: Styles.optional(),
@@ -517,18 +517,20 @@ export const PrizeCard = z.object({
                 - button: Data of buttons to show on the Prize Card.
                 - kaggleId: kaggle id's of the winners.`
       ).array(),
-      userImage: z.object({
-        image: z.string({ description: 'Images of all the participants' }),
-        alt: z.string({ description: 'Alternate text for user image' })
-      }).array(),
+      userImage: z
+        .object({
+          image: z.string({ description: 'Images of all the participants' }),
+          alt: z.string({ description: 'Alternate text for user image' }),
+        })
+        .array(),
       matDivider: z.boolean({ description: 'True if divider is needed' }),
-      alt: z.string({ description: 'Alternate text for the org image' })
+      alt: z.string({ description: 'Alternate text for the org image' }),
     })
     .partial({
       presentedBy: true,
       orgImage: true,
       userImage: true,
-      alt: true
+      alt: true,
     })
     .describe(
       `
