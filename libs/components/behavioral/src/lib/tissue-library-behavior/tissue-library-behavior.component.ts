@@ -69,8 +69,12 @@ export class TissueLibraryBehaviorComponent {
           this.navigateToNode(nodes[selectedIndex - 1]);
         }
       }
-      if (currentNode.expandable && event.key === 'ArrowLeft') {
-        this.list.control.collapse(currentNode);
+      if (currentNode.expandable) {
+        if (event.key === 'ArrowLeft') {
+          this.list.control.collapse(currentNode);
+        } else if (event.key === 'ArrowRight') {
+          this.list.control.expand(currentNode);
+        }
       }
     }
   }

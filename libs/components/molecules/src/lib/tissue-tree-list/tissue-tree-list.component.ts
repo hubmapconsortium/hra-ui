@@ -116,7 +116,10 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
     }
     if ('selected' in changes) {
       const path = this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];
-      this.expandPath(path);
+      const node = this.control.dataNodes.find((n) => n.data === changes['selected'].currentValue);
+      if (!node?.expandable) {
+        this.expandPath(path);
+      }
     }
   }
 
