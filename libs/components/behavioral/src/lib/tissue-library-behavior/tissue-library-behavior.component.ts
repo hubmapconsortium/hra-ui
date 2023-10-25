@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
-import { select$, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { ChangeDetectionStrategy, Component, HostListener, ViewChild } from '@angular/core';
+import { dispatch, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { TissueTreeListComponent } from '@hra-ui/components/molecules';
 import { Tissue } from '@hra-ui/services';
 import { ActiveFtuSelectors, TissueLibrarySelectors } from '@hra-ui/state';
 import { LabelBoxComponent } from '@hra-ui/components/atoms';
+import { LinkRegistryActions } from '@hra-ui/cdk/state';
 
 /**
  * Component for Tissue Library Behavior
@@ -33,6 +34,8 @@ export class TissueLibraryBehaviorComponent {
    */
   selected?: Tissue;
 
+  navigate = dispatch(LinkRegistryActions.Navigate);
+
   /**
    * Sets the TissueItem instance as undefined if
    * the url is undefined
@@ -47,5 +50,28 @@ export class TissueLibraryBehaviorComponent {
         this.list?.resetSelection();
       }
     });
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent): void {
+    if (this.list) {
+      const nodes = this.list?.control.dataNodes;
+      const selectedIndex = this.list.control.dataNodes.findIndex((node: any) => node.data.id === this.selected?.id);
+      if (event.key === 'ArrowDown') {
+        if (selectedIndex + 1 < nodes.length && !nodes[selectedIndex + 1].expandable) {
+          this.navigateToNode(nodes[selectedIndex + 1]);
+        }
+      }
+      if (event.key === 'ArrowUp') {
+        if (selectedIndex - 1 >= 0 && !nodes[selectedIndex - 1].expandable) {
+          this.navigateToNode(nodes[selectedIndex - 1]);
+        }
+      }
+    }
+  }
+
+  navigateToNode(node: any): void {
+    this.list?.selectNode(node.data as never);
+    this.navigate(node.data.link, { queryParams: { id: node.data.id } });
   }
 }
