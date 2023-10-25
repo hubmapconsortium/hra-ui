@@ -57,21 +57,28 @@ export class TissueLibraryBehaviorComponent {
     if (this.list) {
       const nodes = this.list?.control.dataNodes;
       const selectedIndex = this.list.control.dataNodes.findIndex((node: any) => node.data.id === this.selected?.id);
+
+      const currentNode = nodes[selectedIndex];
       if (event.key === 'ArrowDown') {
-        if (selectedIndex + 1 < nodes.length && !nodes[selectedIndex + 1].expandable) {
+        if (selectedIndex + 1 < nodes.length) {
           this.navigateToNode(nodes[selectedIndex + 1]);
         }
       }
       if (event.key === 'ArrowUp') {
-        if (selectedIndex - 1 >= 0 && !nodes[selectedIndex - 1].expandable) {
+        if (selectedIndex - 1 >= 0) {
           this.navigateToNode(nodes[selectedIndex - 1]);
         }
+      }
+      if (currentNode.expandable && event.key === 'ArrowLeft') {
+        this.list.control.collapse(currentNode);
       }
     }
   }
 
   navigateToNode(node: any): void {
     this.list?.selectNode(node.data as never);
-    this.navigate(node.data.link, { queryParams: { id: node.data.id } });
+    if (!node.expandable) {
+      this.navigate(node.data.link, { queryParams: { id: node.data.id } });
+    }
   }
 }
