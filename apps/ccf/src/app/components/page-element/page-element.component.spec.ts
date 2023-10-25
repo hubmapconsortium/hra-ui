@@ -98,6 +98,7 @@ describe('PageElementComponent', () => {
       icon: 'test icon',
       title: 'test title',
       body: 'test body',
+      alt: 'test alt',
     };
     it('should navigate to defined route', async () => {
       const { instance, inject } = await shallow.render({

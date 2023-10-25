@@ -5,6 +5,7 @@
     - image: assets/images/hra-sop.svg
       title: Human Reference Atlas Standard Operating Procedures
       subtitle: Standard operating procedures for Human Reference Atlas construction, visualization, and usage
+      alt: Standard operating procedures icon
 
 - type: announcement
   announcementCard:

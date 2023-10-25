@@ -2,7 +2,7 @@
   <p class="members-title">Board Members</p>
   <div class="member" *ngFor="let data of membersData">
     <div class="image">
-      <img [src]="data.image" />
+      <img [src]="data.image" [alt]="data.alt" />
     </div>
     <div class="about">
       <markdown>{{ data.description }}</markdown>

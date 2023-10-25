@@ -5,6 +5,7 @@
     - image: assets/images/cell_graphs.svg
       title: Cell Population Graphs
       subtitle: An interactive tool for exploring and comparing cell populations
+      alt: Cell population graphs icon
 
 - type: announcement
   announcementCard:

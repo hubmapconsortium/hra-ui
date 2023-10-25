@@ -1,6 +1,6 @@
 <mat-card class="contact-card" *ngFor="let card of contactCard">
   <div class="image-container">
-    <img mat-card-image [src]="card.image" />
+    <img mat-card-image [src]="card.image" [alt]="card.alt" />
   </div>
   <mat-card-content>
     <p class="work-field">{{ card.field }}</p>

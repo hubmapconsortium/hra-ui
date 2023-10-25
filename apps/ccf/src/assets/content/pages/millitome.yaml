@@ -5,6 +5,7 @@
     - title: Millitome
       subtitle: A unique 3D printed tool for the uniform sectioning of organs
       image: assets/images/hra_milletome.svg
+      alt: Millitome icon
 
 - type: announcement
   announcementCard:

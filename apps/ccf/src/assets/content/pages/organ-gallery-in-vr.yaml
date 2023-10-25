@@ -5,6 +5,7 @@
     - title: Organ Gallery in VR
       subtitle: An immersive application that allows users to explore 3D reference organs, anatomical structures, and cell types in virtual reality
       image: assets/images/vr_gallery.svg
+      alt: Organ Gallery in VR icon
 
 - type: announcement
   announcementCard:

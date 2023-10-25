@@ -7,7 +7,11 @@
     <markdown>{{ image.description }}</markdown>
   </div>
   <mat-card-actions>
-    <img [src]="image.image" (click)="openImageViewer(imageViewerContent)" />
+    <img
+      [src]="image.image"
+      [alt]="image.alt"
+      (click)="openImageViewer(imageViewerContent)"
+    />
     <ng-template #imageViewerContent>
       <div class="dialog-header">
         <span mat-dialog-title>{{ image.title }}</span>
@@ -21,7 +25,7 @@
           <mat-icon>close</mat-icon>
         </button>
       </div>
-      <img [src]="image.imageDialog" />
+      <img [src]="image.imageDialog" [alt]="image.alt" />
     </ng-template>
   </mat-card-actions>
 </mat-card>

@@ -4,4 +4,5 @@ export interface ContactCard {
   role: string;
   email: string;
   image: string;
+  alt: string;
 }
