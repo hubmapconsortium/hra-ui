@@ -34,7 +34,7 @@
           "@type": "Dataset",
           "label": "A cellular census of human lungs identifies novel cell states in health and in asthma",
           "link": "https://doi.org/10.1038/s41591-019-0468-5",
-          "description": "Lung Mapping Healthy Asthma By Vieira Braga"
+          "description": "scRNA Seq of Resected Human Lung Tissue"
         }
       ]
     },
@@ -47,7 +47,7 @@
           "@type": "Dataset",
           "label": "A cellular census of human lungs identifies novel cell states in health and in asthma",
           "link": "https://doi.org/10.1038/s41591-019-0468-5",
-          "description": "Lung Mapping Healthy Asthma By Vieira Braga"
+          "description": "scRNA Seq of Resected Human Lung Tissue"
         }
       ]
     },
@@ -60,7 +60,7 @@
           "@type": "Dataset",
           "label": "Single-cell and bulk transcriptomics of the liver reveals potential targets of NASH with fibrosis",
           "link": "https://doi.org/10.1038/s41598-021-98806-y",
-          "description": "Liver Mapping Healthy Fibrosis By Wang ZY"
+          "description": "SC Bulk Transcriptomics of Liver Data"
         }
       ]
     }
