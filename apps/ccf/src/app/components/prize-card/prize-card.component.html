@@ -29,7 +29,8 @@
   </div>
   <div class="users" *ngIf="prize.userImage">
     <img
-      [src]="image"
+      [src]="image.image"
+      [alt]="image.alt"
       *ngFor="let image of prize.userImage"
       class="user-image"
     />

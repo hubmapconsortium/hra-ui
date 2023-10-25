@@ -1222,10 +1222,23 @@
                     "userImage": {
                       "type": "array",
                       "items": {
-                        "type": "string",
-                        "description": "Images of all the participants"
-                      },
-                      "description": "Images of all the participants"
+                        "type": "object",
+                        "properties": {
+                          "image": {
+                            "type": "string",
+                            "description": "Images of all the participants"
+                          },
+                          "alt": {
+                            "type": "string",
+                            "description": "Alternate text for user image"
+                          }
+                        },
+                        "required": [
+                          "image",
+                          "alt"
+                        ],
+                        "additionalProperties": false
+                      }
                     },
                     "matDivider": {
                       "type": "boolean",

@@ -5,7 +5,7 @@ export interface PrizeCard {
   winner: Winner[];
   // kaggleId?: string,
   // button?: Button[],
-  userImage?: string[];
+  userImage?: UserImage[];
   matDivider: boolean;
   alt: string;
 }
@@ -19,4 +19,9 @@ export interface Winner {
   winner: string;
   kaggleId?: string;
   button?: Button[];
+}
+
+interface UserImage {
+  image: string;
+  alt: string;
 }

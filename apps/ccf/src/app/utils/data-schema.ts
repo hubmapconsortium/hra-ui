@@ -417,7 +417,7 @@ export const MenuTree = z.object({
 const OrganData = z.object({
   name: z.string({ description: 'Name of the organ' }),
   image: z.string({ description: 'Path to the Icon/Image of the organ' }),
-  alt: z.string({description: 'Alternate text for icon'}),
+  alt: z.string({ description: 'Alternate text for icon' }),
   tissueData: z
     .lazy(() => TissueData)
     .array()
@@ -517,9 +517,10 @@ export const PrizeCard = z.object({
                 - button: Data of buttons to show on the Prize Card.
                 - kaggleId: kaggle id's of the winners.`
       ).array(),
-      userImage: z
-        .string({ description: 'Images of all the participants' })
-        .array(),
+      userImage: z.object({
+        image: z.string({ description: 'Images of all the participants' }),
+        alt: z.string({ description: 'Alternate text for user image' })
+      }).array(),
       matDivider: z.boolean({ description: 'True if divider is needed' }),
       alt: z.string({ description: 'Alternate text for the org image' })
     })

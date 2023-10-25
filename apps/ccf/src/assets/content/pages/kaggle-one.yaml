@@ -94,7 +94,8 @@
       orgImage: assets/images/google.svg
       alt: Google organization image
       userImage:
-        - assets/images/tikutiku.svg
+        - image: assets/images/tikutiku.svg
+          alt: Image for user tikutiku
     - title: 2nd Place ($10,000)
       presentedBy: Aashima Gupta
       matDivider: true
@@ -104,9 +105,12 @@
       orgImage: assets/images/google.svg
       alt: Google organization image
       userImage:
-        - assets/images/bakeryproducts.svg
-        - assets/images/kulyabin.svg
-        - assets/images/sherlockkay.svg
+        - image: assets/images/bakeryproducts.svg
+          alt: Image for user bakeryproducts
+        - image: assets/images/kulyabin.svg
+          alt: Image for user kulyabin
+        - image: assets/images/sherlockkay.svg
+          alt: Image for user sherlockkay
     - title: 3rd Place ($3,000)
       presentedBy: Albert Ihochi
       matDivider: true
@@ -145,9 +149,12 @@
       orgImage: assets/images/roche.svg
       alt: Roche organization image
       userImage:
-        - assets/images/optimo.svg
-        - assets/images/theoviel.svg
-        - assets/images/iafoss.svg
+        - image: assets/images/optimo.svg
+          alt: Image for user optimo
+        - image: assets/images/theoviel.svg
+          alt: Image for user theoviel
+        - image: assets/images/iafoss.svg
+          alt: Image for user iafoss
     - title: Innovation Prize ($10,000)
       presentedBy: Matt Nelson
       matDivider: true
@@ -163,9 +170,12 @@
       orgImage: assets/images/innovation_prize.svg
       alt: Deerfield organization image
       userImage:
-        - assets/images/matjes.svg
-        - assets/images/theudas.svg
-        - assets/images/maddonix.svg
+        - image: assets/images/matjes.svg
+          alt: Image for user matjes
+        - image: assets/images/theudas.svg
+          alt: Image for user theudas
+        - image: assets/images/maddonix.svg
+          alt: Image for user maddonix
     - title: Diversity Prize ($3,000)
       presentedBy: Rahcyne Omatete
       matDivider: true
@@ -181,10 +191,14 @@
       orgImage: assets/images/diversity_prize.svg
       alt: Pistoia Alliance organization image
       userImage:
-        - assets/images/Gavi_sr.svg
-        - assets/images/Sophie.svg
-        - assets/images/tpmeli.svg
-        - assets/images/dskswu.svg
+        - image: assets/images/Gavi_sr.svg
+          alt: Image for user Gavi_sr
+        - image: assets/images/Sophie.svg
+          alt: Image for user Sophie
+        - image: assets/images/tpmeli.svg
+          alt: Image for user tpmeli
+        - image: assets/images/dskswu.svg
+          alt: Image for user dskswu
 
 - type: title
   title: Kudos!
@@ -207,11 +221,16 @@
             - label: Presentation
               link: https://www.youtube.com/watch?v=DnX7vU4Caqg&list=PLuJUUASr8daMaDBweSiSbPXgzwUX_xoX_&index=6
       userImage:
-        - assets/images/chienhsianghung.svg
-        - assets/images/ulrich07.svg
-        - assets/images/raphaelensae.svg
-        - assets/images/faisalalsrheed.svg
-        - assets/images/salimkhazem.svg
+        - image: assets/images/chienhsianghung.svg
+          alt: Image for user chienhsianghung
+        - image: assets/images/ulrich07.svg
+          alt: Image for user ulrich07
+        - image: assets/images/raphaelensae.svg
+          alt: Image for user raphaelensae
+        - image: assets/images/faisalalsrheed.svg
+          alt: Image for user faisalalsrheed
+        - image: assets/images/salimkhazem.svg
+          alt: Image for user salimkhazem
     - title: Community Hero
       matDivider: false
       winner:
@@ -219,7 +238,8 @@
           kaggleId: |
             <b>Kaggle ID:</b> wrrosa
       userImage:
-        - assets/images/wrrosa.svg
+        - image: assets/images/wrrosa.svg
+          alt: Image for user wrrosa
     - title: Most Entertaining
       matDivider: false
       winner:
@@ -232,9 +252,12 @@
             - label: Presentation
               link: https://www.youtube.com/watch?v=w6LpUDkXL0Q&list=PLuJUUASr8daMaDBweSiSbPXgzwUX_xoX_&index=2
       userImage:
-        - assets/images/matjes.svg
-        - assets/images/theudas.svg
-        - assets/images/maddonix.svg
+        - image: assets/images/matjes.svg
+          alt: Image for user matjes
+        - image: assets/images/theudas.svg
+          alt: Image for user theudas
+        - image: assets/images/maddonix.svg
+          alt: Image for user maddonix
 
 - type: margin
   bottom: 2.5rem
