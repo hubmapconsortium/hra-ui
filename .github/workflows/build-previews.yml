@@ -26,6 +26,15 @@ jobs:
           build-compodoc: false
           build-storybook: false
 
+      - name: Setup Netlify files
+        run: |
+          echo '/* /index.html 200' > deploy/apps/ccf/_redirects
+      - name: Setup additional pages
+        run: |
+          cp -r static/* deploy/apps/ccf/
+          cp deploy/apps/ccf/index.html deploy/apps/ccf/404.html
+          touch deploy/apps/ccf/.nojekyll
+
       - name: Publish
         id: deploy
         uses: South-Paw/action-netlify-cli@v2
