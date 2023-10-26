@@ -59,22 +59,34 @@ export class TissueLibraryBehaviorComponent {
       const selectedIndex = this.list.control.dataNodes.findIndex((node: any) => node.data.id === this.selected?.id);
 
       const currentNode = nodes[selectedIndex];
-      if (event.key === 'ArrowDown') {
-        if (selectedIndex + 1 < nodes.length) {
-          this.navigateToNode(nodes[selectedIndex + 1]);
-        }
-      }
-      if (event.key === 'ArrowUp') {
-        if (selectedIndex - 1 >= 0) {
-          this.navigateToNode(nodes[selectedIndex - 1]);
-        }
-      }
       if (currentNode.expandable) {
+        const expandableNodes = nodes.filter((node) => node.expandable);
+        const index = expandableNodes.indexOf(currentNode);
         if (event.key === 'ArrowLeft') {
           this.list.control.collapse(currentNode);
         } else if (event.key === 'ArrowRight') {
           this.list.control.expand(currentNode);
+        } else if (
+          event.key === 'ArrowDown' &&
+          index + 1 < expandableNodes.length &&
+          !this.list.control.isExpanded(currentNode)
+        ) {
+          this.navigateToNode(expandableNodes[index + 1]);
+          return;
+        } else if (
+          event.key === 'ArrowUp' &&
+          index - 1 >= 0 &&
+          !this.list.control.isExpanded(expandableNodes[index - 1])
+        ) {
+          this.navigateToNode(expandableNodes[index - 1]);
+          return;
         }
+      }
+      if (event.key === 'ArrowDown' && selectedIndex + 1 < nodes.length) {
+        this.navigateToNode(nodes[selectedIndex + 1]);
+      }
+      if (event.key === 'ArrowUp' && selectedIndex - 1 >= 0) {
+        this.navigateToNode(nodes[selectedIndex - 1]);
       }
     }
   }
