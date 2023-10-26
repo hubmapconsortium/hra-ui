@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostListener, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { dispatch, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { LinkRegistryActions } from '@hra-ui/cdk/state';
+import { LabelBoxComponent } from '@hra-ui/components/atoms';
 import { TissueTreeListComponent } from '@hra-ui/components/molecules';
 import { Tissue } from '@hra-ui/services';
 import { ActiveFtuSelectors, TissueLibrarySelectors } from '@hra-ui/state';
-import { LabelBoxComponent } from '@hra-ui/components/atoms';
-import { LinkRegistryActions } from '@hra-ui/cdk/state';
 
 /**
  * Component for Tissue Library Behavior
@@ -50,51 +50,5 @@ export class TissueLibraryBehaviorComponent {
         this.list?.resetSelection();
       }
     });
-  }
-
-  @HostListener('document:keydown', ['$event'])
-  onKeyDown(event: KeyboardEvent): void {
-    if (this.list) {
-      const nodes = this.list?.control.dataNodes;
-      const selectedIndex = this.list.control.dataNodes.findIndex((node: any) => node.data.id === this.selected?.id);
-
-      const currentNode = nodes[selectedIndex];
-      if (currentNode.expandable) {
-        const expandableNodes = nodes.filter((node) => node.expandable);
-        const index = expandableNodes.indexOf(currentNode);
-        if (event.key === 'ArrowLeft') {
-          this.list.control.collapse(currentNode);
-        } else if (event.key === 'ArrowRight') {
-          this.list.control.expand(currentNode);
-        } else if (
-          event.key === 'ArrowDown' &&
-          index + 1 < expandableNodes.length &&
-          !this.list.control.isExpanded(currentNode)
-        ) {
-          this.navigateToNode(expandableNodes[index + 1]);
-          return;
-        } else if (
-          event.key === 'ArrowUp' &&
-          index - 1 >= 0 &&
-          !this.list.control.isExpanded(expandableNodes[index - 1])
-        ) {
-          this.navigateToNode(expandableNodes[index - 1]);
-          return;
-        }
-      }
-      if (event.key === 'ArrowDown' && selectedIndex + 1 < nodes.length) {
-        this.navigateToNode(nodes[selectedIndex + 1]);
-      }
-      if (event.key === 'ArrowUp' && selectedIndex - 1 >= 0) {
-        this.navigateToNode(nodes[selectedIndex - 1]);
-      }
-    }
-  }
-
-  navigateToNode(node: any): void {
-    this.list?.selectNode(node.data as never);
-    if (!node.expandable) {
-      this.navigate(node.data.link, { queryParams: { id: node.data.id } });
-    }
   }
 }

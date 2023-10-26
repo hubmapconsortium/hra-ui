@@ -15,6 +15,7 @@
     *matTreeNodeDef="let node; let level = level; when: hasChild"
     class="row"
     [class.selected]="node.data === selected"
+    (click)="selectNode(node.data)"
   >
     <button mat-icon-button matTreeNodeToggle class="toggle" [attr.aria-label]="'Toggle ' + node.label">
       <mat-icon>

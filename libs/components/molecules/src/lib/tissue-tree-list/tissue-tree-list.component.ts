@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  HostListener,
   Input,
   OnChanges,
   Output,
@@ -77,6 +78,8 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
    * Output  of tissue tree list component
    */
   @Output() readonly selectedChange = new EventEmitter<T | undefined>();
+
+  @Output() navigate = new EventEmitter();
 
   /**
    * tree controller, used to control the nodes in the tree
@@ -198,5 +201,43 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
     }
 
     return path;
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent): void {
+    if (this.control) {
+      const nodes = this.control.dataNodes;
+      const selectedIndex = this.control.dataNodes.findIndex((node) => node.data.id === this.selected?.id);
+
+      const currentNode = nodes[selectedIndex];
+      if (currentNode.expandable) {
+        const expandableNodes = nodes.filter((node) => node.expandable);
+        const index = expandableNodes.indexOf(currentNode);
+        if (event.key === 'ArrowLeft') {
+          this.control.collapse(currentNode);
+        } else if (event.key === 'ArrowRight') {
+          this.control.expand(currentNode);
+        } else if (
+          event.key === 'ArrowDown' &&
+          index + 1 < expandableNodes.length &&
+          !this.control.isExpanded(currentNode)
+        ) {
+          this.selectNode(expandableNodes[index + 1].data);
+          return;
+        } else if (event.key === 'ArrowUp' && index - 1 >= 0 && !this.control.isExpanded(expandableNodes[index - 1])) {
+          this.selectNode(expandableNodes[index - 1].data);
+          return;
+        }
+      }
+      if (event.key === 'ArrowDown' && selectedIndex + 1 < nodes.length) {
+        this.selectNode(nodes[selectedIndex + 1].data);
+      }
+      if (event.key === 'ArrowUp' && selectedIndex - 1 >= 0) {
+        this.selectNode(nodes[selectedIndex - 1].data);
+      }
+      if (event.key === 'Enter' && !currentNode.expandable) {
+        this.navigate.emit(currentNode.data);
+      }
+    }
   }
 }
