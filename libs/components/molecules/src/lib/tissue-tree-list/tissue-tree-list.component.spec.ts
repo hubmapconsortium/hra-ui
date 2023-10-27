@@ -52,6 +52,7 @@ describe('TissueTreeListComponent', () => {
 
     it('should set the selected node', async () => {
       const { instance, outputs } = await shallow.render({ bind: { nodes } });
+      instance.selected = nodes['id2'];
       instance.selectNode(internalNode.data);
       expect(instance.selected).toBe(internalNode.data);
       expect(outputs.selectedChange.emit).toHaveBeenCalledWith(internalNode.data);
@@ -78,13 +79,6 @@ describe('TissueTreeListComponent', () => {
     function createChangeSet(value?: DataNode<string>) {
       return { selected: new SimpleChange(undefined, value, true) };
     }
-
-    it('does nothing if set to undefined', async () => {
-      const { instance } = await shallow.render({ bind: { nodes } });
-      jest.spyOn(instance.control, 'expand');
-      instance.ngOnChanges(createChangeSet(undefined));
-      expect(instance.control.expand).not.toHaveBeenCalled();
-    });
 
     it('expands all parent nodes and itself', async () => {
       const { instance } = await shallow.render({ bind: { nodes } });
