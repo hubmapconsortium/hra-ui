@@ -79,6 +79,9 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
    */
   @Output() readonly selectedChange = new EventEmitter<T | undefined>();
 
+  /**
+   * Navigates to an illustration page
+   */
   @Output() navigate = new EventEmitter();
 
   /**
@@ -116,6 +119,7 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
   ngOnChanges(changes: SimpleChanges): void {
     if ('nodes' in changes) {
       this.dataSource.data = this.findRootNodes();
+      this.selected = this.control.dataNodes[0].data;
     }
     if ('selected' in changes) {
       const path = this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];
@@ -203,6 +207,10 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
     return path;
   }
 
+  /**
+   * Keyboard navigation for tissue tree list
+   * @param event Keyboard event
+   */
   @HostListener('document:keydown', ['$event'])
   onKeyDown(event: KeyboardEvent): void {
     if (this.control) {

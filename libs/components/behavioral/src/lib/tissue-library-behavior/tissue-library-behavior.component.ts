@@ -29,21 +29,22 @@ export class TissueLibraryBehaviorComponent {
    * Input for tissues data
    */
   readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);
+
   /**
    * Selected  of tissue library behavior component
    */
   selected?: Tissue;
 
+  /**
+   * Navigates to a tissue page
+   */
   navigate = dispatch(LinkRegistryActions.Navigate);
 
   /**
-   * Sets the TissueItem instance as undefined if
-   * the url is undefined
+   * Sets the TissueItem instance as undefined if the url is undefined
    */
   constructor() {
-    /** Get iris from the observable else reset selection if
-     * iri is undefined
-     */
+    /** Get iris from the observable else reset selection if iri is undefined */
     select$(ActiveFtuSelectors.iri).subscribe((iri) => {
       this.selected = iri && this.tissues()[iri];
       if (iri === undefined) {
