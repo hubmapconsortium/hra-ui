@@ -74,6 +74,8 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
    */
   @Input() selected?: T = undefined;
 
+  @Input() enableNav = false;
+
   /**
    * Output  of tissue tree list component
    */
@@ -213,6 +215,9 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
    */
   @HostListener('document:keydown', ['$event'])
   onKeyDown(event: KeyboardEvent): void {
+    if (!this.enableNav) {
+      return;
+    }
     if (this.control) {
       const nodes = this.control.dataNodes;
       const selectedIndex = this.control.dataNodes.findIndex((node) => node.data.id === this.selected?.id);
@@ -247,5 +252,23 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
         this.navigate.emit(currentNode.data);
       }
     }
+  }
+
+  /**
+   * Disable keyboard nav on click
+   */
+  @HostListener('document:click')
+  handlePageClick(): void {
+    this.enableNav = false;
+  }
+
+  /**
+   * Enables keyboard nav only if the tissue tree list is clicked
+   * @param event Click event
+   */
+  @HostListener('click', ['$event'])
+  handleListClick(event: MouseEvent): void {
+    event.stopPropagation();
+    this.enableNav = true;
   }
 }
