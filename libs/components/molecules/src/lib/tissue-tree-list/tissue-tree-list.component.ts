@@ -74,8 +74,6 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
    */
   @Input() selected?: T = undefined;
 
-  @Input() enableNav = false;
-
   /**
    * Output  of tissue tree list component
    */
@@ -85,6 +83,11 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
    * Navigates to an illustration page
    */
   @Output() navigate = new EventEmitter();
+
+  /**
+   * Whether keyboard navigation is enabled
+   */
+  enableNav = false;
 
   /**
    * tree controller, used to control the nodes in the tree

@@ -109,6 +109,7 @@ describe('TissueTreeListComponent', () => {
 
     it('should arrow left when expandable', async () => {
       const { instance } = await shallow.render({ bind: { nodes, selected: nodes['id1'] } });
+      instance.enableNav = true;
       jest.spyOn(instance.control.dataNodes, 'findIndex');
       instance.onKeyDown(mockEvent1);
       expect(instance.control.dataNodes.findIndex).toHaveBeenCalled();
@@ -116,6 +117,7 @@ describe('TissueTreeListComponent', () => {
 
     it('should arrow right when expandable', async () => {
       const { instance } = await shallow.render({ bind: { nodes, selected: nodes['id1'] } });
+      instance.enableNav = true;
       jest.spyOn(instance.control.dataNodes, 'findIndex');
       instance.onKeyDown(mockEvent2);
       expect(instance.control.dataNodes.findIndex).toHaveBeenCalled();
@@ -123,6 +125,7 @@ describe('TissueTreeListComponent', () => {
 
     it('should arrow down when expandable', async () => {
       const { instance } = await shallow.render({ bind: { nodes, selected: nodes['id1'] } });
+      instance.enableNav = true;
       jest.spyOn(instance.control.dataNodes, 'findIndex');
       instance.onKeyDown(mockEvent3);
       expect(instance.control.dataNodes.findIndex).toHaveBeenCalled();
@@ -130,6 +133,7 @@ describe('TissueTreeListComponent', () => {
 
     it('should arrow up when expandable', async () => {
       const { instance } = await shallow.render({ bind: { nodes, selected: nodes['id3'] } });
+      instance.enableNav = true;
       jest.spyOn(instance.control.dataNodes, 'findIndex').mockReturnValue(2);
       instance.onKeyDown(mockEvent4);
       expect(instance.control.dataNodes.findIndex).toHaveBeenCalled();
@@ -137,6 +141,7 @@ describe('TissueTreeListComponent', () => {
 
     it('should arrow down when not expandable', async () => {
       const { instance } = await shallow.render({ bind: { nodes, selected: nodes['id3'] } });
+      instance.enableNav = true;
       jest.spyOn(instance.control.dataNodes, 'findIndex').mockReturnValue(1);
       const spy = jest.spyOn(instance, 'selectNode');
       instance.onKeyDown(mockEvent3);
@@ -145,6 +150,7 @@ describe('TissueTreeListComponent', () => {
 
     it('should arrow up when not expandable', async () => {
       const { instance } = await shallow.render({ bind: { nodes, selected: nodes['id3'] } });
+      instance.enableNav = true;
       jest.spyOn(instance.control.dataNodes, 'findIndex').mockReturnValue(1);
       const spy = jest.spyOn(instance, 'selectNode');
       instance.onKeyDown(mockEvent4);
@@ -153,6 +159,7 @@ describe('TissueTreeListComponent', () => {
 
     it('should Enter when not expandable', async () => {
       const { instance } = await shallow.render({ bind: { nodes, selected: nodes['id3'] } });
+      instance.enableNav = true;
       jest.spyOn(instance.control.dataNodes, 'findIndex').mockReturnValue(1);
       instance.onKeyDown(mockEvent5);
       expect(instance.navigate.emit).toHaveBeenCalledWith(nodes['id2']);
