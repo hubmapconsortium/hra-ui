@@ -87,7 +87,7 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
   /**
    * Whether keyboard navigation is enabled
    */
-  enableNav = false;
+  enableNav = true;
 
   /**
    * tree controller, used to control the nodes in the tree
@@ -226,7 +226,7 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
       const selectedIndex = this.control.dataNodes.findIndex((node) => node.data.id === this.selected?.id);
 
       const currentNode = nodes[selectedIndex];
-      if (currentNode.expandable) {
+      if (currentNode && currentNode.expandable) {
         const expandableNodes = nodes.filter((node) => node.expandable);
         const index = expandableNodes.indexOf(currentNode);
         if (event.key === 'ArrowLeft') {
