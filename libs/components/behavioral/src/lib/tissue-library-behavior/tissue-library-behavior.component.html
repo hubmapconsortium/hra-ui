@@ -1,2 +1,9 @@
 <hra-label-box class="label">FTU Library</hra-label-box>
-<hra-tissue-tree-list class="tissue-tree" [nodes]="tissues()" [(selected)]="selected" #list> </hra-tissue-tree-list>
+<hra-tissue-tree-list
+  class="tissue-tree"
+  [nodes]="tissues()"
+  (navigate)="navigate($event.link, { queryParams: { id: $event.id } })"
+  [(selected)]="selected"
+  #list
+>
+</hra-tissue-tree-list>

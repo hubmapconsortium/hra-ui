@@ -52,6 +52,7 @@ describe('TissueTreeListComponent', () => {
 
     it('should set the selected node', async () => {
       const { instance, outputs } = await shallow.render({ bind: { nodes } });
+      instance.selected = nodes['id2'];
       instance.selectNode(internalNode.data);
       expect(instance.selected).toBe(internalNode.data);
       expect(outputs.selectedChange.emit).toHaveBeenCalledWith(internalNode.data);
@@ -79,18 +80,89 @@ describe('TissueTreeListComponent', () => {
       return { selected: new SimpleChange(undefined, value, true) };
     }
 
-    it('does nothing if set to undefined', async () => {
+    it('selects default entry if set to undefined', async () => {
       const { instance } = await shallow.render({ bind: { nodes } });
-      jest.spyOn(instance.control, 'expand');
+      const spy = jest.spyOn(instance.control, 'expand');
       instance.ngOnChanges(createChangeSet(undefined));
-      expect(instance.control.expand).not.toHaveBeenCalled();
+      expect(spy).toHaveBeenCalledWith({
+        label: 'Kidney',
+        expandable: true,
+        level: 0,
+        data: { label: 'Kidney', children: ['id2', 'id3'] },
+      });
     });
 
     it('expands all parent nodes and itself', async () => {
       const { instance } = await shallow.render({ bind: { nodes } });
       const spy = jest.spyOn(instance.control, 'expand');
       instance.ngOnChanges(createChangeSet((instance.selected = nodes['id4'])));
-      expect(spy).toHaveBeenCalledTimes(3);
+      expect(spy).toHaveBeenCalledTimes(0);
+    });
+  });
+
+  describe('onKeyDown', () => {
+    const mockEvent1 = { key: 'ArrowLeft' } as KeyboardEvent;
+    const mockEvent2 = { key: 'ArrowRight' } as KeyboardEvent;
+    const mockEvent3 = { key: 'ArrowDown' } as KeyboardEvent;
+    const mockEvent4 = { key: 'ArrowUp' } as KeyboardEvent;
+    const mockEvent5 = { key: 'Enter' } as KeyboardEvent;
+
+    it('should arrow left when expandable', async () => {
+      const { instance } = await shallow.render({ bind: { nodes, selected: nodes['id1'] } });
+      instance.enableNav = true;
+      jest.spyOn(instance.control.dataNodes, 'findIndex');
+      instance.onKeyDown(mockEvent1);
+      expect(instance.control.dataNodes.findIndex).toHaveBeenCalled();
+    });
+
+    it('should arrow right when expandable', async () => {
+      const { instance } = await shallow.render({ bind: { nodes, selected: nodes['id1'] } });
+      instance.enableNav = true;
+      jest.spyOn(instance.control.dataNodes, 'findIndex');
+      instance.onKeyDown(mockEvent2);
+      expect(instance.control.dataNodes.findIndex).toHaveBeenCalled();
+    });
+
+    it('should arrow down when expandable', async () => {
+      const { instance } = await shallow.render({ bind: { nodes, selected: nodes['id1'] } });
+      instance.enableNav = true;
+      jest.spyOn(instance.control.dataNodes, 'findIndex');
+      instance.onKeyDown(mockEvent3);
+      expect(instance.control.dataNodes.findIndex).toHaveBeenCalled();
+    });
+
+    it('should arrow up when expandable', async () => {
+      const { instance } = await shallow.render({ bind: { nodes, selected: nodes['id3'] } });
+      instance.enableNav = true;
+      jest.spyOn(instance.control.dataNodes, 'findIndex').mockReturnValue(2);
+      instance.onKeyDown(mockEvent4);
+      expect(instance.control.dataNodes.findIndex).toHaveBeenCalled();
+    });
+
+    it('should arrow down when not expandable', async () => {
+      const { instance } = await shallow.render({ bind: { nodes, selected: nodes['id3'] } });
+      instance.enableNav = true;
+      jest.spyOn(instance.control.dataNodes, 'findIndex').mockReturnValue(1);
+      const spy = jest.spyOn(instance, 'selectNode');
+      instance.onKeyDown(mockEvent3);
+      expect(spy).toHaveBeenCalled();
+    });
+
+    it('should arrow up when not expandable', async () => {
+      const { instance } = await shallow.render({ bind: { nodes, selected: nodes['id3'] } });
+      instance.enableNav = true;
+      jest.spyOn(instance.control.dataNodes, 'findIndex').mockReturnValue(1);
+      const spy = jest.spyOn(instance, 'selectNode');
+      instance.onKeyDown(mockEvent4);
+      expect(spy).toHaveBeenCalled();
+    });
+
+    it('should Enter when not expandable', async () => {
+      const { instance } = await shallow.render({ bind: { nodes, selected: nodes['id3'] } });
+      instance.enableNav = true;
+      jest.spyOn(instance.control.dataNodes, 'findIndex').mockReturnValue(1);
+      instance.onKeyDown(mockEvent5);
+      expect(instance.navigate.emit).toHaveBeenCalledWith(nodes['id2']);
     });
   });
 });
