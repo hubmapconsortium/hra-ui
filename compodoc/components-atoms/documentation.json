@@ -678,7 +678,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  .tooltip {\n    display: flex;\n    flex-direction: column;\n    background: white;\n    box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);\n    border-radius: 0.5rem;\n    padding: 1rem;\n  }\n}\n",
+                    "data": ":host {\n  .tooltip {\n    display: flex;\n    flex-direction: column;\n    background: white;\n    box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);\n    border-radius: 0.5rem;\n    padding: 1rem;\n    font-family: 'Inter';\n  }\n}\n",
                     "styleUrl": "./tooltip.component.scss"
                 }
             ],
