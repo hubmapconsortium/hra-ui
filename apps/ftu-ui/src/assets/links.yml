@@ -16,7 +16,7 @@ ExploreFTU:
     - ftu/
   extras:
     queryParams:
-      id: https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle
+      id: https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland
 LandingPageReadMore:
   type: external
   url: https://humanatlas.io/2d-ftu-illustrations
