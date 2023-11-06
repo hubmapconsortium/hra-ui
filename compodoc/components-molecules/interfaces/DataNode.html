@@ -310,6 +310,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  HostListener,
   Input,
   OnChanges,
   Output,
@@ -385,6 +386,16 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
   @Output() readonly selectedChange &#x3D; new EventEmitter&lt;T | undefined&gt;();
 
   /**
+   * Navigates to an illustration page
+   */
+  @Output() navigate &#x3D; new EventEmitter();
+
+  /**
+   * Whether keyboard navigation is enabled
+   */
+  enableNav &#x3D; true;
+
+  /**
    * tree controller, used to control the nodes in the tree
    */
   readonly control &#x3D; new FlatTreeControl&lt;InternalNode&lt;K, T&gt;&gt;(
@@ -419,10 +430,14 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
   ngOnChanges(changes: SimpleChanges): void {
     if (&#x27;nodes&#x27; in changes) {
       this.dataSource.data &#x3D; this.findRootNodes();
+      this.selected &#x3D; this.control.dataNodes[0].data;
     }
     if (&#x27;selected&#x27; in changes) {
       const path &#x3D; this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];
-      this.expandPath(path);
+      const node &#x3D; this.control.dataNodes.find((n) &#x3D;&gt; n.data &#x3D;&#x3D;&#x3D; changes[&#x27;selected&#x27;].currentValue);
+      if (!node?.expandable) {
+        this.expandPath(path);
+      }
     }
   }
 
@@ -501,6 +516,69 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
     }
 
     return path;
+  }
+
+  /**
+   * Keyboard navigation for tissue tree list
+   * @param event Keyboard event
+   */
+  @HostListener(&#x27;document:keydown&#x27;, [&#x27;$event&#x27;])
+  onKeyDown(event: KeyboardEvent): void {
+    if (!this.enableNav) {
+      return;
+    }
+    if (this.control) {
+      const nodes &#x3D; this.control.dataNodes;
+      const selectedIndex &#x3D; this.control.dataNodes.findIndex((node) &#x3D;&gt; node.data.id &#x3D;&#x3D;&#x3D; this.selected?.id);
+
+      const currentNode &#x3D; nodes[selectedIndex];
+      if (currentNode &amp;&amp; currentNode.expandable) {
+        const expandableNodes &#x3D; nodes.filter((node) &#x3D;&gt; node.expandable);
+        const index &#x3D; expandableNodes.indexOf(currentNode);
+        if (event.key &#x3D;&#x3D;&#x3D; &#x27;ArrowLeft&#x27;) {
+          this.control.collapse(currentNode);
+        } else if (event.key &#x3D;&#x3D;&#x3D; &#x27;ArrowRight&#x27;) {
+          this.control.expand(currentNode);
+        } else if (
+          event.key &#x3D;&#x3D;&#x3D; &#x27;ArrowDown&#x27; &amp;&amp;
+          index + 1 &lt; expandableNodes.length &amp;&amp;
+          !this.control.isExpanded(currentNode)
+        ) {
+          this.selectNode(expandableNodes[index + 1].data);
+          return;
+        } else if (event.key &#x3D;&#x3D;&#x3D; &#x27;ArrowUp&#x27; &amp;&amp; index - 1 &gt;&#x3D; 0 &amp;&amp; !this.control.isExpanded(expandableNodes[index - 1])) {
+          this.selectNode(expandableNodes[index - 1].data);
+          return;
+        }
+      }
+      if (event.key &#x3D;&#x3D;&#x3D; &#x27;ArrowDown&#x27; &amp;&amp; selectedIndex + 1 &lt; nodes.length) {
+        this.selectNode(nodes[selectedIndex + 1].data);
+      }
+      if (event.key &#x3D;&#x3D;&#x3D; &#x27;ArrowUp&#x27; &amp;&amp; selectedIndex - 1 &gt;&#x3D; 0) {
+        this.selectNode(nodes[selectedIndex - 1].data);
+      }
+      if (event.key &#x3D;&#x3D;&#x3D; &#x27;Enter&#x27; &amp;&amp; !currentNode.expandable) {
+        this.navigate.emit(currentNode.data);
+      }
+    }
+  }
+
+  /**
+   * Disable keyboard nav on click
+   */
+  @HostListener(&#x27;document:click&#x27;)
+  handlePageClick(): void {
+    this.enableNav &#x3D; false;
+  }
+
+  /**
+   * Enables keyboard nav only if the tissue tree list is clicked
+   * @param event Click event
+   */
+  @HostListener(&#x27;click&#x27;, [&#x27;$event&#x27;])
+  handleListClick(event: MouseEvent): void {
+    event.stopPropagation();
+    this.enableNav &#x3D; true;
   }
 }
 </code></pre>

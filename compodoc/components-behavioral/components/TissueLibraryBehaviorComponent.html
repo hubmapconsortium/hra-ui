@@ -144,6 +144,9 @@
                                 <a href="#list" >list</a>
                             </li>
                             <li>
+                                <a href="#navigate" >navigate</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Optional</span>
                                 <a href="#selected" >selected</a>
                             </li>
@@ -175,14 +178,13 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/lib/tissue-library-behavior/tissue-library-behavior.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/tissue-library-behavior/tissue-library-behavior.component.ts:41</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Sets the TissueItem instance as undefined if
-the url is undefined</p>
+                            <div class="io-description"><p>Sets the TissueItem instance as undefined if the url is undefined</p>
 </div>
                     </td>
                 </tr>
@@ -230,13 +232,44 @@ the url is undefined</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/lib/tissue-library-behavior/tissue-library-behavior.component.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/lib/tissue-library-behavior/tissue-library-behavior.component.ts:26</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Reference to the TissueTreeListComponent.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigate"></a>
+                    <span class="name">
+                        <span ><b>navigate</b></span>
+                        <a href="#navigate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>dispatch(LinkRegistryActions.Navigate)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/tissue-library-behavior/tissue-library-behavior.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Navigates to a tissue page</p>
 </div>
                 </td>
             </tr>
@@ -263,7 +296,7 @@ the url is undefined</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/lib/tissue-library-behavior/tissue-library-behavior.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/lib/tissue-library-behavior/tissue-library-behavior.component.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -295,7 +328,7 @@ the url is undefined</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/lib/tissue-library-behavior/tissue-library-behavior.component.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/lib/tissue-library-behavior/tissue-library-behavior.component.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -316,11 +349,12 @@ the url is undefined</p>
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
 import { ChangeDetectionStrategy, Component, ViewChild } from &#x27;@angular/core&#x27;;
-import { select$, selectSnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
+import { dispatch, select$, selectSnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
+import { LinkRegistryActions } from &#x27;@hra-ui/cdk/state&#x27;;
+import { LabelBoxComponent } from &#x27;@hra-ui/components/atoms&#x27;;
 import { TissueTreeListComponent } from &#x27;@hra-ui/components/molecules&#x27;;
 import { Tissue } from &#x27;@hra-ui/services&#x27;;
 import { ActiveFtuSelectors, TissueLibrarySelectors } from &#x27;@hra-ui/state&#x27;;
-import { LabelBoxComponent } from &#x27;@hra-ui/components/atoms&#x27;;
 
 /**
  * Component for Tissue Library Behavior
@@ -344,19 +378,22 @@ export class TissueLibraryBehaviorComponent {
    * Input for tissues data
    */
   readonly tissues &#x3D; selectSnapshot(TissueLibrarySelectors.tissues);
+
   /**
    * Selected  of tissue library behavior component
    */
   selected?: Tissue;
 
   /**
-   * Sets the TissueItem instance as undefined if
-   * the url is undefined
+   * Navigates to a tissue page
+   */
+  navigate &#x3D; dispatch(LinkRegistryActions.Navigate);
+
+  /**
+   * Sets the TissueItem instance as undefined if the url is undefined
    */
   constructor() {
-    /** Get iris from the observable else reset selection if
-     * iri is undefined
-     */
+    /** Get iris from the observable else reset selection if iri is undefined */
     select$(ActiveFtuSelectors.iri).subscribe((iri) &#x3D;&gt; {
       this.selected &#x3D; iri &amp;&amp; this.tissues()[iri];
       if (iri &#x3D;&#x3D;&#x3D; undefined) {
@@ -370,7 +407,14 @@ export class TissueLibraryBehaviorComponent {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;hra-label-box class&#x3D;&quot;label&quot;&gt;FTU Library&lt;/hra-label-box&gt;
-&lt;hra-tissue-tree-list class&#x3D;&quot;tissue-tree&quot; [nodes]&#x3D;&quot;tissues()&quot; [(selected)]&#x3D;&quot;selected&quot; #list&gt; &lt;/hra-tissue-tree-list&gt;
+&lt;hra-tissue-tree-list
+  class&#x3D;&quot;tissue-tree&quot;
+  [nodes]&#x3D;&quot;tissues()&quot;
+  (navigate)&#x3D;&quot;navigate($event.link, { queryParams: { id: $event.id } })&quot;
+  [(selected)]&#x3D;&quot;selected&quot;
+  #list
+&gt;
+&lt;/hra-tissue-tree-list&gt;
 </code></pre>
     </div>
 
@@ -414,7 +458,7 @@ export class TissueLibraryBehaviorComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-label-box class="label">FTU Library</hra-label-box><hra-tissue-tree-list class="tissue-tree" [nodes]="tissues()" [(selected)]="selected" #list> </hra-tissue-tree-list></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-label-box class="label">FTU Library</hra-label-box><hra-tissue-tree-list  class="tissue-tree"  [nodes]="tissues()"  (navigate)="navigate($event.link, { queryParams: { id: $event.id } })"  [(selected)]="selected"  #list></hra-tissue-tree-list></div>'
     var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'BiomarkerDetailsWcComponent', 'selector': 'ftu-wc-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'HraLandingPageIntroWcBehaviourComponent', 'selector': 'ftu-wc-intro'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'ScreenNoticeBehaviorComponent', 'selector': 'ftu-ui-screen-notice-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TissueLibraryBehaviorComponent'};

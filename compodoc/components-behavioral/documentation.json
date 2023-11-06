@@ -1603,7 +1603,7 @@
         },
         {
             "name": "TissueLibraryBehaviorComponent",
-            "id": "component-TissueLibraryBehaviorComponent-1565978e9f70870b546b49f929236ee86c2eb9cc241e10b805863df59e4d66dca72495ffa8c27a7f282e396acc84f78b6724255570a4eab733a3af995543b47a",
+            "id": "component-TissueLibraryBehaviorComponent-e6b9a49fb156c12bd3aca946725bff54990dfdc8d76dc9256e9204de6357eeabf2d1d4e472487f5019b75776671bc27bae9a8d16e2d21fd64b6e1e94bc69aba2",
             "file": "src/lib/tissue-library-behavior/tissue-library-behavior.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1630,7 +1630,7 @@
                     "type": "TissueTreeListComponent<never | never>",
                     "optional": true,
                     "description": "<p>Reference to the TissueTreeListComponent.</p>\n",
-                    "line": 25,
+                    "line": 26,
                     "rawdescription": "\n\nReference to the TissueTreeListComponent.\n",
                     "decorators": [
                         {
@@ -1643,13 +1643,24 @@
                     ]
                 },
                 {
+                    "name": "navigate",
+                    "defaultValue": "dispatch(LinkRegistryActions.Navigate)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Navigates to a tissue page</p>\n",
+                    "line": 41,
+                    "rawdescription": "\n\nNavigates to a tissue page\n"
+                },
+                {
                     "name": "selected",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Tissue",
                     "optional": true,
                     "description": "<p>Selected  of tissue library behavior component</p>\n",
-                    "line": 34,
+                    "line": 36,
                     "rawdescription": "\n\nSelected  of tissue library behavior component\n"
                 },
                 {
@@ -1660,7 +1671,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Input for tissues data</p>\n",
-                    "line": 30,
+                    "line": 31,
                     "rawdescription": "\n\nInput for tissues data\n",
                     "modifierKind": [
                         144
@@ -1675,7 +1686,7 @@
             "description": "<p>Component for Tissue Library Behavior</p>\n",
             "rawdescription": "\n\nComponent for Tissue Library Behavior\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';\nimport { select$, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { TissueTreeListComponent } from '@hra-ui/components/molecules';\nimport { Tissue } from '@hra-ui/services';\nimport { ActiveFtuSelectors, TissueLibrarySelectors } from '@hra-ui/state';\nimport { LabelBoxComponent } from '@hra-ui/components/atoms';\n\n/**\n * Component for Tissue Library Behavior\n */\n@Component({\n  selector: 'ftu-tissue-library-behavior',\n  standalone: true,\n  imports: [CommonModule, LabelBoxComponent, TissueTreeListComponent],\n  templateUrl: './tissue-library-behavior.component.html',\n  styleUrls: ['./tissue-library-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueLibraryBehaviorComponent {\n  /**\n   * Reference to the TissueTreeListComponent.\n   */\n  @ViewChild('list', { static: true })\n  readonly list?: TissueTreeListComponent<never, never>;\n\n  /**\n   * Input for tissues data\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n  /**\n   * Selected  of tissue library behavior component\n   */\n  selected?: Tissue;\n\n  /**\n   * Sets the TissueItem instance as undefined if\n   * the url is undefined\n   */\n  constructor() {\n    /** Get iris from the observable else reset selection if\n     * iri is undefined\n     */\n    select$(ActiveFtuSelectors.iri).subscribe((iri) => {\n      this.selected = iri && this.tissues()[iri];\n      if (iri === undefined) {\n        this.list?.resetSelection();\n      }\n    });\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';\nimport { dispatch, select$, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { LinkRegistryActions } from '@hra-ui/cdk/state';\nimport { LabelBoxComponent } from '@hra-ui/components/atoms';\nimport { TissueTreeListComponent } from '@hra-ui/components/molecules';\nimport { Tissue } from '@hra-ui/services';\nimport { ActiveFtuSelectors, TissueLibrarySelectors } from '@hra-ui/state';\n\n/**\n * Component for Tissue Library Behavior\n */\n@Component({\n  selector: 'ftu-tissue-library-behavior',\n  standalone: true,\n  imports: [CommonModule, LabelBoxComponent, TissueTreeListComponent],\n  templateUrl: './tissue-library-behavior.component.html',\n  styleUrls: ['./tissue-library-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueLibraryBehaviorComponent {\n  /**\n   * Reference to the TissueTreeListComponent.\n   */\n  @ViewChild('list', { static: true })\n  readonly list?: TissueTreeListComponent<never, never>;\n\n  /**\n   * Input for tissues data\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n\n  /**\n   * Selected  of tissue library behavior component\n   */\n  selected?: Tissue;\n\n  /**\n   * Navigates to a tissue page\n   */\n  navigate = dispatch(LinkRegistryActions.Navigate);\n\n  /**\n   * Sets the TissueItem instance as undefined if the url is undefined\n   */\n  constructor() {\n    /** Get iris from the observable else reset selection if iri is undefined */\n    select$(ActiveFtuSelectors.iri).subscribe((iri) => {\n      this.selected = iri && this.tissues()[iri];\n      if (iri === undefined) {\n        this.list?.resetSelection();\n      }\n    });\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1686,14 +1697,14 @@
             "stylesData": "",
             "constructorObj": {
                 "name": "constructor",
-                "description": "<p>Sets the TissueItem instance as undefined if\nthe url is undefined</p>\n",
+                "description": "<p>Sets the TissueItem instance as undefined if the url is undefined</p>\n",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 34,
-                "rawdescription": "\n\nSets the TissueItem instance as undefined if\nthe url is undefined\n"
+                "line": 41,
+                "rawdescription": "\n\nSets the TissueItem instance as undefined if the url is undefined\n"
             },
-            "templateData": "<hra-label-box class=\"label\">FTU Library</hra-label-box>\n<hra-tissue-tree-list class=\"tissue-tree\" [nodes]=\"tissues()\" [(selected)]=\"selected\" #list> </hra-tissue-tree-list>\n"
+            "templateData": "<hra-label-box class=\"label\">FTU Library</hra-label-box>\n<hra-tissue-tree-list\n  class=\"tissue-tree\"\n  [nodes]=\"tissues()\"\n  (navigate)=\"navigate($event.link, { queryParams: { id: $event.id } })\"\n  [(selected)]=\"selected\"\n  #list\n>\n</hra-tissue-tree-list>\n"
         }
     ],
     "modules": [],
