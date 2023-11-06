@@ -109,6 +109,32 @@
           "codeCoverage": true
         }
       }
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "apps/ccf/tsconfig.json",
+        "outputPath": "dist/compodoc/ccf"
+      },
+      "configurations": {
+        "ci": {
+          "silent": true
+        },
+        "serve": {
+          "watch": true,
+          "disableCoverage": false,
+          "disablePrivate": false,
+          "disableInternal": false
+        }
+      }
+    },
+    "compodoc-json": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "apps/ccf/tsconfig.json",
+        "outputPath": "dist/compodoc/ccf",
+        "exportFormat": "json"
+      }
     }
   }
 }

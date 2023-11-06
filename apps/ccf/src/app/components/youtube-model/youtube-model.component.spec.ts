@@ -7,7 +7,6 @@ describe('SopLinksComponent', () => {
   const testPlayerData: YoutubeModel = {
     height: 12,
     width: 12,
-    title: 'testTitle',
     videoId: 'testVideoId',
     playerTitle: 'testPlayerTitle',
   };

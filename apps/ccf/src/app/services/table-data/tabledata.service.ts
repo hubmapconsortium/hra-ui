@@ -4,17 +4,23 @@ import { map, Observable, shareReplay } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { parse, ParseResult } from 'papaparse';
 
+/** An interface representing the details of Table data with columns */
 export interface TableDataWithColumns {
+  /** Column names of the table */
   columns: string[];
+  /** Cell data of the table */
   data: TableData[];
 }
 
+/** Service for parsing the content from a CSV file */
 @Injectable({
   providedIn: 'root',
 })
 export class TableDataService {
+  /** Initializes the HttpClient */
   constructor(private http: HttpClient) {}
 
+  /** Parses the CSV file and returns an observable */
   getData(
     file: string | undefined,
     validColumns: string[]
@@ -40,6 +46,7 @@ export class TableDataService {
     return withColumns.pipe(shareReplay(1));
   }
 
+  /** Filters columns and returns only ones to be displayed */
   private filterColumns(columns: string[], validColumns: string[]): string[] {
     const validSet = new Set(validColumns);
     return columns.filter((col) => validSet.has(col));

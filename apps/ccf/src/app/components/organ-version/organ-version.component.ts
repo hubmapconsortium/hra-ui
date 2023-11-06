@@ -7,39 +7,68 @@ import { HeaderData } from '../table/header';
 import { TableData } from '../table/table';
 import { OrganData, VersionOrgans } from '../two-dim-image/two-dim-image';
 
+/** Displays 2D FTU's according to the selected version */
 @Component({
   selector: 'ccf-organ-version',
   templateUrl: './organ-version.component.html',
   styleUrls: ['./organ-version.component.scss'],
 })
 export class OrganVersionComponent implements OnInit {
+  /** Deatils of the release and version */
   @Input() versionData: ChooseVersion[] = [];
+
+  /** Deatils of version and organ data */
   @Input() organInfo: VersionOrgans[] = [];
+
+  /** Flag to view/hide organ ftu table */
   @Input() tableRequired: boolean = false;
+
+  /** Details of column definitions and headers */
   @Input() headerInfo: HeaderData[] = [];
+
+  /** Flag to view tissue details in multiple rows */
   @Input() isMultiRow: boolean = false;
 
+  /** Current selected version and it's organ data */
   info: VersionOrgans;
+
+  /** Organ data of current selected organ */
   organData: OrganData[];
+
+  /** Tile of the card */
   cardTitle = '';
+
+  /** Data for the FTU table */
   tableData: Observable<TableData[]> = EMPTY;
+
+  /** Columns to display in the FTU table */
   columns: Observable<string[]> = EMPTY;
+
+  /** Title for the FTU Table */
   tableTitle: string = '';
+
+  /** Images of the organs to be displayed in the tabs */
   filterImages: OrganData[];
+
+  /** Selected version from the version data */
   version: ChooseVersion;
 
+  /** Column definitons of the columns to be displayed */
   displayedColumnsData: string[] = [];
 
+  /** Creates instance of Router, ActivatedRoute, TableDataService */
   constructor(
     private router: Router,
     private readonly route: ActivatedRoute,
     private readonly dataService: TableDataService
   ) {}
 
+  /** Checks if both the strings are equal */
   iCaseEquals(str1: string, str2: string): boolean {
     return str1.toLowerCase() === str2.toLowerCase();
   }
 
+  /** Sets version and ftu data */
   ngOnInit(): void {
     const [
       {
@@ -65,6 +94,7 @@ export class OrganVersionComponent implements OnInit {
     }
   }
 
+  /** Sets version data according to the selected version and organ */
   setVersion(version: string, organ?: string): void {
     const info =
       this.organInfo.find((item) => this.iCaseEquals(item.version, version)) ??
@@ -78,6 +108,7 @@ export class OrganVersionComponent implements OnInit {
     this.setOrgan(organ ?? info.organData[0].name);
   }
 
+  /** Sets organ data according to the selected organ */
   setOrgan(organ: string): void {
     const {
       info: { organData, version },
@@ -97,6 +128,7 @@ export class OrganVersionComponent implements OnInit {
     }
   }
 
+  /** Updates the query parameters */
   updateQueryParams(params: Params): void {
     this.router.navigate([], {
       relativeTo: this.route,
@@ -105,6 +137,7 @@ export class OrganVersionComponent implements OnInit {
     });
   }
 
+  /** Sets the ftu table data with necessary columns */
   setFtu(organName: OrganData['name']): void {
     const data = this.dataService.getData(
       'ftu-cell-count-5th-release.csv',

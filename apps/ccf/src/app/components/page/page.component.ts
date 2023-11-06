@@ -11,16 +11,21 @@ import {
 import { ContentService } from '../../services/content/content.service';
 import { PageDef } from '../page-element/page-def';
 
+/** Calls page renderer with data from yaml files*/
 @Component({
   selector: 'page',
   templateUrl: './page.component.html',
   styleUrls: ['./page.component.scss'],
 })
 export class PageComponent {
+  /** Observable of file content */
   readonly data$ = this.resolveData();
 
+  /** Landing page file name */
   private readonly LANDING_PAGE_FILE = 'landing-page';
 
+  /** Creates instance of Router, ActivatedRoute, ErrorHandler,
+   * ContentService and invokes addScrollToTopListener */
   constructor(
     private readonly router: Router,
     private readonly route: ActivatedRoute,
@@ -30,6 +35,7 @@ export class PageComponent {
     this.addScrollToTopListener();
   }
 
+  /** Returns an observable of page content */
   private resolveData(): Observable<PageDef[]> {
     const loadData = (file: string) =>
       this.contentService.getContent(file).pipe(
@@ -51,6 +57,7 @@ export class PageComponent {
     );
   }
 
+  /** Scrolls to the top of the page when the URL is changed */
   private addScrollToTopListener(): void {
     this.route.url.pipe(distinctUntilChanged()).subscribe(() => {
       setTimeout(() => {
@@ -67,6 +74,7 @@ export class PageComponent {
     });
   }
 
+  /** Returns a valid file name */
   private getFileName(url: string): string {
     return url.slice(1).split('#')[0].split('?')[0] || this.LANDING_PAGE_FILE;
   }

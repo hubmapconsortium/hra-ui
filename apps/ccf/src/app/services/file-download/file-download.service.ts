@@ -1,15 +1,18 @@
 import { DOCUMENT } from '@angular/common';
 import { ErrorHandler, Inject, Injectable } from '@angular/core';
 
+/** Service for downloading the files using fetch */
 @Injectable({
   providedIn: 'root',
 })
 export class FileDownloadService {
+  /** Initializes the Document and ErrorHandler */
   constructor(
     @Inject(DOCUMENT) private readonly document: Document,
     private readonly errorHandler: ErrorHandler
   ) {}
 
+  /** Creates a file like object and downloads it */
   async download(url: string, filename = this.getFilename(url)): Promise<void> {
     let blobUrl: string | undefined;
 
@@ -32,10 +35,12 @@ export class FileDownloadService {
     }
   }
 
+  /** Returns the file name from the URL */
   private getFilename(url: string): string {
     return url.split('\\').pop()?.split('/').pop() ?? '';
   }
 
+  /** Constructs an anchor element to download the file */
   private createDownloadEl(blobUrl: string, filename: string): void {
     const el = this.document.createElement('a');
     el.href = blobUrl;

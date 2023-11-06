@@ -6,7 +6,13 @@
     "default": {
       "runner": "nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "test", "lint"],
+        "cacheableOperations": [
+          "build",
+          "test",
+          "lint",
+          "compodoc",
+          "compodoc-json"
+        ],
         "accessToken": "ZDllYjhmZjQtM2U2MC00NjYwLTg5MWEtZTZkODZiZmIyY2Q2fHJlYWQtd3JpdGU="
       }
     }
