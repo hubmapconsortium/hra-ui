@@ -35,7 +35,6 @@
 
     ::ng-deep .table-tab-header {
       padding-left: 2rem;
-      border-left: 0.063rem solid #d3d3d3;
       border-bottom: 0.063rem solid #d3d3d3;
       background-color: white;
       font-weight: 400;
@@ -44,6 +43,10 @@
       justify-content: left;
       width: 33%;
       height: 3.5rem;
+
+      &:not(:first-child) {
+        border-left: 0.063rem solid #d3d3d3;
+      }
 
       &:last-child {
         border-right: 0.063rem solid #d3d3d3;
