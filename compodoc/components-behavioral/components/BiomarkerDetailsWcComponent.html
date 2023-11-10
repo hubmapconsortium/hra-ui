@@ -1211,6 +1211,7 @@ export class BiomarkerDetailsWcComponent {
     max-width: 100%;
     overflow: auto;
     border: 0.063rem solid #d3d3d3;
+    height: calc(100% - 3.5rem);
 
     ::ng-deep .table-tab-header {
       padding-left: 1rem;
@@ -1236,6 +1237,10 @@ export class BiomarkerDetailsWcComponent {
         --palette-accent-500-rgb: #243142;
       }
     }
+  }
+
+  hra-interactive-svg {
+    height: calc(100% - 3px);
   }
 
   hra-biomarker-table {
@@ -1282,7 +1287,7 @@ export class BiomarkerDetailsWcComponent {
       font-size: 0.75rem;
 
       .content {
-        width: 10rem;
+        width: 10rem !important;
       }
     }
 
@@ -1328,6 +1333,11 @@ export class BiomarkerDetailsWcComponent {
   .extraTab &gt; .mdc-tab__content &gt; span {
     color: vars.$primary;
   }
+
+  .mat-mdc-tab-body-wrapper {
+    height: calc(100% - 3rem);
+  }
+
   .mat-mdc-tab-group.mat-accent .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
     color: vars.$primary;
   }

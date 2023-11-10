@@ -357,7 +357,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: flex;\n  align-items: center;\n  padding: 0.75rem 2rem;\n  background: #f8f9fa;\n  font-family: 'Inter';\n\n  .filler {\n    flex-grow: 1;\n  }\n}\n",
+                    "data": ":host {\n  display: flex;\n  align-items: center;\n  padding: 0.75rem 2rem;\n  background: #f8f9fa;\n  font-family: 'Inter';\n  font-size: 1rem;\n\n  .filler {\n    flex-grow: 1;\n  }\n}\n",
                     "styleUrl": "./label-box.component.scss"
                 }
             ],

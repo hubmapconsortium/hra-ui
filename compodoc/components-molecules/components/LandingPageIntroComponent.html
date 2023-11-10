@@ -418,7 +418,7 @@ export class LandingPageIntroComponent {
 
 &lt;button mat-flat-button class&#x3D;&quot;more-button red-theme&quot; color&#x3D;&quot;primary&quot; [hraLink]&#x3D;&quot;moreLink&quot;&gt;
   {{ moreText }}
-  &lt;mat-icon iconPositionEnd&gt;arrow_right_alt&lt;/mat-icon&gt;
+  &lt;mat-icon iconPositionEnd&gt;arrow_forward&lt;/mat-icon&gt;
 &lt;/button&gt;
 &lt;markdown class&#x3D;&quot;partners&quot; [data]&#x3D;&quot;partners&quot;&gt;&lt;/markdown&gt;
 
@@ -470,6 +470,14 @@ export class LandingPageIntroComponent {
       color: vars.$primary-rgb;
       font-weight: 700;
     }
+  }
+
+  mat-icon {
+    font-size: 1.5rem;
+    height: fit-content;
+    width: fit-content;
+    padding-right: 0.5rem;
+    margin-left: 0.25rem !important;
   }
 
   .red-theme {
@@ -540,7 +548,7 @@ export class LandingPageIntroComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><h1 class="title">{{ title }}</h1><markdown class="description" [data]="description"></markdown><button mat-flat-button class="more-button red-theme" color="primary" [hraLink]="moreLink">  {{ moreText }}  <mat-icon iconPositionEnd>arrow_right_alt</mat-icon></button><markdown class="partners" [data]="partners"></markdown><img class="image" [src]="img" alt="alt" /></div>'
+        var COMPONENT_TEMPLATE = '<div><h1 class="title">{{ title }}</h1><markdown class="description" [data]="description"></markdown><button mat-flat-button class="more-button red-theme" color="primary" [hraLink]="moreLink">  {{ moreText }}  <mat-icon iconPositionEnd>arrow_forward</mat-icon></button><markdown class="partners" [data]="partners"></markdown><img class="image" [src]="img" alt="alt" /></div>'
     var COMPONENTS = [{'name': 'BiomarkerTableDataCardComponent', 'selector': 'hra-biomarker-table-data-card'},{'name': 'BiomarkerTableDataIconComponent', 'selector': 'hra-biomarker-table-data-icon'},{'name': 'ContactModalComponent', 'selector': 'hra-contact-modal'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenContainerComponent', 'selector': 'hra-fullscreen-container'},{'name': 'FullscreenContentComponent', 'selector': 'hra-fullscreen-content'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'HraLandingPageIntroWcComponent', 'selector': 'hra-ui-hra-landing-page-intro-wc'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InteractiveSvgComponent', 'selector': 'hra-interactive-svg'},{'name': 'LandingPageInDepthComponent', 'selector': 'hra-landing-page-in-depth'},{'name': 'LandingPageIntroComponent', 'selector': 'hra-landing-page-intro'},{'name': 'MetricsComponent', 'selector': 'hra-metrics'},{'name': 'ScreenSizeNoticeComponent', 'selector': 'hra-screen-size-notice'},{'name': 'SourceListComponent', 'selector': 'hra-source-list'},{'name': 'TissueTreeListComponent', 'selector': 'hra-tissue-tree-list'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LandingPageIntroComponent'};

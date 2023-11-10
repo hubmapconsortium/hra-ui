@@ -1017,43 +1017,49 @@ export class InteractiveSvgComponent&lt;T extends NodeMapEntry&gt; implements On
                 <p class="comment">
                     <code>./interactive-svg.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">.svg {
-  max-height: calc(100vh - 14rem);
-  overflow-y: auto;
-}
-svg {
-  max-height: calc(100vh - 10rem);
-  width: 100%;
-}
+                <pre class="line-numbers"><code class="language-scss">:host {
+  display: flex;
+  justify-content: center;
 
-#Crosswalk {
-  :is(path, polygon, polyline),
-  .hover-active &amp; .inset-group:hover :is(path, polygon, polyline) {
-    fill: transparent;
-    stroke: transparent;
+  .svg {
+    max-width: 100%;
+    max-height: 100%;
   }
 
-  .hover-active &amp; g:hover :is(path, polygon, polyline),
-  .hover-active &amp; .inset-group &gt; g:hover :is(path, polygon, polyline),
-  .click-active {
-    fill: hsl(0deg 100% 50%);
-    mix-blend-mode: saturation;
+  svg {
+    width: 100%;
+    height: 100%;
   }
-}
 
-::-webkit-scrollbar {
-  width: 0.5rem;
-  height: 0.5rem;
-}
+  #Crosswalk {
+    :is(path, polygon, polyline),
+    .hover-active &amp; .inset-group:hover :is(path, polygon, polyline) {
+      fill: transparent;
+      stroke: transparent;
+    }
 
-::-webkit-scrollbar-track {
-  background: #f8f9fa;
-  border: 0.063rem solid #d3d3d3;
-}
+    .hover-active &amp; g:hover :is(path, polygon, polyline),
+    .hover-active &amp; .inset-group &gt; g:hover :is(path, polygon, polyline),
+    .click-active {
+      fill: hsl(0deg 100% 50%);
+      mix-blend-mode: saturation;
+    }
+  }
 
-::-webkit-scrollbar-thumb {
-  background: #a0abb4;
-  border-radius: 0.5rem;
+  ::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f8f9fa;
+    border: 0.063rem solid #d3d3d3;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #a0abb4;
+    border-radius: 0.5rem;
+  }
 }
 </code></pre>
     </div>

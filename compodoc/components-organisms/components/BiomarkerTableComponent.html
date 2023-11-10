@@ -1359,11 +1359,16 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
     background-color: #fff7f8;
     color: #59264d;
     text-align: right;
+    font-weight: 400;
   }
 
   .table td {
     border-bottom: 0.063rem solid #d3d3d3;
     border-left: 0.063rem solid #d3d3d3;
+  }
+
+  .table tr {
+    height: 3rem;
   }
 
   .table tr:first-child td {
@@ -1403,7 +1408,7 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
     min-width: 6.5rem;
   }
 
-  .count:not(:first-child) {
+  th:not(:first-child) {
     border-left: solid #d3d3d3 1px;
   }
 
