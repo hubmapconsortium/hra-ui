@@ -2,11 +2,9 @@
 
 :host {
   ::ng-deep .extraTab {
-    border: 0.063rem solid #d3d3d3;
     border-top: 0;
     padding-left: 1rem;
     padding-right: 1rem;
-    border-left: 0.063rem solid #d3d3d3;
     border-bottom: 0.063rem solid #d3d3d3;
     background-color: white;
     font-weight: 400;
@@ -15,6 +13,7 @@
 
     &:last-child {
       border-right: 0.063rem solid #d3d3d3;
+      border-left: 0.063rem solid #d3d3d3;
     }
 
     &.mdc-tab-indicator--active {
@@ -32,6 +31,7 @@
   .table-header {
     grid-area: table-header;
     border: 0.063rem solid #d3d3d3;
+    border-bottom: none;
     width: 43rem;
     height: 3.5rem;
     span {

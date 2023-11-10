@@ -92,7 +92,7 @@
 
 ::ng-deep ::ng-deep {
   .svg {
-    max-height: fit-content !important;
+    max-height: calc(100% - 3px) !important;
   }
   .table-header {
     width: auto !important;

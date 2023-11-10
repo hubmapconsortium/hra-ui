@@ -1,5 +1,7 @@
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+
   hra-label-box {
     border-bottom: 0.063rem solid #d3d3d3;
     width: 100%;
