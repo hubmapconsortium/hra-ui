@@ -1,10 +1,12 @@
 .svg {
-  max-height: calc(100vh - 14rem);
+  display: flex;
+  justify-content: center;
   overflow-y: auto;
 }
+
 svg {
-  max-height: calc(100vh - 10rem);
-  width: 100%;
+  height: calc(100vh - 13.5rem);
+  max-width: 100%;
 }
 
 #Crosswalk {
