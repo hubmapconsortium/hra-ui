@@ -20,7 +20,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
       state(
         'false',
         style({
-          width: '50%',
+          width: '40%',
           position: 'absolute',
           right: 0,
         })
