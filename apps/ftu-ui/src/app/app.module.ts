@@ -14,7 +14,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { initFactory } from './app.init';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -48,6 +48,10 @@ import { environment } from '../environments/environment';
       provide: APP_INITIALIZER,
       useFactory: initFactory,
       multi: true,
+    },
+    {
+      provide: MatDialogRef,
+      useValue: {},
     },
   ],
 })

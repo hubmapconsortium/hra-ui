@@ -2,26 +2,27 @@ import {
   AfterContentInit,
   Component,
   HostBinding,
+  HostListener,
+  inject,
   Injector,
   Input,
   OnChanges,
   OnInit,
   Output,
   SimpleChanges,
-  inject,
 } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { dispatch, dispatch$, select$, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import {
+  createLinkId,
   LinkRegistryActions,
   ResourceRegistryActions,
   StorageId,
   StorageSelectors,
-  createLinkId,
 } from '@hra-ui/cdk/state';
 import { ScreenNoticeBehaviorComponent } from '@hra-ui/components/behavioral';
-import { FtuDataImplEndpoints, FTU_DATA_IMPL_ENDPOINTS, Iri } from '@hra-ui/services';
+import { FTU_DATA_IMPL_ENDPOINTS, FtuDataImplEndpoints, Iri } from '@hra-ui/services';
 import {
   ActiveFtuActions,
   ActiveFtuSelectors,
@@ -42,6 +43,7 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   @HostBinding('class.mat-typography') readonly matTypography = true;
 
   readonly SMALL_VIEWPORT_THRESHOLD = 480; // In pixels
+  readonly WINDOW_RESIZE_THRESHOLD = 1600; // In pixels
   readonly tissues = select$(TissueLibrarySelectors.tissues);
 
   @Input() set linksYamlUrl(url: string) {
@@ -88,8 +90,15 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
 
   private readonly dialog = inject(MatDialog);
 
+  private ref = inject(MatDialogRef<ScreenNoticeBehaviorComponent>);
+
   constructor() {
     inject(Router).initialNavigation();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize(): void {
+    this.detectSmallViewport();
   }
 
   ngAfterContentInit(): void {
@@ -97,16 +106,26 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   }
 
   detectSmallViewport(): void {
-    if (window.innerWidth <= this.SMALL_VIEWPORT_THRESHOLD && !this.hasShownSmallViewportNotice()) {
+    if (
+      window.innerWidth <= this.SMALL_VIEWPORT_THRESHOLD &&
+      !this.hasShownSmallViewportNotice() &&
+      !this.screenSizeNoticeOpen
+    ) {
       const dialogConfig: MatDialogConfig = {
-        width: '312px',
         disableClose: false,
         panelClass: 'custom-overlay',
+        hasBackdrop: false,
+        minWidth: '19.5rem',
       };
 
-      const ref = this.dialog.open(ScreenNoticeBehaviorComponent, dialogConfig);
-      ref.afterClosed().subscribe(() => (this.screenSizeNoticeOpen = false));
+      this.ref = this.dialog.open(ScreenNoticeBehaviorComponent, dialogConfig);
+      this.ref.afterClosed().subscribe(() => (this.screenSizeNoticeOpen = false));
       this.screenSizeNoticeOpen = true;
+    }
+
+    if (window.innerWidth > this.SMALL_VIEWPORT_THRESHOLD) {
+      this.screenSizeNoticeOpen = false;
+      this.dialog.closeAll();
     }
   }
 
