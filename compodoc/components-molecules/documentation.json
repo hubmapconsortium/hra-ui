@@ -1970,12 +1970,12 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: none;\n  position: relative;\n  border-radius: 0.5rem;\n  padding: 1.5rem;\n  flex-direction: column;\n\n  .header-close {\n    position: absolute;\n    top: 0.625rem;\n    right: 1rem;\n  }\n\n  h3 {\n    margin: 0 0 1rem 0;\n    font-weight: 700;\n  }\n\n  .btn-stroked {\n    font-weight: 700;\n    margin-bottom: 1rem;\n    margin-top: 1rem;\n    padding: 0.75rem 0;\n    letter-spacing: 0.5px;\n  }\n\n  .btn-flat {\n    font-weight: 700;\n    font-size: 16px;\n    padding: 0.75rem 0;\n    letter-spacing: 0.5px;\n    color: white;\n  }\n\n  .content {\n    font-size: 1rem;\n    line-height: 1.5rem;\n    letter-spacing: 0.5px;\n  }\n\n  @media (max-width: 480px) {\n    display: flex;\n  }\n}\n",
+                    "data": ":host {\n  display: none;\n  position: relative;\n  border-radius: 0.5rem;\n  padding: 1.5rem;\n  flex-direction: column;\n  font-family: 'Inter';\n\n  .header-close {\n    position: absolute;\n    top: 1.125rem;\n    right: 1rem;\n  }\n\n  h3 {\n    margin: 0;\n    height: 2.5rem;\n    line-height: 2.5rem;\n  }\n\n  button {\n    height: 3rem;\n    padding: 0.75rem 0;\n    letter-spacing: 0.5px;\n  }\n\n  .btn-stroked {\n    margin-bottom: 1rem;\n  }\n\n  .content {\n    font-size: 1rem;\n    line-height: 1.5rem;\n    letter-spacing: 0.5px;\n  }\n\n  @media (max-width: 480px) {\n    display: flex;\n  }\n}\n",
                     "styleUrl": "./screen-size-notice.component.scss"
                 }
             ],
             "stylesData": "",
-            "templateData": "<h3>Screen Size Notice</h3>\n<button mat-icon-button class=\"header-close\" (click)=\"proceedClick.emit()\">\n  <mat-icon>close</mat-icon>\n</button>\n<markdown [data]=\"content\" class=\"content\"></markdown>\n<button mat-stroked-button color=\"accent\" class=\"btn-stroked\" (click)=\"proceedClick.emit()\">\n  Proceed to FTU Explorer\n</button>\n<a mat-flat-button color=\"primary\" class=\"btn-flat\" [hraLink]=\"portal\"> Human Reference Atlas Portal </a>\n"
+            "templateData": "<h3>Screen Size Notice</h3>\n<button mat-icon-button class=\"header-close\" (click)=\"proceedClick.emit()\">\n  <mat-icon>close</mat-icon>\n</button>\n<markdown [data]=\"content\" class=\"content\"></markdown>\n<button mat-stroked-button color=\"accent\" class=\"btn-stroked\" (click)=\"proceedClick.emit()\">\n  Proceed to FTU Explorer\n</button>\n<button mat-flat-button color=\"primary\" class=\"btn-flat\" [hraLink]=\"portal\">Human Reference Atlas Portal</button>\n"
         },
         {
             "name": "SourceListComponent",

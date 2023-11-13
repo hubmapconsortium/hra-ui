@@ -321,7 +321,7 @@ export class ScreenSizeNoticeComponent {
 &lt;button mat-stroked-button color&#x3D;&quot;accent&quot; class&#x3D;&quot;btn-stroked&quot; (click)&#x3D;&quot;proceedClick.emit()&quot;&gt;
   Proceed to FTU Explorer
 &lt;/button&gt;
-&lt;a mat-flat-button color&#x3D;&quot;primary&quot; class&#x3D;&quot;btn-flat&quot; [hraLink]&#x3D;&quot;portal&quot;&gt; Human Reference Atlas Portal &lt;/a&gt;
+&lt;button mat-flat-button color&#x3D;&quot;primary&quot; class&#x3D;&quot;btn-flat&quot; [hraLink]&#x3D;&quot;portal&quot;&gt;Human Reference Atlas Portal&lt;/button&gt;
 </code></pre>
     </div>
 
@@ -335,32 +335,28 @@ export class ScreenSizeNoticeComponent {
   border-radius: 0.5rem;
   padding: 1.5rem;
   flex-direction: column;
+  font-family: &#x27;Inter&#x27;;
 
   .header-close {
     position: absolute;
-    top: 0.625rem;
+    top: 1.125rem;
     right: 1rem;
   }
 
   h3 {
-    margin: 0 0 1rem 0;
-    font-weight: 700;
+    margin: 0;
+    height: 2.5rem;
+    line-height: 2.5rem;
+  }
+
+  button {
+    height: 3rem;
+    padding: 0.75rem 0;
+    letter-spacing: 0.5px;
   }
 
   .btn-stroked {
-    font-weight: 700;
     margin-bottom: 1rem;
-    margin-top: 1rem;
-    padding: 0.75rem 0;
-    letter-spacing: 0.5px;
-  }
-
-  .btn-flat {
-    font-weight: 700;
-    font-size: 16px;
-    padding: 0.75rem 0;
-    letter-spacing: 0.5px;
-    color: white;
   }
 
   .content {
@@ -401,7 +397,7 @@ export class ScreenSizeNoticeComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><h3>Screen Size Notice</h3><button mat-icon-button class="header-close" (click)="proceedClick.emit()">  <mat-icon>close</mat-icon></button><markdown [data]="content" class="content"></markdown><button mat-stroked-button color="accent" class="btn-stroked" (click)="proceedClick.emit()">  Proceed to FTU Explorer</button><a mat-flat-button color="primary" class="btn-flat" [hraLink]="portal"> Human Reference Atlas Portal </a></div>'
+        var COMPONENT_TEMPLATE = '<div><h3>Screen Size Notice</h3><button mat-icon-button class="header-close" (click)="proceedClick.emit()">  <mat-icon>close</mat-icon></button><markdown [data]="content" class="content"></markdown><button mat-stroked-button color="accent" class="btn-stroked" (click)="proceedClick.emit()">  Proceed to FTU Explorer</button><button mat-flat-button color="primary" class="btn-flat" [hraLink]="portal">Human Reference Atlas Portal</button></div>'
     var COMPONENTS = [{'name': 'BiomarkerTableDataCardComponent', 'selector': 'hra-biomarker-table-data-card'},{'name': 'BiomarkerTableDataIconComponent', 'selector': 'hra-biomarker-table-data-icon'},{'name': 'ContactModalComponent', 'selector': 'hra-contact-modal'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenContainerComponent', 'selector': 'hra-fullscreen-container'},{'name': 'FullscreenContentComponent', 'selector': 'hra-fullscreen-content'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'HraLandingPageIntroWcComponent', 'selector': 'hra-ui-hra-landing-page-intro-wc'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InteractiveSvgComponent', 'selector': 'hra-interactive-svg'},{'name': 'LandingPageInDepthComponent', 'selector': 'hra-landing-page-in-depth'},{'name': 'LandingPageIntroComponent', 'selector': 'hra-landing-page-intro'},{'name': 'MetricsComponent', 'selector': 'hra-metrics'},{'name': 'ScreenSizeNoticeComponent', 'selector': 'hra-screen-size-notice'},{'name': 'SourceListComponent', 'selector': 'hra-source-list'},{'name': 'TissueTreeListComponent', 'selector': 'hra-tissue-tree-list'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ScreenSizeNoticeComponent'};
