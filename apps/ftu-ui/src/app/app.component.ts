@@ -3,26 +3,26 @@ import {
   Component,
   HostBinding,
   HostListener,
+  inject,
   Injector,
   Input,
   OnChanges,
   OnInit,
   Output,
   SimpleChanges,
-  inject,
 } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { dispatch, dispatch$, select$, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import {
+  createLinkId,
   LinkRegistryActions,
   ResourceRegistryActions,
   StorageId,
   StorageSelectors,
-  createLinkId,
 } from '@hra-ui/cdk/state';
 import { ScreenNoticeBehaviorComponent } from '@hra-ui/components/behavioral';
-import { FtuDataImplEndpoints, FTU_DATA_IMPL_ENDPOINTS, Iri } from '@hra-ui/services';
+import { FTU_DATA_IMPL_ENDPOINTS, FtuDataImplEndpoints, Iri } from '@hra-ui/services';
 import {
   ActiveFtuActions,
   ActiveFtuSelectors,
@@ -45,7 +45,6 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   readonly SMALL_VIEWPORT_THRESHOLD = 480; // In pixels
   readonly WINDOW_RESIZE_THRESHOLD = 1600; // In pixels
   readonly tissues = select$(TissueLibrarySelectors.tissues);
-  ref: any;
 
   @Input() set linksYamlUrl(url: string) {
     this.loadLinks(url);
@@ -91,7 +90,7 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
 
   private readonly dialog = inject(MatDialog);
 
-  // private readonly dialogRef = inject(MatDialogRef<ScreenNoticeBehaviorComponent>);
+  private ref = inject(MatDialogRef<ScreenNoticeBehaviorComponent>);
 
   constructor() {
     inject(Router).initialNavigation();
@@ -107,21 +106,26 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   }
 
   detectSmallViewport(): void {
-    if (window.innerWidth <= this.WINDOW_RESIZE_THRESHOLD && !this.hasShownSmallViewportNotice()) {
+    if (
+      window.innerWidth <= this.SMALL_VIEWPORT_THRESHOLD &&
+      !this.hasShownSmallViewportNotice() &&
+      !this.screenSizeNoticeOpen
+    ) {
       const dialogConfig: MatDialogConfig = {
-        width: '312px',
         disableClose: false,
         panelClass: 'custom-overlay',
+        hasBackdrop: false,
+        minWidth: '19.5rem',
       };
 
       this.ref = this.dialog.open(ScreenNoticeBehaviorComponent, dialogConfig);
       this.ref.afterClosed().subscribe(() => (this.screenSizeNoticeOpen = false));
       this.screenSizeNoticeOpen = true;
-    } else {
+    }
+
+    if (window.innerWidth > this.SMALL_VIEWPORT_THRESHOLD) {
       this.screenSizeNoticeOpen = false;
-      if (this.ref) {
-        this.dialog.closeAll();
-      }
+      this.dialog.closeAll();
     }
   }
 
