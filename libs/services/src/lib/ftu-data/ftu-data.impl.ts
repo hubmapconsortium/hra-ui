@@ -60,13 +60,14 @@ const ILLUSTRATIONS = z.object({
     representation_of: z.string(),
     illustration_files: z
       .object({
-        file: URL,
+        file: z.string(),
         file_format: z.string(),
       })
       .array(),
     mapping: z
       .object({
         svg_id: z.string(),
+        svg_group_id: z.string(),
         label: z.string(),
         representation_of: z.string(),
       })
@@ -100,11 +101,16 @@ const CELL_SUMMARIES = z.object({
     biomarker_type: z.string(),
     summary: z
       .object({
-        cell_id: IRI,
+        cell_id: z.string(),
         cell_label: z.string(),
-        gene_id: IRI,
-        gene_label: z.string(),
-        mean_expression: z.number(),
+        genes: z
+          .object({
+            '@type': z.string(),
+            gene_id: z.string(),
+            gene_label: z.string(),
+            mean_expression: z.number(),
+          })
+          .array(),
         count: z.number(),
         percentage: z.number(),
         dataset_count: z.number().optional(),
@@ -166,7 +172,7 @@ export class FtuDataImplService extends FtuDataService {
   @param iri The Iri of the illustration.
   @returns An Observable that emits the mock URL.
   */
-  override getIllustrationUrl(iri: Iri): Observable<Url> {
+  override getIllustrationUrl(iri: Iri): Observable<Url | string> {
     return this.getDataFileReferences(iri).pipe(map((data) => this.findIllustrationUrl(data)));
   }
 
@@ -278,7 +284,7 @@ export class FtuDataImplService extends FtuDataService {
    * @param files
    * @returns illustration url
    */
-  private findIllustrationUrl(files: DataFileReference[]): Url {
+  private findIllustrationUrl(files: DataFileReference[]): string {
     const { fileFormatMapping } = this;
     const svgFormat = fileFormatMapping['image/svg+xml'];
     const ref = files.find(({ format }) => format === svgFormat);
@@ -295,12 +301,17 @@ export class FtuDataImplService extends FtuDataService {
    * @returns illustration mapping
    */
   private toIllustrationMapping(
-    mappings: { label: string; svg_id: string; representation_of: string }[]
+    mappings: { label: string; svg_id: string; svg_group_id: string; representation_of: string }[]
   ): IllustrationMappingItem[] {
     const ontologyIdPrefix = 'http://purl.obolibrary.org/obo/';
     const results: IllustrationMappingItem[] = [];
-    for (const { label, svg_id, representation_of } of mappings) {
-      results.push({ label, id: svg_id, ontologyId: representation_of.slice(ontologyIdPrefix.length) });
+    for (const { label, svg_id, svg_group_id, representation_of } of mappings) {
+      results.push({
+        label,
+        id: svg_id,
+        groupId: svg_group_id,
+        ontologyId: representation_of.slice(ontologyIdPrefix.length),
+      });
     }
 
     return results;
@@ -342,19 +353,31 @@ export class FtuDataImplService extends FtuDataService {
    * @returns
    */
   private constructCellSummaries(data: Cell_Summary['@graph']): CellSummary[] {
+    type SummaryItem = Cell_Summary['@graph'][number]['summary'][number];
     const cellSummary: CellSummary[] = [];
     const defaultBiomarkerLables = ['gene', 'protein', 'lipid'];
     const biomarkersPresent = new Set(data.map((summary) => summary.biomarker_type.toLowerCase()));
+    const expandGenes = (summary: SummaryItem) =>
+      summary.genes.map((gene) => ({
+        ...summary,
+        ...gene,
+      }));
+
     data.forEach((summaryGroup) => {
-      const cells = summaryGroup.summary.map((entry) => ({
+      const nestedSummaries = summaryGroup.summary.map(expandGenes);
+      const summary = nestedSummaries.reduce((acc, items) => acc.concat(items), [] as (typeof nestedSummaries)[number]);
+
+      const cells = summary.map((entry) => ({
         id: entry.cell_id as Iri,
         label: entry.cell_label,
       }));
-      const biomarkers = summaryGroup.summary.map((entry) => ({
+
+      const biomarkers = summary.map((entry) => ({
         id: entry.gene_id as Iri,
         label: entry.gene_label,
       }));
-      const summaries = summaryGroup.summary.map((entry) => ({
+
+      const summaries = summary.map((entry) => ({
         cell: entry.cell_id as Iri,
         biomarker: entry.gene_id as Iri,
         count: entry.count,
@@ -362,6 +385,7 @@ export class FtuDataImplService extends FtuDataService {
         meanExpression: entry.mean_expression,
         dataset_count: entry.dataset_count,
       }));
+
       cellSummary.push({
         label: `${capitalize(summaryGroup.biomarker_type)} Biomarkers`,
         cells,
@@ -369,6 +393,7 @@ export class FtuDataImplService extends FtuDataService {
         summaries,
       });
     });
+
     defaultBiomarkerLables.forEach((defaultLabel) => {
       if (!biomarkersPresent.has(defaultLabel)) {
         cellSummary.push({

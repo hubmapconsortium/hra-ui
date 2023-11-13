@@ -81,6 +81,7 @@ describe('InteractiveSvgComponent', () => {
     const event3 = { target: path3, clientX: 10, clientY: 20 };
     const testNode: NodeMapEntry = {
       id: 'Cortical_Collecting_Duct_Principal_Cell_1',
+      groupId: 'Cortical_Collecting_Duct_Principal_Cell',
       label: 'kidney cortex collecting duct principal cell',
       ontologyId: 'CL_1000714',
     };
@@ -141,6 +142,7 @@ describe('InteractiveSvgComponent', () => {
   it('highlights elements based on highlightId', async () => {
     const testNode: NodeMapEntry = {
       id: 'Cortical_Collecting_Duct_Principal_Cell_1',
+      groupId: 'Cortical_Collecting_Duct_Principal_Cell',
       label: 'kidney cortex collecting duct principal cell',
       ontologyId: 'CL_1000714',
     };

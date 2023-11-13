@@ -25,6 +25,7 @@
     place-self: center;
     width: 100%;
     height: auto;
+    max-height: 30rem;
   }
 
   .description,
@@ -37,6 +38,14 @@
       color: vars.$primary-rgb;
       font-weight: 700;
     }
+  }
+
+  mat-icon {
+    font-size: 1.5rem;
+    height: fit-content;
+    width: fit-content;
+    padding-right: 0.5rem;
+    margin-left: 0.25rem !important;
   }
 
   .red-theme {

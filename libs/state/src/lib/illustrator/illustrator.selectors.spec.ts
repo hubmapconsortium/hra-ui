@@ -8,11 +8,13 @@ describe('IllustratorSelectors', () => {
     selectedOnHover: {
       label: ' ',
       id: ' ',
+      groupId: ' ',
       ontologyId: ' ',
     },
     selectedOnClick: {
       label: ' ',
       id: ' ',
+      groupId: ' ',
       ontologyId: ' ',
     },
     mapping: [],
@@ -27,6 +29,7 @@ describe('IllustratorSelectors', () => {
     const testSelectedOnHover: IllustrationMappingItem = {
       label: ' ',
       id: ' ',
+      groupId: ' ',
       ontologyId: ' ',
     };
     const result = IllustratorSelectors.selectedOnHovered(state);
@@ -37,6 +40,7 @@ describe('IllustratorSelectors', () => {
     const testSelectedOnClick: IllustrationMappingItem = {
       label: ' ',
       id: ' ',
+      groupId: ' ',
       ontologyId: ' ',
     };
     const result = IllustratorSelectors.selectedOnClicked(state);

@@ -118,6 +118,7 @@ export class AppWebComponent implements OnChanges {
       return {
         label: entry.label,
         id: entry.svg_id,
+        groupId: entry.svg_group_id,
         ontologyId: entry.representation_of.split('/').slice(-1)[0],
       };
     });

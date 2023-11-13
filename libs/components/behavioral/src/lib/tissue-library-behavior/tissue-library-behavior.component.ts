@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
-import { select$, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { dispatch, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { LinkRegistryActions } from '@hra-ui/cdk/state';
+import { LabelBoxComponent } from '@hra-ui/components/atoms';
 import { TissueTreeListComponent } from '@hra-ui/components/molecules';
 import { Tissue } from '@hra-ui/services';
 import { ActiveFtuSelectors, TissueLibrarySelectors } from '@hra-ui/state';
-import { LabelBoxComponent } from '@hra-ui/components/atoms';
 
 /**
  * Component for Tissue Library Behavior
@@ -28,19 +29,22 @@ export class TissueLibraryBehaviorComponent {
    * Input for tissues data
    */
   readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);
+
   /**
    * Selected  of tissue library behavior component
    */
   selected?: Tissue;
 
   /**
-   * Sets the TissueItem instance as undefined if
-   * the url is undefined
+   * Navigates to a tissue page
+   */
+  navigate = dispatch(LinkRegistryActions.Navigate);
+
+  /**
+   * Sets the TissueItem instance as undefined if the url is undefined
    */
   constructor() {
-    /** Get iris from the observable else reset selection if
-     * iri is undefined
-     */
+    /** Get iris from the observable else reset selection if iri is undefined */
     select$(ActiveFtuSelectors.iri).subscribe((iri) => {
       this.selected = iri && this.tissues()[iri];
       if (iri === undefined) {

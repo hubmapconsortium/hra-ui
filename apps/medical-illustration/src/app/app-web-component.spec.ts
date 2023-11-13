@@ -41,6 +41,7 @@ describe('AppWebComponent', () => {
         '@id': 'https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle#Ascending_Thin_Limb_Cell_1',
         '@type': 'FtuIllustrationNode',
         svg_id: 'Ascending_Thin_Limb_Cell_1',
+        svg_group_id: 'Ascending_Thin_Limb_Cell',
         label: 'kidney loop of Henle thin ascending limb epithelial cell',
         representation_of: 'http://purl.obolibrary.org/obo/CL_1001107',
       },

@@ -10,7 +10,7 @@ export class IllustratorSelectors {
    * Returns the url for the illustrator
    */
   @Selector([IllustratorState])
-  static url({ url }: IllustratorModel): Url | undefined {
+  static url({ url }: IllustratorModel): Url | string | undefined {
     return url;
   }
 
