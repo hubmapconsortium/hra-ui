@@ -47,4 +47,14 @@
       }
     }
   }
+
+  @media (max-width: 1400px) {
+    .metrics {
+      flex-wrap: wrap;
+
+      .metric {
+        width: 31%;
+      }
+    }
+  }
 }
