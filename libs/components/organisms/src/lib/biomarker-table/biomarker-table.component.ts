@@ -82,7 +82,9 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   @Input() sizes: SizeLegend[] = [];
 
   /**Cell name which is hovered, used for highlighting */
-  @Input() hightlightedCellName = '';
+  @Input() highlightedCellName = '';
+
+  @Input() illustrationIds: string[] = [];
 
   /** Getter method to provide the definations of the columns */
   get columnsWithTypeAndCount(): string[] {
@@ -100,6 +102,34 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
     if ('data' in changes) {
       this.dataSource.data = this.data;
     }
+
+    if ('illustrationIds' in changes) {
+      if (changes['illustrationIds'].currentValue?.toString() == changes['illustrationIds'].previousValue?.toString()) {
+        return;
+      } else {
+        this.sortTable();
+      }
+    }
+  }
+
+  private sortTable(): void {
+    this.dataSource.data = this.data.sort((a, b) => {
+      const id1 = this.illustrationIds.includes(this.getRowId(a));
+      const id2 = this.illustrationIds.includes(this.getRowId(b));
+      return id1 && !id2 ? -1 : 1;
+    });
+  }
+
+  private getRowId(row: DataRow<T>): string {
+    const idSet = new Set();
+    for (const column of row) {
+      idSet.add((column as T)?.data?.cell.match('[^/]*$')?.[0]);
+    }
+    return Array.from(idSet).filter((item) => item)[0] as string;
+  }
+
+  isHighlighted(name: string) {
+    return name.toLowerCase() === this.highlightedCellName.toLowerCase();
   }
 
   /** Lerp function to give value beween min and max value based on the given value

@@ -87,6 +87,8 @@ export class BiomarkerDetailsComponent {
   /** Selects the cells hovered currently to highlight in table */
   readonly selectedOnHovered = selectSnapshot(IllustratorSelectors.selectedOnHovered);
 
+  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);
+
   /**
    * Gets tissue title from the list of tissues
    */
@@ -98,6 +100,11 @@ export class BiomarkerDetailsComponent {
     }
     const { id, label } = tissues[iri];
     return { id, label };
+  }
+
+  get illustrationIds(): string[] {
+    const ids = this.mapping().map((data) => data.ontologyId);
+    return ids.filter((value, index, self) => self.indexOf(value) === index);
   }
 
   /**
