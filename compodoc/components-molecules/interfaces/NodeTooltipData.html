@@ -345,7 +345,8 @@ export class InteractiveSvgComponent&lt;T extends NodeMapEntry&gt; implements On
     }
 
     let id &#x3D; entry.id;
-    const element &#x3D; crosswalkEl.querySelector(&#x60;#${id}&#x60;);
+    const encodedId &#x3D; this.encodeId(entry.id);
+    const element &#x3D; crosswalkEl.querySelector(&#x60;#${id}, #${encodedId}&#x60;);
     if (!element) {
       return;
     } else if (element.nodeName !&#x3D;&#x3D; &#x27;g&#x27;) {
