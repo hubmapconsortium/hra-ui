@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  HostListener,
   Input,
   OnChanges,
   Output,
@@ -79,6 +80,16 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
   @Output() readonly selectedChange = new EventEmitter<T | undefined>();
 
   /**
+   * Navigates to an illustration page
+   */
+  @Output() navigate = new EventEmitter();
+
+  /**
+   * Whether keyboard navigation is enabled
+   */
+  enableNav = true;
+
+  /**
    * tree controller, used to control the nodes in the tree
    */
   readonly control = new FlatTreeControl<InternalNode<K, T>>(
@@ -113,10 +124,14 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
   ngOnChanges(changes: SimpleChanges): void {
     if ('nodes' in changes) {
       this.dataSource.data = this.findRootNodes();
+      this.selected = this.control.dataNodes[0].data;
     }
     if ('selected' in changes) {
       const path = this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];
-      this.expandPath(path);
+      const node = this.control.dataNodes.find((n) => n.data === changes['selected'].currentValue);
+      if (!node?.expandable) {
+        this.expandPath(path);
+      }
     }
   }
 
@@ -195,5 +210,68 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
     }
 
     return path;
+  }
+
+  /**
+   * Keyboard navigation for tissue tree list
+   * @param event Keyboard event
+   */
+  @HostListener('document:keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent): void {
+    if (!this.enableNav) {
+      return;
+    }
+    if (this.control) {
+      const nodes = this.control.dataNodes;
+      const selectedIndex = this.control.dataNodes.findIndex((node) => node.data.id === this.selected?.id);
+
+      const currentNode = nodes[selectedIndex];
+      if (currentNode && currentNode.expandable) {
+        const expandableNodes = nodes.filter((node) => node.expandable);
+        const index = expandableNodes.indexOf(currentNode);
+        if (event.key === 'ArrowLeft') {
+          this.control.collapse(currentNode);
+        } else if (event.key === 'ArrowRight') {
+          this.control.expand(currentNode);
+        } else if (
+          event.key === 'ArrowDown' &&
+          index + 1 < expandableNodes.length &&
+          !this.control.isExpanded(currentNode)
+        ) {
+          this.selectNode(expandableNodes[index + 1].data);
+          return;
+        } else if (event.key === 'ArrowUp' && index - 1 >= 0 && !this.control.isExpanded(expandableNodes[index - 1])) {
+          this.selectNode(expandableNodes[index - 1].data);
+          return;
+        }
+      }
+      if (event.key === 'ArrowDown' && selectedIndex + 1 < nodes.length) {
+        this.selectNode(nodes[selectedIndex + 1].data);
+      }
+      if (event.key === 'ArrowUp' && selectedIndex - 1 >= 0) {
+        this.selectNode(nodes[selectedIndex - 1].data);
+      }
+      if (event.key === 'Enter' && !currentNode.expandable) {
+        this.navigate.emit(currentNode.data);
+      }
+    }
+  }
+
+  /**
+   * Disable keyboard nav on click
+   */
+  @HostListener('document:click')
+  handlePageClick(): void {
+    this.enableNav = false;
+  }
+
+  /**
+   * Enables keyboard nav only if the tissue tree list is clicked
+   * @param event Click event
+   */
+  @HostListener('click', ['$event'])
+  handleListClick(event: MouseEvent): void {
+    event.stopPropagation();
+    this.enableNav = true;
   }
 }

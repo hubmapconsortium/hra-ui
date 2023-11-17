@@ -14,7 +14,8 @@
       [gradient]="gradients()"
       [sizes]="sizes()"
       [tissueInfo]="tissueInfo"
-      [hightlightedCellName]="selectedOnHovered()?.label ?? ''"
+      [highlightedCellName]="selectedOnHovered()?.label ?? ''"
+      [illustrationLabels]="illustrationLabels"
     ></hra-biomarker-table>
     <hra-empty-biomarker
       *ngIf="tab.rows.length === 0"

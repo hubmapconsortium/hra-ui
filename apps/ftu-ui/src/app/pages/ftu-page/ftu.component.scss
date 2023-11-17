@@ -1,11 +1,12 @@
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   overflow-y: hidden;
 
   .content-container {
     display: flex;
-    height: calc(100% - 5rem - 1px);
+    height: 100%;
 
     .illustration {
       width: 50%;
@@ -15,7 +16,6 @@
       &,
       .illustration-details {
         height: 100%;
-        background-color: #f8f9fa;
       }
 
       .illustration-details {

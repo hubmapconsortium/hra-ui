@@ -24,11 +24,15 @@
     grid-row: 1 / span 4;
     place-self: center;
     width: 100%;
-    height: auto;
+    min-height: 23rem;
+    max-height: 27rem;
   }
 
   .description,
   .partners {
+    font-size: 1rem;
+    line-height: 1.5rem;
+
     ::ng-deep p {
       margin: 0;
     }
@@ -37,6 +41,14 @@
       color: vars.$primary-rgb;
       font-weight: 700;
     }
+  }
+
+  mat-icon {
+    font-size: 1.5rem;
+    height: fit-content;
+    width: fit-content;
+    padding-right: 0.5rem;
+    margin-left: 0.25rem !important;
   }
 
   .red-theme {
@@ -76,6 +88,22 @@
     &:disabled {
       background-color: #ffd6db;
       border: 1px solid #ffd6db;
+    }
+  }
+
+  @media (max-width: 1400px) {
+    .title {
+      font-size: 2rem;
+      line-height: normal;
+    }
+  }
+
+  @media (max-width: 1280px) {
+    grid-template-columns: unset;
+
+    .image {
+      grid-column: 1;
+      grid-row: 5 / span 1;
     }
   }
 }

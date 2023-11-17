@@ -81,8 +81,11 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   /** Taking input for the radius of the circle and the label to be displayed. */
   @Input() sizes: SizeLegend[] = [];
 
-  /**Cell name which is hovered, used for highlighting */
-  @Input() hightlightedCellName = '';
+  /** Cell name which is hovered, used for highlighting */
+  @Input() highlightedCellName = '';
+
+  /** List of cell ids in the illustration */
+  @Input() illustrationLabels: string[] = [];
 
   /** Getter method to provide the definations of the columns */
   get columnsWithTypeAndCount(): string[] {
@@ -93,13 +96,41 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   readonly dataSource = new MatTableDataSource<DataRow<T>>([]);
 
   /**
-   * sets the data source for the table on every change
+   * Sets the data source for the table on every change
+   * Sorts the biomarker table on illustrationLabels change
    * @param changes object consisting of change in the Input
    */
   ngOnChanges(changes: SimpleChanges): void {
     if ('data' in changes) {
       this.dataSource.data = this.data;
     }
+
+    if ('illustrationLabels' in changes) {
+      this.sortTable();
+    }
+  }
+
+  /**
+   * Sorts table by cell type alphabetically, then puts cells that are in the illustration on top
+   */
+  private sortTable(): void {
+    this.dataSource.data = this.data.sort((a, b) => {
+      return a[0].toLowerCase() < b[0].toLowerCase() ? -1 : 1;
+    });
+
+    this.dataSource.data = this.dataSource.data.sort((a, b) => {
+      const id1 = this.illustrationLabels.includes(a[0].toLowerCase());
+      const id2 = this.illustrationLabels.includes(b[0].toLowerCase());
+      return id1 && !id2 ? -1 : 1;
+    });
+  }
+
+  /**
+   * Returns true if name matches the highlighted cell name
+   * @param name Cell name
+   */
+  isHighlighted(name: string): boolean {
+    return name.toLowerCase() === this.highlightedCellName.toLowerCase();
   }
 
   /** Lerp function to give value beween min and max value based on the given value
@@ -136,9 +167,7 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
     });
 
     const minColor: RGBTriplet = this.hex2rgb(this.gradient[index]?.color ?? this.gradient[0].color);
-    const maxColor: RGBTriplet = this.hex2rgb(
-      this.gradient[index + 1]?.color ?? this.gradient[this.gradient.length - 1].color
-    );
+    const maxColor: RGBTriplet = this.hex2rgb(this.gradient[index + 1].color);
 
     return { minColor, maxColor };
   }
@@ -152,8 +181,8 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
     const index = this.sizes.findIndex((item, i, arr) => {
       return percentage >= parseFloat(item.label) / 100 && percentage <= parseFloat(arr[i + 1]?.label) / 100;
     });
-    const minSize: number = this.sizes[index]?.radius ?? this.sizes[0].radius;
-    const maxSize: number = this.sizes[index + 1]?.radius ?? this.sizes[this.sizes.length - 1].radius;
+    const minSize: number = this.sizes[index]?.radius;
+    const maxSize: number = this.sizes[index + 1].radius;
     return { minSize, maxSize };
   }
 
