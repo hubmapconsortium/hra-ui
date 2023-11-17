@@ -41,7 +41,7 @@
     </td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="columnsWithTypeAndCount"></tr>
+  <tr mat-header-row *matHeaderRowDef="columnsWithTypeAndCount; sticky: true"></tr>
   <tr mat-row *matRowDef="let row; columns: columnsWithTypeAndCount"></tr>
 </table>
 

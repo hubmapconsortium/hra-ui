@@ -3,7 +3,7 @@
 :host {
   display: grid;
   grid-template-columns: 1fr 1fr auto;
-  grid-template-rows: 3.5rem minmax(5rem, 1fr) 3rem 5rem minmax(5rem, 1fr);
+  grid-template-rows: 3.5rem auto 3rem 5rem minmax(auto, 1fr);
   grid-template-areas:
     'table-header table-header table-header'
     'table table table'
@@ -34,14 +34,11 @@
     border-bottom: 0.063rem solid #d3d3d3;
 
     ::ng-deep .table-tab-header {
-      padding-left: 2rem;
       border-bottom: 0.063rem solid #d3d3d3;
       background-color: white;
       font-weight: 400;
       letter-spacing: 0;
       font-size: 1rem;
-      justify-content: left;
-      width: 33%;
       height: 3.5rem;
 
       &:not(:first-child) {
@@ -71,6 +68,10 @@
     }
     .mat-mdc-tab-group.mat-accent .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
       color: vars.$primary;
+    }
+
+    .mat-mdc-tab-body-content {
+      max-height: 21.5rem;
     }
 
     ::ng-deep .mdc-tab__text-label {
