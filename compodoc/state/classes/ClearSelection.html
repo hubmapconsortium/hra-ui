@@ -127,6 +127,16 @@ export class SetClicked extends Action(&#x27;Set Selection on Clicked&#x27;) {
 }
 
 /**
+ * Sets highlighted cell type id in the state from label
+ */
+export class HighlightCellType extends Action(&#x27;Highlight Cell Type Id&#x27;) {
+  /** Initializes the Mapping Item */
+  constructor(readonly hoverLabel: string) {
+    super();
+  }
+}
+
+/**
  * Clears the selection for the current state
  */
 export class ClearSelection extends Action(&#x27;Clear Selection&#x27;) {}

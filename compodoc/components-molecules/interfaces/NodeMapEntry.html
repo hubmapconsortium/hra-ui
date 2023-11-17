@@ -434,7 +434,7 @@ export class InteractiveSvgComponent&lt;T extends NodeMapEntry&gt; implements On
       return;
     }
 
-    let id &#x3D; this.encodeId(entry.id);
+    let id &#x3D; entry.id;
     const element &#x3D; crosswalkEl.querySelector(&#x60;#${id}&#x60;);
     if (!element) {
       return;
@@ -475,6 +475,7 @@ export class InteractiveSvgComponent&lt;T extends NodeMapEntry&gt; implements On
       // Move to front (i.e. last child in svg)
       this.renderer.appendChild(el, this.crosswalkEl);
       this.attachCrosswalkHover(this.crosswalkEl);
+      this.setHighlight();
     }
   }
 

@@ -406,8 +406,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="198"
-                            class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:198</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="199"
+                            class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:199</a></div>
                 </td>
             </tr>
 
@@ -827,7 +827,7 @@ export class InteractiveSvgComponent&lt;T extends NodeMapEntry&gt; implements On
       return;
     }
 
-    let id &#x3D; this.encodeId(entry.id);
+    let id &#x3D; entry.id;
     const element &#x3D; crosswalkEl.querySelector(&#x60;#${id}&#x60;);
     if (!element) {
       return;
@@ -868,6 +868,7 @@ export class InteractiveSvgComponent&lt;T extends NodeMapEntry&gt; implements On
       // Move to front (i.e. last child in svg)
       this.renderer.appendChild(el, this.crosswalkEl);
       this.attachCrosswalkHover(this.crosswalkEl);
+      this.setHighlight();
     }
   }
 

@@ -144,6 +144,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
+                                <a href="#highlightId" >highlightId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#iri" >iri</a>
                             </li>
                             <li>
@@ -236,6 +240,38 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="highlightId"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>highlightId</b></span>
+                        <a href="#highlightId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>selectSnapshot(IllustratorSelectors.highlightedCell)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Curent highlighted cell id</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="iri"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
@@ -251,7 +287,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -315,7 +351,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts:38</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -347,7 +383,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts:57</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts:62</a></div>
                         </td>
                     </tr>
 
@@ -379,7 +415,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -414,7 +450,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts:48</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -466,6 +502,11 @@ export class MedicalIllustrationBehaviorComponent {
   readonly mapping &#x3D; selectSnapshot(IllustratorSelectors.mapping);
 
   /**
+   * Curent highlighted cell id
+   */
+  readonly highlightId &#x3D; selectSnapshot(IllustratorSelectors.highlightedCell);
+
+  /**
    * Iri  of medical illustration behavior component
    */
   readonly iri &#x3D; selectSnapshot(ActiveFtuSelectors.iri);
@@ -502,6 +543,7 @@ export class MedicalIllustrationBehaviorComponent {
 &lt;hra-interactive-svg
   [url]&#x3D;&quot;currentUrl()&quot;
   [mapping]&#x3D;&quot;mapping()&quot;
+  [highlightId]&#x3D;&quot;highlightId()&quot;
   (nodeHover)&#x3D;&quot;updateNodeOnHover($event)&quot;
   (nodeClick)&#x3D;&quot;updateNodeOnClicked($event)&quot;
 &gt;
@@ -555,7 +597,7 @@ export class MedicalIllustrationBehaviorComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-label-box>{{ tissueTitle }}</hra-label-box><hra-interactive-svg  [url]="currentUrl()"  [mapping]="mapping()"  (nodeHover)="updateNodeOnHover($event)"  (nodeClick)="updateNodeOnClicked($event)"></hra-interactive-svg></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-label-box>{{ tissueTitle }}</hra-label-box><hra-interactive-svg  [url]="currentUrl()"  [mapping]="mapping()"  [highlightId]="highlightId()"  (nodeHover)="updateNodeOnHover($event)"  (nodeClick)="updateNodeOnClicked($event)"></hra-interactive-svg></div>'
     var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'BiomarkerDetailsWcComponent', 'selector': 'ftu-wc-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'HraLandingPageIntroWcBehaviourComponent', 'selector': 'ftu-wc-intro'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'ScreenNoticeBehaviorComponent', 'selector': 'ftu-ui-screen-notice-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'MedicalIllustrationBehaviorComponent'};

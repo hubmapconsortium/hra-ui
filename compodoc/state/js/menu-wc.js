@@ -96,6 +96,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/DownloadSelectors.html" data-type="entity-link" >DownloadSelectors</a>
                             </li>
                             <li class="link">
+                                <a href="classes/HighlightCellType.html" data-type="entity-link" >HighlightCellType</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/IllustratorSelectors.html" data-type="entity-link" >IllustratorSelectors</a>
                             </li>
                             <li class="link">

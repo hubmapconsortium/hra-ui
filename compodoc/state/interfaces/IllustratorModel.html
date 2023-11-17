@@ -92,6 +92,13 @@ and mapping fields</p>
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#hoveredCellTypeId" 
+>
+                                            hoveredCellTypeId
+                                        </a>
+                                </li>
+                                <li>
                                         <a href="#mapping" 
 >
                                             mapping
@@ -129,6 +136,50 @@ and mapping fields</p>
 
             <section>
                 <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="hoveredCellTypeId"></a>
+                                        <span class="name "><b>hoveredCellTypeId</b>
+                                            <a href="#hoveredCellTypeId">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>hoveredCellTypeId:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Current hovered cell type id</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <table class="table table-sm table-bordered">
                         <tbody>
                                 <tr>
@@ -309,7 +360,8 @@ and mapping fields</p>
 import { FtuDataService, IllustrationMappingItem, Url } from &#x27;@hra-ui/services&#x27;;
 import { Action, State, StateContext } from &#x27;@ngxs/store&#x27;;
 import { forkJoin, Observable, tap } from &#x27;rxjs&#x27;;
-import { ClearSelection, Load, Reset, SetClicked, SetHover } from &#x27;./illustrator.actions&#x27;;
+
+import { ClearSelection, HighlightCellType, Load, Reset, SetClicked, SetHover } from &#x27;./illustrator.actions&#x27;;
 
 /**
  * interface for the Illustrator Model that contains the url, selected
@@ -324,6 +376,8 @@ export interface IllustratorModel {
   selectedOnClick?: IllustrationMappingItem;
   /** Array of Illustrartor Items */
   mapping: IllustrationMappingItem[];
+  /** Current hovered cell type id */
+  hoveredCellTypeId?: string;
 }
 
 type Context &#x3D; StateContext&lt;IllustratorModel&gt;;
@@ -389,6 +443,15 @@ export class IllustratorState {
   @Action(Reset)
   reset({ setState }: Context): void {
     setState({ mapping: [] });
+  }
+
+  /**
+   * Sets hover id of highlighted cell type from hover label
+   */
+  @Action(HighlightCellType)
+  HighlightCellType({ patchState, getState }: Context, { hoverLabel }: HighlightCellType): void {
+    const match &#x3D; getState().mapping.find((entry) &#x3D;&gt; entry.label.toLowerCase() &#x3D;&#x3D;&#x3D; hoverLabel.toLowerCase());
+    patchState({ hoveredCellTypeId: match ? match.ontologyId : undefined });
   }
 }
 </code></pre>
