@@ -147,7 +147,8 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
     }
 
     let id = entry.id;
-    const element = crosswalkEl.querySelector(`#${id}`);
+    const encodedId = this.encodeId(entry.id);
+    const element = crosswalkEl.querySelector(`#${id}, #${encodedId}`);
     if (!element) {
       return;
     } else if (element.nodeName !== 'g') {
