@@ -16,6 +16,7 @@
       [tissueInfo]="tissueInfo"
       [highlightedCellName]="selectedOnHovered()?.label ?? ''"
       [illustrationLabels]="illustrationLabels"
+      (rowHover)="highlightCells($event)"
     ></hra-biomarker-table>
     <hra-empty-biomarker
       *ngIf="tab.rows.length === 0"

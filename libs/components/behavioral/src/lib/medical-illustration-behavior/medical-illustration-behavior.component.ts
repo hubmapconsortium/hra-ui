@@ -28,6 +28,11 @@ export class MedicalIllustrationBehaviorComponent {
   readonly mapping = selectSnapshot(IllustratorSelectors.mapping);
 
   /**
+   * Curent highlighted cell id
+   */
+  readonly highlightId = selectSnapshot(IllustratorSelectors.highlightedCell);
+
+  /**
    * Iri  of medical illustration behavior component
    */
   readonly iri = selectSnapshot(ActiveFtuSelectors.iri);

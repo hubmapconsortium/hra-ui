@@ -5,7 +5,13 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { HoverDirective } from '@hra-ui/cdk';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
-import { ActiveFtuSelectors, IllustratorSelectors, ScreenModeAction, TissueLibrarySelectors } from '@hra-ui/state';
+import {
+  ActiveFtuSelectors,
+  IllustratorActions,
+  IllustratorSelectors,
+  ScreenModeAction,
+  TissueLibrarySelectors,
+} from '@hra-ui/state';
 import {
   EmptyBiomarkerComponent,
   GradientLegendComponent,
@@ -90,6 +96,9 @@ export class BiomarkerDetailsComponent {
   /** Illustration mapping data */
   readonly mapping = selectSnapshot(IllustratorSelectors.mapping);
 
+  /** Action to highlight a cell type */
+  readonly highlightCell = dispatch(IllustratorActions.HighlightCellType);
+
   /**
    * Gets tissue title from the list of tissues
    */
@@ -140,5 +149,13 @@ export class BiomarkerDetailsComponent {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     this.dialog.open(ContactBehaviorComponent, dialogConfig);
+  }
+
+  /**
+   * Highlights cells matching the label
+   * @param event
+   */
+  highlightCells(label: string) {
+    this.highlightCell(label);
   }
 }
