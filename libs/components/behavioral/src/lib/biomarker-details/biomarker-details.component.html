@@ -15,7 +15,7 @@
       [sizes]="sizes()"
       [tissueInfo]="tissueInfo"
       [highlightedCellName]="selectedOnHovered()?.label ?? ''"
-      [illustrationIds]="illustrationIds"
+      [illustrationLabels]="illustrationLabels"
     ></hra-biomarker-table>
     <hra-empty-biomarker
       *ngIf="tab.rows.length === 0"

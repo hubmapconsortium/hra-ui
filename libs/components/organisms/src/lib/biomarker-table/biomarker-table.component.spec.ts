@@ -13,8 +13,8 @@ describe('BiomarkerTableComponent', () => {
     dataset_count: 0,
   };
   const data: DataRow<DataCell>[] = [
-    ['absorptive cell', 2764, undefined, undefined],
     ['enteroendocrine cell', 17, undefined, undefined],
+    ['absorptive cell', 2764, undefined, undefined],
     [
       'epithelial stem cell',
       187,
@@ -31,6 +31,27 @@ describe('BiomarkerTableComponent', () => {
     ],
     ['goblet cell', undefined, undefined, undefined],
   ];
+
+  const sortedData: DataRow<DataCell>[] = [
+    ['absorptive cell', 2764, undefined, undefined],
+    ['goblet cell', undefined, undefined, undefined],
+    ['enteroendocrine cell', 17, undefined, undefined],
+    [
+      'epithelial stem cell',
+      187,
+      {
+        color: '#00385F',
+        size: 0.625,
+        data: dataCell_data,
+      },
+      {
+        color: '#328BB8',
+        size: 1.25,
+        data: dataCell_data,
+      },
+    ],
+  ];
+
   const gradient: GradientPoint[] = [
     {
       color: '#00000f',
@@ -45,11 +66,14 @@ describe('BiomarkerTableComponent', () => {
       percentage: 100,
     },
   ];
+
   const sizes: SizeLegend[] = [
     { label: '0%', radius: 0.1 },
     { label: '50%', radius: 0.5 },
     { label: '100%', radius: 1.0 },
   ];
+
+  const sizes2: SizeLegend[] = [{ label: '0%', radius: 0.1 }];
 
   const tissueInfo: TissueInfo = {
     label: '',
@@ -71,6 +95,20 @@ describe('BiomarkerTableComponent', () => {
   it('should update dataSource', async () => {
     const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
     expect(instance.dataSource.data).toBe(data);
+  });
+
+  it('should sort the table', async () => {
+    const { instance } = await shallow.render({
+      bind: {
+        columns: columns,
+        data: data,
+        gradient,
+        sizes,
+        tissueInfo,
+        illustrationLabels: ['absorptive cell', 'goblet cell'],
+      },
+    });
+    expect(instance.dataSource.data).toStrictEqual(sortedData);
   });
 
   it('returns a size - getMinMaxSize function', async () => {
