@@ -279,8 +279,11 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
   /** Taking input for the radius of the circle and the label to be displayed. */
   @Input() sizes: SizeLegend[] &#x3D; [];
 
-  /**Cell name which is hovered, used for highlighting */
-  @Input() hightlightedCellName &#x3D; &#x27;&#x27;;
+  /** Cell name which is hovered, used for highlighting */
+  @Input() highlightedCellName &#x3D; &#x27;&#x27;;
+
+  /** List of cell ids in the illustration */
+  @Input() illustrationLabels: string[] &#x3D; [];
 
   /** Getter method to provide the definations of the columns */
   get columnsWithTypeAndCount(): string[] {
@@ -291,13 +294,41 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
   readonly dataSource &#x3D; new MatTableDataSource&lt;DataRow&lt;T&gt;&gt;([]);
 
   /**
-   * sets the data source for the table on every change
+   * Sets the data source for the table on every change
+   * Sorts the biomarker table on illustrationLabels change
    * @param changes object consisting of change in the Input
    */
   ngOnChanges(changes: SimpleChanges): void {
     if (&#x27;data&#x27; in changes) {
       this.dataSource.data &#x3D; this.data;
     }
+
+    if (&#x27;illustrationLabels&#x27; in changes) {
+      this.sortTable();
+    }
+  }
+
+  /**
+   * Sorts table by cell type alphabetically, then puts cells that are in the illustration on top
+   */
+  private sortTable(): void {
+    this.dataSource.data &#x3D; this.data.sort((a, b) &#x3D;&gt; {
+      return a[0].toLowerCase() &lt; b[0].toLowerCase() ? -1 : 1;
+    });
+
+    this.dataSource.data &#x3D; this.dataSource.data.sort((a, b) &#x3D;&gt; {
+      const id1 &#x3D; this.illustrationLabels.includes(a[0].toLowerCase());
+      const id2 &#x3D; this.illustrationLabels.includes(b[0].toLowerCase());
+      return id1 &amp;&amp; !id2 ? -1 : 1;
+    });
+  }
+
+  /**
+   * Returns true if name matches the highlighted cell name
+   * @param name Cell name
+   */
+  isHighlighted(name: string): boolean {
+    return name.toLowerCase() &#x3D;&#x3D;&#x3D; this.highlightedCellName.toLowerCase();
   }
 
   /** Lerp function to give value beween min and max value based on the given value
@@ -334,9 +365,7 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
     });
 
     const minColor: RGBTriplet &#x3D; this.hex2rgb(this.gradient[index]?.color ?? this.gradient[0].color);
-    const maxColor: RGBTriplet &#x3D; this.hex2rgb(
-      this.gradient[index + 1]?.color ?? this.gradient[this.gradient.length - 1].color
-    );
+    const maxColor: RGBTriplet &#x3D; this.hex2rgb(this.gradient[index + 1].color);
 
     return { minColor, maxColor };
   }
@@ -350,8 +379,8 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
     const index &#x3D; this.sizes.findIndex((item, i, arr) &#x3D;&gt; {
       return percentage &gt;&#x3D; parseFloat(item.label) / 100 &amp;&amp; percentage &lt;&#x3D; parseFloat(arr[i + 1]?.label) / 100;
     });
-    const minSize: number &#x3D; this.sizes[index]?.radius ?? this.sizes[0].radius;
-    const maxSize: number &#x3D; this.sizes[index + 1]?.radius ?? this.sizes[this.sizes.length - 1].radius;
+    const minSize: number &#x3D; this.sizes[index]?.radius;
+    const maxSize: number &#x3D; this.sizes[index + 1].radius;
     return { minSize, maxSize };
   }
 

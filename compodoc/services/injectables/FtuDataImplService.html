@@ -161,7 +161,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:191</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:196</a></code>
 </div>
                 </td>
             </tr>
@@ -246,7 +246,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:203</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:208</a></code>
 </div>
                 </td>
             </tr>
@@ -331,7 +331,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:179</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:184</a></code>
 </div>
                 </td>
             </tr>
@@ -416,7 +416,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:170</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:175</a></code>
 </div>
                 </td>
             </tr>
@@ -501,7 +501,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:215</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:220</a></code>
 </div>
                 </td>
             </tr>
@@ -586,7 +586,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:159</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:164</a></code>
 </div>
                 </td>
             </tr>
@@ -720,11 +720,16 @@ const CELL_SUMMARIES &#x3D; z.object({
     biomarker_type: z.string(),
     summary: z
       .object({
-        cell_id: IRI,
+        cell_id: z.string(),
         cell_label: z.string(),
-        gene_id: IRI,
-        gene_label: z.string(),
-        mean_expression: z.number(),
+        genes: z
+          .object({
+            &#x27;@type&#x27;: z.string(),
+            gene_id: z.string(),
+            gene_label: z.string(),
+            mean_expression: z.number(),
+          })
+          .array(),
         count: z.number(),
         percentage: z.number(),
         dataset_count: z.number().optional(),
@@ -967,19 +972,31 @@ export class FtuDataImplService extends FtuDataService {
    * @returns
    */
   private constructCellSummaries(data: Cell_Summary[&#x27;@graph&#x27;]): CellSummary[] {
+    type SummaryItem &#x3D; Cell_Summary[&#x27;@graph&#x27;][number][&#x27;summary&#x27;][number];
     const cellSummary: CellSummary[] &#x3D; [];
     const defaultBiomarkerLables &#x3D; [&#x27;gene&#x27;, &#x27;protein&#x27;, &#x27;lipid&#x27;];
     const biomarkersPresent &#x3D; new Set(data.map((summary) &#x3D;&gt; summary.biomarker_type.toLowerCase()));
+    const expandGenes &#x3D; (summary: SummaryItem) &#x3D;&gt;
+      summary.genes.map((gene) &#x3D;&gt; ({
+        ...summary,
+        ...gene,
+      }));
+
     data.forEach((summaryGroup) &#x3D;&gt; {
-      const cells &#x3D; summaryGroup.summary.map((entry) &#x3D;&gt; ({
+      const nestedSummaries &#x3D; summaryGroup.summary.map(expandGenes);
+      const summary &#x3D; nestedSummaries.reduce((acc, items) &#x3D;&gt; acc.concat(items), [] as (typeof nestedSummaries)[number]);
+
+      const cells &#x3D; summary.map((entry) &#x3D;&gt; ({
         id: entry.cell_id as Iri,
         label: entry.cell_label,
       }));
-      const biomarkers &#x3D; summaryGroup.summary.map((entry) &#x3D;&gt; ({
+
+      const biomarkers &#x3D; summary.map((entry) &#x3D;&gt; ({
         id: entry.gene_id as Iri,
         label: entry.gene_label,
       }));
-      const summaries &#x3D; summaryGroup.summary.map((entry) &#x3D;&gt; ({
+
+      const summaries &#x3D; summary.map((entry) &#x3D;&gt; ({
         cell: entry.cell_id as Iri,
         biomarker: entry.gene_id as Iri,
         count: entry.count,
@@ -987,6 +1004,7 @@ export class FtuDataImplService extends FtuDataService {
         meanExpression: entry.mean_expression,
         dataset_count: entry.dataset_count,
       }));
+
       cellSummary.push({
         label: &#x60;${capitalize(summaryGroup.biomarker_type)} Biomarkers&#x60;,
         cells,
@@ -994,6 +1012,7 @@ export class FtuDataImplService extends FtuDataService {
         summaries,
       });
     });
+
     defaultBiomarkerLables.forEach((defaultLabel) &#x3D;&gt; {
       if (!biomarkersPresent.has(defaultLabel)) {
         cellSummary.push({

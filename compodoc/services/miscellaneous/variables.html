@@ -403,11 +403,16 @@
     biomarker_type: z.string(),
     summary: z
       .object({
-        cell_id: IRI,
+        cell_id: z.string(),
         cell_label: z.string(),
-        gene_id: IRI,
-        gene_label: z.string(),
-        mean_expression: z.number(),
+        genes: z
+          .object({
+            &#x27;@type&#x27;: z.string(),
+            gene_id: z.string(),
+            gene_label: z.string(),
+            mean_expression: z.number(),
+          })
+          .array(),
         count: z.number(),
         percentage: z.number(),
         dataset_count: z.number().optional(),

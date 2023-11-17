@@ -85,12 +85,12 @@
         },
         {
             "name": "DataNode",
-            "id": "interface-DataNode-8544338e8c5e11dd440f8b104bfa31552155bc5006289770258a8e940978177df7797adcb9bafb5b09a9943913ecf339692d528f868c6846be5c3de8a6270237",
+            "id": "interface-DataNode-a7339e29eb1cb04557eb7c904a626e8a1974bae95f531ae3f216457d00cf43612cecaed3c982637b2de9a747afa1bd5dc948de9ac20d2cf0d926a93aa4c43a8f",
             "file": "src/lib/tissue-tree-list/tissue-tree-list.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { FlatTreeControl } from '@angular/cdk/tree';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  Input,\n  OnChanges,\n  Output,\n  SimpleChanges,\n} from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatExpansionModule } from '@angular/material/expansion';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { LinkId } from '@hra-ui/cdk/state';\n\n/** Base node type */\nexport interface DataNode<K extends string> {\n  /** User readable label */\n  label: string;\n  /** Id to pass as a query parameter on navigation */\n  id?: string;\n  /** Link to navigate to on node click */\n  link?: LinkId;\n  /** Nested nodes */\n  children?: K[];\n}\n\n/**\n * Internal interface for flat tissue data hierarchy\n */\ninterface InternalNode<K extends string, T extends DataNode<K>> {\n  /** Displayed label */\n  label: string;\n  /** Whether the node can be expanded to display child nodes */\n  expandable: boolean;\n  /** Depth of node in the tree */\n  level: number;\n  /** Associated user node data */\n  data: T;\n}\n\n/**\n * Tabular View for hubMap tissue side-bar\n */\n@Component({\n  selector: 'hra-tissue-tree-list',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatButtonModule,\n    MatTreeModule,\n    MatIconModule,\n    MatExpansionModule,\n    MatRippleModule,\n    LinkDirective,\n  ],\n  templateUrl: './tissue-tree-list.component.html',\n  styleUrls: ['./tissue-tree-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueTreeListComponent<K extends string, T extends DataNode<K>> implements OnChanges {\n  /**\n   * Input  of tissue tree list component\n   */\n  @Input() nodes: Record<K, T> = {} as Record<K, T>;\n\n  /**\n   * Node selected, to view the data associated with it\n   */\n  @Input() selected?: T = undefined;\n\n  /**\n   * Output  of tissue tree list component\n   */\n  @Output() readonly selectedChange = new EventEmitter<T | undefined>();\n\n  /**\n   * tree controller, used to control the nodes in the tree\n   */\n  readonly control = new FlatTreeControl<InternalNode<K, T>>(\n    (node) => node.level,\n    (node) => node.expandable\n  );\n\n  /**\n   * Flattener of tissue tree list component, returns flat-data structure\n   */\n  readonly flattener = new MatTreeFlattener<T, InternalNode<K, T>>(\n    (node, level) => ({\n      label: node.label,\n      expandable: (node.children?.length ?? 0) > 0,\n      level,\n      data: node,\n    }),\n    (node) => node.level,\n    (node) => node.expandable,\n    (node) => node.children?.map((id) => this.nodes[id])\n  );\n\n  /**\n   * Data source of tissue tree list component, defines the data in mat-tree\n   */\n  readonly dataSource = new MatTreeFlatDataSource(this.control, this.flattener);\n\n  /**\n   * Take actions if any data changes\n   * @param changes changes in data\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('nodes' in changes) {\n      this.dataSource.data = this.findRootNodes();\n    }\n    if ('selected' in changes) {\n      const path = this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];\n      this.expandPath(path);\n    }\n  }\n\n  /**\n   * check if the current node has children\n   * @param node current selected node\n   * @returns boolean, which means if node has children\n   */\n  hasChild(_: number, node: InternalNode<K, T>): boolean {\n    return node.expandable;\n  }\n\n  /**\n   * It selects the node, which is clicked.\n   * @param node Tissue Tree Item, which is clicked\n   */\n  selectNode(node: T): void {\n    if (this.selected !== node) {\n      this.selected = node;\n      this.selectedChange.emit(this.selected);\n    }\n  }\n\n  /**\n   * Resets selection and collapes all nodes of the tree.\n   */\n  resetSelection(): void {\n    this.selected = undefined;\n    this.control.collapseAll();\n  }\n\n  /**\n   * It creates a copy of the input nodes object.\n   * It iterates over it and removes all the children nodes from it.\n   * @returns remaining nodes which are root nodes.\n   */\n  private findRootNodes(): T[] {\n    const { nodes } = this;\n    const roots = { ...this.nodes };\n    for (const key in nodes) {\n      for (const child of nodes[key].children ?? []) {\n        delete roots[child];\n      }\n    }\n\n    return Object.values(roots);\n  }\n\n  /**\n   * expands the tree nodes based on the path provided.\n   * @param path is given as an input.\n   */\n  private expandPath(path: DataNode<K>[]): void {\n    const nodes = this.control.dataNodes.filter((node) => path.includes(node.data));\n    nodes.forEach((node) => this.control.expand(node));\n  }\n\n  /**\n   * It used the logic of depth first search to find the target node.\n   * returns the path to the target node.\n   */\n  private dfsFindPath(nodes: T[], target: T, path: T[] = []): T[] {\n    for (const node of nodes) {\n      path.push(node);\n      if (node === target) {\n        return path;\n      }\n\n      const savedLength = path.length;\n      const children = node.children?.map((id) => this.nodes[id]) ?? [];\n      if (this.dfsFindPath(children, target, path).length > savedLength) {\n        return path;\n      }\n\n      path.pop();\n    }\n\n    return path;\n  }\n}\n",
+            "sourceCode": "import { FlatTreeControl } from '@angular/cdk/tree';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  HostListener,\n  Input,\n  OnChanges,\n  Output,\n  SimpleChanges,\n} from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatExpansionModule } from '@angular/material/expansion';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { LinkId } from '@hra-ui/cdk/state';\n\n/** Base node type */\nexport interface DataNode<K extends string> {\n  /** User readable label */\n  label: string;\n  /** Id to pass as a query parameter on navigation */\n  id?: string;\n  /** Link to navigate to on node click */\n  link?: LinkId;\n  /** Nested nodes */\n  children?: K[];\n}\n\n/**\n * Internal interface for flat tissue data hierarchy\n */\ninterface InternalNode<K extends string, T extends DataNode<K>> {\n  /** Displayed label */\n  label: string;\n  /** Whether the node can be expanded to display child nodes */\n  expandable: boolean;\n  /** Depth of node in the tree */\n  level: number;\n  /** Associated user node data */\n  data: T;\n}\n\n/**\n * Tabular View for hubMap tissue side-bar\n */\n@Component({\n  selector: 'hra-tissue-tree-list',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatButtonModule,\n    MatTreeModule,\n    MatIconModule,\n    MatExpansionModule,\n    MatRippleModule,\n    LinkDirective,\n  ],\n  templateUrl: './tissue-tree-list.component.html',\n  styleUrls: ['./tissue-tree-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueTreeListComponent<K extends string, T extends DataNode<K>> implements OnChanges {\n  /**\n   * Input  of tissue tree list component\n   */\n  @Input() nodes: Record<K, T> = {} as Record<K, T>;\n\n  /**\n   * Node selected, to view the data associated with it\n   */\n  @Input() selected?: T = undefined;\n\n  /**\n   * Output  of tissue tree list component\n   */\n  @Output() readonly selectedChange = new EventEmitter<T | undefined>();\n\n  /**\n   * Navigates to an illustration page\n   */\n  @Output() navigate = new EventEmitter();\n\n  /**\n   * Whether keyboard navigation is enabled\n   */\n  enableNav = true;\n\n  /**\n   * tree controller, used to control the nodes in the tree\n   */\n  readonly control = new FlatTreeControl<InternalNode<K, T>>(\n    (node) => node.level,\n    (node) => node.expandable\n  );\n\n  /**\n   * Flattener of tissue tree list component, returns flat-data structure\n   */\n  readonly flattener = new MatTreeFlattener<T, InternalNode<K, T>>(\n    (node, level) => ({\n      label: node.label,\n      expandable: (node.children?.length ?? 0) > 0,\n      level,\n      data: node,\n    }),\n    (node) => node.level,\n    (node) => node.expandable,\n    (node) => node.children?.map((id) => this.nodes[id])\n  );\n\n  /**\n   * Data source of tissue tree list component, defines the data in mat-tree\n   */\n  readonly dataSource = new MatTreeFlatDataSource(this.control, this.flattener);\n\n  /**\n   * Take actions if any data changes\n   * @param changes changes in data\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('nodes' in changes) {\n      this.dataSource.data = this.findRootNodes();\n      this.selected = this.control.dataNodes[0].data;\n    }\n    if ('selected' in changes) {\n      const path = this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];\n      const node = this.control.dataNodes.find((n) => n.data === changes['selected'].currentValue);\n      if (!node?.expandable) {\n        this.expandPath(path);\n      }\n    }\n  }\n\n  /**\n   * check if the current node has children\n   * @param node current selected node\n   * @returns boolean, which means if node has children\n   */\n  hasChild(_: number, node: InternalNode<K, T>): boolean {\n    return node.expandable;\n  }\n\n  /**\n   * It selects the node, which is clicked.\n   * @param node Tissue Tree Item, which is clicked\n   */\n  selectNode(node: T): void {\n    if (this.selected !== node) {\n      this.selected = node;\n      this.selectedChange.emit(this.selected);\n    }\n  }\n\n  /**\n   * Resets selection and collapes all nodes of the tree.\n   */\n  resetSelection(): void {\n    this.selected = undefined;\n    this.control.collapseAll();\n  }\n\n  /**\n   * It creates a copy of the input nodes object.\n   * It iterates over it and removes all the children nodes from it.\n   * @returns remaining nodes which are root nodes.\n   */\n  private findRootNodes(): T[] {\n    const { nodes } = this;\n    const roots = { ...this.nodes };\n    for (const key in nodes) {\n      for (const child of nodes[key].children ?? []) {\n        delete roots[child];\n      }\n    }\n\n    return Object.values(roots);\n  }\n\n  /**\n   * expands the tree nodes based on the path provided.\n   * @param path is given as an input.\n   */\n  private expandPath(path: DataNode<K>[]): void {\n    const nodes = this.control.dataNodes.filter((node) => path.includes(node.data));\n    nodes.forEach((node) => this.control.expand(node));\n  }\n\n  /**\n   * It used the logic of depth first search to find the target node.\n   * returns the path to the target node.\n   */\n  private dfsFindPath(nodes: T[], target: T, path: T[] = []): T[] {\n    for (const node of nodes) {\n      path.push(node);\n      if (node === target) {\n        return path;\n      }\n\n      const savedLength = path.length;\n      const children = node.children?.map((id) => this.nodes[id]) ?? [];\n      if (this.dfsFindPath(children, target, path).length > savedLength) {\n        return path;\n      }\n\n      path.pop();\n    }\n\n    return path;\n  }\n\n  /**\n   * Keyboard navigation for tissue tree list\n   * @param event Keyboard event\n   */\n  @HostListener('document:keydown', ['$event'])\n  onKeyDown(event: KeyboardEvent): void {\n    if (!this.enableNav) {\n      return;\n    }\n    if (this.control) {\n      const nodes = this.control.dataNodes;\n      const selectedIndex = this.control.dataNodes.findIndex((node) => node.data.id === this.selected?.id);\n\n      const currentNode = nodes[selectedIndex];\n      if (currentNode && currentNode.expandable) {\n        const expandableNodes = nodes.filter((node) => node.expandable);\n        const index = expandableNodes.indexOf(currentNode);\n        if (event.key === 'ArrowLeft') {\n          this.control.collapse(currentNode);\n        } else if (event.key === 'ArrowRight') {\n          this.control.expand(currentNode);\n        } else if (\n          event.key === 'ArrowDown' &&\n          index + 1 < expandableNodes.length &&\n          !this.control.isExpanded(currentNode)\n        ) {\n          this.selectNode(expandableNodes[index + 1].data);\n          return;\n        } else if (event.key === 'ArrowUp' && index - 1 >= 0 && !this.control.isExpanded(expandableNodes[index - 1])) {\n          this.selectNode(expandableNodes[index - 1].data);\n          return;\n        }\n      }\n      if (event.key === 'ArrowDown' && selectedIndex + 1 < nodes.length) {\n        this.selectNode(nodes[selectedIndex + 1].data);\n      }\n      if (event.key === 'ArrowUp' && selectedIndex - 1 >= 0) {\n        this.selectNode(nodes[selectedIndex - 1].data);\n      }\n      if (event.key === 'Enter' && !currentNode.expandable) {\n        this.navigate.emit(currentNode.data);\n      }\n    }\n  }\n\n  /**\n   * Disable keyboard nav on click\n   */\n  @HostListener('document:click')\n  handlePageClick(): void {\n    this.enableNav = false;\n  }\n\n  /**\n   * Enables keyboard nav only if the tissue tree list is clicked\n   * @param event Click event\n   */\n  @HostListener('click', ['$event'])\n  handleListClick(event: MouseEvent): void {\n    event.stopPropagation();\n    this.enableNav = true;\n  }\n}\n",
             "properties": [
                 {
                     "name": "children",
@@ -99,7 +99,7 @@
                     "type": "K[]",
                     "optional": true,
                     "description": "<p>Nested nodes</p>\n",
-                    "line": 29,
+                    "line": 30,
                     "rawdescription": "\nNested nodes"
                 },
                 {
@@ -109,7 +109,7 @@
                     "type": "string",
                     "optional": true,
                     "description": "<p>Id to pass as a query parameter on navigation</p>\n",
-                    "line": 25,
+                    "line": 26,
                     "rawdescription": "\nId to pass as a query parameter on navigation"
                 },
                 {
@@ -119,7 +119,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "<p>User readable label</p>\n",
-                    "line": 23,
+                    "line": 24,
                     "rawdescription": "\nUser readable label"
                 },
                 {
@@ -129,7 +129,7 @@
                     "type": "LinkId",
                     "optional": true,
                     "description": "<p>Link to navigate to on node click</p>\n",
-                    "line": 27,
+                    "line": 28,
                     "rawdescription": "\nLink to navigate to on node click"
                 }
             ],
@@ -167,12 +167,12 @@
         },
         {
             "name": "InternalNode",
-            "id": "interface-InternalNode-8544338e8c5e11dd440f8b104bfa31552155bc5006289770258a8e940978177df7797adcb9bafb5b09a9943913ecf339692d528f868c6846be5c3de8a6270237",
+            "id": "interface-InternalNode-a7339e29eb1cb04557eb7c904a626e8a1974bae95f531ae3f216457d00cf43612cecaed3c982637b2de9a747afa1bd5dc948de9ac20d2cf0d926a93aa4c43a8f",
             "file": "src/lib/tissue-tree-list/tissue-tree-list.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { FlatTreeControl } from '@angular/cdk/tree';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  Input,\n  OnChanges,\n  Output,\n  SimpleChanges,\n} from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatExpansionModule } from '@angular/material/expansion';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { LinkId } from '@hra-ui/cdk/state';\n\n/** Base node type */\nexport interface DataNode<K extends string> {\n  /** User readable label */\n  label: string;\n  /** Id to pass as a query parameter on navigation */\n  id?: string;\n  /** Link to navigate to on node click */\n  link?: LinkId;\n  /** Nested nodes */\n  children?: K[];\n}\n\n/**\n * Internal interface for flat tissue data hierarchy\n */\ninterface InternalNode<K extends string, T extends DataNode<K>> {\n  /** Displayed label */\n  label: string;\n  /** Whether the node can be expanded to display child nodes */\n  expandable: boolean;\n  /** Depth of node in the tree */\n  level: number;\n  /** Associated user node data */\n  data: T;\n}\n\n/**\n * Tabular View for hubMap tissue side-bar\n */\n@Component({\n  selector: 'hra-tissue-tree-list',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatButtonModule,\n    MatTreeModule,\n    MatIconModule,\n    MatExpansionModule,\n    MatRippleModule,\n    LinkDirective,\n  ],\n  templateUrl: './tissue-tree-list.component.html',\n  styleUrls: ['./tissue-tree-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueTreeListComponent<K extends string, T extends DataNode<K>> implements OnChanges {\n  /**\n   * Input  of tissue tree list component\n   */\n  @Input() nodes: Record<K, T> = {} as Record<K, T>;\n\n  /**\n   * Node selected, to view the data associated with it\n   */\n  @Input() selected?: T = undefined;\n\n  /**\n   * Output  of tissue tree list component\n   */\n  @Output() readonly selectedChange = new EventEmitter<T | undefined>();\n\n  /**\n   * tree controller, used to control the nodes in the tree\n   */\n  readonly control = new FlatTreeControl<InternalNode<K, T>>(\n    (node) => node.level,\n    (node) => node.expandable\n  );\n\n  /**\n   * Flattener of tissue tree list component, returns flat-data structure\n   */\n  readonly flattener = new MatTreeFlattener<T, InternalNode<K, T>>(\n    (node, level) => ({\n      label: node.label,\n      expandable: (node.children?.length ?? 0) > 0,\n      level,\n      data: node,\n    }),\n    (node) => node.level,\n    (node) => node.expandable,\n    (node) => node.children?.map((id) => this.nodes[id])\n  );\n\n  /**\n   * Data source of tissue tree list component, defines the data in mat-tree\n   */\n  readonly dataSource = new MatTreeFlatDataSource(this.control, this.flattener);\n\n  /**\n   * Take actions if any data changes\n   * @param changes changes in data\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('nodes' in changes) {\n      this.dataSource.data = this.findRootNodes();\n    }\n    if ('selected' in changes) {\n      const path = this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];\n      this.expandPath(path);\n    }\n  }\n\n  /**\n   * check if the current node has children\n   * @param node current selected node\n   * @returns boolean, which means if node has children\n   */\n  hasChild(_: number, node: InternalNode<K, T>): boolean {\n    return node.expandable;\n  }\n\n  /**\n   * It selects the node, which is clicked.\n   * @param node Tissue Tree Item, which is clicked\n   */\n  selectNode(node: T): void {\n    if (this.selected !== node) {\n      this.selected = node;\n      this.selectedChange.emit(this.selected);\n    }\n  }\n\n  /**\n   * Resets selection and collapes all nodes of the tree.\n   */\n  resetSelection(): void {\n    this.selected = undefined;\n    this.control.collapseAll();\n  }\n\n  /**\n   * It creates a copy of the input nodes object.\n   * It iterates over it and removes all the children nodes from it.\n   * @returns remaining nodes which are root nodes.\n   */\n  private findRootNodes(): T[] {\n    const { nodes } = this;\n    const roots = { ...this.nodes };\n    for (const key in nodes) {\n      for (const child of nodes[key].children ?? []) {\n        delete roots[child];\n      }\n    }\n\n    return Object.values(roots);\n  }\n\n  /**\n   * expands the tree nodes based on the path provided.\n   * @param path is given as an input.\n   */\n  private expandPath(path: DataNode<K>[]): void {\n    const nodes = this.control.dataNodes.filter((node) => path.includes(node.data));\n    nodes.forEach((node) => this.control.expand(node));\n  }\n\n  /**\n   * It used the logic of depth first search to find the target node.\n   * returns the path to the target node.\n   */\n  private dfsFindPath(nodes: T[], target: T, path: T[] = []): T[] {\n    for (const node of nodes) {\n      path.push(node);\n      if (node === target) {\n        return path;\n      }\n\n      const savedLength = path.length;\n      const children = node.children?.map((id) => this.nodes[id]) ?? [];\n      if (this.dfsFindPath(children, target, path).length > savedLength) {\n        return path;\n      }\n\n      path.pop();\n    }\n\n    return path;\n  }\n}\n",
+            "sourceCode": "import { FlatTreeControl } from '@angular/cdk/tree';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  HostListener,\n  Input,\n  OnChanges,\n  Output,\n  SimpleChanges,\n} from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatExpansionModule } from '@angular/material/expansion';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { LinkId } from '@hra-ui/cdk/state';\n\n/** Base node type */\nexport interface DataNode<K extends string> {\n  /** User readable label */\n  label: string;\n  /** Id to pass as a query parameter on navigation */\n  id?: string;\n  /** Link to navigate to on node click */\n  link?: LinkId;\n  /** Nested nodes */\n  children?: K[];\n}\n\n/**\n * Internal interface for flat tissue data hierarchy\n */\ninterface InternalNode<K extends string, T extends DataNode<K>> {\n  /** Displayed label */\n  label: string;\n  /** Whether the node can be expanded to display child nodes */\n  expandable: boolean;\n  /** Depth of node in the tree */\n  level: number;\n  /** Associated user node data */\n  data: T;\n}\n\n/**\n * Tabular View for hubMap tissue side-bar\n */\n@Component({\n  selector: 'hra-tissue-tree-list',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatButtonModule,\n    MatTreeModule,\n    MatIconModule,\n    MatExpansionModule,\n    MatRippleModule,\n    LinkDirective,\n  ],\n  templateUrl: './tissue-tree-list.component.html',\n  styleUrls: ['./tissue-tree-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueTreeListComponent<K extends string, T extends DataNode<K>> implements OnChanges {\n  /**\n   * Input  of tissue tree list component\n   */\n  @Input() nodes: Record<K, T> = {} as Record<K, T>;\n\n  /**\n   * Node selected, to view the data associated with it\n   */\n  @Input() selected?: T = undefined;\n\n  /**\n   * Output  of tissue tree list component\n   */\n  @Output() readonly selectedChange = new EventEmitter<T | undefined>();\n\n  /**\n   * Navigates to an illustration page\n   */\n  @Output() navigate = new EventEmitter();\n\n  /**\n   * Whether keyboard navigation is enabled\n   */\n  enableNav = true;\n\n  /**\n   * tree controller, used to control the nodes in the tree\n   */\n  readonly control = new FlatTreeControl<InternalNode<K, T>>(\n    (node) => node.level,\n    (node) => node.expandable\n  );\n\n  /**\n   * Flattener of tissue tree list component, returns flat-data structure\n   */\n  readonly flattener = new MatTreeFlattener<T, InternalNode<K, T>>(\n    (node, level) => ({\n      label: node.label,\n      expandable: (node.children?.length ?? 0) > 0,\n      level,\n      data: node,\n    }),\n    (node) => node.level,\n    (node) => node.expandable,\n    (node) => node.children?.map((id) => this.nodes[id])\n  );\n\n  /**\n   * Data source of tissue tree list component, defines the data in mat-tree\n   */\n  readonly dataSource = new MatTreeFlatDataSource(this.control, this.flattener);\n\n  /**\n   * Take actions if any data changes\n   * @param changes changes in data\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('nodes' in changes) {\n      this.dataSource.data = this.findRootNodes();\n      this.selected = this.control.dataNodes[0].data;\n    }\n    if ('selected' in changes) {\n      const path = this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];\n      const node = this.control.dataNodes.find((n) => n.data === changes['selected'].currentValue);\n      if (!node?.expandable) {\n        this.expandPath(path);\n      }\n    }\n  }\n\n  /**\n   * check if the current node has children\n   * @param node current selected node\n   * @returns boolean, which means if node has children\n   */\n  hasChild(_: number, node: InternalNode<K, T>): boolean {\n    return node.expandable;\n  }\n\n  /**\n   * It selects the node, which is clicked.\n   * @param node Tissue Tree Item, which is clicked\n   */\n  selectNode(node: T): void {\n    if (this.selected !== node) {\n      this.selected = node;\n      this.selectedChange.emit(this.selected);\n    }\n  }\n\n  /**\n   * Resets selection and collapes all nodes of the tree.\n   */\n  resetSelection(): void {\n    this.selected = undefined;\n    this.control.collapseAll();\n  }\n\n  /**\n   * It creates a copy of the input nodes object.\n   * It iterates over it and removes all the children nodes from it.\n   * @returns remaining nodes which are root nodes.\n   */\n  private findRootNodes(): T[] {\n    const { nodes } = this;\n    const roots = { ...this.nodes };\n    for (const key in nodes) {\n      for (const child of nodes[key].children ?? []) {\n        delete roots[child];\n      }\n    }\n\n    return Object.values(roots);\n  }\n\n  /**\n   * expands the tree nodes based on the path provided.\n   * @param path is given as an input.\n   */\n  private expandPath(path: DataNode<K>[]): void {\n    const nodes = this.control.dataNodes.filter((node) => path.includes(node.data));\n    nodes.forEach((node) => this.control.expand(node));\n  }\n\n  /**\n   * It used the logic of depth first search to find the target node.\n   * returns the path to the target node.\n   */\n  private dfsFindPath(nodes: T[], target: T, path: T[] = []): T[] {\n    for (const node of nodes) {\n      path.push(node);\n      if (node === target) {\n        return path;\n      }\n\n      const savedLength = path.length;\n      const children = node.children?.map((id) => this.nodes[id]) ?? [];\n      if (this.dfsFindPath(children, target, path).length > savedLength) {\n        return path;\n      }\n\n      path.pop();\n    }\n\n    return path;\n  }\n\n  /**\n   * Keyboard navigation for tissue tree list\n   * @param event Keyboard event\n   */\n  @HostListener('document:keydown', ['$event'])\n  onKeyDown(event: KeyboardEvent): void {\n    if (!this.enableNav) {\n      return;\n    }\n    if (this.control) {\n      const nodes = this.control.dataNodes;\n      const selectedIndex = this.control.dataNodes.findIndex((node) => node.data.id === this.selected?.id);\n\n      const currentNode = nodes[selectedIndex];\n      if (currentNode && currentNode.expandable) {\n        const expandableNodes = nodes.filter((node) => node.expandable);\n        const index = expandableNodes.indexOf(currentNode);\n        if (event.key === 'ArrowLeft') {\n          this.control.collapse(currentNode);\n        } else if (event.key === 'ArrowRight') {\n          this.control.expand(currentNode);\n        } else if (\n          event.key === 'ArrowDown' &&\n          index + 1 < expandableNodes.length &&\n          !this.control.isExpanded(currentNode)\n        ) {\n          this.selectNode(expandableNodes[index + 1].data);\n          return;\n        } else if (event.key === 'ArrowUp' && index - 1 >= 0 && !this.control.isExpanded(expandableNodes[index - 1])) {\n          this.selectNode(expandableNodes[index - 1].data);\n          return;\n        }\n      }\n      if (event.key === 'ArrowDown' && selectedIndex + 1 < nodes.length) {\n        this.selectNode(nodes[selectedIndex + 1].data);\n      }\n      if (event.key === 'ArrowUp' && selectedIndex - 1 >= 0) {\n        this.selectNode(nodes[selectedIndex - 1].data);\n      }\n      if (event.key === 'Enter' && !currentNode.expandable) {\n        this.navigate.emit(currentNode.data);\n      }\n    }\n  }\n\n  /**\n   * Disable keyboard nav on click\n   */\n  @HostListener('document:click')\n  handlePageClick(): void {\n    this.enableNav = false;\n  }\n\n  /**\n   * Enables keyboard nav only if the tissue tree list is clicked\n   * @param event Click event\n   */\n  @HostListener('click', ['$event'])\n  handleListClick(event: MouseEvent): void {\n    event.stopPropagation();\n    this.enableNav = true;\n  }\n}\n",
             "properties": [
                 {
                     "name": "data",
@@ -181,7 +181,7 @@
                     "type": "T",
                     "optional": false,
                     "description": "<p>Associated user node data</p>\n",
-                    "line": 43,
+                    "line": 44,
                     "rawdescription": "\nAssociated user node data"
                 },
                 {
@@ -191,7 +191,7 @@
                     "type": "boolean",
                     "optional": false,
                     "description": "<p>Whether the node can be expanded to display child nodes</p>\n",
-                    "line": 39,
+                    "line": 40,
                     "rawdescription": "\nWhether the node can be expanded to display child nodes"
                 },
                 {
@@ -201,7 +201,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "<p>Displayed label</p>\n",
-                    "line": 37,
+                    "line": 38,
                     "rawdescription": "\nDisplayed label"
                 },
                 {
@@ -211,7 +211,7 @@
                     "type": "number",
                     "optional": false,
                     "description": "<p>Depth of node in the tree</p>\n",
-                    "line": 41,
+                    "line": 42,
                     "rawdescription": "\nDepth of node in the tree"
                 }
             ],
@@ -919,7 +919,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: flex;\n  padding: 1rem 2rem;\n  border-top: 0.063rem solid #e2e7e9;\n  align-items: center;\n  background-color: #f8f9fa;\n  gap: 1rem;\n\n  --palette-primary-500: #abcdef;\n\n  .controls {\n    display: flex;\n    justify-content: flex-end;\n  }\n  .filler {\n    flex-grow: 1;\n  }\n\n  .product-title {\n    color: #990000;\n    margin-right: 0rem;\n  }\n\n  a {\n    cursor: pointer;\n    display: flex;\n  }\n\n  .product-logo-image {\n    height: 1.2rem;\n    margin-right: 1rem;\n  }\n\n  button {\n    justify-content: center;\n    align-items: center;\n    min-width: 9rem;\n    min-height: 3rem;\n    gap: 0.5rem;\n\n    --palette-primary-100-rgb: #4c5a69;\n    --palette-primary-500-rgb: #243142;\n\n    &.mat-accent {\n      &:active {\n        --palette-primary-700-rgb: #4c5a69;\n      }\n      .mat-icon {\n        z-index: 1;\n      }\n    }\n  }\n}\n\n::ng-deep {\n  .download-options-panel {\n    box-shadow: 0.1rem 0.1rem 0.4rem 0.2rem #dad7d7;\n    background-color: #ffffff;\n  }\n}\n::ng-deep .download-button {\n  .mdc-button__label {\n    display: flex;\n    gap: 0.5rem;\n  }\n}\n",
+                    "data": ":host {\n  display: flex;\n  padding: 0.75rem 2rem;\n  border-top: 0.063rem solid #e2e7e9;\n  align-items: center;\n  background-color: #f8f9fa;\n  gap: 1rem;\n\n  --palette-primary-500: #abcdef;\n\n  .controls {\n    display: flex;\n    justify-content: flex-end;\n  }\n  .filler {\n    flex-grow: 1;\n  }\n\n  .product-title {\n    color: #990000;\n    margin-right: 0rem;\n  }\n\n  a {\n    cursor: pointer;\n    display: flex;\n  }\n\n  .product-logo-image {\n    height: 1.2rem;\n    margin-right: 1rem;\n  }\n\n  button {\n    justify-content: center;\n    align-items: center;\n    min-width: calc(9rem + 3px);\n    min-height: 3rem;\n    gap: 0.5rem;\n    border: 1px solid;\n    transition: none;\n\n    &:hover {\n      border: 2px solid;\n    }\n\n    --palette-primary-100-rgb: #4c5a69;\n    --palette-primary-500-rgb: #243142;\n\n    &.mat-accent {\n      &:active {\n        --palette-primary-700-rgb: #4c5a69;\n      }\n      .mat-icon {\n        z-index: 1;\n      }\n    }\n  }\n}\n\n::ng-deep {\n  .download-options-panel {\n    box-shadow: 0.1rem 0.1rem 0.4rem 0.2rem #dad7d7;\n    background-color: #ffffff;\n  }\n}\n::ng-deep .download-button {\n  .mdc-button__label {\n    display: flex;\n    gap: 0.5rem;\n  }\n}\n",
                     "styleUrl": "./footer.component.scss"
                 }
             ],
@@ -1183,7 +1183,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use 'utils';\n@use 'variables' as vars;\n\n:host {\n  display: flex;\n  align-items: center;\n  height: 5rem;\n  padding: 0 2rem 0 1rem;\n\n  @include utils.define-flex-filler();\n\n  h1 {\n    // Reset margins for h1 elements\n    margin: 0;\n  }\n\n  .product {\n    display: flex;\n    align-items: center;\n    text-decoration: none;\n    // Style the ripple animation\n    padding: 0 1rem;\n    border-radius: 0.25rem;\n\n    &:hover {\n      cursor: pointer;\n    }\n\n    .text {\n      margin-left: 1rem;\n      font-weight: 600;\n      color: vars.$accent-rgb;\n    }\n  }\n\n  .app {\n    margin-left: 0.5rem;\n  }\n\n  .about {\n    width: 9rem;\n    height: 3rem;\n    text-decoration: none;\n    span {\n      border-bottom: 1px solid var(--palette-primary-500-rgb);\n    }\n    .icon {\n      width: 1.5rem;\n      height: 1.5rem;\n      font-size: 1.5rem;\n    }\n  }\n\n  @media (max-width: 30rem) {\n    height: 4.5rem;\n\n    .product .text,\n    .about .text {\n      @include utils.sr-only();\n    }\n\n    .product {\n      height: 2.5rem;\n      padding: 0 0.25rem;\n\n      .logo {\n        width: 1.5rem;\n        height: 1.5rem;\n      }\n    }\n\n    .app {\n      font-size: 1rem;\n      line-height: 1.5rem;\n    }\n\n    .about {\n      min-width: 2.5rem;\n      width: 2.5rem;\n      height: 2.5rem;\n      padding: 0;\n\n      .icon {\n        margin: 0;\n      }\n    }\n  }\n\n  @media (max-width: 20rem) {\n    padding: 0;\n  }\n}\n",
+                    "data": "@use 'utils';\n@use 'variables' as vars;\n\n:host {\n  display: flex;\n  align-items: center;\n  height: 4.5rem;\n  padding: 0 2rem;\n\n  @include utils.define-flex-filler();\n\n  h1 {\n    // Reset margins for h1 elements\n    margin: 0;\n  }\n\n  .product {\n    display: flex;\n    align-items: center;\n    text-decoration: none;\n    // Style the ripple animation\n    padding: 0 1rem;\n    border-radius: 0.25rem;\n\n    &:hover {\n      cursor: pointer;\n    }\n\n    .text {\n      margin-left: 1rem;\n      font-weight: 600;\n      color: vars.$accent-rgb;\n    }\n  }\n\n  .app {\n    margin-left: 0.5rem;\n  }\n\n  .about {\n    width: 9rem;\n    height: 3rem;\n    text-decoration: none;\n    span {\n      border-bottom: 1px solid var(--palette-primary-500-rgb);\n    }\n    .icon {\n      width: 1.5rem;\n      height: 1.5rem;\n      font-size: 1.5rem;\n    }\n  }\n\n  @media (max-width: 30rem) {\n    height: 4.5rem;\n\n    .product .text,\n    .about .text {\n      @include utils.sr-only();\n    }\n\n    .product {\n      height: 2.5rem;\n      padding: 0 0.25rem;\n\n      .logo {\n        width: 1.5rem;\n        height: 1.5rem;\n      }\n    }\n\n    .app {\n      font-size: 1rem;\n      line-height: 1.5rem;\n    }\n\n    .about {\n      min-width: 2.5rem;\n      width: 2.5rem;\n      height: 2.5rem;\n      padding: 0;\n\n      .icon {\n        margin: 0;\n      }\n    }\n  }\n\n  @media (max-width: 20rem) {\n    padding: 0;\n  }\n\n  @media (max-width: 22.5rem) {\n    padding: 0 1rem;\n  }\n}\n",
                     "styleUrl": "./header.component.scss"
                 }
             ],
@@ -1611,7 +1611,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".svg {\n  max-height: calc(100vh - 14rem);\n  overflow-y: auto;\n}\nsvg {\n  max-height: calc(100vh - 10rem);\n  width: 100%;\n}\n\n[id^='Crosswalk'] > #Crosswalk,\n[id^='Crosswalk'] {\n  :is(path, polygon, polyline) {\n    fill: transparent;\n    stroke: transparent;\n  }\n\n  .hover-active & g:hover > :is(path, polygon, polyline),\n  .click-active {\n    fill: hsl(0deg 100% 50%);\n    mix-blend-mode: saturation;\n  }\n}\n\n::-webkit-scrollbar {\n  width: 0.5rem;\n  height: 0.5rem;\n}\n\n::-webkit-scrollbar-track {\n  background: #f8f9fa;\n  border: 0.063rem solid #d3d3d3;\n}\n\n::-webkit-scrollbar-thumb {\n  background: #a0abb4;\n  border-radius: 0.5rem;\n}\n",
+                    "data": ".svg {\n  height: 100%;\n  width: 100%;\n  max-width: 100%;\n  max-height: 100%;\n}\n\nsvg {\n  width: 100%;\n  height: 100%;\n}\n\n#Crosswalk {\n  :is(path, polygon, polyline),\n  .hover-active & .inset-group:hover :is(path, polygon, polyline) {\n    fill: transparent;\n    stroke: transparent;\n  }\n\n  .hover-active & g:hover :is(path, polygon, polyline),\n  .hover-active & .inset-group > g:hover :is(path, polygon, polyline),\n  .click-active {\n    fill: hsl(0deg 100% 50%);\n    mix-blend-mode: saturation;\n  }\n}\n\n::-webkit-scrollbar {\n  width: 0.5rem;\n  height: 0.5rem;\n}\n\n::-webkit-scrollbar-track {\n  background: #f8f9fa;\n  border: 0.063rem solid #d3d3d3;\n}\n\n::-webkit-scrollbar-thumb {\n  background: #a0abb4;\n  border-radius: 0.5rem;\n}\n",
                     "styleUrl": "./interactive-svg.component.scss"
                 }
             ],
@@ -1712,7 +1712,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use 'variables' as vars;\n\n:host {\n  display: grid;\n  grid-template-columns: 2fr 3fr;\n  grid-template-rows: auto auto 1fr;\n  column-gap: 2rem;\n  row-gap: 2rem;\n  padding: 3.5rem 2rem;\n\n  .image {\n    grid-column: 1;\n    grid-row: 1 / span 3;\n    width: 100%;\n    height: auto;\n    align-self: center;\n    border-radius: 1rem;\n    box-shadow: 0.06rem 0.13rem 1rem 0.13rem #00000029;\n  }\n\n  .title {\n    font-size: 2rem;\n    line-height: 2.5rem;\n    margin: 0;\n  }\n\n  .description {\n    font-size: 1rem;\n    line-height: 1.5rem;\n\n    ::ng-deep p {\n      margin: 0;\n    }\n\n    ::ng-deep a {\n      color: vars.$primary-rgb;\n      font-weight: 700;\n    }\n  }\n\n  .more-button {\n    width: fit-content;\n    height: 3rem;\n  }\n}\n",
+                    "data": "@use 'variables' as vars;\n\n:host {\n  display: grid;\n  grid-template-columns: 2fr 3fr;\n  grid-template-rows: 0fr 0fr 1fr;\n  column-gap: 4rem;\n  row-gap: 2rem;\n  padding: 3.5rem 6rem;\n  max-height: 30rem;\n\n  .image {\n    grid-column: 1;\n    grid-row: 1 / span 3;\n    width: 100%;\n    height: 100%;\n    align-self: center;\n    border-radius: 1rem;\n    box-shadow: 0.06rem 0.13rem 1rem 0.13rem #00000029;\n  }\n\n  .title {\n    font-size: 2rem;\n    line-height: 2.5rem;\n    margin: 0;\n  }\n\n  .description {\n    font-size: 1rem;\n    line-height: 1.5rem;\n\n    ::ng-deep p {\n      margin: 0;\n    }\n\n    ::ng-deep a {\n      color: vars.$primary-rgb;\n      font-weight: 700;\n    }\n  }\n\n  .more-button {\n    width: fit-content;\n    height: 3rem;\n  }\n\n  @media (max-width: 1400px) {\n    grid-template-columns: 1.8fr 1fr;\n    grid-template-rows: auto auto 3rem;\n    column-gap: 2rem;\n    padding: 3.5rem 2rem;\n    max-height: unset;\n\n    .title {\n      font-size: 1.5rem;\n      line-height: normal;\n    }\n  }\n\n  @media (max-width: 1280px) {\n    grid-template-columns: unset;\n    text-align: center;\n\n    .image {\n      max-height: 22rem;\n      width: auto;\n    }\n\n    .image,\n    .more-button {\n      place-self: center;\n    }\n  }\n}\n",
                     "styleUrl": "./landing-page-in-depth.component.scss"
                 }
             ],
@@ -1820,12 +1820,12 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use 'variables' as vars;\n\n:host {\n  display: grid;\n  grid-template-columns: 3fr 2fr;\n  grid-template-rows: auto auto 3rem 1fr;\n  align-items: start;\n  column-gap: 2rem;\n  row-gap: 2rem;\n\n  .title {\n    font-size: 3rem;\n    line-height: 4rem;\n    margin: 0;\n  }\n\n  .more-button {\n    width: fit-content;\n    height: 3rem;\n  }\n\n  .image {\n    grid-column: 2;\n    grid-row: 1 / span 4;\n    place-self: center;\n    width: 100%;\n    height: auto;\n  }\n\n  .description,\n  .partners {\n    ::ng-deep p {\n      margin: 0;\n    }\n\n    ::ng-deep a {\n      color: vars.$primary-rgb;\n      font-weight: 700;\n    }\n  }\n\n  .red-theme {\n    background-color: #990000;\n    border-color: #990000;\n    &:hover {\n      background-color: #800000;\n      border-color: #800000;\n\n      mat-icon {\n        transform: translateX(30%);\n        transition: 0.5s;\n      }\n    }\n\n    &:active,\n    &:focus {\n      background-color: #990000;\n      border-color: #990000;\n\n      ::ng-deep .mat-mdc-focus-indicator {\n        background-color: #990000 !important;\n        border-color: #990000;\n      }\n    }\n\n    &:active {\n      background-color: #ffffff;\n      color: #990000;\n\n      ::ng-deep .mat-mdc-focus-indicator {\n        background-color: #ffffff !important;\n        border: 2px solid;\n      }\n    }\n\n    &:disabled {\n      background-color: #ffd6db;\n      border: 1px solid #ffd6db;\n    }\n  }\n}\n",
+                    "data": "@use 'variables' as vars;\n\n:host {\n  display: grid;\n  grid-template-columns: 3fr 2fr;\n  grid-template-rows: auto auto 3rem 1fr;\n  align-items: start;\n  column-gap: 2rem;\n  row-gap: 2rem;\n\n  .title {\n    font-size: 3rem;\n    line-height: 4rem;\n    margin: 0;\n  }\n\n  .more-button {\n    width: fit-content;\n    height: 3rem;\n  }\n\n  .image {\n    grid-column: 2;\n    grid-row: 1 / span 4;\n    place-self: center;\n    width: 100%;\n    min-height: 23rem;\n    max-height: 27rem;\n  }\n\n  .description,\n  .partners {\n    font-size: 1rem;\n    line-height: 1.5rem;\n\n    ::ng-deep p {\n      margin: 0;\n    }\n\n    ::ng-deep a {\n      color: vars.$primary-rgb;\n      font-weight: 700;\n    }\n  }\n\n  mat-icon {\n    font-size: 1.5rem;\n    height: fit-content;\n    width: fit-content;\n    padding-right: 0.5rem;\n    margin-left: 0.25rem !important;\n  }\n\n  .red-theme {\n    background-color: #990000;\n    border-color: #990000;\n    &:hover {\n      background-color: #800000;\n      border-color: #800000;\n\n      mat-icon {\n        transform: translateX(30%);\n        transition: 0.5s;\n      }\n    }\n\n    &:active,\n    &:focus {\n      background-color: #990000;\n      border-color: #990000;\n\n      ::ng-deep .mat-mdc-focus-indicator {\n        background-color: #990000 !important;\n        border-color: #990000;\n      }\n    }\n\n    &:active {\n      background-color: #ffffff;\n      color: #990000;\n\n      ::ng-deep .mat-mdc-focus-indicator {\n        background-color: #ffffff !important;\n        border: 2px solid;\n      }\n    }\n\n    &:disabled {\n      background-color: #ffd6db;\n      border: 1px solid #ffd6db;\n    }\n  }\n\n  @media (max-width: 1400px) {\n    .title {\n      font-size: 2rem;\n      line-height: normal;\n    }\n  }\n\n  @media (max-width: 1280px) {\n    grid-template-columns: unset;\n\n    .image {\n      grid-column: 1;\n      grid-row: 5 / span 1;\n    }\n  }\n}\n",
                     "styleUrl": "./landing-page-intro.component.scss"
                 }
             ],
             "stylesData": "",
-            "templateData": "<h1 class=\"title\">{{ title }}</h1>\n<markdown class=\"description\" [data]=\"description\"></markdown>\n\n<button mat-flat-button class=\"more-button red-theme\" color=\"primary\" [hraLink]=\"moreLink\">\n  {{ moreText }}\n  <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>\n</button>\n<markdown class=\"partners\" [data]=\"partners\"></markdown>\n\n<img class=\"image\" [src]=\"img\" alt=\"alt\" />\n"
+            "templateData": "<h1 class=\"title\">{{ title }}</h1>\n<markdown class=\"description\" [data]=\"description\"></markdown>\n\n<button mat-flat-button class=\"more-button red-theme\" color=\"primary\" [hraLink]=\"moreLink\">\n  {{ moreText }}\n  <mat-icon iconPositionEnd>arrow_forward</mat-icon>\n</button>\n<markdown class=\"partners\" [data]=\"partners\"></markdown>\n\n<img class=\"image\" [src]=\"img\" alt=\"alt\" />\n"
         },
         {
             "name": "MetricsComponent",
@@ -1895,7 +1895,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  padding: 2rem 0 0 0;\n  background: #f8f9fa;\n  gap: 0.5rem;\n\n  .logo {\n    height: 2.75rem;\n  }\n\n  .header-title {\n    font-size: 2rem;\n    line-height: 2.5rem;\n  }\n\n  .metrics {\n    display: flex;\n    flex-direction: row;\n    overflow-x: auto;\n    max-width: 100%;\n    gap: 2rem;\n    padding: 2rem 1.75rem;\n\n    .metric {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n      min-width: 14.25rem;\n      height: 14.75rem;\n      padding-top: 2rem;\n      padding-bottom: 2rem;\n\n      .logo {\n        margin-bottom: 2rem;\n      }\n\n      .value {\n        font-size: 3rem;\n        line-height: 4rem;\n        margin-bottom: 0.25rem;\n      }\n\n      .description {\n        font-size: 1rem;\n        text-align: center;\n      }\n    }\n  }\n}\n",
+                    "data": ":host {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  padding: 2rem 0 0 0;\n  background: #f8f9fa;\n  gap: 0.5rem;\n\n  .logo {\n    height: 2.75rem;\n  }\n\n  .header-title {\n    font-size: 2rem;\n    line-height: 2.5rem;\n  }\n\n  .metrics {\n    display: flex;\n    flex-direction: row;\n    width: 100%;\n    gap: 3%;\n    padding: 2rem 1.75rem;\n\n    .metric {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n      min-width: calc(100% / 7);\n      height: 14.75rem;\n      padding-top: 2rem;\n      padding-bottom: 2rem;\n\n      .logo {\n        margin-bottom: 2rem;\n      }\n\n      .value {\n        font-size: 3rem;\n        line-height: 4rem;\n        margin-bottom: 0.25rem;\n      }\n\n      .description {\n        font-size: 1rem;\n        text-align: center;\n      }\n    }\n  }\n\n  @media (max-width: 1400px) {\n    .metrics {\n      flex-wrap: wrap;\n\n      .metric {\n        width: 31%;\n      }\n    }\n  }\n}\n",
                     "styleUrl": "./metrics.component.scss"
                 }
             ],
@@ -1970,12 +1970,12 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: none;\n  position: relative;\n  border-radius: 0.5rem;\n  padding: 1.5rem;\n  flex-direction: column;\n\n  .header-close {\n    position: absolute;\n    top: 0.625rem;\n    right: 1rem;\n  }\n\n  h3 {\n    margin: 0 0 1rem 0;\n    font-weight: 700;\n  }\n\n  .btn-stroked {\n    font-weight: 700;\n    margin-bottom: 1rem;\n    margin-top: 1rem;\n    padding: 0.75rem 0;\n    letter-spacing: 0.5px;\n  }\n\n  .btn-flat {\n    font-weight: 700;\n    font-size: 16px;\n    padding: 0.75rem 0;\n    letter-spacing: 0.5px;\n    color: white;\n  }\n\n  .content {\n    font-size: 1rem;\n    line-height: 1.5rem;\n    letter-spacing: 0.5px;\n  }\n\n  @media (max-width: 480px) {\n    display: flex;\n  }\n}\n",
+                    "data": ":host {\n  display: none;\n  position: relative;\n  border-radius: 0.5rem;\n  padding: 1.5rem;\n  flex-direction: column;\n  font-family: 'Inter';\n\n  .header-close {\n    position: absolute;\n    top: 1.125rem;\n    right: 1rem;\n  }\n\n  h3 {\n    margin: 0;\n    height: 2.5rem;\n    line-height: 2.5rem;\n  }\n\n  button {\n    height: 3rem;\n    padding: 0.75rem 0;\n    letter-spacing: 0.5px;\n  }\n\n  .btn-stroked {\n    margin-bottom: 1rem;\n  }\n\n  .content {\n    font-size: 1rem;\n    line-height: 1.5rem;\n    letter-spacing: 0.5px;\n  }\n\n  @media (max-width: 480px) {\n    display: flex;\n  }\n}\n",
                     "styleUrl": "./screen-size-notice.component.scss"
                 }
             ],
             "stylesData": "",
-            "templateData": "<h3>Screen Size Notice</h3>\n<button mat-icon-button class=\"header-close\" (click)=\"proceedClick.emit()\">\n  <mat-icon>close</mat-icon>\n</button>\n<markdown [data]=\"content\" class=\"content\"></markdown>\n<button mat-stroked-button color=\"accent\" class=\"btn-stroked\" (click)=\"proceedClick.emit()\">\n  Proceed to FTU Explorer\n</button>\n<a mat-flat-button color=\"primary\" class=\"btn-flat\" [hraLink]=\"portal\"> Human Reference Atlas Portal </a>\n"
+            "templateData": "<h3>Screen Size Notice</h3>\n<button mat-icon-button class=\"header-close\" (click)=\"proceedClick.emit()\">\n  <mat-icon>close</mat-icon>\n</button>\n<markdown [data]=\"content\" class=\"content\"></markdown>\n<button mat-stroked-button color=\"accent\" class=\"btn-stroked\" (click)=\"proceedClick.emit()\">\n  Proceed to FTU Explorer\n</button>\n<button mat-flat-button color=\"primary\" class=\"btn-flat\" [hraLink]=\"portal\">Human Reference Atlas Portal</button>\n"
         },
         {
             "name": "SourceListComponent",
@@ -2090,7 +2090,7 @@
         },
         {
             "name": "TissueTreeListComponent",
-            "id": "component-TissueTreeListComponent-8544338e8c5e11dd440f8b104bfa31552155bc5006289770258a8e940978177df7797adcb9bafb5b09a9943913ecf339692d528f868c6846be5c3de8a6270237",
+            "id": "component-TissueTreeListComponent-a7339e29eb1cb04557eb7c904a626e8a1974bae95f531ae3f216457d00cf43612cecaed3c982637b2de9a747afa1bd5dc948de9ac20d2cf0d926a93aa4c43a8f",
             "file": "src/lib/tissue-tree-list/tissue-tree-list.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -2115,7 +2115,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nInput  of tissue tree list component\n",
                     "description": "<p>Input  of tissue tree list component</p>\n",
-                    "line": 69,
+                    "line": 70,
                     "type": "Record<K | T>",
                     "decorators": []
                 },
@@ -2126,12 +2126,22 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nNode selected, to view the data associated with it\n",
                     "description": "<p>Node selected, to view the data associated with it</p>\n",
-                    "line": 74,
+                    "line": 75,
                     "type": "T",
                     "decorators": []
                 }
             ],
             "outputsClass": [
+                {
+                    "name": "navigate",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nNavigates to an illustration page\n",
+                    "description": "<p>Navigates to an illustration page</p>\n",
+                    "line": 85,
+                    "type": "EventEmitter"
+                },
                 {
                     "name": "selectedChange",
                     "defaultValue": "new EventEmitter<T | undefined>()",
@@ -2139,7 +2149,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nOutput  of tissue tree list component\n",
                     "description": "<p>Output  of tissue tree list component</p>\n",
-                    "line": 79,
+                    "line": 80,
                     "type": "EventEmitter"
                 }
             ],
@@ -2152,7 +2162,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>tree controller, used to control the nodes in the tree</p>\n",
-                    "line": 84,
+                    "line": 95,
                     "rawdescription": "\n\ntree controller, used to control the nodes in the tree\n",
                     "modifierKind": [
                         144
@@ -2166,11 +2176,22 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Data source of tissue tree list component, defines the data in mat-tree</p>\n",
-                    "line": 107,
+                    "line": 118,
                     "rawdescription": "\n\nData source of tissue tree list component, defines the data in mat-tree\n",
                     "modifierKind": [
                         144
                     ]
+                },
+                {
+                    "name": "enableNav",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Whether keyboard navigation is enabled</p>\n",
+                    "line": 90,
+                    "rawdescription": "\n\nWhether keyboard navigation is enabled\n"
                 },
                 {
                     "name": "flattener",
@@ -2180,7 +2201,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Flattener of tissue tree list component, returns flat-data structure</p>\n",
-                    "line": 92,
+                    "line": 103,
                     "rawdescription": "\n\nFlattener of tissue tree list component, returns flat-data structure\n",
                     "modifierKind": [
                         144
@@ -2188,6 +2209,75 @@
                 }
             ],
             "methodsClass": [
+                {
+                    "name": "handleListClick",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "MouseEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 273,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nEnables keyboard nav only if the tissue tree list is clicked\n",
+                    "description": "<p>Enables keyboard nav only if the tissue tree list is clicked</p>\n",
+                    "decorators": [
+                        {
+                            "name": "HostListener",
+                            "stringifiedArguments": "'click', ['$event']"
+                        }
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 7628,
+                                "end": 7633,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "event"
+                            },
+                            "type": "MouseEvent",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 7622,
+                                "end": 7627,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>Click event</p>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "handlePageClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 264,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nDisable keyboard nav on click\n",
+                    "description": "<p>Disable keyboard nav on click</p>\n",
+                    "decorators": [
+                        {
+                            "name": "HostListener",
+                            "stringifiedArguments": "'document:click'"
+                        }
+                    ]
+                },
                 {
                     "name": "hasChild",
                     "args": [
@@ -2207,7 +2297,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 128,
+                    "line": 143,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\ncheck if the current node has children\n",
@@ -2224,8 +2314,8 @@
                         },
                         {
                             "name": {
-                                "pos": 3422,
-                                "end": 3426,
+                                "pos": 3805,
+                                "end": 3809,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -2236,8 +2326,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 3416,
-                                "end": 3421,
+                                "pos": 3799,
+                                "end": 3804,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -2248,8 +2338,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 3455,
-                                "end": 3462,
+                                "pos": 3838,
+                                "end": 3845,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -2261,12 +2351,63 @@
                     ]
                 },
                 {
+                    "name": "onKeyDown",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 220,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nKeyboard navigation for tissue tree list\n",
+                    "description": "<p>Keyboard navigation for tissue tree list</p>\n",
+                    "decorators": [
+                        {
+                            "name": "HostListener",
+                            "stringifiedArguments": "'document:keydown', ['$event']"
+                        }
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 5795,
+                                "end": 5800,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "event"
+                            },
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 5789,
+                                "end": 5794,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>Keyboard event</p>\n"
+                        }
+                    ]
+                },
+                {
                     "name": "resetSelection",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 146,
+                    "line": 161,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nResets selection and collapes all nodes of the tree.\n",
@@ -2285,7 +2426,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 136,
+                    "line": 151,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nIt selects the node, which is clicked.\n",
@@ -2293,8 +2434,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 3665,
-                                "end": 3669,
+                                "pos": 4048,
+                                "end": 4052,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -2305,8 +2446,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 3659,
-                                "end": 3664,
+                                "pos": 4042,
+                                "end": 4047,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -2321,11 +2462,122 @@
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
-            "hostListeners": [],
+            "hostListeners": [
+                {
+                    "name": "click",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "MouseEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "argsDecorator": [
+                        "$event"
+                    ],
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nEnables keyboard nav only if the tissue tree list is clicked\n",
+                    "description": "<p>Enables keyboard nav only if the tissue tree list is clicked</p>\n",
+                    "jsdoctags": [
+                        {
+                            "pos": 7621,
+                            "end": 7649,
+                            "flags": 4227072,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "kind": 338,
+                            "tagName": {
+                                "pos": 7622,
+                                "end": 7627,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>Click event</p>\n",
+                            "name": {
+                                "pos": 7628,
+                                "end": 7633,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "event"
+                            },
+                            "isNameFirst": true,
+                            "isBracketed": false
+                        }
+                    ],
+                    "line": 273
+                },
+                {
+                    "name": "document:click",
+                    "args": [],
+                    "argsDecorator": [],
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nDisable keyboard nav on click\n",
+                    "description": "<p>Disable keyboard nav on click</p>\n",
+                    "line": 264
+                },
+                {
+                    "name": "document:keydown",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "argsDecorator": [
+                        "$event"
+                    ],
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nKeyboard navigation for tissue tree list\n",
+                    "description": "<p>Keyboard navigation for tissue tree list</p>\n",
+                    "jsdoctags": [
+                        {
+                            "pos": 5788,
+                            "end": 5819,
+                            "flags": 4227072,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "kind": 338,
+                            "tagName": {
+                                "pos": 5789,
+                                "end": 5794,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>Keyboard event</p>\n",
+                            "name": {
+                                "pos": 5795,
+                                "end": 5800,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "event"
+                            },
+                            "isNameFirst": true,
+                            "isBracketed": false
+                        }
+                    ],
+                    "line": 220
+                }
+            ],
             "description": "<p>Tabular View for hubMap tissue side-bar</p>\n",
             "rawdescription": "\n\nTabular View for hubMap tissue side-bar\n",
             "type": "component",
-            "sourceCode": "import { FlatTreeControl } from '@angular/cdk/tree';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  Input,\n  OnChanges,\n  Output,\n  SimpleChanges,\n} from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatExpansionModule } from '@angular/material/expansion';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { LinkId } from '@hra-ui/cdk/state';\n\n/** Base node type */\nexport interface DataNode<K extends string> {\n  /** User readable label */\n  label: string;\n  /** Id to pass as a query parameter on navigation */\n  id?: string;\n  /** Link to navigate to on node click */\n  link?: LinkId;\n  /** Nested nodes */\n  children?: K[];\n}\n\n/**\n * Internal interface for flat tissue data hierarchy\n */\ninterface InternalNode<K extends string, T extends DataNode<K>> {\n  /** Displayed label */\n  label: string;\n  /** Whether the node can be expanded to display child nodes */\n  expandable: boolean;\n  /** Depth of node in the tree */\n  level: number;\n  /** Associated user node data */\n  data: T;\n}\n\n/**\n * Tabular View for hubMap tissue side-bar\n */\n@Component({\n  selector: 'hra-tissue-tree-list',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatButtonModule,\n    MatTreeModule,\n    MatIconModule,\n    MatExpansionModule,\n    MatRippleModule,\n    LinkDirective,\n  ],\n  templateUrl: './tissue-tree-list.component.html',\n  styleUrls: ['./tissue-tree-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueTreeListComponent<K extends string, T extends DataNode<K>> implements OnChanges {\n  /**\n   * Input  of tissue tree list component\n   */\n  @Input() nodes: Record<K, T> = {} as Record<K, T>;\n\n  /**\n   * Node selected, to view the data associated with it\n   */\n  @Input() selected?: T = undefined;\n\n  /**\n   * Output  of tissue tree list component\n   */\n  @Output() readonly selectedChange = new EventEmitter<T | undefined>();\n\n  /**\n   * tree controller, used to control the nodes in the tree\n   */\n  readonly control = new FlatTreeControl<InternalNode<K, T>>(\n    (node) => node.level,\n    (node) => node.expandable\n  );\n\n  /**\n   * Flattener of tissue tree list component, returns flat-data structure\n   */\n  readonly flattener = new MatTreeFlattener<T, InternalNode<K, T>>(\n    (node, level) => ({\n      label: node.label,\n      expandable: (node.children?.length ?? 0) > 0,\n      level,\n      data: node,\n    }),\n    (node) => node.level,\n    (node) => node.expandable,\n    (node) => node.children?.map((id) => this.nodes[id])\n  );\n\n  /**\n   * Data source of tissue tree list component, defines the data in mat-tree\n   */\n  readonly dataSource = new MatTreeFlatDataSource(this.control, this.flattener);\n\n  /**\n   * Take actions if any data changes\n   * @param changes changes in data\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('nodes' in changes) {\n      this.dataSource.data = this.findRootNodes();\n    }\n    if ('selected' in changes) {\n      const path = this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];\n      this.expandPath(path);\n    }\n  }\n\n  /**\n   * check if the current node has children\n   * @param node current selected node\n   * @returns boolean, which means if node has children\n   */\n  hasChild(_: number, node: InternalNode<K, T>): boolean {\n    return node.expandable;\n  }\n\n  /**\n   * It selects the node, which is clicked.\n   * @param node Tissue Tree Item, which is clicked\n   */\n  selectNode(node: T): void {\n    if (this.selected !== node) {\n      this.selected = node;\n      this.selectedChange.emit(this.selected);\n    }\n  }\n\n  /**\n   * Resets selection and collapes all nodes of the tree.\n   */\n  resetSelection(): void {\n    this.selected = undefined;\n    this.control.collapseAll();\n  }\n\n  /**\n   * It creates a copy of the input nodes object.\n   * It iterates over it and removes all the children nodes from it.\n   * @returns remaining nodes which are root nodes.\n   */\n  private findRootNodes(): T[] {\n    const { nodes } = this;\n    const roots = { ...this.nodes };\n    for (const key in nodes) {\n      for (const child of nodes[key].children ?? []) {\n        delete roots[child];\n      }\n    }\n\n    return Object.values(roots);\n  }\n\n  /**\n   * expands the tree nodes based on the path provided.\n   * @param path is given as an input.\n   */\n  private expandPath(path: DataNode<K>[]): void {\n    const nodes = this.control.dataNodes.filter((node) => path.includes(node.data));\n    nodes.forEach((node) => this.control.expand(node));\n  }\n\n  /**\n   * It used the logic of depth first search to find the target node.\n   * returns the path to the target node.\n   */\n  private dfsFindPath(nodes: T[], target: T, path: T[] = []): T[] {\n    for (const node of nodes) {\n      path.push(node);\n      if (node === target) {\n        return path;\n      }\n\n      const savedLength = path.length;\n      const children = node.children?.map((id) => this.nodes[id]) ?? [];\n      if (this.dfsFindPath(children, target, path).length > savedLength) {\n        return path;\n      }\n\n      path.pop();\n    }\n\n    return path;\n  }\n}\n",
+            "sourceCode": "import { FlatTreeControl } from '@angular/cdk/tree';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  HostListener,\n  Input,\n  OnChanges,\n  Output,\n  SimpleChanges,\n} from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatExpansionModule } from '@angular/material/expansion';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { LinkId } from '@hra-ui/cdk/state';\n\n/** Base node type */\nexport interface DataNode<K extends string> {\n  /** User readable label */\n  label: string;\n  /** Id to pass as a query parameter on navigation */\n  id?: string;\n  /** Link to navigate to on node click */\n  link?: LinkId;\n  /** Nested nodes */\n  children?: K[];\n}\n\n/**\n * Internal interface for flat tissue data hierarchy\n */\ninterface InternalNode<K extends string, T extends DataNode<K>> {\n  /** Displayed label */\n  label: string;\n  /** Whether the node can be expanded to display child nodes */\n  expandable: boolean;\n  /** Depth of node in the tree */\n  level: number;\n  /** Associated user node data */\n  data: T;\n}\n\n/**\n * Tabular View for hubMap tissue side-bar\n */\n@Component({\n  selector: 'hra-tissue-tree-list',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatButtonModule,\n    MatTreeModule,\n    MatIconModule,\n    MatExpansionModule,\n    MatRippleModule,\n    LinkDirective,\n  ],\n  templateUrl: './tissue-tree-list.component.html',\n  styleUrls: ['./tissue-tree-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueTreeListComponent<K extends string, T extends DataNode<K>> implements OnChanges {\n  /**\n   * Input  of tissue tree list component\n   */\n  @Input() nodes: Record<K, T> = {} as Record<K, T>;\n\n  /**\n   * Node selected, to view the data associated with it\n   */\n  @Input() selected?: T = undefined;\n\n  /**\n   * Output  of tissue tree list component\n   */\n  @Output() readonly selectedChange = new EventEmitter<T | undefined>();\n\n  /**\n   * Navigates to an illustration page\n   */\n  @Output() navigate = new EventEmitter();\n\n  /**\n   * Whether keyboard navigation is enabled\n   */\n  enableNav = true;\n\n  /**\n   * tree controller, used to control the nodes in the tree\n   */\n  readonly control = new FlatTreeControl<InternalNode<K, T>>(\n    (node) => node.level,\n    (node) => node.expandable\n  );\n\n  /**\n   * Flattener of tissue tree list component, returns flat-data structure\n   */\n  readonly flattener = new MatTreeFlattener<T, InternalNode<K, T>>(\n    (node, level) => ({\n      label: node.label,\n      expandable: (node.children?.length ?? 0) > 0,\n      level,\n      data: node,\n    }),\n    (node) => node.level,\n    (node) => node.expandable,\n    (node) => node.children?.map((id) => this.nodes[id])\n  );\n\n  /**\n   * Data source of tissue tree list component, defines the data in mat-tree\n   */\n  readonly dataSource = new MatTreeFlatDataSource(this.control, this.flattener);\n\n  /**\n   * Take actions if any data changes\n   * @param changes changes in data\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('nodes' in changes) {\n      this.dataSource.data = this.findRootNodes();\n      this.selected = this.control.dataNodes[0].data;\n    }\n    if ('selected' in changes) {\n      const path = this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];\n      const node = this.control.dataNodes.find((n) => n.data === changes['selected'].currentValue);\n      if (!node?.expandable) {\n        this.expandPath(path);\n      }\n    }\n  }\n\n  /**\n   * check if the current node has children\n   * @param node current selected node\n   * @returns boolean, which means if node has children\n   */\n  hasChild(_: number, node: InternalNode<K, T>): boolean {\n    return node.expandable;\n  }\n\n  /**\n   * It selects the node, which is clicked.\n   * @param node Tissue Tree Item, which is clicked\n   */\n  selectNode(node: T): void {\n    if (this.selected !== node) {\n      this.selected = node;\n      this.selectedChange.emit(this.selected);\n    }\n  }\n\n  /**\n   * Resets selection and collapes all nodes of the tree.\n   */\n  resetSelection(): void {\n    this.selected = undefined;\n    this.control.collapseAll();\n  }\n\n  /**\n   * It creates a copy of the input nodes object.\n   * It iterates over it and removes all the children nodes from it.\n   * @returns remaining nodes which are root nodes.\n   */\n  private findRootNodes(): T[] {\n    const { nodes } = this;\n    const roots = { ...this.nodes };\n    for (const key in nodes) {\n      for (const child of nodes[key].children ?? []) {\n        delete roots[child];\n      }\n    }\n\n    return Object.values(roots);\n  }\n\n  /**\n   * expands the tree nodes based on the path provided.\n   * @param path is given as an input.\n   */\n  private expandPath(path: DataNode<K>[]): void {\n    const nodes = this.control.dataNodes.filter((node) => path.includes(node.data));\n    nodes.forEach((node) => this.control.expand(node));\n  }\n\n  /**\n   * It used the logic of depth first search to find the target node.\n   * returns the path to the target node.\n   */\n  private dfsFindPath(nodes: T[], target: T, path: T[] = []): T[] {\n    for (const node of nodes) {\n      path.push(node);\n      if (node === target) {\n        return path;\n      }\n\n      const savedLength = path.length;\n      const children = node.children?.map((id) => this.nodes[id]) ?? [];\n      if (this.dfsFindPath(children, target, path).length > savedLength) {\n        return path;\n      }\n\n      path.pop();\n    }\n\n    return path;\n  }\n\n  /**\n   * Keyboard navigation for tissue tree list\n   * @param event Keyboard event\n   */\n  @HostListener('document:keydown', ['$event'])\n  onKeyDown(event: KeyboardEvent): void {\n    if (!this.enableNav) {\n      return;\n    }\n    if (this.control) {\n      const nodes = this.control.dataNodes;\n      const selectedIndex = this.control.dataNodes.findIndex((node) => node.data.id === this.selected?.id);\n\n      const currentNode = nodes[selectedIndex];\n      if (currentNode && currentNode.expandable) {\n        const expandableNodes = nodes.filter((node) => node.expandable);\n        const index = expandableNodes.indexOf(currentNode);\n        if (event.key === 'ArrowLeft') {\n          this.control.collapse(currentNode);\n        } else if (event.key === 'ArrowRight') {\n          this.control.expand(currentNode);\n        } else if (\n          event.key === 'ArrowDown' &&\n          index + 1 < expandableNodes.length &&\n          !this.control.isExpanded(currentNode)\n        ) {\n          this.selectNode(expandableNodes[index + 1].data);\n          return;\n        } else if (event.key === 'ArrowUp' && index - 1 >= 0 && !this.control.isExpanded(expandableNodes[index - 1])) {\n          this.selectNode(expandableNodes[index - 1].data);\n          return;\n        }\n      }\n      if (event.key === 'ArrowDown' && selectedIndex + 1 < nodes.length) {\n        this.selectNode(nodes[selectedIndex + 1].data);\n      }\n      if (event.key === 'ArrowUp' && selectedIndex - 1 >= 0) {\n        this.selectNode(nodes[selectedIndex - 1].data);\n      }\n      if (event.key === 'Enter' && !currentNode.expandable) {\n        this.navigate.emit(currentNode.data);\n      }\n    }\n  }\n\n  /**\n   * Disable keyboard nav on click\n   */\n  @HostListener('document:click')\n  handlePageClick(): void {\n    this.enableNav = false;\n  }\n\n  /**\n   * Enables keyboard nav only if the tissue tree list is clicked\n   * @param event Click event\n   */\n  @HostListener('click', ['$event'])\n  handleListClick(event: MouseEvent): void {\n    event.stopPropagation();\n    this.enableNav = true;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2337,7 +2589,7 @@
             "implements": [
                 "OnChanges"
             ],
-            "templateData": "<mat-tree [dataSource]=\"dataSource\" [treeControl]=\"control\" class=\"tree\">\n  <mat-tree-node\n    *matTreeNodeDef=\"let node; let level = level\"\n    [matTreeNodePadding]=\"level\"\n    matTreeNodePaddingIndent=\"64\"\n    [class.selected]=\"node.data === selected\"\n    class=\"row\"\n    [class.child]=\"hasChild\"\n    tabIndex=\"0\"\n  >\n    <ng-container [ngTemplateOutlet]=\"label\" [ngTemplateOutletContext]=\"node\"> </ng-container>\n  </mat-tree-node>\n\n  <mat-tree-node\n    *matTreeNodeDef=\"let node; let level = level; when: hasChild\"\n    class=\"row\"\n    [class.selected]=\"node.data === selected\"\n  >\n    <button mat-icon-button matTreeNodeToggle class=\"toggle\" [attr.aria-label]=\"'Toggle ' + node.label\">\n      <mat-icon>\n        {{ control.isExpanded(node) ? 'keyboard_arrow_up' : 'chevron_right' }}\n      </mat-icon>\n    </button>\n\n    <ng-container [ngTemplateOutlet]=\"label\" [ngTemplateOutletContext]=\"node\"> </ng-container>\n  </mat-tree-node>\n</mat-tree>\n\n<ng-template let-label=\"label\" let-data=\"data\" #label>\n  <div class=\"label-container\">\n    <a\n      *ngIf=\"data.link; else noLink\"\n      [hraLink]=\"data.link\"\n      [queryParams]=\"{ id: data.id }\"\n      class=\"link\"\n      (click)=\"selectNode(data)\"\n    >\n      {{ label }}\n    </a>\n    <ng-template #noLink>\n      <span>{{ label }}</span>\n    </ng-template>\n  </div>\n</ng-template>\n"
+            "templateData": "<mat-tree [dataSource]=\"dataSource\" [treeControl]=\"control\" class=\"tree\">\n  <mat-tree-node\n    *matTreeNodeDef=\"let node; let level = level\"\n    [matTreeNodePadding]=\"level\"\n    matTreeNodePaddingIndent=\"64\"\n    [class.selected]=\"node.data === selected\"\n    class=\"row\"\n    [class.child]=\"hasChild\"\n    tabIndex=\"0\"\n  >\n    <ng-container [ngTemplateOutlet]=\"label\" [ngTemplateOutletContext]=\"node\"> </ng-container>\n  </mat-tree-node>\n\n  <mat-tree-node\n    *matTreeNodeDef=\"let node; let level = level; when: hasChild\"\n    class=\"row\"\n    [class.selected]=\"node.data === selected\"\n    (click)=\"selectNode(node.data)\"\n  >\n    <button mat-icon-button matTreeNodeToggle class=\"toggle\" [attr.aria-label]=\"'Toggle ' + node.label\">\n      <mat-icon>\n        {{ control.isExpanded(node) ? 'keyboard_arrow_up' : 'chevron_right' }}\n      </mat-icon>\n    </button>\n\n    <ng-container [ngTemplateOutlet]=\"label\" [ngTemplateOutletContext]=\"node\"> </ng-container>\n  </mat-tree-node>\n</mat-tree>\n\n<ng-template let-label=\"label\" let-data=\"data\" #label>\n  <div class=\"label-container\">\n    <a\n      *ngIf=\"data.link; else noLink\"\n      [hraLink]=\"data.link\"\n      [queryParams]=\"{ id: data.id }\"\n      class=\"link\"\n      (click)=\"selectNode(data)\"\n    >\n      {{ label }}\n    </a>\n    <ng-template #noLink>\n      <span>{{ label }}</span>\n    </ng-template>\n  </div>\n</ng-template>\n"
         },
         {
             "name": "TitleCardComponent",

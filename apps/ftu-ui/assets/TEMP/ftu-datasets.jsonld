@@ -24,5 +24,45 @@
       }
     }
   ],
-  "@graph": []
+  "@graph": [
+    {
+      "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland",
+      "@type": "FtuIllustration",
+      "data_sources": [
+        {
+          "@id": "https://doi.org/10.1038/s41591-019-0468-5",
+          "@type": "Dataset",
+          "label": "A cellular census of human lungs identifies novel cell states in health and in asthma",
+          "link": "https://doi.org/10.1038/s41591-019-0468-5",
+          "description": "scRNA Seq of Resected Human Lung Tissue"
+        }
+      ]
+    },
+    {
+      "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus",
+      "@type": "FtuIllustration",
+      "data_sources": [
+        {
+          "@id": "https://doi.org/10.1038/s41591-019-0468-5",
+          "@type": "Dataset",
+          "label": "A cellular census of human lungs identifies novel cell states in health and in asthma",
+          "link": "https://doi.org/10.1038/s41591-019-0468-5",
+          "description": "scRNA Seq of Resected Human Lung Tissue"
+        }
+      ]
+    },
+    {
+      "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule",
+      "@type": "FtuIllustration",
+      "data_sources": [
+        {
+          "@id": "https://doi.org/10.1038/s41598-021-98806-y",
+          "@type": "Dataset",
+          "label": "Single-cell and bulk transcriptomics of the liver reveals potential targets of NASH with fibrosis",
+          "link": "https://doi.org/10.1038/s41598-021-98806-y",
+          "description": "SC Bulk Transcriptomics of Liver Data"
+        }
+      ]
+    }
+  ]
 }

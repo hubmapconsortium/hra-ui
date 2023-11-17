@@ -395,16 +395,17 @@ export class LandingPageInDepthComponent {
 :host {
   display: grid;
   grid-template-columns: 2fr 3fr;
-  grid-template-rows: auto auto 1fr;
-  column-gap: 2rem;
+  grid-template-rows: 0fr 0fr 1fr;
+  column-gap: 4rem;
   row-gap: 2rem;
-  padding: 3.5rem 2rem;
+  padding: 3.5rem 6rem;
+  max-height: 30rem;
 
   .image {
     grid-column: 1;
     grid-row: 1 / span 3;
     width: 100%;
-    height: auto;
+    height: 100%;
     align-self: center;
     border-radius: 1rem;
     box-shadow: 0.06rem 0.13rem 1rem 0.13rem #00000029;
@@ -433,6 +434,34 @@ export class LandingPageInDepthComponent {
   .more-button {
     width: fit-content;
     height: 3rem;
+  }
+
+  @media (max-width: 1400px) {
+    grid-template-columns: 1.8fr 1fr;
+    grid-template-rows: auto auto 3rem;
+    column-gap: 2rem;
+    padding: 3.5rem 2rem;
+    max-height: unset;
+
+    .title {
+      font-size: 1.5rem;
+      line-height: normal;
+    }
+  }
+
+  @media (max-width: 1280px) {
+    grid-template-columns: unset;
+    text-align: center;
+
+    .image {
+      max-height: 22rem;
+      width: auto;
+    }
+
+    .image,
+    .more-button {
+      place-self: center;
+    }
   }
 }
 </code></pre>

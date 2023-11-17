@@ -153,6 +153,9 @@
                                 <a href="#dataSource" >dataSource</a>
                             </li>
                             <li>
+                                <a href="#enableNav" >enableNav</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Readonly</span>
                                 <a href="#flattener" >flattener</a>
                             </li>
@@ -169,7 +172,16 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#handleListClick" >handleListClick</a>
+                            </li>
+                            <li>
+                                <a href="#handlePageClick" >handlePageClick</a>
+                            </li>
+                            <li>
                                 <a href="#hasChild" >hasChild</a>
+                            </li>
+                            <li>
+                                <a href="#onKeyDown" >onKeyDown</a>
                             </li>
                             <li>
                                 <a href="#resetSelection" >resetSelection</a>
@@ -208,6 +220,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#navigate" >navigate</a>
+                            </li>
+                            <li>
                                 <a href="#selectedChange" >selectedChange</a>
                             </li>
                         </ul>
@@ -215,6 +230,26 @@
                 </tr>
 
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#click" >click</a>
+                            </li>
+                            <li>
+                                <a href="#document:click" >document:click</a>
+                            </li>
+                            <li>
+                                <a href="#document:keydown" >document:keydown</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
         </tbody>
     </table>
@@ -244,7 +279,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:69</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:70</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -276,7 +311,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:75</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -294,6 +329,33 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="navigate"></a>
+                        <b>navigate</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:85</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Navigates to an illustration page</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="selectedChange"></a>
                         <b>selectedChange</b>
                     </td>
@@ -306,7 +368,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:79</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:80</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -319,12 +381,317 @@
         </table>
 </section>
 
+    <section>
+    <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="click"></a>
+                    <span class="name">
+                        <span ><b>click</b></span>
+                        <a href="#click"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>click(event: MouseEvent)</code>
+                </td>
+            </tr>
 
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="273"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:273</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Enables keyboard nav only if the tissue tree list is clicked</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Click event</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="document:click"></a>
+                    <span class="name">
+                        <span ><b>document:click</b></span>
+                        <a href="#document:click"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>document:click()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="264"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:264</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Disable keyboard nav on click</p>
+</div>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="document:keydown"></a>
+                    <span class="name">
+                        <span ><b>document:keydown</b></span>
+                        <a href="#document:keydown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>document:keydown(event: KeyboardEvent)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="220"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:220</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Keyboard navigation for tissue tree list</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Keyboard event</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
     <section>
     
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleListClick"></a>
+                    <span class="name">
+                        <span ><b>handleListClick</b></span>
+                        <a href="#handleListClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleListClick(event: MouseEvent)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;click&#x27;, [&#x27;$event&#x27;])<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="273"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:273</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Enables keyboard nav only if the tissue tree list is clicked</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>MouseEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Click event</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handlePageClick"></a>
+                    <span class="name">
+                        <span ><b>handlePageClick</b></span>
+                        <a href="#handlePageClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handlePageClick()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;document:click&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="264"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:264</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Disable keyboard nav on click</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -345,8 +712,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="128"
-                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:128</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="143"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:143</a></div>
                 </td>
             </tr>
 
@@ -420,6 +787,89 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="onKeyDown"></a>
+                    <span class="name">
+                        <span ><b>onKeyDown</b></span>
+                        <a href="#onKeyDown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onKeyDown(event: KeyboardEvent)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;document:keydown&#x27;, [&#x27;$event&#x27;])<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="220"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:220</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Keyboard navigation for tissue tree list</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>KeyboardEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Keyboard event</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="resetSelection"></a>
                     <span class="name">
                         <span ><b>resetSelection</b></span>
@@ -436,8 +886,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="146"
-                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:146</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="161"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:161</a></div>
                 </td>
             </tr>
 
@@ -475,8 +925,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="136"
-                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:136</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="151"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:151</a></div>
                 </td>
             </tr>
 
@@ -559,7 +1009,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:84</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:95</a></div>
                         </td>
                     </tr>
 
@@ -591,13 +1041,44 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:107</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:118</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Data source of tissue tree list component, defines the data in mat-tree</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="enableNav"></a>
+                    <span class="name">
+                        <span ><b>enableNav</b></span>
+                        <a href="#enableNav"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:90</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Whether keyboard navigation is enabled</p>
 </div>
                 </td>
             </tr>
@@ -633,7 +1114,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:92</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:103</a></div>
                         </td>
                     </tr>
 
@@ -658,6 +1139,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  HostListener,
   Input,
   OnChanges,
   Output,
@@ -733,6 +1215,16 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
   @Output() readonly selectedChange &#x3D; new EventEmitter&lt;T | undefined&gt;();
 
   /**
+   * Navigates to an illustration page
+   */
+  @Output() navigate &#x3D; new EventEmitter();
+
+  /**
+   * Whether keyboard navigation is enabled
+   */
+  enableNav &#x3D; true;
+
+  /**
    * tree controller, used to control the nodes in the tree
    */
   readonly control &#x3D; new FlatTreeControl&lt;InternalNode&lt;K, T&gt;&gt;(
@@ -767,10 +1259,14 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
   ngOnChanges(changes: SimpleChanges): void {
     if (&#x27;nodes&#x27; in changes) {
       this.dataSource.data &#x3D; this.findRootNodes();
+      this.selected &#x3D; this.control.dataNodes[0].data;
     }
     if (&#x27;selected&#x27; in changes) {
       const path &#x3D; this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];
-      this.expandPath(path);
+      const node &#x3D; this.control.dataNodes.find((n) &#x3D;&gt; n.data &#x3D;&#x3D;&#x3D; changes[&#x27;selected&#x27;].currentValue);
+      if (!node?.expandable) {
+        this.expandPath(path);
+      }
     }
   }
 
@@ -850,6 +1346,69 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
 
     return path;
   }
+
+  /**
+   * Keyboard navigation for tissue tree list
+   * @param event Keyboard event
+   */
+  @HostListener(&#x27;document:keydown&#x27;, [&#x27;$event&#x27;])
+  onKeyDown(event: KeyboardEvent): void {
+    if (!this.enableNav) {
+      return;
+    }
+    if (this.control) {
+      const nodes &#x3D; this.control.dataNodes;
+      const selectedIndex &#x3D; this.control.dataNodes.findIndex((node) &#x3D;&gt; node.data.id &#x3D;&#x3D;&#x3D; this.selected?.id);
+
+      const currentNode &#x3D; nodes[selectedIndex];
+      if (currentNode &amp;&amp; currentNode.expandable) {
+        const expandableNodes &#x3D; nodes.filter((node) &#x3D;&gt; node.expandable);
+        const index &#x3D; expandableNodes.indexOf(currentNode);
+        if (event.key &#x3D;&#x3D;&#x3D; &#x27;ArrowLeft&#x27;) {
+          this.control.collapse(currentNode);
+        } else if (event.key &#x3D;&#x3D;&#x3D; &#x27;ArrowRight&#x27;) {
+          this.control.expand(currentNode);
+        } else if (
+          event.key &#x3D;&#x3D;&#x3D; &#x27;ArrowDown&#x27; &amp;&amp;
+          index + 1 &lt; expandableNodes.length &amp;&amp;
+          !this.control.isExpanded(currentNode)
+        ) {
+          this.selectNode(expandableNodes[index + 1].data);
+          return;
+        } else if (event.key &#x3D;&#x3D;&#x3D; &#x27;ArrowUp&#x27; &amp;&amp; index - 1 &gt;&#x3D; 0 &amp;&amp; !this.control.isExpanded(expandableNodes[index - 1])) {
+          this.selectNode(expandableNodes[index - 1].data);
+          return;
+        }
+      }
+      if (event.key &#x3D;&#x3D;&#x3D; &#x27;ArrowDown&#x27; &amp;&amp; selectedIndex + 1 &lt; nodes.length) {
+        this.selectNode(nodes[selectedIndex + 1].data);
+      }
+      if (event.key &#x3D;&#x3D;&#x3D; &#x27;ArrowUp&#x27; &amp;&amp; selectedIndex - 1 &gt;&#x3D; 0) {
+        this.selectNode(nodes[selectedIndex - 1].data);
+      }
+      if (event.key &#x3D;&#x3D;&#x3D; &#x27;Enter&#x27; &amp;&amp; !currentNode.expandable) {
+        this.navigate.emit(currentNode.data);
+      }
+    }
+  }
+
+  /**
+   * Disable keyboard nav on click
+   */
+  @HostListener(&#x27;document:click&#x27;)
+  handlePageClick(): void {
+    this.enableNav &#x3D; false;
+  }
+
+  /**
+   * Enables keyboard nav only if the tissue tree list is clicked
+   * @param event Click event
+   */
+  @HostListener(&#x27;click&#x27;, [&#x27;$event&#x27;])
+  handleListClick(event: MouseEvent): void {
+    event.stopPropagation();
+    this.enableNav &#x3D; true;
+  }
 }
 </code></pre>
     </div>
@@ -872,6 +1431,7 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
     *matTreeNodeDef&#x3D;&quot;let node; let level &#x3D; level; when: hasChild&quot;
     class&#x3D;&quot;row&quot;
     [class.selected]&#x3D;&quot;node.data &#x3D;&#x3D;&#x3D; selected&quot;
+    (click)&#x3D;&quot;selectNode(node.data)&quot;
   &gt;
     &lt;button mat-icon-button matTreeNodeToggle class&#x3D;&quot;toggle&quot; [attr.aria-label]&#x3D;&quot;&#x27;Toggle &#x27; + node.label&quot;&gt;
       &lt;mat-icon&gt;
@@ -974,7 +1534,7 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-tree [dataSource]="dataSource" [treeControl]="control" class="tree">  <mat-tree-node    *matTreeNodeDef="let node; let level = level"    [matTreeNodePadding]="level"    matTreeNodePaddingIndent="64"    [class.selected]="node.data === selected"    class="row"    [class.child]="hasChild"    tabIndex="0"  >    <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>  </mat-tree-node>  <mat-tree-node    *matTreeNodeDef="let node; let level = level; when: hasChild"    class="row"    [class.selected]="node.data === selected"  >    <button mat-icon-button matTreeNodeToggle class="toggle" [attr.aria-label]="\'Toggle \' + node.label">      <mat-icon>        {{ control.isExpanded(node) ? \'keyboard_arrow_up\' : \'chevron_right\' }}      </mat-icon>    </button>    <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>  </mat-tree-node></mat-tree><ng-template let-label="label" let-data="data" #label>  <div class="label-container">    <a      *ngIf="data.link; else noLink"      [hraLink]="data.link"      [queryParams]="{ id: data.id }"      class="link"      (click)="selectNode(data)"    >      {{ label }}    </a>    <ng-template #noLink>      <span>{{ label }}</span>    </ng-template>  </div></ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-tree [dataSource]="dataSource" [treeControl]="control" class="tree">  <mat-tree-node    *matTreeNodeDef="let node; let level = level"    [matTreeNodePadding]="level"    matTreeNodePaddingIndent="64"    [class.selected]="node.data === selected"    class="row"    [class.child]="hasChild"    tabIndex="0"  >    <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>  </mat-tree-node>  <mat-tree-node    *matTreeNodeDef="let node; let level = level; when: hasChild"    class="row"    [class.selected]="node.data === selected"    (click)="selectNode(node.data)"  >    <button mat-icon-button matTreeNodeToggle class="toggle" [attr.aria-label]="\'Toggle \' + node.label">      <mat-icon>        {{ control.isExpanded(node) ? \'keyboard_arrow_up\' : \'chevron_right\' }}      </mat-icon>    </button>    <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>  </mat-tree-node></mat-tree><ng-template let-label="label" let-data="data" #label>  <div class="label-container">    <a      *ngIf="data.link; else noLink"      [hraLink]="data.link"      [queryParams]="{ id: data.id }"      class="link"      (click)="selectNode(data)"    >      {{ label }}    </a>    <ng-template #noLink>      <span>{{ label }}</span>    </ng-template>  </div></ng-template></div>'
     var COMPONENTS = [{'name': 'BiomarkerTableDataCardComponent', 'selector': 'hra-biomarker-table-data-card'},{'name': 'BiomarkerTableDataIconComponent', 'selector': 'hra-biomarker-table-data-icon'},{'name': 'ContactModalComponent', 'selector': 'hra-contact-modal'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenContainerComponent', 'selector': 'hra-fullscreen-container'},{'name': 'FullscreenContentComponent', 'selector': 'hra-fullscreen-content'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'HraLandingPageIntroWcComponent', 'selector': 'hra-ui-hra-landing-page-intro-wc'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InteractiveSvgComponent', 'selector': 'hra-interactive-svg'},{'name': 'LandingPageInDepthComponent', 'selector': 'hra-landing-page-in-depth'},{'name': 'LandingPageIntroComponent', 'selector': 'hra-landing-page-intro'},{'name': 'MetricsComponent', 'selector': 'hra-metrics'},{'name': 'ScreenSizeNoticeComponent', 'selector': 'hra-screen-size-notice'},{'name': 'SourceListComponent', 'selector': 'hra-source-list'},{'name': 'TissueTreeListComponent', 'selector': 'hra-tissue-tree-list'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TissueTreeListComponent'};
