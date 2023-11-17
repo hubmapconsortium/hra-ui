@@ -97,6 +97,10 @@
   margin-left: -1px !important;
 }
 
+.mat-mdc-row:hover .mat-mdc-cell {
+  background-color: #f8f9fa;
+}
+
 ::ng-deep .biomarker-table-hover.full-column-name {
   display: flex;
   padding: 1rem 1.5rem;

@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, InjectionToken } from '@angular/core';
 import { createLinkId } from '@hra-ui/cdk/state';
-import { Observable, firstValueFrom, from, map } from 'rxjs';
+import { firstValueFrom, from, map, Observable } from 'rxjs';
 import { z } from 'zod';
 
-import { IRI, Iri, URL, Url } from '../shared/common.model';
+import { IRI, Iri, Url } from '../shared/common.model';
 import {
   CellSummary,
   DataFileReference,

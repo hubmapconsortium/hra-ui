@@ -2,7 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { FtuDataService, IllustrationMappingItem, Url } from '@hra-ui/services';
 import { Action, State, StateContext } from '@ngxs/store';
 import { forkJoin, Observable, tap } from 'rxjs';
-import { ClearSelection, Load, Reset, SetClicked, SetHover } from './illustrator.actions';
+
+import { ClearSelection, HighlightCellType, Load, Reset, SetClicked, SetHover } from './illustrator.actions';
 
 /**
  * interface for the Illustrator Model that contains the url, selected
@@ -17,6 +18,8 @@ export interface IllustratorModel {
   selectedOnClick?: IllustrationMappingItem;
   /** Array of Illustrartor Items */
   mapping: IllustrationMappingItem[];
+  /** Current hovered cell type id */
+  hoveredCellTypeId?: string;
 }
 
 type Context = StateContext<IllustratorModel>;
@@ -82,5 +85,14 @@ export class IllustratorState {
   @Action(Reset)
   reset({ setState }: Context): void {
     setState({ mapping: [] });
+  }
+
+  /**
+   * Sets hover id of highlighted cell type from hover label
+   */
+  @Action(HighlightCellType)
+  HighlightCellType({ patchState, getState }: Context, { hoverLabel }: HighlightCellType): void {
+    const match = getState().mapping.find((entry) => entry.label.toLowerCase() === hoverLabel.toLowerCase());
+    patchState({ hoveredCellTypeId: match ? match.ontologyId : undefined });
   }
 }

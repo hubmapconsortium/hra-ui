@@ -73,8 +73,6 @@ describe('BiomarkerTableComponent', () => {
     { label: '100%', radius: 1.0 },
   ];
 
-  const sizes2: SizeLegend[] = [{ label: '0%', radius: 0.1 }];
-
   const tissueInfo: TissueInfo = {
     label: '',
     id: '',

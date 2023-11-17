@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import {
@@ -86,6 +94,9 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
 
   /** List of cell ids in the illustration */
   @Input() illustrationLabels: string[] = [];
+
+  /** Emits cell type label when row is hovered */
+  @Output() readonly rowHover = new EventEmitter<string>();
 
   /** Getter method to provide the definations of the columns */
   get columnsWithTypeAndCount(): string[] {
@@ -213,7 +224,7 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   }
 
   /**
-   * rocesses the object for hover data for Table Cell
+   * Processes the object for hover data for Table Cell
    * @param index index of the row of the datasource
    * @param row row of the datasource
    * @returns

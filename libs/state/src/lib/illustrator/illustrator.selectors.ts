@@ -1,5 +1,6 @@
 import { IllustrationMappingItem, Url } from '@hra-ui/services';
 import { Selector } from '@ngxs/store';
+
 import { IllustratorModel, IllustratorState } from './illustrator.state';
 
 /**
@@ -36,5 +37,13 @@ export class IllustratorSelectors {
   @Selector([IllustratorState])
   static mapping({ mapping }: IllustratorModel): IllustrationMappingItem[] {
     return mapping;
+  }
+
+  /**
+   * Returns the current hovered cell id
+   */
+  @Selector([IllustratorState])
+  static highlightedCell({ hoveredCellTypeId }: IllustratorModel): string | undefined {
+    return hoveredCellTypeId;
   }
 }
