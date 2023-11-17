@@ -3,12 +3,12 @@
     "interfaces": [
         {
             "name": "DataCell",
-            "id": "interface-DataCell-1a11b32dee89b55746dd02d393406aa7ea06e3d180099074510a109749d06241410786b045f3a9d570f4479be6442014b194d68f340724b0e76b4b0983b59760",
+            "id": "interface-DataCell-361bc18b1bcf0de7faccd8e4541769427755687ac8e36a641a29aa2c884c63b286fd4931fa159f040acaa7da2137fd01da06aa4b0aae73e921eafbe14dd6a163",
             "file": "src/lib/biomarker-table/biomarker-table.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule, MatTableDataSource } from '@angular/material/table';\nimport {\n  BiomarkerTableDataCardComponent,\n  BiomarkerTableDataIconComponent,\n  DataItem,\n} from '@hra-ui/components/molecules';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { GradientPoint, SizeLegend } from '@hra-ui/components/atoms';\n\n/**\n * RGBTriblet of type RGB to store color\n */\ntype RGBTriplet = [number, number, number];\n\n/**\n * An interface representing a single cell of the table.\n */\nexport interface DataCell {\n  /** Represents the color of the icon */\n  color: string;\n  /** Represents the size of the icon */\n  size: number;\n  /** Represents the data for the data card */\n  data: {\n    cell: string;\n    biomarker: string;\n    meanExpression: number;\n    /** Number of datasets for this Tissue */\n    dataset_count: number;\n  };\n}\n\n/**\n * Details of the Tissue\n */\nexport interface TissueInfo {\n  /** ID of the Tissue */\n  id: string;\n  /** Name of the Tissue */\n  label: string;\n}\n\n/** Describes the composition of a single row in the table */\nexport type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];\n\n/** Cell types table, describing the types and quanitites of cells for a specific organ */\n@Component({\n  selector: 'hra-biomarker-table',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatTableModule,\n    BiomarkerTableDataIconComponent,\n    HoverDirective,\n    BiomarkerTableDataCardComponent,\n  ],\n  templateUrl: './biomarker-table.component.html',\n  styleUrls: ['./biomarker-table.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerTableComponent<T extends DataCell> implements OnChanges {\n  /**\n   * Input: TissueInfo carrying the details of the tissue open\n   */\n  @Input() tissueInfo: TissueInfo = {\n    id: '',\n    label: '',\n  };\n\n  /** Columns for the table */\n  @Input() columns: string[] = [];\n\n  /** Rows of the table */\n  @Input() data: DataRow<T>[] = [];\n\n  /** Gradient colors along with their stop points */\n  @Input() gradient: GradientPoint[] = [];\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  @Input() sizes: SizeLegend[] = [];\n\n  /**Cell name which is hovered, used for highlighting */\n  @Input() hightlightedCellName = '';\n\n  /** Getter method to provide the definations of the columns */\n  get columnsWithTypeAndCount(): string[] {\n    return ['type', 'count', ...this.columns];\n  }\n\n  /** Source for the table */\n  readonly dataSource = new MatTableDataSource<DataRow<T>>([]);\n\n  /**\n   * sets the data source for the table on every change\n   * @param changes object consisting of change in the Input\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('data' in changes) {\n      this.dataSource.data = this.data;\n    }\n  }\n\n  /** Lerp function to give value beween min and max value based on the given value\n   *\n   * @param value\n   * @param min\n   * @param max\n   * @returns\n   */\n  lerp(value: number, min: number, max: number): number {\n    return min * (1 - value) + max * value;\n  }\n\n  /**\n   * Converts HexCode to RGB\n   * @param hex\n   * @returns\n   */\n  hex2rgb(hex: string): RGBTriplet {\n    const r = parseInt(hex.slice(1, 3), 16);\n    const g = parseInt(hex.slice(3, 5), 16);\n    const b = parseInt(hex.slice(5, 7), 16);\n    return [r, g, b];\n  }\n\n  /**\n   * Gets Min and Max color grade based on the meanExpression value\n   * @param meanExpression\n   * @returns\n   */\n  getMinMaxColor(meanExpression: number): { minColor: RGBTriplet; maxColor: RGBTriplet } {\n    const index = this.gradient.findIndex((item, i, arr) => {\n      return meanExpression >= item.percentage && meanExpression <= arr[i + 1]?.percentage;\n    });\n\n    const minColor: RGBTriplet = this.hex2rgb(this.gradient[index]?.color ?? this.gradient[0].color);\n    const maxColor: RGBTriplet = this.hex2rgb(\n      this.gradient[index + 1]?.color ?? this.gradient[this.gradient.length - 1].color\n    );\n\n    return { minColor, maxColor };\n  }\n\n  /**\n   * Gets Min and Max size grade based on the Percentage value\n   * @param percentage\n   * @returns\n   */\n  getMinMaxSize(percentage: number): { minSize: number; maxSize: number } {\n    const index = this.sizes.findIndex((item, i, arr) => {\n      return percentage >= parseFloat(item.label) / 100 && percentage <= parseFloat(arr[i + 1]?.label) / 100;\n    });\n    const minSize: number = this.sizes[index]?.radius ?? this.sizes[0].radius;\n    const maxSize: number = this.sizes[index + 1]?.radius ?? this.sizes[this.sizes.length - 1].radius;\n    return { minSize, maxSize };\n  }\n\n  /**\n   * Calculates the color of this value on this gradient\n   * @param value\n   * @returns\n   */\n  getColor(value: number): string {\n    const { minColor, maxColor } = this.getMinMaxColor(value);\n    return (\n      '#' +\n      minColor\n        .map((min, index) => this.lerp(value, min, maxColor[index]))\n        .map((component) => Math.round(component).toString(16))\n        .join('')\n    );\n  }\n\n  /**\n   * gets Size of the Cell based on the percentage value\n   * @param value\n   * @returns\n   */\n  getSize(value: number): number {\n    const { minSize, maxSize } = this.getMinMaxSize(value);\n    return this.lerp(value, minSize, maxSize);\n  }\n\n  /**\n   * rocesses the object for hover data for Table Cell\n   * @param index index of the row of the datasource\n   * @param row row of the datasource\n   * @returns\n   */\n  getHoverData([index, row]: [number, DataRow<T>]): DataItem[][] {\n    if (row[index] === undefined) {\n      return [];\n    }\n\n    const {\n      tissueInfo: { id, label },\n    } = this;\n    const {\n      data: { cell, biomarker, meanExpression, dataset_count },\n    } = row[index] as T;\n\n    return [\n      [\n        { label: 'Functional Tissue Unit Name', value: label },\n        { label: 'Uberon ID', value: id },\n        { label: '#Datasets', value: `${dataset_count ?? 0}` },\n      ],\n      [\n        { label: 'Cell Type Name', value: row[0] },\n        { label: 'CL ID', value: cell },\n        { label: 'Number of Cells', value: `${row[1]}` },\n      ],\n      [\n        { label: 'Gene Name', value: this.columns[index - 2] },\n        { label: 'HGNC ID', value: biomarker },\n        { label: 'Mean Expression Value', value: meanExpression.toFixed(6) },\n      ],\n    ];\n  }\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule, MatTableDataSource } from '@angular/material/table';\nimport {\n  BiomarkerTableDataCardComponent,\n  BiomarkerTableDataIconComponent,\n  DataItem,\n} from '@hra-ui/components/molecules';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { GradientPoint, SizeLegend } from '@hra-ui/components/atoms';\n\n/**\n * RGBTriblet of type RGB to store color\n */\ntype RGBTriplet = [number, number, number];\n\n/**\n * An interface representing a single cell of the table.\n */\nexport interface DataCell {\n  /** Represents the color of the icon */\n  color: string;\n  /** Represents the size of the icon */\n  size: number;\n  /** Represents the data for the data card */\n  data: {\n    cell: string;\n    biomarker: string;\n    meanExpression: number;\n    /** Number of datasets for this Tissue */\n    dataset_count: number;\n  };\n}\n\n/**\n * Details of the Tissue\n */\nexport interface TissueInfo {\n  /** ID of the Tissue */\n  id: string;\n  /** Name of the Tissue */\n  label: string;\n}\n\n/** Describes the composition of a single row in the table */\nexport type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];\n\n/** Cell types table, describing the types and quanitites of cells for a specific organ */\n@Component({\n  selector: 'hra-biomarker-table',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatTableModule,\n    BiomarkerTableDataIconComponent,\n    HoverDirective,\n    BiomarkerTableDataCardComponent,\n  ],\n  templateUrl: './biomarker-table.component.html',\n  styleUrls: ['./biomarker-table.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerTableComponent<T extends DataCell> implements OnChanges {\n  /**\n   * Input: TissueInfo carrying the details of the tissue open\n   */\n  @Input() tissueInfo: TissueInfo = {\n    id: '',\n    label: '',\n  };\n\n  /** Columns for the table */\n  @Input() columns: string[] = [];\n\n  /** Rows of the table */\n  @Input() data: DataRow<T>[] = [];\n\n  /** Gradient colors along with their stop points */\n  @Input() gradient: GradientPoint[] = [];\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  @Input() sizes: SizeLegend[] = [];\n\n  /** Cell name which is hovered, used for highlighting */\n  @Input() highlightedCellName = '';\n\n  /** List of cell ids in the illustration */\n  @Input() illustrationLabels: string[] = [];\n\n  /** Getter method to provide the definations of the columns */\n  get columnsWithTypeAndCount(): string[] {\n    return ['type', 'count', ...this.columns];\n  }\n\n  /** Source for the table */\n  readonly dataSource = new MatTableDataSource<DataRow<T>>([]);\n\n  /**\n   * Sets the data source for the table on every change\n   * Sorts the biomarker table on illustrationLabels change\n   * @param changes object consisting of change in the Input\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('data' in changes) {\n      this.dataSource.data = this.data;\n    }\n\n    if ('illustrationLabels' in changes) {\n      this.sortTable();\n    }\n  }\n\n  /**\n   * Sorts table by cell type alphabetically, then puts cells that are in the illustration on top\n   */\n  private sortTable(): void {\n    this.dataSource.data = this.data.sort((a, b) => {\n      return a[0].toLowerCase() < b[0].toLowerCase() ? -1 : 1;\n    });\n\n    this.dataSource.data = this.dataSource.data.sort((a, b) => {\n      const id1 = this.illustrationLabels.includes(a[0].toLowerCase());\n      const id2 = this.illustrationLabels.includes(b[0].toLowerCase());\n      return id1 && !id2 ? -1 : 1;\n    });\n  }\n\n  /**\n   * Returns true if name matches the highlighted cell name\n   * @param name Cell name\n   */\n  isHighlighted(name: string): boolean {\n    return name.toLowerCase() === this.highlightedCellName.toLowerCase();\n  }\n\n  /** Lerp function to give value beween min and max value based on the given value\n   *\n   * @param value\n   * @param min\n   * @param max\n   * @returns\n   */\n  lerp(value: number, min: number, max: number): number {\n    return min * (1 - value) + max * value;\n  }\n\n  /**\n   * Converts HexCode to RGB\n   * @param hex\n   * @returns\n   */\n  hex2rgb(hex: string): RGBTriplet {\n    const r = parseInt(hex.slice(1, 3), 16);\n    const g = parseInt(hex.slice(3, 5), 16);\n    const b = parseInt(hex.slice(5, 7), 16);\n    return [r, g, b];\n  }\n\n  /**\n   * Gets Min and Max color grade based on the meanExpression value\n   * @param meanExpression\n   * @returns\n   */\n  getMinMaxColor(meanExpression: number): { minColor: RGBTriplet; maxColor: RGBTriplet } {\n    const index = this.gradient.findIndex((item, i, arr) => {\n      return meanExpression >= item.percentage && meanExpression <= arr[i + 1]?.percentage;\n    });\n\n    const minColor: RGBTriplet = this.hex2rgb(this.gradient[index]?.color ?? this.gradient[0].color);\n    const maxColor: RGBTriplet = this.hex2rgb(this.gradient[index + 1].color);\n\n    return { minColor, maxColor };\n  }\n\n  /**\n   * Gets Min and Max size grade based on the Percentage value\n   * @param percentage\n   * @returns\n   */\n  getMinMaxSize(percentage: number): { minSize: number; maxSize: number } {\n    const index = this.sizes.findIndex((item, i, arr) => {\n      return percentage >= parseFloat(item.label) / 100 && percentage <= parseFloat(arr[i + 1]?.label) / 100;\n    });\n    const minSize: number = this.sizes[index]?.radius;\n    const maxSize: number = this.sizes[index + 1].radius;\n    return { minSize, maxSize };\n  }\n\n  /**\n   * Calculates the color of this value on this gradient\n   * @param value\n   * @returns\n   */\n  getColor(value: number): string {\n    const { minColor, maxColor } = this.getMinMaxColor(value);\n    return (\n      '#' +\n      minColor\n        .map((min, index) => this.lerp(value, min, maxColor[index]))\n        .map((component) => Math.round(component).toString(16))\n        .join('')\n    );\n  }\n\n  /**\n   * gets Size of the Cell based on the percentage value\n   * @param value\n   * @returns\n   */\n  getSize(value: number): number {\n    const { minSize, maxSize } = this.getMinMaxSize(value);\n    return this.lerp(value, minSize, maxSize);\n  }\n\n  /**\n   * rocesses the object for hover data for Table Cell\n   * @param index index of the row of the datasource\n   * @param row row of the datasource\n   * @returns\n   */\n  getHoverData([index, row]: [number, DataRow<T>]): DataItem[][] {\n    if (row[index] === undefined) {\n      return [];\n    }\n\n    const {\n      tissueInfo: { id, label },\n    } = this;\n    const {\n      data: { cell, biomarker, meanExpression, dataset_count },\n    } = row[index] as T;\n\n    return [\n      [\n        { label: 'Functional Tissue Unit Name', value: label },\n        { label: 'Uberon ID', value: id },\n        { label: '#Datasets', value: `${dataset_count ?? 0}` },\n      ],\n      [\n        { label: 'Cell Type Name', value: row[0] },\n        { label: 'CL ID', value: cell },\n        { label: 'Number of Cells', value: `${row[1]}` },\n      ],\n      [\n        { label: 'Gene Name', value: this.columns[index - 2] },\n        { label: 'HGNC ID', value: biomarker },\n        { label: 'Mean Expression Value', value: meanExpression.toFixed(6) },\n      ],\n    ];\n  }\n}\n",
             "properties": [
                 {
                     "name": "color",
@@ -49,12 +49,12 @@
         },
         {
             "name": "TissueInfo",
-            "id": "interface-TissueInfo-1a11b32dee89b55746dd02d393406aa7ea06e3d180099074510a109749d06241410786b045f3a9d570f4479be6442014b194d68f340724b0e76b4b0983b59760",
+            "id": "interface-TissueInfo-361bc18b1bcf0de7faccd8e4541769427755687ac8e36a641a29aa2c884c63b286fd4931fa159f040acaa7da2137fd01da06aa4b0aae73e921eafbe14dd6a163",
             "file": "src/lib/biomarker-table/biomarker-table.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule, MatTableDataSource } from '@angular/material/table';\nimport {\n  BiomarkerTableDataCardComponent,\n  BiomarkerTableDataIconComponent,\n  DataItem,\n} from '@hra-ui/components/molecules';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { GradientPoint, SizeLegend } from '@hra-ui/components/atoms';\n\n/**\n * RGBTriblet of type RGB to store color\n */\ntype RGBTriplet = [number, number, number];\n\n/**\n * An interface representing a single cell of the table.\n */\nexport interface DataCell {\n  /** Represents the color of the icon */\n  color: string;\n  /** Represents the size of the icon */\n  size: number;\n  /** Represents the data for the data card */\n  data: {\n    cell: string;\n    biomarker: string;\n    meanExpression: number;\n    /** Number of datasets for this Tissue */\n    dataset_count: number;\n  };\n}\n\n/**\n * Details of the Tissue\n */\nexport interface TissueInfo {\n  /** ID of the Tissue */\n  id: string;\n  /** Name of the Tissue */\n  label: string;\n}\n\n/** Describes the composition of a single row in the table */\nexport type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];\n\n/** Cell types table, describing the types and quanitites of cells for a specific organ */\n@Component({\n  selector: 'hra-biomarker-table',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatTableModule,\n    BiomarkerTableDataIconComponent,\n    HoverDirective,\n    BiomarkerTableDataCardComponent,\n  ],\n  templateUrl: './biomarker-table.component.html',\n  styleUrls: ['./biomarker-table.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerTableComponent<T extends DataCell> implements OnChanges {\n  /**\n   * Input: TissueInfo carrying the details of the tissue open\n   */\n  @Input() tissueInfo: TissueInfo = {\n    id: '',\n    label: '',\n  };\n\n  /** Columns for the table */\n  @Input() columns: string[] = [];\n\n  /** Rows of the table */\n  @Input() data: DataRow<T>[] = [];\n\n  /** Gradient colors along with their stop points */\n  @Input() gradient: GradientPoint[] = [];\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  @Input() sizes: SizeLegend[] = [];\n\n  /**Cell name which is hovered, used for highlighting */\n  @Input() hightlightedCellName = '';\n\n  /** Getter method to provide the definations of the columns */\n  get columnsWithTypeAndCount(): string[] {\n    return ['type', 'count', ...this.columns];\n  }\n\n  /** Source for the table */\n  readonly dataSource = new MatTableDataSource<DataRow<T>>([]);\n\n  /**\n   * sets the data source for the table on every change\n   * @param changes object consisting of change in the Input\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('data' in changes) {\n      this.dataSource.data = this.data;\n    }\n  }\n\n  /** Lerp function to give value beween min and max value based on the given value\n   *\n   * @param value\n   * @param min\n   * @param max\n   * @returns\n   */\n  lerp(value: number, min: number, max: number): number {\n    return min * (1 - value) + max * value;\n  }\n\n  /**\n   * Converts HexCode to RGB\n   * @param hex\n   * @returns\n   */\n  hex2rgb(hex: string): RGBTriplet {\n    const r = parseInt(hex.slice(1, 3), 16);\n    const g = parseInt(hex.slice(3, 5), 16);\n    const b = parseInt(hex.slice(5, 7), 16);\n    return [r, g, b];\n  }\n\n  /**\n   * Gets Min and Max color grade based on the meanExpression value\n   * @param meanExpression\n   * @returns\n   */\n  getMinMaxColor(meanExpression: number): { minColor: RGBTriplet; maxColor: RGBTriplet } {\n    const index = this.gradient.findIndex((item, i, arr) => {\n      return meanExpression >= item.percentage && meanExpression <= arr[i + 1]?.percentage;\n    });\n\n    const minColor: RGBTriplet = this.hex2rgb(this.gradient[index]?.color ?? this.gradient[0].color);\n    const maxColor: RGBTriplet = this.hex2rgb(\n      this.gradient[index + 1]?.color ?? this.gradient[this.gradient.length - 1].color\n    );\n\n    return { minColor, maxColor };\n  }\n\n  /**\n   * Gets Min and Max size grade based on the Percentage value\n   * @param percentage\n   * @returns\n   */\n  getMinMaxSize(percentage: number): { minSize: number; maxSize: number } {\n    const index = this.sizes.findIndex((item, i, arr) => {\n      return percentage >= parseFloat(item.label) / 100 && percentage <= parseFloat(arr[i + 1]?.label) / 100;\n    });\n    const minSize: number = this.sizes[index]?.radius ?? this.sizes[0].radius;\n    const maxSize: number = this.sizes[index + 1]?.radius ?? this.sizes[this.sizes.length - 1].radius;\n    return { minSize, maxSize };\n  }\n\n  /**\n   * Calculates the color of this value on this gradient\n   * @param value\n   * @returns\n   */\n  getColor(value: number): string {\n    const { minColor, maxColor } = this.getMinMaxColor(value);\n    return (\n      '#' +\n      minColor\n        .map((min, index) => this.lerp(value, min, maxColor[index]))\n        .map((component) => Math.round(component).toString(16))\n        .join('')\n    );\n  }\n\n  /**\n   * gets Size of the Cell based on the percentage value\n   * @param value\n   * @returns\n   */\n  getSize(value: number): number {\n    const { minSize, maxSize } = this.getMinMaxSize(value);\n    return this.lerp(value, minSize, maxSize);\n  }\n\n  /**\n   * rocesses the object for hover data for Table Cell\n   * @param index index of the row of the datasource\n   * @param row row of the datasource\n   * @returns\n   */\n  getHoverData([index, row]: [number, DataRow<T>]): DataItem[][] {\n    if (row[index] === undefined) {\n      return [];\n    }\n\n    const {\n      tissueInfo: { id, label },\n    } = this;\n    const {\n      data: { cell, biomarker, meanExpression, dataset_count },\n    } = row[index] as T;\n\n    return [\n      [\n        { label: 'Functional Tissue Unit Name', value: label },\n        { label: 'Uberon ID', value: id },\n        { label: '#Datasets', value: `${dataset_count ?? 0}` },\n      ],\n      [\n        { label: 'Cell Type Name', value: row[0] },\n        { label: 'CL ID', value: cell },\n        { label: 'Number of Cells', value: `${row[1]}` },\n      ],\n      [\n        { label: 'Gene Name', value: this.columns[index - 2] },\n        { label: 'HGNC ID', value: biomarker },\n        { label: 'Mean Expression Value', value: meanExpression.toFixed(6) },\n      ],\n    ];\n  }\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule, MatTableDataSource } from '@angular/material/table';\nimport {\n  BiomarkerTableDataCardComponent,\n  BiomarkerTableDataIconComponent,\n  DataItem,\n} from '@hra-ui/components/molecules';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { GradientPoint, SizeLegend } from '@hra-ui/components/atoms';\n\n/**\n * RGBTriblet of type RGB to store color\n */\ntype RGBTriplet = [number, number, number];\n\n/**\n * An interface representing a single cell of the table.\n */\nexport interface DataCell {\n  /** Represents the color of the icon */\n  color: string;\n  /** Represents the size of the icon */\n  size: number;\n  /** Represents the data for the data card */\n  data: {\n    cell: string;\n    biomarker: string;\n    meanExpression: number;\n    /** Number of datasets for this Tissue */\n    dataset_count: number;\n  };\n}\n\n/**\n * Details of the Tissue\n */\nexport interface TissueInfo {\n  /** ID of the Tissue */\n  id: string;\n  /** Name of the Tissue */\n  label: string;\n}\n\n/** Describes the composition of a single row in the table */\nexport type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];\n\n/** Cell types table, describing the types and quanitites of cells for a specific organ */\n@Component({\n  selector: 'hra-biomarker-table',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatTableModule,\n    BiomarkerTableDataIconComponent,\n    HoverDirective,\n    BiomarkerTableDataCardComponent,\n  ],\n  templateUrl: './biomarker-table.component.html',\n  styleUrls: ['./biomarker-table.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerTableComponent<T extends DataCell> implements OnChanges {\n  /**\n   * Input: TissueInfo carrying the details of the tissue open\n   */\n  @Input() tissueInfo: TissueInfo = {\n    id: '',\n    label: '',\n  };\n\n  /** Columns for the table */\n  @Input() columns: string[] = [];\n\n  /** Rows of the table */\n  @Input() data: DataRow<T>[] = [];\n\n  /** Gradient colors along with their stop points */\n  @Input() gradient: GradientPoint[] = [];\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  @Input() sizes: SizeLegend[] = [];\n\n  /** Cell name which is hovered, used for highlighting */\n  @Input() highlightedCellName = '';\n\n  /** List of cell ids in the illustration */\n  @Input() illustrationLabels: string[] = [];\n\n  /** Getter method to provide the definations of the columns */\n  get columnsWithTypeAndCount(): string[] {\n    return ['type', 'count', ...this.columns];\n  }\n\n  /** Source for the table */\n  readonly dataSource = new MatTableDataSource<DataRow<T>>([]);\n\n  /**\n   * Sets the data source for the table on every change\n   * Sorts the biomarker table on illustrationLabels change\n   * @param changes object consisting of change in the Input\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('data' in changes) {\n      this.dataSource.data = this.data;\n    }\n\n    if ('illustrationLabels' in changes) {\n      this.sortTable();\n    }\n  }\n\n  /**\n   * Sorts table by cell type alphabetically, then puts cells that are in the illustration on top\n   */\n  private sortTable(): void {\n    this.dataSource.data = this.data.sort((a, b) => {\n      return a[0].toLowerCase() < b[0].toLowerCase() ? -1 : 1;\n    });\n\n    this.dataSource.data = this.dataSource.data.sort((a, b) => {\n      const id1 = this.illustrationLabels.includes(a[0].toLowerCase());\n      const id2 = this.illustrationLabels.includes(b[0].toLowerCase());\n      return id1 && !id2 ? -1 : 1;\n    });\n  }\n\n  /**\n   * Returns true if name matches the highlighted cell name\n   * @param name Cell name\n   */\n  isHighlighted(name: string): boolean {\n    return name.toLowerCase() === this.highlightedCellName.toLowerCase();\n  }\n\n  /** Lerp function to give value beween min and max value based on the given value\n   *\n   * @param value\n   * @param min\n   * @param max\n   * @returns\n   */\n  lerp(value: number, min: number, max: number): number {\n    return min * (1 - value) + max * value;\n  }\n\n  /**\n   * Converts HexCode to RGB\n   * @param hex\n   * @returns\n   */\n  hex2rgb(hex: string): RGBTriplet {\n    const r = parseInt(hex.slice(1, 3), 16);\n    const g = parseInt(hex.slice(3, 5), 16);\n    const b = parseInt(hex.slice(5, 7), 16);\n    return [r, g, b];\n  }\n\n  /**\n   * Gets Min and Max color grade based on the meanExpression value\n   * @param meanExpression\n   * @returns\n   */\n  getMinMaxColor(meanExpression: number): { minColor: RGBTriplet; maxColor: RGBTriplet } {\n    const index = this.gradient.findIndex((item, i, arr) => {\n      return meanExpression >= item.percentage && meanExpression <= arr[i + 1]?.percentage;\n    });\n\n    const minColor: RGBTriplet = this.hex2rgb(this.gradient[index]?.color ?? this.gradient[0].color);\n    const maxColor: RGBTriplet = this.hex2rgb(this.gradient[index + 1].color);\n\n    return { minColor, maxColor };\n  }\n\n  /**\n   * Gets Min and Max size grade based on the Percentage value\n   * @param percentage\n   * @returns\n   */\n  getMinMaxSize(percentage: number): { minSize: number; maxSize: number } {\n    const index = this.sizes.findIndex((item, i, arr) => {\n      return percentage >= parseFloat(item.label) / 100 && percentage <= parseFloat(arr[i + 1]?.label) / 100;\n    });\n    const minSize: number = this.sizes[index]?.radius;\n    const maxSize: number = this.sizes[index + 1].radius;\n    return { minSize, maxSize };\n  }\n\n  /**\n   * Calculates the color of this value on this gradient\n   * @param value\n   * @returns\n   */\n  getColor(value: number): string {\n    const { minColor, maxColor } = this.getMinMaxColor(value);\n    return (\n      '#' +\n      minColor\n        .map((min, index) => this.lerp(value, min, maxColor[index]))\n        .map((component) => Math.round(component).toString(16))\n        .join('')\n    );\n  }\n\n  /**\n   * gets Size of the Cell based on the percentage value\n   * @param value\n   * @returns\n   */\n  getSize(value: number): number {\n    const { minSize, maxSize } = this.getMinMaxSize(value);\n    return this.lerp(value, minSize, maxSize);\n  }\n\n  /**\n   * rocesses the object for hover data for Table Cell\n   * @param index index of the row of the datasource\n   * @param row row of the datasource\n   * @returns\n   */\n  getHoverData([index, row]: [number, DataRow<T>]): DataItem[][] {\n    if (row[index] === undefined) {\n      return [];\n    }\n\n    const {\n      tissueInfo: { id, label },\n    } = this;\n    const {\n      data: { cell, biomarker, meanExpression, dataset_count },\n    } = row[index] as T;\n\n    return [\n      [\n        { label: 'Functional Tissue Unit Name', value: label },\n        { label: 'Uberon ID', value: id },\n        { label: '#Datasets', value: `${dataset_count ?? 0}` },\n      ],\n      [\n        { label: 'Cell Type Name', value: row[0] },\n        { label: 'CL ID', value: cell },\n        { label: 'Number of Cells', value: `${row[1]}` },\n      ],\n      [\n        { label: 'Gene Name', value: this.columns[index - 2] },\n        { label: 'HGNC ID', value: biomarker },\n        { label: 'Mean Expression Value', value: meanExpression.toFixed(6) },\n      ],\n    ];\n  }\n}\n",
             "properties": [
                 {
                     "name": "id",
@@ -92,7 +92,7 @@
     "components": [
         {
             "name": "BiomarkerTableComponent",
-            "id": "component-BiomarkerTableComponent-1a11b32dee89b55746dd02d393406aa7ea06e3d180099074510a109749d06241410786b045f3a9d570f4479be6442014b194d68f340724b0e76b4b0983b59760",
+            "id": "component-BiomarkerTableComponent-361bc18b1bcf0de7faccd8e4541769427755687ac8e36a641a29aa2c884c63b286fd4931fa159f040acaa7da2137fd01da06aa4b0aae73e921eafbe14dd6a163",
             "file": "src/lib/biomarker-table/biomarker-table.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -144,7 +144,7 @@
                     "decorators": []
                 },
                 {
-                    "name": "hightlightedCellName",
+                    "name": "highlightedCellName",
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -152,6 +152,17 @@
                     "description": "<p>Cell name which is hovered, used for highlighting</p>\n",
                     "line": 85,
                     "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "illustrationLabels",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nList of cell ids in the illustration",
+                    "description": "<p>List of cell ids in the illustration</p>\n",
+                    "line": 88,
+                    "type": "string[]",
                     "decorators": []
                 },
                 {
@@ -187,7 +198,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Source for the table</p>\n",
-                    "line": 93,
+                    "line": 96,
                     "rawdescription": "\nSource for the table",
                     "modifierKind": [
                         144
@@ -208,7 +219,7 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 165,
+                    "line": 194,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nCalculates the color of this value on this gradient\n",
@@ -216,8 +227,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 4778,
-                                "end": 4783,
+                                "pos": 5616,
+                                "end": 5621,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -228,8 +239,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 4772,
-                                "end": 4777,
+                                "pos": 5610,
+                                "end": 5615,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -240,8 +251,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 4790,
-                                "end": 4797,
+                                "pos": 5628,
+                                "end": 5635,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -264,7 +275,7 @@
                     "optional": false,
                     "returnType": "[][]",
                     "typeParameters": [],
-                    "line": 192,
+                    "line": 221,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nrocesses the object for hover data for Table Cell\n",
@@ -280,8 +291,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 5512,
-                                "end": 5519,
+                                "pos": 6350,
+                                "end": 6357,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -305,7 +316,7 @@
                     "optional": false,
                     "returnType": "literal type",
                     "typeParameters": [],
-                    "line": 133,
+                    "line": 164,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nGets Min and Max color grade based on the meanExpression value\n",
@@ -313,8 +324,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 3545,
-                                "end": 3559,
+                                "pos": 4514,
+                                "end": 4528,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -325,8 +336,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 3539,
-                                "end": 3544,
+                                "pos": 4508,
+                                "end": 4513,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -337,8 +348,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 3566,
-                                "end": 3573,
+                                "pos": 4535,
+                                "end": 4542,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -362,7 +373,7 @@
                     "optional": false,
                     "returnType": "literal type",
                     "typeParameters": [],
-                    "line": 151,
+                    "line": 180,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nGets Min and Max size grade based on the Percentage value\n",
@@ -370,8 +381,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 4199,
-                                "end": 4209,
+                                "pos": 5106,
+                                "end": 5116,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -382,8 +393,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 4193,
-                                "end": 4198,
+                                "pos": 5100,
+                                "end": 5105,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -394,8 +405,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 4216,
-                                "end": 4223,
+                                "pos": 5123,
+                                "end": 5130,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -419,7 +430,7 @@
                     "optional": false,
                     "returnType": "number",
                     "typeParameters": [],
-                    "line": 181,
+                    "line": 210,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\ngets Size of the Cell based on the percentage value\n",
@@ -427,8 +438,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 5181,
-                                "end": 5186,
+                                "pos": 6019,
+                                "end": 6024,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -439,8 +450,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 5175,
-                                "end": 5180,
+                                "pos": 6013,
+                                "end": 6018,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -451,8 +462,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 5193,
-                                "end": 5200,
+                                "pos": 6031,
+                                "end": 6038,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -476,7 +487,7 @@
                     "optional": false,
                     "returnType": "RGBTriplet",
                     "typeParameters": [],
-                    "line": 121,
+                    "line": 152,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nConverts HexCode to RGB\n",
@@ -484,8 +495,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 3236,
-                                "end": 3239,
+                                "pos": 4205,
+                                "end": 4208,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -496,8 +507,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 3230,
-                                "end": 3235,
+                                "pos": 4199,
+                                "end": 4204,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -508,8 +519,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 3246,
-                                "end": 3253,
+                                "pos": 4215,
+                                "end": 4222,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -517,6 +528,51 @@
                                 "escapedText": "returns"
                             },
                             "comment": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "isHighlighted",
+                    "args": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 132,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nReturns true if name matches the highlighted cell name\n",
+                    "description": "<p>Returns true if name matches the highlighted cell name</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 3751,
+                                "end": 3755,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "name"
+                            },
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 3745,
+                                "end": 3750,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>Cell name</p>\n"
                         }
                     ]
                 },
@@ -545,7 +601,7 @@
                     "optional": false,
                     "returnType": "number",
                     "typeParameters": [],
-                    "line": 112,
+                    "line": 143,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nLerp function to give value beween min and max value based on the given value\n\n",
@@ -553,8 +609,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 3024,
-                                "end": 3029,
+                                "pos": 3993,
+                                "end": 3998,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -565,8 +621,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 3018,
-                                "end": 3023,
+                                "pos": 3987,
+                                "end": 3992,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -577,8 +633,8 @@
                         },
                         {
                             "name": {
-                                "pos": 3042,
-                                "end": 3045,
+                                "pos": 4011,
+                                "end": 4014,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -589,8 +645,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 3036,
-                                "end": 3041,
+                                "pos": 4005,
+                                "end": 4010,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -601,8 +657,8 @@
                         },
                         {
                             "name": {
-                                "pos": 3058,
-                                "end": 3061,
+                                "pos": 4027,
+                                "end": 4030,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -613,8 +669,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 3052,
-                                "end": 3057,
+                                "pos": 4021,
+                                "end": 4026,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -625,8 +681,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 3068,
-                                "end": 3075,
+                                "pos": 4037,
+                                "end": 4044,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -645,7 +701,7 @@
             "description": "<p>Cell types table, describing the types and quanitites of cells for a specific organ</p>\n",
             "rawdescription": "\nCell types table, describing the types and quanitites of cells for a specific organ",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule, MatTableDataSource } from '@angular/material/table';\nimport {\n  BiomarkerTableDataCardComponent,\n  BiomarkerTableDataIconComponent,\n  DataItem,\n} from '@hra-ui/components/molecules';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { GradientPoint, SizeLegend } from '@hra-ui/components/atoms';\n\n/**\n * RGBTriblet of type RGB to store color\n */\ntype RGBTriplet = [number, number, number];\n\n/**\n * An interface representing a single cell of the table.\n */\nexport interface DataCell {\n  /** Represents the color of the icon */\n  color: string;\n  /** Represents the size of the icon */\n  size: number;\n  /** Represents the data for the data card */\n  data: {\n    cell: string;\n    biomarker: string;\n    meanExpression: number;\n    /** Number of datasets for this Tissue */\n    dataset_count: number;\n  };\n}\n\n/**\n * Details of the Tissue\n */\nexport interface TissueInfo {\n  /** ID of the Tissue */\n  id: string;\n  /** Name of the Tissue */\n  label: string;\n}\n\n/** Describes the composition of a single row in the table */\nexport type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];\n\n/** Cell types table, describing the types and quanitites of cells for a specific organ */\n@Component({\n  selector: 'hra-biomarker-table',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatTableModule,\n    BiomarkerTableDataIconComponent,\n    HoverDirective,\n    BiomarkerTableDataCardComponent,\n  ],\n  templateUrl: './biomarker-table.component.html',\n  styleUrls: ['./biomarker-table.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerTableComponent<T extends DataCell> implements OnChanges {\n  /**\n   * Input: TissueInfo carrying the details of the tissue open\n   */\n  @Input() tissueInfo: TissueInfo = {\n    id: '',\n    label: '',\n  };\n\n  /** Columns for the table */\n  @Input() columns: string[] = [];\n\n  /** Rows of the table */\n  @Input() data: DataRow<T>[] = [];\n\n  /** Gradient colors along with their stop points */\n  @Input() gradient: GradientPoint[] = [];\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  @Input() sizes: SizeLegend[] = [];\n\n  /**Cell name which is hovered, used for highlighting */\n  @Input() hightlightedCellName = '';\n\n  /** Getter method to provide the definations of the columns */\n  get columnsWithTypeAndCount(): string[] {\n    return ['type', 'count', ...this.columns];\n  }\n\n  /** Source for the table */\n  readonly dataSource = new MatTableDataSource<DataRow<T>>([]);\n\n  /**\n   * sets the data source for the table on every change\n   * @param changes object consisting of change in the Input\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('data' in changes) {\n      this.dataSource.data = this.data;\n    }\n  }\n\n  /** Lerp function to give value beween min and max value based on the given value\n   *\n   * @param value\n   * @param min\n   * @param max\n   * @returns\n   */\n  lerp(value: number, min: number, max: number): number {\n    return min * (1 - value) + max * value;\n  }\n\n  /**\n   * Converts HexCode to RGB\n   * @param hex\n   * @returns\n   */\n  hex2rgb(hex: string): RGBTriplet {\n    const r = parseInt(hex.slice(1, 3), 16);\n    const g = parseInt(hex.slice(3, 5), 16);\n    const b = parseInt(hex.slice(5, 7), 16);\n    return [r, g, b];\n  }\n\n  /**\n   * Gets Min and Max color grade based on the meanExpression value\n   * @param meanExpression\n   * @returns\n   */\n  getMinMaxColor(meanExpression: number): { minColor: RGBTriplet; maxColor: RGBTriplet } {\n    const index = this.gradient.findIndex((item, i, arr) => {\n      return meanExpression >= item.percentage && meanExpression <= arr[i + 1]?.percentage;\n    });\n\n    const minColor: RGBTriplet = this.hex2rgb(this.gradient[index]?.color ?? this.gradient[0].color);\n    const maxColor: RGBTriplet = this.hex2rgb(\n      this.gradient[index + 1]?.color ?? this.gradient[this.gradient.length - 1].color\n    );\n\n    return { minColor, maxColor };\n  }\n\n  /**\n   * Gets Min and Max size grade based on the Percentage value\n   * @param percentage\n   * @returns\n   */\n  getMinMaxSize(percentage: number): { minSize: number; maxSize: number } {\n    const index = this.sizes.findIndex((item, i, arr) => {\n      return percentage >= parseFloat(item.label) / 100 && percentage <= parseFloat(arr[i + 1]?.label) / 100;\n    });\n    const minSize: number = this.sizes[index]?.radius ?? this.sizes[0].radius;\n    const maxSize: number = this.sizes[index + 1]?.radius ?? this.sizes[this.sizes.length - 1].radius;\n    return { minSize, maxSize };\n  }\n\n  /**\n   * Calculates the color of this value on this gradient\n   * @param value\n   * @returns\n   */\n  getColor(value: number): string {\n    const { minColor, maxColor } = this.getMinMaxColor(value);\n    return (\n      '#' +\n      minColor\n        .map((min, index) => this.lerp(value, min, maxColor[index]))\n        .map((component) => Math.round(component).toString(16))\n        .join('')\n    );\n  }\n\n  /**\n   * gets Size of the Cell based on the percentage value\n   * @param value\n   * @returns\n   */\n  getSize(value: number): number {\n    const { minSize, maxSize } = this.getMinMaxSize(value);\n    return this.lerp(value, minSize, maxSize);\n  }\n\n  /**\n   * rocesses the object for hover data for Table Cell\n   * @param index index of the row of the datasource\n   * @param row row of the datasource\n   * @returns\n   */\n  getHoverData([index, row]: [number, DataRow<T>]): DataItem[][] {\n    if (row[index] === undefined) {\n      return [];\n    }\n\n    const {\n      tissueInfo: { id, label },\n    } = this;\n    const {\n      data: { cell, biomarker, meanExpression, dataset_count },\n    } = row[index] as T;\n\n    return [\n      [\n        { label: 'Functional Tissue Unit Name', value: label },\n        { label: 'Uberon ID', value: id },\n        { label: '#Datasets', value: `${dataset_count ?? 0}` },\n      ],\n      [\n        { label: 'Cell Type Name', value: row[0] },\n        { label: 'CL ID', value: cell },\n        { label: 'Number of Cells', value: `${row[1]}` },\n      ],\n      [\n        { label: 'Gene Name', value: this.columns[index - 2] },\n        { label: 'HGNC ID', value: biomarker },\n        { label: 'Mean Expression Value', value: meanExpression.toFixed(6) },\n      ],\n    ];\n  }\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule, MatTableDataSource } from '@angular/material/table';\nimport {\n  BiomarkerTableDataCardComponent,\n  BiomarkerTableDataIconComponent,\n  DataItem,\n} from '@hra-ui/components/molecules';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { GradientPoint, SizeLegend } from '@hra-ui/components/atoms';\n\n/**\n * RGBTriblet of type RGB to store color\n */\ntype RGBTriplet = [number, number, number];\n\n/**\n * An interface representing a single cell of the table.\n */\nexport interface DataCell {\n  /** Represents the color of the icon */\n  color: string;\n  /** Represents the size of the icon */\n  size: number;\n  /** Represents the data for the data card */\n  data: {\n    cell: string;\n    biomarker: string;\n    meanExpression: number;\n    /** Number of datasets for this Tissue */\n    dataset_count: number;\n  };\n}\n\n/**\n * Details of the Tissue\n */\nexport interface TissueInfo {\n  /** ID of the Tissue */\n  id: string;\n  /** Name of the Tissue */\n  label: string;\n}\n\n/** Describes the composition of a single row in the table */\nexport type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];\n\n/** Cell types table, describing the types and quanitites of cells for a specific organ */\n@Component({\n  selector: 'hra-biomarker-table',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatTableModule,\n    BiomarkerTableDataIconComponent,\n    HoverDirective,\n    BiomarkerTableDataCardComponent,\n  ],\n  templateUrl: './biomarker-table.component.html',\n  styleUrls: ['./biomarker-table.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerTableComponent<T extends DataCell> implements OnChanges {\n  /**\n   * Input: TissueInfo carrying the details of the tissue open\n   */\n  @Input() tissueInfo: TissueInfo = {\n    id: '',\n    label: '',\n  };\n\n  /** Columns for the table */\n  @Input() columns: string[] = [];\n\n  /** Rows of the table */\n  @Input() data: DataRow<T>[] = [];\n\n  /** Gradient colors along with their stop points */\n  @Input() gradient: GradientPoint[] = [];\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  @Input() sizes: SizeLegend[] = [];\n\n  /** Cell name which is hovered, used for highlighting */\n  @Input() highlightedCellName = '';\n\n  /** List of cell ids in the illustration */\n  @Input() illustrationLabels: string[] = [];\n\n  /** Getter method to provide the definations of the columns */\n  get columnsWithTypeAndCount(): string[] {\n    return ['type', 'count', ...this.columns];\n  }\n\n  /** Source for the table */\n  readonly dataSource = new MatTableDataSource<DataRow<T>>([]);\n\n  /**\n   * Sets the data source for the table on every change\n   * Sorts the biomarker table on illustrationLabels change\n   * @param changes object consisting of change in the Input\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('data' in changes) {\n      this.dataSource.data = this.data;\n    }\n\n    if ('illustrationLabels' in changes) {\n      this.sortTable();\n    }\n  }\n\n  /**\n   * Sorts table by cell type alphabetically, then puts cells that are in the illustration on top\n   */\n  private sortTable(): void {\n    this.dataSource.data = this.data.sort((a, b) => {\n      return a[0].toLowerCase() < b[0].toLowerCase() ? -1 : 1;\n    });\n\n    this.dataSource.data = this.dataSource.data.sort((a, b) => {\n      const id1 = this.illustrationLabels.includes(a[0].toLowerCase());\n      const id2 = this.illustrationLabels.includes(b[0].toLowerCase());\n      return id1 && !id2 ? -1 : 1;\n    });\n  }\n\n  /**\n   * Returns true if name matches the highlighted cell name\n   * @param name Cell name\n   */\n  isHighlighted(name: string): boolean {\n    return name.toLowerCase() === this.highlightedCellName.toLowerCase();\n  }\n\n  /** Lerp function to give value beween min and max value based on the given value\n   *\n   * @param value\n   * @param min\n   * @param max\n   * @returns\n   */\n  lerp(value: number, min: number, max: number): number {\n    return min * (1 - value) + max * value;\n  }\n\n  /**\n   * Converts HexCode to RGB\n   * @param hex\n   * @returns\n   */\n  hex2rgb(hex: string): RGBTriplet {\n    const r = parseInt(hex.slice(1, 3), 16);\n    const g = parseInt(hex.slice(3, 5), 16);\n    const b = parseInt(hex.slice(5, 7), 16);\n    return [r, g, b];\n  }\n\n  /**\n   * Gets Min and Max color grade based on the meanExpression value\n   * @param meanExpression\n   * @returns\n   */\n  getMinMaxColor(meanExpression: number): { minColor: RGBTriplet; maxColor: RGBTriplet } {\n    const index = this.gradient.findIndex((item, i, arr) => {\n      return meanExpression >= item.percentage && meanExpression <= arr[i + 1]?.percentage;\n    });\n\n    const minColor: RGBTriplet = this.hex2rgb(this.gradient[index]?.color ?? this.gradient[0].color);\n    const maxColor: RGBTriplet = this.hex2rgb(this.gradient[index + 1].color);\n\n    return { minColor, maxColor };\n  }\n\n  /**\n   * Gets Min and Max size grade based on the Percentage value\n   * @param percentage\n   * @returns\n   */\n  getMinMaxSize(percentage: number): { minSize: number; maxSize: number } {\n    const index = this.sizes.findIndex((item, i, arr) => {\n      return percentage >= parseFloat(item.label) / 100 && percentage <= parseFloat(arr[i + 1]?.label) / 100;\n    });\n    const minSize: number = this.sizes[index]?.radius;\n    const maxSize: number = this.sizes[index + 1].radius;\n    return { minSize, maxSize };\n  }\n\n  /**\n   * Calculates the color of this value on this gradient\n   * @param value\n   * @returns\n   */\n  getColor(value: number): string {\n    const { minColor, maxColor } = this.getMinMaxColor(value);\n    return (\n      '#' +\n      minColor\n        .map((min, index) => this.lerp(value, min, maxColor[index]))\n        .map((component) => Math.round(component).toString(16))\n        .join('')\n    );\n  }\n\n  /**\n   * gets Size of the Cell based on the percentage value\n   * @param value\n   * @returns\n   */\n  getSize(value: number): number {\n    const { minSize, maxSize } = this.getMinMaxSize(value);\n    return this.lerp(value, minSize, maxSize);\n  }\n\n  /**\n   * rocesses the object for hover data for Table Cell\n   * @param index index of the row of the datasource\n   * @param row row of the datasource\n   * @returns\n   */\n  getHoverData([index, row]: [number, DataRow<T>]): DataItem[][] {\n    if (row[index] === undefined) {\n      return [];\n    }\n\n    const {\n      tissueInfo: { id, label },\n    } = this;\n    const {\n      data: { cell, biomarker, meanExpression, dataset_count },\n    } = row[index] as T;\n\n    return [\n      [\n        { label: 'Functional Tissue Unit Name', value: label },\n        { label: 'Uberon ID', value: id },\n        { label: '#Datasets', value: `${dataset_count ?? 0}` },\n      ],\n      [\n        { label: 'Cell Type Name', value: row[0] },\n        { label: 'CL ID', value: cell },\n        { label: 'Number of Cells', value: `${row[1]}` },\n      ],\n      [\n        { label: 'Gene Name', value: this.columns[index - 2] },\n        { label: 'HGNC ID', value: biomarker },\n        { label: 'Mean Expression Value', value: meanExpression.toFixed(6) },\n      ],\n    ];\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -664,13 +720,13 @@
                         "name": "columnsWithTypeAndCount",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 88,
+                        "line": 91,
                         "rawdescription": "\nGetter method to provide the definations of the columns",
                         "description": "<p>Getter method to provide the definations of the columns</p>\n"
                     }
                 }
             },
-            "templateData": "<table class=\"table\" mat-table [dataSource]=\"dataSource\">\n  <caption class=\"sr-only\">\n    Cell type table by Biomarker\n  </caption>\n\n  <ng-container matColumnDef=\"type\">\n    <th mat-header-cell *matHeaderCellDef>Cell Type</th>\n\n    <td class=\"type\" [class.highlight]=\"element[0] === hightlightedCellName\" mat-cell *matCellDef=\"let element\">\n      {{ element[0] }}\n    </td>\n  </ng-container>\n\n  <ng-container matColumnDef=\"count\">\n    <th class=\"count\" mat-header-cell *matHeaderCellDef>Cell Count</th>\n\n    <td class=\"count\" mat-cell *matCellDef=\"let element\" [class.highlight]=\"element[0] === hightlightedCellName\">\n      {{ element[1] !== undefined ? (element[1] | number) : 'no data' }}\n    </td>\n  </ng-container>\n\n  <ng-container *ngFor=\"let column of columns; let index = index\" [matColumnDef]=\"column\">\n    <th class=\"icon-header\" mat-header-cell *matHeaderCellDef [hraHover]=\"columnHover\" [hraHoverData]=\"column\">\n      {{ column }}\n    </th>\n\n    <td [class.highlight]=\"element[0] === hightlightedCellName\" class=\"icon-cell\" mat-cell *matCellDef=\"let element\">\n      <hra-biomarker-table-data-icon\n        class=\"icon\"\n        *ngIf=\"element[index + 2] !== undefined; else emptyCell\"\n        [color]=\"getColor(element[index + 2].color)\"\n        [size]=\"getSize(element[index + 2].size)\"\n        [hraHover]=\"dataHover\"\n        [hraHoverData]=\"[index + 2, element]\"\n      >\n      </hra-biomarker-table-data-icon>\n\n      <ng-template #emptyCell>\n        <div class=\"empty\" [hraHover]=\"dataHover\" [hraHoverData]=\"[index + 2, element]\"></div>\n      </ng-template>\n    </td>\n  </ng-container>\n\n  <tr mat-header-row *matHeaderRowDef=\"columnsWithTypeAndCount\"></tr>\n  <tr mat-row *matRowDef=\"let row; columns: columnsWithTypeAndCount\"></tr>\n</table>\n\n<ng-template #columnHover let-columnName>\n  <div class=\"biomarker-table-hover full-column-name\">\n    {{ columnName }}\n  </div>\n</ng-template>\n\n<ng-template #dataHover let-data>\n  <hra-biomarker-table-data-card [data]=\"getHoverData(data)\"> </hra-biomarker-table-data-card>\n</ng-template>\n"
+            "templateData": "<table class=\"table\" mat-table [dataSource]=\"dataSource\">\n  <caption class=\"sr-only\">\n    Cell type table by Biomarker\n  </caption>\n\n  <ng-container matColumnDef=\"type\">\n    <th mat-header-cell *matHeaderCellDef>Cell Type</th>\n\n    <td class=\"type\" [class.highlight]=\"isHighlighted(element[0])\" mat-cell *matCellDef=\"let element\">\n      {{ element[0] }}\n    </td>\n  </ng-container>\n\n  <ng-container matColumnDef=\"count\">\n    <th class=\"count\" mat-header-cell *matHeaderCellDef>Cell Count</th>\n\n    <td class=\"count\" mat-cell *matCellDef=\"let element\" [class.highlight]=\"isHighlighted(element[0])\">\n      {{ element[1] !== undefined ? (element[1] | number) : 'no data' }}\n    </td>\n  </ng-container>\n\n  <ng-container *ngFor=\"let column of columns; let index = index\" [matColumnDef]=\"column\">\n    <th class=\"icon-header\" mat-header-cell *matHeaderCellDef [hraHover]=\"columnHover\" [hraHoverData]=\"column\">\n      {{ column }}\n    </th>\n\n    <td [class.highlight]=\"isHighlighted(element[0])\" class=\"icon-cell\" mat-cell *matCellDef=\"let element\">\n      <hra-biomarker-table-data-icon\n        class=\"icon\"\n        *ngIf=\"element[index + 2] !== undefined; else emptyCell\"\n        [color]=\"getColor(element[index + 2].color)\"\n        [size]=\"getSize(element[index + 2].size)\"\n        [hraHover]=\"dataHover\"\n        [hraHoverData]=\"[index + 2, element]\"\n      >\n      </hra-biomarker-table-data-icon>\n\n      <ng-template #emptyCell>\n        <div class=\"empty\" [hraHover]=\"dataHover\" [hraHoverData]=\"[index + 2, element]\"></div>\n      </ng-template>\n    </td>\n  </ng-container>\n\n  <tr mat-header-row *matHeaderRowDef=\"columnsWithTypeAndCount; sticky: true\"></tr>\n  <tr mat-row *matRowDef=\"let row; columns: columnsWithTypeAndCount\"></tr>\n</table>\n\n<ng-template #columnHover let-columnName>\n  <div class=\"biomarker-table-hover full-column-name\">\n    {{ columnName }}\n  </div>\n</ng-template>\n\n<ng-template #dataHover let-data>\n  <hra-biomarker-table-data-card [data]=\"getHoverData(data)\"> </hra-biomarker-table-data-card>\n</ng-template>\n"
         }
     ],
     "modules": [],
