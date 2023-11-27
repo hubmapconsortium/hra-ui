@@ -406,8 +406,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="198"
-                            class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:198</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="200"
+                            class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:200</a></div>
                 </td>
             </tr>
 
@@ -483,8 +483,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="183"
-                            class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:183</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="184"
+                            class="link-to-prism">src/lib/interactive-svg/interactive-svg.component.ts:184</a></div>
                 </td>
             </tr>
 
@@ -827,8 +827,9 @@ export class InteractiveSvgComponent&lt;T extends NodeMapEntry&gt; implements On
       return;
     }
 
-    let id &#x3D; this.encodeId(entry.id);
-    const element &#x3D; crosswalkEl.querySelector(&#x60;#${id}&#x60;);
+    let id &#x3D; entry.id;
+    const encodedId &#x3D; this.encodeId(entry.id);
+    const element &#x3D; crosswalkEl.querySelector(&#x60;#${id}, #${encodedId}&#x60;);
     if (!element) {
       return;
     } else if (element.nodeName !&#x3D;&#x3D; &#x27;g&#x27;) {
@@ -868,6 +869,7 @@ export class InteractiveSvgComponent&lt;T extends NodeMapEntry&gt; implements On
       // Move to front (i.e. last child in svg)
       this.renderer.appendChild(el, this.crosswalkEl);
       this.attachCrosswalkHover(this.crosswalkEl);
+      this.setHighlight();
     }
   }
 

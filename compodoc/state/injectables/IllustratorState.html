@@ -89,6 +89,9 @@
                                 <a href="#clearSelection" >clearSelection</a>
                             </li>
                             <li>
+                                <a href="#HighlightCellType" >HighlightCellType</a>
+                            </li>
+                            <li>
                                 <a href="#load" >load</a>
                             </li>
                             <li>
@@ -145,8 +148,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:78</a></div>
                 </td>
             </tr>
 
@@ -199,6 +202,94 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="HighlightCellType"></a>
+                    <span class="name">
+                        <span ><b>HighlightCellType</b></span>
+                        <a href="#HighlightCellType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>HighlightCellType(undefined: <a href="../undefineds/Context.html" target="_self">Context</a>, undefined: <a href="../classes/HighlightCellType.html" target="_self">HighlightCellType</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Action(HighlightCellType)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:94</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sets hover id of highlighted cell type from hover label</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#Context" target="_self" >Context</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                                <code><a href="../classes/HighlightCellType.html" target="_self" >HighlightCellType</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="load"></a>
                     <span class="name">
                         <span ><b>load</b></span>
@@ -222,8 +313,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:49</a></div>
                 </td>
             </tr>
 
@@ -312,8 +403,8 @@ It also cancels any uncompleted actions to the state.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="83"
-                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:83</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:86</a></div>
                 </td>
             </tr>
 
@@ -389,8 +480,8 @@ It also cancels any uncompleted actions to the state.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:67</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:70</a></div>
                 </td>
             </tr>
 
@@ -477,8 +568,8 @@ It also cancels any uncompleted actions to the state.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:62</a></div>
                 </td>
             </tr>
 
@@ -548,7 +639,8 @@ It also cancels any uncompleted actions to the state.</p>
 import { FtuDataService, IllustrationMappingItem, Url } from &#x27;@hra-ui/services&#x27;;
 import { Action, State, StateContext } from &#x27;@ngxs/store&#x27;;
 import { forkJoin, Observable, tap } from &#x27;rxjs&#x27;;
-import { ClearSelection, Load, Reset, SetClicked, SetHover } from &#x27;./illustrator.actions&#x27;;
+
+import { ClearSelection, HighlightCellType, Load, Reset, SetClicked, SetHover } from &#x27;./illustrator.actions&#x27;;
 
 /**
  * interface for the Illustrator Model that contains the url, selected
@@ -563,6 +655,8 @@ export interface IllustratorModel {
   selectedOnClick?: IllustrationMappingItem;
   /** Array of Illustrartor Items */
   mapping: IllustrationMappingItem[];
+  /** Current hovered cell type id */
+  hoveredCellTypeId?: string;
 }
 
 type Context &#x3D; StateContext&lt;IllustratorModel&gt;;
@@ -628,6 +722,15 @@ export class IllustratorState {
   @Action(Reset)
   reset({ setState }: Context): void {
     setState({ mapping: [] });
+  }
+
+  /**
+   * Sets hover id of highlighted cell type from hover label
+   */
+  @Action(HighlightCellType)
+  HighlightCellType({ patchState, getState }: Context, { hoverLabel }: HighlightCellType): void {
+    const match &#x3D; getState().mapping.find((entry) &#x3D;&gt; entry.label.toLowerCase() &#x3D;&#x3D;&#x3D; hoverLabel.toLowerCase());
+    patchState({ hoveredCellTypeId: match ? match.ontologyId : undefined });
   }
 }
 </code></pre>

@@ -196,7 +196,15 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { MatTableModule, MatTableDataSource } from &#x27;@angular/material/table&#x27;;
 import {
@@ -284,6 +292,9 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
 
   /** List of cell ids in the illustration */
   @Input() illustrationLabels: string[] &#x3D; [];
+
+  /** Emits cell type label when row is hovered */
+  @Output() readonly rowHover &#x3D; new EventEmitter&lt;string&gt;();
 
   /** Getter method to provide the definations of the columns */
   get columnsWithTypeAndCount(): string[] {
@@ -411,7 +422,7 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
   }
 
   /**
-   * rocesses the object for hover data for Table Cell
+   * Processes the object for hover data for Table Cell
    * @param index index of the row of the datasource
    * @param row row of the datasource
    * @returns
