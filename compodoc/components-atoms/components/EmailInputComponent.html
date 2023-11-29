@@ -415,7 +415,7 @@ export class EmailInputComponent {
   &lt;mat-error *ngIf&#x3D;&quot;control.hasError(&#x27;email&#x27;) &amp;&amp; !control.hasError(&#x27;required&#x27;)&quot;&gt;
     Please enter a valid email address
   &lt;/mat-error&gt;
-  &lt;mat-error *ngIf&#x3D;&quot;control.hasError(&#x27;required&#x27;)&quot;&gt; Email is required! &lt;/mat-error&gt;
+  &lt;mat-error *ngIf&#x3D;&quot;control.hasError(&#x27;required&#x27;)&quot;&gt; Email is required &lt;/mat-error&gt;
 &lt;/mat-form-field&gt;
 </code></pre>
     </div>
@@ -464,7 +464,7 @@ export class EmailInputComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-form-field class="email-text-field" appearance="outline">  <mat-label> Email </mat-label>  <input type="email" matInput [formControl]="control" [placeholder]="placeholder" />  <mat-error *ngIf="control.hasError(\'email\') && !control.hasError(\'required\')">    Please enter a valid email address  </mat-error>  <mat-error *ngIf="control.hasError(\'required\')"> Email is required! </mat-error></mat-form-field></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-form-field class="email-text-field" appearance="outline">  <mat-label> Email </mat-label>  <input type="email" matInput [formControl]="control" [placeholder]="placeholder" />  <mat-error *ngIf="control.hasError(\'email\') && !control.hasError(\'required\')">    Please enter a valid email address  </mat-error>  <mat-error *ngIf="control.hasError(\'required\')"> Email is required </mat-error></mat-form-field></div>'
     var COMPONENTS = [{'name': 'EmailInputComponent', 'selector': 'hra-email-input'},{'name': 'EmptyBiomarkerComponent', 'selector': 'hra-empty-biomarker'},{'name': 'GradientLegendComponent', 'selector': 'hra-gradient-legend'},{'name': 'LabelBoxComponent', 'selector': 'hra-label-box'},{'name': 'RequiredInputComponent', 'selector': 'hra-required-input'},{'name': 'RequiredTextboxComponent', 'selector': 'hra-required-textbox'},{'name': 'SizeLegendComponent', 'selector': 'hra-size-legend'},{'name': 'TooltipComponent', 'selector': 'hra-ui-tooltip'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'EmailInputComponent'};

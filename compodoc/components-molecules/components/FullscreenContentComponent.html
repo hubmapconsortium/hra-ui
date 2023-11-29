@@ -317,15 +317,15 @@ import { animate, state, style, transition, trigger } from &#x27;@angular/animat
         style({
           width: &#x27;100%&#x27;,
           position: &#x27;absolute&#x27;,
-          right: 0,
+          right: &#x27;0&#x27;,
         })
       ),
       state(
         &#x27;false&#x27;,
         style({
-          width: &#x27;50%&#x27;,
+          width: &#x27;43rem&#x27;,
           position: &#x27;absolute&#x27;,
-          right: 0,
+          right: &#x27;0&#x27;,
         })
       ),
       transition(&#x27;true &lt;&#x3D;&gt; false&#x27;, [animate(&#x27;0.5s ease&#x27;)]),
@@ -353,11 +353,7 @@ export class FullscreenContentComponent {
                 <pre class="line-numbers"><code class="language-scss">:host {
   display: block;
   overflow-y: hidden;
-
-  &amp;.fullscreen-on {
-    z-index: 100;
-    background: #f8f9fa;
-  }
+  background: white;
 }
 </code></pre>
     </div>

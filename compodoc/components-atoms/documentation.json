@@ -180,7 +180,7 @@
                 "line": 34,
                 "rawdescription": "\nConnects the input control to component outputs"
             },
-            "templateData": "<mat-form-field class=\"email-text-field\" appearance=\"outline\">\n  <mat-label> Email </mat-label>\n  <input type=\"email\" matInput [formControl]=\"control\" [placeholder]=\"placeholder\" />\n\n  <mat-error *ngIf=\"control.hasError('email') && !control.hasError('required')\">\n    Please enter a valid email address\n  </mat-error>\n  <mat-error *ngIf=\"control.hasError('required')\"> Email is required! </mat-error>\n</mat-form-field>\n"
+            "templateData": "<mat-form-field class=\"email-text-field\" appearance=\"outline\">\n  <mat-label> Email </mat-label>\n  <input type=\"email\" matInput [formControl]=\"control\" [placeholder]=\"placeholder\" />\n\n  <mat-error *ngIf=\"control.hasError('email') && !control.hasError('required')\">\n    Please enter a valid email address\n  </mat-error>\n  <mat-error *ngIf=\"control.hasError('required')\"> Email is required </mat-error>\n</mat-form-field>\n"
         },
         {
             "name": "EmptyBiomarkerComponent",
@@ -357,7 +357,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: flex;\n  align-items: center;\n  padding: 0.75rem 2rem;\n  background: #f8f9fa;\n  font-family: 'Inter';\n  font-size: 1rem;\n\n  .filler {\n    flex-grow: 1;\n  }\n}\n",
+                    "data": ":host {\n  display: flex;\n  align-items: center;\n  padding: 0.75rem 2rem;\n  background: #f8f9fa;\n  font-size: 1rem;\n\n  .filler {\n    flex-grow: 1;\n  }\n}\n",
                     "styleUrl": "./label-box.component.scss"
                 }
             ],
@@ -464,7 +464,7 @@
                 "line": 43,
                 "rawdescription": "\n\nCreates an instance of required input component\nand it connect the form control value changes to check for validation\nbefore output emmiter is triggered\n"
             },
-            "templateData": "<mat-form-field class=\"form-field\" appearance=\"outline\">\n  <mat-label> {{ label }} </mat-label>\n  <input matInput [formControl]=\"control\" />\n  <mat-error *ngIf=\"control.hasError('required')\">{{ label }} is required!</mat-error>\n</mat-form-field>\n"
+            "templateData": "<mat-form-field class=\"form-field\" appearance=\"outline\">\n  <mat-label> {{ label }} </mat-label>\n  <input matInput [formControl]=\"control\" />\n  <mat-error *ngIf=\"control.hasError('required')\">{{ label }} is required</mat-error>\n</mat-form-field>\n"
         },
         {
             "name": "RequiredTextboxComponent",
@@ -577,7 +577,7 @@
                 "line": 37,
                 "rawdescription": "\nConnects the input control to component outputs"
             },
-            "templateData": "<mat-form-field class=\"message-field\" appearance=\"outline\">\n  <mat-label> {{ label }} </mat-label>\n  <textarea\n    cdkTextareaAutosize\n    cdkAutosizeMinRows=\"10\"\n    cdkAutosizeMaxRows=\"20\"\n    matInput\n    [formControl]=\"control\"\n    [placeholder]=\"placeholder\"\n  ></textarea>\n  <mat-error *ngIf=\"control.hasError('required')\"> {{ label }} is required! </mat-error>\n</mat-form-field>\n"
+            "templateData": "<mat-form-field class=\"message-field\" appearance=\"outline\">\n  <mat-label> {{ label }} </mat-label>\n  <textarea\n    cdkTextareaAutosize\n    cdkAutosizeMinRows=\"10\"\n    cdkAutosizeMaxRows=\"20\"\n    matInput\n    [formControl]=\"control\"\n    [placeholder]=\"placeholder\"\n  ></textarea>\n  <mat-error *ngIf=\"control.hasError('required')\"> {{ label }} is required </mat-error>\n</mat-form-field>\n"
         },
         {
             "name": "SizeLegendComponent",
@@ -678,7 +678,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  .tooltip {\n    display: flex;\n    flex-direction: column;\n    background: white;\n    box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);\n    border-radius: 0.5rem;\n    padding: 1rem;\n    font-family: 'Inter';\n  }\n}\n",
+                    "data": ":host {\n  .tooltip {\n    display: flex;\n    flex-direction: column;\n    background: white;\n    box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);\n    border-radius: 0.5rem;\n    padding: 1rem;\n    font-family: Inter;\n  }\n}\n",
                     "styleUrl": "./tooltip.component.scss"
                 }
             ],
