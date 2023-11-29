@@ -1,15 +1,14 @@
 :host {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  overflow-y: hidden;
+  min-width: 59rem;
 
   .content-container {
     display: flex;
-    height: 100%;
 
     .illustration {
-      width: 50%;
+      max-width: calc(100% - 43rem);
+      width: 100%;
     }
 
     .fullscreen-content-container {

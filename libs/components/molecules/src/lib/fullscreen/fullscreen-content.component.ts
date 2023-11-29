@@ -14,15 +14,15 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
         style({
           width: '100%',
           position: 'absolute',
-          right: 0,
+          right: '0',
         })
       ),
       state(
         'false',
         style({
-          width: '50%',
+          width: '43rem',
           position: 'absolute',
-          right: 0,
+          right: '0',
         })
       ),
       transition('true <=> false', [animate('0.5s ease')]),

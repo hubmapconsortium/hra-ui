@@ -80,18 +80,6 @@ describe('TissueTreeListComponent', () => {
       return { selected: new SimpleChange(undefined, value, true) };
     }
 
-    it('selects default entry if set to undefined', async () => {
-      const { instance } = await shallow.render({ bind: { nodes } });
-      const spy = jest.spyOn(instance.control, 'expand');
-      instance.ngOnChanges(createChangeSet(undefined));
-      expect(spy).toHaveBeenCalledWith({
-        label: 'Kidney',
-        expandable: true,
-        level: 0,
-        data: { label: 'Kidney', children: ['id2', 'id3'] },
-      });
-    });
-
     it('expands all parent nodes and itself', async () => {
       const { instance } = await shallow.render({ bind: { nodes } });
       const spy = jest.spyOn(instance.control, 'expand');

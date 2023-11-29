@@ -884,7 +884,7 @@
       }
 
       .cls-222 {
-        font-family: InterV, InterV;
+        font-family: Inter;
         font-variation-settings: ';
       }
 
@@ -901,7 +901,7 @@
       }
 
       .cls-223 {
-        font-family: Helvetica, Helvetica;
+        font-family: Inter;
       }
 
       .cls-226 {
@@ -18044,7 +18044,7 @@
            class="cls-165"
            x="0"
            y="0"
-           id="tspan8214">Prostate perictye</tspan></text>
+           id="tspan8214">Prostate pericyte</tspan></text>
       <text
          class="cls-222"
          transform="translate(574.35 709.65)"
