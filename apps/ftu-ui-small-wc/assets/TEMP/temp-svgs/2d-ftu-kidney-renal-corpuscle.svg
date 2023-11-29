@@ -928,7 +928,7 @@
       }
 
       .cls-200 {
-        font-family: InterV, InterV;
+        font-family: Inter;
         font-variation-settings: ';
       }
 
@@ -17649,10 +17649,10 @@
            y="19.2"
            id="tspan8270">endothelial </tspan><tspan
            class="cls-148"
-           x="79.29"
+           x="89.29"
            y="19.2"
            id="tspan8272">c</tspan><tspan
-           x="86.37"
+           x="98.37"
            y="19.2"
            id="tspan8274">ell</tspan></text>
       <line

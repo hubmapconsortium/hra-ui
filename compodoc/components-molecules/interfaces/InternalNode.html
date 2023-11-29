@@ -412,9 +412,12 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
   ngOnChanges(changes: SimpleChanges): void {
     if (&#x27;nodes&#x27; in changes) {
       this.dataSource.data &#x3D; this.findRootNodes();
-      this.selected &#x3D; this.control.dataNodes[0].data;
+      this.control.expandAll();
     }
     if (&#x27;selected&#x27; in changes) {
+      if (!this.selected) {
+        this.control.expandAll();
+      }
       const path &#x3D; this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];
       const node &#x3D; this.control.dataNodes.find((n) &#x3D;&gt; n.data &#x3D;&#x3D;&#x3D; changes[&#x27;selected&#x27;].currentValue);
       if (!node?.expandable) {

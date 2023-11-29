@@ -407,8 +407,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="273"
-                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:273</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="276"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:276</a></div>
                 </td>
             </tr>
 
@@ -472,8 +472,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="264"
-                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:264</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="267"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:267</a></div>
                 </td>
             </tr>
 
@@ -512,8 +512,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="220"
-                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:220</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="223"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:223</a></div>
                 </td>
             </tr>
 
@@ -590,8 +590,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="273"
-                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:273</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="276"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:276</a></div>
                 </td>
             </tr>
 
@@ -673,8 +673,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="264"
-                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:264</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="267"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:267</a></div>
                 </td>
             </tr>
 
@@ -712,8 +712,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="143"
-                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:143</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="146"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:146</a></div>
                 </td>
             </tr>
 
@@ -810,8 +810,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="220"
-                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:220</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="223"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:223</a></div>
                 </td>
             </tr>
 
@@ -886,8 +886,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="161"
-                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:161</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="164"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:164</a></div>
                 </td>
             </tr>
 
@@ -925,8 +925,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="151"
-                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:151</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="154"
+                            class="link-to-prism">src/lib/tissue-tree-list/tissue-tree-list.component.ts:154</a></div>
                 </td>
             </tr>
 
@@ -1259,9 +1259,12 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
   ngOnChanges(changes: SimpleChanges): void {
     if (&#x27;nodes&#x27; in changes) {
       this.dataSource.data &#x3D; this.findRootNodes();
-      this.selected &#x3D; this.control.dataNodes[0].data;
+      this.control.expandAll();
     }
     if (&#x27;selected&#x27; in changes) {
+      if (!this.selected) {
+        this.control.expandAll();
+      }
       const path &#x3D; this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];
       const node &#x3D; this.control.dataNodes.find((n) &#x3D;&gt; n.data &#x3D;&#x3D;&#x3D; changes[&#x27;selected&#x27;].currentValue);
       if (!node?.expandable) {
@@ -1470,13 +1473,11 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
 
 :host {
   display: block;
-  height: calc(100% - 5rem);
+  height: calc(100% - 3.5rem);
   overflow-y: auto;
   .row {
-    min-height: 2rem;
-    &amp;.child {
-      padding: 5px 0 5px 64px;
-    }
+    min-height: unset;
+
     &amp;.selected {
       background-color: vars.$accent-lighter-rgb;
     }
@@ -1498,6 +1499,7 @@ export class TissueTreeListComponent&lt;K extends string, T extends DataNode&lt;
         cursor: pointer;
         text-decoration: none;
         color: rgba(vars.$dark-primary-text);
+        line-height: normal;
       }
     }
 
