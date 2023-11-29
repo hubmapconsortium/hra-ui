@@ -86,6 +86,9 @@
     videoId: V3rmLTANDC8
     playerTitle: Please view the video below for a demo of the HRA Organ VR Gallery
 
+- type: margin
+  bottom: 2.5rem
+
 - type: page-data
   pageData:
     - heading: References

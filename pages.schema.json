@@ -231,6 +231,65 @@
             "properties": {
               "type": {
                 "type": "string",
+                "const": "copy-clipboard"
+              },
+              "clipboardData": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "description": "URL/Text to be displayed inside the card"
+                    },
+                    "borderColor": {
+                      "type": "string",
+                      "description": "Border color of card according to the request type"
+                    },
+                    "plainButton": {
+                      "type": "object",
+                      "properties": {
+                        "icon": {
+                          "type": "string",
+                          "description": "Icon name for the button"
+                        },
+                        "label": {
+                          "type": "string",
+                          "description": "Text for the button"
+                        }
+                      },
+                      "required": ["icon", "label"],
+                      "additionalProperties": false
+                    },
+                    "dynamicButton": {
+                      "type": "object",
+                      "properties": {
+                        "label": {
+                          "type": "string",
+                          "description": "Text for the button"
+                        },
+                        "url": {
+                          "type": "string",
+                          "description": "External URL for the button"
+                        }
+                      },
+                      "required": ["label", "url"],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": ["url", "plainButton", "dynamicButton"],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": ["type", "clipboardData"],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
                 "const": "count-card"
               },
               "countCardInfo": {
@@ -631,7 +690,7 @@
                       "description": "Unique ID for the title of the card"
                     },
                     "cardData": {
-                      "$ref": "#/definitions/mySchema/items/anyOf/12/properties/longCardItems"
+                      "$ref": "#/definitions/mySchema/items/anyOf/13/properties/longCardItems"
                     }
                   },
                   "required": ["heading", "cardData"],
@@ -1257,14 +1316,14 @@
               "headerInfo": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/mySchema/items/anyOf/17/properties/headerInfo/items"
+                  "$ref": "#/definitions/mySchema/items/anyOf/18/properties/headerInfo/items"
                 },
                 "description": "The following fields are optional in this object.\n    - isTotalRequired: True if want to display the sum of column numbers below the table.\n    - sorting: True if sorting required on the column.\n    - alignment: Alignment of the data (start or end)"
               },
               "versionData": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/mySchema/items/anyOf/17/properties/versionData/items"
+                  "$ref": "#/definitions/mySchema/items/anyOf/18/properties/versionData/items"
                 },
                 "description": "Release name, source csv file and version number"
               },
@@ -1278,7 +1337,7 @@
                       "description": "Definition of the column"
                     },
                     "header": {
-                      "$ref": "#/definitions/mySchema/items/anyOf/17/properties/headerInfo/items/properties/header"
+                      "$ref": "#/definitions/mySchema/items/anyOf/18/properties/headerInfo/items/properties/header"
                     },
                     "colspan": {
                       "type": "number",
@@ -1298,7 +1357,7 @@
               "cellHeaders": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/mySchema/items/anyOf/25/properties/additionalHeaders/items"
+                  "$ref": "#/definitions/mySchema/items/anyOf/26/properties/additionalHeaders/items"
                 },
                 "description": "Additional column names and definitions if any"
               }

@@ -41,6 +41,10 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         menuName: 'Organ Mapping Antibody Panels (OMAPs)',
         route: 'omap',
         disabled: true,
+      },
+      {
+        menuName: 'CCF Ontology',
+        route: 'ccf-ontology',
         divider: true,
       },
       {
@@ -51,9 +55,26 @@ export const NAVIGATION_ITEMS: NavItems[] = [
     ],
   },
   {
-    menuName: 'CCF Ontology',
-    route: 'ccf-ontology',
-    disabled: true,
+    menuName: 'Use the HRA',
+    children: [
+      {
+        menuName: 'Overview: HRA Use Cases',
+        route: 'overview-use-the-hra',
+        divider: true,
+      },
+      {
+        menuName: 'Improve Cell Type Annotations',
+        route: 'user-story/1',
+      },
+      {
+        menuName: 'Predict 3D Spatial Origin of Tissue Samples',
+        route: 'user-story/2',
+      },
+      {
+        menuName: 'Explore Biomarker Expressions for Cell Types',
+        route: 'user-story/3',
+      },
+    ],
   },
   {
     menuName: 'Tools',

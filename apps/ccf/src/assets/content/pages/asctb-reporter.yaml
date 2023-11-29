@@ -36,3 +36,6 @@
     width: 1232
     videoId: pzUFmDhQEO8
     playerTitle: Tutorial
+
+- type: margin
+  bottom: 3.5rem

@@ -173,4 +173,9 @@
     [columnLabels]="def['columnLabels']"
     [downloadIcon]="def['downloadIcon']"
   ></ccf-download-ftu>
+  <copy-clipboard
+    *ngSwitchCase="'copy-clipboard'"
+    [clipBoardData]="def['clipboardData']"
+  >
+  </copy-clipboard>
 </ng-container>

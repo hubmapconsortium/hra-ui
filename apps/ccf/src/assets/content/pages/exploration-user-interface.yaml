@@ -39,6 +39,9 @@
     videoId: YAHJqvD3Q_8
     playerTitle: 'Tutorial: Exploration User Interface 1.7.0 Demo'
 
+- type: margin
+  bottom: 2.5rem
+
 - type: page-data
   pageData:
     - heading: How to use the Exploration User Interface
@@ -54,6 +57,9 @@
     width: 1232
     videoId: UfxMpzatowE
     playerTitle: 'Tutorial: Spatial Search in the CCF Exploration User Interface'
+
+- type: margin
+  bottom: 2.5rem
 
 - type: page-data
   pageData:

@@ -52,6 +52,9 @@
     height: 584
     width: 1232
 
+- type: margin
+  bottom: 2.5rem
+
 - type: page-data
   pageData:
     - heading: How to use the Registration User Interface
