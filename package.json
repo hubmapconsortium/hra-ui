@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "build:data-schema-js": "tsc --target esnext -m nodenext --skipLibCheck src/app/utils/data-schema.ts",
-    "build:extract-json-schema": "node ./src/app/utils/cli.js json-schemas pages.schema.json",
+    "build:data-schema-js": "tsc --target esnext -m nodenext --skipLibCheck apps/ccf/src/app/utils/data-schema.ts",
+    "build:extract-json-schema": "node ./apps/ccf/src/app/utils/cli.js json-schemas pages.schema.json",
     "build:json-schema": "npm-run-all build:data-schema-js build:extract-json-schema"
   },
   "private": true,
@@ -20,7 +20,9 @@
     "@angular/platform-browser-dynamic": "^16.2.1",
     "@angular/router": "^16.2.1",
     "@angular/youtube-player": "^15.2.9",
+    "@compodoc/compodoc": "^1.1.22",
     "@google/model-viewer": "^2.0.2",
+    "@twittwer/compodoc": "^1.10.0",
     "commander": "^11.0.0",
     "js-yaml": "^4.1.0",
     "ngx-google-analytics": "^14.0.1",

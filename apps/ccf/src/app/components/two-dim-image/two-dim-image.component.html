@@ -86,7 +86,11 @@
           class="image-container"
           *ngIf="tissue.image; else threeDimensionContainer"
         >
-          <img [src]="tissue.image" (click)="openImageViewer(imageContent)" />
+          <img
+            [src]="tissue.image"
+            [alt]="tissue.alt"
+            (click)="openImageViewer(imageContent)"
+          />
           <ng-template #imageContent>
             <div class="dialog-header">
               <div mat-dialog-title>{{ tissue.name }}</div>
@@ -137,7 +141,11 @@
               </a>
             </div>
             <div class="img-container">
-              <img [src]="tissue.expandedImage" class="dialog-image" />
+              <img
+                [src]="tissue.expandedImage"
+                [alt]="tissue.alt"
+                class="dialog-image"
+              />
             </div>
           </ng-template>
         </div>

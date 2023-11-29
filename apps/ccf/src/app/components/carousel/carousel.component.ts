@@ -1,10 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import SwiperCore, {
   Autoplay,
   Pagination,
@@ -16,6 +10,7 @@ import { SliderItems } from './slider-items';
 
 SwiperCore.use([Autoplay, Pagination, Navigation, EffectFade]);
 
+/** Displays a carousel */
 @Component({
   selector: 'ccf-carousel',
   templateUrl: './carousel.component.html',
@@ -23,10 +18,10 @@ SwiperCore.use([Autoplay, Pagination, Navigation, EffectFade]);
   encapsulation: ViewEncapsulation.None,
 })
 export class CarouselComponent {
+  /** Details of slides to be displayed inside the carousel */
   @Input() carouselInfo: SliderItems[] = [];
 
-  @Output() readonly buttonRoute = new EventEmitter<SliderItems>();
-
+  /** Configuration of carousel behaivour */
   readonly config: SwiperOptions = {
     autoplay: {
       delay: 10000,

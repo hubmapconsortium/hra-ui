@@ -7,10 +7,10 @@
   hideSingleSelectionIndicator
 >
   <mat-option
-    *ngFor="let date of releaseDate"
+    *ngFor="let date of releaseDate; let index = index"
     [value]="date"
     class="mat-select-value-text"
-    id="option-text"
+    id="'option-text-{{ index }}"
     (click)="selectedVersion.emit(date)"
   >
     {{ date.release }}

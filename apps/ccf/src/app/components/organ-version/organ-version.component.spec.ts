@@ -25,6 +25,7 @@ describe('OrganVersionComponent', () => {
     {
       name: 'test-organ-name',
       image: 'test-organ-image',
+      alt: 'test-alt',
       tissueData: [
         {
           name: 'test-tissue-name',

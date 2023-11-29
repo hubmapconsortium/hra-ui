@@ -5,6 +5,7 @@
     - image: assets/images/vccf.svg
       title: Vasculature Common Coordinate Framework
       subtitle: The first open, computer-readable, and comprehensive database of the adult human blood vasculature
+      alt: VCCF icon
 
 - type: announcement
   announcementCard:

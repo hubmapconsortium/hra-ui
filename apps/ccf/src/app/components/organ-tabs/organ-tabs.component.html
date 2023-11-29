@@ -9,6 +9,7 @@
     <ng-template mat-tab-label>
       <img
         [src]="tab.image"
+        [alt]="tab.alt"
         class="organ-image"
         (click)="organName.emit(tab.name)"
       />

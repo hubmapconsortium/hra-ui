@@ -26,10 +26,12 @@
           title: Visible Human Massive Open Online Course (VHMOOC)
           body: A free course that empowers anyone to help construct and properly use the evolving Human Reference Atlas
           externalLink: https://expand.iu.edu/browse/sice/cns/courses/hubmap-visible-human-mooc
+          alt: VHMOOC icon
         - icon: assets/images/hra-sop.svg
           title: Human Reference Atlas Standard Operating Procedures
           body: Standard operating procedures for Human Reference Atlas construction, visualization, and usage
           route: standard-operating-procedures
+          alt: Dtandard operating procedures icon
       id: training
     - heading: Outreach
       cardData:
@@ -37,18 +39,22 @@
           title: 'Kaggle #1: HuBMAP - Hacking the Kidney'
           body: Algorithm development challenges that engage teams from around the globe to develop code for Human Reference Atlas construction
           route: kaggle-one
+          alt: Kaggle one icon
         - icon: assets/images/kaggle.svg
           title: 'Kaggle #2: HuBMAP + HPA - Hacking the Human Body'
           body: Algorithm development challenges that engage teams from around the globe to develop code for Human Reference Atlas construction
           route: kaggle-two
+          alt: Kaggle two icon
         - icon: assets/images/kaggle.svg
           title: 'Kaggle #3: HuBMAP - Hacking the Human Vasculature'
           body: Algorithm development challenges that engage teams from around the globe to develop code for Human Reference Atlas construction
           externalLink: https://www.kaggle.com/competitions/hubmap-hacking-the-human-vasculature/overview/timeline
+          alt: Kaggle three icon
         - icon: assets/images/24hr.svg
           title: '24-Hour Human Reference Atlas Event'
           body: Scholars and practitioners present and discuss their work in a fun and accessible style over the course of 24 hours
           externalLink: https://humanatlas.io/events/2022-24h/
+          alt: 24 hour HRA Event icon
       id: outreach
     - heading: Release Notes
       cardData:
@@ -56,32 +62,41 @@
           title: '4th Release Notes'
           body: See what's new in the 4th Release (v1.3) of the Human Reference Atlas
           route: release-notes/v1.3
+          alt: Release notes icon
         - icon: assets/images/hra-sop.svg
           title: '5th Release Notes'
           body: See what's new in the 5th Release (v1.4) of the Human Reference Atlas
           route: release-notes/v1.4
+          alt: Release notes icon
       id: release-notes
     - heading: Previews
       cardData:
         - icon: assets/images/preview.svg
           title: 'Preview: Human Atlas Stories'
           externalLink: https://hubmapconsortium.github.io/hra-previews/pilots/pilot4.html
+          alt: Preview HRA Stories icon
         - icon: assets/images/preview.svg
           title: 'Preview: ASCT+B Reporter Comparison'
           externalLink: https://hubmapconsortium.github.io/hra-previews/pilots/pilot1.html
+          alt: Preview ASCT+B Reporter comparison icon
         - icon: assets/images/preview.svg
           title: 'Preview: Vasculature CCF Visualization'
           externalLink: https://hubmapconsortium.github.io/hra-previews/pilots/pilot2.html
+          alt: Preview VCCF Visualization icon
         - icon: assets/images/preview.svg
           title: 'Preview: HRA vs. Experimental Data'
           externalLink: https://hubmapconsortium.github.io/hra-previews/pilots/pilot3.html
+          alt: Preview HRA vs Experimental data icon
         - icon: assets/images/preview.svg
           title: 'Preview: Comparing Tabula Sapiens to the Human Reference Atlas'
           externalLink: https://hubmapconsortium.github.io/hra-previews/pilots/pilot5.html
+          alt: Preview comparing tabula sapiens to HRA icon
         - icon: assets/images/preview.svg
           title: 'Preview: Functional Tissue Unit Segmentation'
           externalLink: https://hubmapconsortium.github.io/hra-previews/pilots/pilot6.html
+          alt: Preview FTU segmentation icon
         - icon: assets/images/preview.svg
           title: 'Preview: CCF Tissue Block Annotation: Mesh-Level Collision Detection'
           externalLink: https://hubmapconsortium.github.io/hra-previews/pilots/pilot7.html
+          alt: Preview CCF tissue block annotation icon
       id: previews

@@ -1,5 +1,6 @@
 import { NavItems } from '../components/toolbar/nav-items';
 
+/** Details of Menu items their children and their routes */
 export const NAVIGATION_ITEMS: NavItems[] = [
   {
     menuName: 'Data',

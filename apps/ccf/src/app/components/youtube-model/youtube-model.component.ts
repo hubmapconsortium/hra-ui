@@ -1,35 +1,36 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { YoutubeModel } from './youtube-model';
 
-let apiLoaded = false;
-
+/** Displayes a Youtube player with title */
 @Component({
   selector: 'youtube-model',
   templateUrl: './youtube-model.component.html',
   styleUrls: ['./youtube-model.component.scss'],
 })
 export class YoutubeModelComponent implements OnInit {
+  /** Details of youtube player and video */
   @Input() playerData: YoutubeModel;
-  isMobile = false;
 
+  /** Flag to check if the script is loaded */
+  apiLoaded = false;
+
+  /** Loads the script in the current document */
   ngOnInit(): void {
-    if (!apiLoaded) {
-      // This code loads the IFrame Player API code asynchronously, according to the instructions at
-      // https://developers.google.com/youtube/iframe_api_reference#Getting_Started
+    if (!this.apiLoaded) {
       const tag = document.createElement('script');
       tag.src = 'https://www.youtube.com/iframe_api';
       document.body.appendChild(tag);
-      apiLoaded = true;
+      this.apiLoaded = true;
     }
-
-    this.isMobile = document.body.getBoundingClientRect().width <= 428;
   }
 
+  /** Function to handle resize event and change size of youtube player */
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.playerSize();
   }
 
+  /** Changes the size of youtube player */
   playerSize() {
     this.playerData.width = window.innerWidth * 0.8;
     this.playerData.height = this.playerData.width * 0.5625;

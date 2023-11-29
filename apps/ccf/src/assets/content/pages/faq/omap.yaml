@@ -12,6 +12,7 @@
     - image: assets/images/omap_faq.svg
       title: Frequently Asked Questions (FAQs) for Organ Mapping Antibody Panels (OMAPs)
       subtitle: ''
+      alt: OMAP FAQ icon
 
 - type: margin
   bottom: 2.5rem

@@ -1,6 +1,6 @@
 <mat-card *ngFor="let cardDetails of headerCard" class="header-card">
   <div class="icon">
-    <img [src]="cardDetails.image" class="card-image" />
+    <img [src]="cardDetails.image" [alt]="cardDetails.alt" class="card-image" />
   </div>
   <div class="body">
     <div class="card-heading">

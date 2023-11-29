@@ -4,12 +4,23 @@ import { z } from 'zod';
 // Common types
 // ---------------------------
 
+/** Name of the column */
 const ColumnName = z.string({ description: 'Column name' });
+
+/** Styles for the element */
 const Styles = z.record(z.union([z.string(), z.number()]));
+
+/**
+ * Object of Version entry. Each entry is defined by a release and version.
+ */
 const VersionEntry = z.object({
   release: z.string(),
   version: z.string(),
 });
+
+/**
+ * Default styles for the dataset object
+ */
 const defaultDatasetsStyles = {
   display: 'flex',
   'flex-flow': 'row wrap',
@@ -17,6 +28,10 @@ const defaultDatasetsStyles = {
   'padding-bottom': '2.5rem',
 };
 
+/**
+ * Array of Announcement cards. Each announcement is defined by a message, route with it's label, and
+ * emoji.
+ */
 export const AnnouncementCard = z.object({
   type: z.literal('announcement'),
   announcementCard: z
@@ -42,9 +57,12 @@ export const AnnouncementCard = z.object({
       emoji: true,
     })
     .array(),
-  styles: Styles.optional(),
 });
 
+/**
+ * Array of board members. Each board member is defined by a description and
+ * image with it's alternate text.
+ */
 export const BoardMembers = z.object({
   type: z.literal('board-members'),
   boardMembersData: z
@@ -53,17 +71,22 @@ export const BoardMembers = z.object({
       description: z.string({
         description: 'Introduction of the board member',
       }),
+      alt: z.string({ description: 'alternate text for image' }),
     })
     .array(),
-  styles: Styles.optional(),
 });
 
+/** Description of the button object */
 const buttonDescription = `This object has the following properties as optional.
 - url: External link to redirect the page to when button is pressed.
 - route: Route Name of the page to redirect to when the button is pressed.
 - icon: icon name for the icon to be displayed on the button.
 - styles: Additional styling for the button.`;
 
+/**
+ * A button is defined by a label, route, URL and icon to be displayed in the button.
+ * Can also contain optional common styles for it.
+ */
 export const Button = z
   .object({
     type: z.literal('button', { description: buttonDescription }),
@@ -83,6 +106,11 @@ export const Button = z
   })
   .describe(buttonDescription);
 
+/**
+ * Array of carousel slides. Each slide is defined by a title, subtitle,
+ * an image with it's alternate text. URL, route and label for the button.
+ * It also contains an object of styles to style the carousel container.
+ */
 export const CarouselSlides = z.object({
   type: z.literal('carousel'),
   carouselContainerStyles: z.object({
@@ -110,9 +138,12 @@ export const CarouselSlides = z.object({
     Enter either url or route.`
     )
     .array(),
-  styles: Styles.optional(),
 });
 
+/**
+ * Array of contact cards. Each card is defined by a person's name, role,
+ * field, email and image with it's alternate text.
+ */
 export const ContactCard = z.object({
   type: z.literal('contact-card'),
   contactData: z
@@ -122,11 +153,15 @@ export const ContactCard = z.object({
       role: z.string({ description: 'Role/ Position of the contact' }),
       email: z.string({ description: 'Email ID of the contact' }),
       image: z.string({ description: 'Image of the contact' }),
+      alt: z.string({ description: 'Alternate text for image' }),
     })
     .array(),
-  styles: Styles.optional(),
 });
 
+/**
+ * Array of metric cards. Each card is defined by a metric's label, count,
+ * and image with it's alternate text.
+ */
 export const CountCard = z.object({
   type: z.literal('count-card'),
   countCardInfo: z
@@ -137,9 +172,13 @@ export const CountCard = z.object({
       alt: z.string({ description: 'Alternative text for the image' }),
     })
     .array(),
-  styles: Styles.optional(),
 });
 
+/**
+ * Array of dataset links. Each link is defined by label,
+ * href and class name for the link.
+ * Can also contain optional common styles for the container.
+ */
 export const Datasets = z
   .object({
     type: z.literal('datasets'),
@@ -157,16 +196,26 @@ export const Datasets = z
   })
   .required({ styles: true });
 
+/**
+ * A divider. It contains optional common styles for the divider.
+ */
 export const Divider = z.object({
   type: z.literal('divider'),
   styles: Styles.optional(),
 });
 
+/** Description of the DownloadFtu Object */
 const downloadFtuDescription = `This object has the following fields as optional.
 - displayMetaData: True if you want to display Release Version and Digital Object type. If you set this to true, make sure to add releaseVersion and dot properties in rows object.
 - downloadIcon: name of the icon you want to display in download column header
 - columnLabels: Object of column definition and column headers for the table
 `;
+
+/**
+ * Contains an array of version information and version data.
+ * It also containes an object of column labels, a displayMetaData and download icon
+ * flag to show/hide additional columns and download icon.
+ */
 export const DownloadFtu = z
   .object({
     type: z.literal('download-ftu', { description: downloadFtuDescription }),
@@ -231,6 +280,11 @@ export const DownloadFtu = z
   })
   .describe(downloadFtuDescription);
 
+/** An array of navigation items inside a drawer.
+ * Each item contains a label and the id.
+ * It contains drawerStyles to style the drawer and
+ * components to add components inside the drawer.
+ */
 export const Drawer = z.object({
   type: z.literal('drawer'),
   navigationItems: z
@@ -243,6 +297,10 @@ export const Drawer = z.object({
   components: z.lazy(() => PageSpec).describe('To add components recursively'),
 });
 
+/**
+ * Object of extra header. Each header is defined by a column definition,
+ * header, and optional rowspan and a colspan.
+ */
 const ExtraHeader = z
   .object({
     columnDef: z.string({ description: 'Definition of the column' }),
@@ -254,6 +312,10 @@ const ExtraHeader = z
     `colspan and rowspan are optional fields. Add appropriate number to span the cells accordingly.`
   );
 
+/**
+ * Array of header data. Each header object is defined by a column definition,
+ * header, cell, and a optional isTotalRequired and a sorting flag, an alignment property.
+ */
 const HeaderData = z
   .object({
     header: ColumnName,
@@ -277,6 +339,10 @@ const HeaderData = z
 - sorting: True if sorting required on the column.
 - alignment: Alignment of the data (start or end)`);
 
+/**
+ * Object of image. Each object is defined by a class name
+ * image url and it's alternate text. Can also contain optional common styles for it.
+ */
 export const Image = z
   .object({
     type: z.literal('image'),
@@ -293,6 +359,11 @@ export const Image = z
     `Property 'class' is optional. It is the class name for the image. Define this class in page-element.component.scss`
   );
 
+/**
+ * Array of image data. Each image data object is defined by a title,
+ * description, url of image, modal image along with their alternate text.
+ * image url and it's alternate text.
+ */
 export const ImageInCard = z.object({
   type: z.literal('simple-image'),
   imageData: z
@@ -303,11 +374,16 @@ export const ImageInCard = z.object({
       imageDialog: z.string({
         description: 'URL of the image to be displayed on the dialog',
       }),
+      alt: z.string({ description: 'Alternate text for image' }),
     })
     .array(),
-  styles: Styles.optional(),
 });
 
+/**
+ * Object of card items. Each card object is defined by a title,
+ * description, url or route of the card,
+ * card's image along with its background color and alternate text.
+ */
 const LongCardItems = z
   .object({
     icon: z.string({ description: 'Icon of the card' }),
@@ -318,6 +394,7 @@ const LongCardItems = z
       description: 'Background color for the icon if necessary',
     }),
     externalLink: z.string({ description: 'External URL to be redirected' }),
+    alt: z.string({ description: 'alternate text for card icon' }),
   })
   .partial({
     route: true,
@@ -334,12 +411,21 @@ const LongCardItems = z
   )
   .array();
 
+/**
+ * Object of card items. Each card object is defined by a title,
+ * description, url or route of the card,
+ * card's image along with its background color and alternate text.
+ */
 export const LongCard = z.object({
   type: z.literal('long-card'),
   longCardItems: LongCardItems,
-  styles: Styles.optional(),
 });
 
+/**
+ * Array of card items with tile. Each object is defined by a
+ * LongCardItems object, title, along with it's optional
+ * font size and element id.
+ */
 export const LongCardWithTitle = z.object({
   type: z.literal('long-card-with-title'),
   longCardWithTitleData: z
@@ -361,6 +447,10 @@ export const LongCardWithTitle = z.object({
     .array(),
 });
 
+/**
+ * A Margin object. It contains optional
+ * margin properties like top, bottom, left. right
+ */
 export const Margin = z
   .object(
     {
@@ -382,12 +472,21 @@ export const Margin = z
     right: true,
   });
 
+/**
+ * A MatCard object. Each card contains an array of components.
+ * Can also contain optional common styles for it.
+ */
 export const MatCard = z.object({
   type: z.literal('mat-card'),
   components: z.lazy(() => PageSpec).describe('To add components recursively'),
   styles: Styles.optional(),
 });
 
+/**
+ * Object of menu tree. Each object is defined by a
+ * a overlay class name, a position object and an array
+ * of navigation items object. Can also contain optional common styles for it.
+ */
 export const MenuTree = z.object({
   type: z.literal('menu-tree'),
   overlayClass: z.string(),
@@ -410,9 +509,14 @@ export const MenuTree = z.object({
   styles: Styles.optional(),
 });
 
+/**
+ * Object of organ data. Each object is defined by a
+ * name, image with it's alternate text, and an array of tissue data object
+ */
 const OrganData = z.object({
   name: z.string({ description: 'Name of the organ' }),
   image: z.string({ description: 'Path to the Icon/Image of the organ' }),
+  alt: z.string({ description: 'Alternate text for icon' }),
   tissueData: z
     .lazy(() => TissueData)
     .array()
@@ -428,9 +532,15 @@ const OrganData = z.object({
     - png: URL to download the PNG file of the tissue.`),
 });
 
+/** Description of OrganVersion object */
 const organVersionDescription = `This object has the following fields as optional
 - headerInfo: this is the data about column headers and their definition. Add this data if you want to display data table`;
 
+/**
+ * Object of organ version. Each object is defined by an
+ * array of version data, header information and organ information,
+ * isMultiRow and isTableRequired flag.
+ */
 export const OrganVersion = z.object({
   type: z.literal('organ-version', { description: organVersionDescription }),
   isMultiRow: z.boolean({
@@ -455,6 +565,10 @@ export const OrganVersion = z.object({
     .describe(organVersionDescription),
 });
 
+/**
+ * An array of page data. Each object is defined by a
+ * heading and description. It may also contain optional styles.
+ */
 export const PageData = z.object({
   type: z.literal('page-data'),
   pageData: z
@@ -466,6 +580,11 @@ export const PageData = z.object({
   styles: Styles.optional(),
 });
 
+/**
+ * An array of page header card. Each card object is defined by a
+ * title, subtitle and image along with it's alternate text.
+ * It may also contain optional styles.
+ */
 export const PageHeaderCard = z.object({
   type: z.literal('header'),
   headerCard: z
@@ -473,16 +592,25 @@ export const PageHeaderCard = z.object({
       title: z.string({ description: 'Title of the card' }),
       subtitle: z.string({ description: 'Subtitle of the card' }),
       image: z.string({ description: 'Icon of the card' }),
+      alt: z.string({ description: 'Text Alternative for card image' }),
     })
     .array(),
   styles: Styles.optional(),
 });
 
+/**
+ * An object of prize button. Each button is defined by a
+ * label and URL.
+ */
 const PrizeButton = z.object({
   label: z.string({ description: 'Text on the button' }),
   link: z.string({ description: 'URL for the button' }),
 });
 
+/**
+ * An object of prize winner. Each object is defined by a
+ * winner name, their kaggle id and an array of PrizeButton object.
+ */
 const PrizeWinner = z
   .object({
     winner: z.string({ description: 'Name of the winner' }),
@@ -494,6 +622,12 @@ const PrizeWinner = z
     kaggleId: true,
   });
 
+/**
+ * An array of prize card. Each card object is defined by a
+ * title, presentedBy, organization image along with it's alternate text,
+ * an array of prize winner object and user image object and matDivider.
+ * It may also contain optional styles.
+ */
 export const PrizeCard = z.object({
   type: z.literal('prize-card'),
   prizeCard: z
@@ -512,14 +646,19 @@ export const PrizeCard = z.object({
                 - kaggleId: kaggle id's of the winners.`
       ).array(),
       userImage: z
-        .string({ description: 'Images of all the participants' })
+        .object({
+          image: z.string({ description: 'Images of all the participants' }),
+          alt: z.string({ description: 'Alternate text for user image' }),
+        })
         .array(),
       matDivider: z.boolean({ description: 'True if divider is needed' }),
+      alt: z.string({ description: 'Alternate text for the org image' }),
     })
     .partial({
       presentedBy: true,
       orgImage: true,
       userImage: true,
+      alt: true,
     })
     .describe(
       `
@@ -532,6 +671,10 @@ export const PrizeCard = z.object({
   styles: Styles.optional(),
 });
 
+/**
+ * An array of section card. Each card object is defined by a
+ * title, description, image, gif and route.
+ */
 export const SectionCard = z.object({
   type: z.literal('section-card'),
   cardsInfo: z
@@ -543,9 +686,12 @@ export const SectionCard = z.object({
       route: z.string({ description: 'Route to redirect the card' }),
     })
     .array(),
-  styles: Styles.optional(),
 });
 
+/**
+ * An array of simple tile. Each tile object is defined by a
+ * title
+ */
 export const SimpleTile = z.object({
   type: z.literal('simple-tile'),
   description: z
@@ -557,6 +703,10 @@ export const SimpleTile = z.object({
     .array(),
 });
 
+/**
+ * An object of sop data. Each object is defined by a
+ * title and an array of href objects that contain title and url for the link.
+ */
 export const SopLinks = z.object({
   type: z.literal('sop-links'),
   sopData: z.object({
@@ -570,9 +720,15 @@ export const SopLinks = z.object({
   }),
 });
 
+/** Description for styled group object */
 const styledGroup = `This object has the following properties as optional:
 - id: Label for the id attribute for the component
 - class: Class name defined in the css file for this component.`;
+
+/**
+ * An object of styled group. Each object is defined by a
+ * components, and optional properties like id, class and styles.
+ */
 const StyledGroup = z
   .object({
     type: z.literal('styled-group', { description: styledGroup }),
@@ -587,6 +743,12 @@ const StyledGroup = z
   })
   .describe(styledGroup);
 
+/**
+ * An object of table version. Each object is defined by a
+ * flags of isTotal, isDownload, versionChooserDisabled,
+ * an object of headerInfo, an array of versionData object,
+ * an array of ExtraHeader object.
+ */
 export const TableVersion = z.object({
   type: z.literal('table-version'),
   isTotal: z.boolean({
@@ -617,6 +779,11 @@ export const TableVersion = z.object({
 - additionalHeaders: Add details here to display additional table header for the table.
 - cellHeaders: Add details here to display cell headers for the table.`);
 
+/**
+ * An object of tissueData. Each object is defined by a
+ * name, image with it's alternate text, links for url,
+ * ai, png, svg and threeDimImage.
+ */
 const TissueData = z
   .object({
     name: z.string({ description: 'Name of the Tissue' }),
@@ -645,7 +812,13 @@ const TissueData = z
     png: true,
   });
 
+/** Description of Title object */
 const titleDescription = `Properties 'class' and 'styles' are optional. Add styling in styles to apply styles to the title.`;
+
+/**
+ * An object of title. Object is defined by a
+ * title, class and may contain optional styles.
+ */
 export const Title = z
   .object({
     type: z.literal('title', { description: titleDescription }),
@@ -655,18 +828,30 @@ export const Title = z
   })
   .describe(titleDescription);
 
+/**
+ * An object of version organs. Each object is defined by a
+ * version and an array of OrganData object.
+ */
 const VersionOrgans = z.object({
   version: z.string({ description: 'HRA Release version (1.3/1.4/etc)' }),
   organData: OrganData.array().optional().describe(`Organ data for the version.
         Property tissueData in this object is optional. Add tissue data to display details about tissues for each organ.`),
 });
 
+/**
+ * An object of version selector. Each object is defined by a
+ * release and version and a file name.
+ */
 const VersionSelector = z.object({
   release: z.string({ description: 'Label for release and release date,year' }),
   version: z.number().or(z.string()).describe('Version Number of the release'),
   file: z.string().optional().describe('Name of the csv file'),
 });
 
+/**
+ * An object of youtube player. Each object is defined by a
+ * height, width, videoId and playerTitle.
+ */
 export const YoutubePlayer = z.object({
   type: z.literal('player'),
   youtubePlayer: z.object({
@@ -679,9 +864,11 @@ export const YoutubePlayer = z.object({
     videoId: z.string({ description: 'ID of the youtube video' }),
     playerTitle: z.string({ description: 'Title of the player' }),
   }),
-  styles: Styles.optional(),
 });
 
+/**
+ * An array of discriminated union of the objects of all components
+ */
 export const PageSpec: any = z
   .discriminatedUnion('type', [
     AnnouncementCard,

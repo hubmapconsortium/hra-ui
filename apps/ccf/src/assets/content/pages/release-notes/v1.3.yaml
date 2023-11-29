@@ -50,6 +50,7 @@
     - image: assets/images/4th_release.svg
       title: 4th Release Notes
       subtitle: See what's new in the 4th Release of the Human Reference Atlas (v1.3)
+      alt: 4th release notes icon
 
 - type: drawer
   navigationItems:
@@ -481,16 +482,19 @@
               field: Research
               role: MC-IU PI, CNS Director
               email: katy@indiana.edu
+              alt: Katy Borner profile image
             - image: assets/images/bruce_herr.svg
               name: Bruce Herr II
               field: Development
               role: Sr. Systems Architect, PM
               email: bherr@indiana.edu
+              alt: Bruce Herr II profile image
             - image: assets/images/andreas_buckle.svg
               name: Andreas Bueckle
               field: Research
               role: Research Scientist
               email: abueckle@iu.edu
+              alt: Bruce Herr II profile image
         - type: divider
           styles:
             margin-bottom: 1rem

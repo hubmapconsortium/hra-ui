@@ -27,6 +27,7 @@ describe('TwoDimImageComponent', () => {
       {
         name: 'test-organ',
         image: './test-organ.svg',
+        alt: 'test-alt',
         tissueData: [
           {
             name: 'test-tissue',
