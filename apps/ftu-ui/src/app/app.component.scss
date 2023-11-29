@@ -13,6 +13,7 @@
   .header {
     grid-area: header;
     border-bottom: 0.0625rem solid rgba(vars.$dark-dividers);
+    width: 100%;
   }
 
   .sidebar {
@@ -23,6 +24,7 @@
   .page-content::ng-deep {
     grid-area: content;
     overflow-y: hidden;
+    width: fit-content;
     ftu-landing {
       max-height: 100%;
       overflow-y: auto;
