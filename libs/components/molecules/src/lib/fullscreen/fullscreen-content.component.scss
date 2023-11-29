@@ -1,9 +1,5 @@
 :host {
   display: block;
   overflow-y: hidden;
-
-  &.fullscreen-on {
-    z-index: 100;
-    background: #f8f9fa;
-  }
+  background: white;
 }

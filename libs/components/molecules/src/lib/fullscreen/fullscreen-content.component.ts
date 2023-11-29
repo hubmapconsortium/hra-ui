@@ -13,12 +13,16 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
         'true',
         style({
           width: '100%',
+          position: 'absolute',
+          right: '0',
         })
       ),
       state(
         'false',
         style({
           width: '43rem',
+          position: 'absolute',
+          right: '0',
         })
       ),
       transition('true <=> false', [animate('0.5s ease')]),
