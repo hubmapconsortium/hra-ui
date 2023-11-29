@@ -647,9 +647,6 @@
         fill: #999;
       }
 
-      .cls-165 {
-        letter-spacing: -.02em;
-      }
 
       .cls-166 {
         fill: #535353;
@@ -18036,7 +18033,7 @@
            class="cls-165"
            x="0"
            y="0"
-           id="tspan8214">Prostate perictye</tspan></text>
+           id="tspan8214">Prostate pericyte</tspan></text>
       <text
          class="cls-222"
          transform="translate(574.35 709.65)"
