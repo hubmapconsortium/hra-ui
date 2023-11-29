@@ -928,7 +928,7 @@
       }
 
       .cls-200 {
-        font-family: InterV, InterV;
+        font-family: Arial;
         font-variation-settings: ';
       }
 

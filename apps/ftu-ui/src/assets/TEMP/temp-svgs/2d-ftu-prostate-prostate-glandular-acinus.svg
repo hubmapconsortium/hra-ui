@@ -359,10 +359,6 @@
         fill: #a4a4a4;
       }
 
-      .cls-93 {
-        letter-spacing: -.03em;
-      }
-
       .cls-94 {
         fill: #dedede;
       }
@@ -631,9 +627,6 @@
         fill: #d5d5d5;
       }
 
-      .cls-159 {
-        letter-spacing: -.03em;
-      }
 
       .cls-160 {
         fill: #4f4f4f;
@@ -655,9 +648,6 @@
         fill: #999;
       }
 
-      .cls-165 {
-        letter-spacing: -.02em;
-      }
 
       .cls-166 {
         fill: #535353;
@@ -884,7 +874,7 @@
       }
 
       .cls-222 {
-        font-family: InterV, InterV;
+        font-family: Arial;
         font-variation-settings: ';
       }
 
