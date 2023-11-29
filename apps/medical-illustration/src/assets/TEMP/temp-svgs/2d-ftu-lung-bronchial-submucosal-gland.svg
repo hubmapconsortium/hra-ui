@@ -356,7 +356,7 @@
       }
 
       .cls-82 {
-        font-family: Arial;
+        font-family: Inter;
         font-size: 16px;
         font-variation-settings: ';
       }

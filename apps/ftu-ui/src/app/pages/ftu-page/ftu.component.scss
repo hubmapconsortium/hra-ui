@@ -1,17 +1,13 @@
 :host {
   display: flex;
   flex-direction: column;
-  height: calc(100% - 4.5rem);
-  overflow-y: hidden;
+  min-width: 59rem;
 
   .content-container {
     display: flex;
-    height: 100%;
-    min-width: calc(100vw - 21rem);
 
     .illustration {
       max-width: calc(100% - 43rem);
-      min-width: 24rem;
       width: 100%;
     }
 
@@ -47,9 +43,5 @@
     hra-biomarker-table {
       max-width: none;
     }
-  }
-
-  ftu-footer-behavior {
-    width: calc(100% - 21rem);
   }
 }

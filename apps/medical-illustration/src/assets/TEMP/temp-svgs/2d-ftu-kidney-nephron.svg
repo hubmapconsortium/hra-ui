@@ -396,7 +396,7 @@
       }
 
       .cls-97 {
-        font-family: InterV-Italic, 'InterV Italic';
+        font-family: Inter;
         font-style: italic;
         font-variation-settings: ';
       }
@@ -852,7 +852,7 @@
       }
 
       .cls-99 {
-        font-family: Arial;
+        font-family: Inter;
         font-variation-settings: ';
       }
 

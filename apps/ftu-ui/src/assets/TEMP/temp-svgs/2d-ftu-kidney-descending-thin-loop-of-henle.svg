@@ -291,8 +291,6 @@
       }
 
       .cls-70 {
-        font-family: Arial;
-        font-size: 16px;
         font-variation-settings: ';
       }
 
@@ -486,7 +484,7 @@
       <text class="cls-70" transform="translate(531.77 217.32)"><tspan class="cls-67" x="0" y="0">D</tspan><tspan class="cls-23" x="10.72" y="0">es</tspan><tspan class="cls-42" x="25.07" y="0">c</tspan><tspan class="cls-23" x="32.14" y="0">ending</tspan><tspan x="0" y="19.2">thin limb </tspan><tspan class="cls-42" x="63.55" y="19.2">c</tspan><tspan class="cls-23" x="70.62" y="19.2">ell</tspan></text>
       <line class="cls-9" x1="175.27" y1="59.3" x2="237.18" y2="59.3"/>
       <line class="cls-8" x1="175.27" y1="58.3" x2="237.18" y2="58.3"/>
-      <text class="cls-70" transform="translate(247.22 62.37)"><tspan class="cls-67" x="0" y="0">D</tspan><tspan class="cls-23" x="10.72" y="0">es</tspan><tspan class="cls-42" x="25.07" y="0">c</tspan><tspan class="cls-23" x="32.14" y="0">ending </tspan><tspan class="cls-38" x="83.02" y="0">v</tspan><tspan x="90.65" y="0">asa </tspan><tspan class="cls-65" x="115.81" y="0">r</tspan><tspan x="120.88" y="0">e</tspan><tspan class="cls-14" x="128.89" y="0">c</tspan><tspan x="136.27" y="0">ta</tspan></text>
+      <text class="cls-70" transform="translate(247.22 62.37)"><tspan class="cls-67" x="0" y="0">D</tspan><tspan class="cls-23" x="10.72" y="0">es</tspan><tspan class="cls-42" x="25.07" y="0">c</tspan><tspan class="cls-23" x="32.14" y="0">ending </tspan><tspan class="cls-38" x="83.02" y="0">v</tspan><tspan x="90.65" y="0">asa </tspan><tspan class="cls-65" x="118.81" y="0">r</tspan><tspan x="123.88" y="0">e</tspan><tspan class="cls-14" x="131.89" y="0">c</tspan><tspan x="140.27" y="0">ta</tspan></text>
       <text class="cls-70" transform="translate(501.78 385.36)"><tspan x="0" y="0">10 μm</tspan></text>
       <line class="cls-5" x1="582" y1="347.67" x2="582" y2="368.36"/>
       <g>
