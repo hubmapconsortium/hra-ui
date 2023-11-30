@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
+import { NgOptimizedImage } from '@angular/common';
 
 @NgModule({
   declarations: [TwoDimImageComponent],
@@ -22,6 +23,7 @@ import { RouterModule } from '@angular/router';
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
+    NgOptimizedImage,
   ],
   exports: [TwoDimImageComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
