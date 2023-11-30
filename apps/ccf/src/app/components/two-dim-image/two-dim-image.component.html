@@ -87,9 +87,11 @@
           *ngIf="tissue.image; else threeDimensionContainer"
         >
           <img
-            [src]="tissue.image"
+            [ngSrc]="tissue.image"
             [alt]="tissue.alt"
             (click)="openImageViewer(imageContent)"
+            priority
+            fill
           />
           <ng-template #imageContent>
             <div class="dialog-header">
