@@ -42,7 +42,12 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="columnsWithTypeAndCount; sticky: true"></tr>
-  <tr mat-row *matRowDef="let row; columns: columnsWithTypeAndCount" (mouseover)="rowHover.emit(row[0])"></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: columnsWithTypeAndCount"
+    (mouseover)="rowHover.emit(row[0])"
+    (mouseout)="rowHover.emit(undefined)"
+  ></tr>
 </table>
 
 <ng-template #columnHover let-columnName>

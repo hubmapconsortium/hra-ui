@@ -155,7 +155,7 @@ export class BiomarkerDetailsComponent {
    * Highlights cells matching the label
    * @param event
    */
-  highlightCells(label: string) {
+  highlightCells(label?: string) {
     this.highlightCell(label);
   }
 }
