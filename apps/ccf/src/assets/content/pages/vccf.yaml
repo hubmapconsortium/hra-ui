@@ -34,6 +34,8 @@
 
 - type: download-ftu
   versions:
+    - release: '6th HRA Release (v1.5), December 2023'
+      version: '5' #update this
     - release: '5th HRA Release (v1.4), June 2023'
       version: '5'
     - release: '4th HRA Release (v1.3), December 2022'

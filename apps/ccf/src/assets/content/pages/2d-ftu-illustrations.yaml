@@ -60,6 +60,8 @@
   isMultiRow: true
   tableRequired: true
   versionData:
+    - release: 6th HRA Release (v1.5), December 2023
+      version: '1.4' #update this
     - release: 5th HRA Release (v1.4), June 2023
       version: '1.4'
     - release: 4th HRA Release (v1.3), December 2022
@@ -255,6 +257,26 @@
           image: assets/images/skin.svg
           alt: A skin icon
           tissueData:
+            - name: Dermal Papilla
+              alt: Image of Dermal Papilla
+              image: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-skin-dermal-papilla.svg
+              expandedImage: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-skin-dermal-papilla.svg
+              url: https://cdn.humanatlas.io/hra-releases/v1.3/docs/2d-ftu/2d-ftu-skin-dermal-papilla.html
+              svg: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-skin-dermal-papilla.svg
+              ai: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-skin-dermal-papilla.ai
+              png: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-skin-dermal-papilla.png
+            - name: Epidermal Ridge
+              alt: Image of Epidermal Ridge
+              image: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.svg
+              expandedImage: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.svg
+              url: https://cdn.humanatlas.io/hra-releases/v1.3/docs/2d-ftu/2d-ftu-skin-epidermal-ridge.html
+              svg: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.svg
+              ai: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.ai
+              png: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.png
+        - name: Small Intestine
+          image: assets/images/small_intestine.svg
+          alt: A small intestine icon
+          tissueData: #update below both tissues
             - name: Dermal Papilla
               alt: Image of Dermal Papilla
               image: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-skin-dermal-papilla.svg
