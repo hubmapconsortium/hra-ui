@@ -36,9 +36,9 @@
           "link": "https://doi.org/10.1038/s41598-021-98806-y",
           "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
         }
-		]
+      ]
     },
-	{
+    {
       "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle",
       "@type": "FtuIllustration",
       "data_sources": [
@@ -49,9 +49,9 @@
           "link": "https://doi.org/10.1038/s41598-021-98806-y",
           "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
         }
-		]
+      ]
     },
-	{
+    {
       "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct",
       "@type": "FtuIllustration",
       "data_sources": [
@@ -62,9 +62,9 @@
           "link": "https://doi.org/10.1038/s41598-021-98806-y",
           "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
         }
-		]
+      ]
     },
-	{
+    {
       "@id": "https://purl.humanatlas.io/2d-ftu/kidney-inner-medullary-collecting-duct",
       "@type": "FtuIllustration",
       "data_sources": [
@@ -75,9 +75,9 @@
           "link": "https://doi.org/10.1038/s41598-021-98806-y",
           "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
         }
-		]
+      ]
     },
-	{
+    {
       "@id": "https://purl.humanatlas.io/2d-ftu/kidney-outer-medullary-collecting-duct",
       "@type": "FtuIllustration",
       "data_sources": [
@@ -88,9 +88,9 @@
           "link": "https://doi.org/10.1038/s41598-021-98806-y",
           "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
         }
-		]
+      ]
     },
-	{
+    {
       "@id": "https://purl.humanatlas.io/2d-ftu/kidney-thick-ascending-loop-of-henle",
       "@type": "FtuIllustration",
       "data_sources": [
@@ -101,9 +101,9 @@
           "link": "https://doi.org/10.1038/s41598-021-98806-y",
           "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
         }
-		]
+      ]
     },
-	{
+    {
       "@id": "https://purl.humanatlas.io/2d-ftu/kidney-descending-thin-loop-of-henle",
       "@type": "FtuIllustration",
       "data_sources": [
@@ -114,9 +114,9 @@
           "link": "https://doi.org/10.1038/s41598-021-98806-y",
           "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
         }
-		]
+      ]
     },
-	{
+    {
       "@id": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle",
       "@type": "FtuIllustration",
       "data_sources": [
@@ -127,7 +127,7 @@
           "link": "https://doi.org/10.1038/s41598-021-98806-y",
           "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
         }
-		]
+      ]
     },
     {
       "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland",
@@ -140,9 +140,9 @@
           "link": "https://doi.org/10.1038/s41591-019-0468-5",
           "description": "A cellular census of human lungs identifies novel cell states in health and in asthma"
         }
-		]
+      ]
     },
-	{
+    {
       "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus",
       "@type": "FtuIllustration",
       "data_sources": [
@@ -155,7 +155,7 @@
         }
       ]
     },
-	{
+    {
       "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule",
       "@type": "FtuIllustration",
       "data_sources": [
@@ -166,7 +166,7 @@
           "link": "https://doi.org/10.1038/s41598-021-98806-y",
           "description": "Single-cell and bulk transcriptomics of the liver reveals potential targets of NASH with fibrosis"
         }
-		]
+      ]
     }
-	]
+  ]
 }

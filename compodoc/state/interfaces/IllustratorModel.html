@@ -450,7 +450,7 @@ export class IllustratorState {
    */
   @Action(HighlightCellType)
   HighlightCellType({ patchState, getState }: Context, { hoverLabel }: HighlightCellType): void {
-    const match &#x3D; getState().mapping.find((entry) &#x3D;&gt; entry.label.toLowerCase() &#x3D;&#x3D;&#x3D; hoverLabel?.toLowerCase());
+    const match &#x3D; getState().mapping.find((entry) &#x3D;&gt; entry.ontologyId &#x3D;&#x3D;&#x3D; hoverLabel);
     patchState({ hoveredCellTypeId: match ? match.ontologyId : undefined });
   }
 }
