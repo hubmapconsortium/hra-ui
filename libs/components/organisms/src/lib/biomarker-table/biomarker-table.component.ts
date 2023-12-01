@@ -89,11 +89,11 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   /** Taking input for the radius of the circle and the label to be displayed. */
   @Input() sizes: SizeLegend[] = [];
 
-  /** Cell name which is hovered, used for highlighting */
-  @Input() highlightedCellName = '';
+  /** Cell id which is hovered, used for highlighting */
+  @Input() highlightedCellId = '';
 
   /** List of cell ids in the illustration */
-  @Input() illustrationLabels: string[] = [];
+  @Input() illustrationIds: string[] = [];
 
   /** Emits cell type label when row is hovered */
   @Output() readonly rowHover = new EventEmitter<string>();
@@ -116,7 +116,13 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
       this.dataSource.data = this.data;
     }
 
-    if ('illustrationLabels' in changes) {
+    if ('illustrationIds' in changes) {
+      if (!changes['illustrationIds'].previousValue) {
+        return;
+      }
+      if (changes['illustrationIds'].currentValue.toString() === changes['illustrationIds'].previousValue.toString()) {
+        return;
+      }
       this.sortTable();
     }
   }
@@ -124,24 +130,34 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   /**
    * Sorts table by cell type alphabetically, then puts cells that are in the illustration on top
    */
-  private sortTable(): void {
+  sortTable(): void {
     this.dataSource.data = this.data.sort((a, b) => {
       return a[0].toLowerCase() < b[0].toLowerCase() ? -1 : 1;
     });
 
     this.dataSource.data = this.dataSource.data.sort((a, b) => {
-      const id1 = this.illustrationLabels.includes(a[0].toLowerCase());
-      const id2 = this.illustrationLabels.includes(b[0].toLowerCase());
+      const id1 = this.illustrationIds.includes(this.getHoverId(a));
+      const id2 = this.illustrationIds.includes(this.getHoverId(b));
       return id1 && !id2 ? -1 : 1;
     });
   }
 
   /**
-   * Returns true if name matches the highlighted cell name
-   * @param name Cell name
+   * Returns true if id matches the cell id of the row
+   * @param row Highlighted row
    */
-  isHighlighted(name: string): boolean {
-    return name.toLowerCase() === this.highlightedCellName.toLowerCase();
+  isHighlighted(row: DataRow<T>): boolean {
+    return this.getHoverId(row) === this.highlightedCellId;
+  }
+
+  /**
+   * Gets hover id from row
+   * @param data row data
+   * @returns cell type id
+   */
+  getHoverId(data: DataRow<T>): string {
+    const entry = data.slice(2).find((entry) => entry) as T;
+    return entry?.data.cell;
   }
 
   /** Lerp function to give value beween min and max value based on the given value

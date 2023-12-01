@@ -113,10 +113,10 @@ export class BiomarkerDetailsComponent {
   }
 
   /**
-   * Gets labels for cells in the illustration
+   * Gets ids for cells in the illustration
    */
-  get illustrationLabels(): string[] {
-    return this.mapping().map((data) => data.label.toLowerCase());
+  get illustrationIds(): string[] {
+    return Array.from(new Set(this.mapping().map((data) => data.ontologyId)));
   }
 
   /**

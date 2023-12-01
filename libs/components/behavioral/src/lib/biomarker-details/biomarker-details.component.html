@@ -14,8 +14,8 @@
       [gradient]="gradients()"
       [sizes]="sizes()"
       [tissueInfo]="tissueInfo"
-      [highlightedCellName]="selectedOnHovered()?.label ?? ''"
-      [illustrationLabels]="illustrationLabels"
+      [highlightedCellId]="selectedOnHovered()?.ontologyId ?? ''"
+      [illustrationIds]="illustrationIds"
       (rowHover)="highlightCells($event)"
     ></hra-biomarker-table>
     <hra-empty-biomarker

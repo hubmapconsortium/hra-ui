@@ -1,5 +1,6 @@
 import { z } from 'zod';
-import { IRI, URL } from '../shared/common.model';
+
+import { IRI } from '../shared/common.model';
 
 // ---------------------------------------
 // Error messages

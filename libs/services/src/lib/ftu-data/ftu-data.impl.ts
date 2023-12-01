@@ -303,14 +303,13 @@ export class FtuDataImplService extends FtuDataService {
   private toIllustrationMapping(
     mappings: { label: string; svg_id: string; svg_group_id: string; representation_of: string }[]
   ): IllustrationMappingItem[] {
-    const ontologyIdPrefix = 'http://purl.obolibrary.org/obo/';
     const results: IllustrationMappingItem[] = [];
     for (const { label, svg_id, svg_group_id, representation_of } of mappings) {
       results.push({
         label,
         id: svg_id,
         groupId: svg_group_id,
-        ontologyId: representation_of.slice(ontologyIdPrefix.length),
+        ontologyId: representation_of,
       });
     }
 
