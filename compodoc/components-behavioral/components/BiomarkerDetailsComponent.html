@@ -305,7 +305,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>highlightCells(label: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>highlightCells(label?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -342,7 +342,7 @@
                                     </td>
 
                                     <td>
-                                        No
+                                        Yes
                                     </td>
 
 
@@ -1099,7 +1099,7 @@ export class BiomarkerDetailsComponent {
    * Highlights cells matching the label
    * @param event
    */
-  highlightCells(label: string) {
+  highlightCells(label?: string) {
     this.highlightCell(label);
   }
 }

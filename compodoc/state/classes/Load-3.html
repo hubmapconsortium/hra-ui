@@ -181,7 +181,7 @@ export class SetClicked extends Action(&#x27;Set Selection on Clicked&#x27;) {
  */
 export class HighlightCellType extends Action(&#x27;Highlight Cell Type Id&#x27;) {
   /** Initializes the Mapping Item */
-  constructor(readonly hoverLabel: string) {
+  constructor(readonly hoverLabel?: string) {
     super();
   }
 }
