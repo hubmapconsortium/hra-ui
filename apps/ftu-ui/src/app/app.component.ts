@@ -61,6 +61,7 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   @Input() datasetUrl = '';
   @Input() illustrationsUrl = '';
   @Input() summariesUrl = '';
+  @Input() baseRef = '';
 
   @Output() readonly organSelected = select$(ActiveFtuSelectors.iri);
 
@@ -136,9 +137,10 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   ngOnChanges(changes: SimpleChanges) {
     this.endpoints = this.injector.get(FTU_DATA_IMPL_ENDPOINTS);
     if ('datasetUrl' in changes) {
-      this.endpoints.datasets = this.datasetUrl as Iri;
-      this.endpoints.illustrations = this.illustrationsUrl as Iri;
-      this.endpoints.summaries = this.summariesUrl as Iri;
+      this.endpoints.datasets = (this.baseRef + this.datasetUrl) as Iri;
+      this.endpoints.illustrations = (this.baseRef + this.illustrationsUrl) as Iri;
+      this.endpoints.summaries = (this.baseRef + this.summariesUrl) as Iri;
+      console.log(this.endpoints);
       this.reset()
         .pipe(
           tap(() => {

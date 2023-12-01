@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8" />
     <title>FTU Explorer</title>
-    <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -16,6 +15,7 @@
     <script>
       window.addEventListener('DOMContentLoaded', () => {
         const ftu = document.getElementById('ftu');
+        ftu.baseRef = '/';
         const selectOrgan = (activeIri) => {
           console.log('selected organ', activeIri);
         };
