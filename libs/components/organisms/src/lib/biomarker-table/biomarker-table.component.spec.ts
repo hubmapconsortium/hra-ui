@@ -33,9 +33,6 @@ describe('BiomarkerTableComponent', () => {
   ];
 
   const sortedData: DataRow<DataCell>[] = [
-    ['absorptive cell', 2764, undefined, undefined],
-    ['goblet cell', undefined, undefined, undefined],
-    ['enteroendocrine cell', 17, undefined, undefined],
     [
       'epithelial stem cell',
       187,
@@ -50,6 +47,9 @@ describe('BiomarkerTableComponent', () => {
         data: dataCell_data,
       },
     ],
+    ['absorptive cell', 2764, undefined, undefined],
+    ['enteroendocrine cell', 17, undefined, undefined],
+    ['goblet cell', undefined, undefined, undefined],
   ];
 
   const gradient: GradientPoint[] = [
@@ -103,9 +103,10 @@ describe('BiomarkerTableComponent', () => {
         gradient,
         sizes,
         tissueInfo,
-        illustrationLabels: ['absorptive cell', 'goblet cell'],
+        illustrationIds: ['cellName'],
       },
     });
+    instance.sortTable();
     expect(instance.dataSource.data).toStrictEqual(sortedData);
   });
 
