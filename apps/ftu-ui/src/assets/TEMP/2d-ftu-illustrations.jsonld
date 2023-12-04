@@ -1389,7 +1389,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_1",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_1",
-          "svg_group_id": "Outer_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1397,7 +1397,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_2",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_2",
-          "svg_group_id": "Outer_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1405,7 +1405,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_3",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_3",
-          "svg_group_id": "Outer_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1413,7 +1413,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_4",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_4",
-          "svg_group_id": "Outer_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1421,7 +1421,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_5",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_5",
-          "svg_group_id": "Outer_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1429,7 +1429,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_6",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_6",
-          "svg_group_id": "Outer_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1437,7 +1437,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_7",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_7",
-          "svg_group_id": "Outer_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1445,7 +1445,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_8",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_8",
-          "svg_group_id": "Outer_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1453,7 +1453,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_9",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_9",
-          "svg_group_id": "Outer_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1461,7 +1461,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_10",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_10",
-          "svg_group_id": "Outer_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1469,7 +1469,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_11",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_11",
-          "svg_group_id": "Outer_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1477,7 +1477,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_12",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_12",
-          "svg_group_id": "Outer_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1485,7 +1485,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_13",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_13",
-          "svg_group_id": "Outer_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1493,7 +1493,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_14",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_14",
-          "svg_group_id": "Outer_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1501,7 +1501,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_15",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_15",
-          "svg_group_id": "Outer_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1509,7 +1509,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_1",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_1",
-          "svg_group_id": "Inner_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1517,7 +1517,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_2",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_2",
-          "svg_group_id": "Inner_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1525,7 +1525,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_3",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_3",
-          "svg_group_id": "Inner_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1533,7 +1533,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_4",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_4",
-          "svg_group_id": "Inner_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1541,7 +1541,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_5",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_5",
-          "svg_group_id": "Inner_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1549,7 +1549,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_6",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_6",
-          "svg_group_id": "Inner_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1557,7 +1557,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_7",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_7",
-          "svg_group_id": "Inner_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1565,7 +1565,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_8",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_8",
-          "svg_group_id": "Inner_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1573,7 +1573,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_9",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_9",
-          "svg_group_id": "Inner_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1581,7 +1581,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_10",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_10",
-          "svg_group_id": "Inner_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1589,7 +1589,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_11",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_11",
-          "svg_group_id": "Inner_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1597,7 +1597,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_12",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_12",
-          "svg_group_id": "Inner_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1605,7 +1605,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_13",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_13",
-          "svg_group_id": "Inner_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1613,7 +1613,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_14",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_14",
-          "svg_group_id": "Inner_Medullary_Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
