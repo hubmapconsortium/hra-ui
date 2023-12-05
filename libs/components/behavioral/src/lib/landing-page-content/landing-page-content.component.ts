@@ -17,6 +17,7 @@ import {
   MetricItem,
   MetricsComponent,
 } from '@hra-ui/components/molecules';
+import { FTU_DATA_IMPL_ENDPOINTS } from '@hra-ui/services';
 import { LinkIds, ResourceIds as RIds, ResourceTypes as RTypes } from '@hra-ui/state';
 
 /** Component for LandingPageContent Behavior */
@@ -29,6 +30,8 @@ import { LinkIds, ResourceIds as RIds, ResourceTypes as RTypes } from '@hra-ui/s
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingPageContentComponent implements AfterViewInit {
+  readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS);
+
   /** array of element refs for intersectables */
   @ViewChildren('intersectable', { read: ElementRef })
   readonly intersectableEls!: QueryList<ElementRef>;

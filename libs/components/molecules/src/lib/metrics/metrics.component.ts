@@ -32,4 +32,6 @@ export class MetricsComponent {
 
   /** List of metrics that will be shown to the user. */
   @Input() metrics: MetricItem[] = [];
+
+  @Input() baseHref = '';
 }

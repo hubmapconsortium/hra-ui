@@ -1,21 +1,28 @@
 <hra-landing-page-intro
   class="intro"
   [title]="landingPageIntroTitle()"
-  [img]="landingPageIntroImg()"
+  [img]="endpoints.baseHref + landingPageIntroImg()"
   [partners]="landingPageIntroPartners()"
   [description]="landingPageIntroDescription()"
   [moreText]="landingPageIntroMoreText()"
   [moreLink]="LinkIds.ExploreFTU"
 >
 </hra-landing-page-intro>
-<hra-metrics class="metrics" [title]="metricsTitle()" [metrics]="metrics()" [logo]="metricsLogo()" #intersectable>
+<hra-metrics
+  class="metrics"
+  [title]="metricsTitle()"
+  [metrics]="metrics()"
+  [logo]="metricsLogo()"
+  [baseHref]="endpoints.baseHref"
+  #intersectable
+>
 </hra-metrics>
 <hra-landing-page-in-depth
   class="in-depth"
   [title]="landingPageDepthTitle()"
   [description]="landingPageDepthDescription()"
   [moreText]="landingPageDepthMoreText()"
-  [img]="landingPageDepthImg()"
+  [img]="endpoints.baseHref + landingPageDepthImg()"
   [moreLink]="LinkIds.LandingPageReadMore"
   #intersectable
 >

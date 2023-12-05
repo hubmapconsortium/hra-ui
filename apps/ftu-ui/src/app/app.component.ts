@@ -46,13 +46,9 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   readonly WINDOW_RESIZE_THRESHOLD = 1600; // In pixels
   readonly tissues = select$(TissueLibrarySelectors.tissues);
 
-  @Input() set linksYamlUrl(url: string) {
-    this.loadLinks(url);
-  }
+  @Input() linksYamlUrl = '';
 
-  @Input() set resourcesYamlUrl(url: string) {
-    this.loadResources(url);
-  }
+  @Input() resourcesYamlUrl = '';
 
   @Input() set organIri(iri: string) {
     iri ? this.navigateToOrgan(createLinkId('FTU'), { queryParams: { id: iri } }) : this.showDefaultIri();
@@ -61,7 +57,7 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   @Input() datasetUrl = '';
   @Input() illustrationsUrl = '';
   @Input() summariesUrl = '';
-  @Input() baseRef = '';
+  @Input() baseHref = '/';
 
   @Output() readonly organSelected = select$(ActiveFtuSelectors.iri);
 
@@ -136,20 +132,22 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     this.endpoints = this.injector.get(FTU_DATA_IMPL_ENDPOINTS);
-    if ('datasetUrl' in changes) {
-      this.endpoints.datasets = (this.baseRef + this.datasetUrl) as Iri;
-      this.endpoints.illustrations = (this.baseRef + this.illustrationsUrl) as Iri;
-      this.endpoints.summaries = (this.baseRef + this.summariesUrl) as Iri;
-      console.log(this.endpoints);
-      this.reset()
-        .pipe(
-          tap(() => {
-            this.reloadDataSets();
-            this.reloadActiveFtu(changes['organIri']?.currentValue);
-          })
-        )
-        .subscribe();
+    if ('baseHref' in changes) {
+      this.endpoints.baseHref = this.baseHref as Iri;
+      this.loadLinks(this.baseHref + this.linksYamlUrl);
+      this.loadResources(this.baseHref + this.resourcesYamlUrl);
+      this.endpoints.illustrations = (this.baseHref + this.illustrationsUrl) as Iri;
+      this.endpoints.datasets = this.datasetUrl as Iri;
+      this.endpoints.summaries = this.summariesUrl as Iri;
     }
+    this.reset()
+      .pipe(
+        tap(() => {
+          this.reloadDataSets();
+          this.reloadActiveFtu(changes['organIri']?.currentValue);
+        })
+      )
+      .subscribe();
   }
 
   showDefaultIri() {
