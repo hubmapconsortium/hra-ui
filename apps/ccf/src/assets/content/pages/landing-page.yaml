@@ -113,7 +113,7 @@
       text: anatomical structures
       alt: Anatomical Structures
     - image: assets/images/cell-types.svg
-      count: 1,209
+      count: 1,210
       text: cell types
       alt: Cell Types
     - image: assets/images/biomarkers.svg
