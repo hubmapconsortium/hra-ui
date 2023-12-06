@@ -59,10 +59,6 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   @Input() summariesUrl = '';
   @Input() baseHref = '';
 
-  @Input() useCustomDatasetUrl = false;
-  @Input() useCustomIllustrationsUrl = false;
-  @Input() useCustomSummariesUrl = false;
-
   @Output() readonly organSelected = select$(ActiveFtuSelectors.iri);
 
   @Output() readonly nodeHovered = select$(IllustratorSelectors.selectedOnHovered);
@@ -132,13 +128,12 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
 
   ngOnInit() {
     this.endpoints = this.injector.get(FTU_DATA_IMPL_ENDPOINTS);
+    this.loadLinks(this.setUrl(this.linksYamlUrl));
+    this.loadResources(this.setUrl(this.resourcesYamlUrl));
+    this.endpoints.illustrations = this.setUrl(this.illustrationsUrl);
+    this.endpoints.datasets = this.setUrl(this.datasetUrl);
+    this.endpoints.summaries = this.setUrl(this.summariesUrl);
     this.endpoints.baseHref = this.baseHref as Iri;
-    this.loadLinks(this.baseHref + this.linksYamlUrl);
-    this.loadResources(this.baseHref + this.resourcesYamlUrl);
-    this.endpoints.illustrations = ((this.useCustomIllustrationsUrl ? '' : this.baseHref) +
-      this.illustrationsUrl) as Iri;
-    this.endpoints.datasets = ((this.useCustomDatasetUrl ? '' : this.baseHref) + this.datasetUrl) as Iri;
-    this.endpoints.summaries = ((this.useCustomSummariesUrl ? '' : this.baseHref) + this.summariesUrl) as Iri;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -150,6 +145,14 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
         })
       )
       .subscribe();
+  }
+
+  private setUrl(url: string): Iri {
+    if (url.slice(0, 4) === 'http') {
+      return url as Iri;
+    } else {
+      return (this.baseHref + url) as Iri;
+    }
   }
 
   showDefaultIri() {
