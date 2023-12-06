@@ -57,7 +57,11 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   @Input() datasetUrl = '';
   @Input() illustrationsUrl = '';
   @Input() summariesUrl = '';
-  @Input() baseHref = '/';
+  @Input() baseHref = '';
+
+  @Input() useCustomDatasetUrl = false;
+  @Input() useCustomIllustrationsUrl = false;
+  @Input() useCustomSummariesUrl = false;
 
   @Output() readonly organSelected = select$(ActiveFtuSelectors.iri);
 
@@ -128,18 +132,16 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
 
   ngOnInit() {
     this.endpoints = this.injector.get(FTU_DATA_IMPL_ENDPOINTS);
+    this.endpoints.baseHref = this.baseHref as Iri;
+    this.loadLinks(this.baseHref + this.linksYamlUrl);
+    this.loadResources(this.baseHref + this.resourcesYamlUrl);
+    this.endpoints.illustrations = ((this.useCustomIllustrationsUrl ? '' : this.baseHref) +
+      this.illustrationsUrl) as Iri;
+    this.endpoints.datasets = ((this.useCustomDatasetUrl ? '' : this.baseHref) + this.datasetUrl) as Iri;
+    this.endpoints.summaries = ((this.useCustomSummariesUrl ? '' : this.baseHref) + this.summariesUrl) as Iri;
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.endpoints = this.injector.get(FTU_DATA_IMPL_ENDPOINTS);
-    if ('baseHref' in changes) {
-      this.endpoints.baseHref = this.baseHref as Iri;
-      this.loadLinks(this.baseHref + this.linksYamlUrl);
-      this.loadResources(this.baseHref + this.resourcesYamlUrl);
-      this.endpoints.illustrations = (this.baseHref + this.illustrationsUrl) as Iri;
-      this.endpoints.datasets = this.datasetUrl as Iri;
-      this.endpoints.summaries = this.summariesUrl as Iri;
-    }
     this.reset()
       .pipe(
         tap(() => {

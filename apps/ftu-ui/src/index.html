@@ -15,7 +15,6 @@
     <script>
       window.addEventListener('DOMContentLoaded', () => {
         const ftu = document.getElementById('ftu');
-        ftu.baseHref = 'https://cdn.jsdelivr.net/gh/hubmapconsortium/hra-ui@latest/apps/ftu-ui/src/';
 
         const selectOrgan = (activeIri) => {
           console.log('selected organ', activeIri);
@@ -34,9 +33,9 @@
       id="ftu"
       links-yaml-url="assets/links.yml"
       resources-yaml-url="assets/resources.yml"
-      dataset-url="https://cdn.jsdelivr.net/gh/cns-iu/hra-vccf-ftu-supporting-information@latest/exploration/ftu-datasets.jsonld"
+      dataset-url="assets/TEMP/ftu-datasets.jsonld"
       illustrations-url="assets/TEMP/2d-ftu-illustrations.jsonld"
-      summaries-url="https://cdn.jsdelivr.net/gh/cns-iu/hra-vccf-ftu-supporting-information@latest/exploration/ftu-cell-summaries.jsonld"
+      summaries-url="assets/TEMP/ftu-cell-summaries.jsonld"
     ></hra-ftu-wc>
   </body>
 </html>

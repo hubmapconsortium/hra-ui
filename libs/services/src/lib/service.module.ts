@@ -20,7 +20,7 @@ import { FtuDataService } from './ftu-data/ftu-data.service';
         illustrations: 'assets/TEMP/2d-ftu-illustrations.jsonld',
         summaries: 'assets/TEMP/ftu-cell-summaries.jsonld',
         datasets: 'assets/TEMP/ftu-datasets.jsonld',
-        baseHref: '/',
+        baseHref: '',
       },
     },
   ],
