@@ -24,8 +24,14 @@ export class SimpleImageComponent {
 
   /** Opens a modal when clicked on image */
   openImageViewer(content: TemplateRef<unknown>): void {
-    this.dialog.open(content, {
-      panelClass: ['custom-modal', this.customModalClass],
-    });
+    const fontSize = parseFloat(
+      getComputedStyle(document.documentElement).fontSize
+    );
+    const isSmallScreen = window.innerWidth / fontSize < 63;
+    if (!isSmallScreen) {
+      this.dialog.open(content, {
+        panelClass: ['custom-modal', this.customModalClass],
+      });
+    }
   }
 }

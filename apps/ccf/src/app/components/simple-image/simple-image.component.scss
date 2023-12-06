@@ -47,6 +47,8 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 2rem;
   }
 
   .header-subtitle {
@@ -73,6 +75,11 @@
 
     .mat-card-actions {
       pointer-events: none;
+    }
+
+    .title-btn {
+      flex-wrap: unset;
+      flex-direction: column;
     }
   }
 }
