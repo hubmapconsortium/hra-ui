@@ -1,6 +1,7 @@
 import { Component, Input, TemplateRef } from '@angular/core';
-import { ImageData } from './simple-image';
+import { CardHeader, ImageData } from './simple-image';
 import { MatDialog } from '@angular/material/dialog';
+import { UseButton } from '../use-button/use-button';
 
 /** Displays an image and image modal */
 @Component({
@@ -12,11 +13,19 @@ export class SimpleImageComponent {
   /** Details to be displayed inside the card */
   @Input() imageInfo: ImageData[] = [];
 
+  /** Details of button and subtitle inside the header section of the card */
+  @Input() headerData?: CardHeader;
+
+  /** Custom class for the modal */
+  @Input() customModalClass: string;
+
   /** Creates instance of MatDialog */
   constructor(private dialog: MatDialog) {}
 
   /** Opens a modal when clicked on image */
   openImageViewer(content: TemplateRef<unknown>): void {
-    this.dialog.open(content, { panelClass: 'custom-modal' });
+    this.dialog.open(content, {
+      panelClass: ['custom-modal', this.customModalClass],
+    });
   }
 }

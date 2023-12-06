@@ -60,6 +60,8 @@
   <ccf-simple-image
     *ngSwitchCase="'simple-image'"
     [imageInfo]="def['imageData']"
+    [headerData]="def['headerData']"
+    [customModalClass]="def['customModalClass']"
   ></ccf-simple-image>
   <img
     *ngSwitchCase="'image'"

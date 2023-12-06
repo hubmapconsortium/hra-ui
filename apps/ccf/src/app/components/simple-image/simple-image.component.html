@@ -1,9 +1,18 @@
 <mat-card *ngFor="let image of imageInfo" class="simple-image-card">
   <mat-card-header>
-    {{ image.title }}
+    <div *ngIf="image.title">
+      {{ image.title }}
+    </div>
+    <div *ngIf="headerData" class="header-container">
+      <div class="title-btn">
+        <div>{{ headerData.title }}</div>
+        <ccf-use-button [buttonData]="headerData.buttonData"></ccf-use-button>
+      </div>
+      <div class="header-subtitle">{{ headerData.subtitle }}</div>
+    </div>
   </mat-card-header>
   <mat-divider></mat-divider>
-  <div class="description">
+  <div *ngIf="image.description" class="description">
     <markdown>{{ image.description }}</markdown>
   </div>
   <mat-card-actions>
@@ -14,6 +23,9 @@
     />
     <ng-template #imageViewerContent>
       <div class="dialog-header">
+        <span *ngIf="headerData?.title" mat-dialog-title>{{
+          headerData?.title
+        }}</span>
         <span mat-dialog-title>{{ image.title }}</span>
         <div style="flex-grow: 1"></div>
         <button
@@ -25,6 +37,7 @@
           <mat-icon>close</mat-icon>
         </button>
       </div>
+      <mat-divider *ngIf="headerData"></mat-divider>
       <img [src]="image.imageDialog" [alt]="image.alt" />
     </ng-template>
   </mat-card-actions>

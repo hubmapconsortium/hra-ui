@@ -37,6 +37,22 @@
     padding-bottom: 1rem !important;
   }
 
+  .header-container {
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  .title-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .header-subtitle {
+    font-size: 1rem;
+  }
+
   .simple-image-card {
     padding: unset;
   }
@@ -91,5 +107,17 @@
     --mdc-dialog-subhead-tracking: 0.005rem;
     margin: unset;
     padding: 0;
+  }
+}
+
+::ng-deep .modal {
+  height: 100%;
+
+  img {
+    height: calc(100% - 3rem);
+  }
+
+  .mat-divider {
+    margin: 0 -1.5rem 0 -2rem;
   }
 }

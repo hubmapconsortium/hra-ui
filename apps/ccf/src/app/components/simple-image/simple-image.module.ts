@@ -7,6 +7,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { UseButtonModule } from '../use-button/use-button.module';
 
 @NgModule({
   declarations: [SimpleImageComponent],
@@ -18,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatIconModule,
     MarkdownModule.forChild(),
+    UseButtonModule,
   ],
   exports: [SimpleImageComponent],
 })
