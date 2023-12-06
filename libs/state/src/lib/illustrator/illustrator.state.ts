@@ -39,6 +39,10 @@ export class IllustratorState {
    * Data service of Ftu
    */
   private readonly dataService = inject(FtuDataService);
+
+  /**
+   * Endpoints injector
+   */
   readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS);
 
   /**

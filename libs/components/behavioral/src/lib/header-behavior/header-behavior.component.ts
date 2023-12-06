@@ -16,6 +16,9 @@ import { ResourceIds as Ids, LinkIds } from '@hra-ui/state';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderBehaviorComponent {
+  /**
+   * Endpoints injector
+   */
   readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS);
 
   /**

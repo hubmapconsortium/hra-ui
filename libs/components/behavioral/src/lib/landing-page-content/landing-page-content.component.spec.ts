@@ -2,6 +2,7 @@ import { dispatch, injectDestroy$, selectQuerySnapshot } from '@hra-ui/cdk/injec
 import { Subject } from 'rxjs';
 import { Shallow } from 'shallow-render';
 import { LandingPageContentComponent } from './landing-page-content.component';
+import { FTU_DATA_IMPL_ENDPOINTS } from '@hra-ui/services';
 
 jest.mock('@hra-ui/cdk/injectors');
 
@@ -23,7 +24,16 @@ describe('LandingPageContentComponent', () => {
   window.IntersectionObserver = mockIntersectionObserver;
 
   beforeEach(async () => {
-    shallow = new Shallow(LandingPageContentComponent);
+    shallow = new Shallow(LandingPageContentComponent).provide([
+      {
+        provide: FTU_DATA_IMPL_ENDPOINTS,
+        useClass: {
+          datasets: '',
+          illustrations: '',
+          summaries: '',
+        },
+      },
+    ]);
   });
 
   afterEach(() => jest.clearAllMocks());

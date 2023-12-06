@@ -30,6 +30,7 @@ import { LinkIds, ResourceIds as RIds, ResourceTypes as RTypes } from '@hra-ui/s
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingPageContentComponent implements AfterViewInit {
+  /** Endpoints injector */
   readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS);
 
   /** array of element refs for intersectables */
@@ -38,12 +39,10 @@ export class LandingPageContentComponent implements AfterViewInit {
 
   /** select snapshot for Landing Page title */
   readonly landingPageIntroTitle = selectQuerySnapshot(RRS.anyText, RIds.LandingPageTitle);
-
   /** select snapshot for landing page intro description */
   readonly landingPageIntroDescription = selectQuerySnapshot(RRS.markdown, RIds.LandingPageDescription);
   /** select snapshot for landing page intro partners */
   readonly landingPageIntroPartners = selectQuerySnapshot(RRS.markdown, RIds.LandingPagePartners);
-
   /** select snapshot for landing page intro more text */
   readonly landingPageIntroMoreText = selectQuerySnapshot(RRS.anyText, RIds.LandingPageIntroMoreText);
   /** select snapshot for landing page intro img */

@@ -1,7 +1,7 @@
 import { MockProxy, mock } from 'jest-mock-extended';
 import { IllustratorModel, IllustratorState } from './illustrator.state';
 import { StateContext } from '@ngxs/store';
-import { FtuDataService, IllustrationMappingItem, Iri, Url } from '@hra-ui/services';
+import { FTU_DATA_IMPL_ENDPOINTS, FtuDataService, IllustrationMappingItem, Iri, Url } from '@hra-ui/services';
 import { Load, SetClicked, SetHover } from './illustrator.actions';
 import { firstValueFrom, of } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
@@ -14,6 +14,20 @@ describe('IllustratorState', () => {
   let ctx: MockProxy<StateContext<IllustratorModel>>;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: FTU_DATA_IMPL_ENDPOINTS,
+          useValue: {
+            datasets: '',
+            illustrations: '',
+            summaries: '',
+            baseHref: '',
+          },
+        },
+      ],
+    });
+
     TestBed.overrideProvider(FtuDataService, {
       useValue: (dataService = mock()),
     });
