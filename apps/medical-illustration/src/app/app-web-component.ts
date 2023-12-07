@@ -36,6 +36,9 @@ export class AppWebComponent implements OnChanges {
   /** Ontology id to highlight */
   @Input() highlightId = '';
 
+  /** Base url */
+  @Input() baseHref = '';
+
   /** Emits node data when node hovered */
   @Output() readonly nodeHovered = new EventEmitter<IllustrationMappingItem>();
 
@@ -68,7 +71,7 @@ export class AppWebComponent implements OnChanges {
    * @returns Observable
    */
   private getData(illustrationSrc: IllustrationData | string, lookupSrc: string): Observable<JsonLd> {
-    return this.http.get<JsonLd>(lookupSrc, { responseType: 'json' }).pipe(
+    return this.http.get<JsonLd>(this.baseHref + lookupSrc, { responseType: 'json' }).pipe(
       tap((result) => {
         this.setUrlAndMapping(result, illustrationSrc);
       })
@@ -101,7 +104,8 @@ export class AppWebComponent implements OnChanges {
         (file) => file['file_format'] === 'image/svg+xml'
       );
       if (illustrationFile) {
-        this.url = illustrationFile.file;
+        this.url = this.baseHref + illustrationFile.file;
+        console.warn(this.url);
         this.mapping = this.cellEntryToNodeEntry(illustrationSrc.mapping);
         this.cdr.markForCheck();
       }

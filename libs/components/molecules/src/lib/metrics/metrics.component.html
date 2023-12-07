@@ -1,9 +1,9 @@
-<img class="logo" [src]="logo" alt="" />
+<img class="logo" [src]="baseHref + logo" alt="" />
 <span class="header-title">{{ title }}</span>
 
 <div class="metrics">
   <div class="metric" *ngFor="let item of metrics">
-    <img class="logo" [src]="item.icon" alt="" />
+    <img class="logo" [src]="baseHref + item.icon" alt="" />
     <span class="value"> {{ item.value }} </span>
     <span class="description"> {{ item.description }} </span>
   </div>
