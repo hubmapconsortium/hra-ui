@@ -40,9 +40,9 @@
 
 - type: announcement
   announcementCard:
-    - message: "The 5th Release of the Human Reference Atlas (v1.4) is now available! See what's new in HRA v1.4 in "
-      route: 'v1.4'
-      routeText: '5th Release Notes.'
+    - message: "The 6th Release of the Human Reference Atlas (v2.0) is now available! See what's new in HRA v2.0 in "
+      route: 'v2.0'
+      routeText: '6th Release Notes.'
       emoji: '🎉'
 
 - type: simple-tile
