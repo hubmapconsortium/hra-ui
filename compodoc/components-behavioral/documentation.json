@@ -783,7 +783,7 @@
         },
         {
             "name": "FooterBehaviorComponent",
-            "id": "component-FooterBehaviorComponent-d9ecf51e28e6cdbe2f77b2f819a2e3df3acd0382e946f213975e78af53f6c11b1a7a013fefb862cfa9449b9973d2ea3497fa9687d6c04eb492751c2a83c17410",
+            "id": "component-FooterBehaviorComponent-08c0cb01f702480c6376853a14f8ac35c8ccb03a449e0f2d8a76d8cb9633ea755e5b080fb59e6512a4a1f7df138af7a4250367f4ef306141c0055d6045030130",
             "file": "src/lib/footer-behavior/footer-behavior.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -811,7 +811,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>A dispatcher function to download file in specified format</p>\n",
-                    "line": 39,
+                    "line": 43,
                     "rawdescription": "\nA dispatcher function to download file in specified format",
                     "modifierKind": [
                         144
@@ -825,7 +825,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Selects a snapshot of the current value of the available download formats</p>\n",
-                    "line": 27,
+                    "line": 31,
                     "rawdescription": "\nSelects a snapshot of the current value of the available download formats",
                     "modifierKind": [
                         144
@@ -839,8 +839,22 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Embed link routing after clicking on Embed</p>\n",
-                    "line": 36,
+                    "line": 40,
                     "rawdescription": "\nEmbed link routing after clicking on Embed",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "endpoints",
+                    "defaultValue": "inject(FTU_DATA_IMPL_ENDPOINTS)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Endpoints injector</p>\n",
+                    "line": 22,
+                    "rawdescription": "\nEndpoints injector",
                     "modifierKind": [
                         144
                     ]
@@ -853,7 +867,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Hra portal link routing after clicking on HRA Portal</p>\n",
-                    "line": 30,
+                    "line": 34,
                     "rawdescription": "\nHra portal link routing after clicking on HRA Portal",
                     "modifierKind": [
                         144
@@ -867,7 +881,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Metadata page link routing after clicking on Illustration</p>\n",
-                    "line": 33,
+                    "line": 37,
                     "rawdescription": "\nMetadata page link routing after clicking on Illustration",
                     "modifierKind": [
                         144
@@ -881,7 +895,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Input for product logo URL to displayed on the left side.</p>\n",
-                    "line": 21,
+                    "line": 25,
                     "rawdescription": "\nInput for product logo URL to displayed on the left side.",
                     "modifierKind": [
                         144
@@ -895,7 +909,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Input for product title to displayed on the left side.</p>\n",
-                    "line": 24,
+                    "line": 28,
                     "rawdescription": "\nInput for product title to displayed on the left side.",
                     "modifierKind": [
                         144
@@ -909,7 +923,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Selects the current value of the available ScreenMode Size</p>\n",
-                    "line": 41,
+                    "line": 45,
                     "rawdescription": "\nSelects the current value of the available ScreenMode Size",
                     "modifierKind": [
                         144
@@ -923,7 +937,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 47,
+                    "line": 51,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nA function which opens the contact modal dialog box",
@@ -937,7 +951,7 @@
             "description": "<p>A component for footer behavior which provides functionality for various buttons in footer</p>\n",
             "rawdescription": "\nA component for footer behavior which provides functionality for various buttons in footer",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject } from '@angular/core';\nimport { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';\nimport { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { FooterComponent } from '@hra-ui/components/molecules';\nimport { DownloadActions, DownloadSelectors, ResourceIds as Ids, LinkIds, ScreenModeSelectors } from '@hra-ui/state';\nimport { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';\n\n/** A component for footer behavior which provides functionality for various buttons in footer */\n@Component({\n  selector: 'ftu-footer-behavior',\n  standalone: true,\n  imports: [CommonModule, MatDialogModule, FooterComponent, ContactBehaviorComponent],\n  templateUrl: './footer-behavior.component.html',\n  styleUrls: ['./footer-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FooterBehaviorComponent {\n  /** Input for product logo URL to displayed on the left side. */\n  readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);\n\n  /** Input for product title to displayed on the left side. */\n  readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);\n\n  /** Selects a snapshot of the current value of the available download formats */\n  readonly downloadFormats = selectSnapshot(DownloadSelectors.formats);\n\n  /** Hra portal link routing after clicking on HRA Portal */\n  readonly hraPortal = LinkIds.Portal;\n\n  /** Metadata page link routing after clicking on Illustration */\n  readonly illustrationMetadata = LinkIds.Illustration;\n\n  /** Embed link routing after clicking on Embed */\n  readonly embed = LinkIds.Embed;\n\n  /** A dispatcher function to download file in specified format */\n  readonly download = dispatch(DownloadActions.Download);\n  /** Selects the current value of the available ScreenMode Size */\n  readonly size = selectSnapshot(ScreenModeSelectors.size);\n\n  /** A dialog box which shows contact modal after clicking on contact */\n  private readonly dialog = inject(MatDialog);\n\n  /** A function which opens the contact modal dialog box */\n  contact(): void {\n    const dialogConfig = new MatDialogConfig();\n    dialogConfig.disableClose = true;\n    this.dialog.open(ContactBehaviorComponent, dialogConfig);\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject } from '@angular/core';\nimport { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';\nimport { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { FooterComponent } from '@hra-ui/components/molecules';\nimport { DownloadActions, DownloadSelectors, ResourceIds as Ids, LinkIds, ScreenModeSelectors } from '@hra-ui/state';\nimport { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';\nimport { FTU_DATA_IMPL_ENDPOINTS } from '@hra-ui/services';\n\n/** A component for footer behavior which provides functionality for various buttons in footer */\n@Component({\n  selector: 'ftu-footer-behavior',\n  standalone: true,\n  imports: [CommonModule, MatDialogModule, FooterComponent, ContactBehaviorComponent],\n  templateUrl: './footer-behavior.component.html',\n  styleUrls: ['./footer-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FooterBehaviorComponent {\n  /** Endpoints injector */\n  readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS);\n\n  /** Input for product logo URL to displayed on the left side. */\n  readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);\n\n  /** Input for product title to displayed on the left side. */\n  readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);\n\n  /** Selects a snapshot of the current value of the available download formats */\n  readonly downloadFormats = selectSnapshot(DownloadSelectors.formats);\n\n  /** Hra portal link routing after clicking on HRA Portal */\n  readonly hraPortal = LinkIds.Portal;\n\n  /** Metadata page link routing after clicking on Illustration */\n  readonly illustrationMetadata = LinkIds.Illustration;\n\n  /** Embed link routing after clicking on Embed */\n  readonly embed = LinkIds.Embed;\n\n  /** A dispatcher function to download file in specified format */\n  readonly download = dispatch(DownloadActions.Download);\n  /** Selects the current value of the available ScreenMode Size */\n  readonly size = selectSnapshot(ScreenModeSelectors.size);\n\n  /** A dialog box which shows contact modal after clicking on contact */\n  private readonly dialog = inject(MatDialog);\n\n  /** A function which opens the contact modal dialog box */\n  contact(): void {\n    const dialogConfig = new MatDialogConfig();\n    dialogConfig.disableClose = true;\n    this.dialog.open(ContactBehaviorComponent, dialogConfig);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -946,11 +960,11 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<hra-footer\n  [productLogoUrl]=\"productLogoUrl()\"\n  [productTitle]=\"productTitle()\"\n  [hraPortal]=\"hraPortal\"\n  [illustrationMetadata]=\"illustrationMetadata\"\n  [embed]=\"embed\"\n  [downloadFormats]=\"downloadFormats()\"\n  (contactClick)=\"contact()\"\n  (download)=\"download($event.id)\"\n  [size]=\"size()\"\n>\n</hra-footer>\n"
+            "templateData": "<hra-footer\n  [productLogoUrl]=\"endpoints.baseHref + productLogoUrl()\"\n  [productTitle]=\"productTitle()\"\n  [hraPortal]=\"hraPortal\"\n  [illustrationMetadata]=\"illustrationMetadata\"\n  [embed]=\"embed\"\n  [downloadFormats]=\"downloadFormats()\"\n  (contactClick)=\"contact()\"\n  (download)=\"download($event.id)\"\n  [size]=\"size()\"\n>\n</hra-footer>\n"
         },
         {
             "name": "HeaderBehaviorComponent",
-            "id": "component-HeaderBehaviorComponent-a76f74e70c7aacab4debd2492e1302dc534513cd4598dce499fc0d4f09bf0a16fc333bcb4bb100ffc9dbcb5427533473060400e0ae5eb7051dac7768474ae300",
+            "id": "component-HeaderBehaviorComponent-7f5cf482fa7c4171a91ddc8e8354b24fefa68e6e3d58d2a31b82b917111a2dd0d96178d8fcc6b617f88c33aae174b7526845c378e3d428d282c2eac326419a55",
             "file": "src/lib/header-behavior/header-behavior.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -978,7 +992,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Input for about link for user click action.</p>\n",
-                    "line": 41,
+                    "line": 47,
                     "rawdescription": "\n\nInput for about link for user click action.\n",
                     "modifierKind": [
                         144
@@ -992,8 +1006,22 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Input for app title to show on the left side.</p>\n",
-                    "line": 31,
+                    "line": 37,
                     "rawdescription": "\n\nInput for app title to show on the left side.\n",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "endpoints",
+                    "defaultValue": "inject(FTU_DATA_IMPL_ENDPOINTS)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Endpoints injector</p>\n",
+                    "line": 22,
+                    "rawdescription": "\n\nEndpoints injector\n",
                     "modifierKind": [
                         144
                     ]
@@ -1006,7 +1034,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Input for product logo URL to displayed on the left side.</p>\n",
-                    "line": 21,
+                    "line": 27,
                     "rawdescription": "\n\nInput for product logo URL to displayed on the left side.\n",
                     "modifierKind": [
                         144
@@ -1020,7 +1048,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Input for product title to displayed on the left side.</p>\n",
-                    "line": 26,
+                    "line": 32,
                     "rawdescription": "\n\nInput for product title to displayed on the left side.\n",
                     "modifierKind": [
                         144
@@ -1034,7 +1062,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Input for product title link for user click action</p>\n",
-                    "line": 36,
+                    "line": 42,
                     "rawdescription": "\n\nInput for product title link for user click action\n",
                     "modifierKind": [
                         144
@@ -1049,7 +1077,7 @@
             "description": "<p>Component for Header Behavior</p>\n",
             "rawdescription": "\nComponent for Header Behavior",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { selectQuerySnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { HeaderComponent } from '@hra-ui/components/molecules';\nimport { ResourceIds as Ids, LinkIds } from '@hra-ui/state';\n\n/** Component for Header Behavior */\n@Component({\n  selector: 'ftu-header-behavior',\n  standalone: true,\n  imports: [CommonModule, HeaderComponent],\n  templateUrl: './header-behavior.component.html',\n  styleUrls: ['./header-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HeaderBehaviorComponent {\n  /**\n   * Input for product logo URL to displayed on the left side.\n   */\n  readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);\n\n  /**\n   * Input for product title to displayed on the left side.\n   */\n  readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);\n\n  /**\n   * Input for app title to show on the left side.\n   */\n  readonly appTitle = selectQuerySnapshot(RR.anyText, Ids.AppTitle);\n\n  /**\n   * Input for product title link for user click action\n   */\n  readonly productTitleLink = LinkIds.ProductTitle;\n\n  /**\n   * Input for about link for user click action.\n   */\n  readonly aboutLink = LinkIds.About;\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject } from '@angular/core';\nimport { selectQuerySnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { HeaderComponent } from '@hra-ui/components/molecules';\nimport { FTU_DATA_IMPL_ENDPOINTS } from '@hra-ui/services';\nimport { ResourceIds as Ids, LinkIds } from '@hra-ui/state';\n\n/** Component for Header Behavior */\n@Component({\n  selector: 'ftu-header-behavior',\n  standalone: true,\n  imports: [CommonModule, HeaderComponent],\n  templateUrl: './header-behavior.component.html',\n  styleUrls: ['./header-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HeaderBehaviorComponent {\n  /**\n   * Endpoints injector\n   */\n  readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS);\n\n  /**\n   * Input for product logo URL to displayed on the left side.\n   */\n  readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);\n\n  /**\n   * Input for product title to displayed on the left side.\n   */\n  readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);\n\n  /**\n   * Input for app title to show on the left side.\n   */\n  readonly appTitle = selectQuerySnapshot(RR.anyText, Ids.AppTitle);\n\n  /**\n   * Input for product title link for user click action\n   */\n  readonly productTitleLink = LinkIds.ProductTitle;\n\n  /**\n   * Input for about link for user click action.\n   */\n  readonly aboutLink = LinkIds.About;\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1058,7 +1086,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<hra-header\n  [productLogoUrl]=\"productLogoUrl()\"\n  [productTitle]=\"productTitle()\"\n  [appTitle]=\"appTitle()\"\n  [productTitleLink]=\"productTitleLink\"\n  [aboutLink]=\"aboutLink\"\n>\n</hra-header>\n"
+            "templateData": "<hra-header\n  [productLogoUrl]=\"endpoints.baseHref + productLogoUrl()\"\n  [productTitle]=\"productTitle()\"\n  [appTitle]=\"appTitle()\"\n  [productTitleLink]=\"productTitleLink\"\n  [aboutLink]=\"aboutLink\"\n>\n</hra-header>\n"
         },
         {
             "name": "HraLandingPageIntroWcBehaviourComponent",
@@ -1160,7 +1188,7 @@
         },
         {
             "name": "LandingPageContentComponent",
-            "id": "component-LandingPageContentComponent-d72615e2863b7f2f08c767452a75c71c9e079687610cd3e50b54f72f11546184f7ad55c5304741d79adb9bb9ea161cdac4253ae6fb1cbbf15040f2814110616a",
+            "id": "component-LandingPageContentComponent-a1874e1afefb61a9f0f1f4b4880b4f5b7a8bac178de412db6b1e137a4cf2d50fb531b041e13c766e2c09a56558b6a2721ac5513e59d2432ace2bf7cace25ccd4",
             "file": "src/lib/landing-page-content/landing-page-content.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1181,13 +1209,27 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
+                    "name": "endpoints",
+                    "defaultValue": "inject(FTU_DATA_IMPL_ENDPOINTS)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Endpoints injector</p>\n",
+                    "line": 34,
+                    "rawdescription": "\nEndpoints injector",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
                     "name": "intersectableEls",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "QueryList<ElementRef>",
                     "optional": false,
                     "description": "<p>array of element refs for intersectables</p>\n",
-                    "line": 34,
+                    "line": 38,
                     "rawdescription": "\narray of element refs for intersectables",
                     "decorators": [
                         {
@@ -1207,7 +1249,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>select snapshot for landing page depth description</p>\n",
-                    "line": 57,
+                    "line": 59,
                     "rawdescription": "\nselect snapshot for landing page depth description",
                     "modifierKind": [
                         144
@@ -1221,7 +1263,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>select snapshot for landing page depth img</p>\n",
-                    "line": 61,
+                    "line": 63,
                     "rawdescription": "\nselect snapshot for landing page depth img",
                     "modifierKind": [
                         144
@@ -1235,7 +1277,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>select snapshot forlanding page depth more text</p>\n",
-                    "line": 59,
+                    "line": 61,
                     "rawdescription": "\nselect snapshot forlanding page depth more text",
                     "modifierKind": [
                         144
@@ -1249,7 +1291,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>select snapshot for landing page depth title</p>\n",
-                    "line": 55,
+                    "line": 57,
                     "rawdescription": "\nselect snapshot for landing page depth title",
                     "modifierKind": [
                         144
@@ -1263,7 +1305,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>select snapshot for landing page intro description</p>\n",
-                    "line": 40,
+                    "line": 43,
                     "rawdescription": "\nselect snapshot for landing page intro description",
                     "modifierKind": [
                         144
@@ -1277,7 +1319,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>select snapshot for landing page intro img</p>\n",
-                    "line": 47,
+                    "line": 49,
                     "rawdescription": "\nselect snapshot for landing page intro img",
                     "modifierKind": [
                         144
@@ -1291,7 +1333,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>select snapshot for landing page intro more text</p>\n",
-                    "line": 45,
+                    "line": 47,
                     "rawdescription": "\nselect snapshot for landing page intro more text",
                     "modifierKind": [
                         144
@@ -1305,7 +1347,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>select snapshot for landing page intro partners</p>\n",
-                    "line": 42,
+                    "line": 45,
                     "rawdescription": "\nselect snapshot for landing page intro partners",
                     "modifierKind": [
                         144
@@ -1319,7 +1361,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>select snapshot for Landing Page title</p>\n",
-                    "line": 37,
+                    "line": 41,
                     "rawdescription": "\nselect snapshot for Landing Page title",
                     "modifierKind": [
                         144
@@ -1333,7 +1375,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Expose links for use it template</p>\n",
-                    "line": 64,
+                    "line": 66,
                     "rawdescription": "\nExpose links for use it template",
                     "modifierKind": [
                         144
@@ -1347,7 +1389,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>select snapshot for metrics</p>\n",
-                    "line": 49,
+                    "line": 51,
                     "rawdescription": "\nselect snapshot for metrics",
                     "modifierKind": [
                         144
@@ -1361,7 +1403,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>select snapshot for metrics logo</p>\n",
-                    "line": 53,
+                    "line": 55,
                     "rawdescription": "\nselect snapshot for metrics logo",
                     "modifierKind": [
                         144
@@ -1375,7 +1417,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>select snapshot for metrics title</p>\n",
-                    "line": 51,
+                    "line": 53,
                     "rawdescription": "\nselect snapshot for metrics title",
                     "modifierKind": [
                         144
@@ -1402,7 +1444,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 82,
+                    "line": 84,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\ncallback function for intersection observer",
@@ -1436,7 +1478,7 @@
             "description": "<p>Component for LandingPageContent Behavior</p>\n",
             "rawdescription": "\nComponent for LandingPageContent Behavior",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  AfterViewInit,\n  ChangeDetectionStrategy,\n  Component,\n  ElementRef,\n  inject,\n  QueryList,\n  Renderer2,\n  ViewChildren,\n} from '@angular/core';\nimport { injectDestroy$, selectQuerySnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RRS } from '@hra-ui/cdk/state';\nimport {\n  LandingPageInDepthComponent,\n  LandingPageIntroComponent,\n  MetricItem,\n  MetricsComponent,\n} from '@hra-ui/components/molecules';\nimport { LinkIds, ResourceIds as RIds, ResourceTypes as RTypes } from '@hra-ui/state';\n\n/** Component for LandingPageContent Behavior */\n@Component({\n  selector: 'ftu-landing-page-content',\n  standalone: true,\n  imports: [CommonModule, LandingPageIntroComponent, MetricsComponent, LandingPageInDepthComponent],\n  templateUrl: './landing-page-content.component.html',\n  styleUrls: ['./landing-page-content.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class LandingPageContentComponent implements AfterViewInit {\n  /** array of element refs for intersectables */\n  @ViewChildren('intersectable', { read: ElementRef })\n  readonly intersectableEls!: QueryList<ElementRef>;\n\n  /** select snapshot for Landing Page title */\n  readonly landingPageIntroTitle = selectQuerySnapshot(RRS.anyText, RIds.LandingPageTitle);\n\n  /** select snapshot for landing page intro description */\n  readonly landingPageIntroDescription = selectQuerySnapshot(RRS.markdown, RIds.LandingPageDescription);\n  /** select snapshot for landing page intro partners */\n  readonly landingPageIntroPartners = selectQuerySnapshot(RRS.markdown, RIds.LandingPagePartners);\n\n  /** select snapshot for landing page intro more text */\n  readonly landingPageIntroMoreText = selectQuerySnapshot(RRS.anyText, RIds.LandingPageIntroMoreText);\n  /** select snapshot for landing page intro img */\n  readonly landingPageIntroImg = selectQuerySnapshot(RRS.url, RIds.LandingPageIntroImg);\n  /** select snapshot for metrics */\n  readonly metrics = selectQuerySnapshot(RRS.field, RIds.Metrics, RTypes.Metrics, 'metrics' as const, [])<MetricItem[]>;\n  /** select snapshot for metrics title */\n  readonly metricsTitle = selectQuerySnapshot(RRS.anyText, RIds.MetricsTitle);\n  /** select snapshot for metrics logo */\n  readonly metricsLogo = selectQuerySnapshot(RRS.url, RIds.MetricsLogo);\n  /** select snapshot for landing page depth title */\n  readonly landingPageDepthTitle = selectQuerySnapshot(RRS.anyText, RIds.LandingPageDepthTitle);\n  /** select snapshot for landing page depth description */\n  readonly landingPageDepthDescription = selectQuerySnapshot(RRS.markdown, RIds.LandingPageDepthDescription);\n  /** select snapshot forlanding page depth more text */\n  readonly landingPageDepthMoreText = selectQuerySnapshot(RRS.anyText, RIds.LandingPageDepthMoreText);\n  /** select snapshot for landing page depth img */\n  readonly landingPageDepthImg = selectQuerySnapshot(RRS.url, RIds.LandingPageDepthImg);\n\n  /** Expose links for use it template */\n  readonly LinkIds = LinkIds;\n\n  /** Renderer to add class for animation */\n  private readonly renderer = inject(Renderer2);\n  /** destroys observer */\n  private readonly destroy$ = injectDestroy$();\n\n  /** creates an observer after view init */\n  ngAfterViewInit(): void {\n    const observer = new IntersectionObserver(this.handleIntersection.bind(this), {\n      threshold: 0.18,\n    });\n\n    this.intersectableEls.forEach((el) => observer.observe(el.nativeElement));\n    this.destroy$.subscribe(() => observer.disconnect());\n  }\n\n  /** callback function for intersection observer */\n  handleIntersection(entries: IntersectionObserverEntry[], observer: IntersectionObserver): void {\n    for (const { isIntersecting, target } of entries) {\n      if (isIntersecting) {\n        this.renderer.addClass(target, 'visible');\n        observer.unobserve(target);\n      }\n    }\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  AfterViewInit,\n  ChangeDetectionStrategy,\n  Component,\n  ElementRef,\n  inject,\n  QueryList,\n  Renderer2,\n  ViewChildren,\n} from '@angular/core';\nimport { injectDestroy$, selectQuerySnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RRS } from '@hra-ui/cdk/state';\nimport {\n  LandingPageInDepthComponent,\n  LandingPageIntroComponent,\n  MetricItem,\n  MetricsComponent,\n} from '@hra-ui/components/molecules';\nimport { FTU_DATA_IMPL_ENDPOINTS } from '@hra-ui/services';\nimport { LinkIds, ResourceIds as RIds, ResourceTypes as RTypes } from '@hra-ui/state';\n\n/** Component for LandingPageContent Behavior */\n@Component({\n  selector: 'ftu-landing-page-content',\n  standalone: true,\n  imports: [CommonModule, LandingPageIntroComponent, MetricsComponent, LandingPageInDepthComponent],\n  templateUrl: './landing-page-content.component.html',\n  styleUrls: ['./landing-page-content.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class LandingPageContentComponent implements AfterViewInit {\n  /** Endpoints injector */\n  readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS);\n\n  /** array of element refs for intersectables */\n  @ViewChildren('intersectable', { read: ElementRef })\n  readonly intersectableEls!: QueryList<ElementRef>;\n\n  /** select snapshot for Landing Page title */\n  readonly landingPageIntroTitle = selectQuerySnapshot(RRS.anyText, RIds.LandingPageTitle);\n  /** select snapshot for landing page intro description */\n  readonly landingPageIntroDescription = selectQuerySnapshot(RRS.markdown, RIds.LandingPageDescription);\n  /** select snapshot for landing page intro partners */\n  readonly landingPageIntroPartners = selectQuerySnapshot(RRS.markdown, RIds.LandingPagePartners);\n  /** select snapshot for landing page intro more text */\n  readonly landingPageIntroMoreText = selectQuerySnapshot(RRS.anyText, RIds.LandingPageIntroMoreText);\n  /** select snapshot for landing page intro img */\n  readonly landingPageIntroImg = selectQuerySnapshot(RRS.url, RIds.LandingPageIntroImg);\n  /** select snapshot for metrics */\n  readonly metrics = selectQuerySnapshot(RRS.field, RIds.Metrics, RTypes.Metrics, 'metrics' as const, [])<MetricItem[]>;\n  /** select snapshot for metrics title */\n  readonly metricsTitle = selectQuerySnapshot(RRS.anyText, RIds.MetricsTitle);\n  /** select snapshot for metrics logo */\n  readonly metricsLogo = selectQuerySnapshot(RRS.url, RIds.MetricsLogo);\n  /** select snapshot for landing page depth title */\n  readonly landingPageDepthTitle = selectQuerySnapshot(RRS.anyText, RIds.LandingPageDepthTitle);\n  /** select snapshot for landing page depth description */\n  readonly landingPageDepthDescription = selectQuerySnapshot(RRS.markdown, RIds.LandingPageDepthDescription);\n  /** select snapshot forlanding page depth more text */\n  readonly landingPageDepthMoreText = selectQuerySnapshot(RRS.anyText, RIds.LandingPageDepthMoreText);\n  /** select snapshot for landing page depth img */\n  readonly landingPageDepthImg = selectQuerySnapshot(RRS.url, RIds.LandingPageDepthImg);\n\n  /** Expose links for use it template */\n  readonly LinkIds = LinkIds;\n\n  /** Renderer to add class for animation */\n  private readonly renderer = inject(Renderer2);\n  /** destroys observer */\n  private readonly destroy$ = injectDestroy$();\n\n  /** creates an observer after view init */\n  ngAfterViewInit(): void {\n    const observer = new IntersectionObserver(this.handleIntersection.bind(this), {\n      threshold: 0.18,\n    });\n\n    this.intersectableEls.forEach((el) => observer.observe(el.nativeElement));\n    this.destroy$.subscribe(() => observer.disconnect());\n  }\n\n  /** callback function for intersection observer */\n  handleIntersection(entries: IntersectionObserverEntry[], observer: IntersectionObserver): void {\n    for (const { isIntersecting, target } of entries) {\n      if (isIntersecting) {\n        this.renderer.addClass(target, 'visible');\n        observer.unobserve(target);\n      }\n    }\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1448,7 +1490,7 @@
             "implements": [
                 "AfterViewInit"
             ],
-            "templateData": "<hra-landing-page-intro\n  class=\"intro\"\n  [title]=\"landingPageIntroTitle()\"\n  [img]=\"landingPageIntroImg()\"\n  [partners]=\"landingPageIntroPartners()\"\n  [description]=\"landingPageIntroDescription()\"\n  [moreText]=\"landingPageIntroMoreText()\"\n  [moreLink]=\"LinkIds.ExploreFTU\"\n>\n</hra-landing-page-intro>\n<hra-metrics class=\"metrics\" [title]=\"metricsTitle()\" [metrics]=\"metrics()\" [logo]=\"metricsLogo()\" #intersectable>\n</hra-metrics>\n<hra-landing-page-in-depth\n  class=\"in-depth\"\n  [title]=\"landingPageDepthTitle()\"\n  [description]=\"landingPageDepthDescription()\"\n  [moreText]=\"landingPageDepthMoreText()\"\n  [img]=\"landingPageDepthImg()\"\n  [moreLink]=\"LinkIds.LandingPageReadMore\"\n  #intersectable\n>\n</hra-landing-page-in-depth>\n"
+            "templateData": "<hra-landing-page-intro\n  class=\"intro\"\n  [title]=\"landingPageIntroTitle()\"\n  [img]=\"endpoints.baseHref + landingPageIntroImg()\"\n  [partners]=\"landingPageIntroPartners()\"\n  [description]=\"landingPageIntroDescription()\"\n  [moreText]=\"landingPageIntroMoreText()\"\n  [moreLink]=\"LinkIds.ExploreFTU\"\n>\n</hra-landing-page-intro>\n<hra-metrics\n  class=\"metrics\"\n  [title]=\"metricsTitle()\"\n  [metrics]=\"metrics()\"\n  [logo]=\"metricsLogo()\"\n  [baseHref]=\"endpoints.baseHref\"\n  #intersectable\n>\n</hra-metrics>\n<hra-landing-page-in-depth\n  class=\"in-depth\"\n  [title]=\"landingPageDepthTitle()\"\n  [description]=\"landingPageDepthDescription()\"\n  [moreText]=\"landingPageDepthMoreText()\"\n  [img]=\"endpoints.baseHref + landingPageDepthImg()\"\n  [moreLink]=\"LinkIds.LandingPageReadMore\"\n  #intersectable\n>\n</hra-landing-page-in-depth>\n"
         },
         {
             "name": "MedicalIllustrationBehaviorComponent",

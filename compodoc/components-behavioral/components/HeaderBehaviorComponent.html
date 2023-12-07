@@ -148,6 +148,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
+                                <a href="#endpoints" >endpoints</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#productLogoUrl" >productLogoUrl</a>
                             </li>
                             <li>
@@ -201,7 +205,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/header-behavior/header-behavior.component.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/lib/header-behavior/header-behavior.component.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -233,13 +237,45 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/lib/header-behavior/header-behavior.component.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/lib/header-behavior/header-behavior.component.ts:37</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Input for app title to show on the left side.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="endpoints"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>endpoints</b></span>
+                        <a href="#endpoints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(FTU_DATA_IMPL_ENDPOINTS)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/lib/header-behavior/header-behavior.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Endpoints injector</p>
 </div>
                 </td>
             </tr>
@@ -265,7 +301,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/lib/header-behavior/header-behavior.component.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/lib/header-behavior/header-behavior.component.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -297,7 +333,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/lib/header-behavior/header-behavior.component.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/lib/header-behavior/header-behavior.component.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -329,7 +365,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/lib/header-behavior/header-behavior.component.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/lib/header-behavior/header-behavior.component.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -349,10 +385,11 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
-import { ChangeDetectionStrategy, Component } from &#x27;@angular/core&#x27;;
+import { ChangeDetectionStrategy, Component, inject } from &#x27;@angular/core&#x27;;
 import { selectQuerySnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
 import { ResourceRegistrySelectors as RR } from &#x27;@hra-ui/cdk/state&#x27;;
 import { HeaderComponent } from &#x27;@hra-ui/components/molecules&#x27;;
+import { FTU_DATA_IMPL_ENDPOINTS } from &#x27;@hra-ui/services&#x27;;
 import { ResourceIds as Ids, LinkIds } from &#x27;@hra-ui/state&#x27;;
 
 /** Component for Header Behavior */
@@ -365,6 +402,11 @@ import { ResourceIds as Ids, LinkIds } from &#x27;@hra-ui/state&#x27;;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderBehaviorComponent {
+  /**
+   * Endpoints injector
+   */
+  readonly endpoints &#x3D; inject(FTU_DATA_IMPL_ENDPOINTS);
+
   /**
    * Input for product logo URL to displayed on the left side.
    */
@@ -395,7 +437,7 @@ export class HeaderBehaviorComponent {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;hra-header
-  [productLogoUrl]&#x3D;&quot;productLogoUrl()&quot;
+  [productLogoUrl]&#x3D;&quot;endpoints.baseHref + productLogoUrl()&quot;
   [productTitle]&#x3D;&quot;productTitle()&quot;
   [appTitle]&#x3D;&quot;appTitle()&quot;
   [productTitleLink]&#x3D;&quot;productTitleLink&quot;
@@ -441,7 +483,7 @@ export class HeaderBehaviorComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-header  [productLogoUrl]="productLogoUrl()"  [productTitle]="productTitle()"  [appTitle]="appTitle()"  [productTitleLink]="productTitleLink"  [aboutLink]="aboutLink"></hra-header></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-header  [productLogoUrl]="endpoints.baseHref + productLogoUrl()"  [productTitle]="productTitle()"  [appTitle]="appTitle()"  [productTitleLink]="productTitleLink"  [aboutLink]="aboutLink"></hra-header></div>'
     var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'BiomarkerDetailsWcComponent', 'selector': 'ftu-wc-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'HraLandingPageIntroWcBehaviourComponent', 'selector': 'ftu-wc-intro'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'ScreenNoticeBehaviorComponent', 'selector': 'ftu-ui-screen-notice-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'HeaderBehaviorComponent'};
