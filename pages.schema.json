@@ -606,6 +606,40 @@
                   ],
                   "additionalProperties": false
                 }
+              },
+              "headerData": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "Title of the card"
+                  },
+                  "buttonData": {
+                    "type": "object",
+                    "properties": {
+                      "text": {
+                        "type": "string",
+                        "description": "Label for the button"
+                      },
+                      "url": {
+                        "type": "string",
+                        "description": "Url for the button"
+                      }
+                    },
+                    "required": ["text", "url"],
+                    "additionalProperties": false
+                  },
+                  "subtitle": {
+                    "type": "string",
+                    "description": "Subtitle for the card"
+                  }
+                },
+                "required": ["title", "buttonData", "subtitle"],
+                "additionalProperties": false
+              },
+              "customModalClass": {
+                "type": "string",
+                "description": "Custom class for the modal"
               }
             },
             "required": ["type", "imageData"],

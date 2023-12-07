@@ -21,13 +21,15 @@ describe('SimpleImageComponent', () => {
 
   describe('openImageViewer(content)', () => {
     it('should open image modal', async () => {
-      const { instance, inject } = await shallow.render();
+      const { instance, inject } = await shallow.render({
+        bind: { customModalClass: 'customClass' },
+      });
       const dialog = inject(MatDialog);
       const template = mock<TemplateRef<unknown>>();
 
       instance.openImageViewer(template);
       expect(dialog.open).toHaveBeenCalledWith(template, {
-        panelClass: 'custom-modal',
+        panelClass: ['custom-modal', 'customClass'],
       });
     });
   });

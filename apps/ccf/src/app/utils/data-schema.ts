@@ -406,6 +406,19 @@ export const ImageInCard = z.object({
       alt: z.string({ description: 'Alternate text for image' }),
     })
     .array(),
+  headerData: z
+    .object({
+      title: z.string({ description: 'Title of the card' }),
+      buttonData: z.object({
+        text: z.string({ description: 'Label for the button' }),
+        url: z.string({ description: 'Url for the button' }),
+      }),
+      subtitle: z.string({ description: 'Subtitle for the card' }),
+    })
+    .optional(),
+  customModalClass: z
+    .string({ description: 'Custom class for the modal' })
+    .optional(),
 });
 
 /**
