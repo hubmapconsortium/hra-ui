@@ -2,6 +2,7 @@ import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { Shallow } from 'shallow-render';
 
 import { HeaderBehaviorComponent } from './header-behavior.component';
+import { FTU_DATA_IMPL_ENDPOINTS } from '@hra-ui/services';
 
 jest.mock('@hra-ui/cdk/injectors');
 
@@ -12,7 +13,16 @@ describe('HeaderBehaviorComponent', () => {
   jest.mocked(dispatch).mockReturnValue(jest.fn());
 
   beforeEach(async () => {
-    shallow = new Shallow(HeaderBehaviorComponent);
+    shallow = new Shallow(HeaderBehaviorComponent).provide([
+      {
+        provide: FTU_DATA_IMPL_ENDPOINTS,
+        useClass: {
+          datasets: '',
+          illustrations: '',
+          summaries: '',
+        },
+      },
+    ]);
   });
 
   it('should create', async () => {

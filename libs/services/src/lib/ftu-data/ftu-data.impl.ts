@@ -22,6 +22,8 @@ export interface FtuDataImplEndpoints {
   summaries: Url;
   /** Endpoint for File having Cell Source References data */
   datasets: Url;
+  /** Endpoint for baseHref */
+  baseHref: Url;
 }
 /** Constant  to read the endpoints */
 export const FTU_DATA_IMPL_ENDPOINTS = new InjectionToken<FtuDataImplEndpoints>('Endpoints');

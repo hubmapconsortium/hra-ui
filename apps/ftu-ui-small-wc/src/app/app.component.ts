@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   Injector,
   Input,
   OnChanges,
@@ -8,10 +9,9 @@ import {
   Output,
   SimpleChanges,
   ViewEncapsulation,
-  inject,
 } from '@angular/core';
 import { dispatch, dispatch$, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
-import { LinkRegistryActions, ResourceRegistryActions, createLinkId } from '@hra-ui/cdk/state';
+import { createLinkId, LinkRegistryActions, ResourceRegistryActions } from '@hra-ui/cdk/state';
 import {
   BiomarkerDetailsWcComponent,
   FooterBehaviorComponent,
@@ -58,13 +58,9 @@ export class AppComponent implements OnInit, OnChanges {
     this.setScreenSmall('small');
   }
 
-  @Input() set linksYamlUrl(url: string) {
-    this.loadLinks(url);
-  }
+  @Input() linksYamlUrl = '';
 
-  @Input() set resourcesYamlUrl(url: string) {
-    this.loadResources(url);
-  }
+  @Input() resourcesYamlUrl = '';
 
   @Input() set organIri(iri: string) {
     iri ? this.navigateToOrgan(createLinkId('FTU'), { queryParams: { id: iri } }) : this.showDefaultIri();
@@ -73,6 +69,7 @@ export class AppComponent implements OnInit, OnChanges {
   @Input() datasetUrl = '';
   @Input() illustrationsUrl = '';
   @Input() summariesUrl = '';
+  @Input() baseHref = '';
 
   @Output() readonly organSelected = select$(ActiveFtuSelectors.iri);
 
@@ -94,22 +91,30 @@ export class AppComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.endpoints = this.injector.get(FTU_DATA_IMPL_ENDPOINTS);
+    this.loadLinks(this.setUrl(this.linksYamlUrl));
+    this.loadResources(this.setUrl(this.resourcesYamlUrl));
+    this.endpoints.illustrations = this.setUrl(this.illustrationsUrl);
+    this.endpoints.datasets = this.setUrl(this.datasetUrl);
+    this.endpoints.summaries = this.setUrl(this.summariesUrl);
+    this.endpoints.baseHref = this.baseHref as Iri;
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.endpoints = this.injector.get(FTU_DATA_IMPL_ENDPOINTS);
-    if ('datasetUrl' in changes) {
-      this.endpoints.datasets = this.datasetUrl as Iri;
-      this.endpoints.illustrations = this.illustrationsUrl as Iri;
-      this.endpoints.summaries = this.summariesUrl as Iri;
-      this.reset()
-        .pipe(
-          tap(() => {
-            this.reloadDataSets();
-            this.reloadActiveFtu(changes['organIri']?.currentValue);
-          })
-        )
-        .subscribe();
+    this.reset()
+      .pipe(
+        tap(() => {
+          this.reloadDataSets();
+          this.reloadActiveFtu(changes['organIri']?.currentValue);
+        })
+      )
+      .subscribe();
+  }
+
+  private setUrl(url: string): Iri {
+    if (url.slice(0, 4) === 'http') {
+      return url as Iri;
+    } else {
+      return (this.baseHref + url) as Iri;
     }
   }
 

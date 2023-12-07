@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import { HeaderComponent } from '@hra-ui/components/molecules';
+import { FTU_DATA_IMPL_ENDPOINTS } from '@hra-ui/services';
 import { ResourceIds as Ids, LinkIds } from '@hra-ui/state';
 
 /** Component for Header Behavior */
@@ -15,6 +16,11 @@ import { ResourceIds as Ids, LinkIds } from '@hra-ui/state';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderBehaviorComponent {
+  /**
+   * Endpoints injector
+   */
+  readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS);
+
   /**
    * Input for product logo URL to displayed on the left side.
    */

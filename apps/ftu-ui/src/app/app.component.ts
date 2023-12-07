@@ -46,13 +46,9 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   readonly WINDOW_RESIZE_THRESHOLD = 1600; // In pixels
   readonly tissues = select$(TissueLibrarySelectors.tissues);
 
-  @Input() set linksYamlUrl(url: string) {
-    this.loadLinks(url);
-  }
+  @Input() linksYamlUrl = '';
 
-  @Input() set resourcesYamlUrl(url: string) {
-    this.loadResources(url);
-  }
+  @Input() resourcesYamlUrl = '';
 
   @Input() set organIri(iri: string) {
     iri ? this.navigateToOrgan(createLinkId('FTU'), { queryParams: { id: iri } }) : this.showDefaultIri();
@@ -61,6 +57,7 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   @Input() datasetUrl = '';
   @Input() illustrationsUrl = '';
   @Input() summariesUrl = '';
+  @Input() baseHref = '';
 
   @Output() readonly organSelected = select$(ActiveFtuSelectors.iri);
 
@@ -131,22 +128,30 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
 
   ngOnInit() {
     this.endpoints = this.injector.get(FTU_DATA_IMPL_ENDPOINTS);
+    this.loadLinks(this.setUrl(this.linksYamlUrl));
+    this.loadResources(this.setUrl(this.resourcesYamlUrl));
+    this.endpoints.illustrations = this.setUrl(this.illustrationsUrl);
+    this.endpoints.datasets = this.setUrl(this.datasetUrl);
+    this.endpoints.summaries = this.setUrl(this.summariesUrl);
+    this.endpoints.baseHref = this.baseHref as Iri;
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.endpoints = this.injector.get(FTU_DATA_IMPL_ENDPOINTS);
-    if ('datasetUrl' in changes) {
-      this.endpoints.datasets = this.datasetUrl as Iri;
-      this.endpoints.illustrations = this.illustrationsUrl as Iri;
-      this.endpoints.summaries = this.summariesUrl as Iri;
-      this.reset()
-        .pipe(
-          tap(() => {
-            this.reloadDataSets();
-            this.reloadActiveFtu(changes['organIri']?.currentValue);
-          })
-        )
-        .subscribe();
+    this.reset()
+      .pipe(
+        tap(() => {
+          this.reloadDataSets();
+          this.reloadActiveFtu(changes['organIri']?.currentValue);
+        })
+      )
+      .subscribe();
+  }
+
+  private setUrl(url: string): Iri {
+    if (url.slice(0, 4) === 'http') {
+      return url as Iri;
+    } else {
+      return (this.baseHref + url) as Iri;
     }
   }
 
