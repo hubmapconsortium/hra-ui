@@ -220,48 +220,48 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Intercalated_Cell_Type_B_1",
           "svg_group_id": "Cortical_Collecting_Duct_Intercalated_Cell_Type_B",
-          "label": "kidney connecting tubule beta-intercalated cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4030021"
+          "label": "kidney collecting duct beta-intercalated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4030005"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct#Cortical_Collecting_Duct_Intercalated_Cell_Type_B_2",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Intercalated_Cell_Type_B_2",
           "svg_group_id": "Cortical_Collecting_Duct_Intercalated_Cell_Type_B",
-          "label": "kidney connecting tubule beta-intercalated cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4030021"
+          "label": "kidney collecting duct beta-intercalated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4030005"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct#Cortical_Collecting_Duct_Intercalated_Cell_Type_A_1",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Intercalated_Cell_Type_A_1",
           "svg_group_id": "Cortical_Collecting_Duct_Intercalated_Cell_Type_A",
-          "label": "kidney connecting tubule alpha-intercalated cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4030020"
+          "label": "kidney collecting duct alpha-intercalated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4030015"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct#Cortical_Collecting_Duct_Intercalated_Cell_Type_A_2",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Intercalated_Cell_Type_A_2",
           "svg_group_id": "Cortical_Collecting_Duct_Intercalated_Cell_Type_A",
-          "label": "kidney connecting tubule alpha-intercalated cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4030020"
+          "label": "kidney collecting duct alpha-intercalated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4030015"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct#Cortical_Collecting_Duct_Intercalated_Cell_Type_A_3",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Intercalated_Cell_Type_A_3",
           "svg_group_id": "Cortical_Collecting_Duct_Intercalated_Cell_Type_A",
-          "label": "kidney connecting tubule alpha-intercalated cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4030020"
+          "label": "kidney collecting duct alpha-intercalated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4030015"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct#Cortical_Collecting_Duct_Intercalated_Cell_Type_A_4",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Intercalated_Cell_Type_A_4",
           "svg_group_id": "Cortical_Collecting_Duct_Intercalated_Cell_Type_A",
-          "label": "kidney connecting tubule alpha-intercalated cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4030020"
+          "label": "kidney collecting duct alpha-intercalated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4030015"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct#Endothelium_Peritubular_Capillary_1",
@@ -416,7 +416,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_1",
           "svg_group_id": "Inner_Medullary_Collecting_Duct_Cell",
-          "label": "kidney inner medulla collecting duct",
+          "label": "kidney inner medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
         {
@@ -424,7 +424,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_2",
           "svg_group_id": "Inner_Medullary_Collecting_Duct_Cell",
-          "label": "kidney inner medulla collecting duct",
+          "label": "kidney inner medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
         {
@@ -432,7 +432,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_3",
           "svg_group_id": "Inner_Medullary_Collecting_Duct_Cell",
-          "label": "kidney inner medulla collecting duct",
+          "label": "kidney inner medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
         {
@@ -440,7 +440,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_4",
           "svg_group_id": "Inner_Medullary_Collecting_Duct_Cell",
-          "label": "kidney inner medulla collecting duct",
+          "label": "kidney inner medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
         {
@@ -448,7 +448,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_5",
           "svg_group_id": "Inner_Medullary_Collecting_Duct_Cell",
-          "label": "kidney inner medulla collecting duct",
+          "label": "kidney inner medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
         {
@@ -456,7 +456,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_6",
           "svg_group_id": "Inner_Medullary_Collecting_Duct_Cell",
-          "label": "kidney inner medulla collecting duct",
+          "label": "kidney inner medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
         {
@@ -464,7 +464,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_7",
           "svg_group_id": "Inner_Medullary_Collecting_Duct_Cell",
-          "label": "kidney inner medulla collecting duct",
+          "label": "kidney inner medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
         {
@@ -472,7 +472,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_8",
           "svg_group_id": "Inner_Medullary_Collecting_Duct_Cell",
-          "label": "kidney inner medulla collecting duct",
+          "label": "kidney inner medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
         {
@@ -480,7 +480,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_9",
           "svg_group_id": "Inner_Medullary_Collecting_Duct_Cell",
-          "label": "kidney inner medulla collecting duct",
+          "label": "kidney inner medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
         {
@@ -488,7 +488,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_10",
           "svg_group_id": "Inner_Medullary_Collecting_Duct_Cell",
-          "label": "kidney inner medulla collecting duct",
+          "label": "kidney inner medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
         {
@@ -496,7 +496,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_11",
           "svg_group_id": "Inner_Medullary_Collecting_Duct_Cell",
-          "label": "kidney inner medulla collecting duct",
+          "label": "kidney inner medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
         {
@@ -504,7 +504,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_12",
           "svg_group_id": "Inner_Medullary_Collecting_Duct_Cell",
-          "label": "kidney inner medulla collecting duct",
+          "label": "kidney inner medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
         {
@@ -512,7 +512,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_13",
           "svg_group_id": "Inner_Medullary_Collecting_Duct_Cell",
-          "label": "kidney inner medulla collecting duct",
+          "label": "kidney inner medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
         {
@@ -520,7 +520,7 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_14",
           "svg_group_id": "Inner_Medullary_Collecting_Duct_Cell",
-          "label": "kidney inner medulla collecting duct",
+          "label": "kidney inner medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
         {
@@ -597,7 +597,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_collecting_duct_AS",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_collecting_duct_AS",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "cortical collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004203"
         },
@@ -605,7 +605,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_1",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_1",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -613,7 +613,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_2",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_2",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -621,7 +621,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_3",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_3",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -629,7 +629,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_4",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_4",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -637,7 +637,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_5",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_5",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -645,7 +645,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_6",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_6",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -653,7 +653,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_7",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_7",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -661,7 +661,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_8",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_8",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -669,7 +669,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_9",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_9",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -677,7 +677,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_10",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_10",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -685,7 +685,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_11",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_11",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -693,7 +693,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_12",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_12",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -701,7 +701,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_13",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_13",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -709,7 +709,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_14",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_14",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -717,7 +717,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_15",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_15",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -1389,7 +1389,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_1",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_1",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1397,7 +1397,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_2",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_2",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1405,7 +1405,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_3",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_3",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1413,7 +1413,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_4",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_4",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1421,7 +1421,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_5",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_5",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1429,7 +1429,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_6",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_6",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1437,7 +1437,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_7",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_7",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1445,7 +1445,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_8",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_8",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1453,7 +1453,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_9",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_9",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1461,7 +1461,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_10",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_10",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1469,7 +1469,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_11",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_11",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1477,7 +1477,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_12",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_12",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1485,7 +1485,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_13",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_13",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1493,7 +1493,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_14",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_14",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1501,7 +1501,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_15",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_15",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1509,7 +1509,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_1",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_1",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1517,7 +1517,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_2",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_2",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1525,7 +1525,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_3",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_3",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1533,7 +1533,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_4",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_4",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1541,7 +1541,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_5",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_5",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1549,7 +1549,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_6",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_6",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1557,7 +1557,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_7",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_7",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1565,7 +1565,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_8",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_8",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1573,7 +1573,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_9",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_9",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1581,7 +1581,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_10",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_10",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1589,7 +1589,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_11",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_11",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1597,7 +1597,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_12",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_12",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1605,7 +1605,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_13",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_13",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1613,7 +1613,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_14",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_14",
-          "svg_group_id": "Cortical_Collecting_Duct",
+          "svg_group_id": "Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -5922,128 +5922,128 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_1",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "ciliated cell of submucosal gland",
-          "representation_of": ""
+          "label": "airway submucosal gland duct ciliated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4033055"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland#Ciliated_Cell_Of_Submucosal_Gland_2",
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_2",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "ciliated cell of submucosal gland",
-          "representation_of": ""
+          "label": "airway submucosal gland duct ciliated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4033055"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland#Ciliated_Cell_Of_Submucosal_Gland_3",
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_3",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "ciliated cell of submucosal gland",
-          "representation_of": ""
+          "label": "airway submucosal gland duct ciliated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4033055"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland#Ciliated_Cell_Of_Submucosal_Gland_4",
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_4",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "ciliated cell of submucosal gland",
-          "representation_of": ""
+          "label": "airway submucosal gland duct ciliated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4033055"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland#Ciliated_Cell_Of_Submucosal_Gland_5",
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_5",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "ciliated cell of submucosal gland",
-          "representation_of": ""
+          "label": "airway submucosal gland duct ciliated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4033055"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland#Ciliated_Cell_Of_Submucosal_Gland_6",
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_6",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "ciliated cell of submucosal gland",
-          "representation_of": ""
+          "label": "airway submucosal gland duct ciliated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4033055"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland#Ciliated_Cell_Of_Submucosal_Gland_7",
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_7",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "ciliated cell of submucosal gland",
-          "representation_of": ""
+          "label": "airway submucosal gland duct ciliated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4033055"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland#Ciliated_Cell_Of_Submucosal_Gland_8",
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_8",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "ciliated cell of submucosal gland",
-          "representation_of": ""
+          "label": "airway submucosal gland duct ciliated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4033055"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland#Ciliated_Cell_Of_Submucosal_Gland_9",
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_9",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "ciliated cell of submucosal gland",
-          "representation_of": ""
+          "label": "airway submucosal gland duct ciliated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4033055"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland#Ciliated_Cell_Of_Submucosal_Gland_10",
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_10",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "ciliated cell of submucosal gland",
-          "representation_of": ""
+          "label": "airway submucosal gland duct ciliated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4033055"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland#Ciliated_Cell_Of_Submucosal_Gland_11",
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_11",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "ciliated cell of submucosal gland",
-          "representation_of": ""
+          "label": "airway submucosal gland duct ciliated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4033055"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland#Ciliated_Cell_Of_Submucosal_Gland_12",
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_12",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "ciliated cell of submucosal gland",
-          "representation_of": ""
+          "label": "airway submucosal gland duct ciliated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4033055"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland#Ciliated_Cell_Of_Submucosal_Gland_13",
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_13",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "ciliated cell of submucosal gland",
-          "representation_of": ""
+          "label": "airway submucosal gland duct ciliated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4033055"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland#Ciliated_Cell_Of_Submucosal_Gland_14",
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_14",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "ciliated cell of submucosal gland",
-          "representation_of": ""
+          "label": "airway submucosal gland duct ciliated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4033055"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland#Ciliated_Cell_Of_Submucosal_Gland_15",
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_15",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "ciliated cell of submucosal gland",
-          "representation_of": ""
+          "label": "airway submucosal gland duct ciliated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4033055"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland#Ciliated_Cell_Of_Submucosal_Gland_16",
           "@type": "FtuIllustrationNode",
           "svg_id": "Ciliated_Cell_Of_Submucosal_Gland_16",
           "svg_group_id": "Ciliated_Cell_Of_Submucosal_Gland",
-          "label": "ciliated cell of submucosal gland",
-          "representation_of": ""
+          "label": "airway submucosal gland duct ciliated cell",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4033055"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland#Basal_Cell_Of_Submucosal_Gland_1",
@@ -15356,280 +15356,280 @@
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_1",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_2",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_2",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_3",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_3",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_4",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_4",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_5",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_5",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_6",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_6",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_7",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_7",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_8",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_8",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_9",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_9",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_10",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_10",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_11",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_11",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_12",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_12",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_13",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_13",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_14",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_14",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_15",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_15",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_16",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_16",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_17",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_17",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_18",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_18",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_19",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_19",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_20",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_20",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_21",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_21",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_22",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_22",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_23",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_23",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_24",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_24",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_25",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_25",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_26",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_26",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_27",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_27",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_28",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_28",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_29",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_29",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_30",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_30",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_31",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_31",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_32",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_32",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_33",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_33",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_34",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_34",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Basal_Cell_35",
           "@type": "FtuIllustrationNode",
           "svg_id": "Basal_Cell_35",
           "svg_group_id": "Basal_Cell",
-          "label": "basal cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000646"
+          "label": "basal cell of epidermis",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0002187"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#Merkel_Cell_1",
@@ -28521,7 +28521,7 @@
           "svg_id": "T_Cell_1",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_2",
@@ -28529,7 +28529,7 @@
           "svg_id": "T_Cell_2",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_3",
@@ -28537,7 +28537,7 @@
           "svg_id": "T_Cell_3",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_4",
@@ -28545,7 +28545,7 @@
           "svg_id": "T_Cell_4",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_5",
@@ -28553,7 +28553,7 @@
           "svg_id": "T_Cell_5",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_6",
@@ -28561,7 +28561,7 @@
           "svg_id": "T_Cell_6",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_7",
@@ -28569,7 +28569,7 @@
           "svg_id": "T_Cell_7",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_8",
@@ -28577,7 +28577,7 @@
           "svg_id": "T_Cell_8",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_9",
@@ -28585,7 +28585,7 @@
           "svg_id": "T_Cell_9",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_10",
@@ -28593,7 +28593,7 @@
           "svg_id": "T_Cell_10",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_11",
@@ -28601,7 +28601,7 @@
           "svg_id": "T_Cell_11",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_12",
@@ -28609,7 +28609,7 @@
           "svg_id": "T_Cell_12",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_13",
@@ -28617,7 +28617,7 @@
           "svg_id": "T_Cell_13",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_14",
@@ -28625,7 +28625,7 @@
           "svg_id": "T_Cell_14",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_15",
@@ -28633,7 +28633,7 @@
           "svg_id": "T_Cell_15",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_16",
@@ -28641,7 +28641,7 @@
           "svg_id": "T_Cell_16",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_17",
@@ -28649,7 +28649,7 @@
           "svg_id": "T_Cell_17",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_18",
@@ -28657,7 +28657,7 @@
           "svg_id": "T_Cell_18",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_19",
@@ -28665,7 +28665,7 @@
           "svg_id": "T_Cell_19",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_20",
@@ -28673,7 +28673,7 @@
           "svg_id": "T_Cell_20",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_21",
@@ -28681,7 +28681,7 @@
           "svg_id": "T_Cell_21",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_22",
@@ -28689,7 +28689,7 @@
           "svg_id": "T_Cell_22",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_23",
@@ -28697,7 +28697,7 @@
           "svg_id": "T_Cell_23",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_24",
@@ -28705,7 +28705,7 @@
           "svg_id": "T_Cell_24",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_25",
@@ -28713,7 +28713,7 @@
           "svg_id": "T_Cell_25",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_26",
@@ -28721,7 +28721,7 @@
           "svg_id": "T_Cell_26",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_27",
@@ -28729,7 +28729,7 @@
           "svg_id": "T_Cell_27",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_28",
@@ -28737,7 +28737,7 @@
           "svg_id": "T_Cell_28",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#T_Cell_29",
@@ -28745,7 +28745,7 @@
           "svg_id": "T_Cell_29",
           "svg_group_id": "T_Cells",
           "label": "T cell",
-          "representation_of": ""
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000084"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Medullary_Thymocytes_1",
