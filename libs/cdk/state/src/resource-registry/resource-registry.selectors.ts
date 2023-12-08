@@ -110,7 +110,7 @@ export class ResourceRegistrySelectors {
    * @returns Url query function
    */
   @Selector([ResourceRegistrySelectors.field, BaseHrefSelectors.baseHref])
-  static url(getField: FieldQuery): DataQuery<string> {
-    return (id) => getField(id, BuiltinResourceType.Url, 'url', '');
+  static url(getField: FieldQuery, baseHref: string): DataQuery<string> {
+    return (id) => baseHref + getField(id, BuiltinResourceType.Url, 'url', '');
   }
 }

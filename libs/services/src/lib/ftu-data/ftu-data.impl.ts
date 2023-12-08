@@ -255,8 +255,6 @@ export class FtuDataImplService extends FtuDataService {
         if (!cache.has(url)) {
           const opts = { params: { id: iri ?? '' }, responseType: 'json' as const };
           const resp = http.get(url, opts).pipe(map((data) => schema.parse(data)));
-          console.log(url);
-          console.log(firstValueFrom(resp));
           cache.set(url, firstValueFrom(resp));
         }
         return from(cache.get(url) as Promise<z.infer<T>>);
