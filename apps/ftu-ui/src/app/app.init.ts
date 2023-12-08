@@ -17,9 +17,5 @@ export function initFactory(): () => Observable<unknown> {
           commands: ['/'],
         },
       }),
-
-      new LinkRegistryActions.LoadFromYaml('assets/links.yml'),
-      new ResourceRegistryActions.LoadFromYaml('assets/resources.yml'),
-      new TissueLibraryActions.Load(),
     ]);
 }

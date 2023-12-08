@@ -1,7 +1,7 @@
 <hra-landing-page-intro
   class="intro"
   [title]="landingPageIntroTitle()"
-  [img]="endpoints.baseHref + landingPageIntroImg()"
+  [img]="landingPageIntroImg()"
   [partners]="landingPageIntroPartners()"
   [description]="landingPageIntroDescription()"
   [moreText]="landingPageIntroMoreText()"
@@ -13,7 +13,7 @@
   [title]="metricsTitle()"
   [metrics]="metrics()"
   [logo]="metricsLogo()"
-  [baseHref]="endpoints.baseHref"
+  [baseHref]="baseHref()"
   #intersectable
 >
 </hra-metrics>
@@ -22,7 +22,7 @@
   [title]="landingPageDepthTitle()"
   [description]="landingPageDepthDescription()"
   [moreText]="landingPageDepthMoreText()"
-  [img]="endpoints.baseHref + landingPageDepthImg()"
+  [img]="landingPageDepthImg()"
   [moreLink]="LinkIds.LandingPageReadMore"
   #intersectable
 >

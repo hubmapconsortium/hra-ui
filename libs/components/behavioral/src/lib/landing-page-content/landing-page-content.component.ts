@@ -9,15 +9,14 @@ import {
   Renderer2,
   ViewChildren,
 } from '@angular/core';
-import { injectDestroy$, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
-import { ResourceRegistrySelectors as RRS } from '@hra-ui/cdk/state';
+import { injectDestroy$, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { BaseHrefSelectors, ResourceRegistrySelectors as RRS } from '@hra-ui/cdk/state';
 import {
   LandingPageInDepthComponent,
   LandingPageIntroComponent,
   MetricItem,
   MetricsComponent,
 } from '@hra-ui/components/molecules';
-import { FTU_DATA_IMPL_ENDPOINTS } from '@hra-ui/services';
 import { LinkIds, ResourceIds as RIds, ResourceTypes as RTypes } from '@hra-ui/state';
 
 /** Component for LandingPageContent Behavior */
@@ -30,13 +29,12 @@ import { LinkIds, ResourceIds as RIds, ResourceTypes as RTypes } from '@hra-ui/s
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingPageContentComponent implements AfterViewInit {
-  /** Endpoints injector */
-  readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS);
-
   /** array of element refs for intersectables */
   @ViewChildren('intersectable', { read: ElementRef })
   readonly intersectableEls!: QueryList<ElementRef>;
 
+  /** Base href */
+  readonly baseHref = selectSnapshot(BaseHrefSelectors.baseHref);
   /** select snapshot for Landing Page title */
   readonly landingPageIntroTitle = selectQuerySnapshot(RRS.anyText, RIds.LandingPageTitle);
   /** select snapshot for landing page intro description */

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, InjectionToken } from '@angular/core';
 import { createLinkId } from '@hra-ui/cdk/state';
-import { firstValueFrom, from, map, Observable } from 'rxjs';
+import { firstValueFrom, from, map, Observable, switchMap, take, withLatestFrom } from 'rxjs';
 import { z } from 'zod';
 
 import { IRI, Iri, Url } from '../shared/common.model';
@@ -26,7 +26,7 @@ export interface FtuDataImplEndpoints {
   baseHref: Url;
 }
 /** Constant  to read the endpoints */
-export const FTU_DATA_IMPL_ENDPOINTS = new InjectionToken<FtuDataImplEndpoints>('Endpoints');
+export const FTU_DATA_IMPL_ENDPOINTS = new InjectionToken<Observable<FtuDataImplEndpoints>>('Endpoints');
 
 /** Input to different file formats supported */
 export const FTU_DATA_IMPL_FILE_FORMAT_MAPPING = new InjectionToken<Record<string, string>>('Mapping of file formats', {
@@ -164,7 +164,7 @@ export class FtuDataImplService extends FtuDataService {
   @returns An Observable that emits the tissue Tree data.
   */
   override getTissueLibrary(): Observable<TissueLibrary> {
-    return this.fetchData(undefined, this.endpoints.illustrations, ILLUSTRATIONS).pipe(
+    return this.fetchData(undefined, 'illustrations', ILLUSTRATIONS).pipe(
       map((data) => this.constructTissueLibrary(data['@graph']))
     );
   }
@@ -175,7 +175,12 @@ export class FtuDataImplService extends FtuDataService {
   @returns An Observable that emits the mock URL.
   */
   override getIllustrationUrl(iri: Iri): Observable<Url | string> {
-    return this.getDataFileReferences(iri).pipe(map((data) => this.findIllustrationUrl(data)));
+    return this.getDataFileReferences(iri)
+      .pipe(map((data) => this.findIllustrationUrl(data)))
+      .pipe(
+        withLatestFrom(this.endpoints),
+        map(([url, { baseHref }]) => baseHref + url)
+      );
   }
 
   /**
@@ -184,7 +189,7 @@ export class FtuDataImplService extends FtuDataService {
   @returns An Observable that emits an IllustrationMappingItem array.
   */
   override getIllustrationMapping(iri: Iri): Observable<IllustrationMappingItem[]> {
-    return this.fetchData(iri, this.endpoints.illustrations, ILLUSTRATIONS).pipe(
+    return this.fetchData(iri, 'illustrations', ILLUSTRATIONS).pipe(
       map((data) => this.findGraphItem(data, iri).mapping),
       map((data) => (data ? this.toIllustrationMapping(data) : []))
     );
@@ -196,7 +201,7 @@ export class FtuDataImplService extends FtuDataService {
   @returns An Observable that emits an CellSummary array.
   */
   override getCellSummaries(iri: Iri): Observable<CellSummary[]> {
-    return this.fetchData(iri, this.endpoints.summaries, CELL_SUMMARIES).pipe(
+    return this.fetchData(iri, 'summaries', CELL_SUMMARIES).pipe(
       map((data) => this.findCellSummaries(data, iri)),
       map((data) => (data ? this.constructCellSummaries(data) : []))
     );
@@ -208,7 +213,7 @@ export class FtuDataImplService extends FtuDataService {
   @returns An Observable that emits an DataFileReference array.
   */
   override getDataFileReferences(iri: Iri): Observable<DataFileReference[]> {
-    return this.fetchData(iri, this.endpoints.illustrations, ILLUSTRATIONS).pipe(
+    return this.fetchData(iri, 'illustrations', ILLUSTRATIONS).pipe(
       map((data) => this.findGraphItem(data, iri).illustration_files),
       map((data) => (data ? this.toDataFileReferences(data) : []))
     );
@@ -220,7 +225,7 @@ export class FtuDataImplService extends FtuDataService {
   @returns An Observable that emits an empty array.
   */
   override getSourceReferences(iri: Iri): Observable<SourceReference[]> {
-    return this.fetchData(iri, this.endpoints.datasets, DATASETS).pipe(
+    return this.fetchData(iri, 'datasets', DATASETS).pipe(
       map((data) => this.findGraphItem(data, iri).data_sources),
       map((data) => (data ? this.toSourceReferences(data) : []))
     );
@@ -230,22 +235,34 @@ export class FtuDataImplService extends FtuDataService {
    * Fetchs data after reading the file and parses with the requested schema
    * @template T : Schema to be formated
    * @param iri : Tissue iri
-   * @param url : File Url
+   * @param endpoint : Endpoint name
    * @param schema :  Format needed to be extracted
    * @returns data
    */
-  private fetchData<T extends z.ZodTypeAny>(iri: Iri | undefined, url: Url, schema: T): Observable<z.infer<T>> {
-    const { http, cachedIri, cache } = this;
-    if (iri !== undefined && iri !== cachedIri) {
-      this.cachedIri = iri;
-      this.cache = new Map();
-    }
-    if (!cache.has(url)) {
-      const opts = { params: { id: iri ?? '' }, responseType: 'json' as const };
-      const resp = http.get(url, opts).pipe(map((data) => schema.parse(data)));
-      cache.set(url, firstValueFrom(resp));
-    }
-    return from(cache.get(url) as Promise<z.infer<T>>);
+  private fetchData<T extends z.ZodTypeAny>(
+    iri: Iri | undefined,
+    endpoint: keyof FtuDataImplEndpoints,
+    schema: T
+  ): Observable<z.infer<T>> {
+    return this.endpoints.pipe(
+      map((endpoints) => endpoints[endpoint]),
+      switchMap((url) => {
+        const { http, cachedIri, cache } = this;
+        if (iri !== undefined && iri !== cachedIri) {
+          this.cachedIri = iri;
+          this.cache = new Map();
+        }
+        if (!cache.has(url)) {
+          const opts = { params: { id: iri ?? '' }, responseType: 'json' as const };
+          const resp = http.get(url, opts).pipe(map((data) => schema.parse(data)));
+          console.log(url);
+          console.log(firstValueFrom(resp));
+          cache.set(url, firstValueFrom(resp));
+        }
+        return from(cache.get(url) as Promise<z.infer<T>>);
+      }),
+      take(1)
+    );
   }
 
   /**
@@ -261,7 +278,6 @@ export class FtuDataImplService extends FtuDataService {
       console.error(`Iri not found in data: ${iri}`);
       return {} as T;
     }
-
     return item;
   }
 

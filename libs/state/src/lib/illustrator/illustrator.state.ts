@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { FTU_DATA_IMPL_ENDPOINTS, FtuDataService, IllustrationMappingItem, Url } from '@hra-ui/services';
+import { FtuDataService, IllustrationMappingItem, Url } from '@hra-ui/services';
 import { Action, State, StateContext } from '@ngxs/store';
 import { forkJoin, Observable, tap } from 'rxjs';
 
@@ -41,11 +41,6 @@ export class IllustratorState {
   private readonly dataService = inject(FtuDataService);
 
   /**
-   * Endpoints injector
-   */
-  readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS);
-
-  /**
    * Loads the current state with the url and mapping.
    * The url and mapping are forked together using forkJoin.
    * It also cancels any uncompleted actions to the state.
@@ -59,7 +54,6 @@ export class IllustratorState {
       tap((result) =>
         patchState({
           ...result,
-          url: this.endpoints.baseHref + result.url,
           selectedOnHover: undefined,
           selectedOnClick: undefined,
         })

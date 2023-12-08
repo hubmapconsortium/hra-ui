@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   inject,
   Injector,
   Input,
@@ -11,7 +12,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { dispatch, dispatch$, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
-import { createLinkId, LinkRegistryActions, ResourceRegistryActions } from '@hra-ui/cdk/state';
+import { BaseHrefActions, createLinkId, LinkRegistryActions, ResourceRegistryActions } from '@hra-ui/cdk/state';
 import {
   BiomarkerDetailsWcComponent,
   FooterBehaviorComponent,
@@ -77,6 +78,7 @@ export class AppComponent implements OnInit, OnChanges {
 
   @Output() readonly nodeClicked = select$(IllustratorSelectors.selectedOnClicked);
 
+  private readonly setBaseHref = dispatch(BaseHrefActions.Set);
   private readonly loadLinks = dispatch(LinkRegistryActions.LoadFromYaml);
   private readonly loadResources = dispatch(ResourceRegistryActions.LoadFromYaml);
   private readonly navigateToOrgan = dispatch(LinkRegistryActions.Navigate);
@@ -87,16 +89,17 @@ export class AppComponent implements OnInit, OnChanges {
   private readonly reset = dispatch$(ActiveFtuActions.Reset);
 
   private readonly injector = inject(Injector);
-  private endpoints?: FtuDataImplEndpoints;
+  private readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS) as EventEmitter<FtuDataImplEndpoints>;
 
   ngOnInit() {
-    this.endpoints = this.injector.get(FTU_DATA_IMPL_ENDPOINTS);
+    this.setBaseHref(this.baseHref);
     this.loadLinks(this.setUrl(this.linksYamlUrl));
     this.loadResources(this.setUrl(this.resourcesYamlUrl));
-    this.endpoints.illustrations = this.setUrl(this.illustrationsUrl);
-    this.endpoints.datasets = this.setUrl(this.datasetUrl);
-    this.endpoints.summaries = this.setUrl(this.summariesUrl);
-    this.endpoints.baseHref = this.baseHref as Iri;
+    this.endpoints.emit({
+      illustrations: this.setUrl(this.illustrationsUrl),
+      datasets: this.setUrl(this.datasetUrl),
+      summaries: this.setUrl(this.summariesUrl),
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
