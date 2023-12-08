@@ -576,19 +576,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-nephron.svg",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-nephron.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-nephron.png",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-nephron.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-nephron.ai",
+          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-nephron.ai",
           "file_format": "application/pdf"
         }
       ],
