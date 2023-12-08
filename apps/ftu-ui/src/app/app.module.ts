@@ -1,5 +1,5 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, DoBootstrap, EventEmitter, Injector, NgModule } from '@angular/core';
+import { APP_INITIALIZER, DoBootstrap, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,6 +12,8 @@ import { ThemingModule } from '@hra-ui/theming';
 import { NgxsModule } from '@ngxs/store';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { MarkdownModule } from 'ngx-markdown';
+import { ReplaySubject } from 'rxjs';
+
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -55,7 +57,7 @@ import { initFactory } from './app.init';
     },
     {
       provide: FTU_DATA_IMPL_ENDPOINTS,
-      useValue: new EventEmitter(),
+      useValue: new ReplaySubject(1),
     },
   ],
 })

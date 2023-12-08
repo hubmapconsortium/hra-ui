@@ -1,7 +1,6 @@
 import {
   AfterContentInit,
   Component,
-  EventEmitter,
   HostBinding,
   HostListener,
   inject,
@@ -23,7 +22,7 @@ import {
   StorageSelectors,
 } from '@hra-ui/cdk/state';
 import { ScreenNoticeBehaviorComponent } from '@hra-ui/components/behavioral';
-import { FTU_DATA_IMPL_ENDPOINTS, FtuDataImplEndpoints, Url } from '@hra-ui/services';
+import { FTU_DATA_IMPL_ENDPOINTS, FtuDataImplEndpoints, setUrl, Url } from '@hra-ui/services';
 import {
   ActiveFtuActions,
   ActiveFtuSelectors,
@@ -32,7 +31,7 @@ import {
   TissueLibraryActions,
   TissueLibrarySelectors,
 } from '@hra-ui/state';
-import { tap } from 'rxjs';
+import { ReplaySubject, tap } from 'rxjs';
 
 @Component({
   selector: 'ftu-ui-root',
@@ -87,7 +86,7 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   private readonly dialog = inject(MatDialog);
 
   private ref = inject(MatDialogRef<ScreenNoticeBehaviorComponent>);
-  private readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS) as EventEmitter<FtuDataImplEndpoints>;
+  private readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS) as ReplaySubject<FtuDataImplEndpoints>;
 
   constructor() {
     inject(Router).initialNavigation();
@@ -127,13 +126,14 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   }
 
   ngOnInit() {
+    const { baseHref } = this;
     this.setBaseHref(this.baseHref);
-    this.loadLinks(this.setUrl(this.linksYamlUrl));
-    this.loadResources(this.setUrl(this.resourcesYamlUrl));
-    this.endpoints.emit({
-      illustrations: this.setUrl(this.illustrationsUrl),
-      datasets: this.setUrl(this.datasetUrl),
-      summaries: this.setUrl(this.summariesUrl),
+    this.loadLinks(setUrl(this.linksYamlUrl, baseHref));
+    this.loadResources(setUrl(this.resourcesYamlUrl, baseHref));
+    this.endpoints.next({
+      illustrations: setUrl(this.illustrationsUrl, baseHref),
+      datasets: setUrl(this.datasetUrl, baseHref),
+      summaries: setUrl(this.summariesUrl, baseHref),
       baseHref: this.baseHref as Url,
     });
   }
@@ -147,17 +147,6 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
         })
       )
       .subscribe();
-  }
-
-  private setUrl(url: string): Url {
-    const { baseHref } = this;
-    if (url.startsWith('http')) {
-      return url as Url;
-    } else if (baseHref !== '' && !baseHref.endsWith('/')) {
-      return `${baseHref}/${url}` as Url;
-    } else {
-      return `${baseHref}${url}` as Url;
-    }
   }
 
   showDefaultIri() {

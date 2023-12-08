@@ -11,3 +11,13 @@ export type Url = z.infer<typeof URL>;
 
 /** Same as an Url */
 export type Iri = z.infer<typeof IRI>;
+
+export function setUrl(url: string, baseHref: string): Url {
+  if (url.startsWith('http')) {
+    return url as Url;
+  } else if (baseHref !== '' && !baseHref.endsWith('/')) {
+    return `${baseHref}/${url}` as Url;
+  } else {
+    return `${baseHref}${url}` as Url;
+  }
+}

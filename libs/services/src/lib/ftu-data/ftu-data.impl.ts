@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, InjectionToken } from '@angular/core';
 import { createLinkId } from '@hra-ui/cdk/state';
-import { firstValueFrom, from, map, Observable, switchMap, take, withLatestFrom } from 'rxjs';
+import { firstValueFrom, from, map, Observable, shareReplay, switchMap, take, withLatestFrom } from 'rxjs';
 import { z } from 'zod';
 
-import { IRI, Iri, Url } from '../shared/common.model';
+import { IRI, Iri, setUrl, Url } from '../shared/common.model';
 import {
   CellSummary,
   DataFileReference,
@@ -179,7 +179,7 @@ export class FtuDataImplService extends FtuDataService {
       .pipe(map((data) => this.findIllustrationUrl(data)))
       .pipe(
         withLatestFrom(this.endpoints),
-        map(([url, { baseHref }]) => baseHref + url)
+        map(([url, { baseHref }]) => setUrl(url, baseHref))
       );
   }
 
@@ -259,7 +259,8 @@ export class FtuDataImplService extends FtuDataService {
         }
         return from(cache.get(url) as Promise<z.infer<T>>);
       }),
-      take(1)
+      take(1),
+      shareReplay(1)
     );
   }
 
