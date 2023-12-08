@@ -32,19 +32,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-ascending-thin-loop-of-henle.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-ascending-thin-loop-of-henle.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-ascending-thin-loop-of-henle.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-ascending-thin-loop-of-henle.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -119,26 +119,26 @@
       "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct",
       "@type": "FtuIllustration",
       "representation_of": "UBERON:0004203",
-      "label": "cortical collecting duct",
+      "label": "Cortical Collecting Duct",
       "organ_id": "UBERON:0002113",
       "organ_label": "Kidney",
       "illustration_files": [
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-cortical-collecting-duct.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-cortical-collecting-duct.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-cortical-collecting-duct.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-cortical-collecting-duct.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -316,19 +316,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-descending-thin-loop-of-henle#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-descending-thin-loop-of-henle.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-descending-thin-loop-of-henle#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-descending-thin-loop-of-henle.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-descending-thin-loop-of-henle#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-descending-thin-loop-of-henle.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-descending-thin-loop-of-henle.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -394,19 +394,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-inner-medullary-collecting-duct#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-inner-medullary-collecting-duct.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-inner-medullary-collecting-duct#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-inner-medullary-collecting-duct.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-inner-medullary-collecting-duct#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-inner-medullary-collecting-duct.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-inner-medullary-collecting-duct.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -576,19 +576,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-nephron.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-nephron.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-nephron.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-nephron.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-nephron.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-nephron.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -1646,19 +1646,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-outer-medullary-collecting-duct#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-outer-medullary-collecting-duct.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-outer-medullary-collecting-duct#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-outer-medullary-collecting-duct.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-outer-medullary-collecting-duct#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-outer-medullary-collecting-duct.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-outer-medullary-collecting-duct.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -1836,19 +1836,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-renal-corpuscle.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-renal-corpuscle.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-renal-corpuscle.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-renal-corpuscle.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-renal-corpuscle.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-renal-corpuscle.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -2882,19 +2882,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-thick-ascending-loop-of-henle#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-thick-ascending-loop-of-henle.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-thick-ascending-loop-of-henle#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-thick-ascending-loop-of-henle.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-thick-ascending-loop-of-henle#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-thick-ascending-loop-of-henle.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -2992,19 +2992,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/large-intestine-crypt-lieberkuhn#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-large-intestine-crypt-lieberkuhn.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/large-intestine-crypt-lieberkuhn#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-large-intestine-crypt-lieberkuhn.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/large-intestine-crypt-lieberkuhn#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-large-intestine-crypt-lieberkuhn.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -4654,19 +4654,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-liver-liver-lobule.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-liver-liver-lobule.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-liver-liver-lobule.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-liver-liver-lobule.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-liver-liver-lobule.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-liver-liver-lobule.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -5900,19 +5900,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-lung-bronchial-submucosal-gland.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-lung-bronchial-submucosal-gland.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-lung-bronchial-submucosal-gland.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-lung-bronchial-submucosal-gland.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-lung-bronchial-submucosal-gland.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-lung-bronchial-submucosal-gland.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -7186,19 +7186,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-lung-pulmonary-alveolus.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-lung-pulmonary-alveolus.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-lung-pulmonary-alveolus.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-lung-pulmonary-alveolus.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-lung-pulmonary-alveolus.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-lung-pulmonary-alveolus.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -7736,19 +7736,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/pancreas-intercalated-duct#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-pancreas-intercalated-duct.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-pancreas-intercalated-duct.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/pancreas-intercalated-duct#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-pancreas-intercalated-duct.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-pancreas-intercalated-duct.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/pancreas-intercalated-duct#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-pancreas-intercalated-duct.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-pancreas-intercalated-duct.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -7998,19 +7998,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/pancreas-islets-langerhans#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-pancreas-islets-langerhans.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-pancreas-islets-langerhans.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/pancreas-islets-langerhans#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-pancreas-islets-langerhans.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-pancreas-islets-langerhans.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/pancreas-islets-langerhans#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-pancreas-islets-langerhans.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-pancreas-islets-langerhans.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -9788,19 +9788,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/pancreas-pancreatic-acinus#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-pancreas-pancreatic-acinus.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-pancreas-pancreatic-acinus.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/pancreas-pancreatic-acinus#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-pancreas-pancreatic-acinus.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-pancreas-pancreatic-acinus.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/pancreas-pancreatic-acinus#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-pancreas-pancreatic-acinus.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-pancreas-pancreatic-acinus.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -10042,19 +10042,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-prostate-prostate-glandular-acinus.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-prostate-prostate-glandular-acinus.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-prostate-prostate-glandular-acinus.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -14080,19 +14080,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-dermal-papilla#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-skin-dermal-papilla.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-skin-dermal-papilla.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-dermal-papilla#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-skin-dermal-papilla.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-skin-dermal-papilla.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-dermal-papilla#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-skin-dermal-papilla.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-skin-dermal-papilla.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -14415,7 +14415,7 @@
           "svg_id": "Blood_Vessel_1",
           "svg_group_id": "Blood_Vessel",
           "label": "endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000115 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000115"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-dermal-papilla#Blood_Vessel_2",
@@ -14423,7 +14423,7 @@
           "svg_id": "Blood_Vessel_2",
           "svg_group_id": "Blood_Vessel",
           "label": "endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000115 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000115"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-dermal-papilla#Blood_Vessel_3",
@@ -14431,7 +14431,7 @@
           "svg_id": "Blood_Vessel_3",
           "svg_group_id": "Blood_Vessel",
           "label": "endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000115 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000115"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-dermal-papilla#Blood_Vessel_4",
@@ -14439,7 +14439,7 @@
           "svg_id": "Blood_Vessel_4",
           "svg_group_id": "Blood_Vessel",
           "label": "endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000115 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000115"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-dermal-papilla#Blood_Vessel_5",
@@ -14447,7 +14447,7 @@
           "svg_id": "Blood_Vessel_5",
           "svg_group_id": "Blood_Vessel",
           "label": "endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000115 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000115"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-dermal-papilla#Blood_Vessel_6",
@@ -14455,7 +14455,7 @@
           "svg_id": "Blood_Vessel_6",
           "svg_group_id": "Blood_Vessel",
           "label": "endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000115 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000115"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-dermal-papilla#Blood_Vessel_7",
@@ -14463,7 +14463,7 @@
           "svg_id": "Blood_Vessel_7",
           "svg_group_id": "Blood_Vessel",
           "label": "endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0000115 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0000115"
         }
       ]
     },
@@ -14478,19 +14478,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-skin-epidermal-ridge.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-skin-epidermal-ridge.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-skin-epidermal-ridge.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-skin-epidermal-ridge.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-skin-epidermal-ridge.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-skin-epidermal-ridge.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -15692,8 +15692,20 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/small-intestine-villus#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-small-intestine-villus.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-small-intestine-villus.svg",
           "file_format": "image/svg+xml"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/small-intestine-villus#png_file",
+          "@type": "FtuIllustrationFile",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-small-intestine-villus.png",
+          "file_format": "image/png"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/small-intestine-villus#ai_file",
+          "@type": "FtuIllustrationFile",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-small-intestine-villus.ai",
+          "file_format": "application/pdf"
         }
       ],
       "mapping": [
@@ -21014,19 +21026,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/spleen-red-pulp#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-spleen-red-pulp.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-spleen-red-pulp.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/spleen-red-pulp#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-spleen-red-pulp.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-spleen-red-pulp.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/spleen-red-pulp#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-spleen-red-pulp.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-spleen-red-pulp.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -21748,19 +21760,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/spleen-white-pulp#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-spleen-white-pulp.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-spleen-white-pulp.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/spleen-white-pulp#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-spleen-white-pulp.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-spleen-white-pulp.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/spleen-white-pulp#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-spleen-white-pulp.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-spleen-white-pulp.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -26242,19 +26254,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-thymus-thymus-lobule.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-thymus-thymus-lobule.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-thymus-thymus-lobule.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-thymus-thymus-lobule.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-thymus-thymus-lobule.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-thymus-thymus-lobule.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -29921,7 +29933,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_1",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_2",
@@ -29929,7 +29941,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_2",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_3",
@@ -29937,7 +29949,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_3",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_4",
@@ -29945,7 +29957,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_4",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_5",
@@ -29953,7 +29965,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_5",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_6",
@@ -29961,7 +29973,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_6",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_7",
@@ -29969,7 +29981,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_7",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_8",
@@ -29977,7 +29989,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_8",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_9",
@@ -29985,7 +29997,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_9",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_10",
@@ -29993,7 +30005,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_10",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_11",
@@ -30001,7 +30013,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_11",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_12",
@@ -30009,7 +30021,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_12",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_13",
@@ -30017,7 +30029,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_13",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_14",
@@ -30025,7 +30037,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_14",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_15",
@@ -30033,7 +30045,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_15",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_16",
@@ -30041,7 +30053,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_16",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_17",
@@ -30049,7 +30061,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_17",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_18",
@@ -30057,7 +30069,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_18",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_19",
@@ -30065,7 +30077,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_19",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_20",
@@ -30073,7 +30085,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_20",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_21",
@@ -30081,7 +30093,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_21",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_22",
@@ -30089,7 +30101,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_22",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_23",
@@ -30097,7 +30109,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_23",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_24",
@@ -30105,7 +30117,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_24",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_25",
@@ -30113,7 +30125,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_25",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_26",
@@ -30121,7 +30133,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_26",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_27",
@@ -30129,7 +30141,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_27",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_28",
@@ -30137,7 +30149,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_28",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_29",
@@ -30145,7 +30157,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_29",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_30",
@@ -30153,7 +30165,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_30",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_31",
@@ -30161,7 +30173,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_31",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_32",
@@ -30169,7 +30181,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_32",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_33",
@@ -30177,7 +30189,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_33",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_34",
@@ -30185,7 +30197,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_34",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_35",
@@ -30193,7 +30205,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_35",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_36",
@@ -30201,7 +30213,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_36",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_37",
@@ -30209,7 +30221,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_37",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_38",
@@ -30217,7 +30229,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_38",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_39",
@@ -30225,7 +30237,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_39",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_40",
@@ -30233,7 +30245,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_40",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_41",
@@ -30241,7 +30253,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_41",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_42",
@@ -30249,7 +30261,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_42",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_43",
@@ -30257,7 +30269,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_43",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_44",
@@ -30265,7 +30277,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_44",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Corticomedullary_Thymic_Epithelial_Cell_45",
@@ -30273,7 +30285,7 @@
           "svg_id": "Corticomedullary_Thymic_Epithelial_Cell_45",
           "svg_group_id": "Corticomedullary_Thymic_Epithelial_Cell",
           "label": "corticomedullary thymic epithelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070 "
+          "representation_of": "http://purl.obolibrary.org/obo/CL_0009070"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule#Dendritic_Cell_1",
