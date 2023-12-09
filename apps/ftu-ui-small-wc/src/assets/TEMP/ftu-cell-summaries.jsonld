@@ -33,7 +33,7 @@
       "summary": [
         {
           "@type": "CellSummaryRow",
-          "cell_id": "http://purl.obolibrary.org/obo/CL_0000236",
+          "cell_id": "http://purl.obolibrary.org/obo/CL_4030009",
           "cell_label": "epithelial cell of proximal tubule",
           "genes": [
             {
@@ -4496,8 +4496,8 @@
         },
         {
           "@type": "CellSummaryRow",
-          "cell_id": "http://purl.obolibrary.org/obo/CL_1000892",
-          "cell_label": "kidney capillary endothelial cell",
+          "cell_id": "http://purl.obolibrary.org/obo/CL_1001005",
+          "cell_label": "glomerular capillary endothelial cell",
           "genes": [
             {
               "@type": "GeneExpression",
@@ -5261,8 +5261,8 @@
         },
         {
           "@type": "CellSummaryRow",
-          "cell_id": "http://purl.obolibrary.org/obo/CL_0000650",
-          "cell_label": "mesangial cell",
+          "cell_id": "http://purl.obolibrary.org/obo/CL_1000742",
+          "cell_label": "glomerular mesangial cell",
           "genes": [
             {
               "@type": "GeneExpression",
@@ -6750,8 +6750,8 @@
       "summary": [
         {
           "@type": "CellSummaryRow",
-          "cell_id": "http://purl.obolibrary.org/obo/CL_1000892",
-          "cell_label": "kidney capillary endothelial cell",
+          "cell_id": "http://purl.obolibrary.org/obo/CL_1001033",
+          "cell_label": "peritubular capillary endothelial cell",
           "genes": [
             {
               "@type": "GeneExpression",
@@ -7515,8 +7515,8 @@
         },
         {
           "@type": "CellSummaryRow",
-          "cell_id": "http://purl.obolibrary.org/obo/CL_0005011",
-          "cell_label": "Cortical Collecting Duct Intercalated Cell Type A",
+          "cell_id": "http://purl.obolibrary.org/obo/CL_4030015",
+          "cell_label": "kidney collecting duct alpha-intercalated cell",
           "genes": [
             {
               "@type": "GeneExpression",
@@ -8252,8 +8252,8 @@
         },
         {
           "@type": "CellSummaryRow",
-          "cell_id": "http://purl.obolibrary.org/obo/CL_0002201",
-          "cell_label": "Cortical Collecting Duct Intercalated Cell Type B",
+          "cell_id": "http://purl.obolibrary.org/obo/CL_4030005",
+          "cell_label": "kidney collecting duct beta-intercalated cell",
           "genes": [
             {
               "@type": "GeneExpression",
@@ -9003,8 +9003,8 @@
         },
         {
           "@type": "CellSummaryRow",
-          "cell_id": "http://purl.obolibrary.org/obo/CL_0005009",
-          "cell_label": "Cortical Collecting Duct Principal Cell",
+          "cell_id": "http://purl.obolibrary.org/obo/CL_1000714",
+          "cell_label": "kidney cortex collecting duct principal cell",
           "genes": [
             {
               "@type": "GeneExpression",
@@ -9762,8 +9762,8 @@
       "summary": [
         {
           "@type": "CellSummaryRow",
-          "cell_id": "http://purl.obolibrary.org/obo/CL_1000892",
-          "cell_label": "kidney capillary endothelial cell",
+          "cell_id": "http://purl.obolibrary.org/obo/CL_1001131",
+          "cell_label": "vasa recta ascending limb cell",
           "genes": [
             {
               "@type": "GeneExpression",
@@ -10527,8 +10527,8 @@
         },
         {
           "@type": "CellSummaryRow",
-          "cell_id": "http://purl.obolibrary.org/obo/CL_1001106",
-          "cell_label": "kidney loop of Henle thick ascending limb epithelial cell",
+          "cell_id": "http://purl.obolibrary.org/obo/CL_1001107",
+          "cell_label": "kidney loop of Henle thin ascending limb epithelial cell",
           "genes": [
             {
               "@type": "GeneExpression",
@@ -12002,8 +12002,8 @@
         },
         {
           "@type": "CellSummaryRow",
-          "cell_id": "http://purl.obolibrary.org/obo/CL_1000488",
-          "cell_label": "cholangiocyte",
+          "cell_id": "http://purl.obolibrary.org/obo/CL_0000075",
+          "cell_label": "columnar/cuboidal epithelial cell",
           "genes": [
             {
               "@type": "GeneExpression",
@@ -13491,7 +13491,7 @@
       "summary": [
         {
           "@type": "CellSummaryRow",
-          "cell_id": "http://purl.obolibrary.org/obo/CL_0002553",
+          "cell_id": "http://purl.obolibrary.org/obo/CL_4028004",
           "cell_label": "alveolar type 1 fibroblast",
           "genes": [
             {
@@ -14944,7 +14944,7 @@
         },
         {
           "@type": "CellSummaryRow",
-          "cell_id": "http://purl.obolibrary.org/obo/CL_1001567",
+          "cell_id": "http://purl.obolibrary.org/obo/CL_4028002",
           "cell_label": "alveolar capillary type 1 endothelial cell",
           "genes": [
             {
@@ -16405,8 +16405,8 @@
       "summary": [
         {
           "@type": "CellSummaryRow",
-          "cell_id": "http://purl.obolibrary.org/obo/CL_1000271",
-          "cell_label": "Ciliated Cell Of Submucosal Gland",
+          "cell_id": "http://purl.obolibrary.org/obo/CL_4033055",
+          "cell_label": "airway submucosal gland duct ciliated cell",
           "genes": [
             {
               "@type": "GeneExpression",

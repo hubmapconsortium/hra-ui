@@ -9,7 +9,7 @@ import {
   OnChanges,
   Output,
 } from '@angular/core';
-import { IllustrationMappingItem } from '@hra-ui/services';
+import { IllustrationMappingItem, setUrl } from '@hra-ui/services';
 import { Observable, tap } from 'rxjs';
 
 import { CellEntry, IllustrationData, JsonLd } from './models';
@@ -56,6 +56,9 @@ export class AppWebComponent implements OnChanges {
    * Sets illustration url and mapping data on input changes
    */
   ngOnChanges() {
+    if (this.lookupSrc === '') {
+      return;
+    }
     if (typeof this.lookupSrc === 'string') {
       this.getData(this.illustrationSrc, this.lookupSrc).subscribe();
     } else {
@@ -104,8 +107,7 @@ export class AppWebComponent implements OnChanges {
         (file) => file['file_format'] === 'image/svg+xml'
       );
       if (illustrationFile) {
-        this.url = this.baseHref + illustrationFile.file;
-        console.warn(this.url);
+        this.url = setUrl(illustrationFile.file, this.baseHref);
         this.mapping = this.cellEntryToNodeEntry(illustrationSrc.mapping);
         this.cdr.markForCheck();
       }

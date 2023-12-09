@@ -33,7 +33,7 @@
           "@id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
           "@type": "Dataset",
           "label": "snRNA-seq of Three Healthy Human Kidney Tissue",
-          "link": "https://doi.org/10.1038/s41598-021-98806-y",
+          "link": "https://doi.org/10.1038/s41467-021-22368-w",
           "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
         }
       ]
@@ -46,7 +46,7 @@
           "@id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
           "@type": "Dataset",
           "label": "snRNA-seq of Three Healthy Human Kidney Tissue",
-          "link": "https://doi.org/10.1038/s41598-021-98806-y",
+          "link": "https://doi.org/10.1038/s41467-021-22368-w",
           "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
         }
       ]
@@ -59,33 +59,7 @@
           "@id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
           "@type": "Dataset",
           "label": "snRNA-seq of Three Healthy Human Kidney Tissue",
-          "link": "https://doi.org/10.1038/s41598-021-98806-y",
-          "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
-        }
-      ]
-    },
-    {
-      "@id": "https://purl.humanatlas.io/2d-ftu/kidney-inner-medullary-collecting-duct",
-      "@type": "FtuIllustration",
-      "data_sources": [
-        {
-          "@id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
-          "@type": "Dataset",
-          "label": "snRNA-seq of Three Healthy Human Kidney Tissue",
-          "link": "https://doi.org/10.1038/s41598-021-98806-y",
-          "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
-        }
-      ]
-    },
-    {
-      "@id": "https://purl.humanatlas.io/2d-ftu/kidney-outer-medullary-collecting-duct",
-      "@type": "FtuIllustration",
-      "data_sources": [
-        {
-          "@id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
-          "@type": "Dataset",
-          "label": "snRNA-seq of Three Healthy Human Kidney Tissue",
-          "link": "https://doi.org/10.1038/s41598-021-98806-y",
+          "link": "https://doi.org/10.1038/s41467-021-22368-w",
           "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
         }
       ]
@@ -98,33 +72,7 @@
           "@id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
           "@type": "Dataset",
           "label": "snRNA-seq of Three Healthy Human Kidney Tissue",
-          "link": "https://doi.org/10.1038/s41598-021-98806-y",
-          "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
-        }
-      ]
-    },
-    {
-      "@id": "https://purl.humanatlas.io/2d-ftu/kidney-descending-thin-loop-of-henle",
-      "@type": "FtuIllustration",
-      "data_sources": [
-        {
-          "@id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
-          "@type": "Dataset",
-          "label": "snRNA-seq of Three Healthy Human Kidney Tissue",
-          "link": "https://doi.org/10.1038/s41598-021-98806-y",
-          "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
-        }
-      ]
-    },
-    {
-      "@id": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle",
-      "@type": "FtuIllustration",
-      "data_sources": [
-        {
-          "@id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
-          "@type": "Dataset",
-          "label": "snRNA-seq of Three Healthy Human Kidney Tissue",
-          "link": "https://doi.org/10.1038/s41598-021-98806-y",
+          "link": "https://doi.org/10.1038/s41467-021-22368-w",
           "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
         }
       ]

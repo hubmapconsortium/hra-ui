@@ -1,9 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
   inject,
-  Injector,
   Input,
   OnChanges,
   OnInit,
@@ -12,7 +10,13 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { dispatch, dispatch$, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
-import { BaseHrefActions, createLinkId, LinkRegistryActions, ResourceRegistryActions } from '@hra-ui/cdk/state';
+import {
+  BaseHrefActions,
+  createLinkId,
+  LinkRegistryActions,
+  LinkType,
+  ResourceRegistryActions,
+} from '@hra-ui/cdk/state';
 import {
   BiomarkerDetailsWcComponent,
   FooterBehaviorComponent,
@@ -21,17 +25,18 @@ import {
   TissueLibraryBehaviorComponent,
 } from '@hra-ui/components/behavioral';
 import { FullscreenContainerComponent, FullscreenContentComponent } from '@hra-ui/components/molecules';
-import { FTU_DATA_IMPL_ENDPOINTS, FtuDataImplEndpoints, Iri } from '@hra-ui/services';
+import { FTU_DATA_IMPL_ENDPOINTS, FtuDataImplEndpoints, setUrl, Url } from '@hra-ui/services';
 import {
   ActiveFtuActions,
   ActiveFtuSelectors,
   IllustratorSelectors,
+  LinkIds,
   ScreenModeAction,
   ScreenModeSelectors,
   TissueLibraryActions,
   TissueLibrarySelectors,
 } from '@hra-ui/state';
-import { tap } from 'rxjs';
+import { ReplaySubject, tap } from 'rxjs';
 
 @Component({
   selector: 'hra-root',
@@ -80,6 +85,7 @@ export class AppComponent implements OnInit, OnChanges {
 
   private readonly setBaseHref = dispatch(BaseHrefActions.Set);
   private readonly loadLinks = dispatch(LinkRegistryActions.LoadFromYaml);
+  private readonly addMany = dispatch(LinkRegistryActions.AddMany);
   private readonly loadResources = dispatch(ResourceRegistryActions.LoadFromYaml);
   private readonly navigateToOrgan = dispatch(LinkRegistryActions.Navigate);
   private readonly setScreenSmall = dispatch(ScreenModeAction.SetSize);
@@ -88,17 +94,36 @@ export class AppComponent implements OnInit, OnChanges {
 
   private readonly reset = dispatch$(ActiveFtuActions.Reset);
 
-  private readonly injector = inject(Injector);
-  private readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS) as EventEmitter<FtuDataImplEndpoints>;
+  private readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS) as ReplaySubject<FtuDataImplEndpoints>;
 
   ngOnInit() {
+    const { baseHref } = this;
     this.setBaseHref(this.baseHref);
-    this.loadLinks(this.setUrl(this.linksYamlUrl));
-    this.loadResources(this.setUrl(this.resourcesYamlUrl));
-    this.endpoints.emit({
-      illustrations: this.setUrl(this.illustrationsUrl),
-      datasets: this.setUrl(this.datasetUrl),
-      summaries: this.setUrl(this.summariesUrl),
+    // this.loadLinks(setUrl(this.linksYamlUrl, baseHref)); //TODO: Fix this
+    this.addMany({
+      [LinkIds.LandingPage]: {
+        type: LinkType.Internal,
+        commands: ['/'],
+      },
+      [createLinkId('FTU')]: {
+        type: LinkType.Internal,
+        commands: ['ftu/'],
+      },
+      [LinkIds.Portal]: {
+        type: LinkType.External,
+        url: 'https://humanatlas.io/',
+      },
+      [LinkIds.Embed]: {
+        type: LinkType.External,
+        url: 'https://github.com/hubmapconsortium/hra-ui#readme',
+      },
+    });
+    this.loadResources(setUrl(this.resourcesYamlUrl, baseHref));
+    this.endpoints.next({
+      illustrations: setUrl(this.illustrationsUrl, baseHref),
+      datasets: setUrl(this.datasetUrl, baseHref),
+      summaries: setUrl(this.summariesUrl, baseHref),
+      baseHref: this.baseHref as Url,
     });
   }
 
@@ -111,14 +136,6 @@ export class AppComponent implements OnInit, OnChanges {
         })
       )
       .subscribe();
-  }
-
-  private setUrl(url: string): Iri {
-    if (url.slice(0, 4) === 'http') {
-      return url as Iri;
-    } else {
-      return (this.baseHref + url) as Iri;
-    }
   }
 
   showDefaultIri() {

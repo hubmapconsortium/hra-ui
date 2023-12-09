@@ -111,6 +111,9 @@ export class ResourceRegistrySelectors {
    */
   @Selector([ResourceRegistrySelectors.field, BaseHrefSelectors.baseHref])
   static url(getField: FieldQuery, baseHref: string): DataQuery<string> {
-    return (id) => baseHref + getField(id, BuiltinResourceType.Url, 'url', '');
+    return (id) => {
+      const relUrl = getField(id, BuiltinResourceType.Url, 'url', '');
+      return relUrl !== '' ? baseHref + relUrl : '';
+    };
   }
 }

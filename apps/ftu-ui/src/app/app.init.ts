@@ -1,6 +1,6 @@
 import { dispatchAction$ } from '@hra-ui/cdk/injectors';
-import { LinkRegistryActions, LinkType, ResourceRegistryActions } from '@hra-ui/cdk/state';
-import { LinkIds, TissueLibraryActions } from '@hra-ui/state';
+import { LinkRegistryActions, LinkType } from '@hra-ui/cdk/state';
+import { LinkIds } from '@hra-ui/state';
 import { Observable } from 'rxjs';
 
 /**
