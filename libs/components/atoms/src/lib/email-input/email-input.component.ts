@@ -1,5 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -17,9 +25,12 @@ import { map, takeUntil } from 'rxjs';
   styleUrls: ['./email-input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EmailInputComponent {
+export class EmailInputComponent implements OnChanges {
   /** A placeholder for the email input field. This will be disappeared when the email is typed. */
   @Input() placeholder = '';
+
+  /** Default email address */
+  @Input() defaultMail = '';
 
   /** Emits the new email when the input changes or undefined if the email is invalid  */
   @Output() readonly emailChange = new EventEmitter<string | undefined>();
@@ -42,5 +53,12 @@ export class EmailInputComponent {
         map((value) => (control.valid ? value : undefined))
       )
       .subscribe((value) => this.emailChange.emit(value as string | undefined));
+  }
+
+  /** Sets the value to default email if provided */
+  ngOnChanges(changes: SimpleChanges) {
+    if ('defaultMail' in changes) {
+      this.control.setValue(this.defaultMail);
+    }
   }
 }
