@@ -174,6 +174,11 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         fragment: 'release-notes',
       },
       {
+        menuName: 'Human Atlas Stories',
+        route: 'overview-training-outreach',
+        fragment: 'human-atlas-stories',
+      },
+      {
         menuName: 'Previews',
         route: 'overview-training-outreach',
         fragment: 'previews',
