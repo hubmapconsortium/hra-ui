@@ -74,6 +74,21 @@
           route: release-notes/v2.0
           alt: Release notes icon
       id: release-notes
+    - heading: Human Atlas Stories
+      cardData:
+        - icon: assets/images/preview.svg
+          title: What is a Human Reference Atlas?
+          externalLink: https://cns-iu.github.io/hra-scrollytelling/story1.html
+          alt: Human Atlas Stories Icon
+        - icon: assets/images/preview.svg
+          title: Squiggy's Identity Crisis!
+          externalLink: https://cns-iu.github.io/hra-scrollytelling/story2.html
+          alt: Human Atlas Stories Icon
+        - icon: assets/images/preview.svg
+          title: Something's NOT Registering!
+          externalLink: https://cns-iu.github.io/hra-scrollytelling/story3.html
+          alt: Human Atlas Stories Icon
+      id: human-atlas-stories
     - heading: Previews
       cardData:
         - icon: assets/images/preview.svg
