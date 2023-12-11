@@ -65,7 +65,7 @@ export class TableComponent {
 
   /** Returns if column has atleast one number */
   isNumericColumn(column: string): boolean {
-    if (column === 'tableVersion') {
+    if (column === 'table_version') {
       return false;
     }
 

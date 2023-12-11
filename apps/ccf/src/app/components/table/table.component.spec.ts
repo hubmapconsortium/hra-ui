@@ -90,9 +90,9 @@ describe('TableComponent', () => {
   });
 
   describe('isNumericColumn()', () => {
-    it('should return false when the column is labelled as tableVersion', async () => {
+    it('should return false when the column is labelled as table_version', async () => {
       const { instance } = await shallow.render();
-      const testCol = 'tableVersion';
+      const testCol = 'table_version';
       const isNumeric = instance.isNumericColumn(testCol);
       expect(isNumeric).toBe(false);
     });
