@@ -357,7 +357,7 @@ and mapping fields</p>
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { inject, Injectable } from &#x27;@angular/core&#x27;;
-import { FTU_DATA_IMPL_ENDPOINTS, FtuDataService, IllustrationMappingItem, Url } from &#x27;@hra-ui/services&#x27;;
+import { FtuDataService, IllustrationMappingItem, Url } from &#x27;@hra-ui/services&#x27;;
 import { Action, State, StateContext } from &#x27;@ngxs/store&#x27;;
 import { forkJoin, Observable, tap } from &#x27;rxjs&#x27;;
 
@@ -399,11 +399,6 @@ export class IllustratorState {
   private readonly dataService &#x3D; inject(FtuDataService);
 
   /**
-   * Endpoints injector
-   */
-  readonly endpoints &#x3D; inject(FTU_DATA_IMPL_ENDPOINTS);
-
-  /**
    * Loads the current state with the url and mapping.
    * The url and mapping are forked together using forkJoin.
    * It also cancels any uncompleted actions to the state.
@@ -417,7 +412,6 @@ export class IllustratorState {
       tap((result) &#x3D;&gt;
         patchState({
           ...result,
-          url: this.endpoints.baseHref + result.url,
           selectedOnHover: undefined,
           selectedOnClick: undefined,
         })

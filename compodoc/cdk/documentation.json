@@ -148,6 +148,84 @@
     ],
     "injectables": [
         {
+            "name": "BaseHrefState",
+            "id": "injectable-BaseHrefState-1be6cbd75a5f6aa5f68ad6a0f54a1d08558c7734ff174ec131e1420651b13d0bd410d82d1052133b70996882de9dec7ca422dd10cb04136ded2f3940a7868070",
+            "file": "state/src/base-href/base-href.state.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "setBaseHref",
+                    "args": [
+                        {
+                            "name": "ctx",
+                            "type": "StateContext<string>",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "type": "Set",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 20,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nSets base href value\n",
+                    "description": "<p>Sets base href value</p>\n",
+                    "decorators": [
+                        {
+                            "name": "Action",
+                            "stringifiedArguments": "Set"
+                        }
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 329,
+                                "end": 332,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "ctx"
+                            },
+                            "type": "StateContext<string>",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 323,
+                                "end": 328,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>state context</p>\n"
+                        },
+                        {
+                            "type": "Set",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "<p>State holding the base href</p>\n",
+            "rawdescription": "\n\nState holding the base href\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { Action, State, StateContext } from '@ngxs/store';\nimport { Set } from './base-href.actions';\n\n/**\n * State holding the base href\n */\n@State<string>({\n  name: 'baseHref',\n  defaults: '',\n})\n@Injectable()\nexport class BaseHrefState {\n  /**\n   * Sets base href value\n   * @param ctx state context\n   * @param { baseHref } href value\n   */\n  @Action(Set)\n  setBaseHref(ctx: StateContext<string>, { baseHref }: Set) {\n    if (baseHref !== '' && !baseHref.endsWith('/')) {\n      baseHref = baseHref + '/';\n    }\n    ctx.setState(baseHref);\n  }\n}\n",
+            "type": "injectable"
+        },
+        {
             "name": "LinkRegistryState",
             "id": "injectable-LinkRegistryState-b37e5428b2389fadb722624de33c6e4366fe24d94941b86e08c58ba2167a6e863002542c94b564c5ac03cba9122d8a463f2c34e1d925aed7babf8aa973f35fbb",
             "file": "state/src/link-registry/link-registry.state.ts",
@@ -932,7 +1010,7 @@
         },
         {
             "name": "StorageState",
-            "id": "injectable-StorageState-72ac0507a219407170a641eb4ddefe5f02c0732d08adcd982880a7dd4d0f18ca6dcce1c0b1395a82191bcf464db28277c68d3df9b3f5ac52620adc50aabfd494",
+            "id": "injectable-StorageState-c842c98a736a7e97391ebb79da0bc429aa3c5403f04cc8d523e8cb3eb6d35a0e322956c0f71197fe4199f346cb0deea2303991b7d2ab58efd039964ccd75696f",
             "file": "state/src/storage/storage.state.ts",
             "properties": [],
             "methods": [
@@ -954,7 +1032,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 65,
+                    "line": 63,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nclears the values of the specified storage id\n",
@@ -968,8 +1046,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 1825,
-                                "end": 1828,
+                                "pos": 1781,
+                                "end": 1784,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -980,8 +1058,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 1819,
-                                "end": 1824,
+                                "pos": 1775,
+                                "end": 1780,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -1018,7 +1096,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 55,
+                    "line": 53,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\ndeletes the value pointed by key in the list of values stored in the specified storage id\n",
@@ -1032,8 +1110,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 1441,
-                                "end": 1444,
+                                "pos": 1397,
+                                "end": 1400,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -1044,8 +1122,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 1435,
-                                "end": 1440,
+                                "pos": 1391,
+                                "end": 1396,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -1077,7 +1155,7 @@
                     "optional": false,
                     "returnType": "Storage",
                     "typeParameters": [],
-                    "line": 27,
+                    "line": 25,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nStorageState class to manage storage objects\n",
@@ -1097,8 +1175,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 627,
-                                "end": 634,
+                                "pos": 583,
+                                "end": 590,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -1127,7 +1205,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 45,
+                    "line": 43,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nsets the key,value pair in the given storageId\n",
@@ -1141,8 +1219,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 1010,
-                                "end": 1013,
+                                "pos": 966,
+                                "end": 969,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -1153,8 +1231,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 1004,
-                                "end": 1009,
+                                "pos": 960,
+                                "end": 965,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -1178,7 +1256,7 @@
             "deprecationMessage": "",
             "description": "<p>State holding Storage types</p>\n",
             "rawdescription": "\n\nState holding Storage types\n",
-            "sourceCode": "import { produce } from 'immer';\nimport { StorageContext } from './storage.model';\nimport { Injectable } from '@angular/core';\nimport { Action, State } from '@ngxs/store';\nimport { StorageId, StorageModel } from './storage.model';\nimport { Set, Delete, Clear } from './storage.actions';\n/**\n * State holding Storage types\n */\n@State<StorageModel>({\n  name: 'storage',\n  defaults: {\n    [StorageId.Local]: 0,\n    [StorageId.Session]: 0,\n  },\n})\n@Injectable()\n/**\n *  class for managing storage state\n */\nexport class StorageState {\n  /**\n   * StorageState class to manage storage objects\n   * @param id-Storage Identifier\n   * @returns - Storage objects - session and local\n   */\n  static getStorage(id: StorageId): Storage {\n    switch (id) {\n      case StorageId.Local:\n        return localStorage;\n\n      case StorageId.Session:\n        return sessionStorage;\n\n      default:\n        throw new Error(`No such storage '${id}'`);\n    }\n  }\n  /**\n   * sets the key,value pair in the given storageId\n   * @param ctx - StorageContext object\n   * @param param1- {id: StorageId ,key:string ,value:string} of type Set to set key,value pair for the given id\n   */\n  @Action(Set)\n  set(ctx: StorageContext, { id, key, value }: Set): void {\n    StorageState.getStorage(id).setItem(key, value);\n    this.increaseChangeCount(ctx, id);\n  }\n  /**\n   * deletes the value pointed by key in the list of values stored in the specified storage id\n   * @param ctx - StorageContext object\n   * @param param1- id: StorageId ,key:string ,value:string} of type Set to set key,value pair for the given id\n   */\n  @Action(Delete)\n  delete(ctx: StorageContext, { id, key }: Delete): void {\n    StorageState.getStorage(id).removeItem(key);\n    this.increaseChangeCount(ctx, id);\n  }\n  /**\n   * clears the values of the specified storage id\n   * @param ctx - StorageContext object\n   * @param param1 - id: StorageId ,key:string ,value:string} of type Set to set key,value pair for the given id\n   */\n  @Action(Clear)\n  clear(ctx: StorageContext, { id }: Clear): void {\n    StorageState.getStorage(id).clear();\n    this.increaseChangeCount(ctx, id);\n  }\n  /**\n   * increases count after each operation is performed on the specified storage id\n   * @param ctx  - StorageContext obje\n   * @param id - StorageId - Storage identifier for which the change count has to be updated\n   */\n  private increaseChangeCount(ctx: StorageContext, id: StorageId): void {\n    ctx.setState(\n      produce((draft) => {\n        draft[id] += 1;\n      })\n    );\n  }\n}\n",
+            "sourceCode": "import { produce } from 'immer';\nimport { StorageContext } from './storage.model';\nimport { Injectable } from '@angular/core';\nimport { Action, State } from '@ngxs/store';\nimport { StorageId, StorageModel } from './storage.model';\nimport { Set, Delete, Clear } from './storage.actions';\n\n/**\n * State holding Storage types\n */\n@State<StorageModel>({\n  name: 'storage',\n  defaults: {\n    [StorageId.Local]: 0,\n    [StorageId.Session]: 0,\n  },\n})\n@Injectable()\nexport class StorageState {\n  /**\n   * StorageState class to manage storage objects\n   * @param id-Storage Identifier\n   * @returns - Storage objects - session and local\n   */\n  static getStorage(id: StorageId): Storage {\n    switch (id) {\n      case StorageId.Local:\n        return localStorage;\n\n      case StorageId.Session:\n        return sessionStorage;\n\n      default:\n        throw new Error(`No such storage '${id}'`);\n    }\n  }\n  /**\n   * sets the key,value pair in the given storageId\n   * @param ctx - StorageContext object\n   * @param param1- {id: StorageId ,key:string ,value:string} of type Set to set key,value pair for the given id\n   */\n  @Action(Set)\n  set(ctx: StorageContext, { id, key, value }: Set): void {\n    StorageState.getStorage(id).setItem(key, value);\n    this.increaseChangeCount(ctx, id);\n  }\n  /**\n   * deletes the value pointed by key in the list of values stored in the specified storage id\n   * @param ctx - StorageContext object\n   * @param param1- id: StorageId ,key:string ,value:string} of type Set to set key,value pair for the given id\n   */\n  @Action(Delete)\n  delete(ctx: StorageContext, { id, key }: Delete): void {\n    StorageState.getStorage(id).removeItem(key);\n    this.increaseChangeCount(ctx, id);\n  }\n  /**\n   * clears the values of the specified storage id\n   * @param ctx - StorageContext object\n   * @param param1 - id: StorageId ,key:string ,value:string} of type Set to set key,value pair for the given id\n   */\n  @Action(Clear)\n  clear(ctx: StorageContext, { id }: Clear): void {\n    StorageState.getStorage(id).clear();\n    this.increaseChangeCount(ctx, id);\n  }\n  /**\n   * increases count after each operation is performed on the specified storage id\n   * @param ctx  - StorageContext obje\n   * @param id - StorageId - Storage identifier for which the change count has to be updated\n   */\n  private increaseChangeCount(ctx: StorageContext, id: StorageId): void {\n    ctx.setState(\n      produce((draft) => {\n        draft[id] += 1;\n      })\n    );\n  }\n}\n",
             "type": "injectable"
         }
     ],
@@ -1613,6 +1691,91 @@
             "isDuplicate": true,
             "duplicateId": 1,
             "duplicateName": "AddMany-1"
+        },
+        {
+            "name": "BaseHrefSelectors",
+            "id": "class-BaseHrefSelectors-9b69008bbdefa0766db51dd61bbff34c6aa4f8e026a542024154051d1f7b63dadda9ff193414e9fff6f95da40e12ec2e32bd0c72b0bc27f3d9fce6a12a597d18",
+            "file": "state/src/base-href/base-href.selectors.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "import { Selector } from '@ngxs/store';\nimport { BaseHrefState } from './base-href.state';\n\n/** Selectors for BaseHrefState */\nexport class BaseHrefSelectors {\n  /**\n   * Returns base href value\n   * @param value href value\n   * @returns href value\n   */\n  @Selector([BaseHrefState])\n  static baseHref(value: string): string {\n    return value;\n  }\n}\n",
+            "properties": [],
+            "description": "<p>Selectors for BaseHrefState</p>\n",
+            "rawdescription": "\nSelectors for BaseHrefState",
+            "methods": [
+                {
+                    "name": "baseHref",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nReturns base href value\n",
+                    "description": "<p>Returns base href value</p>\n",
+                    "decorators": [
+                        {
+                            "name": "Selector",
+                            "stringifiedArguments": "['BaseHrefState']"
+                        }
+                    ],
+                    "modifierKind": [
+                        124
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 207,
+                                "end": 212,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "value"
+                            },
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 201,
+                                "end": 206,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>href value</p>\n"
+                        },
+                        {
+                            "tagName": {
+                                "pos": 230,
+                                "end": 237,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>href value</p>\n"
+                        }
+                    ]
+                }
+            ],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
         },
         {
             "name": "Clear",
@@ -2156,12 +2319,12 @@
         },
         {
             "name": "ResourceRegistrySelectors",
-            "id": "class-ResourceRegistrySelectors-30ee3cdaa36f8226c7eb574e0036e13521cbd6aeb6308e5ace88b8f7fd329f9bf1e99352d718ddf22dd6071fcd1548ba48117f604dc8951e00c89e925255254d",
+            "id": "class-ResourceRegistrySelectors-9b9a264fafc0108e7c37fd03f31f12a9f2480a4975305c5fbcc58176cfd8b5f417bc0e623673e08ecb635c6f953e7eeb09e45463fa9b1fb3aa0c14a30d5b3ca1",
             "file": "state/src/resource-registry/resource-registry.selectors.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { Selector } from '@ngxs/store';\nimport {\n  BuiltinResourceType,\n  getEntry,\n  ResourceEntry,\n  ResourceId,\n  ResourceRegistryModel,\n  ResourceType,\n} from './resource-registry.model';\nimport { ResourceRegistryState } from './resource-registry.state';\n\n/** Query function returned by {@link ResourceRegistrySelectors.entry} */\nexport type EntryQuery = <T extends ResourceEntry>(id: ResourceId, type: ResourceType<T>) => T | undefined;\n\n/** Query function returned by {@link ResourceRegistrySelectors.anyEntry} */\nexport type AnyEntryQuery = (id: ResourceId) => ResourceEntry | undefined;\n\n/** Query function returned by {@link ResourceRegistrySelectors.field} */\nexport type FieldQuery = <T extends ResourceEntry, K extends keyof T>(\n  id: ResourceId,\n  type: ResourceType<T>,\n  field: K,\n  defaultValue?: T[K]\n) => T[K];\n\n/** Query function for resource data */\nexport type DataQuery<T> = (id: ResourceId) => T;\n\n/** Selectors for ResourceRegistry */\nexport class ResourceRegistrySelectors {\n  /**\n   * Queries an entry by id and type\n   * @param state Current state\n   * @returns Entry query function\n   */\n  @Selector([ResourceRegistryState])\n  static entry(state: ResourceRegistryModel): EntryQuery {\n    return (id, type) => getEntry(state, id, type);\n  }\n\n  /**\n   * Queries an entry by id\n   * @param state Current state\n   * @returns Any entry query function\n   */\n  @Selector([ResourceRegistryState])\n  static anyEntry(state: ResourceRegistryModel): AnyEntryQuery {\n    return (id) => getEntry(state, id);\n  }\n\n  /**\n   * Queries a field of an entry\n   * @param state Current state\n   * @returns A field query function\n   */\n  @Selector([ResourceRegistryState])\n  static field(state: ResourceRegistryModel): FieldQuery {\n    return (id, type, field, defaultValue?) => {\n      const entry = getEntry(state, id, type);\n      return entry?.[field] ?? (defaultValue as never);\n    };\n  }\n\n  /**\n   * Query for any text data\n   * @param state Current state\n   * @returns Text data query function\n   */\n  @Selector([ResourceRegistryState])\n  static anyText(state: ResourceRegistryModel): DataQuery<string> {\n    return (id) => {\n      const entry = getEntry(state, id);\n      switch (entry?.type) {\n        case BuiltinResourceType.Markdown:\n          return entry.markdown;\n\n        case BuiltinResourceType.Text:\n          return entry.text;\n\n        default:\n          return '';\n      }\n    };\n  }\n\n  /**\n   * Query for markdown data\n   * @param state Current state\n   * @returns Markdown data query function\n   */\n  @Selector([ResourceRegistrySelectors.field])\n  static markdown(getField: FieldQuery): DataQuery<string> {\n    return (id) => getField(id, BuiltinResourceType.Markdown, 'markdown', '');\n  }\n\n  /**\n   * Query for text data\n   * @param state Current state\n   * @returns Text data query function\n   */\n  @Selector([ResourceRegistrySelectors.field])\n  static text(getField: FieldQuery): DataQuery<string> {\n    return (id) => getField(id, BuiltinResourceType.Text, 'text', '');\n  }\n\n  /**\n   * Query for an url\n   * @param state Current state\n   * @returns Url query function\n   */\n  @Selector([ResourceRegistrySelectors.field])\n  static url(getField: FieldQuery): DataQuery<string> {\n    return (id) => getField(id, BuiltinResourceType.Url, 'url', '');\n  }\n}\n",
+            "sourceCode": "import { Selector } from '@ngxs/store';\nimport {\n  BuiltinResourceType,\n  getEntry,\n  ResourceEntry,\n  ResourceId,\n  ResourceRegistryModel,\n  ResourceType,\n} from './resource-registry.model';\nimport { ResourceRegistryState } from './resource-registry.state';\nimport { BaseHrefSelectors } from '../base-href';\n\n/** Query function returned by {@link ResourceRegistrySelectors.entry} */\nexport type EntryQuery = <T extends ResourceEntry>(id: ResourceId, type: ResourceType<T>) => T | undefined;\n\n/** Query function returned by {@link ResourceRegistrySelectors.anyEntry} */\nexport type AnyEntryQuery = (id: ResourceId) => ResourceEntry | undefined;\n\n/** Query function returned by {@link ResourceRegistrySelectors.field} */\nexport type FieldQuery = <T extends ResourceEntry, K extends keyof T>(\n  id: ResourceId,\n  type: ResourceType<T>,\n  field: K,\n  defaultValue?: T[K]\n) => T[K];\n\n/** Query function for resource data */\nexport type DataQuery<T> = (id: ResourceId) => T;\n\n/** Selectors for ResourceRegistry */\nexport class ResourceRegistrySelectors {\n  /**\n   * Queries an entry by id and type\n   * @param state Current state\n   * @returns Entry query function\n   */\n  @Selector([ResourceRegistryState])\n  static entry(state: ResourceRegistryModel): EntryQuery {\n    return (id, type) => getEntry(state, id, type);\n  }\n\n  /**\n   * Queries an entry by id\n   * @param state Current state\n   * @returns Any entry query function\n   */\n  @Selector([ResourceRegistryState])\n  static anyEntry(state: ResourceRegistryModel): AnyEntryQuery {\n    return (id) => getEntry(state, id);\n  }\n\n  /**\n   * Queries a field of an entry\n   * @param state Current state\n   * @returns A field query function\n   */\n  @Selector([ResourceRegistryState])\n  static field(state: ResourceRegistryModel): FieldQuery {\n    return (id, type, field, defaultValue?) => {\n      const entry = getEntry(state, id, type);\n      return entry?.[field] ?? (defaultValue as never);\n    };\n  }\n\n  /**\n   * Query for any text data\n   * @param state Current state\n   * @returns Text data query function\n   */\n  @Selector([ResourceRegistryState])\n  static anyText(state: ResourceRegistryModel): DataQuery<string> {\n    return (id) => {\n      const entry = getEntry(state, id);\n      switch (entry?.type) {\n        case BuiltinResourceType.Markdown:\n          return entry.markdown;\n\n        case BuiltinResourceType.Text:\n          return entry.text;\n\n        default:\n          return '';\n      }\n    };\n  }\n\n  /**\n   * Query for markdown data\n   * @param state Current state\n   * @returns Markdown data query function\n   */\n  @Selector([ResourceRegistrySelectors.field])\n  static markdown(getField: FieldQuery): DataQuery<string> {\n    return (id) => getField(id, BuiltinResourceType.Markdown, 'markdown', '');\n  }\n\n  /**\n   * Query for text data\n   * @param state Current state\n   * @returns Text data query function\n   */\n  @Selector([ResourceRegistrySelectors.field])\n  static text(getField: FieldQuery): DataQuery<string> {\n    return (id) => getField(id, BuiltinResourceType.Text, 'text', '');\n  }\n\n  /**\n   * Query for an url\n   * @param state Current state\n   * @returns Url query function\n   */\n  @Selector([ResourceRegistrySelectors.field, BaseHrefSelectors.baseHref])\n  static url(getField: FieldQuery, baseHref: string): DataQuery<string> {\n    return (id) => {\n      const relUrl = getField(id, BuiltinResourceType.Url, 'url', '');\n      return relUrl !== '' ? baseHref + relUrl : '';\n    };\n  }\n}\n",
             "properties": [],
             "description": "<p>Selectors for ResourceRegistry</p>\n",
             "rawdescription": "\nSelectors for ResourceRegistry",
@@ -2179,7 +2342,7 @@
                     "optional": false,
                     "returnType": "AnyEntryQuery",
                     "typeParameters": [],
-                    "line": 47,
+                    "line": 48,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nQueries an entry by id\n",
@@ -2196,8 +2359,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 1315,
-                                "end": 1320,
+                                "pos": 1365,
+                                "end": 1370,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -2208,8 +2371,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 1309,
-                                "end": 1314,
+                                "pos": 1359,
+                                "end": 1364,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -2220,8 +2383,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 1341,
-                                "end": 1348,
+                                "pos": 1391,
+                                "end": 1398,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -2245,7 +2408,7 @@
                     "optional": false,
                     "returnType": "DataQuery<string>",
                     "typeParameters": [],
-                    "line": 70,
+                    "line": 71,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nQuery for any text data\n",
@@ -2262,8 +2425,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 1948,
-                                "end": 1953,
+                                "pos": 1998,
+                                "end": 2003,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -2274,8 +2437,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 1942,
-                                "end": 1947,
+                                "pos": 1992,
+                                "end": 1997,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -2286,8 +2449,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 1974,
-                                "end": 1981,
+                                "pos": 2024,
+                                "end": 2031,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -2311,7 +2474,7 @@
                     "optional": false,
                     "returnType": "EntryQuery",
                     "typeParameters": [],
-                    "line": 37,
+                    "line": 38,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nQueries an entry by id and type\n",
@@ -2328,8 +2491,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 1055,
-                                "end": 1060,
+                                "pos": 1105,
+                                "end": 1110,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -2340,8 +2503,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 1049,
-                                "end": 1054,
+                                "pos": 1099,
+                                "end": 1104,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -2352,8 +2515,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 1081,
-                                "end": 1088,
+                                "pos": 1131,
+                                "end": 1138,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -2377,7 +2540,7 @@
                     "optional": false,
                     "returnType": "FieldQuery",
                     "typeParameters": [],
-                    "line": 57,
+                    "line": 58,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nQueries a field of an entry\n",
@@ -2394,8 +2557,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 1578,
-                                "end": 1583,
+                                "pos": 1628,
+                                "end": 1633,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -2406,8 +2569,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 1572,
-                                "end": 1577,
+                                "pos": 1622,
+                                "end": 1627,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -2418,8 +2581,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 1604,
-                                "end": 1611,
+                                "pos": 1654,
+                                "end": 1661,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -2443,7 +2606,7 @@
                     "optional": false,
                     "returnType": "DataQuery<string>",
                     "typeParameters": [],
-                    "line": 92,
+                    "line": 93,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nQuery for markdown data\n",
@@ -2469,8 +2632,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 2486,
-                                "end": 2493,
+                                "pos": 2536,
+                                "end": 2543,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -2494,7 +2657,7 @@
                     "optional": false,
                     "returnType": "DataQuery<string>",
                     "typeParameters": [],
-                    "line": 102,
+                    "line": 103,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nQuery for text data\n",
@@ -2520,8 +2683,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 2790,
-                                "end": 2797,
+                                "pos": 2840,
+                                "end": 2847,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -2540,12 +2703,18 @@
                             "type": "FieldQuery",
                             "deprecated": false,
                             "deprecationMessage": ""
+                        },
+                        {
+                            "name": "baseHref",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
                         }
                     ],
                     "optional": false,
                     "returnType": "DataQuery<string>",
                     "typeParameters": [],
-                    "line": 112,
+                    "line": 113,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nQuery for an url\n",
@@ -2553,7 +2722,7 @@
                     "decorators": [
                         {
                             "name": "Selector",
-                            "stringifiedArguments": "['undefined']"
+                            "stringifiedArguments": "['undefined', 'undefined']"
                         }
                     ],
                     "modifierKind": [
@@ -2570,9 +2739,18 @@
                             }
                         },
                         {
+                            "name": "baseHref",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "tagName": {
-                                "pos": 3075,
-                                "end": 3082,
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "tagName": {
+                                "pos": 3125,
+                                "end": 3132,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -2653,7 +2831,67 @@
         },
         {
             "name": "Set",
-            "id": "class-Set-bf7759a40e4d0e8e6314490589639d3b7dd6bdcc54fb05fadb475414c800a55e8d35049821318bb00cd59d904882087867195819aead7c752730abddf2833ce1",
+            "id": "class-Set-b7490c9fa59a88e26f373bca7409c2d1dc4a46ede355f7af9b6de6ccdde9839d867a750a056797f989147e0f64d68c2936d231d79f4019177be25f0a247831d9",
+            "file": "state/src/base-href/base-href.actions.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "import { ActionGroup } from '../actions/actions';\n\n/** Base action factory */\nconst Action = ActionGroup('BaseHref');\n\n/** Sets the base href */\nexport class Set extends Action('Set') {\n  /**\n   * Sets the base href\n   * @param baseHref New href\n   */\n  constructor(readonly baseHref: string) {\n    super();\n  }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "<p>Sets the base href</p>\n",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "baseHref",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 7,
+                "rawdescription": "\n\nSets the base href\n",
+                "jsdoctags": [
+                    {
+                        "name": {
+                            "pos": 228,
+                            "end": 236,
+                            "flags": 4227072,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "kind": 79,
+                            "escapedText": "baseHref"
+                        },
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "pos": 222,
+                            "end": 227,
+                            "flags": 4227072,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "kind": 79,
+                            "escapedText": "param"
+                        },
+                        "comment": "<p>New href</p>\n"
+                    }
+                ]
+            },
+            "properties": [],
+            "description": "<p>Sets the base href</p>\n",
+            "rawdescription": "\nSets the base href",
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
+            "name": "Set",
+            "id": "class-Set-bf7759a40e4d0e8e6314490589639d3b7dd6bdcc54fb05fadb475414c800a55e8d35049821318bb00cd59d904882087867195819aead7c752730abddf2833ce1-1",
             "file": "state/src/storage/storage.actions.ts",
             "deprecated": false,
             "deprecationMessage": "",
@@ -2769,7 +3007,10 @@
             "inputsClass": [],
             "outputsClass": [],
             "hostBindings": [],
-            "hostListeners": []
+            "hostListeners": [],
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "Set-1"
         },
         {
             "name": "SnapshotObserver",
@@ -3192,12 +3433,12 @@
         },
         {
             "name": "LinkDirective",
-            "id": "directive-LinkDirective-3a72ea9951359ac8c2820ab17b233c7a92ebad446e52761c9694b431a28bc3d08c8fd1d8405a44a840bcdc6b63328cdbda54820dabf5f26d797e1be7d5cd3a23",
+            "id": "directive-LinkDirective-6d1ee2a34fa010cef8dd551f887757960f4da61bcde8437d902bc420600e1b7bddc012665d96c36c28d021e5b99891304cc1eb3e3ff42bfc939ec9b1ac2473ad",
             "file": "src/lib/link/link.directive.ts",
             "type": "directive",
             "description": "<p>Link Directive for routing</p>\n",
             "rawdescription": "\nLink Directive for routing",
-            "sourceCode": "import { Directive, ElementRef, HostBinding, HostListener, inject, Injector, Input, OnChanges } from '@angular/core';\nimport { ActivatedRoute, Params, QueryParamsHandling, UrlCreationOptions } from '@angular/router';\nimport { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';\nimport { EMPTY_LINK, LinkEntry, LinkRegistryActions, LinkRegistrySelectors, LinkType } from '@hra-ui/cdk/state';\nimport { createExternalUrl, createInternalUrl } from '@hra-ui/utils';\n\n/** Link Directive for routing */\n@Directive({\n  selector: '[hraLink]',\n  standalone: true,\n})\nexport class LinkDirective implements OnChanges {\n  /** linkId with empty string as default value */\n  @Input('hraLink') linkId = EMPTY_LINK;\n\n  /** Query string parameters */\n  @Input() queryParams?: Params;\n\n  /** How to handle existing query params */\n  @Input() queryParamsHandling?: QueryParamsHandling;\n\n  /** Url fragment */\n  @Input() fragment?: string;\n\n  /** Whether to preserve the existing fragment */\n  @Input() preserveFragment?: boolean;\n\n  /** Nagivate relative to a route. Only affects internal links. */\n  @Input() relativeTo?: ActivatedRoute;\n\n  /** href of the element */\n  @HostBinding('attr.href') href?: string;\n  /** rel attribute of the element */\n  @HostBinding('attr.rel') rel?: string;\n  /** target attribute of the element */\n  @HostBinding('attr.target') target?: string;\n\n  /** Reference to this component's injector */\n  private readonly injector = inject(Injector);\n  /** Element tag on which this directive is mounted */\n  private readonly tagName = inject<ElementRef<Element>>(ElementRef).nativeElement.tagName.toLowerCase();\n  /** Selector for querying the link registry state */\n  private readonly queryLink = selectQuerySnapshot(LinkRegistrySelectors.query);\n  /** Dispatch action to navigate to a url */\n  private readonly navigate = dispatch(LinkRegistryActions.Navigate);\n\n  /** Link Entry */\n  private link?: LinkEntry;\n\n  /** Whether the host element is an anchor */\n  private get isAnchorElement(): boolean {\n    return ['a', 'area'].includes(this.tagName);\n  }\n\n  /** Whether the host element deals with resource urls */\n  private get isResourceUrl(): boolean {\n    return ['base', 'link'].includes(this.tagName);\n  }\n\n  /** Collects query params and fragment options into a single object */\n  private get extras(): UrlCreationOptions {\n    const { link } = this;\n    return this.mergeExtras(link?.type === LinkType.Internal ? link.extras : undefined, this);\n  }\n\n  /** Updates the current link/url based on the inputs */\n  ngOnChanges(): void {\n    this.updateLink();\n  }\n\n  /**\n   * Triggers when a click action is performed on the element\n   * @param event type of event\n   * @returns true/false based on entry and element\n   */\n  @HostListener('click', ['$event'])\n  onClick(event: MouseEvent): boolean {\n    const { link, linkId, isAnchorElement } = this;\n    if (!link) {\n      return true;\n    }\n\n    if (isAnchorElement) {\n      const { button, ctrlKey, shiftKey, altKey, metaKey } = event;\n      if (link.type === LinkType.External || button !== 0 || ctrlKey || shiftKey || altKey || metaKey) {\n        return true;\n      }\n    }\n\n    this.navigate(linkId, this.extras);\n    return !isAnchorElement;\n  }\n\n  /** Updates the link entry and bound attributes */\n  private updateLink(): void {\n    const link = (this.link = this.queryLink(this.linkId));\n    ({ href: this.href, rel: this.rel, target: this.target } = this.getLinkAttributes(link));\n  }\n\n  /**\n   * Gets the new values for different attributes bound to the host element\n   * @param link Current link entry\n   * @returns New attributes values to bind on the host element\n   */\n  private getLinkAttributes(link?: LinkEntry): { href?: string; rel?: string; target?: string } {\n    const { injector, extras, isResourceUrl } = this;\n    switch (link?.type) {\n      case LinkType.Internal:\n        return { href: createInternalUrl(injector, link.commands, extras, isResourceUrl) };\n\n      case LinkType.External:\n        return { ...link, href: createExternalUrl(link.url, extras) };\n\n      default:\n        return {};\n    }\n  }\n\n  /**\n   * Merges two UrlCreationOptions.\n   * Undefined values in the second set does not override values from the first set.\n   * @param opt1 First set of options\n   * @param opt2 Second set of options\n   * @returns Merged options\n   */\n  private mergeExtras(opt1: UrlCreationOptions | undefined, opt2: UrlCreationOptions): UrlCreationOptions {\n    const result = { ...opt1 };\n    const mergeKey = <K extends keyof UrlCreationOptions>(key: K) => {\n      if (opt2[key] !== undefined) {\n        result[key] = opt2[key];\n      }\n    };\n\n    mergeKey('queryParams');\n    mergeKey('queryParamsHandling');\n    mergeKey('fragment');\n    mergeKey('preserveFragment');\n    mergeKey('relativeTo');\n    return result;\n  }\n}\n",
+            "sourceCode": "import { Directive, DoCheck, ElementRef, HostBinding, HostListener, inject, Injector, Input } from '@angular/core';\nimport { ActivatedRoute, Params, QueryParamsHandling, UrlCreationOptions } from '@angular/router';\nimport { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';\nimport { EMPTY_LINK, LinkEntry, LinkRegistryActions, LinkRegistrySelectors, LinkType } from '@hra-ui/cdk/state';\nimport { createExternalUrl, createInternalUrl } from '@hra-ui/utils';\n\n/** Link Directive for routing */\n@Directive({\n  selector: '[hraLink]',\n  standalone: true,\n})\nexport class LinkDirective implements DoCheck {\n  /** linkId with empty string as default value */\n  @Input('hraLink') linkId = EMPTY_LINK;\n\n  /** Query string parameters */\n  @Input() queryParams?: Params;\n\n  /** How to handle existing query params */\n  @Input() queryParamsHandling?: QueryParamsHandling;\n\n  /** Url fragment */\n  @Input() fragment?: string;\n\n  /** Whether to preserve the existing fragment */\n  @Input() preserveFragment?: boolean;\n\n  /** Nagivate relative to a route. Only affects internal links. */\n  @Input() relativeTo?: ActivatedRoute;\n\n  /** href of the element */\n  @HostBinding('attr.href') href?: string;\n  /** rel attribute of the element */\n  @HostBinding('attr.rel') rel?: string;\n  /** target attribute of the element */\n  @HostBinding('attr.target') target?: string;\n\n  /** Reference to this component's injector */\n  private readonly injector = inject(Injector);\n  /** Element tag on which this directive is mounted */\n  private readonly tagName = inject<ElementRef<Element>>(ElementRef).nativeElement.tagName.toLowerCase();\n  /** Selector for querying the link registry state */\n  private readonly queryLink = selectQuerySnapshot(LinkRegistrySelectors.query);\n  /** Dispatch action to navigate to a url */\n  private readonly navigate = dispatch(LinkRegistryActions.Navigate);\n\n  /** Link Entry */\n  private link?: LinkEntry;\n\n  /** Whether the host element is an anchor */\n  private get isAnchorElement(): boolean {\n    return ['a', 'area'].includes(this.tagName);\n  }\n\n  /** Whether the host element deals with resource urls */\n  private get isResourceUrl(): boolean {\n    return ['base', 'link'].includes(this.tagName);\n  }\n\n  /** Collects query params and fragment options into a single object */\n  private get extras(): UrlCreationOptions {\n    const { link } = this;\n    return this.mergeExtras(link?.type === LinkType.Internal ? link.extras : undefined, this);\n  }\n\n  /** Updates the current link/url based on the inputs */\n  ngDoCheck(): void {\n    const link = this.queryLink(this.linkId);\n    if (this.link !== link) {\n      this.updateLink(link);\n    }\n  }\n\n  /**\n   * Triggers when a click action is performed on the element\n   * @param event type of event\n   * @returns true/false based on entry and element\n   */\n  @HostListener('click', ['$event'])\n  onClick(event: MouseEvent): boolean {\n    const { link, linkId, isAnchorElement } = this;\n    if (!link) {\n      return true;\n    }\n\n    if (isAnchorElement) {\n      const { button, ctrlKey, shiftKey, altKey, metaKey } = event;\n      if (link.type === LinkType.External || button !== 0 || ctrlKey || shiftKey || altKey || metaKey) {\n        return true;\n      }\n    }\n\n    this.navigate(linkId, this.extras);\n    return !isAnchorElement;\n  }\n\n  /** Updates the link entry and bound attributes */\n  private updateLink(link?: LinkEntry): void {\n    this.link = link;\n    ({ href: this.href, rel: this.rel, target: this.target } = this.getLinkAttributes(link));\n  }\n\n  /**\n   * Gets the new values for different attributes bound to the host element\n   * @param link Current link entry\n   * @returns New attributes values to bind on the host element\n   */\n  private getLinkAttributes(link?: LinkEntry): { href?: string; rel?: string; target?: string } {\n    const { injector, extras, isResourceUrl } = this;\n    switch (link?.type) {\n      case LinkType.Internal:\n        return { href: createInternalUrl(injector, link.commands, extras, isResourceUrl) };\n\n      case LinkType.External:\n        return { ...link, href: createExternalUrl(link.url, extras) };\n\n      default:\n        return {};\n    }\n  }\n\n  /**\n   * Merges two UrlCreationOptions.\n   * Undefined values in the second set does not override values from the first set.\n   * @param opt1 First set of options\n   * @param opt2 Second set of options\n   * @returns Merged options\n   */\n  private mergeExtras(opt1: UrlCreationOptions | undefined, opt2: UrlCreationOptions): UrlCreationOptions {\n    const result = { ...opt1 };\n    const mergeKey = <K extends keyof UrlCreationOptions>(key: K) => {\n      if (opt2[key] !== undefined) {\n        result[key] = opt2[key];\n      }\n    };\n\n    mergeKey('queryParams');\n    mergeKey('queryParamsHandling');\n    mergeKey('fragment');\n    mergeKey('preserveFragment');\n    mergeKey('relativeTo');\n    return result;\n  }\n}\n",
             "selector": "[hraLink]",
             "providers": [],
             "inputsClass": [
@@ -3318,15 +3559,15 @@
                     "description": "<p>Triggers when a click action is performed on the element</p>\n",
                     "jsdoctags": [
                         {
-                            "pos": 2659,
-                            "end": 2691,
+                            "pos": 2741,
+                            "end": 2773,
                             "flags": 4227072,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "kind": 338,
                             "tagName": {
-                                "pos": 2660,
-                                "end": 2665,
+                                "pos": 2742,
+                                "end": 2747,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -3335,8 +3576,8 @@
                             },
                             "comment": "<p>type of event</p>\n",
                             "name": {
-                                "pos": 2666,
-                                "end": 2671,
+                                "pos": 2748,
+                                "end": 2753,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -3347,15 +3588,15 @@
                             "isBracketed": false
                         },
                         {
-                            "pos": 2691,
-                            "end": 2741,
+                            "pos": 2773,
+                            "end": 2823,
                             "flags": 4227072,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "kind": 339,
                             "tagName": {
-                                "pos": 2692,
-                                "end": 2699,
+                                "pos": 2774,
+                                "end": 2781,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -3365,7 +3606,7 @@
                             "comment": "<p>true/false based on entry and element</p>\n"
                         }
                     ],
-                    "line": 77
+                    "line": 80
                 }
             ],
             "propertiesClass": [
@@ -3432,7 +3673,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 77,
+                    "line": 80,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nTriggers when a click action is performed on the element\n",
@@ -3446,8 +3687,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 2666,
-                                "end": 2671,
+                                "pos": 2748,
+                                "end": 2753,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -3458,8 +3699,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 2660,
-                                "end": 2665,
+                                "pos": 2742,
+                                "end": 2747,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -3470,8 +3711,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 2692,
-                                "end": 2699,
+                                "pos": 2774,
+                                "end": 2781,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -3484,7 +3725,7 @@
                 }
             ],
             "implements": [
-                "OnChanges"
+                "DoCheck"
             ]
         }
     ],
@@ -3605,13 +3846,13 @@
     "modules": [
         {
             "name": "CdkStateModule",
-            "id": "module-CdkStateModule-a93bb19297573c6c6708763b071fc9fb4b27e887170144694df55a5d5749e030c9dd51938c8c23a8844e3888ac2176fede6d8f95d54f41aead08116fa6c152d4",
+            "id": "module-CdkStateModule-049d74c98fc5f8a8d1a77e745e50e1490654ff08103771fef674e28702b1c7f1ea3d4013804386caa70e2542e498754db1dafa90a3298b0069ec7f1ebe34fbb2",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "state/src/state.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { NgxsModule } from '@ngxs/store';\nimport { LinkRegistryState } from './link-registry';\nimport { ResourceRegistryState } from './resource-registry';\nimport { StorageState } from './storage';\n\n@NgModule({\n  imports: [NgxsModule.forFeature([LinkRegistryState, ResourceRegistryState, StorageState])],\n})\nexport class CdkStateModule {}\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { NgxsModule } from '@ngxs/store';\nimport { BaseHrefState } from './base-href';\nimport { LinkRegistryState } from './link-registry';\nimport { ResourceRegistryState } from './resource-registry';\nimport { StorageState } from './storage';\n\n@NgModule({\n  imports: [NgxsModule.forFeature([BaseHrefState, LinkRegistryState, ResourceRegistryState, StorageState])],\n})\nexport class CdkStateModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -3642,6 +3883,18 @@
     ],
     "miscellaneous": {
         "variables": [
+            {
+                "name": "Action",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "state/src/base-href/base-href.actions.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "ActionGroup('BaseHref')",
+                "rawdescription": "Base action factory",
+                "description": "<p>Base action factory</p>\n"
+            },
             {
                 "name": "Action",
                 "ctype": "miscellaneous",
@@ -5962,6 +6215,20 @@
             }
         ],
         "groupedVariables": {
+            "state/src/base-href/base-href.actions.ts": [
+                {
+                    "name": "Action",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "state/src/base-href/base-href.actions.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "ActionGroup('BaseHref')",
+                    "rawdescription": "Base action factory",
+                    "description": "<p>Base action factory</p>\n"
+                }
+            ],
             "state/src/link-registry/link-registry.actions.ts": [
                 {
                     "name": "Action",

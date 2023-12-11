@@ -1188,7 +1188,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<a class=\"product\" matRipple [hraLink]=\"productTitleLink\">\n  <img class=\"logo image\" [src]=\"productLogoUrl\" alt=\"Prodoct Logo\" aria-hidden=\"true\" />\n  <h1 class=\"text\">{{ productTitle }}</h1>\n</a>\n<h1 class=\"app text\">{{ appTitle }}</h1>\n\n<div class=\"filler\"></div>\n\n<a mat-flat-button class=\"about\" [hraLink]=\"aboutLink\">\n  <mat-icon class=\"icon\">info_outlined</mat-icon>\n  <span class=\"text\">About</span>\n</a>\n"
+            "templateData": "<a class=\"product\" matRipple [hraLink]=\"productTitleLink\">\n  <img class=\"logo image\" [src]=\"productLogoUrl\" alt=\"Product Logo\" aria-hidden=\"true\" />\n  <h1 class=\"text\">{{ productTitle }}</h1>\n</a>\n<h1 class=\"app text\">{{ appTitle }}</h1>\n\n<div class=\"filler\"></div>\n\n<a mat-flat-button class=\"about\" [hraLink]=\"aboutLink\">\n  <mat-icon class=\"icon\">info_outlined</mat-icon>\n  <span class=\"text\">About</span>\n</a>\n"
         },
         {
             "name": "HraLandingPageIntroWcComponent",
@@ -1911,7 +1911,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<img class=\"logo\" [src]=\"baseHref + logo\" alt=\"\" />\n<span class=\"header-title\">{{ title }}</span>\n\n<div class=\"metrics\">\n  <div class=\"metric\" *ngFor=\"let item of metrics\">\n    <img class=\"logo\" [src]=\"baseHref + item.icon\" alt=\"\" />\n    <span class=\"value\"> {{ item.value }} </span>\n    <span class=\"description\"> {{ item.description }} </span>\n  </div>\n</div>\n"
+            "templateData": "<img class=\"logo\" [src]=\"logo\" alt=\"\" />\n<span class=\"header-title\">{{ title }}</span>\n\n<div class=\"metrics\">\n  <div class=\"metric\" *ngFor=\"let item of metrics\">\n    <img class=\"logo\" [src]=\"baseHref + item.icon\" alt=\"\" />\n    <span class=\"value\"> {{ item.value }} </span>\n    <span class=\"description\"> {{ item.description }} </span>\n  </div>\n</div>\n"
         },
         {
             "name": "ScreenSizeNoticeComponent",

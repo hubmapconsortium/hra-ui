@@ -76,21 +76,6 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#endpoints" >endpoints</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -163,8 +148,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="90"
-                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:90</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:84</a></div>
                 </td>
             </tr>
 
@@ -240,8 +225,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="106"
-                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:106</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:100</a></div>
                 </td>
             </tr>
 
@@ -328,8 +313,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:49</a></div>
                 </td>
             </tr>
 
@@ -418,8 +403,8 @@ It also cancels any uncompleted actions to the state.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="98"
-                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:98</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:92</a></div>
                 </td>
             </tr>
 
@@ -495,8 +480,8 @@ It also cancels any uncompleted actions to the state.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="82"
-                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:82</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:76</a></div>
                 </td>
             </tr>
 
@@ -583,8 +568,8 @@ It also cancels any uncompleted actions to the state.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="74"
-                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:74</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:68</a></div>
                 </td>
             </tr>
 
@@ -645,51 +630,13 @@ It also cancels any uncompleted actions to the state.</p>
         </tbody>
     </table>
 </section>
-            <section>
-    
-    <h3 id="inputs">
-        Properties
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="endpoints"></a>
-                    <span class="name">
-                            <span class="modifier">Readonly</span>
-                        <span ><b>endpoints</b></span>
-                        <a href="#endpoints"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>inject(FTU_DATA_IMPL_ENDPOINTS)</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/lib/illustrator/illustrator.state.ts:46</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Endpoints injector</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { inject, Injectable } from &#x27;@angular/core&#x27;;
-import { FTU_DATA_IMPL_ENDPOINTS, FtuDataService, IllustrationMappingItem, Url } from &#x27;@hra-ui/services&#x27;;
+import { FtuDataService, IllustrationMappingItem, Url } from &#x27;@hra-ui/services&#x27;;
 import { Action, State, StateContext } from &#x27;@ngxs/store&#x27;;
 import { forkJoin, Observable, tap } from &#x27;rxjs&#x27;;
 
@@ -731,11 +678,6 @@ export class IllustratorState {
   private readonly dataService &#x3D; inject(FtuDataService);
 
   /**
-   * Endpoints injector
-   */
-  readonly endpoints &#x3D; inject(FTU_DATA_IMPL_ENDPOINTS);
-
-  /**
    * Loads the current state with the url and mapping.
    * The url and mapping are forked together using forkJoin.
    * It also cancels any uncompleted actions to the state.
@@ -749,7 +691,6 @@ export class IllustratorState {
       tap((result) &#x3D;&gt;
         patchState({
           ...result,
-          url: this.endpoints.baseHref + result.url,
           selectedOnHover: undefined,
           selectedOnClick: undefined,
         })
