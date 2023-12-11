@@ -62,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>state/src/storage/storage.actions.ts</code>
+            <code>state/src/base-href/base-href.actions.ts</code>
         </p>
 
 
@@ -70,7 +70,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Class Set Action for set method</p>
+                <p>Sets the base href</p>
 
             </p>
 
@@ -84,18 +84,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(id: <a href="../undefineds/StorageId.html" target="_self">StorageId</a>, key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>constructor(baseHref: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">state/src/storage/storage.actions.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">state/src/base-href/base-href.actions.ts:7</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>constructor class for Set action object</p>
+                            <div class="io-description"><p>Sets the base href</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -110,25 +110,7 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>id</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../miscellaneous/enumerations.html#StorageId" target="_self" >StorageId</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <ul>
-<li>type: StorageId - Storage identifier</li>
-</ul>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>key</td>
+                                                        <td>baseHref</td>
                                                   
                                                         <td>
                                                                         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
@@ -139,27 +121,7 @@
                                                     </td>
                                                     
                                                         <td>
-                                                                <ul>
-<li>type: string - Key to be stored in the storage identifier</li>
-</ul>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>value</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <ul>
-<li>type: string - value to be stored with the key</li>
-</ul>
+                                                                <p>New href</p>
 
                                                         </td>
                                                 </tr>
@@ -184,47 +146,17 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ActionGroup } from &#x27;../actions/actions&#x27;;
-import { StorageId } from &#x27;./storage.model&#x27;;
 
 /** Base action factory */
-const Action &#x3D; ActionGroup(&#x27;Storage&#x27;);
+const Action &#x3D; ActionGroup(&#x27;BaseHref&#x27;);
 
-/**
- * Class Set Action for set method
- */
+/** Sets the base href */
 export class Set extends Action(&#x27;Set&#x27;) {
   /**
-   * constructor class for Set action object
-   * @param id - type: StorageId - Storage identifier
-   * @param key - type: string - Key to be stored in the storage identifier
-   * @param value - type: string - value to be stored with the key
+   * Sets the base href
+   * @param baseHref New href
    */
-  constructor(readonly id: StorageId, readonly key: string, readonly value: string) {
-    super();
-  }
-}
-/**
- *  Class Delete Action for delete method
- */
-export class Delete extends Action(&#x27;Delete&#x27;) {
-  /**
-   * constructor class for Delete action object
-   * @param id - type: StorageId - Storage identifier
-   * @param key - type: string - Key to be stored in the storage identifier
-   */
-  constructor(readonly id: StorageId, readonly key: string) {
-    super();
-  }
-}
-/**
- * Clear the values stored in the specified StorageId
- */
-export class Clear extends Action(&#x27;Clear&#x27;) {
-  /**
-   * constructor class for clear action object
-   * @param id - type: StorageId - Storage identifier
-   */
-  constructor(readonly id: StorageId) {
+  constructor(readonly baseHref: string) {
     super();
   }
 }

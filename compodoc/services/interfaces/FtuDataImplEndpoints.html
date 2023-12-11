@@ -91,6 +91,12 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
+                                        <a href="#baseHref" 
+>
+                                            baseHref
+                                        </a>
+                                </li>
+                                <li>
                                         <a href="#datasets" 
 >
                                             datasets
@@ -119,6 +125,45 @@
 
             <section>
                 <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="baseHref"></a>
+                                        <span class="name "><b>baseHref</b>
+                                            <a href="#baseHref">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>baseHref:         <code><a href="../miscellaneous/typealiases.html#Url" target="_self" >Url</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#Url" target="_self" >Url</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Endpoint for baseHref</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <table class="table table-sm table-bordered">
                         <tbody>
                                 <tr>
@@ -244,10 +289,10 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
 import { inject, Injectable, InjectionToken } from &#x27;@angular/core&#x27;;
 import { createLinkId } from &#x27;@hra-ui/cdk/state&#x27;;
-import { firstValueFrom, from, map, Observable } from &#x27;rxjs&#x27;;
+import { firstValueFrom, from, map, Observable, shareReplay, switchMap, take, withLatestFrom } from &#x27;rxjs&#x27;;
 import { z } from &#x27;zod&#x27;;
 
-import { IRI, Iri, Url } from &#x27;../shared/common.model&#x27;;
+import { IRI, Iri, setUrl, Url } from &#x27;../shared/common.model&#x27;;
 import {
   CellSummary,
   DataFileReference,
@@ -265,9 +310,11 @@ export interface FtuDataImplEndpoints {
   summaries: Url;
   /** Endpoint for File having Cell Source References data */
   datasets: Url;
+  /** Endpoint for baseHref */
+  baseHref: Url;
 }
 /** Constant  to read the endpoints */
-export const FTU_DATA_IMPL_ENDPOINTS &#x3D; new InjectionToken&lt;FtuDataImplEndpoints&gt;(&#x27;Endpoints&#x27;);
+export const FTU_DATA_IMPL_ENDPOINTS &#x3D; new InjectionToken&lt;Observable&lt;FtuDataImplEndpoints&gt;&gt;(&#x27;Endpoints&#x27;);
 
 /** Input to different file formats supported */
 export const FTU_DATA_IMPL_FILE_FORMAT_MAPPING &#x3D; new InjectionToken&lt;Record&lt;string, string&gt;&gt;(&#x27;Mapping of file formats&#x27;, {
@@ -405,7 +452,7 @@ export class FtuDataImplService extends FtuDataService {
   @returns An Observable that emits the tissue Tree data.
   */
   override getTissueLibrary(): Observable&lt;TissueLibrary&gt; {
-    return this.fetchData(undefined, this.endpoints.illustrations, ILLUSTRATIONS).pipe(
+    return this.fetchData(undefined, &#x27;illustrations&#x27;, ILLUSTRATIONS).pipe(
       map((data) &#x3D;&gt; this.constructTissueLibrary(data[&#x27;@graph&#x27;]))
     );
   }
@@ -416,7 +463,12 @@ export class FtuDataImplService extends FtuDataService {
   @returns An Observable that emits the mock URL.
   */
   override getIllustrationUrl(iri: Iri): Observable&lt;Url | string&gt; {
-    return this.getDataFileReferences(iri).pipe(map((data) &#x3D;&gt; this.findIllustrationUrl(data)));
+    return this.getDataFileReferences(iri)
+      .pipe(map((data) &#x3D;&gt; this.findIllustrationUrl(data)))
+      .pipe(
+        withLatestFrom(this.endpoints),
+        map(([url, { baseHref }]) &#x3D;&gt; setUrl(url, baseHref))
+      );
   }
 
   /**
@@ -425,7 +477,7 @@ export class FtuDataImplService extends FtuDataService {
   @returns An Observable that emits an IllustrationMappingItem array.
   */
   override getIllustrationMapping(iri: Iri): Observable&lt;IllustrationMappingItem[]&gt; {
-    return this.fetchData(iri, this.endpoints.illustrations, ILLUSTRATIONS).pipe(
+    return this.fetchData(iri, &#x27;illustrations&#x27;, ILLUSTRATIONS).pipe(
       map((data) &#x3D;&gt; this.findGraphItem(data, iri).mapping),
       map((data) &#x3D;&gt; (data ? this.toIllustrationMapping(data) : []))
     );
@@ -437,7 +489,7 @@ export class FtuDataImplService extends FtuDataService {
   @returns An Observable that emits an CellSummary array.
   */
   override getCellSummaries(iri: Iri): Observable&lt;CellSummary[]&gt; {
-    return this.fetchData(iri, this.endpoints.summaries, CELL_SUMMARIES).pipe(
+    return this.fetchData(iri, &#x27;summaries&#x27;, CELL_SUMMARIES).pipe(
       map((data) &#x3D;&gt; this.findCellSummaries(data, iri)),
       map((data) &#x3D;&gt; (data ? this.constructCellSummaries(data) : []))
     );
@@ -449,7 +501,7 @@ export class FtuDataImplService extends FtuDataService {
   @returns An Observable that emits an DataFileReference array.
   */
   override getDataFileReferences(iri: Iri): Observable&lt;DataFileReference[]&gt; {
-    return this.fetchData(iri, this.endpoints.illustrations, ILLUSTRATIONS).pipe(
+    return this.fetchData(iri, &#x27;illustrations&#x27;, ILLUSTRATIONS).pipe(
       map((data) &#x3D;&gt; this.findGraphItem(data, iri).illustration_files),
       map((data) &#x3D;&gt; (data ? this.toDataFileReferences(data) : []))
     );
@@ -461,7 +513,7 @@ export class FtuDataImplService extends FtuDataService {
   @returns An Observable that emits an empty array.
   */
   override getSourceReferences(iri: Iri): Observable&lt;SourceReference[]&gt; {
-    return this.fetchData(iri, this.endpoints.datasets, DATASETS).pipe(
+    return this.fetchData(iri, &#x27;datasets&#x27;, DATASETS).pipe(
       map((data) &#x3D;&gt; this.findGraphItem(data, iri).data_sources),
       map((data) &#x3D;&gt; (data ? this.toSourceReferences(data) : []))
     );
@@ -471,22 +523,33 @@ export class FtuDataImplService extends FtuDataService {
    * Fetchs data after reading the file and parses with the requested schema
    * @template T : Schema to be formated
    * @param iri : Tissue iri
-   * @param url : File Url
+   * @param endpoint : Endpoint name
    * @param schema :  Format needed to be extracted
    * @returns data
    */
-  private fetchData&lt;T extends z.ZodTypeAny&gt;(iri: Iri | undefined, url: Url, schema: T): Observable&lt;z.infer&lt;T&gt;&gt; {
-    const { http, cachedIri, cache } &#x3D; this;
-    if (iri !&#x3D;&#x3D; undefined &amp;&amp; iri !&#x3D;&#x3D; cachedIri) {
-      this.cachedIri &#x3D; iri;
-      this.cache &#x3D; new Map();
-    }
-    if (!cache.has(url)) {
-      const opts &#x3D; { params: { id: iri ?? &#x27;&#x27; }, responseType: &#x27;json&#x27; as const };
-      const resp &#x3D; http.get(url, opts).pipe(map((data) &#x3D;&gt; schema.parse(data)));
-      cache.set(url, firstValueFrom(resp));
-    }
-    return from(cache.get(url) as Promise&lt;z.infer&lt;T&gt;&gt;);
+  private fetchData&lt;T extends z.ZodTypeAny&gt;(
+    iri: Iri | undefined,
+    endpoint: keyof FtuDataImplEndpoints,
+    schema: T
+  ): Observable&lt;z.infer&lt;T&gt;&gt; {
+    return this.endpoints.pipe(
+      map((endpoints) &#x3D;&gt; endpoints[endpoint]),
+      switchMap((url) &#x3D;&gt; {
+        const { http, cachedIri, cache } &#x3D; this;
+        if (iri !&#x3D;&#x3D; undefined &amp;&amp; iri !&#x3D;&#x3D; cachedIri) {
+          this.cachedIri &#x3D; iri;
+          this.cache &#x3D; new Map();
+        }
+        if (!cache.has(url)) {
+          const opts &#x3D; { params: { id: iri ?? &#x27;&#x27; }, responseType: &#x27;json&#x27; as const };
+          const resp &#x3D; http.get(url, opts).pipe(map((data) &#x3D;&gt; schema.parse(data)));
+          cache.set(url, firstValueFrom(resp));
+        }
+        return from(cache.get(url) as Promise&lt;z.infer&lt;T&gt;&gt;);
+      }),
+      take(1),
+      shareReplay(1)
+    );
   }
 
   /**
@@ -502,7 +565,6 @@ export class FtuDataImplService extends FtuDataService {
       console.error(&#x60;Iri not found in data: ${iri}&#x60;);
       return {} as T;
     }
-
     return item;
   }
 
@@ -546,14 +608,13 @@ export class FtuDataImplService extends FtuDataService {
   private toIllustrationMapping(
     mappings: { label: string; svg_id: string; svg_group_id: string; representation_of: string }[]
   ): IllustrationMappingItem[] {
-    const ontologyIdPrefix &#x3D; &#x27;http://purl.obolibrary.org/obo/&#x27;;
     const results: IllustrationMappingItem[] &#x3D; [];
     for (const { label, svg_id, svg_group_id, representation_of } of mappings) {
       results.push({
         label,
         id: svg_id,
         groupId: svg_group_id,
-        ontologyId: representation_of.slice(ontologyIdPrefix.length),
+        ontologyId: representation_of,
       });
     }
 

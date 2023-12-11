@@ -167,6 +167,9 @@
                                 <a href="#getHoverData" >getHoverData</a>
                             </li>
                             <li>
+                                <a href="#getHoverId" >getHoverId</a>
+                            </li>
+                            <li>
                                 <a href="#getMinMaxColor" >getMinMaxColor</a>
                             </li>
                             <li>
@@ -183,6 +186,9 @@
                             </li>
                             <li>
                                 <a href="#lerp" >lerp</a>
+                            </li>
+                            <li>
+                                <a href="#sortTable" >sortTable</a>
                             </li>
                         </ul>
                     </td>
@@ -206,10 +212,10 @@
                                 <a href="#gradient" >gradient</a>
                             </li>
                             <li>
-                                <a href="#highlightedCellName" >highlightedCellName</a>
+                                <a href="#highlightedCellId" >highlightedCellId</a>
                             </li>
                             <li>
-                                <a href="#illustrationLabels" >illustrationLabels</a>
+                                <a href="#illustrationIds" >illustrationIds</a>
                             </li>
                             <li>
                                 <a href="#sizes" >sizes</a>
@@ -359,8 +365,8 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="highlightedCellName"></a>
-                        <b>highlightedCellName</b>
+                        <a name="highlightedCellId"></a>
+                        <b>highlightedCellId</b>
                     </td>
                 </tr>
                 <tr>
@@ -381,7 +387,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Cell name which is hovered, used for highlighting</p>
+                        <div class="io-description"><p>Cell id which is hovered, used for highlighting</p>
 </div>
                     </td>
                 </tr>
@@ -391,8 +397,8 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="illustrationLabels"></a>
-                        <b>illustrationLabels</b>
+                        <a name="illustrationIds"></a>
+                        <b>illustrationIds</b>
                     </td>
                 </tr>
                 <tr>
@@ -544,8 +550,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="205"
-                            class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:205</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="221"
+                            class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:221</a></div>
                 </td>
             </tr>
 
@@ -615,8 +621,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="232"
-                            class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:232</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="248"
+                            class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:248</a></div>
                 </td>
             </tr>
 
@@ -669,6 +675,83 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getHoverId"></a>
+                    <span class="name">
+                        <span ><b>getHoverId</b></span>
+                        <a href="#getHoverId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getHoverId(data: <a href="../undefineds/DataRow.html" target="_self">DataRow&lt;T&gt;</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="158"
+                            class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:158</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets hover id from row</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#DataRow" target="_self" >DataRow&lt;T&gt;</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>row data</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>cell type id</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getMinMaxColor"></a>
                     <span class="name">
                         <span ><b>getMinMaxColor</b></span>
@@ -685,8 +768,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="175"
-                            class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:175</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="191"
+                            class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:191</a></div>
                 </td>
             </tr>
 
@@ -756,8 +839,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="191"
-                            class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:191</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="207"
+                            class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:207</a></div>
                 </td>
             </tr>
 
@@ -827,8 +910,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="221"
-                            class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:221</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="237"
+                            class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:237</a></div>
                 </td>
             </tr>
 
@@ -898,8 +981,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="163"
-                            class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:163</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="179"
+                            class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:179</a></div>
                 </td>
             </tr>
 
@@ -962,22 +1045,22 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>isHighlighted(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>isHighlighted(row: <a href="../undefineds/DataRow.html" target="_self">DataRow&lt;T&gt;</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="143"
-                            class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:143</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="149"
+                            class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:149</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Returns true if name matches the highlighted cell name</p>
+                    <div class="io-description"><p>Returns true if id matches the cell id of the row</p>
 </div>
 
                     <div class="io-description">
@@ -994,9 +1077,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>name</td>
+                                    <td>row</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                <code><a href="../miscellaneous/typealiases.html#DataRow" target="_self" >DataRow&lt;T&gt;</a></code>
                                     </td>
 
                                     <td>
@@ -1005,7 +1088,7 @@
 
 
                                     <td>
-                                        <p>Cell name</p>
+                                        <p>Highlighted row</p>
 
                                     </td>
                                 </tr>
@@ -1045,8 +1128,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="154"
-                            class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:154</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="170"
+                            class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:170</a></div>
                 </td>
             </tr>
 
@@ -1115,6 +1198,45 @@
                     </div>
                     <div class="io-description">
                         
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sortTable"></a>
+                    <span class="name">
+                        <span ><b>sortTable</b></span>
+                        <a href="#sortTable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>sortTable()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="133"
+                            class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:133</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sorts table by cell type alphabetically, then puts cells that are in the illustration on top</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
                     </div>
                 </td>
             </tr>
@@ -1293,11 +1415,11 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
   /** Taking input for the radius of the circle and the label to be displayed. */
   @Input() sizes: SizeLegend[] &#x3D; [];
 
-  /** Cell name which is hovered, used for highlighting */
-  @Input() highlightedCellName &#x3D; &#x27;&#x27;;
+  /** Cell id which is hovered, used for highlighting */
+  @Input() highlightedCellId &#x3D; &#x27;&#x27;;
 
   /** List of cell ids in the illustration */
-  @Input() illustrationLabels: string[] &#x3D; [];
+  @Input() illustrationIds: string[] &#x3D; [];
 
   /** Emits cell type label when row is hovered */
   @Output() readonly rowHover &#x3D; new EventEmitter&lt;string&gt;();
@@ -1320,7 +1442,13 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
       this.dataSource.data &#x3D; this.data;
     }
 
-    if (&#x27;illustrationLabels&#x27; in changes) {
+    if (&#x27;illustrationIds&#x27; in changes) {
+      if (!changes[&#x27;illustrationIds&#x27;].previousValue) {
+        return;
+      }
+      if (changes[&#x27;illustrationIds&#x27;].currentValue.toString() &#x3D;&#x3D;&#x3D; changes[&#x27;illustrationIds&#x27;].previousValue.toString()) {
+        return;
+      }
       this.sortTable();
     }
   }
@@ -1328,24 +1456,34 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
   /**
    * Sorts table by cell type alphabetically, then puts cells that are in the illustration on top
    */
-  private sortTable(): void {
+  sortTable(): void {
     this.dataSource.data &#x3D; this.data.sort((a, b) &#x3D;&gt; {
       return a[0].toLowerCase() &lt; b[0].toLowerCase() ? -1 : 1;
     });
 
     this.dataSource.data &#x3D; this.dataSource.data.sort((a, b) &#x3D;&gt; {
-      const id1 &#x3D; this.illustrationLabels.includes(a[0].toLowerCase());
-      const id2 &#x3D; this.illustrationLabels.includes(b[0].toLowerCase());
+      const id1 &#x3D; this.illustrationIds.includes(this.getHoverId(a));
+      const id2 &#x3D; this.illustrationIds.includes(this.getHoverId(b));
       return id1 &amp;&amp; !id2 ? -1 : 1;
     });
   }
 
   /**
-   * Returns true if name matches the highlighted cell name
-   * @param name Cell name
+   * Returns true if id matches the cell id of the row
+   * @param row Highlighted row
    */
-  isHighlighted(name: string): boolean {
-    return name.toLowerCase() &#x3D;&#x3D;&#x3D; this.highlightedCellName.toLowerCase();
+  isHighlighted(row: DataRow&lt;T&gt;): boolean {
+    return this.getHoverId(row) &#x3D;&#x3D;&#x3D; this.highlightedCellId;
+  }
+
+  /**
+   * Gets hover id from row
+   * @param data row data
+   * @returns cell type id
+   */
+  getHoverId(data: DataRow&lt;T&gt;): string {
+    const entry &#x3D; data.slice(2).find((entry) &#x3D;&gt; entry) as T;
+    return entry?.data.cell;
   }
 
   /** Lerp function to give value beween min and max value based on the given value
@@ -1476,7 +1614,7 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
   &lt;ng-container matColumnDef&#x3D;&quot;type&quot;&gt;
     &lt;th mat-header-cell *matHeaderCellDef&gt;Cell Type&lt;/th&gt;
 
-    &lt;td class&#x3D;&quot;type&quot; mat-cell *matCellDef&#x3D;&quot;let element&quot; [class.highlight]&#x3D;&quot;isHighlighted(element[0])&quot;&gt;
+    &lt;td class&#x3D;&quot;type&quot; mat-cell *matCellDef&#x3D;&quot;let element&quot; [class.highlight]&#x3D;&quot;isHighlighted(element)&quot;&gt;
       {{ element[0] }}
     &lt;/td&gt;
   &lt;/ng-container&gt;
@@ -1484,7 +1622,7 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
   &lt;ng-container matColumnDef&#x3D;&quot;count&quot;&gt;
     &lt;th class&#x3D;&quot;count&quot; mat-header-cell *matHeaderCellDef&gt;Cell Count&lt;/th&gt;
 
-    &lt;td class&#x3D;&quot;count&quot; mat-cell *matCellDef&#x3D;&quot;let element&quot; [class.highlight]&#x3D;&quot;isHighlighted(element[0])&quot;&gt;
+    &lt;td class&#x3D;&quot;count&quot; mat-cell *matCellDef&#x3D;&quot;let element&quot; [class.highlight]&#x3D;&quot;isHighlighted(element)&quot;&gt;
       {{ element[1] !&#x3D;&#x3D; undefined ? (element[1] | number) : &#x27;no data&#x27; }}
     &lt;/td&gt;
   &lt;/ng-container&gt;
@@ -1494,7 +1632,7 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
       {{ column }}
     &lt;/th&gt;
 
-    &lt;td class&#x3D;&quot;icon-cell&quot; mat-cell *matCellDef&#x3D;&quot;let element&quot; [class.highlight]&#x3D;&quot;isHighlighted(element[0])&quot;&gt;
+    &lt;td class&#x3D;&quot;icon-cell&quot; mat-cell *matCellDef&#x3D;&quot;let element&quot; [class.highlight]&#x3D;&quot;isHighlighted(element)&quot;&gt;
       &lt;hra-biomarker-table-data-icon
         class&#x3D;&quot;icon&quot;
         *ngIf&#x3D;&quot;element[index + 2] !&#x3D;&#x3D; undefined; else emptyCell&quot;
@@ -1515,7 +1653,7 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
   &lt;tr
     mat-row
     *matRowDef&#x3D;&quot;let row; columns: columnsWithTypeAndCount&quot;
-    (mouseover)&#x3D;&quot;rowHover.emit(row[0])&quot;
+    (mouseover)&#x3D;&quot;rowHover.emit(getHoverId(row))&quot;
     (mouseout)&#x3D;&quot;rowHover.emit(undefined)&quot;
   &gt;&lt;/tr&gt;
 &lt;/table&gt;
@@ -1676,7 +1814,7 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><table class="table" mat-table [dataSource]="dataSource">  <caption class="sr-only">    Cell type table by Biomarker  </caption>  <ng-container matColumnDef="type">    <th mat-header-cell *matHeaderCellDef>Cell Type</th>    <td class="type" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element[0])">      {{ element[0] }}    </td>  </ng-container>  <ng-container matColumnDef="count">    <th class="count" mat-header-cell *matHeaderCellDef>Cell Count</th>    <td class="count" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element[0])">      {{ element[1] !== undefined ? (element[1] | number) : \'no data\' }}    </td>  </ng-container>  <ng-container *ngFor="let column of columns; let index = index" [matColumnDef]="column">    <th class="icon-header" mat-header-cell *matHeaderCellDef [hraHover]="columnHover" [hraHoverData]="column">      {{ column }}    </th>    <td class="icon-cell" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element[0])">      <hra-biomarker-table-data-icon        class="icon"        *ngIf="element[index + 2] !== undefined; else emptyCell"        [color]="getColor(element[index + 2].color)"        [size]="getSize(element[index + 2].size)"        [hraHover]="dataHover"        [hraHoverData]="[index + 2, element]"      >      </hra-biomarker-table-data-icon>      <ng-template #emptyCell>        <div class="empty" [hraHover]="dataHover" [hraHoverData]="[index + 2, element]"></div>      </ng-template>    </td>  </ng-container>  <tr mat-header-row *matHeaderRowDef="columnsWithTypeAndCount; sticky: true"></tr>  <tr    mat-row    *matRowDef="let row; columns: columnsWithTypeAndCount"    (mouseover)="rowHover.emit(row[0])"    (mouseout)="rowHover.emit(undefined)"  ></tr></table><ng-template #columnHover let-columnName>  <div class="biomarker-table-hover full-column-name">    {{ columnName }}  </div></ng-template><ng-template #dataHover let-data>  <hra-biomarker-table-data-card [data]="getHoverData(data)"> </hra-biomarker-table-data-card></ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><table class="table" mat-table [dataSource]="dataSource">  <caption class="sr-only">    Cell type table by Biomarker  </caption>  <ng-container matColumnDef="type">    <th mat-header-cell *matHeaderCellDef>Cell Type</th>    <td class="type" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">      {{ element[0] }}    </td>  </ng-container>  <ng-container matColumnDef="count">    <th class="count" mat-header-cell *matHeaderCellDef>Cell Count</th>    <td class="count" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">      {{ element[1] !== undefined ? (element[1] | number) : \'no data\' }}    </td>  </ng-container>  <ng-container *ngFor="let column of columns; let index = index" [matColumnDef]="column">    <th class="icon-header" mat-header-cell *matHeaderCellDef [hraHover]="columnHover" [hraHoverData]="column">      {{ column }}    </th>    <td class="icon-cell" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">      <hra-biomarker-table-data-icon        class="icon"        *ngIf="element[index + 2] !== undefined; else emptyCell"        [color]="getColor(element[index + 2].color)"        [size]="getSize(element[index + 2].size)"        [hraHover]="dataHover"        [hraHoverData]="[index + 2, element]"      >      </hra-biomarker-table-data-icon>      <ng-template #emptyCell>        <div class="empty" [hraHover]="dataHover" [hraHoverData]="[index + 2, element]"></div>      </ng-template>    </td>  </ng-container>  <tr mat-header-row *matHeaderRowDef="columnsWithTypeAndCount; sticky: true"></tr>  <tr    mat-row    *matRowDef="let row; columns: columnsWithTypeAndCount"    (mouseover)="rowHover.emit(getHoverId(row))"    (mouseout)="rowHover.emit(undefined)"  ></tr></table><ng-template #columnHover let-columnName>  <div class="biomarker-table-hover full-column-name">    {{ columnName }}  </div></ng-template><ng-template #dataHover let-data>  <hra-biomarker-table-data-card [data]="getHoverData(data)"> </hra-biomarker-table-data-card></ng-template></div>'
     var COMPONENTS = [{'name': 'BiomarkerTableComponent', 'selector': 'hra-biomarker-table'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'BiomarkerTableComponent'};

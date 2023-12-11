@@ -74,12 +74,13 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { NgxsModule } from &#x27;@ngxs/store&#x27;;
+import { BaseHrefState } from &#x27;./base-href&#x27;;
 import { LinkRegistryState } from &#x27;./link-registry&#x27;;
 import { ResourceRegistryState } from &#x27;./resource-registry&#x27;;
 import { StorageState } from &#x27;./storage&#x27;;
 
 @NgModule({
-  imports: [NgxsModule.forFeature([LinkRegistryState, ResourceRegistryState, StorageState])],
+  imports: [NgxsModule.forFeature([BaseHrefState, LinkRegistryState, ResourceRegistryState, StorageState])],
 })
 export class CdkStateModule {}
 </code></pre>

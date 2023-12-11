@@ -166,8 +166,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:48</a></div>
                 </td>
             </tr>
 
@@ -252,8 +252,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:71</a></div>
                 </td>
             </tr>
 
@@ -338,8 +338,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="38"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:38</a></div>
                 </td>
             </tr>
 
@@ -424,8 +424,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:57</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:58</a></div>
                 </td>
             </tr>
 
@@ -510,8 +510,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="92"
-                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:92</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="93"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:93</a></div>
                 </td>
             </tr>
 
@@ -591,8 +591,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="102"
-                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:102</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:103</a></div>
                 </td>
             </tr>
 
@@ -658,7 +658,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>url(getField: <a href="../undefineds/FieldQuery.html" target="_self">FieldQuery</a>)</code>
+                    <code>url(getField: <a href="../undefineds/FieldQuery.html" target="_self">FieldQuery</a>, baseHref: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -666,14 +666,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Selector([&#x27;undefined&#x27;])<br /></code>
+                    <code>@Selector([&#x27;undefined&#x27;, &#x27;undefined&#x27;])<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="112"
-                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:112</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="113"
+                            class="link-to-prism">state/src/resource-registry/resource-registry.selectors.ts:113</a></div>
                 </td>
             </tr>
 
@@ -699,6 +699,18 @@
                                     <td>getField</td>
                                     <td>
                                                 <code><a href="../miscellaneous/typealiases.html#FieldQuery" target="_self" >FieldQuery</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>baseHref</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -744,6 +756,7 @@ import {
   ResourceType,
 } from &#x27;./resource-registry.model&#x27;;
 import { ResourceRegistryState } from &#x27;./resource-registry.state&#x27;;
+import { BaseHrefSelectors } from &#x27;../base-href&#x27;;
 
 /** Query function returned by {@link ResourceRegistrySelectors.entry} */
 export type EntryQuery &#x3D; &lt;T extends ResourceEntry&gt;(id: ResourceId, type: ResourceType&lt;T&gt;) &#x3D;&gt; T | undefined;
@@ -844,9 +857,12 @@ export class ResourceRegistrySelectors {
    * @param state Current state
    * @returns Url query function
    */
-  @Selector([ResourceRegistrySelectors.field])
-  static url(getField: FieldQuery): DataQuery&lt;string&gt; {
-    return (id) &#x3D;&gt; getField(id, BuiltinResourceType.Url, &#x27;url&#x27;, &#x27;&#x27;);
+  @Selector([ResourceRegistrySelectors.field, BaseHrefSelectors.baseHref])
+  static url(getField: FieldQuery, baseHref: string): DataQuery&lt;string&gt; {
+    return (id) &#x3D;&gt; {
+      const relUrl &#x3D; getField(id, BuiltinResourceType.Url, &#x27;url&#x27;, &#x27;&#x27;);
+      return relUrl !&#x3D;&#x3D; &#x27;&#x27; ? baseHref + relUrl : &#x27;&#x27;;
+    };
   }
 }
 </code></pre>

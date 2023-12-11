@@ -332,11 +332,11 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
   /** Taking input for the radius of the circle and the label to be displayed. */
   @Input() sizes: SizeLegend[] &#x3D; [];
 
-  /** Cell name which is hovered, used for highlighting */
-  @Input() highlightedCellName &#x3D; &#x27;&#x27;;
+  /** Cell id which is hovered, used for highlighting */
+  @Input() highlightedCellId &#x3D; &#x27;&#x27;;
 
   /** List of cell ids in the illustration */
-  @Input() illustrationLabels: string[] &#x3D; [];
+  @Input() illustrationIds: string[] &#x3D; [];
 
   /** Emits cell type label when row is hovered */
   @Output() readonly rowHover &#x3D; new EventEmitter&lt;string&gt;();
@@ -359,7 +359,13 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
       this.dataSource.data &#x3D; this.data;
     }
 
-    if (&#x27;illustrationLabels&#x27; in changes) {
+    if (&#x27;illustrationIds&#x27; in changes) {
+      if (!changes[&#x27;illustrationIds&#x27;].previousValue) {
+        return;
+      }
+      if (changes[&#x27;illustrationIds&#x27;].currentValue.toString() &#x3D;&#x3D;&#x3D; changes[&#x27;illustrationIds&#x27;].previousValue.toString()) {
+        return;
+      }
       this.sortTable();
     }
   }
@@ -367,24 +373,34 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
   /**
    * Sorts table by cell type alphabetically, then puts cells that are in the illustration on top
    */
-  private sortTable(): void {
+  sortTable(): void {
     this.dataSource.data &#x3D; this.data.sort((a, b) &#x3D;&gt; {
       return a[0].toLowerCase() &lt; b[0].toLowerCase() ? -1 : 1;
     });
 
     this.dataSource.data &#x3D; this.dataSource.data.sort((a, b) &#x3D;&gt; {
-      const id1 &#x3D; this.illustrationLabels.includes(a[0].toLowerCase());
-      const id2 &#x3D; this.illustrationLabels.includes(b[0].toLowerCase());
+      const id1 &#x3D; this.illustrationIds.includes(this.getHoverId(a));
+      const id2 &#x3D; this.illustrationIds.includes(this.getHoverId(b));
       return id1 &amp;&amp; !id2 ? -1 : 1;
     });
   }
 
   /**
-   * Returns true if name matches the highlighted cell name
-   * @param name Cell name
+   * Returns true if id matches the cell id of the row
+   * @param row Highlighted row
    */
-  isHighlighted(name: string): boolean {
-    return name.toLowerCase() &#x3D;&#x3D;&#x3D; this.highlightedCellName.toLowerCase();
+  isHighlighted(row: DataRow&lt;T&gt;): boolean {
+    return this.getHoverId(row) &#x3D;&#x3D;&#x3D; this.highlightedCellId;
+  }
+
+  /**
+   * Gets hover id from row
+   * @param data row data
+   * @returns cell type id
+   */
+  getHoverId(data: DataRow&lt;T&gt;): string {
+    const entry &#x3D; data.slice(2).find((entry) &#x3D;&gt; entry) as T;
+    return entry?.data.cell;
   }
 
   /** Lerp function to give value beween min and max value based on the given value

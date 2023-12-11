@@ -116,6 +116,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/AddMany-1.html" data-type="entity-link" >AddMany</a>
                             </li>
                             <li class="link">
+                                <a href="classes/BaseHrefSelectors.html" data-type="entity-link" >BaseHrefSelectors</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/Clear.html" data-type="entity-link" >Clear</a>
                             </li>
                             <li class="link">
@@ -146,6 +149,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/Set.html" data-type="entity-link" >Set</a>
                             </li>
                             <li class="link">
+                                <a href="classes/Set-1.html" data-type="entity-link" >Set</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/SnapshotObserver.html" data-type="entity-link" >SnapshotObserver</a>
                             </li>
                             <li class="link">
@@ -161,6 +167,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <span class="icon ion-ios-arrow-down"></span>
                             </div>
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
+                                <li class="link">
+                                    <a href="injectables/BaseHrefState.html" data-type="entity-link" >BaseHrefState</a>
+                                </li>
                                 <li class="link">
                                     <a href="injectables/LinkRegistryState.html" data-type="entity-link" >LinkRegistryState</a>
                                 </li>

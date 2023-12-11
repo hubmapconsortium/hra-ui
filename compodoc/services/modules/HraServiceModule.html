@@ -77,6 +77,7 @@ import { ContactImplService } from &#x27;./contact/contact.impl&#x27;;
 import { ContactService } from &#x27;./contact/contact.service&#x27;;
 import { FTU_DATA_IMPL_ENDPOINTS, FtuDataImplService } from &#x27;./ftu-data/ftu-data.impl&#x27;;
 import { FtuDataService } from &#x27;./ftu-data/ftu-data.service&#x27;;
+import { of } from &#x27;rxjs&#x27;;
 
 @NgModule({
   providers: [
@@ -90,11 +91,12 @@ import { FtuDataService } from &#x27;./ftu-data/ftu-data.service&#x27;;
     },
     {
       provide: FTU_DATA_IMPL_ENDPOINTS,
-      useValue: {
+      useValue: of({
         illustrations: &#x27;assets/TEMP/2d-ftu-illustrations.jsonld&#x27;,
         summaries: &#x27;assets/TEMP/ftu-cell-summaries.jsonld&#x27;,
         datasets: &#x27;assets/TEMP/ftu-datasets.jsonld&#x27;,
-      },
+        baseHref: &#x27;&#x27;,
+      }),
     },
   ],
 })

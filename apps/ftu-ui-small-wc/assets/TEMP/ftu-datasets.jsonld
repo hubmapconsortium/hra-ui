@@ -26,15 +26,67 @@
   ],
   "@graph": [
     {
+      "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron",
+      "@type": "FtuIllustration",
+      "data_sources": [
+        {
+          "@id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
+          "@type": "Dataset",
+          "label": "snRNA-seq of Three Healthy Human Kidney Tissue",
+          "link": "https://doi.org/10.1038/s41467-021-22368-w",
+          "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
+        }
+      ]
+    },
+    {
+      "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle",
+      "@type": "FtuIllustration",
+      "data_sources": [
+        {
+          "@id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
+          "@type": "Dataset",
+          "label": "snRNA-seq of Three Healthy Human Kidney Tissue",
+          "link": "https://doi.org/10.1038/s41467-021-22368-w",
+          "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
+        }
+      ]
+    },
+    {
+      "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct",
+      "@type": "FtuIllustration",
+      "data_sources": [
+        {
+          "@id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
+          "@type": "Dataset",
+          "label": "snRNA-seq of Three Healthy Human Kidney Tissue",
+          "link": "https://doi.org/10.1038/s41467-021-22368-w",
+          "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
+        }
+      ]
+    },
+    {
+      "@id": "https://purl.humanatlas.io/2d-ftu/kidney-thick-ascending-loop-of-henle",
+      "@type": "FtuIllustration",
+      "data_sources": [
+        {
+          "@id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
+          "@type": "Dataset",
+          "label": "snRNA-seq of Three Healthy Human Kidney Tissue",
+          "link": "https://doi.org/10.1038/s41467-021-22368-w",
+          "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
+        }
+      ]
+    },
+    {
       "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland",
       "@type": "FtuIllustration",
       "data_sources": [
         {
-          "@id": "https://doi.org/10.1038/s41591-019-0468-5",
+          "@id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
           "@type": "Dataset",
-          "label": "A cellular census of human lungs identifies novel cell states in health and in asthma",
+          "label": "scRNA Seq of Resected Human Lung Tissue",
           "link": "https://doi.org/10.1038/s41591-019-0468-5",
-          "description": "Lung Mapping Healthy Asthma By Vieira Braga"
+          "description": "A cellular census of human lungs identifies novel cell states in health and in asthma"
         }
       ]
     },
@@ -43,11 +95,11 @@
       "@type": "FtuIllustration",
       "data_sources": [
         {
-          "@id": "https://doi.org/10.1038/s41591-019-0468-5",
+          "@id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
           "@type": "Dataset",
-          "label": "A cellular census of human lungs identifies novel cell states in health and in asthma",
+          "label": "scRNA Seq of Resected Human Lung Tissue",
           "link": "https://doi.org/10.1038/s41591-019-0468-5",
-          "description": "Lung Mapping Healthy Asthma By Vieira Braga"
+          "description": "A cellular census of human lungs identifies novel cell states in health and in asthma"
         }
       ]
     },
@@ -56,11 +108,11 @@
       "@type": "FtuIllustration",
       "data_sources": [
         {
-          "@id": "https://doi.org/10.1038/s41598-021-98806-y",
+          "@id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
           "@type": "Dataset",
-          "label": "Single-cell and bulk transcriptomics of the liver reveals potential targets of NASH with fibrosis",
+          "label": "sc Bulk Transcriptomics of Liver Data",
           "link": "https://doi.org/10.1038/s41598-021-98806-y",
-          "description": "Liver Mapping Healthy Fibrosis By Wang ZY"
+          "description": "Single-cell and bulk transcriptomics of the liver reveals potential targets of NASH with fibrosis"
         }
       ]
     }

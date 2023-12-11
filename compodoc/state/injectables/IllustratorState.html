@@ -148,8 +148,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="78"
-                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:78</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:84</a></div>
                 </td>
             </tr>
 
@@ -225,8 +225,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="94"
-                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:94</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:100</a></div>
                 </td>
             </tr>
 
@@ -403,8 +403,8 @@ It also cancels any uncompleted actions to the state.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="86"
-                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:86</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:92</a></div>
                 </td>
             </tr>
 
@@ -480,8 +480,8 @@ It also cancels any uncompleted actions to the state.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:76</a></div>
                 </td>
             </tr>
 
@@ -568,8 +568,8 @@ It also cancels any uncompleted actions to the state.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:62</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/lib/illustrator/illustrator.state.ts:68</a></div>
                 </td>
             </tr>
 
@@ -688,7 +688,13 @@ export class IllustratorState {
     const mapping$ &#x3D; this.dataService.getIllustrationMapping(iri);
     const result$ &#x3D; forkJoin({ url: url$, mapping: mapping$ });
     return result$.pipe(
-      tap((result) &#x3D;&gt; patchState({ ...result, selectedOnHover: undefined, selectedOnClick: undefined }))
+      tap((result) &#x3D;&gt;
+        patchState({
+          ...result,
+          selectedOnHover: undefined,
+          selectedOnClick: undefined,
+        })
+      )
     );
   }
 
@@ -729,7 +735,7 @@ export class IllustratorState {
    */
   @Action(HighlightCellType)
   HighlightCellType({ patchState, getState }: Context, { hoverLabel }: HighlightCellType): void {
-    const match &#x3D; getState().mapping.find((entry) &#x3D;&gt; entry.label.toLowerCase() &#x3D;&#x3D;&#x3D; hoverLabel?.toLowerCase());
+    const match &#x3D; getState().mapping.find((entry) &#x3D;&gt; entry.ontologyId &#x3D;&#x3D;&#x3D; hoverLabel);
     patchState({ hoveredCellTypeId: match ? match.ontologyId : undefined });
   }
 }

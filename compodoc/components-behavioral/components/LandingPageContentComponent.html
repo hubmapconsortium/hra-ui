@@ -146,6 +146,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Readonly</span>
+                                <a href="#baseHref" >baseHref</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#intersectableEls" >intersectableEls</a>
                             </li>
                             <li>
@@ -326,6 +330,38 @@
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="baseHref"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>baseHref</b></span>
+                        <a href="#baseHref"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>selectSnapshot(BaseHrefSelectors.baseHref)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/lib/landing-page-content/landing-page-content.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Base href</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -515,7 +551,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/lib/landing-page-content/landing-page-content.component.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/landing-page-content/landing-page-content.component.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -611,7 +647,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/lib/landing-page-content/landing-page-content.component.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/lib/landing-page-content/landing-page-content.component.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -643,7 +679,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/lib/landing-page-content/landing-page-content.component.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/lib/landing-page-content/landing-page-content.component.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -801,8 +837,8 @@ import {
   Renderer2,
   ViewChildren,
 } from &#x27;@angular/core&#x27;;
-import { injectDestroy$, selectQuerySnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
-import { ResourceRegistrySelectors as RRS } from &#x27;@hra-ui/cdk/state&#x27;;
+import { injectDestroy$, selectQuerySnapshot, selectSnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
+import { BaseHrefSelectors, ResourceRegistrySelectors as RRS } from &#x27;@hra-ui/cdk/state&#x27;;
 import {
   LandingPageInDepthComponent,
   LandingPageIntroComponent,
@@ -825,14 +861,14 @@ export class LandingPageContentComponent implements AfterViewInit {
   @ViewChildren(&#x27;intersectable&#x27;, { read: ElementRef })
   readonly intersectableEls!: QueryList&lt;ElementRef&gt;;
 
+  /** Base href */
+  readonly baseHref &#x3D; selectSnapshot(BaseHrefSelectors.baseHref);
   /** select snapshot for Landing Page title */
   readonly landingPageIntroTitle &#x3D; selectQuerySnapshot(RRS.anyText, RIds.LandingPageTitle);
-
   /** select snapshot for landing page intro description */
   readonly landingPageIntroDescription &#x3D; selectQuerySnapshot(RRS.markdown, RIds.LandingPageDescription);
   /** select snapshot for landing page intro partners */
   readonly landingPageIntroPartners &#x3D; selectQuerySnapshot(RRS.markdown, RIds.LandingPagePartners);
-
   /** select snapshot for landing page intro more text */
   readonly landingPageIntroMoreText &#x3D; selectQuerySnapshot(RRS.anyText, RIds.LandingPageIntroMoreText);
   /** select snapshot for landing page intro img */
@@ -894,7 +930,14 @@ export class LandingPageContentComponent implements AfterViewInit {
   [moreLink]&#x3D;&quot;LinkIds.ExploreFTU&quot;
 &gt;
 &lt;/hra-landing-page-intro&gt;
-&lt;hra-metrics class&#x3D;&quot;metrics&quot; [title]&#x3D;&quot;metricsTitle()&quot; [metrics]&#x3D;&quot;metrics()&quot; [logo]&#x3D;&quot;metricsLogo()&quot; #intersectable&gt;
+&lt;hra-metrics
+  class&#x3D;&quot;metrics&quot;
+  [title]&#x3D;&quot;metricsTitle()&quot;
+  [metrics]&#x3D;&quot;metrics()&quot;
+  [logo]&#x3D;&quot;metricsLogo()&quot;
+  [baseHref]&#x3D;&quot;baseHref()&quot;
+  #intersectable
+&gt;
 &lt;/hra-metrics&gt;
 &lt;hra-landing-page-in-depth
   class&#x3D;&quot;in-depth&quot;
@@ -988,7 +1031,7 @@ export class LandingPageContentComponent implements AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-landing-page-intro  class="intro"  [title]="landingPageIntroTitle()"  [img]="landingPageIntroImg()"  [partners]="landingPageIntroPartners()"  [description]="landingPageIntroDescription()"  [moreText]="landingPageIntroMoreText()"  [moreLink]="LinkIds.ExploreFTU"></hra-landing-page-intro><hra-metrics class="metrics" [title]="metricsTitle()" [metrics]="metrics()" [logo]="metricsLogo()" #intersectable></hra-metrics><hra-landing-page-in-depth  class="in-depth"  [title]="landingPageDepthTitle()"  [description]="landingPageDepthDescription()"  [moreText]="landingPageDepthMoreText()"  [img]="landingPageDepthImg()"  [moreLink]="LinkIds.LandingPageReadMore"  #intersectable></hra-landing-page-in-depth></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-landing-page-intro  class="intro"  [title]="landingPageIntroTitle()"  [img]="landingPageIntroImg()"  [partners]="landingPageIntroPartners()"  [description]="landingPageIntroDescription()"  [moreText]="landingPageIntroMoreText()"  [moreLink]="LinkIds.ExploreFTU"></hra-landing-page-intro><hra-metrics  class="metrics"  [title]="metricsTitle()"  [metrics]="metrics()"  [logo]="metricsLogo()"  [baseHref]="baseHref()"  #intersectable></hra-metrics><hra-landing-page-in-depth  class="in-depth"  [title]="landingPageDepthTitle()"  [description]="landingPageDepthDescription()"  [moreText]="landingPageDepthMoreText()"  [img]="landingPageDepthImg()"  [moreLink]="LinkIds.LandingPageReadMore"  #intersectable></hra-landing-page-in-depth></div>'
     var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'BiomarkerDetailsWcComponent', 'selector': 'ftu-wc-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'HraLandingPageIntroWcBehaviourComponent', 'selector': 'ftu-wc-intro'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'ScreenNoticeBehaviorComponent', 'selector': 'ftu-ui-screen-notice-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LandingPageContentComponent'};

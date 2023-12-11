@@ -74,7 +74,7 @@
                 <h3>Implements</h3>
             </p>
             <p class="comment">
-                            <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
+                            <code><a href="https://angular.io/api/core/DoCheck" target="_blank" >DoCheck</a></code>
             </p>
 
 
@@ -500,8 +500,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/lib/link/link.directive.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/lib/link/link.directive.ts:80</a></div>
                 </td>
             </tr>
 
@@ -577,8 +577,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/lib/link/link.directive.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/lib/link/link.directive.ts:80</a></div>
                 </td>
             </tr>
 
@@ -773,7 +773,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, ElementRef, HostBinding, HostListener, inject, Injector, Input, OnChanges } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, DoCheck, ElementRef, HostBinding, HostListener, inject, Injector, Input } from &#x27;@angular/core&#x27;;
 import { ActivatedRoute, Params, QueryParamsHandling, UrlCreationOptions } from &#x27;@angular/router&#x27;;
 import { dispatch, selectQuerySnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
 import { EMPTY_LINK, LinkEntry, LinkRegistryActions, LinkRegistrySelectors, LinkType } from &#x27;@hra-ui/cdk/state&#x27;;
@@ -784,7 +784,7 @@ import { createExternalUrl, createInternalUrl } from &#x27;@hra-ui/utils&#x27;;
   selector: &#x27;[hraLink]&#x27;,
   standalone: true,
 })
-export class LinkDirective implements OnChanges {
+export class LinkDirective implements DoCheck {
   /** linkId with empty string as default value */
   @Input(&#x27;hraLink&#x27;) linkId &#x3D; EMPTY_LINK;
 
@@ -839,8 +839,11 @@ export class LinkDirective implements OnChanges {
   }
 
   /** Updates the current link/url based on the inputs */
-  ngOnChanges(): void {
-    this.updateLink();
+  ngDoCheck(): void {
+    const link &#x3D; this.queryLink(this.linkId);
+    if (this.link !&#x3D;&#x3D; link) {
+      this.updateLink(link);
+    }
   }
 
   /**
@@ -867,8 +870,8 @@ export class LinkDirective implements OnChanges {
   }
 
   /** Updates the link entry and bound attributes */
-  private updateLink(): void {
-    const link &#x3D; (this.link &#x3D; this.queryLink(this.linkId));
+  private updateLink(link?: LinkEntry): void {
+    this.link &#x3D; link;
     ({ href: this.href, rel: this.rel, target: this.target } &#x3D; this.getLinkAttributes(link));
   }
 

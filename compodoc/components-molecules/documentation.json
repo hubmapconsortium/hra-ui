@@ -223,12 +223,12 @@
         },
         {
             "name": "MetricItem",
-            "id": "interface-MetricItem-e52c0a1cdf090042d1924c4907a4034774cbb442217faca9ec5035e76d2796116cf55644ecf49ae040fdea1168f9c5d99f6ce15b2079f70de3d853fece481b30",
+            "id": "interface-MetricItem-6e3a4bad9dea0c0be10b197ab58639138abd5a1daf54d501bb2aa02864a0941b60580e69878578865cfd236b31a32ca86cf510c5241d8b6bd3f1128c73e47600",
             "file": "src/lib/metrics/metrics.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/**\n  An interface representing a single metric with an icon, value and description.\n */\nexport interface MetricItem {\n  /** Represents the icon associated with the metric. */\n  icon: string;\n  /** Describes the numberical value of the metric. */\n  value: string;\n  /** Describes the type of metric. */\n  description: string;\n}\n/**\n * Describes the metrics for the HuBMAP project.\n */\n@Component({\n  selector: 'hra-metrics',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './metrics.component.html',\n  styleUrls: ['./metrics.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MetricsComponent {\n  /** Main title of metrics component. */\n  @Input() title = '';\n\n  /** Logo of metrics component. */\n  @Input() logo = '';\n\n  /** List of metrics that will be shown to the user. */\n  @Input() metrics: MetricItem[] = [];\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/**\n  An interface representing a single metric with an icon, value and description.\n */\nexport interface MetricItem {\n  /** Represents the icon associated with the metric. */\n  icon: string;\n  /** Describes the numberical value of the metric. */\n  value: string;\n  /** Describes the type of metric. */\n  description: string;\n}\n/**\n * Describes the metrics for the HuBMAP project.\n */\n@Component({\n  selector: 'hra-metrics',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './metrics.component.html',\n  styleUrls: ['./metrics.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MetricsComponent {\n  /** Main title of metrics component. */\n  @Input() title = '';\n\n  /** Logo of metrics component. */\n  @Input() logo = '';\n\n  /** List of metrics that will be shown to the user. */\n  @Input() metrics: MetricItem[] = [];\n\n  /** Base url */\n  @Input() baseHref = '';\n}\n",
             "properties": [
                 {
                     "name": "description",
@@ -1188,7 +1188,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<a class=\"product\" matRipple [hraLink]=\"productTitleLink\">\n  <img class=\"logo image\" [src]=\"productLogoUrl\" alt=\"Prodoct Logo\" aria-hidden=\"true\" />\n  <h1 class=\"text\">{{ productTitle }}</h1>\n</a>\n<h1 class=\"app text\">{{ appTitle }}</h1>\n\n<div class=\"filler\"></div>\n\n<a mat-flat-button class=\"about\" [hraLink]=\"aboutLink\">\n  <mat-icon class=\"icon\">info_outlined</mat-icon>\n  <span class=\"text\">About</span>\n</a>\n"
+            "templateData": "<a class=\"product\" matRipple [hraLink]=\"productTitleLink\">\n  <img class=\"logo image\" [src]=\"productLogoUrl\" alt=\"Product Logo\" aria-hidden=\"true\" />\n  <h1 class=\"text\">{{ productTitle }}</h1>\n</a>\n<h1 class=\"app text\">{{ appTitle }}</h1>\n\n<div class=\"filler\"></div>\n\n<a mat-flat-button class=\"about\" [hraLink]=\"aboutLink\">\n  <mat-icon class=\"icon\">info_outlined</mat-icon>\n  <span class=\"text\">About</span>\n</a>\n"
         },
         {
             "name": "HraLandingPageIntroWcComponent",
@@ -1829,7 +1829,7 @@
         },
         {
             "name": "MetricsComponent",
-            "id": "component-MetricsComponent-e52c0a1cdf090042d1924c4907a4034774cbb442217faca9ec5035e76d2796116cf55644ecf49ae040fdea1168f9c5d99f6ce15b2079f70de3d853fece481b30",
+            "id": "component-MetricsComponent-6e3a4bad9dea0c0be10b197ab58639138abd5a1daf54d501bb2aa02864a0941b60580e69878578865cfd236b31a32ca86cf510c5241d8b6bd3f1128c73e47600",
             "file": "src/lib/metrics/metrics.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1847,6 +1847,17 @@
             ],
             "viewProviders": [],
             "inputsClass": [
+                {
+                    "name": "baseHref",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nBase url",
+                    "description": "<p>Base url</p>\n",
+                    "line": 37,
+                    "type": "string",
+                    "decorators": []
+                },
                 {
                     "name": "logo",
                     "defaultValue": "''",
@@ -1891,7 +1902,7 @@
             "description": "<p>Describes the metrics for the HuBMAP project.</p>\n",
             "rawdescription": "\n\nDescribes the metrics for the HuBMAP project.\n",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/**\n  An interface representing a single metric with an icon, value and description.\n */\nexport interface MetricItem {\n  /** Represents the icon associated with the metric. */\n  icon: string;\n  /** Describes the numberical value of the metric. */\n  value: string;\n  /** Describes the type of metric. */\n  description: string;\n}\n/**\n * Describes the metrics for the HuBMAP project.\n */\n@Component({\n  selector: 'hra-metrics',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './metrics.component.html',\n  styleUrls: ['./metrics.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MetricsComponent {\n  /** Main title of metrics component. */\n  @Input() title = '';\n\n  /** Logo of metrics component. */\n  @Input() logo = '';\n\n  /** List of metrics that will be shown to the user. */\n  @Input() metrics: MetricItem[] = [];\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/**\n  An interface representing a single metric with an icon, value and description.\n */\nexport interface MetricItem {\n  /** Represents the icon associated with the metric. */\n  icon: string;\n  /** Describes the numberical value of the metric. */\n  value: string;\n  /** Describes the type of metric. */\n  description: string;\n}\n/**\n * Describes the metrics for the HuBMAP project.\n */\n@Component({\n  selector: 'hra-metrics',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './metrics.component.html',\n  styleUrls: ['./metrics.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MetricsComponent {\n  /** Main title of metrics component. */\n  @Input() title = '';\n\n  /** Logo of metrics component. */\n  @Input() logo = '';\n\n  /** List of metrics that will be shown to the user. */\n  @Input() metrics: MetricItem[] = [];\n\n  /** Base url */\n  @Input() baseHref = '';\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1900,7 +1911,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<img class=\"logo\" [src]=\"logo\" alt=\"\" />\n<span class=\"header-title\">{{ title }}</span>\n\n<div class=\"metrics\">\n  <div class=\"metric\" *ngFor=\"let item of metrics\">\n    <img class=\"logo\" [src]=\"item.icon\" alt=\"\" />\n    <span class=\"value\"> {{ item.value }} </span>\n    <span class=\"description\"> {{ item.description }} </span>\n  </div>\n</div>\n"
+            "templateData": "<img class=\"logo\" [src]=\"logo\" alt=\"\" />\n<span class=\"header-title\">{{ title }}</span>\n\n<div class=\"metrics\">\n  <div class=\"metric\" *ngFor=\"let item of metrics\">\n    <img class=\"logo\" [src]=\"baseHref + item.icon\" alt=\"\" />\n    <span class=\"value\"> {{ item.value }} </span>\n    <span class=\"description\"> {{ item.description }} </span>\n  </div>\n</div>\n"
         },
         {
             "name": "ScreenSizeNoticeComponent",
