@@ -1,24 +1,26 @@
+import { ENVIRONMENT_INITIALIZER } from '@angular/core';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { dispatch, dispatch$, dispatchAction$, select$, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
+import { LinkRegistryActions } from '@hra-ui/cdk/state';
+import { FTU_DATA_IMPL_ENDPOINTS } from '@hra-ui/services';
+import { ActiveFtuActions, TissueLibraryActions } from '@hra-ui/state';
+import { mock } from 'jest-mock-extended';
 import { of } from 'rxjs';
 import { Shallow } from 'shallow-render';
+
 import { AppComponent } from './app.component';
 import { initFactory } from './app.init';
 import { AppModule } from './app.module';
-import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { mock } from 'jest-mock-extended';
-import { LinkRegistryActions } from '@hra-ui/cdk/state';
-import { ENVIRONMENT_INITIALIZER } from '@angular/core';
-import { ActiveFtuActions, TissueLibraryActions } from '@hra-ui/state';
-import { FTU_DATA_IMPL_ENDPOINTS } from '@hra-ui/services';
 
 jest.mock('@hra-ui/cdk/injectors');
 
 describe('AppComponent', () => {
   const dialog = mock<MatDialog>();
   const postRef = mock<MatDialogRef<void>>({ afterClosed: () => of(undefined) });
+
   let shallow: Shallow<AppComponent>;
 
   beforeEach(() => {
@@ -32,16 +34,7 @@ describe('AppComponent', () => {
       .replaceModule(RouterModule, RouterTestingModule)
       .replaceModule(BrowserAnimationsModule, NoopAnimationsModule)
       .dontMock(MatDialogModule)
-      .provide([
-        {
-          provide: FTU_DATA_IMPL_ENDPOINTS,
-          useClass: {
-            datasets: '',
-            illustrations: '',
-            summaries: '',
-          },
-        },
-      ])
+      .dontMock(FTU_DATA_IMPL_ENDPOINTS)
       .provideMock({ provide: MatDialog, useValue: dialog })
       .dontMock(ENVIRONMENT_INITIALIZER);
   });

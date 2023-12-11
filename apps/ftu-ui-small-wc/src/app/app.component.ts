@@ -10,13 +10,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { dispatch, dispatch$, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
-import {
-  BaseHrefActions,
-  createLinkId,
-  LinkRegistryActions,
-  LinkType,
-  ResourceRegistryActions,
-} from '@hra-ui/cdk/state';
+import { BaseHrefActions, createLinkId, LinkRegistryActions, ResourceRegistryActions } from '@hra-ui/cdk/state';
 import {
   BiomarkerDetailsWcComponent,
   FooterBehaviorComponent,
@@ -30,7 +24,6 @@ import {
   ActiveFtuActions,
   ActiveFtuSelectors,
   IllustratorSelectors,
-  LinkIds,
   ScreenModeAction,
   ScreenModeSelectors,
   TissueLibraryActions,
@@ -99,25 +92,7 @@ export class AppComponent implements OnInit, OnChanges {
   ngOnInit() {
     const { baseHref } = this;
     this.setBaseHref(this.baseHref);
-    // this.loadLinks(setUrl(this.linksYamlUrl, baseHref)); //TODO: Fix this
-    this.addMany({
-      [LinkIds.LandingPage]: {
-        type: LinkType.Internal,
-        commands: ['/'],
-      },
-      [createLinkId('FTU')]: {
-        type: LinkType.Internal,
-        commands: ['ftu/'],
-      },
-      [LinkIds.Portal]: {
-        type: LinkType.External,
-        url: 'https://humanatlas.io/',
-      },
-      [LinkIds.Embed]: {
-        type: LinkType.External,
-        url: 'https://github.com/hubmapconsortium/hra-ui#readme',
-      },
-    });
+    this.loadLinks(setUrl(this.linksYamlUrl, baseHref));
     this.loadResources(setUrl(this.resourcesYamlUrl, baseHref));
     this.endpoints.next({
       illustrations: setUrl(this.illustrationsUrl, baseHref),

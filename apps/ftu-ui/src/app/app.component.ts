@@ -17,7 +17,6 @@ import {
   BaseHrefActions,
   createLinkId,
   LinkRegistryActions,
-  LinkType,
   ResourceRegistryActions,
   StorageId,
   StorageSelectors,
@@ -28,8 +27,6 @@ import {
   ActiveFtuActions,
   ActiveFtuSelectors,
   IllustratorSelectors,
-  LinkIds,
-  ScreenModeAction,
   TissueLibraryActions,
   TissueLibrarySelectors,
 } from '@hra-ui/state';
@@ -77,10 +74,8 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
 
   private readonly setBaseHref = dispatch(BaseHrefActions.Set);
   private readonly loadLinks = dispatch(LinkRegistryActions.LoadFromYaml);
-  private readonly addMany = dispatch(LinkRegistryActions.AddMany);
   private readonly loadResources = dispatch(ResourceRegistryActions.LoadFromYaml);
   private readonly navigateToOrgan = dispatch(LinkRegistryActions.Navigate);
-  private readonly setScreenSmall = dispatch(ScreenModeAction.SetSize);
   private readonly reloadDataSets = dispatch(TissueLibraryActions.Load);
   private readonly reloadActiveFtu = dispatch(ActiveFtuActions.Load);
 
@@ -131,47 +126,7 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   ngOnInit() {
     const { baseHref } = this;
     this.setBaseHref(this.baseHref);
-    // this.loadLinks(setUrl(this.linksYamlUrl, baseHref)); //TODO: Fix this
-    this.addMany({
-      [LinkIds.LandingPage]: {
-        type: LinkType.Internal,
-        commands: ['/'],
-      },
-      [LinkIds.ProductTitle]: {
-        type: LinkType.Internal,
-        commands: ['/'],
-      },
-      [createLinkId('FTU')]: {
-        type: LinkType.Internal,
-        commands: ['ftu/'],
-      },
-      [LinkIds.About]: {
-        type: LinkType.External,
-        url: 'https://humanatlas.io/',
-      },
-      [LinkIds.ExploreFTU]: {
-        type: LinkType.Internal,
-        commands: ['ftu/'],
-        extras: {
-          queryParams: {
-            id: 'https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland',
-          },
-        },
-      },
-      [LinkIds.Portal]: {
-        type: LinkType.External,
-        url: 'https://humanatlas.io/',
-      },
-      [LinkIds.LandingPageReadMore]: {
-        type: LinkType.External,
-        url: 'https://humanatlas.io/2d-ftu-illustrations',
-      },
-      [LinkIds.Embed]: {
-        type: LinkType.External,
-        url: 'https://github.com/hubmapconsortium/hra-ui#readme',
-      },
-    });
-
+    this.loadLinks(setUrl(this.linksYamlUrl, baseHref));
     this.loadResources(setUrl(this.resourcesYamlUrl, baseHref));
     this.endpoints.next({
       illustrations: setUrl(this.illustrationsUrl, baseHref),

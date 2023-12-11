@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostBinding, HostListener, inject, Injector, Input, OnChanges } from '@angular/core';
+import { Directive, DoCheck, ElementRef, HostBinding, HostListener, inject, Injector, Input } from '@angular/core';
 import { ActivatedRoute, Params, QueryParamsHandling, UrlCreationOptions } from '@angular/router';
 import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { EMPTY_LINK, LinkEntry, LinkRegistryActions, LinkRegistrySelectors, LinkType } from '@hra-ui/cdk/state';
@@ -9,7 +9,7 @@ import { createExternalUrl, createInternalUrl } from '@hra-ui/utils';
   selector: '[hraLink]',
   standalone: true,
 })
-export class LinkDirective implements OnChanges {
+export class LinkDirective implements DoCheck {
   /** linkId with empty string as default value */
   @Input('hraLink') linkId = EMPTY_LINK;
 
@@ -64,8 +64,11 @@ export class LinkDirective implements OnChanges {
   }
 
   /** Updates the current link/url based on the inputs */
-  ngOnChanges(): void {
-    this.updateLink();
+  ngDoCheck(): void {
+    const link = this.queryLink(this.linkId);
+    if (this.link !== link) {
+      this.updateLink(link);
+    }
   }
 
   /**
@@ -92,8 +95,8 @@ export class LinkDirective implements OnChanges {
   }
 
   /** Updates the link entry and bound attributes */
-  private updateLink(): void {
-    const link = (this.link = this.queryLink(this.linkId));
+  private updateLink(link?: LinkEntry): void {
+    this.link = link;
     ({ href: this.href, rel: this.rel, target: this.target } = this.getLinkAttributes(link));
   }
 

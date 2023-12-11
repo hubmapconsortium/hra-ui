@@ -11,12 +11,16 @@ import { Set } from './base-href.actions';
 })
 @Injectable()
 export class BaseHrefState {
+  /**
+   * Sets base href value
+   * @param ctx state context
+   * @param { baseHref } href value
+   */
   @Action(Set)
   setBaseHref(ctx: StateContext<string>, { baseHref }: Set) {
     if (baseHref !== '' && !baseHref.endsWith('/')) {
       baseHref = baseHref + '/';
     }
-
     ctx.setState(baseHref);
   }
 }
