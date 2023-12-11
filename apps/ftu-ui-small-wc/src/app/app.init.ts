@@ -1,6 +1,6 @@
 import { dispatchAction$ } from '@hra-ui/cdk/injectors';
-import { LinkRegistryActions, LinkType, ResourceRegistryActions } from '@hra-ui/cdk/state';
-import { LinkIds, TissueLibraryActions } from '@hra-ui/state';
+import { LinkRegistryActions, LinkType, createLinkId } from '@hra-ui/cdk/state';
+import { LinkIds } from '@hra-ui/state';
 import { Observable } from 'rxjs';
 
 /**
@@ -16,10 +16,10 @@ export function initFactory(): () => Observable<unknown> {
           type: LinkType.Internal,
           commands: ['/'],
         },
+        [createLinkId('FTU')]: {
+          type: LinkType.Internal,
+          commands: ['ftu/'],
+        },
       }),
-
-      new LinkRegistryActions.LoadFromYaml('assets/links.yml'),
-      new ResourceRegistryActions.LoadFromYaml('assets/resources.yml'),
-      new TissueLibraryActions.Load(),
     ]);
 }

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Action, State } from '@ngxs/store';
 import { StorageId, StorageModel } from './storage.model';
 import { Set, Delete, Clear } from './storage.actions';
+
 /**
  * State holding Storage types
  */
@@ -15,9 +16,6 @@ import { Set, Delete, Clear } from './storage.actions';
   },
 })
 @Injectable()
-/**
- *  class for managing storage state
- */
 export class StorageState {
   /**
    * StorageState class to manage storage objects

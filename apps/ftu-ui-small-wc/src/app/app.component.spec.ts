@@ -1,14 +1,17 @@
+import { TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { dispatch, dispatch$, dispatchAction$, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
-import { of } from 'rxjs';
+import { LinkRegistryActions } from '@hra-ui/cdk/state';
+import { FTU_DATA_IMPL_ENDPOINTS, FtuDataImplEndpoints } from '@hra-ui/services';
+import { ActiveFtuActions, TissueLibraryActions } from '@hra-ui/state';
+import { mock } from 'jest-mock-extended';
+import { of, ReplaySubject } from 'rxjs';
 import { Shallow } from 'shallow-render';
+
 import { AppComponent } from './app.component';
 import { initFactory } from './app.init';
 import { NavigationLessRouter } from './routing/simple-router.service';
-import { FTU_DATA_IMPL_ENDPOINTS } from '@hra-ui/services';
-import { LinkRegistryActions } from '@hra-ui/cdk/state';
-import { ActiveFtuActions, TissueLibraryActions } from '@hra-ui/state';
 
 jest.mock('@hra-ui/cdk/injectors');
 
@@ -18,10 +21,20 @@ describe('AppComponent', () => {
   beforeEach(() => {
     jest.clearAllMocks();
 
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: FTU_DATA_IMPL_ENDPOINTS,
+          useValue: mock<ReplaySubject<FtuDataImplEndpoints>>({ next: () => undefined }),
+        },
+      ],
+    });
+
     jest.mocked(selectSnapshot).mockReturnValue(jest.fn());
     jest.mocked(dispatch).mockReturnValue(jest.fn());
     jest.mocked(select$).mockReturnValue(of());
     jest.mocked(dispatch$).mockReturnValue(jest.fn(() => of({})));
+
     shallow = new Shallow(AppComponent)
       .provideMock(Router, NavigationLessRouter)
       .provide([

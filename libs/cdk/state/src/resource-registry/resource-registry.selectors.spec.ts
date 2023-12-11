@@ -121,7 +121,7 @@ describe('ResourceRegistrySelectors', () => {
 
   describe('url()', () => {
     const field = ResourceRegistrySelectors.field(state);
-    const url = ResourceRegistrySelectors.url(field);
+    const url = ResourceRegistrySelectors.url(field, '');
 
     it('should return url from id', () => {
       expect(url(urlId)).toEqual('http://google.com');

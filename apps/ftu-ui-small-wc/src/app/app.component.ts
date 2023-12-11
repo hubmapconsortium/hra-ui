@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  Injector,
   Input,
   OnChanges,
   OnInit,
@@ -11,7 +10,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { dispatch, dispatch$, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
-import { createLinkId, LinkRegistryActions, ResourceRegistryActions } from '@hra-ui/cdk/state';
+import { BaseHrefActions, createLinkId, LinkRegistryActions, ResourceRegistryActions } from '@hra-ui/cdk/state';
 import {
   BiomarkerDetailsWcComponent,
   FooterBehaviorComponent,
@@ -20,7 +19,7 @@ import {
   TissueLibraryBehaviorComponent,
 } from '@hra-ui/components/behavioral';
 import { FullscreenContainerComponent, FullscreenContentComponent } from '@hra-ui/components/molecules';
-import { FTU_DATA_IMPL_ENDPOINTS, FtuDataImplEndpoints, Iri } from '@hra-ui/services';
+import { FTU_DATA_IMPL_ENDPOINTS, FtuDataImplEndpoints, setUrl, Url } from '@hra-ui/services';
 import {
   ActiveFtuActions,
   ActiveFtuSelectors,
@@ -30,7 +29,7 @@ import {
   TissueLibraryActions,
   TissueLibrarySelectors,
 } from '@hra-ui/state';
-import { tap } from 'rxjs';
+import { ReplaySubject, tap } from 'rxjs';
 
 @Component({
   selector: 'hra-root',
@@ -77,7 +76,9 @@ export class AppComponent implements OnInit, OnChanges {
 
   @Output() readonly nodeClicked = select$(IllustratorSelectors.selectedOnClicked);
 
+  private readonly setBaseHref = dispatch(BaseHrefActions.Set);
   private readonly loadLinks = dispatch(LinkRegistryActions.LoadFromYaml);
+  private readonly addMany = dispatch(LinkRegistryActions.AddMany);
   private readonly loadResources = dispatch(ResourceRegistryActions.LoadFromYaml);
   private readonly navigateToOrgan = dispatch(LinkRegistryActions.Navigate);
   private readonly setScreenSmall = dispatch(ScreenModeAction.SetSize);
@@ -86,17 +87,19 @@ export class AppComponent implements OnInit, OnChanges {
 
   private readonly reset = dispatch$(ActiveFtuActions.Reset);
 
-  private readonly injector = inject(Injector);
-  private endpoints?: FtuDataImplEndpoints;
+  private readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS) as ReplaySubject<FtuDataImplEndpoints>;
 
   ngOnInit() {
-    this.endpoints = this.injector.get(FTU_DATA_IMPL_ENDPOINTS);
-    this.loadLinks(this.setUrl(this.linksYamlUrl));
-    this.loadResources(this.setUrl(this.resourcesYamlUrl));
-    this.endpoints.illustrations = this.setUrl(this.illustrationsUrl);
-    this.endpoints.datasets = this.setUrl(this.datasetUrl);
-    this.endpoints.summaries = this.setUrl(this.summariesUrl);
-    this.endpoints.baseHref = this.baseHref as Iri;
+    const { baseHref } = this;
+    this.setBaseHref(this.baseHref);
+    this.loadLinks(setUrl(this.linksYamlUrl, baseHref));
+    this.loadResources(setUrl(this.resourcesYamlUrl, baseHref));
+    this.endpoints.next({
+      illustrations: setUrl(this.illustrationsUrl, baseHref),
+      datasets: setUrl(this.datasetUrl, baseHref),
+      summaries: setUrl(this.summariesUrl, baseHref),
+      baseHref: this.baseHref as Url,
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -108,14 +111,6 @@ export class AppComponent implements OnInit, OnChanges {
         })
       )
       .subscribe();
-  }
-
-  private setUrl(url: string): Iri {
-    if (url.slice(0, 4) === 'http') {
-      return url as Iri;
-    } else {
-      return (this.baseHref + url) as Iri;
-    }
   }
 
   showDefaultIri() {

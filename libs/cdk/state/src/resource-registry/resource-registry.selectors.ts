@@ -8,6 +8,7 @@ import {
   ResourceType,
 } from './resource-registry.model';
 import { ResourceRegistryState } from './resource-registry.state';
+import { BaseHrefSelectors } from '../base-href';
 
 /** Query function returned by {@link ResourceRegistrySelectors.entry} */
 export type EntryQuery = <T extends ResourceEntry>(id: ResourceId, type: ResourceType<T>) => T | undefined;
@@ -108,8 +109,11 @@ export class ResourceRegistrySelectors {
    * @param state Current state
    * @returns Url query function
    */
-  @Selector([ResourceRegistrySelectors.field])
-  static url(getField: FieldQuery): DataQuery<string> {
-    return (id) => getField(id, BuiltinResourceType.Url, 'url', '');
+  @Selector([ResourceRegistrySelectors.field, BaseHrefSelectors.baseHref])
+  static url(getField: FieldQuery, baseHref: string): DataQuery<string> {
+    return (id) => {
+      const relUrl = getField(id, BuiltinResourceType.Url, 'url', '');
+      return relUrl !== '' ? baseHref + relUrl : '';
+    };
   }
 }

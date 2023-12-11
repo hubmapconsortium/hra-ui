@@ -1,14 +1,16 @@
-import { dispatch, injectDestroy$, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
+import { dispatch, injectDestroy$, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { FTU_DATA_IMPL_ENDPOINTS } from '@hra-ui/services';
 import { Subject } from 'rxjs';
 import { Shallow } from 'shallow-render';
+
 import { LandingPageContentComponent } from './landing-page-content.component';
-import { FTU_DATA_IMPL_ENDPOINTS } from '@hra-ui/services';
 
 jest.mock('@hra-ui/cdk/injectors');
 
 describe('LandingPageContentComponent', () => {
   let shallow: Shallow<LandingPageContentComponent>;
   jest.mocked(selectQuerySnapshot).mockReturnValue(jest.fn());
+  jest.mocked(selectSnapshot).mockReturnValue(jest.fn());
   jest.mocked(dispatch).mockReturnValue(jest.fn());
 
   const destroy$ = new Subject<void>();

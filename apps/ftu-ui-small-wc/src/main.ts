@@ -7,7 +7,7 @@ import { BrowserModule, createApplication } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { CdkStateModule } from '@hra-ui/cdk/state';
-import { HraServiceModule } from '@hra-ui/services';
+import { FTU_DATA_IMPL_ENDPOINTS, HraServiceModule } from '@hra-ui/services';
 import { HraStateModule } from '@hra-ui/state';
 import { ThemingModule } from '@hra-ui/theming';
 import { NgxsModule } from '@ngxs/store';
@@ -16,6 +16,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { AppComponent } from './app/app.component';
 import { initFactory } from './app/app.init';
 import { NavigationLessRouter } from './app/routing/simple-router.service';
+import { ReplaySubject } from 'rxjs';
 
 (async () => {
   const app = await createApplication({
@@ -47,6 +48,10 @@ import { NavigationLessRouter } from './app/routing/simple-router.service';
         // Replace full routing with a partial implementation
         provide: Router,
         useExisting: NavigationLessRouter,
+      },
+      {
+        provide: FTU_DATA_IMPL_ENDPOINTS,
+        useValue: new ReplaySubject(1),
       },
     ],
   });

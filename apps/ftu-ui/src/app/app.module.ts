@@ -1,21 +1,23 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, DoBootstrap, Injector, NgModule } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CdkStateModule } from '@hra-ui/cdk/state';
-import { createCustomElement } from '@angular/elements';
 import { HeaderBehaviorComponent, TissueLibraryBehaviorComponent } from '@hra-ui/components/behavioral';
-import { HraServiceModule } from '@hra-ui/services';
+import { FTU_DATA_IMPL_ENDPOINTS, HraServiceModule } from '@hra-ui/services';
 import { HraStateModule } from '@hra-ui/state';
 import { ThemingModule } from '@hra-ui/theming';
 import { NgxsModule } from '@ngxs/store';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { MarkdownModule } from 'ngx-markdown';
+import { ReplaySubject } from 'rxjs';
+
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { initFactory } from './app.init';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -52,6 +54,10 @@ import { environment } from '../environments/environment';
     {
       provide: MatDialogRef,
       useValue: {},
+    },
+    {
+      provide: FTU_DATA_IMPL_ENDPOINTS,
+      useValue: new ReplaySubject(1),
     },
   ],
 })

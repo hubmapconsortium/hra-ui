@@ -6,7 +6,6 @@ import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import { FooterComponent } from '@hra-ui/components/molecules';
 import { DownloadActions, DownloadSelectors, ResourceIds as Ids, LinkIds, ScreenModeSelectors } from '@hra-ui/state';
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
-import { FTU_DATA_IMPL_ENDPOINTS } from '@hra-ui/services';
 
 /** A component for footer behavior which provides functionality for various buttons in footer */
 @Component({
@@ -18,9 +17,6 @@ import { FTU_DATA_IMPL_ENDPOINTS } from '@hra-ui/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterBehaviorComponent {
-  /** Endpoints injector */
-  readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS);
-
   /** Input for product logo URL to displayed on the left side. */
   readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);
 
