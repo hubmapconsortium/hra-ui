@@ -251,7 +251,7 @@
               alt: HRA ASCTB Reporter
               styles:
                 margin-bottom: 2rem
-            
+
             - type: divider
               styles:
                 margin-bottom: 1rem
@@ -282,7 +282,7 @@
               styles:
                 margin-bottom: 2rem
                 width: 100%
-            
+
             - type: divider
               styles:
                 margin-bottom: 1rem
