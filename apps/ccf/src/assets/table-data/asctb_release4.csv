@@ -1,4 +1,4 @@
-Organ,csv,tableVersion,AS,CT,B_Total,BG,BP,BM,BF,BL,ASWithNoLink,CTWithNoLink,BWithNoLink,ASWithNoCT,CTWithNoB,AS_AS,AS_CT,CT_BM,url
+Organ,csv,table_version,AS,CT,B_Total,BG,BP,BM,BF,BL,ASWithNoLink,CTWithNoLink,BWithNoLink,ASWithNoCT,CTWithNoB,AS_AS,AS_CT,CT_BM,url
 Blood,https://cdn.humanatlas.io/hra-releases/v1.3/asct-b/asct-b-vh-blood-pelvis.csv,v1.3,1,29,159,112,47,0,0,0,0,1,0,0,0,1,29,499,https://cdn.humanatlas.io/hra-releases/v1.3/docs/asct-b/asct-b-vh-blood-pelvis.html
 Blood vasculature,https://cdn.humanatlas.io/hra-releases/v1.3/asct-b/asct-b-vh-blood-vasculature.csv,v1.3,992,10,10,10,0,0,0,0,622,0,0,0,7,1020,2204,11,https://cdn.humanatlas.io/hra-releases/v1.3/docs/asct-b/asct-b-vh-blood-vasculature.html
 Bone marrow,https://cdn.humanatlas.io/hra-releases/v1.3/asct-b/asct-b-vh-bonemarrow-pelvis.csv,v1.3,1,47,262,198,64,0,0,0,0,1,4,0,0,1,47,838,https://cdn.humanatlas.io/hra-releases/v1.3/docs/asct-b/asct-b-vh-bonemarrow-pelvis.html

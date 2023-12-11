@@ -90,7 +90,7 @@
   versionChooserDisabled: false
   isTotal: true
   versionData:
-    - release: '6th HRA Release (v1.5), December 2023'
+    - release: '6th HRA Release (v2.0), December 2023'
       file: omaps_release5.csv #update this
       version: '5' #update this
     - release: '5th HRA Release (v1.4), June 2023'
