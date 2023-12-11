@@ -14,24 +14,24 @@
   mobileNavigationItems:
     - menuName: Introduction
       id: intro
-    - menuName: What's New
-      id: whats-new
-    - menuName: HRA Diversity
-      id: hra-diversity
-    - menuName: ASCT+B Reporter & OMAPs
-      id: asctb-reporter-omaps
-    - menuName: VCCF Updates
-      id: vccf-updates
-    - menuName: ASCT+B Ontology Validations
-      id: asctb-ontology-validations
-    - menuName: Previews
-      id: previews
-    - menuName: HRA-KG 2.0 Beta
-      id: hra-kg-2-beta
+    - menuName: New & Revised Digital Objects
+      id: new-and-revised-doi
+    - menuName: Use the HRA
+      id: use-hra
+    - menuName: APIs & User Interfaces
+      id: api-and-ui
+    - menuName: SOPs
+      id: sop
+    - menuName: Knowledge Graph (HRA-KG) 2.0
+      id: hra-kg
+    - menuName: Publications
+      id: publications
+    - menuName: Human Atlas Stories
+      id: human-atlas-stories
+    - menuName: Release Calendar
+      id: release-calendar
     - menuName: Contact Us
       id: contact-us
-    - menuName: Outro
-      id: outro
 
 - type: header
   styles:
@@ -46,24 +46,24 @@
   navigationItems:
     - menuName: Introduction
       id: intro
-    - menuName: What's New
-      id: whats-new
-    - menuName: HRA Diversity
-      id: hra-diversity
-    - menuName: ASCT+B Reporter & OMAPs
-      id: asctb-reporter-omaps
-    - menuName: VCCF Updates
-      id: vccf-updates
-    - menuName: ASCT+B Ontology Validations
-      id: asctb-ontology-validations
-    - menuName: Previews
-      id: previews
-    - menuName: HRA-KG 2.0 Beta
-      id: hra-kg-2-beta
+    - menuName: New & Revised Digital Objects
+      id: new-and-revised-doi
+    - menuName: Use the HRA
+      id: use-hra
+    - menuName: APIs & User Interfaces
+      id: api-and-ui
+    - menuName: SOPs
+      id: sop
+    - menuName: Knowledge Graph (HRA-KG) 2.0
+      id: hra-kg
+    - menuName: Publications
+      id: publications
+    - menuName: Human Atlas Stories
+      id: human-atlas-stories
+    - menuName: Release Calendar
+      id: release-calendar
     - menuName: Contact Us
       id: contact-us
-    - menuName: Outro
-      id: outro
   drawerStyles:
     background-color: unset
   components:
@@ -74,7 +74,7 @@
             font-size: 1.5rem
             line-height: 34px
             font-weight: 300
-          title: June 15th, 2023 - UPDATE ALL CONTENT
+          title: December 15, 2023
         - type: styled-group
           id: intro
           components:
@@ -86,180 +86,116 @@
                   descriptions: |
                     **Introduction**
 
-                    HuBMAP's Indiana University Mapping Component (MC-IU) has published the 5th Release of the Human Reference Atlas (v1.4), 
-                    a digital atlas of the human body that lets users query & explore key anatomical structures, cell types, and biomarkers down to the cellular level.
-
-                    Download the Human Reference Atlas (HRA) Release Calendar to stay on top of deadlines.
-            - type: button
-              styles:
-                margin-bottom: 1rem
-                text-decoration: none
-              url: assets/images/hra-release-calendar.jpg
-              text: Download JPG
-              icon: download
+                    HuBMAP's Indiana University Mapping Component (MC-IU) has published the 6th Release of the Human Reference Atlas (v2.0), a digital atlas of the human body that lets users query and explore key anatomical structures, 
+                    cell types, and biomarkers down to the cellular level. Every six months, a new version of Human Reference Atlas data is released with user interfaces that make it possible to visually explore the atlas or programmatically access the data.
             - type: image
-              imageSource: assets/images/hra-release-calendar.svg
+              imageSource: assets/images/6th_release_intro.svg
               alt: HRA Release Calendar
               styles:
                 margin-bottom: 2rem
+                margin-top: 1rem
                 width: 100%
             - type: divider
               styles:
                 margin-bottom: 1rem
         - type: styled-group
-          id: whats-new
+          id: new-and-revised-doi
           components:
             - type: page-data
               pageData:
                 - heading: ''
                   descriptions: |
-                    **What's New**
+                    **New & Revised Digital Objects**
 
-                    The Human Reference Atlas now includes 66 reference organs with 4,279 anatomical structures from ASCT+B Tables.
-                    - 5 new ASCT+B tables: Spinal cord, trachea, bronchus, skeleton, muscular system
-                    - 6 revised ASCT+B tables: Blood vasculature, eye, lymph vasculature, brain, kidney, lung
-                    - 10 new 3D Reference Objects for four organs: Palatine tonsil, trachea, bronchus, larynx
-                    - 4 revised 3D Reference Objects for one organ: Eye
-                    - 2 new 2D Functional Tissue Unit (FTU) Illustrations: Red pulp of spleen, white pulp of spleen
-                    - 1 new Vasculature Geometry: Blood vasculature
-                    - 6 new Organ Mapping Antibody Panels (OMAPs): Placenta term IMC, Kidney CODEX, Tonsil MACSima, Spleen IBEX, Retina IBEX, Pancreas CODEX
-                    - 7 revised Organ Mapping Antibody Panels (OMAPs): Lymph Node IBEX, Intestines CODEX, Kidney CODEX, Skin Cell DIVE, Liver SIMS, Pancreas CODEX, Lung Cell DIVE
-
-            - type: divider
-              styles:
-                margin-bottom: 1rem
-        - type: styled-group
-          id: hra-diversity
-          components:
-            - type: page-data
-              pageData:
-                - heading: ''
-                  descriptions: |
-                    **Human Reference Atlas Diversity**
-
-                    The Human Reference Atlas diversity survey was designed to provide a baseline measurement of the diversity of the people building and using the Human Reference Atlas. 
-                    The survey is conducted annually to measure how the Human Reference Atlas community evolves over time. 
-                    This baseline survey was shared with 297 individuals and the response rate was 7.7%. 
-                    The first survey was run in April of 2023 and the survey will be rerun in March-April of 2024.\
-                    Respondents hold the following roles in the Human Reference Atlas:
-                    - ASCT+B Table author
-                    - ASCT+B Table reviewer
-                    - Infrastructure designer
-                    - Interface designer
-                    - Organizer
-                    - User
-                    - Interface tester
-                    - Other
-                    - I prefer not to respond
-
-                    **Gender and sexual orientation**\
-                    Female: 52%\
-                    Male: 48%\
-                    Identify as LGBTIA+: 4.3%
-
-                    **Ethnicity and race**\
-                    White: 82.6%\
-                    Asian: 13%\
-                    Hispanic, Latino, or Spanish: 4.3%
-
-                    **Disability**\
-                    5.3%
-
-                    **Continent of residence**\
-                    North America: 19\
-                    Europe: 3\
-                    Australia/Oceania: 1
-
-                    **Socio-economic background**\
-                    Individuals from disadvantaged backgrounds, as defined using 
-                    <a href="https://extramural-diversity.nih.gov/diversity-matters/disadvantaged-backgrounds" target="_blank">National Institutes of Health criteria</a>: 47%
-
-                    The survey used to gather this information can be found <a href="https://drive.google.com/file/d/1_Sv27z4rmg92Fin_JuCSrO0JlaBQSRwK/view?usp=share_link" target="_blank">here</a>.
-            - type: divider
-              styles:
-                margin-bottom: 1rem
-        - type: styled-group
-          id: asctb-reporter-omaps
-          components:
-            - type: page-data
-              pageData:
-                - heading: ''
-                  descriptions: |
-                    **ASCT+B Reporter & OMAPs Support**
-
-                    Want to visualize anatomical structure, biomarker, and cell type (ASCT+B) tables? The ASCT+B Reporter has been upgraded to 
-                    support the creation of OMAPs. Check out ASCT+B Reporter to see the interconnectedness.
+                    The Human Reference Atlas now includes 65 reference organs with 1,280 anatomical structures.
+                    - 2 new ASCT+B Tables: anatomical systems, palatine tonsil
+                    - 20 revised ASCT+B Tables: allen brain, fallopian tube, blood vasculature, bone marrow, heart, kidney, knee, liver, lung, lymph node, lymph vasculature, main bronchus, 
+                      muscular system, pancreas, peripheral nervous system, placenta full term, prostate, skeleton, skin, thymus
+                    - 6 updated 3D Reference Object: male and female versions of pancreas, brain, and united
+                    - 1 new 2D Functional Tissue Unit (FTU) object: villus of small intestine
+                    - 21 updated 2D Function Tissue Unit (FTU) objects: kidney ascending thin loop of henle, kidney cortical collecting duct, kidney descending thin loop of henle, kidney inner medullary collecting duct, 
+                      kidney nephron, kidney outer medullary collecting duct, kidney renal corpuscle, kidney thick ascending loop of henle, large intestine crypt lieberkuhn, liver liver lobule, lung bronchial submucosal gland, 
+                      lung pulmonary alveolus, pancreas intercalated duct, pancreas islets langerhans, pancreas pancreatic acinus, prostate prostate glandular acinus, skin dermal papilla, skin epidermal ridge, 
+                      spleen red pulp, spleen white pulp, thymus thymus lobule
+                    - 4 updated crosswalk tables: 2d ftu, 3d reference organ, blood vessel organ, musculoskeletal
+                    - 1 updated vascular geometries table: blood vessel geometry table
+                    - 2 revised Organ Mapping Antibody Panels (OMAPs): intestines CODEX and kidney CODEX
             - type: button
-              styles:
-                margin-bottom: 2rem
-              text: Use the ASCT+B Reporter
-              url: https://hubmapconsortium.github.io/ccf-asct-reporter/
+              text: 6th Release Digital Objects
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/index.html
             - type: divider
               styles:
                 margin-bottom: 1rem
         - type: styled-group
-          id: vccf-updates
+          id: use-hra
           components:
             - type: page-data
               pageData:
                 - heading: ''
                   descriptions: |
-                    **Vasculature Common Coordinate Framework (VCCF) Updates**
+                    **Use the HRA**
 
-                    New Vasculature Common Coordinate Framework digital object identifiers have been added for the 5th Release.
-                    - 2 new CSV files
-                      - Vessel to organ structure crosswalk
-                      - Vessel geometries CSV file, which provides lengths and diameters of vessels
-                    - HRA-VCCF database
-                    - Muscular system and Skeleton ASCT+B tables
-            - type: button
-              styles:
-                margin-bottom: 2rem
-              text: Learn about the VCCF
-              url: https://humanatlas.io/vccf
+                    New demonstrations show how to use the HRA. Check out our APIs and interfaces:
+                    - <a href="https://humanatlas.io/user-story/1" target="_blank">Improve Cell Type Annotations</a>.
+                    - <a href="https://humanatlas.io/user-story/2" target="_blank">Predict 3D Spatial Origin of Tissue Samples</a>.
+                    - <a href="https://humanatlas.io/user-story/3" target="_blank">Explore Biomarker Expressions for Cell Types</a>.
+
             - type: divider
               styles:
                 margin-bottom: 1rem
         - type: styled-group
-          id: asctb-ontology-validations
+          id: api-and-ui
           components:
             - type: page-data
               pageData:
                 - heading: ''
                   descriptions: |
-                    **ASCT+B Ontology Validations**
+                    **APIs and User Interfaces**
 
-                    How are ASCT+B tables validated? We use Ubergraph to check all relationships experts have asserted in the tables against 
-                    established ontologies (namely Uberon and Cell Ontology). Check out the results in GitHub.
-            - type: button
-              styles:
-                margin-bottom: 2rem
-              text: Validation Tools GitHub Repository
-              url: https://hubmapconsortium.github.io/ccf-validation-tools/
+                    Use our updated APIs:
+                    - <a href="https://apps.humanatlas.io/hra-api/" target="_blank">HRA-API v1.1 </a>(Recommended for current applications)
+                    - <a href="https://apps.humanatlas.io/api/" target="_blank">HRA-API v2.0</a>
+                    - CCF-OPENAPI v1.2.0 (Language bindings to HRA-API v1.1)
+                      - <a href="https://pypi.org/project/ccf-openapi/" target="_blank">Python</a>
+                      - <a href="https://www.npmjs.com/package/@ccf-openapi/js-client" target="_blank">JavaScript</a>
+                      - <a href="https://www.npmjs.com/package/@ccf-openapi/ts-client" target="_blank">TypeScript</a>
+                      - <a href="https://www.npmjs.com/package/@ccf-openapi/ng-client" target="_blank">Angular</a>
+                    - CCF.OWL v2.3.0 (Precursor to HRA Knowledge Graph. Recommended for current applications.)
+                      - <a href="https://purl.humanatlas.io/graph/ccf" target="_blank">PURL</a>
+                      - <a href="https://bioportal.bioontology.org/ontologies/CCF" target="_blank">BioPortal</a>
+                      - <a href="https://www.ebi.ac.uk/ols4/ontologies/ccf" target="_blank">Ontology Lookup Service (OLS)</a>
+                    - <a href="https://purl.humanatlas.io/collection/hra-kg" target="_blank">HRA-KG v2.0</a>
+                    - <a href="https://lod.humanatlas.io" target="_blank">LOD Server v1.0</a>
+
+                    Explore the 6th HRA release using these interfaces:
+                    - <a href="https://humanatlas.io/" target="_blank">Human Reference Atlas Portal</a>
+                    - <a href="https://hubmapconsortium.github.io/ccf-asct-reporter/" target="_blank">ASCT+B Reporter</a>
+                    - <a href="https://portal.hubmapconsortium.org/ccf-eui" target="_blank">Exploration User Interface (EUI)</a>
+                    - <a href="https://hubmapconsortium.github.io/ccf-ui/rui/" target="_blank">Registration User Interface (RUI)</a>
+                    - Functional Tissue Unit (FTU) Explorer
+                    - <a href="https://humanatlas.io/organ-gallery-in-vr" target="_blank">Organ Gallery in VR</a>
+
             - type: divider
               styles:
                 margin-bottom: 1rem
         - type: styled-group
-          id: previews
+          id: sop
           components:
             - type: page-data
               pageData:
                 - heading: ''
                   descriptions: |
-                    **Previews**
+                    **SOPs** - UPDATE THIS
 
-                    The Human Atlas Stories is a collection of scrollytelling features and 
-                    animated essays interconnected stories designed to introduce the Human Reference Atlas (HRA) to a general audience.
-            - type: button
-              styles:
-                margin-bottom: 2rem
-              text: 'Preview: Human Atlas Stories'
-              url: https://hubmapconsortium.github.io/hra-previews/pilots/pilot4.html
+                    New/revised SOPs
+                    - Item1
+                    - Item2
+
             - type: divider
               styles:
                 margin-bottom: 1rem
         - type: styled-group
-          id: hra-kg-2-beta
+          id: hra-kg
           components:
             - type: page-data
               pageData:
@@ -267,13 +203,86 @@
                   descriptions: |
                     **Human Reference Atlas Knowledge Graph (HRA-KG) 2.0 Beta**
 
-                    A major new release with an improved pipeline and server infrastructure is under active development! 
-                    A Beta version of the knowledge graph is available on GitHub. We will be releasing the final version in December.
+                    A major new release with an improved pipeline and server infrastructure is now available!
             - type: button
               styles:
                 margin-bottom: 2rem
-              text: 'Preview: HRA-KG 2.0 Beta GitHub Repository'
-              url: https://github.com/hubmapconsortium/hra-kg/releases
+              text: HRA-KG 2.0
+              url: https://lod.humanatlas.io
+            - type: divider
+              styles:
+                margin-bottom: 1rem
+        - type: styled-group
+          id: publications
+          components:
+            - type: page-data
+              pageData:
+                - heading: ''
+                  descriptions: |
+                    **Publications**
+
+                    Recent papers (co-)authored by MC-IU that explain how the HRA is constructed and used:
+                    - <a href="https://doi.org/10.1038/s42003-022-03644-x" target="_blank">Tissue registration and exploration user interfaces in support of a Human Reference Atlas</a>
+                    - <a href="https://doi.org/10.1038/s41556-021-00788-6" target="_blank">Anatomical structures, cell types and biomarkers of the Human Reference Atlas</a>
+                    - <a href="https://doi.org/10.1038/s41597-023-01993-8" target="_blank">Specimen, biological structure, and spatial ontologies in support of a Human Reference Atlas</a>
+                    - <a href="https://doi.org/10.1038/s41592-023-01846-7" target="_blank">Organ Mapping Antibody Panels: a community resource for standardized multiplexed tissue imaging</a>
+
+            - type: divider
+              styles:
+                margin-bottom: 1rem
+
+        - type: styled-group
+          id: human-atlas-stories
+          components:
+            - type: page-data
+              pageData:
+                - heading: ''
+                  descriptions: |
+                    **Human Atlas Stories**
+
+                    The Human Atlas Stories is a collection of scrolly-telling features and animated essays interconnected stories designed to introduce the Human Reference Atlas (HRA) to a general audience. 
+                    Stories utilize techniques that encourage user engagement and support knowledge retention through the use of mixed-media presentation.
+
+                    - <a href="https://cns-iu.github.io/hra-scrollytelling/story1.html" target="_blank">What is a Human Reference Atlas?</a>
+                    - <a href="https://cns-iu.github.io/hra-scrollytelling/story2.html" target="_blank">Squiggy's Identity Crisis!</a>
+                    - <a href="https://cns-iu.github.io/hra-scrollytelling/story3.html" target="_blank">Something's NOT Registering!</a>
+            - type: image
+              imageSource: assets/images/hra_stories.svg
+              alt: HRA ASCTB Reporter
+              styles:
+                margin-bottom: 2rem
+            
+            - type: divider
+              styles:
+                margin-bottom: 1rem
+        - type: styled-group
+          id: release-calendar
+          components:
+            - type: page-data
+              styles:
+                margin-bottom: unset
+              pageData:
+                - heading: ''
+                  descriptions: |
+                    **Release Calendar**
+
+                    Download the Human Reference Atlas (HRA) Release Calendar to stay ahead of deadlines.
+
+            - type: button
+              styles:
+                margin-bottom: 1rem
+                text-decoration: none
+              url: assets/images/hra-release-calendar.jpg
+              text: Download JPG
+              icon: download
+
+            - type: image
+              imageSource: assets/images/hra-release-calendar.svg
+              alt: HRA ASCTB Reporter
+              styles:
+                margin-bottom: 2rem
+                width: 100%
+            
             - type: divider
               styles:
                 margin-bottom: 1rem
@@ -288,7 +297,7 @@
                   descriptions: |
                     **Contact Us**
 
-                    Interested in contributing or using the HRA?
+                    Interested in getting involved? Join the <a href='https://iu.co1.qualtrics.com/jfe/form/SV_bpaBhIr8XfdiNRH' target='_blank'>HRA Working Group</a> or contact us!
             - type: button
               styles:
                 margin-bottom: 2rem
@@ -315,26 +324,8 @@
                   role: Research Lead
                   email: abueckle@iu.edu
                   alt: Bruce Herr II profile image
-            - type: divider
-              styles:
-                margin-bottom: 1rem
-                margin-top: 2rem
-        - type: styled-group
-          id: outro
-          components:
-            - type: page-data
-              pageData:
-                - heading: ''
-                  descriptions: |
-                    **Outro**
-
-                    Every six months, a new version of Human Reference Atlas data is released together with user interfaces that make it possible 
-                    to visually explore the atlas or programmatically access the data. The 6th release is in December. Thanks for reading!
-            - type: image
-              imageSource: assets/images/carousel1.svg
-              alt: Outro
-              styles:
-                width: 100%
+            - type: margin
+              bottom: 2rem
 
 - type: margin
-  bottom: 6.5rem
+  bottom: 4.5rem
