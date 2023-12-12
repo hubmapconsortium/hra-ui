@@ -82,7 +82,7 @@
     "components": [
         {
             "name": "EmailInputComponent",
-            "id": "component-EmailInputComponent-1f7d0d808093e56fed36089f88f516d958678e7e917eb4299c6deb26edf7810680d231b1d0c349c0b380f39d8927a3738e20cd80686dd35cc343ef10c58dc481",
+            "id": "component-EmailInputComponent-64257eb5ea116b92e53015be64923c1935f724ed9e3f7593ed05b98bd393f961d41d34f527cfbab8dc49e7d9ed6839cc748e536c2a09af36943f4726c29964b6",
             "file": "src/lib/email-input/email-input.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -101,13 +101,24 @@
             "viewProviders": [],
             "inputsClass": [
                 {
+                    "name": "defaultMail",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nDefault email address",
+                    "description": "<p>Default email address</p>\n",
+                    "line": 33,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
                     "name": "placeholder",
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nA placeholder for the email input field. This will be disappeared when the email is typed.",
                     "description": "<p>A placeholder for the email input field. This will be disappeared when the email is typed.</p>\n",
-                    "line": 22,
+                    "line": 30,
                     "type": "string",
                     "decorators": []
                 }
@@ -120,7 +131,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nEmits the new email when the input changes or undefined if the email is invalid",
                     "description": "<p>Emits the new email when the input changes or undefined if the email is invalid</p>\n",
-                    "line": 25,
+                    "line": 36,
                     "type": "EventEmitter"
                 }
             ],
@@ -133,7 +144,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>A control to validate the email.</p>\n",
-                    "line": 31,
+                    "line": 42,
                     "rawdescription": "\nA control to validate the email.",
                     "modifierKind": [
                         144
@@ -147,7 +158,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Observable emitting when the component is destroyed</p>\n",
-                    "line": 28,
+                    "line": 39,
                     "rawdescription": "\nObservable emitting when the component is destroyed",
                     "modifierKind": [
                         144
@@ -162,7 +173,7 @@
             "description": "<p>Email input components for contact modal.</p>\n",
             "rawdescription": "\n\nEmail input components for contact modal.\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';\nimport { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';\nimport { MatFormFieldModule } from '@angular/material/form-field';\nimport { MatInputModule } from '@angular/material/input';\nimport { injectDestroy$ } from '@hra-ui/cdk/injectors';\nimport { map, takeUntil } from 'rxjs';\n\n/**\n * Email input components for contact modal.\n */\n@Component({\n  selector: 'hra-email-input',\n  standalone: true,\n  imports: [CommonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule],\n  templateUrl: './email-input.component.html',\n  styleUrls: ['./email-input.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class EmailInputComponent {\n  /** A placeholder for the email input field. This will be disappeared when the email is typed. */\n  @Input() placeholder = '';\n\n  /** Emits the new email when the input changes or undefined if the email is invalid  */\n  @Output() readonly emailChange = new EventEmitter<string | undefined>();\n\n  /** Observable emitting when the component is destroyed */\n  readonly destroy$ = injectDestroy$();\n\n  /**  A control to validate the email. */\n  readonly control = new FormControl('', {\n    updateOn: 'blur',\n    validators: [Validators.required, Validators.email],\n  });\n\n  /** Connects the input control to component outputs */\n  constructor() {\n    const { control, destroy$ } = this;\n    control.valueChanges\n      .pipe(\n        takeUntil(destroy$),\n        map((value) => (control.valid ? value : undefined))\n      )\n      .subscribe((value) => this.emailChange.emit(value as string | undefined));\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  Input,\n  OnChanges,\n  Output,\n  SimpleChanges,\n} from '@angular/core';\nimport { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';\nimport { MatFormFieldModule } from '@angular/material/form-field';\nimport { MatInputModule } from '@angular/material/input';\nimport { injectDestroy$ } from '@hra-ui/cdk/injectors';\nimport { map, takeUntil } from 'rxjs';\n\n/**\n * Email input components for contact modal.\n */\n@Component({\n  selector: 'hra-email-input',\n  standalone: true,\n  imports: [CommonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule],\n  templateUrl: './email-input.component.html',\n  styleUrls: ['./email-input.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class EmailInputComponent implements OnChanges {\n  /** A placeholder for the email input field. This will be disappeared when the email is typed. */\n  @Input() placeholder = '';\n\n  /** Default email address */\n  @Input() defaultMail = '';\n\n  /** Emits the new email when the input changes or undefined if the email is invalid  */\n  @Output() readonly emailChange = new EventEmitter<string | undefined>();\n\n  /** Observable emitting when the component is destroyed */\n  readonly destroy$ = injectDestroy$();\n\n  /**  A control to validate the email. */\n  readonly control = new FormControl('', {\n    updateOn: 'blur',\n    validators: [Validators.required, Validators.email],\n  });\n\n  /** Connects the input control to component outputs */\n  constructor() {\n    const { control, destroy$ } = this;\n    control.valueChanges\n      .pipe(\n        takeUntil(destroy$),\n        map((value) => (control.valid ? value : undefined))\n      )\n      .subscribe((value) => this.emailChange.emit(value as string | undefined));\n  }\n\n  /** Sets the value to default email if provided */\n  ngOnChanges(changes: SimpleChanges) {\n    if ('defaultMail' in changes) {\n      this.control.setValue(this.defaultMail);\n    }\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -177,9 +188,12 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 34,
+                "line": 45,
                 "rawdescription": "\nConnects the input control to component outputs"
             },
+            "implements": [
+                "OnChanges"
+            ],
             "templateData": "<mat-form-field class=\"email-text-field\" appearance=\"outline\">\n  <mat-label> Email </mat-label>\n  <input type=\"email\" matInput [formControl]=\"control\" [placeholder]=\"placeholder\" />\n\n  <mat-error *ngIf=\"control.hasError('email') && !control.hasError('required')\">\n    Please enter a valid email address\n  </mat-error>\n  <mat-error *ngIf=\"control.hasError('required')\"> Email is required </mat-error>\n</mat-form-field>\n"
         },
         {
