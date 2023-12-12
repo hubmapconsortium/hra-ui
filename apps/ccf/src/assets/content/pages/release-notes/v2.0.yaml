@@ -15,7 +15,7 @@
     - menuName: Introduction
       id: intro
     - menuName: New & Revised Digital Objects
-      id: new-and-revised-doi
+      id: new-and-revised
     - menuName: Use the HRA
       id: use-hra
     - menuName: APIs & User Interfaces
