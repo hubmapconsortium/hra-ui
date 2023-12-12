@@ -185,11 +185,13 @@
               pageData:
                 - heading: ''
                   descriptions: |
-                    **SOPs** - UPDATE THIS
+                    **SOPs**
 
-                    New/revised SOPs
-                    - Item1
-                    - Item2
+                    - <a href='https://docs.google.com/document/d/1QdM6neW2zAaQGY9CalGQkQh9ZURfiZM10eyPpoaWfAg/edit#heading=h.4ou04n97ttbd' target='_blank'>Section Overview: Anatomical Structures and Their Cell Type Populations</a>
+                    - <a href='https://docs.google.com/document/d/1zT_BTZ3v31juq0hhRMG2Ya36DdZp_9P5muyxWFdOyIU/edit#heading=h.4ou04n97ttbd' target='_blank'>Section Overview: Human Reference Atlas Validation and Review</a>
+                    - <a href='https://zenodo.org/doi/10.5281/zenodo.10359228' target='_blank'>SOP: Managing Human Reference Atlas (HRA) Registrations</a>
+                    - <a href='https://zenodo.org/doi/10.5281/zenodo.5748154' target='_blank'>SOP: Mapping Functional Tissue Unit (FTU) Illustrations to ASCT+B Tables</a>
+                    - <a href='https://zenodo.org/doi/10.5281/zenodo.5639651' target='_blank'>SOP: Adding 3D Reference Objects to the Human Reference Atlas</a>
 
             - type: divider
               styles:
@@ -251,6 +253,7 @@
               alt: HRA ASCTB Reporter
               styles:
                 margin-bottom: 2rem
+                width: 100%
 
             - type: divider
               styles:
@@ -313,7 +316,7 @@
                   email: katy@indiana.edu
                   alt: Katy Borner profile image
                 - image: assets/images/bruce_herr.svg
-                  name: Bruce Herr II
+                  name: Bruce W. Herr II
                   field: Development
                   role: Technical Director
                   email: bherr@indiana.edu
