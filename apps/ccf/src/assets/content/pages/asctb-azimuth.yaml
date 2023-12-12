@@ -24,22 +24,22 @@
         <a href="https://humanatlas.io/asctb-tables" target="_blank">ASCT+B tables</a> represent cell-by-gene (CxG) relationships that are also captured in the HuBMAP <a href="https://azimuth.hubmapconsortium.org/" target="_blank">Azimuth references</a>.
         This site provides the cell-type typology for all existing Azimuth annotated reference datasets; the Azimuth cell-type typology trees can be visualized in the <a href="https://hubmapconsortium.github.io/ccf-asct-reporter/">ASCT+B Reporter</a>.
 
-        We also provide easy access to results for comparing CxG in ASCT+B vs. CxG in Azimuth. In Jan 2022, Azimuth supports single-cell RNA-seq data exclusively. As more experimental data becomes available and additional types of data are supported (e.g., proteins, lipids, metabolites), data differences will decrease.
+        We also provide easy access to results for comparing CxG in ASCT+B vs. CxG in Azimuth. In January of 2022, Azimuth supports single-cell RNA-seq data exclusively. As more experimental data becomes available and additional types of data are supported (e.g., proteins, lipids, metabolites), data differences will decrease.
 
 - type: page-data
   pageData:
     - heading: Azimuth Cell-Type Typologies and Counts
-      descriptions: In Nov 2022, 10 Azimuth molecular reference maps for the human are available. For each, we provide the cell-type typology as a file that can be visualized in the ASCT+B Reporter together with a table that lists the annotation level and the number of cell-types for each unique cell in the organ-specific Azimuth reference (see Table 1).
+      descriptions: In November of 2022, 10 Azimuth molecular reference maps for the human are available. For each, we provide the cell-type typology as a file that can be visualized in the ASCT+B Reporter together with a table that lists the annotation level and the number of cell-types for each unique cell in the organ-specific Azimuth reference.
 
 - type: page-data
   pageData:
     - heading: Comparison of CxG in ASCT+B vs. Azimuth
       descriptions: |
-        Table 3 shows the comparison of the CxG matrix in ASCT+B tables vs. CxG matrix in Azimuth for each organ in Jan 2022. 
-        An automatically generated, up-to-date comparison is available <a href="https://hubmapconsortium.github.io/asctb-azimuth-data-comparison/Azimuth_vs_ASCTB.summaries.xlsx">here</a>; this xls also contains separate sheets with cell-types that are not (yet) covered in the ASCT+B tables. 
-        Details on how the comparison is calculated are on <a href="https://github.com/hubmapconsortium/asctb-azimuth-data-comparison" target="_blank">GitHub</a>. Note that not all Azimuth cell-types have CL IDs; in these cases, matching is done based on cell-type names.
+        The below table shows the comparison of the CxG matrix in ASCT+B tables vs. CxG matrix in Azimuth for each organ in January 2022. 
+        An automatically generated, up-to-date comparison is available for download <a href="https://hubmapconsortium.github.io/asctb-azimuth-data-comparison/Azimuth_vs_ASCTB.summaries.xlsx">here</a>; this XLS file also contains separate sheets with cell-types that are not (yet) covered in the ASCT+B tables. 
+        Details on how the comparison is calculated are on <a href="https://github.com/hubmapconsortium/asctb-azimuth-data-comparison" target="_blank">GitHub</a>. Note that not all Azimuth cell types have CL IDs; in these cases, matching is done based on cell-type names.
 
-        Data from <a href="https://github.com/satijalab/azimuth_website" target="_blank">https://github.com/satijalab/azimuth_website</a> has been parsed to derive cell-type typologies:
+        Data from <a href="https://github.com/satijalab/azimuth_website" target="_blank">Azimuth Website GitHub Repository</a> has been parsed to derive cell-type typologies:
 
 - type: table-version
   isDownload: false
@@ -141,7 +141,7 @@
   pageData:
     - heading: Azimuth CT Counts
       descriptions: |
-        Data from <a href="https://github.com/satijalab/azimuth_website">https://github.com/satijalab/azimuth_website</a> has been parsed to derive cell-type counts.
+        Data from <a href="https://github.com/satijalab/azimuth_website">Azimuth Website GitHub Repository</a> has been parsed to derive cell-type counts.
 
         Code is available on <a href="https://github.com/hubmapconsortium/asctb-azimuth-data-comparison">GitHub</a>.
 
