@@ -37,15 +37,15 @@
     - release: '6th HRA Release (v2.0), December 2023'
       version: '2.0'
     - release: '5th HRA Release (v1.4), June 2023'
-      version: '1.5'
-    - release: '4th HRA Release (v1.3), December 2022'
       version: '1.4'
-    - release: 3rd HRA Release (v1.2), June 2022
+    - release: '4th HRA Release (v1.3), December 2022'
       version: '1.3'
-    - release: 2nd HRA Release (v1.1), December 2021
+    - release: 3rd HRA Release (v1.2), June 2022
       version: '1.2'
-    - release: 1st HRA Release (v1.0), March 2021
+    - release: 2nd HRA Release (v1.1), December 2021
       version: '1.1'
+    - release: 1st HRA Release (v1.0), March 2021
+      version: '1.0'
   displayMetadata: true
   columnLabels:
     type: Organ
@@ -111,7 +111,7 @@
               link: https://cdn.humanatlas.io/hra-releases/v2.0/asct-b/asct-b-vh-skeleton.csv
           releaseVersion: v1.1
           dot: ASCT+B Table
-    - version: '1.5'
+    - version: '1.4'
       rows:
         - label: Blood Vasculature Female
           url: https://doi.org/10.48539/HBM232.FSRK.728
@@ -169,7 +169,7 @@
               link: https://cdn.humanatlas.io/hra-releases/v1.4/asct-b/asct-b-vh-skeleton.csv
           releaseVersion: v1.0
           dot: ASCT+B Table
-    - version: '1.4'
+    - version: '1.3'
       rows:
         - label: Blood Vasculature Female
           url: https://doi.org/10.48539/HBM232.FSRK.728
@@ -199,7 +199,7 @@
               link: https://cdn.humanatlas.io/hra-releases/v1.3/asct-b/asct-b-vh-lymph-vasculature.csv
           releaseVersion: v1.2
           dot: ASCT+B Table
-    - version: '1.3'
+    - version: '1.2'
       rows:
         - label: Blood Vasculature Female
           url: https://doi.org/10.48539/HBM232.FSRK.728
@@ -229,7 +229,7 @@
               link: https://cdn.humanatlas.io/hra-releases/v1.2/asct-b/ASCT-B_VH_Lymph_Vasculature.csv
           releaseVersion: v1.1
           dot: ASCT+B Table
-    - version: '1.2'
+    - version: '1.1'
       rows:
         - label: Blood Vasculature Female
           url: https://doi.org/10.48539/HBM542.RNFN.859
@@ -259,7 +259,7 @@
               link: https://cdn.humanatlas.io/hra-releases/v1.1/asct-b/ASCT-B_VH_Lymph_Vasculature.csv
           releaseVersion: v1.0
           dot: ASCT+B Table
-    - version: '1.1'
+    - version: '1.0'
       rows:
         - label: Vasculature Female
           url: https://doi.org/10.48539/hbm253.dkwb.737
