@@ -1,17 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
 import { HoverDirective } from '@hra-ui/cdk';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
-import {
-  ActiveFtuSelectors,
-  IllustratorActions,
-  IllustratorSelectors,
-  ScreenModeAction,
-  TissueLibrarySelectors,
-} from '@hra-ui/state';
 import {
   EmptyBiomarkerComponent,
   GradientLegendComponent,
@@ -22,8 +16,19 @@ import {
 } from '@hra-ui/components/atoms';
 import { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/components/molecules';
 import { BiomarkerTableComponent, TissueInfo } from '@hra-ui/components/organisms';
-import { CellSummarySelectors, ResourceIds as Ids, ResourceTypes as RTypes, SourceRefsSelectors } from '@hra-ui/state';
-import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
+import {
+  ActiveFtuSelectors,
+  CellSummarySelectors,
+  IllustratorActions,
+  IllustratorSelectors,
+  ResourceIds as Ids,
+  ResourceTypes as RTypes,
+  ScreenModeAction,
+  SourceRefsSelectors,
+  TissueLibrarySelectors,
+} from '@hra-ui/state';
+import { GoogleAnalyticsService } from 'ngx-google-analytics';
+
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
 /**
@@ -57,6 +62,8 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BiomarkerDetailsComponent {
+  private readonly ga = inject(GoogleAnalyticsService);
+
   /** Table tabs */
   readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);
 
@@ -148,6 +155,8 @@ export class BiomarkerDetailsComponent {
   collaborate(): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
+    console.warn('contact_open', 'modal');
+    this.ga.event('contact_open', 'modal');
     this.dialog.open(ContactBehaviorComponent, dialogConfig);
   }
 
@@ -157,5 +166,10 @@ export class BiomarkerDetailsComponent {
    */
   highlightCells(label?: string) {
     this.highlightCell(label);
+  }
+
+  logTabChange(event: MatTabChangeEvent) {
+    console.warn('biomarker_tab_change', event.tab ? event.tab.textLabel : '');
+    this.ga.event('biomarker_tab_change', event.tab ? event.tab.textLabel : '');
   }
 }

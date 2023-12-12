@@ -5,7 +5,13 @@
   </span>
 </hra-label-box>
 
-<mat-tab-group class="table" [class.table-fullscreen]="isTableFullScreen" mat-stretch-tabs="true" color="accent">
+<mat-tab-group
+  class="table"
+  [class.table-fullscreen]="isTableFullScreen"
+  mat-stretch-tabs="true"
+  color="accent"
+  (selectedTabChange)="logTabChange($event)"
+>
   <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="tab.label">
     <hra-biomarker-table
       *ngIf="tab.rows.length !== 0"

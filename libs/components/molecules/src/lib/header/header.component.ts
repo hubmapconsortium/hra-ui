@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { LinkDirective } from '@hra-ui/cdk';
 import { EMPTY_LINK } from '@hra-ui/cdk';
+import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 /**
  * Header component, displays on top of every page.
@@ -38,4 +39,11 @@ export class HeaderComponent {
 
   /** Input for about link */
   @Input() aboutLink = EMPTY_LINK;
+
+  private readonly ga = inject(GoogleAnalyticsService);
+
+  aboutClicked(): void {
+    console.warn('about_icon_click', 'link_click');
+    this.ga.event('about_icon_click', 'link_click');
+  }
 }
