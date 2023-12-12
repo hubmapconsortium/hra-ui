@@ -40,6 +40,8 @@
 
         > [Assigning RUI Data to Multiple Tissue Blocks](https://doi.org/10.5281/zenodo.5746143)
 
+        > [Managing Human Reference Atlas (HRA) Registrations](https://zenodo.org/doi/10.5281/zenodo.10359228)
+
         > [Constructing a Millitome and Generating Virtual Tissue Blocks](https://doi.org/10.5281/zenodo.7901004)
 
         > [Using a Millitome](https://doi.org/10.5281/zenodo.7382703)
@@ -50,13 +52,15 @@
 
         > Running a Kaggle Competition
 
-        Anatomical Structures and Cell-Type Annotation
+        [Anatomical Structures and their Cell Type Populations](https://docs.google.com/document/d/1QdM6neW2zAaQGY9CalGQkQh9ZURfiZM10eyPpoaWfAg/edit)
 
-        > Computing Cell-Type Populations from Cell by Gene Matrices
+        > Computing Cell Type Populations From Single Cell Bulk Data (Cell by Gene Matrices)
 
-        > Computing Cell-Type Populations from CODEX Data
+        > Computing Cell Type Populations From Spatial Data (Cell by Protein Matrices Using OMAP-aligned Datasets)
 
-        > Using Cell-Type Population Data in HRA Interfaces
+        > Exploring Cell Type Population Data in HRA User Interfaces
+
+        > Using Cell Type Population Data to Predict The Location or Biomolecular Composition of Tissue Blocks
 
         [Vasculature Common Coordinate Framework](https://docs.google.com/document/d/1DNYeE7eQ0fGj-OSMQ5ccM2sLWqUg2BpEZwoG6l6aSvY/edit#heading=h.4ou04n97ttbd)
 
@@ -100,7 +104,7 @@
 
         > [3D Reference Object Approval](https://doi.org/10.5281/zenodo.5944196)
 
-        > [Using 3D Reference Objects](https://doi.org/10.5281/zenodo.5639651)
+        > [Adding 3D Reference Objects to the Human Reference Atlas](https://zenodo.org/doi/10.5281/zenodo.5639651)
 
         2D Functional Tissue Unit (FTU) Reference Object Library
 
@@ -108,9 +112,9 @@
 
         > [Style Guide: Human Reference Atlas 2D Functional Tissue Unit (FTU) Illustrations](https://doi.org/10.5281/zenodo.6703376)
 
-        > [Creating a Crosswalk between ASCT+B Tables and 2D Functional Tissue Unit Models](https://doi.org/10.5281/zenodo.5748154)
+        > [Mapping Functional Tissue Unit Illustrations to ASTC+B Tables](https://zenodo.org/doi/10.5281/zenodo.5748154)
 
-        HRA Validation and Review
+        [Human Reference Atlas Validation and Review](https://docs.google.com/document/d/1zT_BTZ3v31juq0hhRMG2Ya36DdZp_9P5muyxWFdOyIU/edit)
 
         > Internal Validation of ASCT+B Tables, and 2D and 3D Reference Objects
 
