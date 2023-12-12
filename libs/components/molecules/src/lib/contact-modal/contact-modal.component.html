@@ -7,7 +7,12 @@
   <mat-icon>close</mat-icon>
 </button>
 
-<hra-email-input class="email" placeholder="Example@domain.com" (emailChange)="updateData('email', $event)">
+<hra-email-input
+  class="email"
+  placeholder="Example@domain.com"
+  (emailChange)="updateData('email', $event)"
+  [defaultMail]="defaultMail"
+>
 </hra-email-input>
 
 <hra-required-input label="Subject" (inputChange)="updateData('subject', $event)" class="subject-field">

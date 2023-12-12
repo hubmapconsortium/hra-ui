@@ -15,7 +15,7 @@
     *matTreeNodeDef="let node; let level = level; when: hasChild"
     class="row"
     [class.selected]="node.data === selected"
-    (click)="selectNode(node.data)"
+    (mouseup)="selectNode(node.data)"
   >
     <button mat-icon-button matTreeNodeToggle class="toggle" [attr.aria-label]="'Toggle ' + node.label">
       <mat-icon>
@@ -34,7 +34,7 @@
       [hraLink]="data.link"
       [queryParams]="{ id: data.id }"
       class="link"
-      (click)="selectNode(data)"
+      (mouseup)="selectNode(data)"
     >
       {{ label }}
     </a>

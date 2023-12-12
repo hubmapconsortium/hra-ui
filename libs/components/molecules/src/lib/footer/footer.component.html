@@ -50,7 +50,7 @@
   cdkConnectedOverlayHasBackdrop="false"
   cdkConnectedOverlayPush="false"
   cdkConnectedOverlayPanelClass="download-options-panel"
-  (overlayOutsideClick)="downloadListOpen = false"
+  (overlayOutsideClick)="handleOutsideClick($event)"
 >
   <mat-action-list>
     <button

@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { LinkDirective } from '@hra-ui/cdk';
 import { EMPTY_LINK } from '@hra-ui/cdk/state';
@@ -89,4 +89,17 @@ export class FooterComponent<T extends DownloadFormat = DownloadFormat> {
 
   /** Whether the download list panel is open */
   downloadListOpen = false;
+
+  /**
+   * Ignore if button is clicked, otherwise close the download list panel
+   * @param event Mouse event
+   */
+  handleOutsideClick(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    if (['download', 'download\nDownload'].includes(target.innerText)) {
+      return;
+    } else {
+      this.downloadListOpen = false;
+    }
+  }
 }
