@@ -5,6 +5,7 @@ import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import { ContactData, ContactModalComponent, InfoModalComponent } from '@hra-ui/components/molecules';
 import { ResourceIds as Ids, ContactActions } from '@hra-ui/state';
+import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 /** A Component for contact behavior which sends the message entered by the user and shows an acknowledgement */
 @Component({
@@ -40,6 +41,9 @@ export class ContactBehaviorComponent {
   /** Dialog box which references the acknowledgement dialog box */
   private postRef?: MatDialogRef<void>;
 
+  /** Google analytics tracking service */
+  private readonly ga = inject(GoogleAnalyticsService);
+
   /** A function which sends/dispatches a message which contains email, subject, and message. And also opens the acknowledgement dialog box. */
   submit(message: ContactData): void {
     this.sendMessage(message);
@@ -49,7 +53,13 @@ export class ContactBehaviorComponent {
 
   /** A function which closes the 'Contact us' dialog and the acknowledgement dialog.  */
   close(): void {
-    this.postRef?.close();
-    this.selfRef?.close();
+    if (this.postRef) {
+      this.postRef.close();
+      this.ga.event('acknowedgement_close', 'modal');
+    }
+    if (this.selfRef) {
+      this.selfRef.close();
+      this.ga.event('contact_close', 'modal');
+    }
   }
 }

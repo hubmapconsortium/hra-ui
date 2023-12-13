@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CdkStateModule } from '@hra-ui/cdk/state';
 import { HeaderBehaviorComponent, TissueLibraryBehaviorComponent } from '@hra-ui/components/behavioral';
 import { FTU_DATA_IMPL_ENDPOINTS, HraServiceModule } from '@hra-ui/services';
-import { HraStateModule } from '@hra-ui/state';
+import { HraStateModule, MouseTrackerModule } from '@hra-ui/state';
 import { ThemingModule } from '@hra-ui/theming';
 import { NgxsModule } from '@ngxs/store';
 import { InlineSVGModule } from 'ng-inline-svg-2';
@@ -44,6 +44,7 @@ import { initFactory } from './app.init';
 
     HeaderBehaviorComponent,
     TissueLibraryBehaviorComponent,
+    MouseTrackerModule,
   ],
   providers: [
     {

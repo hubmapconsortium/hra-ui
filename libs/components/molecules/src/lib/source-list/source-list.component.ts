@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { EmptyBiomarkerComponent, LabelBoxComponent } from '@hra-ui/components/atoms';
+import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 /** SourceListItem interface contains title and link to the dataset for the SourceList*/
 export interface SourceListItem {
@@ -46,11 +47,23 @@ export class SourceListComponent {
   /** Emits when the contact button is clicked */
   @Output() readonly collaborateClick = new EventEmitter<void>();
 
+  /** Google analytics tracking service */
+  private readonly ga = inject(GoogleAnalyticsService);
+
   /**
    * It changes the value of showTable to false if value it true
    * and vice versa
    */
   toggleTable(): void {
     this.showTable = !this.showTable;
+    this.ga.event('source_table_toggle', this.showTable.toString());
+  }
+
+  /**
+   * Logs source link click
+   * @param item Source list item
+   */
+  sourceLinkClicked(item: SourceListItem): void {
+    this.ga.event('source_link_clicked', 'link_click', item.link);
   }
 }

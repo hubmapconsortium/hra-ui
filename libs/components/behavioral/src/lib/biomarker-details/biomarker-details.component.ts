@@ -1,17 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
 import { HoverDirective } from '@hra-ui/cdk';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
-import {
-  ActiveFtuSelectors,
-  IllustratorActions,
-  IllustratorSelectors,
-  ScreenModeAction,
-  TissueLibrarySelectors,
-} from '@hra-ui/state';
 import {
   EmptyBiomarkerComponent,
   GradientLegendComponent,
@@ -22,8 +16,19 @@ import {
 } from '@hra-ui/components/atoms';
 import { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/components/molecules';
 import { BiomarkerTableComponent, TissueInfo } from '@hra-ui/components/organisms';
-import { CellSummarySelectors, ResourceIds as Ids, ResourceTypes as RTypes, SourceRefsSelectors } from '@hra-ui/state';
-import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
+import {
+  ActiveFtuSelectors,
+  CellSummarySelectors,
+  IllustratorActions,
+  IllustratorSelectors,
+  ResourceIds as Ids,
+  ResourceTypes as RTypes,
+  ScreenModeAction,
+  SourceRefsSelectors,
+  TissueLibrarySelectors,
+} from '@hra-ui/state';
+import { GoogleAnalyticsService } from 'ngx-google-analytics';
+
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
 /**
@@ -136,6 +141,9 @@ export class BiomarkerDetailsComponent {
   /** A dialog box which shows contact modal after clicking on contact */
   private readonly dialog = inject(MatDialog);
 
+  /** Google analytics tracking service */
+  private readonly ga = inject(GoogleAnalyticsService);
+
   /** A function that toggles isTableFullScreen and
    * calls the setScreenMode function.
    */
@@ -148,6 +156,7 @@ export class BiomarkerDetailsComponent {
   collaborate(): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
+    this.ga.event('contact_open', 'modal');
     this.dialog.open(ContactBehaviorComponent, dialogConfig);
   }
 
@@ -157,5 +166,13 @@ export class BiomarkerDetailsComponent {
    */
   highlightCells(label?: string) {
     this.highlightCell(label);
+  }
+
+  /**
+   * Logs tab change event
+   * @param event tab change event
+   */
+  logTabChange(event: MatTabChangeEvent) {
+    this.ga.event('biomarker_tab_change', event.tab ? event.tab.textLabel : '');
   }
 }

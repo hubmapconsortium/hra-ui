@@ -7,6 +7,7 @@ import { calledWithFn, mock } from 'jest-mock-extended';
 import { Shallow } from 'shallow-render';
 import { BiomarkerDetailsWcComponent } from './biomarker-details-wc.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Any = any;
@@ -53,6 +54,18 @@ describe('BiomarkerDetailsWcComponent', () => {
     instance.isTableFullScreen = false;
     instance.toggleFullscreen();
     expect(instance.isTableFullScreen).toBeTruthy();
+  });
+
+  it('should change tabs', async () => {
+    const { instance } = await shallow.render();
+    const mockEvent = {
+      tab: {
+        textLabel: 'label',
+      },
+    } as MatTabChangeEvent;
+    const spy = jest.spyOn(instance, 'logTabChange');
+    instance.logTabChange(mockEvent);
+    expect(spy).toHaveBeenCalled();
   });
 
   describe('.tissueInfo', () => {
