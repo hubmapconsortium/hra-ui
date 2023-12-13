@@ -47,6 +47,7 @@ export class SourceListComponent {
   /** Emits when the contact button is clicked */
   @Output() readonly collaborateClick = new EventEmitter<void>();
 
+  /** Google analytics tracking service */
   private readonly ga = inject(GoogleAnalyticsService);
 
   /**
@@ -55,12 +56,14 @@ export class SourceListComponent {
    */
   toggleTable(): void {
     this.showTable = !this.showTable;
-    console.warn('source_table_toggle', this.showTable.toString());
     this.ga.event('source_table_toggle', this.showTable.toString());
   }
 
+  /**
+   * Logs source link click
+   * @param item Source list item
+   */
   sourceLinkClicked(item: SourceListItem): void {
-    console.warn('source_link_clicked', item.label, item.link);
-    this.ga.event('source_link_clicked', item.label, item.link);
+    this.ga.event('source_link_clicked', 'link_click', item.link);
   }
 }

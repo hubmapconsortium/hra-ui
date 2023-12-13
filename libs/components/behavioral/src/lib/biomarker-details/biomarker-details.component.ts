@@ -62,8 +62,6 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BiomarkerDetailsComponent {
-  private readonly ga = inject(GoogleAnalyticsService);
-
   /** Table tabs */
   readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);
 
@@ -143,6 +141,9 @@ export class BiomarkerDetailsComponent {
   /** A dialog box which shows contact modal after clicking on contact */
   private readonly dialog = inject(MatDialog);
 
+  /** Google analytics tracking service */
+  private readonly ga = inject(GoogleAnalyticsService);
+
   /** A function that toggles isTableFullScreen and
    * calls the setScreenMode function.
    */
@@ -155,7 +156,6 @@ export class BiomarkerDetailsComponent {
   collaborate(): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
-    console.warn('contact_open', 'modal');
     this.ga.event('contact_open', 'modal');
     this.dialog.open(ContactBehaviorComponent, dialogConfig);
   }
@@ -168,8 +168,11 @@ export class BiomarkerDetailsComponent {
     this.highlightCell(label);
   }
 
+  /**
+   * Logs tab change event
+   * @param event tab change event
+   */
   logTabChange(event: MatTabChangeEvent) {
-    console.warn('biomarker_tab_change', event.tab ? event.tab.textLabel : '');
     this.ga.event('biomarker_tab_change', event.tab ? event.tab.textLabel : '');
   }
 }

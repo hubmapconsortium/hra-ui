@@ -41,6 +41,7 @@ export class ContactBehaviorComponent {
   /** Dialog box which references the acknowledgement dialog box */
   private postRef?: MatDialogRef<void>;
 
+  /** Google analytics tracking service */
   private readonly ga = inject(GoogleAnalyticsService);
 
   /** A function which sends/dispatches a message which contains email, subject, and message. And also opens the acknowledgement dialog box. */
@@ -54,12 +55,10 @@ export class ContactBehaviorComponent {
   close(): void {
     if (this.postRef) {
       this.postRef.close();
-      console.warn('acknowedgement_close', 'modal');
       this.ga.event('acknowedgement_close', 'modal');
     }
     if (this.selfRef) {
       this.selfRef.close();
-      console.warn('contact_close', 'modal');
       this.ga.event('contact_close', 'modal');
     }
   }

@@ -4,6 +4,9 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { fromEvent, Subscription } from 'rxjs';
 import { map, throttleTime } from 'rxjs/operators';
 
+/**
+ * Tracks mouse movement and returns position
+ */
 export function trackMousePosition(el: HTMLElement, ga: GoogleAnalyticsService): Subscription {
   const formatData = (event: MouseEvent) => {
     const { clientWidth, clientHeight } = el;
@@ -15,11 +18,13 @@ export function trackMousePosition(el: HTMLElement, ga: GoogleAnalyticsService):
   const events = fromEvent<MouseEvent>(el, 'mousemove').pipe(throttleTime(1000), map(formatData));
 
   return events.subscribe((data) => {
-    console.warn('webpage', 'mousemove', data);
     return ga.event('webpage', 'mousemove', data);
   });
 }
 
+/**
+ * Tracks mouse click and returns target class name
+ */
 export function trackMouseClicks(el: HTMLElement, ga: GoogleAnalyticsService): Subscription {
   const formatData = (event: MouseEvent) => {
     const target = event.target as HTMLElement;
@@ -29,7 +34,6 @@ export function trackMouseClicks(el: HTMLElement, ga: GoogleAnalyticsService): S
   const events = fromEvent<MouseEvent>(el, 'click').pipe(map(formatData));
 
   return events.subscribe((data) => {
-    console.warn('webpage', 'click', data);
     return ga.event('webpage', 'click', data);
   });
 }
@@ -37,7 +41,6 @@ export function trackMouseClicks(el: HTMLElement, ga: GoogleAnalyticsService): S
 @NgModule()
 export class MouseTrackerModule {
   constructor(
-    // NOTE: Angular compiler fails when document is typed properly?!
     // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
     @Inject(DOCUMENT) document: any,
     ga: GoogleAnalyticsService

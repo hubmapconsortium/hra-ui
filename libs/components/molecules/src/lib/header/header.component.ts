@@ -40,10 +40,13 @@ export class HeaderComponent {
   /** Input for about link */
   @Input() aboutLink = EMPTY_LINK;
 
+  /** Google analytics tracking service */
   private readonly ga = inject(GoogleAnalyticsService);
 
+  /**
+   * Logs event when about button clicked
+   */
   aboutClicked(): void {
-    console.warn('about_icon_click', 'link_click');
     this.ga.event('about_icon_click', 'link_click');
   }
 }

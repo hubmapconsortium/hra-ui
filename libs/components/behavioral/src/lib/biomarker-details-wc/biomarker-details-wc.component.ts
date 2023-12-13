@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
 import { HoverDirective } from '@hra-ui/cdk';
 import { selectSnapshot, selectQuerySnapshot, dispatch } from '@hra-ui/cdk/injectors';
 import {
@@ -32,6 +32,7 @@ import {
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
+import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 /**
  * PlaceHolder for Empty Tissue Info
@@ -156,6 +157,9 @@ export class BiomarkerDetailsWcComponent {
   /** A dialog box which shows contact modal after clicking on contact */
   private readonly dialog = inject(MatDialog);
 
+  /** Google analytics tracking service */
+  private readonly ga = inject(GoogleAnalyticsService);
+
   /** A function that toggles isTableFullScreen and
    * calls the setScreenMode function.
    */
@@ -163,10 +167,20 @@ export class BiomarkerDetailsWcComponent {
     this.isTableFullScreen = !this.isTableFullScreen;
     this.setScreenMode(this.isTableFullScreen);
   }
+
   /** A function which opens the contact modal dialog box */
   collaborate(): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
+    this.ga.event('contact_open', 'modal');
     this.dialog.open(ContactBehaviorComponent, dialogConfig);
+  }
+
+  /**
+   * Logs tab change event
+   * @param event tab change event
+   */
+  logTabChange(event: MatTabChangeEvent) {
+    this.ga.event('biomarker_tab_change', event.tab ? event.tab.textLabel : '');
   }
 }

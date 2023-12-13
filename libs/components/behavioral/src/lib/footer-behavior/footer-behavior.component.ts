@@ -45,6 +45,7 @@ export class FooterBehaviorComponent {
   /** A dialog box which shows contact modal after clicking on contact */
   private readonly dialog = inject(MatDialog);
 
+  /** Google analytics tracking service */
   private readonly ga = inject(GoogleAnalyticsService);
 
   /** A function which opens the contact modal dialog box */
@@ -52,7 +53,6 @@ export class FooterBehaviorComponent {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     this.dialog.open(ContactBehaviorComponent, dialogConfig);
-    console.warn('contact_open', 'modal');
     this.ga.event('contact_open', 'modal');
   }
 }

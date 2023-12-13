@@ -2,12 +2,13 @@ import { MatTableModule } from '@angular/material/table';
 import { HoverDirective } from '@hra-ui/cdk';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors } from '@hra-ui/cdk/state';
-import { ActiveFtuSelectors, TissueLibrarySelectors } from '@hra-ui/state';
+import { ActiveFtuSelectors, IllustratorSelectors, TissueLibrarySelectors } from '@hra-ui/state';
 import { calledWithFn } from 'jest-mock-extended';
 import { Shallow } from 'shallow-render';
 import { BiomarkerDetailsComponent } from './biomarker-details.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MarkdownModule } from 'ngx-markdown';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Any = any;
@@ -21,6 +22,21 @@ describe('BiomarkerDetailsComponent', () => {
       label: 'test',
     },
   };
+
+  const MAPPING = [
+    {
+      label: '',
+      id: '',
+      groupId: '',
+      ontologyId: 'id1',
+    },
+    {
+      label: '',
+      id: '',
+      groupId: '',
+      ontologyId: 'id2',
+    },
+  ];
 
   const selectSnapshotSpy = calledWithFn<Any, Any[]>({ fallbackMockImplementation: () => () => [] });
   const selectQuerySnapshotSpy = calledWithFn<Any, Any[]>({ fallbackMockImplementation: () => () => [] });
@@ -36,6 +52,7 @@ describe('BiomarkerDetailsComponent', () => {
 
     selectSnapshotSpy.calledWith(ActiveFtuSelectors.iri).mockReturnValue(iriSpy);
     selectSnapshotSpy.calledWith(TissueLibrarySelectors.tissues).mockReturnValue(() => TISSUES);
+    selectSnapshotSpy.calledWith(IllustratorSelectors.mapping).mockReturnValue(() => MAPPING);
     selectQuerySnapshotSpy.calledWith(ResourceRegistrySelectors.anyText).mockReturnValue(() => '');
 
     shallow = new Shallow(BiomarkerDetailsComponent)
@@ -52,6 +69,18 @@ describe('BiomarkerDetailsComponent', () => {
     instance.isTableFullScreen = false;
     instance.toggleFullscreen();
     expect(instance.isTableFullScreen).toBeTruthy();
+  });
+
+  it('should change tabs', async () => {
+    const { instance } = await shallow.render();
+    const mockEvent = {
+      tab: {
+        textLabel: 'label',
+      },
+    } as MatTabChangeEvent;
+    const spy = jest.spyOn(instance, 'logTabChange');
+    instance.logTabChange(mockEvent);
+    expect(spy).toHaveBeenCalled();
   });
 
   describe('.tissueInfo', () => {
@@ -73,14 +102,20 @@ describe('BiomarkerDetailsComponent', () => {
         label: '',
       });
     });
+  });
+  describe('collaborate', () => {
+    it('should open the contact modal dialog box', async () => {
+      const { instance, inject } = await shallow.render();
+      const spy = jest.spyOn(inject(MatDialog), 'open');
+      instance.collaborate();
+      expect(spy).toHaveBeenCalled();
+    });
+  });
 
-    describe('collaborate', () => {
-      it('should open the contact modal dialog box', async () => {
-        const { instance, inject } = await shallow.render();
-        const spy = jest.spyOn(inject(MatDialog), 'open');
-        instance.collaborate();
-        expect(spy).toHaveBeenCalled();
-      });
+  describe('illustrationIds', () => {
+    it('should get illustration ids', async () => {
+      const { instance } = await shallow.render();
+      expect(instance.illustrationIds).toEqual(['id1', 'id2']);
     });
   });
 });
