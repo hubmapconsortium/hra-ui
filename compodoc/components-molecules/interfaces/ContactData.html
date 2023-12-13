@@ -308,6 +308,9 @@ export class ContactModalComponent {
   /** Asigns the undefined initially to all the input fields. */
   contactData &#x3D; EMPTY_CONTACT_DATA;
 
+  /** Default email address */
+  readonly defaultMail &#x3D; &#x27;cnscntr@indiana.edu&#x27;;
+
   /** Updates the contact data object with a new value for a given key. */
   updateData&lt;K extends keyof ContactData&gt;(key: K, value?: ContactData[K]): void {
     this.contactData &#x3D; produce(this.contactData, (draft) &#x3D;&gt; {

@@ -151,11 +151,11 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ConnectedPosition, OverlayModule } from &#x27;@angular/cdk/overlay&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
-import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from &#x27;@angular/core&#x27;;
 import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
-import { ConnectedPosition, OverlayModule } from &#x27;@angular/cdk/overlay&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { MatListModule } from &#x27;@angular/material/list&#x27;;
 import { LinkDirective } from &#x27;@hra-ui/cdk&#x27;;
 import { EMPTY_LINK } from &#x27;@hra-ui/cdk/state&#x27;;
@@ -242,6 +242,19 @@ export class FooterComponent&lt;T extends DownloadFormat &#x3D; DownloadFormat&g
 
   /** Whether the download list panel is open */
   downloadListOpen &#x3D; false;
+
+  /**
+   * Ignore if button is clicked, otherwise close the download list panel
+   * @param event Mouse event
+   */
+  handleOutsideClick(event: MouseEvent): void {
+    const target &#x3D; event.target as HTMLElement;
+    if ([&#x27;download&#x27;, &#x27;download\nDownload&#x27;].includes(target.innerText)) {
+      return;
+    } else {
+      this.downloadListOpen &#x3D; false;
+    }
+  }
 }
 </code></pre>
     </div>
