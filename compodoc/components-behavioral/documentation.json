@@ -9,7 +9,7 @@
     "components": [
         {
             "name": "BiomarkerDetailsComponent",
-            "id": "component-BiomarkerDetailsComponent-00cb5b27d8dec38e6af4b34f07cbb9553843f032e8e51c52464d8dd09ac35ca60aef99f786493372c3fc7fa57af9768ac22ae0a23f96122958bb2101ec932dc4",
+            "id": "component-BiomarkerDetailsComponent-a8af16d3de1251cca668107582e84a3c1870114a4980afe0f91dbf6bd74a859c4f6ae387820519bca516f3afa76787b6e25c7efa511e78563356501fb2ad8e9e",
             "file": "src/lib/biomarker-details/biomarker-details.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -37,7 +37,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "<p>button text of empty biomarker component.</p>\n",
-                    "line": 125,
+                    "line": 130,
                     "rawdescription": "\n\nbutton text of empty biomarker component.\n",
                     "modifierKind": [
                         144
@@ -51,7 +51,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Info to be shown on the tooltip for Gradient Legend</p>\n",
-                    "line": 64,
+                    "line": 69,
                     "rawdescription": "\nInfo to be shown on the tooltip for Gradient Legend",
                     "modifierKind": [
                         144
@@ -65,7 +65,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Gradient colors along with their stop points</p>\n",
-                    "line": 73,
+                    "line": 78,
                     "rawdescription": "\nGradient colors along with their stop points",
                     "modifierKind": [
                         144
@@ -79,7 +79,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Action to highlight a cell type</p>\n",
-                    "line": 100,
+                    "line": 105,
                     "rawdescription": "\nAction to highlight a cell type",
                     "modifierKind": [
                         144
@@ -93,7 +93,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Iri  of medical illustration behavior component</p>\n",
-                    "line": 86,
+                    "line": 91,
                     "rawdescription": "\n\nIri  of medical illustration behavior component\n",
                     "modifierKind": [
                         144
@@ -107,7 +107,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Indicates if the table is fully shown, defaults to false</p>\n",
-                    "line": 70,
+                    "line": 75,
                     "rawdescription": "\nIndicates if the table is fully shown, defaults to false"
                 },
                 {
@@ -118,7 +118,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Illustration mapping data</p>\n",
-                    "line": 97,
+                    "line": 102,
                     "rawdescription": "\nIllustration mapping data",
                     "modifierKind": [
                         144
@@ -132,7 +132,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>message markdown of empty biomarker component.</p>\n",
-                    "line": 130,
+                    "line": 135,
                     "rawdescription": "\n\nmessage markdown of empty biomarker component.\n",
                     "modifierKind": [
                         144
@@ -146,7 +146,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Selects the cells hovered currently to highlight in table</p>\n",
-                    "line": 94,
+                    "line": 99,
                     "rawdescription": "\nSelects the cells hovered currently to highlight in table",
                     "modifierKind": [
                         144
@@ -160,7 +160,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Info to be shown on the tooltip for Size Legend</p>\n",
-                    "line": 67,
+                    "line": 72,
                     "rawdescription": "\nInfo to be shown on the tooltip for Size Legend",
                     "modifierKind": [
                         144
@@ -174,7 +174,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Taking input for the radius of the circle and the label to be displayed.</p>\n",
-                    "line": 78,
+                    "line": 83,
                     "rawdescription": "\nTaking input for the radius of the circle and the label to be displayed.",
                     "modifierKind": [
                         144
@@ -188,7 +188,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>List of sources with titles and links displayed to the user</p>\n",
-                    "line": 81,
+                    "line": 86,
                     "rawdescription": "\nList of sources with titles and links displayed to the user",
                     "modifierKind": [
                         144
@@ -202,7 +202,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Table tabs</p>\n",
-                    "line": 61,
+                    "line": 66,
                     "rawdescription": "\nTable tabs",
                     "modifierKind": [
                         144
@@ -216,7 +216,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Get all tissues</p>\n",
-                    "line": 91,
+                    "line": 96,
                     "rawdescription": "\n\nGet all tissues\n",
                     "modifierKind": [
                         144
@@ -230,7 +230,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 148,
+                    "line": 156,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nA function which opens the contact modal dialog box",
@@ -250,7 +250,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 158,
+                    "line": 167,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nHighlights cells matching the label\n",
@@ -269,12 +269,57 @@
                     ]
                 },
                 {
+                    "name": "logTabChange",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "MatTabChangeEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 175,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nLogs tab change event\n",
+                    "description": "<p>Logs tab change event</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 5574,
+                                "end": 5579,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "event"
+                            },
+                            "type": "MatTabChangeEvent",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 5568,
+                                "end": 5573,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>tab change event</p>\n"
+                        }
+                    ]
+                },
+                {
                     "name": "toggleFullscreen",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 142,
+                    "line": 150,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nA function that toggles isTableFullScreen and\ncalls the setScreenMode function.\n",
@@ -288,7 +333,7 @@
             "description": "<p>The component displays the biomarker details which includes the details, gradient legends, size legends and source lists</p>\n",
             "rawdescription": "\nThe component displays the biomarker details which includes the details, gradient legends, size legends and source lists",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject } from '@angular/core';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTabsModule } from '@angular/material/tabs';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport {\n  ActiveFtuSelectors,\n  IllustratorActions,\n  IllustratorSelectors,\n  ScreenModeAction,\n  TissueLibrarySelectors,\n} from '@hra-ui/state';\nimport {\n  EmptyBiomarkerComponent,\n  GradientLegendComponent,\n  GradientPoint,\n  LabelBoxComponent,\n  SizeLegend,\n  SizeLegendComponent,\n} from '@hra-ui/components/atoms';\nimport { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/components/molecules';\nimport { BiomarkerTableComponent, TissueInfo } from '@hra-ui/components/organisms';\nimport { CellSummarySelectors, ResourceIds as Ids, ResourceTypes as RTypes, SourceRefsSelectors } from '@hra-ui/state';\nimport { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';\nimport { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';\n\n/**\n * PlaceHolder for Empty Tissue Info\n */\nconst EMPTY_TISSUE_INFO: TissueInfo = {\n  id: '',\n  label: '',\n};\n\n/** The component displays the biomarker details which includes the details, gradient legends, size legends and source lists*/\n@Component({\n  selector: 'ftu-biomarker-details',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatIconModule,\n    MatTabsModule,\n    MatDialogModule,\n    BiomarkerTableComponent,\n    BiomarkerTableDataCardComponent,\n    GradientLegendComponent,\n    HoverDirective,\n    LabelBoxComponent,\n    SizeLegendComponent,\n    SourceListComponent,\n    EmptyBiomarkerComponent,\n  ],\n  templateUrl: './biomarker-details.component.html',\n  styleUrls: ['./biomarker-details.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerDetailsComponent {\n  /** Table tabs */\n  readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);\n\n  /** Info to be shown on the tooltip for Gradient Legend */\n  readonly gradientHoverInfo = selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);\n\n  /** Info to be shown on the tooltip for Size Legend */\n  readonly sizeHoverInfo = selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo);\n\n  /** Indicates if the table is fully shown, defaults to false*/\n  isTableFullScreen = false;\n\n  /** Gradient colors along with their stop points */\n  readonly gradients = selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, 'points' as const, [])<\n    GradientPoint[]\n  >;\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  readonly sizes = selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>;\n\n  /** List of sources with titles and links displayed to the user */\n  readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);\n\n  /**\n   * Iri  of medical illustration behavior component\n   */\n  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);\n\n  /**\n   * Get all tissues\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n\n  /** Selects the cells hovered currently to highlight in table */\n  readonly selectedOnHovered = selectSnapshot(IllustratorSelectors.selectedOnHovered);\n\n  /** Illustration mapping data */\n  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);\n\n  /** Action to highlight a cell type */\n  readonly highlightCell = dispatch(IllustratorActions.HighlightCellType);\n\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueInfo(): TissueInfo {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    if (iri === undefined) {\n      return EMPTY_TISSUE_INFO;\n    }\n    const { id, label } = tissues[iri];\n    return { id, label };\n  }\n\n  /**\n   * Gets ids for cells in the illustration\n   */\n  get illustrationIds(): string[] {\n    return Array.from(new Set(this.mapping().map((data) => data.ontologyId)));\n  }\n\n  /**\n   * button text of empty biomarker component.\n   */\n  readonly collaborateText = 'Collaborate with the HRA Team';\n\n  /**\n   * message markdown of empty biomarker component.\n   */\n  readonly message = `We currently do not have cell type data for this biomarker.\n  <br><br> Please contact us to discuss your dataset.`;\n\n  /** A dispatcher function to set the screen mode */\n  private readonly setScreenMode = dispatch(ScreenModeAction.Set);\n\n  /** A dialog box which shows contact modal after clicking on contact */\n  private readonly dialog = inject(MatDialog);\n\n  /** A function that toggles isTableFullScreen and\n   * calls the setScreenMode function.\n   */\n  toggleFullscreen(): void {\n    this.isTableFullScreen = !this.isTableFullScreen;\n    this.setScreenMode(this.isTableFullScreen);\n  }\n\n  /** A function which opens the contact modal dialog box */\n  collaborate(): void {\n    const dialogConfig = new MatDialogConfig();\n    dialogConfig.disableClose = true;\n    this.dialog.open(ContactBehaviorComponent, dialogConfig);\n  }\n\n  /**\n   * Highlights cells matching the label\n   * @param event\n   */\n  highlightCells(label?: string) {\n    this.highlightCell(label);\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject } from '@angular/core';\nimport { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport {\n  EmptyBiomarkerComponent,\n  GradientLegendComponent,\n  GradientPoint,\n  LabelBoxComponent,\n  SizeLegend,\n  SizeLegendComponent,\n} from '@hra-ui/components/atoms';\nimport { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/components/molecules';\nimport { BiomarkerTableComponent, TissueInfo } from '@hra-ui/components/organisms';\nimport {\n  ActiveFtuSelectors,\n  CellSummarySelectors,\n  IllustratorActions,\n  IllustratorSelectors,\n  ResourceIds as Ids,\n  ResourceTypes as RTypes,\n  ScreenModeAction,\n  SourceRefsSelectors,\n  TissueLibrarySelectors,\n} from '@hra-ui/state';\nimport { GoogleAnalyticsService } from 'ngx-google-analytics';\n\nimport { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';\n\n/**\n * PlaceHolder for Empty Tissue Info\n */\nconst EMPTY_TISSUE_INFO: TissueInfo = {\n  id: '',\n  label: '',\n};\n\n/** The component displays the biomarker details which includes the details, gradient legends, size legends and source lists*/\n@Component({\n  selector: 'ftu-biomarker-details',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatIconModule,\n    MatTabsModule,\n    MatDialogModule,\n    BiomarkerTableComponent,\n    BiomarkerTableDataCardComponent,\n    GradientLegendComponent,\n    HoverDirective,\n    LabelBoxComponent,\n    SizeLegendComponent,\n    SourceListComponent,\n    EmptyBiomarkerComponent,\n  ],\n  templateUrl: './biomarker-details.component.html',\n  styleUrls: ['./biomarker-details.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerDetailsComponent {\n  /** Table tabs */\n  readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);\n\n  /** Info to be shown on the tooltip for Gradient Legend */\n  readonly gradientHoverInfo = selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);\n\n  /** Info to be shown on the tooltip for Size Legend */\n  readonly sizeHoverInfo = selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo);\n\n  /** Indicates if the table is fully shown, defaults to false*/\n  isTableFullScreen = false;\n\n  /** Gradient colors along with their stop points */\n  readonly gradients = selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, 'points' as const, [])<\n    GradientPoint[]\n  >;\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  readonly sizes = selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>;\n\n  /** List of sources with titles and links displayed to the user */\n  readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);\n\n  /**\n   * Iri  of medical illustration behavior component\n   */\n  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);\n\n  /**\n   * Get all tissues\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n\n  /** Selects the cells hovered currently to highlight in table */\n  readonly selectedOnHovered = selectSnapshot(IllustratorSelectors.selectedOnHovered);\n\n  /** Illustration mapping data */\n  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);\n\n  /** Action to highlight a cell type */\n  readonly highlightCell = dispatch(IllustratorActions.HighlightCellType);\n\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueInfo(): TissueInfo {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    if (iri === undefined) {\n      return EMPTY_TISSUE_INFO;\n    }\n    const { id, label } = tissues[iri];\n    return { id, label };\n  }\n\n  /**\n   * Gets ids for cells in the illustration\n   */\n  get illustrationIds(): string[] {\n    return Array.from(new Set(this.mapping().map((data) => data.ontologyId)));\n  }\n\n  /**\n   * button text of empty biomarker component.\n   */\n  readonly collaborateText = 'Collaborate with the HRA Team';\n\n  /**\n   * message markdown of empty biomarker component.\n   */\n  readonly message = `We currently do not have cell type data for this biomarker.\n  <br><br> Please contact us to discuss your dataset.`;\n\n  /** A dispatcher function to set the screen mode */\n  private readonly setScreenMode = dispatch(ScreenModeAction.Set);\n\n  /** A dialog box which shows contact modal after clicking on contact */\n  private readonly dialog = inject(MatDialog);\n\n  /** Google analytics tracking service */\n  private readonly ga = inject(GoogleAnalyticsService);\n\n  /** A function that toggles isTableFullScreen and\n   * calls the setScreenMode function.\n   */\n  toggleFullscreen(): void {\n    this.isTableFullScreen = !this.isTableFullScreen;\n    this.setScreenMode(this.isTableFullScreen);\n  }\n\n  /** A function which opens the contact modal dialog box */\n  collaborate(): void {\n    const dialogConfig = new MatDialogConfig();\n    dialogConfig.disableClose = true;\n    this.ga.event('contact_open', 'modal');\n    this.dialog.open(ContactBehaviorComponent, dialogConfig);\n  }\n\n  /**\n   * Highlights cells matching the label\n   * @param event\n   */\n  highlightCells(label?: string) {\n    this.highlightCell(label);\n  }\n\n  /**\n   * Logs tab change event\n   * @param event tab change event\n   */\n  logTabChange(event: MatTabChangeEvent) {\n    this.ga.event('biomarker_tab_change', event.tab ? event.tab.textLabel : '');\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -304,7 +349,7 @@
                         "name": "tissueInfo",
                         "type": "",
                         "returnType": "TissueInfo",
-                        "line": 105,
+                        "line": 110,
                         "rawdescription": "\n\nGets tissue title from the list of tissues\n",
                         "description": "<p>Gets tissue title from the list of tissues</p>\n"
                     }
@@ -315,17 +360,17 @@
                         "name": "illustrationIds",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 118,
+                        "line": 123,
                         "rawdescription": "\n\nGets ids for cells in the illustration\n",
                         "description": "<p>Gets ids for cells in the illustration</p>\n"
                     }
                 }
             },
-            "templateData": "<hra-label-box class=\"table-header\">\n  Cell Types by Gene Biomarkers\n  <span (click)=\"toggleFullscreen()\" class=\"end material-symbols-outlined cursor\">\n    {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}\n  </span>\n</hra-label-box>\n\n<mat-tab-group class=\"table\" [class.table-fullscreen]=\"isTableFullScreen\" mat-stretch-tabs=\"true\" color=\"accent\">\n  <mat-tab *ngFor=\"let tab of tabs()\" labelClass=\"table-tab-header\" [label]=\"tab.label\">\n    <hra-biomarker-table\n      *ngIf=\"tab.rows.length !== 0\"\n      [data]=\"$any(tab.rows)\"\n      [columns]=\"tab.columns\"\n      [gradient]=\"gradients()\"\n      [sizes]=\"sizes()\"\n      [tissueInfo]=\"tissueInfo\"\n      [highlightedCellId]=\"selectedOnHovered()?.ontologyId ?? ''\"\n      [illustrationIds]=\"illustrationIds\"\n      (rowHover)=\"highlightCells($event)\"\n    ></hra-biomarker-table>\n    <hra-empty-biomarker\n      *ngIf=\"tab.rows.length === 0\"\n      [collaborateText]=\"collaborateText\"\n      [message]=\"message\"\n      (collaborateClick)=\"collaborate()\"\n    ></hra-empty-biomarker>\n  </mat-tab>\n</mat-tab-group>\n\n<hra-label-box class=\"legend-header gradient\">\n  Biomarker Expression Mean in FTU\n  <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"gradientHoverInfo()\">info_outlined</mat-icon>\n</hra-label-box>\n<div class=\"legend gradient\">\n  <hra-gradient-legend [gradient]=\"gradients()\" class=\"content\"></hra-gradient-legend>\n</div>\n\n<hra-label-box class=\"legend-header size\">\n  Percentage of Cells in FTU\n  <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"sizeHoverInfo()\">info_outlined</mat-icon>\n</hra-label-box>\n<div class=\"legend size\">\n  <hra-size-legend [sizes]=\"sizes()\" class=\"content\"></hra-size-legend>\n</div>\n\n<div class=\"source-list\">\n  <hra-source-list\n    [collaborateText]=\"collaborateText\"\n    [message]=\"message\"\n    (collaborateClick)=\"collaborate()\"\n    [sources]=\"source()\"\n    class=\"content\"\n  ></hra-source-list>\n</div>\n\n<ng-template #infoTooltip let-tooltip>\n  <div class=\"biomarker-details info-tooltip\">\n    {{ tooltip }}\n  </div>\n</ng-template>\n"
+            "templateData": "<hra-label-box class=\"table-header\">\n  Cell Types by Gene Biomarkers\n  <span (click)=\"toggleFullscreen()\" class=\"end material-symbols-outlined cursor\">\n    {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}\n  </span>\n</hra-label-box>\n\n<mat-tab-group\n  class=\"table\"\n  [class.table-fullscreen]=\"isTableFullScreen\"\n  mat-stretch-tabs=\"true\"\n  color=\"accent\"\n  (selectedTabChange)=\"logTabChange($event)\"\n>\n  <mat-tab *ngFor=\"let tab of tabs()\" labelClass=\"table-tab-header\" [label]=\"tab.label\">\n    <hra-biomarker-table\n      *ngIf=\"tab.rows.length !== 0\"\n      [data]=\"$any(tab.rows)\"\n      [columns]=\"tab.columns\"\n      [gradient]=\"gradients()\"\n      [sizes]=\"sizes()\"\n      [tissueInfo]=\"tissueInfo\"\n      [highlightedCellId]=\"selectedOnHovered()?.ontologyId ?? ''\"\n      [illustrationIds]=\"illustrationIds\"\n      (rowHover)=\"highlightCells($event)\"\n    ></hra-biomarker-table>\n    <hra-empty-biomarker\n      *ngIf=\"tab.rows.length === 0\"\n      [collaborateText]=\"collaborateText\"\n      [message]=\"message\"\n      (collaborateClick)=\"collaborate()\"\n    ></hra-empty-biomarker>\n  </mat-tab>\n</mat-tab-group>\n\n<hra-label-box class=\"legend-header gradient\">\n  Biomarker Expression Mean in FTU\n  <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"gradientHoverInfo()\">info_outlined</mat-icon>\n</hra-label-box>\n<div class=\"legend gradient\">\n  <hra-gradient-legend [gradient]=\"gradients()\" class=\"content\"></hra-gradient-legend>\n</div>\n\n<hra-label-box class=\"legend-header size\">\n  Percentage of Cells in FTU\n  <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"sizeHoverInfo()\">info_outlined</mat-icon>\n</hra-label-box>\n<div class=\"legend size\">\n  <hra-size-legend [sizes]=\"sizes()\" class=\"content\"></hra-size-legend>\n</div>\n\n<div class=\"source-list\">\n  <hra-source-list\n    [collaborateText]=\"collaborateText\"\n    [message]=\"message\"\n    (collaborateClick)=\"collaborate()\"\n    [sources]=\"source()\"\n    class=\"content\"\n  ></hra-source-list>\n</div>\n\n<ng-template #infoTooltip let-tooltip>\n  <div class=\"biomarker-details info-tooltip\">\n    {{ tooltip }}\n  </div>\n</ng-template>\n"
         },
         {
             "name": "BiomarkerDetailsWcComponent",
-            "id": "component-BiomarkerDetailsWcComponent-2a35b01614cd4a83a9546a33b9e03200b2f96e7d06e07e8803741ed0f77a8815075e35be5e35822c9fb46279ff45ee49dbbfc6fc96f328f11a42b7f9898a30ef",
+            "id": "component-BiomarkerDetailsWcComponent-cdcc52f8496e0e1c627d8d2d71999a0653cb779c446edf94bafd6371ad93ec751bebbd3369b23ed3790afb8001a72011f1ef172b651e1ac96ad3ce31a7daa0ed",
             "file": "src/lib/biomarker-details-wc/biomarker-details-wc.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -353,7 +398,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "<p>button text of empty biomarker component.</p>\n",
-                    "line": 145,
+                    "line": 146,
                     "rawdescription": "\n\nbutton text of empty biomarker component.\n",
                     "modifierKind": [
                         144
@@ -367,7 +412,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Current illustration url</p>\n",
-                    "line": 71,
+                    "line": 72,
                     "rawdescription": "\n\nCurrent illustration url\n",
                     "modifierKind": [
                         144
@@ -381,7 +426,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Info to be shown on the tooltip for Gradient Legend</p>\n",
-                    "line": 111,
+                    "line": 112,
                     "rawdescription": "\nInfo to be shown on the tooltip for Gradient Legend",
                     "modifierKind": [
                         144
@@ -395,7 +440,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Gradient colors along with their stop points</p>\n",
-                    "line": 120,
+                    "line": 121,
                     "rawdescription": "\nGradient colors along with their stop points",
                     "modifierKind": [
                         144
@@ -409,7 +454,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Iri  of medical illustration behavior component</p>\n",
-                    "line": 81,
+                    "line": 82,
                     "rawdescription": "\n\nIri  of medical illustration behavior component\n",
                     "modifierKind": [
                         144
@@ -423,7 +468,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Indicates if the table is fully shown, defaults to false</p>\n",
-                    "line": 117,
+                    "line": 118,
                     "rawdescription": "\nIndicates if the table is fully shown, defaults to false"
                 },
                 {
@@ -434,7 +479,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Current mapping file</p>\n",
-                    "line": 76,
+                    "line": 77,
                     "rawdescription": "\n\nCurrent mapping file\n",
                     "modifierKind": [
                         144
@@ -448,7 +493,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>message markdown of empty biomarker component.</p>\n",
-                    "line": 150,
+                    "line": 151,
                     "rawdescription": "\n\nmessage markdown of empty biomarker component.\n",
                     "modifierKind": [
                         144
@@ -462,7 +507,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Info to be shown on the tooltip for Size Legend</p>\n",
-                    "line": 114,
+                    "line": 115,
                     "rawdescription": "\nInfo to be shown on the tooltip for Size Legend",
                     "modifierKind": [
                         144
@@ -476,7 +521,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Taking input for the radius of the circle and the label to be displayed.</p>\n",
-                    "line": 125,
+                    "line": 126,
                     "rawdescription": "\nTaking input for the radius of the circle and the label to be displayed.",
                     "modifierKind": [
                         144
@@ -490,7 +535,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>List of sources with titles and links displayed to the user</p>\n",
-                    "line": 128,
+                    "line": 129,
                     "rawdescription": "\nList of sources with titles and links displayed to the user",
                     "modifierKind": [
                         144
@@ -504,7 +549,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Table tabs</p>\n",
-                    "line": 108,
+                    "line": 109,
                     "rawdescription": "\nTable tabs",
                     "modifierKind": [
                         144
@@ -518,7 +563,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Get all tissues</p>\n",
-                    "line": 86,
+                    "line": 87,
                     "rawdescription": "\n\nGet all tissues\n",
                     "modifierKind": [
                         144
@@ -532,7 +577,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Updates the active node on node click</p>\n",
-                    "line": 105,
+                    "line": 106,
                     "rawdescription": "\n\nUpdates the active node on node click\n",
                     "modifierKind": [
                         144
@@ -546,7 +591,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Updates the active node on node hover</p>\n",
-                    "line": 100,
+                    "line": 101,
                     "rawdescription": "\n\nUpdates the active node on node hover\n",
                     "modifierKind": [
                         144
@@ -560,11 +605,56 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 167,
+                    "line": 172,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nA function which opens the contact modal dialog box",
                     "description": "<p>A function which opens the contact modal dialog box</p>\n"
+                },
+                {
+                    "name": "logTabChange",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "MatTabChangeEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 183,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nLogs tab change event\n",
+                    "description": "<p>Logs tab change event</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 5516,
+                                "end": 5521,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "event"
+                            },
+                            "type": "MatTabChangeEvent",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 5510,
+                                "end": 5515,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>tab change event</p>\n"
+                        }
+                    ]
                 },
                 {
                     "name": "toggleFullscreen",
@@ -572,7 +662,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 162,
+                    "line": 166,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nA function that toggles isTableFullScreen and\ncalls the setScreenMode function.\n",
@@ -586,7 +676,7 @@
             "description": "<p>Component for Biomarker Table Details Web component</p>\n",
             "rawdescription": "\nComponent for Biomarker Table Details Web component",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, inject } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTabsModule } from '@angular/material/tabs';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { selectSnapshot, selectQuerySnapshot, dispatch } from '@hra-ui/cdk/injectors';\nimport {\n  GradientLegendComponent,\n  LabelBoxComponent,\n  SizeLegendComponent,\n  EmptyBiomarkerComponent,\n  GradientPoint,\n  SizeLegend,\n} from '@hra-ui/components/atoms';\nimport {\n  BiomarkerTableDataCardComponent,\n  InteractiveSvgComponent,\n  SourceListComponent,\n} from '@hra-ui/components/molecules';\nimport { TissueInfo, BiomarkerTableComponent } from '@hra-ui/components/organisms';\nimport {\n  ActiveFtuSelectors,\n  TissueLibrarySelectors,\n  ScreenModeAction,\n  IllustratorActions,\n  IllustratorSelectors,\n  CellSummarySelectors,\n  ResourceIds as Ids,\n  ResourceTypes as RTypes,\n  SourceRefsSelectors,\n} from '@hra-ui/state';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { MatDialog, MatDialogConfig } from '@angular/material/dialog';\nimport { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';\n\n/**\n * PlaceHolder for Empty Tissue Info\n */\nconst EMPTY_TISSUE_INFO: TissueInfo = {\n  id: '',\n  label: '',\n};\n\n/** Component for Biomarker Table Details Web component */\n@Component({\n  selector: 'ftu-wc-biomarker-details',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatIconModule,\n    MatTabsModule,\n\n    BiomarkerTableComponent,\n    BiomarkerTableDataCardComponent,\n    GradientLegendComponent,\n    HoverDirective,\n    LabelBoxComponent,\n    SizeLegendComponent,\n    SourceListComponent,\n    EmptyBiomarkerComponent,\n    InteractiveSvgComponent,\n  ],\n  templateUrl: './biomarker-details-wc.component.html',\n  styleUrls: ['./biomarker-details-wc.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerDetailsWcComponent {\n  /**\n   * Current illustration url\n   */\n  readonly currentUrl = selectSnapshot(IllustratorSelectors.url);\n\n  /**\n   * Current mapping file\n   */\n  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);\n\n  /**\n   * Iri  of medical illustration behavior component\n   */\n  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);\n\n  /**\n   * Get all tissues\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueTitle(): string {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    return iri ? tissues[iri].label : '';\n  }\n\n  /**\n   * Updates the active node on node hover\n   */\n  readonly updateNodeOnHover = dispatch(IllustratorActions.SetHover);\n\n  /**\n   * Updates the active node on node click\n   */\n  readonly updateNodeOnClicked = dispatch(IllustratorActions.SetClicked);\n\n  /** Table tabs */\n  readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);\n\n  /** Info to be shown on the tooltip for Gradient Legend */\n  readonly gradientHoverInfo = selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);\n\n  /** Info to be shown on the tooltip for Size Legend */\n  readonly sizeHoverInfo = selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo);\n\n  /** Indicates if the table is fully shown, defaults to false*/\n  isTableFullScreen = false;\n\n  /** Gradient colors along with their stop points */\n  readonly gradients = selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, 'points' as const, [])<\n    GradientPoint[]\n  >;\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  readonly sizes = selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>;\n\n  /** List of sources with titles and links displayed to the user */\n  readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueInfo(): TissueInfo {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    if (iri === undefined) {\n      return EMPTY_TISSUE_INFO;\n    }\n    const { id, label } = tissues[iri];\n    return { id, label };\n  }\n\n  /**\n   * button text of empty biomarker component.\n   */\n  readonly collaborateText = 'Collaborate with the HRA Team';\n\n  /**\n   * message markdown of empty biomarker component.\n   */\n  readonly message = `We currently do not have cell type data for this biomarker.\n<br><br> Please contact us to discuss your dataset.`;\n\n  /** A dispatcher function to set the screen mode */\n  private readonly setScreenMode = dispatch(ScreenModeAction.Set);\n\n  /** A dialog box which shows contact modal after clicking on contact */\n  private readonly dialog = inject(MatDialog);\n\n  /** A function that toggles isTableFullScreen and\n   * calls the setScreenMode function.\n   */\n  toggleFullscreen(): void {\n    this.isTableFullScreen = !this.isTableFullScreen;\n    this.setScreenMode(this.isTableFullScreen);\n  }\n  /** A function which opens the contact modal dialog box */\n  collaborate(): void {\n    const dialogConfig = new MatDialogConfig();\n    dialogConfig.disableClose = true;\n    this.dialog.open(ContactBehaviorComponent, dialogConfig);\n  }\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, inject } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { selectSnapshot, selectQuerySnapshot, dispatch } from '@hra-ui/cdk/injectors';\nimport {\n  GradientLegendComponent,\n  LabelBoxComponent,\n  SizeLegendComponent,\n  EmptyBiomarkerComponent,\n  GradientPoint,\n  SizeLegend,\n} from '@hra-ui/components/atoms';\nimport {\n  BiomarkerTableDataCardComponent,\n  InteractiveSvgComponent,\n  SourceListComponent,\n} from '@hra-ui/components/molecules';\nimport { TissueInfo, BiomarkerTableComponent } from '@hra-ui/components/organisms';\nimport {\n  ActiveFtuSelectors,\n  TissueLibrarySelectors,\n  ScreenModeAction,\n  IllustratorActions,\n  IllustratorSelectors,\n  CellSummarySelectors,\n  ResourceIds as Ids,\n  ResourceTypes as RTypes,\n  SourceRefsSelectors,\n} from '@hra-ui/state';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { MatDialog, MatDialogConfig } from '@angular/material/dialog';\nimport { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';\nimport { GoogleAnalyticsService } from 'ngx-google-analytics';\n\n/**\n * PlaceHolder for Empty Tissue Info\n */\nconst EMPTY_TISSUE_INFO: TissueInfo = {\n  id: '',\n  label: '',\n};\n\n/** Component for Biomarker Table Details Web component */\n@Component({\n  selector: 'ftu-wc-biomarker-details',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatIconModule,\n    MatTabsModule,\n\n    BiomarkerTableComponent,\n    BiomarkerTableDataCardComponent,\n    GradientLegendComponent,\n    HoverDirective,\n    LabelBoxComponent,\n    SizeLegendComponent,\n    SourceListComponent,\n    EmptyBiomarkerComponent,\n    InteractiveSvgComponent,\n  ],\n  templateUrl: './biomarker-details-wc.component.html',\n  styleUrls: ['./biomarker-details-wc.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerDetailsWcComponent {\n  /**\n   * Current illustration url\n   */\n  readonly currentUrl = selectSnapshot(IllustratorSelectors.url);\n\n  /**\n   * Current mapping file\n   */\n  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);\n\n  /**\n   * Iri  of medical illustration behavior component\n   */\n  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);\n\n  /**\n   * Get all tissues\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueTitle(): string {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    return iri ? tissues[iri].label : '';\n  }\n\n  /**\n   * Updates the active node on node hover\n   */\n  readonly updateNodeOnHover = dispatch(IllustratorActions.SetHover);\n\n  /**\n   * Updates the active node on node click\n   */\n  readonly updateNodeOnClicked = dispatch(IllustratorActions.SetClicked);\n\n  /** Table tabs */\n  readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);\n\n  /** Info to be shown on the tooltip for Gradient Legend */\n  readonly gradientHoverInfo = selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);\n\n  /** Info to be shown on the tooltip for Size Legend */\n  readonly sizeHoverInfo = selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo);\n\n  /** Indicates if the table is fully shown, defaults to false*/\n  isTableFullScreen = false;\n\n  /** Gradient colors along with their stop points */\n  readonly gradients = selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, 'points' as const, [])<\n    GradientPoint[]\n  >;\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  readonly sizes = selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>;\n\n  /** List of sources with titles and links displayed to the user */\n  readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueInfo(): TissueInfo {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    if (iri === undefined) {\n      return EMPTY_TISSUE_INFO;\n    }\n    const { id, label } = tissues[iri];\n    return { id, label };\n  }\n\n  /**\n   * button text of empty biomarker component.\n   */\n  readonly collaborateText = 'Collaborate with the HRA Team';\n\n  /**\n   * message markdown of empty biomarker component.\n   */\n  readonly message = `We currently do not have cell type data for this biomarker.\n<br><br> Please contact us to discuss your dataset.`;\n\n  /** A dispatcher function to set the screen mode */\n  private readonly setScreenMode = dispatch(ScreenModeAction.Set);\n\n  /** A dialog box which shows contact modal after clicking on contact */\n  private readonly dialog = inject(MatDialog);\n\n  /** Google analytics tracking service */\n  private readonly ga = inject(GoogleAnalyticsService);\n\n  /** A function that toggles isTableFullScreen and\n   * calls the setScreenMode function.\n   */\n  toggleFullscreen(): void {\n    this.isTableFullScreen = !this.isTableFullScreen;\n    this.setScreenMode(this.isTableFullScreen);\n  }\n\n  /** A function which opens the contact modal dialog box */\n  collaborate(): void {\n    const dialogConfig = new MatDialogConfig();\n    dialogConfig.disableClose = true;\n    this.ga.event('contact_open', 'modal');\n    this.dialog.open(ContactBehaviorComponent, dialogConfig);\n  }\n\n  /**\n   * Logs tab change event\n   * @param event tab change event\n   */\n  logTabChange(event: MatTabChangeEvent) {\n    this.ga.event('biomarker_tab_change', event.tab ? event.tab.textLabel : '');\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -602,7 +692,7 @@
                         "name": "tissueTitle",
                         "type": "string",
                         "returnType": "string",
-                        "line": 91,
+                        "line": 92,
                         "rawdescription": "\n\nGets tissue title from the list of tissues\n",
                         "description": "<p>Gets tissue title from the list of tissues</p>\n"
                     }
@@ -613,17 +703,17 @@
                         "name": "tissueInfo",
                         "type": "",
                         "returnType": "TissueInfo",
-                        "line": 132,
+                        "line": 133,
                         "rawdescription": "\n\nGets tissue title from the list of tissues\n",
                         "description": "<p>Gets tissue title from the list of tissues</p>\n"
                     }
                 }
             },
-            "templateData": "<hra-label-box class=\"table-header\">\n  {{ tissueTitle }}: FTU Illustration\n  <span (click)=\"toggleFullscreen()\" class=\"end material-symbols-outlined cursor\">\n    {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}\n  </span>\n</hra-label-box>\n\n<mat-tab-group class=\"table\" [class.table-fullscreen]=\"isTableFullScreen\" mat-stretch-tabs=\"false\" color=\"accent\">\n  <mat-tab labelClass=\"extraTab\" label=\"FTU Illustration\">\n    <hra-interactive-svg\n      [url]=\"currentUrl()\"\n      [mapping]=\"mapping()\"\n      (nodeHover)=\"updateNodeOnHover($event)\"\n      (nodeClick)=\"updateNodeOnClicked($event)\"\n    >\n    </hra-interactive-svg>\n  </mat-tab>\n  <mat-tab *ngFor=\"let tab of tabs()\" labelClass=\"table-tab-header\" [label]=\"tab.label\">\n    <hra-biomarker-table\n      *ngIf=\"tab.rows.length !== 0\"\n      [data]=\"$any(tab.rows)\"\n      [columns]=\"tab.columns\"\n      [gradient]=\"gradients()\"\n      [sizes]=\"sizes()\"\n      [tissueInfo]=\"tissueInfo\"\n    ></hra-biomarker-table>\n\n    <div *ngIf=\"tab.rows.length !== 0\" class=\"legends\">\n      <div class=\"legends-left\">\n        <hra-label-box class=\"legend-header gradient\">\n          Biomarker Expression Mean in FTU\n          <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"gradientHoverInfo()\">info_outlined</mat-icon>\n        </hra-label-box>\n        <div class=\"legend gradient\">\n          <hra-gradient-legend [gradient]=\"gradients()\" class=\"content\"></hra-gradient-legend>\n        </div>\n      </div>\n\n      <div class=\"legends-right\">\n        <hra-label-box class=\"legend-header size\">\n          Percentage of Cells in FTU\n          <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"sizeHoverInfo()\">info_outlined</mat-icon>\n        </hra-label-box>\n        <div class=\"legend size\">\n          <hra-size-legend [sizes]=\"sizes()\" class=\"content\"></hra-size-legend>\n        </div>\n      </div>\n    </div>\n    <hra-empty-biomarker\n      *ngIf=\"tab.rows.length === 0\"\n      [collaborateText]=\"collaborateText\"\n      [message]=\"message\"\n      (collaborateClick)=\"collaborate()\"\n    ></hra-empty-biomarker>\n  </mat-tab>\n  <mat-tab labelClass=\"extraTab\" label=\"Source Data\">\n    <div class=\"source-list\">\n      <hra-source-list\n        [collaborateText]=\"collaborateText\"\n        [message]=\"message\"\n        (collaborateClick)=\"collaborate()\"\n        [sources]=\"source()\"\n        class=\"content\"\n      ></hra-source-list>\n    </div>\n\n    <ng-template #infoTooltip let-tooltip>\n      <div class=\"biomarker-details info-tooltip\">\n        {{ tooltip }}\n      </div>\n    </ng-template>\n  </mat-tab>\n</mat-tab-group>\n"
+            "templateData": "<hra-label-box class=\"table-header\">\n  {{ tissueTitle }}: FTU Illustration\n  <span (click)=\"toggleFullscreen()\" class=\"end material-symbols-outlined cursor\">\n    {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}\n  </span>\n</hra-label-box>\n\n<mat-tab-group\n  class=\"table\"\n  [class.table-fullscreen]=\"isTableFullScreen\"\n  mat-stretch-tabs=\"false\"\n  color=\"accent\"\n  (selectedTabChange)=\"logTabChange($event)\"\n>\n  <mat-tab labelClass=\"extraTab\" label=\"FTU Illustration\">\n    <hra-interactive-svg\n      [url]=\"currentUrl()\"\n      [mapping]=\"mapping()\"\n      (nodeHover)=\"updateNodeOnHover($event)\"\n      (nodeClick)=\"updateNodeOnClicked($event)\"\n    >\n    </hra-interactive-svg>\n  </mat-tab>\n  <mat-tab *ngFor=\"let tab of tabs()\" labelClass=\"table-tab-header\" [label]=\"tab.label\">\n    <hra-biomarker-table\n      *ngIf=\"tab.rows.length !== 0\"\n      [data]=\"$any(tab.rows)\"\n      [columns]=\"tab.columns\"\n      [gradient]=\"gradients()\"\n      [sizes]=\"sizes()\"\n      [tissueInfo]=\"tissueInfo\"\n    ></hra-biomarker-table>\n\n    <div *ngIf=\"tab.rows.length !== 0\" class=\"legends\">\n      <div class=\"legends-left\">\n        <hra-label-box class=\"legend-header gradient\">\n          Biomarker Expression Mean in FTU\n          <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"gradientHoverInfo()\">info_outlined</mat-icon>\n        </hra-label-box>\n        <div class=\"legend gradient\">\n          <hra-gradient-legend [gradient]=\"gradients()\" class=\"content\"></hra-gradient-legend>\n        </div>\n      </div>\n\n      <div class=\"legends-right\">\n        <hra-label-box class=\"legend-header size\">\n          Percentage of Cells in FTU\n          <mat-icon class=\"icon\" [hraHover]=\"infoTooltip\" [hraHoverData]=\"sizeHoverInfo()\">info_outlined</mat-icon>\n        </hra-label-box>\n        <div class=\"legend size\">\n          <hra-size-legend [sizes]=\"sizes()\" class=\"content\"></hra-size-legend>\n        </div>\n      </div>\n    </div>\n    <hra-empty-biomarker\n      *ngIf=\"tab.rows.length === 0\"\n      [collaborateText]=\"collaborateText\"\n      [message]=\"message\"\n      (collaborateClick)=\"collaborate()\"\n    ></hra-empty-biomarker>\n  </mat-tab>\n  <mat-tab labelClass=\"extraTab\" label=\"Source Data\">\n    <div class=\"source-list\">\n      <hra-source-list\n        [collaborateText]=\"collaborateText\"\n        [message]=\"message\"\n        (collaborateClick)=\"collaborate()\"\n        [sources]=\"source()\"\n        class=\"content\"\n      ></hra-source-list>\n    </div>\n\n    <ng-template #infoTooltip let-tooltip>\n      <div class=\"biomarker-details info-tooltip\">\n        {{ tooltip }}\n      </div>\n    </ng-template>\n  </mat-tab>\n</mat-tab-group>\n"
         },
         {
             "name": "ContactBehaviorComponent",
-            "id": "component-ContactBehaviorComponent-b9d5e223798d92be933b5dbadc75b1d6c247f7b00beb75f933bb07b0a4949d22458ee53931ca654d0b255f40508dbf23ef4e516e2f80368415a86fdfe44d60b6",
+            "id": "component-ContactBehaviorComponent-4f4af5c5415c9c08ae8febf1bf2ca9ee58e289a9ae2a18dc281a0092ce7c29b008ef50d731e559dc667146ce39204b35cfc4917d4e65fef2f71de44a8774984e",
             "file": "src/lib/contact-behavior/contact-behavior.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -651,7 +741,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Information modal message to the user</p>\n",
-                    "line": 29,
+                    "line": 30,
                     "rawdescription": "\nInformation modal message to the user",
                     "modifierKind": [
                         144
@@ -664,7 +754,7 @@
                     "type": "TemplateRef<void>",
                     "optional": false,
                     "description": "<p>A template to post a message</p>\n",
-                    "line": 20,
+                    "line": 21,
                     "rawdescription": "\nA template to post a message",
                     "decorators": [
                         {
@@ -672,6 +762,203 @@
                             "stringifiedArguments": "'postMessage'"
                         }
                     ],
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "productLogoUrl",
+                    "defaultValue": "selectQuerySnapshot(RR.url, Ids.ProductLogoUrl)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Input for product logo URL to displayed on the left side.</p>\n",
+                    "line": 24,
+                    "rawdescription": "\nInput for product logo URL to displayed on the left side.",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "productTitle",
+                    "defaultValue": "selectQuerySnapshot(RR.anyText, Ids.ProductTitle)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Input for product title to displayed on the left side.</p>\n",
+                    "line": 27,
+                    "rawdescription": "\nInput for product title to displayed on the left side.",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "sendMessage",
+                    "defaultValue": "dispatch(ContactActions.SendMessage)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>A dispatcher function to send message entered by user</p>\n",
+                    "line": 33,
+                    "rawdescription": "\nA dispatcher function to send message entered by user",
+                    "modifierKind": [
+                        144
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "close",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 55,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nA function which closes the 'Contact us' dialog and the acknowledgement dialog.",
+                    "description": "<p>A function which closes the &#39;Contact us&#39; dialog and the acknowledgement dialog.</p>\n"
+                },
+                {
+                    "name": "submit",
+                    "args": [
+                        {
+                            "name": "message",
+                            "type": "ContactData",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 48,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nA function which sends/dispatches a message which contains email, subject, and message. And also opens the acknowledgement dialog box.",
+                    "description": "<p>A function which sends/dispatches a message which contains email, subject, and message. And also opens the acknowledgement dialog box.</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": "message",
+                            "type": "ContactData",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>A Component for contact behavior which sends the message entered by the user and shows an acknowledgement</p>\n",
+            "rawdescription": "\nA Component for contact behavior which sends the message entered by the user and shows an acknowledgement",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject, TemplateRef, ViewChild } from '@angular/core';\nimport { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';\nimport { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { ContactData, ContactModalComponent, InfoModalComponent } from '@hra-ui/components/molecules';\nimport { ResourceIds as Ids, ContactActions } from '@hra-ui/state';\nimport { GoogleAnalyticsService } from 'ngx-google-analytics';\n\n/** A Component for contact behavior which sends the message entered by the user and shows an acknowledgement */\n@Component({\n  selector: 'ftu-contact-behavior',\n  standalone: true,\n  imports: [CommonModule, MatDialogModule, ContactModalComponent, InfoModalComponent],\n  templateUrl: './contact-behavior.component.html',\n  styleUrls: ['./contact-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ContactBehaviorComponent {\n  /** A template to post a message */\n  @ViewChild('postMessage') readonly postMessageTemplate!: TemplateRef<void>;\n\n  /** Input for product logo URL to displayed on the left side. */\n  readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);\n\n  /** Input for product title to displayed on the left side. */\n  readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);\n\n  /** Information modal message to the user */\n  readonly description = selectQuerySnapshot(RR.anyText, Ids.ContactAcknowledgement);\n\n  /** A dispatcher function to send message entered by user */\n  readonly sendMessage = dispatch(ContactActions.SendMessage);\n\n  /** A dialog box which shows user an acknowledgement after clicking on submit */\n  private readonly dialog = inject(MatDialog);\n\n  /** A mat form field dialog which accepts the email, subject, and message of user and validates it */\n  private readonly selfRef = inject(MatDialogRef, { optional: true });\n\n  /** Dialog box which references the acknowledgement dialog box */\n  private postRef?: MatDialogRef<void>;\n\n  /** Google analytics tracking service */\n  private readonly ga = inject(GoogleAnalyticsService);\n\n  /** A function which sends/dispatches a message which contains email, subject, and message. And also opens the acknowledgement dialog box. */\n  submit(message: ContactData): void {\n    this.sendMessage(message);\n    this.selfRef?.close();\n    this.postRef = this.dialog.open(this.postMessageTemplate);\n  }\n\n  /** A function which closes the 'Contact us' dialog and the acknowledgement dialog.  */\n  close(): void {\n    if (this.postRef) {\n      this.postRef.close();\n      this.ga.event('acknowedgement_close', 'modal');\n    }\n    if (this.selfRef) {\n      this.selfRef.close();\n      this.ga.event('contact_close', 'modal');\n    }\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: block;\n\n  .contact-modal {\n    width: 41rem;\n    height: 40rem;\n  }\n\n  .info-modal {\n    width: 35rem;\n    height: 11.8rem;\n  }\n\n  @media screen and (max-height: 328px) {\n    .contact-modal {\n      height: calc(100vh - 2rem);\n    }\n  }\n}\n",
+                    "styleUrl": "./contact-behavior.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<hra-contact-modal\n  class=\"contact-modal\"\n  [productLogoUrl]=\"productLogoUrl()\"\n  [productTitle]=\"productTitle()\"\n  (submitClick)=\"submit($event)\"\n  (closeClick)=\"close()\"\n>\n</hra-contact-modal>\n\n<ng-template #postMessage>\n  <hra-info-modal\n    class=\"info-modal\"\n    [productLogoUrl]=\"productLogoUrl()\"\n    [productTitle]=\"productTitle()\"\n    [description]=\"description()\"\n    (closeClick)=\"close()\"\n  >\n  </hra-info-modal>\n</ng-template>\n"
+        },
+        {
+            "name": "FooterBehaviorComponent",
+            "id": "component-FooterBehaviorComponent-e58aa284434d52698564fdb19b671245b8a810cbcc25a08b7fba90baf16eac07e732749d606c74ebe1797f6ae44b0df10db5226084329d00cef51d2c8aeb2297",
+            "file": "src/lib/footer-behavior/footer-behavior.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ftu-footer-behavior",
+            "styleUrls": [
+                "./footer-behavior.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./footer-behavior.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "download",
+                    "defaultValue": "dispatch(DownloadActions.Download)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>A dispatcher function to download file in specified format</p>\n",
+                    "line": 41,
+                    "rawdescription": "\nA dispatcher function to download file in specified format",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "downloadFormats",
+                    "defaultValue": "selectSnapshot(DownloadSelectors.formats)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Selects a snapshot of the current value of the available download formats</p>\n",
+                    "line": 29,
+                    "rawdescription": "\nSelects a snapshot of the current value of the available download formats",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "embed",
+                    "defaultValue": "LinkIds.Embed",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Embed link routing after clicking on Embed</p>\n",
+                    "line": 38,
+                    "rawdescription": "\nEmbed link routing after clicking on Embed",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "hraPortal",
+                    "defaultValue": "LinkIds.Portal",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Hra portal link routing after clicking on HRA Portal</p>\n",
+                    "line": 32,
+                    "rawdescription": "\nHra portal link routing after clicking on HRA Portal",
+                    "modifierKind": [
+                        144
+                    ]
+                },
+                {
+                    "name": "illustrationMetadata",
+                    "defaultValue": "LinkIds.Illustration",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Metadata page link routing after clicking on Illustration</p>\n",
+                    "line": 35,
+                    "rawdescription": "\nMetadata page link routing after clicking on Illustration",
                     "modifierKind": [
                         144
                     ]
@@ -705,203 +992,6 @@
                     ]
                 },
                 {
-                    "name": "sendMessage",
-                    "defaultValue": "dispatch(ContactActions.SendMessage)",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "<p>A dispatcher function to send message entered by user</p>\n",
-                    "line": 32,
-                    "rawdescription": "\nA dispatcher function to send message entered by user",
-                    "modifierKind": [
-                        144
-                    ]
-                }
-            ],
-            "methodsClass": [
-                {
-                    "name": "close",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 51,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\nA function which closes the 'Contact us' dialog and the acknowledgement dialog.",
-                    "description": "<p>A function which closes the &#39;Contact us&#39; dialog and the acknowledgement dialog.</p>\n"
-                },
-                {
-                    "name": "submit",
-                    "args": [
-                        {
-                            "name": "message",
-                            "type": "ContactData",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 44,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\nA function which sends/dispatches a message which contains email, subject, and message. And also opens the acknowledgement dialog box.",
-                    "description": "<p>A function which sends/dispatches a message which contains email, subject, and message. And also opens the acknowledgement dialog box.</p>\n",
-                    "jsdoctags": [
-                        {
-                            "name": "message",
-                            "type": "ContactData",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "description": "<p>A Component for contact behavior which sends the message entered by the user and shows an acknowledgement</p>\n",
-            "rawdescription": "\nA Component for contact behavior which sends the message entered by the user and shows an acknowledgement",
-            "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject, TemplateRef, ViewChild } from '@angular/core';\nimport { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';\nimport { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { ContactData, ContactModalComponent, InfoModalComponent } from '@hra-ui/components/molecules';\nimport { ResourceIds as Ids, ContactActions } from '@hra-ui/state';\n\n/** A Component for contact behavior which sends the message entered by the user and shows an acknowledgement */\n@Component({\n  selector: 'ftu-contact-behavior',\n  standalone: true,\n  imports: [CommonModule, MatDialogModule, ContactModalComponent, InfoModalComponent],\n  templateUrl: './contact-behavior.component.html',\n  styleUrls: ['./contact-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ContactBehaviorComponent {\n  /** A template to post a message */\n  @ViewChild('postMessage') readonly postMessageTemplate!: TemplateRef<void>;\n\n  /** Input for product logo URL to displayed on the left side. */\n  readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);\n\n  /** Input for product title to displayed on the left side. */\n  readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);\n\n  /** Information modal message to the user */\n  readonly description = selectQuerySnapshot(RR.anyText, Ids.ContactAcknowledgement);\n\n  /** A dispatcher function to send message entered by user */\n  readonly sendMessage = dispatch(ContactActions.SendMessage);\n\n  /** A dialog box which shows user an acknowledgement after clicking on submit */\n  private readonly dialog = inject(MatDialog);\n\n  /** A mat form field dialog which accepts the email, subject, and message of user and validates it */\n  private readonly selfRef = inject(MatDialogRef, { optional: true });\n\n  /** Dialog box which references the acknowledgement dialog box */\n  private postRef?: MatDialogRef<void>;\n\n  /** A function which sends/dispatches a message which contains email, subject, and message. And also opens the acknowledgement dialog box. */\n  submit(message: ContactData): void {\n    this.sendMessage(message);\n    this.selfRef?.close();\n    this.postRef = this.dialog.open(this.postMessageTemplate);\n  }\n\n  /** A function which closes the 'Contact us' dialog and the acknowledgement dialog.  */\n  close(): void {\n    this.postRef?.close();\n    this.selfRef?.close();\n  }\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": ":host {\n  display: block;\n\n  .contact-modal {\n    width: 41rem;\n    height: 40rem;\n  }\n\n  .info-modal {\n    width: 35rem;\n    height: 11.8rem;\n  }\n\n  @media screen and (max-height: 328px) {\n    .contact-modal {\n      height: calc(100vh - 2rem);\n    }\n  }\n}\n",
-                    "styleUrl": "./contact-behavior.component.scss"
-                }
-            ],
-            "stylesData": "",
-            "templateData": "<hra-contact-modal\n  class=\"contact-modal\"\n  [productLogoUrl]=\"productLogoUrl()\"\n  [productTitle]=\"productTitle()\"\n  (submitClick)=\"submit($event)\"\n  (closeClick)=\"close()\"\n>\n</hra-contact-modal>\n\n<ng-template #postMessage>\n  <hra-info-modal\n    class=\"info-modal\"\n    [productLogoUrl]=\"productLogoUrl()\"\n    [productTitle]=\"productTitle()\"\n    [description]=\"description()\"\n    (closeClick)=\"close()\"\n  >\n  </hra-info-modal>\n</ng-template>\n"
-        },
-        {
-            "name": "FooterBehaviorComponent",
-            "id": "component-FooterBehaviorComponent-d9ecf51e28e6cdbe2f77b2f819a2e3df3acd0382e946f213975e78af53f6c11b1a7a013fefb862cfa9449b9973d2ea3497fa9687d6c04eb492751c2a83c17410",
-            "file": "src/lib/footer-behavior/footer-behavior.component.ts",
-            "changeDetection": "ChangeDetectionStrategy.OnPush",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "ftu-footer-behavior",
-            "styleUrls": [
-                "./footer-behavior.component.scss"
-            ],
-            "styles": [],
-            "templateUrl": [
-                "./footer-behavior.component.html"
-            ],
-            "viewProviders": [],
-            "inputsClass": [],
-            "outputsClass": [],
-            "propertiesClass": [
-                {
-                    "name": "download",
-                    "defaultValue": "dispatch(DownloadActions.Download)",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "<p>A dispatcher function to download file in specified format</p>\n",
-                    "line": 39,
-                    "rawdescription": "\nA dispatcher function to download file in specified format",
-                    "modifierKind": [
-                        144
-                    ]
-                },
-                {
-                    "name": "downloadFormats",
-                    "defaultValue": "selectSnapshot(DownloadSelectors.formats)",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "<p>Selects a snapshot of the current value of the available download formats</p>\n",
-                    "line": 27,
-                    "rawdescription": "\nSelects a snapshot of the current value of the available download formats",
-                    "modifierKind": [
-                        144
-                    ]
-                },
-                {
-                    "name": "embed",
-                    "defaultValue": "LinkIds.Embed",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "<p>Embed link routing after clicking on Embed</p>\n",
-                    "line": 36,
-                    "rawdescription": "\nEmbed link routing after clicking on Embed",
-                    "modifierKind": [
-                        144
-                    ]
-                },
-                {
-                    "name": "hraPortal",
-                    "defaultValue": "LinkIds.Portal",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "<p>Hra portal link routing after clicking on HRA Portal</p>\n",
-                    "line": 30,
-                    "rawdescription": "\nHra portal link routing after clicking on HRA Portal",
-                    "modifierKind": [
-                        144
-                    ]
-                },
-                {
-                    "name": "illustrationMetadata",
-                    "defaultValue": "LinkIds.Illustration",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "<p>Metadata page link routing after clicking on Illustration</p>\n",
-                    "line": 33,
-                    "rawdescription": "\nMetadata page link routing after clicking on Illustration",
-                    "modifierKind": [
-                        144
-                    ]
-                },
-                {
-                    "name": "productLogoUrl",
-                    "defaultValue": "selectQuerySnapshot(RR.url, Ids.ProductLogoUrl)",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "<p>Input for product logo URL to displayed on the left side.</p>\n",
-                    "line": 21,
-                    "rawdescription": "\nInput for product logo URL to displayed on the left side.",
-                    "modifierKind": [
-                        144
-                    ]
-                },
-                {
-                    "name": "productTitle",
-                    "defaultValue": "selectQuerySnapshot(RR.anyText, Ids.ProductTitle)",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "<p>Input for product title to displayed on the left side.</p>\n",
-                    "line": 24,
-                    "rawdescription": "\nInput for product title to displayed on the left side.",
-                    "modifierKind": [
-                        144
-                    ]
-                },
-                {
                     "name": "size",
                     "defaultValue": "selectSnapshot(ScreenModeSelectors.size)",
                     "deprecated": false,
@@ -909,7 +999,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Selects the current value of the available ScreenMode Size</p>\n",
-                    "line": 41,
+                    "line": 43,
                     "rawdescription": "\nSelects the current value of the available ScreenMode Size",
                     "modifierKind": [
                         144
@@ -923,7 +1013,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 47,
+                    "line": 52,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nA function which opens the contact modal dialog box",
@@ -937,7 +1027,7 @@
             "description": "<p>A component for footer behavior which provides functionality for various buttons in footer</p>\n",
             "rawdescription": "\nA component for footer behavior which provides functionality for various buttons in footer",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject } from '@angular/core';\nimport { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';\nimport { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { FooterComponent } from '@hra-ui/components/molecules';\nimport { DownloadActions, DownloadSelectors, ResourceIds as Ids, LinkIds, ScreenModeSelectors } from '@hra-ui/state';\nimport { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';\n\n/** A component for footer behavior which provides functionality for various buttons in footer */\n@Component({\n  selector: 'ftu-footer-behavior',\n  standalone: true,\n  imports: [CommonModule, MatDialogModule, FooterComponent, ContactBehaviorComponent],\n  templateUrl: './footer-behavior.component.html',\n  styleUrls: ['./footer-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FooterBehaviorComponent {\n  /** Input for product logo URL to displayed on the left side. */\n  readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);\n\n  /** Input for product title to displayed on the left side. */\n  readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);\n\n  /** Selects a snapshot of the current value of the available download formats */\n  readonly downloadFormats = selectSnapshot(DownloadSelectors.formats);\n\n  /** Hra portal link routing after clicking on HRA Portal */\n  readonly hraPortal = LinkIds.Portal;\n\n  /** Metadata page link routing after clicking on Illustration */\n  readonly illustrationMetadata = LinkIds.Illustration;\n\n  /** Embed link routing after clicking on Embed */\n  readonly embed = LinkIds.Embed;\n\n  /** A dispatcher function to download file in specified format */\n  readonly download = dispatch(DownloadActions.Download);\n  /** Selects the current value of the available ScreenMode Size */\n  readonly size = selectSnapshot(ScreenModeSelectors.size);\n\n  /** A dialog box which shows contact modal after clicking on contact */\n  private readonly dialog = inject(MatDialog);\n\n  /** A function which opens the contact modal dialog box */\n  contact(): void {\n    const dialogConfig = new MatDialogConfig();\n    dialogConfig.disableClose = true;\n    this.dialog.open(ContactBehaviorComponent, dialogConfig);\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject } from '@angular/core';\nimport { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';\nimport { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { FooterComponent } from '@hra-ui/components/molecules';\nimport { DownloadActions, DownloadSelectors, LinkIds, ResourceIds as Ids, ScreenModeSelectors } from '@hra-ui/state';\nimport { GoogleAnalyticsService } from 'ngx-google-analytics';\n\nimport { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';\n\n/** A component for footer behavior which provides functionality for various buttons in footer */\n@Component({\n  selector: 'ftu-footer-behavior',\n  standalone: true,\n  imports: [CommonModule, MatDialogModule, FooterComponent, ContactBehaviorComponent],\n  templateUrl: './footer-behavior.component.html',\n  styleUrls: ['./footer-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FooterBehaviorComponent {\n  /** Input for product logo URL to displayed on the left side. */\n  readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);\n\n  /** Input for product title to displayed on the left side. */\n  readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);\n\n  /** Selects a snapshot of the current value of the available download formats */\n  readonly downloadFormats = selectSnapshot(DownloadSelectors.formats);\n\n  /** Hra portal link routing after clicking on HRA Portal */\n  readonly hraPortal = LinkIds.Portal;\n\n  /** Metadata page link routing after clicking on Illustration */\n  readonly illustrationMetadata = LinkIds.Illustration;\n\n  /** Embed link routing after clicking on Embed */\n  readonly embed = LinkIds.Embed;\n\n  /** A dispatcher function to download file in specified format */\n  readonly download = dispatch(DownloadActions.Download);\n  /** Selects the current value of the available ScreenMode Size */\n  readonly size = selectSnapshot(ScreenModeSelectors.size);\n\n  /** A dialog box which shows contact modal after clicking on contact */\n  private readonly dialog = inject(MatDialog);\n\n  /** Google analytics tracking service */\n  private readonly ga = inject(GoogleAnalyticsService);\n\n  /** A function which opens the contact modal dialog box */\n  contact(): void {\n    const dialogConfig = new MatDialogConfig();\n    dialogConfig.disableClose = true;\n    this.dialog.open(ContactBehaviorComponent, dialogConfig);\n    this.ga.event('contact_open', 'modal');\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {

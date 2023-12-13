@@ -131,6 +131,20 @@
     <table class="table table-sm table-bordered index-table">
         <tbody>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#aboutClicked" >aboutClicked</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -190,7 +204,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/lib/header/header.component.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/header/header.component.ts:41</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -222,7 +236,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/lib/header/header.component.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/lib/header/header.component.ts:35</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -254,7 +268,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/lib/header/header.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/lib/header/header.component.ts:25</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -286,7 +300,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/lib/header/header.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/lib/header/header.component.ts:30</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -318,7 +332,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/lib/header/header.component.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/lib/header/header.component.ts:38</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -333,19 +347,64 @@
 
 
 
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="aboutClicked"></a>
+                    <span class="name">
+                        <span ><b>aboutClicked</b></span>
+                        <a href="#aboutClicked"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>aboutClicked()</code>
+                </td>
+            </tr>
 
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/lib/header/header.component.ts:49</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Logs event when about button clicked</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
-import { ChangeDetectionStrategy, Component, Input } from &#x27;@angular/core&#x27;;
+import { ChangeDetectionStrategy, Component, Input, inject } from &#x27;@angular/core&#x27;;
 import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
 import { MatRippleModule } from &#x27;@angular/material/core&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { LinkDirective } from &#x27;@hra-ui/cdk&#x27;;
 import { EMPTY_LINK } from &#x27;@hra-ui/cdk&#x27;;
+import { GoogleAnalyticsService } from &#x27;ngx-google-analytics&#x27;;
 
 /**
  * Header component, displays on top of every page.
@@ -379,6 +438,16 @@ export class HeaderComponent {
 
   /** Input for about link */
   @Input() aboutLink &#x3D; EMPTY_LINK;
+
+  /** Google analytics tracking service */
+  private readonly ga &#x3D; inject(GoogleAnalyticsService);
+
+  /**
+   * Logs event when about button clicked
+   */
+  aboutClicked(): void {
+    this.ga.event(&#x27;about_icon_click&#x27;, &#x27;link_click&#x27;);
+  }
 }
 </code></pre>
     </div>
@@ -392,7 +461,7 @@ export class HeaderComponent {
 
 &lt;div class&#x3D;&quot;filler&quot;&gt;&lt;/div&gt;
 
-&lt;a mat-flat-button class&#x3D;&quot;about&quot; [hraLink]&#x3D;&quot;aboutLink&quot;&gt;
+&lt;a mat-flat-button class&#x3D;&quot;about&quot; [hraLink]&#x3D;&quot;aboutLink&quot; (click)&#x3D;&quot;aboutClicked()&quot;&gt;
   &lt;mat-icon class&#x3D;&quot;icon&quot;&gt;info_outlined&lt;/mat-icon&gt;
   &lt;span class&#x3D;&quot;text&quot;&gt;About&lt;/span&gt;
 &lt;/a&gt;
@@ -534,7 +603,7 @@ export class HeaderComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><a class="product" matRipple [hraLink]="productTitleLink">  <img class="logo image" [src]="productLogoUrl" alt="Product Logo" aria-hidden="true" />  <h1 class="text">{{ productTitle }}</h1></a><h1 class="app text">{{ appTitle }}</h1><div class="filler"></div><a mat-flat-button class="about" [hraLink]="aboutLink">  <mat-icon class="icon">info_outlined</mat-icon>  <span class="text">About</span></a></div>'
+        var COMPONENT_TEMPLATE = '<div><a class="product" matRipple [hraLink]="productTitleLink">  <img class="logo image" [src]="productLogoUrl" alt="Product Logo" aria-hidden="true" />  <h1 class="text">{{ productTitle }}</h1></a><h1 class="app text">{{ appTitle }}</h1><div class="filler"></div><a mat-flat-button class="about" [hraLink]="aboutLink" (click)="aboutClicked()">  <mat-icon class="icon">info_outlined</mat-icon>  <span class="text">About</span></a></div>'
     var COMPONENTS = [{'name': 'BiomarkerTableDataCardComponent', 'selector': 'hra-biomarker-table-data-card'},{'name': 'BiomarkerTableDataIconComponent', 'selector': 'hra-biomarker-table-data-icon'},{'name': 'ContactModalComponent', 'selector': 'hra-contact-modal'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenContainerComponent', 'selector': 'hra-fullscreen-container'},{'name': 'FullscreenContentComponent', 'selector': 'hra-fullscreen-content'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'HraLandingPageIntroWcComponent', 'selector': 'hra-ui-hra-landing-page-intro-wc'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InteractiveSvgComponent', 'selector': 'hra-interactive-svg'},{'name': 'LandingPageInDepthComponent', 'selector': 'hra-landing-page-in-depth'},{'name': 'LandingPageIntroComponent', 'selector': 'hra-landing-page-intro'},{'name': 'MetricsComponent', 'selector': 'hra-metrics'},{'name': 'ScreenSizeNoticeComponent', 'selector': 'hra-screen-size-notice'},{'name': 'SourceListComponent', 'selector': 'hra-source-list'},{'name': 'TissueTreeListComponent', 'selector': 'hra-tissue-tree-list'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'HeaderComponent'};
