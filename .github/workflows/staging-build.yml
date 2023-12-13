@@ -29,6 +29,7 @@ jobs:
 
       - name: Setup Netlify files
         run: |
+          mkdir -p deploy/apps/ccf
           echo '/* /index.html 200' > deploy/apps/ccf/_redirects
       - name: Setup additional pages
         run: |

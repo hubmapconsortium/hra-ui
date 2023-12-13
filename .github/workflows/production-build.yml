@@ -29,6 +29,7 @@ jobs:
 
       - name: Setup additional pages
         run: |
+          mkdir -p deploy/apps/ccf
           cp -r static/* deploy/apps/ccf/
           cp deploy/apps/ccf/index.html deploy/apps/ccf/404.html
           touch deploy/apps/ccf/.nojekyll
