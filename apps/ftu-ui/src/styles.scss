@@ -13,6 +13,10 @@ body {
   margin: 0;
 }
 
+.cdk-global-scrollblock {
+  overflow-y: unset !important;
+}
+
 $mat-css-default-light-theme: map-merge(
   mat-css-vars.$default-light-theme,
   (
