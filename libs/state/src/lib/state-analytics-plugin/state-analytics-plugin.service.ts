@@ -49,7 +49,6 @@ export class StateAnalyticsPluginService implements NgxsPlugin {
    * @returns - next plugin with the current state and action.
    */
   handle(state: unknown, action: unknown, next: NgxsNextPluginFn) {
-    console.warn(action);
     this.logAction(action);
     return next(state, action);
   }

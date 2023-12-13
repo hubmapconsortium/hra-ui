@@ -20,20 +20,29 @@
     .label-container {
       display: flex;
       align-items: center;
-      height: 2rem;
+      min-height: 2rem;
       padding: 0 1rem;
       border-radius: 0.25rem;
+      width: 100%;
 
       .link {
         cursor: pointer;
         text-decoration: none;
         color: rgba(vars.$dark-primary-text);
         line-height: normal;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        display: flex;
       }
     }
 
     &.selected .label-container .link {
       color: vars.$accent-rgb;
+    }
+
+    &:focus-visible {
+      outline: none;
     }
   }
 }
