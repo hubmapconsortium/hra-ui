@@ -3,7 +3,7 @@
   align-items: center;
 
   .versions {
-    max-width: 21rem;
+    max-width: 22rem;
     height: 2.5rem;
     font-weight: 400;
     font-size: 0.875rem;
@@ -35,7 +35,8 @@
 
   @media (max-width: 26.75rem) {
     .versions {
-      max-width: 100%;
+      max-width: unset;
+      width: calc(100vw - 2rem);
     }
   }
 }

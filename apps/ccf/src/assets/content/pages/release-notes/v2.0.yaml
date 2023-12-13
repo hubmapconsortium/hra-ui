@@ -189,9 +189,9 @@
                     **Use the HRA**
 
                     The HRA Portal now demonstrates how to use the HRA. Check out these APIs and interfaces:
-                    - <a href="https://humanatlas.io/user-story/1" target="_blank">Improve Cell Type Annotations</a>.
-                    - <a href="https://humanatlas.io/user-story/2" target="_blank">Predict 3D Spatial Origin of Tissue Samples</a>.
-                    - <a href="https://humanatlas.io/user-story/3" target="_blank">Explore Biomarker Expressions for Cell Types</a>.
+                    - <a href="user-story/1" target="_blank">Improve Cell Type Annotations</a>.
+                    - <a href="user-story/2" target="_blank">Predict 3D Spatial Origin of Tissue Samples</a>.
+                    - <a href="user-story/3" target="_blank">Explore Biomarker Expressions for Cell Types</a>.
 
                     <a href='https://cellxgene.cziscience.com/cellguide' target='_blank'>CZ CellGuide</a> features cell types and publication references from the ASCT+B Tables. For example, explore the interactive visualization for 
                     <a href='https://cellxgene.cziscience.com/cellguide/CL_0000540' target='_blank'>Neuron (CL:0000540)</a>. 
@@ -230,7 +230,7 @@
                     - <a href="https://hubmapconsortium.github.io/ccf-asct-reporter/" target="_blank">ASCT+B Reporter</a>
                     - <a href="https://portal.hubmapconsortium.org/ccf-eui" target="_blank">Exploration User Interface (EUI)</a>
                     - <a href="https://hubmapconsortium.github.io/ccf-ui/rui/" target="_blank">Registration User Interface (RUI)</a>
-                    - Functional Tissue Unit (FTU) Explorer
+                    - <a href='https://hubmapconsortium.github.io/hra-ui/apps/ftu-ui/' target="_blank">Functional Tissue Unit (FTU) Explorer</a>
                     - <a href="https://humanatlas.io/organ-gallery-in-vr" target="_blank">Organ Gallery in VR</a>
 
             - type: divider

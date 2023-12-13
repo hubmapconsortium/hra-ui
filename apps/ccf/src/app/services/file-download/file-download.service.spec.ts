@@ -55,7 +55,7 @@ describe('FileDownloadService', () => {
         headers: new Headers({
           Origin: location.origin,
         }),
-        mode: 'cors',
+        mode: 'no-cors',
       });
     });
 

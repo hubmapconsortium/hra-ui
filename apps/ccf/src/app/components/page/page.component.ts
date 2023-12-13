@@ -65,7 +65,7 @@ export class PageComponent {
           relativeTo: this.route,
           preserveFragment: true,
         });
-      });
+      }, 100);
       window.scroll({
         top: 0,
         left: 0,
