@@ -64,6 +64,7 @@ export class PageComponent {
         this.router.navigate([], {
           relativeTo: this.route,
           preserveFragment: true,
+          queryParamsHandling: 'preserve',
         });
       }, 100);
       window.scroll({
