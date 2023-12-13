@@ -21,7 +21,7 @@ export class FileDownloadService {
         headers: new Headers({
           Origin: location.origin,
         }),
-        mode: 'no-cors',
+        mode: 'cors',
       });
       const data = await response.blob();
       blobUrl = URL.createObjectURL(data);
