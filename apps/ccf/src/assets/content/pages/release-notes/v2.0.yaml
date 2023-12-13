@@ -18,6 +18,8 @@
       id: new-and-revised
     - menuName: New HRA Interlinkage
       id: hra-interlinkage
+    - menuName: Ontology Updates
+      id: ontology-updates
     - menuName: Use the HRA
       id: use-hra
     - menuName: APIs & User Interfaces
@@ -52,6 +54,8 @@
       id: new-and-revised
     - menuName: New HRA Interlinkage
       id: hra-interlinkage
+    - menuName: Ontology Updates
+      id: ontology-updates
     - menuName: Use the HRA
       id: use-hra
     - menuName: APIs & User Interfaces
