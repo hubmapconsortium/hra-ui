@@ -54,7 +54,7 @@
   isMultiRow: false
   versionData:
     - release: 6th HRA Release (v2.0), December 2023
-      version: '1.4' #update this
+      version: '2.0'
     - release: 5th HRA Release (v1.4), June 2023
       version: '1.4'
     - release: 4th HRA Release (v1.3), December 2022
@@ -62,6 +62,396 @@
     - release: 3rd HRA Release (v1.2), June 2022
       version: '1.2'
   organInfo:
+    - version: '2.0'
+      organData:
+        - name: Blood Vasculature
+          image: assets/images/blood_vasculature.svg
+          alt: A blood vasculature icon
+          tissueData:
+            - name: Female
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-blood-vasculature.html
+              alt: The Vasculature, blood, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_F_Blood_Vasculature.glb
+            - name: Male
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-blood-vasculature.html
+              alt: The Vasculature, blood, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_M_Blood_Vasculature.glb
+        - name: Bone Marrow
+          image: assets/images/bone_marrow.svg
+          alt: A bone marrow icon
+          tissueData:
+            - name: Female
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-pelvis.html
+              alt: The pelvis, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_F_Pelvis.glb
+            - name: Male
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-pelvis.html
+              alt: The pelvis, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_M_Pelvis.glb
+        - name: Allen Brain
+          image: assets/images/brain.svg
+          alt: A brain icon
+          tissueData:
+            - name: Female
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-f-brain.html
+              alt: The Allen brain, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v2.0/models/3d-vh-f-allen-brain.glb
+            - name: Male
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-m-brain.html
+              alt: The Allen brain, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v2.0/models/3d-vh-m-allen-brain.glb
+        - name: Extrapulmonary Bronchus
+          image: assets/images/extrapulmonaryBronchus.svg
+          alt: A extrapulmonary bronchus icon
+          tissueData:
+            - name: Female
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-main-bronchus.html
+              alt: The Extrapulmonary Bronchus, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.4/models/3d-vh-f-main-bronchus.glb
+            - name: Male
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-main-bronchus.html
+              alt: The Extrapulmonary Bronchus, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.4/models/3d-vh-m-main-bronchus.glb
+        - name: Eye
+          image: assets/images/eye.svg
+          alt: An eye icon
+          tissueData:
+            - name: Female, L
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-eye-l.html
+              alt: Eye, Female, L
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.4/models/3d-vh-f-eye-l.glb
+            - name: Female, R
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-eye-r.html
+              alt: Eye, Female, R
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.4/models/3d-vh-f-eye-r.glb
+            - name: Male, L
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-eye-l.html
+              alt: Eye, Male, L
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.4/models/3d-vh-m-eye-l.glb
+            - name: Male, R
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-eye-r.html
+              alt: Eye, Male, R
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.4/models/3d-vh-m-eye-r.glb
+        - name: Fallopian Tube
+          image: assets/images/fallopian_tube.svg
+          alt: A fallopian tube icon
+          tissueData:
+            - name: Female, L
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-fallopian-tube-l.html
+              alt: Fallopian tube, female, left
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_F_Fallopian_Tube_L.glb
+            - name: Female, R
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-fallopian-tube-r.html
+              alt: Fallopian tube, female, left
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_F_Fallopian_Tube_R.glb
+        - name: Heart
+          image: assets/images/heart.svg
+          alt: A heart icon
+          tissueData:
+            - name: Female
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-heart.html
+              alt: The heart, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_F_Heart.glb
+            - name: Male
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-heart.html
+              alt: The heart, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_M_Heart.glb
+        - name: Kidney
+          image: assets/images/kidney.svg
+          alt: A kidney icon
+          tissueData:
+            - name: Female, L
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-kidney-l.html
+              alt: The kidney, left, female
+              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Kidney_L.glb
+            - name: Female, R
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-kidney-r.html
+              alt: The kidney, right, female
+              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v1.2/VH_F_Kidney_R.glb
+            - name: Male, L
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-kidney-l.html
+              alt: The kidney, left, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_M_Kidney_L.glb
+            - name: Male, R
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-kidney-r.html
+              alt: The kidney, right, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_M_Kidney_R.glb
+        - name: Knee
+          image: assets/images/knee.svg
+          alt: A knee icon
+          tissueData:
+            - name: Female, L
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-knee-l.html
+              alt: The knee, left, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_F_Knee_L.glb
+            - name: Female, R
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-knee-r.html
+              alt: The knee, right, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_F_Knee_R.glb
+            - name: Male, L
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-knee-l.html
+              alt: The knee, left, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.1/models/VH_M_Knee_L.glb
+            - name: Male, R
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-knee-r.html
+              alt: The knee, right, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.1/models/VH_M_Knee_R.glb
+        - name: Large Intestine
+          image: assets/images/large_intestine.svg
+          alt: A large intestine icon
+          tissueData:
+            - name: Female
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-large-intestine.html
+              alt: The large intestine, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/SBU_F_Intestine_Large.glb
+            - name: Male
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-large-intestine.html
+              alt: The large intestine, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/SBU_M_Intestine_Large.glb
+        - name: Larynx
+          image: assets/images/larynx.svg
+          alt: A larynx icon
+          tissueData:
+            - name: Female
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-larynx.html
+              alt: The larynx, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.4/models/3d-vh-f-larynx.glb
+            - name: Male
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-larynx.html
+              alt: The larynx, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.4/models/3d-vh-m-larynx.glb
+        - name: Liver
+          image: assets/images/liver.svg
+          alt: A liver icon
+          tissueData:
+            - name: Female
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-liver.html
+              alt: Liver, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_F_Liver.glb
+            - name: Male
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-liver.html
+              alt: Liver, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_M_Liver.glb
+        - name: Lung
+          image: assets/images/lung.svg
+          alt: A lung icon
+          tissueData:
+            - name: Female
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-lung.html
+              alt: The Lungs, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.4/models/3d-vh-f-lung.glb
+            - name: Male
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-lung.html
+              alt: The Lungs, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.4/models/3d-vh-m-lung.glb
+        - name: Lymph Node
+          image: assets/images/lymph_node.svg
+          alt: A lymph node icon
+          tissueData:
+            - name: Female
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-lymph-node.html
+              alt: The lymph nodes, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/NIH_F_Lymph_Node.glb
+            - name: Male
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-lymph-node.html
+              alt: The lymph nodes, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/NIH_M_Lymph_Node.glb
+        - name: Mammary Gland
+          image: assets/images/mammary_gland.svg
+          alt: A mammary gland icon
+          tissueData:
+            - name: Female L
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-mammary-gland-l.html
+              alt: The Mammary Gland, female, Left
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.3/models/3d-vh-f-mammary-gland-l.glb
+            - name: Female R
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-mammary-gland-r.html
+              alt: The Mammary Gland, female, Right
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.3/models/3d-vh-f-mammary-gland-r.glb
+        - name: Ovary
+          image: assets/images/ovary.svg
+          alt: A ovary icon
+          tissueData:
+            - name: Female L
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-ovary-l.html
+              alt: The ovary, female, left
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_F_Ovary_L.glb
+            - name: Female R
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-ovary-r.html
+              alt: The ovary, female, right
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_F_Ovary_R.glb
+        - name: Palatine Tonsil
+          image: assets/images/palatineTonsil.svg
+          alt: A palentine tonsil icon
+          tissueData:
+            - name: Female, L
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-palatine-tonsil-l.html
+              alt: The Palatine Tonsil, left, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.4/models/3d-vh-f-palatine-tonsil-l.glb
+            - name: Female, R
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-palatine-tonsil-r.html
+              alt: The Palatine Tonsil, right, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.4/models/3d-vh-f-palatine-tonsil-r.glb
+            - name: Male, L
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-palatine-tonsil-l.html
+              alt: The Palatine Tonsil, left, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.4/models/3d-vh-m-palatine-tonsil-l.glb
+            - name: Male, R
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-palatine-tonsil-r.html
+              alt: The Palatine Tonsil, right, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.4/models/3d-vh-m-palatine-tonsil-r.glb
+        - name: Pancreas
+          image: assets/images/pancreas.svg
+          alt: A pancreas icon
+          tissueData:
+            - name: Female
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-pancreas.html
+              alt: The pancreas, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v2.0/models/3d-vh-f-pancreas.glb
+            - name: Male
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-pancreas.html
+              alt: The pancreas, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v2.0/models/3d-vh-m-pancreas.glb
+        - name: Placenta
+          image: assets/images/placenta.svg
+          alt: A placenta icon
+          tissueData:
+            - name: Female
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-placenta-full-term.html
+              alt: The placenta, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_F_Placenta.glb
+        - name: Prostate
+          image: assets/images/prostate.svg
+          alt: A prostate icon
+          tissueData:
+            - name: Male
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-prostate.html
+              alt: The prostate, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_M_Prostate.glb
+        - name: Skin
+          image: assets/images/skin.svg
+          alt: A skin icon
+          tissueData:
+            - name: Female
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-skin.html
+              alt: The skin, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.3/models/3d-vh-f-skin.glb
+            - name: Male
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-skin.html
+              alt: The skin, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_M_Skin.glb
+        - name: Small Intestine
+          image: assets/images/small_intestine.svg
+          alt: A small intestine icon
+          tissueData:
+            - name: Female
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-small-intestine.html
+              alt: The small intestine, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_F_Small_Intestine.glb
+            - name: Male
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-small-intestine.html
+              alt: The small intestine, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_M_Small_Intestine.glb
+        - name: Spinal Cord
+          image: assets/images/spinal_cord.svg
+          alt: A spinal cord icon
+          tissueData:
+            - name: Female
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-spinal-cord.html
+              alt: The spinal cord, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_F_Spinal_Cord.glb
+            - name: Male
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-spinal-cord.html
+              alt: The spinal cord, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_M_Spinal_Cord.glb
+        - name: Spleen
+          image: assets/images/spleen.svg
+          alt: A spleen icon
+          tissueData:
+            - name: Female
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-spleen.html
+              alt: The spleen, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_F_Spleen.glb
+            - name: Male
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-spleen.html
+              alt: The spleen, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_M_Spleen.glb
+        - name: Thymus
+          image: assets/images/thymus.svg
+          alt: A thymus icon
+          tissueData:
+            - name: Female
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-thymus.html
+              alt: The thymus, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_F_Thymus.glb
+            - name: Male
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-thymus.html
+              alt: The thymus, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_M_Thymus.glb
+        - name: Trachea
+          image: assets/images/trachea.svg
+          alt: A trachea icon
+          tissueData:
+            - name: Female
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-trachea.html
+              alt: The trachea, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.4/models/3d-vh-f-trachea.glb
+            - name: Male
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-trachea.html
+              alt: The trachea, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.4/models/3d-vh-m-trachea.glb
+        - name: Ureter
+          image: assets/images/ureter.svg
+          alt: A ureter icon
+          tissueData:
+            - name: Female L
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-ureter-l.html
+              alt: The ureter, left, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_F_Ureter_L.glb
+            - name: Female R
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-ureter-r.html
+              alt: The ureter, right, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_F_Ureter_R.glb
+            - name: Male L
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-ureter-l.html
+              alt: The ureter, left, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_M_Ureter_L.glb
+            - name: Male R
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-ureter-r.html
+              alt: The ureter, right, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_M_Ureter_R.glb
+        - name: Urinary Bladder
+          image: assets/images/urinary_bladder.svg
+          alt: A urinary bladder icon
+          tissueData:
+            - name: Female
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-urinary-bladder.html
+              alt: The urinary bladder, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_F_Urinary_Bladder.glb
+            - name: Male
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-urinary-bladder.html
+              alt: The urinary bladder, male
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_M_Urinary_Bladder.glb
+        - name: Uterus
+          image: assets/images/uterus.svg
+          alt: A uterus icon
+          tissueData:
+            - name: Female
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-uterus.html
+              alt: The uterus, female
+              threeDimImage: https://cdn.humanatlas.io/hra-releases/v1.2/models/VH_F_Uterus.glb
+        - name: All Organs
+          image: assets/images/all_organs.svg
+          alt: An all organs icon
+          tissueData:
+            - name: Female
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-united.html
+              alt: All organs, female
+              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v2.0/3d-vh-f-united.glb
+            - name: Male
+              url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-united.html
+              alt: All organs, male
+              threeDimImage: https://ccf-ontology.hubmapconsortium.org/objects/v2.0/3d-vh-m-united.glb
     - version: '1.4'
       organData:
         - name: Blood Vasculature
