@@ -27,14 +27,13 @@
         Coordinate Framework. A listing of API endpoints and database schema descriptions
         with examples are provided.
 
-        * CCF API
-          * Production: <https://ccf-api.hubmapconsortium.org>
-          * Staging: <https://r5i95k35v5.us-east-2.awsapprunner.com>
-          * OpenAPI Specification: [ccf-api-spec.yaml](https://github.com/hubmapconsortium/ccf-ui/blob/main/ccf-api-spec.yaml)
-        * CCF API Client Libraries:
+        * HRA-API v1.x:
+          * Production: <https://apps.humanatlas.io/hra-api/>
+          * OpenAPI Specification: <https://apps.humanatlas.io/hra-api/ccf-api-spec.yaml>
+        * CCF-OPENAPI Client Libraries:
           * JavaScript: ![npm (scoped)](https://img.shields.io/npm/v/@ccf-openapi/js-client)  [@ccf-openapi/js-client](https://www.npmjs.com/package/@ccf-openapi/js-client)
           * TypeScript: ![npm (scoped)](https://img.shields.io/npm/v/@ccf-openapi/ts-client)  [@ccf-openapi/ts-client](https://www.npmjs.com/package/@ccf-openapi/ts-client)
-          * Angular 12+: ![npm (scoped)](https://img.shields.io/npm/v/@ccf-openapi/ng-client) [@ccf-openapi/ng-client](https://www.npmjs.com/package/@ccf-openapi/ng-client)
+          * Angular 15+: ![npm (scoped)](https://img.shields.io/npm/v/@ccf-openapi/ng-client) [@ccf-openapi/ng-client](https://www.npmjs.com/package/@ccf-openapi/ng-client)
           * Python 3.6+: ![PyPI](https://img.shields.io/pypi/v/ccf-openapi) [ccf-openapi](https://pypi.org/project/ccf-openapi/)
         * CCF API Sample Notebooks/Vignettes:
           * Python 3.6+:
@@ -43,16 +42,28 @@
           * JavaScript:
             * Basic Usage: <https://observablehq.com/@cns-iu/ccf-api-documentation-javascript>
             * Use case walkthrough: <https://observablehq.com/@cns-iu/ccf-api-usecase-javascript>
+        * CCF.OWL v2.3.0:
+          * PURL: <https://purl.humanatlas.io/graph/ccf>
+          * BioPortal: <https://bioportal.bioontology.org/ontologies/CCF>
+          * Ontology Lookup Service (OLS): <https://www.ebi.ac.uk/ols4/ontologies/ccf>
+        * HRA-API v2.0:
+          * Production: <https://apps.humanatlas.io/api/>
+          * OpenAPI Specification: <https://apps.humanatlas.io/api/hra-api-spec.yaml>
+          * JavaScript Library: ![npm (scoped)](https://img.shields.io/npm/v/hra-api)  [hra-api](https://www.npmjs.com/package/hra-api)
+        * HRA-KG v2.0:
+          * Production: <https://purl.humanatlas.io/collection/hra-kg>
+          * LOD Server: <https://lod.humanatlas.io>
+          * SPARQL Endpoint: <https://lod.humanatlas.io/sparql>
         * grlc APIs (SPARQL queries plus OpenAPI endpoints [more info](http://grlc.io/)):
           * grlc queries using the [CCF-API](https://ccf-api.hubmapconsortium.org/#/operations/sparql-post) SPARQL endpoint: <http://grlc.io/api/hubmapconsortium/ccf-grlc/ccf/>
           * grlc queries using the [Ubergraph](https://github.com/INCATools/ubergraph) SPARQL endpoint: <http://grlc.io/api/hubmapconsortium/ccf-grlc/ubergraph/>
 
 - type: button
   text: Use the Human Reference Atlas APIs
-  url: https://ccf-api.hubmapconsortium.org/#/operations/reference-organs
+  url: https://apps.humanatlas.io/hra-api/
 
 - type: image
-  imageSource: assets/images/api_interface.svg
+  imageSource: assets/images/api-interface.png
   alt: hra api
   styles:
     display: flex

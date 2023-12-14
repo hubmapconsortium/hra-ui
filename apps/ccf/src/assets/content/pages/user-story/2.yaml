@@ -50,14 +50,36 @@
 
 - type: copy-clipboard
   clipboardData:
-    - url: 'POST: https://apps.humanatlas.io/api/ctpop/cell-summary-report'
+    - url: 'POST: https://apps.humanatlas.io/api/hra-pop/cell-summary-report'
       borderColor: solid rgb(101,153,0) 5px
       plainButton:
         icon: content_copy
         label: Copy
       dynamicButton:
         label: Try Me
-        url: https://apps.humanatlas.io/api/#post-/ctpop/cell-summary-report
+        url: https://apps.humanatlas.io/api/#post-/hra-pop/cell-summary-report
+    - url: 'GET: https://apps.humanatlas.io/api/hra-pop/supported-organs'
+      plainButton:
+        icon: content_copy
+        label: Copy
+      dynamicButton:
+        label: Try Me
+        url: https://apps.humanatlas.io/api/#get-/hra-pop/supported-organs
+    - url: 'GET: https://apps.humanatlas.io/api/hra-pop/supported-tools'
+      plainButton:
+        icon: content_copy
+        label: Copy
+      dynamicButton:
+        label: Try Me
+        url: https://apps.humanatlas.io/api/#get-/hra-pop/supported-tools
+    - url: 'GET: https://apps.humanatlas.io/api/hra-pop/supported-reference-organs'
+      plainButton:
+        icon: content_copy
+        label: Copy
+      dynamicButton:
+        label: Try Me
+        url: https://apps.humanatlas.io/api/#get-/hra-pop/supported-reference-organs
+
 
 - type: button
   text: Open API Link

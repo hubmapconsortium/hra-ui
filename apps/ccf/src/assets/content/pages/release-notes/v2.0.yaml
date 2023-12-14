@@ -94,7 +94,7 @@
                   descriptions: |
                     **Introduction**
 
-                    HuBMAP's Indiana University Mapping Component (MC-IU) has published the 6th Release of the Human Reference Atlas (v2.0), a digital atlas of the human body that lets users query and explore anatomical structures, 
+                    HuBMAP's Indiana University Mapping Component (MC-IU) has published the 6th Release of the Human Reference Atlas (v2.0), a digital atlas of the human body that lets users query and explore anatomical structures,
                     cell types, and biomarkers down to the cellular level. Every six months, a new version of Human Reference Atlas data and code is released with user interfaces that make it possible to visually explore the atlas or programmatically access the data.
             - type: image
               imageSource: assets/images/6th_release_intro.svg
@@ -117,13 +117,13 @@
 
                     The Human Reference Atlas now includes 65 reference organs with 1,280 anatomical structures.
                     - 2 new ASCT+B Tables: anatomical systems, palatine tonsil
-                    - 20 revised ASCT+B Tables: allen brain, fallopian tube, blood vasculature, bone marrow, heart, kidney, knee, liver, lung, lymph node, lymph vasculature, main bronchus, 
+                    - 20 revised ASCT+B Tables: allen brain, fallopian tube, blood vasculature, bone marrow, heart, kidney, knee, liver, lung, lymph node, lymph vasculature, main bronchus,
                       muscular system, pancreas, peripheral nervous system, placenta full term, prostate, skeleton, skin, thymus
                     - 6 updated 3D Reference Objects: male and female versions of pancreas, brain, and united file
                     - 1 new 2D Functional Tissue Unit (FTU) object: intestinal villus of small intestine
-                    - 21 updated 2D Functional Tissue Unit (FTU) objects: kidney ascending thin loop of Henle, kidney cortical collecting duct, kidney descending thin loop of Henle, kidney inner medullary collecting duct, 
-                      kidney nephron, kidney outer medullary collecting duct, kidney renal corpuscle, kidney thick ascending loop of Henle, large intestine crypt lieberkuhn, liver lobule, lung bronchial submucosal gland, 
-                      lung pulmonary alveolus, pancreas intercalated duct, pancreas islets langerhans, pancreas pancreatic acinus, prostate glandular acinus, skin dermal papilla, skin epidermal ridge, spleen red pulp, 
+                    - 21 updated 2D Functional Tissue Unit (FTU) objects: kidney ascending thin loop of Henle, kidney cortical collecting duct, kidney descending thin loop of Henle, kidney inner medullary collecting duct,
+                      kidney nephron, kidney outer medullary collecting duct, kidney renal corpuscle, kidney thick ascending loop of Henle, large intestine crypt lieberkuhn, liver lobule, lung bronchial submucosal gland,
+                      lung pulmonary alveolus, pancreas intercalated duct, pancreas islets langerhans, pancreas pancreatic acinus, prostate glandular acinus, skin dermal papilla, skin epidermal ridge, spleen red pulp,
                       spleen white pulp, thymus lobule
                     - 4 updated crosswalk tables: 2D FTU to ASCT+B, 3D reference organ to ASCT+B, blood vessel to organ, musculoskeletal muscle to skeleton
                     - 1 updated vascular geometry table: blood vasculature geometry
@@ -193,9 +193,9 @@
                     - <a href="user-story/2" target="_blank">Predict 3D Spatial Origin of Tissue Samples</a>.
                     - <a href="user-story/3" target="_blank">Explore Biomarker Expressions for Cell Types</a>.
 
-                    <a href='https://cellxgene.cziscience.com/cellguide' target='_blank'>CZ CellGuide</a> features cell types and publication references from the ASCT+B Tables. For example, explore the interactive visualization for 
-                    <a href='https://cellxgene.cziscience.com/cellguide/CL_0000540' target='_blank'>Neuron (CL:0000540)</a>. 
-                    It shows the CL ontology typology with the 'neuron' cell type highlighted in green together with its parent ('neural cell', which is_a 'somatic cell', which is_a 'animal cell') 
+                    <a href='https://cellxgene.cziscience.com/cellguide' target='_blank'>CZ CellGuide</a> features cell types and publication references from the ASCT+B Tables. For example, explore the interactive visualization for
+                    <a href='https://cellxgene.cziscience.com/cellguide/CL_0000540' target='_blank'>Neuron (CL:0000540)</a>.
+                    It shows the CL ontology typology with the 'neuron' cell type highlighted in green together with its parent ('neural cell', which is_a 'somatic cell', which is_a 'animal cell')
                     and children nodes (e.g., 'GABAergic neuron' and 'glutamatergic neuron').
 
             - type: divider
@@ -211,9 +211,9 @@
                     **APIs and User Interfaces**
 
                     Use our updated APIs:
-                    - <a href="https://apps.humanatlas.io/hra-api/" target="_blank">HRA-API v1.1 </a>(Recommended for current applications)
+                    - <a href="https://apps.humanatlas.io/hra-api/" target="_blank">HRA-API v1.2</a>(Recommended for current applications)
                     - <a href="https://apps.humanatlas.io/api/" target="_blank">HRA-API v2.0</a>
-                    - CCF-OPENAPI v1.2.0 (Language bindings to HRA-API v1.1)
+                    - CCF-OPENAPI v1.2.0 (Language bindings to HRA-API v1.2)
                       - <a href="https://pypi.org/project/ccf-openapi/" target="_blank">Python</a>
                       - <a href="https://www.npmjs.com/package/@ccf-openapi/js-client" target="_blank">JavaScript</a>
                       - <a href="https://www.npmjs.com/package/@ccf-openapi/ts-client" target="_blank">TypeScript</a>
@@ -285,9 +285,9 @@
                     Recent papers (co-)authored by MC-IU that explain how the HRA is constructed and used:
                     - How to use the Registration and Exploration User Interfaces of the HRA: Börner, Bueckle, Herr II, et al. Tissue registration and exploration user interfaces in support of a human reference atlas. Communications Biology 5, 1369 (2022). doi:
                       <a href="https://doi.org/10.1038/s42003-022-03644-x" target="_blank"> 10.1038/s42003-022-03644-x</a>
-                    - Creation and usage of ASCT+B Tables as an essential data structure for the HRA: Börner, Teichmann, Quardokus, et al. Anatomical structures, cell types and biomarkers of the Human Reference Atlas. Nature Cell Biology 23, 1117-1128 (2021). doi: 
+                    - Creation and usage of ASCT+B Tables as an essential data structure for the HRA: Börner, Teichmann, Quardokus, et al. Anatomical structures, cell types and biomarkers of the Human Reference Atlas. Nature Cell Biology 23, 1117-1128 (2021). doi:
                       <a href="https://doi.org/10.1038/s41556-021-00788-6" target="_blank">10.1038/s41556-021-00788-6</a>
-                    - Documenting the CCF Ontology v2.0.1 connecting specimen, biological structure, and spatial data, as well as the HRA API to make the HRA programmatically accessible and interoperable with Linked Open Data (LOD): Herr II, Hardi, Quardokus, et al. 
+                    - Documenting the CCF Ontology v2.0.1 connecting specimen, biological structure, and spatial data, as well as the HRA API to make the HRA programmatically accessible and interoperable with Linked Open Data (LOD): Herr II, Hardi, Quardokus, et al.
                       Specimen, Biological Structure, and Spatial Ontologies in Support of a Human Reference Atlas. Scientific Data 10, 171 (2023). doi:
                       <a href="https://doi.org/10.1038/s41597-023-01993-8" target="_blank">10.1038/s41597-023-01993-8</a>
                     - Documenting Organ Mapping Antibody Panels (OMAPs): Quardokus, Saunders, McDonough, et al. Organ Mapping Antibody Panels: A community resource for standardized multiplexed tissue imaging. Nature Methods 20, 1174-1178 (2023). doi:
@@ -306,7 +306,7 @@
                   descriptions: |
                     **Human Atlas Stories**
 
-                    The Human Atlas Stories is a collection of scrolly-telling features, animated essays, and interconnected stories designed to introduce the Human Reference Atlas (HRA) to a general audience. 
+                    The Human Atlas Stories is a collection of scrolly-telling features, animated essays, and interconnected stories designed to introduce the Human Reference Atlas (HRA) to a general audience.
                     Stories utilize techniques that encourage user engagement and they support knowledge retention through mixed-media presentations.
 
                     - <a href="https://cns-iu.github.io/hra-scrollytelling/story1.html" target="_blank">What is a Human Reference Atlas?</a>
