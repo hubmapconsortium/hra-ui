@@ -9756,7 +9756,7 @@
     },
     {
       "@type": "CellSummary",
-      "cell_source": "https://purl.humanatlas.io/2d-ftu/kidney-thick-ascending-loop-of-henle",
+      "cell_source": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle",
       "annotation_method": "Aggregation",
       "biomarker_type": "gene",
       "summary": [
