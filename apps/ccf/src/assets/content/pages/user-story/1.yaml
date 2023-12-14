@@ -30,12 +30,11 @@
 
         This website lets computational biologists annotate cell types in bulk or spatial data. The API combines biomarker expression profile and 3D location data, resulting in enhanced cell type prediction accuracy.
 
-- type: player
-  youtubePlayer:
-    height: 584
-    width: 1232
-    videoId: UfxMpzatowE
-    playerTitle: 'Demonstration: Improving Cell Type Annotations ------ UPDATE VIDEO ID'
+- type: image
+  imageSource: assets/images/us1.png
+  alt: Image of US1 App
+  styles:
+    width: 100%
 
 - type: margin
   bottom: 1rem
