@@ -2,6 +2,18 @@
 
 Changelog for the Human Reference Atlas (HRA)
 
+## 1.5 - 2023-12-15
+
+### Added in 1.5
+
+* Added HRA version 1.5 data in 6th Release
+
+## 1.4 - 2023-06-15
+
+### Added in 1.4
+
+* Added HRA version 1.4 data in 5th Release
+
 ## 1.3 - 2022-12-09
 
 ### Added in 1.3
