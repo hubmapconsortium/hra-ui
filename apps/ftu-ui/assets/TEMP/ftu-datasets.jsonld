@@ -65,7 +65,7 @@
       ]
     },
     {
-      "@id": "https://purl.humanatlas.io/2d-ftu/kidney-thick-ascending-loop-of-henle",
+      "@id": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle",
       "@type": "FtuIllustration",
       "data_sources": [
         {
