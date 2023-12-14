@@ -90,8 +90,8 @@
   imageData:
     - title: ''
       description: ''
-      image: assets/images/eui_features.svg
-      imageDialog: assets/images/eui_features.svg
+      image: assets/images/eui_features.png
+      imageDialog: assets/images/eui_features.png
       alt: A knowledge architecture image
   headerData:
     title: Exploration User Interface Features
