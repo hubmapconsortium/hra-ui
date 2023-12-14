@@ -407,12 +407,12 @@
         },
         {
             "name": "SourceListItem",
-            "id": "interface-SourceListItem-f0d0464b044f898be3752719190f2d8ad8511283d4daafb2f8b17bd0f4dfa0290abbbeb293819664c07134fcaee5a64313aaf72d69e335a063e244c2ba1d7c0c",
+            "id": "interface-SourceListItem-d56c604ffcc436944dd40b7c19bc6ee338be98ac4a91ca28491bb67470e6159f262c7087e98b10bcba998638b288eb632aa9dbf896c3cbe9cd1ade26135597b6",
             "file": "src/lib/source-list/source-list.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from '@angular/material/table';\nimport { MatIconModule } from '@angular/material/icon';\nimport { EmptyBiomarkerComponent, LabelBoxComponent } from '@hra-ui/components/atoms';\n\n/** SourceListItem interface contains title and link to the dataset for the SourceList*/\nexport interface SourceListItem {\n  /** Title of the dataset in the SourceList */\n  title: string;\n\n  /** Label of the dataset in the SourceList */\n  label: string;\n\n  /** Link to the dataset in the SourceList */\n  link: string;\n}\n\n/** This component shows list of sources with title and links to the datasets */\n@Component({\n  selector: 'hra-source-list',\n  standalone: true,\n  imports: [CommonModule, MatTableModule, MatIconModule, LabelBoxComponent, EmptyBiomarkerComponent],\n  templateUrl: './source-list.component.html',\n  styleUrls: ['./source-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SourceListComponent {\n  /** List of sources with titles and links displayed to the user */\n  @Input() sources: SourceListItem[] = [];\n  /**\n   * Input  buttonon text of empty biomarker component.\n   */\n  @Input() collaborateText = '';\n\n  /**\n   * Input  message markdown of empty biomarker component.\n   */\n  @Input() message = '';\n  /**\n   * Show table of source list component which toggles to true or false\n   * based on click\n   */\n  showTable = true;\n\n  /** Emits when the contact button is clicked */\n  @Output() readonly collaborateClick = new EventEmitter<void>();\n\n  /**\n   * It changes the value of showTable to false if value it true\n   * and vice versa\n   */\n  toggleTable(): void {\n    this.showTable = !this.showTable;\n  }\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from '@angular/material/table';\nimport { MatIconModule } from '@angular/material/icon';\nimport { EmptyBiomarkerComponent, LabelBoxComponent } from '@hra-ui/components/atoms';\nimport { GoogleAnalyticsService } from 'ngx-google-analytics';\n\n/** SourceListItem interface contains title and link to the dataset for the SourceList*/\nexport interface SourceListItem {\n  /** Title of the dataset in the SourceList */\n  title: string;\n\n  /** Label of the dataset in the SourceList */\n  label: string;\n\n  /** Link to the dataset in the SourceList */\n  link: string;\n}\n\n/** This component shows list of sources with title and links to the datasets */\n@Component({\n  selector: 'hra-source-list',\n  standalone: true,\n  imports: [CommonModule, MatTableModule, MatIconModule, LabelBoxComponent, EmptyBiomarkerComponent],\n  templateUrl: './source-list.component.html',\n  styleUrls: ['./source-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SourceListComponent {\n  /** List of sources with titles and links displayed to the user */\n  @Input() sources: SourceListItem[] = [];\n  /**\n   * Input  buttonon text of empty biomarker component.\n   */\n  @Input() collaborateText = '';\n\n  /**\n   * Input  message markdown of empty biomarker component.\n   */\n  @Input() message = '';\n  /**\n   * Show table of source list component which toggles to true or false\n   * based on click\n   */\n  showTable = true;\n\n  /** Emits when the contact button is clicked */\n  @Output() readonly collaborateClick = new EventEmitter<void>();\n\n  /** Google analytics tracking service */\n  private readonly ga = inject(GoogleAnalyticsService);\n\n  /**\n   * It changes the value of showTable to false if value it true\n   * and vice versa\n   */\n  toggleTable(): void {\n    this.showTable = !this.showTable;\n    this.ga.event('source_table_toggle', this.showTable.toString());\n  }\n\n  /**\n   * Logs source link click\n   * @param item Source list item\n   */\n  sourceLinkClicked(item: SourceListItem): void {\n    this.ga.event('source_link_clicked', 'link_click', item.link);\n  }\n}\n",
             "properties": [
                 {
                     "name": "label",
@@ -421,7 +421,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "<p>Label of the dataset in the SourceList</p>\n",
-                    "line": 13,
+                    "line": 14,
                     "rawdescription": "\nLabel of the dataset in the SourceList"
                 },
                 {
@@ -431,7 +431,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "<p>Link to the dataset in the SourceList</p>\n",
-                    "line": 16,
+                    "line": 17,
                     "rawdescription": "\nLink to the dataset in the SourceList"
                 },
                 {
@@ -441,7 +441,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "<p>Title of the dataset in the SourceList</p>\n",
-                    "line": 10,
+                    "line": 11,
                     "rawdescription": "\nTitle of the dataset in the SourceList"
                 }
             ],
@@ -1155,7 +1155,7 @@
         },
         {
             "name": "HeaderComponent",
-            "id": "component-HeaderComponent-81f5689eacf69c8f1658a62e299bcad0df485f2cc8e6664f3f16cfa7d30400e53a54549f6aa8125abb2fc207fb428887c0a19dde695063a2d92611d78d9c6956",
+            "id": "component-HeaderComponent-0a9d465f41a7e43ed8a788bcb4fff0930cbb94a5bdcaf4276f9fa1bcc3eae18d009cc01af6bd6221c46336ee3e7b6d910bd24b1228459da007d5f4c2b39a57ca",
             "file": "src/lib/header/header.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1180,7 +1180,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nInput for about link",
                     "description": "<p>Input for about link</p>\n",
-                    "line": 40,
+                    "line": 41,
                     "type": "any",
                     "decorators": []
                 },
@@ -1191,7 +1191,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nInput for app title to show on the left side.\n",
                     "description": "<p>Input for app title to show on the left side.</p>\n",
-                    "line": 34,
+                    "line": 35,
                     "type": "string",
                     "decorators": []
                 },
@@ -1202,7 +1202,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nInput for product logo URL to displayed on the left side.\n",
                     "description": "<p>Input for product logo URL to displayed on the left side.</p>\n",
-                    "line": 24,
+                    "line": 25,
                     "type": "string",
                     "decorators": []
                 },
@@ -1213,7 +1213,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nInput for product title to displayed on the left side.\n",
                     "description": "<p>Input for product title to displayed on the left side.</p>\n",
-                    "line": 29,
+                    "line": 30,
                     "type": "string",
                     "decorators": []
                 },
@@ -1224,14 +1224,27 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nInput for Product Title link",
                     "description": "<p>Input for Product Title link</p>\n",
-                    "line": 37,
+                    "line": 38,
                     "type": "any",
                     "decorators": []
                 }
             ],
             "outputsClass": [],
             "propertiesClass": [],
-            "methodsClass": [],
+            "methodsClass": [
+                {
+                    "name": "aboutClicked",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 49,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nLogs event when about button clicked\n",
+                    "description": "<p>Logs event when about button clicked</p>\n"
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -1239,7 +1252,7 @@
             "description": "<p>Header component, displays on top of every page.</p>\n",
             "rawdescription": "\n\nHeader component, displays on top of every page.\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatIconModule } from '@angular/material/icon';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { EMPTY_LINK } from '@hra-ui/cdk';\n\n/**\n * Header component, displays on top of every page.\n */\n@Component({\n  selector: 'hra-header',\n  standalone: true,\n  imports: [CommonModule, MatButtonModule, MatIconModule, MatRippleModule, LinkDirective],\n  templateUrl: './header.component.html',\n  styleUrls: ['./header.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HeaderComponent {\n  /**\n   * Input for product logo URL to displayed on the left side.\n   */\n  @Input() productLogoUrl = '';\n\n  /**\n   * Input for product title to displayed on the left side.\n   */\n  @Input() productTitle = '';\n\n  /**\n   * Input for app title to show on the left side.\n   */\n  @Input() appTitle = '';\n\n  /** Input for Product Title link */\n  @Input() productTitleLink = EMPTY_LINK;\n\n  /** Input for about link */\n  @Input() aboutLink = EMPTY_LINK;\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatIconModule } from '@angular/material/icon';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { EMPTY_LINK } from '@hra-ui/cdk';\nimport { GoogleAnalyticsService } from 'ngx-google-analytics';\n\n/**\n * Header component, displays on top of every page.\n */\n@Component({\n  selector: 'hra-header',\n  standalone: true,\n  imports: [CommonModule, MatButtonModule, MatIconModule, MatRippleModule, LinkDirective],\n  templateUrl: './header.component.html',\n  styleUrls: ['./header.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HeaderComponent {\n  /**\n   * Input for product logo URL to displayed on the left side.\n   */\n  @Input() productLogoUrl = '';\n\n  /**\n   * Input for product title to displayed on the left side.\n   */\n  @Input() productTitle = '';\n\n  /**\n   * Input for app title to show on the left side.\n   */\n  @Input() appTitle = '';\n\n  /** Input for Product Title link */\n  @Input() productTitleLink = EMPTY_LINK;\n\n  /** Input for about link */\n  @Input() aboutLink = EMPTY_LINK;\n\n  /** Google analytics tracking service */\n  private readonly ga = inject(GoogleAnalyticsService);\n\n  /**\n   * Logs event when about button clicked\n   */\n  aboutClicked(): void {\n    this.ga.event('about_icon_click', 'link_click');\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1248,7 +1261,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<a class=\"product\" matRipple [hraLink]=\"productTitleLink\">\n  <img class=\"logo image\" [src]=\"productLogoUrl\" alt=\"Product Logo\" aria-hidden=\"true\" />\n  <h1 class=\"text\">{{ productTitle }}</h1>\n</a>\n<h1 class=\"app text\">{{ appTitle }}</h1>\n\n<div class=\"filler\"></div>\n\n<a mat-flat-button class=\"about\" [hraLink]=\"aboutLink\">\n  <mat-icon class=\"icon\">info_outlined</mat-icon>\n  <span class=\"text\">About</span>\n</a>\n"
+            "templateData": "<a class=\"product\" matRipple [hraLink]=\"productTitleLink\">\n  <img class=\"logo image\" [src]=\"productLogoUrl\" alt=\"Product Logo\" aria-hidden=\"true\" />\n  <h1 class=\"text\">{{ productTitle }}</h1>\n</a>\n<h1 class=\"app text\">{{ appTitle }}</h1>\n\n<div class=\"filler\"></div>\n\n<a mat-flat-button class=\"about\" [hraLink]=\"aboutLink\" (click)=\"aboutClicked()\">\n  <mat-icon class=\"icon\">info_outlined</mat-icon>\n  <span class=\"text\">About</span>\n</a>\n"
         },
         {
             "name": "HraLandingPageIntroWcComponent",
@@ -2050,7 +2063,7 @@
         },
         {
             "name": "SourceListComponent",
-            "id": "component-SourceListComponent-f0d0464b044f898be3752719190f2d8ad8511283d4daafb2f8b17bd0f4dfa0290abbbeb293819664c07134fcaee5a64313aaf72d69e335a063e244c2ba1d7c0c",
+            "id": "component-SourceListComponent-d56c604ffcc436944dd40b7c19bc6ee338be98ac4a91ca28491bb67470e6159f262c7087e98b10bcba998638b288eb632aa9dbf896c3cbe9cd1ade26135597b6",
             "file": "src/lib/source-list/source-list.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -2075,7 +2088,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nInput  buttonon text of empty biomarker component.\n",
                     "description": "<p>Input  buttonon text of empty biomarker component.</p>\n",
-                    "line": 34,
+                    "line": 35,
                     "type": "string",
                     "decorators": []
                 },
@@ -2086,7 +2099,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nInput  message markdown of empty biomarker component.\n",
                     "description": "<p>Input  message markdown of empty biomarker component.</p>\n",
-                    "line": 39,
+                    "line": 40,
                     "type": "string",
                     "decorators": []
                 },
@@ -2097,7 +2110,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nList of sources with titles and links displayed to the user",
                     "description": "<p>List of sources with titles and links displayed to the user</p>\n",
-                    "line": 30,
+                    "line": 31,
                     "type": "SourceListItem[]",
                     "decorators": []
                 }
@@ -2110,7 +2123,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nEmits when the contact button is clicked",
                     "description": "<p>Emits when the contact button is clicked</p>\n",
-                    "line": 47,
+                    "line": 48,
                     "type": "EventEmitter"
                 }
             ],
@@ -2123,18 +2136,63 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Show table of source list component which toggles to true or false\nbased on click</p>\n",
-                    "line": 44,
+                    "line": 45,
                     "rawdescription": "\n\nShow table of source list component which toggles to true or false\nbased on click\n"
                 }
             ],
             "methodsClass": [
+                {
+                    "name": "sourceLinkClicked",
+                    "args": [
+                        {
+                            "name": "item",
+                            "type": "SourceListItem",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 66,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nLogs source link click\n",
+                    "description": "<p>Logs source link click</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 2100,
+                                "end": 2104,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "item"
+                            },
+                            "type": "SourceListItem",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 2094,
+                                "end": 2099,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>Source list item</p>\n"
+                        }
+                    ]
+                },
                 {
                     "name": "toggleTable",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 53,
+                    "line": 57,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nIt changes the value of showTable to false if value it true\nand vice versa\n",
@@ -2148,7 +2206,7 @@
             "description": "<p>This component shows list of sources with title and links to the datasets</p>\n",
             "rawdescription": "\nThis component shows list of sources with title and links to the datasets",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from '@angular/material/table';\nimport { MatIconModule } from '@angular/material/icon';\nimport { EmptyBiomarkerComponent, LabelBoxComponent } from '@hra-ui/components/atoms';\n\n/** SourceListItem interface contains title and link to the dataset for the SourceList*/\nexport interface SourceListItem {\n  /** Title of the dataset in the SourceList */\n  title: string;\n\n  /** Label of the dataset in the SourceList */\n  label: string;\n\n  /** Link to the dataset in the SourceList */\n  link: string;\n}\n\n/** This component shows list of sources with title and links to the datasets */\n@Component({\n  selector: 'hra-source-list',\n  standalone: true,\n  imports: [CommonModule, MatTableModule, MatIconModule, LabelBoxComponent, EmptyBiomarkerComponent],\n  templateUrl: './source-list.component.html',\n  styleUrls: ['./source-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SourceListComponent {\n  /** List of sources with titles and links displayed to the user */\n  @Input() sources: SourceListItem[] = [];\n  /**\n   * Input  buttonon text of empty biomarker component.\n   */\n  @Input() collaborateText = '';\n\n  /**\n   * Input  message markdown of empty biomarker component.\n   */\n  @Input() message = '';\n  /**\n   * Show table of source list component which toggles to true or false\n   * based on click\n   */\n  showTable = true;\n\n  /** Emits when the contact button is clicked */\n  @Output() readonly collaborateClick = new EventEmitter<void>();\n\n  /**\n   * It changes the value of showTable to false if value it true\n   * and vice versa\n   */\n  toggleTable(): void {\n    this.showTable = !this.showTable;\n  }\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from '@angular/material/table';\nimport { MatIconModule } from '@angular/material/icon';\nimport { EmptyBiomarkerComponent, LabelBoxComponent } from '@hra-ui/components/atoms';\nimport { GoogleAnalyticsService } from 'ngx-google-analytics';\n\n/** SourceListItem interface contains title and link to the dataset for the SourceList*/\nexport interface SourceListItem {\n  /** Title of the dataset in the SourceList */\n  title: string;\n\n  /** Label of the dataset in the SourceList */\n  label: string;\n\n  /** Link to the dataset in the SourceList */\n  link: string;\n}\n\n/** This component shows list of sources with title and links to the datasets */\n@Component({\n  selector: 'hra-source-list',\n  standalone: true,\n  imports: [CommonModule, MatTableModule, MatIconModule, LabelBoxComponent, EmptyBiomarkerComponent],\n  templateUrl: './source-list.component.html',\n  styleUrls: ['./source-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SourceListComponent {\n  /** List of sources with titles and links displayed to the user */\n  @Input() sources: SourceListItem[] = [];\n  /**\n   * Input  buttonon text of empty biomarker component.\n   */\n  @Input() collaborateText = '';\n\n  /**\n   * Input  message markdown of empty biomarker component.\n   */\n  @Input() message = '';\n  /**\n   * Show table of source list component which toggles to true or false\n   * based on click\n   */\n  showTable = true;\n\n  /** Emits when the contact button is clicked */\n  @Output() readonly collaborateClick = new EventEmitter<void>();\n\n  /** Google analytics tracking service */\n  private readonly ga = inject(GoogleAnalyticsService);\n\n  /**\n   * It changes the value of showTable to false if value it true\n   * and vice versa\n   */\n  toggleTable(): void {\n    this.showTable = !this.showTable;\n    this.ga.event('source_table_toggle', this.showTable.toString());\n  }\n\n  /**\n   * Logs source link click\n   * @param item Source list item\n   */\n  sourceLinkClicked(item: SourceListItem): void {\n    this.ga.event('source_link_clicked', 'link_click', item.link);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2157,7 +2215,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<hra-label-box class=\"toggle\" (click)=\"toggleTable()\">\n  Source Data\n  <mat-icon class=\"end\">\n    {{ showTable ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}\n  </mat-icon>\n</hra-label-box>\n\n<div class=\"table-content\" [class.hidden]=\"!showTable\">\n  <table *ngIf=\"sources.length !== 0\" mat-table [dataSource]=\"sources\">\n    <caption class=\"sr-only\">\n      Source List Table with Title and Links\n    </caption>\n\n    <!-- Position Column -->\n    <ng-container matColumnDef=\"link\">\n      <th class=\"sr-only\" mat-header-cell *matHeaderCellDef>Item Number</th>\n      <td mat-cell *matCellDef=\"let element; let i = index\">{{ i + 1 }}.</td>\n    </ng-container>\n\n    <!-- Data Column -->\n    <ng-container matColumnDef=\"title\">\n      <th class=\"sr-only\" mat-header-cell *matHeaderCellDef>Title and Link</th>\n      <td mat-cell *matCellDef=\"let element\">\n        {{ element.title }}\n        <br />\n        <a [href]=\"element.link\" target=\"_blank\">{{ element.label }}</a>\n      </td>\n    </ng-container>\n\n    <tr mat-row *matRowDef=\"let row; columns: ['link', 'title']\"></tr>\n  </table>\n  <hra-empty-biomarker\n    *ngIf=\"sources.length === 0\"\n    [collaborateText]=\"collaborateText\"\n    [message]=\"message\"\n    (collaborateClick)=\"collaborateClick.emit()\"\n  ></hra-empty-biomarker>\n</div>\n"
+            "templateData": "<hra-label-box class=\"toggle\" (click)=\"toggleTable()\">\n  Source Data\n  <mat-icon class=\"end\">\n    {{ showTable ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}\n  </mat-icon>\n</hra-label-box>\n\n<div class=\"table-content\" [class.hidden]=\"!showTable\">\n  <table *ngIf=\"sources.length !== 0\" mat-table [dataSource]=\"sources\">\n    <caption class=\"sr-only\">\n      Source List Table with Title and Links\n    </caption>\n\n    <!-- Position Column -->\n    <ng-container matColumnDef=\"link\">\n      <th class=\"sr-only\" mat-header-cell *matHeaderCellDef>Item Number</th>\n      <td mat-cell *matCellDef=\"let element; let i = index\">{{ i + 1 }}.</td>\n    </ng-container>\n\n    <!-- Data Column -->\n    <ng-container matColumnDef=\"title\">\n      <th class=\"sr-only\" mat-header-cell *matHeaderCellDef>Title and Link</th>\n      <td mat-cell *matCellDef=\"let element\">\n        {{ element.title }}\n        <br />\n        <a [href]=\"element.link\" target=\"_blank\" (click)=\"sourceLinkClicked(element)\">{{ element.label }}</a>\n      </td>\n    </ng-container>\n\n    <tr mat-row *matRowDef=\"let row; columns: ['link', 'title']\"></tr>\n  </table>\n  <hra-empty-biomarker\n    *ngIf=\"sources.length === 0\"\n    [collaborateText]=\"collaborateText\"\n    [message]=\"message\"\n    (collaborateClick)=\"collaborateClick.emit()\"\n  ></hra-empty-biomarker>\n</div>\n"
         },
         {
             "name": "TissueTreeListComponent",
@@ -2652,7 +2710,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use 'variables' as vars;\n\n:host {\n  display: block;\n  height: calc(100% - 3.5rem);\n  overflow-y: auto;\n  .row {\n    min-height: unset;\n\n    &.selected {\n      background-color: vars.$accent-lighter-rgb;\n    }\n\n    .toggle {\n      width: 2rem;\n      height: 2rem;\n      padding: 0.25rem;\n    }\n\n    .label-container {\n      display: flex;\n      align-items: center;\n      height: 2rem;\n      padding: 0 1rem;\n      border-radius: 0.25rem;\n\n      .link {\n        cursor: pointer;\n        text-decoration: none;\n        color: rgba(vars.$dark-primary-text);\n        line-height: normal;\n      }\n    }\n\n    &.selected .label-container .link {\n      color: vars.$accent-rgb;\n    }\n  }\n}\n",
+                    "data": "@use 'variables' as vars;\n\n:host {\n  display: block;\n  height: calc(100% - 3.5rem);\n  overflow-y: auto;\n  .row {\n    min-height: unset;\n\n    &.selected {\n      background-color: vars.$accent-lighter-rgb;\n    }\n\n    .toggle {\n      width: 2rem;\n      height: 2rem;\n      padding: 0.25rem;\n    }\n\n    .label-container {\n      display: flex;\n      align-items: center;\n      min-height: 2rem;\n      padding: 0 1rem;\n      border-radius: 0.25rem;\n      width: 100%;\n\n      .link {\n        cursor: pointer;\n        text-decoration: none;\n        color: rgba(vars.$dark-primary-text);\n        line-height: normal;\n        width: 100%;\n        height: 100%;\n        align-items: center;\n        display: flex;\n      }\n    }\n\n    &.selected .label-container .link {\n      color: vars.$accent-rgb;\n    }\n\n    &:focus-visible {\n      outline: none;\n    }\n  }\n}\n",
                     "styleUrl": "./tissue-tree-list.component.scss"
                 }
             ],

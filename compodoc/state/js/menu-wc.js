@@ -58,6 +58,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <li class="link">
                                 <a href="modules/HraStateModule.html" data-type="entity-link" >HraStateModule</a>
                             </li>
+                            <li class="link">
+                                <a href="modules/MouseTrackerModule.html" data-type="entity-link" >MouseTrackerModule</a>
+                            </li>
                 </ul>
                 </li>
                     <li class="chapter">

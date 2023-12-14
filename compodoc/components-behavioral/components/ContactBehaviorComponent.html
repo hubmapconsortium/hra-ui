@@ -218,8 +218,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/lib/contact-behavior/contact-behavior.component.ts:51</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/lib/contact-behavior/contact-behavior.component.ts:55</a></div>
                 </td>
             </tr>
 
@@ -257,8 +257,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/lib/contact-behavior/contact-behavior.component.ts:44</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/lib/contact-behavior/contact-behavior.component.ts:48</a></div>
                 </td>
             </tr>
 
@@ -333,7 +333,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/lib/contact-behavior/contact-behavior.component.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/lib/contact-behavior/contact-behavior.component.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -375,7 +375,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/lib/contact-behavior/contact-behavior.component.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/lib/contact-behavior/contact-behavior.component.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -407,7 +407,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/lib/contact-behavior/contact-behavior.component.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/lib/contact-behavior/contact-behavior.component.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -439,7 +439,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/lib/contact-behavior/contact-behavior.component.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/lib/contact-behavior/contact-behavior.component.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -471,7 +471,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/lib/contact-behavior/contact-behavior.component.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/lib/contact-behavior/contact-behavior.component.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -497,6 +497,7 @@ import { dispatch, selectQuerySnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
 import { ResourceRegistrySelectors as RR } from &#x27;@hra-ui/cdk/state&#x27;;
 import { ContactData, ContactModalComponent, InfoModalComponent } from &#x27;@hra-ui/components/molecules&#x27;;
 import { ResourceIds as Ids, ContactActions } from &#x27;@hra-ui/state&#x27;;
+import { GoogleAnalyticsService } from &#x27;ngx-google-analytics&#x27;;
 
 /** A Component for contact behavior which sends the message entered by the user and shows an acknowledgement */
 @Component({
@@ -532,6 +533,9 @@ export class ContactBehaviorComponent {
   /** Dialog box which references the acknowledgement dialog box */
   private postRef?: MatDialogRef&lt;void&gt;;
 
+  /** Google analytics tracking service */
+  private readonly ga &#x3D; inject(GoogleAnalyticsService);
+
   /** A function which sends/dispatches a message which contains email, subject, and message. And also opens the acknowledgement dialog box. */
   submit(message: ContactData): void {
     this.sendMessage(message);
@@ -541,8 +545,14 @@ export class ContactBehaviorComponent {
 
   /** A function which closes the &#x27;Contact us&#x27; dialog and the acknowledgement dialog.  */
   close(): void {
-    this.postRef?.close();
-    this.selfRef?.close();
+    if (this.postRef) {
+      this.postRef.close();
+      this.ga.event(&#x27;acknowedgement_close&#x27;, &#x27;modal&#x27;);
+    }
+    if (this.selfRef) {
+      this.selfRef.close();
+      this.ga.event(&#x27;contact_close&#x27;, &#x27;modal&#x27;);
+    }
   }
 }
 </code></pre>

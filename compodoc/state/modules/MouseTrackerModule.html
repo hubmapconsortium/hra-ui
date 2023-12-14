@@ -28,104 +28,114 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content class">
+               <div class="content module">
                    <div class="content-data">
 
 
 
-
-
-
-
-
-
-
-
-
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >Reset</li>
+    <li>Modules</li>
+    <li >MouseTrackerModule</li>
 </ol>
 
+
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
-        </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
-        </li>
+    <li  class="active" >
+        <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+    </li>
+    <li >
+        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+    </li>
 </ul>
 
 <div class="tab-content">
     <div class="tab-pane fade active in" id="c-info">
+
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/lib/active-ftu/active-ftu.actions.ts</code>
+            <code>src/lib/state-analytics-plugin/mouse-tracker-module.ts</code>
         </p>
 
 
-            <p class="comment">
-                <h3>Description</h3>
-            </p>
-            <p class="comment">
-                <p>Resets state</p>
-
-            </p>
 
 
 
-
-
-
-
-
-
-
-
+        <div class="container-fluid module">
+            <div class="row">
+            </div>
+        </div>
 
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ActionGroup } from &#x27;@hra-ui/cdk/state&#x27;;
-import { Iri } from &#x27;@hra-ui/services&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DOCUMENT } from &#x27;@angular/common&#x27;;
+import { Inject, NgModule } from &#x27;@angular/core&#x27;;
+import { GoogleAnalyticsService } from &#x27;ngx-google-analytics&#x27;;
+import { fromEvent, Subscription } from &#x27;rxjs&#x27;;
+import { map, throttleTime } from &#x27;rxjs/operators&#x27;;
 
-/** Action base class factory */
-const Action &#x3D; ActionGroup(&#x27;ActiveFtu&#x27;);
+/**
+ * Tracks mouse movement and returns position
+ */
+export function trackMousePosition(el: HTMLElement, ga: GoogleAnalyticsService): Subscription {
+  const formatData &#x3D; (event: MouseEvent) &#x3D;&gt; {
+    const { clientWidth, clientHeight } &#x3D; el;
+    const { clientX, clientY } &#x3D; event;
+    const points &#x3D; [clientX, clientY, clientWidth, clientHeight];
+    return points.join(&#x27;_&#x27;);
+  };
 
-/** Loads the Iri */
-export class Load extends Action(&#x27;Load&#x27;) {
-  /**
-   * Creates an instance of set iri.
-   * @param iri
-   */
-  constructor(readonly iri: Iri) {
-    super();
-  }
+  const events &#x3D; fromEvent&lt;MouseEvent&gt;(el, &#x27;mousemove&#x27;).pipe(throttleTime(1000), map(formatData));
+
+  return events.subscribe((data) &#x3D;&gt; {
+    return ga.event(&#x27;webpage&#x27;, &#x27;mousemove&#x27;, data);
+  });
 }
 
-/** Action to set the illustration url of the active FTU */
-export class SetIllustrationUrl extends Action(&#x27;Set Illustration Url&#x27;) {
-  /**
-   * Creates an instance of set iri.
-   * @param iri
-   */
-  constructor(readonly iri: Iri) {
-    super();
-  }
+/**
+ * Tracks mouse click and returns target class name
+ */
+export function trackMouseClicks(el: HTMLElement, ga: GoogleAnalyticsService): Subscription {
+  const formatData &#x3D; (event: MouseEvent) &#x3D;&gt; {
+    const target &#x3D; event.target as HTMLElement;
+    return target.className;
+  };
+
+  const events &#x3D; fromEvent&lt;MouseEvent&gt;(el, &#x27;click&#x27;).pipe(map(formatData));
+
+  return events.subscribe((data) &#x3D;&gt; {
+    return ga.event(&#x27;webpage&#x27;, &#x27;click&#x27;, data);
+  });
 }
 
-/** Clears the Iri */
-export class Clear extends Action(&#x27;Clear&#x27;) {}
-
-/** Resets state */
-export class Reset extends Action(&#x27;Reset&#x27;) {}
+@NgModule()
+export class MouseTrackerModule {
+  constructor(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
+    @Inject(DOCUMENT) document: any,
+    ga: GoogleAnalyticsService
+  ) {
+    if (document) {
+      trackMousePosition((document as Document).body, ga);
+      trackMouseClicks((document as Document).body, ga);
+    }
+  }
+}
 </code></pre>
     </div>
 </div>
+
+
+
+
+
+
+
+
 
 
 
@@ -160,8 +170,8 @@ export class Reset extends Action(&#x27;Reset&#x27;) {}
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'Reset-1.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
+            var COMPODOC_CURRENT_PAGE_URL = 'MouseTrackerModule.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

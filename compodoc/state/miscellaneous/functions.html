@@ -84,6 +84,12 @@
                         <li>
                             <a href="#isPrimitive" title="src/lib/state-analytics-plugin/state-analytics-plugin.service.ts" ><b>isPrimitive</b>&nbsp;&nbsp;&nbsp;(src/.../state-analytics-plugin.service.ts)</a>
                         </li>
+                        <li>
+                            <a href="#trackMouseClicks" title="src/lib/state-analytics-plugin/mouse-tracker-module.ts" ><b>trackMouseClicks</b>&nbsp;&nbsp;&nbsp;(src/.../mouse-tracker-module.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#trackMousePosition" title="src/lib/state-analytics-plugin/mouse-tracker-module.ts" ><b>trackMousePosition</b>&nbsp;&nbsp;&nbsp;(src/.../mouse-tracker-module.ts)</a>
+                        </li>
                     </ul>
                 </td>
             </tr>
@@ -677,6 +683,162 @@ up the count property of each object entry, while ignoring non-object entries, w
                     <div class="io-description">
                         <p>type of value - boolean/number/string/null/bigint/undefined</p>
 
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/lib/state-analytics-plugin/mouse-tracker-module.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trackMouseClicks"></a>
+                    <span class="name">
+                        <span ><b>trackMouseClicks</b></span>
+                        <a href="#trackMouseClicks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>trackMouseClicks(el: HTMLElement, ga: GoogleAnalyticsService)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tracks mouse click and returns target class name</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>el</td>
+                                    <td>
+                                            <code>HTMLElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>ga</td>
+                                    <td>
+                                            <code>GoogleAnalyticsService</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Subscription</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trackMousePosition"></a>
+                    <span class="name">
+                        <span ><b>trackMousePosition</b></span>
+                        <a href="#trackMousePosition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>trackMousePosition(el: HTMLElement, ga: GoogleAnalyticsService)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tracks mouse movement and returns position</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>el</td>
+                                    <td>
+                                            <code>HTMLElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>ga</td>
+                                    <td>
+                                            <code>GoogleAnalyticsService</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Subscription</code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>

@@ -576,19 +576,19 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#svg_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-nephron.svg",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-nephron.svg",
           "file_format": "image/svg+xml"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#png_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-nephron.png",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-nephron.png",
           "file_format": "image/png"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#ai_file",
           "@type": "FtuIllustrationFile",
-          "file": "assets/TEMP/temp-svgs/2d-ftu-kidney-nephron.ai",
+          "file": "https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-nephron.ai",
           "file_format": "application/pdf"
         }
       ],
@@ -597,7 +597,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_collecting_duct_AS",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_collecting_duct_AS",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "cortical collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004203"
         },
@@ -605,7 +605,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_1",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_1",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -613,7 +613,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_2",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_2",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -621,7 +621,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_3",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_3",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -629,7 +629,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_4",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_4",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -637,7 +637,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_5",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_5",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -645,7 +645,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_6",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_6",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -653,7 +653,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_7",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_7",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -661,7 +661,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_8",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_8",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -669,7 +669,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_9",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_9",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -677,7 +677,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_10",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_10",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -685,7 +685,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_11",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_11",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -693,7 +693,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_12",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_12",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -701,7 +701,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_13",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_13",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -709,7 +709,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_14",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_14",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -717,7 +717,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Cortical_Collecting_Duct_Cell_15",
           "@type": "FtuIllustrationNode",
           "svg_id": "Cortical_Collecting_Duct_Cell_15",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Cortical_Collecting_Duct",
           "label": "kidney cortex collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000714"
         },
@@ -874,130 +874,130 @@
           "representation_of": "http://purl.obolibrary.org/obo/CL_4030009"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convulated_Tubule_AS",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_AS",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Distal_Convulated_Tubule_AS",
-          "svg_group_id": "Distal_Convulated_Tubule",
+          "svg_id": "Distal_Convoluted_Tubule_AS",
+          "svg_group_id": "Distal_Convoluted_Tubule",
           "label": "distal convoluted tubule",
           "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001292"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convulated_Tubule_Cell_1",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_1",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Distal_Convulated_Tubule_Cell_1",
-          "svg_group_id": "Distal_Convulated_Tubule",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_1",
+          "svg_group_id": "Distal_Convoluted_Tubule",
           "label": "kidney distal convoluted tubule epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000849"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convulated_Tubule_Cell_2",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_2",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Distal_Convulated_Tubule_Cell_2",
-          "svg_group_id": "Distal_Convulated_Tubule",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_2",
+          "svg_group_id": "Distal_Convoluted_Tubule",
           "label": "kidney distal convoluted tubule epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000849"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convulated_Tubule_Cell_3",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_3",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Distal_Convulated_Tubule_Cell_3",
-          "svg_group_id": "Distal_Convulated_Tubule",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_3",
+          "svg_group_id": "Distal_Convoluted_Tubule",
           "label": "kidney distal convoluted tubule epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000849"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convulated_Tubule_Cell_4",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_4",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Distal_Convulated_Tubule_Cell_4",
-          "svg_group_id": "Distal_Convulated_Tubule",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_4",
+          "svg_group_id": "Distal_Convoluted_Tubule",
           "label": "kidney distal convoluted tubule epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000849"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convulated_Tubule_Cell_5",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_5",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Distal_Convulated_Tubule_Cell_5",
-          "svg_group_id": "Distal_Convulated_Tubule",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_5",
+          "svg_group_id": "Distal_Convoluted_Tubule",
           "label": "kidney distal convoluted tubule epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000849"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convulated_Tubule_Cell_6",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_6",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Distal_Convulated_Tubule_Cell_6",
-          "svg_group_id": "Distal_Convulated_Tubule",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_6",
+          "svg_group_id": "Distal_Convoluted_Tubule",
           "label": "kidney distal convoluted tubule epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000849"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convulated_Tubule_Cell_7",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_7",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Distal_Convulated_Tubule_Cell_7",
-          "svg_group_id": "Distal_Convulated_Tubule",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_7",
+          "svg_group_id": "Distal_Convoluted_Tubule",
           "label": "kidney distal convoluted tubule epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000849"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convulated_Tubule_Cell_8",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_8",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Distal_Convulated_Tubule_Cell_8",
-          "svg_group_id": "Distal_Convulated_Tubule",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_8",
+          "svg_group_id": "Distal_Convoluted_Tubule",
           "label": "kidney distal convoluted tubule epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000849"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convulated_Tubule_Cell_9",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_9",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Distal_Convulated_Tubule_Cell_9",
-          "svg_group_id": "Distal_Convulated_Tubule",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_9",
+          "svg_group_id": "Distal_Convoluted_Tubule",
           "label": "kidney distal convoluted tubule epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000849"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convulated_Tubule_Cell_10",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_10",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Distal_Convulated_Tubule_Cell_10",
-          "svg_group_id": "Distal_Convulated_Tubule",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_10",
+          "svg_group_id": "Distal_Convoluted_Tubule",
           "label": "kidney distal convoluted tubule epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000849"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convulated_Tubule_Cell_11",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_11",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Distal_Convulated_Tubule_Cell_11",
-          "svg_group_id": "Distal_Convulated_Tubule",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_11",
+          "svg_group_id": "Distal_Convoluted_Tubule",
           "label": "kidney distal convoluted tubule epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000849"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convulated_Tubule_Cell_12",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_12",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Distal_Convulated_Tubule_Cell_12",
-          "svg_group_id": "Distal_Convulated_Tubule",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_12",
+          "svg_group_id": "Distal_Convoluted_Tubule",
           "label": "kidney distal convoluted tubule epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000849"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convulated_Tubule_Cell_13",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_13",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Distal_Convulated_Tubule_Cell_13",
-          "svg_group_id": "Distal_Convulated_Tubule",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_13",
+          "svg_group_id": "Distal_Convoluted_Tubule",
           "label": "kidney distal convoluted tubule epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000849"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convulated_Tubule_Cell_14",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_14",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Distal_Convulated_Tubule_Cell_14",
-          "svg_group_id": "Distal_Convulated_Tubule",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_14",
+          "svg_group_id": "Distal_Convoluted_Tubule",
           "label": "kidney distal convoluted tubule epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000849"
         },
         {
-          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convulated_Tubule_Cell_15",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_Cell_15",
           "@type": "FtuIllustrationNode",
-          "svg_id": "Distal_Convulated_Tubule_Cell_15",
-          "svg_group_id": "Distal_Convulated_Tubule",
+          "svg_id": "Distal_Convoluted_Tubule_Cell_15",
+          "svg_group_id": "Distal_Convoluted_Tubule",
           "label": "kidney distal convoluted tubule epithelial cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000849"
         },
@@ -1386,10 +1386,18 @@
           "representation_of": "http://purl.obolibrary.org/obo/CL_1001111"
         },
         {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_AS",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Outer_Medullary_Collecting_Duct_AS",
+          "svg_group_id": "Outer_Medullary_Collecting_Duct",
+          "label": "outer medullary collecting duct",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004204"
+        },
+        {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_1",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_1",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Outer_Medullary_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1397,7 +1405,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_2",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_2",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Outer_Medullary_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1405,7 +1413,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_3",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_3",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Outer_Medullary_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1413,7 +1421,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_4",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_4",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Outer_Medullary_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1421,7 +1429,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_5",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_5",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Outer_Medullary_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1429,7 +1437,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_6",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_6",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Outer_Medullary_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1437,7 +1445,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_7",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_7",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Outer_Medullary_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1445,7 +1453,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_8",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_8",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Outer_Medullary_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1453,7 +1461,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_9",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_9",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Outer_Medullary_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1461,7 +1469,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_10",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_10",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Outer_Medullary_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1469,7 +1477,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_11",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_11",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Outer_Medullary_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1477,7 +1485,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_12",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_12",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Outer_Medullary_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1485,7 +1493,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_13",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_13",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Outer_Medullary_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1493,7 +1501,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_14",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_14",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Outer_Medullary_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
         },
@@ -1501,15 +1509,23 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Outer_Medullary_Collecting_Duct_Cell_15",
           "@type": "FtuIllustrationNode",
           "svg_id": "Outer_Medullary_Collecting_Duct_Cell_15",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Outer_Medullary_Collecting_Duct",
           "label": "kidney outer medulla collecting duct principal cell",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000716"
+        },
+        {
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_AS",
+          "@type": "FtuIllustrationNode",
+          "svg_id": "Inner_Medullary_Collecting_Duct_AS",
+          "svg_group_id": "Inner_Medullary_Collecting_Duct",
+          "label": "inner medullary collecting duct",
+          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004205"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_1",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_1",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Inner_Medullary_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1517,7 +1533,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_2",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_2",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Inner_Medullary_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1525,7 +1541,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_3",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_3",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Inner_Medullary_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1533,7 +1549,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_4",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_4",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Inner_Medullary_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1541,7 +1557,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_5",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_5",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Inner_Medullary_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1549,7 +1565,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_6",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_6",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Inner_Medullary_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1557,7 +1573,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_7",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_7",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Inner_Medullary_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1565,7 +1581,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_8",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_8",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Inner_Medullary_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1573,7 +1589,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_9",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_9",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Inner_Medullary_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1581,7 +1597,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_10",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_10",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Inner_Medullary_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1589,7 +1605,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_11",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_11",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Inner_Medullary_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1597,7 +1613,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_12",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_12",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Inner_Medullary_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1605,7 +1621,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_13",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_13",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Inner_Medullary_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -1613,7 +1629,7 @@
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Inner_Medullary_Collecting_Duct_Cell_14",
           "@type": "FtuIllustrationNode",
           "svg_id": "Inner_Medullary_Collecting_Duct_Cell_14",
-          "svg_group_id": "Collecting_Duct",
+          "svg_group_id": "Inner_Medullary_Collecting_Duct",
           "label": "kidney inner medulla collecting duct",
           "representation_of": "http://purl.obolibrary.org/obo/CL_1000718"
         },
@@ -7513,7 +7529,7 @@
           "svg_id": "Capillary_Endothelial_Cell_1",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_2",
@@ -7521,7 +7537,7 @@
           "svg_id": "Capillary_Endothelial_Cell_2",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_3",
@@ -7529,7 +7545,7 @@
           "svg_id": "Capillary_Endothelial_Cell_3",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_4",
@@ -7537,7 +7553,7 @@
           "svg_id": "Capillary_Endothelial_Cell_4",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_5",
@@ -7545,7 +7561,7 @@
           "svg_id": "Capillary_Endothelial_Cell_5",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_6",
@@ -7553,7 +7569,7 @@
           "svg_id": "Capillary_Endothelial_Cell_6",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_7",
@@ -7561,7 +7577,7 @@
           "svg_id": "Capillary_Endothelial_Cell_7",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_8",
@@ -7569,7 +7585,7 @@
           "svg_id": "Capillary_Endothelial_Cell_8",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_9",
@@ -7577,7 +7593,7 @@
           "svg_id": "Capillary_Endothelial_Cell_9",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_10",
@@ -7585,7 +7601,7 @@
           "svg_id": "Capillary_Endothelial_Cell_10",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_11",
@@ -7593,7 +7609,7 @@
           "svg_id": "Capillary_Endothelial_Cell_11",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_12",
@@ -7601,7 +7617,7 @@
           "svg_id": "Capillary_Endothelial_Cell_12",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_13",
@@ -7609,7 +7625,7 @@
           "svg_id": "Capillary_Endothelial_Cell_13",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_14",
@@ -7617,7 +7633,7 @@
           "svg_id": "Capillary_Endothelial_Cell_14",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_15",
@@ -7625,7 +7641,7 @@
           "svg_id": "Capillary_Endothelial_Cell_15",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_16",
@@ -7633,7 +7649,7 @@
           "svg_id": "Capillary_Endothelial_Cell_16",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_17",
@@ -7641,7 +7657,7 @@
           "svg_id": "Capillary_Endothelial_Cell_17",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_18",
@@ -7649,7 +7665,7 @@
           "svg_id": "Capillary_Endothelial_Cell_18",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_19",
@@ -7657,7 +7673,7 @@
           "svg_id": "Capillary_Endothelial_Cell_19",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_20",
@@ -7665,7 +7681,7 @@
           "svg_id": "Capillary_Endothelial_Cell_20",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_21",
@@ -7673,7 +7689,7 @@
           "svg_id": "Capillary_Endothelial_Cell_21",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_22",
@@ -7681,7 +7697,7 @@
           "svg_id": "Capillary_Endothelial_Cell_22",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_23",
@@ -7689,7 +7705,7 @@
           "svg_id": "Capillary_Endothelial_Cell_23",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_24",
@@ -7697,7 +7713,7 @@
           "svg_id": "Capillary_Endothelial_Cell_24",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_25",
@@ -7705,7 +7721,7 @@
           "svg_id": "Capillary_Endothelial_Cell_25",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_26",
@@ -7713,7 +7729,7 @@
           "svg_id": "Capillary_Endothelial_Cell_26",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         },
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus#Capillary_Endothelial_Cell_27",
@@ -7721,7 +7737,7 @@
           "svg_id": "Capillary_Endothelial_Cell_27",
           "svg_group_id": "Capillary_Endothelial_Cell",
           "label": "alveolar capillary type 1 endothelial cell",
-          "representation_of": "http://purl.obolibrary.org/obo/CL_4033016"
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4028002"
         }
       ]
     },

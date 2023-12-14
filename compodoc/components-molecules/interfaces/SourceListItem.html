@@ -241,11 +241,12 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { MatTableModule } from &#x27;@angular/material/table&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { EmptyBiomarkerComponent, LabelBoxComponent } from &#x27;@hra-ui/components/atoms&#x27;;
+import { GoogleAnalyticsService } from &#x27;ngx-google-analytics&#x27;;
 
 /** SourceListItem interface contains title and link to the dataset for the SourceList*/
 export interface SourceListItem {
@@ -289,12 +290,24 @@ export class SourceListComponent {
   /** Emits when the contact button is clicked */
   @Output() readonly collaborateClick &#x3D; new EventEmitter&lt;void&gt;();
 
+  /** Google analytics tracking service */
+  private readonly ga &#x3D; inject(GoogleAnalyticsService);
+
   /**
    * It changes the value of showTable to false if value it true
    * and vice versa
    */
   toggleTable(): void {
     this.showTable &#x3D; !this.showTable;
+    this.ga.event(&#x27;source_table_toggle&#x27;, this.showTable.toString());
+  }
+
+  /**
+   * Logs source link click
+   * @param item Source list item
+   */
+  sourceLinkClicked(item: SourceListItem): void {
+    this.ga.event(&#x27;source_link_clicked&#x27;, &#x27;link_click&#x27;, item.link);
   }
 }
 </code></pre>
