@@ -26,12 +26,11 @@
       descriptions: |
         Biomarker expression levels depend on demographic groups (e.g., sex, age) and assay types (bulk vs. spatial data). The enhanced Exploration User Interface (EUI) supports the study of biomarker expression across cell types and organs. Users can now filter data by anatomical structures, cell types, and biomarkers. The biomarker list includes genes, lipids, proteins, metabolites, and proteoforms.
 
-- type: player
-  youtubePlayer:
-    height: 584
-    width: 1232
-    videoId: UfxMpzatowE
-    playerTitle: 'Demonstration: Explore and Compare Biomarker Expressions for Cell Types ------ UPDATE VIDEO ID'
+- type: image
+  imageSource: assets/images/us3.png
+  alt: Image of US3 App
+  styles:
+    width: 100%
 
 - type: margin
   bottom: 1rem
