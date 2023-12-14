@@ -42,9 +42,6 @@
   class: use-btns-us3
   components:
     - type: button
-      text: Use the Exploration User Interface
-      url: https://portal.hubmapconsortium.org/ccf-eui
-    - type: button
       text: Use API Demonstration
       url: https://apps.humanatlas.io/eui/
 
@@ -100,7 +97,7 @@
     title: Exploration User Interface Features
     buttonData:
       text: Use the Exploration User Interface
-      url: https://portal.hubmapconsortium.org/ccf-eui
+      url: https://apps.humanatlas.io/eui/
     subtitle: 'Explore registered tissue blocks spatially with the Exploration User Interface.'
   customModalClass: modal
 
