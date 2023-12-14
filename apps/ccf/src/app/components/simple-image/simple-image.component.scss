@@ -118,10 +118,11 @@
 }
 
 ::ng-deep .modal {
-  height: 100%;
+  padding: 1rem;
+  max-width: calc(100vw - 1rem) !important;
 
   img {
-    height: calc(100% - 3rem);
+    max-height: calc(100vh - 7.5rem - 1px);
   }
 
   .mat-divider {
