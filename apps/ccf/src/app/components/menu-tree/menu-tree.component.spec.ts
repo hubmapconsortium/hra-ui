@@ -55,9 +55,9 @@ describe('MenuTreeComponent', () => {
     it('should open url in external window', async () => {
       const testUrl = 'www.example.com';
       const { instance } = await shallow.render();
-      const spy = jest.spyOn(window, 'open');
+      window.open = jest.fn();
       instance.externalWindow(testUrl);
-      expect(spy).toHaveBeenCalledWith(testUrl, '_blank');
+      expect(window.open).toHaveBeenCalledWith(testUrl, '_blank');
     });
   });
 
