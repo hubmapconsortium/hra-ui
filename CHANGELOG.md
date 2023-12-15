@@ -2,9 +2,9 @@
 
 Changelog for the Human Reference Atlas (HRA) User Interfaces
 
-## 1.0.0 - 2023-12-15
+## 0.5.0 - 2023-12-15
 
-### Added in 1.0.0
+### Added in 0.5.0
 
 - Added/updated illustration files
 - Updated cell segmentation and labeling in illustrations
