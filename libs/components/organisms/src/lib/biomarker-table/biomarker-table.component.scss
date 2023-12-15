@@ -64,6 +64,16 @@
     min-width: 17rem;
     border-radius: 0rem;
     white-space: nowrap;
+
+    .pseudo-type {
+      font-weight: bold;
+      opacity: 0;
+      height: 0;
+    }
+
+    &.highlight {
+      font-weight: bold;
+    }
   }
 
   .count {

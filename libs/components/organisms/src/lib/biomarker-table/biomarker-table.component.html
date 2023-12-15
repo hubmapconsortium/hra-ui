@@ -7,6 +7,7 @@
     <th mat-header-cell *matHeaderCellDef>Cell Type</th>
 
     <td class="type" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">
+      <div class="pseudo-type">{{ element[0] }}</div>
       {{ element[0] }}
     </td>
   </ng-container>
@@ -45,8 +46,8 @@
   <tr
     mat-row
     *matRowDef="let row; columns: columnsWithTypeAndCount"
-    (mouseover)="rowHover.emit(getHoverId(row))"
-    (mouseout)="rowHover.emit(undefined)"
+    (mouseover)="setHoverId(getHoverId(row))"
+    (mouseout)="setHoverId(undefined)"
   ></tr>
 </table>
 

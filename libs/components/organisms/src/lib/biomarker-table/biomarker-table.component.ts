@@ -275,4 +275,13 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
       ],
     ];
   }
+
+  /**
+   * Sets and emits cell type id on row hover
+   * @param hoverId cell type id
+   */
+  setHoverId(hoverId?: string): void {
+    this.highlightedCellId = hoverId ?? '';
+    this.rowHover.emit(hoverId);
+  }
 }

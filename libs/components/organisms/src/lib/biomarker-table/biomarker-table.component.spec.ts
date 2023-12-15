@@ -132,4 +132,13 @@ describe('BiomarkerTableComponent', () => {
     const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
     expect(instance.getHoverData([2, data[2]])).toBeDefined();
   });
+
+  it('sets the hoverId', async () => {
+    const { instance, outputs } = await shallow.render({
+      bind: { columns: columns, data: data, gradient, sizes, tissueInfo },
+    });
+    instance.setHoverId('test');
+    expect(instance.highlightedCellId).toEqual('test');
+    expect(outputs.rowHover.emit).toBeCalledWith('test');
+  });
 });
