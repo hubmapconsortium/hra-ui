@@ -66,7 +66,7 @@ export class PageComponent {
           preserveFragment: true,
           queryParamsHandling: 'preserve',
         });
-      });
+      }, 100);
       window.scroll({
         top: 0,
         left: 0,

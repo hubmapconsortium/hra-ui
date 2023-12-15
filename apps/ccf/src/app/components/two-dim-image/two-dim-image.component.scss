@@ -150,6 +150,7 @@
     .units-container {
       flex-direction: row;
       align-items: flex-start;
+      flex-wrap: wrap;
       padding: 1rem;
     }
 
@@ -170,6 +171,10 @@
     .mat-card-actions .mat-divider {
       max-width: unset;
       width: 100%;
+    }
+
+    .download-button-container {
+      justify-content: flex-start;
     }
   }
 }

@@ -159,6 +159,35 @@ export const ContactCard = z.object({
 });
 
 /**
+ * Array of clipboard data. Each object is defined by a url for the card,
+ * icon name and label for the plain button and url and label for the
+ * dynamic button
+ */
+export const CopyClipboard = z.object({
+  type: z.literal('copy-clipboard'),
+  clipboardData: z
+    .object({
+      url: z.string({
+        description: 'URL/Text to be displayed inside the card',
+      }),
+      borderColor: z
+        .string({
+          description: 'Border color of card according to the request type',
+        })
+        .optional(),
+      plainButton: z.object({
+        icon: z.string({ description: 'Icon name for the button' }),
+        label: z.string({ description: 'Text for the button' }),
+      }),
+      dynamicButton: z.object({
+        label: z.string({ description: 'Text for the button' }),
+        url: z.string({ description: 'External URL for the button' }),
+      }),
+    })
+    .array(),
+});
+
+/**
  * Array of metric cards. Each card is defined by a metric's label, count,
  * and image with it's alternate text.
  */
@@ -377,6 +406,19 @@ export const ImageInCard = z.object({
       alt: z.string({ description: 'Alternate text for image' }),
     })
     .array(),
+  headerData: z
+    .object({
+      title: z.string({ description: 'Title of the card' }),
+      buttonData: z.object({
+        text: z.string({ description: 'Label for the button' }),
+        url: z.string({ description: 'Url for the button' }),
+      }),
+      subtitle: z.string({ description: 'Subtitle for the card' }),
+    })
+    .optional(),
+  customModalClass: z
+    .string({ description: 'Custom class for the modal' })
+    .optional(),
 });
 
 /**
@@ -876,6 +918,7 @@ export const PageSpec: any = z
     Button,
     CarouselSlides,
     ContactCard,
+    CopyClipboard,
     CountCard,
     Datasets,
     Divider,

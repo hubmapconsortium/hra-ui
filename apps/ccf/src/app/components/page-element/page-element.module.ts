@@ -27,6 +27,7 @@ import { ContactCardModule } from '../contact-card/contact-card.module';
 import { MatIconModule } from '@angular/material/icon';
 import { OrganVersionModule } from '../organ-version/organ-version.module';
 import { DownloadFtuModule } from '../download-ftu/download-ftu.module';
+import { CopyClipboardModule } from '../copy-clipboard/copy-clipboard.module';
 @NgModule({
   declarations: [PageElementComponent],
   imports: [
@@ -58,6 +59,7 @@ import { DownloadFtuModule } from '../download-ftu/download-ftu.module';
     MatIconModule,
     OrganVersionModule,
     DownloadFtuModule,
+    CopyClipboardModule,
   ],
   exports: [PageElementComponent],
 })

@@ -60,6 +60,8 @@
   <ccf-simple-image
     *ngSwitchCase="'simple-image'"
     [imageInfo]="def['imageData']"
+    [headerData]="def['headerData']"
+    [customModalClass]="def['customModalClass']"
   ></ccf-simple-image>
   <img
     *ngSwitchCase="'image'"
@@ -134,8 +136,13 @@
     [positions]="def['positions']"
   ></menu-tree>
   <mat-drawer-container *ngSwitchCase="'drawer'" [autosize]="true">
-    <mat-drawer mode="side" opened [style]="def['drawerStyles']">
-      <ul class="toc-list" [ngClass]="{ scrolled: scrolled }">
+    <mat-drawer
+      mode="side"
+      opened
+      [style]="def['drawerStyles']"
+      [ngClass]="{ scrolled: scrolled }"
+    >
+      <ul class="toc-list">
         <li
           *ngFor="let items of def['navigationItems']"
           [value]="items"
@@ -173,4 +180,9 @@
     [columnLabels]="def['columnLabels']"
     [downloadIcon]="def['downloadIcon']"
   ></ccf-download-ftu>
+  <copy-clipboard
+    *ngSwitchCase="'copy-clipboard'"
+    [clipBoardData]="def['clipboardData']"
+  >
+  </copy-clipboard>
 </ng-container>

@@ -3,6 +3,9 @@ name: Netlify Preview Deploy
 on:
   pull_request:
     types: ['opened', 'edited', 'synchronize']
+    branches-ignore:
+      - main
+      - develop
 
 concurrency:
   group: preview-${{ github.head_ref || github.run_id }}

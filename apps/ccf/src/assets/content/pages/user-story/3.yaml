@@ -1,0 +1,105 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/pages.schema.json
+
+- type: header
+  headerCard:
+    - title: Explore Biomarker Expressions for Cell Types
+      subtitle: Use the Exploration User Interface to examine biomarker expression values
+      image: assets/images/improve_cta.svg
+      alt: Improve Cell Type Annotations Icon
+
+- type: margin
+  bottom: 3.5rem
+
+- type: announcement
+  announcementCard:
+    - message: The 6th Release of the Human Reference Atlas (v2.0) is now available! See what's new in HRA v2.0 in
+      route: 'v2.0'
+      routeText: '6th Release Notes.'
+      emoji: '🎉'
+
+- type: margin
+  bottom: 3.5rem
+
+- type: page-data
+  pageData:
+    - heading: Overview
+      descriptions: |
+        Biomarker expression levels depend on demographic groups (e.g., sex, age) and assay types (bulk vs. spatial data). The enhanced Exploration User Interface (EUI) supports the study of biomarker expression across cell types and organs. Users can now filter data by anatomical structures, cell types, and biomarkers. The biomarker list includes genes, lipids, proteins, metabolites, and proteoforms.
+
+- type: image
+  imageSource: assets/images/us3.png
+  alt: Image of US3 App
+  styles:
+    width: 100%
+
+- type: margin
+  bottom: 1rem
+
+- type: styled-group
+  styles:
+    display: flex
+    gap: 1rem
+  class: use-btns-us3
+  components:
+    - type: button
+      text: Use API Demonstration
+      url: https://apps.humanatlas.io/eui/
+
+- type: page-data
+  pageData:
+    - heading: Demonstration Primary APIs
+      descriptions: |
+        Use an existing dataset to see how location information improves the accuracy of cell type predictions.
+  styles:
+    margin-bottom: unset
+
+- type: copy-clipboard
+  clipboardData:
+    - url: 'GET: https://apps.humanatlas.io/hra-api/v1/scene'
+      plainButton:
+        icon: content_copy
+        label: Copy
+      dynamicButton:
+        label: Try Me
+        url: https://apps.humanatlas.io/hra-api/#get-/scene
+    - url: 'GET: https://apps.humanatlas.io/hra-api/v1/tissue-blocks'
+      plainButton:
+        icon: content_copy
+        label: Copy
+      dynamicButton:
+        label: Try Me
+        url: https://apps.humanatlas.io/hra-api/#get-/tissue-blocks
+
+- type: button
+  text: Open API Link
+  url: https://apps.humanatlas.io/hra-api/
+
+- type: page-data
+  pageData:
+    - heading: Demo Code
+      descriptions: |
+        Human Reference Atlas APIs are available freely on GitHub.
+  styles:
+    margin-bottom: unset
+
+- type: button
+  text: GitHub Repository
+  url: https://github.com/x-atlas-consortia/hra-apps/tree/main/applications/eui-exploration-user-interface
+
+- type: simple-image
+  imageData:
+    - title: ''
+      description: ''
+      image: assets/images/eui_features.png
+      imageDialog: assets/images/eui_features.png
+      alt: A knowledge architecture image
+  headerData:
+    title: Exploration User Interface Features
+    buttonData:
+      text: Use the Exploration User Interface
+      url: https://apps.humanatlas.io/eui/
+    subtitle: 'Explore registered tissue blocks spatially with the Exploration User Interface.'
+  customModalClass: modal
+
+- type: margin
+  bottom: 3.5rem
