@@ -188,6 +188,9 @@
                                 <a href="#lerp" >lerp</a>
                             </li>
                             <li>
+                                <a href="#setHoverId" >setHoverId</a>
+                            </li>
+                            <li>
                                 <a href="#sortTable" >sortTable</a>
                             </li>
                         </ul>
@@ -1207,6 +1210,82 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="setHoverId"></a>
+                    <span class="name">
+                        <span ><b>setHoverId</b></span>
+                        <a href="#setHoverId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setHoverId(hoverId?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="283"
+                            class="link-to-prism">src/lib/biomarker-table/biomarker-table.component.ts:283</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sets and emits cell type id on row hover</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>hoverId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>cell type id</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="sortTable"></a>
                     <span class="name">
                         <span ><b>sortTable</b></span>
@@ -1601,6 +1680,15 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
       ],
     ];
   }
+
+  /**
+   * Sets and emits cell type id on row hover
+   * @param hoverId cell type id
+   */
+  setHoverId(hoverId?: string): void {
+    this.highlightedCellId &#x3D; hoverId ?? &#x27;&#x27;;
+    this.rowHover.emit(hoverId);
+  }
 }
 </code></pre>
     </div>
@@ -1615,6 +1703,7 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
     &lt;th mat-header-cell *matHeaderCellDef&gt;Cell Type&lt;/th&gt;
 
     &lt;td class&#x3D;&quot;type&quot; mat-cell *matCellDef&#x3D;&quot;let element&quot; [class.highlight]&#x3D;&quot;isHighlighted(element)&quot;&gt;
+      &lt;div class&#x3D;&quot;pseudo-type&quot;&gt;{{ element[0] }}&lt;/div&gt;
       {{ element[0] }}
     &lt;/td&gt;
   &lt;/ng-container&gt;
@@ -1653,8 +1742,8 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
   &lt;tr
     mat-row
     *matRowDef&#x3D;&quot;let row; columns: columnsWithTypeAndCount&quot;
-    (mouseover)&#x3D;&quot;rowHover.emit(getHoverId(row))&quot;
-    (mouseout)&#x3D;&quot;rowHover.emit(undefined)&quot;
+    (mouseover)&#x3D;&quot;setHoverId(getHoverId(row))&quot;
+    (mouseout)&#x3D;&quot;setHoverId(undefined)&quot;
   &gt;&lt;/tr&gt;
 &lt;/table&gt;
 
@@ -1740,6 +1829,16 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
     min-width: 17rem;
     border-radius: 0rem;
     white-space: nowrap;
+
+    .pseudo-type {
+      font-weight: bold;
+      opacity: 0;
+      height: 0;
+    }
+
+    &amp;.highlight {
+      font-weight: bold;
+    }
   }
 
   .count {
@@ -1814,7 +1913,7 @@ export class BiomarkerTableComponent&lt;T extends DataCell&gt; implements OnChan
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><table class="table" mat-table [dataSource]="dataSource">  <caption class="sr-only">    Cell type table by Biomarker  </caption>  <ng-container matColumnDef="type">    <th mat-header-cell *matHeaderCellDef>Cell Type</th>    <td class="type" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">      {{ element[0] }}    </td>  </ng-container>  <ng-container matColumnDef="count">    <th class="count" mat-header-cell *matHeaderCellDef>Cell Count</th>    <td class="count" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">      {{ element[1] !== undefined ? (element[1] | number) : \'no data\' }}    </td>  </ng-container>  <ng-container *ngFor="let column of columns; let index = index" [matColumnDef]="column">    <th class="icon-header" mat-header-cell *matHeaderCellDef [hraHover]="columnHover" [hraHoverData]="column">      {{ column }}    </th>    <td class="icon-cell" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">      <hra-biomarker-table-data-icon        class="icon"        *ngIf="element[index + 2] !== undefined; else emptyCell"        [color]="getColor(element[index + 2].color)"        [size]="getSize(element[index + 2].size)"        [hraHover]="dataHover"        [hraHoverData]="[index + 2, element]"      >      </hra-biomarker-table-data-icon>      <ng-template #emptyCell>        <div class="empty" [hraHover]="dataHover" [hraHoverData]="[index + 2, element]"></div>      </ng-template>    </td>  </ng-container>  <tr mat-header-row *matHeaderRowDef="columnsWithTypeAndCount; sticky: true"></tr>  <tr    mat-row    *matRowDef="let row; columns: columnsWithTypeAndCount"    (mouseover)="rowHover.emit(getHoverId(row))"    (mouseout)="rowHover.emit(undefined)"  ></tr></table><ng-template #columnHover let-columnName>  <div class="biomarker-table-hover full-column-name">    {{ columnName }}  </div></ng-template><ng-template #dataHover let-data>  <hra-biomarker-table-data-card [data]="getHoverData(data)"> </hra-biomarker-table-data-card></ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><table class="table" mat-table [dataSource]="dataSource">  <caption class="sr-only">    Cell type table by Biomarker  </caption>  <ng-container matColumnDef="type">    <th mat-header-cell *matHeaderCellDef>Cell Type</th>    <td class="type" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">      <div class="pseudo-type">{{ element[0] }}</div>      {{ element[0] }}    </td>  </ng-container>  <ng-container matColumnDef="count">    <th class="count" mat-header-cell *matHeaderCellDef>Cell Count</th>    <td class="count" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">      {{ element[1] !== undefined ? (element[1] | number) : \'no data\' }}    </td>  </ng-container>  <ng-container *ngFor="let column of columns; let index = index" [matColumnDef]="column">    <th class="icon-header" mat-header-cell *matHeaderCellDef [hraHover]="columnHover" [hraHoverData]="column">      {{ column }}    </th>    <td class="icon-cell" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">      <hra-biomarker-table-data-icon        class="icon"        *ngIf="element[index + 2] !== undefined; else emptyCell"        [color]="getColor(element[index + 2].color)"        [size]="getSize(element[index + 2].size)"        [hraHover]="dataHover"        [hraHoverData]="[index + 2, element]"      >      </hra-biomarker-table-data-icon>      <ng-template #emptyCell>        <div class="empty" [hraHover]="dataHover" [hraHoverData]="[index + 2, element]"></div>      </ng-template>    </td>  </ng-container>  <tr mat-header-row *matHeaderRowDef="columnsWithTypeAndCount; sticky: true"></tr>  <tr    mat-row    *matRowDef="let row; columns: columnsWithTypeAndCount"    (mouseover)="setHoverId(getHoverId(row))"    (mouseout)="setHoverId(undefined)"  ></tr></table><ng-template #columnHover let-columnName>  <div class="biomarker-table-hover full-column-name">    {{ columnName }}  </div></ng-template><ng-template #dataHover let-data>  <hra-biomarker-table-data-card [data]="getHoverData(data)"> </hra-biomarker-table-data-card></ng-template></div>'
     var COMPONENTS = [{'name': 'BiomarkerTableComponent', 'selector': 'hra-biomarker-table'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'BiomarkerTableComponent'};
