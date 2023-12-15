@@ -80,7 +80,6 @@
         label: Try Me
         url: https://apps.humanatlas.io/api/#get-/hra-pop/supported-reference-organs
 
-
 - type: button
   text: Open API Link
   url: https://apps.humanatlas.io/api/
