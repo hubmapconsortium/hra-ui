@@ -51,7 +51,7 @@
     "@storybook/core-common": "^7.6.7",
     "@storybook/core-server": "7.6.7",
     "@storybook/test-runner": "0.16.0",
-    "@twittwer/compodoc": "^1.9.0",
+    "@twittwer/compodoc": "^1.10.0",
     "@types/jest": "^29.5.0",
     "@types/js-yaml": "^4.0.5",
     "@types/node": "18.16.9",
