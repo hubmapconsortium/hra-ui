@@ -216,7 +216,7 @@
               "^production"
             ],
             "cache": true,
-            "executor": "@nrwl/angular:package",
+            "executor": "@nx/angular:package",
             "outputs": [
               "{workspaceRoot}/dist/{projectRoot}"
             ],
@@ -245,8 +245,8 @@
               "{workspaceRoot}/coverage/{projectRoot}"
             ],
             "options": {
-              "jestConfig": "libs/components/behavioral/jest.config.ts",
-              "passWithNoTests": true
+              "passWithNoTests": true,
+              "jestConfig": "libs/components/behavioral/jest.config.ts"
             },
             "configurations": {
               "ci": {
@@ -455,7 +455,7 @@
               "^production"
             ],
             "cache": true,
-            "executor": "@nrwl/angular:package",
+            "executor": "@nx/angular:package",
             "outputs": [
               "{workspaceRoot}/dist/{projectRoot}"
             ],
@@ -484,8 +484,8 @@
               "{workspaceRoot}/coverage/{projectRoot}"
             ],
             "options": {
-              "jestConfig": "libs/components/molecules/jest.config.ts",
-              "passWithNoTests": true
+              "passWithNoTests": true,
+              "jestConfig": "libs/components/molecules/jest.config.ts"
             },
             "configurations": {
               "ci": {
@@ -646,7 +646,7 @@
               "^production"
             ],
             "cache": true,
-            "executor": "@nrwl/angular:package",
+            "executor": "@nx/angular:package",
             "outputs": [
               "{workspaceRoot}/dist/{projectRoot}"
             ],
@@ -675,8 +675,8 @@
               "{workspaceRoot}/coverage/{projectRoot}"
             ],
             "options": {
-              "jestConfig": "libs/components/organisms/jest.config.ts",
-              "passWithNoTests": true
+              "passWithNoTests": true,
+              "jestConfig": "libs/components/organisms/jest.config.ts"
             },
             "configurations": {
               "ci": {
@@ -933,8 +933,8 @@
               "{workspaceRoot}/coverage/{projectRoot}"
             ],
             "options": {
-              "jestConfig": "apps/medical-illustration/jest.config.ts",
-              "passWithNoTests": true
+              "passWithNoTests": true,
+              "jestConfig": "apps/medical-illustration/jest.config.ts"
             },
             "configurations": {
               "ci": {
@@ -1028,7 +1028,7 @@
               "^production"
             ],
             "cache": true,
-            "executor": "@nrwl/angular:package",
+            "executor": "@nx/angular:package",
             "outputs": [
               "{workspaceRoot}/dist/{projectRoot}"
             ],
@@ -1057,8 +1057,8 @@
               "{workspaceRoot}/coverage/{projectRoot}"
             ],
             "options": {
-              "jestConfig": "libs/components/atoms/jest.config.ts",
-              "passWithNoTests": true
+              "passWithNoTests": true,
+              "jestConfig": "libs/components/atoms/jest.config.ts"
             },
             "configurations": {
               "ci": {
@@ -1321,8 +1321,8 @@
               "{workspaceRoot}/coverage/{projectRoot}"
             ],
             "options": {
-              "jestConfig": "apps/ftu-ui-small-wc/jest.config.ts",
-              "passWithNoTests": true
+              "passWithNoTests": true,
+              "jestConfig": "apps/ftu-ui-small-wc/jest.config.ts"
             },
             "configurations": {
               "ci": {
@@ -1365,7 +1365,7 @@
               "^production"
             ],
             "cache": true,
-            "executor": "@nrwl/angular:ng-packagr-lite",
+            "executor": "@nx/angular:ng-packagr-lite",
             "outputs": [
               "{workspaceRoot}/dist/{projectRoot}"
             ],
@@ -1394,8 +1394,8 @@
               "{workspaceRoot}/coverage/{projectRoot}"
             ],
             "options": {
-              "jestConfig": "libs/shared/testing/jest.config.ts",
-              "passWithNoTests": true
+              "passWithNoTests": true,
+              "jestConfig": "libs/shared/testing/jest.config.ts"
             },
             "configurations": {
               "ci": {
@@ -1490,7 +1490,7 @@
               "^production"
             ],
             "cache": true,
-            "executor": "@nrwl/angular:package",
+            "executor": "@nx/angular:package",
             "outputs": [
               "{workspaceRoot}/dist/{projectRoot}"
             ],
@@ -1519,8 +1519,8 @@
               "{workspaceRoot}/coverage/{projectRoot}"
             ],
             "options": {
-              "jestConfig": "libs/shared/theming/jest.config.ts",
-              "passWithNoTests": true
+              "passWithNoTests": true,
+              "jestConfig": "libs/shared/theming/jest.config.ts"
             },
             "configurations": {
               "ci": {
@@ -1674,7 +1674,7 @@
               "^production"
             ],
             "cache": true,
-            "executor": "@nrwl/angular:package",
+            "executor": "@nx/angular:package",
             "outputs": [
               "{workspaceRoot}/dist/{projectRoot}"
             ],
@@ -1703,8 +1703,8 @@
               "{workspaceRoot}/coverage/{projectRoot}"
             ],
             "options": {
-              "jestConfig": "libs/shared/utils/jest.config.ts",
-              "passWithNoTests": true
+              "passWithNoTests": true,
+              "jestConfig": "libs/shared/utils/jest.config.ts"
             },
             "configurations": {
               "ci": {
@@ -1846,7 +1846,7 @@
               "^production"
             ],
             "cache": true,
-            "executor": "@nrwl/angular:package",
+            "executor": "@nx/angular:package",
             "outputs": [
               "{workspaceRoot}/dist/{projectRoot}"
             ],
@@ -1875,8 +1875,8 @@
               "{workspaceRoot}/coverage/{projectRoot}"
             ],
             "options": {
-              "jestConfig": "libs/services/jest.config.ts",
-              "passWithNoTests": true
+              "passWithNoTests": true,
+              "jestConfig": "libs/services/jest.config.ts"
             },
             "configurations": {
               "ci": {
@@ -2129,8 +2129,8 @@
               "{workspaceRoot}/coverage/{projectRoot}"
             ],
             "options": {
-              "jestConfig": "apps/ftu-ui/jest.config.ts",
-              "passWithNoTests": true
+              "passWithNoTests": true,
+              "jestConfig": "apps/ftu-ui/jest.config.ts"
             },
             "configurations": {
               "ci": {
@@ -2172,7 +2172,7 @@
               "^production"
             ],
             "cache": true,
-            "executor": "@nrwl/angular:package",
+            "executor": "@nx/angular:package",
             "outputs": [
               "{workspaceRoot}/dist/{projectRoot}"
             ],
@@ -2201,8 +2201,8 @@
               "{workspaceRoot}/coverage/{projectRoot}"
             ],
             "options": {
-              "jestConfig": "libs/state/jest.config.ts",
-              "passWithNoTests": true
+              "passWithNoTests": true,
+              "jestConfig": "libs/state/jest.config.ts"
             },
             "configurations": {
               "ci": {
@@ -2296,7 +2296,7 @@
               "^production"
             ],
             "cache": true,
-            "executor": "@nrwl/angular:package",
+            "executor": "@nx/angular:package",
             "outputs": [
               "{workspaceRoot}/dist/{projectRoot}"
             ],
@@ -2325,8 +2325,8 @@
               "{workspaceRoot}/coverage/{projectRoot}"
             ],
             "options": {
-              "jestConfig": "libs/cdk/jest.config.ts",
-              "passWithNoTests": true
+              "passWithNoTests": true,
+              "jestConfig": "libs/cdk/jest.config.ts"
             },
             "configurations": {
               "ci": {
