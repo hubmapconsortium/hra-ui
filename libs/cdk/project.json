@@ -37,17 +37,7 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "libs/cdk/**/*.ts",
-          "libs/cdk/**/*.html",
-          "libs/cdk/injectors/**/*.ts",
-          "libs/cdk/injectors/**/*.html",
-          "libs/cdk/state/**/*.ts",
-          "libs/cdk/state/**/*.html"
-        ]
-      }
+      "outputs": ["{options.outputFile}"]
     },
     "storybook": {
       "executor": "@storybook/angular:start-storybook",

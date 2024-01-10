@@ -37,10 +37,7 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/shared/theming/**/*.ts", "libs/shared/theming/**/*.html"]
-      }
+      "outputs": ["{options.outputFile}"]
     },
     "compodoc": {
       "executor": "@twittwer/compodoc:compodoc",
