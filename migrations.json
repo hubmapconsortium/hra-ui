@@ -98,9 +98,9 @@
     {
       "cli": "nx",
       "version": "16.0.0-beta.1",
-      "description": "Replace @nrwl/js with @nx/js",
+      "description": "Replace @nx/js with @nx/js",
       "implementation": "./src/migrations/update-16-0-0-add-nx-packages/update-16-0-0-add-nx-packages",
-      "package": "@nrwl/js",
+      "package": "@nx/js",
       "name": "update-16-0-0-add-nx-packages"
     },
     {
@@ -108,7 +108,7 @@
       "version": "16.6.0-beta.0",
       "description": "Explicitly set 'updateBuildableProjectDepsInPackageJson' to 'true' in targets that rely on that value as the default.",
       "factory": "./src/migrations/update-16-6-0/explicitly-set-projects-to-update-buildable-deps",
-      "package": "@nrwl/js",
+      "package": "@nx/js",
       "name": "explicitly-set-projects-to-update-buildable-deps"
     },
     {
@@ -116,7 +116,7 @@
       "version": "16.8.2-beta.0",
       "description": "Remove invalid options (strict, noInterop) for ES6 type modules.",
       "factory": "./src/migrations/update-16-8-2/update-swcrc",
-      "package": "@nrwl/js",
+      "package": "@nx/js",
       "name": "16-8-2-update-swcrc"
     },
     {
@@ -124,7 +124,7 @@
       "version": "17.0.2",
       "description": "Remove deprecated build options",
       "implementation": "./src/migrations/update-17-0-0/remove-deprecated-build-options",
-      "package": "@nrwl/js",
+      "package": "@nx/js",
       "name": "update-17-0-0-remove-deprecated-build-options"
     },
     {
