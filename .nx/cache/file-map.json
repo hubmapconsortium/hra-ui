@@ -41,12 +41,9 @@
     "@nrwl/cypress": "17.2.8",
     "@nrwl/eslint-plugin-nx": "17.2.8",
     "@nrwl/jest": "17.2.8",
-    "@nrwl/js": "17.2.8",
     "@nrwl/linter": "17.2.8",
-    "@nrwl/nx-cloud": "16.5.2",
     "@nrwl/storybook": "17.2.8",
     "@nrwl/web": "17.2.8",
-    "@nrwl/workspace": "17.2.8",
     "@schematics/angular": "17.0.10",
     "@storybook/addon-essentials": "7.6.7",
     "@storybook/angular": "7.6.7",
@@ -86,7 +83,9 @@
     "ts-jest": "29.1.1",
     "ts-node": "10.9.1",
     "typescript": "5.2.2",
-    "webpack": "^5.64.0"
+    "webpack": "^5.64.0",
+    "@nx/workspace": "17.2.8",
+    "@nx/js": "17.2.8"
   },
   "pathMappings": {
     "@hra-ui/cdk": [
@@ -132,1318 +131,157 @@
   "nxJsonPlugins": [],
   "fileMap": {
     "projectFileMap": {
-      "state": [
+      "shared-theming": [
         {
-          "file": "libs/state/.eslintrc.json",
-          "hash": "16718973154561247339"
+          "file": "libs/shared/theming/.eslintrc.json",
+          "hash": "12705483068862594041"
         },
         {
-          "file": "libs/state/README.md",
-          "hash": "9255555050732440851"
+          "file": "libs/shared/theming/.storybook/main.ts",
+          "hash": "9019494869132775289",
+          "deps": [
+            "npm:@storybook/types"
+          ]
         },
         {
-          "file": "libs/state/jest.config.ts",
-          "hash": "8906525415603136576"
+          "file": "libs/shared/theming/.storybook/preview.ts",
+          "hash": "5371924105892952942",
+          "deps": [
+            "npm:../../../../.storybook/preview"
+          ]
         },
         {
-          "file": "libs/state/ng-package.json",
-          "hash": "9186854276481011104"
+          "file": "libs/shared/theming/.storybook/tsconfig.json",
+          "hash": "7883368945848992759"
         },
         {
-          "file": "libs/state/package.json",
-          "hash": "15168619975562277079",
+          "file": "libs/shared/theming/README.md",
+          "hash": "6132731157262028409"
+        },
+        {
+          "file": "libs/shared/theming/jest.config.ts",
+          "hash": "11638361277726987314"
+        },
+        {
+          "file": "libs/shared/theming/ng-package.json",
+          "hash": "3202934370241382991"
+        },
+        {
+          "file": "libs/shared/theming/package.json",
+          "hash": "11521071823621007138",
           "deps": [
             "npm:tslib",
             "npm:@angular/common",
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "libs/state/project.json",
-          "hash": "16638083398498689630"
-        },
-        {
-          "file": "libs/state/src/index.ts",
-          "hash": "17595015764033398287"
-        },
-        {
-          "file": "libs/state/src/lib/active-ftu/active-ftu.actions.ts",
-          "hash": "9207933457744293607",
-          "deps": [
-            "cdk",
-            "services"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/active-ftu/active-ftu.selectors.spec.ts",
-          "hash": "13397129573852090864",
-          "deps": [
-            "services"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/active-ftu/active-ftu.selectors.ts",
-          "hash": "15041981687302518412",
-          "deps": [
-            "services",
-            "npm:@ngxs/store"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/active-ftu/active-ftu.state.spec.ts",
-          "hash": "9726161907534955716",
-          "deps": [
-            "npm:@ngxs/store",
-            "npm:rxjs",
-            "services",
-            "npm:jest-mock-extended",
-            "cdk"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/active-ftu/active-ftu.state.ts",
-          "hash": "2366891599077336440",
-          "deps": [
             "npm:@angular/core",
-            "services",
+            "npm:angular-material-css-vars"
+          ]
+        },
+        {
+          "file": "libs/shared/theming/project.json",
+          "hash": "4559028716568189795"
+        },
+        {
+          "file": "libs/shared/theming/src/assets/.gitignore",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "libs/shared/theming/src/index.ts",
+          "hash": "14864995996323201310"
+        },
+        {
+          "file": "libs/shared/theming/src/lib/button-override-test/button-override-test.component.stories.ts",
+          "hash": "7941801134251738460",
+          "deps": [
+            "npm:@angular/material",
+            "npm:@storybook/angular"
+          ]
+        },
+        {
+          "file": "libs/shared/theming/src/lib/state/theming.actions.ts",
+          "hash": "5962676676772397998"
+        },
+        {
+          "file": "libs/shared/theming/src/lib/state/theming.model.ts",
+          "hash": "634852069567806331",
+          "deps": [
             "npm:@ngxs/store",
-            "npm:rxjs",
-            "cdk"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/active-ftu/index.ts",
-          "hash": "17835068866374746006"
-        },
-        {
-          "file": "libs/state/src/lib/cell-summary/cell-summary.actions.ts",
-          "hash": "673179730288746693",
-          "deps": [
-            "cdk",
-            "services"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/cell-summary/cell-summary.helpers.spec.ts",
-          "hash": "4480357286572483361",
-          "deps": [
-            "services"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/cell-summary/cell-summary.helpers.ts",
-          "hash": "14759133548849633251",
-          "deps": [
-            "services"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/cell-summary/cell-summary.model.ts",
-          "hash": "3564201969016285547",
-          "deps": [
-            "services",
-            "npm:@ngxs/store",
+            "npm:angular-material-css-vars",
             "npm:zod"
           ]
         },
         {
-          "file": "libs/state/src/lib/cell-summary/cell-summary.selectors.spec.ts",
-          "hash": "12944047017421784237"
-        },
-        {
-          "file": "libs/state/src/lib/cell-summary/cell-summary.selectors.ts",
-          "hash": "17353626697289101411",
-          "deps": [
-            "npm:@ngxs/store",
-            "services"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/cell-summary/cell-summary.state.spec.ts",
-          "hash": "8140356235896427570",
-          "deps": [
-            "npm:@angular/core",
-            "services",
-            "npm:jest-mock-extended",
-            "npm:rxjs",
-            "npm:@ngxs/store"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/cell-summary/cell-summary.state.ts",
-          "hash": "3964148433207386600",
-          "deps": [
-            "npm:@angular/core",
-            "services",
-            "npm:@ngxs/store",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/cell-summary/index.ts",
-          "hash": "622398451306811967"
-        },
-        {
-          "file": "libs/state/src/lib/contact/contact.actions.ts",
-          "hash": "4098665666506753288",
-          "deps": [
-            "cdk",
-            "services"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/contact/contact.spec.ts",
-          "hash": "15858959959698981559",
-          "deps": [
-            "npm:@angular/core",
-            "services",
-            "npm:@ngxs/store",
-            "npm:jest-mock-extended",
-            "npm:shallow-render"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/contact/contact.state.ts",
-          "hash": "13609709600492946890",
-          "deps": [
-            "npm:@angular/core",
-            "services",
-            "npm:@ngxs/store",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/contact/index.ts",
-          "hash": "5365152247285577720"
-        },
-        {
-          "file": "libs/state/src/lib/download/builtin-formats-ids.ts",
-          "hash": "10467997742580062196"
-        },
-        {
-          "file": "libs/state/src/lib/download/builtin-formats.ts",
-          "hash": "1331851726145760289"
-        },
-        {
-          "file": "libs/state/src/lib/download/download.action.ts",
-          "hash": "4703264202007402356",
-          "deps": [
-            "cdk",
-            "services"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/download/download.model.ts",
-          "hash": "8697376335570800803",
-          "deps": [
-            "npm:@ngxs/store",
-            "npm:zod"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/download/download.selectors.spec.ts",
-          "hash": "17771434092850369556"
-        },
-        {
-          "file": "libs/state/src/lib/download/download.selectors.ts",
-          "hash": "2796126304295425134",
-          "deps": [
-            "npm:@ngxs/store"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/download/download.state.spec.ts",
-          "hash": "93035141649732769",
+          "file": "libs/shared/theming/src/lib/state/theming.state.spec.ts",
+          "hash": "10458221118726681987",
           "deps": [
             "npm:@angular/common",
             "npm:@angular/core",
-            "npm:jest-mock-extended",
-            "npm:rxjs",
-            "services"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/download/download.state.ts",
-          "hash": "4946476701778104446",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:@ngxs/store",
-            "npm:immer",
-            "npm:rxjs",
-            "services"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/download/index.ts",
-          "hash": "6528844866551989383"
-        },
-        {
-          "file": "libs/state/src/lib/illustrator/illustrator.actions.ts",
-          "hash": "8264885596860539451",
-          "deps": [
-            "cdk",
-            "services"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/illustrator/illustrator.selectors.spec.ts",
-          "hash": "1004474754101940264",
-          "deps": [
-            "services"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/illustrator/illustrator.selectors.ts",
-          "hash": "12350262139803629257",
-          "deps": [
-            "services",
-            "npm:@ngxs/store"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/illustrator/illustrator.state.spec.ts",
-          "hash": "16436367806217198495",
-          "deps": [
-            "npm:jest-mock-extended",
-            "npm:@ngxs/store",
-            "services",
-            "npm:rxjs",
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/illustrator/illustrator.state.ts",
-          "hash": "14521916375835323789",
-          "deps": [
-            "npm:@angular/core",
-            "services",
-            "npm:@ngxs/store",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/illustrator/index.ts",
-          "hash": "4181173180407178337"
-        },
-        {
-          "file": "libs/state/src/lib/link-ids.ts",
-          "hash": "16070097098585395122",
-          "deps": [
-            "cdk"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/resource-ids.ts",
-          "hash": "4536480226016107991",
-          "deps": [
-            "cdk"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/resource-types.ts",
-          "hash": "5860916899708347320",
-          "deps": [
-            "cdk"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/screen-mode/index.ts",
-          "hash": "15502264890052029711"
-        },
-        {
-          "file": "libs/state/src/lib/screen-mode/screen-mode.actions.ts",
-          "hash": "4275854460439051675",
-          "deps": [
-            "cdk"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/screen-mode/screen-mode.model.ts",
-          "hash": "6912996369842681567"
-        },
-        {
-          "file": "libs/state/src/lib/screen-mode/screen-mode.selectors.spec.ts",
-          "hash": "14387245995303567877"
-        },
-        {
-          "file": "libs/state/src/lib/screen-mode/screen-mode.selectors.ts",
-          "hash": "2741397538520173839",
-          "deps": [
-            "npm:@ngxs/store"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/screen-mode/screen-mode.spec.ts",
-          "hash": "11407632170654030538",
-          "deps": [
-            "npm:@ngxs/store",
+            "npm:angular-material-css-vars",
             "npm:jest-mock-extended"
           ]
         },
         {
-          "file": "libs/state/src/lib/screen-mode/screen-mode.state.ts",
-          "hash": "15956107334025242746",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@ngxs/store",
-            "npm:immer"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/source-refs/index.ts",
-          "hash": "10097735491232658290"
-        },
-        {
-          "file": "libs/state/src/lib/source-refs/source-refs.actions.ts",
-          "hash": "16273484738683327925",
-          "deps": [
-            "cdk",
-            "services"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/source-refs/source-refs.selectors.spec.ts",
-          "hash": "6378645811891686441",
-          "deps": [
-            "services"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/source-refs/source-refs.selectors.ts",
-          "hash": "5603770156468913761",
-          "deps": [
-            "services",
-            "npm:@ngxs/store"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/source-refs/source-refs.state.spec.ts",
-          "hash": "7459003679305437338",
-          "deps": [
-            "npm:@angular/core",
-            "services",
-            "npm:jest-mock-extended",
-            "npm:rxjs",
-            "npm:@ngxs/store"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/source-refs/source-refs.state.ts",
-          "hash": "4542576377690842961",
-          "deps": [
-            "npm:@angular/core",
-            "services",
-            "npm:@ngxs/store",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/state-analytics-plugin/default-loggable-actions.ts",
-          "hash": "14222430506840487510",
-          "deps": [
-            "cdk"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/state-analytics-plugin/index.ts",
-          "hash": "6081096871676789416"
-        },
-        {
-          "file": "libs/state/src/lib/state-analytics-plugin/mouse-tracker-module.ts",
-          "hash": "17501165499935866824",
+          "file": "libs/shared/theming/src/lib/state/theming.state.ts",
+          "hash": "3641854910291428946",
           "deps": [
             "npm:@angular/common",
             "npm:@angular/core",
-            "npm:ngx-google-analytics",
+            "npm:@ngxs/store",
+            "npm:angular-material-css-vars",
+            "npm:js-yaml",
             "npm:rxjs"
           ]
         },
         {
-          "file": "libs/state/src/lib/state-analytics-plugin/state-analytics-plugin.service.spec.ts",
-          "hash": "8618202234067845912",
-          "deps": [
-            "npm:@angular/core",
-            "npm:ngx-google-analytics",
-            "npm:@ngxs/store"
-          ]
+          "file": "libs/shared/theming/src/lib/styles/_overrides.scss",
+          "hash": "10217461409946425746"
         },
         {
-          "file": "libs/state/src/lib/state-analytics-plugin/state-analytics-plugin.service.ts",
-          "hash": "1319341719025055021",
+          "file": "libs/shared/theming/src/lib/styles/_reset.scss",
+          "hash": "15906004436091997509"
+        },
+        {
+          "file": "libs/shared/theming/src/lib/styles/_theming.scss",
+          "hash": "3662920267636066491"
+        },
+        {
+          "file": "libs/shared/theming/src/lib/styles/_utils.scss",
+          "hash": "11154128423801775658"
+        },
+        {
+          "file": "libs/shared/theming/src/lib/styles/_variables.scss",
+          "hash": "10375396533923766284"
+        },
+        {
+          "file": "libs/shared/theming/src/lib/theming.module.ts",
+          "hash": "5708144368276249174",
           "deps": [
             "npm:@angular/core",
             "npm:@ngxs/store",
-            "npm:ngx-google-analytics"
+            "npm:angular-material-css-vars"
           ]
         },
         {
-          "file": "libs/state/src/lib/state.module.ts",
-          "hash": "15418996183023082605",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@ngxs/store",
-            "npm:ngx-google-analytics"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/tissue-library/index.ts",
-          "hash": "5896666771851863567"
-        },
-        {
-          "file": "libs/state/src/lib/tissue-library/tissue-library.actions.ts",
-          "hash": "17310533773845622455",
-          "deps": [
-            "cdk"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/tissue-library/tissue-library.model.ts",
-          "hash": "13558358113903834858",
-          "deps": [
-            "services",
-            "npm:@ngxs/store"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/tissue-library/tissue-library.selectors.spec.ts",
-          "hash": "15107350970617658015",
-          "deps": [
-            "services"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/tissue-library/tissue-library.selectors.ts",
-          "hash": "10341472651027051916",
-          "deps": [
-            "services",
-            "npm:@ngxs/store"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/tissue-library/tissue-library.state.spec.ts",
-          "hash": "2306618017211107469",
-          "deps": [
-            "npm:jest-mock-extended",
-            "services",
-            "npm:@angular/core",
-            "npm:rxjs",
-            "npm:@ngxs/store"
-          ]
-        },
-        {
-          "file": "libs/state/src/lib/tissue-library/tissue-library.state.ts",
-          "hash": "13925918076366244548",
-          "deps": [
-            "npm:@angular/core",
-            "services",
-            "npm:@ngxs/store",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/state/src/test-setup.ts",
+          "file": "libs/shared/theming/src/test-setup.ts",
           "hash": "17711435995618823417",
           "deps": [
             "npm:jest-preset-angular"
           ]
         },
         {
-          "file": "libs/state/tsconfig.json",
-          "hash": "15487755565970508470"
+          "file": "libs/shared/theming/tsconfig.json",
+          "hash": "317269970080010730"
         },
         {
-          "file": "libs/state/tsconfig.lib.json",
-          "hash": "1433058402165730277"
+          "file": "libs/shared/theming/tsconfig.lib.json",
+          "hash": "7529274620743644061"
         },
         {
-          "file": "libs/state/tsconfig.lib.prod.json",
+          "file": "libs/shared/theming/tsconfig.lib.prod.json",
           "hash": "174503844014784742"
         },
         {
-          "file": "libs/state/tsconfig.spec.json",
-          "hash": "12185219321947470017"
-        }
-      ],
-      "components-behavioral-e2e": [
-        {
-          "file": "apps/components-behavioral-e2e/.eslintrc.json",
-          "hash": "14060216369337943343"
-        },
-        {
-          "file": "apps/components-behavioral-e2e/cypress.config.ts",
-          "hash": "14216760223586679056",
-          "deps": [
-            "npm:cypress",
-            "npm:@nrwl/storybook"
-          ]
-        },
-        {
-          "file": "apps/components-behavioral-e2e/project.json",
-          "hash": "9189051761668092028"
-        },
-        {
-          "file": "apps/components-behavioral-e2e/src/fixtures/example.json",
-          "hash": "11614668686582597233"
-        },
-        {
-          "file": "apps/components-behavioral-e2e/src/support/commands.ts",
-          "hash": "7314691991044890572"
-        },
-        {
-          "file": "apps/components-behavioral-e2e/src/support/e2e.ts",
-          "hash": "3666078656922506009"
-        },
-        {
-          "file": "apps/components-behavioral-e2e/tsconfig.json",
-          "hash": "1788248097864730386"
-        }
-      ],
-      "ftu-ui": [
-        {
-          "file": "apps/ftu-ui/.eslintrc.json",
-          "hash": "16718973154561247339"
-        },
-        {
-          "file": "apps/ftu-ui/jest.config.ts",
-          "hash": "16585745656281408397"
-        },
-        {
-          "file": "apps/ftu-ui/project.json",
-          "hash": "4064905422353803835"
-        },
-        {
-          "file": "apps/ftu-ui/src/app/app-routing.module.ts",
-          "hash": "207906121315740636",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/router"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui/src/app/app.component.html",
-          "hash": "12344954019091452736"
-        },
-        {
-          "file": "apps/ftu-ui/src/app/app.component.scss",
-          "hash": "7185991847998783929"
-        },
-        {
-          "file": "apps/ftu-ui/src/app/app.component.spec.ts",
-          "hash": "8880221372287574122",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/material",
-            "npm:@angular/platform-browser",
-            "npm:@angular/router",
-            "cdk",
-            "services",
-            "state",
-            "npm:jest-mock-extended",
-            "npm:rxjs",
-            "npm:shallow-render"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui/src/app/app.component.ts",
-          "hash": "14674125638274535424",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/material",
-            "npm:@angular/router",
-            "cdk",
-            "components-behavioral",
-            "services",
-            "state",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui/src/app/app.init.ts",
-          "hash": "12824812619692526068",
-          "deps": [
-            "cdk",
-            "state",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui/src/app/app.module.spec.ts",
-          "hash": "12056502185221037743",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui/src/app/app.module.ts",
-          "hash": "645093524688977976",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:@angular/elements",
-            "npm:@angular/material",
-            "npm:@angular/platform-browser",
-            "cdk",
-            "components-behavioral",
-            "services",
-            "state",
-            "shared-theming",
-            "npm:@ngxs/store",
-            "npm:ng-inline-svg-2",
-            "npm:ngx-markdown",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui/src/app/pages/ftu-page/ftu.component.html",
-          "hash": "6438547849825614607"
-        },
-        {
-          "file": "apps/ftu-ui/src/app/pages/ftu-page/ftu.component.scss",
-          "hash": "5008583105311454718"
-        },
-        {
-          "file": "apps/ftu-ui/src/app/pages/ftu-page/ftu.component.spec.ts",
-          "hash": "8217571371124531420",
-          "deps": [
-            "npm:@angular/router",
-            "cdk",
-            "npm:rxjs",
-            "npm:shallow-render"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui/src/app/pages/ftu-page/ftu.component.ts",
-          "hash": "4486836741386236649",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:@angular/router",
-            "cdk",
-            "components-behavioral",
-            "components-molecules",
-            "state",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui/src/app/pages/ftu-page/ftu.resolver.spec.ts",
-          "hash": "4780469620035556308",
-          "deps": [
-            "npm:@angular/router",
-            "cdk",
-            "npm:jest-mock-extended",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui/src/app/pages/ftu-page/ftu.resolver.ts",
-          "hash": "4452607595995010867",
-          "deps": [
-            "npm:@angular/router",
-            "cdk",
-            "state",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui/src/app/pages/landing-page/landing.component.html",
-          "hash": "3423165639041936995"
-        },
-        {
-          "file": "apps/ftu-ui/src/app/pages/landing-page/landing.component.scss",
-          "hash": "13027103444035360129"
-        },
-        {
-          "file": "apps/ftu-ui/src/app/pages/landing-page/landing.component.spec.ts",
-          "hash": "13339248952055627901",
-          "deps": [
-            "npm:shallow-render",
-            "cdk"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui/src/app/pages/landing-page/landing.component.ts",
-          "hash": "15159734387751289876",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "cdk",
-            "components-behavioral",
-            "state"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui/src/assets/.gitkeep",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "apps/ftu-ui/src/assets/TEMP/2d-ftu-illustrations.jsonld",
-          "hash": "926101701713649916"
-        },
-        {
-          "file": "apps/ftu-ui/src/assets/TEMP/context.jsonld",
-          "hash": "3603993840283832615"
-        },
-        {
-          "file": "apps/ftu-ui/src/assets/TEMP/ctpop-data/ftu-cell-summaries.jsonld",
-          "hash": "16086180797614168508"
-        },
-        {
-          "file": "apps/ftu-ui/src/assets/TEMP/ctpop-data/ftu-datasets.jsonld",
-          "hash": "5554526797177929957"
-        },
-        {
-          "file": "apps/ftu-ui/src/assets/TEMP/ftu-cell-summaries.jsonld",
-          "hash": "10195287543541425158"
-        },
-        {
-          "file": "apps/ftu-ui/src/assets/TEMP/ftu-data.mjs",
-          "hash": "17417319108807103528",
-          "deps": [
-            "npm:fs",
-            "npm:papaparse"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui/src/assets/TEMP/ftu-datasets.jsonld",
-          "hash": "7204727590382367942"
-        },
-        {
-          "file": "apps/ftu-ui/src/assets/links.yml",
-          "hash": "14699790857649302286"
-        },
-        {
-          "file": "apps/ftu-ui/src/assets/resources.yml",
-          "hash": "3977648668475824010"
-        },
-        {
-          "file": "apps/ftu-ui/src/assets/resources/landing-page/more.svg",
-          "hash": "9246311286210866160"
-        },
-        {
-          "file": "apps/ftu-ui/src/assets/resources/landing-page/welcome.svg",
-          "hash": "11036468587142737185"
-        },
-        {
-          "file": "apps/ftu-ui/src/assets/resources/logo.svg",
-          "hash": "347024318566192812"
-        },
-        {
-          "file": "apps/ftu-ui/src/assets/resources/metric-icons/biomarkers.svg",
-          "hash": "5006767065018110698"
-        },
-        {
-          "file": "apps/ftu-ui/src/assets/resources/metric-icons/celltypes.svg",
-          "hash": "16352750245739110602"
-        },
-        {
-          "file": "apps/ftu-ui/src/assets/resources/metric-icons/diversity.svg",
-          "hash": "2650682851046033724"
-        },
-        {
-          "file": "apps/ftu-ui/src/assets/resources/metric-icons/experts.svg",
-          "hash": "11586422475906666721"
-        },
-        {
-          "file": "apps/ftu-ui/src/assets/resources/metric-icons/publications.svg",
-          "hash": "14019932627399420653"
-        },
-        {
-          "file": "apps/ftu-ui/src/assets/resources/metric-icons/structures.svg",
-          "hash": "8417257119682274968"
-        },
-        {
-          "file": "apps/ftu-ui/src/environments/environment.ts",
-          "hash": "15099309730369996338"
-        },
-        {
-          "file": "apps/ftu-ui/src/favicon.ico",
-          "hash": "5366683006319416437"
-        },
-        {
-          "file": "apps/ftu-ui/src/index.html",
-          "hash": "10366372759137128299"
-        },
-        {
-          "file": "apps/ftu-ui/src/main.ts",
-          "hash": "3259059517603285449",
-          "deps": [
-            "npm:@angular/platform-browser-dynamic"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui/src/styles.scss",
-          "hash": "10724785482923888394"
-        },
-        {
-          "file": "apps/ftu-ui/src/test-setup.ts",
-          "hash": "17711435995618823417",
-          "deps": [
-            "npm:jest-preset-angular"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui/tsconfig.app.json",
-          "hash": "8365644956319658761"
-        },
-        {
-          "file": "apps/ftu-ui/tsconfig.editor.json",
-          "hash": "17511610827034788226"
-        },
-        {
-          "file": "apps/ftu-ui/tsconfig.json",
-          "hash": "12094030803572703611"
-        },
-        {
-          "file": "apps/ftu-ui/tsconfig.spec.json",
-          "hash": "12185219321947470017"
-        }
-      ],
-      "medical-illustration-e2e": [
-        {
-          "file": "apps/medical-illustration-e2e/.eslintrc.json",
-          "hash": "14060216369337943343"
-        },
-        {
-          "file": "apps/medical-illustration-e2e/cypress.config.ts",
-          "hash": "212614215478757206",
-          "deps": [
-            "npm:cypress",
-            "npm:@nrwl/cypress"
-          ]
-        },
-        {
-          "file": "apps/medical-illustration-e2e/project.json",
-          "hash": "7513674407389839109"
-        },
-        {
-          "file": "apps/medical-illustration-e2e/src/e2e/app.cy.ts",
-          "hash": "8891025691455825056"
-        },
-        {
-          "file": "apps/medical-illustration-e2e/src/fixtures/example.json",
-          "hash": "11614668686582597233"
-        },
-        {
-          "file": "apps/medical-illustration-e2e/src/support/app.po.ts",
-          "hash": "11157016311132186162"
-        },
-        {
-          "file": "apps/medical-illustration-e2e/src/support/commands.ts",
-          "hash": "7314691991044890572"
-        },
-        {
-          "file": "apps/medical-illustration-e2e/src/support/e2e.ts",
-          "hash": "3666078656922506009"
-        },
-        {
-          "file": "apps/medical-illustration-e2e/tsconfig.json",
-          "hash": "3839629211904585536"
-        }
-      ],
-      "components-molecules-e2e": [
-        {
-          "file": "apps/components-molecules-e2e/.eslintrc.json",
-          "hash": "14060216369337943343"
-        },
-        {
-          "file": "apps/components-molecules-e2e/cypress.config.ts",
-          "hash": "14216760223586679056",
-          "deps": [
-            "npm:cypress",
-            "npm:@nrwl/storybook"
-          ]
-        },
-        {
-          "file": "apps/components-molecules-e2e/project.json",
-          "hash": "17847771588784711339"
-        },
-        {
-          "file": "apps/components-molecules-e2e/src/fixtures/example.json",
-          "hash": "11614668686582597233"
-        },
-        {
-          "file": "apps/components-molecules-e2e/src/support/commands.ts",
-          "hash": "7314691991044890572"
-        },
-        {
-          "file": "apps/components-molecules-e2e/src/support/e2e.ts",
-          "hash": "3666078656922506009"
-        },
-        {
-          "file": "apps/components-molecules-e2e/tsconfig.json",
-          "hash": "1788248097864730386"
-        }
-      ],
-      "ftu-ui-e2e": [
-        {
-          "file": "apps/ftu-ui-e2e/.eslintrc.json",
-          "hash": "15523834149352881398"
-        },
-        {
-          "file": "apps/ftu-ui-e2e/cypress.config.ts",
-          "hash": "212614215478757206",
-          "deps": [
-            "npm:cypress",
-            "npm:@nrwl/cypress"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui-e2e/project.json",
-          "hash": "961768376916145174"
-        },
-        {
-          "file": "apps/ftu-ui-e2e/src/e2e/app.cy.ts",
-          "hash": "9340749347103855815"
-        },
-        {
-          "file": "apps/ftu-ui-e2e/src/fixtures/example.json",
-          "hash": "11614668686582597233"
-        },
-        {
-          "file": "apps/ftu-ui-e2e/src/support/app.po.ts",
-          "hash": "11157016311132186162"
-        },
-        {
-          "file": "apps/ftu-ui-e2e/src/support/commands.ts",
-          "hash": "7314691991044890572"
-        },
-        {
-          "file": "apps/ftu-ui-e2e/src/support/e2e.ts",
-          "hash": "3666078656922506009"
-        },
-        {
-          "file": "apps/ftu-ui-e2e/tsconfig.json",
-          "hash": "3839629211904585536"
-        }
-      ],
-      "components-organisms-e2e": [
-        {
-          "file": "apps/components-organisms-e2e/.eslintrc.json",
-          "hash": "14060216369337943343"
-        },
-        {
-          "file": "apps/components-organisms-e2e/cypress.config.ts",
-          "hash": "14216760223586679056",
-          "deps": [
-            "npm:cypress",
-            "npm:@nrwl/storybook"
-          ]
-        },
-        {
-          "file": "apps/components-organisms-e2e/project.json",
-          "hash": "1968418124632851860"
-        },
-        {
-          "file": "apps/components-organisms-e2e/src/fixtures/example.json",
-          "hash": "11614668686582597233"
-        },
-        {
-          "file": "apps/components-organisms-e2e/src/support/commands.ts",
-          "hash": "7314691991044890572"
-        },
-        {
-          "file": "apps/components-organisms-e2e/src/support/e2e.ts",
-          "hash": "3666078656922506009"
-        },
-        {
-          "file": "apps/components-organisms-e2e/tsconfig.json",
-          "hash": "1788248097864730386"
-        }
-      ],
-      "ftu-ui-small-wc": [
-        {
-          "file": "apps/ftu-ui-small-wc/.eslintrc.json",
-          "hash": "4935447666378220735"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/jest.config.ts",
-          "hash": "7442716372428227125"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/project.json",
-          "hash": "4758450359524365437"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/app/app.component.html",
-          "hash": "18412401602357345736"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/app/app.component.scss",
-          "hash": "16304506411465643379"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/app/app.component.spec.ts",
-          "hash": "11343018965164242433",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/platform-browser",
-            "npm:@angular/router",
-            "cdk",
-            "services",
-            "state",
-            "npm:jest-mock-extended",
-            "npm:rxjs",
-            "npm:shallow-render"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/app/app.component.ts",
-          "hash": "4254257195471082440",
-          "deps": [
-            "npm:@angular/core",
-            "cdk",
-            "components-behavioral",
-            "components-molecules",
-            "services",
-            "state",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/app/app.init.ts",
-          "hash": "10118257922836410621",
-          "deps": [
-            "cdk",
-            "state",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/app/routing/simple-router.service.ts",
-          "hash": "506057465727321909",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/router",
-            "cdk",
-            "state"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/app/routing/simple-router.sevice.spec.ts",
-          "hash": "1610898103695202325",
-          "deps": [
-            "npm:@angular/core",
-            "cdk"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/.gitkeep",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/2d-ftu-illustrations.jsonld",
-          "hash": "926101701713649916"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/context.jsonld",
-          "hash": "3603993840283832615"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/ftu-cell-summaries.jsonld",
-          "hash": "10195287543541425158"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/ftu-data.mjs",
-          "hash": "17417319108807103528",
-          "deps": [
-            "npm:fs",
-            "npm:papaparse"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/ftu-datasets.jsonld",
-          "hash": "7204727590382367942"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-kidney-ascending-thin-loop-of-henle.svg",
-          "hash": "13358503565789726566"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-kidney-cortical-collecting-duct.svg",
-          "hash": "12352959134787722763"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-kidney-descending-thin-loop-of-henle.svg",
-          "hash": "16986887525022844153"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-kidney-inner-medullary-collecting-duct.svg",
-          "hash": "10701968902372289235"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-kidney-nephron.svg",
-          "hash": "10201256766708060923"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-kidney-outer-medullary-collecting-duct.svg",
-          "hash": "2317212824720495441"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-kidney-renal-corpuscle.svg",
-          "hash": "3719658263491023337"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-kidney-thick-ascending-loop-of-henle.svg",
-          "hash": "785336292596491840"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-large-intestine-crypt-lieberkuhn.svg",
-          "hash": "76649557465227495"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-liver-liver-lobule.svg",
-          "hash": "17039418272115263465"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-lung-bronchial-submucosal-gland.svg",
-          "hash": "13544196549966669719"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-lung-pulmonary-alveolus.svg",
-          "hash": "1383321670129198174"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-pancreas-intercalated-duct.svg",
-          "hash": "4594096998664132036"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-pancreas-islets-langerhans.svg",
-          "hash": "2562919137189164320"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-pancreas-pancreatic-acinus.svg",
-          "hash": "125081372088335722"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-prostate-prostate-glandular-acinus.svg",
-          "hash": "8970138156471266718"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-skin-dermal-papilla.svg",
-          "hash": "14365598884711139113"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-skin-epidermal-ridge.svg",
-          "hash": "1861355671741676075"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-small-intestine-villus.svg",
-          "hash": "14438128529822775422"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-spleen-red-pulp.svg",
-          "hash": "887510478060720160"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-spleen-white-pulp.svg",
-          "hash": "3181213621462787909"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-thymus-thymus-lobule.svg",
-          "hash": "18310116635500023322"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/links.yml",
-          "hash": "15537097682072821175"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/resources.yml",
-          "hash": "13384949820647725166"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/assets/resources/logo.svg",
-          "hash": "347024318566192812"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/favicon.ico",
-          "hash": "5366683006319416437"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/index.html",
-          "hash": "6537945047015480148"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/main.ts",
-          "hash": "7528053080393115276",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:@angular/elements",
-            "npm:@angular/material",
-            "npm:@angular/platform-browser",
-            "npm:@angular/router",
-            "cdk",
-            "services",
-            "state",
-            "shared-theming",
-            "npm:@ngxs/store",
-            "npm:ng-inline-svg-2",
-            "npm:ngx-markdown",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/styles.scss",
-          "hash": "17008182900441984469"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/src/test-setup.ts",
-          "hash": "17711435995618823417",
-          "deps": [
-            "npm:jest-preset-angular"
-          ]
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/tsconfig.app.json",
-          "hash": "8365644956319658761"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/tsconfig.editor.json",
-          "hash": "17511610827034788226"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/tsconfig.json",
-          "hash": "12094030803572703611"
-        },
-        {
-          "file": "apps/ftu-ui-small-wc/tsconfig.spec.json",
-          "hash": "2628739785099261941"
-        }
-      ],
-      "components-atoms-e2e": [
-        {
-          "file": "apps/components-atoms-e2e/.eslintrc.json",
-          "hash": "14060216369337943343"
-        },
-        {
-          "file": "apps/components-atoms-e2e/cypress.config.ts",
-          "hash": "14216760223586679056",
-          "deps": [
-            "npm:cypress",
-            "npm:@nrwl/storybook"
-          ]
-        },
-        {
-          "file": "apps/components-atoms-e2e/project.json",
-          "hash": "14160030716550788629"
-        },
-        {
-          "file": "apps/components-atoms-e2e/src/fixtures/example.json",
-          "hash": "11614668686582597233"
-        },
-        {
-          "file": "apps/components-atoms-e2e/src/support/commands.ts",
-          "hash": "7314691991044890572"
-        },
-        {
-          "file": "apps/components-atoms-e2e/src/support/e2e.ts",
-          "hash": "3666078656922506009"
-        },
-        {
-          "file": "apps/components-atoms-e2e/tsconfig.json",
-          "hash": "1788248097864730386"
+          "file": "libs/shared/theming/tsconfig.spec.json",
+          "hash": "12477985320913577039"
         }
       ],
       "medical-illustration": [
@@ -1648,13 +486,116 @@
           "hash": "12733860452398914895"
         }
       ],
-      "ftu-ui-small-wc-e2e": [
+      "shared-utils": [
         {
-          "file": "apps/ftu-ui-small-wc-e2e/.eslintrc.json",
-          "hash": "14060216369337943343"
+          "file": "libs/shared/utils/.eslintrc.json",
+          "hash": "15804928706045665866"
         },
         {
-          "file": "apps/ftu-ui-small-wc-e2e/cypress.config.ts",
+          "file": "libs/shared/utils/README.md",
+          "hash": "5352665523196431657"
+        },
+        {
+          "file": "libs/shared/utils/jest.config.ts",
+          "hash": "5051778961387630136"
+        },
+        {
+          "file": "libs/shared/utils/ng-package.json",
+          "hash": "3976363793059670840"
+        },
+        {
+          "file": "libs/shared/utils/package.json",
+          "hash": "10438214016708670313",
+          "deps": [
+            "npm:tslib",
+            "npm:@angular/common",
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "libs/shared/utils/project.json",
+          "hash": "10204024446402734242"
+        },
+        {
+          "file": "libs/shared/utils/src/index.ts",
+          "hash": "12775847155984881838"
+        },
+        {
+          "file": "libs/shared/utils/src/lib/url/create.spec.ts",
+          "hash": "16415276061265951665",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@angular/platform-browser",
+            "npm:@angular/router",
+            "npm:jest-mock-extended"
+          ]
+        },
+        {
+          "file": "libs/shared/utils/src/lib/url/create.ts",
+          "hash": "12280141173442968430",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@angular/platform-browser",
+            "npm:@angular/router"
+          ]
+        },
+        {
+          "file": "libs/shared/utils/src/test-setup.ts",
+          "hash": "17711435995618823417",
+          "deps": [
+            "npm:jest-preset-angular"
+          ]
+        },
+        {
+          "file": "libs/shared/utils/tsconfig.json",
+          "hash": "8526453262384300416"
+        },
+        {
+          "file": "libs/shared/utils/tsconfig.lib.json",
+          "hash": "218309403517423108"
+        },
+        {
+          "file": "libs/shared/utils/tsconfig.lib.prod.json",
+          "hash": "174503844014784742"
+        },
+        {
+          "file": "libs/shared/utils/tsconfig.spec.json",
+          "hash": "12477985320913577039"
+        },
+        {
+          "file": "libs/shared/utils/types/README.md",
+          "hash": "17925111189029281891"
+        },
+        {
+          "file": "libs/shared/utils/types/ng-package.json",
+          "hash": "12781977952105802458"
+        },
+        {
+          "file": "libs/shared/utils/types/src/index.ts",
+          "hash": "3422672051695939042"
+        },
+        {
+          "file": "libs/shared/utils/types/src/lib/any.ts",
+          "hash": "4286799299184186940"
+        },
+        {
+          "file": "libs/shared/utils/types/src/lib/function.ts",
+          "hash": "4498803956120529398"
+        },
+        {
+          "file": "libs/shared/utils/types/src/lib/union.ts",
+          "hash": "2823082849072972211"
+        }
+      ],
+      "ftu-ui-e2e": [
+        {
+          "file": "apps/ftu-ui-e2e/.eslintrc.json",
+          "hash": "15523834149352881398"
+        },
+        {
+          "file": "apps/ftu-ui-e2e/cypress.config.ts",
           "hash": "212614215478757206",
           "deps": [
             "npm:cypress",
@@ -1662,503 +603,32 @@
           ]
         },
         {
-          "file": "apps/ftu-ui-small-wc-e2e/project.json",
-          "hash": "4734030742956822065"
+          "file": "apps/ftu-ui-e2e/project.json",
+          "hash": "961768376916145174"
         },
         {
-          "file": "apps/ftu-ui-small-wc-e2e/src/e2e/app.cy.ts",
-          "hash": "12623796774694454867"
+          "file": "apps/ftu-ui-e2e/src/e2e/app.cy.ts",
+          "hash": "9340749347103855815"
         },
         {
-          "file": "apps/ftu-ui-small-wc-e2e/src/fixtures/example.json",
+          "file": "apps/ftu-ui-e2e/src/fixtures/example.json",
           "hash": "11614668686582597233"
         },
         {
-          "file": "apps/ftu-ui-small-wc-e2e/src/support/app.po.ts",
+          "file": "apps/ftu-ui-e2e/src/support/app.po.ts",
           "hash": "11157016311132186162"
         },
         {
-          "file": "apps/ftu-ui-small-wc-e2e/src/support/commands.ts",
+          "file": "apps/ftu-ui-e2e/src/support/commands.ts",
           "hash": "7314691991044890572"
         },
         {
-          "file": "apps/ftu-ui-small-wc-e2e/src/support/e2e.ts",
+          "file": "apps/ftu-ui-e2e/src/support/e2e.ts",
           "hash": "3666078656922506009"
         },
         {
-          "file": "apps/ftu-ui-small-wc-e2e/tsconfig.json",
-          "hash": "15439127571515986436"
-        }
-      ],
-      "cdk": [
-        {
-          "file": "libs/cdk/.eslintrc.json",
-          "hash": "4935447666378220735"
-        },
-        {
-          "file": "libs/cdk/.storybook/main.ts",
-          "hash": "9019494869132775289",
-          "deps": [
-            "npm:@storybook/types"
-          ]
-        },
-        {
-          "file": "libs/cdk/.storybook/preview.ts",
-          "hash": "17801965648041152774",
-          "deps": [
-            "npm:../../../.storybook/preview"
-          ]
-        },
-        {
-          "file": "libs/cdk/.storybook/tsconfig.json",
-          "hash": "7883368945848992759"
-        },
-        {
-          "file": "libs/cdk/README.md",
-          "hash": "2120359614409072653"
-        },
-        {
-          "file": "libs/cdk/injectors/README.md",
-          "hash": "16818657287642325803"
-        },
-        {
-          "file": "libs/cdk/injectors/ng-package.json",
-          "hash": "12781977952105802458"
-        },
-        {
-          "file": "libs/cdk/injectors/src/index.ts",
-          "hash": "10505351079717149574"
-        },
-        {
-          "file": "libs/cdk/injectors/src/lib/dispatch/dispatch.spec.ts",
-          "hash": "6529404557027855859",
-          "deps": [
-            "npm:@angular/core",
-            "shared-utils",
-            "npm:@ngxs/store",
-            "npm:jest-mock-extended",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/cdk/injectors/src/lib/dispatch/dispatch.ts",
-          "hash": "16861238061731842657",
-          "deps": [
-            "npm:@angular/core",
-            "shared-utils",
-            "npm:@ngxs/store",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/cdk/injectors/src/lib/on-destroy/destroy-host.component.spec.ts",
-          "hash": "17821410293069041615",
-          "deps": [
-            "npm:@angular/core",
-            "npm:jest-mock-extended"
-          ]
-        },
-        {
-          "file": "libs/cdk/injectors/src/lib/on-destroy/destroy-host.component.ts",
-          "hash": "18045587520181464008",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "libs/cdk/injectors/src/lib/on-destroy/destructor-subject.spec.ts",
-          "hash": "15755195319096034177",
-          "deps": [
-            "npm:jest-mock-extended",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/cdk/injectors/src/lib/on-destroy/destructor-subject.ts",
-          "hash": "13025175453771381361",
-          "deps": [
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/cdk/injectors/src/lib/on-destroy/on-destroy.spec.ts",
-          "hash": "9853360976910988660",
-          "deps": [
-            "npm:@angular/core",
-            "npm:jest-mock-extended",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/cdk/injectors/src/lib/on-destroy/on-destroy.ts",
-          "hash": "6357717507844541775",
-          "deps": [
-            "npm:@angular/core",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/cdk/injectors/src/lib/select/select-snapshot.spec.ts",
-          "hash": "3854081064276410193",
-          "deps": [
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/cdk/injectors/src/lib/select/select-snapshot.ts",
-          "hash": "10597518864955752696",
-          "deps": [
-            "shared-utils"
-          ]
-        },
-        {
-          "file": "libs/cdk/injectors/src/lib/select/select.spec.ts",
-          "hash": "3576225593313518309",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@ngxs/store",
-            "npm:jest-mock-extended",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/cdk/injectors/src/lib/select/select.ts",
-          "hash": "517611272602804704",
-          "deps": [
-            "npm:@angular/core",
-            "shared-utils",
-            "npm:@ngxs/store",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/cdk/injectors/src/lib/select/snapshot-observer.spec.ts",
-          "hash": "8356617696791144507"
-        },
-        {
-          "file": "libs/cdk/injectors/src/lib/select/snapshot-observer.ts",
-          "hash": "18425185185639480252",
-          "deps": [
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/cdk/jest.config.ts",
-          "hash": "11457132458533849859"
-        },
-        {
-          "file": "libs/cdk/ng-package.json",
-          "hash": "13285560427598943566"
-        },
-        {
-          "file": "libs/cdk/package.json",
-          "hash": "17887507439193461928",
-          "deps": [
-            "npm:tslib",
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:@ngxs/store",
-            "shared-theming",
-            "shared-utils"
-          ]
-        },
-        {
-          "file": "libs/cdk/project.json",
-          "hash": "10587274718797623331"
-        },
-        {
-          "file": "libs/cdk/src/assets/.gitignore",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "libs/cdk/src/index.ts",
-          "hash": "2953957022319595119"
-        },
-        {
-          "file": "libs/cdk/src/lib/hover/hover.directive.spec.ts",
-          "hash": "1913258380937875769",
-          "deps": [
-            "npm:shallow-render",
-            "npm:@angular/core",
-            "npm:jest-mock-extended"
-          ]
-        },
-        {
-          "file": "libs/cdk/src/lib/hover/hover.directive.stories.ts",
-          "hash": "14142919141045880259",
-          "deps": [
-            "npm:@storybook/angular"
-          ]
-        },
-        {
-          "file": "libs/cdk/src/lib/hover/hover.directive.ts",
-          "hash": "4155065675057870595",
-          "deps": [
-            "npm:@angular/cdk",
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "libs/cdk/src/lib/link/link.directive.spec.ts",
-          "hash": "3052572314536004367",
-          "deps": [
-            "npm:@angular/router",
-            "npm:shallow-render"
-          ]
-        },
-        {
-          "file": "libs/cdk/src/lib/link/link.directive.stories.ts",
-          "hash": "86214987996314450",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/router",
-            "npm:@storybook/angular"
-          ]
-        },
-        {
-          "file": "libs/cdk/src/lib/link/link.directive.ts",
-          "hash": "11198866598150662574",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/router",
-            "shared-utils"
-          ]
-        },
-        {
-          "file": "libs/cdk/src/test-setup.ts",
-          "hash": "17711435995618823417",
-          "deps": [
-            "npm:jest-preset-angular"
-          ]
-        },
-        {
-          "file": "libs/cdk/state/README.md",
-          "hash": "16027058307555151769"
-        },
-        {
-          "file": "libs/cdk/state/ng-package.json",
-          "hash": "12781977952105802458"
-        },
-        {
-          "file": "libs/cdk/state/src/actions/action-type-registry.spec.ts",
-          "hash": "17847342794122725608"
-        },
-        {
-          "file": "libs/cdk/state/src/actions/action-type-registry.ts",
-          "hash": "12208915969626092735"
-        },
-        {
-          "file": "libs/cdk/state/src/actions/actions.spec.ts",
-          "hash": "15002909689320106497"
-        },
-        {
-          "file": "libs/cdk/state/src/actions/actions.ts",
-          "hash": "11133132527703474306"
-        },
-        {
-          "file": "libs/cdk/state/src/base-href/base-href.actions.ts",
-          "hash": "9373584313680090483"
-        },
-        {
-          "file": "libs/cdk/state/src/base-href/base-href.selectors.spec.ts",
-          "hash": "8093552754969931154"
-        },
-        {
-          "file": "libs/cdk/state/src/base-href/base-href.selectors.ts",
-          "hash": "15190485845871598545",
-          "deps": [
-            "npm:@ngxs/store"
-          ]
-        },
-        {
-          "file": "libs/cdk/state/src/base-href/base-href.state.ts",
-          "hash": "298500790404387110",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@ngxs/store"
-          ]
-        },
-        {
-          "file": "libs/cdk/state/src/base-href/index.ts",
-          "hash": "16652224073155824047"
-        },
-        {
-          "file": "libs/cdk/state/src/index.ts",
-          "hash": "15785206930385040331"
-        },
-        {
-          "file": "libs/cdk/state/src/link-registry/index.ts",
-          "hash": "6186118191831174656"
-        },
-        {
-          "file": "libs/cdk/state/src/link-registry/link-registry.actions.ts",
-          "hash": "14551246276106217963",
-          "deps": [
-            "npm:@angular/router"
-          ]
-        },
-        {
-          "file": "libs/cdk/state/src/link-registry/link-registry.model.ts",
-          "hash": "11134509520787764029",
-          "deps": [
-            "npm:@ngxs/store",
-            "npm:zod"
-          ]
-        },
-        {
-          "file": "libs/cdk/state/src/link-registry/link-registry.selectors.spec.ts",
-          "hash": "11848889547256521984"
-        },
-        {
-          "file": "libs/cdk/state/src/link-registry/link-registry.selectors.ts",
-          "hash": "6225024191304024591",
-          "deps": [
-            "shared-utils",
-            "npm:@ngxs/store"
-          ]
-        },
-        {
-          "file": "libs/cdk/state/src/link-registry/link-registry.state.spec.ts",
-          "hash": "8098086596334089381",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:jest-mock-extended",
-            "npm:@angular/router"
-          ]
-        },
-        {
-          "file": "libs/cdk/state/src/link-registry/link-registry.state.ts",
-          "hash": "11236427956828580773",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:@angular/router",
-            "shared-utils",
-            "npm:@ngxs/store",
-            "npm:js-yaml",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/cdk/state/src/resource-registry/index.ts",
-          "hash": "9222413827713563486"
-        },
-        {
-          "file": "libs/cdk/state/src/resource-registry/resource-registry.actions.ts",
-          "hash": "2729585460102165245"
-        },
-        {
-          "file": "libs/cdk/state/src/resource-registry/resource-registry.model.spec.ts",
-          "hash": "15606222886570111715"
-        },
-        {
-          "file": "libs/cdk/state/src/resource-registry/resource-registry.model.ts",
-          "hash": "6267309325180745593",
-          "deps": [
-            "shared-utils",
-            "npm:@ngxs/store",
-            "npm:zod"
-          ]
-        },
-        {
-          "file": "libs/cdk/state/src/resource-registry/resource-registry.selectors.spec.ts",
-          "hash": "8606321133984732687"
-        },
-        {
-          "file": "libs/cdk/state/src/resource-registry/resource-registry.selectors.ts",
-          "hash": "3736634543275535120",
-          "deps": [
-            "npm:@ngxs/store"
-          ]
-        },
-        {
-          "file": "libs/cdk/state/src/resource-registry/resource-registry.state.spec.ts",
-          "hash": "10535022149321034433",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:jest-mock-extended"
-          ]
-        },
-        {
-          "file": "libs/cdk/state/src/resource-registry/resource-registry.state.ts",
-          "hash": "5267851255059252494",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:@ngxs/store",
-            "npm:js-yaml",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/cdk/state/src/state.module.ts",
-          "hash": "9664059562872449848",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@ngxs/store"
-          ]
-        },
-        {
-          "file": "libs/cdk/state/src/storage/index.ts",
-          "hash": "13984286354343925153"
-        },
-        {
-          "file": "libs/cdk/state/src/storage/storage.actions.ts",
-          "hash": "4416374281335578214"
-        },
-        {
-          "file": "libs/cdk/state/src/storage/storage.model.ts",
-          "hash": "4790334743241813690",
-          "deps": [
-            "npm:@ngxs/store"
-          ]
-        },
-        {
-          "file": "libs/cdk/state/src/storage/storage.selectors.spec.ts",
-          "hash": "3753210592328697310"
-        },
-        {
-          "file": "libs/cdk/state/src/storage/storage.selectors.ts",
-          "hash": "6895019025396810267",
-          "deps": [
-            "npm:@ngxs/store"
-          ]
-        },
-        {
-          "file": "libs/cdk/state/src/storage/storage.state.spec.ts",
-          "hash": "6342719752559366082",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:jest-mock-extended"
-          ]
-        },
-        {
-          "file": "libs/cdk/state/src/storage/storage.state.ts",
-          "hash": "16374460268053068329",
-          "deps": [
-            "npm:immer",
-            "npm:@angular/core",
-            "npm:@ngxs/store"
-          ]
-        },
-        {
-          "file": "libs/cdk/tsconfig.json",
-          "hash": "3858127637514423861"
-        },
-        {
-          "file": "libs/cdk/tsconfig.lib.json",
-          "hash": "11836145196018277961"
-        },
-        {
-          "file": "libs/cdk/tsconfig.lib.prod.json",
-          "hash": "174503844014784742"
-        },
-        {
-          "file": "libs/cdk/tsconfig.spec.json",
-          "hash": "7603213583563969817"
+          "file": "apps/ftu-ui-e2e/tsconfig.json",
+          "hash": "3839629211904585536"
         }
       ],
       "components-atoms": [
@@ -2492,98 +962,6 @@
         {
           "file": "libs/components/atoms/tsconfig.spec.json",
           "hash": "12477985320913577039"
-        }
-      ],
-      "shared-testing": [
-        {
-          "file": "libs/shared/testing/.eslintrc.json",
-          "hash": "9492716180214562236"
-        },
-        {
-          "file": "libs/shared/testing/README.md",
-          "hash": "3421483299886001465"
-        },
-        {
-          "file": "libs/shared/testing/jest.config.ts",
-          "hash": "2839948430713115415"
-        },
-        {
-          "file": "libs/shared/testing/ng-package.json",
-          "hash": "4033380555947335058"
-        },
-        {
-          "file": "libs/shared/testing/package.json",
-          "hash": "7989329343284195434",
-          "deps": [
-            "npm:tslib",
-            "npm:@angular/common",
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "libs/shared/testing/project.json",
-          "hash": "18045080126083356138"
-        },
-        {
-          "file": "libs/shared/testing/src/index.ts",
-          "hash": "10387765830749790764"
-        },
-        {
-          "file": "libs/shared/testing/src/test-setup.ts",
-          "hash": "17711435995618823417",
-          "deps": [
-            "npm:jest-preset-angular"
-          ]
-        },
-        {
-          "file": "libs/shared/testing/tsconfig.json",
-          "hash": "8526453262384300416"
-        },
-        {
-          "file": "libs/shared/testing/tsconfig.lib.json",
-          "hash": "2608290111009010548"
-        },
-        {
-          "file": "libs/shared/testing/tsconfig.lib.prod.json",
-          "hash": "10809217796916261822"
-        },
-        {
-          "file": "libs/shared/testing/tsconfig.spec.json",
-          "hash": "12477985320913577039"
-        }
-      ],
-      "cdk-e2e": [
-        {
-          "file": "apps/cdk-e2e/.eslintrc.json",
-          "hash": "14060216369337943343"
-        },
-        {
-          "file": "apps/cdk-e2e/cypress.config.ts",
-          "hash": "14216760223586679056",
-          "deps": [
-            "npm:cypress",
-            "npm:@nrwl/storybook"
-          ]
-        },
-        {
-          "file": "apps/cdk-e2e/project.json",
-          "hash": "11744528251669801139"
-        },
-        {
-          "file": "apps/cdk-e2e/src/fixtures/example.json",
-          "hash": "11614668686582597233"
-        },
-        {
-          "file": "apps/cdk-e2e/src/support/commands.ts",
-          "hash": "7314691991044890572"
-        },
-        {
-          "file": "apps/cdk-e2e/src/support/e2e.ts",
-          "hash": "3666078656922506009"
-        },
-        {
-          "file": "apps/cdk-e2e/tsconfig.json",
-          "hash": "1788248097864730386"
         }
       ],
       "components-behavioral": [
@@ -3115,157 +1493,962 @@
           "hash": "12477985320913577039"
         }
       ],
-      "shared-theming": [
+      "components-atoms-e2e": [
         {
-          "file": "libs/shared/theming/.eslintrc.json",
-          "hash": "12705483068862594041"
+          "file": "apps/components-atoms-e2e/.eslintrc.json",
+          "hash": "14060216369337943343"
         },
         {
-          "file": "libs/shared/theming/.storybook/main.ts",
-          "hash": "9019494869132775289",
+          "file": "apps/components-atoms-e2e/cypress.config.ts",
+          "hash": "14216760223586679056",
           "deps": [
-            "npm:@storybook/types"
+            "npm:cypress",
+            "npm:@nrwl/storybook"
           ]
         },
         {
-          "file": "libs/shared/theming/.storybook/preview.ts",
-          "hash": "5371924105892952942",
+          "file": "apps/components-atoms-e2e/project.json",
+          "hash": "14160030716550788629"
+        },
+        {
+          "file": "apps/components-atoms-e2e/src/fixtures/example.json",
+          "hash": "11614668686582597233"
+        },
+        {
+          "file": "apps/components-atoms-e2e/src/support/commands.ts",
+          "hash": "7314691991044890572"
+        },
+        {
+          "file": "apps/components-atoms-e2e/src/support/e2e.ts",
+          "hash": "3666078656922506009"
+        },
+        {
+          "file": "apps/components-atoms-e2e/tsconfig.json",
+          "hash": "1788248097864730386"
+        }
+      ],
+      "ftu-ui": [
+        {
+          "file": "apps/ftu-ui/.eslintrc.json",
+          "hash": "16718973154561247339"
+        },
+        {
+          "file": "apps/ftu-ui/jest.config.ts",
+          "hash": "16585745656281408397"
+        },
+        {
+          "file": "apps/ftu-ui/project.json",
+          "hash": "4064905422353803835"
+        },
+        {
+          "file": "apps/ftu-ui/src/app/app-routing.module.ts",
+          "hash": "207906121315740636",
           "deps": [
-            "npm:../../../../.storybook/preview"
-          ]
-        },
-        {
-          "file": "libs/shared/theming/.storybook/tsconfig.json",
-          "hash": "7883368945848992759"
-        },
-        {
-          "file": "libs/shared/theming/README.md",
-          "hash": "6132731157262028409"
-        },
-        {
-          "file": "libs/shared/theming/jest.config.ts",
-          "hash": "11638361277726987314"
-        },
-        {
-          "file": "libs/shared/theming/ng-package.json",
-          "hash": "3202934370241382991"
-        },
-        {
-          "file": "libs/shared/theming/package.json",
-          "hash": "11521071823621007138",
-          "deps": [
-            "npm:tslib",
-            "npm:@angular/common",
             "npm:@angular/core",
-            "npm:angular-material-css-vars"
+            "npm:@angular/router"
           ]
         },
         {
-          "file": "libs/shared/theming/project.json",
-          "hash": "4559028716568189795"
+          "file": "apps/ftu-ui/src/app/app.component.html",
+          "hash": "12344954019091452736"
         },
         {
-          "file": "libs/shared/theming/src/assets/.gitignore",
-          "hash": "3244421341483603138"
+          "file": "apps/ftu-ui/src/app/app.component.scss",
+          "hash": "7185991847998783929"
         },
         {
-          "file": "libs/shared/theming/src/index.ts",
-          "hash": "14864995996323201310"
-        },
-        {
-          "file": "libs/shared/theming/src/lib/button-override-test/button-override-test.component.stories.ts",
-          "hash": "7941801134251738460",
+          "file": "apps/ftu-ui/src/app/app.component.spec.ts",
+          "hash": "8880221372287574122",
           "deps": [
+            "npm:@angular/core",
             "npm:@angular/material",
-            "npm:@storybook/angular"
+            "npm:@angular/platform-browser",
+            "npm:@angular/router",
+            "cdk",
+            "services",
+            "state",
+            "npm:jest-mock-extended",
+            "npm:rxjs",
+            "npm:shallow-render"
           ]
         },
         {
-          "file": "libs/shared/theming/src/lib/state/theming.actions.ts",
-          "hash": "5962676676772397998"
-        },
-        {
-          "file": "libs/shared/theming/src/lib/state/theming.model.ts",
-          "hash": "634852069567806331",
+          "file": "apps/ftu-ui/src/app/app.component.ts",
+          "hash": "14674125638274535424",
           "deps": [
-            "npm:@ngxs/store",
-            "npm:angular-material-css-vars",
-            "npm:zod"
-          ]
-        },
-        {
-          "file": "libs/shared/theming/src/lib/state/theming.state.spec.ts",
-          "hash": "10458221118726681987",
-          "deps": [
-            "npm:@angular/common",
             "npm:@angular/core",
-            "npm:angular-material-css-vars",
-            "npm:jest-mock-extended"
-          ]
-        },
-        {
-          "file": "libs/shared/theming/src/lib/state/theming.state.ts",
-          "hash": "3641854910291428946",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:@ngxs/store",
-            "npm:angular-material-css-vars",
-            "npm:js-yaml",
+            "npm:@angular/material",
+            "npm:@angular/router",
+            "cdk",
+            "components-behavioral",
+            "services",
+            "state",
             "npm:rxjs"
           ]
         },
         {
-          "file": "libs/shared/theming/src/lib/styles/_overrides.scss",
-          "hash": "10217461409946425746"
-        },
-        {
-          "file": "libs/shared/theming/src/lib/styles/_reset.scss",
-          "hash": "15906004436091997509"
-        },
-        {
-          "file": "libs/shared/theming/src/lib/styles/_theming.scss",
-          "hash": "3662920267636066491"
-        },
-        {
-          "file": "libs/shared/theming/src/lib/styles/_utils.scss",
-          "hash": "11154128423801775658"
-        },
-        {
-          "file": "libs/shared/theming/src/lib/styles/_variables.scss",
-          "hash": "10375396533923766284"
-        },
-        {
-          "file": "libs/shared/theming/src/lib/theming.module.ts",
-          "hash": "5708144368276249174",
+          "file": "apps/ftu-ui/src/app/app.init.ts",
+          "hash": "12824812619692526068",
           "deps": [
-            "npm:@angular/core",
-            "npm:@ngxs/store",
-            "npm:angular-material-css-vars"
+            "cdk",
+            "state",
+            "npm:rxjs"
           ]
         },
         {
-          "file": "libs/shared/theming/src/test-setup.ts",
+          "file": "apps/ftu-ui/src/app/app.module.spec.ts",
+          "hash": "12056502185221037743",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "apps/ftu-ui/src/app/app.module.ts",
+          "hash": "645093524688977976",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@angular/elements",
+            "npm:@angular/material",
+            "npm:@angular/platform-browser",
+            "cdk",
+            "components-behavioral",
+            "services",
+            "state",
+            "shared-theming",
+            "npm:@ngxs/store",
+            "npm:ng-inline-svg-2",
+            "npm:ngx-markdown",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "apps/ftu-ui/src/app/pages/ftu-page/ftu.component.html",
+          "hash": "6438547849825614607"
+        },
+        {
+          "file": "apps/ftu-ui/src/app/pages/ftu-page/ftu.component.scss",
+          "hash": "5008583105311454718"
+        },
+        {
+          "file": "apps/ftu-ui/src/app/pages/ftu-page/ftu.component.spec.ts",
+          "hash": "8217571371124531420",
+          "deps": [
+            "npm:@angular/router",
+            "cdk",
+            "npm:rxjs",
+            "npm:shallow-render"
+          ]
+        },
+        {
+          "file": "apps/ftu-ui/src/app/pages/ftu-page/ftu.component.ts",
+          "hash": "4486836741386236649",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "cdk",
+            "components-behavioral",
+            "components-molecules",
+            "state",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "apps/ftu-ui/src/app/pages/ftu-page/ftu.resolver.spec.ts",
+          "hash": "4780469620035556308",
+          "deps": [
+            "npm:@angular/router",
+            "cdk",
+            "npm:jest-mock-extended",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "apps/ftu-ui/src/app/pages/ftu-page/ftu.resolver.ts",
+          "hash": "4452607595995010867",
+          "deps": [
+            "npm:@angular/router",
+            "cdk",
+            "state",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "apps/ftu-ui/src/app/pages/landing-page/landing.component.html",
+          "hash": "3423165639041936995"
+        },
+        {
+          "file": "apps/ftu-ui/src/app/pages/landing-page/landing.component.scss",
+          "hash": "13027103444035360129"
+        },
+        {
+          "file": "apps/ftu-ui/src/app/pages/landing-page/landing.component.spec.ts",
+          "hash": "13339248952055627901",
+          "deps": [
+            "npm:shallow-render",
+            "cdk"
+          ]
+        },
+        {
+          "file": "apps/ftu-ui/src/app/pages/landing-page/landing.component.ts",
+          "hash": "15159734387751289876",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "cdk",
+            "components-behavioral",
+            "state"
+          ]
+        },
+        {
+          "file": "apps/ftu-ui/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/ftu-ui/src/assets/TEMP/2d-ftu-illustrations.jsonld",
+          "hash": "926101701713649916"
+        },
+        {
+          "file": "apps/ftu-ui/src/assets/TEMP/context.jsonld",
+          "hash": "3603993840283832615"
+        },
+        {
+          "file": "apps/ftu-ui/src/assets/TEMP/ctpop-data/ftu-cell-summaries.jsonld",
+          "hash": "16086180797614168508"
+        },
+        {
+          "file": "apps/ftu-ui/src/assets/TEMP/ctpop-data/ftu-datasets.jsonld",
+          "hash": "5554526797177929957"
+        },
+        {
+          "file": "apps/ftu-ui/src/assets/TEMP/ftu-cell-summaries.jsonld",
+          "hash": "10195287543541425158"
+        },
+        {
+          "file": "apps/ftu-ui/src/assets/TEMP/ftu-data.mjs",
+          "hash": "17417319108807103528",
+          "deps": [
+            "npm:fs",
+            "npm:papaparse"
+          ]
+        },
+        {
+          "file": "apps/ftu-ui/src/assets/TEMP/ftu-datasets.jsonld",
+          "hash": "7204727590382367942"
+        },
+        {
+          "file": "apps/ftu-ui/src/assets/links.yml",
+          "hash": "14699790857649302286"
+        },
+        {
+          "file": "apps/ftu-ui/src/assets/resources.yml",
+          "hash": "3977648668475824010"
+        },
+        {
+          "file": "apps/ftu-ui/src/assets/resources/landing-page/more.svg",
+          "hash": "9246311286210866160"
+        },
+        {
+          "file": "apps/ftu-ui/src/assets/resources/landing-page/welcome.svg",
+          "hash": "11036468587142737185"
+        },
+        {
+          "file": "apps/ftu-ui/src/assets/resources/logo.svg",
+          "hash": "347024318566192812"
+        },
+        {
+          "file": "apps/ftu-ui/src/assets/resources/metric-icons/biomarkers.svg",
+          "hash": "5006767065018110698"
+        },
+        {
+          "file": "apps/ftu-ui/src/assets/resources/metric-icons/celltypes.svg",
+          "hash": "16352750245739110602"
+        },
+        {
+          "file": "apps/ftu-ui/src/assets/resources/metric-icons/diversity.svg",
+          "hash": "2650682851046033724"
+        },
+        {
+          "file": "apps/ftu-ui/src/assets/resources/metric-icons/experts.svg",
+          "hash": "11586422475906666721"
+        },
+        {
+          "file": "apps/ftu-ui/src/assets/resources/metric-icons/publications.svg",
+          "hash": "14019932627399420653"
+        },
+        {
+          "file": "apps/ftu-ui/src/assets/resources/metric-icons/structures.svg",
+          "hash": "8417257119682274968"
+        },
+        {
+          "file": "apps/ftu-ui/src/environments/environment.ts",
+          "hash": "15099309730369996338"
+        },
+        {
+          "file": "apps/ftu-ui/src/favicon.ico",
+          "hash": "5366683006319416437"
+        },
+        {
+          "file": "apps/ftu-ui/src/index.html",
+          "hash": "10366372759137128299"
+        },
+        {
+          "file": "apps/ftu-ui/src/main.ts",
+          "hash": "3259059517603285449",
+          "deps": [
+            "npm:@angular/platform-browser-dynamic"
+          ]
+        },
+        {
+          "file": "apps/ftu-ui/src/styles.scss",
+          "hash": "10724785482923888394"
+        },
+        {
+          "file": "apps/ftu-ui/src/test-setup.ts",
           "hash": "17711435995618823417",
           "deps": [
             "npm:jest-preset-angular"
           ]
         },
         {
-          "file": "libs/shared/theming/tsconfig.json",
-          "hash": "317269970080010730"
+          "file": "apps/ftu-ui/tsconfig.app.json",
+          "hash": "8365644956319658761"
         },
         {
-          "file": "libs/shared/theming/tsconfig.lib.json",
-          "hash": "7529274620743644061"
+          "file": "apps/ftu-ui/tsconfig.editor.json",
+          "hash": "17511610827034788226"
         },
         {
-          "file": "libs/shared/theming/tsconfig.lib.prod.json",
+          "file": "apps/ftu-ui/tsconfig.json",
+          "hash": "12094030803572703611"
+        },
+        {
+          "file": "apps/ftu-ui/tsconfig.spec.json",
+          "hash": "12185219321947470017"
+        }
+      ],
+      "cdk": [
+        {
+          "file": "libs/cdk/.eslintrc.json",
+          "hash": "4935447666378220735"
+        },
+        {
+          "file": "libs/cdk/.storybook/main.ts",
+          "hash": "9019494869132775289",
+          "deps": [
+            "npm:@storybook/types"
+          ]
+        },
+        {
+          "file": "libs/cdk/.storybook/preview.ts",
+          "hash": "17801965648041152774",
+          "deps": [
+            "npm:../../../.storybook/preview"
+          ]
+        },
+        {
+          "file": "libs/cdk/.storybook/tsconfig.json",
+          "hash": "7883368945848992759"
+        },
+        {
+          "file": "libs/cdk/README.md",
+          "hash": "2120359614409072653"
+        },
+        {
+          "file": "libs/cdk/injectors/README.md",
+          "hash": "16818657287642325803"
+        },
+        {
+          "file": "libs/cdk/injectors/ng-package.json",
+          "hash": "12781977952105802458"
+        },
+        {
+          "file": "libs/cdk/injectors/src/index.ts",
+          "hash": "10505351079717149574"
+        },
+        {
+          "file": "libs/cdk/injectors/src/lib/dispatch/dispatch.spec.ts",
+          "hash": "6529404557027855859",
+          "deps": [
+            "npm:@angular/core",
+            "shared-utils",
+            "npm:@ngxs/store",
+            "npm:jest-mock-extended",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/cdk/injectors/src/lib/dispatch/dispatch.ts",
+          "hash": "16861238061731842657",
+          "deps": [
+            "npm:@angular/core",
+            "shared-utils",
+            "npm:@ngxs/store",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/cdk/injectors/src/lib/on-destroy/destroy-host.component.spec.ts",
+          "hash": "17821410293069041615",
+          "deps": [
+            "npm:@angular/core",
+            "npm:jest-mock-extended"
+          ]
+        },
+        {
+          "file": "libs/cdk/injectors/src/lib/on-destroy/destroy-host.component.ts",
+          "hash": "18045587520181464008",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "libs/cdk/injectors/src/lib/on-destroy/destructor-subject.spec.ts",
+          "hash": "15755195319096034177",
+          "deps": [
+            "npm:jest-mock-extended",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/cdk/injectors/src/lib/on-destroy/destructor-subject.ts",
+          "hash": "13025175453771381361",
+          "deps": [
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/cdk/injectors/src/lib/on-destroy/on-destroy.spec.ts",
+          "hash": "9853360976910988660",
+          "deps": [
+            "npm:@angular/core",
+            "npm:jest-mock-extended",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/cdk/injectors/src/lib/on-destroy/on-destroy.ts",
+          "hash": "6357717507844541775",
+          "deps": [
+            "npm:@angular/core",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/cdk/injectors/src/lib/select/select-snapshot.spec.ts",
+          "hash": "3854081064276410193",
+          "deps": [
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/cdk/injectors/src/lib/select/select-snapshot.ts",
+          "hash": "10597518864955752696",
+          "deps": [
+            "shared-utils"
+          ]
+        },
+        {
+          "file": "libs/cdk/injectors/src/lib/select/select.spec.ts",
+          "hash": "3576225593313518309",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@ngxs/store",
+            "npm:jest-mock-extended",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/cdk/injectors/src/lib/select/select.ts",
+          "hash": "517611272602804704",
+          "deps": [
+            "npm:@angular/core",
+            "shared-utils",
+            "npm:@ngxs/store",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/cdk/injectors/src/lib/select/snapshot-observer.spec.ts",
+          "hash": "8356617696791144507"
+        },
+        {
+          "file": "libs/cdk/injectors/src/lib/select/snapshot-observer.ts",
+          "hash": "18425185185639480252",
+          "deps": [
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/cdk/jest.config.ts",
+          "hash": "11457132458533849859"
+        },
+        {
+          "file": "libs/cdk/ng-package.json",
+          "hash": "13285560427598943566"
+        },
+        {
+          "file": "libs/cdk/package.json",
+          "hash": "17887507439193461928",
+          "deps": [
+            "npm:tslib",
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@ngxs/store",
+            "shared-theming",
+            "shared-utils"
+          ]
+        },
+        {
+          "file": "libs/cdk/project.json",
+          "hash": "10587274718797623331"
+        },
+        {
+          "file": "libs/cdk/src/assets/.gitignore",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "libs/cdk/src/index.ts",
+          "hash": "2953957022319595119"
+        },
+        {
+          "file": "libs/cdk/src/lib/hover/hover.directive.spec.ts",
+          "hash": "1913258380937875769",
+          "deps": [
+            "npm:shallow-render",
+            "npm:@angular/core",
+            "npm:jest-mock-extended"
+          ]
+        },
+        {
+          "file": "libs/cdk/src/lib/hover/hover.directive.stories.ts",
+          "hash": "14142919141045880259",
+          "deps": [
+            "npm:@storybook/angular"
+          ]
+        },
+        {
+          "file": "libs/cdk/src/lib/hover/hover.directive.ts",
+          "hash": "4155065675057870595",
+          "deps": [
+            "npm:@angular/cdk",
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "libs/cdk/src/lib/link/link.directive.spec.ts",
+          "hash": "3052572314536004367",
+          "deps": [
+            "npm:@angular/router",
+            "npm:shallow-render"
+          ]
+        },
+        {
+          "file": "libs/cdk/src/lib/link/link.directive.stories.ts",
+          "hash": "86214987996314450",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "npm:@storybook/angular"
+          ]
+        },
+        {
+          "file": "libs/cdk/src/lib/link/link.directive.ts",
+          "hash": "11198866598150662574",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "shared-utils"
+          ]
+        },
+        {
+          "file": "libs/cdk/src/test-setup.ts",
+          "hash": "17711435995618823417",
+          "deps": [
+            "npm:jest-preset-angular"
+          ]
+        },
+        {
+          "file": "libs/cdk/state/README.md",
+          "hash": "16027058307555151769"
+        },
+        {
+          "file": "libs/cdk/state/ng-package.json",
+          "hash": "12781977952105802458"
+        },
+        {
+          "file": "libs/cdk/state/src/actions/action-type-registry.spec.ts",
+          "hash": "17847342794122725608"
+        },
+        {
+          "file": "libs/cdk/state/src/actions/action-type-registry.ts",
+          "hash": "12208915969626092735"
+        },
+        {
+          "file": "libs/cdk/state/src/actions/actions.spec.ts",
+          "hash": "15002909689320106497"
+        },
+        {
+          "file": "libs/cdk/state/src/actions/actions.ts",
+          "hash": "11133132527703474306"
+        },
+        {
+          "file": "libs/cdk/state/src/base-href/base-href.actions.ts",
+          "hash": "9373584313680090483"
+        },
+        {
+          "file": "libs/cdk/state/src/base-href/base-href.selectors.spec.ts",
+          "hash": "8093552754969931154"
+        },
+        {
+          "file": "libs/cdk/state/src/base-href/base-href.selectors.ts",
+          "hash": "15190485845871598545",
+          "deps": [
+            "npm:@ngxs/store"
+          ]
+        },
+        {
+          "file": "libs/cdk/state/src/base-href/base-href.state.ts",
+          "hash": "298500790404387110",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@ngxs/store"
+          ]
+        },
+        {
+          "file": "libs/cdk/state/src/base-href/index.ts",
+          "hash": "16652224073155824047"
+        },
+        {
+          "file": "libs/cdk/state/src/index.ts",
+          "hash": "15785206930385040331"
+        },
+        {
+          "file": "libs/cdk/state/src/link-registry/index.ts",
+          "hash": "6186118191831174656"
+        },
+        {
+          "file": "libs/cdk/state/src/link-registry/link-registry.actions.ts",
+          "hash": "14551246276106217963",
+          "deps": [
+            "npm:@angular/router"
+          ]
+        },
+        {
+          "file": "libs/cdk/state/src/link-registry/link-registry.model.ts",
+          "hash": "11134509520787764029",
+          "deps": [
+            "npm:@ngxs/store",
+            "npm:zod"
+          ]
+        },
+        {
+          "file": "libs/cdk/state/src/link-registry/link-registry.selectors.spec.ts",
+          "hash": "11848889547256521984"
+        },
+        {
+          "file": "libs/cdk/state/src/link-registry/link-registry.selectors.ts",
+          "hash": "6225024191304024591",
+          "deps": [
+            "shared-utils",
+            "npm:@ngxs/store"
+          ]
+        },
+        {
+          "file": "libs/cdk/state/src/link-registry/link-registry.state.spec.ts",
+          "hash": "8098086596334089381",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:jest-mock-extended",
+            "npm:@angular/router"
+          ]
+        },
+        {
+          "file": "libs/cdk/state/src/link-registry/link-registry.state.ts",
+          "hash": "11236427956828580773",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "shared-utils",
+            "npm:@ngxs/store",
+            "npm:js-yaml",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/cdk/state/src/resource-registry/index.ts",
+          "hash": "9222413827713563486"
+        },
+        {
+          "file": "libs/cdk/state/src/resource-registry/resource-registry.actions.ts",
+          "hash": "2729585460102165245"
+        },
+        {
+          "file": "libs/cdk/state/src/resource-registry/resource-registry.model.spec.ts",
+          "hash": "15606222886570111715"
+        },
+        {
+          "file": "libs/cdk/state/src/resource-registry/resource-registry.model.ts",
+          "hash": "6267309325180745593",
+          "deps": [
+            "shared-utils",
+            "npm:@ngxs/store",
+            "npm:zod"
+          ]
+        },
+        {
+          "file": "libs/cdk/state/src/resource-registry/resource-registry.selectors.spec.ts",
+          "hash": "8606321133984732687"
+        },
+        {
+          "file": "libs/cdk/state/src/resource-registry/resource-registry.selectors.ts",
+          "hash": "3736634543275535120",
+          "deps": [
+            "npm:@ngxs/store"
+          ]
+        },
+        {
+          "file": "libs/cdk/state/src/resource-registry/resource-registry.state.spec.ts",
+          "hash": "10535022149321034433",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:jest-mock-extended"
+          ]
+        },
+        {
+          "file": "libs/cdk/state/src/resource-registry/resource-registry.state.ts",
+          "hash": "5267851255059252494",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@ngxs/store",
+            "npm:js-yaml",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/cdk/state/src/state.module.ts",
+          "hash": "9664059562872449848",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@ngxs/store"
+          ]
+        },
+        {
+          "file": "libs/cdk/state/src/storage/index.ts",
+          "hash": "13984286354343925153"
+        },
+        {
+          "file": "libs/cdk/state/src/storage/storage.actions.ts",
+          "hash": "4416374281335578214"
+        },
+        {
+          "file": "libs/cdk/state/src/storage/storage.model.ts",
+          "hash": "4790334743241813690",
+          "deps": [
+            "npm:@ngxs/store"
+          ]
+        },
+        {
+          "file": "libs/cdk/state/src/storage/storage.selectors.spec.ts",
+          "hash": "3753210592328697310"
+        },
+        {
+          "file": "libs/cdk/state/src/storage/storage.selectors.ts",
+          "hash": "6895019025396810267",
+          "deps": [
+            "npm:@ngxs/store"
+          ]
+        },
+        {
+          "file": "libs/cdk/state/src/storage/storage.state.spec.ts",
+          "hash": "6342719752559366082",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:jest-mock-extended"
+          ]
+        },
+        {
+          "file": "libs/cdk/state/src/storage/storage.state.ts",
+          "hash": "16374460268053068329",
+          "deps": [
+            "npm:immer",
+            "npm:@angular/core",
+            "npm:@ngxs/store"
+          ]
+        },
+        {
+          "file": "libs/cdk/tsconfig.json",
+          "hash": "3858127637514423861"
+        },
+        {
+          "file": "libs/cdk/tsconfig.lib.json",
+          "hash": "11836145196018277961"
+        },
+        {
+          "file": "libs/cdk/tsconfig.lib.prod.json",
           "hash": "174503844014784742"
         },
         {
-          "file": "libs/shared/theming/tsconfig.spec.json",
+          "file": "libs/cdk/tsconfig.spec.json",
+          "hash": "7603213583563969817"
+        }
+      ],
+      "components-organisms": [
+        {
+          "file": "libs/components/organisms/.eslintrc.json",
+          "hash": "12705483068862594041"
+        },
+        {
+          "file": "libs/components/organisms/.storybook/main.ts",
+          "hash": "9019494869132775289",
+          "deps": [
+            "npm:@storybook/types"
+          ]
+        },
+        {
+          "file": "libs/components/organisms/.storybook/preview.ts",
+          "hash": "16233057565057037795",
+          "deps": [
+            "npm:../../../../.storybook/preview"
+          ]
+        },
+        {
+          "file": "libs/components/organisms/.storybook/tsconfig.json",
+          "hash": "7883368945848992759"
+        },
+        {
+          "file": "libs/components/organisms/README.md",
+          "hash": "12883125116785889895"
+        },
+        {
+          "file": "libs/components/organisms/jest.config.ts",
+          "hash": "15862171111476855641"
+        },
+        {
+          "file": "libs/components/organisms/ng-package.json",
+          "hash": "16550042497887984525"
+        },
+        {
+          "file": "libs/components/organisms/package.json",
+          "hash": "13018521919484950401",
+          "deps": [
+            "npm:tslib",
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "shared-theming"
+          ]
+        },
+        {
+          "file": "libs/components/organisms/project.json",
+          "hash": "15133398748093392736"
+        },
+        {
+          "file": "libs/components/organisms/src/assets/.gitignore",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "libs/components/organisms/src/index.ts",
+          "hash": "5048358956695492968"
+        },
+        {
+          "file": "libs/components/organisms/src/lib/biomarker-table/biomarker-table.component.html",
+          "hash": "18095643554151999449"
+        },
+        {
+          "file": "libs/components/organisms/src/lib/biomarker-table/biomarker-table.component.scss",
+          "hash": "7712275767431091186"
+        },
+        {
+          "file": "libs/components/organisms/src/lib/biomarker-table/biomarker-table.component.spec.ts",
+          "hash": "17831798858808200582",
+          "deps": [
+            "npm:shallow-render",
+            "npm:@angular/material",
+            "cdk",
+            "components-atoms"
+          ]
+        },
+        {
+          "file": "libs/components/organisms/src/lib/biomarker-table/biomarker-table.component.stories.ts",
+          "hash": "14743691165404763051",
+          "deps": [
+            "npm:@storybook/angular"
+          ]
+        },
+        {
+          "file": "libs/components/organisms/src/lib/biomarker-table/biomarker-table.component.ts",
+          "hash": "16313438338868252973",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/common",
+            "npm:@angular/material",
+            "components-molecules",
+            "cdk",
+            "components-atoms"
+          ]
+        },
+        {
+          "file": "libs/components/organisms/src/test-setup.ts",
+          "hash": "17711435995618823417",
+          "deps": [
+            "npm:jest-preset-angular"
+          ]
+        },
+        {
+          "file": "libs/components/organisms/tsconfig.json",
+          "hash": "317269970080010730"
+        },
+        {
+          "file": "libs/components/organisms/tsconfig.lib.json",
+          "hash": "7529274620743644061"
+        },
+        {
+          "file": "libs/components/organisms/tsconfig.lib.prod.json",
+          "hash": "174503844014784742"
+        },
+        {
+          "file": "libs/components/organisms/tsconfig.spec.json",
           "hash": "12477985320913577039"
+        }
+      ],
+      "components-behavioral-e2e": [
+        {
+          "file": "apps/components-behavioral-e2e/.eslintrc.json",
+          "hash": "14060216369337943343"
+        },
+        {
+          "file": "apps/components-behavioral-e2e/cypress.config.ts",
+          "hash": "14216760223586679056",
+          "deps": [
+            "npm:cypress",
+            "npm:@nrwl/storybook"
+          ]
+        },
+        {
+          "file": "apps/components-behavioral-e2e/project.json",
+          "hash": "9189051761668092028"
+        },
+        {
+          "file": "apps/components-behavioral-e2e/src/fixtures/example.json",
+          "hash": "11614668686582597233"
+        },
+        {
+          "file": "apps/components-behavioral-e2e/src/support/commands.ts",
+          "hash": "7314691991044890572"
+        },
+        {
+          "file": "apps/components-behavioral-e2e/src/support/e2e.ts",
+          "hash": "3666078656922506009"
+        },
+        {
+          "file": "apps/components-behavioral-e2e/tsconfig.json",
+          "hash": "1788248097864730386"
         }
       ],
       "services": [
@@ -3461,26 +2644,26 @@
           "hash": "12185219321947470017"
         }
       ],
-      "shared-utils": [
+      "shared-testing": [
         {
-          "file": "libs/shared/utils/.eslintrc.json",
-          "hash": "15804928706045665866"
+          "file": "libs/shared/testing/.eslintrc.json",
+          "hash": "9492716180214562236"
         },
         {
-          "file": "libs/shared/utils/README.md",
-          "hash": "5352665523196431657"
+          "file": "libs/shared/testing/README.md",
+          "hash": "3421483299886001465"
         },
         {
-          "file": "libs/shared/utils/jest.config.ts",
-          "hash": "5051778961387630136"
+          "file": "libs/shared/testing/jest.config.ts",
+          "hash": "2839948430713115415"
         },
         {
-          "file": "libs/shared/utils/ng-package.json",
-          "hash": "3976363793059670840"
+          "file": "libs/shared/testing/ng-package.json",
+          "hash": "4033380555947335058"
         },
         {
-          "file": "libs/shared/utils/package.json",
-          "hash": "10438214016708670313",
+          "file": "libs/shared/testing/package.json",
+          "hash": "7989329343284195434",
           "deps": [
             "npm:tslib",
             "npm:@angular/common",
@@ -3488,80 +2671,980 @@
           ]
         },
         {
-          "file": "libs/shared/utils/project.json",
-          "hash": "10204024446402734242"
+          "file": "libs/shared/testing/project.json",
+          "hash": "18045080126083356138"
         },
         {
-          "file": "libs/shared/utils/src/index.ts",
-          "hash": "12775847155984881838"
+          "file": "libs/shared/testing/src/index.ts",
+          "hash": "10387765830749790764"
         },
         {
-          "file": "libs/shared/utils/src/lib/url/create.spec.ts",
-          "hash": "16415276061265951665",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:@angular/platform-browser",
-            "npm:@angular/router",
-            "npm:jest-mock-extended"
-          ]
-        },
-        {
-          "file": "libs/shared/utils/src/lib/url/create.ts",
-          "hash": "12280141173442968430",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:@angular/platform-browser",
-            "npm:@angular/router"
-          ]
-        },
-        {
-          "file": "libs/shared/utils/src/test-setup.ts",
+          "file": "libs/shared/testing/src/test-setup.ts",
           "hash": "17711435995618823417",
           "deps": [
             "npm:jest-preset-angular"
           ]
         },
         {
-          "file": "libs/shared/utils/tsconfig.json",
+          "file": "libs/shared/testing/tsconfig.json",
           "hash": "8526453262384300416"
         },
         {
-          "file": "libs/shared/utils/tsconfig.lib.json",
-          "hash": "218309403517423108"
+          "file": "libs/shared/testing/tsconfig.lib.json",
+          "hash": "2608290111009010548"
         },
         {
-          "file": "libs/shared/utils/tsconfig.lib.prod.json",
+          "file": "libs/shared/testing/tsconfig.lib.prod.json",
+          "hash": "10809217796916261822"
+        },
+        {
+          "file": "libs/shared/testing/tsconfig.spec.json",
+          "hash": "12477985320913577039"
+        }
+      ],
+      "ftu-ui-small-wc": [
+        {
+          "file": "apps/ftu-ui-small-wc/.eslintrc.json",
+          "hash": "4935447666378220735"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/jest.config.ts",
+          "hash": "7442716372428227125"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/project.json",
+          "hash": "4758450359524365437"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/app/app.component.html",
+          "hash": "18412401602357345736"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/app/app.component.scss",
+          "hash": "16304506411465643379"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/app/app.component.spec.ts",
+          "hash": "11343018965164242433",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/platform-browser",
+            "npm:@angular/router",
+            "cdk",
+            "services",
+            "state",
+            "npm:jest-mock-extended",
+            "npm:rxjs",
+            "npm:shallow-render"
+          ]
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/app/app.component.ts",
+          "hash": "4254257195471082440",
+          "deps": [
+            "npm:@angular/core",
+            "cdk",
+            "components-behavioral",
+            "components-molecules",
+            "services",
+            "state",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/app/app.init.ts",
+          "hash": "10118257922836410621",
+          "deps": [
+            "cdk",
+            "state",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/app/routing/simple-router.service.ts",
+          "hash": "506057465727321909",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "cdk",
+            "state"
+          ]
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/app/routing/simple-router.sevice.spec.ts",
+          "hash": "1610898103695202325",
+          "deps": [
+            "npm:@angular/core",
+            "cdk"
+          ]
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/2d-ftu-illustrations.jsonld",
+          "hash": "926101701713649916"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/context.jsonld",
+          "hash": "3603993840283832615"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/ftu-cell-summaries.jsonld",
+          "hash": "10195287543541425158"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/ftu-data.mjs",
+          "hash": "17417319108807103528",
+          "deps": [
+            "npm:fs",
+            "npm:papaparse"
+          ]
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/ftu-datasets.jsonld",
+          "hash": "7204727590382367942"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-kidney-ascending-thin-loop-of-henle.svg",
+          "hash": "13358503565789726566"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-kidney-cortical-collecting-duct.svg",
+          "hash": "12352959134787722763"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-kidney-descending-thin-loop-of-henle.svg",
+          "hash": "16986887525022844153"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-kidney-inner-medullary-collecting-duct.svg",
+          "hash": "10701968902372289235"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-kidney-nephron.svg",
+          "hash": "10201256766708060923"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-kidney-outer-medullary-collecting-duct.svg",
+          "hash": "2317212824720495441"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-kidney-renal-corpuscle.svg",
+          "hash": "3719658263491023337"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-kidney-thick-ascending-loop-of-henle.svg",
+          "hash": "785336292596491840"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-large-intestine-crypt-lieberkuhn.svg",
+          "hash": "76649557465227495"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-liver-liver-lobule.svg",
+          "hash": "17039418272115263465"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-lung-bronchial-submucosal-gland.svg",
+          "hash": "13544196549966669719"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-lung-pulmonary-alveolus.svg",
+          "hash": "1383321670129198174"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-pancreas-intercalated-duct.svg",
+          "hash": "4594096998664132036"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-pancreas-islets-langerhans.svg",
+          "hash": "2562919137189164320"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-pancreas-pancreatic-acinus.svg",
+          "hash": "125081372088335722"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-prostate-prostate-glandular-acinus.svg",
+          "hash": "8970138156471266718"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-skin-dermal-papilla.svg",
+          "hash": "14365598884711139113"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-skin-epidermal-ridge.svg",
+          "hash": "1861355671741676075"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-small-intestine-villus.svg",
+          "hash": "14438128529822775422"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-spleen-red-pulp.svg",
+          "hash": "887510478060720160"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-spleen-white-pulp.svg",
+          "hash": "3181213621462787909"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/TEMP/temp-svgs/2d-ftu-thymus-thymus-lobule.svg",
+          "hash": "18310116635500023322"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/links.yml",
+          "hash": "15537097682072821175"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/resources.yml",
+          "hash": "13384949820647725166"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/assets/resources/logo.svg",
+          "hash": "347024318566192812"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/favicon.ico",
+          "hash": "5366683006319416437"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/index.html",
+          "hash": "6537945047015480148"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/main.ts",
+          "hash": "7528053080393115276",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@angular/elements",
+            "npm:@angular/material",
+            "npm:@angular/platform-browser",
+            "npm:@angular/router",
+            "cdk",
+            "services",
+            "state",
+            "shared-theming",
+            "npm:@ngxs/store",
+            "npm:ng-inline-svg-2",
+            "npm:ngx-markdown",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/styles.scss",
+          "hash": "17008182900441984469"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/src/test-setup.ts",
+          "hash": "17711435995618823417",
+          "deps": [
+            "npm:jest-preset-angular"
+          ]
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/tsconfig.app.json",
+          "hash": "8365644956319658761"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/tsconfig.editor.json",
+          "hash": "17511610827034788226"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/tsconfig.json",
+          "hash": "12094030803572703611"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc/tsconfig.spec.json",
+          "hash": "2628739785099261941"
+        }
+      ],
+      "cdk-e2e": [
+        {
+          "file": "apps/cdk-e2e/.eslintrc.json",
+          "hash": "14060216369337943343"
+        },
+        {
+          "file": "apps/cdk-e2e/cypress.config.ts",
+          "hash": "14216760223586679056",
+          "deps": [
+            "npm:cypress",
+            "npm:@nrwl/storybook"
+          ]
+        },
+        {
+          "file": "apps/cdk-e2e/project.json",
+          "hash": "11744528251669801139"
+        },
+        {
+          "file": "apps/cdk-e2e/src/fixtures/example.json",
+          "hash": "11614668686582597233"
+        },
+        {
+          "file": "apps/cdk-e2e/src/support/commands.ts",
+          "hash": "7314691991044890572"
+        },
+        {
+          "file": "apps/cdk-e2e/src/support/e2e.ts",
+          "hash": "3666078656922506009"
+        },
+        {
+          "file": "apps/cdk-e2e/tsconfig.json",
+          "hash": "1788248097864730386"
+        }
+      ],
+      "ftu-ui-small-wc-e2e": [
+        {
+          "file": "apps/ftu-ui-small-wc-e2e/.eslintrc.json",
+          "hash": "14060216369337943343"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc-e2e/cypress.config.ts",
+          "hash": "212614215478757206",
+          "deps": [
+            "npm:cypress",
+            "npm:@nrwl/cypress"
+          ]
+        },
+        {
+          "file": "apps/ftu-ui-small-wc-e2e/project.json",
+          "hash": "4734030742956822065"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc-e2e/src/e2e/app.cy.ts",
+          "hash": "12623796774694454867"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc-e2e/src/fixtures/example.json",
+          "hash": "11614668686582597233"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc-e2e/src/support/app.po.ts",
+          "hash": "11157016311132186162"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc-e2e/src/support/commands.ts",
+          "hash": "7314691991044890572"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc-e2e/src/support/e2e.ts",
+          "hash": "3666078656922506009"
+        },
+        {
+          "file": "apps/ftu-ui-small-wc-e2e/tsconfig.json",
+          "hash": "15439127571515986436"
+        }
+      ],
+      "components-molecules-e2e": [
+        {
+          "file": "apps/components-molecules-e2e/.eslintrc.json",
+          "hash": "14060216369337943343"
+        },
+        {
+          "file": "apps/components-molecules-e2e/cypress.config.ts",
+          "hash": "14216760223586679056",
+          "deps": [
+            "npm:cypress",
+            "npm:@nrwl/storybook"
+          ]
+        },
+        {
+          "file": "apps/components-molecules-e2e/project.json",
+          "hash": "17847771588784711339"
+        },
+        {
+          "file": "apps/components-molecules-e2e/src/fixtures/example.json",
+          "hash": "11614668686582597233"
+        },
+        {
+          "file": "apps/components-molecules-e2e/src/support/commands.ts",
+          "hash": "7314691991044890572"
+        },
+        {
+          "file": "apps/components-molecules-e2e/src/support/e2e.ts",
+          "hash": "3666078656922506009"
+        },
+        {
+          "file": "apps/components-molecules-e2e/tsconfig.json",
+          "hash": "1788248097864730386"
+        }
+      ],
+      "medical-illustration-e2e": [
+        {
+          "file": "apps/medical-illustration-e2e/.eslintrc.json",
+          "hash": "14060216369337943343"
+        },
+        {
+          "file": "apps/medical-illustration-e2e/cypress.config.ts",
+          "hash": "212614215478757206",
+          "deps": [
+            "npm:cypress",
+            "npm:@nrwl/cypress"
+          ]
+        },
+        {
+          "file": "apps/medical-illustration-e2e/project.json",
+          "hash": "7513674407389839109"
+        },
+        {
+          "file": "apps/medical-illustration-e2e/src/e2e/app.cy.ts",
+          "hash": "8891025691455825056"
+        },
+        {
+          "file": "apps/medical-illustration-e2e/src/fixtures/example.json",
+          "hash": "11614668686582597233"
+        },
+        {
+          "file": "apps/medical-illustration-e2e/src/support/app.po.ts",
+          "hash": "11157016311132186162"
+        },
+        {
+          "file": "apps/medical-illustration-e2e/src/support/commands.ts",
+          "hash": "7314691991044890572"
+        },
+        {
+          "file": "apps/medical-illustration-e2e/src/support/e2e.ts",
+          "hash": "3666078656922506009"
+        },
+        {
+          "file": "apps/medical-illustration-e2e/tsconfig.json",
+          "hash": "3839629211904585536"
+        }
+      ],
+      "state": [
+        {
+          "file": "libs/state/.eslintrc.json",
+          "hash": "16718973154561247339"
+        },
+        {
+          "file": "libs/state/README.md",
+          "hash": "9255555050732440851"
+        },
+        {
+          "file": "libs/state/jest.config.ts",
+          "hash": "8906525415603136576"
+        },
+        {
+          "file": "libs/state/ng-package.json",
+          "hash": "9186854276481011104"
+        },
+        {
+          "file": "libs/state/package.json",
+          "hash": "15168619975562277079",
+          "deps": [
+            "npm:tslib",
+            "npm:@angular/common",
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "libs/state/project.json",
+          "hash": "16638083398498689630"
+        },
+        {
+          "file": "libs/state/src/index.ts",
+          "hash": "17595015764033398287"
+        },
+        {
+          "file": "libs/state/src/lib/active-ftu/active-ftu.actions.ts",
+          "hash": "9207933457744293607",
+          "deps": [
+            "cdk",
+            "services"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/active-ftu/active-ftu.selectors.spec.ts",
+          "hash": "13397129573852090864",
+          "deps": [
+            "services"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/active-ftu/active-ftu.selectors.ts",
+          "hash": "15041981687302518412",
+          "deps": [
+            "services",
+            "npm:@ngxs/store"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/active-ftu/active-ftu.state.spec.ts",
+          "hash": "9726161907534955716",
+          "deps": [
+            "npm:@ngxs/store",
+            "npm:rxjs",
+            "services",
+            "npm:jest-mock-extended",
+            "cdk"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/active-ftu/active-ftu.state.ts",
+          "hash": "2366891599077336440",
+          "deps": [
+            "npm:@angular/core",
+            "services",
+            "npm:@ngxs/store",
+            "npm:rxjs",
+            "cdk"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/active-ftu/index.ts",
+          "hash": "17835068866374746006"
+        },
+        {
+          "file": "libs/state/src/lib/cell-summary/cell-summary.actions.ts",
+          "hash": "673179730288746693",
+          "deps": [
+            "cdk",
+            "services"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/cell-summary/cell-summary.helpers.spec.ts",
+          "hash": "4480357286572483361",
+          "deps": [
+            "services"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/cell-summary/cell-summary.helpers.ts",
+          "hash": "14759133548849633251",
+          "deps": [
+            "services"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/cell-summary/cell-summary.model.ts",
+          "hash": "3564201969016285547",
+          "deps": [
+            "services",
+            "npm:@ngxs/store",
+            "npm:zod"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/cell-summary/cell-summary.selectors.spec.ts",
+          "hash": "12944047017421784237"
+        },
+        {
+          "file": "libs/state/src/lib/cell-summary/cell-summary.selectors.ts",
+          "hash": "17353626697289101411",
+          "deps": [
+            "npm:@ngxs/store",
+            "services"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/cell-summary/cell-summary.state.spec.ts",
+          "hash": "8140356235896427570",
+          "deps": [
+            "npm:@angular/core",
+            "services",
+            "npm:jest-mock-extended",
+            "npm:rxjs",
+            "npm:@ngxs/store"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/cell-summary/cell-summary.state.ts",
+          "hash": "3964148433207386600",
+          "deps": [
+            "npm:@angular/core",
+            "services",
+            "npm:@ngxs/store",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/cell-summary/index.ts",
+          "hash": "622398451306811967"
+        },
+        {
+          "file": "libs/state/src/lib/contact/contact.actions.ts",
+          "hash": "4098665666506753288",
+          "deps": [
+            "cdk",
+            "services"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/contact/contact.spec.ts",
+          "hash": "15858959959698981559",
+          "deps": [
+            "npm:@angular/core",
+            "services",
+            "npm:@ngxs/store",
+            "npm:jest-mock-extended",
+            "npm:shallow-render"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/contact/contact.state.ts",
+          "hash": "13609709600492946890",
+          "deps": [
+            "npm:@angular/core",
+            "services",
+            "npm:@ngxs/store",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/contact/index.ts",
+          "hash": "5365152247285577720"
+        },
+        {
+          "file": "libs/state/src/lib/download/builtin-formats-ids.ts",
+          "hash": "10467997742580062196"
+        },
+        {
+          "file": "libs/state/src/lib/download/builtin-formats.ts",
+          "hash": "1331851726145760289"
+        },
+        {
+          "file": "libs/state/src/lib/download/download.action.ts",
+          "hash": "4703264202007402356",
+          "deps": [
+            "cdk",
+            "services"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/download/download.model.ts",
+          "hash": "8697376335570800803",
+          "deps": [
+            "npm:@ngxs/store",
+            "npm:zod"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/download/download.selectors.spec.ts",
+          "hash": "17771434092850369556"
+        },
+        {
+          "file": "libs/state/src/lib/download/download.selectors.ts",
+          "hash": "2796126304295425134",
+          "deps": [
+            "npm:@ngxs/store"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/download/download.state.spec.ts",
+          "hash": "93035141649732769",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:jest-mock-extended",
+            "npm:rxjs",
+            "services"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/download/download.state.ts",
+          "hash": "4946476701778104446",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@ngxs/store",
+            "npm:immer",
+            "npm:rxjs",
+            "services"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/download/index.ts",
+          "hash": "6528844866551989383"
+        },
+        {
+          "file": "libs/state/src/lib/illustrator/illustrator.actions.ts",
+          "hash": "8264885596860539451",
+          "deps": [
+            "cdk",
+            "services"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/illustrator/illustrator.selectors.spec.ts",
+          "hash": "1004474754101940264",
+          "deps": [
+            "services"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/illustrator/illustrator.selectors.ts",
+          "hash": "12350262139803629257",
+          "deps": [
+            "services",
+            "npm:@ngxs/store"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/illustrator/illustrator.state.spec.ts",
+          "hash": "16436367806217198495",
+          "deps": [
+            "npm:jest-mock-extended",
+            "npm:@ngxs/store",
+            "services",
+            "npm:rxjs",
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/illustrator/illustrator.state.ts",
+          "hash": "14521916375835323789",
+          "deps": [
+            "npm:@angular/core",
+            "services",
+            "npm:@ngxs/store",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/illustrator/index.ts",
+          "hash": "4181173180407178337"
+        },
+        {
+          "file": "libs/state/src/lib/link-ids.ts",
+          "hash": "16070097098585395122",
+          "deps": [
+            "cdk"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/resource-ids.ts",
+          "hash": "4536480226016107991",
+          "deps": [
+            "cdk"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/resource-types.ts",
+          "hash": "5860916899708347320",
+          "deps": [
+            "cdk"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/screen-mode/index.ts",
+          "hash": "15502264890052029711"
+        },
+        {
+          "file": "libs/state/src/lib/screen-mode/screen-mode.actions.ts",
+          "hash": "4275854460439051675",
+          "deps": [
+            "cdk"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/screen-mode/screen-mode.model.ts",
+          "hash": "6912996369842681567"
+        },
+        {
+          "file": "libs/state/src/lib/screen-mode/screen-mode.selectors.spec.ts",
+          "hash": "14387245995303567877"
+        },
+        {
+          "file": "libs/state/src/lib/screen-mode/screen-mode.selectors.ts",
+          "hash": "2741397538520173839",
+          "deps": [
+            "npm:@ngxs/store"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/screen-mode/screen-mode.spec.ts",
+          "hash": "11407632170654030538",
+          "deps": [
+            "npm:@ngxs/store",
+            "npm:jest-mock-extended"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/screen-mode/screen-mode.state.ts",
+          "hash": "15956107334025242746",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@ngxs/store",
+            "npm:immer"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/source-refs/index.ts",
+          "hash": "10097735491232658290"
+        },
+        {
+          "file": "libs/state/src/lib/source-refs/source-refs.actions.ts",
+          "hash": "16273484738683327925",
+          "deps": [
+            "cdk",
+            "services"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/source-refs/source-refs.selectors.spec.ts",
+          "hash": "6378645811891686441",
+          "deps": [
+            "services"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/source-refs/source-refs.selectors.ts",
+          "hash": "5603770156468913761",
+          "deps": [
+            "services",
+            "npm:@ngxs/store"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/source-refs/source-refs.state.spec.ts",
+          "hash": "7459003679305437338",
+          "deps": [
+            "npm:@angular/core",
+            "services",
+            "npm:jest-mock-extended",
+            "npm:rxjs",
+            "npm:@ngxs/store"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/source-refs/source-refs.state.ts",
+          "hash": "4542576377690842961",
+          "deps": [
+            "npm:@angular/core",
+            "services",
+            "npm:@ngxs/store",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/state-analytics-plugin/default-loggable-actions.ts",
+          "hash": "14222430506840487510",
+          "deps": [
+            "cdk"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/state-analytics-plugin/index.ts",
+          "hash": "6081096871676789416"
+        },
+        {
+          "file": "libs/state/src/lib/state-analytics-plugin/mouse-tracker-module.ts",
+          "hash": "17501165499935866824",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:ngx-google-analytics",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/state-analytics-plugin/state-analytics-plugin.service.spec.ts",
+          "hash": "8618202234067845912",
+          "deps": [
+            "npm:@angular/core",
+            "npm:ngx-google-analytics",
+            "npm:@ngxs/store"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/state-analytics-plugin/state-analytics-plugin.service.ts",
+          "hash": "1319341719025055021",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@ngxs/store",
+            "npm:ngx-google-analytics"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/state.module.ts",
+          "hash": "15418996183023082605",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@ngxs/store",
+            "npm:ngx-google-analytics"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/tissue-library/index.ts",
+          "hash": "5896666771851863567"
+        },
+        {
+          "file": "libs/state/src/lib/tissue-library/tissue-library.actions.ts",
+          "hash": "17310533773845622455",
+          "deps": [
+            "cdk"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/tissue-library/tissue-library.model.ts",
+          "hash": "13558358113903834858",
+          "deps": [
+            "services",
+            "npm:@ngxs/store"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/tissue-library/tissue-library.selectors.spec.ts",
+          "hash": "15107350970617658015",
+          "deps": [
+            "services"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/tissue-library/tissue-library.selectors.ts",
+          "hash": "10341472651027051916",
+          "deps": [
+            "services",
+            "npm:@ngxs/store"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/tissue-library/tissue-library.state.spec.ts",
+          "hash": "2306618017211107469",
+          "deps": [
+            "npm:jest-mock-extended",
+            "services",
+            "npm:@angular/core",
+            "npm:rxjs",
+            "npm:@ngxs/store"
+          ]
+        },
+        {
+          "file": "libs/state/src/lib/tissue-library/tissue-library.state.ts",
+          "hash": "13925918076366244548",
+          "deps": [
+            "npm:@angular/core",
+            "services",
+            "npm:@ngxs/store",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/state/src/test-setup.ts",
+          "hash": "17711435995618823417",
+          "deps": [
+            "npm:jest-preset-angular"
+          ]
+        },
+        {
+          "file": "libs/state/tsconfig.json",
+          "hash": "15487755565970508470"
+        },
+        {
+          "file": "libs/state/tsconfig.lib.json",
+          "hash": "1433058402165730277"
+        },
+        {
+          "file": "libs/state/tsconfig.lib.prod.json",
           "hash": "174503844014784742"
         },
         {
-          "file": "libs/shared/utils/tsconfig.spec.json",
-          "hash": "12477985320913577039"
-        },
-        {
-          "file": "libs/shared/utils/types/README.md",
-          "hash": "17925111189029281891"
-        },
-        {
-          "file": "libs/shared/utils/types/ng-package.json",
-          "hash": "12781977952105802458"
-        },
-        {
-          "file": "libs/shared/utils/types/src/index.ts",
-          "hash": "3422672051695939042"
-        },
-        {
-          "file": "libs/shared/utils/types/src/lib/any.ts",
-          "hash": "4286799299184186940"
-        },
-        {
-          "file": "libs/shared/utils/types/src/lib/function.ts",
-          "hash": "4498803956120529398"
-        },
-        {
-          "file": "libs/shared/utils/types/src/lib/union.ts",
-          "hash": "2823082849072972211"
+          "file": "libs/state/tsconfig.spec.json",
+          "hash": "12185219321947470017"
         }
       ],
       "components-molecules": [
@@ -4231,122 +4314,38 @@
           "hash": "12477985320913577039"
         }
       ],
-      "components-organisms": [
+      "components-organisms-e2e": [
         {
-          "file": "libs/components/organisms/.eslintrc.json",
-          "hash": "12705483068862594041"
+          "file": "apps/components-organisms-e2e/.eslintrc.json",
+          "hash": "14060216369337943343"
         },
         {
-          "file": "libs/components/organisms/.storybook/main.ts",
-          "hash": "9019494869132775289",
+          "file": "apps/components-organisms-e2e/cypress.config.ts",
+          "hash": "14216760223586679056",
           "deps": [
-            "npm:@storybook/types"
+            "npm:cypress",
+            "npm:@nrwl/storybook"
           ]
         },
         {
-          "file": "libs/components/organisms/.storybook/preview.ts",
-          "hash": "16233057565057037795",
-          "deps": [
-            "npm:../../../../.storybook/preview"
-          ]
+          "file": "apps/components-organisms-e2e/project.json",
+          "hash": "1968418124632851860"
         },
         {
-          "file": "libs/components/organisms/.storybook/tsconfig.json",
-          "hash": "7883368945848992759"
+          "file": "apps/components-organisms-e2e/src/fixtures/example.json",
+          "hash": "11614668686582597233"
         },
         {
-          "file": "libs/components/organisms/README.md",
-          "hash": "12883125116785889895"
+          "file": "apps/components-organisms-e2e/src/support/commands.ts",
+          "hash": "7314691991044890572"
         },
         {
-          "file": "libs/components/organisms/jest.config.ts",
-          "hash": "15862171111476855641"
+          "file": "apps/components-organisms-e2e/src/support/e2e.ts",
+          "hash": "3666078656922506009"
         },
         {
-          "file": "libs/components/organisms/ng-package.json",
-          "hash": "16550042497887984525"
-        },
-        {
-          "file": "libs/components/organisms/package.json",
-          "hash": "13018521919484950401",
-          "deps": [
-            "npm:tslib",
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "shared-theming"
-          ]
-        },
-        {
-          "file": "libs/components/organisms/project.json",
-          "hash": "15133398748093392736"
-        },
-        {
-          "file": "libs/components/organisms/src/assets/.gitignore",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "libs/components/organisms/src/index.ts",
-          "hash": "5048358956695492968"
-        },
-        {
-          "file": "libs/components/organisms/src/lib/biomarker-table/biomarker-table.component.html",
-          "hash": "18095643554151999449"
-        },
-        {
-          "file": "libs/components/organisms/src/lib/biomarker-table/biomarker-table.component.scss",
-          "hash": "7712275767431091186"
-        },
-        {
-          "file": "libs/components/organisms/src/lib/biomarker-table/biomarker-table.component.spec.ts",
-          "hash": "17831798858808200582",
-          "deps": [
-            "npm:shallow-render",
-            "npm:@angular/material",
-            "cdk",
-            "components-atoms"
-          ]
-        },
-        {
-          "file": "libs/components/organisms/src/lib/biomarker-table/biomarker-table.component.stories.ts",
-          "hash": "14743691165404763051",
-          "deps": [
-            "npm:@storybook/angular"
-          ]
-        },
-        {
-          "file": "libs/components/organisms/src/lib/biomarker-table/biomarker-table.component.ts",
-          "hash": "16313438338868252973",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/common",
-            "npm:@angular/material",
-            "components-molecules",
-            "cdk",
-            "components-atoms"
-          ]
-        },
-        {
-          "file": "libs/components/organisms/src/test-setup.ts",
-          "hash": "17711435995618823417",
-          "deps": [
-            "npm:jest-preset-angular"
-          ]
-        },
-        {
-          "file": "libs/components/organisms/tsconfig.json",
-          "hash": "317269970080010730"
-        },
-        {
-          "file": "libs/components/organisms/tsconfig.lib.json",
-          "hash": "7529274620743644061"
-        },
-        {
-          "file": "libs/components/organisms/tsconfig.lib.prod.json",
-          "hash": "174503844014784742"
-        },
-        {
-          "file": "libs/components/organisms/tsconfig.spec.json",
-          "hash": "12477985320913577039"
+          "file": "apps/components-organisms-e2e/tsconfig.json",
+          "hash": "1788248097864730386"
         }
       ]
     },
@@ -4493,7 +4492,7 @@
       },
       {
         "file": "package-lock.json",
-        "hash": "6549692459418886003"
+        "hash": "11727778846687452388"
       },
       {
         "file": "package.json",

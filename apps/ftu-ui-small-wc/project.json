@@ -70,7 +70,7 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/ftu-ui-small-wc/**/*.ts", "apps/ftu-ui-small-wc/**/*.html"]

@@ -130,37 +130,37 @@
     {
       "cli": "nx",
       "version": "16.0.0-beta.1",
-      "description": "Replace @nrwl/linter with @nx/linter",
+      "description": "Replace @nx/linter with @nx/linter",
       "implementation": "./src/migrations/update-16-0-0-add-nx-packages/update-16-0-0-add-nx-packages",
-      "package": "@nrwl/linter",
+      "package": "@nx/linter",
       "name": "update-16-0-0-add-nx-packages"
     },
     {
       "version": "16.8.0",
       "description": "update-16-8-0-add-ignored-files",
       "implementation": "./src/migrations/update-16-8-0-add-ignored-files/update-16-8-0-add-ignored-files",
-      "package": "@nrwl/linter",
+      "package": "@nx/linter",
       "name": "update-16-8-0-add-ignored-files"
     },
     {
       "version": "17.0.0-beta.7",
       "description": "update-17-0-0-rename-to-eslint",
       "implementation": "./src/migrations/update-17-0-0-rename-to-eslint/update-17-0-0-rename-to-eslint",
-      "package": "@nrwl/linter",
+      "package": "@nx/linter",
       "name": "update-17-0-0-rename-to-eslint"
     },
     {
       "version": "17.1.0-beta.1",
       "description": "Updates for @typescript-utils/utils v6.9.1+",
       "implementation": "./src/migrations/update-17-1-0/update-typescript-eslint",
-      "package": "@nrwl/linter",
+      "package": "@nx/linter",
       "name": "update-typescript-eslint"
     },
     {
       "version": "17.2.0-beta.0",
       "description": "Simplify eslintFilePatterns",
       "implementation": "./src/migrations/update-17-2-0/simplify-eslint-patterns",
-      "package": "@nrwl/linter",
+      "package": "@nx/linter",
       "name": "simplify-eslint-patterns"
     },
     {
