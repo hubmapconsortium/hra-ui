@@ -18,16 +18,15 @@
     "@angular/platform-browser": "17.0.8",
     "@angular/platform-browser-dynamic": "17.0.8",
     "@angular/router": "17.0.8",
-    "@ngxs/logger-plugin": "^3.8.0",
-    "@ngxs/store": "^3.8.0",
+    "@ngxs/logger-plugin": "^3.8.2",
+    "@ngxs/store": "^3.8.2",
     "@nrwl/angular": "17.2.8",
-    "angular-material-css-vars": "^4.2.3",
+    "angular-material-css-vars": "^6.1.0",
     "immer": "^9.0.21",
     "js-yaml": "^4.1.0",
     "ng-inline-svg-2": "^15.0.1",
-    "ngx-build-plus": "^15.0.0",
     "ngx-google-analytics": "^14.0.1",
-    "ngx-markdown": "^15.1.2",
+    "ngx-markdown": "^17.1.1",
     "normalize.css": "^8.0.1",
     "papaparse": "^5.4.1",
     "rxjs": "7.8.0",
@@ -81,7 +80,7 @@
     "jest-preset-angular": "13.1.5",
     "lint-staged": "^13.2.1",
     "ng-packagr": "17.0.3",
-    "ngx-build-plus": "^15.0.0",
+    "ngx-build-plus": "^17.0.0",
     "nx": "17.2.8",
     "postcss": "^8.4.5",
     "postcss-import": "^15.1.0",
@@ -90,7 +89,7 @@
     "prettier": "^2.8.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "shallow-render": "^15.0.2",
+    "shallow-render": "^17.0.0",
     "ts-jest": "29.1.1",
     "ts-node": "10.9.1",
     "typescript": "5.2.2",
@@ -101,4 +100,3 @@
     "*.{js,ts,css,scss,md,html}": "prettier --write"
   }
 }
-
