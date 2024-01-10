@@ -1,5 +1,4 @@
 {
-  "npmScope": "hra-ui",
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
