@@ -92,7 +92,7 @@
     "webpack": "^5.64.0",
     "@nx/workspace": "17.2.8",
     "@nx/js": "17.2.8",
-    "@nx/linter": "17.2.8"
+    "@nx/eslint": "17.2.8"
   },
   "lint-staged": {
     "*.{js,ts}": "eslint --cache --cache-location \"node_modules/.cache/.eslintcache\" --fix",
