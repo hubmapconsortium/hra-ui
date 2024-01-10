@@ -45,7 +45,6 @@
     "@angular/compiler-cli": "17.0.8",
     "@angular/language-service": "17.0.8",
     "@compodoc/compodoc": "^1.1.19",
-    "@nrwl/jest": "17.2.8",
     "@schematics/angular": "17.0.10",
     "@storybook/addon-essentials": "7.6.7",
     "@storybook/angular": "7.6.7",
@@ -92,7 +91,8 @@
     "@nx/cypress": "17.2.8",
     "@nx/storybook": "17.2.8",
     "@nx/eslint-plugin": "17.2.8",
-    "@nx/web": "17.2.8"
+    "@nx/web": "17.2.8",
+    "@nx/jest": "17.2.8"
   },
   "lint-staged": {
     "*.{js,ts}": "eslint --cache --cache-location \"node_modules/.cache/.eslintcache\" --fix",
