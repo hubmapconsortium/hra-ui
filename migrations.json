@@ -198,9 +198,9 @@
     {
       "cli": "nx",
       "version": "16.0.0-beta.1",
-      "description": "Replace @nrwl/storybook with @nx/storybook",
+      "description": "Replace @nx/storybook with @nx/storybook",
       "implementation": "./src/migrations/update-16-0-0-add-nx-packages/update-16-0-0-add-nx-packages",
-      "package": "@nrwl/storybook",
+      "package": "@nx/storybook",
       "name": "update-16-0-0-add-nx-packages"
     },
     {
@@ -208,7 +208,7 @@
       "version": "16.0.0-beta.1",
       "description": "Update workspace to use Storybook v7",
       "implementation": "./src/migrations/update-16-0-0/update-sb-7",
-      "package": "@nrwl/storybook",
+      "package": "@nx/storybook",
       "name": "update-16-0-0-migrate-7"
     },
     {
@@ -216,7 +216,7 @@
       "version": "16.1.0-beta.0",
       "description": "Ignore @nx/react/plugins/storybook in Storybook eslint rules.",
       "factory": "./src/migrations/update-16-1-0/eslint-ignore-react-plugin",
-      "package": "@nrwl/storybook",
+      "package": "@nx/storybook",
       "name": "update-16-1-0"
     },
     {
@@ -224,7 +224,7 @@
       "version": "16.5.0-beta.0",
       "description": "Move .storybook/tsconfig.json to tsconfig.storybook.json for non-Angular projects.",
       "factory": "./src/migrations/update-16-5-0/move-storybook-tsconfig",
-      "package": "@nrwl/storybook",
+      "package": "@nx/storybook",
       "name": "update-16-5-0"
     },
     {
