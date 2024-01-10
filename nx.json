@@ -1,10 +1,7 @@
 {
   "npmScope": "hra-ui",
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
       "default",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
@@ -18,70 +15,39 @@
   },
   "targetDefaults": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "production",
-        "^production"
-      ]
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"],
+      "cache": true
     },
     "test": {
-      "inputs": [
-        "default",
-        "^production",
-        "{workspaceRoot}/jest.preset.js"
-      ]
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "cache": true
     },
     "e2e": {
-      "inputs": [
-        "default",
-        "^production"
-      ]
+      "inputs": ["default", "^production"],
+      "cache": true
     },
     "lint": {
-      "inputs": [
-        "default",
-        "{workspaceRoot}/.eslintrc.json"
-      ]
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
+      "cache": true
     },
     "storybook": {
-      "dependsOn": [
-        "compodoc-json"
-      ],
-      "inputs": [
-        "default",
-        "^production",
-        "{workspaceRoot}/.storybook/**/*"
-      ]
+      "dependsOn": ["compodoc-json"],
+      "inputs": ["default", "^production", "{workspaceRoot}/.storybook/**/*"]
     },
     "build-storybook": {
-      "dependsOn": [
-        "compodoc-json"
-      ],
-      "inputs": [
-        "default",
-        "^production",
-        "{workspaceRoot}/.storybook/**/*"
-      ]
-    }
-  },
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx-cloud",
-      "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e",
-          "build-storybook",
-          "compodoc",
-          "compodoc-json",
-          "test-doc-coverage"
-        ],
-        "accessToken": "NWM3NTZiNjktMDcyMS00ZmQ3LWFlNzYtZDZkZmY0OTVjYzU3fHJlYWQtd3JpdGU="
-      }
+      "dependsOn": ["compodoc-json"],
+      "inputs": ["default", "^production", "{workspaceRoot}/.storybook/**/*"],
+      "cache": true
+    },
+    "compodoc": {
+      "cache": true
+    },
+    "compodoc-json": {
+      "cache": true
+    },
+    "test-doc-coverage": {
+      "cache": true
     }
   },
   "generators": {
@@ -102,5 +68,6 @@
       "export": true,
       "standalone": true
     }
-  }
+  },
+  "nxCloudAccessToken": "NWM3NTZiNjktMDcyMS00ZmQ3LWFlNzYtZDZkZmY0OTVjYzU3fHJlYWQtd3JpdGU="
 }
