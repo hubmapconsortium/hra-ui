@@ -69,7 +69,7 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   private readonly hasShownSmallViewportNotice = selectQuerySnapshot(
     StorageSelectors.get,
     StorageId.Local,
-    'screen-size-notice'
+    'screen-size-notice',
   );
 
   private readonly setBaseHref = dispatch(BaseHrefActions.Set);
@@ -142,7 +142,7 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
         tap(() => {
           this.reloadDataSets();
           this.reloadActiveFtu(changes['organIri']?.currentValue);
-        })
+        }),
       )
       .subscribe();
   }
@@ -157,7 +157,7 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
               break;
             }
           }
-        })
+        }),
       )
       .subscribe();
   }

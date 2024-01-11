@@ -50,7 +50,7 @@ export class EmailInputComponent implements OnChanges {
     control.valueChanges
       .pipe(
         takeUntil(destroy$),
-        map((value) => (control.valid ? value : undefined))
+        map((value) => (control.valid ? value : undefined)),
       )
       .subscribe((value) => this.emailChange.emit(value as string | undefined));
   }

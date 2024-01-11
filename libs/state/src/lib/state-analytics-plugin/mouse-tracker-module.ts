@@ -43,7 +43,7 @@ export class MouseTrackerModule {
   constructor(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
     @Inject(DOCUMENT) document: any,
-    ga: GoogleAnalyticsService
+    ga: GoogleAnalyticsService,
   ) {
     if (document) {
       trackMousePosition((document as Document).body, ga);

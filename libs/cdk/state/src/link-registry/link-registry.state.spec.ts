@@ -41,7 +41,7 @@ describe('LinkRegistryState', () => {
         new Add(TestId, {
           type: LinkType.Internal,
           commands: [''],
-        })
+        }),
       );
       expect(ctx.patchState).toHaveBeenLastCalledWith({
         [TestId]: {

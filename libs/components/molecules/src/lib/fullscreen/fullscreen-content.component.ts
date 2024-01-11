@@ -15,7 +15,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
           width: '100%',
           position: 'absolute',
           right: '0',
-        })
+        }),
       ),
       state(
         'false',
@@ -23,7 +23,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
           width: '43rem',
           position: 'absolute',
           right: '0',
-        })
+        }),
       ),
       transition('true <=> false', [animate('0.5s ease')]),
     ]),

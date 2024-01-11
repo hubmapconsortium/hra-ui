@@ -21,7 +21,7 @@ export type FieldQuery = <T extends ResourceEntry, K extends keyof T>(
   id: ResourceId,
   type: ResourceType<T>,
   field: K,
-  defaultValue?: T[K]
+  defaultValue?: T[K],
 ) => T[K];
 
 /** Query function for resource data */

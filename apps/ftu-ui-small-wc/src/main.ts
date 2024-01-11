@@ -37,7 +37,7 @@ import { ReplaySubject } from 'rxjs';
         ThemingModule,
         CdkStateModule,
         HraServiceModule,
-        HraStateModule
+        HraStateModule,
       ),
       {
         provide: APP_INITIALIZER,

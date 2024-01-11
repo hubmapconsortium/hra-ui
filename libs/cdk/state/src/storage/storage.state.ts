@@ -73,7 +73,7 @@ export class StorageState {
     ctx.setState(
       produce((draft) => {
         draft[id] += 1;
-      })
+      }),
     );
   }
 }
