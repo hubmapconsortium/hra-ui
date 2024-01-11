@@ -11,7 +11,7 @@ const Template: Story<BiomarkerTableDataCardComponent> = (args) => ({ props: arg
 
 export const Default = Template.bind({});
 
-export const data = [
+export const Data = [
   [
     {
       label: 'Functional Tissue Unit Name',
@@ -57,5 +57,5 @@ export const data = [
 ];
 
 Default.args = {
-  data: data,
+  data: Data,
 };
