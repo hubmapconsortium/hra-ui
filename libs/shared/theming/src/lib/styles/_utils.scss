@@ -1,4 +1,4 @@
-@forward 'angular-material-css-vars/src/lib/public-util';
+@forward 'angular-material-css-vars';
 
 /// Mixin to make an element visually hidden but still accessible to screen readers.
 @mixin sr-only() {
