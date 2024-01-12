@@ -2,8 +2,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { ResourceRegistryActions, ResourceRegistryState } from '@hra-ui/cdk/state';
 import { DataItem } from '@hra-ui/components/molecules';
 import { SourceRefsState } from '@hra-ui/state';
-import { Meta, Story, moduleMetadata } from '@storybook/angular';
+import { Meta, Story, applicationConfig, moduleMetadata } from '@storybook/angular';
 import { BiomarkerDetailsComponent } from './biomarker-details.component';
+import { FtuDataService, MockFtuDataService } from '@hra-ui/services';
 
 export function createDataItem(label: string, value: string): DataItem {
   return { label, value };
@@ -24,6 +25,9 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [MatIconModule],
+    }),
+    applicationConfig({
+      providers: [{ provide: FtuDataService, useExisting: MockFtuDataService }],
     }),
   ],
 } as Meta<BiomarkerDetailsComponent>;

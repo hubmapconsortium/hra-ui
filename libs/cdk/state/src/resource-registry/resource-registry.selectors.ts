@@ -110,7 +110,7 @@ export class ResourceRegistrySelectors {
    * @returns Url query function
    */
   @Selector([ResourceRegistrySelectors.field, BaseHrefSelectors.baseHref])
-  static url(getField: FieldQuery, baseHref: string): DataQuery<string> {
+  static url(getField: FieldQuery, baseHref = ''): DataQuery<string> {
     return (id) => {
       const relUrl = getField(id, BuiltinResourceType.Url, 'url', '');
       return relUrl !== '' ? baseHref + relUrl : '';

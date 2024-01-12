@@ -17,6 +17,6 @@ const Template: Story<BiomarkerTableDataIconComponent> = (args: BiomarkerTableDa
 
 export const Primary = Template.bind({});
 Primary.args = {
-  color: '#FFFFFF',
-  size: 1,
+  color: 'grey',
+  size: 2,
 };
