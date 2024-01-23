@@ -15,9 +15,9 @@ body {
 $mat-css-default-light-theme: map-merge(
   mat-css.$default-light-theme,
   (
-    --palette-primary-100: mat-css.hex-to-rgb(#c6ecf6),
-    --palette-primary-500: mat-css.hex-to-rgb(#006298),
-    --palette-primary-700: mat-css.hex-to-rgb(#00385f),
+    --palette-primary-100-no-rgb: mat-css.hex-to-rgb(#c6ecf6),
+    --palette-primary-500-no-rgb: mat-css.hex-to-rgb(#006298),
+    --palette-primary-700-no-rgb: mat-css.hex-to-rgb(#00385f),
     --palette-accent-A100: mat-css.hex-to-rgb(#fff7f8),
     --palette-accent-A200: mat-css.hex-to-rgb(#990000),
     --palette-warn-500: mat-css.hex-to-rgb(#dc231e),
