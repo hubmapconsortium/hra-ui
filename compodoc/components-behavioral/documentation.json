@@ -26,6 +26,7 @@
                 "./biomarker-details.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [
@@ -40,7 +41,7 @@
                     "line": 130,
                     "rawdescription": "\n\nbutton text of empty biomarker component.\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -54,7 +55,7 @@
                     "line": 69,
                     "rawdescription": "\nInfo to be shown on the tooltip for Gradient Legend",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -68,7 +69,7 @@
                     "line": 78,
                     "rawdescription": "\nGradient colors along with their stop points",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -82,7 +83,7 @@
                     "line": 105,
                     "rawdescription": "\nAction to highlight a cell type",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -96,7 +97,7 @@
                     "line": 91,
                     "rawdescription": "\n\nIri  of medical illustration behavior component\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -121,7 +122,7 @@
                     "line": 102,
                     "rawdescription": "\nIllustration mapping data",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -135,7 +136,7 @@
                     "line": 135,
                     "rawdescription": "\n\nmessage markdown of empty biomarker component.\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -149,7 +150,7 @@
                     "line": 99,
                     "rawdescription": "\nSelects the cells hovered currently to highlight in table",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -163,7 +164,7 @@
                     "line": 72,
                     "rawdescription": "\nInfo to be shown on the tooltip for Size Legend",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -177,7 +178,7 @@
                     "line": 83,
                     "rawdescription": "\nTaking input for the radius of the circle and the label to be displayed.",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -191,7 +192,7 @@
                     "line": 86,
                     "rawdescription": "\nList of sources with titles and links displayed to the user",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -205,7 +206,7 @@
                     "line": 66,
                     "rawdescription": "\nTable tabs",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -219,7 +220,7 @@
                     "line": 96,
                     "rawdescription": "\n\nGet all tissues\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 }
             ],
@@ -291,10 +292,10 @@
                             "name": {
                                 "pos": 5574,
                                 "end": 5579,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "event"
                             },
                             "type": "MatTabChangeEvent",
@@ -303,10 +304,10 @@
                             "tagName": {
                                 "pos": 5568,
                                 "end": 5573,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": "<p>tab change event</p>\n"
@@ -330,6 +331,57 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatIconModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatTabsModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatDialogModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BiomarkerTableComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "BiomarkerTableDataCardComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "GradientLegendComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "HoverDirective",
+                    "type": "directive"
+                },
+                {
+                    "name": "LabelBoxComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "SizeLegendComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "SourceListComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "EmptyBiomarkerComponent",
+                    "type": "component"
+                }
+            ],
             "description": "<p>The component displays the biomarker details which includes the details, gradient legends, size legends and source lists</p>\n",
             "rawdescription": "\nThe component displays the biomarker details which includes the details, gradient legends, size legends and source lists",
             "type": "component",
@@ -337,11 +389,12 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use 'variables' as vars;\n\n:host {\n  display: grid;\n  grid-template-columns: 1fr 1fr auto;\n  grid-template-rows: 3.5rem auto 3rem 5rem minmax(auto, 1fr);\n  grid-template-areas:\n    'table-header table-header table-header'\n    'table table table'\n    'gradient-legend-header size-legend-header .'\n    'gradient-legend size-legend .'\n    'source-list source-list source-list';\n  overflow-y: auto;\n\n  .table-header {\n    grid-area: table-header;\n    border-bottom: 0.063rem solid #d3d3d3;\n    height: 3.5rem;\n    font-weight: 400;\n    span {\n      cursor: pointer;\n      padding: 0.4rem;\n      &:hover {\n        background-color: #d3d3d3;\n        border-radius: 5px;\n      }\n    }\n  }\n\n  .table {\n    grid-area: table;\n    max-width: 100%;\n    overflow: auto;\n    border-bottom: 0.063rem solid #d3d3d3;\n\n    ::ng-deep .table-tab-header {\n      border-bottom: 0.063rem solid #d3d3d3;\n      background-color: white;\n      font-weight: 400;\n      letter-spacing: 0;\n      font-size: 1rem;\n      height: 3.5rem;\n\n      &:not(:first-child) {\n        border-left: 0.063rem solid #d3d3d3;\n      }\n\n      &:last-child {\n        border-right: 0.063rem solid #d3d3d3;\n      }\n\n      &.mdc-tab-indicator--active {\n        background-color: #f8f9fa;\n      }\n\n      &:hover {\n        background-color: #f8f9fa;\n      }\n      .mat-tab__text-label {\n        --palette-accent-500-rgb: #243142;\n      }\n    }\n  }\n\n  ::ng-deep {\n    .table-tab-header > .mdc-tab__content > span {\n      color: vars.$primary;\n    }\n    .mat-mdc-tab-group.mat-accent .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {\n      color: vars.$primary;\n    }\n\n    .mat-mdc-tab-body-content {\n      max-height: 21.5rem;\n    }\n\n    ::ng-deep .mdc-tab__text-label {\n      color: black !important;\n    }\n\n    ::ng-deep .mdc-tab-indicator__content--underline {\n      border-color: #990000 !important;\n      border-top-width: 4px !important;\n    }\n  }\n\n  .legend-header {\n    color: vars.$dark-primary-text;\n    border-top: 0.063rem solid #d3d3d3;\n    border-bottom: 0.063rem solid #d3d3d3;\n    border-right: 0.063rem solid #d3d3d3;\n    font-size: 0.875rem;\n    gap: 0.5rem;\n    min-width: max-content;\n    line-height: normal;\n\n    &.gradient {\n      grid-area: gradient-legend-header;\n    }\n\n    &.size {\n      grid-area: size-legend-header;\n    }\n  }\n\n  .legend {\n    padding: 1rem 2rem;\n    border-right: 0.063rem solid #d3d3d3;\n\n    &.gradient {\n      grid-area: gradient-legend;\n\n      .content {\n        width: 10rem;\n      }\n    }\n\n    &.size {\n      grid-area: size-legend;\n    }\n  }\n\n  .source-list {\n    grid-area: source-list;\n  }\n\n  .cursor {\n    cursor: default;\n  }\n}\n\n::ng-deep .biomarker-details.info-tooltip {\n  display: flex;\n  padding: 1rem;\n  border: 1px solid #a8a3a3;\n  border-radius: 0.5rem;\n  box-shadow: 1px 2px 16px 2px #00000029;\n  background-color: vars.$primary-contrast-rgb;\n  max-width: 21rem;\n  font-size: small;\n  font-family: Inter;\n}\n\n::ng-deep .mdc-tab__ripple::before {\n  opacity: 0 !important;\n}\n",
+                    "data": "@use 'variables' as vars;\n\n:host {\n  display: grid;\n  grid-template-columns: 1fr 1fr auto;\n  grid-template-rows: 3.5rem auto 3rem 5rem minmax(auto, 1fr);\n  grid-template-areas:\n    'table-header table-header table-header'\n    'table table table'\n    'gradient-legend-header size-legend-header .'\n    'gradient-legend size-legend .'\n    'source-list source-list source-list';\n  overflow-y: auto;\n\n  .table-header {\n    grid-area: table-header;\n    border-bottom: 0.063rem solid #d3d3d3;\n    height: 3.5rem;\n    font-weight: 400;\n    span {\n      cursor: pointer;\n      padding: 0.4rem;\n      &:hover {\n        background-color: #d3d3d3;\n        border-radius: 5px;\n      }\n    }\n  }\n\n  .table {\n    grid-area: table;\n    max-width: 100%;\n    min-height: 10rem;\n    overflow: auto;\n    border-bottom: 0.063rem solid #d3d3d3;\n\n    ::ng-deep .table-tab-header {\n      border-bottom: 0.063rem solid #d3d3d3;\n      background-color: white;\n      font-weight: 400;\n      letter-spacing: 0;\n      font-size: 1rem;\n      height: 3.5rem;\n\n      &:not(:first-child) {\n        border-left: 0.063rem solid #d3d3d3;\n      }\n\n      &:last-child {\n        border-right: 0.063rem solid #d3d3d3;\n      }\n\n      &.mdc-tab-indicator--active {\n        background-color: #f8f9fa;\n      }\n\n      &:hover {\n        background-color: #f8f9fa;\n      }\n      .mat-tab__text-label {\n        --palette-accent-500-rgb: #243142;\n      }\n    }\n  }\n\n  ::ng-deep {\n    .table-tab-header > .mdc-tab__content > span {\n      color: vars.$primary;\n    }\n    .mat-mdc-tab-group.mat-accent .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {\n      color: vars.$primary;\n    }\n\n    .mat-mdc-tab-body-content {\n      max-height: 21.5rem;\n    }\n\n    ::ng-deep .mdc-tab__text-label {\n      color: black !important;\n    }\n\n    ::ng-deep .mdc-tab-indicator__content--underline {\n      border-color: #990000 !important;\n      border-top-width: 4px !important;\n    }\n  }\n\n  .legend-header {\n    color: vars.$dark-primary-text;\n    border-top: 0.063rem solid #d3d3d3;\n    border-bottom: 0.063rem solid #d3d3d3;\n    border-right: 0.063rem solid #d3d3d3;\n    font-size: 0.875rem;\n    gap: 0.5rem;\n    min-width: max-content;\n    line-height: normal;\n\n    &.gradient {\n      grid-area: gradient-legend-header;\n    }\n\n    &.size {\n      grid-area: size-legend-header;\n    }\n  }\n\n  .legend {\n    padding: 1rem 2rem;\n    border-right: 0.063rem solid #d3d3d3;\n\n    &.gradient {\n      grid-area: gradient-legend;\n\n      .content {\n        width: 10rem;\n      }\n    }\n\n    &.size {\n      grid-area: size-legend;\n    }\n  }\n\n  .source-list {\n    grid-area: source-list;\n  }\n\n  .cursor {\n    cursor: default;\n  }\n}\n\n::ng-deep .biomarker-details.info-tooltip {\n  display: flex;\n  padding: 1rem;\n  border: 1px solid #a8a3a3;\n  border-radius: 0.5rem;\n  box-shadow: 1px 2px 16px 2px #00000029;\n  background-color: vars.$primary-contrast-rgb;\n  max-width: 21rem;\n  font-size: small;\n  font-family: Inter;\n}\n\n::ng-deep .mdc-tab__ripple::before {\n  opacity: 0 !important;\n}\n",
                     "styleUrl": "./biomarker-details.component.scss"
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "accessors": {
                 "tissueInfo": {
                     "name": "tissueInfo",
@@ -387,6 +440,7 @@
                 "./biomarker-details-wc.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [
@@ -401,7 +455,7 @@
                     "line": 146,
                     "rawdescription": "\n\nbutton text of empty biomarker component.\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -415,7 +469,7 @@
                     "line": 72,
                     "rawdescription": "\n\nCurrent illustration url\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -429,7 +483,7 @@
                     "line": 112,
                     "rawdescription": "\nInfo to be shown on the tooltip for Gradient Legend",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -443,7 +497,7 @@
                     "line": 121,
                     "rawdescription": "\nGradient colors along with their stop points",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -457,7 +511,7 @@
                     "line": 82,
                     "rawdescription": "\n\nIri  of medical illustration behavior component\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -482,7 +536,7 @@
                     "line": 77,
                     "rawdescription": "\n\nCurrent mapping file\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -496,7 +550,7 @@
                     "line": 151,
                     "rawdescription": "\n\nmessage markdown of empty biomarker component.\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -510,7 +564,7 @@
                     "line": 115,
                     "rawdescription": "\nInfo to be shown on the tooltip for Size Legend",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -524,7 +578,7 @@
                     "line": 126,
                     "rawdescription": "\nTaking input for the radius of the circle and the label to be displayed.",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -538,7 +592,7 @@
                     "line": 129,
                     "rawdescription": "\nList of sources with titles and links displayed to the user",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -552,7 +606,7 @@
                     "line": 109,
                     "rawdescription": "\nTable tabs",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -566,7 +620,7 @@
                     "line": 87,
                     "rawdescription": "\n\nGet all tissues\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -580,7 +634,7 @@
                     "line": 106,
                     "rawdescription": "\n\nUpdates the active node on node click\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -594,7 +648,7 @@
                     "line": 101,
                     "rawdescription": "\n\nUpdates the active node on node hover\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 }
             ],
@@ -634,10 +688,10 @@
                             "name": {
                                 "pos": 5516,
                                 "end": 5521,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "event"
                             },
                             "type": "MatTabChangeEvent",
@@ -646,10 +700,10 @@
                             "tagName": {
                                 "pos": 5510,
                                 "end": 5515,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": "<p>tab change event</p>\n"
@@ -673,6 +727,57 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatIconModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatTabsModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BiomarkerTableComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "BiomarkerTableDataCardComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "GradientLegendComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "HoverDirective",
+                    "type": "directive"
+                },
+                {
+                    "name": "LabelBoxComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "SizeLegendComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "SourceListComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "EmptyBiomarkerComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "InteractiveSvgComponent",
+                    "type": "component"
+                }
+            ],
             "description": "<p>Component for Biomarker Table Details Web component</p>\n",
             "rawdescription": "\nComponent for Biomarker Table Details Web component",
             "type": "component",
@@ -685,6 +790,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "accessors": {
                 "tissueTitle": {
                     "name": "tissueTitle",
@@ -730,6 +836,7 @@
                 "./contact-behavior.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [
@@ -744,7 +851,7 @@
                     "line": 30,
                     "rawdescription": "\nInformation modal message to the user",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -763,7 +870,8 @@
                         }
                     ],
                     "modifierKind": [
-                        144
+                        170,
+                        148
                     ]
                 },
                 {
@@ -777,7 +885,7 @@
                     "line": 24,
                     "rawdescription": "\nInput for product logo URL to displayed on the left side.",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -791,7 +899,7 @@
                     "line": 27,
                     "rawdescription": "\nInput for product title to displayed on the left side.",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -805,7 +913,7 @@
                     "line": 33,
                     "rawdescription": "\nA dispatcher function to send message entered by user",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 }
             ],
@@ -857,6 +965,25 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatDialogModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ContactModalComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "InfoModalComponent",
+                    "type": "component"
+                }
+            ],
             "description": "<p>A Component for contact behavior which sends the message entered by the user and shows an acknowledgement</p>\n",
             "rawdescription": "\nA Component for contact behavior which sends the message entered by the user and shows an acknowledgement",
             "type": "component",
@@ -869,6 +996,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<hra-contact-modal\n  class=\"contact-modal\"\n  [productLogoUrl]=\"productLogoUrl()\"\n  [productTitle]=\"productTitle()\"\n  (submitClick)=\"submit($event)\"\n  (closeClick)=\"close()\"\n>\n</hra-contact-modal>\n\n<ng-template #postMessage>\n  <hra-info-modal\n    class=\"info-modal\"\n    [productLogoUrl]=\"productLogoUrl()\"\n    [productTitle]=\"productTitle()\"\n    [description]=\"description()\"\n    (closeClick)=\"close()\"\n  >\n  </hra-info-modal>\n</ng-template>\n"
         },
         {
@@ -890,6 +1018,7 @@
                 "./footer-behavior.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [
@@ -904,7 +1033,7 @@
                     "line": 41,
                     "rawdescription": "\nA dispatcher function to download file in specified format",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -918,7 +1047,7 @@
                     "line": 29,
                     "rawdescription": "\nSelects a snapshot of the current value of the available download formats",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -932,7 +1061,7 @@
                     "line": 38,
                     "rawdescription": "\nEmbed link routing after clicking on Embed",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -946,7 +1075,7 @@
                     "line": 32,
                     "rawdescription": "\nHra portal link routing after clicking on HRA Portal",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -960,7 +1089,7 @@
                     "line": 35,
                     "rawdescription": "\nMetadata page link routing after clicking on Illustration",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -974,7 +1103,7 @@
                     "line": 23,
                     "rawdescription": "\nInput for product logo URL to displayed on the left side.",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -988,7 +1117,7 @@
                     "line": 26,
                     "rawdescription": "\nInput for product title to displayed on the left side.",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1002,7 +1131,7 @@
                     "line": 43,
                     "rawdescription": "\nSelects the current value of the available ScreenMode Size",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 }
             ],
@@ -1024,6 +1153,25 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatDialogModule",
+                    "type": "module"
+                },
+                {
+                    "name": "FooterComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "ContactBehaviorComponent",
+                    "type": "component"
+                }
+            ],
             "description": "<p>A component for footer behavior which provides functionality for various buttons in footer</p>\n",
             "rawdescription": "\nA component for footer behavior which provides functionality for various buttons in footer",
             "type": "component",
@@ -1036,6 +1184,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<hra-footer\n  [productLogoUrl]=\"productLogoUrl()\"\n  [productTitle]=\"productTitle()\"\n  [hraPortal]=\"hraPortal\"\n  [illustrationMetadata]=\"illustrationMetadata\"\n  [embed]=\"embed\"\n  [downloadFormats]=\"downloadFormats()\"\n  (contactClick)=\"contact()\"\n  (download)=\"download($event.id)\"\n  [size]=\"size()\"\n>\n</hra-footer>\n"
         },
         {
@@ -1057,6 +1206,7 @@
                 "./header-behavior.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [
@@ -1071,7 +1221,7 @@
                     "line": 41,
                     "rawdescription": "\n\nInput for about link for user click action.\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1085,7 +1235,7 @@
                     "line": 31,
                     "rawdescription": "\n\nInput for app title to show on the left side.\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1099,7 +1249,7 @@
                     "line": 21,
                     "rawdescription": "\n\nInput for product logo URL to displayed on the left side.\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1113,7 +1263,7 @@
                     "line": 26,
                     "rawdescription": "\n\nInput for product title to displayed on the left side.\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1127,7 +1277,7 @@
                     "line": 36,
                     "rawdescription": "\n\nInput for product title link for user click action\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 }
             ],
@@ -1136,6 +1286,17 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "HeaderComponent",
+                    "type": "component"
+                }
+            ],
             "description": "<p>Component for Header Behavior</p>\n",
             "rawdescription": "\nComponent for Header Behavior",
             "type": "component",
@@ -1148,6 +1309,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<hra-header\n  [productLogoUrl]=\"productLogoUrl()\"\n  [productTitle]=\"productTitle()\"\n  [appTitle]=\"appTitle()\"\n  [productTitleLink]=\"productTitleLink\"\n  [aboutLink]=\"aboutLink\"\n>\n</hra-header>\n"
         },
         {
@@ -1169,6 +1331,7 @@
                 "./hra-landing-page-intro-wc-behaviour.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [
@@ -1183,7 +1346,7 @@
                     "line": 21,
                     "rawdescription": "\nselect snapshot for landing page intro description",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1197,7 +1360,7 @@
                     "line": 25,
                     "rawdescription": "\nselect snapshot for landing page intro partners",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1211,7 +1374,7 @@
                     "line": 23,
                     "rawdescription": "\nselect snapshot for landing page intro partners",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1225,7 +1388,7 @@
                     "line": 19,
                     "rawdescription": "\nselect snapshot for Landing Page title",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 }
             ],
@@ -1234,6 +1397,17 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "HraLandingPageIntroWcComponent",
+                    "type": "component"
+                }
+            ],
             "description": "<p>Component for LandingPage Intro Behaviour: Web component</p>\n",
             "rawdescription": "\nComponent for LandingPage Intro Behaviour: Web component",
             "type": "component",
@@ -1241,11 +1415,12 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: block;\n\n  .intro {\n    display: inline-grid;\n    border: 1px solid #e2e7e9;\n    padding: 24px 32px 24px 32px;\n    width: 100%;\n  }\n}\n",
+                    "data": ":host {\n  display: block;\n\n  .intro {\n    display: inline-grid;\n    border: 1px solid #d3d3d3;\n    padding: 24px 32px 24px 32px;\n    width: 100%;\n  }\n}\n",
                     "styleUrl": "./hra-landing-page-intro-wc-behaviour.component.scss"
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<hra-ui-hra-landing-page-intro-wc\n  class=\"intro\"\n  [description]=\"landingPageIntroDescription()\"\n  [partners]=\"landingPageIntroPartners()\"\n  [readMore]=\"landingPageIntroReadMore()\"\n  [title]=\"landingPageIntroTitle()\"\n></hra-ui-hra-landing-page-intro-wc>\n"
         },
         {
@@ -1267,6 +1442,7 @@
                 "./landing-page-content.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [
@@ -1281,7 +1457,7 @@
                     "line": 37,
                     "rawdescription": "\nBase href",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1300,7 +1476,8 @@
                         }
                     ],
                     "modifierKind": [
-                        144
+                        170,
+                        148
                     ]
                 },
                 {
@@ -1314,7 +1491,7 @@
                     "line": 57,
                     "rawdescription": "\nselect snapshot for landing page depth description",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1328,7 +1505,7 @@
                     "line": 61,
                     "rawdescription": "\nselect snapshot for landing page depth img",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1342,7 +1519,7 @@
                     "line": 59,
                     "rawdescription": "\nselect snapshot forlanding page depth more text",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1356,7 +1533,7 @@
                     "line": 55,
                     "rawdescription": "\nselect snapshot for landing page depth title",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1370,7 +1547,7 @@
                     "line": 41,
                     "rawdescription": "\nselect snapshot for landing page intro description",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1384,7 +1561,7 @@
                     "line": 47,
                     "rawdescription": "\nselect snapshot for landing page intro img",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1398,7 +1575,7 @@
                     "line": 45,
                     "rawdescription": "\nselect snapshot for landing page intro more text",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1412,7 +1589,7 @@
                     "line": 43,
                     "rawdescription": "\nselect snapshot for landing page intro partners",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1426,7 +1603,7 @@
                     "line": 39,
                     "rawdescription": "\nselect snapshot for Landing Page title",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1440,7 +1617,7 @@
                     "line": 64,
                     "rawdescription": "\nExpose links for use it template",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1454,7 +1631,7 @@
                     "line": 49,
                     "rawdescription": "\nselect snapshot for metrics",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1468,7 +1645,7 @@
                     "line": 53,
                     "rawdescription": "\nselect snapshot for metrics logo",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1482,7 +1659,7 @@
                     "line": 51,
                     "rawdescription": "\nselect snapshot for metrics title",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 }
             ],
@@ -1537,6 +1714,25 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "LandingPageIntroComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "MetricsComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "LandingPageInDepthComponent",
+                    "type": "component"
+                }
+            ],
             "description": "<p>Component for LandingPageContent Behavior</p>\n",
             "rawdescription": "\nComponent for LandingPageContent Behavior",
             "type": "component",
@@ -1549,6 +1745,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "implements": [
                 "AfterViewInit"
             ],
@@ -1573,6 +1770,7 @@
                 "./medical-illustration-behavior.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [
@@ -1587,7 +1785,7 @@
                     "line": 23,
                     "rawdescription": "\n\nCurrent illustration url\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1601,7 +1799,7 @@
                     "line": 33,
                     "rawdescription": "\n\nCurent highlighted cell id\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1615,7 +1813,7 @@
                     "line": 38,
                     "rawdescription": "\n\nIri  of medical illustration behavior component\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1629,7 +1827,7 @@
                     "line": 28,
                     "rawdescription": "\n\nCurrent mapping file\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1643,7 +1841,7 @@
                     "line": 43,
                     "rawdescription": "\n\nGet all tissues\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1657,7 +1855,7 @@
                     "line": 62,
                     "rawdescription": "\n\nUpdates the active node on node click\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1671,7 +1869,7 @@
                     "line": 57,
                     "rawdescription": "\n\nUpdates the active node on node hover\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 }
             ],
@@ -1680,6 +1878,21 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "InteractiveSvgComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "LabelBoxComponent",
+                    "type": "component"
+                }
+            ],
             "description": "<p>Behavior component for medical illustration component</p>\n",
             "rawdescription": "\n\nBehavior component for medical illustration component\n",
             "type": "component",
@@ -1692,6 +1905,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "accessors": {
                 "tissueTitle": {
                     "name": "tissueTitle",
@@ -1726,6 +1940,7 @@
                 "./screen-notice-behavior.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [
@@ -1740,7 +1955,7 @@
                     "line": 21,
                     "rawdescription": "\nContent  of screen notice behavior component",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1754,7 +1969,7 @@
                     "line": 24,
                     "rawdescription": "\nHra portal link routing after clicking on HRA Portal",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 }
             ],
@@ -1776,6 +1991,17 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ScreenSizeNoticeComponent",
+                    "type": "component"
+                }
+            ],
             "description": "<p>A component for screen size notice behavior which provides the content to be displayed and provides functionality\nfor the buttons on the notice modal</p>\n",
             "rawdescription": "\nA component for screen size notice behavior which provides the content to be displayed and provides functionality\nfor the buttons on the notice modal",
             "type": "component",
@@ -1788,6 +2014,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<hra-screen-size-notice [content]=\"content()\" [portal]=\"portal\" (proceedClick)=\"close()\"> </hra-screen-size-notice>\n"
         },
         {
@@ -1809,6 +2036,7 @@
                 "./tissue-library-behavior.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [
@@ -1828,7 +2056,8 @@
                         }
                     ],
                     "modifierKind": [
-                        144
+                        170,
+                        148
                     ]
                 },
                 {
@@ -1863,7 +2092,7 @@
                     "line": 31,
                     "rawdescription": "\n\nInput for tissues data\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 }
             ],
@@ -1872,6 +2101,21 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "LabelBoxComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "TissueTreeListComponent",
+                    "type": "component"
+                }
+            ],
             "description": "<p>Component for Tissue Library Behavior</p>\n",
             "rawdescription": "\n\nComponent for Tissue Library Behavior\n",
             "type": "component",
@@ -1893,6 +2137,7 @@
                 "line": 41,
                 "rawdescription": "\n\nSets the TissueItem instance as undefined if the url is undefined\n"
             },
+            "extends": [],
             "templateData": "<hra-label-box class=\"label\">FTU Library</hra-label-box>\n<hra-tissue-tree-list\n  class=\"tissue-tree\"\n  [nodes]=\"tissues()\"\n  (navigate)=\"navigate($event.link, { queryParams: { id: $event.id } })\"\n  [(selected)]=\"selected\"\n  #list\n>\n</hra-tissue-tree-list>\n"
         }
     ],

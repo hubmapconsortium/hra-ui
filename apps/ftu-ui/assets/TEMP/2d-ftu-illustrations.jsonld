@@ -5892,7 +5892,7 @@
     {
       "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland",
       "@type": "FtuIllustration",
-      "representation_of": "UBERON_8410043",
+      "representation_of": "UBERON:8410043",
       "label": "bronchus submucosal gland",
       "organ_id": "UBERON:0002048",
       "organ_label": "Lung",

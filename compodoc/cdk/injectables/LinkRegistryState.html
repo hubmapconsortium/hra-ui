@@ -12,8 +12,66 @@
         <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">cdk</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -39,21 +97,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >LinkRegistryState</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >LinkRegistryState</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -72,7 +136,7 @@
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -86,18 +150,23 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#addMany" >addMany</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#addOne" >addOne</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#addYaml" >addYaml</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#loadYaml" >loadYaml</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#navigate" >navigate</a>
                             </li>
@@ -114,7 +183,7 @@
 </section>
 
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -125,6 +194,7 @@
                 <td class="col-md-4">
                     <a name="addMany"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>addMany</b></span>
                         <a href="#addMany"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -132,7 +202,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>addMany(ctx: <a href="../undefineds/LinkRegistryContext.html" target="_self">LinkRegistryContext</a>, undefined: <a href="../classes/AddMany.html" target="_self">AddMany</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addMany(ctx: <a href="../undefineds/LinkRegistryContext.html" target="_self">LinkRegistryContext</a>, undefined: <a href="../classes/AddMany.html" target="_self">AddMany</a>)</code>
                 </td>
             </tr>
 
@@ -144,73 +215,71 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">state/src/link-registry/link-registry.state.ts:57</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="57"
+                                    class="link-to-prism">state/src/link-registry/link-registry.state.ts:57</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Add multiple entries</p>
+                        <div class="io-description"><p>Add multiple entries</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>ctx</td>
-                                    <td>
-                                                <code><a href="../miscellaneous/typealiases.html#LinkRegistryContext" target="_self" >LinkRegistryContext</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ctx</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#LinkRegistryContext" target="_self" >LinkRegistryContext</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>State context</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                                <code><a href="../classes/AddMany.html" target="_self" >AddMany</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            <td>
+                                                    <p>State context</p>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                            <code><a href="../classes/AddMany.html" target="_self" >AddMany</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -221,6 +290,7 @@
                 <td class="col-md-4">
                     <a name="addOne"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>addOne</b></span>
                         <a href="#addOne"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -228,7 +298,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>addOne(ctx: <a href="../undefineds/LinkRegistryContext.html" target="_self">LinkRegistryContext</a>, undefined: <a href="../classes/Add.html" target="_self">Add</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addOne(ctx: <a href="../undefineds/LinkRegistryContext.html" target="_self">LinkRegistryContext</a>, undefined: <a href="../classes/Add.html" target="_self">Add</a>)</code>
                 </td>
             </tr>
 
@@ -240,73 +311,71 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">state/src/link-registry/link-registry.state.ts:47</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">state/src/link-registry/link-registry.state.ts:47</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Add a single entry</p>
+                        <div class="io-description"><p>Add a single entry</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>ctx</td>
-                                    <td>
-                                                <code><a href="../miscellaneous/typealiases.html#LinkRegistryContext" target="_self" >LinkRegistryContext</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ctx</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#LinkRegistryContext" target="_self" >LinkRegistryContext</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>State context</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                                <code><a href="../classes/Add.html" target="_self" >Add</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            <td>
+                                                    <p>State context</p>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                            <code><a href="../classes/Add.html" target="_self" >Add</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -317,6 +386,7 @@
                 <td class="col-md-4">
                     <a name="addYaml"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>addYaml</b></span>
                         <a href="#addYaml"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -324,7 +394,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>addYaml(ctx: <a href="../undefineds/LinkRegistryContext.html" target="_self">LinkRegistryContext</a>, undefined: <a href="../classes/AddFromYaml.html" target="_self">AddFromYaml</a>, filename?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addYaml(ctx: <a href="../undefineds/LinkRegistryContext.html" target="_self">LinkRegistryContext</a>, undefined: <a href="../classes/AddFromYaml.html" target="_self">AddFromYaml</a>, filename?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -336,89 +407,87 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="68"
-                            class="link-to-prism">state/src/link-registry/link-registry.state.ts:68</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="68"
+                                    class="link-to-prism">state/src/link-registry/link-registry.state.ts:68</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Parse and add entries from yaml</p>
+                        <div class="io-description"><p>Parse and add entries from yaml</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>ctx</td>
-                                    <td>
-                                                <code><a href="../miscellaneous/typealiases.html#LinkRegistryContext" target="_self" >LinkRegistryContext</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ctx</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#LinkRegistryContext" target="_self" >LinkRegistryContext</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>State context</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                                <code><a href="../classes/AddFromYaml.html" target="_self" >AddFromYaml</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>filename</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                                            <td>
+                                                    <p>State context</p>
 
-                                    <td>
-                                        Yes
-                                    </td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                            <code><a href="../classes/AddFromYaml.html" target="_self" >AddFromYaml</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>Optional url/filename from which the data was loaded (for improved error messages)</p>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>filename</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            <td>
+                                                    Yes
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+
+                                            <td>
+                                                    <p>Optional url/filename from which the data was loaded (for improved error messages)</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -429,6 +498,7 @@
                 <td class="col-md-4">
                     <a name="loadYaml"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>loadYaml</b></span>
                         <a href="#loadYaml"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -436,7 +506,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>loadYaml(ctx: <a href="../undefineds/LinkRegistryContext.html" target="_self">LinkRegistryContext</a>, undefined: <a href="../classes/LoadFromYaml.html" target="_self">LoadFromYaml</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadYaml(ctx: <a href="../undefineds/LinkRegistryContext.html" target="_self">LinkRegistryContext</a>, undefined: <a href="../classes/LoadFromYaml.html" target="_self">LoadFromYaml</a>)</code>
                 </td>
             </tr>
 
@@ -448,74 +519,72 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="81"
-                            class="link-to-prism">state/src/link-registry/link-registry.state.ts:81</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="81"
+                                    class="link-to-prism">state/src/link-registry/link-registry.state.ts:81</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Load and add entries from an external yaml file</p>
+                        <div class="io-description"><p>Load and add entries from an external yaml file</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>ctx</td>
-                                    <td>
-                                                <code><a href="../miscellaneous/typealiases.html#LinkRegistryContext" target="_self" >LinkRegistryContext</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ctx</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#LinkRegistryContext" target="_self" >LinkRegistryContext</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>State context</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                                <code><a href="../classes/LoadFromYaml.html" target="_self" >LoadFromYaml</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;void&gt;</code>
+                                            <td>
+                                                    <p>State context</p>
 
-                    </div>
-                    <div class="io-description">
-                        <p>An observable that completes when the entries has been added</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                            <code><a href="../classes/LoadFromYaml.html" target="_self" >LoadFromYaml</a></code>
+                                            </td>
 
-                    </div>
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An observable that completes when the entries has been added</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -526,7 +595,8 @@
                 <td class="col-md-4">
                     <a name="navigate"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
                         <span ><b>navigate</b></span>
                         <a href="#navigate"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -534,7 +604,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>navigate(ctx: <a href="../undefineds/LinkRegistryContext.html" target="_self">LinkRegistryContext</a>, undefined: <a href="../classes/Navigate.html" target="_self">Navigate</a>)</code>
                 </td>
             </tr>
@@ -547,74 +617,72 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="94"
-                            class="link-to-prism">state/src/link-registry/link-registry.state.ts:94</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="94"
+                                    class="link-to-prism">state/src/link-registry/link-registry.state.ts:94</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Navigate to Internal or External urls from id</p>
+                        <div class="io-description"><p>Navigate to Internal or External urls from id</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>ctx</td>
-                                    <td>
-                                                <code><a href="../miscellaneous/typealiases.html#LinkRegistryContext" target="_self" >LinkRegistryContext</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ctx</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#LinkRegistryContext" target="_self" >LinkRegistryContext</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>State context</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                                <code><a href="../classes/Navigate.html" target="_self" >Navigate</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+                                            <td>
+                                                    <p>State context</p>
 
-                    </div>
-                    <div class="io-description">
-                        <p>A promise</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                            <code><a href="../classes/Navigate.html" target="_self" >Navigate</a></code>
+                                            </td>
 
-                    </div>
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A promise</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -624,7 +692,7 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
 import { inject, Injectable, NgZone } from &#x27;@angular/core&#x27;;
 import { Router, UrlCreationOptions } from &#x27;@angular/router&#x27;;
@@ -648,7 +716,7 @@ import {
 /** Query function for link entry optionally with type specified */
 export type LinkRegistryQuery &#x3D; &lt;T extends LinkType | string &#x3D; string&gt;(
   id: LinkId,
-  type?: T
+  type?: T,
 ) &#x3D;&gt; UnionMember&lt;LinkEntry, &#x27;type&#x27;, T&gt; | undefined;
 
 /** State for keeping track of links globally */

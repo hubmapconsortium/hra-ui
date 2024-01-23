@@ -12,8 +12,66 @@
         <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">services</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -39,21 +97,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >MockTissueLibraryService</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >MockTissueLibraryService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -74,11 +138,11 @@
                 <h3>Extends</h3>
             </p>
             <p class="comment">
-                        <code><a href="../injectables/TissueLibraryService.html" target="_self" >TissueLibraryService</a></code>
+                            <code><a href="../injectables/TissueLibraryService.html" target="_self" >TissueLibraryService</a></code>
             </p>
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -108,7 +172,7 @@
 </section>
 
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -119,7 +183,7 @@
                 <td class="col-md-4">
                     <a name="getTissueLibrary"></a>
                     <span class="name">
-                        <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>getTissueLibrary</b></span>
                         <a href="#getTissueLibrary"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -127,35 +191,35 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>getTissueLibrary()</code>
                 </td>
             </tr>
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/TissueLibraryService.html" target="_self" >TissueLibraryService</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/TissueLibraryService.html#source" target="_self" >TissueLibraryService:165</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../injectables/TissueLibraryService.html" target="_self" >TissueLibraryService</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/TissueLibraryService.html#source" target="_self" >TissueLibraryService:162</a></code>
-</div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Implementation of <a href="TissueLibraryService.getTissueLibrary">TissueLibraryService.getTissueLibrary</a></p>
+                        <div class="io-description"><p>Implementation of <a href="TissueLibraryService.getTissueLibrary">TissueLibraryService.getTissueLibrary</a></p>
 </div>
 
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;TissueLibrary&gt;</code>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;TissueLibrary&gt;</code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -165,7 +229,7 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { createLinkId } from &#x27;@hra-ui/cdk/state&#x27;;
 import { Observable, of } from &#x27;rxjs&#x27;;
@@ -203,7 +267,7 @@ function defineNode(
       ...acc,
       ...defineNode(childLabel, id, childUrl),
     }),
-    {}
+    {},
   );
   const node &#x3D; {
     &#x27;@type&#x27;: &#x27;&#x27;,
@@ -263,7 +327,7 @@ export const MOCK_TISSUE_DATA &#x3D; {
       [
         &#x27;Thick Ascending Loop of Henle&#x27;,
         &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.svg&#x27;,
-      ]
+      ],
     ),
     defineNode(
       &#x27;Lung&#x27;,
@@ -276,7 +340,7 @@ export const MOCK_TISSUE_DATA &#x3D; {
       [
         &#x27;Bronchial Submucosal Gland&#x27;,
         &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-bronchial-submucosal-gland.svg&#x27;,
-      ]
+      ],
     ),
     defineNode(&#x27;Large Intestine&#x27;, BASE_ID, undefined, [
       &#x27;Crypt Lieberkuhn&#x27;,
@@ -297,14 +361,17 @@ export const MOCK_TISSUE_DATA &#x3D; {
       [
         &#x27;Pancreatic Acinus&#x27;,
         &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-pancreatic-acinus.svg&#x27;,
-      ]
+      ],
     ),
     defineNode(
       &#x27;Skin&#x27;,
       BASE_ID,
       undefined,
       [&#x27;Dermal Papilla&#x27;, &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-dermal-papilla.svg&#x27;],
-      [&#x27;Epidermal Ridge&#x27;, &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.svg&#x27;]
+      [
+        &#x27;Epidermal Ridge&#x27;,
+        &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.svg&#x27;,
+      ],
     ),
     defineNode(&#x27;Liver&#x27;, BASE_ID, undefined, [
       &#x27;Liver Lobule&#x27;,
@@ -317,7 +384,7 @@ export const MOCK_TISSUE_DATA &#x3D; {
     defineNode(&#x27;Thymus&#x27;, BASE_ID, undefined, [
       &#x27;Thymus Lobule&#x27;,
       &#x27;https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.svg&#x27;,
-    ])
+    ]),
   ) as Record&lt;Iri, ExtendedTissue&gt;,
 };
 

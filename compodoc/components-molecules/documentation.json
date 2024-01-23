@@ -42,10 +42,11 @@
                 }
             ],
             "indexSignatures": [],
-            "kind": 165,
+            "kind": 171,
             "description": "<p>An interface representing contact data information which will be emitted if all the fields are in correct format.</p>\n",
             "rawdescription": "\n\nAn interface representing contact data information which will be emitted if all the fields are in correct format.\n",
-            "methods": []
+            "methods": [],
+            "extends": []
         },
         {
             "name": "DataItem",
@@ -78,19 +79,20 @@
                 }
             ],
             "indexSignatures": [],
-            "kind": 165,
+            "kind": 171,
             "description": "<p>An item which defines a string label and a string value</p>\n",
             "rawdescription": "\nAn item which defines a string label and a string value",
-            "methods": []
+            "methods": [],
+            "extends": []
         },
         {
             "name": "DataNode",
-            "id": "interface-DataNode-2f82dc47d47ecca91846722b32683c0f118afcad84f5e3fe578b91e5ea39a1a38a698534d3b35d4b4f93780a3286b6758722d830a68ae845b2035a7aa5be9ea1",
+            "id": "interface-DataNode-c78e5394de0d6c8f1d9e1e429499f409d52c934c5c2387c13559d6b24aeee7af41f255badc70750f063a293d9149221e041042381816d847c329eb815ef12f9d",
             "file": "src/lib/tissue-tree-list/tissue-tree-list.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { FlatTreeControl } from '@angular/cdk/tree';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  HostListener,\n  Input,\n  OnChanges,\n  Output,\n  SimpleChanges,\n} from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatExpansionModule } from '@angular/material/expansion';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { LinkId } from '@hra-ui/cdk/state';\n\n/** Base node type */\nexport interface DataNode<K extends string> {\n  /** User readable label */\n  label: string;\n  /** Id to pass as a query parameter on navigation */\n  id?: string;\n  /** Link to navigate to on node click */\n  link?: LinkId;\n  /** Nested nodes */\n  children?: K[];\n}\n\n/**\n * Internal interface for flat tissue data hierarchy\n */\ninterface InternalNode<K extends string, T extends DataNode<K>> {\n  /** Displayed label */\n  label: string;\n  /** Whether the node can be expanded to display child nodes */\n  expandable: boolean;\n  /** Depth of node in the tree */\n  level: number;\n  /** Associated user node data */\n  data: T;\n}\n\n/**\n * Tabular View for hubMap tissue side-bar\n */\n@Component({\n  selector: 'hra-tissue-tree-list',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatButtonModule,\n    MatTreeModule,\n    MatIconModule,\n    MatExpansionModule,\n    MatRippleModule,\n    LinkDirective,\n  ],\n  templateUrl: './tissue-tree-list.component.html',\n  styleUrls: ['./tissue-tree-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueTreeListComponent<K extends string, T extends DataNode<K>> implements OnChanges {\n  /**\n   * Input  of tissue tree list component\n   */\n  @Input() nodes: Record<K, T> = {} as Record<K, T>;\n\n  /**\n   * Node selected, to view the data associated with it\n   */\n  @Input() selected?: T = undefined;\n\n  /**\n   * Output  of tissue tree list component\n   */\n  @Output() readonly selectedChange = new EventEmitter<T | undefined>();\n\n  /**\n   * Navigates to an illustration page\n   */\n  @Output() navigate = new EventEmitter();\n\n  /**\n   * Whether keyboard navigation is enabled\n   */\n  enableNav = true;\n\n  /**\n   * tree controller, used to control the nodes in the tree\n   */\n  readonly control = new FlatTreeControl<InternalNode<K, T>>(\n    (node) => node.level,\n    (node) => node.expandable\n  );\n\n  /**\n   * Flattener of tissue tree list component, returns flat-data structure\n   */\n  readonly flattener = new MatTreeFlattener<T, InternalNode<K, T>>(\n    (node, level) => ({\n      label: node.label,\n      expandable: (node.children?.length ?? 0) > 0,\n      level,\n      data: node,\n    }),\n    (node) => node.level,\n    (node) => node.expandable,\n    (node) => node.children?.map((id) => this.nodes[id])\n  );\n\n  /**\n   * Data source of tissue tree list component, defines the data in mat-tree\n   */\n  readonly dataSource = new MatTreeFlatDataSource(this.control, this.flattener);\n\n  /**\n   * Take actions if any data changes\n   * @param changes changes in data\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('nodes' in changes) {\n      this.dataSource.data = this.findRootNodes();\n      this.control.expandAll();\n    }\n    if ('selected' in changes) {\n      if (!this.selected) {\n        this.control.expandAll();\n      }\n      const path = this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];\n      const node = this.control.dataNodes.find((n) => n.data === changes['selected'].currentValue);\n      if (!node?.expandable) {\n        this.expandPath(path);\n      }\n    }\n  }\n\n  /**\n   * check if the current node has children\n   * @param node current selected node\n   * @returns boolean, which means if node has children\n   */\n  hasChild(_: number, node: InternalNode<K, T>): boolean {\n    return node.expandable;\n  }\n\n  /**\n   * It selects the node, which is clicked.\n   * @param node Tissue Tree Item, which is clicked\n   */\n  selectNode(node: T): void {\n    if (this.selected !== node) {\n      this.selected = node;\n      this.selectedChange.emit(this.selected);\n    }\n  }\n\n  /**\n   * Resets selection and collapes all nodes of the tree.\n   */\n  resetSelection(): void {\n    this.selected = undefined;\n    this.control.collapseAll();\n  }\n\n  /**\n   * It creates a copy of the input nodes object.\n   * It iterates over it and removes all the children nodes from it.\n   * @returns remaining nodes which are root nodes.\n   */\n  private findRootNodes(): T[] {\n    const { nodes } = this;\n    const roots = { ...this.nodes };\n    for (const key in nodes) {\n      for (const child of nodes[key].children ?? []) {\n        delete roots[child];\n      }\n    }\n\n    return Object.values(roots);\n  }\n\n  /**\n   * expands the tree nodes based on the path provided.\n   * @param path is given as an input.\n   */\n  private expandPath(path: DataNode<K>[]): void {\n    const nodes = this.control.dataNodes.filter((node) => path.includes(node.data));\n    nodes.forEach((node) => this.control.expand(node));\n  }\n\n  /**\n   * It used the logic of depth first search to find the target node.\n   * returns the path to the target node.\n   */\n  private dfsFindPath(nodes: T[], target: T, path: T[] = []): T[] {\n    for (const node of nodes) {\n      path.push(node);\n      if (node === target) {\n        return path;\n      }\n\n      const savedLength = path.length;\n      const children = node.children?.map((id) => this.nodes[id]) ?? [];\n      if (this.dfsFindPath(children, target, path).length > savedLength) {\n        return path;\n      }\n\n      path.pop();\n    }\n\n    return path;\n  }\n\n  /**\n   * Keyboard navigation for tissue tree list\n   * @param event Keyboard event\n   */\n  @HostListener('document:keydown', ['$event'])\n  onKeyDown(event: KeyboardEvent): void {\n    if (!this.enableNav) {\n      return;\n    }\n    if (this.control) {\n      const nodes = this.control.dataNodes;\n      const selectedIndex = this.control.dataNodes.findIndex((node) => node.data.id === this.selected?.id);\n\n      const currentNode = nodes[selectedIndex];\n      if (currentNode && currentNode.expandable) {\n        const expandableNodes = nodes.filter((node) => node.expandable);\n        const index = expandableNodes.indexOf(currentNode);\n        if (event.key === 'ArrowLeft') {\n          this.control.collapse(currentNode);\n        } else if (event.key === 'ArrowRight') {\n          this.control.expand(currentNode);\n        } else if (\n          event.key === 'ArrowDown' &&\n          index + 1 < expandableNodes.length &&\n          !this.control.isExpanded(currentNode)\n        ) {\n          this.selectNode(expandableNodes[index + 1].data);\n          return;\n        } else if (event.key === 'ArrowUp' && index - 1 >= 0 && !this.control.isExpanded(expandableNodes[index - 1])) {\n          this.selectNode(expandableNodes[index - 1].data);\n          return;\n        }\n      }\n      if (event.key === 'ArrowDown' && selectedIndex + 1 < nodes.length) {\n        this.selectNode(nodes[selectedIndex + 1].data);\n      }\n      if (event.key === 'ArrowUp' && selectedIndex - 1 >= 0) {\n        this.selectNode(nodes[selectedIndex - 1].data);\n      }\n      if (event.key === 'Enter' && !currentNode.expandable) {\n        this.navigate.emit(currentNode.data);\n      }\n    }\n  }\n\n  /**\n   * Disable keyboard nav on click\n   */\n  @HostListener('document:click')\n  handlePageClick(): void {\n    this.enableNav = false;\n  }\n\n  /**\n   * Enables keyboard nav only if the tissue tree list is clicked\n   * @param event Click event\n   */\n  @HostListener('click', ['$event'])\n  handleListClick(event: MouseEvent): void {\n    event.stopPropagation();\n    this.enableNav = true;\n  }\n}\n",
+            "sourceCode": "import { FlatTreeControl } from '@angular/cdk/tree';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  HostListener,\n  Input,\n  OnChanges,\n  Output,\n  SimpleChanges,\n} from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatExpansionModule } from '@angular/material/expansion';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { LinkId } from '@hra-ui/cdk/state';\n\n/** Base node type */\nexport interface DataNode<K extends string> {\n  /** User readable label */\n  label: string;\n  /** Id to pass as a query parameter on navigation */\n  id?: string;\n  /** Link to navigate to on node click */\n  link?: LinkId;\n  /** Nested nodes */\n  children?: K[];\n}\n\n/**\n * Internal interface for flat tissue data hierarchy\n */\ninterface InternalNode<K extends string, T extends DataNode<K>> {\n  /** Displayed label */\n  label: string;\n  /** Whether the node can be expanded to display child nodes */\n  expandable: boolean;\n  /** Depth of node in the tree */\n  level: number;\n  /** Associated user node data */\n  data: T;\n}\n\n/**\n * Tabular View for hubMap tissue side-bar\n */\n@Component({\n  selector: 'hra-tissue-tree-list',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatButtonModule,\n    MatTreeModule,\n    MatIconModule,\n    MatExpansionModule,\n    MatRippleModule,\n    LinkDirective,\n  ],\n  templateUrl: './tissue-tree-list.component.html',\n  styleUrls: ['./tissue-tree-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueTreeListComponent<K extends string, T extends DataNode<K>> implements OnChanges {\n  /**\n   * Input  of tissue tree list component\n   */\n  @Input() nodes: Record<K, T> = {} as Record<K, T>;\n\n  /**\n   * Node selected, to view the data associated with it\n   */\n  @Input() selected?: T = undefined;\n\n  /**\n   * Output  of tissue tree list component\n   */\n  @Output() readonly selectedChange = new EventEmitter<T | undefined>();\n\n  /**\n   * Navigates to an illustration page\n   */\n  @Output() navigate = new EventEmitter();\n\n  /**\n   * Whether keyboard navigation is enabled\n   */\n  enableNav = true;\n\n  /**\n   * tree controller, used to control the nodes in the tree\n   */\n  readonly control = new FlatTreeControl<InternalNode<K, T>>(\n    (node) => node.level,\n    (node) => node.expandable,\n  );\n\n  /**\n   * Flattener of tissue tree list component, returns flat-data structure\n   */\n  readonly flattener = new MatTreeFlattener<T, InternalNode<K, T>>(\n    (node, level) => ({\n      label: node.label,\n      expandable: (node.children?.length ?? 0) > 0,\n      level,\n      data: node,\n    }),\n    (node) => node.level,\n    (node) => node.expandable,\n    (node) => node.children?.map((id) => this.nodes[id]),\n  );\n\n  /**\n   * Data source of tissue tree list component, defines the data in mat-tree\n   */\n  readonly dataSource = new MatTreeFlatDataSource(this.control, this.flattener);\n\n  /**\n   * Take actions if any data changes\n   * @param changes changes in data\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('nodes' in changes) {\n      this.dataSource.data = this.findRootNodes();\n      this.control.expandAll();\n    }\n    if ('selected' in changes) {\n      if (!this.selected) {\n        this.control.expandAll();\n      }\n      const path = this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];\n      const node = this.control.dataNodes.find((n) => n.data === changes['selected'].currentValue);\n      if (!node?.expandable) {\n        this.expandPath(path);\n      }\n    }\n  }\n\n  /**\n   * check if the current node has children\n   * @param node current selected node\n   * @returns boolean, which means if node has children\n   */\n  hasChild(_: number, node: InternalNode<K, T>): boolean {\n    return node.expandable;\n  }\n\n  /**\n   * It selects the node, which is clicked.\n   * @param node Tissue Tree Item, which is clicked\n   */\n  selectNode(node: T): void {\n    if (this.selected !== node) {\n      this.selected = node;\n      this.selectedChange.emit(this.selected);\n    }\n  }\n\n  /**\n   * Resets selection and collapes all nodes of the tree.\n   */\n  resetSelection(): void {\n    this.selected = undefined;\n    this.control.collapseAll();\n  }\n\n  /**\n   * It creates a copy of the input nodes object.\n   * It iterates over it and removes all the children nodes from it.\n   * @returns remaining nodes which are root nodes.\n   */\n  private findRootNodes(): T[] {\n    const { nodes } = this;\n    const roots = { ...this.nodes };\n    for (const key in nodes) {\n      for (const child of nodes[key].children ?? []) {\n        delete roots[child];\n      }\n    }\n\n    return Object.values(roots);\n  }\n\n  /**\n   * expands the tree nodes based on the path provided.\n   * @param path is given as an input.\n   */\n  private expandPath(path: DataNode<K>[]): void {\n    const nodes = this.control.dataNodes.filter((node) => path.includes(node.data));\n    nodes.forEach((node) => this.control.expand(node));\n  }\n\n  /**\n   * It used the logic of depth first search to find the target node.\n   * returns the path to the target node.\n   */\n  private dfsFindPath(nodes: T[], target: T, path: T[] = []): T[] {\n    for (const node of nodes) {\n      path.push(node);\n      if (node === target) {\n        return path;\n      }\n\n      const savedLength = path.length;\n      const children = node.children?.map((id) => this.nodes[id]) ?? [];\n      if (this.dfsFindPath(children, target, path).length > savedLength) {\n        return path;\n      }\n\n      path.pop();\n    }\n\n    return path;\n  }\n\n  /**\n   * Keyboard navigation for tissue tree list\n   * @param event Keyboard event\n   */\n  @HostListener('document:keydown', ['$event'])\n  onKeyDown(event: KeyboardEvent): void {\n    if (!this.enableNav) {\n      return;\n    }\n    if (this.control) {\n      const nodes = this.control.dataNodes;\n      const selectedIndex = this.control.dataNodes.findIndex((node) => node.data.id === this.selected?.id);\n\n      const currentNode = nodes[selectedIndex];\n      if (currentNode && currentNode.expandable) {\n        const expandableNodes = nodes.filter((node) => node.expandable);\n        const index = expandableNodes.indexOf(currentNode);\n        if (event.key === 'ArrowLeft') {\n          this.control.collapse(currentNode);\n        } else if (event.key === 'ArrowRight') {\n          this.control.expand(currentNode);\n        } else if (\n          event.key === 'ArrowDown' &&\n          index + 1 < expandableNodes.length &&\n          !this.control.isExpanded(currentNode)\n        ) {\n          this.selectNode(expandableNodes[index + 1].data);\n          return;\n        } else if (event.key === 'ArrowUp' && index - 1 >= 0 && !this.control.isExpanded(expandableNodes[index - 1])) {\n          this.selectNode(expandableNodes[index - 1].data);\n          return;\n        }\n      }\n      if (event.key === 'ArrowDown' && selectedIndex + 1 < nodes.length) {\n        this.selectNode(nodes[selectedIndex + 1].data);\n      }\n      if (event.key === 'ArrowUp' && selectedIndex - 1 >= 0) {\n        this.selectNode(nodes[selectedIndex - 1].data);\n      }\n      if (event.key === 'Enter' && !currentNode.expandable) {\n        this.navigate.emit(currentNode.data);\n      }\n    }\n  }\n\n  /**\n   * Disable keyboard nav on click\n   */\n  @HostListener('document:click')\n  handlePageClick(): void {\n    this.enableNav = false;\n  }\n\n  /**\n   * Enables keyboard nav only if the tissue tree list is clicked\n   * @param event Click event\n   */\n  @HostListener('click', ['$event'])\n  handleListClick(event: MouseEvent): void {\n    event.stopPropagation();\n    this.enableNav = true;\n  }\n}\n",
             "properties": [
                 {
                     "name": "children",
@@ -134,10 +136,11 @@
                 }
             ],
             "indexSignatures": [],
-            "kind": 165,
+            "kind": 171,
             "description": "<p>Base node type</p>\n",
             "rawdescription": "\nBase node type",
-            "methods": []
+            "methods": [],
+            "extends": []
         },
         {
             "name": "DownloadFormat",
@@ -160,19 +163,20 @@
                 }
             ],
             "indexSignatures": [],
-            "kind": 165,
+            "kind": 171,
             "description": "<p>Base type for different download format options.</p>\n",
             "rawdescription": "\n\nBase type for different download format options.\n",
-            "methods": []
+            "methods": [],
+            "extends": []
         },
         {
             "name": "InternalNode",
-            "id": "interface-InternalNode-2f82dc47d47ecca91846722b32683c0f118afcad84f5e3fe578b91e5ea39a1a38a698534d3b35d4b4f93780a3286b6758722d830a68ae845b2035a7aa5be9ea1",
+            "id": "interface-InternalNode-c78e5394de0d6c8f1d9e1e429499f409d52c934c5c2387c13559d6b24aeee7af41f255badc70750f063a293d9149221e041042381816d847c329eb815ef12f9d",
             "file": "src/lib/tissue-tree-list/tissue-tree-list.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { FlatTreeControl } from '@angular/cdk/tree';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  HostListener,\n  Input,\n  OnChanges,\n  Output,\n  SimpleChanges,\n} from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatExpansionModule } from '@angular/material/expansion';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { LinkId } from '@hra-ui/cdk/state';\n\n/** Base node type */\nexport interface DataNode<K extends string> {\n  /** User readable label */\n  label: string;\n  /** Id to pass as a query parameter on navigation */\n  id?: string;\n  /** Link to navigate to on node click */\n  link?: LinkId;\n  /** Nested nodes */\n  children?: K[];\n}\n\n/**\n * Internal interface for flat tissue data hierarchy\n */\ninterface InternalNode<K extends string, T extends DataNode<K>> {\n  /** Displayed label */\n  label: string;\n  /** Whether the node can be expanded to display child nodes */\n  expandable: boolean;\n  /** Depth of node in the tree */\n  level: number;\n  /** Associated user node data */\n  data: T;\n}\n\n/**\n * Tabular View for hubMap tissue side-bar\n */\n@Component({\n  selector: 'hra-tissue-tree-list',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatButtonModule,\n    MatTreeModule,\n    MatIconModule,\n    MatExpansionModule,\n    MatRippleModule,\n    LinkDirective,\n  ],\n  templateUrl: './tissue-tree-list.component.html',\n  styleUrls: ['./tissue-tree-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueTreeListComponent<K extends string, T extends DataNode<K>> implements OnChanges {\n  /**\n   * Input  of tissue tree list component\n   */\n  @Input() nodes: Record<K, T> = {} as Record<K, T>;\n\n  /**\n   * Node selected, to view the data associated with it\n   */\n  @Input() selected?: T = undefined;\n\n  /**\n   * Output  of tissue tree list component\n   */\n  @Output() readonly selectedChange = new EventEmitter<T | undefined>();\n\n  /**\n   * Navigates to an illustration page\n   */\n  @Output() navigate = new EventEmitter();\n\n  /**\n   * Whether keyboard navigation is enabled\n   */\n  enableNav = true;\n\n  /**\n   * tree controller, used to control the nodes in the tree\n   */\n  readonly control = new FlatTreeControl<InternalNode<K, T>>(\n    (node) => node.level,\n    (node) => node.expandable\n  );\n\n  /**\n   * Flattener of tissue tree list component, returns flat-data structure\n   */\n  readonly flattener = new MatTreeFlattener<T, InternalNode<K, T>>(\n    (node, level) => ({\n      label: node.label,\n      expandable: (node.children?.length ?? 0) > 0,\n      level,\n      data: node,\n    }),\n    (node) => node.level,\n    (node) => node.expandable,\n    (node) => node.children?.map((id) => this.nodes[id])\n  );\n\n  /**\n   * Data source of tissue tree list component, defines the data in mat-tree\n   */\n  readonly dataSource = new MatTreeFlatDataSource(this.control, this.flattener);\n\n  /**\n   * Take actions if any data changes\n   * @param changes changes in data\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('nodes' in changes) {\n      this.dataSource.data = this.findRootNodes();\n      this.control.expandAll();\n    }\n    if ('selected' in changes) {\n      if (!this.selected) {\n        this.control.expandAll();\n      }\n      const path = this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];\n      const node = this.control.dataNodes.find((n) => n.data === changes['selected'].currentValue);\n      if (!node?.expandable) {\n        this.expandPath(path);\n      }\n    }\n  }\n\n  /**\n   * check if the current node has children\n   * @param node current selected node\n   * @returns boolean, which means if node has children\n   */\n  hasChild(_: number, node: InternalNode<K, T>): boolean {\n    return node.expandable;\n  }\n\n  /**\n   * It selects the node, which is clicked.\n   * @param node Tissue Tree Item, which is clicked\n   */\n  selectNode(node: T): void {\n    if (this.selected !== node) {\n      this.selected = node;\n      this.selectedChange.emit(this.selected);\n    }\n  }\n\n  /**\n   * Resets selection and collapes all nodes of the tree.\n   */\n  resetSelection(): void {\n    this.selected = undefined;\n    this.control.collapseAll();\n  }\n\n  /**\n   * It creates a copy of the input nodes object.\n   * It iterates over it and removes all the children nodes from it.\n   * @returns remaining nodes which are root nodes.\n   */\n  private findRootNodes(): T[] {\n    const { nodes } = this;\n    const roots = { ...this.nodes };\n    for (const key in nodes) {\n      for (const child of nodes[key].children ?? []) {\n        delete roots[child];\n      }\n    }\n\n    return Object.values(roots);\n  }\n\n  /**\n   * expands the tree nodes based on the path provided.\n   * @param path is given as an input.\n   */\n  private expandPath(path: DataNode<K>[]): void {\n    const nodes = this.control.dataNodes.filter((node) => path.includes(node.data));\n    nodes.forEach((node) => this.control.expand(node));\n  }\n\n  /**\n   * It used the logic of depth first search to find the target node.\n   * returns the path to the target node.\n   */\n  private dfsFindPath(nodes: T[], target: T, path: T[] = []): T[] {\n    for (const node of nodes) {\n      path.push(node);\n      if (node === target) {\n        return path;\n      }\n\n      const savedLength = path.length;\n      const children = node.children?.map((id) => this.nodes[id]) ?? [];\n      if (this.dfsFindPath(children, target, path).length > savedLength) {\n        return path;\n      }\n\n      path.pop();\n    }\n\n    return path;\n  }\n\n  /**\n   * Keyboard navigation for tissue tree list\n   * @param event Keyboard event\n   */\n  @HostListener('document:keydown', ['$event'])\n  onKeyDown(event: KeyboardEvent): void {\n    if (!this.enableNav) {\n      return;\n    }\n    if (this.control) {\n      const nodes = this.control.dataNodes;\n      const selectedIndex = this.control.dataNodes.findIndex((node) => node.data.id === this.selected?.id);\n\n      const currentNode = nodes[selectedIndex];\n      if (currentNode && currentNode.expandable) {\n        const expandableNodes = nodes.filter((node) => node.expandable);\n        const index = expandableNodes.indexOf(currentNode);\n        if (event.key === 'ArrowLeft') {\n          this.control.collapse(currentNode);\n        } else if (event.key === 'ArrowRight') {\n          this.control.expand(currentNode);\n        } else if (\n          event.key === 'ArrowDown' &&\n          index + 1 < expandableNodes.length &&\n          !this.control.isExpanded(currentNode)\n        ) {\n          this.selectNode(expandableNodes[index + 1].data);\n          return;\n        } else if (event.key === 'ArrowUp' && index - 1 >= 0 && !this.control.isExpanded(expandableNodes[index - 1])) {\n          this.selectNode(expandableNodes[index - 1].data);\n          return;\n        }\n      }\n      if (event.key === 'ArrowDown' && selectedIndex + 1 < nodes.length) {\n        this.selectNode(nodes[selectedIndex + 1].data);\n      }\n      if (event.key === 'ArrowUp' && selectedIndex - 1 >= 0) {\n        this.selectNode(nodes[selectedIndex - 1].data);\n      }\n      if (event.key === 'Enter' && !currentNode.expandable) {\n        this.navigate.emit(currentNode.data);\n      }\n    }\n  }\n\n  /**\n   * Disable keyboard nav on click\n   */\n  @HostListener('document:click')\n  handlePageClick(): void {\n    this.enableNav = false;\n  }\n\n  /**\n   * Enables keyboard nav only if the tissue tree list is clicked\n   * @param event Click event\n   */\n  @HostListener('click', ['$event'])\n  handleListClick(event: MouseEvent): void {\n    event.stopPropagation();\n    this.enableNav = true;\n  }\n}\n",
+            "sourceCode": "import { FlatTreeControl } from '@angular/cdk/tree';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  HostListener,\n  Input,\n  OnChanges,\n  Output,\n  SimpleChanges,\n} from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatExpansionModule } from '@angular/material/expansion';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { LinkId } from '@hra-ui/cdk/state';\n\n/** Base node type */\nexport interface DataNode<K extends string> {\n  /** User readable label */\n  label: string;\n  /** Id to pass as a query parameter on navigation */\n  id?: string;\n  /** Link to navigate to on node click */\n  link?: LinkId;\n  /** Nested nodes */\n  children?: K[];\n}\n\n/**\n * Internal interface for flat tissue data hierarchy\n */\ninterface InternalNode<K extends string, T extends DataNode<K>> {\n  /** Displayed label */\n  label: string;\n  /** Whether the node can be expanded to display child nodes */\n  expandable: boolean;\n  /** Depth of node in the tree */\n  level: number;\n  /** Associated user node data */\n  data: T;\n}\n\n/**\n * Tabular View for hubMap tissue side-bar\n */\n@Component({\n  selector: 'hra-tissue-tree-list',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatButtonModule,\n    MatTreeModule,\n    MatIconModule,\n    MatExpansionModule,\n    MatRippleModule,\n    LinkDirective,\n  ],\n  templateUrl: './tissue-tree-list.component.html',\n  styleUrls: ['./tissue-tree-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueTreeListComponent<K extends string, T extends DataNode<K>> implements OnChanges {\n  /**\n   * Input  of tissue tree list component\n   */\n  @Input() nodes: Record<K, T> = {} as Record<K, T>;\n\n  /**\n   * Node selected, to view the data associated with it\n   */\n  @Input() selected?: T = undefined;\n\n  /**\n   * Output  of tissue tree list component\n   */\n  @Output() readonly selectedChange = new EventEmitter<T | undefined>();\n\n  /**\n   * Navigates to an illustration page\n   */\n  @Output() navigate = new EventEmitter();\n\n  /**\n   * Whether keyboard navigation is enabled\n   */\n  enableNav = true;\n\n  /**\n   * tree controller, used to control the nodes in the tree\n   */\n  readonly control = new FlatTreeControl<InternalNode<K, T>>(\n    (node) => node.level,\n    (node) => node.expandable,\n  );\n\n  /**\n   * Flattener of tissue tree list component, returns flat-data structure\n   */\n  readonly flattener = new MatTreeFlattener<T, InternalNode<K, T>>(\n    (node, level) => ({\n      label: node.label,\n      expandable: (node.children?.length ?? 0) > 0,\n      level,\n      data: node,\n    }),\n    (node) => node.level,\n    (node) => node.expandable,\n    (node) => node.children?.map((id) => this.nodes[id]),\n  );\n\n  /**\n   * Data source of tissue tree list component, defines the data in mat-tree\n   */\n  readonly dataSource = new MatTreeFlatDataSource(this.control, this.flattener);\n\n  /**\n   * Take actions if any data changes\n   * @param changes changes in data\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('nodes' in changes) {\n      this.dataSource.data = this.findRootNodes();\n      this.control.expandAll();\n    }\n    if ('selected' in changes) {\n      if (!this.selected) {\n        this.control.expandAll();\n      }\n      const path = this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];\n      const node = this.control.dataNodes.find((n) => n.data === changes['selected'].currentValue);\n      if (!node?.expandable) {\n        this.expandPath(path);\n      }\n    }\n  }\n\n  /**\n   * check if the current node has children\n   * @param node current selected node\n   * @returns boolean, which means if node has children\n   */\n  hasChild(_: number, node: InternalNode<K, T>): boolean {\n    return node.expandable;\n  }\n\n  /**\n   * It selects the node, which is clicked.\n   * @param node Tissue Tree Item, which is clicked\n   */\n  selectNode(node: T): void {\n    if (this.selected !== node) {\n      this.selected = node;\n      this.selectedChange.emit(this.selected);\n    }\n  }\n\n  /**\n   * Resets selection and collapes all nodes of the tree.\n   */\n  resetSelection(): void {\n    this.selected = undefined;\n    this.control.collapseAll();\n  }\n\n  /**\n   * It creates a copy of the input nodes object.\n   * It iterates over it and removes all the children nodes from it.\n   * @returns remaining nodes which are root nodes.\n   */\n  private findRootNodes(): T[] {\n    const { nodes } = this;\n    const roots = { ...this.nodes };\n    for (const key in nodes) {\n      for (const child of nodes[key].children ?? []) {\n        delete roots[child];\n      }\n    }\n\n    return Object.values(roots);\n  }\n\n  /**\n   * expands the tree nodes based on the path provided.\n   * @param path is given as an input.\n   */\n  private expandPath(path: DataNode<K>[]): void {\n    const nodes = this.control.dataNodes.filter((node) => path.includes(node.data));\n    nodes.forEach((node) => this.control.expand(node));\n  }\n\n  /**\n   * It used the logic of depth first search to find the target node.\n   * returns the path to the target node.\n   */\n  private dfsFindPath(nodes: T[], target: T, path: T[] = []): T[] {\n    for (const node of nodes) {\n      path.push(node);\n      if (node === target) {\n        return path;\n      }\n\n      const savedLength = path.length;\n      const children = node.children?.map((id) => this.nodes[id]) ?? [];\n      if (this.dfsFindPath(children, target, path).length > savedLength) {\n        return path;\n      }\n\n      path.pop();\n    }\n\n    return path;\n  }\n\n  /**\n   * Keyboard navigation for tissue tree list\n   * @param event Keyboard event\n   */\n  @HostListener('document:keydown', ['$event'])\n  onKeyDown(event: KeyboardEvent): void {\n    if (!this.enableNav) {\n      return;\n    }\n    if (this.control) {\n      const nodes = this.control.dataNodes;\n      const selectedIndex = this.control.dataNodes.findIndex((node) => node.data.id === this.selected?.id);\n\n      const currentNode = nodes[selectedIndex];\n      if (currentNode && currentNode.expandable) {\n        const expandableNodes = nodes.filter((node) => node.expandable);\n        const index = expandableNodes.indexOf(currentNode);\n        if (event.key === 'ArrowLeft') {\n          this.control.collapse(currentNode);\n        } else if (event.key === 'ArrowRight') {\n          this.control.expand(currentNode);\n        } else if (\n          event.key === 'ArrowDown' &&\n          index + 1 < expandableNodes.length &&\n          !this.control.isExpanded(currentNode)\n        ) {\n          this.selectNode(expandableNodes[index + 1].data);\n          return;\n        } else if (event.key === 'ArrowUp' && index - 1 >= 0 && !this.control.isExpanded(expandableNodes[index - 1])) {\n          this.selectNode(expandableNodes[index - 1].data);\n          return;\n        }\n      }\n      if (event.key === 'ArrowDown' && selectedIndex + 1 < nodes.length) {\n        this.selectNode(nodes[selectedIndex + 1].data);\n      }\n      if (event.key === 'ArrowUp' && selectedIndex - 1 >= 0) {\n        this.selectNode(nodes[selectedIndex - 1].data);\n      }\n      if (event.key === 'Enter' && !currentNode.expandable) {\n        this.navigate.emit(currentNode.data);\n      }\n    }\n  }\n\n  /**\n   * Disable keyboard nav on click\n   */\n  @HostListener('document:click')\n  handlePageClick(): void {\n    this.enableNav = false;\n  }\n\n  /**\n   * Enables keyboard nav only if the tissue tree list is clicked\n   * @param event Click event\n   */\n  @HostListener('click', ['$event'])\n  handleListClick(event: MouseEvent): void {\n    event.stopPropagation();\n    this.enableNav = true;\n  }\n}\n",
             "properties": [
                 {
                     "name": "data",
@@ -216,10 +220,11 @@
                 }
             ],
             "indexSignatures": [],
-            "kind": 165,
+            "kind": 171,
             "description": "<p>Internal interface for flat tissue data hierarchy</p>\n",
             "rawdescription": "\n\nInternal interface for flat tissue data hierarchy\n",
-            "methods": []
+            "methods": [],
+            "extends": []
         },
         {
             "name": "MetricItem",
@@ -262,19 +267,20 @@
                 }
             ],
             "indexSignatures": [],
-            "kind": 165,
+            "kind": 171,
             "description": "<p>An interface representing a single metric with an icon, value and description.</p>\n",
             "rawdescription": "\n\nAn interface representing a single metric with an icon, value and description.\n",
-            "methods": []
+            "methods": [],
+            "extends": []
         },
         {
             "name": "NodeMapEntry",
-            "id": "interface-NodeMapEntry-c9c4d9811967ae70c7c610ecef7d6222bdecfbaef85aa19e2dfc42f317a5ffb88ae1e2bae11cf443feebc56a00ceb385e1bf88b9eb9cd8230a2080374a5926cc",
+            "id": "interface-NodeMapEntry-1538842f4d8a58c6eeee3bf89cd2c4caee6ce0e6768306e7f8708ccb23464a4bd6d67630fe5872cdae20052fb7ba2e17cae7124d9af155b00bcf7bc9f74d5815",
             "file": "src/lib/interactive-svg/interactive-svg.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  inject,\n  Input,\n  OnChanges,\n  OnDestroy,\n  Output,\n  Renderer2,\n  SimpleChanges,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { TooltipComponent } from '@hra-ui/components/atoms';\nimport { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';\nimport { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';\nimport { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';\n\n/** Delay before tooltip becomes visible */\nconst HOVER_DELAY = 200;\n\n/** Tooltip position settings */\nconst TOOLTIP_POSITIONS: ConnectedPosition[] = [\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'start',\n    overlayY: 'center',\n    offsetX: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'end',\n    overlayY: 'center',\n    offsetX: -8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'top',\n    offsetY: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'bottom',\n    offsetY: -8,\n  },\n];\n\n/** Node tooltip data */\nexport interface NodeTooltipData {\n  /** Node name */\n  node: string;\n  /** Center point of hovered node in screen coordinates */\n  origin: { x: number; y: number };\n}\n\n/** Interface for node entries */\nexport interface NodeMapEntry {\n  /** Node label */\n  label: string;\n  /** Node id in svg */\n  id: string;\n  /** Node group id */\n  groupId: string;\n  /** Ontology id of cell type */\n  ontologyId: string;\n}\n\n/**\n * Interactive SVG component\n */\n@Component({\n  selector: 'hra-interactive-svg',\n  standalone: true,\n  imports: [CommonModule, InlineSVGModule, OverlayModule, TooltipComponent],\n  templateUrl: './interactive-svg.component.html',\n  styleUrls: ['./interactive-svg.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.ShadowDom,\n})\nexport class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChanges, OnDestroy {\n  /** SVG url */\n  @Input() url?: string;\n\n  /** Mapping info */\n  @Input() mapping: T[] = [];\n\n  /** Highlighted ontology id */\n  @Input() highlightId?: string;\n\n  /** Emits node id when hovered */\n  @Output() readonly nodeHover = new EventEmitter<T>();\n\n  /** Emits node id when clicked */\n  @Output() readonly nodeClick = new EventEmitter<T>();\n\n  /** SVG script eval mode */\n  readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;\n\n  /** Tooltip position settings */\n  readonly TOOLTIP_POSITIONS = TOOLTIP_POSITIONS;\n\n  /** Observable of node hover data or undefined when there is no active hover */\n  readonly nodeHoverData$ = new BehaviorSubject<NodeTooltipData | undefined>(undefined);\n\n  /** Observable of node hover with a timer */\n  readonly nodeHoverDelayedData$ = this.nodeHoverData$.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));\n\n  /** Custom renderer */\n  private readonly renderer = inject(Renderer2);\n\n  /** Destroys */\n  private destroy$ = new Subject<void>();\n\n  /** Crosswalk element of svg */\n  private crosswalkEl?: Element;\n\n  /** List of highlighted svg elements */\n  private highlightedElements: Element[] = [];\n\n  /**\n   * Updates the highlighting based on current highlight id\n   * @param changes\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('highlightId' in changes) {\n      this.resetHighlight();\n      this.setHighlight();\n    }\n  }\n\n  /**\n   * Highlights cells that match highlightId\n   */\n  private setHighlight() {\n    const { mapping, highlightId, crosswalkEl } = this;\n    const entry = mapping.find(({ ontologyId }) => ontologyId === highlightId);\n    if (!entry || !crosswalkEl) {\n      return;\n    }\n\n    let id = entry.id;\n    const encodedId = this.encodeId(entry.id);\n    const element = crosswalkEl.querySelector(`#${id}, #${encodedId}`);\n    if (!element) {\n      return;\n    } else if (element.nodeName !== 'g') {\n      id = element.parentElement?.id ?? '';\n    }\n\n    const elements = crosswalkEl.querySelectorAll(`#${id} :is(path, polygon, polyline)`);\n    this.highlightedElements = Array.from(elements);\n    elements.forEach((el) => el.classList.add('click-active'));\n  }\n\n  /**\n   * Resets all highlighted elements in the svg\n   */\n  private resetHighlight(): void {\n    for (const el of this.highlightedElements) {\n      el.classList.remove('click-active');\n    }\n    this.highlightedElements = [];\n  }\n\n  /**\n   * Clears observables on destroy\n   */\n  ngOnDestroy(): void {\n    this.clear();\n  }\n\n  /**\n   * Sets SVG element\n   * @param el SVG element\n   */\n  setSvgElement(el: SVGElement): void {\n    this.clear();\n    this.crosswalkEl = el.querySelector('[id^=\"Crosswalk\"]') ?? undefined;\n    if (this.crosswalkEl) {\n      // Move to front (i.e. last child in svg)\n      this.renderer.appendChild(el, this.crosswalkEl);\n      this.attachCrosswalkHover(this.crosswalkEl);\n      this.setHighlight();\n    }\n  }\n\n  /**\n   * Removes underscores from id\n   * @param name Node name\n   * @returns node name without underscores\n   */\n  formatNodeName(name: string): string {\n    return name.replace(/_/g, ' ');\n  }\n\n  /**\n   * Attaches crosswalk hover\n   * @param el element\n   */\n  private attachCrosswalkHover(el: Element): void {\n    this.attachEvent(el, 'mouseover').subscribe((event) => this.onCrosswalkHover(event));\n    this.attachEvent(el, 'mouseout').subscribe(() => this.onCrosswalkHover(undefined as never as MouseEvent));\n    this.attachEvent(el, 'click').subscribe((event) => this.nodeClick.emit(this.getNode(event)));\n  }\n\n  /**\n   * Finds matching node in data from a hovered element\n   * @param event Mouse event\n   */\n  private onCrosswalkHover(event: MouseEvent): void {\n    if (event) {\n      const node = this.getNode(event);\n      if (node) {\n        this.nodeHoverData$.next({\n          node: node.label,\n          origin: {\n            x: event.clientX,\n            y: event.clientY,\n          },\n        });\n        this.nodeHover.emit(node); //emits node entry\n      }\n    } else {\n      this.nodeHoverData$.next(undefined);\n      this.nodeHover.emit();\n    }\n  }\n\n  /**\n   * Clears observables\n   */\n  private clear(): void {\n    this.destroy$.next();\n    this.destroy$.complete();\n    this.destroy$ = new Subject();\n  }\n\n  /**\n   * Returns entry from mapping if target, parent, or grandparent id matches the node name\n   * @param event Event\n   * @returns Node entry that matches the target id\n   */\n  private getNode(event: Event): T | undefined {\n    const targetId = (event.target as Element).id;\n    const parentId = (event.target as Element).parentElement?.id ?? '';\n    const grandparentId = (event.target as Element).parentElement?.parentElement?.id ?? '';\n    const idCollection = [targetId, parentId, grandparentId];\n    for (const id of idCollection) {\n      const decodedID = this.decodeId(id);\n      const cellMatch = this.mapping.find(\n        (item) => item.id?.toLowerCase() === decodedID.toLowerCase() //search mapping by cell name for matching node entry\n      );\n      if (cellMatch) {\n        return cellMatch;\n      } else {\n        const groupMatch = this.mapping.find(\n          (item) => item.groupId?.toLowerCase() === decodedID.toLowerCase() //search mapping by group name for matching node entry\n        );\n        if (groupMatch) {\n          return groupMatch;\n        }\n      }\n    }\n    return undefined;\n  }\n\n  /**\n   * Decodes id into a normal string\n   * @param id Undecoded ID\n   * @returns id\n   */\n  private decodeId(id: string): string {\n    const replacer = (_match: string, hex: string) => String.fromCharCode(Number.parseInt(hex, 16));\n    return id.replace(/_x([\\da-f]+)_/gi, replacer);\n  }\n\n  /**\n   * Turns normal string into decoded SVG id\n   * @param id id\n   * @returns Encoded id\n   */\n  private encodeId(id: string): string {\n    const replacer = (match: string) => `_x${match.charCodeAt(0).toString(16).toUpperCase()}_`;\n    return id.replace(/[^a-z0-9-]/gi, replacer);\n  }\n\n  /**\n   * Attaches an event listener\n   * @template K\n   * @param el Element\n   * @param event Event\n   * @returns Observable\n   */\n  private attachEvent<K extends keyof SVGElementEventMap>(el: Element, event: K): Observable<SVGElementEventMap[K]> {\n    const { renderer, destroy$ } = this;\n    const add = (handler: NodeEventHandler) => renderer.listen(el, event, handler);\n    const remove = (_handler: NodeEventHandler, unlisten: () => void) => unlisten();\n    return fromEventPattern<SVGElementEventMap[K]>(add, remove).pipe(takeUntil(destroy$));\n  }\n}\n",
+            "sourceCode": "import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  inject,\n  Input,\n  OnChanges,\n  OnDestroy,\n  Output,\n  Renderer2,\n  SimpleChanges,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { TooltipComponent } from '@hra-ui/components/atoms';\nimport { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';\nimport { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';\nimport { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';\n\n/** Delay before tooltip becomes visible */\nconst HOVER_DELAY = 200;\n\n/** Tooltip position settings */\nconst TOOLTIP_POSITIONS: ConnectedPosition[] = [\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'start',\n    overlayY: 'center',\n    offsetX: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'end',\n    overlayY: 'center',\n    offsetX: -8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'top',\n    offsetY: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'bottom',\n    offsetY: -8,\n  },\n];\n\n/** Node tooltip data */\nexport interface NodeTooltipData {\n  /** Node name */\n  node: string;\n  /** Center point of hovered node in screen coordinates */\n  origin: { x: number; y: number };\n}\n\n/** Interface for node entries */\nexport interface NodeMapEntry {\n  /** Node label */\n  label: string;\n  /** Node id in svg */\n  id: string;\n  /** Node group id */\n  groupId: string;\n  /** Ontology id of cell type */\n  ontologyId: string;\n}\n\n/**\n * Interactive SVG component\n */\n@Component({\n  selector: 'hra-interactive-svg',\n  standalone: true,\n  imports: [CommonModule, InlineSVGModule, OverlayModule, TooltipComponent],\n  templateUrl: './interactive-svg.component.html',\n  styleUrls: ['./interactive-svg.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.ShadowDom,\n})\nexport class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChanges, OnDestroy {\n  /** SVG url */\n  @Input() url?: string;\n\n  /** Mapping info */\n  @Input() mapping: T[] = [];\n\n  /** Highlighted ontology id */\n  @Input() highlightId?: string;\n\n  /** Emits node id when hovered */\n  @Output() readonly nodeHover = new EventEmitter<T>();\n\n  /** Emits node id when clicked */\n  @Output() readonly nodeClick = new EventEmitter<T>();\n\n  /** SVG script eval mode */\n  readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;\n\n  /** Tooltip position settings */\n  readonly TOOLTIP_POSITIONS = TOOLTIP_POSITIONS;\n\n  /** Observable of node hover data or undefined when there is no active hover */\n  readonly nodeHoverData$ = new BehaviorSubject<NodeTooltipData | undefined>(undefined);\n\n  /** Observable of node hover with a timer */\n  readonly nodeHoverDelayedData$ = this.nodeHoverData$.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));\n\n  /** Custom renderer */\n  private readonly renderer = inject(Renderer2);\n\n  /** Destroys */\n  private destroy$ = new Subject<void>();\n\n  /** Crosswalk element of svg */\n  private crosswalkEl?: Element;\n\n  /** List of highlighted svg elements */\n  private highlightedElements: Element[] = [];\n\n  /**\n   * Updates the highlighting based on current highlight id\n   * @param changes\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('highlightId' in changes) {\n      this.resetHighlight();\n      this.setHighlight();\n    }\n  }\n\n  /**\n   * Highlights cells that match highlightId\n   */\n  private setHighlight() {\n    const { mapping, highlightId, crosswalkEl } = this;\n    const entry = mapping.find(({ ontologyId }) => ontologyId === highlightId);\n    if (!entry || !crosswalkEl) {\n      return;\n    }\n\n    let id = entry.id;\n    const encodedId = this.encodeId(entry.id);\n    const element = crosswalkEl.querySelector(`#${id}, #${encodedId}`);\n    if (!element) {\n      return;\n    } else if (element.nodeName !== 'g') {\n      id = element.parentElement?.id ?? '';\n    }\n\n    const elements = crosswalkEl.querySelectorAll(`#${id} :is(path, polygon, polyline)`);\n    this.highlightedElements = Array.from(elements);\n    elements.forEach((el) => el.classList.add('click-active'));\n  }\n\n  /**\n   * Resets all highlighted elements in the svg\n   */\n  private resetHighlight(): void {\n    for (const el of this.highlightedElements) {\n      el.classList.remove('click-active');\n    }\n    this.highlightedElements = [];\n  }\n\n  /**\n   * Clears observables on destroy\n   */\n  ngOnDestroy(): void {\n    this.clear();\n  }\n\n  /**\n   * Sets SVG element\n   * @param el SVG element\n   */\n  setSvgElement(el: SVGElement): void {\n    this.clear();\n    this.crosswalkEl = el.querySelector('[id^=\"Crosswalk\"]') ?? undefined;\n    if (this.crosswalkEl) {\n      // Move to front (i.e. last child in svg)\n      this.renderer.appendChild(el, this.crosswalkEl);\n      this.attachCrosswalkHover(this.crosswalkEl);\n      this.setHighlight();\n    }\n  }\n\n  /**\n   * Removes underscores from id\n   * @param name Node name\n   * @returns node name without underscores\n   */\n  formatNodeName(name: string): string {\n    return name.replace(/_/g, ' ');\n  }\n\n  /**\n   * Attaches crosswalk hover\n   * @param el element\n   */\n  private attachCrosswalkHover(el: Element): void {\n    this.attachEvent(el, 'mouseover').subscribe((event) => this.onCrosswalkHover(event));\n    this.attachEvent(el, 'mouseout').subscribe(() => this.onCrosswalkHover(undefined as never as MouseEvent));\n    this.attachEvent(el, 'click').subscribe((event) => this.nodeClick.emit(this.getNode(event)));\n  }\n\n  /**\n   * Finds matching node in data from a hovered element\n   * @param event Mouse event\n   */\n  private onCrosswalkHover(event: MouseEvent): void {\n    if (event) {\n      const node = this.getNode(event);\n      if (node) {\n        this.nodeHoverData$.next({\n          node: node.label,\n          origin: {\n            x: event.clientX,\n            y: event.clientY,\n          },\n        });\n        this.nodeHover.emit(node); //emits node entry\n      }\n    } else {\n      this.nodeHoverData$.next(undefined);\n      this.nodeHover.emit();\n    }\n  }\n\n  /**\n   * Clears observables\n   */\n  private clear(): void {\n    this.destroy$.next();\n    this.destroy$.complete();\n    this.destroy$ = new Subject();\n  }\n\n  /**\n   * Returns entry from mapping if target, parent, or grandparent id matches the node name\n   * @param event Event\n   * @returns Node entry that matches the target id\n   */\n  private getNode(event: Event): T | undefined {\n    const targetId = (event.target as Element).id;\n    const parentId = (event.target as Element).parentElement?.id ?? '';\n    const grandparentId = (event.target as Element).parentElement?.parentElement?.id ?? '';\n    const idCollection = [targetId, parentId, grandparentId];\n    for (const id of idCollection) {\n      const decodedID = this.decodeId(id);\n      const cellMatch = this.mapping.find(\n        (item) => item.id?.toLowerCase() === decodedID.toLowerCase(), //search mapping by cell name for matching node entry\n      );\n      if (cellMatch) {\n        return cellMatch;\n      } else {\n        const groupMatch = this.mapping.find(\n          (item) => item.groupId?.toLowerCase() === decodedID.toLowerCase(), //search mapping by group name for matching node entry\n        );\n        if (groupMatch) {\n          return groupMatch;\n        }\n      }\n    }\n    return undefined;\n  }\n\n  /**\n   * Decodes id into a normal string\n   * @param id Undecoded ID\n   * @returns id\n   */\n  private decodeId(id: string): string {\n    const replacer = (_match: string, hex: string) => String.fromCharCode(Number.parseInt(hex, 16));\n    return id.replace(/_x([\\da-f]+)_/gi, replacer);\n  }\n\n  /**\n   * Turns normal string into decoded SVG id\n   * @param id id\n   * @returns Encoded id\n   */\n  private encodeId(id: string): string {\n    const replacer = (match: string) => `_x${match.charCodeAt(0).toString(16).toUpperCase()}_`;\n    return id.replace(/[^a-z0-9-]/gi, replacer);\n  }\n\n  /**\n   * Attaches an event listener\n   * @template K\n   * @param el Element\n   * @param event Event\n   * @returns Observable\n   */\n  private attachEvent<K extends keyof SVGElementEventMap>(el: Element, event: K): Observable<SVGElementEventMap[K]> {\n    const { renderer, destroy$ } = this;\n    const add = (handler: NodeEventHandler) => renderer.listen(el, event, handler);\n    const remove = (_handler: NodeEventHandler, unlisten: () => void) => unlisten();\n    return fromEventPattern<SVGElementEventMap[K]>(add, remove).pipe(takeUntil(destroy$));\n  }\n}\n",
             "properties": [
                 {
                     "name": "groupId",
@@ -318,19 +324,20 @@
                 }
             ],
             "indexSignatures": [],
-            "kind": 165,
+            "kind": 171,
             "description": "<p>Interface for node entries</p>\n",
             "rawdescription": "\nInterface for node entries",
-            "methods": []
+            "methods": [],
+            "extends": []
         },
         {
             "name": "NodeTooltipData",
-            "id": "interface-NodeTooltipData-c9c4d9811967ae70c7c610ecef7d6222bdecfbaef85aa19e2dfc42f317a5ffb88ae1e2bae11cf443feebc56a00ceb385e1bf88b9eb9cd8230a2080374a5926cc",
+            "id": "interface-NodeTooltipData-1538842f4d8a58c6eeee3bf89cd2c4caee6ce0e6768306e7f8708ccb23464a4bd6d67630fe5872cdae20052fb7ba2e17cae7124d9af155b00bcf7bc9f74d5815",
             "file": "src/lib/interactive-svg/interactive-svg.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  inject,\n  Input,\n  OnChanges,\n  OnDestroy,\n  Output,\n  Renderer2,\n  SimpleChanges,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { TooltipComponent } from '@hra-ui/components/atoms';\nimport { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';\nimport { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';\nimport { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';\n\n/** Delay before tooltip becomes visible */\nconst HOVER_DELAY = 200;\n\n/** Tooltip position settings */\nconst TOOLTIP_POSITIONS: ConnectedPosition[] = [\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'start',\n    overlayY: 'center',\n    offsetX: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'end',\n    overlayY: 'center',\n    offsetX: -8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'top',\n    offsetY: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'bottom',\n    offsetY: -8,\n  },\n];\n\n/** Node tooltip data */\nexport interface NodeTooltipData {\n  /** Node name */\n  node: string;\n  /** Center point of hovered node in screen coordinates */\n  origin: { x: number; y: number };\n}\n\n/** Interface for node entries */\nexport interface NodeMapEntry {\n  /** Node label */\n  label: string;\n  /** Node id in svg */\n  id: string;\n  /** Node group id */\n  groupId: string;\n  /** Ontology id of cell type */\n  ontologyId: string;\n}\n\n/**\n * Interactive SVG component\n */\n@Component({\n  selector: 'hra-interactive-svg',\n  standalone: true,\n  imports: [CommonModule, InlineSVGModule, OverlayModule, TooltipComponent],\n  templateUrl: './interactive-svg.component.html',\n  styleUrls: ['./interactive-svg.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.ShadowDom,\n})\nexport class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChanges, OnDestroy {\n  /** SVG url */\n  @Input() url?: string;\n\n  /** Mapping info */\n  @Input() mapping: T[] = [];\n\n  /** Highlighted ontology id */\n  @Input() highlightId?: string;\n\n  /** Emits node id when hovered */\n  @Output() readonly nodeHover = new EventEmitter<T>();\n\n  /** Emits node id when clicked */\n  @Output() readonly nodeClick = new EventEmitter<T>();\n\n  /** SVG script eval mode */\n  readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;\n\n  /** Tooltip position settings */\n  readonly TOOLTIP_POSITIONS = TOOLTIP_POSITIONS;\n\n  /** Observable of node hover data or undefined when there is no active hover */\n  readonly nodeHoverData$ = new BehaviorSubject<NodeTooltipData | undefined>(undefined);\n\n  /** Observable of node hover with a timer */\n  readonly nodeHoverDelayedData$ = this.nodeHoverData$.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));\n\n  /** Custom renderer */\n  private readonly renderer = inject(Renderer2);\n\n  /** Destroys */\n  private destroy$ = new Subject<void>();\n\n  /** Crosswalk element of svg */\n  private crosswalkEl?: Element;\n\n  /** List of highlighted svg elements */\n  private highlightedElements: Element[] = [];\n\n  /**\n   * Updates the highlighting based on current highlight id\n   * @param changes\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('highlightId' in changes) {\n      this.resetHighlight();\n      this.setHighlight();\n    }\n  }\n\n  /**\n   * Highlights cells that match highlightId\n   */\n  private setHighlight() {\n    const { mapping, highlightId, crosswalkEl } = this;\n    const entry = mapping.find(({ ontologyId }) => ontologyId === highlightId);\n    if (!entry || !crosswalkEl) {\n      return;\n    }\n\n    let id = entry.id;\n    const encodedId = this.encodeId(entry.id);\n    const element = crosswalkEl.querySelector(`#${id}, #${encodedId}`);\n    if (!element) {\n      return;\n    } else if (element.nodeName !== 'g') {\n      id = element.parentElement?.id ?? '';\n    }\n\n    const elements = crosswalkEl.querySelectorAll(`#${id} :is(path, polygon, polyline)`);\n    this.highlightedElements = Array.from(elements);\n    elements.forEach((el) => el.classList.add('click-active'));\n  }\n\n  /**\n   * Resets all highlighted elements in the svg\n   */\n  private resetHighlight(): void {\n    for (const el of this.highlightedElements) {\n      el.classList.remove('click-active');\n    }\n    this.highlightedElements = [];\n  }\n\n  /**\n   * Clears observables on destroy\n   */\n  ngOnDestroy(): void {\n    this.clear();\n  }\n\n  /**\n   * Sets SVG element\n   * @param el SVG element\n   */\n  setSvgElement(el: SVGElement): void {\n    this.clear();\n    this.crosswalkEl = el.querySelector('[id^=\"Crosswalk\"]') ?? undefined;\n    if (this.crosswalkEl) {\n      // Move to front (i.e. last child in svg)\n      this.renderer.appendChild(el, this.crosswalkEl);\n      this.attachCrosswalkHover(this.crosswalkEl);\n      this.setHighlight();\n    }\n  }\n\n  /**\n   * Removes underscores from id\n   * @param name Node name\n   * @returns node name without underscores\n   */\n  formatNodeName(name: string): string {\n    return name.replace(/_/g, ' ');\n  }\n\n  /**\n   * Attaches crosswalk hover\n   * @param el element\n   */\n  private attachCrosswalkHover(el: Element): void {\n    this.attachEvent(el, 'mouseover').subscribe((event) => this.onCrosswalkHover(event));\n    this.attachEvent(el, 'mouseout').subscribe(() => this.onCrosswalkHover(undefined as never as MouseEvent));\n    this.attachEvent(el, 'click').subscribe((event) => this.nodeClick.emit(this.getNode(event)));\n  }\n\n  /**\n   * Finds matching node in data from a hovered element\n   * @param event Mouse event\n   */\n  private onCrosswalkHover(event: MouseEvent): void {\n    if (event) {\n      const node = this.getNode(event);\n      if (node) {\n        this.nodeHoverData$.next({\n          node: node.label,\n          origin: {\n            x: event.clientX,\n            y: event.clientY,\n          },\n        });\n        this.nodeHover.emit(node); //emits node entry\n      }\n    } else {\n      this.nodeHoverData$.next(undefined);\n      this.nodeHover.emit();\n    }\n  }\n\n  /**\n   * Clears observables\n   */\n  private clear(): void {\n    this.destroy$.next();\n    this.destroy$.complete();\n    this.destroy$ = new Subject();\n  }\n\n  /**\n   * Returns entry from mapping if target, parent, or grandparent id matches the node name\n   * @param event Event\n   * @returns Node entry that matches the target id\n   */\n  private getNode(event: Event): T | undefined {\n    const targetId = (event.target as Element).id;\n    const parentId = (event.target as Element).parentElement?.id ?? '';\n    const grandparentId = (event.target as Element).parentElement?.parentElement?.id ?? '';\n    const idCollection = [targetId, parentId, grandparentId];\n    for (const id of idCollection) {\n      const decodedID = this.decodeId(id);\n      const cellMatch = this.mapping.find(\n        (item) => item.id?.toLowerCase() === decodedID.toLowerCase() //search mapping by cell name for matching node entry\n      );\n      if (cellMatch) {\n        return cellMatch;\n      } else {\n        const groupMatch = this.mapping.find(\n          (item) => item.groupId?.toLowerCase() === decodedID.toLowerCase() //search mapping by group name for matching node entry\n        );\n        if (groupMatch) {\n          return groupMatch;\n        }\n      }\n    }\n    return undefined;\n  }\n\n  /**\n   * Decodes id into a normal string\n   * @param id Undecoded ID\n   * @returns id\n   */\n  private decodeId(id: string): string {\n    const replacer = (_match: string, hex: string) => String.fromCharCode(Number.parseInt(hex, 16));\n    return id.replace(/_x([\\da-f]+)_/gi, replacer);\n  }\n\n  /**\n   * Turns normal string into decoded SVG id\n   * @param id id\n   * @returns Encoded id\n   */\n  private encodeId(id: string): string {\n    const replacer = (match: string) => `_x${match.charCodeAt(0).toString(16).toUpperCase()}_`;\n    return id.replace(/[^a-z0-9-]/gi, replacer);\n  }\n\n  /**\n   * Attaches an event listener\n   * @template K\n   * @param el Element\n   * @param event Event\n   * @returns Observable\n   */\n  private attachEvent<K extends keyof SVGElementEventMap>(el: Element, event: K): Observable<SVGElementEventMap[K]> {\n    const { renderer, destroy$ } = this;\n    const add = (handler: NodeEventHandler) => renderer.listen(el, event, handler);\n    const remove = (_handler: NodeEventHandler, unlisten: () => void) => unlisten();\n    return fromEventPattern<SVGElementEventMap[K]>(add, remove).pipe(takeUntil(destroy$));\n  }\n}\n",
+            "sourceCode": "import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  inject,\n  Input,\n  OnChanges,\n  OnDestroy,\n  Output,\n  Renderer2,\n  SimpleChanges,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { TooltipComponent } from '@hra-ui/components/atoms';\nimport { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';\nimport { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';\nimport { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';\n\n/** Delay before tooltip becomes visible */\nconst HOVER_DELAY = 200;\n\n/** Tooltip position settings */\nconst TOOLTIP_POSITIONS: ConnectedPosition[] = [\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'start',\n    overlayY: 'center',\n    offsetX: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'end',\n    overlayY: 'center',\n    offsetX: -8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'top',\n    offsetY: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'bottom',\n    offsetY: -8,\n  },\n];\n\n/** Node tooltip data */\nexport interface NodeTooltipData {\n  /** Node name */\n  node: string;\n  /** Center point of hovered node in screen coordinates */\n  origin: { x: number; y: number };\n}\n\n/** Interface for node entries */\nexport interface NodeMapEntry {\n  /** Node label */\n  label: string;\n  /** Node id in svg */\n  id: string;\n  /** Node group id */\n  groupId: string;\n  /** Ontology id of cell type */\n  ontologyId: string;\n}\n\n/**\n * Interactive SVG component\n */\n@Component({\n  selector: 'hra-interactive-svg',\n  standalone: true,\n  imports: [CommonModule, InlineSVGModule, OverlayModule, TooltipComponent],\n  templateUrl: './interactive-svg.component.html',\n  styleUrls: ['./interactive-svg.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.ShadowDom,\n})\nexport class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChanges, OnDestroy {\n  /** SVG url */\n  @Input() url?: string;\n\n  /** Mapping info */\n  @Input() mapping: T[] = [];\n\n  /** Highlighted ontology id */\n  @Input() highlightId?: string;\n\n  /** Emits node id when hovered */\n  @Output() readonly nodeHover = new EventEmitter<T>();\n\n  /** Emits node id when clicked */\n  @Output() readonly nodeClick = new EventEmitter<T>();\n\n  /** SVG script eval mode */\n  readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;\n\n  /** Tooltip position settings */\n  readonly TOOLTIP_POSITIONS = TOOLTIP_POSITIONS;\n\n  /** Observable of node hover data or undefined when there is no active hover */\n  readonly nodeHoverData$ = new BehaviorSubject<NodeTooltipData | undefined>(undefined);\n\n  /** Observable of node hover with a timer */\n  readonly nodeHoverDelayedData$ = this.nodeHoverData$.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));\n\n  /** Custom renderer */\n  private readonly renderer = inject(Renderer2);\n\n  /** Destroys */\n  private destroy$ = new Subject<void>();\n\n  /** Crosswalk element of svg */\n  private crosswalkEl?: Element;\n\n  /** List of highlighted svg elements */\n  private highlightedElements: Element[] = [];\n\n  /**\n   * Updates the highlighting based on current highlight id\n   * @param changes\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('highlightId' in changes) {\n      this.resetHighlight();\n      this.setHighlight();\n    }\n  }\n\n  /**\n   * Highlights cells that match highlightId\n   */\n  private setHighlight() {\n    const { mapping, highlightId, crosswalkEl } = this;\n    const entry = mapping.find(({ ontologyId }) => ontologyId === highlightId);\n    if (!entry || !crosswalkEl) {\n      return;\n    }\n\n    let id = entry.id;\n    const encodedId = this.encodeId(entry.id);\n    const element = crosswalkEl.querySelector(`#${id}, #${encodedId}`);\n    if (!element) {\n      return;\n    } else if (element.nodeName !== 'g') {\n      id = element.parentElement?.id ?? '';\n    }\n\n    const elements = crosswalkEl.querySelectorAll(`#${id} :is(path, polygon, polyline)`);\n    this.highlightedElements = Array.from(elements);\n    elements.forEach((el) => el.classList.add('click-active'));\n  }\n\n  /**\n   * Resets all highlighted elements in the svg\n   */\n  private resetHighlight(): void {\n    for (const el of this.highlightedElements) {\n      el.classList.remove('click-active');\n    }\n    this.highlightedElements = [];\n  }\n\n  /**\n   * Clears observables on destroy\n   */\n  ngOnDestroy(): void {\n    this.clear();\n  }\n\n  /**\n   * Sets SVG element\n   * @param el SVG element\n   */\n  setSvgElement(el: SVGElement): void {\n    this.clear();\n    this.crosswalkEl = el.querySelector('[id^=\"Crosswalk\"]') ?? undefined;\n    if (this.crosswalkEl) {\n      // Move to front (i.e. last child in svg)\n      this.renderer.appendChild(el, this.crosswalkEl);\n      this.attachCrosswalkHover(this.crosswalkEl);\n      this.setHighlight();\n    }\n  }\n\n  /**\n   * Removes underscores from id\n   * @param name Node name\n   * @returns node name without underscores\n   */\n  formatNodeName(name: string): string {\n    return name.replace(/_/g, ' ');\n  }\n\n  /**\n   * Attaches crosswalk hover\n   * @param el element\n   */\n  private attachCrosswalkHover(el: Element): void {\n    this.attachEvent(el, 'mouseover').subscribe((event) => this.onCrosswalkHover(event));\n    this.attachEvent(el, 'mouseout').subscribe(() => this.onCrosswalkHover(undefined as never as MouseEvent));\n    this.attachEvent(el, 'click').subscribe((event) => this.nodeClick.emit(this.getNode(event)));\n  }\n\n  /**\n   * Finds matching node in data from a hovered element\n   * @param event Mouse event\n   */\n  private onCrosswalkHover(event: MouseEvent): void {\n    if (event) {\n      const node = this.getNode(event);\n      if (node) {\n        this.nodeHoverData$.next({\n          node: node.label,\n          origin: {\n            x: event.clientX,\n            y: event.clientY,\n          },\n        });\n        this.nodeHover.emit(node); //emits node entry\n      }\n    } else {\n      this.nodeHoverData$.next(undefined);\n      this.nodeHover.emit();\n    }\n  }\n\n  /**\n   * Clears observables\n   */\n  private clear(): void {\n    this.destroy$.next();\n    this.destroy$.complete();\n    this.destroy$ = new Subject();\n  }\n\n  /**\n   * Returns entry from mapping if target, parent, or grandparent id matches the node name\n   * @param event Event\n   * @returns Node entry that matches the target id\n   */\n  private getNode(event: Event): T | undefined {\n    const targetId = (event.target as Element).id;\n    const parentId = (event.target as Element).parentElement?.id ?? '';\n    const grandparentId = (event.target as Element).parentElement?.parentElement?.id ?? '';\n    const idCollection = [targetId, parentId, grandparentId];\n    for (const id of idCollection) {\n      const decodedID = this.decodeId(id);\n      const cellMatch = this.mapping.find(\n        (item) => item.id?.toLowerCase() === decodedID.toLowerCase(), //search mapping by cell name for matching node entry\n      );\n      if (cellMatch) {\n        return cellMatch;\n      } else {\n        const groupMatch = this.mapping.find(\n          (item) => item.groupId?.toLowerCase() === decodedID.toLowerCase(), //search mapping by group name for matching node entry\n        );\n        if (groupMatch) {\n          return groupMatch;\n        }\n      }\n    }\n    return undefined;\n  }\n\n  /**\n   * Decodes id into a normal string\n   * @param id Undecoded ID\n   * @returns id\n   */\n  private decodeId(id: string): string {\n    const replacer = (_match: string, hex: string) => String.fromCharCode(Number.parseInt(hex, 16));\n    return id.replace(/_x([\\da-f]+)_/gi, replacer);\n  }\n\n  /**\n   * Turns normal string into decoded SVG id\n   * @param id id\n   * @returns Encoded id\n   */\n  private encodeId(id: string): string {\n    const replacer = (match: string) => `_x${match.charCodeAt(0).toString(16).toUpperCase()}_`;\n    return id.replace(/[^a-z0-9-]/gi, replacer);\n  }\n\n  /**\n   * Attaches an event listener\n   * @template K\n   * @param el Element\n   * @param event Event\n   * @returns Observable\n   */\n  private attachEvent<K extends keyof SVGElementEventMap>(el: Element, event: K): Observable<SVGElementEventMap[K]> {\n    const { renderer, destroy$ } = this;\n    const add = (handler: NodeEventHandler) => renderer.listen(el, event, handler);\n    const remove = (_handler: NodeEventHandler, unlisten: () => void) => unlisten();\n    return fromEventPattern<SVGElementEventMap[K]>(add, remove).pipe(takeUntil(destroy$));\n  }\n}\n",
             "properties": [
                 {
                     "name": "node",
@@ -354,10 +361,11 @@
                 }
             ],
             "indexSignatures": [],
-            "kind": 165,
+            "kind": 171,
             "description": "<p>Node tooltip data</p>\n",
             "rawdescription": "\nNode tooltip data",
-            "methods": []
+            "methods": [],
+            "extends": []
         },
         {
             "name": "SectionItem",
@@ -400,10 +408,11 @@
                 }
             ],
             "indexSignatures": [],
-            "kind": 165,
+            "kind": 171,
             "description": "<p>An item which represents a section with a data item and an indicator for the last item in the section</p>\n",
             "rawdescription": "\nAn item which represents a section with a data item and an indicator for the last item in the section",
-            "methods": []
+            "methods": [],
+            "extends": []
         },
         {
             "name": "SourceListItem",
@@ -446,10 +455,11 @@
                 }
             ],
             "indexSignatures": [],
-            "kind": 165,
+            "kind": 171,
             "description": "<p>SourceListItem interface contains title and link to the dataset for the SourceList</p>\n",
             "rawdescription": "\nSourceListItem interface contains title and link to the dataset for the SourceList",
-            "methods": []
+            "methods": [],
+            "extends": []
         }
     ],
     "injectables": [],
@@ -477,6 +487,7 @@
                 "./biomarker-table-data-card.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "data",
@@ -509,6 +520,17 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatTableModule",
+                    "type": "module"
+                }
+            ],
             "description": "<p>This component displays a table with sections, where each section contains a list of items with a label and a value.</p>\n",
             "rawdescription": "\nThis component displays a table with sections, where each section contains a list of items with a label and a value.",
             "type": "component",
@@ -521,6 +543,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "implements": [
                 "OnChanges"
             ],
@@ -544,6 +567,7 @@
             "template": "",
             "templateUrl": [],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "color",
@@ -575,6 +599,13 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
             "description": "<p>Describes the data icon for the table</p>\n",
             "rawdescription": "\n\nDescribes the data icon for the table\n",
             "type": "component",
@@ -586,7 +617,8 @@
                     "styleUrl": "./biomarker-table-data-icon.component.scss"
                 }
             ],
-            "stylesData": ""
+            "stylesData": "",
+            "extends": []
         },
         {
             "name": "ContactModalComponent",
@@ -607,6 +639,7 @@
                 "./contact-modal.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "productLogoUrl",
@@ -676,7 +709,7 @@
                     "line": 69,
                     "rawdescription": "\nDefault email address",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 }
             ],
@@ -747,6 +780,37 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatButtonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatIconModule",
+                    "type": "module"
+                },
+                {
+                    "name": "EmailInputComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "MarkdownModule",
+                    "type": "module"
+                },
+                {
+                    "name": "RequiredTextboxComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "RequiredInputComponent",
+                    "type": "component"
+                }
+            ],
             "description": "<p>Contact modal component.</p>\n",
             "rawdescription": "\n\nContact modal component.\n",
             "type": "component",
@@ -759,6 +823,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "accessors": {
                 "disableSubmit": {
                     "name": "disableSubmit",
@@ -793,6 +858,7 @@
                 "./footer.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "downloadFormats",
@@ -917,7 +983,7 @@
                     "line": 83,
                     "rawdescription": "\nDownload list popup overlay positioning",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 }
             ],
@@ -945,10 +1011,10 @@
                             "name": {
                                 "pos": 2809,
                                 "end": 2814,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "event"
                             },
                             "type": "MouseEvent",
@@ -957,10 +1023,10 @@
                             "tagName": {
                                 "pos": 2803,
                                 "end": 2808,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": "<p>Mouse event</p>\n"
@@ -972,6 +1038,33 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatButtonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatIconModule",
+                    "type": "module"
+                },
+                {
+                    "name": "OverlayModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatListModule",
+                    "type": "module"
+                },
+                {
+                    "name": "LinkDirective",
+                    "type": "directive"
+                }
+            ],
             "description": "<p>Component for footer that displays its content at the bottom of the page with different action buttons.</p>\n",
             "rawdescription": "\n\nComponent for footer that displays its content at the bottom of the page with different action buttons.\n",
             "type": "component",
@@ -979,11 +1072,12 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: flex;\n  padding: 0.75rem 2rem;\n  border-top: 0.063rem solid #e2e7e9;\n  align-items: center;\n  background-color: #f8f9fa;\n  gap: 1rem;\n\n  --palette-primary-500: #abcdef;\n\n  .controls {\n    display: flex;\n    justify-content: flex-end;\n  }\n  .filler {\n    flex-grow: 1;\n  }\n\n  .product-title {\n    color: #990000;\n    margin-right: 0rem;\n  }\n\n  a {\n    cursor: pointer;\n    display: flex;\n  }\n\n  .product-logo-image {\n    height: 1.2rem;\n    margin-right: 1rem;\n  }\n\n  button {\n    justify-content: center;\n    align-items: center;\n    min-width: calc(9rem + 3px);\n    min-height: 3rem;\n    gap: 0.5rem;\n    border: 1px solid;\n    transition: none;\n\n    &:hover {\n      border: 2px solid;\n    }\n\n    --palette-primary-100-rgb: #4c5a69;\n    --palette-primary-500-rgb: #243142;\n\n    &.mat-accent {\n      &:active {\n        --palette-primary-700-rgb: #4c5a69;\n      }\n      .mat-icon {\n        z-index: 1;\n      }\n    }\n  }\n}\n\n::ng-deep {\n  .download-options-panel {\n    box-shadow: 0.1rem 0.1rem 0.4rem 0.2rem #dad7d7;\n    background-color: #ffffff;\n  }\n}\n::ng-deep .download-button {\n  .mdc-button__label {\n    display: flex;\n    gap: 0.5rem;\n  }\n}\n",
+                    "data": ":host {\n  display: flex;\n  padding: 0.75rem 2rem;\n  border-top: 0.063rem solid #d3d3d3;\n  align-items: center;\n  background-color: #f8f9fa;\n  gap: 1rem;\n\n  --palette-primary-500: #abcdef;\n\n  .controls {\n    display: flex;\n    justify-content: flex-end;\n  }\n  .filler {\n    flex-grow: 1;\n  }\n\n  .product-title {\n    color: #990000;\n    margin-right: 0rem;\n  }\n\n  a {\n    cursor: pointer;\n    display: flex;\n  }\n\n  .product-logo-image {\n    height: 1.2rem;\n    margin-right: 1rem;\n  }\n\n  button {\n    justify-content: center;\n    align-items: center;\n    min-width: calc(9rem + 3px);\n    min-height: 3rem;\n    gap: 0.5rem;\n    border: 1px solid;\n    transition: none;\n\n    &:hover {\n      border: 2px solid;\n    }\n\n    --palette-primary-100-rgb: #4c5a69;\n    --palette-primary-500-rgb: #243142;\n\n    &.mat-accent {\n      &:active {\n        --palette-primary-700-rgb: #4c5a69;\n      }\n      .mat-icon {\n        z-index: 1;\n      }\n    }\n  }\n}\n\n::ng-deep {\n  .download-options-panel {\n    box-shadow: 0.1rem 0.1rem 0.4rem 0.2rem #dad7d7;\n    background-color: #ffffff;\n  }\n}\n::ng-deep .download-button {\n  .mdc-button__label {\n    display: flex;\n    gap: 0.5rem;\n  }\n}\n",
                     "styleUrl": "./footer.component.scss"
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "accessors": {
                 "isSmall": {
                     "name": "isSmall",
@@ -997,7 +1091,7 @@
                     }
                 }
             },
-            "templateData": "<div *ngIf=\"isSmall\">\n  <a class=\"product-logo-link\">\n    <img class=\"product-logo-image\" [src]=\"productLogoUrl\" alt=\"Prodoct Logo\" />\n    <div class=\"product-title\">{{ productTitle }}</div>\n  </a>\n</div>\n<div class=\"filler\" *ngIf=\"isSmall\"></div>\n\n<button class=\"button\" mat-stroked-button color=\"accent\" [hraLink]=\"illustrationMetadata\">\n  <mat-icon>info_outlined</mat-icon>\n  Illustration\n</button>\n\n<button\n  class=\"button download-button\"\n  mat-stroked-button\n  color=\"accent\"\n  (click)=\"downloadListOpen = !downloadListOpen\"\n  type=\"button\"\n  cdkOverlayOrigin\n  #anchor=\"cdkOverlayOrigin\"\n>\n  <span class=\"material-symbols-outlined\"> download </span>\n  Download\n</button>\n\n<button class=\"button\" mat-stroked-button color=\"accent\" [hraLink]=\"embed\">\n  <mat-icon>code</mat-icon>\n  Embed\n</button>\n\n<div class=\"filler\" *ngIf=\"!isSmall\"></div>\n\n<button class=\"button\" mat-stroked-button color=\"accent\" (click)=\"contactClick.emit()\">\n  <mat-icon>mail_outlined</mat-icon>\n  Contact\n</button>\n\n<button class=\"button\" mat-stroked-button color=\"accent\" [hraLink]=\"hraPortal\">\n  <mat-icon>open_in_new</mat-icon>\n  HRA Portal\n</button>\n\n<ng-template\n  cdkConnectedOverlay\n  [cdkConnectedOverlayOrigin]=\"anchor\"\n  [cdkConnectedOverlayOpen]=\"downloadListOpen\"\n  [cdkConnectedOverlayPositions]=\"DOWNLOADS_LIST_POSITION\"\n  [cdkConnectedOverlayOffsetX]=\"0\"\n  cdkConnectedOverlayHasBackdrop=\"false\"\n  cdkConnectedOverlayPush=\"false\"\n  cdkConnectedOverlayPanelClass=\"download-options-panel\"\n  (overlayOutsideClick)=\"handleOutsideClick($event)\"\n>\n  <mat-action-list>\n    <button\n      mat-list-item\n      *ngFor=\"let format of downloadFormats\"\n      (click)=\"downloadListOpen = false; download.emit(format)\"\n    >\n      {{ format.label }}\n    </button>\n  </mat-action-list>\n</ng-template>\n"
+            "templateData": "<div *ngIf=\"isSmall\">\n  <a class=\"product-logo-link\">\n    <img class=\"product-logo-image\" [src]=\"productLogoUrl\" alt=\"Prodoct Logo\" />\n    <div class=\"product-title\">{{ productTitle }}</div>\n  </a>\n</div>\n<div class=\"filler\" *ngIf=\"isSmall\"></div>\n\n<button class=\"button\" mat-stroked-button color=\"accent\" [hraLink]=\"illustrationMetadata\" disableRipple>\n  <mat-icon>info_outlined</mat-icon>\n  Illustration\n</button>\n\n<button\n  class=\"button download-button\"\n  mat-stroked-button\n  color=\"accent\"\n  (click)=\"downloadListOpen = !downloadListOpen\"\n  type=\"button\"\n  cdkOverlayOrigin\n  #anchor=\"cdkOverlayOrigin\"\n  disableRipple\n>\n  <span class=\"material-symbols-outlined\"> download </span>\n  Download\n</button>\n\n<button class=\"button\" mat-stroked-button color=\"accent\" [hraLink]=\"embed\" disableRipple>\n  <mat-icon>code</mat-icon>\n  Embed\n</button>\n\n<div class=\"filler\" *ngIf=\"!isSmall\"></div>\n\n<button class=\"button\" mat-stroked-button color=\"accent\" (click)=\"contactClick.emit()\" disableRipple>\n  <mat-icon>mail_outlined</mat-icon>\n  Contact\n</button>\n\n<button class=\"button\" mat-stroked-button color=\"accent\" [hraLink]=\"hraPortal\" disableRipple>\n  <mat-icon>open_in_new</mat-icon>\n  HRA Portal\n</button>\n\n<ng-template\n  cdkConnectedOverlay\n  [cdkConnectedOverlayOrigin]=\"anchor\"\n  [cdkConnectedOverlayOpen]=\"downloadListOpen\"\n  [cdkConnectedOverlayPositions]=\"DOWNLOADS_LIST_POSITION\"\n  [cdkConnectedOverlayOffsetX]=\"0\"\n  cdkConnectedOverlayHasBackdrop=\"false\"\n  cdkConnectedOverlayPush=\"false\"\n  cdkConnectedOverlayPanelClass=\"download-options-panel\"\n  (overlayOutsideClick)=\"handleOutsideClick($event)\"\n>\n  <mat-action-list>\n    <button\n      mat-list-item\n      *ngFor=\"let format of downloadFormats\"\n      (click)=\"downloadListOpen = false; download.emit(format)\"\n    >\n      {{ format.label }}\n    </button>\n  </mat-action-list>\n</ng-template>\n"
         },
         {
             "name": "FullscreenContainerComponent",
@@ -1017,6 +1111,7 @@
             "template": "<ng-content></ng-content>",
             "templateUrl": [],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "fullscreen",
@@ -1048,7 +1143,8 @@
                         }
                     ],
                     "modifierKind": [
-                        144
+                        170,
+                        148
                     ]
                 }
             ],
@@ -1057,6 +1153,17 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "FullscreenContentComponent",
+                    "type": "component"
+                }
+            ],
             "description": "<p>A component that wraps any child components of type FullscreenContentComponent and\nsets their isFullScreen property to true or false based on its own fullscreen input property</p>\n",
             "rawdescription": "\nA component that wraps any child components of type FullscreenContentComponent and\nsets their isFullScreen property to true or false based on its own fullscreen input property\n",
             "type": "component",
@@ -1064,6 +1171,7 @@
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "\n      :host {\n        display: block;\n        position: relative;\n      }\n    \n",
+            "extends": [],
             "implements": [
                 "AfterContentInit",
                 "OnChanges"
@@ -1071,7 +1179,7 @@
         },
         {
             "name": "FullscreenContentComponent",
-            "id": "component-FullscreenContentComponent-688a13a9471a891cceb35adec2b34c796c3f91cdacd11f0572b260156b9952848508c46008da8e657041779d2933819ad8d3a15a90ceb3dd99faa123cb0eeaea",
+            "id": "component-FullscreenContentComponent-a852b403668545b69988f5e49a2d5e5be0564ead633a197fdf2502232720aa37e6405e43621c7c236dc57f2b40fb520dd1ab94cb240513a11a7842fd9503689e",
             "file": "src/lib/fullscreen/fullscreen-content.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1087,6 +1195,7 @@
             "template": "<ng-content></ng-content>",
             "templateUrl": [],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [
@@ -1109,6 +1218,10 @@
                             "name": "HostBinding",
                             "stringifiedArguments": "'@animateResize'"
                         }
+                    ],
+                    "modifierKind": [
+                        170,
+                        170
                     ]
                 }
             ],
@@ -1140,10 +1253,17 @@
                 }
             ],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
             "description": "<p>A component that displays its content in fullscreen mode when its isFullScreen property is set to true</p>\n",
             "rawdescription": "\nA component that displays its content in fullscreen mode when its isFullScreen property is set to true",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { animate, state, style, transition, trigger } from '@angular/animations';\n\n/** A component that displays its content in fullscreen mode when its isFullScreen property is set to true */\n@Component({\n  selector: 'hra-fullscreen-content',\n  standalone: true,\n  imports: [CommonModule],\n  animations: [\n    trigger('animateResize', [\n      state(\n        'true',\n        style({\n          width: '100%',\n          position: 'absolute',\n          right: '0',\n        })\n      ),\n      state(\n        'false',\n        style({\n          width: '43rem',\n          position: 'absolute',\n          right: '0',\n        })\n      ),\n      transition('true <=> false', [animate('0.5s ease')]),\n    ]),\n  ],\n  template: '<ng-content></ng-content>',\n  styleUrls: ['./fullscreen-content.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FullscreenContentComponent {\n  /** This binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true */\n  @HostBinding('class.fullscreen-on')\n  /** This binds the isFullScreen property to the @animateResize when isFullScreen is true */\n  @HostBinding('@animateResize')\n  isFullScreen = false;\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { animate, state, style, transition, trigger } from '@angular/animations';\n\n/** A component that displays its content in fullscreen mode when its isFullScreen property is set to true */\n@Component({\n  selector: 'hra-fullscreen-content',\n  standalone: true,\n  imports: [CommonModule],\n  animations: [\n    trigger('animateResize', [\n      state(\n        'true',\n        style({\n          width: '100%',\n          position: 'absolute',\n          right: '0',\n        }),\n      ),\n      state(\n        'false',\n        style({\n          width: '43rem',\n          position: 'absolute',\n          right: '0',\n        }),\n      ),\n      transition('true <=> false', [animate('0.5s ease')]),\n    ]),\n  ],\n  template: '<ng-content></ng-content>',\n  styleUrls: ['./fullscreen-content.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FullscreenContentComponent {\n  /** This binds the isFullScreen property to the class.fullscreen-on when isFullScreen is true */\n  @HostBinding('class.fullscreen-on')\n  /** This binds the isFullScreen property to the @animateResize when isFullScreen is true */\n  @HostBinding('@animateResize')\n  isFullScreen = false;\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1151,7 +1271,8 @@
                     "styleUrl": "./fullscreen-content.component.scss"
                 }
             ],
-            "stylesData": ""
+            "stylesData": "",
+            "extends": []
         },
         {
             "name": "HeaderComponent",
@@ -1172,6 +1293,7 @@
                 "./header.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "aboutLink",
@@ -1249,6 +1371,29 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatButtonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatIconModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatRippleModule",
+                    "type": "module"
+                },
+                {
+                    "name": "LinkDirective",
+                    "type": "directive"
+                }
+            ],
             "description": "<p>Header component, displays on top of every page.</p>\n",
             "rawdescription": "\n\nHeader component, displays on top of every page.\n",
             "type": "component",
@@ -1261,6 +1406,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<a class=\"product\" matRipple [hraLink]=\"productTitleLink\">\n  <img class=\"logo image\" [src]=\"productLogoUrl\" alt=\"Product Logo\" aria-hidden=\"true\" />\n  <h1 class=\"text\">{{ productTitle }}</h1>\n</a>\n<h1 class=\"app text\">{{ appTitle }}</h1>\n\n<div class=\"filler\"></div>\n\n<a mat-flat-button class=\"about\" [hraLink]=\"aboutLink\" (click)=\"aboutClicked()\">\n  <mat-icon class=\"icon\">info_outlined</mat-icon>\n  <span class=\"text\">About</span>\n</a>\n"
         },
         {
@@ -1282,6 +1428,7 @@
                 "./hra-landing-page-intro-wc.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "description",
@@ -1335,6 +1482,17 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MarkdownModule",
+                    "type": "module"
+                }
+            ],
             "description": "<p>Component for LandingPage Intro - Web coomponent</p>\n",
             "rawdescription": "\nComponent for LandingPage Intro - Web coomponent",
             "type": "component",
@@ -1347,6 +1505,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<h1 class=\"title\">{{ title }}</h1>\n\n<markdown class=\"description\" [data]=\"description\"></markdown>\n\n<markdown class=\"readMore\" [data]=\"readMore\"></markdown>\n\n<markdown class=\"partners\" [data]=\"partners\"></markdown>\n"
         },
         {
@@ -1368,6 +1527,7 @@
                 "./info-modal.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "description",
@@ -1421,6 +1581,25 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatButtonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatIconModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MarkdownModule",
+                    "type": "module"
+                }
+            ],
             "description": "<p>Displays an information modal to the user with the product title and logo and description</p>\n",
             "rawdescription": "\nDisplays an information modal to the user with the product title and logo and description",
             "type": "component",
@@ -1433,11 +1612,12 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<a class=\"title\">\n  <img class=\"product-logo-image\" [src]=\"productLogoUrl\" alt=\"Prodoct Logo\" />\n  <h2 class=\"product-title\">{{ productTitle }}</h2>\n</a>\n\n<button mat-icon-button class=\"close\" (click)=\"closeClick.emit()\">\n  <mat-icon>close</mat-icon>\n</button>\n\n<markdown class=\"description\" [data]=\"description\"></markdown>\n"
         },
         {
             "name": "InteractiveSvgComponent",
-            "id": "component-InteractiveSvgComponent-c9c4d9811967ae70c7c610ecef7d6222bdecfbaef85aa19e2dfc42f317a5ffb88ae1e2bae11cf443feebc56a00ceb385e1bf88b9eb9cd8230a2080374a5926cc",
+            "id": "component-InteractiveSvgComponent-1538842f4d8a58c6eeee3bf89cd2c4caee6ce0e6768306e7f8708ccb23464a4bd6d67630fe5872cdae20052fb7ba2e17cae7124d9af155b00bcf7bc9f74d5815",
             "file": "src/lib/interactive-svg/interactive-svg.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -1456,6 +1636,7 @@
                 "./interactive-svg.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "highlightId",
@@ -1523,7 +1704,7 @@
                     "line": 105,
                     "rawdescription": "\nSVG script eval mode",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1537,7 +1718,7 @@
                     "line": 111,
                     "rawdescription": "\nObservable of node hover data or undefined when there is no active hover",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1551,7 +1732,7 @@
                     "line": 114,
                     "rawdescription": "\nObservable of node hover with a timer",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -1565,7 +1746,7 @@
                     "line": 108,
                     "rawdescription": "\nTooltip position settings",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 }
             ],
@@ -1593,10 +1774,10 @@
                             "name": {
                                 "pos": 5109,
                                 "end": 5113,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "name"
                             },
                             "type": "string",
@@ -1605,10 +1786,10 @@
                             "tagName": {
                                 "pos": 5103,
                                 "end": 5108,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": "<p>Node name</p>\n"
@@ -1617,10 +1798,10 @@
                             "tagName": {
                                 "pos": 5130,
                                 "end": 5137,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "returns"
                             },
                             "comment": "<p>node name without underscores</p>\n"
@@ -1650,10 +1831,10 @@
                             "name": {
                                 "pos": 4684,
                                 "end": 4686,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "el"
                             },
                             "type": "SVGElement",
@@ -1662,10 +1843,10 @@
                             "tagName": {
                                 "pos": 4678,
                                 "end": 4683,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": "<p>SVG element</p>\n"
@@ -1677,10 +1858,29 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "InlineSVGModule",
+                    "type": "module"
+                },
+                {
+                    "name": "OverlayModule",
+                    "type": "module"
+                },
+                {
+                    "name": "TooltipComponent",
+                    "type": "component"
+                }
+            ],
             "description": "<p>Interactive SVG component</p>\n",
             "rawdescription": "\n\nInteractive SVG component\n",
             "type": "component",
-            "sourceCode": "import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  inject,\n  Input,\n  OnChanges,\n  OnDestroy,\n  Output,\n  Renderer2,\n  SimpleChanges,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { TooltipComponent } from '@hra-ui/components/atoms';\nimport { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';\nimport { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';\nimport { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';\n\n/** Delay before tooltip becomes visible */\nconst HOVER_DELAY = 200;\n\n/** Tooltip position settings */\nconst TOOLTIP_POSITIONS: ConnectedPosition[] = [\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'start',\n    overlayY: 'center',\n    offsetX: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'end',\n    overlayY: 'center',\n    offsetX: -8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'top',\n    offsetY: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'bottom',\n    offsetY: -8,\n  },\n];\n\n/** Node tooltip data */\nexport interface NodeTooltipData {\n  /** Node name */\n  node: string;\n  /** Center point of hovered node in screen coordinates */\n  origin: { x: number; y: number };\n}\n\n/** Interface for node entries */\nexport interface NodeMapEntry {\n  /** Node label */\n  label: string;\n  /** Node id in svg */\n  id: string;\n  /** Node group id */\n  groupId: string;\n  /** Ontology id of cell type */\n  ontologyId: string;\n}\n\n/**\n * Interactive SVG component\n */\n@Component({\n  selector: 'hra-interactive-svg',\n  standalone: true,\n  imports: [CommonModule, InlineSVGModule, OverlayModule, TooltipComponent],\n  templateUrl: './interactive-svg.component.html',\n  styleUrls: ['./interactive-svg.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.ShadowDom,\n})\nexport class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChanges, OnDestroy {\n  /** SVG url */\n  @Input() url?: string;\n\n  /** Mapping info */\n  @Input() mapping: T[] = [];\n\n  /** Highlighted ontology id */\n  @Input() highlightId?: string;\n\n  /** Emits node id when hovered */\n  @Output() readonly nodeHover = new EventEmitter<T>();\n\n  /** Emits node id when clicked */\n  @Output() readonly nodeClick = new EventEmitter<T>();\n\n  /** SVG script eval mode */\n  readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;\n\n  /** Tooltip position settings */\n  readonly TOOLTIP_POSITIONS = TOOLTIP_POSITIONS;\n\n  /** Observable of node hover data or undefined when there is no active hover */\n  readonly nodeHoverData$ = new BehaviorSubject<NodeTooltipData | undefined>(undefined);\n\n  /** Observable of node hover with a timer */\n  readonly nodeHoverDelayedData$ = this.nodeHoverData$.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));\n\n  /** Custom renderer */\n  private readonly renderer = inject(Renderer2);\n\n  /** Destroys */\n  private destroy$ = new Subject<void>();\n\n  /** Crosswalk element of svg */\n  private crosswalkEl?: Element;\n\n  /** List of highlighted svg elements */\n  private highlightedElements: Element[] = [];\n\n  /**\n   * Updates the highlighting based on current highlight id\n   * @param changes\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('highlightId' in changes) {\n      this.resetHighlight();\n      this.setHighlight();\n    }\n  }\n\n  /**\n   * Highlights cells that match highlightId\n   */\n  private setHighlight() {\n    const { mapping, highlightId, crosswalkEl } = this;\n    const entry = mapping.find(({ ontologyId }) => ontologyId === highlightId);\n    if (!entry || !crosswalkEl) {\n      return;\n    }\n\n    let id = entry.id;\n    const encodedId = this.encodeId(entry.id);\n    const element = crosswalkEl.querySelector(`#${id}, #${encodedId}`);\n    if (!element) {\n      return;\n    } else if (element.nodeName !== 'g') {\n      id = element.parentElement?.id ?? '';\n    }\n\n    const elements = crosswalkEl.querySelectorAll(`#${id} :is(path, polygon, polyline)`);\n    this.highlightedElements = Array.from(elements);\n    elements.forEach((el) => el.classList.add('click-active'));\n  }\n\n  /**\n   * Resets all highlighted elements in the svg\n   */\n  private resetHighlight(): void {\n    for (const el of this.highlightedElements) {\n      el.classList.remove('click-active');\n    }\n    this.highlightedElements = [];\n  }\n\n  /**\n   * Clears observables on destroy\n   */\n  ngOnDestroy(): void {\n    this.clear();\n  }\n\n  /**\n   * Sets SVG element\n   * @param el SVG element\n   */\n  setSvgElement(el: SVGElement): void {\n    this.clear();\n    this.crosswalkEl = el.querySelector('[id^=\"Crosswalk\"]') ?? undefined;\n    if (this.crosswalkEl) {\n      // Move to front (i.e. last child in svg)\n      this.renderer.appendChild(el, this.crosswalkEl);\n      this.attachCrosswalkHover(this.crosswalkEl);\n      this.setHighlight();\n    }\n  }\n\n  /**\n   * Removes underscores from id\n   * @param name Node name\n   * @returns node name without underscores\n   */\n  formatNodeName(name: string): string {\n    return name.replace(/_/g, ' ');\n  }\n\n  /**\n   * Attaches crosswalk hover\n   * @param el element\n   */\n  private attachCrosswalkHover(el: Element): void {\n    this.attachEvent(el, 'mouseover').subscribe((event) => this.onCrosswalkHover(event));\n    this.attachEvent(el, 'mouseout').subscribe(() => this.onCrosswalkHover(undefined as never as MouseEvent));\n    this.attachEvent(el, 'click').subscribe((event) => this.nodeClick.emit(this.getNode(event)));\n  }\n\n  /**\n   * Finds matching node in data from a hovered element\n   * @param event Mouse event\n   */\n  private onCrosswalkHover(event: MouseEvent): void {\n    if (event) {\n      const node = this.getNode(event);\n      if (node) {\n        this.nodeHoverData$.next({\n          node: node.label,\n          origin: {\n            x: event.clientX,\n            y: event.clientY,\n          },\n        });\n        this.nodeHover.emit(node); //emits node entry\n      }\n    } else {\n      this.nodeHoverData$.next(undefined);\n      this.nodeHover.emit();\n    }\n  }\n\n  /**\n   * Clears observables\n   */\n  private clear(): void {\n    this.destroy$.next();\n    this.destroy$.complete();\n    this.destroy$ = new Subject();\n  }\n\n  /**\n   * Returns entry from mapping if target, parent, or grandparent id matches the node name\n   * @param event Event\n   * @returns Node entry that matches the target id\n   */\n  private getNode(event: Event): T | undefined {\n    const targetId = (event.target as Element).id;\n    const parentId = (event.target as Element).parentElement?.id ?? '';\n    const grandparentId = (event.target as Element).parentElement?.parentElement?.id ?? '';\n    const idCollection = [targetId, parentId, grandparentId];\n    for (const id of idCollection) {\n      const decodedID = this.decodeId(id);\n      const cellMatch = this.mapping.find(\n        (item) => item.id?.toLowerCase() === decodedID.toLowerCase() //search mapping by cell name for matching node entry\n      );\n      if (cellMatch) {\n        return cellMatch;\n      } else {\n        const groupMatch = this.mapping.find(\n          (item) => item.groupId?.toLowerCase() === decodedID.toLowerCase() //search mapping by group name for matching node entry\n        );\n        if (groupMatch) {\n          return groupMatch;\n        }\n      }\n    }\n    return undefined;\n  }\n\n  /**\n   * Decodes id into a normal string\n   * @param id Undecoded ID\n   * @returns id\n   */\n  private decodeId(id: string): string {\n    const replacer = (_match: string, hex: string) => String.fromCharCode(Number.parseInt(hex, 16));\n    return id.replace(/_x([\\da-f]+)_/gi, replacer);\n  }\n\n  /**\n   * Turns normal string into decoded SVG id\n   * @param id id\n   * @returns Encoded id\n   */\n  private encodeId(id: string): string {\n    const replacer = (match: string) => `_x${match.charCodeAt(0).toString(16).toUpperCase()}_`;\n    return id.replace(/[^a-z0-9-]/gi, replacer);\n  }\n\n  /**\n   * Attaches an event listener\n   * @template K\n   * @param el Element\n   * @param event Event\n   * @returns Observable\n   */\n  private attachEvent<K extends keyof SVGElementEventMap>(el: Element, event: K): Observable<SVGElementEventMap[K]> {\n    const { renderer, destroy$ } = this;\n    const add = (handler: NodeEventHandler) => renderer.listen(el, event, handler);\n    const remove = (_handler: NodeEventHandler, unlisten: () => void) => unlisten();\n    return fromEventPattern<SVGElementEventMap[K]>(add, remove).pipe(takeUntil(destroy$));\n  }\n}\n",
+            "sourceCode": "import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  inject,\n  Input,\n  OnChanges,\n  OnDestroy,\n  Output,\n  Renderer2,\n  SimpleChanges,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { TooltipComponent } from '@hra-ui/components/atoms';\nimport { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';\nimport { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';\nimport { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';\n\n/** Delay before tooltip becomes visible */\nconst HOVER_DELAY = 200;\n\n/** Tooltip position settings */\nconst TOOLTIP_POSITIONS: ConnectedPosition[] = [\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'start',\n    overlayY: 'center',\n    offsetX: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'end',\n    overlayY: 'center',\n    offsetX: -8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'top',\n    offsetY: 8,\n  },\n  {\n    originX: 'center',\n    originY: 'center',\n    overlayX: 'center',\n    overlayY: 'bottom',\n    offsetY: -8,\n  },\n];\n\n/** Node tooltip data */\nexport interface NodeTooltipData {\n  /** Node name */\n  node: string;\n  /** Center point of hovered node in screen coordinates */\n  origin: { x: number; y: number };\n}\n\n/** Interface for node entries */\nexport interface NodeMapEntry {\n  /** Node label */\n  label: string;\n  /** Node id in svg */\n  id: string;\n  /** Node group id */\n  groupId: string;\n  /** Ontology id of cell type */\n  ontologyId: string;\n}\n\n/**\n * Interactive SVG component\n */\n@Component({\n  selector: 'hra-interactive-svg',\n  standalone: true,\n  imports: [CommonModule, InlineSVGModule, OverlayModule, TooltipComponent],\n  templateUrl: './interactive-svg.component.html',\n  styleUrls: ['./interactive-svg.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.ShadowDom,\n})\nexport class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChanges, OnDestroy {\n  /** SVG url */\n  @Input() url?: string;\n\n  /** Mapping info */\n  @Input() mapping: T[] = [];\n\n  /** Highlighted ontology id */\n  @Input() highlightId?: string;\n\n  /** Emits node id when hovered */\n  @Output() readonly nodeHover = new EventEmitter<T>();\n\n  /** Emits node id when clicked */\n  @Output() readonly nodeClick = new EventEmitter<T>();\n\n  /** SVG script eval mode */\n  readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;\n\n  /** Tooltip position settings */\n  readonly TOOLTIP_POSITIONS = TOOLTIP_POSITIONS;\n\n  /** Observable of node hover data or undefined when there is no active hover */\n  readonly nodeHoverData$ = new BehaviorSubject<NodeTooltipData | undefined>(undefined);\n\n  /** Observable of node hover with a timer */\n  readonly nodeHoverDelayedData$ = this.nodeHoverData$.pipe(debounce((event) => timer(event ? HOVER_DELAY : 0)));\n\n  /** Custom renderer */\n  private readonly renderer = inject(Renderer2);\n\n  /** Destroys */\n  private destroy$ = new Subject<void>();\n\n  /** Crosswalk element of svg */\n  private crosswalkEl?: Element;\n\n  /** List of highlighted svg elements */\n  private highlightedElements: Element[] = [];\n\n  /**\n   * Updates the highlighting based on current highlight id\n   * @param changes\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('highlightId' in changes) {\n      this.resetHighlight();\n      this.setHighlight();\n    }\n  }\n\n  /**\n   * Highlights cells that match highlightId\n   */\n  private setHighlight() {\n    const { mapping, highlightId, crosswalkEl } = this;\n    const entry = mapping.find(({ ontologyId }) => ontologyId === highlightId);\n    if (!entry || !crosswalkEl) {\n      return;\n    }\n\n    let id = entry.id;\n    const encodedId = this.encodeId(entry.id);\n    const element = crosswalkEl.querySelector(`#${id}, #${encodedId}`);\n    if (!element) {\n      return;\n    } else if (element.nodeName !== 'g') {\n      id = element.parentElement?.id ?? '';\n    }\n\n    const elements = crosswalkEl.querySelectorAll(`#${id} :is(path, polygon, polyline)`);\n    this.highlightedElements = Array.from(elements);\n    elements.forEach((el) => el.classList.add('click-active'));\n  }\n\n  /**\n   * Resets all highlighted elements in the svg\n   */\n  private resetHighlight(): void {\n    for (const el of this.highlightedElements) {\n      el.classList.remove('click-active');\n    }\n    this.highlightedElements = [];\n  }\n\n  /**\n   * Clears observables on destroy\n   */\n  ngOnDestroy(): void {\n    this.clear();\n  }\n\n  /**\n   * Sets SVG element\n   * @param el SVG element\n   */\n  setSvgElement(el: SVGElement): void {\n    this.clear();\n    this.crosswalkEl = el.querySelector('[id^=\"Crosswalk\"]') ?? undefined;\n    if (this.crosswalkEl) {\n      // Move to front (i.e. last child in svg)\n      this.renderer.appendChild(el, this.crosswalkEl);\n      this.attachCrosswalkHover(this.crosswalkEl);\n      this.setHighlight();\n    }\n  }\n\n  /**\n   * Removes underscores from id\n   * @param name Node name\n   * @returns node name without underscores\n   */\n  formatNodeName(name: string): string {\n    return name.replace(/_/g, ' ');\n  }\n\n  /**\n   * Attaches crosswalk hover\n   * @param el element\n   */\n  private attachCrosswalkHover(el: Element): void {\n    this.attachEvent(el, 'mouseover').subscribe((event) => this.onCrosswalkHover(event));\n    this.attachEvent(el, 'mouseout').subscribe(() => this.onCrosswalkHover(undefined as never as MouseEvent));\n    this.attachEvent(el, 'click').subscribe((event) => this.nodeClick.emit(this.getNode(event)));\n  }\n\n  /**\n   * Finds matching node in data from a hovered element\n   * @param event Mouse event\n   */\n  private onCrosswalkHover(event: MouseEvent): void {\n    if (event) {\n      const node = this.getNode(event);\n      if (node) {\n        this.nodeHoverData$.next({\n          node: node.label,\n          origin: {\n            x: event.clientX,\n            y: event.clientY,\n          },\n        });\n        this.nodeHover.emit(node); //emits node entry\n      }\n    } else {\n      this.nodeHoverData$.next(undefined);\n      this.nodeHover.emit();\n    }\n  }\n\n  /**\n   * Clears observables\n   */\n  private clear(): void {\n    this.destroy$.next();\n    this.destroy$.complete();\n    this.destroy$ = new Subject();\n  }\n\n  /**\n   * Returns entry from mapping if target, parent, or grandparent id matches the node name\n   * @param event Event\n   * @returns Node entry that matches the target id\n   */\n  private getNode(event: Event): T | undefined {\n    const targetId = (event.target as Element).id;\n    const parentId = (event.target as Element).parentElement?.id ?? '';\n    const grandparentId = (event.target as Element).parentElement?.parentElement?.id ?? '';\n    const idCollection = [targetId, parentId, grandparentId];\n    for (const id of idCollection) {\n      const decodedID = this.decodeId(id);\n      const cellMatch = this.mapping.find(\n        (item) => item.id?.toLowerCase() === decodedID.toLowerCase(), //search mapping by cell name for matching node entry\n      );\n      if (cellMatch) {\n        return cellMatch;\n      } else {\n        const groupMatch = this.mapping.find(\n          (item) => item.groupId?.toLowerCase() === decodedID.toLowerCase(), //search mapping by group name for matching node entry\n        );\n        if (groupMatch) {\n          return groupMatch;\n        }\n      }\n    }\n    return undefined;\n  }\n\n  /**\n   * Decodes id into a normal string\n   * @param id Undecoded ID\n   * @returns id\n   */\n  private decodeId(id: string): string {\n    const replacer = (_match: string, hex: string) => String.fromCharCode(Number.parseInt(hex, 16));\n    return id.replace(/_x([\\da-f]+)_/gi, replacer);\n  }\n\n  /**\n   * Turns normal string into decoded SVG id\n   * @param id id\n   * @returns Encoded id\n   */\n  private encodeId(id: string): string {\n    const replacer = (match: string) => `_x${match.charCodeAt(0).toString(16).toUpperCase()}_`;\n    return id.replace(/[^a-z0-9-]/gi, replacer);\n  }\n\n  /**\n   * Attaches an event listener\n   * @template K\n   * @param el Element\n   * @param event Event\n   * @returns Observable\n   */\n  private attachEvent<K extends keyof SVGElementEventMap>(el: Element, event: K): Observable<SVGElementEventMap[K]> {\n    const { renderer, destroy$ } = this;\n    const add = (handler: NodeEventHandler) => renderer.listen(el, event, handler);\n    const remove = (_handler: NodeEventHandler, unlisten: () => void) => unlisten();\n    return fromEventPattern<SVGElementEventMap[K]>(add, remove).pipe(takeUntil(destroy$));\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1689,6 +1889,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "implements": [
                 "OnChanges",
                 "OnDestroy"
@@ -1714,6 +1915,7 @@
                 "./landing-page-in-depth.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "description",
@@ -1778,6 +1980,29 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MarkdownModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatButtonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatIconModule",
+                    "type": "module"
+                },
+                {
+                    "name": "LinkDirective",
+                    "type": "directive"
+                }
+            ],
             "description": "<p>Displays the image and also corresponding title and text along with a button to read more</p>\n",
             "rawdescription": "\n\nDisplays the image and also corresponding title and text along with a button to read more\n",
             "type": "component",
@@ -1790,6 +2015,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<img class=\"image\" [src]=\"img\" alt=\"\" />\n<h1 class=\"title\">{{ title }}</h1>\n<markdown class=\"description\" [data]=\"description\"></markdown>\n<button mat-flat-button class=\"more-button\" color=\"primary\" [hraLink]=\"moreLink\">\n  {{ moreText }}\n</button>\n"
         },
         {
@@ -1811,6 +2037,7 @@
                 "./landing-page-intro.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "description",
@@ -1886,6 +2113,29 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatButtonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatIconModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MarkdownModule",
+                    "type": "module"
+                },
+                {
+                    "name": "LinkDirective",
+                    "type": "directive"
+                }
+            ],
             "description": "<p>Component for LandingPage Intro</p>\n",
             "rawdescription": "\nComponent for LandingPage Intro",
             "type": "component",
@@ -1898,6 +2148,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<h1 class=\"title\">{{ title }}</h1>\n<markdown class=\"description\" [data]=\"description\"></markdown>\n\n<button mat-flat-button class=\"more-button red-theme\" color=\"primary\" [hraLink]=\"moreLink\">\n  {{ moreText }}\n  <mat-icon iconPositionEnd>arrow_forward</mat-icon>\n</button>\n<markdown class=\"partners\" [data]=\"partners\"></markdown>\n\n<img class=\"image\" [src]=\"img\" alt=\"alt\" />\n"
         },
         {
@@ -1919,6 +2170,7 @@
                 "./metrics.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "baseHref",
@@ -1972,6 +2224,13 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
             "description": "<p>Describes the metrics for the HuBMAP project.</p>\n",
             "rawdescription": "\n\nDescribes the metrics for the HuBMAP project.\n",
             "type": "component",
@@ -1984,6 +2243,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<img class=\"logo\" [src]=\"logo\" alt=\"\" />\n<span class=\"header-title\">{{ title }}</span>\n\n<div class=\"metrics\">\n  <div class=\"metric\" *ngFor=\"let item of metrics\">\n    <img class=\"logo\" [src]=\"baseHref + item.icon\" alt=\"\" />\n    <span class=\"value\"> {{ item.value }} </span>\n    <span class=\"description\"> {{ item.description }} </span>\n  </div>\n</div>\n"
         },
         {
@@ -2005,6 +2265,7 @@
                 "./screen-size-notice.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "content",
@@ -2047,6 +2308,29 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MarkdownModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatButtonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatIconModule",
+                    "type": "module"
+                },
+                {
+                    "name": "LinkDirective",
+                    "type": "directive"
+                }
+            ],
             "description": "<p>The screen size notice component displays a notice for the users specifying the required screen size</p>\n",
             "rawdescription": "\n\nThe screen size notice component displays a notice for the users specifying the required screen size\n",
             "type": "component",
@@ -2059,6 +2343,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<h3>Screen Size Notice</h3>\n<button mat-icon-button class=\"header-close\" (click)=\"proceedClick.emit()\">\n  <mat-icon>close</mat-icon>\n</button>\n<markdown [data]=\"content\" class=\"content\"></markdown>\n<button mat-stroked-button color=\"accent\" class=\"btn-stroked\" (click)=\"proceedClick.emit()\">\n  Proceed to FTU Explorer\n</button>\n<button mat-flat-button color=\"primary\" class=\"btn-flat\" [hraLink]=\"portal\">Human Reference Atlas Portal</button>\n"
         },
         {
@@ -2080,6 +2365,7 @@
                 "./source-list.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "collaborateText",
@@ -2164,10 +2450,10 @@
                             "name": {
                                 "pos": 2100,
                                 "end": 2104,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "item"
                             },
                             "type": "SourceListItem",
@@ -2176,10 +2462,10 @@
                             "tagName": {
                                 "pos": 2094,
                                 "end": 2099,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": "<p>Source list item</p>\n"
@@ -2203,6 +2489,29 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatTableModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatIconModule",
+                    "type": "module"
+                },
+                {
+                    "name": "LabelBoxComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "EmptyBiomarkerComponent",
+                    "type": "component"
+                }
+            ],
             "description": "<p>This component shows list of sources with title and links to the datasets</p>\n",
             "rawdescription": "\nThis component shows list of sources with title and links to the datasets",
             "type": "component",
@@ -2215,11 +2524,12 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<hra-label-box class=\"toggle\" (click)=\"toggleTable()\">\n  Source Data\n  <mat-icon class=\"end\">\n    {{ showTable ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}\n  </mat-icon>\n</hra-label-box>\n\n<div class=\"table-content\" [class.hidden]=\"!showTable\">\n  <table *ngIf=\"sources.length !== 0\" mat-table [dataSource]=\"sources\">\n    <caption class=\"sr-only\">\n      Source List Table with Title and Links\n    </caption>\n\n    <!-- Position Column -->\n    <ng-container matColumnDef=\"link\">\n      <th class=\"sr-only\" mat-header-cell *matHeaderCellDef>Item Number</th>\n      <td mat-cell *matCellDef=\"let element; let i = index\">{{ i + 1 }}.</td>\n    </ng-container>\n\n    <!-- Data Column -->\n    <ng-container matColumnDef=\"title\">\n      <th class=\"sr-only\" mat-header-cell *matHeaderCellDef>Title and Link</th>\n      <td mat-cell *matCellDef=\"let element\">\n        {{ element.title }}\n        <br />\n        <a [href]=\"element.link\" target=\"_blank\" (click)=\"sourceLinkClicked(element)\">{{ element.label }}</a>\n      </td>\n    </ng-container>\n\n    <tr mat-row *matRowDef=\"let row; columns: ['link', 'title']\"></tr>\n  </table>\n  <hra-empty-biomarker\n    *ngIf=\"sources.length === 0\"\n    [collaborateText]=\"collaborateText\"\n    [message]=\"message\"\n    (collaborateClick)=\"collaborateClick.emit()\"\n  ></hra-empty-biomarker>\n</div>\n"
         },
         {
             "name": "TissueTreeListComponent",
-            "id": "component-TissueTreeListComponent-2f82dc47d47ecca91846722b32683c0f118afcad84f5e3fe578b91e5ea39a1a38a698534d3b35d4b4f93780a3286b6758722d830a68ae845b2035a7aa5be9ea1",
+            "id": "component-TissueTreeListComponent-c78e5394de0d6c8f1d9e1e429499f409d52c934c5c2387c13559d6b24aeee7af41f255badc70750f063a293d9149221e041042381816d847c329eb815ef12f9d",
             "file": "src/lib/tissue-tree-list/tissue-tree-list.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -2236,6 +2546,7 @@
                 "./tissue-tree-list.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "nodes",
@@ -2285,7 +2596,7 @@
             "propertiesClass": [
                 {
                     "name": "control",
-                    "defaultValue": "new FlatTreeControl<InternalNode<K, T>>(\n    (node) => node.level,\n    (node) => node.expandable\n  )",
+                    "defaultValue": "new FlatTreeControl<InternalNode<K, T>>(\n    (node) => node.level,\n    (node) => node.expandable,\n  )",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -2294,7 +2605,7 @@
                     "line": 95,
                     "rawdescription": "\n\ntree controller, used to control the nodes in the tree\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -2308,7 +2619,7 @@
                     "line": 118,
                     "rawdescription": "\n\nData source of tissue tree list component, defines the data in mat-tree\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -2324,7 +2635,7 @@
                 },
                 {
                     "name": "flattener",
-                    "defaultValue": "new MatTreeFlattener<T, InternalNode<K, T>>(\n    (node, level) => ({\n      label: node.label,\n      expandable: (node.children?.length ?? 0) > 0,\n      level,\n      data: node,\n    }),\n    (node) => node.level,\n    (node) => node.expandable,\n    (node) => node.children?.map((id) => this.nodes[id])\n  )",
+                    "defaultValue": "new MatTreeFlattener<T, InternalNode<K, T>>(\n    (node, level) => ({\n      label: node.label,\n      expandable: (node.children?.length ?? 0) > 0,\n      level,\n      data: node,\n    }),\n    (node) => node.level,\n    (node) => node.expandable,\n    (node) => node.children?.map((id) => this.nodes[id]),\n  )",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -2333,7 +2644,7 @@
                     "line": 103,
                     "rawdescription": "\n\nFlattener of tissue tree list component, returns flat-data structure\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 }
             ],
@@ -2362,27 +2673,30 @@
                             "stringifiedArguments": "'click', ['$event']"
                         }
                     ],
+                    "modifierKind": [
+                        170
+                    ],
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 7676,
-                                "end": 7681,
-                                "flags": 4227072,
+                                "pos": 7678,
+                                "end": 7683,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "event"
                             },
                             "type": "MouseEvent",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 7670,
-                                "end": 7675,
-                                "flags": 4227072,
+                                "pos": 7672,
+                                "end": 7677,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": "<p>Click event</p>\n"
@@ -2405,6 +2719,9 @@
                             "name": "HostListener",
                             "stringifiedArguments": "'document:click'"
                         }
+                    ],
+                    "modifierKind": [
+                        170
                     ]
                 },
                 {
@@ -2443,36 +2760,36 @@
                         },
                         {
                             "name": {
-                                "pos": 3853,
-                                "end": 3857,
-                                "flags": 4227072,
+                                "pos": 3855,
+                                "end": 3859,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "node"
                             },
                             "type": "InternalNode<K | T>",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 3847,
-                                "end": 3852,
-                                "flags": 4227072,
+                                "pos": 3849,
+                                "end": 3854,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": "<p>current selected node</p>\n"
                         },
                         {
                             "tagName": {
-                                "pos": 3886,
-                                "end": 3893,
-                                "flags": 4227072,
+                                "pos": 3888,
+                                "end": 3895,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "returns"
                             },
                             "comment": "<p>boolean, which means if node has children</p>\n"
@@ -2503,27 +2820,30 @@
                             "stringifiedArguments": "'document:keydown', ['$event']"
                         }
                     ],
+                    "modifierKind": [
+                        170
+                    ],
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 5843,
-                                "end": 5848,
-                                "flags": 4227072,
+                                "pos": 5845,
+                                "end": 5850,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "event"
                             },
                             "type": "KeyboardEvent",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 5837,
-                                "end": 5842,
-                                "flags": 4227072,
+                                "pos": 5839,
+                                "end": 5844,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": "<p>Keyboard event</p>\n"
@@ -2563,24 +2883,24 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 4096,
-                                "end": 4100,
-                                "flags": 4227072,
+                                "pos": 4098,
+                                "end": 4102,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "node"
                             },
                             "type": "T",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 4090,
-                                "end": 4095,
-                                "flags": 4227072,
+                                "pos": 4092,
+                                "end": 4097,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": "<p>Tissue Tree Item, which is clicked</p>\n"
@@ -2611,29 +2931,29 @@
                     "description": "<p>Enables keyboard nav only if the tissue tree list is clicked</p>\n",
                     "jsdoctags": [
                         {
-                            "pos": 7669,
-                            "end": 7697,
-                            "flags": 4227072,
+                            "pos": 7671,
+                            "end": 7699,
+                            "flags": 16842752,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
-                            "kind": 338,
+                            "kind": 348,
                             "tagName": {
-                                "pos": 7670,
-                                "end": 7675,
-                                "flags": 4227072,
+                                "pos": 7672,
+                                "end": 7677,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": "<p>Click event</p>\n",
                             "name": {
-                                "pos": 7676,
-                                "end": 7681,
-                                "flags": 4227072,
+                                "pos": 7678,
+                                "end": 7683,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "event"
                             },
                             "isNameFirst": true,
@@ -2671,29 +2991,29 @@
                     "description": "<p>Keyboard navigation for tissue tree list</p>\n",
                     "jsdoctags": [
                         {
-                            "pos": 5836,
-                            "end": 5867,
-                            "flags": 4227072,
+                            "pos": 5838,
+                            "end": 5869,
+                            "flags": 16842752,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
-                            "kind": 338,
+                            "kind": 348,
                             "tagName": {
-                                "pos": 5837,
-                                "end": 5842,
-                                "flags": 4227072,
+                                "pos": 5839,
+                                "end": 5844,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": "<p>Keyboard event</p>\n",
                             "name": {
-                                "pos": 5843,
-                                "end": 5848,
-                                "flags": 4227072,
+                                "pos": 5845,
+                                "end": 5850,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "event"
                             },
                             "isNameFirst": true,
@@ -2703,10 +3023,41 @@
                     "line": 223
                 }
             ],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatButtonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatTreeModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatIconModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatExpansionModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatRippleModule",
+                    "type": "module"
+                },
+                {
+                    "name": "LinkDirective",
+                    "type": "directive"
+                }
+            ],
             "description": "<p>Tabular View for hubMap tissue side-bar</p>\n",
             "rawdescription": "\n\nTabular View for hubMap tissue side-bar\n",
             "type": "component",
-            "sourceCode": "import { FlatTreeControl } from '@angular/cdk/tree';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  HostListener,\n  Input,\n  OnChanges,\n  Output,\n  SimpleChanges,\n} from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatExpansionModule } from '@angular/material/expansion';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { LinkId } from '@hra-ui/cdk/state';\n\n/** Base node type */\nexport interface DataNode<K extends string> {\n  /** User readable label */\n  label: string;\n  /** Id to pass as a query parameter on navigation */\n  id?: string;\n  /** Link to navigate to on node click */\n  link?: LinkId;\n  /** Nested nodes */\n  children?: K[];\n}\n\n/**\n * Internal interface for flat tissue data hierarchy\n */\ninterface InternalNode<K extends string, T extends DataNode<K>> {\n  /** Displayed label */\n  label: string;\n  /** Whether the node can be expanded to display child nodes */\n  expandable: boolean;\n  /** Depth of node in the tree */\n  level: number;\n  /** Associated user node data */\n  data: T;\n}\n\n/**\n * Tabular View for hubMap tissue side-bar\n */\n@Component({\n  selector: 'hra-tissue-tree-list',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatButtonModule,\n    MatTreeModule,\n    MatIconModule,\n    MatExpansionModule,\n    MatRippleModule,\n    LinkDirective,\n  ],\n  templateUrl: './tissue-tree-list.component.html',\n  styleUrls: ['./tissue-tree-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueTreeListComponent<K extends string, T extends DataNode<K>> implements OnChanges {\n  /**\n   * Input  of tissue tree list component\n   */\n  @Input() nodes: Record<K, T> = {} as Record<K, T>;\n\n  /**\n   * Node selected, to view the data associated with it\n   */\n  @Input() selected?: T = undefined;\n\n  /**\n   * Output  of tissue tree list component\n   */\n  @Output() readonly selectedChange = new EventEmitter<T | undefined>();\n\n  /**\n   * Navigates to an illustration page\n   */\n  @Output() navigate = new EventEmitter();\n\n  /**\n   * Whether keyboard navigation is enabled\n   */\n  enableNav = true;\n\n  /**\n   * tree controller, used to control the nodes in the tree\n   */\n  readonly control = new FlatTreeControl<InternalNode<K, T>>(\n    (node) => node.level,\n    (node) => node.expandable\n  );\n\n  /**\n   * Flattener of tissue tree list component, returns flat-data structure\n   */\n  readonly flattener = new MatTreeFlattener<T, InternalNode<K, T>>(\n    (node, level) => ({\n      label: node.label,\n      expandable: (node.children?.length ?? 0) > 0,\n      level,\n      data: node,\n    }),\n    (node) => node.level,\n    (node) => node.expandable,\n    (node) => node.children?.map((id) => this.nodes[id])\n  );\n\n  /**\n   * Data source of tissue tree list component, defines the data in mat-tree\n   */\n  readonly dataSource = new MatTreeFlatDataSource(this.control, this.flattener);\n\n  /**\n   * Take actions if any data changes\n   * @param changes changes in data\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('nodes' in changes) {\n      this.dataSource.data = this.findRootNodes();\n      this.control.expandAll();\n    }\n    if ('selected' in changes) {\n      if (!this.selected) {\n        this.control.expandAll();\n      }\n      const path = this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];\n      const node = this.control.dataNodes.find((n) => n.data === changes['selected'].currentValue);\n      if (!node?.expandable) {\n        this.expandPath(path);\n      }\n    }\n  }\n\n  /**\n   * check if the current node has children\n   * @param node current selected node\n   * @returns boolean, which means if node has children\n   */\n  hasChild(_: number, node: InternalNode<K, T>): boolean {\n    return node.expandable;\n  }\n\n  /**\n   * It selects the node, which is clicked.\n   * @param node Tissue Tree Item, which is clicked\n   */\n  selectNode(node: T): void {\n    if (this.selected !== node) {\n      this.selected = node;\n      this.selectedChange.emit(this.selected);\n    }\n  }\n\n  /**\n   * Resets selection and collapes all nodes of the tree.\n   */\n  resetSelection(): void {\n    this.selected = undefined;\n    this.control.collapseAll();\n  }\n\n  /**\n   * It creates a copy of the input nodes object.\n   * It iterates over it and removes all the children nodes from it.\n   * @returns remaining nodes which are root nodes.\n   */\n  private findRootNodes(): T[] {\n    const { nodes } = this;\n    const roots = { ...this.nodes };\n    for (const key in nodes) {\n      for (const child of nodes[key].children ?? []) {\n        delete roots[child];\n      }\n    }\n\n    return Object.values(roots);\n  }\n\n  /**\n   * expands the tree nodes based on the path provided.\n   * @param path is given as an input.\n   */\n  private expandPath(path: DataNode<K>[]): void {\n    const nodes = this.control.dataNodes.filter((node) => path.includes(node.data));\n    nodes.forEach((node) => this.control.expand(node));\n  }\n\n  /**\n   * It used the logic of depth first search to find the target node.\n   * returns the path to the target node.\n   */\n  private dfsFindPath(nodes: T[], target: T, path: T[] = []): T[] {\n    for (const node of nodes) {\n      path.push(node);\n      if (node === target) {\n        return path;\n      }\n\n      const savedLength = path.length;\n      const children = node.children?.map((id) => this.nodes[id]) ?? [];\n      if (this.dfsFindPath(children, target, path).length > savedLength) {\n        return path;\n      }\n\n      path.pop();\n    }\n\n    return path;\n  }\n\n  /**\n   * Keyboard navigation for tissue tree list\n   * @param event Keyboard event\n   */\n  @HostListener('document:keydown', ['$event'])\n  onKeyDown(event: KeyboardEvent): void {\n    if (!this.enableNav) {\n      return;\n    }\n    if (this.control) {\n      const nodes = this.control.dataNodes;\n      const selectedIndex = this.control.dataNodes.findIndex((node) => node.data.id === this.selected?.id);\n\n      const currentNode = nodes[selectedIndex];\n      if (currentNode && currentNode.expandable) {\n        const expandableNodes = nodes.filter((node) => node.expandable);\n        const index = expandableNodes.indexOf(currentNode);\n        if (event.key === 'ArrowLeft') {\n          this.control.collapse(currentNode);\n        } else if (event.key === 'ArrowRight') {\n          this.control.expand(currentNode);\n        } else if (\n          event.key === 'ArrowDown' &&\n          index + 1 < expandableNodes.length &&\n          !this.control.isExpanded(currentNode)\n        ) {\n          this.selectNode(expandableNodes[index + 1].data);\n          return;\n        } else if (event.key === 'ArrowUp' && index - 1 >= 0 && !this.control.isExpanded(expandableNodes[index - 1])) {\n          this.selectNode(expandableNodes[index - 1].data);\n          return;\n        }\n      }\n      if (event.key === 'ArrowDown' && selectedIndex + 1 < nodes.length) {\n        this.selectNode(nodes[selectedIndex + 1].data);\n      }\n      if (event.key === 'ArrowUp' && selectedIndex - 1 >= 0) {\n        this.selectNode(nodes[selectedIndex - 1].data);\n      }\n      if (event.key === 'Enter' && !currentNode.expandable) {\n        this.navigate.emit(currentNode.data);\n      }\n    }\n  }\n\n  /**\n   * Disable keyboard nav on click\n   */\n  @HostListener('document:click')\n  handlePageClick(): void {\n    this.enableNav = false;\n  }\n\n  /**\n   * Enables keyboard nav only if the tissue tree list is clicked\n   * @param event Click event\n   */\n  @HostListener('click', ['$event'])\n  handleListClick(event: MouseEvent): void {\n    event.stopPropagation();\n    this.enableNav = true;\n  }\n}\n",
+            "sourceCode": "import { FlatTreeControl } from '@angular/cdk/tree';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  HostListener,\n  Input,\n  OnChanges,\n  Output,\n  SimpleChanges,\n} from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatExpansionModule } from '@angular/material/expansion';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';\nimport { LinkDirective } from '@hra-ui/cdk';\nimport { LinkId } from '@hra-ui/cdk/state';\n\n/** Base node type */\nexport interface DataNode<K extends string> {\n  /** User readable label */\n  label: string;\n  /** Id to pass as a query parameter on navigation */\n  id?: string;\n  /** Link to navigate to on node click */\n  link?: LinkId;\n  /** Nested nodes */\n  children?: K[];\n}\n\n/**\n * Internal interface for flat tissue data hierarchy\n */\ninterface InternalNode<K extends string, T extends DataNode<K>> {\n  /** Displayed label */\n  label: string;\n  /** Whether the node can be expanded to display child nodes */\n  expandable: boolean;\n  /** Depth of node in the tree */\n  level: number;\n  /** Associated user node data */\n  data: T;\n}\n\n/**\n * Tabular View for hubMap tissue side-bar\n */\n@Component({\n  selector: 'hra-tissue-tree-list',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatButtonModule,\n    MatTreeModule,\n    MatIconModule,\n    MatExpansionModule,\n    MatRippleModule,\n    LinkDirective,\n  ],\n  templateUrl: './tissue-tree-list.component.html',\n  styleUrls: ['./tissue-tree-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueTreeListComponent<K extends string, T extends DataNode<K>> implements OnChanges {\n  /**\n   * Input  of tissue tree list component\n   */\n  @Input() nodes: Record<K, T> = {} as Record<K, T>;\n\n  /**\n   * Node selected, to view the data associated with it\n   */\n  @Input() selected?: T = undefined;\n\n  /**\n   * Output  of tissue tree list component\n   */\n  @Output() readonly selectedChange = new EventEmitter<T | undefined>();\n\n  /**\n   * Navigates to an illustration page\n   */\n  @Output() navigate = new EventEmitter();\n\n  /**\n   * Whether keyboard navigation is enabled\n   */\n  enableNav = true;\n\n  /**\n   * tree controller, used to control the nodes in the tree\n   */\n  readonly control = new FlatTreeControl<InternalNode<K, T>>(\n    (node) => node.level,\n    (node) => node.expandable,\n  );\n\n  /**\n   * Flattener of tissue tree list component, returns flat-data structure\n   */\n  readonly flattener = new MatTreeFlattener<T, InternalNode<K, T>>(\n    (node, level) => ({\n      label: node.label,\n      expandable: (node.children?.length ?? 0) > 0,\n      level,\n      data: node,\n    }),\n    (node) => node.level,\n    (node) => node.expandable,\n    (node) => node.children?.map((id) => this.nodes[id]),\n  );\n\n  /**\n   * Data source of tissue tree list component, defines the data in mat-tree\n   */\n  readonly dataSource = new MatTreeFlatDataSource(this.control, this.flattener);\n\n  /**\n   * Take actions if any data changes\n   * @param changes changes in data\n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('nodes' in changes) {\n      this.dataSource.data = this.findRootNodes();\n      this.control.expandAll();\n    }\n    if ('selected' in changes) {\n      if (!this.selected) {\n        this.control.expandAll();\n      }\n      const path = this.selected ? this.dfsFindPath(this.findRootNodes(), this.selected) : [];\n      const node = this.control.dataNodes.find((n) => n.data === changes['selected'].currentValue);\n      if (!node?.expandable) {\n        this.expandPath(path);\n      }\n    }\n  }\n\n  /**\n   * check if the current node has children\n   * @param node current selected node\n   * @returns boolean, which means if node has children\n   */\n  hasChild(_: number, node: InternalNode<K, T>): boolean {\n    return node.expandable;\n  }\n\n  /**\n   * It selects the node, which is clicked.\n   * @param node Tissue Tree Item, which is clicked\n   */\n  selectNode(node: T): void {\n    if (this.selected !== node) {\n      this.selected = node;\n      this.selectedChange.emit(this.selected);\n    }\n  }\n\n  /**\n   * Resets selection and collapes all nodes of the tree.\n   */\n  resetSelection(): void {\n    this.selected = undefined;\n    this.control.collapseAll();\n  }\n\n  /**\n   * It creates a copy of the input nodes object.\n   * It iterates over it and removes all the children nodes from it.\n   * @returns remaining nodes which are root nodes.\n   */\n  private findRootNodes(): T[] {\n    const { nodes } = this;\n    const roots = { ...this.nodes };\n    for (const key in nodes) {\n      for (const child of nodes[key].children ?? []) {\n        delete roots[child];\n      }\n    }\n\n    return Object.values(roots);\n  }\n\n  /**\n   * expands the tree nodes based on the path provided.\n   * @param path is given as an input.\n   */\n  private expandPath(path: DataNode<K>[]): void {\n    const nodes = this.control.dataNodes.filter((node) => path.includes(node.data));\n    nodes.forEach((node) => this.control.expand(node));\n  }\n\n  /**\n   * It used the logic of depth first search to find the target node.\n   * returns the path to the target node.\n   */\n  private dfsFindPath(nodes: T[], target: T, path: T[] = []): T[] {\n    for (const node of nodes) {\n      path.push(node);\n      if (node === target) {\n        return path;\n      }\n\n      const savedLength = path.length;\n      const children = node.children?.map((id) => this.nodes[id]) ?? [];\n      if (this.dfsFindPath(children, target, path).length > savedLength) {\n        return path;\n      }\n\n      path.pop();\n    }\n\n    return path;\n  }\n\n  /**\n   * Keyboard navigation for tissue tree list\n   * @param event Keyboard event\n   */\n  @HostListener('document:keydown', ['$event'])\n  onKeyDown(event: KeyboardEvent): void {\n    if (!this.enableNav) {\n      return;\n    }\n    if (this.control) {\n      const nodes = this.control.dataNodes;\n      const selectedIndex = this.control.dataNodes.findIndex((node) => node.data.id === this.selected?.id);\n\n      const currentNode = nodes[selectedIndex];\n      if (currentNode && currentNode.expandable) {\n        const expandableNodes = nodes.filter((node) => node.expandable);\n        const index = expandableNodes.indexOf(currentNode);\n        if (event.key === 'ArrowLeft') {\n          this.control.collapse(currentNode);\n        } else if (event.key === 'ArrowRight') {\n          this.control.expand(currentNode);\n        } else if (\n          event.key === 'ArrowDown' &&\n          index + 1 < expandableNodes.length &&\n          !this.control.isExpanded(currentNode)\n        ) {\n          this.selectNode(expandableNodes[index + 1].data);\n          return;\n        } else if (event.key === 'ArrowUp' && index - 1 >= 0 && !this.control.isExpanded(expandableNodes[index - 1])) {\n          this.selectNode(expandableNodes[index - 1].data);\n          return;\n        }\n      }\n      if (event.key === 'ArrowDown' && selectedIndex + 1 < nodes.length) {\n        this.selectNode(nodes[selectedIndex + 1].data);\n      }\n      if (event.key === 'ArrowUp' && selectedIndex - 1 >= 0) {\n        this.selectNode(nodes[selectedIndex - 1].data);\n      }\n      if (event.key === 'Enter' && !currentNode.expandable) {\n        this.navigate.emit(currentNode.data);\n      }\n    }\n  }\n\n  /**\n   * Disable keyboard nav on click\n   */\n  @HostListener('document:click')\n  handlePageClick(): void {\n    this.enableNav = false;\n  }\n\n  /**\n   * Enables keyboard nav only if the tissue tree list is clicked\n   * @param event Click event\n   */\n  @HostListener('click', ['$event'])\n  handleListClick(event: MouseEvent): void {\n    event.stopPropagation();\n    this.enableNav = true;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2715,6 +3066,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "implements": [
                 "OnChanges"
             ],
@@ -2739,6 +3091,7 @@
                 "./title-card.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "description",
@@ -2770,6 +3123,17 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MarkdownModule",
+                    "type": "module"
+                }
+            ],
             "description": "<p>Displays title card to the user with title and description</p>\n",
             "rawdescription": "\nDisplays title card to the user with title and description",
             "type": "component",
@@ -2782,6 +3146,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<h1 class=\"title\">{{ title }}</h1>\n<markdown class=\"description\" [data]=\"description\"></markdown>\n"
         }
     ],

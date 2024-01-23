@@ -32,10 +32,11 @@
                 }
             ],
             "indexSignatures": [],
-            "kind": 165,
+            "kind": 171,
             "description": "<p>An interface of gradient colors along with their percentages for the gradient bar.</p>\n",
             "rawdescription": "\nAn interface of gradient colors along with their percentages for the gradient bar.",
-            "methods": []
+            "methods": [],
+            "extends": []
         },
         {
             "name": "SizeLegend",
@@ -68,10 +69,11 @@
                 }
             ],
             "indexSignatures": [],
-            "kind": 165,
+            "kind": 171,
             "description": "<p>Defining the input data types for the radius and label to be displayed.</p>\n",
             "rawdescription": "\nDefining the input data types for the radius and label to be displayed.",
-            "methods": []
+            "methods": [],
+            "extends": []
         }
     ],
     "injectables": [],
@@ -82,7 +84,7 @@
     "components": [
         {
             "name": "EmailInputComponent",
-            "id": "component-EmailInputComponent-64257eb5ea116b92e53015be64923c1935f724ed9e3f7593ed05b98bd393f961d41d34f527cfbab8dc49e7d9ed6839cc748e536c2a09af36943f4726c29964b6",
+            "id": "component-EmailInputComponent-c8fcbc46f568cfdce7aa02ac4399a3047222956609cbe7d144112c5c562dffdca748f933f5da924c9fc3d32fbd88140d35f4830001f992e8c6319a0820baba19",
             "file": "src/lib/email-input/email-input.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -99,6 +101,7 @@
                 "./email-input.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "defaultMail",
@@ -147,7 +150,7 @@
                     "line": 42,
                     "rawdescription": "\nA control to validate the email.",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -161,7 +164,7 @@
                     "line": 39,
                     "rawdescription": "\nObservable emitting when the component is destroyed",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 }
             ],
@@ -170,10 +173,29 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatFormFieldModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ReactiveFormsModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatInputModule",
+                    "type": "module"
+                }
+            ],
             "description": "<p>Email input components for contact modal.</p>\n",
             "rawdescription": "\n\nEmail input components for contact modal.\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  Input,\n  OnChanges,\n  Output,\n  SimpleChanges,\n} from '@angular/core';\nimport { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';\nimport { MatFormFieldModule } from '@angular/material/form-field';\nimport { MatInputModule } from '@angular/material/input';\nimport { injectDestroy$ } from '@hra-ui/cdk/injectors';\nimport { map, takeUntil } from 'rxjs';\n\n/**\n * Email input components for contact modal.\n */\n@Component({\n  selector: 'hra-email-input',\n  standalone: true,\n  imports: [CommonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule],\n  templateUrl: './email-input.component.html',\n  styleUrls: ['./email-input.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class EmailInputComponent implements OnChanges {\n  /** A placeholder for the email input field. This will be disappeared when the email is typed. */\n  @Input() placeholder = '';\n\n  /** Default email address */\n  @Input() defaultMail = '';\n\n  /** Emits the new email when the input changes or undefined if the email is invalid  */\n  @Output() readonly emailChange = new EventEmitter<string | undefined>();\n\n  /** Observable emitting when the component is destroyed */\n  readonly destroy$ = injectDestroy$();\n\n  /**  A control to validate the email. */\n  readonly control = new FormControl('', {\n    updateOn: 'blur',\n    validators: [Validators.required, Validators.email],\n  });\n\n  /** Connects the input control to component outputs */\n  constructor() {\n    const { control, destroy$ } = this;\n    control.valueChanges\n      .pipe(\n        takeUntil(destroy$),\n        map((value) => (control.valid ? value : undefined))\n      )\n      .subscribe((value) => this.emailChange.emit(value as string | undefined));\n  }\n\n  /** Sets the value to default email if provided */\n  ngOnChanges(changes: SimpleChanges) {\n    if ('defaultMail' in changes) {\n      this.control.setValue(this.defaultMail);\n    }\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  Input,\n  OnChanges,\n  Output,\n  SimpleChanges,\n} from '@angular/core';\nimport { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';\nimport { MatFormFieldModule } from '@angular/material/form-field';\nimport { MatInputModule } from '@angular/material/input';\nimport { injectDestroy$ } from '@hra-ui/cdk/injectors';\nimport { map, takeUntil } from 'rxjs';\n\n/**\n * Email input components for contact modal.\n */\n@Component({\n  selector: 'hra-email-input',\n  standalone: true,\n  imports: [CommonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule],\n  templateUrl: './email-input.component.html',\n  styleUrls: ['./email-input.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class EmailInputComponent implements OnChanges {\n  /** A placeholder for the email input field. This will be disappeared when the email is typed. */\n  @Input() placeholder = '';\n\n  /** Default email address */\n  @Input() defaultMail = '';\n\n  /** Emits the new email when the input changes or undefined if the email is invalid  */\n  @Output() readonly emailChange = new EventEmitter<string | undefined>();\n\n  /** Observable emitting when the component is destroyed */\n  readonly destroy$ = injectDestroy$();\n\n  /**  A control to validate the email. */\n  readonly control = new FormControl('', {\n    updateOn: 'blur',\n    validators: [Validators.required, Validators.email],\n  });\n\n  /** Connects the input control to component outputs */\n  constructor() {\n    const { control, destroy$ } = this;\n    control.valueChanges\n      .pipe(\n        takeUntil(destroy$),\n        map((value) => (control.valid ? value : undefined)),\n      )\n      .subscribe((value) => this.emailChange.emit(value as string | undefined));\n  }\n\n  /** Sets the value to default email if provided */\n  ngOnChanges(changes: SimpleChanges) {\n    if ('defaultMail' in changes) {\n      this.control.setValue(this.defaultMail);\n    }\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -191,6 +213,7 @@
                 "line": 45,
                 "rawdescription": "\nConnects the input control to component outputs"
             },
+            "extends": [],
             "implements": [
                 "OnChanges"
             ],
@@ -215,6 +238,7 @@
                 "./empty-biomarker.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "collaborateText",
@@ -257,6 +281,21 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatButtonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MarkdownModule",
+                    "type": "module"
+                }
+            ],
             "description": "<p> Component for any empty biomaker cell\n to inform about the empty data and has\n button to navigate to HRA Team.</p>\n",
             "rawdescription": "\n\n Component for any empty biomaker cell\n to inform about the empty data and has\n button to navigate to HRA Team.\n",
             "type": "component",
@@ -269,6 +308,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<markdown [data]=\"message\" class=\"message\"></markdown>\n<button mat-flat-button class=\"collaborate-button\" color=\"primary\" (click)=\"collaborateClick.emit($event)\">\n  {{ collaborateText }}\n</button>\n"
         },
         {
@@ -290,6 +330,7 @@
                 "./gradient-legend.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "gradient",
@@ -310,6 +351,13 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
             "description": "<p>Gradient legend for biomarkers</p>\n",
             "rawdescription": "\nGradient legend for biomarkers",
             "type": "component",
@@ -322,6 +370,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "accessors": {
                 "gradientCss": {
                     "name": "gradientCss",
@@ -356,6 +405,7 @@
                 "./label-box.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [],
@@ -364,6 +414,13 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
             "description": "<p>Label box component for reuse accross the page. The content with &quot;end&quot; selector will be added to the end of the label box</p>\n",
             "rawdescription": "\nLabel box component for reuse accross the page. The content with \"end\" selector will be added to the end of the label box",
             "type": "component",
@@ -376,6 +433,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<ng-content></ng-content>\n\n<div class=\"filler\"></div>\n\n<ng-content select=\".end\"></ng-content>\n"
         },
         {
@@ -397,6 +455,7 @@
                 "./required-input.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "label",
@@ -434,7 +493,7 @@
                     "line": 40,
                     "rawdescription": "\n\nForm control for input to set some input validation.\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -448,7 +507,7 @@
                     "line": 35,
                     "rawdescription": "\n\nDestroy observable used to control the lifetime of other observables.\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 }
             ],
@@ -457,6 +516,25 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatFormFieldModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatInputModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ReactiveFormsModule",
+                    "type": "module"
+                }
+            ],
             "description": "<p>A reusable text field component that can be used to input text.\nThis input field component also had required validation check.</p>\n",
             "rawdescription": "\n\nA reusable text field component that can be used to input text.\nThis input field component also had required validation check.\n",
             "type": "component",
@@ -478,6 +556,7 @@
                 "line": 43,
                 "rawdescription": "\n\nCreates an instance of required input component\nand it connect the form control value changes to check for validation\nbefore output emmiter is triggered\n"
             },
+            "extends": [],
             "templateData": "<mat-form-field class=\"form-field\" appearance=\"outline\">\n  <mat-label> {{ label }} </mat-label>\n  <input matInput [formControl]=\"control\" />\n  <mat-error *ngIf=\"control.hasError('required')\">{{ label }} is required</mat-error>\n</mat-form-field>\n"
         },
         {
@@ -499,6 +578,7 @@
                 "./required-textbox.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "label",
@@ -547,7 +627,7 @@
                     "line": 34,
                     "rawdescription": "\nA control to validate if the message field is empty",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 },
                 {
@@ -561,7 +641,7 @@
                     "line": 31,
                     "rawdescription": "\nObservable emitting when the component is destroyed",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 }
             ],
@@ -570,6 +650,25 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatInputModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatFormFieldModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ReactiveFormsModule",
+                    "type": "module"
+                }
+            ],
             "description": "<p>The required textbox component displays a message box for users to add a message</p>\n",
             "rawdescription": "\n\nThe required textbox component displays a message box for users to add a message\n",
             "type": "component",
@@ -591,6 +690,7 @@
                 "line": 37,
                 "rawdescription": "\nConnects the input control to component outputs"
             },
+            "extends": [],
             "templateData": "<mat-form-field class=\"message-field\" appearance=\"outline\">\n  <mat-label> {{ label }} </mat-label>\n  <textarea\n    cdkTextareaAutosize\n    cdkAutosizeMinRows=\"10\"\n    cdkAutosizeMaxRows=\"20\"\n    matInput\n    [formControl]=\"control\"\n    [placeholder]=\"placeholder\"\n  ></textarea>\n  <mat-error *ngIf=\"control.hasError('required')\"> {{ label }} is required </mat-error>\n</mat-form-field>\n"
         },
         {
@@ -612,6 +712,7 @@
                 "./size-legend.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "sizes",
@@ -632,6 +733,13 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
             "description": "<p>Size legend component for the biomarkers table.</p>\n",
             "rawdescription": "\nSize legend component for the biomarkers table.",
             "type": "component",
@@ -644,6 +752,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<div *ngFor=\"let text of sizes\" class=\"item\">\n  <div class=\"filler\"></div>\n  <div class=\"circle\" style=\"--size: {{ text.radius }}rem\"></div>\n  <div class=\"filler\"></div>\n  <div class=\"label\">{{ text.label }}</div>\n</div>\n"
         },
         {
@@ -665,6 +774,7 @@
                 "./tooltip.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "text",
@@ -685,6 +795,13 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
             "description": "<p>Tooltips for illustrations</p>\n",
             "rawdescription": "\n\nTooltips for illustrations\n",
             "type": "component",
@@ -697,6 +814,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<div class=\"tooltip\">{{ text }}</div>\n"
         }
     ],

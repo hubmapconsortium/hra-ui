@@ -37,15 +37,18 @@
                             "stringifiedArguments": "Load"
                         }
                     ],
+                    "modifierKind": [
+                        170
+                    ],
                     "jsdoctags": [
                         {
                             "name": {
                                 "pos": 1096,
                                 "end": 1099,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "ctx"
                             },
                             "type": "ThemingContext",
@@ -54,10 +57,10 @@
                             "tagName": {
                                 "pos": 1090,
                                 "end": 1095,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": "<p>State Context</p>\n"
@@ -74,10 +77,10 @@
                             "tagName": {
                                 "pos": 1173,
                                 "end": 1180,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "returns"
                             },
                             "comment": "<p>asyncronous data from the url</p>\n"
@@ -90,6 +93,7 @@
             "description": "<p>State for keeping track of theming applied</p>\n",
             "rawdescription": "\n\nState for keeping track of theming applied\n",
             "sourceCode": "import { HttpClient } from '@angular/common/http';\nimport { inject, Injectable } from '@angular/core';\nimport { Action, State } from '@ngxs/store';\nimport { MaterialCssVariables, MaterialCssVarsService } from 'angular-material-css-vars';\nimport { load } from 'js-yaml';\nimport { map, Observable, tap } from 'rxjs';\nimport { Load } from './theming.actions';\nimport { ThemingContext, ThemingModel, THEMING_FILE_SCHEMA } from './theming.model';\n\n/**\n * State for keeping track of theming applied\n */\n@State<ThemingModel>({\n  /**\n   * name of the state\n   */\n  name: 'theming',\n  /**\n   * state variables default value\n   */\n  defaults: {},\n})\n/**\n * Theming state class\n */\n@Injectable()\nexport class ThemingState {\n  /**\n   * http service for link loading\n   */\n  private readonly http = inject(HttpClient);\n  /**\n   * Material-vars service for setting theming variables\n   */\n  private readonly materialVars = inject(MaterialCssVarsService);\n\n  /**\n   * Action for loading yaml, reading data from yaml, setting state variables, and set material-css-vars variables for dynamic theming.\n   * @param ctx State Context\n   * @param action Action with url(yaml url) to load\n   * @returns asyncronous data from the url\n   */\n  @Action(Load)\n  load(ctx: ThemingContext, { url }: Load): Observable<unknown> {\n    return this.http.get(url, { responseType: 'text' }).pipe(\n      map((data) => load(data, { filename: url })),\n      map((data) => THEMING_FILE_SCHEMA.parse(data)),\n      tap((data) => ctx.setState(data)),\n      tap((data) => this.setVariables(data))\n    );\n  }\n\n  /**\n   * Set values to the material-css-vars pallete keys\n   * @param data key-value pairs set in state\n   */\n  private setVariables(data: ThemingModel): void {\n    for (const [key, value] of Object.entries(data)) {\n      this.materialVars.setVariable(key as MaterialCssVariables, value);\n    }\n  }\n}\n",
+            "extends": [],
             "type": "injectable"
         }
     ],
@@ -124,10 +128,10 @@
                         "name": {
                             "pos": 354,
                             "end": 357,
-                            "flags": 4227072,
+                            "flags": 16842752,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
-                            "kind": 79,
+                            "kind": 80,
                             "escapedText": "url"
                         },
                         "type": "string",
@@ -136,10 +140,10 @@
                         "tagName": {
                             "pos": 348,
                             "end": 353,
-                            "flags": 4227072,
+                            "flags": 16842752,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
-                            "kind": 79,
+                            "kind": 80,
                             "escapedText": "param"
                         },
                         "comment": "<p>URL of the yaml file, containing theming color key-value pairs</p>\n"
@@ -158,8 +162,8 @@
                     "line": 8,
                     "rawdescription": "\n\nstatic type for the action\n",
                     "modifierKind": [
-                        124,
-                        144
+                        126,
+                        148
                     ]
                 },
                 {
@@ -173,7 +177,7 @@
                     "line": 12,
                     "rawdescription": "\n\nInitialising type for the  action\n",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 }
             ],
@@ -181,6 +185,7 @@
             "rawdescription": "\n\nLoad Action, which is triggered to load yaml file, to get theming pallete\n",
             "methods": [],
             "indexSignatures": [],
+            "extends": [],
             "inputsClass": [],
             "outputsClass": [],
             "hostBindings": [],
@@ -265,7 +270,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "<p>State context for theming, with reference of model</p>\n",
-                "kind": 177
+                "kind": 183
             },
             {
                 "name": "ThemingModel",
@@ -276,7 +281,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "<p>Model for theming</p>\n",
-                "kind": 177
+                "kind": 183
             }
         ],
         "enumerations": [],
@@ -323,7 +328,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "<p>State context for theming, with reference of model</p>\n",
-                    "kind": 177
+                    "kind": 183
                 },
                 {
                     "name": "ThemingModel",
@@ -334,7 +339,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "<p>Model for theming</p>\n",
-                    "kind": 177
+                    "kind": 183
                 }
             ]
         }

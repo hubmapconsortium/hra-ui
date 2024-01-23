@@ -12,8 +12,66 @@
         <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">services</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -39,21 +97,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >FtuDataImplService</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >FtuDataImplService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -74,11 +138,11 @@
                 <h3>Extends</h3>
             </p>
             <p class="comment">
-                        <code><a href="../injectables/FtuDataService.html" target="_self" >FtuDataService</a></code>
+                            <code><a href="../injectables/FtuDataService.html" target="_self" >FtuDataService</a></code>
             </p>
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -128,7 +192,7 @@
 </section>
 
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -139,7 +203,7 @@
                 <td class="col-md-4">
                     <a name="getCellSummaries"></a>
                     <span class="name">
-                        <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>getCellSummaries</b></span>
                         <a href="#getCellSummaries"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -147,73 +211,71 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>getCellSummaries(iri: <a href="../undefineds/Iri.html" target="_self">Iri</a>)</code>
                 </td>
             </tr>
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/FtuDataService.html" target="_self" >FtuDataService</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:203</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../injectables/FtuDataService.html" target="_self" >FtuDataService</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:203</a></code>
-</div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Overrides the getCellSummaries method to return an CellSummary array.</p>
+                        <div class="io-description"><p>Overrides the getCellSummaries method to return an CellSummary array.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>iri</td>
-                                    <td>
-                                                <code><a href="../miscellaneous/typealiases.html#Iri" target="_self" >Iri</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>iri</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#Iri" target="_self" >Iri</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The Iri of the illustration.</p>
+                                            <td>
+                                                    <p>The Iri of the illustration.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;CellSummary[]&gt;</code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;CellSummary[]&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>An Observable that emits an CellSummary array.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>An Observable that emits an CellSummary array.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -224,7 +286,7 @@
                 <td class="col-md-4">
                     <a name="getDataFileReferences"></a>
                     <span class="name">
-                        <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>getDataFileReferences</b></span>
                         <a href="#getDataFileReferences"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -232,73 +294,71 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>getDataFileReferences(iri: <a href="../undefineds/Iri.html" target="_self">Iri</a>)</code>
                 </td>
             </tr>
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/FtuDataService.html" target="_self" >FtuDataService</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:215</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../injectables/FtuDataService.html" target="_self" >FtuDataService</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:215</a></code>
-</div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Overrides the getDataFileReferences method to return an DataFileReference array.</p>
+                        <div class="io-description"><p>Overrides the getDataFileReferences method to return an DataFileReference array.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>iri</td>
-                                    <td>
-                                                <code><a href="../miscellaneous/typealiases.html#Iri" target="_self" >Iri</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>iri</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#Iri" target="_self" >Iri</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The Iri of the illustration.</p>
+                                            <td>
+                                                    <p>The Iri of the illustration.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#DataFileReference" target="_self" >Observable&lt;DataFileReference[]&gt;</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#DataFileReference" target="_self" >Observable&lt;DataFileReference[]&gt;</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>An Observable that emits an DataFileReference array.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>An Observable that emits an DataFileReference array.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -309,7 +369,7 @@
                 <td class="col-md-4">
                     <a name="getIllustrationMapping"></a>
                     <span class="name">
-                        <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>getIllustrationMapping</b></span>
                         <a href="#getIllustrationMapping"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -317,73 +377,71 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>getIllustrationMapping(iri: <a href="../undefineds/Iri.html" target="_self">Iri</a>)</code>
                 </td>
             </tr>
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/FtuDataService.html" target="_self" >FtuDataService</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:191</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../injectables/FtuDataService.html" target="_self" >FtuDataService</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:191</a></code>
-</div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Overrides the getIllustrationMapping method to return an IllustrationMappingItem array.</p>
+                        <div class="io-description"><p>Overrides the getIllustrationMapping method to return an IllustrationMappingItem array.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>iri</td>
-                                    <td>
-                                                <code><a href="../miscellaneous/typealiases.html#Iri" target="_self" >Iri</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>iri</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#Iri" target="_self" >Iri</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The Iri of the illustration.</p>
+                                            <td>
+                                                    <p>The Iri of the illustration.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#IllustrationMappingItem" target="_self" >Observable&lt;IllustrationMappingItem[]&gt;</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#IllustrationMappingItem" target="_self" >Observable&lt;IllustrationMappingItem[]&gt;</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>An Observable that emits an IllustrationMappingItem array.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>An Observable that emits an IllustrationMappingItem array.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -394,7 +452,7 @@
                 <td class="col-md-4">
                     <a name="getIllustrationUrl"></a>
                     <span class="name">
-                        <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>getIllustrationUrl</b></span>
                         <a href="#getIllustrationUrl"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -402,73 +460,71 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>getIllustrationUrl(iri: <a href="../undefineds/Iri.html" target="_self">Iri</a>)</code>
                 </td>
             </tr>
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/FtuDataService.html" target="_self" >FtuDataService</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:177</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../injectables/FtuDataService.html" target="_self" >FtuDataService</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:177</a></code>
-</div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Overrides the getIllustrationUrl method to return a mock URL for the given Iri.</p>
+                        <div class="io-description"><p>Overrides the getIllustrationUrl method to return a mock URL for the given Iri.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>iri</td>
-                                    <td>
-                                                <code><a href="../miscellaneous/typealiases.html#Iri" target="_self" >Iri</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>iri</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#Iri" target="_self" >Iri</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The Iri of the illustration.</p>
+                                            <td>
+                                                    <p>The Iri of the illustration.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#Url" target="_self" >Observable&lt;Url | string&gt;</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#Url" target="_self" >Observable&lt;Url | string&gt;</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>An Observable that emits the mock URL.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>An Observable that emits the mock URL.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -479,7 +535,7 @@
                 <td class="col-md-4">
                     <a name="getSourceReferences"></a>
                     <span class="name">
-                        <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>getSourceReferences</b></span>
                         <a href="#getSourceReferences"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -487,73 +543,71 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>getSourceReferences(iri: <a href="../undefineds/Iri.html" target="_self">Iri</a>)</code>
                 </td>
             </tr>
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/FtuDataService.html" target="_self" >FtuDataService</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:227</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../injectables/FtuDataService.html" target="_self" >FtuDataService</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:227</a></code>
-</div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Overrides the getSourceReferences method to return an empty array.</p>
+                        <div class="io-description"><p>Overrides the getSourceReferences method to return an empty array.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>iri</td>
-                                    <td>
-                                                <code><a href="../miscellaneous/typealiases.html#Iri" target="_self" >Iri</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>iri</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#Iri" target="_self" >Iri</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The Iri of the illustration.</p>
+                                            <td>
+                                                    <p>The Iri of the illustration.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#SourceReference" target="_self" >Observable&lt;SourceReference[]&gt;</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#SourceReference" target="_self" >Observable&lt;SourceReference[]&gt;</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>An Observable that emits an empty array.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>An Observable that emits an empty array.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -564,7 +618,7 @@
                 <td class="col-md-4">
                     <a name="getTissueLibrary"></a>
                     <span class="name">
-                        <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>getTissueLibrary</b></span>
                         <a href="#getTissueLibrary"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -572,41 +626,39 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>getTissueLibrary()</code>
                 </td>
             </tr>
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/FtuDataService.html" target="_self" >FtuDataService</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:166</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../injectables/FtuDataService.html" target="_self" >FtuDataService</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FtuDataService.html#source" target="_self" >FtuDataService:166</a></code>
-</div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Overrides the getTissueLibrary method to return a data for the tissue Library tree.</p>
+                        <div class="io-description"><p>Overrides the getTissueLibrary method to return a data for the tissue Library tree.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;TissueLibrary&gt;</code>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;TissueLibrary&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>An Observable that emits the tissue Tree data.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>An Observable that emits the tissue Tree data.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -616,7 +668,7 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
 import { inject, Injectable, InjectionToken } from &#x27;@angular/core&#x27;;
 import { createLinkId } from &#x27;@hra-ui/cdk/state&#x27;;
@@ -784,7 +836,7 @@ export class FtuDataImplService extends FtuDataService {
   */
   override getTissueLibrary(): Observable&lt;TissueLibrary&gt; {
     return this.fetchData(undefined, &#x27;illustrations&#x27;, ILLUSTRATIONS).pipe(
-      map((data) &#x3D;&gt; this.constructTissueLibrary(data[&#x27;@graph&#x27;]))
+      map((data) &#x3D;&gt; this.constructTissueLibrary(data[&#x27;@graph&#x27;])),
     );
   }
 
@@ -798,7 +850,7 @@ export class FtuDataImplService extends FtuDataService {
       .pipe(map((data) &#x3D;&gt; this.findIllustrationUrl(data)))
       .pipe(
         withLatestFrom(this.endpoints),
-        map(([url, { baseHref }]) &#x3D;&gt; setUrl(url, baseHref))
+        map(([url, { baseHref }]) &#x3D;&gt; setUrl(url, baseHref)),
       );
   }
 
@@ -810,7 +862,7 @@ export class FtuDataImplService extends FtuDataService {
   override getIllustrationMapping(iri: Iri): Observable&lt;IllustrationMappingItem[]&gt; {
     return this.fetchData(iri, &#x27;illustrations&#x27;, ILLUSTRATIONS).pipe(
       map((data) &#x3D;&gt; this.findGraphItem(data, iri).mapping),
-      map((data) &#x3D;&gt; (data ? this.toIllustrationMapping(data) : []))
+      map((data) &#x3D;&gt; (data ? this.toIllustrationMapping(data) : [])),
     );
   }
 
@@ -822,7 +874,7 @@ export class FtuDataImplService extends FtuDataService {
   override getCellSummaries(iri: Iri): Observable&lt;CellSummary[]&gt; {
     return this.fetchData(iri, &#x27;summaries&#x27;, CELL_SUMMARIES).pipe(
       map((data) &#x3D;&gt; this.findCellSummaries(data, iri)),
-      map((data) &#x3D;&gt; (data ? this.constructCellSummaries(data) : []))
+      map((data) &#x3D;&gt; (data ? this.constructCellSummaries(data) : [])),
     );
   }
 
@@ -834,7 +886,7 @@ export class FtuDataImplService extends FtuDataService {
   override getDataFileReferences(iri: Iri): Observable&lt;DataFileReference[]&gt; {
     return this.fetchData(iri, &#x27;illustrations&#x27;, ILLUSTRATIONS).pipe(
       map((data) &#x3D;&gt; this.findGraphItem(data, iri).illustration_files),
-      map((data) &#x3D;&gt; (data ? this.toDataFileReferences(data) : []))
+      map((data) &#x3D;&gt; (data ? this.toDataFileReferences(data) : [])),
     );
   }
 
@@ -846,7 +898,7 @@ export class FtuDataImplService extends FtuDataService {
   override getSourceReferences(iri: Iri): Observable&lt;SourceReference[]&gt; {
     return this.fetchData(iri, &#x27;datasets&#x27;, DATASETS).pipe(
       map((data) &#x3D;&gt; this.findGraphItem(data, iri).data_sources),
-      map((data) &#x3D;&gt; (data ? this.toSourceReferences(data) : []))
+      map((data) &#x3D;&gt; (data ? this.toSourceReferences(data) : [])),
     );
   }
 
@@ -861,7 +913,7 @@ export class FtuDataImplService extends FtuDataService {
   private fetchData&lt;T extends z.ZodTypeAny&gt;(
     iri: Iri | undefined,
     endpoint: keyof FtuDataImplEndpoints,
-    schema: T
+    schema: T,
   ): Observable&lt;z.infer&lt;T&gt;&gt; {
     return this.endpoints.pipe(
       map((endpoints) &#x3D;&gt; endpoints[endpoint]),
@@ -879,7 +931,7 @@ export class FtuDataImplService extends FtuDataService {
         return from(cache.get(url) as Promise&lt;z.infer&lt;T&gt;&gt;);
       }),
       take(1),
-      shareReplay(1)
+      shareReplay(1),
     );
   }
 
@@ -893,7 +945,6 @@ export class FtuDataImplService extends FtuDataService {
   private findGraphItem&lt;T extends IdItem&gt;(data: Graph&lt;T&gt;, iri: Iri): T {
     const item &#x3D; data[&#x27;@graph&#x27;].find(({ &#x27;@id&#x27;: id }) &#x3D;&gt; id &#x3D;&#x3D;&#x3D; iri);
     if (item &#x3D;&#x3D;&#x3D; undefined) {
-      console.error(&#x60;Iri not found in data: ${iri}&#x60;);
       return {} as T;
     }
     return item;
@@ -909,7 +960,6 @@ export class FtuDataImplService extends FtuDataService {
   private findCellSummaries&lt;T extends CellSourceItem&gt;(data: Graph&lt;T&gt;, iri: Iri): T[] {
     const item &#x3D; data[&#x27;@graph&#x27;].filter(({ cell_source }) &#x3D;&gt; cell_source &#x3D;&#x3D;&#x3D; iri);
     if (item &#x3D;&#x3D;&#x3D; undefined || item.length &#x3D;&#x3D; 0) {
-      console.error(&#x60;Cell Summary not found in data: ${iri}&#x60;);
       return [];
     }
     return item;
@@ -925,7 +975,6 @@ export class FtuDataImplService extends FtuDataService {
     const svgFormat &#x3D; fileFormatMapping[&#x27;image/svg+xml&#x27;];
     const ref &#x3D; files.find(({ format }) &#x3D;&gt; format &#x3D;&#x3D;&#x3D; svgFormat);
     if (ref &#x3D;&#x3D;&#x3D; undefined) {
-      console.error(&#x27;Illustration url not found&#x27;);
       return &#x27;&#x27; as Url;
     }
     return ref.url;
@@ -937,7 +986,7 @@ export class FtuDataImplService extends FtuDataService {
    * @returns illustration mapping
    */
   private toIllustrationMapping(
-    mappings: { label: string; svg_id: string; svg_group_id: string; representation_of: string }[]
+    mappings: { label: string; svg_id: string; svg_group_id: string; representation_of: string }[],
   ): IllustrationMappingItem[] {
     const results: IllustrationMappingItem[] &#x3D; [];
     for (const { label, svg_id, svg_group_id, representation_of } of mappings) {

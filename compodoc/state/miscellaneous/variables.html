@@ -12,8 +12,66 @@
         <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">state</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -49,11 +107,11 @@
 
 
 <ol class="breadcrumb">
-  <li>Miscellaneous</li>
-  <li>Variables</li>
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Variables</li>
 </ol>
 
-<section>
+<section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -64,10 +122,10 @@
                             <a href="#About" title="src/lib/link-ids.ts" ><b>About</b>&nbsp;&nbsp;&nbsp;(src/.../link-ids.ts)</a>
                         </li>
                         <li>
-                            <a href="#Action" title="src/lib/cell-summary/cell-summary.actions.ts" ><b>Action</b>&nbsp;&nbsp;&nbsp;(src/.../cell-summary.actions.ts)</a>
+                            <a href="#Action" title="src/lib/active-ftu/active-ftu.actions.ts" ><b>Action</b>&nbsp;&nbsp;&nbsp;(src/.../active-ftu.actions.ts)</a>
                         </li>
                         <li>
-                            <a href="#Action" title="src/lib/active-ftu/active-ftu.actions.ts" ><b>Action</b>&nbsp;&nbsp;&nbsp;(src/.../active-ftu.actions.ts)</a>
+                            <a href="#Action" title="src/lib/cell-summary/cell-summary.actions.ts" ><b>Action</b>&nbsp;&nbsp;&nbsp;(src/.../cell-summary.actions.ts)</a>
                         </li>
                         <li>
                             <a href="#Action" title="src/lib/download/download.action.ts" ><b>Action</b>&nbsp;&nbsp;&nbsp;(src/.../download.action.ts)</a>
@@ -227,7 +285,7 @@
 </section>
 
     <h3>src/lib/link-ids.ts</h3>
-    <section>
+    <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -437,37 +495,8 @@
         </tbody>
     </table>
 </section>
-    <h3>src/lib/cell-summary/cell-summary.actions.ts</h3>
-    <section>
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="Action"></a>
-                    <span class="name">
-                        <span ><b>Action</b></span>
-                        <a href="#Action"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>ActionGroup(&#x27;CellSummary&#x27;)</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Action base class factory</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
     <h3>src/lib/active-ftu/active-ftu.actions.ts</h3>
-    <section>
+    <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -495,8 +524,37 @@
         </tbody>
     </table>
 </section>
+    <h3>src/lib/cell-summary/cell-summary.actions.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Action"></a>
+                    <span class="name">
+                        <span ><b>Action</b></span>
+                        <a href="#Action"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ActionGroup(&#x27;CellSummary&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Action base class factory</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
     <h3>src/lib/download/download.action.ts</h3>
-    <section>
+    <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -525,7 +583,7 @@
     </table>
 </section>
     <h3>src/lib/illustrator/illustrator.actions.ts</h3>
-    <section>
+    <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -554,7 +612,7 @@
     </table>
 </section>
     <h3>src/lib/source-refs/source-refs.actions.ts</h3>
-    <section>
+    <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -583,7 +641,7 @@
     </table>
 </section>
     <h3>src/lib/cell-summary/cell-summary.model.ts</h3>
-    <section>
+    <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -675,7 +733,7 @@ a required string followed by an optional number</p>
     </table>
 </section>
     <h3>src/lib/resource-ids.ts</h3>
-    <section>
+    <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -1250,7 +1308,7 @@ a required string followed by an optional number</p>
     </table>
 </section>
     <h3>src/lib/state-analytics-plugin/default-loggable-actions.ts</h3>
-    <section>
+    <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -1293,7 +1351,7 @@ a required string followed by an optional number</p>
     </table>
 </section>
     <h3>src/lib/download/download.model.ts</h3>
-    <section>
+    <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -1419,7 +1477,7 @@ which is an object with <code>formats</code> and <code>entries</code> properties
     </table>
 </section>
     <h3>src/lib/resource-types.ts</h3>
-    <section>
+    <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -1503,7 +1561,7 @@ which is an object with <code>formats</code> and <code>entries</code> properties
     </table>
 </section>
     <h3>src/lib/state-analytics-plugin/state-analytics-plugin.service.ts</h3>
-    <section>
+    <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -1578,7 +1636,7 @@ which is an object with <code>formats</code> and <code>entries</code> properties
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/core/Provider" target="_blank" >Provider</a></code>
+                        <i>Type : </i>    <code>Provider</code>
 
                     </td>
                 </tr>
@@ -1603,7 +1661,7 @@ which is an object with <code>formats</code> and <code>entries</code> properties
     </table>
 </section>
     <h3>src/lib/download/builtin-formats-ids.ts</h3>
-    <section>
+    <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -1658,7 +1716,7 @@ which is an object with <code>formats</code> and <code>entries</code> properties
     </table>
 </section>
     <h3>src/lib/download/builtin-formats.ts</h3>
-    <section>
+    <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -1672,7 +1730,7 @@ which is an object with <code>formats</code> and <code>entries</code> properties
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/Download.html" target="_self" >DownloadFormat</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#DownloadFormat" target="_self" >DownloadFormat</a></code>
 
                     </td>
                 </tr>
@@ -1708,7 +1766,7 @@ which is an object with <code>formats</code> and <code>entries</code> properties
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/Download.html" target="_self" >DownloadFormat</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#DownloadFormat" target="_self" >DownloadFormat</a></code>
 
                     </td>
                 </tr>

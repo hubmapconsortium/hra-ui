@@ -42,10 +42,11 @@
                 }
             ],
             "indexSignatures": [],
-            "kind": 165,
+            "kind": 171,
             "description": "<p>An interface representing a single cell of the table.</p>\n",
             "rawdescription": "\n\nAn interface representing a single cell of the table.\n",
-            "methods": []
+            "methods": [],
+            "extends": []
         },
         {
             "name": "TissueInfo",
@@ -78,10 +79,11 @@
                 }
             ],
             "indexSignatures": [],
-            "kind": 165,
+            "kind": 171,
             "description": "<p>Details of the Tissue</p>\n",
             "rawdescription": "\n\nDetails of the Tissue\n",
-            "methods": []
+            "methods": [],
+            "extends": []
         }
     ],
     "injectables": [],
@@ -109,6 +111,7 @@
                 "./biomarker-table.component.html"
             ],
             "viewProviders": [],
+            "hostDirectives": [],
             "inputsClass": [
                 {
                     "name": "columns",
@@ -212,7 +215,7 @@
                     "line": 107,
                     "rawdescription": "\nSource for the table",
                     "modifierKind": [
-                        144
+                        148
                     ]
                 }
             ],
@@ -240,10 +243,10 @@
                             "name": {
                                 "pos": 6182,
                                 "end": 6187,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "value"
                             },
                             "type": "number",
@@ -252,10 +255,10 @@
                             "tagName": {
                                 "pos": 6176,
                                 "end": 6181,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": ""
@@ -264,10 +267,10 @@
                             "tagName": {
                                 "pos": 6194,
                                 "end": 6201,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "returns"
                             },
                             "comment": ""
@@ -304,10 +307,10 @@
                             "tagName": {
                                 "pos": 6917,
                                 "end": 6924,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "returns"
                             },
                             "comment": ""
@@ -337,10 +340,10 @@
                             "name": {
                                 "pos": 4275,
                                 "end": 4279,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "data"
                             },
                             "type": "DataRow<T>",
@@ -349,10 +352,10 @@
                             "tagName": {
                                 "pos": 4269,
                                 "end": 4274,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": "<p>row data</p>\n"
@@ -361,10 +364,10 @@
                             "tagName": {
                                 "pos": 4295,
                                 "end": 4302,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "returns"
                             },
                             "comment": "<p>cell type id</p>\n"
@@ -394,10 +397,10 @@
                             "name": {
                                 "pos": 5080,
                                 "end": 5094,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "meanExpression"
                             },
                             "type": "number",
@@ -406,10 +409,10 @@
                             "tagName": {
                                 "pos": 5074,
                                 "end": 5079,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": ""
@@ -418,10 +421,10 @@
                             "tagName": {
                                 "pos": 5101,
                                 "end": 5108,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "returns"
                             },
                             "comment": ""
@@ -451,10 +454,10 @@
                             "name": {
                                 "pos": 5672,
                                 "end": 5682,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "percentage"
                             },
                             "type": "number",
@@ -463,10 +466,10 @@
                             "tagName": {
                                 "pos": 5666,
                                 "end": 5671,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": ""
@@ -475,10 +478,10 @@
                             "tagName": {
                                 "pos": 5689,
                                 "end": 5696,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "returns"
                             },
                             "comment": ""
@@ -508,10 +511,10 @@
                             "name": {
                                 "pos": 6585,
                                 "end": 6590,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "value"
                             },
                             "type": "number",
@@ -520,10 +523,10 @@
                             "tagName": {
                                 "pos": 6579,
                                 "end": 6584,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": ""
@@ -532,10 +535,10 @@
                             "tagName": {
                                 "pos": 6597,
                                 "end": 6604,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "returns"
                             },
                             "comment": ""
@@ -565,10 +568,10 @@
                             "name": {
                                 "pos": 4771,
                                 "end": 4774,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "hex"
                             },
                             "type": "string",
@@ -577,10 +580,10 @@
                             "tagName": {
                                 "pos": 4765,
                                 "end": 4770,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": ""
@@ -589,10 +592,10 @@
                             "tagName": {
                                 "pos": 4781,
                                 "end": 4788,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "returns"
                             },
                             "comment": ""
@@ -622,10 +625,10 @@
                             "name": {
                                 "pos": 4094,
                                 "end": 4097,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "row"
                             },
                             "type": "DataRow<T>",
@@ -634,10 +637,10 @@
                             "tagName": {
                                 "pos": 4088,
                                 "end": 4093,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": "<p>Highlighted row</p>\n"
@@ -679,10 +682,10 @@
                             "name": {
                                 "pos": 4559,
                                 "end": 4564,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "value"
                             },
                             "type": "number",
@@ -691,10 +694,10 @@
                             "tagName": {
                                 "pos": 4553,
                                 "end": 4558,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": ""
@@ -703,10 +706,10 @@
                             "name": {
                                 "pos": 4577,
                                 "end": 4580,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "min"
                             },
                             "type": "number",
@@ -715,10 +718,10 @@
                             "tagName": {
                                 "pos": 4571,
                                 "end": 4576,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": ""
@@ -727,10 +730,10 @@
                             "name": {
                                 "pos": 4593,
                                 "end": 4596,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "max"
                             },
                             "type": "number",
@@ -739,10 +742,10 @@
                             "tagName": {
                                 "pos": 4587,
                                 "end": 4592,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": ""
@@ -751,10 +754,10 @@
                             "tagName": {
                                 "pos": 4603,
                                 "end": 4610,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "returns"
                             },
                             "comment": ""
@@ -785,10 +788,10 @@
                             "name": {
                                 "pos": 7871,
                                 "end": 7878,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "hoverId"
                             },
                             "type": "string",
@@ -798,10 +801,10 @@
                             "tagName": {
                                 "pos": 7865,
                                 "end": 7870,
-                                "flags": 4227072,
+                                "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
-                                "kind": 79,
+                                "kind": 80,
                                 "escapedText": "param"
                             },
                             "comment": "<p>cell type id</p>\n"
@@ -825,6 +828,29 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatTableModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BiomarkerTableDataIconComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "HoverDirective",
+                    "type": "directive"
+                },
+                {
+                    "name": "BiomarkerTableDataCardComponent",
+                    "type": "component"
+                }
+            ],
             "description": "<p>Cell types table, describing the types and quanitites of cells for a specific organ</p>\n",
             "rawdescription": "\nCell types table, describing the types and quanitites of cells for a specific organ",
             "type": "component",
@@ -837,6 +863,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "implements": [
                 "OnChanges"
             ],
@@ -870,7 +897,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "<p>Describes the composition of a single row in the table</p>\n",
-                "kind": 183
+                "kind": 189
             },
             {
                 "name": "RGBTriplet",
@@ -881,7 +908,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "<p>RGBTriblet of type RGB to store color</p>\n",
-                "kind": 183
+                "kind": 189
             }
         ],
         "enumerations": [],
@@ -899,7 +926,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "<p>Describes the composition of a single row in the table</p>\n",
-                    "kind": 183
+                    "kind": 189
                 },
                 {
                     "name": "RGBTriplet",
@@ -910,7 +937,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "<p>RGBTriblet of type RGB to store color</p>\n",
-                    "kind": 183
+                    "kind": 189
                 }
             ]
         }

@@ -12,8 +12,66 @@
         <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">state</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -39,21 +97,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >DownloadState</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >DownloadState</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -74,7 +138,7 @@ format and download to user.</p>
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -88,21 +152,26 @@ format and download to user.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#addEntry" >addEntry</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#clearEntries" >clearEntries</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#download" >download</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#load" >load</a>
                             </li>
                             <li>
                                 <a href="#ngxsOnInit" >ngxsOnInit</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#registerFormat" >registerFormat</a>
                             </li>
                         </ul>
@@ -118,7 +187,7 @@ format and download to user.</p>
 </section>
 
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -129,6 +198,7 @@ format and download to user.</p>
                 <td class="col-md-4">
                     <a name="addEntry"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>addEntry</b></span>
                         <a href="#addEntry"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -136,7 +206,8 @@ format and download to user.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>addEntry(ctx: <a href="../classes/Download.html" target="_self">DownloadContext</a>, undefined: <a href="../classes/AddEntry.html" target="_self">AddEntry</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addEntry(ctx: <a href="../undefineds/DownloadContext.html" target="_self">DownloadContext</a>, undefined: <a href="../classes/AddEntry.html" target="_self">AddEntry</a>)</code>
                 </td>
             </tr>
 
@@ -148,66 +219,64 @@ format and download to user.</p>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="86"
-                            class="link-to-prism">src/lib/download/download.state.ts:86</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="86"
+                                    class="link-to-prism">src/lib/download/download.state.ts:86</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Add entry into download state</p>
+                        <div class="io-description"><p>Add entry into download state</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>ctx</td>
-                                    <td>
-                                                <code><a href="../classes/Download.html" target="_self" >DownloadContext</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ctx</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#DownloadContext" target="_self" >DownloadContext</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                                <code><a href="../classes/AddEntry.html" target="_self" >AddEntry</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                            <code><a href="../classes/AddEntry.html" target="_self" >AddEntry</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -218,6 +287,7 @@ format and download to user.</p>
                 <td class="col-md-4">
                     <a name="clearEntries"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>clearEntries</b></span>
                         <a href="#clearEntries"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -225,7 +295,8 @@ format and download to user.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>clearEntries(ctx: <a href="../classes/Download.html" target="_self">DownloadContext</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>clearEntries(ctx: <a href="../undefineds/DownloadContext.html" target="_self">DownloadContext</a>)</code>
                 </td>
             </tr>
 
@@ -237,55 +308,53 @@ format and download to user.</p>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">src/lib/download/download.state.ts:99</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/lib/download/download.state.ts:99</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Clear entires from download state</p>
+                        <div class="io-description"><p>Clear entires from download state</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>ctx</td>
-                                    <td>
-                                                <code><a href="../classes/Download.html" target="_self" >DownloadContext</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ctx</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#DownloadContext" target="_self" >DownloadContext</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -296,6 +365,7 @@ format and download to user.</p>
                 <td class="col-md-4">
                     <a name="download"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>download</b></span>
                         <a href="#download"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -303,7 +373,8 @@ format and download to user.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>download(ctx: <a href="../classes/Download.html" target="_self">DownloadContext</a>, undefined: <a href="../classes/Download.html" target="_self">Download</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>download(ctx: <a href="../undefineds/DownloadContext.html" target="_self">DownloadContext</a>, undefined: <a href="../classes/Download.html" target="_self">Download</a>)</code>
                 </td>
             </tr>
 
@@ -315,66 +386,64 @@ format and download to user.</p>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="113"
-                            class="link-to-prism">src/lib/download/download.state.ts:113</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="113"
+                                    class="link-to-prism">src/lib/download/download.state.ts:113</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Actions download file in specified format</p>
+                        <div class="io-description"><p>Actions download file in specified format</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>ctx</td>
-                                    <td>
-                                                <code><a href="../classes/Download.html" target="_self" >DownloadContext</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ctx</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#DownloadContext" target="_self" >DownloadContext</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                                <code><a href="../classes/Download.html" target="_self" >Download</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable | void</code>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                            <code><a href="../classes/Download.html" target="_self" >Download</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable | void</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -385,6 +454,7 @@ format and download to user.</p>
                 <td class="col-md-4">
                     <a name="load"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>load</b></span>
                         <a href="#load"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -392,7 +462,8 @@ format and download to user.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>load(ctx: <a href="../classes/Download.html" target="_self">DownloadContext</a>, undefined: <a href="../classes/Load.html" target="_self">Load</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>load(ctx: <a href="../undefineds/DownloadContext.html" target="_self">DownloadContext</a>, undefined: <a href="../classes/Load.html" target="_self">Load</a>)</code>
                 </td>
             </tr>
 
@@ -404,73 +475,71 @@ format and download to user.</p>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/lib/download/download.state.ts:65</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/lib/download/download.state.ts:65</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Action to add the Organs IRI from the data service</p>
+                        <div class="io-description"><p>Action to add the Organs IRI from the data service</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>ctx</td>
-                                    <td>
-                                                <code><a href="../classes/Download.html" target="_self" >DownloadContext</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ctx</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#DownloadContext" target="_self" >DownloadContext</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>Context</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                                <code><a href="../classes/Load.html" target="_self" >Load</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;&gt;</code>
+                                            <td>
+                                                    <p>Context</p>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                            <code><a href="../classes/Load.html" target="_self" >Load</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -488,60 +557,58 @@ format and download to user.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>ngxsOnInit(ctx: <a href="../classes/Download.html" target="_self">DownloadContext</a>)</code>
+<code>ngxsOnInit(ctx: <a href="../undefineds/DownloadContext.html" target="_self">DownloadContext</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/lib/download/download.state.ts:40</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="40"
+                                    class="link-to-prism">src/lib/download/download.state.ts:40</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Ngxs on init and registry default format</p>
+                        <div class="io-description"><p>Ngxs on init and registry default format</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>ctx</td>
-                                    <td>
-                                                <code><a href="../classes/Download.html" target="_self" >DownloadContext</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ctx</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#DownloadContext" target="_self" >DownloadContext</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -552,6 +619,7 @@ format and download to user.</p>
                 <td class="col-md-4">
                     <a name="registerFormat"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>registerFormat</b></span>
                         <a href="#registerFormat"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -559,7 +627,8 @@ format and download to user.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>registerFormat(ctx: <a href="../classes/Download.html" target="_self">DownloadContext</a>, undefined: <a href="../classes/RegisterFormat.html" target="_self">RegisterFormat</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>registerFormat(ctx: <a href="../undefineds/DownloadContext.html" target="_self">DownloadContext</a>, undefined: <a href="../classes/RegisterFormat.html" target="_self">RegisterFormat</a>)</code>
                 </td>
             </tr>
 
@@ -571,66 +640,64 @@ format and download to user.</p>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/lib/download/download.state.ts:50</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="50"
+                                    class="link-to-prism">src/lib/download/download.state.ts:50</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Actions register format in Download State</p>
+                        <div class="io-description"><p>Actions register format in Download State</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>ctx</td>
-                                    <td>
-                                                <code><a href="../classes/Download.html" target="_self" >DownloadContext</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ctx</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#DownloadContext" target="_self" >DownloadContext</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                                <code><a href="../classes/RegisterFormat.html" target="_self" >RegisterFormat</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                            <code><a href="../classes/RegisterFormat.html" target="_self" >RegisterFormat</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -640,14 +707,14 @@ format and download to user.</p>
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
 import { inject, Injectable } from &#x27;@angular/core&#x27;;
 import { Action, NgxsOnInit, State } from &#x27;@ngxs/store&#x27;;
-import produce from &#x27;immer&#x27;;
+import { produce } from &#x27;immer&#x27;;
 import { Observable, tap } from &#x27;rxjs&#x27;;
 
-import { FtuDataService, Iri } from &#x27;@hra-ui/services&#x27;;
+import { FtuDataService } from &#x27;@hra-ui/services&#x27;;
 import { PNG_FORMAT, SVG_FORMAT } from &#x27;./builtin-formats&#x27;;
 import { AddEntry, ClearEntries, Download, Load, RegisterFormat } from &#x27;./download.action&#x27;;
 import { createDownloadFormatId, DownloadContext, DownloadFormatId, DownloadModel } from &#x27;./download.model&#x27;;
@@ -694,7 +761,7 @@ export class DownloadState implements NgxsOnInit {
     ctx.setState(
       produce((draft) &#x3D;&gt; {
         draft.formats[format.id] &#x3D; format;
-      })
+      }),
     );
   }
 
@@ -714,9 +781,9 @@ export class DownloadState implements NgxsOnInit {
             for (const { format, url } of items) {
               draft.entries[createDownloadFormatId(format)] &#x3D; { type: &#x27;url&#x27;, url };
             }
-          })
-        )
-      )
+          }),
+        ),
+      ),
     );
   }
 
@@ -730,7 +797,7 @@ export class DownloadState implements NgxsOnInit {
     ctx.setState(
       produce((draft) &#x3D;&gt; {
         draft.entries[id] &#x3D; entry;
-      })
+      }),
     );
   }
 
@@ -743,7 +810,7 @@ export class DownloadState implements NgxsOnInit {
     ctx.setState(
       produce((draft) &#x3D;&gt; {
         draft.entries &#x3D; {};
-      })
+      }),
     );
   }
 
