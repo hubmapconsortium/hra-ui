@@ -274,7 +274,6 @@ export class FtuDataImplService extends FtuDataService {
   private findGraphItem<T extends IdItem>(data: Graph<T>, iri: Iri): T {
     const item = data['@graph'].find(({ '@id': id }) => id === iri);
     if (item === undefined) {
-      console.error(`Iri not found in data: ${iri}`);
       return {} as T;
     }
     return item;
@@ -290,7 +289,6 @@ export class FtuDataImplService extends FtuDataService {
   private findCellSummaries<T extends CellSourceItem>(data: Graph<T>, iri: Iri): T[] {
     const item = data['@graph'].filter(({ cell_source }) => cell_source === iri);
     if (item === undefined || item.length == 0) {
-      console.error(`Cell Summary not found in data: ${iri}`);
       return [];
     }
     return item;
@@ -306,7 +304,6 @@ export class FtuDataImplService extends FtuDataService {
     const svgFormat = fileFormatMapping['image/svg+xml'];
     const ref = files.find(({ format }) => format === svgFormat);
     if (ref === undefined) {
-      console.error('Illustration url not found');
       return '' as Url;
     }
     return ref.url;
