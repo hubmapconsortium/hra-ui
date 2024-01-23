@@ -169,6 +169,7 @@
 
                     - <a href='https://bioportal.bioontology.org/ontologies/CCF' target='_blank'>NCBO BioPortal</a>
                     - <a href='https://www.ebi.ac.uk/ols/ontologies/ccf' target='_blank'>EBI OLS</a>
+                    - <a href='https://ontobee.org/ontology/CCFO' target='_blank'>Ontobee</a>
 
                     3D reference objects have been added to the OLS Ontology Search.
             - type: button
