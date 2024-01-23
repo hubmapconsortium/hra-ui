@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Action, NgxsOnInit, State } from '@ngxs/store';
-import produce from 'immer';
+import { produce } from 'immer';
 import { Observable, tap } from 'rxjs';
 
-import { FtuDataService, Iri } from '@hra-ui/services';
+import { FtuDataService } from '@hra-ui/services';
 import { PNG_FORMAT, SVG_FORMAT } from './builtin-formats';
 import { AddEntry, ClearEntries, Download, Load, RegisterFormat } from './download.action';
 import { createDownloadFormatId, DownloadContext, DownloadFormatId, DownloadModel } from './download.model';
@@ -51,7 +51,7 @@ export class DownloadState implements NgxsOnInit {
     ctx.setState(
       produce((draft) => {
         draft.formats[format.id] = format;
-      })
+      }),
     );
   }
 
@@ -71,9 +71,9 @@ export class DownloadState implements NgxsOnInit {
             for (const { format, url } of items) {
               draft.entries[createDownloadFormatId(format)] = { type: 'url', url };
             }
-          })
-        )
-      )
+          }),
+        ),
+      ),
     );
   }
 
@@ -87,7 +87,7 @@ export class DownloadState implements NgxsOnInit {
     ctx.setState(
       produce((draft) => {
         draft.entries[id] = entry;
-      })
+      }),
     );
   }
 
@@ -100,7 +100,7 @@ export class DownloadState implements NgxsOnInit {
     ctx.setState(
       produce((draft) => {
         draft.entries = {};
-      })
+      }),
     );
   }
 

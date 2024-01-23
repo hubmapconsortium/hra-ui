@@ -5,7 +5,7 @@
 To embed _FTU-UI_ the following code snippet should be used.
 
 ```html (large web component)
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -45,7 +45,7 @@ window.addEventListener('DOMContentLoaded', () => {
 Full FTU-UI Example (small web component)
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />

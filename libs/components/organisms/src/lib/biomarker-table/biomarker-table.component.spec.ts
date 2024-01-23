@@ -86,7 +86,7 @@ describe('BiomarkerTableComponent', () => {
 
   it('should create BiomarkerTableComponent', async () => {
     await expect(
-      shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } })
+      shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } }),
     ).resolves.toBeDefined();
   });
 

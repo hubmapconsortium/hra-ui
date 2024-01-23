@@ -31,7 +31,7 @@ describe('CellSummaryState', () => {
     });
 
     it('should load the cell summaries', () => {
-      const summaries: any[] = [];
+      const summaries: never[] = [];
       dataService.getCellSummaries.mockReturnValue(of(summaries));
       state.load(ctx, new Load(testIri)).subscribe();
       expect(ctx.patchState).toHaveBeenCalledWith({ summaries: summaries, aggregates: [] });

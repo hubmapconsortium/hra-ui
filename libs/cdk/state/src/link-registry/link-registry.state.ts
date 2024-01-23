@@ -21,7 +21,7 @@ import {
 /** Query function for link entry optionally with type specified */
 export type LinkRegistryQuery = <T extends LinkType | string = string>(
   id: LinkId,
-  type?: T
+  type?: T,
 ) => UnionMember<LinkEntry, 'type', T> | undefined;
 
 /** State for keeping track of links globally */

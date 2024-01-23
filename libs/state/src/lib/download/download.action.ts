@@ -36,7 +36,10 @@ export class Load extends Action('Load') {
  */
 export class AddEntry extends Action('Add') {
   /** Constructor for Addd Entry */
-  constructor(readonly id: DownloadFormatId, readonly entry: DownloadEntry) {
+  constructor(
+    readonly id: DownloadFormatId,
+    readonly entry: DownloadEntry,
+  ) {
     super();
   }
 }

@@ -6,7 +6,7 @@
 </div>
 <div class="filler" *ngIf="isSmall"></div>
 
-<button class="button" mat-stroked-button color="accent" [hraLink]="illustrationMetadata">
+<button class="button" mat-stroked-button color="accent" [hraLink]="illustrationMetadata" disableRipple>
   <mat-icon>info_outlined</mat-icon>
   Illustration
 </button>
@@ -19,24 +19,25 @@
   type="button"
   cdkOverlayOrigin
   #anchor="cdkOverlayOrigin"
+  disableRipple
 >
   <span class="material-symbols-outlined"> download </span>
   Download
 </button>
 
-<button class="button" mat-stroked-button color="accent" [hraLink]="embed">
+<button class="button" mat-stroked-button color="accent" [hraLink]="embed" disableRipple>
   <mat-icon>code</mat-icon>
   Embed
 </button>
 
 <div class="filler" *ngIf="!isSmall"></div>
 
-<button class="button" mat-stroked-button color="accent" (click)="contactClick.emit()">
+<button class="button" mat-stroked-button color="accent" (click)="contactClick.emit()" disableRipple>
   <mat-icon>mail_outlined</mat-icon>
   Contact
 </button>
 
-<button class="button" mat-stroked-button color="accent" [hraLink]="hraPortal">
+<button class="button" mat-stroked-button color="accent" [hraLink]="hraPortal" disableRipple>
   <mat-icon>open_in_new</mat-icon>
   HRA Portal
 </button>

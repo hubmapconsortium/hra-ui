@@ -1,9 +1,9 @@
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { StorageState } from './storage.state';
-import { StorageContext, StorageId } from './storage.model';
 import { mock } from 'jest-mock-extended';
-import { Set, Delete, Clear } from './storage.actions';
+import { Clear, Delete, Set } from './storage.actions';
+import { StorageContext, StorageId } from './storage.model';
+import { StorageState } from './storage.state';
 describe('StorageState', () => {
   const ctx = mock<StorageContext>();
   let state: StorageState;

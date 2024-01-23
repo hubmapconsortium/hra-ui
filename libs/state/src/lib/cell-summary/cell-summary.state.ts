@@ -27,7 +27,7 @@ export class CellSummaryState {
   load({ patchState, dispatch }: Context, { iri }: Load): Observable<unknown> {
     return this.dataService.getCellSummaries(iri).pipe(
       tap((summaries) => patchState({ summaries, aggregates: [] })),
-      switchMap(() => dispatch(new ComputeAggregates()))
+      switchMap(() => dispatch(new ComputeAggregates())),
     );
   }
 

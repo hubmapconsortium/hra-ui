@@ -57,7 +57,7 @@ describe('ActiveFtuState', () => {
       ctx.getState.mockReturnValue({ iri: testIri });
       state.setIllustrationUrl(ctx, new SetIllustrationUrl(testIri));
       expect(ctx.dispatch).toHaveBeenCalledWith(
-        new LinkRegistryActions.Add(Illustration, { type: LinkType.External, url: mockurl })
+        new LinkRegistryActions.Add(Illustration, { type: LinkType.External, url: mockurl }),
       );
     });
   });

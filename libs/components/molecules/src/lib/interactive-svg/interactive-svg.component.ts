@@ -256,13 +256,13 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
     for (const id of idCollection) {
       const decodedID = this.decodeId(id);
       const cellMatch = this.mapping.find(
-        (item) => item.id?.toLowerCase() === decodedID.toLowerCase() //search mapping by cell name for matching node entry
+        (item) => item.id?.toLowerCase() === decodedID.toLowerCase(), //search mapping by cell name for matching node entry
       );
       if (cellMatch) {
         return cellMatch;
       } else {
         const groupMatch = this.mapping.find(
-          (item) => item.groupId?.toLowerCase() === decodedID.toLowerCase() //search mapping by group name for matching node entry
+          (item) => item.groupId?.toLowerCase() === decodedID.toLowerCase(), //search mapping by group name for matching node entry
         );
         if (groupMatch) {
           return groupMatch;

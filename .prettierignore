@@ -6,3 +6,5 @@ nx.json
 tsconfig.base.json
 
 .angular
+
+/.nx/cache

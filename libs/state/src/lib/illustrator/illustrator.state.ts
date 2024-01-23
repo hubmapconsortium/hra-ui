@@ -56,8 +56,8 @@ export class IllustratorState {
           ...result,
           selectedOnHover: undefined,
           selectedOnClick: undefined,
-        })
-      )
+        }),
+      ),
     );
   }
 

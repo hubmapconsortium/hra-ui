@@ -35,7 +35,7 @@ function defineNode(
       ...acc,
       ...defineNode(childLabel, id, childUrl),
     }),
-    {}
+    {},
   );
   const node = {
     '@type': '',
@@ -95,7 +95,7 @@ export const MOCK_TISSUE_DATA = {
       [
         'Thick Ascending Loop of Henle',
         'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.svg',
-      ]
+      ],
     ),
     defineNode(
       'Lung',
@@ -108,7 +108,7 @@ export const MOCK_TISSUE_DATA = {
       [
         'Bronchial Submucosal Gland',
         'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-lung-bronchial-submucosal-gland.svg',
-      ]
+      ],
     ),
     defineNode('Large Intestine', BASE_ID, undefined, [
       'Crypt Lieberkuhn',
@@ -129,14 +129,17 @@ export const MOCK_TISSUE_DATA = {
       [
         'Pancreatic Acinus',
         'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-pancreas-pancreatic-acinus.svg',
-      ]
+      ],
     ),
     defineNode(
       'Skin',
       BASE_ID,
       undefined,
       ['Dermal Papilla', 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-dermal-papilla.svg'],
-      ['Epidermal Ridge', 'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.svg']
+      [
+        'Epidermal Ridge',
+        'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.svg',
+      ],
     ),
     defineNode('Liver', BASE_ID, undefined, [
       'Liver Lobule',
@@ -149,7 +152,7 @@ export const MOCK_TISSUE_DATA = {
     defineNode('Thymus', BASE_ID, undefined, [
       'Thymus Lobule',
       'https://hubmapconsortium.github.io/ccf-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.svg',
-    ])
+    ]),
   ) as Record<Iri, ExtendedTissue>,
 };
 

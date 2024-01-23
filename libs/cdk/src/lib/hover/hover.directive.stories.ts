@@ -21,6 +21,7 @@ export const Primary: StoryObj<object> = {
       `
         .anchor, .hover {
           max-width: 400px;
+          background-color: lightgrey;
         }
       `,
     ],
