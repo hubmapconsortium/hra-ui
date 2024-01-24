@@ -76,10 +76,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "ccf:build:production"
+          "buildTarget": "ccf:build:production"
         },
         "development": {
-          "browserTarget": "ccf:build:development"
+          "buildTarget": "ccf:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -87,27 +87,17 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "ccf:build"
+        "buildTarget": "ccf:build"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "options": {
-        "lintFilePatterns": ["apps/ccf/**/*.ts", "apps/ccf/**/*.html"]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/ccf/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "apps/ccf/jest.config.ts"
       }
     },
     "compodoc": {
