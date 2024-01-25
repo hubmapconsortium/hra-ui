@@ -46,15 +46,6 @@ button {
   line-height: 1.5rem;
 }
 
-.external-link > a {
-  padding-left: 1rem;
-  padding-right: 1rem;
-
-  &:hover {
-    background: rgba(0, 0, 0, 0.04);
-  }
-}
-
 .inverse {
   transform: rotate(180deg);
   display: inline-block;
@@ -65,5 +56,9 @@ button {
     position: relative;
     top: 14px;
     max-width: 23.25rem !important;
+  }
+
+  .mat-mdc-unelevated-button .mat-mdc-button-persistent-ripple {
+    display: none;
   }
 }

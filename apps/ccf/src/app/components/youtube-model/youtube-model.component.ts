@@ -22,6 +22,7 @@ export class YoutubeModelComponent implements OnInit {
       document.body.appendChild(tag);
       this.apiLoaded = true;
     }
+    this.playerSize();
   }
 
   /** Function to handle resize event and change size of youtube player */
@@ -32,7 +33,7 @@ export class YoutubeModelComponent implements OnInit {
 
   /** Changes the size of youtube player */
   playerSize() {
-    this.playerData.width = window.innerWidth * 0.8;
+    this.playerData.width = Math.min(1232, window.innerWidth * 0.85);
     this.playerData.height = this.playerData.width * 0.5625;
   }
 }
