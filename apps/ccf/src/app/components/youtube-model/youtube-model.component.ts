@@ -34,6 +34,6 @@ export class YoutubeModelComponent implements OnInit {
   /** Changes the size of youtube player */
   playerSize() {
     this.playerData.width = Math.min(1232, window.innerWidth * 0.85);
-    this.playerData.height = this.playerData.width * 0.5625;
+    this.playerData.height = Math.min(584, this.playerData.width * 0.5625);
   }
 }
