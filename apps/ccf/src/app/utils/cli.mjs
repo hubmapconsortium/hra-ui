@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import { saveJsonSchema } from './json-schema.js';
+import { saveJsonSchema } from './json-schema.mjs';
 
 const program = new Command();
 
