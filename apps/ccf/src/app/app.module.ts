@@ -16,6 +16,8 @@ import { PageModule } from './components/page/page.module';
 import { ToolbarModule } from './components/toolbar/toolbar.module';
 import { TissueInfoPageModule } from './pages/tissue-info-page/tissue-info-page.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { gfmHeadingId } from 'marked-gfm-heading-id';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -28,7 +30,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TissueInfoPageModule,
     NgxGoogleAnalyticsModule.forRoot(environment.googleAnalyticsToken),
     NgxGoogleAnalyticsRouterModule,
-    MarkdownModule.forRoot({ sanitize: SecurityContext.NONE }),
+    MarkdownModule.forRoot({
+      sanitize: SecurityContext.NONE,
+      markedExtensions: [gfmHeadingId()],
+    }),
     PageRendererModule,
     PageModule,
     RouterModule,

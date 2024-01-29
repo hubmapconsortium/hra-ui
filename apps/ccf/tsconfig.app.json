@@ -7,6 +7,10 @@
       "@components/": ["apps/ccf/src/app/components/"]
     }
   },
-  "files": ["src/main.ts", "src/polyfills.ts"],
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts",
+    "src/environments/environment.prod.ts"
+  ],
   "include": ["src/**/*.d.ts"]
 }

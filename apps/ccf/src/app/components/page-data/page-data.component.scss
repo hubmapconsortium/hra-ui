@@ -51,13 +51,4 @@
       margin: 0 0 1rem;
     }
   }
-
-  ::ng-deep h4::before {
-    display: block;
-    content: ' ';
-    margin-top: -3.75rem;
-    height: 3.75rem;
-    visibility: hidden;
-    pointer-events: none;
-  }
 }

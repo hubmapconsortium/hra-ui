@@ -107,7 +107,7 @@
               styles:
                 margin-bottom: 1rem
         - type: styled-group
-          id: new-and-revised-doi
+          id: new-and-revised
           components:
             - type: page-data
               pageData:
