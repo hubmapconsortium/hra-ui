@@ -27,9 +27,9 @@
     sopTitle: Standard Operating Procedures (SOP)
     href:
       - title: 'SOP: Authoring Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Tables'
-        href: https://doi.org/10.5281/zenodo.5639622
-      - title: 'SOP: ASCT+B Table Communications'
         href: https://doi.org/10.5281/zenodo.5746152
+      - title: 'SOP: ASCT+B Table Communications'
+        href: https://doi.org/10.5281/zenodo.5639622
 
 - type: margin
   bottom: 2rem
@@ -37,7 +37,8 @@
 - type: page-data
   pageData:
     - heading: Existing Tables
-      descriptions: The below table lists for each organ the number of anatomical structures (#AS), the number of cell types (#CT), the number of biomarkers (#B), the number of <i>part_of</i> relationships between AS, the number of located_in links between CT and AS, and the number of CT and B (i.e., which B characterize a CT).
+      descriptions: |
+        The below table lists for each organ the number of anatomical structures (#AS), the number of cell types (#CT), the number of biomarkers (#B), the number of <i>part_of</i> relationships between AS, the number of <i>located_in</i> links between CT and AS, and the number of CT and B (i.e., which B <i>characterize</i> a CT). Biomarker abbreviations: genes (BG), proteins (BP), metabolites (BM), proteoforms (BF), and lipids (BL).
 
 - type: table-version
   versionChooserDisabled: false
