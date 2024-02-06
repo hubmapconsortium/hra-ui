@@ -1,0 +1,57 @@
+@use '@angular/material' as mat;
+
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $primary: map-get($color-config, primary);
+  $background: map-get($color-config, background);
+  $foreground: map-get($color-config, foreground);
+  $accent: map-get($color-config, accent);
+
+  .ccf-organ-selector {
+    .container {
+      color: mat.get-color-from-palette($foreground, text);
+
+      &.error {
+        border-color: mat.get-color-from-palette($foreground, slider-red);;
+      }
+
+      .carousel-left-icon,
+      .carousel-right-icon {
+        color: mat.get-color-from-palette($foreground, carousel-arrow);
+
+        &:hover {
+          color: mat.get-color-from-palette($foreground, active-icon);
+        }
+
+        &.disabled {
+          color: mat.get-color-from-palette($foreground, disabled);
+        }
+      }
+    }
+  }
+
+  .carousel-item {
+    color: mat.get-color-from-palette($foreground, organ-off);
+
+    &:hover {
+      background-color: mat.get-color-from-palette($background, hover-background);
+    }
+
+    &.selected {
+      color: mat.get-color-from-palette($foreground, main);
+    }
+
+    &.disabled {
+      color: mat.get-color-from-palette($foreground, disabled);
+    }
+
+    .organ-number {
+      color: mat.get-color-from-palette($foreground, organ-numbers);
+    }
+
+    .carousel-text {
+      color: mat.get-color-from-palette($foreground, carousel-text);
+    }
+  }
+}

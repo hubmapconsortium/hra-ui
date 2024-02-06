@@ -1,0 +1,28 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    schedule:
+      timezone: America/Indiana/Indianapolis
+      interval: monthly
+    directory: /
+    target-branch: develop
+    commit-message:
+      prefix: npm
+
+  - package-ecosystem: docker
+    schedule:
+      timezone: America/Indiana/Indianapolis
+      interval: monthly
+    directory: /
+    target-branch: develop
+    commit-message:
+      prefix: docker
+
+  - package-ecosystem: github-actions
+    schedule:
+      timezone: America/Indiana/Indianapolis
+      interval: monthly
+    directory: /
+    target-branch: develop
+    commit-message:
+      prefix: github-actions

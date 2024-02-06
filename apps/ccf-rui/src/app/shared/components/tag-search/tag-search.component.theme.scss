@@ -1,0 +1,45 @@
+@use '@angular/material' as mat;
+
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $primary: map-get($color-config, primary);
+  $background: map-get($color-config, background);
+  $foreground: map-get($color-config, foreground);
+  $accent: map-get($color-config, accent);
+
+  .ccf-tag-search {
+    .search-box input::placeholder {
+      color: #cccccc;
+    }
+
+    .count {
+      color: #cccccc;
+    }
+
+    .mat-mdc-text-field-wrapper {
+      background-color: white;
+    }
+
+    .mdc-notched-outline__leading, .mdc-notched-outline__trailing {
+      border-color: mat.get-color-from-palette($foreground, text) !important;
+    }
+
+    .add-button {
+      background-color: transparent;
+
+      &.active {
+        background-color: mat.get-color-from-palette($foreground, icons-hover);
+      }
+
+      &:hover {
+        background-color: mat.get-color-from-palette($foreground, icons-hover);
+      }
+
+      &:active {
+        background-color: mat.get-color-from-palette($foreground, icons-disabled);
+      }
+
+    }
+  }
+}

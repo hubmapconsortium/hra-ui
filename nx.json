@@ -1,39 +1,65 @@
 {
   "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
     "production": [
       "default",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/jest.config.[jt]s",
+      "!{projectRoot}/karma.conf.[jt]s",
       "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/eslint.config.js",
       "!{projectRoot}/.storybook/**/*",
       "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
       "!{projectRoot}/tsconfig.storybook.json",
-      "!{projectRoot}/src/test-setup.[jt]s"
+      "!{projectRoot}/src/test-setup.[jt]s",
+      "!{projectRoot}/**/test.[jt]s"
     ],
     "sharedGlobals": []
   },
   "targetDefaults": {
     "build": {
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"],
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ],
       "cache": true
     },
     "e2e": {
-      "inputs": ["default", "^production"],
+      "inputs": [
+        "default",
+        "^production"
+      ],
       "cache": true
     },
     "lint": {
-      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/eslint.config.js"
+      ],
       "cache": true
     },
     "storybook": {
-      "dependsOn": ["compodoc-json"],
-      "inputs": ["default", "^production", "{workspaceRoot}/.storybook/**/*"]
+      "dependsOn": [
+        "compodoc-json"
+      ],
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/.storybook/**/*"
+      ]
     },
     "build-storybook": {
-      "dependsOn": ["compodoc-json"],
+      "dependsOn": [
+        "compodoc-json"
+      ],
       "inputs": [
         "default",
         "^production",
@@ -44,16 +70,29 @@
       "cache": true
     },
     "compodoc": {
+      "inputs": [
+        "production"
+      ],
       "cache": true
     },
     "compodoc-json": {
+      "inputs": [
+        "production"
+      ],
       "cache": true
     },
     "test-doc-coverage": {
+      "inputs": [
+        "production"
+      ],
       "cache": true
     },
     "@nx/jest:jest": {
-      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/jest.preset.js"
+      ],
       "cache": true,
       "options": {
         "passWithNoTests": true
@@ -64,6 +103,27 @@
           "codeCoverage": true
         }
       }
+    },
+    "@angular-devkit/build-angular:karma": {
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/karma.conf.js"
+      ],
+      "cache": true
+    },
+    "build-webcomponent": {
+      "dependsOn": [
+        "build"
+      ],
+      "inputs": [
+        "{projectRoot}/src/webcomponent-example.html"
+      ],
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}/wc.js",
+        "{workspaceRoot}/dist/{projectRoot}/webcomponent-example.html"
+      ],
+      "cache": true
     }
   },
   "generators": {

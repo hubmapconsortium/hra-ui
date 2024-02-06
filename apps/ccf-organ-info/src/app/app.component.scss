@@ -1,0 +1,25 @@
+.container {
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  font-family: var(--ccf-ui-font, ""), Inter, Inter Variable, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: left;
+  position: relative;
+  background-color: white;
+  color: black;
+
+
+  .left {
+    width: auto;
+    flex-grow: 1;
+  }
+
+  .right {
+    margin-left: 2rem;
+    height: fit-content;
+    width: 29rem;
+  }
+}

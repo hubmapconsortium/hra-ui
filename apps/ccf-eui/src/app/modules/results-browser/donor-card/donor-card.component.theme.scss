@@ -1,0 +1,47 @@
+@use '@angular/material' as mat;
+
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $primary: map-get($color-config, primary);
+  $background: map-get($color-config, background);
+  $foreground: map-get($color-config, foreground);
+  $accent: map-get($color-config, accent);
+
+  .checkbox-background {
+    .mdc-checkbox__background {
+      border-color: mat.get-color-from-palette($foreground, contrast-icon) !important;
+    }
+
+    .mat-mdc-checkbox-checked.mat-accent .mdc-checkbox__background {
+      border-color: mat.get-color-from-palette($primary, 'white') !important;
+      background-color: transparent !important;
+    }
+  }
+
+  .donor {
+    .hover-state {
+      border-right: 1px solid mat.get-color-from-palette($foreground, icons-disabled);
+    }
+  }
+
+  .hover-state {
+    background-color: mat.get-color-from-palette($background, donor-card-background);
+
+    .hover-title {
+      color: mat.get-color-from-palette($primary, text);
+    }
+
+    .hover-icon {
+      color: mat.get-color-from-palette($background, checkbox-color);
+    }
+  }
+
+  .icon-light {
+    color: mat.get-color-from-palette($foreground, icons-light);
+  }
+
+  .icon-dark {
+    color: mat.get-color-from-palette($foreground, main);
+  }
+}

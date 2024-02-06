@@ -1,0 +1,53 @@
+@use '@angular/material' as mat;
+
+@mixin slider-theme($cls, $color, $lightColor) {
+  .slider-box#{$cls} {
+    .label {
+      color: $color;
+    }
+
+    .mdc-slider__track--active {
+      border-top-color: $lightColor;
+      background-color: $lightColor;
+    }
+
+    .mdc-slider__track--active_fill {
+      border-color: $lightColor;
+    }
+
+    .mdc-slider__thumb-knob {
+      background-color: $color !important;
+      border-color: $color !important;
+    }
+  }
+}
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $primary: map-get($color-config, primary);
+  $background: map-get($color-config, background);
+  $foreground: map-get($color-config, foreground);
+  $accent: map-get($color-config, accent);
+
+  .ccf-rotation-slider {
+    .header .reset {
+      color: mat.get-color-from-palette($foreground, main);
+
+      &:hover {
+        background: mat.get-color-from-palette($foreground, icons-hover);
+      }
+    }
+
+    .mdc-text-field {
+      background: white;
+    }
+
+    .mat-mdc-form-field-focus-overlay {
+      background: transparent;
+    }
+
+    @include slider-theme('.red', mat.get-color-from-palette($foreground, slider-red), mat.get-color-from-palette($foreground, slider-red-light));
+    @include slider-theme('.green', mat.get-color-from-palette($foreground, slider-green), mat.get-color-from-palette($foreground, slider-green-light));
+    @include slider-theme('.blue', mat.get-color-from-palette($foreground, slider-blue), mat.get-color-from-palette($foreground, slider-blue-light));
+  }
+}

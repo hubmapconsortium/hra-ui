@@ -1,0 +1,52 @@
+@use '@angular/material' as mat;
+
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $primary: map-get($color-config, primary);
+  $background: map-get($color-config, background);
+  $foreground: map-get($color-config, foreground);
+  $accent: map-get($color-config, accent);
+
+  .option-panel {
+    background-color: mat.get-color-from-palette($foreground, modal-borders);
+
+    mat-option {
+      background-color: mat.get-color-from-palette($background, modal);
+      border-color: mat.get-color-from-palette($foreground, borders);
+      color: mat.get-color-from-palette($foreground, text);
+
+      &.mat-mdc-option-active {
+        background-color: mat.get-color-from-palette($background, mat-selected-option) !important;
+
+        .visible {
+          color: mat.get-color-from-palette($foreground, contrast-text) !important;
+        }
+      }
+
+      &:hover {
+        background-color: mat.get-color-from-palette($background, dropdown-hover);
+      }
+    }
+  }
+
+  .dropdown-form-field {
+    .label {
+      color: mat.get-color-from-palette($foreground, text-muted)
+    }
+
+    .mat-mdc-text-field-wrapper {
+      .mdc-line-ripple {
+        color: mat.get-color-from-palette($foreground, contrast-icon);
+      }
+    }
+  }
+
+  .mat-mdc-select-value {
+    color: mat.get-color-from-palette($foreground, text);
+  }
+
+  .mat-mdc-select-arrow {
+    color: mat.get-color-from-palette($foreground, contrast-icon);
+  }
+}

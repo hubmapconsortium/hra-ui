@@ -1,0 +1,94 @@
+@use '@angular/material' as mat;
+@use 'common/utility';
+
+
+$primary-colors: utility.add-colors(mat.$gray-palette, (
+  "white": white,
+  "black": black,
+  850: #323232,
+
+  contrast: (
+    "white": black,
+    "black": white,
+  )
+));
+
+$primary: mat.define-palette($primary-colors, $text: 50);
+$accent: mat.define-palette(mat.$blue-palette, 600);
+$warn: mat.define-palette(mat.$red-palette);
+
+$foreground: map-merge(mat.$dark-theme-foreground-palette, (
+  main: map-get($primary-colors, 'white'),
+  logo: map-get($primary-colors, 'white'),
+  header-border: map-get($primary-colors, 800), //#424242
+  modal-borders: map-get($primary-colors, 'black'),
+  divider: map-get($primary-colors, 500), //#9E9E9E
+  borders: map-get($primary-colors, 800), //#424242
+  icon: map-get($primary-colors, 500), //#9E9E9E
+  contrast-icon: map-get($primary-colors, 500), //#9E9E9E
+  button-text: map-get($primary-colors, 'white'),
+  contrast-button-text: map-get($primary-colors, 850),
+  button-border: map-get($primary-colors, 'white'),
+  headers: map-get($primary-colors, 50), //#FAFAFA
+  search-result-text: map-get($primary-colors, 50), //#FAFAFA
+  text: map-get($primary-colors, 50), //#FAFAFA
+  contrast-text: map-get($primary-colors, 50), //#FAFAFA
+  download-icon: map-get(mat.$amber-palette, A400),
+  disabled: map-get($primary-colors, 800), //#424242
+  highlight: map-get($primary-colors, 'white'),
+  header-download-icon: map-get(mat.$amber-palette, A400),
+  header-shadow: map-get($primary-colors, 'black'),
+  text-muted: #9a9a9a,
+  organ-off: map-get($primary-colors, 800),
+  organ-numbers: #757575,
+  selected-ontology-text: map-get($accent, 600),
+  color-hover: map-get($primary-colors, 'white'),
+  header-button: map-get($primary-colors, 850),
+
+  icons-background-hover: #e0e0e0,
+  icon-active: map-get($primary-colors, 500), //#9E9E9E
+  button-shadow: rgba(0, 0, 0, 0.14),
+  icons-hover: #e0e0e0,
+  results-numbers: #9e9e9e,
+  icons-disabled: #CCCCCC,
+  opacity-numbers: #CCCCCC,
+  input-bg: rgb(113, 113, 113),
+  y-axis: #00C853,
+  z-axis: #2979ff,
+  slider: #0D47A1,
+  slider-thumb: #1976D2
+));
+
+$background: map-merge(mat.$dark-theme-background-palette, (
+  background: map-get($primary-colors, 900), //#212121
+  hover-background: map-get($primary-colors, 850),
+  donor-card-background: map-get($primary-colors, 850),
+  stage-background: map-get($primary-colors, 'black'),
+  dialog: map-get($primary-colors, 900), //#212121
+  authentication: map-get($primary-colors, 'white'), //#FAFAFA
+  app-bar: map-get($primary-colors, 850), //#323232
+  modal: map-get($primary-colors, 850), //#323232
+  dropdown-hover: map-get($primary-colors, 500), //#9E9E9E
+  image-placeholder: map-get($primary-colors, 500), //#9E9E9E
+  mat-slider-primary: #ececec,
+  info-button-hover: map-get($primary-colors, 850),
+  checkbox-color: #636363,
+  button-background-hover: #2f3346,
+  icon-background-hover: #2f3346,
+  icon-background-hover2: map-get($primary-colors, 800),
+  button-bg: map-get($primary-colors, 'white'),
+  mat-selected-option: #636363,
+  button-toggle-background: map-get($primary-colors, 900),
+  button-toggle-selected: #4A4458
+));
+
+$theme: (
+  is-dark: true,
+  color: (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+    foreground: $foreground,
+    background: $background
+  ),
+);

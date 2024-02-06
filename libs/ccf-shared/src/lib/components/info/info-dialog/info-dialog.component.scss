@@ -1,0 +1,106 @@
+::ng-deep .mat-dialog-container {
+  padding: 0;
+}
+
+.about.wrapper {
+  .container {
+    .content {
+      padding: 1.5rem;
+      text-align: left;
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        height: 3rem;
+        margin-bottom: 2.25rem;
+        position: relative;
+      }
+    }
+
+    .description {
+      font-size: 0.875rem;
+      line-height: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .close {
+      .close-icon {
+        cursor: pointer;
+        height: 3rem;
+        width: 3rem;
+        line-height: 3rem;
+        text-align: center;
+        transition: .6s;
+      }
+    }
+
+    .title {
+      font-size: 1.5rem;
+      margin: 0 auto;
+      line-height: 3rem;
+      height: 3rem;
+      justify-self: center;
+      display: flex;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .panel {
+      margin-bottom: 1.5rem;
+
+      .no-header-margin {
+        font-weight: 300;
+        margin-bottom: 0;
+      }
+
+      .top-padding {
+        display: flex;
+
+        markdown ::ng-deep ul {
+          margin-top: 0;
+          padding-left: 1.5rem;
+        }
+      }
+    }
+
+    .dialog-content {
+      height: 50rem;
+      min-height: 10rem;
+      padding: 0 1.5rem;
+
+      .variable-binding {
+        font-weight: 300;
+        display: flex;
+
+        &.first {
+          padding-right: 1rem;
+          width: 73%;
+        }
+
+        ::ng-deep ul {
+          margin: 0;
+        }
+
+        ::ng-deep img {
+          margin-left: 1rem;
+          float: right;
+        }
+      }
+
+      .video-player {
+        position: relative;
+        width: 50%;
+
+        ::ng-deep iframe {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+  }
+}

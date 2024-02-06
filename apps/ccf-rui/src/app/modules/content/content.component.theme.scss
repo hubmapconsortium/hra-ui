@@ -1,0 +1,32 @@
+@use '@angular/material' as mat;
+
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $primary: map-get($color-config, primary);
+  $background: map-get($color-config, background);
+  $foreground: map-get($color-config, foreground);
+  $accent: map-get($color-config, accent);
+
+  .ccf-content {
+    background-color: mat.get-color-from-palette($background, stage-background);
+
+    .top-bar {
+      .icon {
+        color: mat.get-color-from-palette($foreground, icon);
+
+        &:hover {
+          color: mat.get-color-from-palette($foreground, active-icon);
+        }
+      }
+    }
+
+    .gizmo-area {
+      background: mat.get-color-from-palette($primary, 'black');
+    }
+
+    .position-display {
+      color: mat.get-color-from-palette($foreground, contrast-text);
+    }
+  }
+}

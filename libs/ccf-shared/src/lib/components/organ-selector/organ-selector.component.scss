@@ -1,0 +1,112 @@
+:host {
+  .container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+
+    .carousel-left-icon,
+    .carousel-right-icon {
+      font-size: 2rem;
+      transform: scale(1, 1.2);
+      height: 2rem;
+      width: 2rem;
+      cursor: pointer;
+
+      &.disabled {
+        cursor: not-allowed;
+      }
+    }
+
+    .carousel-left-icon {
+      text-align: right;
+    }
+
+    .carousel-right-icon {
+      text-align: left;
+    }
+
+    .carousel-item-container {
+      overflow: hidden;
+      height: 100%;
+
+      .carousel-item-list {
+        position: relative;
+        left: 0rem;
+        display: flex;
+        transition: all 0.2s linear;
+        height: 100%;
+
+        .carousel-item {
+          display: flex;
+          flex-direction: column;
+          cursor: pointer;
+          padding-top: 0.25rem;
+          padding-bottom: 0.25rem;
+          padding-left: 0.5rem;
+          padding-right: 0.5rem;
+          height: 5rem;
+          transition: .6s;
+
+          .carousel-icon {
+            text-align: center;
+            width: 3.5rem;
+            min-height: 2rem;
+          }
+
+          .carousel-text-container {
+            display: flex;
+            flex-direction: column;
+            height: 4rem;
+            justify-content: center;
+            text-align: center;
+
+            .carousel-text {
+              display: flex;
+              justify-content: center;
+              font-size: 0.625rem;
+              max-width: 3.5rem;
+              line-height: .8rem;
+              min-height: 1.6rem;
+            }
+
+            .num-results {
+              font-size: 0.6875rem;
+              line-height: 1.5;
+            }
+          }
+
+
+          &.disabled {
+            pointer-events: none;
+          }
+        }
+      }
+    }
+  }
+
+  .error-message {
+    color: red;
+    height: 1rem;
+
+    &.hidden {
+      opacity: 0;
+    }
+  }
+
+  .expanded {
+    .carousel-item-container {
+      width: 100% !important;
+
+      .carousel-item-list {
+        flex-wrap: wrap;
+        overflow: auto;
+        left: 0rem !important;
+
+        .carousel-item {
+          height: 5rem;
+        }
+      }
+    }
+  }
+}

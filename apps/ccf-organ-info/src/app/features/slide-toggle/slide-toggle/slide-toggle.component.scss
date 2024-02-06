@@ -1,0 +1,26 @@
+:host{
+  .slide-label {
+    margin: 0 1rem;
+    transition: color .6s;
+    cursor: pointer;
+    opacity: 50%;
+
+    &.highlighted {
+      opacity: 100%;
+    }
+  }
+
+  .disabled {
+    opacity: 30% !important;
+    cursor: not-allowed;
+  }
+
+  ::ng-deep .slider {
+    .mdc-switch__track::before, .mdc-switch__track::after {
+      background-color: rgba(67, 71, 101, 0.5) !important;
+    }
+    .mdc-switch__shadow {
+      background-color: rgba(67, 71, 101);
+    }
+  }
+}

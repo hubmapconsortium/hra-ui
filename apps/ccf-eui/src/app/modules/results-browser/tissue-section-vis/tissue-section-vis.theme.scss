@@ -1,0 +1,28 @@
+@use '@angular/material' as mat;
+
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $primary: map-get($color-config, primary);
+  $background: map-get($color-config, background);
+  $foreground: map-get($color-config, foreground);
+  $accent: map-get($color-config, accent);
+
+
+  .ccf-tissue-section-vis {
+    color: mat.get-color-from-palette($foreground, z-axis);
+
+    .container {
+      border-left: 1px solid mat.get-color-from-palette($foreground, icons-disabled);
+      border-right: 1px solid mat.get-color-from-palette($foreground, icons-disabled);
+
+      .line-tick-visible {
+        background-color: mat.get-color-from-palette($foreground, y-axis);
+      }
+
+      .x-axis {
+        background-color: mat.get-color-from-palette($foreground, z-axis);
+      }
+    }
+  }
+}

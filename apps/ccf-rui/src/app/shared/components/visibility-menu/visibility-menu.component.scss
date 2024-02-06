@@ -1,0 +1,80 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  margin-right: 0;
+  margin-left: 0;
+  max-height: 40vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+
+  .icon {
+    border-radius: 0.25rem;
+  }
+
+  .reset {
+    transform: scaleX(-1);
+    cursor: pointer;
+    transition: .6s;
+    position: absolute;
+    top: 3rem;
+
+    &:hover {
+      border-radius: 2px;
+    }
+  }
+
+  .item-entry {
+    display: flex;
+    height: 2.25rem;
+    align-items: center;
+    flex-shrink: 0;
+    position: relative;
+
+    .opacity {
+      cursor: pointer;
+    }
+
+    .opacity-icon {
+      z-index: 1;
+      transition: .6s;
+
+      &:hover {
+        border-radius: 2px;
+      }
+    }
+
+    .item-name {
+      user-select: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-left: 0.5rem;
+      opacity: 1;
+      transition-duration: 0.4s;
+      transition-timing-function: ease-in-out;
+      transition-property: opacity;
+      max-width: calc(100% - 2.5rem);
+
+      &.hidden {
+        opacity: 0;
+      }
+    }
+
+    .slider {
+      width: calc(100% - 2rem);
+      transition-duration: 0.3s;
+      transition-timing-function: ease-in-out;
+      transition-property: opacity;
+      left: 2rem;
+      position: absolute;
+      opacity: 1;
+
+      &.hidden {
+        opacity: 0;
+        transition-duration: 0.1s;
+        transition-timing-function: ease-in-out;
+        transition-property: opacity;
+      }
+    }
+  }
+}

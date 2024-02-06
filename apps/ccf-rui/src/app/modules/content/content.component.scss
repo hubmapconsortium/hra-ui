@@ -1,0 +1,84 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: .5rem;
+  overflow: hidden;
+
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .reset {
+      transform: scaleX(-1);
+      cursor: pointer;
+      transition: 0.6s;
+      font-size: 2rem;
+      height: 2rem;
+      width: 2rem;
+    }
+  }
+
+  .sidebar {
+    .minimap-scene {
+      margin: 1.5rem;
+      width: 12.75rem;
+      height: 11rem;
+      ::ng-deep .body-ui {
+        background-color: #232f3a;
+      }
+    }
+
+    ccf-spatial-search-keyboard-ui-behavior {
+      margin: 1.5rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    ccf-xyz-position {
+      margin: 1.5rem;
+      padding-left: 5rem;
+    }
+  }
+
+  .main-content {
+    display: flex;
+    height: calc(100% - 1rem);
+
+    .body-ui {
+      flex: auto;
+      transition: opacity 1s;
+    }
+
+    .gizmo-area {
+      width: 7rem;
+      margin-top: 1.5rem;
+      margin-left: 1.5rem;
+      z-index: 10;
+      right: 1.5rem;
+
+      .position-display {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .gizmo {
+        height: 5.5rem;
+        .hidden {
+          opacity: 0;
+          z-index: 0;
+        }
+      }
+    }
+  }
+
+  // Temporary for displaying dev information
+  .ccf-store-debug {
+    color: white;
+    position: absolute;
+    top: 0.5rem;
+    max-width: 55rem;
+  }
+}

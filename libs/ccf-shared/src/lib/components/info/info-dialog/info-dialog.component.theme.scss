@@ -1,0 +1,38 @@
+@use '@angular/material' as mat;
+
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $primary: map-get($color-config, primary);
+  $background: map-get($color-config, background);
+  $foreground: map-get($color-config, foreground);
+  $accent: map-get($color-config, accent);
+
+  .about.wrapper {
+    .container {
+      color: mat.get-color-from-palette($foreground, text);
+
+      .content {
+        background-color: mat.get-color-from-palette($background, background);
+
+        h2 {
+          color: mat.get-color-from-palette($foreground, text);
+        }
+
+        .mat-typography {
+            .description {
+                .link-blue {
+                    color: mat.get-color-from-palette($foreground, active-icon);
+                  }
+            }
+        }
+      }
+    }
+  }
+
+  .close-icon {
+    &:hover {
+      background-color: map-get($background, info-button-hover);
+    }
+  }
+}
