@@ -131,11 +131,23 @@
         - type: styled-group
           id: hra-diversity
           components:
+            - type: title
+              title: Human Reference Atlas Diversity
+              styles:
+                font-weight: 500
+                font-size: 1rem
+                letter-spacing: 0.005em
+                margin: 2rem 0 1rem
+            - type: image
+              imageSource: assets/images/hra_diversity.svg
+              alt: HRA Diversity Image
+              styles:
+                width: 100%
             - type: page-data
               pageData:
                 - heading: ''
                   descriptions: |
-                    **Human Reference Atlas Diversity**
+                    HRA Equity Dashboard. Blue bars represent male, red bars represent female.
 
                     The Human Reference Atlas diversity survey was designed to provide a baseline measurement of the diversity of the people building and using the Human Reference Atlas. 
                     The survey is conducted annually to measure how the Human Reference Atlas community evolves over time. 
