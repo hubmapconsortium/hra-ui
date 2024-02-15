@@ -73,7 +73,7 @@ $background: map-merge(
     //#424242
     dropdown-hover: map-get($primary-colors, 500),
     //#9E9E9E
-    image-placeholder: map-get($primary-colors, 500) //#9E9E9E,,
+    image-placeholder: map-get($primary-colors, 500),
   )
 );
 
