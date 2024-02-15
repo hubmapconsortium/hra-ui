@@ -4,13 +4,9 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { TrackingPopupComponent } from './tracking-popup.component';
 
-
 @NgModule({
-  imports: [
-    CommonModule,
-    MatButtonModule
-  ],
+  imports: [CommonModule, MatButtonModule],
   declarations: [TrackingPopupComponent],
-  exports: [TrackingPopupComponent]
+  exports: [TrackingPopupComponent],
 })
-export class TrackingPopupModule { }
+export class TrackingPopupModule {}

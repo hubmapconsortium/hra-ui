@@ -3,7 +3,6 @@ import { Shallow } from 'shallow-render';
 import { DropdownComponent } from './dropdown.component';
 import { DropdownModule } from './dropdown.module';
 
-
 describe('DropdownComponent', () => {
   let shallow: Shallow<DropdownComponent>;
 

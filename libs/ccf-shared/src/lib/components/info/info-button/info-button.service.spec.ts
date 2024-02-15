@@ -1,8 +1,8 @@
-import { InfoButtonService } from './info-button.service';
-import { TestBed } from '@angular/core/testing';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
+import { InfoButtonService } from './info-button.service';
 
 describe('InfoButtonService', () => {
   let service: InfoButtonService;
@@ -10,7 +10,7 @@ describe('InfoButtonService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule, HttpClientTestingModule],
-      providers: [InfoButtonService]
+      providers: [InfoButtonService],
     }).compileComponents();
 
     spyOn(TestBed.inject(HttpClient), 'get').and.returnValue(of('# About'));

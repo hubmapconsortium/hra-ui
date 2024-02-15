@@ -6,10 +6,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RegistrationMetadataModule } from '../../../shared/components/registration-metadata/registration-metadata.module';
 import { RegistrationContentComponent } from './registration-content.component';
 
-
 @NgModule({
   declarations: [RegistrationContentComponent],
   imports: [CommonModule, MatTooltipModule, RegistrationMetadataModule, MatButtonModule],
-  exports: [RegistrationContentComponent]
+  exports: [RegistrationContentComponent],
 })
-export class RegistrationContentModule { }
+export class RegistrationContentModule {}

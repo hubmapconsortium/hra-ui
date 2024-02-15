@@ -3,7 +3,6 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 import { Tag } from '../../../core/models/anatomical-structure-tag';
 
-
 /**
  * A list of removable tags
  */
@@ -11,7 +10,7 @@ import { Tag } from '../../../core/models/anatomical-structure-tag';
   selector: 'ccf-tag-list',
   templateUrl: './tag-list.component.html',
   styleUrls: ['./tag-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TagListComponent {
   /** HTML class name */
@@ -37,7 +36,7 @@ export class TagListComponent {
    *
    * @param ga Analytics service
    */
-  constructor(private readonly ga: GoogleAnalyticsService) { }
+  constructor(private readonly ga: GoogleAnalyticsService) {}
 
   /**
    * Gets the unique identifier for a tag
@@ -60,7 +59,7 @@ export class TagListComponent {
    * @param tag Tag to remove
    */
   removeTag(tag: Tag): void {
-    this.tags = this.tags.filter(obj => obj !== tag);
+    this.tags = this.tags.filter((obj) => obj !== tag);
     this.ga.event('tag_removed', 'tag_list', tag.label);
     this.tagRemoved.emit(tag);
     this.tagsChange.emit(this.tags);

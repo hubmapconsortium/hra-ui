@@ -23,7 +23,7 @@ export class ConfigManager {
 
   constructor(
     readonly configState: GlobalConfigState<GenericGlobalConfig>,
-    options: ConfigManagerOptions
+    options: ConfigManagerOptions,
   ) {
     this.options = { ...DEFAULT_OPTIONS, ...options };
   }
@@ -32,10 +32,7 @@ export class ConfigManager {
     this.storedChanges = { ...this.storedChanges, ...changes };
   }
 
-  applyChanges(
-    changes?: SimpleChanges,
-    additionalConfig: GenericGlobalConfig = {}
-  ): void {
+  applyChanges(changes?: SimpleChanges, additionalConfig: GenericGlobalConfig = {}): void {
     if (changes === undefined) {
       changes = this.storedChanges;
       this.storedChanges = {};
@@ -59,11 +56,7 @@ export class ConfigManager {
     configState.setConfig(newConfig);
   }
 
-  private processChange(
-    key: string,
-    change: SimpleChange,
-    output: GenericGlobalConfig
-  ): void {
+  private processChange(key: string, change: SimpleChange, output: GenericGlobalConfig): void {
     const {
       options: { parse, rename },
     } = this;
@@ -80,10 +73,7 @@ export class ConfigManager {
         output[target] = parser(value);
       } catch (error) {
         // eslint-disable-next-line no-console
-        console.warn(
-          `Failed to parse ${key} = ${value} (${typeof value})`,
-          (error as Error).message
-        );
+        console.warn(`Failed to parse ${key} = ${value} (${typeof value})`, (error as Error).message);
       }
     }
   }

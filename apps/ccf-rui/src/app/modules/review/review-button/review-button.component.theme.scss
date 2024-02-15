@@ -1,6 +1,5 @@
 @use '@angular/material' as mat;
 
-
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
   $primary: map-get($color-config, primary);
@@ -22,7 +21,7 @@
 
       &.disabled {
         background-color: mat.get-color-from-palette($foreground, disabled);
-        color:  mat.get-color-from-palette($foreground, disabled-text);
+        color: mat.get-color-from-palette($foreground, disabled-text);
         border: 1px solid mat.get-color-from-palette($foreground, disabled);
       }
     }

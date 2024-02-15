@@ -3,7 +3,6 @@ import { Shallow } from 'shallow-render';
 import { TermOccurrenceListComponent } from './term-occurrence.component';
 import { TermOccurrenceListModule } from './term-occurrence.module';
 
-
 describe('TermOccurrenceListComponent', () => {
   let shallow: Shallow<TermOccurrenceListComponent>;
 

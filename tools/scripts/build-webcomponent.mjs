@@ -4,7 +4,7 @@ import { argv, exit } from 'node:process';
 import { glob } from 'glob';
 
 async function build(app_name) {
-  const exampleHtmlFile = 'webcomponent-example.html'
+  const exampleHtmlFile = 'webcomponent-example.html';
   const srcDir = `./apps/${app_name}/src`;
   const distDir = `./dist/apps/${app_name}`;
   const jsFiles = await glob([

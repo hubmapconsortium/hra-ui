@@ -3,7 +3,6 @@ import { Shallow } from 'shallow-render';
 import { CallToActionComponent } from './call-to-action.component';
 import { CallToActionModule } from './call-to-action.module';
 
-
 describe('CallToActionComponent', () => {
   let shallow: Shallow<CallToActionComponent>;
 

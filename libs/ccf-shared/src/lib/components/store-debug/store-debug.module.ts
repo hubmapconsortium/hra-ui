@@ -3,10 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { StoreDebugComponent } from './store-debug.component';
 
-
 @NgModule({
   imports: [CommonModule],
   declarations: [StoreDebugComponent],
-  exports: [StoreDebugComponent]
+  exports: [StoreDebugComponent],
 })
-export class StoreDebugModule { }
+export class StoreDebugModule {}

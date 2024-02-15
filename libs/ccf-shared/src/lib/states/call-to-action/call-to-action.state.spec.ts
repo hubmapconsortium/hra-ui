@@ -15,7 +15,7 @@ describe('CallToActionState', () => {
     callToAction: '',
     imageUrl: '',
     expirationDate: 'December 22, 2000',
-    popupShown: false
+    popupShown: false,
   };
 
   let dialog: jasmine.SpyObj<MatDialog>;
@@ -30,9 +30,7 @@ describe('CallToActionState', () => {
     dialog = jasmine.createSpyObj<MatDialog>(['open', 'closeAll']);
     ga = jasmine.createSpyObj<GoogleAnalyticsService>(['event']);
     storage = jasmine.createSpyObj<LocalStorageService>(['getItem', 'setItem']);
-    ctx = jasmine.createSpyObj<StateContext<CallToActionModel>>([
-      'getState', 'setState', 'patchState', 'dispatch'
-    ]);
+    ctx = jasmine.createSpyObj<StateContext<CallToActionModel>>(['getState', 'setState', 'patchState', 'dispatch']);
     http = jasmine.createSpyObj<HttpClient>(['get']);
     infoService = jasmine.createSpyObj<InfoButtonService>(['parseMarkdown']);
 

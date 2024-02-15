@@ -1,7 +1,7 @@
 :host {
   .direction-arrow {
     display: grid;
-    grid-template-columns: repeat(5, .5fr);
+    grid-template-columns: repeat(5, 0.5fr);
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;

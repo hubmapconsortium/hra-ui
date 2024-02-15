@@ -18,13 +18,8 @@
         "main": "apps/ccf-rui/src/main.ts",
         "polyfills": "apps/ccf-rui/src/polyfills.ts",
         "tsConfig": "apps/ccf-rui/tsconfig.app.json",
-        "assets": [
-          "apps/ccf-rui/src/favicon.ico",
-          "apps/ccf-rui/src/assets"
-        ],
-        "styles": [
-          "apps/ccf-rui/src/styles.scss"
-        ],
+        "assets": ["apps/ccf-rui/src/favicon.ico", "apps/ccf-rui/src/assets"],
+        "styles": ["apps/ccf-rui/src/styles.scss"],
         "scripts": [
           {
             "input": "node_modules/document-register-element/build/document-register-element.js"
@@ -122,10 +117,7 @@
         "polyfills": "apps/ccf-rui/src/polyfills.ts",
         "tsConfig": "apps/ccf-rui/tsconfig.spec.json",
         "karmaConfig": "apps/ccf-rui/karma.conf.js",
-        "assets": [
-          "apps/ccf-rui/src/favicon.ico",
-          "apps/ccf-rui/src/assets"
-        ],
+        "assets": ["apps/ccf-rui/src/favicon.ico", "apps/ccf-rui/src/assets"],
         "codeCoverage": true,
         "codeCoverageExclude": [
           "apps/ccf-rui/src/test.ts",
@@ -133,19 +125,14 @@
           "apps/ccf-rui/src/environments/**/*.ts",
           "apps/ccf-rui/src/app/**/*.module.ts"
         ],
-        "styles": [
-          "apps/ccf-rui/src/styles.scss"
-        ],
+        "styles": ["apps/ccf-rui/src/styles.scss"],
         "scripts": []
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "apps/ccf-rui/**/*.ts",
-          "apps/ccf-rui/**/*.html"
-        ]
+        "lintFilePatterns": ["apps/ccf-rui/**/*.ts", "apps/ccf-rui/**/*.html"]
       }
     },
     "build-webcomponent": {
@@ -169,5 +156,6 @@
         }
       }
     }
-  }
+  },
+  "tags": ["ccf"]
 }

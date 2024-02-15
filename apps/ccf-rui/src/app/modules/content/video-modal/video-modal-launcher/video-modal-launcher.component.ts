@@ -10,7 +10,7 @@ import { VideoModalComponent } from '../video-modal/video-modal.component';
   selector: 'ccf-video-modal-launcher',
   templateUrl: './video-modal-launcher.component.html',
   styleUrls: ['./video-modal-launcher.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VideoModalLauncherComponent {
   /** HTML class name */
@@ -24,7 +24,7 @@ export class VideoModalLauncherComponent {
   /**
    * Creates an instance of video modal launcher component.
    */
-  constructor(private readonly dialog: MatDialog) { }
+  constructor(private readonly dialog: MatDialog) {}
 
   /**
    * Launches the video modal component.
@@ -32,7 +32,7 @@ export class VideoModalLauncherComponent {
   launchVideoModal(): void {
     this.dialog.open(VideoModalComponent, {
       width: '46rem',
-      data: {}
+      data: {},
     });
   }
 }

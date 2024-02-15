@@ -5,8 +5,13 @@ import { OrganInfo } from 'ccf-shared';
 
 import { Sex } from '../../../shared/components/spatial-search-config/spatial-search-config.component';
 import { DataStateSelectors } from '../data/data.selectors';
-import { Position, RadiusSettings, SpatialSearchUiModel, SpatialSearchUiState, TermResult } from './spatial-search-ui.state';
-
+import {
+  Position,
+  RadiusSettings,
+  SpatialSearchUiModel,
+  SpatialSearchUiState,
+  TermResult,
+} from './spatial-search-ui.state';
 
 export class SpatialSearchUiSelectors {
   static readonly organEntity = SpatialSearchUiState.organEntity;
@@ -32,16 +37,15 @@ export class SpatialSearchUiSelectors {
       return undefined;
     }
 
-    return organs.find(organ => organ.id === id);
+    return organs.find((organ) => organ.id === id);
   }
 
   @Selector([SpatialSearchUiSelectors.sex, SpatialSearchUiSelectors.referenceOrgans])
   static organs(sex: Sex, organs: OrganInfo[]): OrganInfo[] {
-    return organs.filter(organ => this.organMatchesSex(organ, sex));
+    return organs.filter((organ) => this.organMatchesSex(organ, sex));
   }
 
   static organMatchesSex(organ: OrganInfo, sex: Sex): boolean {
-    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
     return organ.hasSex || organ.sex === sex;
   }
 
@@ -65,13 +69,25 @@ export class SpatialSearchUiSelectors {
     return state.radiusSettings ?? { min: 0, max: 0, defaultValue: 0 };
   }
 
-  @Selector([SpatialSearchUiState, SpatialSearchUiState.organEntity, SpatialSearchUiSelectors.position, SpatialSearchUiSelectors.radius])
-  static scene(state: SpatialSearchUiModel, organEntity: SpatialEntity, position: Position, radius: number): SpatialSceneNode[] {
+  @Selector([
+    SpatialSearchUiState,
+    SpatialSearchUiState.organEntity,
+    SpatialSearchUiSelectors.position,
+    SpatialSearchUiSelectors.radius,
+  ])
+  static scene(
+    state: SpatialSearchUiModel,
+    organEntity: SpatialEntity,
+    position: Position,
+    radius: number,
+  ): SpatialSceneNode[] {
     const sphere = getProbingSphereScene(organEntity, {
-      ...position, radius, target: organEntity['@id']
+      ...position,
+      radius,
+      target: organEntity['@id'],
     });
-    const collisions = new Set((state.tissueBlocks ?? []).map(block => block.spatialEntityId));
-    const organScene = (state.organScene ?? []).map(s => {
+    const collisions = new Set((state.tissueBlocks ?? []).map((block) => block.spatialEntityId));
+    const organScene = (state.organScene ?? []).map((s) => {
       if (collisions.has(s['@id'])) {
         s = { ...s, color: [41, 121, 255, 0.9 * 255] };
       }
@@ -87,7 +103,7 @@ export class SpatialSearchUiSelectors {
     return {
       x: (margin + x) / 1000,
       y: (margin + y) / 1000,
-      z: (margin + z) / 1000
+      z: (margin + z) / 1000,
     };
   }
 
@@ -113,11 +129,12 @@ export class SpatialSearchUiSelectors {
   }
 
   private static getTermCounts(counts: Record<string, number> | undefined, tree: OntologyTreeModel): TermResult[] {
-    return Object.entries(counts ?? {}).filter(([_, count]) => count > 0).map(([term, count]) => ({
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      '@id': term,
-      label: tree.nodes[term]?.label ?? term.split('/').slice(-1)[0],
-      count
-    }));
+    return Object.entries(counts ?? {})
+      .filter(([_, count]) => count > 0)
+      .map(([term, count]) => ({
+        '@id': term,
+        label: tree.nodes[term]?.label ?? term.split('/').slice(-1)[0],
+        count,
+      }));
   }
 }

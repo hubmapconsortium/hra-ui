@@ -1,6 +1,5 @@
 @use '@angular/material' as mat;
 
-
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
   $primary: map-get($color-config, primary);
@@ -18,7 +17,8 @@
       border-bottom-color: mat.get-color-from-palette($foreground, placeholder-text) !important;
     }
 
-    .orcid-input, .organ-selector {
+    .orcid-input,
+    .organ-selector {
       .mat-mdc-text-field-wrapper,
       .mat-mdc-form-field-focus-overlay {
         background-color: transparent;

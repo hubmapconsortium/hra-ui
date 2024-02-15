@@ -1,4 +1,3 @@
-
 /**
  * Object definition for icon that should be loaded on startup.
  * Unlike runtime registration object this does not need url ot html
@@ -26,7 +25,6 @@ export interface DefaultIconDefinition {
   html?: string;
 }
 
-
 /**
  * Icons registered at startup.
  */
@@ -40,7 +38,11 @@ export const DEFAULT_ICONS: DefaultIconDefinition[] = [
   { name: 'main-bronchus', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-extrapulmonary-bronchus.svg' },
   { name: 'eye', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-eye.svg' },
   { name: 'fallopian-tube-left', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-fallopian-tube-left.svg' },
-  { name: 'fallopian-tube-right', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-fallopian-tube-right.svg' },
+  {
+    name: 'fallopian-tube-right',
+    namespace: 'app',
+    url: 'assets/icons/organ-icons/organ-icon-fallopian-tube-right.svg',
+  },
   { name: 'heart', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-heart.svg' },
   { name: 'kidney-left', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-kidney-left.svg' },
   { name: 'kidney-right', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-kidney-right.svg' },
@@ -80,5 +82,5 @@ export const DEFAULT_ICONS: DefaultIconDefinition[] = [
   { name: 'visibility_off', namespace: 'app', url: 'assets/icons/visibility-off-24px.svg' },
   { name: 'expand_more', namespace: 'app', url: 'assets/icons/expand_more-24px.svg' },
   { name: 'expand_less', namespace: 'app', url: 'assets/icons/expand_less-24px.svg' },
-  { name: 'filter', url: 'assets/icons/filter.svg' }
+  { name: 'filter', url: 'assets/icons/filter.svg' },
 ];

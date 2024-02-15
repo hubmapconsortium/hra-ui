@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
-
 /** Type in which the values of the sliders are stored. */
 export interface Rotation {
   /** X slider value */
@@ -16,7 +15,7 @@ export interface Rotation {
 const DEFAULT_ROTATION: Rotation = {
   x: 0,
   y: 0,
-  z: 0
+  z: 0,
 };
 
 /**
@@ -27,7 +26,7 @@ const DEFAULT_ROTATION: Rotation = {
   selector: 'ccf-rotation-slider',
   templateUrl: './rotation-slider.component.html',
   styleUrls: ['./rotation-slider.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RotationSliderComponent {
   /** HTML class name */
@@ -44,7 +43,7 @@ export class RotationSliderComponent {
    *
    * @param ga Analytics service
    */
-  constructor( private readonly ga: GoogleAnalyticsService) { }
+  constructor(private readonly ga: GoogleAnalyticsService) {}
 
   /**
    * Function that handles updating the rotation and emitting the new value
@@ -53,9 +52,8 @@ export class RotationSliderComponent {
    * @param axis which axis to update
    */
   changeRotation(newRotation: number | string, axis: string): void {
-    const updatedNewRotation = +newRotation > 180 ? 180 :
-      (+newRotation < -180 ? -180 : +newRotation);
-    this.rotation = { ... this.rotation, [axis]: +updatedNewRotation };
+    const updatedNewRotation = +newRotation > 180 ? 180 : +newRotation < -180 ? -180 : +newRotation;
+    this.rotation = { ...this.rotation, [axis]: +updatedNewRotation };
     this.ga.event('rotation_update', 'rotation_slider', axis, +updatedNewRotation);
     this.rotationChange.emit(this.rotation);
   }

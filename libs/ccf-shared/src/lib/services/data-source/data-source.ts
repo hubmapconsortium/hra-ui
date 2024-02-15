@@ -1,9 +1,14 @@
 import {
-  AggregateResult, DatabaseStatus, Filter, OntologyTreeModel, SpatialEntity, SpatialSceneNode, TissueBlockResult
+  AggregateResult,
+  DatabaseStatus,
+  Filter,
+  OntologyTreeModel,
+  SpatialEntity,
+  SpatialSceneNode,
+  TissueBlockResult,
 } from 'ccf-database';
 import { Observable, ObservableInput, ObservedValueOf } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-
 
 export interface DataSource {
   getDatabaseStatus(): Observable<DatabaseStatus>;
@@ -28,11 +33,10 @@ export type DataSourceLike = {
 };
 
 export type DataSourceMethod<K extends keyof DataSource> = DataSource[K];
-export type DataSourceLikeMethod<K extends keyof DataSource> =
-  (...args: Parameters<DataSourceMethod<K>>) => ObservableInput<DataSourceDataType<K>>;
-export type DataSourceDataType<K extends keyof DataSource> =
-  ObservedValueOf<ReturnType<DataSourceMethod<K>>>;
-
+export type DataSourceLikeMethod<K extends keyof DataSource> = (
+  ...args: Parameters<DataSourceMethod<K>>
+) => ObservableInput<DataSourceDataType<K>>;
+export type DataSourceDataType<K extends keyof DataSource> = ObservedValueOf<ReturnType<DataSourceMethod<K>>>;
 
 export abstract class ForwardingDataSource implements DataSource {
   getDatabaseStatus(): Observable<DatabaseStatus> {
@@ -92,21 +96,22 @@ export abstract class ForwardingDataSource implements DataSource {
   }
 
   protected abstract forwardCall<K extends keyof DataSource>(
-    method: K, ...args: Parameters<DataSourceMethod<K>>
+    method: K,
+    ...args: Parameters<DataSourceMethod<K>>
   ): Observable<DataSourceDataType<K>>;
 }
-
 
 export abstract class DelegateDataSource extends ForwardingDataSource {
   abstract readonly impl$: Observable<DataSourceLike>;
 
   protected forwardCall<K extends keyof DataSource>(
-    method: K, ...args: Parameters<DataSourceMethod<K>>
+    method: K,
+    ...args: Parameters<DataSourceMethod<K>>
   ): Observable<DataSourceDataType<K>> {
     type AnyFunction = (...rest: unknown[]) => ObservableInput<unknown>;
 
-    return this.impl$.pipe(
-      switchMap(impl => (impl[method] as AnyFunction)(...args))
-    ) as Observable<DataSourceDataType<K>>;
+    return this.impl$.pipe(switchMap((impl) => (impl[method] as AnyFunction)(...args))) as Observable<
+      DataSourceDataType<K>
+    >;
   }
 }

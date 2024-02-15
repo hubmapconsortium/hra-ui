@@ -24,8 +24,7 @@ export interface Position {
 })
 export class SpatialSearchKeyboardUIBehaviorComponent {
   /** HTML class */
-  @HostBinding('class') readonly className =
-    'ccf-spatial-search-keyboard-ui-behavior';
+  @HostBinding('class') readonly className = 'ccf-spatial-search-keyboard-ui-behavior';
 
   /** Amount the position shifts for each key press */
   @Input() delta = 1;

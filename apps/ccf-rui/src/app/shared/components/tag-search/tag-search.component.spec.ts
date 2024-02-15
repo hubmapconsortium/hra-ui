@@ -7,23 +7,21 @@ import { Tag, TagSearchResult } from '../../../core/models/anatomical-structure-
 import { TagSearchComponent } from './tag-search.component';
 import { TagSearchModule } from './tag-search.module';
 
-
 function nextValue<T>(obs: Observable<T>): Promise<T> {
   return lastValueFrom(obs.pipe(take(1)));
 }
 
 function delay(duration: number): Promise<void> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(resolve, duration);
   });
 }
-
 
 describe('TagSearchComponent', () => {
   const defaultInputs = {
     placeholder: 'placeholder',
     searchLimit: 2,
-    searchThrottle: 1
+    searchThrottle: 1,
   };
 
   let shallow: Shallow<TagSearchComponent>;
@@ -64,17 +62,20 @@ describe('TagSearchComponent', () => {
 
       rendering = await shallow.render({
         bind: {
-          ...defaultInputs, search: searcher
-        }
+          ...defaultInputs,
+          search: searcher,
+        },
       });
 
       instance = rendering.instance;
       inject = rendering.inject;
       zone = inject(NgZone);
 
-      subs.add(zone.onError.subscribe(() => {
-        errorCount++;
-      }));
+      subs.add(
+        zone.onError.subscribe(() => {
+          errorCount++;
+        }),
+      );
     });
 
     afterEach(() => {
@@ -136,7 +137,7 @@ describe('TagSearchComponent', () => {
   });
 
   describe('tagId(_, tag)', () => {
-    it('returns the tag\'s identifier', async () => {
+    it("returns the tag's identifier", async () => {
       const { instance } = await shallow.render();
       const res = instance.tagId(0, { id: 'foo' } as Tag);
       expect(res).toEqual('foo');

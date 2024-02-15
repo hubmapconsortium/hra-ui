@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { JsonLd } from 'jsonld/jsonld-spec';
 import { xConsortiaResponseAsJsonLd } from './xconsortia-data';
 
@@ -75,10 +74,7 @@ function getApiSearchBody(from: number, size: number, query?: unknown): string {
   return JSON.stringify(bodyObj);
 }
 
-async function doSearchRequest(
-  url: string,
-  init?: RequestInit
-): Promise<SearchResultJson | undefined> {
+async function doSearchRequest(url: string, init?: RequestInit): Promise<SearchResultJson | undefined> {
   try {
     const res = await fetch(url, init);
     const text = await res.text();
@@ -96,11 +92,7 @@ async function doSearchRequest(
   }
 }
 
-async function doApiSearch(
-  url: string,
-  token?: string,
-  query?: unknown
-): Promise<SearchResultJson | undefined> {
+async function doApiSearch(url: string, token?: string, query?: unknown): Promise<SearchResultJson | undefined> {
   const perReqCount = PER_API_SEARCH_REQUEST_COUNT;
   const headers = getApiSearchHeaders(token);
   const body = getApiSearchBody(0, perReqCount, query);
@@ -125,7 +117,7 @@ async function doApiSearch(
         method: 'POST',
         headers,
         body: getApiSearchBody(from, perReqCount, query),
-      })
+      }),
     );
   }
 
@@ -161,7 +153,7 @@ export async function searchXConsortia(
   query?: unknown,
   serviceToken?: string,
   _assetsApi = '',
-  _portalUrl = ''
+  _portalUrl = '',
 ): Promise<JsonLd | undefined> {
   let hubmapData: SearchResultJson | undefined;
   if (serviceType === 'static') {

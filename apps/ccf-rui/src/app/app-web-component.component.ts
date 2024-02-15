@@ -8,13 +8,11 @@ import { GlobalConfig } from './core/services/config/config';
 
 import { environment } from '../environments/environment';
 
-
 export type User = NonNullable<GlobalConfig['user']>;
 export type Organ = NonNullable<GlobalConfig['organ']>;
 export type RegistrationCallback = (data: unknown) => void;
 export type CancelRegistrationCallback = () => void;
 export type FetchPreviousRegistrationsCallback = () => ObservableInput<Record<string, unknown>[]>;
-
 
 function parseOrgan(value: unknown): string | Organ {
   try {
@@ -24,11 +22,10 @@ function parseOrgan(value: unknown): string | Organ {
   }
 }
 
-
 @Component({
   selector: 'ccf-root-wc',
   template: '<ccf-root *ngIf="initialized"></ccf-root>',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppWebComponent extends BaseWebComponent {
   @Input() baseHref!: string;
@@ -47,17 +44,14 @@ export class AppWebComponent extends BaseWebComponent {
   @Input() organOptions!: string | string[];
   @Input() collisionsEndpoint!: string;
 
-  constructor(
-    configStore: GlobalConfigState<GlobalConfig>,
-    cdr: ChangeDetectorRef
-  ) {
+  constructor(configStore: GlobalConfigState<GlobalConfig>, cdr: ChangeDetectorRef) {
     const BP = BUILTIN_PARSERS;
 
     super(configStore, cdr, {
       initialConfig: {
         ...environment.dbOptions,
-        ...globalThis['ruiConfig' as string],
-        ...environment.customization
+        ...(globalThis['ruiConfig' as never] as object),
+        ...environment.customization,
       },
       parse: {
         useDownload: BP.boolean,
@@ -69,8 +63,8 @@ export class AppWebComponent extends BaseWebComponent {
         fetchPreviousRegistrations: BP.function,
         skipUnsavedChangesConfirmation: BP.boolean,
         header: BP.boolean,
-        organOptions: BP.stringArray
-      }
+        organOptions: BP.stringArray,
+      },
     });
   }
 }

@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 
 import { NumberDirective } from './numbers-only.directive';
 
-
 @NgModule({
   declarations: [NumberDirective],
-  exports: [NumberDirective]
+  exports: [NumberDirective],
 })
-export class NumbersOnlyModule { }
+export class NumbersOnlyModule {}

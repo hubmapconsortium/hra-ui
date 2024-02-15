@@ -1,17 +1,21 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { Matrix4 } from '@math.gl/core';
+import { Matrix4, NumericArray } from '@math.gl/core';
 
-export type SceneTraversalVisitor = (
-  child,
-  modelMatrix: Matrix4,
-  parentMatrix: Matrix4
-) => boolean;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type SceneTraversalVisitor = (child: any, modelMatrix: Matrix4, parentMatrix: Matrix4) => boolean;
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function traverseScene(
-  scene,
+  scene: {
+    matrix: Readonly<NumericArray>;
+    translation: Readonly<NumericArray>;
+    rotation: Readonly<NumericArray>;
+    scale: number | Readonly<NumericArray>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    nodes: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    children: any;
+  },
   worldMatrix: Matrix4,
-  visitor: SceneTraversalVisitor
+  visitor: SceneTraversalVisitor,
 ): boolean {
   if (!worldMatrix) {
     worldMatrix = new Matrix4(Matrix4.IDENTITY);
@@ -29,9 +33,7 @@ export function traverseScene(
     }
 
     if (scene.rotation) {
-      const rotationMatrix = new Matrix4(Matrix4.IDENTITY).fromQuaternion(
-        scene.rotation
-      );
+      const rotationMatrix = new Matrix4(Matrix4.IDENTITY).fromQuaternion(scene.rotation);
       matrix.multiplyRight(rotationMatrix);
     }
 

@@ -1,15 +1,21 @@
-/* eslint-disable @typescript-eslint/member-ordering */
-/* eslint-disable no-underscore-dangle */
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
-  AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, HostListener,
-  Input, OnDestroy, Output,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  HostListener,
+  Input,
+  OnDestroy,
+  Output,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { Message, MessageChannel, MessageService } from '../messages';
-
 
 /** Opened/closed state. */
 type OpenedState = 'open' | 'open-instant' | 'closed';
@@ -23,8 +29,8 @@ const EXPAND_COLLAPSE_PARAMS_DEFAULT = {
   params: {
     width: 0,
     margin: 0,
-    margin2: 0
-  }
+    margin2: 0,
+  },
 };
 
 /**
@@ -34,7 +40,7 @@ class InitializationState {
   /** Whether this state is true or false. */
   private initialized = false;
   /** Promise used to await on. */
-  private deferred = new Promise<void>(resolve => {
+  private deferred = new Promise<void>((resolve) => {
     this.resolve = resolve;
   });
   /** Resolve function for the promise. */
@@ -67,7 +73,6 @@ class InitializationState {
   }
 }
 
-
 /**
  * Side drawer component.
  * Contains all the logic for opening/closing/expanding.
@@ -79,30 +84,45 @@ class InitializationState {
   styleUrls: ['./drawer.component.scss'],
   animations: [
     trigger('openClose', [
-      state('open, open-instant', style({
-        transform: 'none'
-      })),
+      state(
+        'open, open-instant',
+        style({
+          transform: 'none',
+        }),
+      ),
       state('closed', style({})),
 
       transition('closed => open-instant', animate(0)),
-      transition('closed <=> open, open-instant => closed', animate('.5s ease-in-out'))
+      transition('closed <=> open, open-instant => closed', animate('.5s ease-in-out')),
     ]),
     trigger('expandCollapse', [
       state('collapsed', style({})),
-      state('half', style({
-        width: 'calc(50% - {{ margin }}px)'
-      }), EXPAND_COLLAPSE_PARAMS_DEFAULT),
-      state('extended', style({
-        width: 'calc(100% - {{ width }}px - {{ margin }}px)'
-      }), EXPAND_COLLAPSE_PARAMS_DEFAULT),
-      state('full', style({
-        width: 'calc(100% - {{ margin }}px - {{ margin2 }}px)'
-      }), EXPAND_COLLAPSE_PARAMS_DEFAULT),
+      state(
+        'half',
+        style({
+          width: 'calc(50% - {{ margin }}px)',
+        }),
+        EXPAND_COLLAPSE_PARAMS_DEFAULT,
+      ),
+      state(
+        'extended',
+        style({
+          width: 'calc(100% - {{ width }}px - {{ margin }}px)',
+        }),
+        EXPAND_COLLAPSE_PARAMS_DEFAULT,
+      ),
+      state(
+        'full',
+        style({
+          width: 'calc(100% - {{ margin }}px - {{ margin2 }}px)',
+        }),
+        EXPAND_COLLAPSE_PARAMS_DEFAULT,
+      ),
 
-      transition('* <=> *', animate('.5s ease-in-out'))
-    ])
+      transition('* <=> *', animate('.5s ease-in-out')),
+    ]),
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DrawerComponent implements AfterViewInit, OnDestroy {
   /** HTML class */
@@ -114,7 +134,7 @@ export class DrawerComponent implements AfterViewInit, OnDestroy {
   }
 
   /** Position of the drawer - start (left) or end (right). */
-  @Input()// eslint-disable-line
+  @Input() // eslint-disable-line
   get position(): 'start' | 'end' {
     return this._position;
   }
@@ -159,13 +179,15 @@ export class DrawerComponent implements AfterViewInit, OnDestroy {
   @HostBinding('@openClose') openedState: OpenedState = 'closed';
 
   /** Expanded/collapsed state parameters. */
-  @HostBinding('@expandCollapse')  // eslint-disable-line
+  @HostBinding('@expandCollapse') // eslint-disable-line
   get expandedStateObj(): unknown {
     return {
-      value: this.expandedState2, params: {
-        width: this.width, margin: this.measuredMargin,
-        margin2: this.margin2
-      }
+      value: this.expandedState2,
+      params: {
+        width: this.width,
+        margin: this.measuredMargin,
+        margin2: this.margin2,
+      },
     };
   }
   /** Current expanded/collapsed animation state. */
@@ -239,14 +261,16 @@ export class DrawerComponent implements AfterViewInit, OnDestroy {
   constructor(
     messageService: MessageService,
     cdr: ChangeDetectorRef,
-    private readonly element: ElementRef<HTMLElement>
+    private readonly element: ElementRef<HTMLElement>,
   ) {
     this.channel = messageService.connect(this);
-    this.subscriptions.add(this.channel.getMessages().subscribe(msg => {
-      if (this.handleMessage(msg)) {
-        cdr.markForCheck();
-      }
-    }));
+    this.subscriptions.add(
+      this.channel.getMessages().subscribe((msg) => {
+        if (this.handleMessage(msg)) {
+          cdr.markForCheck();
+        }
+      }),
+    );
   }
 
   /**
@@ -367,7 +391,7 @@ export class DrawerComponent implements AfterViewInit, OnDestroy {
       opened: this.opened,
       expanded: this.expanded,
       width: this.measuredWidth,
-      margin: this.measuredMargin
+      margin: this.measuredMargin,
     });
     this.stateChange.emit();
   }

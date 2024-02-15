@@ -125,18 +125,12 @@ const CCF_CONTEXT: JsonLd = {
  * @param jsonLdString the input JSON-LD as a string
  * @returns A JSON-LD object derived from the given string with updated data to be compatible with CCF v2.0
  */
-export function patchJsonLd(
-  jsonLdString: string,
-  context: string | JsonLd = CCF_CONTEXT
-): JsonLd {
+export function patchJsonLd(jsonLdString: string, context: string | JsonLd = CCF_CONTEXT): JsonLd {
   return JSON.parse(jsonLdString, (key, value) => {
     if (key === 'ccf_annotations' && Array.isArray(value)) {
       return value.map((iri: string) => {
         if (iri?.startsWith('http://purl.obolibrary.org/obo/FMA_')) {
-          return iri.replace(
-            'http://purl.obolibrary.org/obo/FMA_',
-            'http://purl.org/sig/ont/fma/fma'
-          );
+          return iri.replace('http://purl.obolibrary.org/obo/FMA_', 'http://purl.org/sig/ont/fma/fma');
         } else {
           return iri;
         }
@@ -144,14 +138,10 @@ export function patchJsonLd(
     } else if (
       key === '@context' &&
       value &&
-      (value ===
-        'https://hubmapconsortium.github.io/hubmap-ontology/ccf-entity-context.jsonld' ||
-        value ===
-          'https://hubmapconsortium.github.io/hubmap-ontology/ccf-context.jsonld' ||
-        value ===
-          'https://hubmapconsortium.github.io/ccf-ontology/ccf-context.jsonld' ||
-        (value as Context)['@base'] ===
-          'http://purl.org/ccf/latest/ccf-entity.owl#')
+      (value === 'https://hubmapconsortium.github.io/hubmap-ontology/ccf-entity-context.jsonld' ||
+        value === 'https://hubmapconsortium.github.io/hubmap-ontology/ccf-context.jsonld' ||
+        value === 'https://hubmapconsortium.github.io/ccf-ontology/ccf-context.jsonld' ||
+        (value as Context)['@base'] === 'http://purl.org/ccf/latest/ccf-entity.owl#')
     ) {
       return context;
     }

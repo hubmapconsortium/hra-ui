@@ -9,7 +9,7 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
   selector: 'ccf-visibility-toggle',
   templateUrl: './visibility-toggle.component.html',
   styleUrls: ['./visibility-toggle.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VisibilityToggleComponent {
   /**
@@ -44,7 +44,7 @@ export class VisibilityToggleComponent {
    *
    * @param ga Analytics service
    */
-  constructor(private readonly ga: GoogleAnalyticsService) { }
+  constructor(private readonly ga: GoogleAnalyticsService) {}
 
   /**
    * Toggles visibility and emits the new value.

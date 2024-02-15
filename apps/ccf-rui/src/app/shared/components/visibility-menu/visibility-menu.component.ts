@@ -1,15 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  HostBinding,
-  Input,
-  Output
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 import { VisibilityItem } from '../../../core/models/visibility-item';
-
 
 /**
  * Menu for displaying visibility options
@@ -18,10 +10,9 @@ import { VisibilityItem } from '../../../core/models/visibility-item';
   selector: 'ccf-visibility-menu',
   templateUrl: './visibility-menu.component.html',
   styleUrls: ['./visibility-menu.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VisibilityMenuComponent {
-
   /**
    * HTML class name
    */
@@ -52,7 +43,7 @@ export class VisibilityMenuComponent {
    *
    * @param ga Analytics service
    */
-  constructor(private readonly ga: GoogleAnalyticsService) { }
+  constructor(private readonly ga: GoogleAnalyticsService) {}
 
   /**
    * Toggles visibility of an item; opacity is reverted to the previous value if visibility toggled back on
@@ -103,7 +94,7 @@ export class VisibilityMenuComponent {
     if (updatedSelection.id === 'all') {
       this.setAllOpacity(updatedSelection.opacity as number);
     } else {
-      this.items = this.items.map(item => item.id === updatedSelection.id ? updatedSelection : item);
+      this.items = this.items.map((item) => (item.id === updatedSelection.id ? updatedSelection : item));
       this.ga.event('opacity_update', 'visibility_menu', '' + updatedSelection.id, updatedSelection.opacity);
     }
     this.itemsChange.emit(this.items);
@@ -119,7 +110,7 @@ export class VisibilityMenuComponent {
       if (this.selection.id === 'all') {
         this.setAllOpacity(updatedSelection.opacity);
       } else {
-        this.items = this.items.map(item => item.id === updatedSelection.id ? updatedSelection : item);
+        this.items = this.items.map((item) => (item.id === updatedSelection.id ? updatedSelection : item));
         this.ga.event('item_reset', 'visibility_menu', '' + updatedSelection.id);
       }
       this.itemsChange.emit(this.items);
@@ -132,7 +123,7 @@ export class VisibilityMenuComponent {
    * @param value Updated opacity value
    */
   setAllOpacity(value: number): void {
-    this.items = this.items.map(i => ({ ...i, opacity: value, visible: true }));
+    this.items = this.items.map((i) => ({ ...i, opacity: value, visible: true }));
     this.ga.event('all_items_opacity_update', 'visibility_menu', undefined, value);
     this.itemsChange.emit(this.items);
   }

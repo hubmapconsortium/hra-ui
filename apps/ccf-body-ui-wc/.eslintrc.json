@@ -1,19 +1,15 @@
 {
-  "extends": "../../.eslintrc.json",
+  "extends": ["../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
       "files": ["*.ts"],
-      "parserOptions": {
-        "project": ["apps/ccf-body-ui-wc/tsconfig.*?.json"],
-        "createDefaultProgram": true
-      },
       "rules": {
         "@angular-eslint/directive-selector": [
           "error",
           {
             "type": "attribute",
-            "prefix": "app",
+            "prefix": "ccf",
             "style": "camelCase"
           }
         ],
@@ -25,10 +21,12 @@
             "style": "kebab-case"
           }
         ]
-      }
+      },
+      "extends": ["plugin:@nx/angular", "plugin:@angular-eslint/template/process-inline-templates"]
     },
     {
       "files": ["*.html"],
+      "extends": ["plugin:@nx/angular-template"],
       "rules": {}
     }
   ]

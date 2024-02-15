@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
 import { TissueBlockResult } from 'ccf-database';
 
-
 /**
  * Tissue block list in spatial search UI
  */
@@ -9,7 +8,7 @@ import { TissueBlockResult } from 'ccf-database';
   selector: 'ccf-tissue-block-list',
   templateUrl: './tissue-block-list.component.html',
   styleUrls: ['./tissue-block-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TissueBlockListComponent {
   /** HTML class */
@@ -17,5 +16,4 @@ export class TissueBlockListComponent {
 
   /** Tissue blocks to be displayed */
   @Input() tissueBlocks: TissueBlockResult[] = [];
-
 }

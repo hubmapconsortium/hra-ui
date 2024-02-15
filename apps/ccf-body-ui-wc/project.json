@@ -22,10 +22,7 @@
         "polyfills": "apps/ccf-body-ui-wc/src/polyfills.ts",
         "tsConfig": "apps/ccf-body-ui-wc/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": [
-          "apps/ccf-body-ui-wc/src/favicon.ico",
-          "apps/ccf-body-ui-wc/src/assets"
-        ],
+        "assets": ["apps/ccf-body-ui-wc/src/favicon.ico", "apps/ccf-body-ui-wc/src/assets"],
         "styles": ["apps/ccf-body-ui-wc/src/styles.scss"],
         "scripts": [
           {
@@ -92,10 +89,7 @@
         "tsConfig": "apps/ccf-body-ui-wc/tsconfig.spec.json",
         "karmaConfig": "apps/ccf-body-ui-wc/karma.conf.js",
         "inlineStyleLanguage": "scss",
-        "assets": [
-          "apps/ccf-body-ui-wc/src/favicon.ico",
-          "apps/ccf-body-ui-wc/src/assets"
-        ],
+        "assets": ["apps/ccf-body-ui-wc/src/favicon.ico", "apps/ccf-body-ui-wc/src/assets"],
         "codeCoverage": true,
         "codeCoverageExclude": [
           "**/e2e/**/*",
@@ -115,10 +109,7 @@
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "apps/ccf-body-ui-wc/**/*.ts",
-          "apps/ccf-body-ui-wc/**/*.html"
-        ]
+        "lintFilePatterns": ["apps/ccf-body-ui-wc/**/*.ts", "apps/ccf-body-ui-wc/**/*.html"]
       }
     },
     "build-webcomponent": {
@@ -142,5 +133,6 @@
         }
       }
     }
-  }
+  },
+  "tags": ["ccf"]
 }

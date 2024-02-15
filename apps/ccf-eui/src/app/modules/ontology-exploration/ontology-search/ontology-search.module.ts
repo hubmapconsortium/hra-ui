@@ -8,7 +8,6 @@ import { MatInputModule } from '@angular/material/input';
 import { OntologySearchComponent } from './ontology-search.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-
 @NgModule({
   imports: [
     CommonModule,
@@ -17,9 +16,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatAutocompleteModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
   ],
   declarations: [OntologySearchComponent],
-  exports: [OntologySearchComponent]
+  exports: [OntologySearchComponent],
 })
 export class OntologySearchModule {}

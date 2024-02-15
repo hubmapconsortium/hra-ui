@@ -8,8 +8,6 @@ import { DataState } from '../data/data.state';
 import { ListResultsState } from '../list-results/list-results.state';
 import { DEFAULT_SELECTED_ORGANS, SceneState } from './scene.state';
 
-
-
 describe('SceneState', () => {
   let sceneState: SceneState;
   const defaultState = {
@@ -18,17 +16,15 @@ describe('SceneState', () => {
     referenceOrganEntities: [],
     selectedReferenceOrgans: [],
     selectedAnatomicalStructures: [],
-    anatomicalStructureSettings: {}
+    anatomicalStructureSettings: {},
   };
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         NgxsDataPluginModule.forRoot(),
-        NgxsModule.forRoot([SceneState, ListResultsState, ColorAssignmentState, DataState, GlobalConfigState])
+        NgxsModule.forRoot([SceneState, ListResultsState, ColorAssignmentState, DataState, GlobalConfigState]),
       ],
-      providers: [
-        { provide: DataSourceService, useExisting: CCFDatabaseDataSourceService }
-      ]
+      providers: [{ provide: DataSourceService, useExisting: CCFDatabaseDataSourceService }],
     });
     sceneState = TestBed.inject(SceneState);
   });
@@ -77,9 +73,13 @@ describe('SceneState', () => {
     const nodeClickEvent: NodeClickEvent = {
       node: {
         // eslint-disable-next-line @typescript-eslint/naming-convention
-        '@id': '', '@type': '', representation_of: 'test', entityId: 'test',
-        transformMatrix: [] as never
-      }, ctrlClick: false
+        '@id': '',
+        '@type': '',
+        representation_of: 'test',
+        entityId: 'test',
+        transformMatrix: [] as never,
+      },
+      ctrlClick: false,
     };
     spyOn(sceneState['dataState'], 'updateFilter').and.callThrough();
     sceneState.sceneNodeClicked(nodeClickEvent);
@@ -90,9 +90,13 @@ describe('SceneState', () => {
     const nodeClickEvent: NodeClickEvent = {
       node: {
         // eslint-disable-next-line @typescript-eslint/naming-convention
-        '@id': '', '@type': '', representation_of: '', entityId: 'test',
-        transformMatrix: [] as never
-      }, ctrlClick: false
+        '@id': '',
+        '@type': '',
+        representation_of: '',
+        entityId: 'test',
+        transformMatrix: [] as never,
+      },
+      ctrlClick: false,
     };
     spyOn(sceneState['colorAssignments'], 'assignColor').and.callThrough();
     sceneState.sceneNodeClicked(nodeClickEvent);
@@ -101,7 +105,9 @@ describe('SceneState', () => {
 
   it('should call setSelectedReferenceOrgans on calling setSelectedReferenceOrgansWithDefaults', () => {
     spyOn(sceneState, 'setSelectedReferenceOrgans').and.callThrough();
-    sceneState.setSelectedReferenceOrgansWithDefaults(ALL_POSSIBLE_ORGANS, ['http://purl.obolibrary.org/obo/UBERON_0004538']);
+    sceneState.setSelectedReferenceOrgansWithDefaults(ALL_POSSIBLE_ORGANS, [
+      'http://purl.obolibrary.org/obo/UBERON_0004538',
+    ]);
     expect(sceneState.setSelectedReferenceOrgans).toHaveBeenCalled();
   });
 

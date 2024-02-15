@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/member-ordering */
-/* eslint-disable no-underscore-dangle */
 import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { UntypedFormControl, Validators } from '@angular/forms';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
@@ -31,7 +29,7 @@ export interface UserName {
   selector: 'ccf-name-input',
   templateUrl: './name-input.component.html',
   styleUrls: ['./name-input.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NameInputComponent {
   /**
@@ -54,7 +52,6 @@ export class NameInputComponent {
    */
   middleNameValidator = new UntypedFormControl('', [Validators.required]);
 
-
   /**
    * Current user name
    */
@@ -73,7 +70,7 @@ export class NameInputComponent {
   private _name: UserName = {
     firstName: '',
     middleName: '',
-    lastName: ''
+    lastName: '',
   };
 
   /**
@@ -86,7 +83,7 @@ export class NameInputComponent {
    *
    * @param ga Analytics service
    */
-  constructor(private readonly ga: GoogleAnalyticsService) { }
+  constructor(private readonly ga: GoogleAnalyticsService) {}
 
   /**
    * Updates username with a new entry and emits the UserName object

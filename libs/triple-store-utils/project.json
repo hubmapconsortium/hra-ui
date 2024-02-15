@@ -24,19 +24,13 @@
         "tsConfig": "libs/triple-store-utils/tsconfig.spec.json",
         "karmaConfig": "libs/triple-store-utils/karma.conf.js",
         "codeCoverage": true,
-        "codeCoverageExclude": [
-          "**/src/test.ts",
-          "**/*.module.ts"
-        ]
+        "codeCoverageExclude": ["**/src/test.ts", "**/*.module.ts"]
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "libs/triple-store-utils/**/*.ts",
-          "libs/triple-store-utils/**/*.html"
-        ]
+        "lintFilePatterns": ["libs/triple-store-utils/**/*.ts", "libs/triple-store-utils/**/*.html"]
       }
     },
     "compodoc": {
@@ -57,5 +51,6 @@
         }
       }
     }
-  }
+  },
+  "tags": ["ccf"]
 }

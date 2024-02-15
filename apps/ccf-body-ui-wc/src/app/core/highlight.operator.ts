@@ -1,6 +1,6 @@
-import { map, startWith } from 'rxjs/operators';
 import { SpatialSceneNode } from 'ccf-database';
-import { combineLatest, MonoTypeOperatorFunction, Observable } from 'rxjs';
+import { MonoTypeOperatorFunction, Observable, combineLatest } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 export type Color = [number, number, number, number];
 
@@ -10,11 +10,11 @@ function highlightIfMatching(entity: SpatialSceneNode, id: string | undefined, c
 
 export function hightlight(
   id: Observable<string | undefined>,
-  color: Color
+  color: Color,
 ): MonoTypeOperatorFunction<SpatialSceneNode[]> {
   const idWithInitalValue = id.pipe(startWith(''));
   return (source) =>
     combineLatest([source, idWithInitalValue]).pipe(
-      map(([entities, iD]) => entities.map((entity) => highlightIfMatching(entity, iD, color)))
+      map(([entities, iD]) => entities.map((entity) => highlightIfMatching(entity, iD, color))),
     );
 }

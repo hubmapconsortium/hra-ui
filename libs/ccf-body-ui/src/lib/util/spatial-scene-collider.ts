@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { load } from '@loaders.gl/core';
 import { DracoLoader } from '@loaders.gl/draco';
 import { GLTFLoader } from '@loaders.gl/gltf';
@@ -15,9 +14,7 @@ interface Collision {
 }
 
 /* eslint-disable  */
-export async function doCollisions(
-  scene: SpatialSceneNode[]
-): Promise<Collision[]> {
+export async function doCollisions(scene: SpatialSceneNode[]): Promise<Collision[]> {
   console.log('Starting Collisioning');
   const sourceBoxes = scene
     .filter((d) => !d.scenegraph && d.geometry !== 'wireframe')
@@ -30,12 +27,8 @@ export async function doCollisions(
         name: model.tooltip,
         entityId: model.entityId,
         bbox: new AABB({
-          lowerBound: new Vec3(
-            ...lowerBound.map((n, i) => Math.min(n, upperBound[i]))
-          ),
-          upperBound: new Vec3(
-            ...upperBound.map((n, i) => Math.max(n, lowerBound[i]))
-          ),
+          lowerBound: new Vec3(...lowerBound.map((n, i) => Math.min(n, upperBound[i]))),
+          upperBound: new Vec3(...upperBound.map((n, i) => Math.max(n, lowerBound[i]))),
         }),
       };
     });
@@ -54,48 +47,27 @@ export async function doCollisions(
       postProcess: true,
     });
     for (const gltfScene of gltf.scenes) {
-      traverseScene(
-        gltfScene,
-        new Matrix4(model.transformMatrix),
-        (node, modelMatrix) => {
-          if (
-            node.mesh &&
-            node.mesh.primitives &&
-            node.mesh.primitives.length > 0
-          ) {
-            for (const primitive of node.mesh.primitives) {
-              if (
-                primitive.attributes.POSITION &&
-                primitive.attributes.POSITION.min
-              ) {
-                const lowerBound = modelMatrix.transformAsPoint(
-                  primitive.attributes.POSITION.min,
-                  []
-                );
-                const upperBound = modelMatrix.transformAsPoint(
-                  primitive.attributes.POSITION.max,
-                  []
-                );
-                targetBoxes.push({
-                  '@id': model['@id'],
-                  name: node.name,
-                  entityId: model.entityId,
-                  bbox: new AABB({
-                    lowerBound: new Vec3(
-                      ...lowerBound.map((n, i) => Math.min(n, upperBound[i]))
-                    ),
-                    upperBound: new Vec3(
-                      ...upperBound.map((n, i) => Math.max(n, lowerBound[i]))
-                    ),
-                  }),
-                  gltf,
-                });
-              }
+      traverseScene(gltfScene, new Matrix4(model.transformMatrix), (node, modelMatrix) => {
+        if (node.mesh && node.mesh.primitives && node.mesh.primitives.length > 0) {
+          for (const primitive of node.mesh.primitives) {
+            if (primitive.attributes.POSITION && primitive.attributes.POSITION.min) {
+              const lowerBound = modelMatrix.transformAsPoint(primitive.attributes.POSITION.min, []);
+              const upperBound = modelMatrix.transformAsPoint(primitive.attributes.POSITION.max, []);
+              targetBoxes.push({
+                '@id': model['@id'],
+                name: node.name,
+                entityId: model.entityId,
+                bbox: new AABB({
+                  lowerBound: new Vec3(...lowerBound.map((n, i) => Math.min(n, upperBound[i]))),
+                  upperBound: new Vec3(...upperBound.map((n, i) => Math.max(n, lowerBound[i]))),
+                }),
+                gltf,
+              });
             }
           }
-          return true;
         }
-      );
+        return true;
+      });
     }
   }
 

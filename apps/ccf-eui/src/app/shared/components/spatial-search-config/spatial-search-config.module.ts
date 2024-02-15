@@ -9,14 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { SpatialSearchConfigComponent } from './spatial-search-config.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatSelectModule,
-    MatIconModule,
-    MatRadioModule,
-    MatButtonModule,
-  ],
+  imports: [CommonModule, FormsModule, MatSelectModule, MatIconModule, MatRadioModule, MatButtonModule],
   declarations: [SpatialSearchConfigComponent],
   exports: [SpatialSearchConfigComponent],
 })

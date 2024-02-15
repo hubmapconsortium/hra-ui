@@ -4,10 +4,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { CheckboxComponent } from './checkbox.component';
 
-
 @NgModule({
   imports: [CommonModule, MatCheckboxModule],
   declarations: [CheckboxComponent],
-  exports: [CheckboxComponent]
+  exports: [CheckboxComponent],
 })
-export class CheckboxModule { }
+export class CheckboxModule {}

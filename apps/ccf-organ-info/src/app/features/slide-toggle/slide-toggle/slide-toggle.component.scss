@@ -1,7 +1,7 @@
-:host{
+:host {
   .slide-label {
     margin: 0 1rem;
-    transition: color .6s;
+    transition: color 0.6s;
     cursor: pointer;
     opacity: 50%;
 
@@ -16,7 +16,8 @@
   }
 
   ::ng-deep .slider {
-    .mdc-switch__track::before, .mdc-switch__track::after {
+    .mdc-switch__track::before,
+    .mdc-switch__track::after {
       background-color: rgba(67, 71, 101, 0.5) !important;
     }
     .mdc-switch__shadow {

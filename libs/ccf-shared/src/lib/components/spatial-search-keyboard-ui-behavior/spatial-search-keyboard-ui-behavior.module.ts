@@ -5,11 +5,8 @@ import { SpatialSearchKeyboardUIModule } from '../spatial-search-keyboard-ui/spa
 import { SpatialSearchKeyboardUIBehaviorComponent } from './spatial-search-keyboard-ui-behavior.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    SpatialSearchKeyboardUIModule
-  ],
+  imports: [CommonModule, SpatialSearchKeyboardUIModule],
   declarations: [SpatialSearchKeyboardUIBehaviorComponent],
-  exports: [SpatialSearchKeyboardUIBehaviorComponent]
+  exports: [SpatialSearchKeyboardUIBehaviorComponent],
 })
-export class SpatialSearchKeyboardUIBehaviorModule { }
+export class SpatialSearchKeyboardUIBehaviorModule {}

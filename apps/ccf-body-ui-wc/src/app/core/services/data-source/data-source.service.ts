@@ -49,10 +49,10 @@ export class DataSourceService implements OnDestroy {
       switchMap((config) =>
         using(
           () => this.createDataSource(),
-          (resource) => this.connectDataSource((resource as unknown as { source: DataSource }).source, config)
-        )
+          (resource) => this.connectDataSource((resource as unknown as { source: DataSource }).source, config),
+        ),
       ),
-      shareReplay(1)
+      shareReplay(1),
     );
 
     this.subscriptions.add(this.dataSource.subscribe());
@@ -71,7 +71,7 @@ export class DataSourceService implements OnDestroy {
   getTissueBlockResults(filter?: Filter): Observable<TissueBlockResult[]> {
     return this.dataSource.pipe(
       switchMap((db) => db.getTissueBlockResults(filter)),
-      take(1)
+      take(1),
     );
   }
 
@@ -84,7 +84,7 @@ export class DataSourceService implements OnDestroy {
   getAggregateResults(filter?: Filter): Observable<AggregateResult[]> {
     return this.dataSource.pipe(
       switchMap((db) => db.getAggregateResults(filter)),
-      take(1)
+      take(1),
     );
   }
 
@@ -97,7 +97,7 @@ export class DataSourceService implements OnDestroy {
   getOntologyTermOccurences(filter?: Filter): Observable<Record<string, number>> {
     return this.dataSource.pipe(
       switchMap((db) => db.getOntologyTermOccurences(filter)),
-      take(1)
+      take(1),
     );
   }
 
@@ -110,7 +110,7 @@ export class DataSourceService implements OnDestroy {
   getCellTypeTermOccurences(filter?: Filter): Observable<Record<string, number>> {
     return this.dataSource.pipe(
       switchMap((db) => db.getCellTypeTermOccurences(filter)),
-      take(1)
+      take(1),
     );
   }
 
@@ -122,7 +122,7 @@ export class DataSourceService implements OnDestroy {
   getOntologyTreeModel(): Observable<OntologyTreeModel> {
     return this.dataSource.pipe(
       switchMap((db) => db.getOntologyTreeModel()),
-      take(1)
+      take(1),
     );
   }
 
@@ -134,7 +134,7 @@ export class DataSourceService implements OnDestroy {
   getCellTypeTreeModel(): Observable<OntologyTreeModel> {
     return this.dataSource.pipe(
       switchMap((db) => db.getCellTypeTreeModel()),
-      take(1)
+      take(1),
     );
   }
 
@@ -146,7 +146,7 @@ export class DataSourceService implements OnDestroy {
   getReferenceOrgans(): Observable<SpatialEntity[]> {
     return this.dataSource.pipe(
       switchMap((db) => db.getReferenceOrgans()),
-      take(1)
+      take(1),
     );
   }
 
@@ -159,14 +159,14 @@ export class DataSourceService implements OnDestroy {
   getScene(filter?: Filter): Observable<SpatialSceneNode[]> {
     return this.dataSource.pipe(
       switchMap((db) => db.getScene(filter)),
-      take(1)
+      take(1),
     );
   }
 
   getOrganScene(organ: string, filter?: Filter): Observable<SpatialSceneNode[]> {
     return this.dataSource.pipe(
       switchMap((db) => db.getReferenceOrganScene(organ, filter)),
-      take(1)
+      take(1),
     );
   }
 

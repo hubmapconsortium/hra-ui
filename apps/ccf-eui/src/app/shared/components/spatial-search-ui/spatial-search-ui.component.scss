@@ -15,7 +15,8 @@
     width: 100%;
     align-items: center;
 
-    .info, .close {
+    .info,
+    .close {
       padding: 0;
       background: none;
       border: none;
@@ -76,7 +77,8 @@
         font-size: 1rem;
         justify-content: space-between;
 
-        .sex, .organ {
+        .sex,
+        .organ {
           display: flex;
 
           .label {
@@ -84,7 +86,8 @@
             margin-right: 0.5rem;
           }
 
-          .current-sex, .current-organ {
+          .current-sex,
+          .current-organ {
             font-weight: 600;
           }
         }
@@ -134,7 +137,6 @@
           height: 33%;
           display: flex;
           flex-direction: column;
-
         }
       }
     }
@@ -145,8 +147,8 @@
       background-color: black;
       border-bottom-left-radius: 0.5rem;
       border-bottom-right-radius: 0.5rem;
-      border-top-right-radius: .5rem;
-      border-top-left-radius: .5rem;
+      border-top-right-radius: 0.5rem;
+      border-top-left-radius: 0.5rem;
 
       .primary-scene-wrapper {
         display: flex;

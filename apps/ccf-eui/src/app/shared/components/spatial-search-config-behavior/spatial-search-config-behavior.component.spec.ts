@@ -11,7 +11,7 @@ import { SpatialSearchConfigBehaviorModule } from './spatial-search-config-behav
 import { GlobalConfigState } from 'ccf-shared';
 
 function wait(duration: number): Promise<void> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(resolve, duration);
   });
 }
@@ -22,11 +22,15 @@ describe('SpatialSearchConfigBehaviorComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [NgxsModule.forRoot()]
+      imports: [NgxsModule.forRoot()],
     });
 
     shallow = new Shallow(SpatialSearchConfigBehaviorComponent, SpatialSearchConfigBehaviorModule)
-      .mock(MatDialogRef, { close(): void { /* Empty */ } })
+      .mock(MatDialogRef, {
+        close(): void {
+          /* Empty */
+        },
+      })
       .mock(SceneState, { referenceOrgans$: of([]) })
       .mock(HttpClient, http)
       .mock(GlobalConfigState, { getOption: () => of(undefined) });

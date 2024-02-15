@@ -1,16 +1,24 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, HostListener, Input,
-  OnDestroy, Output, ViewChild,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  HostListener,
+  Input,
+  OnDestroy,
+  Output,
+  ViewChild,
 } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { bind as Bind } from 'bind-decorator';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import { from, interval, ObservableInput, Subject } from 'rxjs';
+import { ObservableInput, Subject, from, interval } from 'rxjs';
 import { catchError, map, switchMap, takeUntil, throttle } from 'rxjs/operators';
 
 import { Tag, TagId, TagSearchResult } from '../../../core/models/anatomical-structure-tag';
-
 
 /** Default search results limit */
 const DEFAULT_SEARCH_LIMIT = 5;
@@ -19,7 +27,6 @@ const DEFAULT_SEARCH_THROTTLE = 100;
 /** Empty search result object */
 const EMPTY_RESULT: TagSearchResult = { totalCount: 0, results: [] };
 
-
 /**
  * Component for searching, selecting, and adding tags.
  */
@@ -27,7 +34,7 @@ const EMPTY_RESULT: TagSearchResult = { totalCount: 0, results: [] };
   selector: 'ccf-tag-search',
   templateUrl: './tag-search.component.html',
   styleUrls: ['./tag-search.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TagSearchComponent implements OnDestroy {
   /** HTML class name */
@@ -55,7 +62,7 @@ export class TagSearchComponent implements OnDestroy {
   readonly countMapping = {
     /* eslint-disable-next-line @typescript-eslint/naming-convention */
     '=1': '1 result',
-    other: '# results'
+    other: '# results',
   };
 
   /** Search field controller */
@@ -83,20 +90,19 @@ export class TagSearchComponent implements OnDestroy {
   constructor(
     private readonly el: ElementRef<Node>,
     private readonly ga: GoogleAnalyticsService,
-    cdr: ChangeDetectorRef
+    cdr: ChangeDetectorRef,
   ) {
-    this.searchControl.valueChanges.pipe(
-      takeUntil(this.destroy$),
-      throttle(
-        () => interval(this.searchThrottle ?? DEFAULT_SEARCH_THROTTLE),
-        { leading: true, trailing: true }
-      ),
-      switchMap(this.executeSearch),
-    ).subscribe(result => {
-      this.searchResults = result;
-      this.checkedResults = this.getUpdatedCheckedResults(result);
-      cdr.markForCheck();
-    });
+    this.searchControl.valueChanges
+      .pipe(
+        takeUntil(this.destroy$),
+        throttle(() => interval(this.searchThrottle ?? DEFAULT_SEARCH_THROTTLE), { leading: true, trailing: true }),
+        switchMap(this.executeSearch),
+      )
+      .subscribe((result) => {
+        this.searchResults = result;
+        this.checkedResults = this.getUpdatedCheckedResults(result);
+        cdr.markForCheck();
+      });
   }
 
   /**
@@ -124,7 +130,7 @@ export class TagSearchComponent implements OnDestroy {
    * @returns true if any tag has been checked by the user
    */
   hasCheckedTags(): boolean {
-    return Object.values(this.checkedResults).some(v => v);
+    return Object.values(this.checkedResults).some((v) => v);
   }
 
   /**
@@ -132,13 +138,13 @@ export class TagSearchComponent implements OnDestroy {
    */
   addTags(): void {
     const { searchControl, searchResults, checkedResults } = this;
-    const tags = searchResults.results.filter(tag => checkedResults[tag.id]);
+    const tags = searchResults.results.filter((tag) => checkedResults[tag.id]);
 
     if (tags.length > 0) {
       searchControl.reset();
       this.searchResults = EMPTY_RESULT;
       this.checkedResults = {};
-      this.ga.event('tags_added', 'tag_search', tags.map(tag => tag.label).join(','));
+      this.ga.event('tags_added', 'tag_search', tags.map((tag) => tag.label).join(','));
       this.added.emit(tags);
     }
   }
@@ -185,7 +191,7 @@ export class TagSearchComponent implements OnDestroy {
 
     return from(search(text, searchLimit)).pipe(
       catchError(() => [EMPTY_RESULT]),
-      map(this.truncateResults)
+      map(this.truncateResults),
     );
   }
 
@@ -203,7 +209,7 @@ export class TagSearchComponent implements OnDestroy {
     if (items.length > searchLimit) {
       return {
         ...result,
-        results: items.slice(0, searchLimit)
+        results: items.slice(0, searchLimit),
       };
     }
 
@@ -218,7 +224,7 @@ export class TagSearchComponent implements OnDestroy {
    */
   private getUpdatedCheckedResults(result: TagSearchResult): Record<TagId, boolean> {
     const prev = this.checkedResults;
-    return result.results.reduce((acc, { id }) => {
+    return result.results.reduce<Record<TagId, boolean>>((acc, { id }) => {
       acc[id] = prev[id] ?? false;
       return acc;
     }, {});

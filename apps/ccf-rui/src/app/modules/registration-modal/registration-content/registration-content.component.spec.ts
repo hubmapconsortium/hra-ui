@@ -9,35 +9,38 @@ import { PageState } from '../../../core/store/page/page.state';
 import { RegistrationContentComponent } from './registration-content.component';
 import { RegistrationContentModule } from './registration-content.module';
 
-
 describe('RegistrationContentComponent', () => {
   let shallow: Shallow<RegistrationContentComponent>;
-  const mockModelState = jasmine.createSpyObj<ModelState>(
-    'ModelState', ['setViewType', 'setViewSide', 'setSex', 'setOrgan', 'setOrganDefaults']
-  );
-  const mockPageState = jasmine.createSpyObj<PageState>(
-    'PageState', ['setUserName', 'registrationStarted', 'isOrcidValid']
-  );
-  const mockMatDialog = jasmine.createSpyObj<MatDialogRef<unknown, unknown>>(
-    'DialogRef', ['close']
-  );
+  const mockModelState = jasmine.createSpyObj<ModelState>('ModelState', [
+    'setViewType',
+    'setViewSide',
+    'setSex',
+    'setOrgan',
+    'setOrganDefaults',
+  ]);
+  const mockPageState = jasmine.createSpyObj<PageState>('PageState', [
+    'setUserName',
+    'registrationStarted',
+    'isOrcidValid',
+  ]);
+  const mockMatDialog = jasmine.createSpyObj<MatDialogRef<unknown, unknown>>('DialogRef', ['close']);
 
   beforeEach(() => {
     shallow = new Shallow(RegistrationContentComponent, RegistrationContentModule)
       .mock(ModelState, {
         ...mockModelState,
         sex$: of('male' as 'male' | 'female'),
-        organ$: of({ src: '' } as Immutable<OrganInfo>)
+        organ$: of({ src: '' } as Immutable<OrganInfo>),
       })
       .mock(PageState, {
         ...mockPageState,
         user$: of({ firstName: '', lastName: '' }),
         organOptions$: of([]),
-        isOrcidValid: () => true
+        isOrcidValid: () => true,
       })
       .mock(MatDialogRef, {
         ...mockMatDialog,
-        disableClose: true
+        disableClose: true,
       });
   });
 
@@ -99,7 +102,7 @@ describe('RegistrationContentComponent', () => {
   it('prevents default', async () => {
     // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     const mockEvent = {
-      preventDefault: () => undefined
+      preventDefault: () => undefined,
     } as MouseEvent;
     const { instance } = await shallow.render();
     const spy = spyOn(mockEvent, 'preventDefault');
@@ -108,10 +111,12 @@ describe('RegistrationContentComponent', () => {
   });
 
   it('sets orcidValid to false if orcid not valid', async () => {
-    const { instance } = await shallow.mock(PageState, {
-      ...mockPageState,
-      isOrcidValid: () => false
-    }).render();
+    const { instance } = await shallow
+      .mock(PageState, {
+        ...mockPageState,
+        isOrcidValid: () => false,
+      })
+      .render();
     expect(instance.orcidValid).toBeFalse();
   });
 

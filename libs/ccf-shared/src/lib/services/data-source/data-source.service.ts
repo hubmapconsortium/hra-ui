@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import {
-  AggregateResult, DatabaseStatus, Filter, OntologyTreeModel, SpatialEntity, SpatialSceneNode, TissueBlockResult,
+  AggregateResult,
+  DatabaseStatus,
+  Filter,
+  OntologyTreeModel,
+  SpatialEntity,
+  SpatialSceneNode,
+  TissueBlockResult,
 } from 'ccf-database';
 import { Observable } from 'rxjs';
 
 import { DataSource } from './data-source';
-
 
 @Injectable()
 export abstract class DataSourceService implements DataSource {

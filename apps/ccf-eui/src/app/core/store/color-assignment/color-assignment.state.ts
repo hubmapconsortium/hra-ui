@@ -1,13 +1,11 @@
-/* eslint-disable @typescript-eslint/member-ordering */
 import { Immutable } from '@angular-ru/common/typings/immutability';
-import { Injectable } from '@angular/core';
 import { DataAction, Payload, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
+import { Injectable } from '@angular/core';
 import { State } from '@ngxs/store';
 import hexRgb from 'hex-rgb';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
-
 
 export interface Color {
   color: string;
@@ -25,7 +23,7 @@ export const DEFAULT_COLOR_PALETTE: Color[] = [
   '#acf32b',
   '#82B1FF',
   '#E040FB',
-  '#00E5FF'
+  '#00E5FF',
 ].map((color, rank) => {
   const rgba = hexRgb(color, { format: 'array' });
   rgba[3] = 255; // for Deck.gl
@@ -49,16 +47,22 @@ export interface ColorAssignmentStateModel {
     colorPalette: DEFAULT_COLOR_PALETTE.concat(),
     colorsAvailable: DEFAULT_COLOR_PALETTE.concat(),
     colorAssignments: {},
-    colorAssignmentsList: []
-  }
+    colorAssignmentsList: [],
+  },
 })
 @Injectable()
 export class ColorAssignmentState extends NgxsImmutableDataRepository<ColorAssignmentStateModel> {
   private readonly forcedUnassignment = new Subject<void>();
 
   readonly forcedUnassignment$ = this.forcedUnassignment.asObservable();
-  readonly colorAssignments$ = this.state$.pipe(map(x => x?.colorAssignments), distinctUntilChanged());
-  readonly colorAssignmentsList$ = this.state$.pipe(map(x => x?.colorAssignmentsList), distinctUntilChanged());
+  readonly colorAssignments$ = this.state$.pipe(
+    map((x) => x?.colorAssignments),
+    distinctUntilChanged(),
+  );
+  readonly colorAssignmentsList$ = this.state$.pipe(
+    map((x) => x?.colorAssignmentsList),
+    distinctUntilChanged(),
+  );
 
   getColor(key: string): Immutable<Color> | undefined {
     const { colorAssignments } = this.snapshot;
@@ -82,7 +86,7 @@ export class ColorAssignmentState extends NgxsImmutableDataRepository<ColorAssig
         colorAssignmentsList = colorAssignmentsList.slice(0, -1);
         this.forcedUnassignment.next();
       }
-      colorsAvailable = colorsAvailable.filter(c => c.color !== color.color);
+      colorsAvailable = colorsAvailable.filter((c) => c.color !== color.color);
       colorAssignmentsList = [{ color, key }].concat(colorAssignmentsList);
       colorAssignments = colorAssignmentsList.reduce<Record<string, Immutable<Color>>>((acc, item, rank) => {
         acc[item.key] = { ...item.color, rank };
@@ -92,7 +96,7 @@ export class ColorAssignmentState extends NgxsImmutableDataRepository<ColorAssig
       this.ctx.patchState({
         colorsAvailable,
         colorAssignments,
-        colorAssignmentsList
+        colorAssignmentsList,
       });
     }
     return color;
@@ -104,7 +108,7 @@ export class ColorAssignmentState extends NgxsImmutableDataRepository<ColorAssig
     const color = colorAssignments[key];
     if (color) {
       colorsAvailable = [color].concat(colorsAvailable);
-      colorAssignmentsList = colorAssignmentsList.filter(a => a.color.color !== color.color);
+      colorAssignmentsList = colorAssignmentsList.filter((a) => a.color.color !== color.color);
       colorAssignments = colorAssignmentsList.reduce<Record<string, Immutable<Color>>>((acc, item, rank) => {
         acc[item.key] = { ...item.color, rank };
         return acc;
@@ -113,7 +117,7 @@ export class ColorAssignmentState extends NgxsImmutableDataRepository<ColorAssig
       this.ctx.patchState({
         colorsAvailable,
         colorAssignments,
-        colorAssignmentsList
+        colorAssignmentsList,
       });
     }
   }

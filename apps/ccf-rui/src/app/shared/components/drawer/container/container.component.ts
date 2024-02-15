@@ -1,5 +1,12 @@
 import {
-  AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren, HostBinding, OnDestroy, QueryList,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  HostBinding,
+  OnDestroy,
+  QueryList,
   ViewChildren,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -8,7 +15,6 @@ import { startWith } from 'rxjs/operators';
 import { ContentComponent } from '../content/content.component';
 import { DrawerComponent } from '../drawer/drawer.component';
 import { Message, MessageChannel, MessageService } from '../messages';
-
 
 /**
  * Helper function for creating drawer errors.
@@ -20,7 +26,6 @@ function throwDuplicateDrawersError(position: 'start' | 'end'): never {
   throw new Error(`Multiple drawers in position ${position}`);
 }
 
-
 /**
  * Main container for drawer components.
  */
@@ -30,7 +35,7 @@ function throwDuplicateDrawersError(position: 'start' | 'end'): never {
   templateUrl: './container.component.html',
   styleUrls: ['./container.component.scss'],
   providers: [MessageService],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContainerComponent implements AfterViewInit, OnDestroy {
   /** HTML class */
@@ -67,14 +72,18 @@ export class ContainerComponent implements AfterViewInit, OnDestroy {
    * @param messageService The service used to send event messages.
    * @param cdr The change detector reference.
    */
-  constructor(messageService: MessageService,
-              private cdr: ChangeDetectorRef) {
+  constructor(
+    messageService: MessageService,
+    private cdr: ChangeDetectorRef,
+  ) {
     this.channel = messageService.connect(this);
-    this.subscriptions.add(this.channel.getMessages().subscribe(msg => {
-      if (this.handleMessage(msg)) {
-        cdr.markForCheck();
-      }
-    }));
+    this.subscriptions.add(
+      this.channel.getMessages().subscribe((msg) => {
+        if (this.handleMessage(msg)) {
+          cdr.markForCheck();
+        }
+      }),
+    );
   }
 
   /**
@@ -85,7 +94,7 @@ export class ContainerComponent implements AfterViewInit, OnDestroy {
       const drawers = this.validateDrawers();
       this.channel.sendMessage({
         type: 'drawer-containers-changed',
-        drawers
+        drawers,
       });
       this.cdr.markForCheck();
     });
@@ -93,7 +102,7 @@ export class ContainerComponent implements AfterViewInit, OnDestroy {
     this.content1.changes.pipe(startWith(null)).subscribe(() => {
       this.channel.sendMessage({
         type: 'content-container-changed',
-        content: this.content
+        content: this.content,
       });
       this.cdr.markForCheck();
     });
@@ -123,8 +132,8 @@ export class ContainerComponent implements AfterViewInit, OnDestroy {
    */
   private validateDrawers(): [DrawerComponent | undefined, DrawerComponent | undefined] {
     const drawers = this.drawers.toArray();
-    const startDrawers = drawers.filter(drawer => drawer.position === 'start');
-    const endDrawers = drawers.filter(drawer => drawer.position === 'end');
+    const startDrawers = drawers.filter((drawer) => drawer.position === 'start');
+    const endDrawers = drawers.filter((drawer) => drawer.position === 'end');
 
     if (startDrawers.length > 1) {
       throwDuplicateDrawersError('start');

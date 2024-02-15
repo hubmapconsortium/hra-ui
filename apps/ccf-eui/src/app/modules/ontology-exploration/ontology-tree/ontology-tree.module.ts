@@ -17,9 +17,9 @@ import { ButtonToggleModule } from '../../../shared/components/button-toggle/but
     MatTooltipModule,
     MatTreeModule,
     OpacitySliderModule,
-    ButtonToggleModule
+    ButtonToggleModule,
   ],
   declarations: [OntologyTreeComponent],
   exports: [OntologyTreeComponent],
 })
-export class OntologyTreeModule { }
+export class OntologyTreeModule {}

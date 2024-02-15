@@ -37,5 +37,4 @@ describe('OpacitySliderComponent', () => {
     instance.reset();
     expect(instance.prevOpacity).toEqual(20);
   });
-
 });

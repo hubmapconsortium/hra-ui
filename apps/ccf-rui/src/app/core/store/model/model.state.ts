@@ -7,14 +7,23 @@ import { filterNulls } from 'ccf-shared/rxjs-ext/operators';
 import { sortBy } from 'lodash';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { EMPTY, Observable } from 'rxjs';
-import { delay, distinct, distinctUntilChanged, filter, map, skipUntil, switchMap, tap, throttleTime } from 'rxjs/operators';
+import {
+  delay,
+  distinct,
+  distinctUntilChanged,
+  filter,
+  map,
+  skipUntil,
+  switchMap,
+  tap,
+  throttleTime,
+} from 'rxjs/operators';
 
 import { ExtractionSet } from '../../models/extraction-set';
 import { VisibilityItem } from '../../models/visibility-item';
 import { GlobalConfig, OrganConfig } from '../../services/config/config';
 import { PageState } from '../page/page.state';
 import { ReferenceDataState } from '../reference-data/reference-data.state';
-
 
 /* eslint-disable @typescript-eslint/member-ordering */
 
@@ -108,62 +117,109 @@ export const RUI_ORGANS = ALL_ORGANS;
     showPrevious: false,
     extractionSites: [],
     anatomicalStructures: [],
-    extractionSets: []
-  }
+    extractionSets: [],
+  },
 })
 @Injectable()
 export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
   /** Identifier observable */
-  readonly id$ = this.state$.pipe(map(x => x?.id), distinct());
+  readonly id$ = this.state$.pipe(
+    map((x) => x?.id),
+    distinct(),
+  );
   /** Block size observable */
-  readonly blockSize$ = this.state$.pipe(map(x => x?.blockSize), distinct());
+  readonly blockSize$ = this.state$.pipe(
+    map((x) => x?.blockSize),
+    distinct(),
+  );
   /** Rotation observable */
-  readonly rotation$ = this.state$.pipe(map(x => x?.rotation), distinct());
+  readonly rotation$ = this.state$.pipe(
+    map((x) => x?.rotation),
+    distinct(),
+  );
   /** Position observable */
-  readonly position$ = this.state$.pipe(map(x => x?.position), distinct());
+  readonly position$ = this.state$.pipe(
+    map((x) => x?.position),
+    distinct(),
+  );
   /** Slice configuration observable */
-  readonly slicesConfig$ = this.state$.pipe(map(x => x?.slicesConfig), distinct());
+  readonly slicesConfig$ = this.state$.pipe(
+    map((x) => x?.slicesConfig),
+    distinct(),
+  );
   /** View type observable */
-  readonly viewType$ = this.state$.pipe(map(x => x?.viewType), distinct());
+  readonly viewType$ = this.state$.pipe(
+    map((x) => x?.viewType),
+    distinct(),
+  );
   /** View side observable */
-  readonly viewSide$ = this.state$.pipe(map(x => x?.viewSide), distinct());
+  readonly viewSide$ = this.state$.pipe(
+    map((x) => x?.viewSide),
+    distinct(),
+  );
   /** Organ observable */
-  readonly organ$ = this.state$.pipe(map(x => x?.organ), distinct());
+  readonly organ$ = this.state$.pipe(
+    map((x) => x?.organ),
+    distinct(),
+  );
   /** Organ IRI observable */
-  readonly organIri$ = this.state$.pipe(map(x => x?.organIri), distinct());
+  readonly organIri$ = this.state$.pipe(
+    map((x) => x?.organIri),
+    distinct(),
+  );
   /** Organ IRI observable */
-  readonly organDimensions$ = this.state$.pipe(map(x => x?.organDimensions), distinct());
+  readonly organDimensions$ = this.state$.pipe(
+    map((x) => x?.organDimensions),
+    distinct(),
+  );
   /** Sex observable */
-  readonly sex$ = this.state$.pipe(map(x => x?.sex), distinct());
+  readonly sex$ = this.state$.pipe(
+    map((x) => x?.sex),
+    distinct(),
+  );
   /** Side observable */
-  readonly side$ = this.state$.pipe(map(x => x?.side), distinct());
+  readonly side$ = this.state$.pipe(
+    map((x) => x?.side),
+    distinct(),
+  );
   /** Show previous observable */
-  readonly showPrevious$ = this.state$.pipe(map(x => x?.showPrevious), distinct());
+  readonly showPrevious$ = this.state$.pipe(
+    map((x) => x?.showPrevious),
+    distinct(),
+  );
   /** Extraction sites observable */
-  readonly extractionSites$ = this.state$.pipe(map(x => x?.extractionSites), distinct());
+  readonly extractionSites$ = this.state$.pipe(
+    map((x) => x?.extractionSites),
+    distinct(),
+  );
   /** Anatomical structures observable */
-  readonly anatomicalStructures$ = this.state$.pipe(map(x => x?.anatomicalStructures), distinct());
+  readonly anatomicalStructures$ = this.state$.pipe(
+    map((x) => x?.anatomicalStructures),
+    distinct(),
+  );
   /** Extraction sets observable */
-  readonly extractionSets$ = this.state$.pipe(map(x => x?.extractionSets), distinct());
+  readonly extractionSets$ = this.state$.pipe(
+    map((x) => x?.extractionSets),
+    distinct(),
+  );
 
   @Computed()
   get modelChanged$(): Observable<void> {
     const ignoredKeys = ['viewType', 'viewSide', 'showPrevious'];
-    const keys = Object.keys(this.initialState)
-      .filter(key => !ignoredKeys.includes(key));
+    const keys = Object.keys(this.initialState).filter((key) => !ignoredKeys.includes(key));
 
     return this.state$.pipe(
       throttleTime(0, undefined, { leading: false, trailing: true }),
       distinctUntilChanged((v1, v2) => {
         for (const key of keys) {
-          if (v1[key] !== v2[key]) {
+          if (v1[key as never] !== v2[key as never]) {
             return false;
           }
         }
 
         return true;
       }),
-      map(() => undefined)
+      map(() => undefined),
     );
   }
 
@@ -180,7 +236,7 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
   constructor(
     private readonly ga: GoogleAnalyticsService,
     private readonly injector: Injector,
-    private readonly globalConfig: GlobalConfigState<GlobalConfig>
+    private readonly globalConfig: GlobalConfigState<GlobalConfig>,
   ) {
     super();
   }
@@ -198,14 +254,12 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
   }
 
   idMatches(ontologyId?: string, organSide?: string): OrganInfo | undefined {
-    return ALL_ORGANS.find((o) =>
-      ontologyId && o.id === ontologyId ? (o.side ? o.side === organSide : true) : false
-    );
+    return ALL_ORGANS.find((o) => (ontologyId && o.id === ontologyId ? (o.side ? o.side === organSide : true) : false));
   }
 
   nameMatches(organName: string, organSide?: string): OrganInfo | undefined {
     return ALL_ORGANS.find((o) =>
-      o.side ? o.organ.toLowerCase() === organName && o.side === organSide : o.organ.toLowerCase() === organName
+      o.side ? o.organ.toLowerCase() === organName && o.side === organSide : o.organ.toLowerCase() === organName,
     );
   }
 
@@ -236,7 +290,11 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
    */
   @DataAction()
   setPosition(position: XYZTriplet): void {
-    this.ga.event('placement', `${this.snapshot.organ?.name}_placement`, `${position.x.toFixed(1)}_${position.y.toFixed(1)}_${position.z.toFixed(1)}`);
+    this.ga.event(
+      'placement',
+      `${this.snapshot.organ?.name}_placement`,
+      `${position.x.toFixed(1)}_${position.y.toFixed(1)}_${position.z.toFixed(1)}`,
+    );
     this.ctx.patchState({ position });
   }
 
@@ -303,7 +361,7 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
   setOrganDefaults(): void {
     this.ctx.patchState({
       position: this.defaultPosition,
-      rotation: { x: 0, y: 0, z: 0 }
+      rotation: { x: 0, y: 0, z: 0 },
     });
   }
 
@@ -382,8 +440,9 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
     if (!visible) {
       this.setAnatomicalStructures(previousItems);
     } else {
-      const newStructures = previousItems.map(structure => ({
-        ...structure, opacity: Math.min(20, structure.opacity ?? 20)
+      const newStructures = previousItems.map((structure) => ({
+        ...structure,
+        opacity: Math.min(20, structure.opacity ?? 20),
       }));
       this.setAnatomicalStructures(newStructures);
     }
@@ -391,7 +450,10 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
 
   private onOrganIriChange(): void {
     const organIri = this.referenceData.getReferenceOrganIri(
-      this.snapshot.organ?.organ || '', this.snapshot.sex, this.snapshot.side, this.snapshot.organ
+      this.snapshot.organ?.organ || '',
+      this.snapshot.sex,
+      this.snapshot.side,
+      this.snapshot.organ,
     );
     const organDimensions: XYZTriplet = { x: 100, y: 100, z: 100 };
 
@@ -402,7 +464,7 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
     if (organIri) {
       const db = this.referenceData.snapshot;
       const asLookup: { [id: string]: VisibilityItem } = {};
-      for (const entity of (db.anatomicalStructures[organIri] || [])) {
+      for (const entity of db.anatomicalStructures[organIri] || []) {
         const iri = entity.representation_of ?? entity['@id'];
         if (!asLookup[iri]) {
           asLookup[iri] = {
@@ -410,21 +472,31 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
             name: entity.label!,
             visible: true,
             opacity: 20,
-            tooltip: entity.comment
+            tooltip: entity.comment,
           };
         }
       }
-      this.ctx.patchState({ anatomicalStructures: [{ id: 'all', name: 'all anatomical structures', opacity: 20, visible: true }, ...Object.values(asLookup)] });
+      this.ctx.patchState({
+        anatomicalStructures: [
+          { id: 'all', name: 'all anatomical structures', opacity: 20, visible: true },
+          ...Object.values(asLookup),
+        ],
+      });
 
       const sets: ExtractionSet[] = (db.extractionSets[organIri] || []).map((set) => ({
         name: set.label,
-        sites: [{ id: 'all', name: 'all landmarks', visible: true, opacity: 0 }].concat(sortBy(set.extractionSites.map((entity) => ({
-          id: entity['@id'],
-          name: entity.label!,
-          visible: true,
-          opacity: 0,
-          tooltip: entity.comment
-        })), 'name'))
+        sites: [{ id: 'all', name: 'all landmarks', visible: true, opacity: 0 }].concat(
+          sortBy(
+            set.extractionSites.map((entity) => ({
+              id: entity['@id'],
+              name: entity.label!,
+              visible: true,
+              opacity: 0,
+              tooltip: entity.comment,
+            })),
+            'name',
+          ),
+        ),
       }));
       this.ctx.patchState({ extractionSets: sets });
       this.ctx.patchState({ extractionSites: sets.length > 0 ? sets[0].sites : [] });
@@ -439,17 +511,18 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
   }
 
   private onReferenceDataChange(): void {
-    this.globalConfig.getOption('organ').pipe(
-      filterNulls(),
-      delay(0),
-      switchMap(organ => this.onOrganChange(organ))
-    ).subscribe();
+    this.globalConfig
+      .getOption('organ')
+      .pipe(
+        filterNulls(),
+        delay(0),
+        switchMap((organ) => this.onOrganChange(organ)),
+      )
+      .subscribe();
 
-    this.modelChanged$.pipe(
-      skipUntil(this.page.registrationStarted$.pipe(
-        filter(started => started),
-      ))
-    ).subscribe(() => this.page.setHasChanges());
+    this.modelChanged$
+      .pipe(skipUntil(this.page.registrationStarted$.pipe(filter((started) => started))))
+      .subscribe(() => this.page.setHasChanges());
   }
 
   private onOrganChange(organ: string | OrganConfig): Observable<unknown> {
@@ -476,11 +549,9 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
       this.ctx.patchState({
         organ: organInfo,
         sex: organSex,
-        side: organInfo?.side?.toLowerCase() as 'left' | 'right'
+        side: organInfo?.side?.toLowerCase() as 'left' | 'right',
       });
-      return this.referenceData.state$.pipe(
-        tap(() => this.onOrganIriChange())
-      );
+      return this.referenceData.state$.pipe(tap(() => this.onOrganIriChange()));
     }
 
     return EMPTY;

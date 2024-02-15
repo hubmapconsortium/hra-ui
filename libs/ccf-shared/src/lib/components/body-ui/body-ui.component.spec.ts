@@ -9,12 +9,11 @@ describe('BodyUiComponent', () => {
   const mockBodyUI = {
     setScene(..._args: unknown[]): BodyUI {
       return undefined as unknown as BodyUI;
-    }
+    },
   };
 
   beforeEach(() => {
-    shallow = new Shallow(BodyUiComponent, BodyUiModule)
-      .mock(BodyUI, mockBodyUI);
+    shallow = new Shallow(BodyUiComponent, BodyUiModule).mock(BodyUI, mockBodyUI);
   });
 
   it('exists', () => {

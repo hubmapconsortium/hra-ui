@@ -3,11 +3,18 @@
     <div class="label">
       {{ label }}
     </div>
-    <mat-select class="selected-value" [value]="selection" (selectionChange)="selectionChanged($event.value)"
-                disableOptionCentering=true panelClass="option-panel" (openedChange)="toggleOptions()"
-                disableRipple=true hideSingleSelectionIndicator="true">
+    <mat-select
+      class="selected-value"
+      [value]="selection"
+      (selectionChange)="selectionChanged($event.value)"
+      disableOptionCentering="true"
+      panelClass="option-panel"
+      (openedChange)="toggleOptions()"
+      disableRipple="true"
+      hideSingleSelectionIndicator="true"
+    >
       <mat-option *ngFor="let option of options" [value]="option">
-        <div class="{{optionsVisible}}">
+        <div class="{{ optionsVisible }}">
           {{ option }}
         </div>
       </mat-option>

@@ -21,7 +21,8 @@
   @include theming.ccf-theme(default_dark.$theme);
 }
 
-.default-theme-light, .default-theme-dark {
+.default-theme-light,
+.default-theme-dark {
   .portal {
     width: 19rem !important;
   }
@@ -40,9 +41,10 @@
   @include theming.ccf-theme(hubmap_dark.$theme);
 }
 
-.hubmap-theme-light, .hubmap-theme-dark {
+.hubmap-theme-light,
+.hubmap-theme-dark {
   .logo {
-    background-image: url('./assets/icons/logo-rui.svg')
+    background-image: url('./assets/icons/logo-rui.svg');
   }
 }
 
@@ -54,7 +56,8 @@
   @include theming.ccf-theme(sennet_dark.$theme);
 }
 
-.sennet-theme-light, .sennet-theme-dark {
+.sennet-theme-light,
+.sennet-theme-dark {
   .portal {
     width: 15rem !important;
   }
@@ -73,14 +76,15 @@
   @include theming.ccf-theme(gtex_dark.$theme);
 }
 
-.gtex-theme-light, .gtex-theme-dark {
+.gtex-theme-light,
+.gtex-theme-dark {
   .portal {
     width: 11rem !important;
   }
 
   .logo {
     height: 100%;
-    background-image: url('./assets/icons/gtex-logo.png')
+    background-image: url('./assets/icons/gtex-logo.png');
   }
 
   .ccf-header {
@@ -89,13 +93,19 @@
   }
 }
 
-.default-theme-light, .sennet-theme-light, .hubmap-theme-light, .gtex-theme-light {
+.default-theme-light,
+.sennet-theme-light,
+.hubmap-theme-light,
+.gtex-theme-light {
   .mdc-tooltip {
     background: rgba(97, 97, 97);
   }
 }
 
-.default-theme-dark, .sennet-theme-dark, .hubmap-theme-dark, .gtex-theme-dark  {
+.default-theme-dark,
+.sennet-theme-dark,
+.hubmap-theme-dark,
+.gtex-theme-dark {
   ::-webkit-scrollbar {
     background: #757575;
   }
@@ -119,7 +129,11 @@ body {
 body {
   margin: 0;
   padding: 0;
-  font-family: var(--ccf-ui-font, ""), Inter, Inter Variable, sans-serif;
+  font-family:
+    var(--ccf-ui-font, ''),
+    Inter,
+    Inter Variable,
+    sans-serif;
   background-color: white;
 }
 
@@ -144,8 +158,8 @@ mat-icon {
   border-radius: 0.625rem;
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;

@@ -3,10 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { DecoratedTextComponent } from './decorated-text.component';
 
-
 @NgModule({
   imports: [CommonModule],
   declarations: [DecoratedTextComponent],
-  exports: [DecoratedTextComponent]
+  exports: [DecoratedTextComponent],
 })
-export class DecoratedTextModule { }
+export class DecoratedTextModule {}

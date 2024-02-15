@@ -3,9 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 import { MetaData } from '../../../core/models/meta-data';
-import { ReviewModalComponent } from '../review-modal/review-modal.component';
 import { PageState } from '../../../core/store/page/page.state';
-
+import { ReviewModalComponent } from '../review-modal/review-modal.component';
 
 /**
  * Component to launch the ReviewModal component.
@@ -14,7 +13,7 @@ import { PageState } from '../../../core/store/page/page.state';
   selector: 'ccf-review-button',
   templateUrl: './review-button.component.html',
   styleUrls: ['./review-button.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReviewButtonComponent implements OnChanges {
   /** HTML class name */
@@ -64,7 +63,11 @@ export class ReviewButtonComponent implements OnChanges {
    * @param dialog Reference to the dialog creation service.
    * @param ga Analytics service
    */
-  constructor(private readonly dialog: MatDialog, private readonly ga: GoogleAnalyticsService, readonly page: PageState) { }
+  constructor(
+    private readonly dialog: MatDialog,
+    private readonly ga: GoogleAnalyticsService,
+    readonly page: PageState,
+  ) {}
 
   /**
    * Updates the value of registrationIsValid based on the
@@ -75,10 +78,7 @@ export class ReviewButtonComponent implements OnChanges {
     const dimensions = this.metaDataLookup('Tissue Block Dimensions (mm)');
     const pos = this.metaDataLookup('Tissue Block Position (mm)');
     const tags = this.metaDataLookup('Anatomical Structure Tags');
-    this.registrationIsValid = (
-      this.userValid &&
-      [organ, dimensions, pos, tags].every(value => value !== '')
-    );
+    this.registrationIsValid = this.userValid && [organ, dimensions, pos, tags].every((value) => value !== '');
   }
 
   /**
@@ -95,7 +95,7 @@ export class ReviewButtonComponent implements OnChanges {
    * @returns Metadata value
    */
   private metaDataLookup(field: string): string | undefined {
-    return this.metaData.find(data => data.label === field)?.value;
+    return this.metaData.find((data) => data.label === field)?.value;
   }
 
   /**
@@ -123,18 +123,16 @@ export class ReviewButtonComponent implements OnChanges {
       width: '60rem',
       data: {
         registrationCallbackSet: this.registrationCallbackSet,
-        metaData: this.metaData
-      }
+        metaData: this.metaData,
+      },
     });
 
-    dialogRef.afterClosed().subscribe(
-      data => {
-        this.page.registrationStarted();
-        if (data) {
-          this.ga.event('register', 'review_button');
-          this.registerData.emit();
-        }
+    dialogRef.afterClosed().subscribe((data) => {
+      this.page.registrationStarted();
+      if (data) {
+        this.ga.event('register', 'review_button');
+        this.registerData.emit();
       }
-    );
+    });
   }
 }

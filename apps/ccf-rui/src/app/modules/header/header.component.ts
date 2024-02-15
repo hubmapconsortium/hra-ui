@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular
 
 import { PageState } from '../../core/store/page/page.state';
 
-
 /**
  * Page header
  */
@@ -10,7 +9,7 @@ import { PageState } from '../../core/store/page/page.state';
   selector: 'ccf-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
   /** HTML class name */
@@ -25,5 +24,5 @@ export class HeaderComponent {
    *
    * @param page Page data.
    */
-  constructor(readonly page: PageState) { }
+  constructor(readonly page: PageState) {}
 }

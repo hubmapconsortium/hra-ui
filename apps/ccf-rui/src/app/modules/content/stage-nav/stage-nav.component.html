@@ -1,10 +1,14 @@
-<div class='dropdown-label' [class.dropdown]="isDropdownActive" #label>
+<div class="dropdown-label" [class.dropdown]="isDropdownActive" #label>
   <mat-label>Options</mat-label>
   <mat-icon>arrow_drop_down</mat-icon>
 </div>
 
-<div class='stage-options' [class.dropdowncontainer]="isDropdownActive"
-     [class.hidden]="isDropdownActive && isDropdownHidden" #options>
+<div
+  class="stage-options"
+  [class.dropdowncontainer]="isDropdownActive"
+  [class.hidden]="isDropdownActive && isDropdownHidden"
+  #options
+>
   <mat-radio-group class="input-group" [value]="side" (change)="updateSide($event.value)">
     <mat-radio-button value="left" class="nav-input">Left</mat-radio-button>
     <mat-radio-button value="right" class="nav-input">Right</mat-radio-button>
@@ -18,6 +22,6 @@
     [labels]="['Register', '3D\u00A0Preview']"
     [value]="view3D ? '3D\u00A0Preview' : 'Register'"
     (valueChange)="updateView($event !== 'Register')"
-  ></ccf-labeled-slide-toggle>
-
+  >
+  </ccf-labeled-slide-toggle>
 </div>

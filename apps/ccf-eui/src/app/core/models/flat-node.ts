@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/member-ordering */
 import { OntologyTreeNode } from 'ccf-database';
-
 
 /**
  * Node type used by ontology tree component.
@@ -43,5 +41,8 @@ export class FlatNode {
    * @param original The original ontology node object.
    * @param level The level of the new flat node in the tree.
    */
-  constructor(readonly original: OntologyTreeNode, readonly level: number) { }
+  constructor(
+    readonly original: OntologyTreeNode,
+    readonly level: number,
+  ) {}
 }

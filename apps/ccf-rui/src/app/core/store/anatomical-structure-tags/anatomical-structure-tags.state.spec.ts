@@ -14,7 +14,6 @@ import { ModelState } from './../model/model.state';
 import { SceneState } from './../scene/scene.state';
 import { AnatomicalStructureTagState } from './anatomical-structure-tags.state';
 
-
 function nextValue<T>(obs: Observable<T>): Promise<T> {
   return lastValueFrom(obs.pipe(take(1)));
 }
@@ -27,7 +26,7 @@ describe('AnatomicalStructureTagsState', () => {
       imports: [
         HttpClientTestingModule,
         NgxsDataPluginModule.forRoot(),
-        NgxsModule.forRoot([AnatomicalStructureTagState, SceneState, ModelState, GlobalConfigState])
+        NgxsModule.forRoot([AnatomicalStructureTagState, SceneState, ModelState, GlobalConfigState]),
       ],
       providers: [
         AnatomicalStructureTagState,
@@ -36,22 +35,22 @@ describe('AnatomicalStructureTagsState', () => {
         {
           provide: ModelState,
           useValue: {
-            modelChanged$: of([])
-          }
+            modelChanged$: of([]),
+          },
         },
         ReferenceDataState,
         GlobalConfigState,
         {
           provide: GLOBAL_CONFIG,
-          useValue: {}
+          useValue: {},
         },
         {
           provide: PageState,
           useValue: {
-            setHasChanges: () => undefined
-          }
-        }
-      ]
+            setHasChanges: () => undefined,
+          },
+        },
+      ],
     });
 
     TestBed.inject(Store).reset({
@@ -62,11 +61,11 @@ describe('AnatomicalStructureTagsState', () => {
           1: {
             id: 1,
             label: 'foo',
-            type: 'assigned'
-          }
-        }
+            type: 'assigned',
+          },
+        },
       },
-      globalConfig: {}
+      globalConfig: {},
     });
 
     state = TestBed.inject(AnatomicalStructureTagState);

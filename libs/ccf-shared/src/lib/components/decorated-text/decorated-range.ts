@@ -1,4 +1,3 @@
-
 /** A range which should have the specified classes and styles applied */
 export interface DecoratedRange {
   /** Start index of range (inclusive). Negative indicies are allowed. */

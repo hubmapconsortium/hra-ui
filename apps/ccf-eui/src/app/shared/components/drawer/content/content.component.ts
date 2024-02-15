@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 import { DrawerComponent } from '../drawer/drawer.component';
 import { Message, MessageService } from '../messages';
 
-
 /**
  * Component wrapping and providing animations for center content.
  */
@@ -18,10 +17,10 @@ import { Message, MessageService } from '../messages';
       state('false', style({ opacity: 1 })),
       state('true', style({ opacity: 0 })),
 
-      transition('false <=> true', animate('1s'))
-    ])
+      transition('false <=> true', animate('1s')),
+    ]),
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContentComponent implements OnDestroy {
   /** HTML class */
@@ -46,14 +45,15 @@ export class ContentComponent implements OnDestroy {
    * @param messageService Service used to send and receive event messages.
    * @param cdr The change detector reference.
    */
-  constructor(messageService: MessageService,
-              cdr: ChangeDetectorRef) {
+  constructor(messageService: MessageService, cdr: ChangeDetectorRef) {
     const messages = messageService.connect(this).getMessages();
-    this.subscriptions.add(messages.subscribe(msg => {
-      if (this.handleMessage(msg)) {
-        cdr.markForCheck();
-      }
-    }));
+    this.subscriptions.add(
+      messages.subscribe((msg) => {
+        if (this.handleMessage(msg)) {
+          cdr.markForCheck();
+        }
+      }),
+    );
   }
 
   /** Cleans up all subscriptions. */
@@ -100,8 +100,7 @@ export class ContentComponent implements OnDestroy {
    * @param width The width of the drawer if opened.
    * @param margin The margin size.
    */
-  private updateMargin(position: 'start' | 'end', opened: boolean,
-                       width: number, margin: number): void {
+  private updateMargin(position: 'start' | 'end', opened: boolean, width: number, margin: number): void {
     const offset = opened ? width + margin : margin;
     if (position === 'start') {
       this.leftMargin = offset;

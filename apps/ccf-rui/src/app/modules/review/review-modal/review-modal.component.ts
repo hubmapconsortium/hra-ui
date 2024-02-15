@@ -1,4 +1,4 @@
-import { Component, Inject, HostBinding, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MetaData } from '../../../core/models/meta-data';
 
@@ -20,7 +20,7 @@ interface ReviewModalData {
   selector: 'ccf-review-modal',
   templateUrl: './review-modal.component.html',
   styleUrls: ['./review-modal.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReviewModalComponent {
   /** HTML class name */
@@ -43,7 +43,7 @@ export class ReviewModalComponent {
    */
   constructor(
     public dialogRef: MatDialogRef<ReviewModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ReviewModalData
+    @Inject(MAT_DIALOG_DATA) public data: ReviewModalData,
   ) {
     this.metaData = data.metaData;
     this.registrationCallbackSet = data.registrationCallbackSet;
@@ -55,7 +55,7 @@ export class ReviewModalComponent {
   close(): void {
     document.getElementsByClassName('modal-animated')[0]?.classList.add('modal-animate-fade-out');
 
-    setTimeout(()=>{
+    setTimeout(() => {
       this.dialogRef.close();
     }, 250);
   }

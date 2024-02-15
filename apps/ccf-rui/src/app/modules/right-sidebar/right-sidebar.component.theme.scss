@@ -1,6 +1,5 @@
 @use '@angular/material' as mat;
 
-
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
   $primary: map-get($color-config, primary);
@@ -10,10 +9,11 @@
 
   .ccf-right-sidebar {
     background-color: mat.get-color-from-palette($background, sidebar-background);
-    scrollbar-color: mat.get-color-from-palette($foreground, scrollbar-thumb) mat.get-color-from-palette($background, sidebar-background);
+    scrollbar-color: mat.get-color-from-palette($foreground, scrollbar-thumb)
+      mat.get-color-from-palette($background, sidebar-background);
 
     &::-webkit-scrollbar-track {
-      background-color: mat.get-color-from-palette($background, sidebar-background)
+      background-color: mat.get-color-from-palette($background, sidebar-background);
     }
 
     mat-divider {

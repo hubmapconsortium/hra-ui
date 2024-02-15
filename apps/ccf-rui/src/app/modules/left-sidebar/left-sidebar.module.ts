@@ -12,8 +12,6 @@ import { VisibilityMenuModule } from '../../shared/components/visibility-menu/vi
 import { VisibilityToggleModule } from '../../shared/components/visibility-toggle/visibility-toggle.module';
 import { LeftSidebarComponent } from './left-sidebar.component';
 
-
-
 @NgModule({
   imports: [
     CommonModule,
@@ -27,9 +25,9 @@ import { LeftSidebarComponent } from './left-sidebar.component';
     ExtractionSetDropdownModule,
     OpacitySliderModule,
     VisibilityMenuModule,
-    VisibilityToggleModule
+    VisibilityToggleModule,
   ],
   declarations: [LeftSidebarComponent],
-  exports: [LeftSidebarComponent]
+  exports: [LeftSidebarComponent],
 })
-export class LeftSidebarModule { }
+export class LeftSidebarModule {}

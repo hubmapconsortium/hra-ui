@@ -1,6 +1,5 @@
 @use '@angular/material' as mat;
 
-
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
   $primary: map-get($color-config, primary);
@@ -10,19 +9,20 @@
 
   .ccf-spatial-search-keyboard-ui {
     .green {
-      color: #1DCC65;
+      color: #1dcc65;
     }
 
     .blue {
-      color: #2979FF;
+      color: #2979ff;
     }
 
     .red {
-      color: #D50000;
+      color: #d50000;
     }
 
     .key {
-      &:hover, &.highlighted {
+      &:hover,
+      &.highlighted {
         color: white;
       }
     }

@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular
   selector: 'ccf-details-label',
   templateUrl: './details-label.component.html',
   styleUrls: ['./details-label.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DetailsLabelComponent {
   /** HTML Class Name */
@@ -27,6 +27,6 @@ export class DetailsLabelComponent {
    * @returns the formatted string of items separated by a comma.
    */
   arrayToString(inputArray: string[]): string {
-    return inputArray.filter(item => !!item).join(', ');
+    return inputArray.filter((item) => !!item).join(', ');
   }
 }

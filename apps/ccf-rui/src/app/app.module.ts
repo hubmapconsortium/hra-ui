@@ -18,7 +18,6 @@ import { RegistrationModalModule } from './modules/registration-modal/registrati
 import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module';
 import { DrawerModule } from './shared/components/drawer/drawer.module';
 
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -32,28 +31,28 @@ import { DrawerModule } from './shared/components/drawer/drawer.module';
     RightSidebarModule,
     RegistrationModalModule,
     TrackingPopupModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
   declarations: [AppComponent, AppWebComponent],
   providers: [
     {
       provide: DEFAULT_THEME,
-      useValue: 'hubmap-theme-light'
+      useValue: 'hubmap-theme-light',
     },
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: {
-        floatLabel: true
-      }
-    }
-  ]
+        floatLabel: true,
+      },
+    },
+  ],
 })
 export class AppModule implements DoBootstrap {
-  constructor(private readonly injector: Injector) { }
+  constructor(private readonly injector: Injector) {}
 
   ngDoBootstrap(): void {
     const appElement = createCustomElement(AppWebComponent, {
-      injector: this.injector
+      injector: this.injector,
     });
 
     customElements.define('ccf-rui', appElement);

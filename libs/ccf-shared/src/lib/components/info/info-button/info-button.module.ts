@@ -8,6 +8,6 @@ import { InfoDialogModule } from '../info-dialog/info-dialog.module';
 @NgModule({
   declarations: [InfoButtonComponent],
   imports: [CommonModule, InfoDialogModule, MatIconModule, HttpClientModule],
-  exports: [InfoButtonComponent]
+  exports: [InfoButtonComponent],
 })
 export class InfoButtonModule {}

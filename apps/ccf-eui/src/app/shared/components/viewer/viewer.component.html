@@ -1,6 +1,5 @@
 <div class="toolbar">
-  <a mat-flat-button class="launch" target="_blank" rel="noopener noreferrer" [href]="safeUrl"
-     [disabled]="!safeUrl">
+  <a mat-flat-button class="launch" target="_blank" rel="noopener noreferrer" [href]="safeUrl" [disabled]="!safeUrl">
     <mat-icon class="icon">launch</mat-icon>
     <span class="text">Open in Portal</span>
   </a>
@@ -14,6 +13,12 @@
   <span class="text">Loading External Site</span>
 </div>
 
-<iframe *ngIf="safeUrl" class="frame" title="Portal Data Viewer" referrerpolicy="no-referrer" [attr.src]="safeUrl"
-        (load)="loading = false">
+<iframe
+  *ngIf="safeUrl"
+  class="frame"
+  title="Portal Data Viewer"
+  referrerpolicy="no-referrer"
+  [attr.src]="safeUrl"
+  (load)="loading = false"
+>
 </iframe>

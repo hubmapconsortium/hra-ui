@@ -1,14 +1,13 @@
+import { DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
+import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
 import { Injectable, Optional } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
-import { DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
-import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
 import { State } from '@ngxs/store';
 import { GlobalConfigState } from 'ccf-shared';
 
 import { GlobalConfig } from '../../services/config/config';
 import { DEFAULT_ICONS } from './default-icons';
-
 
 /**
  * Object definition for registering new svg icons.
@@ -35,7 +34,6 @@ export interface IconDefinition {
   html?: SafeHtml;
 }
 
-
 /**
  * State handling the registration of icons for use with `mat-icon`.
  */
@@ -49,24 +47,23 @@ export class IconRegistryState extends NgxsDataRepository<void> {
    * @param registry Material icon registry.
    * @param sanitizer Service used to sanitize default imported urls and html.
    */
-  constructor(@Optional() private registry: MatIconRegistry | null,
-              private readonly sanitizer: DomSanitizer,
-              private readonly globalConfig: GlobalConfigState<GlobalConfig>) {
+  constructor(
+    @Optional() private registry: MatIconRegistry | null,
+    private readonly sanitizer: DomSanitizer,
+    private readonly globalConfig: GlobalConfigState<GlobalConfig>,
+  ) {
     super();
   }
 
   override ngxsOnInit(): void {
     // Register html icons as they don't depend on baseHref
-    DEFAULT_ICONS
-      .filter(def => def.html !== undefined)
-      .map(def => ({ ...def, html: this.sanitizer.bypassSecurityTrustHtml(def.html!) }))
-      .forEach(def => this.registerIconImpl(def));
+    DEFAULT_ICONS.filter((def) => def.html !== undefined)
+      .map((def) => ({ ...def, html: this.sanitizer.bypassSecurityTrustHtml(def.html!) }))
+      .forEach((def) => this.registerIconImpl(def));
 
     // Use resolver for url icons
     this.registry?.addSvgIconResolver((name, namespace) => {
-      const def = DEFAULT_ICONS.find(
-        icon => (icon.name ?? '') === name && (icon.namespace ?? '') === namespace
-      );
+      const def = DEFAULT_ICONS.find((icon) => (icon.name ?? '') === name && (icon.namespace ?? '') === namespace);
 
       if (def?.url === undefined) {
         return null;
@@ -104,7 +101,7 @@ export class IconRegistryState extends NgxsDataRepository<void> {
 
     const registry = this.registry;
     const methodName = this.getMethodName(definition);
-    const method = registry[methodName] as (...arg: unknown[]) => void;
+    const method = registry[methodName as never] as (...arg: unknown[]) => void;
     const args = this.getArguments(definition);
 
     if (!method) {
@@ -146,6 +143,6 @@ export class IconRegistryState extends NgxsDataRepository<void> {
    */
   private getArguments({ name, namespace, url, html }: IconDefinition): unknown[] {
     const args: unknown[] = [namespace, name, url ?? html];
-    return args.filter(value => !!value);
+    return args.filter((value) => !!value);
   }
 }

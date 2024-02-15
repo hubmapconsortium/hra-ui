@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
 
-
 /**
  * Overlay component that displays a progress spinner and
  * an optional text description.
@@ -9,7 +8,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular
   selector: 'ccf-spinner-overlay',
   templateUrl: './spinner-overlay.component.html',
   styleUrls: ['./spinner-overlay.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpinnerOverlayComponent {
   /** HTML class */

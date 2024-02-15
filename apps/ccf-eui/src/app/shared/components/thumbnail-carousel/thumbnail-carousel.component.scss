@@ -11,7 +11,8 @@
     }
   }
 
-  .prev, .next {
+  .prev,
+  .next {
     display: flex;
     align-items: center;
 
@@ -39,7 +40,8 @@
       pointer-events: none;
     }
 
-    .swiper-button-disabled, .swiper-button-lock {
+    .swiper-button-disabled,
+    .swiper-button-lock {
       cursor: default;
       pointer-events: none;
 
@@ -75,7 +77,7 @@
       font-weight: bold;
 
       &:after {
-        content: "";
+        content: '';
 
         position: absolute;
         bottom: -0.125rem;

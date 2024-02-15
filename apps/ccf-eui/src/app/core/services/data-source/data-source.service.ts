@@ -1,13 +1,14 @@
 import { Injectable, ProviderToken } from '@angular/core';
 import {
-  ApiEndpointDataSourceService, CCFDatabaseDataSourceService, DataSourceLike,
+  ApiEndpointDataSourceService,
+  CCFDatabaseDataSourceService,
+  DataSourceLike,
   HybridCCfDatabaseDatasourceService,
-  InjectorDelegateDataSourceService
+  InjectorDelegateDataSourceService,
 } from 'ccf-shared';
 
 import { environment } from '../../../../environments/environment';
 import { WorkerDataSourceService } from './worker-data-source.service';
-
 
 export interface DelegateDataSourceOptions {
   dataSources?: [];
@@ -15,9 +16,8 @@ export interface DelegateDataSourceOptions {
   remoteApiEndpoint?: string;
 }
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DelegateDataSourceService extends InjectorDelegateDataSourceService<DelegateDataSourceOptions> {
   protected selectToken(config: DelegateDataSourceOptions): ProviderToken<DataSourceLike> {

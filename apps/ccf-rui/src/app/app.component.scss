@@ -72,7 +72,6 @@
           }
         }
 
-
         &.closed {
           height: 3rem;
           top: -2.9rem;
@@ -92,10 +91,7 @@
       .retracted-stage {
         height: calc(100% - 2.688rem - 14rem);
       }
-
     }
-
-
 
     ccf-content {
       // top: 0rem;
@@ -105,11 +101,8 @@
       transition-property: all;
       bottom: 1.5rem;
       z-index: 1;
-
     }
-
   }
-
 }
 
 ::ng-deep .mdc-snackbar__surface {

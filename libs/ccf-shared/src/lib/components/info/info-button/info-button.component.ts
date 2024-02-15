@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnDestroy,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 
@@ -43,14 +38,14 @@ export class InfoButtonComponent implements OnDestroy {
    */
   constructor(
     private readonly dialog: MatDialog,
-    private readonly infoButtonService: InfoButtonService
+    private readonly infoButtonService: InfoButtonService,
   ) {
     this.subscriptions.add(
       infoButtonService.panelContent.subscribe((data) => {
         if (data.content.length) {
           this.launchInfoDialog(data);
         }
-      })
+      }),
     );
   }
 
@@ -85,10 +80,6 @@ export class InfoButtonComponent implements OnDestroy {
    * Detects button click and updates panel data
    */
   onDialogButtonClick(): void {
-    this.infoButtonService.updateData(
-      this.documentationUrl,
-      this.videoID,
-      this.infoTitle
-    );
+    this.infoButtonService.updateData(this.documentationUrl, this.videoID, this.infoTitle);
   }
 }

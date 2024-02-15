@@ -5,18 +5,9 @@ import { OrganComponent } from './organ.component';
 import { BodyUiModule } from 'ccf-shared';
 import { SlideToggleModule } from '../slide-toggle/slide-toggle/slide-toggle.module';
 
-
 @NgModule({
-  declarations: [
-    OrganComponent
-  ],
-  imports: [
-    CommonModule,
-    BodyUiModule,
-    SlideToggleModule
-  ],
-  exports: [
-    OrganComponent
-  ]
+  declarations: [OrganComponent],
+  imports: [CommonModule, BodyUiModule, SlideToggleModule],
+  exports: [OrganComponent],
 })
-export class OrganModule { }
+export class OrganModule {}

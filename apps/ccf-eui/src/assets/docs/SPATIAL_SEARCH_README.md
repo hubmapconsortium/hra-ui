@@ -9,7 +9,7 @@
 
 # How to navigate 3D Space
 
-- Movement Options: 
+- Movement Options:
   - Keyboard: Use keys Q, A, W, S, D, and E to move the Probing Sphere.
   - Mouse: Click a Tissue Block to center the Probing Sphere on the block.
 - Resize: Increase or decrease the radius size of the Probing Sphere.

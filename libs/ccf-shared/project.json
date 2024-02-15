@@ -24,19 +24,13 @@
         "tsConfig": "libs/ccf-shared/tsconfig.spec.json",
         "karmaConfig": "libs/ccf-shared/karma.conf.js",
         "codeCoverage": true,
-        "codeCoverageExclude": [
-          "**/test.ts",
-          "**/*.module.ts"
-        ]
+        "codeCoverageExclude": ["**/test.ts", "**/*.module.ts"]
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "libs/ccf-shared/**/*.ts",
-          "libs/ccf-shared/**/*.html"
-        ]
+        "lintFilePatterns": ["libs/ccf-shared/**/*.ts", "libs/ccf-shared/**/*.html"]
       }
     },
     "compodoc": {
@@ -57,5 +51,6 @@
         }
       }
     }
-  }
+  },
+  "tags": ["ccf"]
 }

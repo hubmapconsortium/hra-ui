@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 
+import { FormControl, Validators } from '@angular/forms';
+import { SpatialEntityJsonLd } from 'ccf-body-ui';
 import { ModelState } from '../../../core/store/model/model.state';
 import { PageState, Person } from '../../../core/store/page/page.state';
 import { RegistrationState } from '../../../core/store/registration/registration.state';
-import { FormControl, Validators } from '@angular/forms';
-import { SpatialEntityJsonLd } from 'ccf-body-ui';
 
 /**
  * Right side registration menu
@@ -13,8 +13,7 @@ import { SpatialEntityJsonLd } from 'ccf-body-ui';
   selector: 'ccf-registration-metadata',
   templateUrl: './registration-metadata.component.html',
   styleUrls: ['./registration-metadata.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
-
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegistrationMetadataComponent {
   /** Emits when user has uploaded registration */
@@ -43,11 +42,11 @@ export class RegistrationMetadataComponent {
     readonly registration: RegistrationState,
     readonly page: PageState,
   ) {
-    page.user$.subscribe(user => {
+    page.user$.subscribe((user) => {
       this.checkNameValid(user);
       this.orcId = page.uriToOrcid(user.orcidId);
     });
-    registration.state$.subscribe(reg => {
+    registration.state$.subscribe((reg) => {
       this.uploadText = reg.initialRegistration ? 'File(s) uploaded' : 'No file(s) uploaded';
     });
   }

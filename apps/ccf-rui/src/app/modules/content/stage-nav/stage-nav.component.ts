@@ -1,8 +1,15 @@
 import {
-  ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostBinding, HostListener, Input, Output, ViewChild,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  HostListener,
+  Input,
+  Output,
+  ViewChild,
 } from '@angular/core';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-
 
 /** Valid values for side. */
 export type Side = 'left' | 'right' | 'anterior' | 'posterior' | '3D';
@@ -12,7 +19,7 @@ export type Side = 'left' | 'right' | 'anterior' | 'posterior' | '3D';
   selector: 'ccf-stage-nav',
   templateUrl: './stage-nav.component.html',
   styleUrls: ['./stage-nav.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StageNavComponent {
   /** HTML class name */
@@ -64,7 +71,7 @@ export class StageNavComponent {
    *
    * @param ga Analytics service
    */
-  constructor(private readonly ga: GoogleAnalyticsService) { }
+  constructor(private readonly ga: GoogleAnalyticsService) {}
 
   /**
    * Listens to document click event

@@ -10,10 +10,10 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
-      require('@angular-devkit/build-angular/plugins/karma')
+      require('@angular-devkit/build-angular/plugins/karma'),
     ],
     client: {
-      clearContext: false // leave Jasmine Spec Runner output visible in browser
+      clearContext: false, // leave Jasmine Spec Runner output visible in browser
     },
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, '../../coverage/ccf-body-ui'),
@@ -22,9 +22,9 @@ module.exports = function (config) {
       thresholds: {
         emitWarning: false,
         global: {
-          lines: 20
+          lines: 20,
         },
-      }
+      },
     },
     reporters: ['progress', 'kjhtml', 'coverage-istanbul'],
     port: 9876,
@@ -36,8 +36,8 @@ module.exports = function (config) {
     customLaunchers: {
       ChromeHeadlessWSL: {
         base: 'ChromeHeadless',
-        flags: ['--no-sandbox', '--disable-features=VizDisplayCompositor']
-      }
-    }
+        flags: ['--no-sandbox', '--disable-features=VizDisplayCompositor'],
+      },
+    },
   });
 };

@@ -6,11 +6,9 @@ import { FlatNode } from '../../../core/models/flat-node';
 import { OntologyTreeComponent } from './ontology-tree.component';
 import { OntologyTreeModule } from './ontology-tree.module';
 
-
 function fromPartial<T>(partial: RecursivePartial<T>): T {
   return partial as T;
 }
-
 
 describe('OntologyTreeComponent', () => {
   const node1 = fromPartial<OntologyTreeNode>({ id: '1', parent: '2', label: 'label', children: ['child1', 'child2'] });
@@ -47,36 +45,42 @@ describe('OntologyTreeComponent', () => {
 
   it('should set children', async () => {
     const { instance } = await shallow.render();
-    instance.getChildren = ()=>[];
+    instance.getChildren = () => [];
   });
   it('should set and get occurenceData', async () => {
     const { instance } = await shallow.render({});
     instance.occurenceData = null as never;
     expect(instance.occurenceData).toEqual({});
-    instance.occurenceData = { 'node': 1 };
-    expect(instance.occurenceData).toEqual({ 'node': 1 });
+    instance.occurenceData = { node: 1 };
+    expect(instance.occurenceData).toEqual({ node: 1 });
   });
 
   it('should set and get termdata', async () => {
     const { instance } = await shallow.render();
     instance.termData = null as never;
     expect(instance.termData).toEqual({});
-    instance.termData = { 'node': 1 };
+    instance.termData = { node: 1 };
     expect(instance.termData['node']).toEqual(1);
   });
 
   it('should call selectByIDs when rootNode changes', async () => {
     const { instance } = await shallow.render({ bind: { rootNode: '1', nodes: [node1, node2] } });
     spyOn(instance, 'selectByIDs').and.callThrough();
-    const changes: SimpleChanges = { 'rootNode': { currentValue: '2', previousValue: '1', isFirstChange: () => true, firstChange: true } };
+    const changes: SimpleChanges = {
+      rootNode: { currentValue: '2', previousValue: '1', isFirstChange: () => true, firstChange: true },
+    };
     instance.ngOnChanges(changes);
     expect(instance.selectByIDs).toHaveBeenCalledWith(['2']);
   });
 
   it('should call selectByIDs when ontologyFilter changes', async () => {
-    const { instance } = await shallow.render({ bind: { ontologyFilter: ['1'], rootNode: '1', nodes: [node1, node2] } });
+    const { instance } = await shallow.render({
+      bind: { ontologyFilter: ['1'], rootNode: '1', nodes: [node1, node2] },
+    });
     spyOn(instance, 'selectByIDs').and.callThrough();
-    const changes: SimpleChanges = { 'ontologyFilter': { currentValue: ['2'], previousValue: '1', isFirstChange: () => true, firstChange: true } };
+    const changes: SimpleChanges = {
+      ontologyFilter: { currentValue: ['2'], previousValue: '1', isFirstChange: () => true, firstChange: true },
+    };
     instance.ngOnChanges(changes);
     expect(instance.selectByIDs).toHaveBeenCalledWith(['2']);
   });

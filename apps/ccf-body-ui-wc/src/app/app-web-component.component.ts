@@ -1,5 +1,4 @@
 /* eslint-disable @angular-eslint/no-output-on-prefix */
-/* eslint-disable @typescript-eslint/naming-convention */
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { GlobalConfigState } from 'ccf-shared';
 import { BaseWebComponent, GenericGlobalConfig } from 'ccf-shared/web-components';
@@ -44,7 +43,7 @@ export class AppWebComponent extends BaseWebComponent {
 
       initialConfig: {
         ...environment.dbOptions,
-        ...globalThis['dbOptions'],
+        ...(globalThis['dbOptions' as never] as object),
       },
       parse: {
         data: toJsonLd,

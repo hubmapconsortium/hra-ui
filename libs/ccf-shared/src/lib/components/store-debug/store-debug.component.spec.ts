@@ -4,7 +4,6 @@ import { Shallow } from 'shallow-render';
 import { StoreDebugComponent } from './store-debug.component';
 import { StoreDebugModule } from './store-debug.module';
 
-
 describe('StoreDebugComponent', () => {
   let shallow: Shallow<StoreDebugComponent>;
 
@@ -27,7 +26,7 @@ describe('StoreDebugComponent', () => {
 
   it('excludes state with no data', async () => {
     const { instance, inject } = await shallow.render();
-    inject(Store).reset({ test: { } });
+    inject(Store).reset({ test: {} });
 
     expect(instance.data).toEqual([]);
   });

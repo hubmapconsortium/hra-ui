@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatInputModule as MatInputModule } from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { OntologyTreeNode } from 'ccf-database';
 import { of } from 'rxjs';
 import { RecursivePartial, Shallow } from 'shallow-render';
@@ -9,7 +9,6 @@ import { RecursivePartial, Shallow } from 'shallow-render';
 import { OntologySearchService, SearchResult } from '../../../core/services/ontology-search/ontology-search.service';
 import { OntologySearchComponent } from './ontology-search.component';
 import { OntologySearchModule } from './ontology-search.module';
-
 
 @NgModule({})
 class EmptyModule {}
@@ -84,7 +83,7 @@ describe('OntologySearchComponent', () => {
   it('should emit the node when selected', async () => {
     const node = fromPartial<OntologyTreeNode>({ label: 'label' });
     const event = fromPartial<MatAutocompleteSelectedEvent>({
-      option: { value: { node } }
+      option: { value: { node } },
     });
     const { instance, outputs } = await shallow.render({ bind: {} });
 
@@ -94,7 +93,7 @@ describe('OntologySearchComponent', () => {
 
   it('should emit the node when selected given that node is undefined', async () => {
     const event = fromPartial<MatAutocompleteSelectedEvent>({
-      option: { value: undefined }
+      option: { value: undefined },
     });
     const { instance, outputs } = await shallow.render({ bind: {} });
 
@@ -105,7 +104,7 @@ describe('OntologySearchComponent', () => {
   it('should handle the node selection', async () => {
     const node = fromPartial<OntologyTreeNode>({ label: 'label' });
     const event = fromPartial<MatAutocompleteSelectedEvent>({
-      option: { value: { node } }
+      option: { value: { node } },
     });
     const { instance, findComponent } = await shallow.render({ bind: {} });
     const matComplete = findComponent(MatAutocomplete);

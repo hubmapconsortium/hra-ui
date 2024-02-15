@@ -14,7 +14,7 @@ export interface SlicesConfig {
 /** Default values for slices config. */
 const DEFAULT_SLICES_CONFIG: SlicesConfig = {
   thickness: NaN,
-  numSlices: NaN
+  numSlices: NaN,
 };
 
 /**
@@ -24,7 +24,7 @@ const DEFAULT_SLICES_CONFIG: SlicesConfig = {
   selector: 'ccf-slices-input',
   templateUrl: './slices-input.component.html',
   styleUrls: ['./slices-input.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SlicesInputComponent {
   /** HTML class name */
@@ -52,7 +52,7 @@ export class SlicesInputComponent {
    *
    * @param ga Analytics service
    */
-  constructor(private readonly ga: GoogleAnalyticsService) { }
+  constructor(private readonly ga: GoogleAnalyticsService) {}
 
   /**
    * Limits the length of the input if needed and updates values when an input changes
@@ -63,7 +63,7 @@ export class SlicesInputComponent {
   updateSlicesData(input: KeyboardEvent, key: string): void {
     const { value: strValue } = input.target as HTMLInputElement;
     this.slicesConfig = { ...this.slicesConfig, [key]: strValue !== '' ? +strValue : NaN };
-    this.ga.event('slice_config_update', 'slice_input', key, this.slicesConfig[key]);
+    this.ga.event('slice_config_update', 'slice_input', key, this.slicesConfig[key as never]);
     this.slicesConfigChange.emit(this.slicesConfig);
   }
 

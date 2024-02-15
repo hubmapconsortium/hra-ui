@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
+import { NgModule } from '@angular/core';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsModule } from '@ngxs/store';
 import { GlobalConfigState } from 'ccf-shared';

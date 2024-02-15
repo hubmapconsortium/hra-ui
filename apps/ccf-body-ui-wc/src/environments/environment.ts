@@ -6,24 +6,21 @@
 export const environment = {
   production: false,
   disableDbWorker: true,
-  acceptableViewerDomains: [
-    'https://portal.hubmapconsortium.org',
-    'https://portal.test.hubmapconsortium.org'
-  ],
+  acceptableViewerDomains: ['https://portal.hubmapconsortium.org', 'https://portal.test.hubmapconsortium.org'],
   dbOptions: {
     ccfOwlUrl: 'https://apps.humanatlas.io/hra-api/v1/ccf.owl.n3store.json',
     ccfContextUrl: 'https://hubmapconsortium.github.io/ccf-ontology/ccf-context.jsonld',
     dataSources: [
       'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@1/assets/kpmp/data/rui_locations.jsonld',
-      'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@1/assets/sparc/data/rui_locations.jsonld'
+      'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@1/assets/sparc/data/rui_locations.jsonld',
     ],
     hubmapDataService: 'search-api',
     hubmapPortalUrl: 'https://portal.hubmapconsortium.org/',
     hubmapDataUrl: 'https://search.api.hubmapconsortium.org/v3/entities/search',
     hubmapAssetsUrl: 'https://assets.hubmapconsortium.org',
-    hubmapToken: localStorage.getItem('HUBMAP_TOKEN') ?? ''
+    hubmapToken: localStorage.getItem('HUBMAP_TOKEN') ?? '',
   },
-  googleAnalyticsToken: 'G-B3DT7XPMRT'
+  googleAnalyticsToken: 'G-B3DT7XPMRT',
 };
 
 /*

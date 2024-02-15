@@ -1,6 +1,5 @@
 @use '@angular/material' as mat;
 
-
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
   $primary: map-get($color-config, primary);
@@ -12,7 +11,8 @@
     color: map-get($foreground, text);
   }
 
-  .button, .close-button {
+  .button,
+  .close-button {
     background-color: map-get($background, background);
 
     &:hover {

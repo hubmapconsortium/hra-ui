@@ -13,8 +13,8 @@ describe('SlicesInputComponent', () => {
   it('should update the values object with the passed in value', async () => {
     const { instance, outputs } = await shallow.render({
       bind: {
-        slicesConfig: { thickness: NaN, numSlices: NaN }
-      }
+        slicesConfig: { thickness: NaN, numSlices: NaN },
+      },
     });
 
     const mockEvent = { target: { value: 20 } } as unknown as KeyboardEvent;
@@ -27,8 +27,8 @@ describe('SlicesInputComponent', () => {
   it('should change all values to defaults when refreshSlices is called', async () => {
     const { instance, outputs } = await shallow.render({
       bind: {
-        slicesConfig: { thickness: 100, numSlices: 50 }
-      }
+        slicesConfig: { thickness: 100, numSlices: 50 },
+      },
     });
 
     instance.refreshSlices();

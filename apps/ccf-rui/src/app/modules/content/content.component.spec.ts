@@ -9,26 +9,17 @@ import { SceneState } from '../../core/store/scene/scene.state';
 import { ContentComponent } from './content.component';
 import { ContentModule } from './content.module';
 
-
 describe('ContentComponent', () => {
   let shallow: Shallow<ContentComponent>;
 
   beforeEach(() => {
-    const mockModelState = jasmine.createSpyObj<ModelState>(
-      'ModelState', ['setViewType', 'setViewSide']
-    );
+    const mockModelState = jasmine.createSpyObj<ModelState>('ModelState', ['setViewType', 'setViewSide']);
 
-    const mockPageState = jasmine.createSpyObj<PageState>(
-      'PageStage', ['setUserName']
-    );
+    const mockPageState = jasmine.createSpyObj<PageState>('PageStage', ['setUserName']);
 
-    const mockRegistrationState = jasmine.createSpyObj<RegistrationState>(
-      'RegistrationState', ['register']
-    );
+    const mockRegistrationState = jasmine.createSpyObj<RegistrationState>('RegistrationState', ['register']);
 
-    const mockSceneState = jasmine.createSpyObj<SceneState>(
-      'SceneState', ['nodes$']
-    );
+    const mockSceneState = jasmine.createSpyObj<SceneState>('SceneState', ['nodes$']);
 
     shallow = new Shallow(ContentComponent, ContentModule)
       .mock(ModelState, {
@@ -37,15 +28,15 @@ describe('ContentComponent', () => {
         viewSide$: of('anterior' as ViewSide),
         position$: of({ x: 0, y: 0, z: 0 }),
         organDimensions$: of({ x: 0, y: 0, z: 0 }),
-        defaultPosition: { x: 0, y: 0, z: 0 }
+        defaultPosition: { x: 0, y: 0, z: 0 },
       })
       .mock(PageState, mockPageState)
       .mock(RegistrationState, {
-        ...mockRegistrationState
+        ...mockRegistrationState,
       })
       .mock(SceneState, {
         ...mockSceneState,
-        nodes$: from([])
+        nodes$: from([]),
       });
   });
 
@@ -79,9 +70,7 @@ describe('ContentComponent', () => {
       // Constructors can't be arrow functions
       spyOn(resizeSensorModule, 'ResizeSensor').and.callFake(function (_el, callback) {
         sensorCallback = callback;
-        return jasmine.createSpyObj<resizeSensorModule.ResizeSensor>(
-          'ResizeSensor', ['detach']
-        );
+        return jasmine.createSpyObj<resizeSensorModule.ResizeSensor>('ResizeSensor', ['detach']);
       });
     });
 

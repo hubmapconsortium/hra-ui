@@ -1,9 +1,15 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnDestroy } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  HostBinding,
+  OnDestroy,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { DrawerComponent } from '../drawer/drawer.component';
 import { Message, MessageService } from '../messages';
-
 
 /**
  * Implements open/close button for the side drawers.
@@ -12,7 +18,7 @@ import { Message, MessageService } from '../messages';
   selector: 'ccf-drawer-toggle-button',
   templateUrl: './toggle-button.component.html',
   styleUrls: ['./toggle-button.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToggleButtonComponent implements AfterViewInit, OnDestroy {
   /** HTML class */
@@ -28,7 +34,7 @@ export class ToggleButtonComponent implements AfterViewInit, OnDestroy {
     let expand = 'arrow_right';
     let collapse = 'arrow_left';
     if (this.position === 'end') {
-      ([expand, collapse] = [collapse, expand]);
+      [expand, collapse] = [collapse, expand];
     }
 
     return this.opened ? collapse : expand;
@@ -48,15 +54,19 @@ export class ToggleButtonComponent implements AfterViewInit, OnDestroy {
    * @param messageService Service used to send and receive event messages.
    * @param cdr The change detector reference.
    */
-  constructor(private drawer: DrawerComponent,
-              messageService: MessageService,
-              private cdr: ChangeDetectorRef) {
+  constructor(
+    private drawer: DrawerComponent,
+    messageService: MessageService,
+    private cdr: ChangeDetectorRef,
+  ) {
     const channel = messageService.connect(this);
-    this.subscriptions.add(channel.getMessagesFromSource(drawer).subscribe(msg => {
-      if (this.handleMessage(msg)) {
-        cdr.markForCheck();
-      }
-    }));
+    this.subscriptions.add(
+      channel.getMessagesFromSource(drawer).subscribe((msg) => {
+        if (this.handleMessage(msg)) {
+          cdr.markForCheck();
+        }
+      }),
+    );
   }
 
   /**

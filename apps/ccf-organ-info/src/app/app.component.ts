@@ -74,21 +74,21 @@ export class AppComponent implements AfterViewInit {
   constructor(
     lookup: OrganLookupService,
     private readonly ga: GoogleAnalyticsService,
-    private readonly configState: GlobalConfigState<GlobalConfig>
+    private readonly configState: GlobalConfigState<GlobalConfig>,
   ) {
     this.organInfo$ = configState.config$.pipe(
       tap((config) => (this.latestConfig = config)),
       switchMap((config) =>
-        lookup.getOrganInfo(config.organIri ?? '', config.side?.toLowerCase?.() as OrganInfo['side'], config.sex)
+        lookup.getOrganInfo(config.organIri ?? '', config.side?.toLowerCase?.() as OrganInfo['side'], config.sex),
       ),
       tap((info) => this.logOrganLookup(info)),
       tap((info) => (this.latestOrganInfo = info)),
-      shareReplay(1)
+      shareReplay(1),
     );
 
     this.organ$ = this.organInfo$.pipe(
       switchMap((info) =>
-        info ? lookup.getOrgan(info, info.hasSex ? this.latestConfig.sex : undefined) : of(undefined)
+        info ? lookup.getOrgan(info, info.hasSex ? this.latestConfig.sex : undefined) : of(undefined),
       ),
       tap((organ) => {
         if (organ && this.latestOrganInfo) {
@@ -101,38 +101,42 @@ export class AppComponent implements AfterViewInit {
           }
         }
       }),
-      shareReplay(1)
+      shareReplay(1),
     );
 
     this.scene$ = this.organ$.pipe(
       switchMap((organ) =>
         organ && this.latestOrganInfo
           ? lookup.getOrganScene(this.latestOrganInfo, organ.sex)
-          : of(EMPTY_SCENE as SpatialSceneNode[])
-      )
+          : of(EMPTY_SCENE as SpatialSceneNode[]),
+      ),
     );
 
     this.stats$ = combineLatest([this.organ$, this.donorLabel$]).pipe(
       switchMap(([organ, donorLabel]) =>
-        organ && this.latestOrganInfo ?
-          lookup.getOrganStats(this.latestOrganInfo, organ.sex).pipe(
-            map(agg =>
-              agg.map(result =>
-                donorLabel && result.label === 'Donors' ?
-                  { ...result, label: donorLabel } : result
+        organ && this.latestOrganInfo
+          ? lookup
+              .getOrganStats(this.latestOrganInfo, organ.sex)
+              .pipe(
+                map((agg) =>
+                  agg.map((result) =>
+                    donorLabel && result.label === 'Donors' ? { ...result, label: donorLabel } : result,
+                  ),
+                ),
               )
-            )
-          ) : of([])
-      )
+          : of([]),
+      ),
     );
 
     this.statsLabel$ = this.organ$.pipe(
       map((organ) => this.makeStatsLabel(this.latestOrganInfo, organ?.sex)),
-      startWith('Loading...')
+      startWith('Loading...'),
     );
 
     this.blocks$ = this.organ$.pipe(
-      switchMap((organ) => (organ && this.latestOrganInfo ? lookup.getBlocks(this.latestOrganInfo, organ.sex) : of([])))
+      switchMap((organ) =>
+        organ && this.latestOrganInfo ? lookup.getBlocks(this.latestOrganInfo, organ.sex) : of([]),
+      ),
     );
   }
 

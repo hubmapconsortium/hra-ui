@@ -2,15 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "types": [
-      "jasmine"
-    ]
+    "types": ["jasmine"]
   },
-  "files": [
-    "./test.ts"
-  ],
-  "include": [
-    "**/*.spec.ts",
-    "**/*.d.ts"
-  ]
+  "files": ["./test.ts"],
+  "include": ["**/*.spec.ts", "**/*.d.ts"]
 }

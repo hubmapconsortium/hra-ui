@@ -45,7 +45,7 @@ export class SpatialSearchConfigBehaviorComponent implements OnDestroy {
     private readonly dialogRef: MatDialogRef<SpatialSearchConfigComponent>,
     private readonly spatialSearchDialog: MatDialog,
     private readonly infoService: InfoButtonService,
-    private readonly globalConfig: GlobalConfigState<{ baseHref: string }>
+    private readonly globalConfig: GlobalConfigState<{ baseHref: string }>,
   ) {
     this.globalConfig.getOption('baseHref').subscribe((ref) => {
       this.baseHref = ref;
@@ -79,7 +79,7 @@ export class SpatialSearchConfigBehaviorComponent implements OnDestroy {
     this.infoService.updateData(
       this.baseHref + 'assets/docs/SPATIAL_SEARCH_README.md',
       'UfxMpzatowE',
-      'Spatial Search'
+      'Spatial Search',
     );
     const panelContent$ = this.infoService.panelContent.asObservable();
     this.dialogSubs.add(
@@ -88,7 +88,7 @@ export class SpatialSearchConfigBehaviorComponent implements OnDestroy {
           this.panelData = data;
           this.launchInfoDialog(this.panelData);
         }
-      })
+      }),
     );
   }
 

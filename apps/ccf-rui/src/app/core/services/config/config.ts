@@ -2,7 +2,6 @@ import { InjectionToken } from '@angular/core';
 import { GlobalsService } from 'ccf-shared';
 import { ObservableInput } from 'rxjs';
 
-
 export interface GlobalConfig {
   baseHref?: string;
   editRegistration?: Record<string, unknown>;
@@ -42,9 +41,7 @@ declare global {
   let ruiConfig: GlobalConfig;
 }
 
-export const GLOBAL_CONFIG = new InjectionToken<GlobalConfig>(
-  'Global configuration object'
-);
+export const GLOBAL_CONFIG = new InjectionToken<GlobalConfig>('Global configuration object');
 
 export function globalConfigFactory(globals: GlobalsService): GlobalConfig {
   return globals.get('ruiConfig', { user: { firstName: '', lastName: '' } });

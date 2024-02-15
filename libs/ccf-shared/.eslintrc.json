@@ -1,22 +1,9 @@
 {
-  "extends": "../../.eslintrc.json",
-  "ignorePatterns": [
-    "!**/*"
-  ],
+  "extends": ["../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*"],
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
-      "parserOptions": {
-        "project": [
-          "libs/ccf-shared/tsconfig.*?.json"
-        ],
-        "createDefaultProgram": true
-      },
-      "plugins": [
-        "eslint-plugin-unicorn"
-      ],
+      "files": ["*.ts"],
       "rules": {
         "@angular-eslint/component-selector": [
           "error",
@@ -33,30 +20,13 @@
             "prefix": "ccf",
             "style": "camelCase"
           }
-        ],
-        "@typescript-eslint/explicit-member-accessibility": [
-          "off",
-          {
-            "accessibility": "explicit"
-          }
-        ],
-        "@typescript-eslint/no-explicit-any": "error",
-        "@typescript-eslint/no-non-null-assertion": "off",
-        "@typescript-eslint/no-require-imports": "error",
-        "arrow-parens": [
-          "off",
-          "always"
-        ],
-        "import/order": "off",
-        "no-sequences": "error",
-        "no-sparse-arrays": "error",
-        "unicorn/filename-case": "error"
-      }
+        ]
+      },
+      "extends": ["plugin:@nx/angular", "plugin:@angular-eslint/template/process-inline-templates"]
     },
     {
-      "files": [
-        "*.html"
-      ],
+      "files": ["*.html"],
+      "extends": ["plugin:@nx/angular-template"],
       "rules": {}
     }
   ]

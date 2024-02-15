@@ -21,9 +21,9 @@ import { FiltersContentComponent } from './filters-content.component';
     DropdownModule,
     DualSliderModule,
     SpatialSearchListModule,
-    RunSpatialSearchModule
+    RunSpatialSearchModule,
   ],
   declarations: [FiltersContentComponent],
-  exports: [FiltersContentComponent]
+  exports: [FiltersContentComponent],
 })
-export class FiltersContentModule { }
+export class FiltersContentModule {}

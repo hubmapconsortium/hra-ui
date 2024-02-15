@@ -10,7 +10,7 @@ describe('FiltersPopoverComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [NgxsModule.forRoot([], {})]
+      imports: [NgxsModule.forRoot([], {})],
     });
 
     shallow = new Shallow(FiltersPopoverComponent, FiltersPopoverModule);

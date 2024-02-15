@@ -8,10 +8,9 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
   selector: 'ccf-dropdown',
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DropdownComponent {
-
   /**
    * What the component is selecting for.
    */
@@ -42,7 +41,7 @@ export class DropdownComponent {
    *
    * @param ga Analytics service
    */
-  constructor(private readonly ga: GoogleAnalyticsService) { }
+  constructor(private readonly ga: GoogleAnalyticsService) {}
 
   /**
    * Controls fade-in effect after dropdown menu opens

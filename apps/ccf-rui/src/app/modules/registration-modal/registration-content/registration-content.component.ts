@@ -6,7 +6,6 @@ import { map } from 'rxjs/operators';
 import { ModelState, RUI_ORGANS } from '../../../core/store/model/model.state';
 import { PageState, Person } from '../../../core/store/page/page.state';
 
-
 /**
  * Component containing content of the initial registration modal
  */
@@ -14,16 +13,14 @@ import { PageState, Person } from '../../../core/store/page/page.state';
   selector: 'ccf-registration-content',
   templateUrl: './registration-content.component.html',
   styleUrls: ['./registration-content.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegistrationContentComponent {
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-registration-content';
 
   /** Current sex in the model state */
-  readonly sexByLabel$ = this.model.sex$.pipe(
-    map(sex => sex === 'female' ? 'Female' : 'Male')
-  );
+  readonly sexByLabel$ = this.model.sex$.pipe(map((sex) => (sex === 'female' ? 'Female' : 'Male')));
 
   /** List of selectable organs */
   organList = RUI_ORGANS;
@@ -61,19 +58,19 @@ export class RegistrationContentComponent {
     readonly page: PageState,
     readonly model: ModelState,
     public dialogRef: MatDialogRef<RegistrationContentComponent>,
-    cdr: ChangeDetectorRef
+    cdr: ChangeDetectorRef,
   ) {
     this.registrationSelected = false;
-    page.user$.subscribe(user => {
+    page.user$.subscribe((user) => {
       this.checkNameValid(user);
       this.orcidValid = page.isOrcidValid();
       cdr.markForCheck();
     });
-    model.organ$.subscribe(organ => {
+    model.organ$.subscribe((organ) => {
       this.organSelected = organ.src !== '';
       cdr.markForCheck();
     });
-    this.sexByLabel$.subscribe(sex => {
+    this.sexByLabel$.subscribe((sex) => {
       this.setSexFromLabel(sex);
       cdr.markForCheck();
     });

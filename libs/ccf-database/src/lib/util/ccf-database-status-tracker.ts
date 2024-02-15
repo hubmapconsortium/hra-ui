@@ -1,5 +1,5 @@
-import { DatabaseStatus } from '../interfaces';
 import { CCFDatabase } from '../ccf-database';
+import { DatabaseStatus } from '../interfaces';
 
 export class CCFDatabaseStatusTracker {
   status: 'Ready' | 'Loading' | 'Error' = 'Loading';
@@ -15,16 +15,13 @@ export class CCFDatabaseStatusTracker {
     return {
       status: this.status,
       message: this.message,
-      checkback:
-        this.status === 'Ready' || this.status === 'Error'
-          ? 60 * 60 * 1000
-          : 2000,
+      checkback: this.status === 'Ready' || this.status === 'Error' ? 60 * 60 * 1000 : 2000,
       loadTime: this.loadTime,
       timestamp: this.timestamp,
     };
   }
 
-  private connect(): Promise<void> {
+  private async connect(): Promise<void> {
     this.status = 'Loading';
     this.message = 'Loading database';
 

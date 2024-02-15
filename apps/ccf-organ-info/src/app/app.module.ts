@@ -9,25 +9,17 @@ import { OrganModule } from './features/organ/organ.module';
 import { LinkCardsModule } from './modules/link-cards/link-cards.module';
 import { StatsListModule } from './modules/stats-list/stats-list.module';
 
-
-
 @NgModule({
-  imports: [
-    BrowserModule,
-    CoreModule,
-    LinkCardsModule,
-    StatsListModule,
-    OrganModule
-  ],
+  imports: [BrowserModule, CoreModule, LinkCardsModule, StatsListModule, OrganModule],
   declarations: [AppComponent, AppWebComponent],
-  providers: []
+  providers: [],
 })
 export class AppModule implements DoBootstrap {
-  constructor(private readonly injector: Injector) { }
+  constructor(private readonly injector: Injector) {}
 
   ngDoBootstrap(): void {
     const appElement = createCustomElement(AppWebComponent, {
-      injector: this.injector
+      injector: this.injector,
     });
 
     customElements.define('ccf-organ-info', appElement);

@@ -6,7 +6,6 @@ import { ModelState } from '../../core/store/model/model.state';
 import { PageState } from '../../core/store/page/page.state';
 import { RegistrationState } from '../../core/store/registration/registration.state';
 
-
 /**
  * The left sidebar
  */
@@ -14,7 +13,7 @@ import { RegistrationState } from '../../core/store/registration/registration.st
   selector: 'ccf-left-sidebar',
   templateUrl: './left-sidebar.component.html',
   styleUrls: ['./left-sidebar.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LeftSidebarComponent {
   /** HTML class name */
@@ -23,9 +22,7 @@ export class LeftSidebarComponent {
   /** Whether or not the initial registration modal has been closed */
   @Input() modalClosed = false;
 
-  readonly organSelected$ = this.model.organ$.pipe(
-    map(organ => organ === undefined ? false : true)
-  );
+  readonly organSelected$ = this.model.organ$.pipe(map((organ) => (organ === undefined ? false : true)));
 
   /**
    * Variable that keeps track of the extraction site tooltip to display on
@@ -36,8 +33,8 @@ export class LeftSidebarComponent {
   constructor(
     readonly page: PageState,
     readonly model: ModelState,
-    readonly registration: RegistrationState
-  ) { }
+    readonly registration: RegistrationState,
+  ) {}
 
   /**
    * Updates extraction site tooltip to either the VisibilityItem passed in's

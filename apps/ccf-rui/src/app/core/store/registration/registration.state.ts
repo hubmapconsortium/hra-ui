@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { Immutable } from '@angular-ru/common/typings';
 import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
@@ -13,6 +12,7 @@ import { Observable, combineLatest } from 'rxjs';
 import { distinctUntilChanged, map, startWith, switchMap, take, tap, throttleTime } from 'rxjs/operators';
 import { v4 as uuidV4 } from 'uuid';
 
+import { isEqual } from 'lodash';
 import { Tag } from '../../models/anatomical-structure-tag';
 import { MetaData } from '../../models/meta-data';
 import { GlobalConfig } from '../../services/config/config';
@@ -20,8 +20,6 @@ import { AnatomicalStructureTagState } from '../anatomical-structure-tags/anatom
 import { ModelState, ModelStateModel, RUI_ORGANS, XYZTriplet } from '../model/model.state';
 import { PageState, PageStateModel } from '../page/page.state';
 import { ReferenceDataState } from '../reference-data/reference-data.state';
-import { isEqual } from 'lodash';
-
 
 /**
  * Registration state model
@@ -39,7 +37,6 @@ export interface RegistrationStateModel {
 
 const JSONLD_THROTTLE_DURATION = 100;
 
-
 /**
  * Data for model registrations
  */
@@ -49,18 +46,18 @@ const JSONLD_THROTTLE_DURATION = 100;
   defaults: {
     useRegistrationCallback: false,
     displayErrors: false,
-    registrations: []
-  }
+    registrations: [],
+  },
 })
 @Injectable()
 export class RegistrationState extends NgxsImmutableDataRepository<RegistrationStateModel> {
-  readonly displayErrors$ = this.state$.pipe(map(x => x?.displayErrors));
+  readonly displayErrors$ = this.state$.pipe(map((x) => x?.displayErrors));
 
   /** Observable of registration metadata */
   @Computed()
   get metadata$(): Observable<MetaData> {
     return combineLatest([this.page.state$, this.model.state$, this.tags.tags$]).pipe(
-      map(([page, model, tags]) => this.buildMetadata(page, model, tags))
+      map(([page, model, tags]) => this.buildMetadata(page, model, tags)),
     );
   }
 
@@ -68,7 +65,7 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
   @Computed()
   get jsonld$(): Observable<Record<string, unknown>> {
     return combineLatest([this.page.state$, this.model.state$, this.tags.tags$]).pipe(
-      map(([page, model, tags]) => this.buildJsonLd(page, model, tags))
+      map(([page, model, tags]) => this.buildJsonLd(page, model, tags)),
     );
   }
 
@@ -77,15 +74,13 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
     return combineLatest([this.page.state$, this.model.state$, this.tags.tags$]).pipe(
       throttleTime(JSONLD_THROTTLE_DURATION, undefined, { leading: true, trailing: true }),
       distinctUntilChanged(isEqual),
-      map(([page, model, tags]) => this.buildJsonLd(page, model, tags))
+      map(([page, model, tags]) => this.buildJsonLd(page, model, tags)),
     );
   }
 
   @Computed()
   get valid$(): Observable<boolean> {
-    return combineLatest([this.page.state$, this.model.state$]).pipe(
-      map(() => this.isValid)
-    );
+    return combineLatest([this.page.state$, this.model.state$]).pipe(map(() => this.isValid));
   }
 
   /**
@@ -94,15 +89,13 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
   @Computed()
   get previousRegistrations$(): Observable<Record<string, unknown>[]> {
     const { globalConfig, state$ } = this;
-    const regs = state$.pipe(map(x => x?.registrations));
+    const regs = state$.pipe(map((x) => x?.registrations));
     const fetched = globalConfig.getOption('fetchPreviousRegistrations').pipe(
-      switchMap(fetch => fetch?.() ?? [[]]),
-      startWith([])
+      switchMap((fetch) => fetch?.() ?? [[]]),
+      startWith([]),
     );
 
-    return combineLatest([regs, fetched]).pipe(
-      map(([local, external]) => [...local, ...external])
-    );
+    return combineLatest([regs, fetched]).pipe(map(([local, external]) => [...local, ...external]));
   }
 
   /** Current uuid identifier used when registering */
@@ -137,7 +130,7 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
    */
   constructor(
     private readonly injector: Injector,
-    private readonly globalConfig: GlobalConfigState<GlobalConfig>
+    private readonly globalConfig: GlobalConfigState<GlobalConfig>,
   ) {
     super();
   }
@@ -156,38 +149,41 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
     this.refData = this.injector.get(ReferenceDataState);
 
     this.refData.state$.subscribe(() => {
-      this.globalConfig.config$.pipe(
-        take(1),
-        tap(({ useDownload, register, organOptions }) => {
-          this.ctx.patchState({
-            useRegistrationCallback: !!(!useDownload && register),
-          });
-          this.page.setOrcidId();
-          this.model.setOrganDefaults();
-          this.setOrganSelection(organOptions as string[]);
-        })
-      ).subscribe();
+      this.globalConfig.config$
+        .pipe(
+          take(1),
+          tap(({ useDownload, register, organOptions }) => {
+            this.ctx.patchState({
+              useRegistrationCallback: !!(!useDownload && register),
+            });
+            this.page.setOrcidId();
+            this.model.setOrganDefaults();
+            this.setOrganSelection(organOptions as string[]);
+          }),
+        )
+        .subscribe();
 
-      this.globalConfig.getOption('editRegistration').pipe(
-        filterNulls(),
-        tap(reg => {
-          this.editRegistration(reg as SpatialEntityJsonLd);
-        })
-      ).subscribe();
+      this.globalConfig
+        .getOption('editRegistration')
+        .pipe(
+          filterNulls(),
+          tap((reg) => {
+            this.editRegistration(reg as SpatialEntityJsonLd);
+          }),
+        )
+        .subscribe();
     });
   }
 
   async editRegistration(reg: SpatialEntityJsonLd): Promise<void> {
     this.ctx.patchState({ initialRegistration: reg });
-    const place = this.refData.normalizePlacement(
-      Array.isArray(reg.placement) ? reg.placement[0] : reg.placement
-    );
+    const place = this.refData.normalizePlacement(Array.isArray(reg.placement) ? reg.placement[0] : reg.placement);
     const data = this.refData.getOrganData(place.target);
 
     this.page.setUserName({
       firstName: reg.creator_first_name,
       middleName: reg.creator_middle_name,
-      lastName: reg.creator_last_name
+      lastName: reg.creator_last_name,
     });
 
     const orcid = this.page.uriToOrcid(reg.creator_orcid);
@@ -211,8 +207,8 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
     const iris = new Set<string>(reg.ccf_annotations);
     this.tags.addTags(
       this.model.snapshot.anatomicalStructures
-        .filter(item => iris.has(item.id as string))
-        .map((item) => ({ id: item.id, label: item.name, type: 'added' }))
+        .filter((item) => iris.has(item.id as string))
+        .map((item) => ({ id: item.id, label: item.name, type: 'added' })),
     );
 
     this.page.registrationStarted();
@@ -245,9 +241,11 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
    */
   @DataAction()
   addRegistration(registration: Record<string, unknown>): void {
-    this.ctx.setState(patch({
-      registrations: insertItem(registration as Immutable<Record<string, unknown>>)
-    }));
+    this.ctx.setState(
+      patch({
+        registrations: insertItem(registration as Immutable<Record<string, unknown>>),
+      }),
+    );
     this.page.registrationStarted();
   }
 
@@ -267,10 +265,10 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
       page.orcidValid,
       model.organ.src,
       model.organ.name,
-      model.organ.organ
+      model.organ.organ,
     ];
 
-    return requiredValues.every(value => !!value);
+    return requiredValues.every((value) => !!value);
   }
 
   @Computed()
@@ -290,19 +288,22 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
     }
 
     const {
-      globalConfig: { snapshot: { register: registrationCallback } },
-      page, model, snapshot
+      globalConfig: {
+        snapshot: { register: registrationCallback },
+      },
+      page,
+      model,
+      snapshot,
     } = this;
     const jsonObj = this.buildJsonLd(page.snapshot, model.snapshot, this.tags.latestTags);
     const json = JSON.stringify(jsonObj, undefined, 2);
 
     if (useCallback ?? (useCallback === undefined && snapshot.useRegistrationCallback)) {
       registrationCallback?.(json);
-
     } else {
       const data = new Blob([json], {
         type: 'application/json',
-        endings: 'native'
+        endings: 'native',
       });
 
       saveAs(data, 'registration-data.json');
@@ -320,11 +321,11 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
     const { page } = this;
 
     const initialWithChanges: SpatialEntityJsonLd | undefined = {
-      ...this.snapshot.initialRegistration as SpatialEntityJsonLd,
+      ...(this.snapshot.initialRegistration as SpatialEntityJsonLd),
       creator_first_name: page.snapshot.user.firstName,
       creator_last_name: page.snapshot.user.lastName,
       creator_middle_name: page.snapshot.user.middleName,
-      creator_orcid: page.snapshot.user.orcidId
+      creator_orcid: page.snapshot.user.orcidId,
     };
 
     this.editRegistration(initialWithChanges);
@@ -337,18 +338,11 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
    * @param model The current model state data
    * @returns metadata An array of label-value objects
    */
-  private buildMetadata(
-    page: Immutable<PageStateModel>,
-    model: Immutable<ModelStateModel>,
-    tags: Tag[]
-  ): MetaData {
+  private buildMetadata(page: Immutable<PageStateModel>, model: Immutable<ModelStateModel>, tags: Tag[]): MetaData {
     const data: MetaData = [];
 
     if (!page.registrationCallbackSet) {
-      data.push(
-        { label: 'First Name', value: page.user.firstName },
-        { label: 'Last Name', value: page.user.lastName }
-      );
+      data.push({ label: 'First Name', value: page.user.firstName }, { label: 'Last Name', value: page.user.lastName });
     }
 
     data.push(
@@ -356,9 +350,9 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
       { label: 'Tissue Block Dimensions (mm)', value: this.xyzTripletToString(model.blockSize) },
       { label: 'Tissue Block Position (mm)', value: this.xyzTripletToString(model.position) },
       { label: 'Tissue Block Rotation', value: this.xyzTripletToString(model.rotation) },
-      { label: 'Anatomical Structure Tags', value: tags.map(t => t.label).join(', ') },
+      { label: 'Anatomical Structure Tags', value: tags.map((t) => t.label).join(', ') },
       { label: 'Time Stamp', value: this.currentDate },
-      { label: 'Alignment ID', value: this.currentIdentifier }
+      { label: 'Alignment ID', value: this.currentIdentifier },
     );
 
     return data;
@@ -374,7 +368,7 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
   private buildJsonLd(
     page: Immutable<PageStateModel>,
     model: Immutable<ModelStateModel>,
-    tags: Tag[]
+    tags: Tag[],
   ): Record<string, unknown> {
     return {
       '@context': 'https://hubmapconsortium.github.io/ccf-ontology/ccf-context.jsonld',
@@ -387,7 +381,7 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
       creator_middle_name: page.user.middleName,
       creator_orcid: page.user.orcidId,
       creation_date: this.currentDate,
-      ccf_annotations: tags.map(tag => tag.id),
+      ccf_annotations: tags.map((tag) => tag.id),
       slice_thickness: model.slicesConfig?.thickness || undefined,
       slice_count: model.slicesConfig?.numSlices || undefined,
 
@@ -403,7 +397,10 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
         target: model.organIri as string,
         placement_date: this.currentDate,
 
-        x_scaling: 1, y_scaling: 1, z_scaling: 1, scaling_units: 'ratio',
+        x_scaling: 1,
+        y_scaling: 1,
+        z_scaling: 1,
+        scaling_units: 'ratio',
 
         x_rotation: +model.rotation.x.toFixed(3),
         y_rotation: +model.rotation.y.toFixed(3),
@@ -414,8 +411,8 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
         x_translation: +model.position.x.toFixed(3),
         y_translation: +model.position.y.toFixed(3),
         z_translation: +model.position.z.toFixed(3),
-        translation_units: 'millimeter'
-      }
+        translation_units: 'millimeter',
+      },
     };
   }
 
@@ -436,7 +433,7 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
    */
   private organListOptions(organOptions?: string[]): OrganInfo[] {
     if (organOptions && organOptions.length > 0) {
-      return RUI_ORGANS.filter(organ => {
+      return RUI_ORGANS.filter((organ) => {
         if (!organ.id) {
           return false;
         } else {

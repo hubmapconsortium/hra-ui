@@ -4,11 +4,10 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { BodyUiModule, StoreDebugModule } from 'ccf-shared';
 
+import { SpatialSearchKeyboardUIBehaviorModule } from 'ccf-shared';
 import { ContentComponent } from '../content/content.component';
 import { StageNavModule } from './stage-nav/stage-nav.module';
 import { VideoModalLauncherModule } from './video-modal/video-modal-launcher/video-modal-launcher.module';
-import { SpatialSearchKeyboardUIBehaviorModule } from 'ccf-shared';
-
 
 @NgModule({
   imports: [
@@ -19,9 +18,9 @@ import { SpatialSearchKeyboardUIBehaviorModule } from 'ccf-shared';
     VideoModalLauncherModule,
     MatRippleModule,
     SpatialSearchKeyboardUIBehaviorModule,
-    BodyUiModule
+    BodyUiModule,
   ],
   declarations: [ContentComponent],
-  exports: [ContentComponent]
+  exports: [ContentComponent],
 })
-export class ContentModule { }
+export class ContentModule {}

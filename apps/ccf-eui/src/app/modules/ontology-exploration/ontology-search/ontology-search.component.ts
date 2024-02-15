@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { OntologyTreeNode } from 'ccf-database';
@@ -9,7 +9,6 @@ import { filter, map, startWith, switchMap } from 'rxjs/operators';
 
 import { OntologySearchService, SearchResult } from '../../../core/services/ontology-search/ontology-search.service';
 
-
 /**
  * Componenet for searching the Ontology nodes.
  */
@@ -17,7 +16,7 @@ import { OntologySearchService, SearchResult } from '../../../core/services/onto
   selector: 'ccf-ontology-search',
   templateUrl: './ontology-search.component.html',
   styleUrls: ['./ontology-search.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OntologySearchComponent implements OnInit {
   @Input() placeholderText!: string;
@@ -32,7 +31,6 @@ export class OntologySearchComponent implements OnInit {
    * Instance of FormControl - tracks the value and validation status of an individual form control
    */
   formControl = new UntypedFormControl('');
-
 
   /**
    * Determines if autocomplete is open or close.
@@ -50,7 +48,10 @@ export class OntologySearchComponent implements OnInit {
    * @param ontologyService instance of searchService which provides all the search functionality
    * @param ga Analytics service
    */
-  constructor(public ontologyService: OntologySearchService, private readonly ga: GoogleAnalyticsService) { }
+  constructor(
+    public ontologyService: OntologySearchService,
+    private readonly ga: GoogleAnalyticsService,
+  ) {}
 
   /**
    * on-init lifecycle hook for this component -
@@ -60,12 +61,10 @@ export class OntologySearchComponent implements OnInit {
   ngOnInit(): void {
     const valueChanges = this.formControl.valueChanges as Observable<string>;
     this.filteredResults$ = valueChanges.pipe(
-      filter(value => typeof value === 'string'),
+      filter((value) => typeof value === 'string'),
       startWith(''),
-      switchMap(value => this.ontologyService.filter(value)),
-      map(searchResults => sortBy(searchResults, [
-        this.sortBySynonymResult, 'index', this.sortLexically
-      ]))
+      switchMap((value) => this.ontologyService.filter(value)),
+      map((searchResults) => sortBy(searchResults, [this.sortBySynonymResult, 'index', this.sortLexically])),
     );
   }
 

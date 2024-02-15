@@ -9,6 +9,6 @@ import { SpatialSearchConfigBehaviorModule } from '../spatial-search-config-beha
 @NgModule({
   imports: [CommonModule, MatButtonModule, MatIconModule, SpatialSearchConfigBehaviorModule],
   declarations: [RunSpatialSearchComponent],
-  exports: [RunSpatialSearchComponent]
+  exports: [RunSpatialSearchComponent],
 })
-export class RunSpatialSearchModule { }
+export class RunSpatialSearchModule {}

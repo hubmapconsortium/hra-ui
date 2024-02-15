@@ -48,13 +48,13 @@
         justify-content: center;
 
         .icon {
-          transition: .6s;
+          transition: 0.6s;
           position: absolute;
           &.block {
-              width: 1.125rem;
+            width: 1.125rem;
           }
           &.hidden {
-              opacity: 0;
+            opacity: 0;
           }
         }
       }

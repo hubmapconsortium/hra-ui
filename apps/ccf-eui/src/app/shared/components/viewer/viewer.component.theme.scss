@@ -1,6 +1,5 @@
 @use '@angular/material' as mat;
 
-
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
   $primary: map-get($color-config, primary);
@@ -16,7 +15,10 @@
       color: mat.get-color-from-palette($foreground, text-muted);
       box-shadow: -0.25rem 0rem 0.2rem 0.1rem map-get($foreground, header-shadow);
 
-      a:link, a:visited, a:active, a:hover {
+      a:link,
+      a:visited,
+      a:active,
+      a:hover {
         color: mat.get-color-from-palette($foreground, text-muted);
       }
 

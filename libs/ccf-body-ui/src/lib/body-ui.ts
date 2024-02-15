@@ -1,13 +1,4 @@
-/* eslint-disable @typescript-eslint/consistent-type-assertions */
-/* eslint-disable @typescript-eslint/member-ordering */
-/* eslint-disable @typescript-eslint/naming-convention */
-import {
-  AmbientLight,
-  Deck,
-  LightingEffect,
-  OrbitView,
-  OrthographicView,
-} from '@deck.gl/core/typed';
+import { AmbientLight, Deck, LightingEffect, OrbitView, OrthographicView } from '@deck.gl/core/typed';
 import { Matrix4 } from '@math.gl/core';
 import { bind } from 'bind-decorator';
 import { BehaviorSubject, Subject } from 'rxjs';
@@ -69,9 +60,7 @@ export class BodyUI {
   private readonly nodeClickSubject = new Subject<NodeClickEvent>();
   private readonly nodeHoverStartSubject = new Subject<SpatialSceneNode>();
   private readonly nodeHoverStopSubject = new Subject<SpatialSceneNode>();
-  private readonly sceneRotationSubject = new BehaviorSubject<[number, number]>(
-    [0, 0]
-  );
+  private readonly sceneRotationSubject = new BehaviorSubject<[number, number]>([0, 0]);
   private readonly nodeDragStartSubject = new Subject<NodeDragEvent>();
   private readonly nodeDragSubject = new Subject<NodeDragEvent>();
   private readonly nodeDragEndSubject = new Subject<NodeDragEvent>();
@@ -93,7 +82,7 @@ export class BodyUI {
       ...deckProps,
       views: [
         deckProps.camera === 'orthographic'
-          ? new OrthographicView({ flipY: false, near: -1000, })
+          ? new OrthographicView({ flipY: false, near: -1000 })
           : new OrbitView({ orbitAxis: 'Y' }),
       ],
       controller: deckProps.interactive ?? true,
@@ -104,8 +93,7 @@ export class BodyUI {
       onDragStart: this._onDragStart,
       onDrag: this._onDrag,
       onDragEnd: this._onDragEnd,
-      getCursor: (e: { isDragging: boolean }) =>
-        this.cursor ?? (e.isDragging ? 'grabbing' : 'grab'),
+      getCursor: (e: { isDragging: boolean }) => this.cursor ?? (e.isDragging ? 'grabbing' : 'grab'),
     };
     if (deckProps.legacyLighting) {
       // eslint-disable-next-line
@@ -151,8 +139,7 @@ export class BodyUI {
 
   setScene(data: SpatialSceneNode[]): void {
     if (data?.length > 0) {
-      let zoomOpacity = (this.bodyUILayer.state as { zoomOpacity: number })
-        .zoomOpacity;
+      let zoomOpacity = (this.bodyUILayer.state as { zoomOpacity: number }).zoomOpacity;
       let didZoom = false;
       for (const node of data) {
         if (node.zoomToOnLoad) {
@@ -169,38 +156,32 @@ export class BodyUI {
     }
   }
 
-  debugSceneNodeProcessing(
-    data: SpatialSceneNode[],
-    zoomOpacity: number
-  ): void {
+  debugSceneNodeProcessing(data: SpatialSceneNode[], zoomOpacity: number): void {
     // const gltfUrl = 'https://hubmapconsortium.github.io/ccf-3d-reference-object-library/VH_Male/United/VHM_United_Color.glb';
     const gltfUrl =
       'https://hubmapconsortium.github.io/ccf-3d-reference-object-library/VH_Female/United/VHF_United_Color.glb';
     // const gltfUrl = 'https://hubmapconsortium.github.io/hubmap-ontology/objects/VHF_United_v01_060420.glb';
     const gltfTransform = new Matrix4([
-      0.076, 0, 0, 0, 0, 0.076, 1.6875389974302382e-17, 0, 0,
-      -1.6875389974302382e-17, 0.076, 0, 0.49, 0.034, 0.11, 1,
+      0.076, 0, 0, 0, 0, 0.076, 1.6875389974302382e-17, 0, 0, -1.6875389974302382e-17, 0.076, 0, 0.49, 0.034, 0.11, 1,
     ]);
-    processSceneNodes(gltfUrl, gltfTransform, 'VHF_Kidney_L_Low1').then(
-      (results) => {
-        console.log('results', results);
-        console.log('data', data);
-        // data = Object.values(results);
-        data = data.concat(Object.values(results));
-        data.push({
-          '@id': 'TEST',
-          '@type': 'TEST',
-          scenegraph: gltfUrl,
-          scenegraphNode: 'VHF_Kidney_R_Low',
-          transformMatrix: gltfTransform,
-          color: [255, 255, 255, 200],
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          _lighting: 'pbr',
-          zoomBasedOpacity: false,
-        });
-        this.bodyUILayer.setState({ data, zoomOpacity });
-      }
-    );
+    processSceneNodes(gltfUrl, gltfTransform, 'VHF_Kidney_L_Low1').then((results) => {
+      console.log('results', results);
+      console.log('data', data);
+      // data = Object.values(results);
+      data = data.concat(Object.values(results));
+      data.push({
+        '@id': 'TEST',
+        '@type': 'TEST',
+        scenegraph: gltfUrl,
+        scenegraphNode: 'VHF_Kidney_R_Low',
+        transformMatrix: gltfTransform,
+        color: [255, 255, 255, 200],
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        _lighting: 'pbr',
+        zoomBasedOpacity: false,
+      });
+      this.bodyUILayer.setState({ data, zoomOpacity });
+    });
   }
 
   zoomTo(node: SpatialSceneNode): void {
@@ -277,10 +258,7 @@ export class BodyUI {
   }
 
   @bind
-  private _onClick(
-    info: PickInfo<SpatialSceneNode>,
-    e: { srcEvent: { ctrlKey: boolean } }
-  ): void {
+  private _onClick(info: PickInfo<SpatialSceneNode>, e: { srcEvent: { ctrlKey: boolean } }): void {
     if (info.picked && info.object?.['@id']) {
       this.nodeClickSubject.next({
         node: info.object,
@@ -299,19 +277,13 @@ export class BodyUI {
         zoomOpacity: number;
         data: unknown;
       };
-      const zoomOpacity = Math.min(
-        Math.max(1 - (event.viewState.zoom - 8.9) / 2, 0.05),
-        1.0
-      );
+      const zoomOpacity = Math.min(Math.max(1 - (event.viewState.zoom - 8.9) / 2, 0.05), 1.0);
       if (currentState.zoomOpacity !== zoomOpacity) {
         this.bodyUILayer.setState({ data: currentState.data, zoomOpacity });
       }
     }
     this.deck.setProps({ viewState: { ...event.viewState } });
-    this.sceneRotationSubject.next([
-      event.viewState.rotationOrbit,
-      event.viewState.rotationX,
-    ]);
+    this.sceneRotationSubject.next([event.viewState.rotationOrbit, event.viewState.rotationX]);
   }
 
   @bind
@@ -329,11 +301,7 @@ export class BodyUI {
     this._dragEvent(info, e, this.nodeDragEndSubject);
   }
 
-  private _dragEvent(
-    info: PickInfo<SpatialSceneNode>,
-    e: MouseEvent,
-    subject: Subject<NodeDragEvent>
-  ): void {
+  private _dragEvent(info: PickInfo<SpatialSceneNode>, e: MouseEvent, subject: Subject<NodeDragEvent>): void {
     if (info?.object?.['@id']) {
       subject.next({ node: info.object, info, e });
     }

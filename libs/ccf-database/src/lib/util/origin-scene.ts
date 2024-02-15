@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { Matrix4, toRadians } from '@math.gl/core';
 import { SpatialSceneNode } from '../ccf-spatial-scene';
 import { SpatialEntity } from '../spatial-types';
@@ -16,19 +15,13 @@ const blue: Color = [41, 121, 255, 255];
  * @param centered whether to center the organ at the origin point
  * @returns a set of scene nodes for the body-ui
  */
-export function getOriginScene(
-  node: SpatialEntity,
-  includeLetters = false,
-  centered = false
-): SpatialSceneNode[] {
+export function getOriginScene(node: SpatialEntity, includeLetters = false, centered = false): SpatialSceneNode[] {
   const sceneWidth = node.x_dimension / 1000;
   const sceneHeight = node.y_dimension / 1000;
   const sceneDepth = node.z_dimension / 1000;
   const originRadius = Math.max(sceneWidth, sceneHeight, sceneDepth) * 0.05;
   const lineRadius = originRadius * 0.1;
-  const globalTranslation = centered
-    ? [sceneWidth, sceneHeight, sceneDepth].map((n) => n * -0.5)
-    : [0, 0, 0];
+  const globalTranslation = centered ? [sceneWidth, sceneHeight, sceneDepth].map((n) => n * -0.5) : [0, 0, 0];
 
   return [
     // Origin Sphere
@@ -37,9 +30,7 @@ export function getOriginScene(
       '@type': 'SpatialSceneNode',
       unpickable: true,
       geometry: 'sphere',
-      transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate(globalTranslation)
-        .scale(originRadius),
+      transformMatrix: new Matrix4(Matrix4.IDENTITY).translate(globalTranslation).scale(originRadius),
       color: gray,
     },
     // Origin X Axis
@@ -189,6 +180,6 @@ export function getOriginScene(
     },
   ].filter(
     // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-    (n) => (includeLetters && n.geometry === 'text' && n.text) || !n.text
+    (n) => (includeLetters && n.geometry === 'text' && n.text) || !n.text,
   ) as SpatialSceneNode[];
 }

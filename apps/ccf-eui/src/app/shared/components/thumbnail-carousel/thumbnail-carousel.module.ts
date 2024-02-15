@@ -7,18 +7,10 @@ import { Navigation, Swiper } from 'swiper';
 
 import { ThumbnailCarouselComponent } from './thumbnail-carousel.component';
 
-
 @NgModule({
-  imports: [
-    CommonModule,
-
-    MatButtonModule,
-    MatIconModule,
-
-    SwiperModule
-  ],
+  imports: [CommonModule, MatButtonModule, MatIconModule, SwiperModule],
   declarations: [ThumbnailCarouselComponent],
-  exports: [ThumbnailCarouselComponent]
+  exports: [ThumbnailCarouselComponent],
 })
 export class ThumbnailCarouselModule {
   constructor() {

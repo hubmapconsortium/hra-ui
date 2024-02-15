@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/naming-convention */
 import { Computed, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { HttpClient } from '@angular/common/http';
@@ -85,7 +82,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
         ...nodes,
         ...axis,
         ...(this.snapshot.showCollisions ? collisions : []),
-      ])
+      ]),
     );
   }
 
@@ -103,7 +100,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
               .multiplyRight(n.transformMatrix),
           }));
         }
-      })
+      }),
     );
   }
 
@@ -116,10 +113,10 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
         const originScene = organIri ? getOriginScene(organ, false, true) : [];
         const organScene = this.createSceneNodes(
           organIri as string,
-          [...anatomicalStructures, ...extractionSites] as VisibilityItem[]
+          [...anatomicalStructures, ...extractionSites] as VisibilityItem[],
         );
         return [...originScene, ...organScene];
-      })
+      }),
     );
   }
 
@@ -146,13 +143,13 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
                     ...(db.simpleSceneNodeLookup[node['@id']] as SpatialSceneNode),
                     opacity: (item.opacity ?? 100) / 100,
                     color: [255, 255, 255, 255],
-                  })
+                  }),
                 );
             }
           })
-          .reduce<SpatialSceneNode[]>((acc, nodes) => acc.concat(nodes), [])
+          .reduce<SpatialSceneNode[]>((acc, nodes) => acc.concat(nodes), []),
       ),
-      distinctUntilChanged(isEqual)
+      distinctUntilChanged(isEqual),
     );
   }
 
@@ -168,7 +165,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
         }
         return [];
       }),
-      share()
+      share(),
     );
   }
 
@@ -180,8 +177,8 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
       this.registration.previousRegistrations$ as Observable<SpatialEntityJsonLd[]>,
     ]).pipe(
       map(([organIri = '', showPrevious, previousRegistrations]) =>
-        showPrevious ? this.getPreviousRegistrationNodes(organIri, previousRegistrations) : []
-      )
+        showPrevious ? this.getPreviousRegistrationNodes(organIri, previousRegistrations) : [],
+      ),
     );
   }
 
@@ -216,9 +213,9 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
             x_scaling: 1,
             y_scaling: 1,
             z_scaling: 1,
-          } as SpatialPlacement
+          } as SpatialPlacement,
         );
-      })
+      }),
     );
   }
 
@@ -232,7 +229,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
       this.model.organ$,
     ]).pipe(
       map(([_viewType, _blockSize, _rotation, _position, organ]) => (organ.src === '' ? [] : [this.placementCube])),
-      distinctUntilChanged(isEqual)
+      distinctUntilChanged(isEqual),
     );
   }
 
@@ -272,7 +269,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
             break;
         }
         return rotation;
-      })
+      }),
     );
   }
 
@@ -300,7 +297,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
   private get collisions$(): Observable<Collision[] | undefined> {
     return defer(() => this.registration.throttledJsonld$).pipe(
       concatMap((jsonld) => this.getCollisions(jsonld)),
-      startWith([])
+      startWith([]),
     );
   }
 
@@ -312,7 +309,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
   constructor(
     private readonly injector: Injector,
     private readonly http: HttpClient,
-    private readonly globalConfig: GlobalConfigState<GlobalConfig>
+    private readonly globalConfig: GlobalConfigState<GlobalConfig>,
   ) {
     super();
   }
@@ -366,10 +363,10 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
       switchMap((endpoint = DEFAULT_COLLISIONS_ENDPOINT) =>
         this.http.post<Collision[]>(endpoint, JSON.stringify(jsonld), {
           headers: { 'Content-Type': 'application/json' },
-        })
+        }),
       ),
       catchError(() => of(undefined)),
-      take(1)
+      take(1),
     );
   }
 
@@ -385,7 +382,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
 
   private getPreviousRegistrationNodes(
     organIri: string,
-    previousRegistrations: SpatialEntityJsonLd[]
+    previousRegistrations: SpatialEntityJsonLd[],
   ): SpatialSceneNode[] {
     const toNode = (entity: SpatialEntityJsonLd): SpatialSceneNode | undefined => {
       const p = Array.isArray(entity.placement) ? entity.placement[0] : entity.placement;

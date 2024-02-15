@@ -1,15 +1,14 @@
 import { CallToActionSelectors } from './call-to-action.selectors';
-describe('CallToActionSelectors', () => {
 
+describe('CallToActionSelectors', () => {
   const model = {
     message: 'test message',
     title: 'test title',
     callToAction: 'test callToAction',
     imageUrl: 'URL',
     expirationDate: 'December 1, 2020',
-    popupShown: false
+    popupShown: false,
   };
-
 
   it('should return the message', async () => {
     const message = CallToActionSelectors.message(model);

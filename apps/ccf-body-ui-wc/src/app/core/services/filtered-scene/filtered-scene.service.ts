@@ -24,29 +24,29 @@ export class FilteredSceneService {
   readonly referenceOrgans$ = this.source.getReferenceOrgans();
 
   readonly scene$ = combineLatest([this.data$, this.referenceOrgans$, this.source.dataSource]).pipe(
-    switchMap(([data, referenceOrgans, _]) => this.chooseScene(data, referenceOrgans))
+    switchMap(([data, referenceOrgans, _]) => this.chooseScene(data, referenceOrgans)),
   );
 
   readonly organs$ = this.configState.getOption('data').pipe(
     map((data) => this.selectOrgans(data)),
-    shareReplay(1)
+    shareReplay(1),
   );
 
   readonly filteredOrgans$ = combineLatest([this.organs$, this.referenceOrgans$]).pipe(
     map(([organs, referenceOrgans]) => this.getNeededReferenceOrgans(referenceOrgans, organs)),
-    shareReplay(1)
+    shareReplay(1),
   );
 
   readonly filteredScene$ = combineLatest([this.scene$, this.organs$, this.referenceOrgans$]).pipe(
     map(([nodes, organs, referenceOrgans]) => this.filterSceneNodes(nodes, organs, referenceOrgans)),
     hightlight(this.highlightID$, HIGHLIGHT_YELLOW),
     zoomTo(this.zoomToID$),
-    shareReplay(1)
+    shareReplay(1),
   );
 
   constructor(
     private readonly configState: GlobalConfigState<GlobalConfig>,
-    private readonly source: DataSourceService
+    private readonly source: DataSourceService,
   ) {}
 
   private chooseScene(data?: JsonLdObj[], organs?: SpatialEntity[]): Observable<SpatialSceneNode[]> {
@@ -68,7 +68,7 @@ export class FilteredSceneService {
           {
             ontologyTerms: [organ.reference_organ as string],
             sex: organ.sex,
-          } as Filter
+          } as Filter,
         );
       }
     }
@@ -87,7 +87,7 @@ export class FilteredSceneService {
   private filterSceneNodes(
     nodes: SpatialSceneNode[],
     organs: Set<string>,
-    referenceOrgans: SpatialEntity[]
+    referenceOrgans: SpatialEntity[],
   ): SpatialSceneNode[] {
     const neededReferenceOrgans = this.getNeededReferenceOrgans(referenceOrgans, organs);
     const neededSkins = this.getNeededSkins(neededReferenceOrgans);

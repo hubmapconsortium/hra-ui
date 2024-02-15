@@ -7,20 +7,9 @@ import { ThumbnailCarouselModule } from '../../../shared/components/thumbnail-ca
 import { DonorCardComponent } from './donor-card.component';
 import { TissueSectionVisModule } from './../tissue-section-vis/tissue-section-vis.module';
 
-
-
-
 @NgModule({
-  imports: [
-    CommonModule,
-
-    MatCheckboxModule,
-    MatIconModule,
-
-    ThumbnailCarouselModule,
-    TissueSectionVisModule
-  ],
+  imports: [CommonModule, MatCheckboxModule, MatIconModule, ThumbnailCarouselModule, TissueSectionVisModule],
   declarations: [DonorCardComponent],
-  exports: [DonorCardComponent]
+  exports: [DonorCardComponent],
 })
-export class DonorCardModule { }
+export class DonorCardModule {}

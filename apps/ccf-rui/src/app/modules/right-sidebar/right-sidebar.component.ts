@@ -5,7 +5,6 @@ import { ModelState } from '../../core/store/model/model.state';
 import { PageState } from '../../core/store/page/page.state';
 import { RegistrationState } from '../../core/store/registration/registration.state';
 
-
 /**
  * The right sidebar
  */
@@ -13,7 +12,7 @@ import { RegistrationState } from '../../core/store/registration/registration.st
   selector: 'ccf-right-sidebar',
   templateUrl: './right-sidebar.component.html',
   styleUrls: ['./right-sidebar.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RightSidebarComponent {
   /** HTML class name */
@@ -36,7 +35,6 @@ export class RightSidebarComponent {
     readonly model: ModelState,
     readonly registration: RegistrationState,
     readonly page: PageState,
-    readonly astags: AnatomicalStructureTagState
-  ) {
-  }
+    readonly astags: AnatomicalStructureTagState,
+  ) {}
 }

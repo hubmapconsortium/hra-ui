@@ -1,6 +1,5 @@
 @use '@angular/material' as mat;
 
-
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
   $primary: map-get($color-config, primary);
@@ -13,7 +12,7 @@
       color: mat.get-color-from-palette($foreground, text);
 
       &.error {
-        border-color: mat.get-color-from-palette($foreground, slider-red);;
+        border-color: mat.get-color-from-palette($foreground, slider-red);
       }
 
       .carousel-left-icon,

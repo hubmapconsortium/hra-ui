@@ -5,7 +5,7 @@ import { ALL_ORGANS, OrganInfo, OrganSelectorComponent } from './organ-selector.
 import { OrganSelectorModule } from './organ-selector.module';
 
 function wait(duration: number): Promise<void> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(resolve, duration);
   });
 }
@@ -88,7 +88,7 @@ describe('OrganSelectorComponent', () => {
       { name: 'D', src: 'D' },
       { name: 'E', src: 'E' },
       { name: 'F', src: 'F' },
-      { name: 'G', src: 'G' }
+      { name: 'G', src: 'G' },
     ] as OrganInfo[];
 
     const { find } = await shallow.render({ bind: { organList: testOrganList } });
@@ -158,7 +158,9 @@ describe('OrganSelectorComponent', () => {
 
   it('should set onLeft and onRight to true if the list of organs is smaller than the container', async () => {
     const testOrgan: OrganInfo = { src: 'test', name: 'test', organ: 'test' };
-    const { instance, find } = await shallow.render({ bind: { organList: [testOrgan, testOrgan, testOrgan, testOrgan] } });
+    const { instance, find } = await shallow.render({
+      bind: { organList: [testOrgan, testOrgan, testOrgan, testOrgan] },
+    });
     const list = find(carouselItemListClass).nativeElement as HTMLElement;
     list.style.width = '288px';
     instance.set();
@@ -168,7 +170,9 @@ describe('OrganSelectorComponent', () => {
 
   it('should set onRight to true if the list of organs is larger than the container and carousel is scrolled to end', async () => {
     const testOrgan: OrganInfo = { src: 'test', name: 'test', organ: 'test' };
-    const { instance, find } = await shallow.render({ bind: { organList: [testOrgan, testOrgan, testOrgan, testOrgan] } });
+    const { instance, find } = await shallow.render({
+      bind: { organList: [testOrgan, testOrgan, testOrgan, testOrgan] },
+    });
     const list = find(carouselItemListClass).nativeElement as HTMLElement;
     const container = find(carouselItemContainerClass).nativeElement as HTMLElement;
     list.style.left = '-124px';
@@ -180,7 +184,9 @@ describe('OrganSelectorComponent', () => {
 
   it('should set set the container width to a multiple of the icon width', async () => {
     const testOrgan: OrganInfo = { src: 'test', name: 'test', organ: 'test' };
-    const { instance, find } = await shallow.render({ bind: { organList: [testOrgan, testOrgan, testOrgan, testOrgan] } });
+    const { instance, find } = await shallow.render({
+      bind: { organList: [testOrgan, testOrgan, testOrgan, testOrgan] },
+    });
     const carouselContainer = find(carouselContainerClass).nativeElement as HTMLElement;
     const itemContainer = find(carouselItemContainerClass).nativeElement as HTMLElement;
     carouselContainer.style.width = '300px';

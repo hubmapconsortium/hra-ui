@@ -6,11 +6,7 @@ import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [VisibilityToggleComponent],
-  imports: [
-    CommonModule,
-    MatIconModule,
-    MatChipsModule
-  ],
-  exports: [ VisibilityToggleComponent ]
+  imports: [CommonModule, MatIconModule, MatChipsModule],
+  exports: [VisibilityToggleComponent],
 })
-export class VisibilityToggleModule { }
+export class VisibilityToggleModule {}

@@ -54,8 +54,8 @@
 
 .visible {
   animation: fadeIn 0.3s;
-  transition-delay: .275s;
-  animation-delay: .275s;
+  transition-delay: 0.275s;
+  animation-delay: 0.275s;
 }
 
 .invisible {
@@ -63,7 +63,7 @@
 }
 
 ::ng-deep .option-panel {
-  animation: slideInHorizontalDropdown .3s;
+  animation: slideInHorizontalDropdown 0.3s;
   animation-fill-mode: forwards;
   flex-grow: 1;
   padding: 0 !important;
@@ -86,6 +86,6 @@
 
 ::ng-deep .ccf-dropdown {
   .mat-select-arrow-wrapper {
-    transform: translatey(-.5em);
+    transform: translatey(-0.5em);
   }
 }

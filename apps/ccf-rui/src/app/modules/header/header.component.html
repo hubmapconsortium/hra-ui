@@ -1,5 +1,4 @@
-<ng-container *ngIf="page.useCancelRegistrationCallback$ | async; then backButton else logo">
-</ng-container>
+<ng-container *ngIf="page.useCancelRegistrationCallback$ | async; then backButton; else logo"> </ng-container>
 
 <ng-template #backButton>
   <div class="link home" (click)="page.cancelRegistration()" rel="noreferrer noopener">
@@ -9,10 +8,14 @@
 </ng-template>
 
 <ng-template #logo>
-  <a class="link portal" [href]="homeUrl" rel="noreferrer noopener"
-    [matTooltip]="logoTooltip" matTooltipPosition="right">
-    <div class="logo" aria-hidden="false" aria-label="Reset tool">
-    </div>
+  <a
+    class="link portal"
+    [href]="homeUrl"
+    rel="noreferrer noopener"
+    [matTooltip]="logoTooltip"
+    matTooltipPosition="right"
+  >
+    <div class="logo" aria-hidden="false" aria-label="Reset tool"></div>
   </a>
 </ng-template>
 

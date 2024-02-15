@@ -3,7 +3,6 @@ import { Shallow } from 'shallow-render';
 import { SpatialSearchListComponent, SpatialSearchListItem } from './spatial-search-list.component';
 import { SpatialSearchListModule } from './spatial-search-list.module';
 
-
 describe('SpatialSearchListComponent', () => {
   const item1: SpatialSearchListItem = { selected: false, description: 'abc' };
   const item2: SpatialSearchListItem = { selected: true, description: 'def' };

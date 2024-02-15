@@ -5,6 +5,6 @@ import { DetailsLabelComponent } from './details-label.component';
 @NgModule({
   declarations: [DetailsLabelComponent],
   imports: [CommonModule],
-  exports: [DetailsLabelComponent]
+  exports: [DetailsLabelComponent],
 })
-export class DetailsLabelModule { }
+export class DetailsLabelModule {}

@@ -5,7 +5,6 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 import { ListResult } from '../../../core/models/list-result';
 
-
 /**
  * ResultsBrowser is the container component in charge of rendering the label and stats of
  * the results as well as handling the virtual scrolling and click emitters of
@@ -15,7 +14,7 @@ import { ListResult } from '../../../core/models/list-result';
   selector: 'ccf-results-browser',
   templateUrl: './results-browser.component.html',
   styleUrls: ['./results-browser.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResultsBrowserComponent {
   /**
@@ -68,7 +67,7 @@ export class ResultsBrowserComponent {
    *
    * @param ga Analytics service
    */
-  constructor(private readonly ga: GoogleAnalyticsService) { }
+  constructor(private readonly ga: GoogleAnalyticsService) {}
 
   /**
    * Notifies listeners when a selection/deselection is made

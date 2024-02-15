@@ -8,21 +8,20 @@ import { ConfigModule } from './services/config/config.module';
 import { ThemingModule } from './services/theming/theming.module';
 import { StoreModule } from './store/store.module';
 
-
 @NgModule({
   imports: [
     HttpClientModule,
     AnalyticsModule.forRoot({
       gaToken: environment.googleAnalyticsToken,
-      appName: 'rui'
+      appName: 'rui',
     }),
     MousePositionTrackerModule,
 
     ConfigModule,
     StoreModule,
-    ThemingModule
+    ThemingModule,
   ],
-  exports: []
+  exports: [],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() core: CoreModule) {

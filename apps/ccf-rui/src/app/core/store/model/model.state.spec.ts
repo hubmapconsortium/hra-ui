@@ -2,7 +2,7 @@ import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { TestBed } from '@angular/core/testing';
 import { NgxsModule, Store } from '@ngxs/store';
 import { GlobalConfigState, OrganInfo } from 'ccf-shared';
-import { lastValueFrom, Observable, of } from 'rxjs';
+import { Observable, lastValueFrom, of } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 import { ExtractionSet } from '../../models/extraction-set';
@@ -19,7 +19,7 @@ const initialReferenceDataState = {
   extractionSets: {},
   sceneNodeLookup: {},
   simpleSceneNodeLookup: {},
-  placementPatches: {}
+  placementPatches: {},
 };
 
 function nextValue<T>(obs: Observable<T>): Promise<T> {
@@ -27,11 +27,10 @@ function nextValue<T>(obs: Observable<T>): Promise<T> {
 }
 
 function wait(duration = 0): Promise<void> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(resolve, duration);
   });
 }
-
 
 describe('ModelState', () => {
   const initialXYZTriplet: XYZTriplet = { x: 0, y: 0, z: 0 };
@@ -47,38 +46,38 @@ describe('ModelState', () => {
     mockDataSource.getReferenceOrganIri.and.returnValue(undefined);
     mockGlobalConfig = jasmine.createSpyObj<GlobalConfig>('GlobalConfig', ['organ']);
     mockGlobalConfig.organ = {
-      name: 'kidney', ontologyId: 'http://purl.obolibrary.org/obo/UBERON_0004538',
-      side: 'left', sex: 'female'
+      name: 'kidney',
+      ontologyId: 'http://purl.obolibrary.org/obo/UBERON_0004538',
+      side: 'left',
+      sex: 'female',
     };
 
     // NOTE: No need for shallow-render since
     // the setup is so simple. It would also require
     // us to create both a fake component and module.
     TestBed.configureTestingModule({
-      imports: [
-        NgxsDataPluginModule.forRoot(),
-        NgxsModule.forRoot([ModelState, GlobalConfigState])
-      ],
+      imports: [NgxsDataPluginModule.forRoot(), NgxsModule.forRoot([ModelState, GlobalConfigState])],
       providers: [
         GlobalConfigState,
-        { provide: ReferenceDataState,
+        {
+          provide: ReferenceDataState,
           useValue: {
             ...mockDataSource,
-            state$: of(initialReferenceDataState)
-          }
+            state$: of(initialReferenceDataState),
+          },
         },
         {
           provide: GLOBAL_CONFIG,
-          useValue: mockGlobalConfig
+          useValue: mockGlobalConfig,
         },
         {
           provide: PageState,
           useValue: {
             setHasChanges: () => undefined,
-            registrationStarted$: of([])
-          }
-        }
-      ]
+            registrationStarted$: of([]),
+          },
+        },
+      ],
     });
 
     TestBed.inject(Store).reset({
@@ -95,11 +94,11 @@ describe('ModelState', () => {
         side: 'left',
         showPrevious: false,
         extractionSites: [],
-        anatomicalStructures: []
+        anatomicalStructures: [],
       },
       globalConfig: {
-        organ: mockGlobalConfig.organ
-      }
+        organ: mockGlobalConfig.organ,
+      },
     });
 
     state = TestBed.inject(ModelState);

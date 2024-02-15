@@ -16,6 +16,7 @@ import { ConsentService } from 'ccf-shared/analytics';
 import { Observable, ReplaySubject, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { Immutable } from '@angular-ru/common/typings';
 import { BodyUiComponent } from 'ccf-shared';
 import { environment } from '../environments/environment';
 import { OntologySelection } from './core/models/ontology-selection';
@@ -31,7 +32,6 @@ import { SpatialSearchFilterSelectors } from './core/store/spatial-search-filter
 import { SpatialSearchFilterItem } from './core/store/spatial-search-filter/spatial-search-filter.state';
 import { FiltersPopoverComponent } from './modules/filters/filters-popover/filters-popover.component';
 import { DrawerComponent } from './shared/components/drawer/drawer/drawer.component';
-import { Immutable } from '@angular-ru/common/typings';
 
 interface AppOptions extends CCFDatabaseOptions {
   theme?: string;
@@ -158,7 +158,7 @@ export class AppComponent implements OnInit {
     overlay: AppRootOverlayContainer,
     readonly dataSource: DataSourceService,
     private readonly globalConfig: GlobalConfigState<AppOptions>,
-    cdr: ChangeDetectorRef
+    cdr: ChangeDetectorRef,
   ) {
     theming.initialize(el, injector);
     overlay.setRootElement(el);
@@ -252,7 +252,7 @@ export class AppComponent implements OnInit {
    */
   ontologySelected(
     ontologySelection: OntologySelection[] | undefined,
-    type: 'anatomical-structures' | 'cell-type' | 'biomarkers'
+    type: 'anatomical-structures' | 'cell-type' | 'biomarkers',
   ): void {
     if (ontologySelection) {
       if (type === 'anatomical-structures') {
@@ -344,7 +344,7 @@ export class AppComponent implements OnInit {
     return this.selectedtoggleOptions.includes(item);
   }
 
-  toggleSelection(value) {
+  toggleSelection(value: string[]) {
     this.selectedtoggleOptions = value;
   }
 

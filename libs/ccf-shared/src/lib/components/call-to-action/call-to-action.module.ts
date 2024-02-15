@@ -9,7 +9,6 @@ import { CallToActionComponent } from './call-to-action.component';
 @NgModule({
   declarations: [CallToActionComponent],
   imports: [CommonModule, MatIconModule, MatDialogModule, MatCardModule],
-  exports: [CallToActionComponent]
+  exports: [CallToActionComponent],
 })
-export class CallToActionModule { }
-
+export class CallToActionModule {}

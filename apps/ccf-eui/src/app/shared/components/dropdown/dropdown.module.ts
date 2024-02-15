@@ -5,11 +5,9 @@ import { MatSelectModule } from '@angular/material/select';
 
 import { DropdownComponent } from './dropdown.component';
 
-
 @NgModule({
   imports: [CommonModule, MatFormFieldModule, MatSelectModule],
   declarations: [DropdownComponent],
-  exports: [DropdownComponent]
+  exports: [DropdownComponent],
 })
-
-export class DropdownModule { }
+export class DropdownModule {}

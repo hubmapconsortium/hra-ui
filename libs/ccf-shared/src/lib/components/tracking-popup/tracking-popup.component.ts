@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  HostBinding,
-  Inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Inject } from '@angular/core';
 import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { Consent, ConsentService } from 'ccf-shared/analytics';
 
@@ -27,7 +21,7 @@ export class TrackingPopupComponent {
     elementRef: ElementRef<HTMLElement>,
     readonly consentService: ConsentService,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    @Inject(MAT_SNACK_BAR_DATA) public data: any
+    @Inject(MAT_SNACK_BAR_DATA) public data: any,
   ) {
     this.container = elementRef.nativeElement;
   }
@@ -47,9 +41,7 @@ export class TrackingPopupComponent {
     if (allowTelemetry === 'not-set') {
       return true;
     } else {
-      return button === 'opt-in'
-        ? allowTelemetry === 'rescinded'
-        : allowTelemetry === 'given';
+      return button === 'opt-in' ? allowTelemetry === 'rescinded' : allowTelemetry === 'given';
     }
   }
 }

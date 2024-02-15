@@ -1,8 +1,14 @@
 import {
-  ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, OnChanges, Output, SimpleChanges,
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  HostBinding,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
 } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-
 
 /**
  * Viewer for tissue samples
@@ -11,7 +17,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   selector: 'ccf-viewer',
   templateUrl: './viewer.component.html',
   styleUrls: ['./viewer.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ViewerComponent implements OnChanges {
   @HostBinding('class') className = 'ccf-viewer';
@@ -28,7 +34,7 @@ export class ViewerComponent implements OnChanges {
    */
   safeUrl: SafeResourceUrl | null = null;
 
-  constructor(private readonly sanitizer: DomSanitizer) { }
+  constructor(private readonly sanitizer: DomSanitizer) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('url' in changes) {

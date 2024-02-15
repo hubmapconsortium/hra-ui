@@ -18,10 +18,10 @@ export const environment = {
     theme: 'default',
     header: true,
     homeUrl: 'https://portal.hubmapconsortium.org/',
-    logoTooltip: 'Human BioMolecular Atlas Project'
+    logoTooltip: 'Human BioMolecular Atlas Project',
   },
   skipUnsavedChangesConfirmation: true,
-  googleAnalyticsToken: 'G-B3DT7XPMRT'
+  googleAnalyticsToken: 'G-B3DT7XPMRT',
 };
 
 /*

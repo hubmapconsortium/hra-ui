@@ -5,7 +5,6 @@ import { Shallow } from 'shallow-render';
 import { TextSearchComponent } from './text-search.component';
 import { TextSearchModule } from './text-search.module';
 
-
 function nextValue<T>(obs: Observable<T>): Promise<T> {
   return lastValueFrom(obs.pipe(take(1)));
 }

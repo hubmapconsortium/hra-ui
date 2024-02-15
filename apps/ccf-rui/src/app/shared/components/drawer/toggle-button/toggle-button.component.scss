@@ -6,7 +6,7 @@
   height: 3rem;
   border-radius: 0rem 0.25rem 0.25rem 0rem;
   cursor: pointer;
-  transition: .25s;
+  transition: 0.25s;
 
   &.ccf-drawer-toggle-button-end {
     right: unset;
@@ -17,8 +17,8 @@
   .expand-collapse-icon {
     position: absolute;
     right: 0rem;
-    transition: .6s;
-    padding-left: .15rem;
+    transition: 0.6s;
+    padding-left: 0.15rem;
 
     &.hidden {
       opacity: 0;
@@ -33,6 +33,6 @@
 
 .mat-icon {
   right: 0.3rem;
-  top: .675rem;
-  padding-top: .05rem;
+  top: 0.675rem;
+  padding-top: 0.05rem;
 }

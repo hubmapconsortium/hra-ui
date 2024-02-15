@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { Matrix4, toRadians } from '@math.gl/core';
 import { SpatialSceneNode } from '../ccf-spatial-scene';
 import { SpatialEntity, SpatialPlacement } from '../spatial-types';
@@ -16,10 +15,7 @@ const blue: Color = [41, 121, 255, 255];
  * @param placement the Spatial Placement where the cube is placed
  * @returns a set of scene nodes for the body-ui
  */
-export function getTissueBlockScene(
-  node: SpatialEntity,
-  placement: SpatialPlacement
-): SpatialSceneNode[] {
+export function getTissueBlockScene(node: SpatialEntity, placement: SpatialPlacement): SpatialSceneNode[] {
   const sceneWidth = node.x_dimension / 1000;
   const sceneHeight = node.y_dimension / 1000;
   const sceneDepth = node.z_dimension / 1000;
@@ -55,9 +51,7 @@ export function getTissueBlockScene(
         .translate([cube.x, cube.y, cube.z])
         .rotateXYZ([cube.rx, cube.ry, cube.rz])
         .multiplyRight(
-          new Matrix4(Matrix4.IDENTITY)
-            .translate([-cube.sx / 2, -cube.sy / 2, -cube.sz / 2])
-            .scale(originRadius)
+          new Matrix4(Matrix4.IDENTITY).translate([-cube.sx / 2, -cube.sy / 2, -cube.sz / 2]).scale(originRadius),
         ),
       color: gray,
     },
@@ -74,7 +68,7 @@ export function getTissueBlockScene(
           new Matrix4(Matrix4.IDENTITY)
             .translate([0, -cube.sy / 2, -cube.sz / 2])
             .rotateZ(toRadians(-90))
-            .scale([sphereLineRadius, cube.sx, sphereLineRadius])
+            .scale([sphereLineRadius, cube.sx, sphereLineRadius]),
         ),
       color: red,
     },
@@ -90,7 +84,7 @@ export function getTissueBlockScene(
         .multiplyRight(
           new Matrix4(Matrix4.IDENTITY)
             .translate([-cube.sx / 2, 0, -cube.sz / 2])
-            .scale([sphereLineRadius, cube.sy, sphereLineRadius])
+            .scale([sphereLineRadius, cube.sy, sphereLineRadius]),
         ),
       color: green,
     },
@@ -107,7 +101,7 @@ export function getTissueBlockScene(
           new Matrix4(Matrix4.IDENTITY)
             .translate([-cube.sx / 2, -cube.sy / 2, 0])
             .rotateX(toRadians(90))
-            .scale([sphereLineRadius, cube.sz, sphereLineRadius])
+            .scale([sphereLineRadius, cube.sz, sphereLineRadius]),
         ),
       color: blue,
     },
@@ -118,11 +112,7 @@ export function getTissueBlockScene(
       unpickable: true,
       geometry: 'cylinder',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          cube.x + cube.radius + sphereLineLength / 2,
-          cube.y,
-          cube.z,
-        ])
+        .translate([cube.x + cube.radius + sphereLineLength / 2, cube.y, cube.z])
         .rotateZ(toRadians(-90))
         .scale([sphereLineRadius, sphereLineLength, sphereLineRadius]),
       color: red,
@@ -145,11 +135,7 @@ export function getTissueBlockScene(
       geometry: 'text',
       text: 'D',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          cube.x + cube.radius + sphereLineLength + sphereConeRadius * 3,
-          cube.y,
-          cube.z,
-        ])
+        .translate([cube.x + cube.radius + sphereLineLength + sphereConeRadius * 3, cube.y, cube.z])
         .scale(sphereConeRadius),
       color: red,
     },
@@ -160,11 +146,7 @@ export function getTissueBlockScene(
       unpickable: true,
       geometry: 'cylinder',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          cube.x - cube.radius - sphereLineLength / 2,
-          cube.y,
-          cube.z,
-        ])
+        .translate([cube.x - cube.radius - sphereLineLength / 2, cube.y, cube.z])
         .rotateZ(toRadians(-90))
         .scale([sphereLineRadius, sphereLineLength, sphereLineRadius]),
       color: red,
@@ -187,11 +169,7 @@ export function getTissueBlockScene(
       geometry: 'text',
       text: 'A',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          cube.x - cube.radius - sphereLineLength - sphereConeRadius * 3.5,
-          cube.y,
-          cube.z,
-        ])
+        .translate([cube.x - cube.radius - sphereLineLength - sphereConeRadius * 3.5, cube.y, cube.z])
         .scale(sphereConeRadius),
       color: red,
     },
@@ -202,11 +180,7 @@ export function getTissueBlockScene(
       unpickable: true,
       geometry: 'cylinder',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          cube.x,
-          cube.y + cube.radius + sphereLineLength / 2,
-          cube.z,
-        ])
+        .translate([cube.x, cube.y + cube.radius + sphereLineLength / 2, cube.z])
         .scale([sphereLineRadius, sphereLineLength, sphereLineRadius]),
       color: green,
     },
@@ -227,11 +201,7 @@ export function getTissueBlockScene(
       geometry: 'text',
       text: 'W',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          cube.x,
-          cube.y + cube.radius + sphereLineLength + sphereConeRadius * 3,
-          cube.z,
-        ])
+        .translate([cube.x, cube.y + cube.radius + sphereLineLength + sphereConeRadius * 3, cube.z])
         .scale(sphereConeRadius),
       color: green,
     },
@@ -242,11 +212,7 @@ export function getTissueBlockScene(
       unpickable: true,
       geometry: 'cylinder',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          cube.x,
-          cube.y - cube.radius - sphereLineLength / 2,
-          cube.z,
-        ])
+        .translate([cube.x, cube.y - cube.radius - sphereLineLength / 2, cube.z])
         .scale([sphereLineRadius, sphereLineLength, sphereLineRadius]),
       color: green,
     },
@@ -268,11 +234,7 @@ export function getTissueBlockScene(
       geometry: 'text',
       text: 'S',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          cube.x,
-          cube.y - cube.radius - sphereLineLength - sphereConeRadius * 3.5,
-          cube.z,
-        ])
+        .translate([cube.x, cube.y - cube.radius - sphereLineLength - sphereConeRadius * 3.5, cube.z])
         .scale(sphereConeRadius),
       color: green,
     },
@@ -283,11 +245,7 @@ export function getTissueBlockScene(
       unpickable: true,
       geometry: 'cylinder',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          cube.x,
-          cube.y,
-          cube.z + cube.radius + sphereLineLength / 2,
-        ])
+        .translate([cube.x, cube.y, cube.z + cube.radius + sphereLineLength / 2])
         .rotateX(toRadians(90))
         .scale([sphereLineRadius, sphereLineLength, sphereLineRadius]),
       color: blue,
@@ -310,11 +268,7 @@ export function getTissueBlockScene(
       geometry: 'text',
       text: 'Q',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          cube.x,
-          cube.y,
-          cube.z + cube.radius + sphereLineLength + sphereConeRadius * 3,
-        ])
+        .translate([cube.x, cube.y, cube.z + cube.radius + sphereLineLength + sphereConeRadius * 3])
         .scale(sphereConeRadius),
       color: blue,
     },
@@ -325,11 +279,7 @@ export function getTissueBlockScene(
       unpickable: true,
       geometry: 'cylinder',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          cube.x,
-          cube.y,
-          cube.z - cube.radius - sphereLineLength / 2,
-        ])
+        .translate([cube.x, cube.y, cube.z - cube.radius - sphereLineLength / 2])
         .rotateX(toRadians(-90))
         .scale([sphereLineRadius, sphereLineLength, sphereLineRadius]),
       color: blue,
@@ -352,11 +302,7 @@ export function getTissueBlockScene(
       geometry: 'text',
       text: 'E',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          cube.x,
-          cube.y,
-          cube.z - cube.radius - sphereLineLength - sphereConeRadius * 3.5,
-        ])
+        .translate([cube.x, cube.y, cube.z - cube.radius - sphereLineLength - sphereConeRadius * 3.5])
         .scale(sphereConeRadius),
       color: blue,
     },

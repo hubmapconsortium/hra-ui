@@ -1,6 +1,6 @@
-import { Component, OnInit, HostBinding, Inject, Renderer2, ChangeDetectionStrategy } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DOCUMENT } from '@angular/common';
+import { ChangeDetectionStrategy, Component, HostBinding, Inject, OnInit, Renderer2 } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 /**
  * Component for displaying a youtube video inside of an angular material modal.
@@ -9,7 +9,7 @@ import { DOCUMENT } from '@angular/common';
   selector: 'ccf-video-modal',
   templateUrl: './video-modal.component.html',
   styleUrls: ['./video-modal.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VideoModalComponent implements OnInit {
   /** HTML class name */
@@ -22,8 +22,8 @@ export class VideoModalComponent implements OnInit {
     private renderer2: Renderer2,
     public dialogRef: MatDialogRef<VideoModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: unknown,
-    @Inject(DOCUMENT) private document: Document
-  ) { }
+    @Inject(DOCUMENT) private document: Document,
+  ) {}
 
   /**
    * load the youtube player api in on init

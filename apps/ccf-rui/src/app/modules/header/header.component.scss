@@ -15,7 +15,6 @@
     font-size: 1.5rem;
   }
 
-
   .link {
     display: flex;
     align-items: center;
@@ -26,7 +25,7 @@
 
   .home {
     * {
-      transition: color .6s;
+      transition: color 0.6s;
     }
 
     .backbutton {

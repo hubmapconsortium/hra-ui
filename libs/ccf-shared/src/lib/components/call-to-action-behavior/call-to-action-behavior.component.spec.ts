@@ -6,14 +6,12 @@ import { CloseDialog, LearnMore } from '../../states/call-to-action/call-to-acti
 import { CallToActionBehaviorComponent } from './call-to-action-behavior.component';
 import { CallToActionBehaviorModule } from './call-to-action-behavior.module';
 
-
-
 describe('CallToActionBehaviorComponent', () => {
   let shallow: Shallow<CallToActionBehaviorComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [NgxsModule.forRoot()]
+      imports: [NgxsModule.forRoot()],
     });
 
     shallow = new Shallow(CallToActionBehaviorComponent, CallToActionBehaviorModule)

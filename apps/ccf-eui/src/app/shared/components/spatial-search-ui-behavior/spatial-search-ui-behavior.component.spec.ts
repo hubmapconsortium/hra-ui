@@ -3,13 +3,13 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { NgxsModule } from '@ngxs/store';
 import { Shallow } from 'shallow-render';
 
+import { GlobalConfigState } from 'ccf-shared';
+import { of } from 'rxjs/internal/observable/of';
 import { SpatialSearchUiBehaviorComponent } from './spatial-search-ui-behavior.component';
 import { SpatialSearchUiBehaviorModule } from './spatial-search-ui-behavior.module';
-import { of } from 'rxjs/internal/observable/of';
-import { GlobalConfigState } from 'ccf-shared';
 
 function wait(duration: number): Promise<void> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(resolve, duration);
   });
 }
@@ -19,11 +19,15 @@ describe('SpatialSearchUiBehaviorComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [NgxsModule.forRoot([], {})]
+      imports: [NgxsModule.forRoot([], {})],
     });
 
     shallow = new Shallow(SpatialSearchUiBehaviorComponent, SpatialSearchUiBehaviorModule)
-      .mock(MatDialogRef, { close(): void { /* Empty */ } })
+      .mock(MatDialogRef, {
+        close(): void {
+          /* Empty */
+        },
+      })
       .mock(GlobalConfigState, { getOption: () => of(undefined) });
   });
 

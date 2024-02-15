@@ -1,18 +1,9 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
 import { GlobalConfigState } from 'ccf-shared';
-import {
-  BaseWebComponent,
-  BUILTIN_PARSERS,
-  GenericGlobalConfig,
-} from 'ccf-shared/web-components';
+import { BUILTIN_PARSERS, BaseWebComponent, GenericGlobalConfig } from 'ccf-shared/web-components';
 
-import { environment } from '../environments/environment';
 import { Filter } from 'ccf-database';
+import { environment } from '../environments/environment';
 
 function isNumber(value: unknown): value is number {
   return typeof value === 'number';
@@ -34,14 +25,14 @@ function checkOptionalProperty(
   name: string,
   obj: object,
   prop: string,
-  validator: (value: unknown) => boolean // returns boolean after being called. Logic is passed as an argument when 'checkProp()' is called.
+  validator: (value: unknown) => boolean, // returns boolean after being called. Logic is passed as an argument when 'checkProp()' is called.
 ): void {
   /** first check if prop(property name) is present in the obj(value) and then apply the validator function whose
    *logic is passed when the checkProp() is called.
-  */
+   */
   if (prop in obj) {
     //obj[prop] is value for eg. 'Male' in sex
-    if (!validator(obj[prop])) {
+    if (!validator(obj[prop as never])) {
       throw new Error(`Invalid property ${prop} in ${name}`);
     }
   }
@@ -72,16 +63,16 @@ function parseFilter(value: unknown): string | Partial<Filter> {
     const sexOptions = ['Both', 'Male', 'Female'];
     // predefine name as 'filter' and obj as value. 'this' is set to undefined
     const checkProp = checkOptionalProperty.bind(undefined, 'filter', value);
-    checkProp('sex', val => isString(val) && sexOptions.includes(val));
-    checkProp('ageRange', val => isNumberArray(val) && val.length === 2);
-    checkProp('bmiRange', val => isNumberArray(val) && val.length === 2);
+    checkProp('sex', (val) => isString(val) && sexOptions.includes(val));
+    checkProp('ageRange', (val) => isNumberArray(val) && val.length === 2);
+    checkProp('bmiRange', (val) => isNumberArray(val) && val.length === 2);
     checkProp('consortiums', isStringArray);
     checkProp('tmc', isStringArray);
-    checkProp('technologies', val => isStringArray(val));
-    checkProp('ontologyTerms', val => isStringArray(val));
-    checkProp('cellTypeTerms', val => isStringArray(val));
-    checkProp('biomarkerTerms', val => isStringArray(val));
-    checkProp('spatialSearches', val => isStringArray(val));
+    checkProp('technologies', (val) => isStringArray(val));
+    checkProp('ontologyTerms', (val) => isStringArray(val));
+    checkProp('cellTypeTerms', (val) => isStringArray(val));
+    checkProp('biomarkerTerms', (val) => isStringArray(val));
+    checkProp('spatialSearches', (val) => isStringArray(val));
     return value as Filter;
   }
 
@@ -115,16 +106,13 @@ export class AppWebComponent extends BaseWebComponent {
 
   override initialized!: boolean;
 
-  constructor(
-    configStore: GlobalConfigState<GenericGlobalConfig>,
-    cdr: ChangeDetectorRef
-  ) {
+  constructor(configStore: GlobalConfigState<GenericGlobalConfig>, cdr: ChangeDetectorRef) {
     super(configStore, cdr, {
       initialDelay: 10,
 
       initialConfig: {
         ...environment.dbOptions,
-        ...globalThis['dbOptions'],
+        ...(globalThis['dbOptions' as never] as object),
         ...environment.customization,
       },
       parse: {

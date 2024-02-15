@@ -6,10 +6,9 @@ import { MatRippleModule } from '@angular/material/core';
 
 import { VisibilityMenuComponent } from './visibility-menu.component';
 
-
 @NgModule({
   imports: [CommonModule, MatIconModule, MatRippleModule, OpacitySliderModule],
   declarations: [VisibilityMenuComponent],
-  exports: [VisibilityMenuComponent]
+  exports: [VisibilityMenuComponent],
 })
-export class VisibilityMenuModule { }
+export class VisibilityMenuModule {}

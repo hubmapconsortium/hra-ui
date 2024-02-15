@@ -58,13 +58,8 @@ export class LocalStorageService {
    * @param defaultValue
    * @returns the value
    */
-  getItem<D extends string | null = null>(
-    key: string,
-    defaultValue?: D
-  ): string | D {
-    return (
-      LocalStorageService.storage?.getItem(key) ?? defaultValue ?? (null as D)
-    );
+  getItem<D extends string | null = null>(key: string, defaultValue?: D): string | D {
+    return LocalStorageService.storage?.getItem(key) ?? defaultValue ?? (null as D);
   }
 
   /**

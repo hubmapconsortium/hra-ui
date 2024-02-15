@@ -2,18 +2,16 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { Shallow } from 'shallow-render';
 
+import { PageState } from '../../../core/store/page/page.state';
 import { ReviewButtonComponent } from './review-button.component';
 import { ReviewButtonModule } from './review-button.module';
-import { PageState } from '../../../core/store/page/page.state';
 
 describe('ReviewButtonComponent', () => {
   let shallow: Shallow<ReviewButtonComponent>;
   let afterClosedObservable: Subject<boolean>;
   const emptyMetaData = [{ value: '' }, { value: '' }, { value: '' }];
   const metaData = [{ value: 'First Name' }, { value: 'Last Name' }, { value: 'Organ' }];
-  const mockPageState = jasmine.createSpyObj<PageState>(
-    'PageState', ['patchState', 'registrationStarted']
-  );
+  const mockPageState = jasmine.createSpyObj<PageState>('PageState', ['patchState', 'registrationStarted']);
 
   beforeEach(() => {
     const mockDialog = jasmine.createSpyObj<MatDialogRef<unknown, boolean>>('DialogRef', ['afterClosed']);
@@ -21,9 +19,11 @@ describe('ReviewButtonComponent', () => {
     mockDialog.afterClosed.and.returnValue(afterClosedObservable);
 
     shallow = new Shallow(ReviewButtonComponent, ReviewButtonModule)
-      .mock(MatDialog, { open(): MatDialogRef<unknown, boolean> {
-        return mockDialog;
-      } })
+      .mock(MatDialog, {
+        open(): MatDialogRef<unknown, boolean> {
+          return mockDialog;
+        },
+      })
       .mock(PageState, mockPageState);
   });
 
@@ -66,7 +66,7 @@ describe('ReviewButtonComponent', () => {
   it('prevents default', async () => {
     // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     const mockEvent = {
-      preventDefault: () => undefined
+      preventDefault: () => undefined,
     } as MouseEvent;
     const { instance } = await shallow.render();
     const spy = spyOn(mockEvent, 'preventDefault');

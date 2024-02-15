@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 0.5rem;
 
-  input[type=number] {
+  input[type='number'] {
     -moz-appearance: textfield;
   }
 
@@ -11,7 +11,7 @@
     display: flex;
     align-items: center;
     height: 1.5rem;
-    padding: .5rem 0;
+    padding: 0.5rem 0;
 
     .title {
       font-weight: 400;
@@ -20,7 +20,7 @@
     .refresh {
       transform: scaleX(-1);
       cursor: pointer;
-      transition: .6s;
+      transition: 0.6s;
 
       &:hover {
         border-radius: 2px;
@@ -49,7 +49,8 @@
         display: none;
       }
 
-      &.mat-focused .suffix, .suffix.show {
+      &.mat-focused .suffix,
+      .suffix.show {
         display: initial;
       }
 

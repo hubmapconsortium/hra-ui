@@ -8,11 +8,9 @@ import { OntologyTreeComponent } from '../ontology-tree/ontology-tree.component'
 import { OntologySelectionComponent } from './ontology-selection.component';
 import { OntologySelectionModule } from './ontology-selection.module';
 
-
 function fromPartial<T>(partial: RecursivePartial<T>): T {
   return partial as T;
 }
-
 
 describe('OntologySelectionComponent', () => {
   const ontologyNode = fromPartial<OntologyTreeNode>({ label: 'label' });
@@ -44,11 +42,10 @@ describe('OntologySelectionComponent', () => {
     const { findComponent, instance } = await shallow.render();
     instance.treeModel = {
       root: '',
-      nodes: {}
+      nodes: {},
     };
     spyOn(instance, 'filterNodes').and.callThrough();
     findComponent(OntologyTreeComponent).selectedBiomarkerOptions.emit(['gene']);
     expect(instance.filterNodes).toHaveBeenCalled();
   });
-
 });

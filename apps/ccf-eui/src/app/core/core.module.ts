@@ -8,24 +8,21 @@ import { DelegateDataSourceService } from './services/data-source/data-source.se
 import { ThemingModule } from './services/theming/theming.module';
 import { StoreModule } from './store/store.module';
 
-
 @NgModule({
   imports: [
     HttpClientModule,
 
     AnalyticsModule.forRoot({
       gaToken: environment.googleAnalyticsToken,
-      appName: 'eui'
+      appName: 'eui',
     }),
     MousePositionTrackerModule,
     HeaderModule,
     StoreModule,
-    ThemingModule
+    ThemingModule,
   ],
-  providers: [
-    { provide: DataSourceService, useExisting: DelegateDataSourceService }
-  ],
-  exports: [HeaderModule]
+  providers: [{ provide: DataSourceService, useExisting: DelegateDataSourceService }],
+  exports: [HeaderModule],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() core: CoreModule) {

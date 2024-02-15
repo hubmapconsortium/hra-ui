@@ -4,7 +4,6 @@ import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { SpatialSearchFilterItem } from '../../../core/store/spatial-search-filter/spatial-search-filter.state';
 import { SetExecuteSearchOnGenerate } from '../../../core/store/spatial-search-ui/spatial-search-ui.actions';
 
-
 /**
  * Popover box for filter settings
  */
@@ -12,7 +11,7 @@ import { SetExecuteSearchOnGenerate } from '../../../core/store/spatial-search-u
   selector: 'ccf-filters-popover',
   templateUrl: './filters-popover.component.html',
   styleUrls: ['./filters-popover.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FiltersPopoverComponent {
   /**

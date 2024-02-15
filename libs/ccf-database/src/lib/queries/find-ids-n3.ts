@@ -1,12 +1,6 @@
-import isFinite from 'lodash/isFinite';
+import { isFinite } from 'lodash';
 import { fromRdf } from 'rdf-literal';
-import {
-  DataFactory,
-  Literal,
-  readQuads,
-  Store,
-  Term,
-} from 'triple-store-utils';
+import { DataFactory, Literal, readQuads, Store, Term } from 'triple-store-utils';
 
 import { CCFSpatialGraph } from '../ccf-spatial-graph';
 import { Filter, SpatialSearch } from '../interfaces';
@@ -16,7 +10,7 @@ import { filterByProbingSphere } from './spatial-search-n3';
 function filterWithDonor(
   store: Store,
   seen: Set<string>,
-  callback: (donorsSeen: Set<string>) => Set<string>
+  callback: (donorsSeen: Set<string>) => Set<string>,
 ): Set<string> {
   const donor2entity = new Map<string, string[]>();
   const donors = new Set<string>();
@@ -44,18 +38,12 @@ function filterWithDonor(
 function filterWithSpatialEntity(
   store: Store,
   seen: Set<string>,
-  callback: (entitiesSeen: Set<string>) => Set<string>
+  callback: (entitiesSeen: Set<string>) => Set<string>,
 ): Set<string> {
   const spatial2entity = new Map<string, string[]>();
   const entities = new Set<string>();
   for (const subject of seen) {
-    for (const quad of readQuads(
-      store,
-      subject,
-      entity.spatialEntity,
-      null,
-      null
-    )) {
+    for (const quad of readQuads(store, subject, entity.spatialEntity, null, null)) {
       entities.add(quad.object.id);
       if (!spatial2entity.has(quad.object.id)) {
         spatial2entity.set(quad.object.id, [subject]);
@@ -78,7 +66,7 @@ function filterWithSpatialEntity(
 function filterWithDataset(
   store: Store,
   seen: Set<string>,
-  callback: (datasetsSeen: Set<string>) => Set<string>
+  callback: (datasetsSeen: Set<string>) => Set<string>,
 ): Set<string> {
   const dataset2entity = new Map<string, string[]>();
   const datasets = new Set<string>();
@@ -118,95 +106,63 @@ function filterWithDataset(
  * @param filter The filter to limit objects.
  * @returns A set of all ids matching the filter.
  */
-export function findIds(
-  store: Store,
-  graph: CCFSpatialGraph,
-  filter: Filter
-): Set<string> {
+export function findIds(store: Store, graph: CCFSpatialGraph, filter: Filter): Set<string> {
   let seen = getAllEntities(store);
   if (seen.size > 0) {
     seen = filterByHasSpatialEntity(store, seen);
   }
   if (seen.size > 0 && (filter.sex === 'Male' || filter.sex === 'Female')) {
     const sex = filter.sex;
-    seen = filterWithDonor(store, seen, (donors) =>
-      filterBySex(store, donors, sex)
-    );
+    seen = filterWithDonor(store, seen, (donors) => filterBySex(store, donors, sex));
   }
   if (seen.size > 0 && filter.consortiums?.length > 0) {
-    seen = filterWithDonor(store, seen, (donors) =>
-      filterByConsortiumName(store, donors, filter.consortiums)
-    );
+    seen = filterWithDonor(store, seen, (donors) => filterByConsortiumName(store, donors, filter.consortiums));
   }
   if (seen.size > 0 && filter.tmc?.length > 0) {
-    seen = filterWithDonor(store, seen, (donors) =>
-      filterByGroupName(store, donors, filter.tmc)
-    );
+    seen = filterWithDonor(store, seen, (donors) => filterByGroupName(store, donors, filter.tmc));
   }
   if (seen.size > 0 && filter.technologies?.length > 0) {
-    seen = filterWithDataset(store, seen, (datasets) =>
-      filterByTechnology(store, datasets, filter.technologies)
-    );
+    seen = filterWithDataset(store, seen, (datasets) => filterByTechnology(store, datasets, filter.technologies));
   }
   if (seen.size > 0 && filter.spatialSearches?.length > 0) {
     seen = filterWithSpatialEntity(store, seen, (entities) =>
-      filterBySpatialSearches(store, graph, entities, filter.spatialSearches)
+      filterBySpatialSearches(store, graph, entities, filter.spatialSearches),
     );
   }
   if (seen.size > 0 && filter.ontologyTerms?.length > 0) {
     const terms = filter.ontologyTerms;
     if (terms.indexOf(rui.body.id) === -1) {
-      seen = filterWithSpatialEntity(store, seen, (entities) =>
-        filterByOntologyTerms(store, entities, terms)
-      );
+      seen = filterWithSpatialEntity(store, seen, (entities) => filterByOntologyTerms(store, entities, terms));
     }
   }
   if (seen.size > 0 && filter.cellTypeTerms?.length > 0) {
     const terms = filter.cellTypeTerms;
     if (terms.indexOf(rui.cell.id) === -1) {
-      seen = filterWithSpatialEntity(store, seen, (entities) =>
-        filterByCellTypeTerms(store, entities, terms)
-      );
+      seen = filterWithSpatialEntity(store, seen, (entities) => filterByCellTypeTerms(store, entities, terms));
     }
   }
   if (seen.size > 0 && filter.biomarkerTerms?.length > 0) {
     const terms = filter.biomarkerTerms;
     if (terms.indexOf('http://purl.org/ccf/biomarkers') === -1) {
-      seen = filterWithSpatialEntity(store, seen, (entities) =>
-        filterByBiomarkerTerms(store, entities, terms)
-      );
+      seen = filterWithSpatialEntity(store, seen, (entities) => filterByBiomarkerTerms(store, entities, terms));
     }
   }
-  if (
-    seen.size > 0 &&
-    filter.ageRange?.length === 2 &&
-    isFinite(filter.ageRange[0]) &&
-    isFinite(filter.ageRange[1])
-  ) {
+  if (seen.size > 0 && filter.ageRange?.length === 2 && isFinite(filter.ageRange[0]) && isFinite(filter.ageRange[1])) {
     const maxAge = Math.max(...filter.ageRange);
     const minAge = Math.min(...filter.ageRange);
 
     // Age filter given by their default range will be ignored
     if (!(minAge === 1 && maxAge === 110)) {
-      seen = filterWithDonor(store, seen, (donors) =>
-        filterByAge(store, donors, minAge, maxAge)
-      );
+      seen = filterWithDonor(store, seen, (donors) => filterByAge(store, donors, minAge, maxAge));
     }
   }
-  if (
-    seen.size > 0 &&
-    filter.bmiRange?.length === 2 &&
-    isFinite(filter.bmiRange[0]) &&
-    isFinite(filter.bmiRange[1])
-  ) {
+  if (seen.size > 0 && filter.bmiRange?.length === 2 && isFinite(filter.bmiRange[0]) && isFinite(filter.bmiRange[1])) {
     const maxBMI = Math.max(...filter.bmiRange);
     const minBMI = Math.min(...filter.bmiRange);
 
     // BMI filter given by their default range will be ignored
     if (!(minBMI === 13 && maxBMI === 83)) {
-      seen = filterWithDonor(store, seen, (donors) =>
-        filterByBMI(store, donors, minBMI, maxBMI)
-      );
+      seen = filterWithDonor(store, seen, (donors) => filterByBMI(store, donors, minBMI, maxBMI));
     }
   }
   return seen;
@@ -231,10 +187,7 @@ function getAllEntities(store: Store): Set<string> {
  * @param newSeen The second set to add ids to.
  * @returns The callback function.
  */
-function differenceCallback(
-  seen: Set<string>,
-  newSeen: Set<string>
-): (term: Term) => void {
+function differenceCallback(seen: Set<string>, newSeen: Set<string>): (term: Term) => void {
   return function (term: Term) {
     if (seen.has(term.id)) {
       newSeen.add(term.id);
@@ -250,18 +203,9 @@ function differenceCallback(
  * @param sex Sex to filter on.
  * @returns The subset of ids with the specified sex.
  */
-function filterBySex(
-  store: Store,
-  seen: Set<string>,
-  sex: 'Male' | 'Female'
-): Set<string> {
+function filterBySex(store: Store, seen: Set<string>, sex: 'Male' | 'Female'): Set<string> {
   const newSeen = new Set<string>();
-  store.forSubjects(
-    differenceCallback(seen, newSeen),
-    entity.sex,
-    entity[sex],
-    null
-  );
+  store.forSubjects(differenceCallback(seen, newSeen), entity.sex, entity[sex], null);
   return newSeen;
 }
 
@@ -273,20 +217,11 @@ function filterBySex(
  * @param consortiums Consortiums to filter on.
  * @returns The subset of ids with the specified consortiums.
  */
-function filterByConsortiumName(
-  store: Store,
-  seen: Set<string>,
-  consortiums: string[]
-): Set<string> {
+function filterByConsortiumName(store: Store, seen: Set<string>, consortiums: string[]): Set<string> {
   const newSeen = new Set<string>();
   for (const consortium of consortiums) {
     const literal = DataFactory.literal(consortium);
-    store.forSubjects(
-      differenceCallback(seen, newSeen),
-      entity.consortiumName,
-      literal,
-      null
-    );
+    store.forSubjects(differenceCallback(seen, newSeen), entity.consortiumName, literal, null);
   }
   return newSeen;
 }
@@ -299,20 +234,11 @@ function filterByConsortiumName(
  * @param groupNames Group names to filter on.
  * @returns The subset of ids with the specified group names.
  */
-function filterByGroupName(
-  store: Store,
-  seen: Set<string>,
-  groupNames: string[]
-): Set<string> {
+function filterByGroupName(store: Store, seen: Set<string>, groupNames: string[]): Set<string> {
   const newSeen = new Set<string>();
   for (const groupName of groupNames) {
     const literal = DataFactory.literal(groupName);
-    store.forSubjects(
-      differenceCallback(seen, newSeen),
-      entity.providerName,
-      literal,
-      null
-    );
+    store.forSubjects(differenceCallback(seen, newSeen), entity.providerName, literal, null);
   }
   return newSeen;
 }
@@ -325,20 +251,11 @@ function filterByGroupName(
  * @param technologies Technology names to filter on.
  * @returns The subset of ids with the specified technology names.
  */
-function filterByTechnology(
-  store: Store,
-  seen: Set<string>,
-  technologies: string[]
-): Set<string> {
+function filterByTechnology(store: Store, seen: Set<string>, technologies: string[]): Set<string> {
   const newSeen = new Set<string>();
   for (const technology of technologies) {
     const literal = DataFactory.literal(technology);
-    store.forSubjects(
-      differenceCallback(seen, newSeen),
-      entity.technology,
-      literal,
-      null
-    );
+    store.forSubjects(differenceCallback(seen, newSeen), entity.technology, literal, null);
   }
   return newSeen;
 }
@@ -351,20 +268,11 @@ function filterByTechnology(
  * @param terms Ontology terms to filter on.
  * @returns The subset of ids with the specified ontology terms.
  */
-function filterByOntologyTerms(
-  store: Store,
-  seen: Set<string>,
-  terms: string[]
-): Set<string> {
+function filterByOntologyTerms(store: Store, seen: Set<string>, terms: string[]): Set<string> {
   const newSeen = new Set<string>();
   for (const term of terms) {
     const namedNode = DataFactory.namedNode(term);
-    store.forSubjects(
-      differenceCallback(seen, newSeen),
-      ccf.spatialEntity.ccf_annotations,
-      namedNode,
-      null
-    );
+    store.forSubjects(differenceCallback(seen, newSeen), ccf.spatialEntity.ccf_annotations, namedNode, null);
   }
   return newSeen;
 }
@@ -377,11 +285,7 @@ function filterByOntologyTerms(
  * @param terms Cell type terms to filter on.
  * @returns The subset of ids with the specified cell type terms.
  */
-function filterByCellTypeTerms(
-  store: Store,
-  seen: Set<string>,
-  terms: string[]
-): Set<string> {
+function filterByCellTypeTerms(store: Store, seen: Set<string>, terms: string[]): Set<string> {
   const asTerms = new Set<string>();
   for (const term of terms) {
     store.forObjects(
@@ -390,7 +294,7 @@ function filterByCellTypeTerms(
       },
       term,
       ccf.asctb.located_in,
-      null
+      null,
     );
     if (term === rui.cell.id) {
       asTerms.add(rui.body.id);
@@ -407,11 +311,7 @@ function filterByCellTypeTerms(
  * @param terms Biomarker terms to filter on.
  * @returns The subset of ids with the specified biomarker terms.
  */
-function filterByBiomarkerTerms(
-  store: Store,
-  seen: Set<string>,
-  terms: string[]
-): Set<string> {
+function filterByBiomarkerTerms(store: Store, seen: Set<string>, terms: string[]): Set<string> {
   const asTerms = new Set<string>();
   for (const term of terms) {
     store.forObjects(
@@ -420,7 +320,7 @@ function filterByBiomarkerTerms(
       },
       term,
       ccf.asctb.bm_located_in,
-      null
+      null,
     );
     if (term === 'http://purl.org/ccf/biomarkers') {
       asTerms.add(rui.body.id);
@@ -438,12 +338,7 @@ function filterByBiomarkerTerms(
  * @param maxAge Maximum age.
  * @returns The subset of ids with the specified age.
  */
-function filterByAge(
-  store: Store,
-  seen: Set<string>,
-  minAge: number,
-  maxAge: number
-): Set<string> {
+function filterByAge(store: Store, seen: Set<string>, minAge: number, maxAge: number): Set<string> {
   const newSeen = new Set<string>();
   for (const subject of seen) {
     for (const quad of readQuads(store, subject, entity.age, null, null)) {
@@ -465,12 +360,7 @@ function filterByAge(
  * @param maxBMI Maximum BMI.
  * @returns The subset of ids with the specified BMI.
  */
-function filterByBMI(
-  store: Store,
-  seen: Set<string>,
-  minBMI: number,
-  maxBMI: number
-): Set<string> {
+function filterByBMI(store: Store, seen: Set<string>, minBMI: number, maxBMI: number): Set<string> {
   const newSeen = new Set<string>();
   for (const subject of seen) {
     for (const quad of readQuads(store, subject, entity.bmi, null, null)) {
@@ -491,18 +381,9 @@ function filterByBMI(
  * @param hasSpatialEntity Whether the filtered objects should have a spatial entity.
  * @returns The subset of ids with/without spatial entities.
  */
-function filterByHasSpatialEntity(
-  store: Store,
-  seen: Set<string>,
-  hasSpatialEntity = true
-): Set<string> {
+function filterByHasSpatialEntity(store: Store, seen: Set<string>, hasSpatialEntity = true): Set<string> {
   const newSeen = new Set<string>();
-  store.forSubjects(
-    differenceCallback(seen, newSeen),
-    entity.spatialEntity,
-    null,
-    null
-  );
+  store.forSubjects(differenceCallback(seen, newSeen), entity.spatialEntity, null, null);
   if (!hasSpatialEntity) {
     const notNewSeen = new Set<string>();
     seen.forEach((s) => (!newSeen.has(s) ? notNewSeen.add(s) : undefined));
@@ -515,7 +396,7 @@ function filterBySpatialSearches(
   store: Store,
   graph: CCFSpatialGraph,
   seen: Set<string>,
-  spatialSearches: SpatialSearch[]
+  spatialSearches: SpatialSearch[],
 ): Set<string> {
   const newSeen = new Set<string>();
   for (const search of spatialSearches) {

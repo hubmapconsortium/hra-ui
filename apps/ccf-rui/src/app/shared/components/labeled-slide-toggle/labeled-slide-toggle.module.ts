@@ -4,10 +4,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { LabeledSlideToggleComponent } from './labeled-slide-toggle.component';
 
-
 @NgModule({
   imports: [CommonModule, MatSlideToggleModule],
   declarations: [LabeledSlideToggleComponent],
-  exports: [LabeledSlideToggleComponent]
+  exports: [LabeledSlideToggleComponent],
 })
-export class LabeledSlideToggleModule { }
+export class LabeledSlideToggleModule {}

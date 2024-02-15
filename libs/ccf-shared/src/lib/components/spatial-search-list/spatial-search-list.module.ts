@@ -7,17 +7,9 @@ import { MatListModule } from '@angular/material/list';
 
 import { SpatialSearchListComponent } from './spatial-search-list.component';
 
-
 @NgModule({
-  imports: [
-    CommonModule,
-
-    MatButtonModule,
-    MatCheckboxModule,
-    MatIconModule,
-    MatListModule
-  ],
+  imports: [CommonModule, MatButtonModule, MatCheckboxModule, MatIconModule, MatListModule],
   declarations: [SpatialSearchListComponent],
-  exports: [SpatialSearchListComponent]
+  exports: [SpatialSearchListComponent],
 })
-export class SpatialSearchListModule { }
+export class SpatialSearchListModule {}

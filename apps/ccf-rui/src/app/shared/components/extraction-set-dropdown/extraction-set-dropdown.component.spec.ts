@@ -1,20 +1,18 @@
 import { Shallow } from 'shallow-render';
 
+import { ExtractionSet } from '../../../core/models/extraction-set';
 import { ExtractionSetDropdownComponent } from './extraction-set-dropdown.component';
 import { ExtractionSetDropdownModule } from './extraction-set-dropdown.module';
-import { ExtractionSet } from '../../../core/models/extraction-set';
 
-// eslint-disable-next-line @typescript-eslint/consistent-type-assertions
 const testSet = {
   name: 'testName',
   organ: 'testOrgan',
   sites: [
     { id: 1, name: 'A', visible: false },
     { id: 2, name: 'B', visible: false },
-    { id: 3, name: 'C', visible: false }
-  ]
+    { id: 3, name: 'C', visible: false },
+  ],
 } as ExtractionSet;
-
 
 describe('ExtractionSetComponent', () => {
   let shallow: Shallow<ExtractionSetDropdownComponent>;
@@ -43,8 +41,8 @@ describe('ExtractionSetComponent', () => {
       sites: [
         { id: 3, name: 'D', visible: false },
         { id: 4, name: 'E', visible: false },
-        { id: 5, name: 'F', visible: false }
-      ]
+        { id: 5, name: 'F', visible: false },
+      ],
     } as ExtractionSet;
     const { instance } = await shallow.render({ bind: { sets: [testSet, testSet2] } });
     expect(instance.isMultiple()).toBeTrue();

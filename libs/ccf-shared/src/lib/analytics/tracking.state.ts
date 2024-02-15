@@ -27,10 +27,7 @@ export class TrackingState extends NgxsImmutableDataRepository<TrackingStateMode
   @DataAction()
   setAllowTelemetry(allowTelemetry: boolean): void {
     const oldValue = getTelemetryStorageSetting();
-    localStorage.setItem(
-      LOCAL_STORAGE_ALLOW_TELEMETRY_KEY,
-      allowTelemetry.toString()
-    );
+    localStorage.setItem(LOCAL_STORAGE_ALLOW_TELEMETRY_KEY, allowTelemetry.toString());
     this.ctx.patchState({ allowTelemetry });
 
     if (oldValue !== undefined || allowTelemetry === false) {

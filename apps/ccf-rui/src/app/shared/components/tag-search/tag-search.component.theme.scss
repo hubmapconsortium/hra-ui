@@ -1,6 +1,5 @@
 @use '@angular/material' as mat;
 
-
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
   $primary: map-get($color-config, primary);
@@ -21,7 +20,8 @@
       background-color: white;
     }
 
-    .mdc-notched-outline__leading, .mdc-notched-outline__trailing {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__trailing {
       border-color: mat.get-color-from-palette($foreground, text) !important;
     }
 
@@ -39,7 +39,6 @@
       &:active {
         background-color: mat.get-color-from-palette($foreground, icons-disabled);
       }
-
     }
   }
 }

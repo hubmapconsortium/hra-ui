@@ -32,7 +32,7 @@ export class AppComponent {
   constructor(
     private readonly configState: GlobalConfigState<GlobalConfig>,
     private readonly sceneSource: FilteredSceneService,
-    private readonly cdr: ChangeDetectorRef
+    private readonly cdr: ChangeDetectorRef,
   ) {}
 
   private async reset(): Promise<void> {

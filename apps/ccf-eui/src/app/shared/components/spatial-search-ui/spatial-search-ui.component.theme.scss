@@ -1,6 +1,5 @@
 @use '@angular/material' as mat;
 
-
 @mixin slider-theme($color, $lightColor) {
   .slider-container {
     .label {
@@ -35,7 +34,8 @@
     border-color: mat.get-color-from-palette($foreground, modal-borders);
     color: map-get($foreground, text);
 
-    .info, .close {
+    .info,
+    .close {
       color: mat.get-color-from-palette($foreground, main);
 
       &:hover {
@@ -59,8 +59,10 @@
         }
       }
     }
-
   }
 
-  @include slider-theme(mat.get-color-from-palette($foreground, slider-thumb), mat.get-color-from-palette($foreground, slider));
+  @include slider-theme(
+    mat.get-color-from-palette($foreground, slider-thumb),
+    mat.get-color-from-palette($foreground, slider)
+  );
 }

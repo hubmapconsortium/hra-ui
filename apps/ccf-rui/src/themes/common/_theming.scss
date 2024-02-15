@@ -1,7 +1,8 @@
 @use '@angular/material' as mat;
 
 @use '../../app/modules/header/header.component.theme' as header;
-@use '../../../../../libs/ccf-shared/src/lib/components//info/info-dialog/info-dialog.component.theme.scss' as infoDialog;
+@use '../../../../../libs/ccf-shared/src/lib/components//info/info-dialog/info-dialog.component.theme.scss' as
+  infoDialog;
 @use '../../../../../libs/ccf-shared/src/lib/components/info/info-button/info-button.component.theme.scss' as infoButton;
 @use '../../app/shared/components/drawer/drawer.theme' as drawer;
 @use '../../app/modules/right-sidebar/right-sidebar.component.theme.scss' as rightSidebar;
@@ -17,7 +18,8 @@
 @use '../../app/shared/components/visibility-menu/visibility-menu.component.theme' as visibilityMenu;
 @use '../../app/shared/components/extraction-set-dropdown/extraction-set-dropdown.component.theme' as extractionSets;
 @use '../../../../../libs/ccf-shared/src/lib/components/opacity-slider/opacity-slider.component.theme' as opacitySlider;
-@use '../../../../../libs/ccf-shared/src/lib/components/spatial-search-keyboard-ui/spatial-search-keyboard-ui.component.theme' as spatialKeyBoardUI;
+@use '../../../../../libs/ccf-shared/src/lib/components/spatial-search-keyboard-ui/spatial-search-keyboard-ui.component.theme'
+  as spatialKeyBoardUI;
 @use '../../app/shared/components/details-label/details-label.component.theme' as detailsLabel;
 @use '../../app/modules/content/content.component.theme.scss' as content;
 @use '../../app/modules/content/stage-nav/stage-nav.component.theme.scss' as stageNav;
@@ -25,12 +27,12 @@
 @use '../../app/modules/review/review-button/review-button.component.theme.scss' as reviewButton;
 @use '../../app/modules/review/review-modal/review-modal.component.theme.scss' as reviewModal;
 @use '../../app/modules/content/video-modal/video-modal/video-modal.component.theme.scss' as videoModal;
-@use '../../app/modules/content/video-modal/video-modal-launcher/video-modal-launcher.component.theme.scss' as videoModalLauncher;
+@use '../../app/modules/content/video-modal/video-modal-launcher/video-modal-launcher.component.theme.scss' as
+  videoModalLauncher;
 @use '../../app/shared/components/json-file-reader/json-file-reader.theme.scss' as jsonFileReader;
-@use '../../app/modules/registration-modal/registration-content/registration-content.component.theme.scss' as registrationContent;
+@use '../../app/modules/registration-modal/registration-content/registration-content.component.theme.scss' as
+  registrationContent;
 @use '../../app/shared/components/registration-metadata/registration-metadata.component.theme' as registrationMetadata;
-
-
 
 @mixin ccf-theme($theme) {
   @include mat.core-theme($theme);

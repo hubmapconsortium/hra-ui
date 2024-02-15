@@ -1,9 +1,6 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { JsonLd, JsonLdObj } from 'jsonld/jsonld-spec';
-import lodash from 'lodash';
+import { get, omit, set, toNumber } from 'lodash';
 import { patchJsonLd } from '../util/patch-jsonld';
-
-const { get, omit, set, toNumber } = lodash;
 
 type JsonDict = Record<string, unknown>;
 
@@ -217,8 +214,7 @@ const GROUP_UUID_MAPPING: { [uuid: string]: string } = {
   '301615f9-c870-11eb-a8dc-35ce3d8786fe': 'TMC-UConn',
 };
 
-const ENTITY_CONTEXT =
-  'https://hubmapconsortium.github.io/ccf-ontology/ccf-context.jsonld';
+const ENTITY_CONTEXT = 'https://hubmapconsortium.github.io/ccf-ontology/ccf-context.jsonld';
 
 /**
  * Converts a hubmap response object into JsonLd.
@@ -226,19 +222,13 @@ const ENTITY_CONTEXT =
  * @param data The hubmap data.
  * @returns The converted data.
  */
-export function xConsortiaResponseAsJsonLd(
-  data: unknown,
-  serviceToken?: string,
-  debug = false
-): JsonLd {
+export function xConsortiaResponseAsJsonLd(data: unknown, serviceToken?: string, debug = false): JsonLd {
   const entries = (get(data, 'hits.hits', []) as JsonDict[])
     .map((e) => get(e, '_source', {}) as JsonDict)
     .sort((a, b) => (a['uuid'] as string).localeCompare(b['uuid'] as string));
 
   const donorLookup: Record<string, JsonLdObj> = {};
-  const unflattened: JsonLdObj[] = entries.map((e) =>
-    new HuBMAPTissueBlock(e, serviceToken).toJsonLd()
-  );
+  const unflattened: JsonLdObj[] = entries.map((e) => new HuBMAPTissueBlock(e, serviceToken).toJsonLd());
   for (const donor of unflattened) {
     const donorId = donor['@id'] as string;
     if (!donorLookup[donorId]) {
@@ -255,10 +245,7 @@ export function xConsortiaResponseAsJsonLd(
     console.log(donors.map((d) => ({ '@context': ENTITY_CONTEXT, ...d })));
   }
 
-  return patchJsonLd(
-    JSON.stringify({ '@context': ENTITY_CONTEXT, '@graph': donors }),
-    ENTITY_CONTEXT
-  );
+  return patchJsonLd(JSON.stringify({ '@context': ENTITY_CONTEXT, '@graph': donors }), ENTITY_CONTEXT);
 }
 
 function debugDonors(donors: JsonLdObj[]) {
@@ -308,7 +295,10 @@ export class HuBMAPTissueBlock {
 
   portal!: Portal;
 
-  constructor(public data: JsonDict, serviceToken?: string) {
+  constructor(
+    public data: JsonDict,
+    serviceToken?: string,
+  ) {
     const entityType = this.data['entity_type'];
     if (entityType !== 'Sample') {
       this.bad = true;
@@ -334,17 +324,11 @@ export class HuBMAPTissueBlock {
     }
 
     if (!GROUP_UUID_MAPPING[data['group_uuid'] as string]) {
-      GROUP_UUID_MAPPING[data['group_uuid'] as string] = data[
-        'group_name'
-      ] as string;
+      GROUP_UUID_MAPPING[data['group_uuid'] as string] = data['group_name'] as string;
     }
 
-    const dateEntered = new Date(
-      data['last_modified_timestamp'] as number
-    ).toLocaleDateString();
-    const groupName =
-      GROUP_UUID_MAPPING[data['group_uuid'] as string] ||
-      (data['group_name'] as string);
+    const dateEntered = new Date(data['last_modified_timestamp'] as number).toLocaleDateString();
+    const groupName = GROUP_UUID_MAPPING[data['group_uuid'] as string] || (data['group_name'] as string);
     const creator = data['created_by_user_displayname'];
 
     this['@id'] = this.portal.idPrefix + data['uuid'];
@@ -357,9 +341,7 @@ export class HuBMAPTissueBlock {
     const datasets: JsonLdObj[] = [];
     this.datasets = datasets;
 
-    for (const descendant of descendants.filter(
-      (d) => d['entity_type'] === 'Sample'
-    )) {
+    for (const descendant of descendants.filter((d) => d['entity_type'] === 'Sample')) {
       const section = this.getSection(descendant, data);
 
       const sectionId = descendant['submission_id'] as string;
@@ -371,11 +353,7 @@ export class HuBMAPTissueBlock {
       if (descendant['entity_type'] === 'Dataset') {
         const dataset = this.getDataset(descendant, serviceToken);
 
-        const sectionId = get(descendant, [
-          'ingest_metadata',
-          'metadata',
-          'tissue_id',
-        ]) as string;
+        const sectionId = get(descendant, ['ingest_metadata', 'metadata', 'tissue_id']) as string;
         if (sectionLookup[sectionId]) {
           (sectionLookup[sectionId]['datasets'] as JsonLd[])?.push(dataset);
         } else {
@@ -389,9 +367,8 @@ export class HuBMAPTissueBlock {
     this.section_count = (loc['slice_count'] as number) || sections.length;
     const sSize = parseFloat(
       (
-        (loc['slice_thickness'] as number) ||
-        ((loc['z_dimension'] as number) || 0) / Math.max(this.section_count, 1)
-      ).toFixed(1)
+        (loc['slice_thickness'] as number) || ((loc['z_dimension'] as number) || 0) / Math.max(this.section_count, 1)
+      ).toFixed(1),
     );
     this.section_size = sSize;
     const sUnits = (loc['dimension_units'] as string) || 'millimeter';
@@ -400,20 +377,15 @@ export class HuBMAPTissueBlock {
     this.description = `${dims}, ${sSize} ${sUnits}, ${this.section_count} Sections`;
 
     sections.forEach((section, index) => {
-      section[
-        'description'
-      ] = `${loc['x_dimension']} x ${loc['y_dimension']} x ${sSize} ${sUnits}, ${sSize} ${sUnits}, ${section['description']}`;
+      section['description'] =
+        `${loc['x_dimension']} x ${loc['y_dimension']} x ${sSize} ${sUnits}, ${sSize} ${sUnits}, ${section['description']}`;
       section['section_number'] = index + 1;
     });
   }
 
   getSection(section: JsonDict, data: JsonDict): JsonLdObj {
-    const dateEntered = new Date(
-      section['last_modified_timestamp'] as number
-    ).toLocaleDateString();
-    const groupName =
-      GROUP_UUID_MAPPING[section['group_uuid'] as string] ||
-      (section['group_name'] as string);
+    const dateEntered = new Date(section['last_modified_timestamp'] as number).toLocaleDateString();
+    const groupName = GROUP_UUID_MAPPING[section['group_uuid'] as string] || (section['group_name'] as string);
     const creator = section['created_by_user_displayname'];
 
     return {
@@ -432,12 +404,8 @@ export class HuBMAPTissueBlock {
   }
 
   getDataset(dataset: JsonDict, serviceToken?: string): JsonLdObj {
-    const dateEntered = new Date(
-      dataset['last_modified_timestamp'] as number
-    ).toLocaleDateString();
-    const groupName =
-      GROUP_UUID_MAPPING[dataset['group_uuid'] as string] ||
-      (dataset['group_name'] as string);
+    const dateEntered = new Date(dataset['last_modified_timestamp'] as number).toLocaleDateString();
+    const groupName = GROUP_UUID_MAPPING[dataset['group_uuid'] as string] || (dataset['group_name'] as string);
     const creator = dataset['created_by_user_displayname'];
 
     const types = (dataset['dataset_type'] ?? '') as string;
@@ -448,25 +416,16 @@ export class HuBMAPTissueBlock {
     if (typesSearch.indexOf('10x') !== -1) {
       technology = '10x';
       thumbnail = 'assets/icons/ico-bulk-10x.svg';
-    } else if (
-      typesSearch.indexOf('af') !== -1 ||
-      typesSearch.indexOf('auto-fluorescence') !== -1
-    ) {
+    } else if (typesSearch.indexOf('af') !== -1 || typesSearch.indexOf('auto-fluorescence') !== -1) {
       technology = 'AF';
       thumbnail = 'assets/icons/ico-spatial-af.svg';
     } else if (typesSearch.indexOf('codex') !== -1) {
       technology = 'CODEX';
       thumbnail = 'assets/icons/ico-spatial-codex.svg';
-    } else if (
-      typesSearch.indexOf('imc') !== -1 ||
-      typesSearch.indexOf('imaging mass cytometry') !== -1
-    ) {
+    } else if (typesSearch.indexOf('imc') !== -1 || typesSearch.indexOf('imaging mass cytometry') !== -1) {
       technology = 'IMC';
       thumbnail = 'assets/icons/ico-spatial-imc.svg';
-    } else if (
-      typesSearch.indexOf('lc') !== -1 &&
-      typesSearch.indexOf('af') === -1
-    ) {
+    } else if (typesSearch.indexOf('lc') !== -1 && typesSearch.indexOf('af') === -1) {
       technology = 'LC';
       thumbnail = 'assets/icons/ico-bulk-lc.svg';
     } else if (typesSearch.indexOf('maldi') !== -1) {
@@ -489,55 +448,35 @@ export class HuBMAPTissueBlock {
     };
   }
 
-  getDatasetThumbnail(
-    dataset: JsonDict,
-    serviceToken?: string
-  ): string | undefined {
+  getDatasetThumbnail(dataset: JsonDict, serviceToken?: string): string | undefined {
     if (dataset['thumbnail_file']) {
       const thumbnailFile = dataset['thumbnail_file'] as JsonDict;
       return (
         `${this.portal.assets}/${thumbnailFile['file_uuid']}/${thumbnailFile['filename']}` +
         (serviceToken ? `?token=${serviceToken}` : '')
       );
-    } else if (
-      dataset['group_uuid'] === '73bb26e4-ed43-11e8-8f19-0a7c1eab007a'
-    ) {
+    } else if (dataset['group_uuid'] === '73bb26e4-ed43-11e8-8f19-0a7c1eab007a') {
       // TMC-Vanderbilt
-      const tiffs = (
-        get(dataset, 'metadata.files', []) as { rel_path: string }[]
-      )
+      const tiffs = (get(dataset, 'metadata.files', []) as { rel_path: string }[])
         .filter((f) => /\.(ome\.tif|ome\.tiff)$/.test(f.rel_path))
         .filter((f) => !/(multilayer\.ome\.tif|_ac\.ome\.tif)/.test(f.rel_path))
         .filter((f) =>
-          DR1_VU_THUMBS.has(
-            f.rel_path
-              .split('/')
-              .slice(-1)[0]
-              .split('?')[0]
-              .replace('.ome.tif', '_thumbnail.jpg')
-          )
+          DR1_VU_THUMBS.has(f.rel_path.split('/').slice(-1)[0].split('?')[0].replace('.ome.tif', '_thumbnail.jpg')),
         )
         .map(
           (f) =>
-            `${this.portal.assets}/${dataset['uuid']}/${f.rel_path}` +
-            (serviceToken ? `?token=${serviceToken}` : '')
+            `${this.portal.assets}/${dataset['uuid']}/${f.rel_path}` + (serviceToken ? `?token=${serviceToken}` : ''),
         );
 
       if (tiffs.length > 0) {
-        const thumb = tiffs[0]
-          .split('/')
-          .slice(-1)[0]
-          .split('?')[0]
-          .replace('.ome.tif', '_thumbnail.jpg');
+        const thumb = tiffs[0].split('/').slice(-1)[0].split('?')[0].replace('.ome.tif', '_thumbnail.jpg');
         if (DR1_VU_THUMBS.has(thumb)) {
           return `assets/thumbnails/TMC-Vanderbilt/DR1/${thumb}`;
         }
       }
-    } else if (
-      dataset['group_uuid'] === '07a29e4c-ed43-11e8-b56a-0e8017bdda58'
-    ) {
+    } else if (dataset['group_uuid'] === '07a29e4c-ed43-11e8-b56a-0e8017bdda58') {
       // TMC-Florida
-      const thumb = UFL_THUMBS[dataset['hubmap_id'] as string];
+      const thumb = UFL_THUMBS[dataset['hubmap_id'] as keyof typeof UFL_THUMBS];
       if (thumb) {
         return `assets/thumbnails/TMC-Florida/${thumb}`;
       }
@@ -546,29 +485,24 @@ export class HuBMAPTissueBlock {
   }
 
   getDonor(donor: JsonDict): JsonLdObj {
-    const donorDescription = (
-      (donor['description'] as string) || ''
-    ).toLowerCase();
+    const donorDescription = ((donor['description'] as string) || '').toLowerCase();
     let sex: 'Male' | 'Female' | undefined;
     if (donorDescription.includes('female')) {
       sex = 'Female';
     } else if (donorDescription.includes('male')) {
       sex = 'Male';
     }
-    const ageMatch =
-      donorDescription.match(/age ([0-9]+)/) ??
-      donorDescription.match(/ ([0-9]+) years/);
+    const ageMatch = donorDescription.match(/age ([0-9]+)/) ?? donorDescription.match(/ ([0-9]+) years/);
     let age: number | undefined;
     if (ageMatch) {
       age = toNumber(ageMatch[1]);
     }
     let bmi: number | undefined;
     let race: string | undefined;
-    const metadata = get(
-      donor,
-      'mapped_metadata',
-      get(donor, 'source_mapped_metadata', {})
-    ) as Record<string, unknown[]>;
+    const metadata = get(donor, 'mapped_metadata', get(donor, 'source_mapped_metadata', {})) as Record<
+      string,
+      unknown[]
+    >;
     if (!sex && metadata['sex']?.length > 0) {
       sex = metadata['sex'][0] as 'Male' | 'Female' | undefined;
     }
@@ -584,22 +518,13 @@ export class HuBMAPTissueBlock {
     for (const md of get(
       donor,
       'metadata.organ_donor_data',
-      get(donor, 'metadata.living_donor_data', [])
+      get(donor, 'metadata.living_donor_data', []),
     ) as JsonDict[]) {
-      if (
-        md['preferred_term'] === 'Feminine gender' ||
-        md['preferred_term'] === 'Female'
-      ) {
+      if (md['preferred_term'] === 'Feminine gender' || md['preferred_term'] === 'Female') {
         sex = 'Female';
-      } else if (
-        md['preferred_term'] === 'Masculine gender' ||
-        md['preferred_term'] === 'Male'
-      ) {
+      } else if (md['preferred_term'] === 'Masculine gender' || md['preferred_term'] === 'Male') {
         sex = 'Male';
-      } else if (
-        md['preferred_term'] === 'Current chronological age' ||
-        md['preferred_term'] === 'Age'
-      ) {
+      } else if (md['preferred_term'] === 'Current chronological age' || md['preferred_term'] === 'Age') {
         age = toNumber(md['data_value']);
       } else if (md['preferred_term'] === 'Body mass index') {
         bmi = toNumber(md['data_value']);
@@ -617,12 +542,8 @@ export class HuBMAPTissueBlock {
       label = sex;
     }
 
-    const dateEntered = new Date(
-      donor['last_modified_timestamp'] as number
-    ).toLocaleDateString();
-    const groupName =
-      GROUP_UUID_MAPPING[donor['group_uuid'] as string] ||
-      (donor['group_name'] as string);
+    const dateEntered = new Date(donor['last_modified_timestamp'] as number).toLocaleDateString();
+    const groupName = GROUP_UUID_MAPPING[donor['group_uuid'] as string] || (donor['group_name'] as string);
     const creator = donor['created_by_user_displayname'];
 
     return {
@@ -661,42 +582,25 @@ export class HuBMAPTissueBlock {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         spatialEntity = ruiLocation as unknown as JsonLdObj;
       }
-      ruiLocation['@context'] =
-        'https://hubmapconsortium.github.io/ccf-ontology/ccf-context.jsonld';
+      ruiLocation['@context'] = 'https://hubmapconsortium.github.io/ccf-ontology/ccf-context.jsonld';
     }
     if (spatialEntity) {
       // Patch to fix RUI 0.5 Kidney and Spleen Placements
       const target: string = get(spatialEntity, ['placement', 'target']) ?? '';
       if (target.startsWith('http://purl.org/ccf/latest/ccf.owl#VHSpleenCC')) {
         if (donor['sex'] === 'Male') {
-          set(
-            spatialEntity,
-            ['placement', 'target'],
-            target.replace('#VHSpleenCC', '#VHMSpleenCC')
-          );
+          set(spatialEntity, ['placement', 'target'], target.replace('#VHSpleenCC', '#VHMSpleenCC'));
         } else {
-          set(
-            spatialEntity,
-            ['placement', 'target'],
-            target.replace('#VHSpleenCC', '#VHFSpleenCC')
-          );
+          set(spatialEntity, ['placement', 'target'], target.replace('#VHSpleenCC', '#VHFSpleenCC'));
         }
       } else if (
         target === 'http://purl.org/ccf/latest/ccf.owl#VHLeftKidney' ||
         target === 'http://purl.org/ccf/latest/ccf.owl#VHRightKidney'
       ) {
         if (donor['sex'] === 'Male') {
-          set(
-            spatialEntity,
-            ['placement', 'target'],
-            target.replace('#VH', '#VHM') + '_Patch'
-          );
+          set(spatialEntity, ['placement', 'target'], target.replace('#VH', '#VHM') + '_Patch');
         } else {
-          set(
-            spatialEntity,
-            ['placement', 'target'],
-            target.replace('#VH', '#VHF') + '_Patch'
-          );
+          set(spatialEntity, ['placement', 'target'], target.replace('#VH', '#VHF') + '_Patch');
         }
       }
     }
@@ -704,12 +608,7 @@ export class HuBMAPTissueBlock {
   }
 
   getTissueBlock(): JsonLdObj {
-    return omit({ ...this }, [
-      'data',
-      'bad',
-      'donor',
-      'portal',
-    ]) as unknown as JsonLdObj;
+    return omit({ ...this }, ['data', 'bad', 'donor', 'portal']) as unknown as JsonLdObj;
   }
 
   toJsonLd(): JsonLdObj {

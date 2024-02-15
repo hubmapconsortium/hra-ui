@@ -5,11 +5,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { TermOccurrenceListComponent } from './term-occurrence.component';
 
-
 @NgModule({
   imports: [CommonModule, MatTooltipModule, MatIconModule],
   declarations: [TermOccurrenceListComponent],
-  exports: [TermOccurrenceListComponent]
+  exports: [TermOccurrenceListComponent],
 })
-
-export class TermOccurrenceListModule { }
+export class TermOccurrenceListModule {}

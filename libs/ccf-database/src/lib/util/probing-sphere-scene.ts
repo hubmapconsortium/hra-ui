@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { Matrix4, toRadians } from '@math.gl/core';
 import { SpatialSceneNode } from '../ccf-spatial-scene';
 import { SpatialSearch } from '../interfaces';
@@ -17,15 +16,11 @@ const blue: Color = [41, 121, 255, 255];
  * @param sphere the Spatial Search that defines where and how big the probing sphere is
  * @returns a set of scene nodes for the body-ui
  */
-export function getProbingSphereScene(
-  node: SpatialEntity,
-  sphere?: SpatialSearch
-): SpatialSceneNode[] {
+export function getProbingSphereScene(node: SpatialEntity, sphere?: SpatialSearch): SpatialSceneNode[] {
   const sceneWidth = node.x_dimension / 1000;
   const sceneHeight = node.y_dimension / 1000;
   const sceneDepth = node.z_dimension / 1000;
-  const defaultSphereRadius =
-    Math.max(sceneWidth, sceneHeight, sceneDepth) * 0.07;
+  const defaultSphereRadius = Math.max(sceneWidth, sceneHeight, sceneDepth) * 0.07;
   const sphereLineRadius = defaultSphereRadius * 0.05;
   const sphereLineLength = defaultSphereRadius * 2;
   const sphereConeRadius = sphereLineRadius * 4;
@@ -55,9 +50,7 @@ export function getProbingSphereScene(
       '@type': 'SpatialSceneNode',
       unpickable: false,
       geometry: 'sphere',
-      transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([sphere.x, sphere.y, sphere.z])
-        .scale(sphere.radius),
+      transformMatrix: new Matrix4(Matrix4.IDENTITY).translate([sphere.x, sphere.y, sphere.z]).scale(sphere.radius),
       color: gold,
     },
     // Probing Sphere Positive X Axis (D)
@@ -67,11 +60,7 @@ export function getProbingSphereScene(
       unpickable: true,
       geometry: 'cylinder',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          sphere.x + sphere.radius + sphereLineLength / 2,
-          sphere.y,
-          sphere.z,
-        ])
+        .translate([sphere.x + sphere.radius + sphereLineLength / 2, sphere.y, sphere.z])
         .rotateZ(toRadians(-90))
         .scale([sphereLineRadius, sphereLineLength, sphereLineRadius]),
       color: red,
@@ -82,11 +71,7 @@ export function getProbingSphereScene(
       unpickable: true,
       geometry: 'cone',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          sphere.x + sphere.radius + sphereLineLength,
-          sphere.y,
-          sphere.z,
-        ])
+        .translate([sphere.x + sphere.radius + sphereLineLength, sphere.y, sphere.z])
         .rotateZ(toRadians(-90))
         .scale([sphereConeRadius, sphereConeRadius * 3, sphereConeRadius]),
       color: red,
@@ -98,11 +83,7 @@ export function getProbingSphereScene(
       geometry: 'text',
       text: 'D',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          sphere.x + sphere.radius + sphereLineLength + sphereConeRadius * 3,
-          sphere.y,
-          sphere.z,
-        ])
+        .translate([sphere.x + sphere.radius + sphereLineLength + sphereConeRadius * 3, sphere.y, sphere.z])
         .scale(sphereConeRadius),
       color: red,
     },
@@ -113,11 +94,7 @@ export function getProbingSphereScene(
       unpickable: true,
       geometry: 'cylinder',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          sphere.x - sphere.radius - sphereLineLength / 2,
-          sphere.y,
-          sphere.z,
-        ])
+        .translate([sphere.x - sphere.radius - sphereLineLength / 2, sphere.y, sphere.z])
         .rotateZ(toRadians(-90))
         .scale([sphereLineRadius, sphereLineLength, sphereLineRadius]),
       color: red,
@@ -128,11 +105,7 @@ export function getProbingSphereScene(
       unpickable: true,
       geometry: 'cone',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          sphere.x - sphere.radius - sphereLineLength,
-          sphere.y,
-          sphere.z,
-        ])
+        .translate([sphere.x - sphere.radius - sphereLineLength, sphere.y, sphere.z])
         .rotateZ(toRadians(90))
         .scale([sphereConeRadius, sphereConeRadius * 3, sphereConeRadius]),
       color: red,
@@ -144,11 +117,7 @@ export function getProbingSphereScene(
       geometry: 'text',
       text: 'A',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          sphere.x - sphere.radius - sphereLineLength - sphereConeRadius * 3.5,
-          sphere.y,
-          sphere.z,
-        ])
+        .translate([sphere.x - sphere.radius - sphereLineLength - sphereConeRadius * 3.5, sphere.y, sphere.z])
         .scale(sphereConeRadius),
       color: red,
     },
@@ -159,11 +128,7 @@ export function getProbingSphereScene(
       unpickable: true,
       geometry: 'cylinder',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          sphere.x,
-          sphere.y + sphere.radius + sphereLineLength / 2,
-          sphere.z,
-        ])
+        .translate([sphere.x, sphere.y + sphere.radius + sphereLineLength / 2, sphere.z])
         .scale([sphereLineRadius, sphereLineLength, sphereLineRadius]),
       color: green,
     },
@@ -173,11 +138,7 @@ export function getProbingSphereScene(
       unpickable: true,
       geometry: 'cone',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          sphere.x,
-          sphere.y + sphere.radius + sphereLineLength,
-          sphere.z,
-        ])
+        .translate([sphere.x, sphere.y + sphere.radius + sphereLineLength, sphere.z])
         .scale([sphereConeRadius, sphereConeRadius * 3, sphereConeRadius]),
       color: green,
     },
@@ -188,11 +149,7 @@ export function getProbingSphereScene(
       geometry: 'text',
       text: 'W',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          sphere.x,
-          sphere.y + sphere.radius + sphereLineLength + sphereConeRadius * 3,
-          sphere.z,
-        ])
+        .translate([sphere.x, sphere.y + sphere.radius + sphereLineLength + sphereConeRadius * 3, sphere.z])
         .scale(sphereConeRadius),
       color: green,
     },
@@ -203,11 +160,7 @@ export function getProbingSphereScene(
       unpickable: true,
       geometry: 'cylinder',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          sphere.x,
-          sphere.y - sphere.radius - sphereLineLength / 2,
-          sphere.z,
-        ])
+        .translate([sphere.x, sphere.y - sphere.radius - sphereLineLength / 2, sphere.z])
         .scale([sphereLineRadius, sphereLineLength, sphereLineRadius]),
       color: green,
     },
@@ -217,11 +170,7 @@ export function getProbingSphereScene(
       unpickable: true,
       geometry: 'cone',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          sphere.x,
-          sphere.y - sphere.radius - sphereLineLength,
-          sphere.z,
-        ])
+        .translate([sphere.x, sphere.y - sphere.radius - sphereLineLength, sphere.z])
         .rotateZ(toRadians(180))
         .scale([sphereConeRadius, sphereConeRadius * 3, sphereConeRadius]),
       color: green,
@@ -233,11 +182,7 @@ export function getProbingSphereScene(
       geometry: 'text',
       text: 'S',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          sphere.x,
-          sphere.y - sphere.radius - sphereLineLength - sphereConeRadius * 3.5,
-          sphere.z,
-        ])
+        .translate([sphere.x, sphere.y - sphere.radius - sphereLineLength - sphereConeRadius * 3.5, sphere.z])
         .scale(sphereConeRadius),
       color: green,
     },
@@ -248,11 +193,7 @@ export function getProbingSphereScene(
       unpickable: true,
       geometry: 'cylinder',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          sphere.x,
-          sphere.y,
-          sphere.z + sphere.radius + sphereLineLength / 2,
-        ])
+        .translate([sphere.x, sphere.y, sphere.z + sphere.radius + sphereLineLength / 2])
         .rotateX(toRadians(90))
         .scale([sphereLineRadius, sphereLineLength, sphereLineRadius]),
       color: blue,
@@ -263,11 +204,7 @@ export function getProbingSphereScene(
       unpickable: true,
       geometry: 'cone',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          sphere.x,
-          sphere.y,
-          sphere.z + sphere.radius + sphereLineLength,
-        ])
+        .translate([sphere.x, sphere.y, sphere.z + sphere.radius + sphereLineLength])
         .rotateX(toRadians(90))
         .scale([sphereConeRadius, sphereConeRadius * 3, sphereConeRadius]),
       color: blue,
@@ -279,11 +216,7 @@ export function getProbingSphereScene(
       geometry: 'text',
       text: 'Q',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          sphere.x,
-          sphere.y,
-          sphere.z + sphere.radius + sphereLineLength + sphereConeRadius * 3,
-        ])
+        .translate([sphere.x, sphere.y, sphere.z + sphere.radius + sphereLineLength + sphereConeRadius * 3])
         .scale(sphereConeRadius),
       color: blue,
     },
@@ -294,11 +227,7 @@ export function getProbingSphereScene(
       unpickable: true,
       geometry: 'cylinder',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          sphere.x,
-          sphere.y,
-          sphere.z - sphere.radius - sphereLineLength / 2,
-        ])
+        .translate([sphere.x, sphere.y, sphere.z - sphere.radius - sphereLineLength / 2])
         .rotateX(toRadians(-90))
         .scale([sphereLineRadius, sphereLineLength, sphereLineRadius]),
       color: blue,
@@ -309,11 +238,7 @@ export function getProbingSphereScene(
       unpickable: true,
       geometry: 'cone',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          sphere.x,
-          sphere.y,
-          sphere.z - sphere.radius - sphereLineLength,
-        ])
+        .translate([sphere.x, sphere.y, sphere.z - sphere.radius - sphereLineLength])
         .rotateX(toRadians(-90))
         .scale([sphereConeRadius, sphereConeRadius * 3, sphereConeRadius]),
       color: blue,
@@ -325,11 +250,7 @@ export function getProbingSphereScene(
       geometry: 'text',
       text: 'E',
       transformMatrix: new Matrix4(Matrix4.IDENTITY)
-        .translate([
-          sphere.x,
-          sphere.y,
-          sphere.z - sphere.radius - sphereLineLength - sphereConeRadius * 3.5,
-        ])
+        .translate([sphere.x, sphere.y, sphere.z - sphere.radius - sphereLineLength - sphereConeRadius * 3.5])
         .scale(sphereConeRadius),
       color: blue,
     },

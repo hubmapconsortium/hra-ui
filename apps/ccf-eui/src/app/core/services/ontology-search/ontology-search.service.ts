@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/member-ordering */
 import { Immutable } from '@angular-ru/common/typings';
 import { Injectable } from '@angular/core';
 import { bind } from 'bind-decorator';

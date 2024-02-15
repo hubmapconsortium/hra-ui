@@ -11,13 +11,7 @@ import {
 import { UntypedFormControl } from '@angular/forms';
 import { bind as Bind } from 'bind-decorator';
 import { Observable, ObservableInput, from, lastValueFrom } from 'rxjs';
-import {
-  distinctUntilChanged,
-  map,
-  startWith,
-  switchMap,
-  take,
-} from 'rxjs/operators';
+import { distinctUntilChanged, map, startWith, switchMap, take } from 'rxjs/operators';
 
 import { DecoratedRange } from '../decorated-text/decorated-range';
 
@@ -35,15 +29,12 @@ export interface AutoCompleteOption {
  * Token to provide a default for the maximum number of
  * autocomplete suggestions to show at the same time.
  */
-export const DEFAULT_MAX_OPTIONS = new InjectionToken(
-  'Maximum number of autocomplete options displayed',
-  {
-    providedIn: 'root',
-    factory(): number {
-      return 10;
-    },
-  }
-);
+export const DEFAULT_MAX_OPTIONS = new InjectionToken('Maximum number of autocomplete options displayed', {
+  providedIn: 'root',
+  factory(): number {
+    return 10;
+  },
+});
 
 /**
  * A text search bar with optional autocompletion functionality.
@@ -84,10 +75,7 @@ export class TextSearchComponent {
    * Function providing the autocomplete suggestions.
    * Receives the latest search bar text and the maximum of suggestions to provide.
    */
-  @Input() autoCompleter?: (
-    search: string,
-    max: number
-  ) => ObservableInput<AutoCompleteOption[]>;
+  @Input() autoCompleter?: (search: string, max: number) => ObservableInput<AutoCompleteOption[]>;
 
   /**
    * Emits when the search bar text changes
@@ -110,7 +98,7 @@ export class TextSearchComponent {
   readonly options = (this.controller.valueChanges as Observable<string>).pipe(
     startWith(''),
     distinctUntilChanged(),
-    switchMap(this.getOptions)
+    switchMap(this.getOptions),
   );
 
   /**
@@ -118,9 +106,7 @@ export class TextSearchComponent {
    *
    * @param defaultMaxOptions The default value for `maxOptions`
    */
-  constructor(
-    @Inject(DEFAULT_MAX_OPTIONS) private readonly defaultMaxOptions: number
-  ) {
+  constructor(@Inject(DEFAULT_MAX_OPTIONS) private readonly defaultMaxOptions: number) {
     this.valueChange = this.controller.valueChanges;
   }
 
@@ -141,10 +127,8 @@ export class TextSearchComponent {
     return lastValueFrom(
       from(options).pipe(
         take(1),
-        map((array) =>
-          array.length <= maxOptions ? array : array.slice(0, maxOptions)
-        )
-      )
+        map((array) => (array.length <= maxOptions ? array : array.slice(0, maxOptions))),
+      ),
     );
   }
 

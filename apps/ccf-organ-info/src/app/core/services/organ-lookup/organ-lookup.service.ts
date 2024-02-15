@@ -4,17 +4,20 @@ import { ALL_POSSIBLE_ORGANS, DataSourceService, OrganInfo } from 'ccf-shared';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OrganLookupService {
   private readonly organs = ALL_POSSIBLE_ORGANS;
 
-  constructor(private readonly source: DataSourceService) { }
+  constructor(private readonly source: DataSourceService) {}
 
-  getOrganInfo(iri: string, side?: OrganInfo['side'], _sex: Filter['sex'] = 'Female'): Observable<OrganInfo | undefined> {
-    let info = this.organs.find(item => item.id === iri);
+  getOrganInfo(
+    iri: string,
+    side?: OrganInfo['side'],
+    _sex: Filter['sex'] = 'Female',
+  ): Observable<OrganInfo | undefined> {
+    let info = this.organs.find((item) => item.id === iri);
     if (!info) {
       return of(undefined);
     }
@@ -22,21 +25,23 @@ export class OrganLookupService {
     const organ = info.organ;
 
     if (info.disabled) {
-      info = this.organs.find(item => !item.disabled && item.organ === organ);
+      info = this.organs.find((item) => !item.disabled && item.organ === organ);
     }
     if (info?.side && side && info.side !== side) {
-      info = this.organs.find(item => !item.disabled && item.organ === organ && item.side === side);
+      info = this.organs.find((item) => !item.disabled && item.organ === organ && item.side === side);
     }
 
     return of(info);
   }
 
   getOrgan(info: OrganInfo, sex: Filter['sex'] = 'Both'): Observable<SpatialEntity | undefined> {
-    return this.source.getReferenceOrgans().pipe(
-      map(entities => entities.find(entity =>
-        entity.representation_of === info.id && (sex === 'Both' || entity.sex === sex)
-      ))
-    );
+    return this.source
+      .getReferenceOrgans()
+      .pipe(
+        map((entities) =>
+          entities.find((entity) => entity.representation_of === info.id && (sex === 'Both' || entity.sex === sex)),
+        ),
+      );
   }
 
   getOrganScene(info: OrganInfo, sex: Filter['sex'] = 'Female'): Observable<SpatialSceneNode[]> {

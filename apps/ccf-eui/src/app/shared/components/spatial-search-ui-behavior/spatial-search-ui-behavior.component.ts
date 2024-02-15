@@ -93,7 +93,7 @@ export class SpatialSearchUiBehaviorComponent {
     private readonly dialogRef: MatDialogRef<SpatialSearchUiComponent>,
     public dialog: MatDialog,
     private readonly infoService: InfoButtonService,
-    private readonly globalConfig: GlobalConfigState<{ baseHref: string }>
+    private readonly globalConfig: GlobalConfigState<{ baseHref: string }>,
   ) {
     this.globalConfig.getOption('baseHref').subscribe((ref) => {
       this.baseHref = ref;
@@ -125,7 +125,7 @@ export class SpatialSearchUiBehaviorComponent {
     this.infoService.updateData(
       this.baseHref + 'assets/docs/SPATIAL_SEARCH_README.md',
       'UfxMpzatowE',
-      'Spatial Search'
+      'Spatial Search',
     );
     const panelContent$ = this.infoService.panelContent.asObservable();
     this.subscriptions.add(
@@ -134,7 +134,7 @@ export class SpatialSearchUiBehaviorComponent {
           this.panelData = data;
           this.launchInfoDialog(this.panelData);
         }
-      })
+      }),
     );
   }
 

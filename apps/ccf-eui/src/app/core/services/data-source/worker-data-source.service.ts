@@ -3,14 +3,13 @@ import { Injectable } from '@angular/core';
 import { CCFDatabaseOptions } from 'ccf-database';
 import { GlobalConfigState, WorkerCCFDatabaseDataSourceService } from 'ccf-shared';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WorkerDataSourceService extends WorkerCCFDatabaseDataSourceService {
   constructor(
     globalConfig: GlobalConfigState<CCFDatabaseOptions>,
-    private readonly locator: LocationStrategy
+    private readonly locator: LocationStrategy,
   ) {
     super(globalConfig);
   }
@@ -26,10 +25,7 @@ export class WorkerDataSourceService extends WorkerCCFDatabaseDataSourceService 
     }
 
     const externalUrl = this.locator.prepareExternalUrl('0-es2015.worker.js');
-    const codeBlob = new Blob(
-      [`importScripts('${externalUrl}')`],
-      { type: 'application/javascript' }
-    );
+    const codeBlob = new Blob([`importScripts('${externalUrl}')`], { type: 'application/javascript' });
 
     return URL.createObjectURL(codeBlob);
   }

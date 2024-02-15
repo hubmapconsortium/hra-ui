@@ -4,7 +4,6 @@ import { Shallow } from 'shallow-render';
 import { CheckboxComponent } from './checkbox.component';
 import { CheckboxModule } from './checkbox.module';
 
-
 describe('FiltersCheckboxComponent', () => {
   let shallow: Shallow<CheckboxComponent>;
 

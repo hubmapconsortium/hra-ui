@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { Matrix4 } from '@math.gl/core';
 import { SpatialEntityJsonLd } from '../shared/ccf-spatial-jsonld';
 import { processSceneNodes } from './process-scene-nodes';
 
 export async function processSpatialEntities(
   parent: SpatialEntityJsonLd,
-  gltfOverride?: string
+  gltfOverride?: string,
 ): Promise<SpatialEntityJsonLd[]> {
   const parentPlacement = parent.object.placement;
   const gltfFile = gltfOverride ? gltfOverride : parent.object.file;
@@ -19,11 +18,7 @@ export async function processSpatialEntities(
     y: parentPlacement.y_scaling,
     z: parentPlacement.z_scaling,
   };
-  const scalar = new Matrix4(Matrix4.IDENTITY).scale([
-    S.x * 1000,
-    S.y * 1000,
-    S.z * 1000,
-  ]);
+  const scalar = new Matrix4(Matrix4.IDENTITY).scale([S.x * 1000, S.y * 1000, S.z * 1000]);
   const nodes = await processSceneNodes(gltfFile, scalar);
 
   return Object.values(nodes)
@@ -38,8 +33,7 @@ export async function processSpatialEntities(
       };
 
       return {
-        '@context':
-          'https://hubmapconsortium.github.io/ccf-ontology/ccf-context.jsonld',
+        '@context': 'https://hubmapconsortium.github.io/ccf-ontology/ccf-context.jsonld',
         '@id': id,
         '@type': 'SpatialEntity',
         label: `${parent.label} (${node['@id']})`,
@@ -84,10 +78,7 @@ export async function processSpatialEntities(
           },
         },
 
-        placement: (Array.isArray(parent.placement)
-          ? parent.placement
-          : [parent.placement]
-        ).map((placement, i) => ({
+        placement: (Array.isArray(parent.placement) ? parent.placement : [parent.placement]).map((placement, i) => ({
           ...placement,
           '@id': `${id}GlobalPlacement${i + 1}`,
           placement_date: creationDate,

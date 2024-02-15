@@ -1,6 +1,5 @@
 @use '@angular/material' as mat;
 
-
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
   $primary: map-get($color-config, primary);
@@ -14,11 +13,11 @@
     }
 
     .play-icon-button {
-        color: mat.get-color-from-palette($foreground, contrast-text);
+      color: mat.get-color-from-palette($foreground, contrast-text);
 
-        &:hover {
-            color: mat.get-color-from-palette($background, drawer-hover);
-        }
+      &:hover {
+        color: mat.get-color-from-palette($background, drawer-hover);
+      }
     }
   }
 }

@@ -415,9 +415,7 @@ export const ALL_POSSIBLE_ORGANS = [
 /**
  * All organs which have not been disabled
  */
-export const ALL_ORGANS = ALL_POSSIBLE_ORGANS.filter(
-  (organ) => organ.disabled !== true
-);
+export const ALL_ORGANS = ALL_POSSIBLE_ORGANS.filter((organ) => organ.disabled !== true);
 
 /**
  * Contains the organ name and url of the icon svg
@@ -480,10 +478,10 @@ export class OrganSelectorComponent implements AfterViewInit, OnChanges, OnDestr
   @HostBinding('class') readonly clsName = 'ccf-organ-selector';
 
   @ViewChild('carouselContainer', { static: true })
-    carouselContainer!: ElementRef<HTMLElement>;
+  carouselContainer!: ElementRef<HTMLElement>;
   @ViewChild('itemlist', { static: true }) itemList!: ElementRef<HTMLElement>;
   @ViewChild('itemcontainer', { static: true })
-    itemContainer!: ElementRef<HTMLElement>;
+  itemContainer!: ElementRef<HTMLElement>;
 
   /**
    * If multiple selections should be allowed
@@ -635,9 +633,7 @@ export class OrganSelectorComponent implements AfterViewInit, OnChanges, OnDestr
       this.selectedOrgans = [organ];
     } else {
       if (this.selectedOrgans.includes(organ)) {
-        this.selectedOrgans = this.selectedOrgans.filter(
-          (selectedOrgan) => organ !== selectedOrgan
-        );
+        this.selectedOrgans = this.selectedOrgans.filter((selectedOrgan) => organ !== selectedOrgan);
       } else {
         this.selectedOrgans = this.selectedOrgans.concat([organ]);
       }
@@ -661,19 +657,13 @@ export class OrganSelectorComponent implements AfterViewInit, OnChanges, OnDestr
   set(): void {
     const { itemList, itemContainer, carouselContainer } = this;
     const val = parseInt(itemList.nativeElement.style.left, 10) || 0;
-    if (
-      itemList.nativeElement.offsetWidth >=
-      this.organList.length * this.step
-    ) {
+    if (itemList.nativeElement.offsetWidth >= this.organList.length * this.step) {
       itemList.nativeElement.style.left = '0px';
       this.onLeft = true;
       this.onRight = true;
     } else {
       this.setLeftRight(val);
-      const listLength =
-        this.step *
-          Math.floor(carouselContainer.nativeElement.offsetWidth / this.step) -
-        64;
+      const listLength = this.step * Math.floor(carouselContainer.nativeElement.offsetWidth / this.step) - 64;
       itemContainer.nativeElement.style.width = `${listLength}px`;
     }
   }
@@ -683,10 +673,7 @@ export class OrganSelectorComponent implements AfterViewInit, OnChanges, OnDestr
    */
   setWidth(): void {
     const { itemContainer, carouselContainer } = this;
-    const listLength =
-      this.step *
-        Math.floor(carouselContainer.nativeElement.offsetWidth / this.step) -
-      64;
+    const listLength = this.step * Math.floor(carouselContainer.nativeElement.offsetWidth / this.step) - 64;
     itemContainer.nativeElement.style.width = `${listLength}px`;
   }
 
@@ -696,11 +683,6 @@ export class OrganSelectorComponent implements AfterViewInit, OnChanges, OnDestr
   setLeftRight(val: number): void {
     const { itemContainer } = this;
     this.onLeft = val === 0 ? true : false;
-    this.onRight =
-      val <=
-      itemContainer.nativeElement.offsetWidth -
-        this.organList.length * this.step
-        ? true
-        : false;
+    this.onRight = val <= itemContainer.nativeElement.offsetWidth - this.organList.length * this.step ? true : false;
   }
 }

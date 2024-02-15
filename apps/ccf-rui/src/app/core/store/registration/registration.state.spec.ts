@@ -1,10 +1,10 @@
 import { Immutable } from '@angular-ru/common/typings';
-import { TestBed } from '@angular/core/testing';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
+import { TestBed } from '@angular/core/testing';
 import { NgxsModule, Store } from '@ngxs/store';
 import { GlobalConfigState, OrganInfo } from 'ccf-shared';
 import * as fileSaver from 'file-saver';
-import { lastValueFrom, Observable, of, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject, lastValueFrom, of } from 'rxjs';
 import { skip, take } from 'rxjs/operators';
 
 import { ExtractionSet } from '../../models/extraction-set';
@@ -15,7 +15,6 @@ import { PageState, PageStateModel, Person } from '../page/page.state';
 import { ReferenceDataState, ReferenceDataStateModel } from '../reference-data/reference-data.state';
 import { AnatomicalStructureTagState } from './../anatomical-structure-tags/anatomical-structure-tags.state';
 import { RegistrationState } from './registration.state';
-
 
 const testVisibilityItems: VisibilityItem[] = [{ id: 0, name: 'test', visible: true }];
 const testExtractionSets: ExtractionSet[] = [{ name: 'test', sites: [] }];
@@ -33,20 +32,20 @@ const testModel: Immutable<ModelStateModel> = {
   showPrevious: false,
   extractionSites: testVisibilityItems,
   anatomicalStructures: testVisibilityItems,
-  extractionSets: testExtractionSets
+  extractionSets: testExtractionSets,
 };
 
 const testPage: Immutable<PageStateModel> = {
   user: {
     firstName: 'John',
-    lastName: 'Doe'
+    lastName: 'Doe',
   },
   registrationStarted: false,
   useCancelRegistrationCallback: false,
   registrationCallbackSet: false,
   skipConfirmation: true,
   hasChanges: false,
-  orcidValid: true
+  orcidValid: true,
 };
 
 function nextValue<T>(obs: Observable<T>): Promise<T> {
@@ -58,7 +57,7 @@ function patchStore(key: string, data: unknown): void {
   const current = store.snapshot();
   store.reset({
     ...current,
-    [key]: data
+    [key]: data,
   });
 }
 
@@ -68,8 +67,8 @@ describe('RegistrationState', () => {
       firstName: 'foo',
       lastName: 'bar',
       middleName: 'middle',
-      orcidId: '1111-1111-1111-1111'
-    }
+      orcidId: '1111-1111-1111-1111',
+    },
   };
   const initialModelState: Partial<ModelStateModel> = {
     id: 'a-b-c',
@@ -79,8 +78,8 @@ describe('RegistrationState', () => {
     organ: {
       src: '',
       name: '',
-      organ: ''
-    }
+      organ: '',
+    },
   };
   const initialReferenceDataState: Partial<ReferenceDataStateModel> = {
     anatomicalStructures: {},
@@ -88,7 +87,7 @@ describe('RegistrationState', () => {
     organIRILookup: {},
     organSpatialEntities: {},
     sceneNodeLookup: {},
-    simpleSceneNodeLookup: {}
+    simpleSceneNodeLookup: {},
   };
 
   let pageStateSubject: ReplaySubject<Partial<PageStateModel>>;
@@ -109,59 +108,61 @@ describe('RegistrationState', () => {
     TestBed.configureTestingModule({
       imports: [
         NgxsDataPluginModule.forRoot(),
-        NgxsModule.forRoot([RegistrationState, AnatomicalStructureTagState, ModelState, PageState, GlobalConfigState])
+        NgxsModule.forRoot([RegistrationState, AnatomicalStructureTagState, ModelState, PageState, GlobalConfigState]),
       ],
       providers: [
         GlobalConfigState,
         {
-          provide: AnatomicalStructureTagState, useValue: {
+          provide: AnatomicalStructureTagState,
+          useValue: {
             tags$: of([]),
             latestTags: [],
-            addTags: () => undefined
-          }
+            addTags: () => undefined,
+          },
         },
         {
-          provide: PageState, useValue: {
+          provide: PageState,
+          useValue: {
             state$: pageStateSubject,
             snapshot: initialPageState,
             clearHasChanges: () => undefined,
             patchState: () => undefined,
             setOrcidId: () => undefined,
-            registrationStarted: () => undefined
-          }
+            registrationStarted: () => undefined,
+          },
         },
         {
-          provide: ModelState, useValue: {
+          provide: ModelState,
+          useValue: {
             state$: modelStateSubject,
             snapshot: initialModelState,
-            setOrganDefaults: () => undefined
-          }
+            setOrganDefaults: () => undefined,
+          },
         },
         {
-          provide: ReferenceDataState, useValue: {
+          provide: ReferenceDataState,
+          useValue: {
             state$: referenceDataStateSubject,
             snapshot: initialReferenceDataState,
-            getSourceDB: () => (
-              {
-                subscribe: () => undefined
-              }
-            )
-          }
+            getSourceDB: () => ({
+              subscribe: () => undefined,
+            }),
+          },
         },
         {
           provide: GLOBAL_CONFIG,
-          useValue: {}
-        }
-      ]
+          useValue: {},
+        },
+      ],
     });
 
     TestBed.inject(Store).reset({
       registration: {
         useRegistrationCallback: false,
         displayErrors: false,
-        registrations: []
+        registrations: [],
       },
-      globalConfig: {}
+      globalConfig: {},
     });
 
     state = TestBed.inject(RegistrationState);
@@ -222,9 +223,9 @@ describe('RegistrationState', () => {
     beforeEach(() => {
       TestBed.inject(Store).reset({
         registration: {
-          registrations: [reg1]
+          registrations: [reg1],
         },
-        globalConfig: {}
+        globalConfig: {},
       });
     });
 
@@ -321,5 +322,4 @@ describe('RegistrationState', () => {
       expect(spy).toHaveBeenCalled();
     });
   });
-
 });

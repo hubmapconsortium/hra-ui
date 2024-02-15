@@ -70,7 +70,7 @@
 
       .refresh {
         cursor: pointer;
-        transition: .6s;
+        transition: 0.6s;
         transition-property: background;
       }
     }
@@ -79,11 +79,11 @@
 
 .patient-filters {
   display: flex;
-  padding-top: .5rem;
+  padding-top: 0.5rem;
   gap: 2rem;
 
   ccf-dual-slider {
-    margin-left: .5rem;
+    margin-left: 0.5rem;
   }
 }
 
@@ -92,6 +92,7 @@
   transition-duration: 0.2s;
 }
 
-ccf-dropdown, ccf-dual-slider {
+ccf-dropdown,
+ccf-dual-slider {
   width: 10rem;
 }

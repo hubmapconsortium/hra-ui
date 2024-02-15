@@ -13,16 +13,8 @@ const spatialEntityDimensions = {
   [ccf.spatialEntity.z_dimension.id]: 'z',
 };
 
-function getSpatialEntityDimensions(
-  store: Store,
-  iri: string
-): [number, number, number] {
-  const dims = getMappedResult<{ x: number; y: number; z: number }>(
-    store,
-    iri,
-    'Dimensions',
-    spatialEntityDimensions
-  );
+function getSpatialEntityDimensions(store: Store, iri: string): [number, number, number] {
+  const dims = getMappedResult<{ x: number; y: number; z: number }>(store, iri, 'Dimensions', spatialEntityDimensions);
   return [dims.x, dims.y, dims.z];
 }
 
@@ -30,25 +22,15 @@ export function getOrientedBoundingBox(
   store: Store,
   graph: CCFSpatialGraph,
   sourceIri: string,
-  targetIri: string
+  targetIri: string,
 ): OrientedBoundingBox | undefined {
   const matrix = graph.getTransformationMatrix(sourceIri, targetIri);
   let result: OrientedBoundingBox | undefined = undefined;
   if (matrix) {
     const center = matrix.getTranslation();
-    const halfSize = getSpatialEntityDimensions(store, sourceIri).map(
-      (n) => n / 1000 / 2
-    );
-    const quaternion = new Euler()
-      .fromRotationMatrix(matrix, Euler.XYZ)
-      .toQuaternion()
-      .normalize()
-      .calculateW();
-    result = new OrientedBoundingBox().fromCenterHalfSizeQuaternion(
-      center as number[],
-      halfSize,
-      quaternion
-    );
+    const halfSize = getSpatialEntityDimensions(store, sourceIri).map((n) => n / 1000 / 2);
+    const quaternion = new Euler().fromRotationMatrix(matrix, Euler.XYZ).toQuaternion().normalize().calculateW();
+    result = new OrientedBoundingBox().fromCenterHalfSizeQuaternion(center as number[], halfSize, quaternion);
   }
   return result;
 }
@@ -57,7 +39,7 @@ export function filterByProbingSphere(
   store: Store,
   graph: CCFSpatialGraph,
   seen: Set<string>,
-  search: SpatialSearch
+  search: SpatialSearch,
 ): Set<string> {
   const { x, y, z, radius, target } = search;
   const newSeen = new Set<string>();
@@ -65,9 +47,7 @@ export function filterByProbingSphere(
   for (const sourceIri of seen) {
     const boundingBox = getOrientedBoundingBox(store, graph, sourceIri, target);
     if (boundingBox) {
-      const distanceSquared = boundingBox.distanceSquaredTo(
-        [x, y, z].map((n) => n / 1000)
-      );
+      const distanceSquared = boundingBox.distanceSquaredTo([x, y, z].map((n) => n / 1000));
       if (distanceSquared <= radiusSquared) {
         newSeen.add(sourceIri);
       }

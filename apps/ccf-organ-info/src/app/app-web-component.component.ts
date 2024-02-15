@@ -4,7 +4,6 @@ import { BaseWebComponent, BUILTIN_PARSERS, GenericGlobalConfig } from 'ccf-shar
 
 import { environment } from '../environments/environment';
 
-
 function parseDataSources(value: unknown): string[] {
   const isString = (val: unknown): val is string => typeof val === 'string';
   const isStringArray = (val: unknown): val is string[] => Array.isArray(val) && val.every(isString);
@@ -43,8 +42,9 @@ function parseStringArray(value: unknown): string[] {
 
 @Component({
   selector: 'ccf-root-wc',
-  template: '<ccf-root (sexChange)="sexChange.emit($event)" (nodeClick)="nodeClicked.emit($event)" (sideChange)="sideChange.emit($event)" *ngIf="initialized"></ccf-root>',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  template:
+    '<ccf-root (sexChange)="sexChange.emit($event)" (nodeClick)="nodeClicked.emit($event)" (sideChange)="sideChange.emit($event)" *ngIf="initialized"></ccf-root>',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppWebComponent extends BaseWebComponent {
   @Input() organIri?: string;
@@ -74,22 +74,19 @@ export class AppWebComponent extends BaseWebComponent {
   @Output() readonly sideChange = new EventEmitter<'Left' | 'Right'>();
   @Output() readonly nodeClicked = new EventEmitter();
 
-  constructor(
-    configStore: GlobalConfigState<GenericGlobalConfig>,
-    cdr: ChangeDetectorRef
-  ) {
+  constructor(configStore: GlobalConfigState<GenericGlobalConfig>, cdr: ChangeDetectorRef) {
     super(configStore, cdr, {
       initialDelay: 10,
 
       initialConfig: {
         ...environment.dbOptions,
-        ...globalThis['dbOptions']
+        ...(globalThis['dbOptions' as never] as object),
       },
       parse: {
         dataSources: parseDataSources,
         highlightProviders: parseStringArray,
-        useRemoteApi: BUILTIN_PARSERS.boolean
-      }
+        useRemoteApi: BUILTIN_PARSERS.boolean,
+      },
     });
   }
 }

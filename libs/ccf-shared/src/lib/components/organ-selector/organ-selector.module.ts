@@ -1,16 +1,12 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OrganSelectorComponent } from './organ-selector.component';
+import { NgModule } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { OrganSelectorComponent } from './organ-selector.component';
 
 @NgModule({
   declarations: [OrganSelectorComponent],
-  imports: [
-    CommonModule,
-    MatIconModule,
-    MatTooltipModule
-  ],
-  exports: [OrganSelectorComponent]
+  imports: [CommonModule, MatIconModule, MatTooltipModule],
+  exports: [OrganSelectorComponent],
 })
-export class OrganSelectorModule { }
+export class OrganSelectorModule {}

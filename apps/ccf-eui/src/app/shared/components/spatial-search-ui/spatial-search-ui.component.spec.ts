@@ -19,19 +19,19 @@ describe('SpatialSearchUiComponent', () => {
         radiusSettings: {
           min: 2,
           max: 20,
-          defaultValue: 2
+          defaultValue: 2,
         },
         defaultPosition: {
           x: 0,
           y: 0,
-          z: 0
+          z: 0,
         },
         position: {
           x: 0,
           y: 0,
-          z: 0
-        }
-      }
+          z: 0,
+        },
+      },
     });
     expect(instance).toBeDefined();
   });

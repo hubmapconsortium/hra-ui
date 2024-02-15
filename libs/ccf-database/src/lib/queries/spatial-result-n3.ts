@@ -1,12 +1,7 @@
-import sortBy from 'lodash/sortBy';
+import { sortBy } from 'lodash';
 import { DataFactory, NamedNode, Store } from 'triple-store-utils';
 
-import {
-  ExtractionSet,
-  SpatialEntity,
-  SpatialObjectReference,
-  SpatialPlacement,
-} from '../spatial-types';
+import { ExtractionSet, SpatialEntity, SpatialObjectReference, SpatialPlacement } from '../spatial-types';
 import { getMappedResult } from '../util/n3-functions';
 import { ccf, entity } from '../util/prefixes';
 
@@ -40,16 +35,8 @@ const mappings = {
  * @param iri The data identifier.
  * @returns The new reference.
  */
-export function getSpatialObjectReference(
-  store: Store,
-  iri: string
-): SpatialObjectReference {
-  return getMappedResult<SpatialObjectReference>(
-    store,
-    iri,
-    'SpatialObjectReference',
-    mappings.spatialObjectReference
-  );
+export function getSpatialObjectReference(store: Store, iri: string): SpatialObjectReference {
+  return getMappedResult<SpatialObjectReference>(store, iri, 'SpatialObjectReference', mappings.spatialObjectReference);
 }
 
 /**
@@ -60,17 +47,10 @@ export function getSpatialObjectReference(
  * @returns The new entity.
  */
 export function getExtractionSet(store: Store, iri: string): ExtractionSet {
-  const result = getMappedResult<ExtractionSet>(
-    store,
-    iri,
-    'ExtractionSet',
-    mappings.spatialEntity
-  );
+  const result = getMappedResult<ExtractionSet>(store, iri, 'ExtractionSet', mappings.spatialEntity);
   result.extractionSites = sortBy(
-    store
-      .getSubjects(ccf.spatialEntity.extraction_set, iri, null)
-      .map((value) => getSpatialEntity(store, value.id)),
-    ['rui_rank']
+    store.getSubjects(ccf.spatialEntity.extraction_set, iri, null).map((value) => getSpatialEntity(store, value.id)),
+    ['rui_rank'],
   );
   return result;
 }
@@ -87,7 +67,7 @@ export function getExtractionSets(store: Store, iri: string): ExtractionSet[] {
     store
       .getSubjects(ccf.spatialEntity.extraction_set_for, iri, null)
       .map((value) => getExtractionSet(store, value.id)),
-    ['rui_rank']
+    ['rui_rank'],
   );
 }
 
@@ -98,16 +78,13 @@ export function getExtractionSets(store: Store, iri: string): ExtractionSet[] {
  * @param iri The data identifier (reference organ).
  * @returns The new entity.
  */
-export function getAnatomicalStructures(
-  store: Store,
-  iri: string
-): SpatialEntity[] {
+export function getAnatomicalStructures(store: Store, iri: string): SpatialEntity[] {
   return sortBy(
     store
       .getSubjects(ccf.spatialEntity.reference_organ, iri, null)
       .map((value) => getSpatialEntity(store, value.id))
       .filter((e) => e['@id'] !== iri),
-    ['rui_rank']
+    ['rui_rank'],
   );
 }
 
@@ -128,7 +105,7 @@ export function getReferenceOrgans(store: Store): SpatialEntity[] {
     null,
     ccf.spatialEntity.reference_organ,
     null,
-    null
+    null,
   );
   return sortBy(results, ['rui_rank']);
 }
@@ -141,30 +118,15 @@ export function getReferenceOrgans(store: Store): SpatialEntity[] {
  * @returns The new entity.
  */
 export function getSpatialEntity(store: Store, iri: string): SpatialEntity {
-  const result = getMappedResult<SpatialEntity>(
-    store,
-    iri,
-    'SpatialEntity',
-    mappings.spatialEntity
-  );
+  const result = getMappedResult<SpatialEntity>(store, iri, 'SpatialEntity', mappings.spatialEntity);
   // Default mapping will come back as an IRI which we can look up for the full object
   if (result.object) {
-    result.object = getSpatialObjectReference(
-      store,
-      result.object as unknown as string
-    );
+    result.object = getSpatialObjectReference(store, result.object as unknown as string);
   }
   if (result.ccf_annotations) {
-    result.ccf_annotations = store
-      .getObjects(iri, ccf.spatialEntity.ccf_annotations, null)
-      .map((o) => o.id);
+    result.ccf_annotations = store.getObjects(iri, ccf.spatialEntity.ccf_annotations, null).map((o) => o.id);
   }
-  store.forSubjects(
-    (subject) => (result.entityId = subject.id),
-    entity.spatialEntity,
-    iri,
-    null
-  );
+  store.forSubjects((subject) => (result.entityId = subject.id), entity.spatialEntity, iri, null);
   return result;
 }
 
@@ -175,16 +137,8 @@ export function getSpatialEntity(store: Store, iri: string): SpatialEntity {
  * @param iri The data identifier.
  * @returns THe new placement object.
  */
-export function getSpatialPlacement(
-  store: Store,
-  iri: string
-): SpatialPlacement {
-  const result = getMappedResult<SpatialPlacement>(
-    store,
-    iri,
-    'SpatialPlacement',
-    mappings.spatialPlacement
-  );
+export function getSpatialPlacement(store: Store, iri: string): SpatialPlacement {
+  const result = getMappedResult<SpatialPlacement>(store, iri, 'SpatialPlacement', mappings.spatialPlacement);
   // Default mapping will come back as an IRI for source/target which we can look up for the full object
   if (result.source) {
     result.source = getSpatialEntity(store, result.source as unknown as string);
@@ -202,15 +156,8 @@ export function getSpatialPlacement(
  * @param entityIRI The indentifier of the store entity.
  * @returns A new entity.
  */
-export function getSpatialEntityForEntity(
-  store: Store,
-  entityIRI: string
-): SpatialEntity | undefined {
-  const spatialEntityNodes = store.getObjects(
-    DataFactory.namedNode(entityIRI),
-    entity.spatialEntity,
-    null
-  );
+export function getSpatialEntityForEntity(store: Store, entityIRI: string): SpatialEntity | undefined {
+  const spatialEntityNodes = store.getObjects(DataFactory.namedNode(entityIRI), entity.spatialEntity, null);
   if (spatialEntityNodes.length > 0) {
     return getSpatialEntity(store, spatialEntityNodes[0].id);
   } else {

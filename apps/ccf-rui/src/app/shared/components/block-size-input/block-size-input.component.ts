@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
-
 /**
  * Interface for objects containing tissue block dimensions
  */
@@ -18,7 +17,7 @@ export interface BlockSize {
 const DEFAULT_BLOCK_SIZE: BlockSize = {
   x: 10,
   y: 10,
-  z: 10
+  z: 10,
 };
 
 /**
@@ -28,7 +27,7 @@ const DEFAULT_BLOCK_SIZE: BlockSize = {
   selector: 'ccf-block-size-input',
   templateUrl: './block-size-input.component.html',
   styleUrls: ['./block-size-input.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlockSizeInputComponent {
   /** HTML class name */
@@ -49,7 +48,7 @@ export class BlockSizeInputComponent {
    *
    * @param ga Analytics service
    */
-  constructor(private readonly ga: GoogleAnalyticsService) { }
+  constructor(private readonly ga: GoogleAnalyticsService) {}
 
   /**
    * Updates values when an input changes
@@ -60,7 +59,7 @@ export class BlockSizeInputComponent {
   updateBlockSizes(input: KeyboardEvent, key: string): void {
     const inputTarget = input.target as HTMLInputElement;
     this.blockSize = { ...this.blockSize, [key]: +inputTarget.value };
-    this.ga.event('block_size_change', 'block_size_input', key, this.blockSize[key]);
+    this.ga.event('block_size_change', 'block_size_input', key, this.blockSize[key as never]);
     this.blockSizeChange.emit(this.blockSize);
   }
 

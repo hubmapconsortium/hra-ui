@@ -1,6 +1,14 @@
-/* eslint-disable @typescript-eslint/member-ordering */
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { ComponentRef, ElementRef, Inject, Injector, Injectable, InjectionToken, Optional, Renderer2 } from '@angular/core';
+import {
+  ComponentRef,
+  ElementRef,
+  Inject,
+  Injector,
+  Injectable,
+  InjectionToken,
+  Optional,
+  Renderer2,
+} from '@angular/core';
 
 /** Token for specifying the default theme class. */
 export const DEFAULT_THEME = new InjectionToken<string>('Default theme class');
@@ -60,7 +68,6 @@ export class ThemingService {
   resetTheme(): void {
     this.setTheme(this.defaultTheme);
   }
-
 
   /**
    * Binds theming service to a component.

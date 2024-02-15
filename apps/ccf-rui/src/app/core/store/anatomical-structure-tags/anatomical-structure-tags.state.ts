@@ -1,9 +1,7 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable @typescript-eslint/member-ordering */
 import { createEntityCollections, EntityCollections } from '@angular-ru/common/entity';
-import { Injectable, Injector } from '@angular/core';
 import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataEntityCollectionsRepository } from '@angular-ru/ngxs/repositories';
+import { Injectable, Injector } from '@angular/core';
 import { State } from '@ngxs/store';
 import { bind as Bind } from 'bind-decorator';
 import { combineLatest, Observable, ObservableInput } from 'rxjs';
@@ -14,12 +12,8 @@ import { ModelState } from '../model/model.state';
 import { PageState } from '../page/page.state';
 import { SceneState } from '../scene/scene.state';
 
-
 /** Tag state model */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface AnatomicalStructureTagStateModel {
-}
-
+export interface AnatomicalStructureTagStateModel {}
 
 /**
  * Tag collection global state
@@ -28,11 +22,15 @@ export interface AnatomicalStructureTagStateModel {
 @State<EntityCollections<Tag, TagId, AnatomicalStructureTagStateModel>>({
   name: 'tags',
   defaults: {
-    ...createEntityCollections()
-  }
+    ...createEntityCollections(),
+  },
 })
 @Injectable()
-export class AnatomicalStructureTagState extends NgxsDataEntityCollectionsRepository<Tag, TagId, AnatomicalStructureTagStateModel> {
+export class AnatomicalStructureTagState extends NgxsDataEntityCollectionsRepository<
+  Tag,
+  TagId,
+  AnatomicalStructureTagStateModel
+> {
   /** Observable of tags */
   @Computed()
   get tags$(): Observable<Tag[]> {
@@ -56,12 +54,12 @@ export class AnatomicalStructureTagState extends NgxsDataEntityCollectionsReposi
             tags.push({
               id: iri,
               label: model.tooltip as string,
-              type: 'assigned'
+              type: 'assigned',
             });
           }
         }
         return tags;
-      })
+      }),
     );
   }
 
@@ -83,9 +81,7 @@ export class AnatomicalStructureTagState extends NgxsDataEntityCollectionsReposi
    *
    * @param injector Injector service used to lazy load page and model state
    */
-  constructor(
-    private readonly injector: Injector
-  ) {
+  constructor(private readonly injector: Injector) {
     super();
   }
 
@@ -138,16 +134,23 @@ export class AnatomicalStructureTagState extends NgxsDataEntityCollectionsReposi
    */
   @Bind
   searchExternal(text: string, limit: number): ObservableInput<TagSearchResult> {
-    const matches = this.model.snapshot.anatomicalStructures
-      .filter(as => as.name.toLowerCase().indexOf(text.toLowerCase()) !== -1);
-    return [{
-      totalCount: matches.length,
-      results: matches.map((as): Tag => ({
-        id: as.id,
-        label: as.name,
-        type: 'added'
-      })).slice(0, limit)
-    }];
+    const matches = this.model.snapshot.anatomicalStructures.filter(
+      (as) => as.name.toLowerCase().indexOf(text.toLowerCase()) !== -1,
+    );
+    return [
+      {
+        totalCount: matches.length,
+        results: matches
+          .map(
+            (as): Tag => ({
+              id: as.id,
+              label: as.name,
+              type: 'added',
+            }),
+          )
+          .slice(0, limit),
+      },
+    ];
   }
 
   /**

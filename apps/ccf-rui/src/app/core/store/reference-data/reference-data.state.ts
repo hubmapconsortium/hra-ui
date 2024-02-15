@@ -1,21 +1,18 @@
 import { Immutable } from '@angular-ru/common/typings';
-import { Injectable } from '@angular/core';
-import { Matrix4, toRadians } from '@math.gl/core';
 import { StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
+import { Injectable } from '@angular/core';
+import { Matrix4, toRadians } from '@math.gl/core';
 import { State } from '@ngxs/store';
 import { SpatialPlacementJsonLd, SpatialSceneNode } from 'ccf-body-ui';
 import { ExtractionSet, SpatialEntity } from 'ccf-database';
 import { ALL_ORGANS, GlobalConfigState, GlobalsService, OrganInfo } from 'ccf-shared';
-import { EMPTY, from, Observable } from 'rxjs';
+import { EMPTY, Observable, from } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
 import { environment } from '../../../../environments/environment';
 import { GlobalConfig } from '../../services/config/config';
 import { XYZTriplet } from '../model/model.state';
-
-
-/* eslint-disable @typescript-eslint/member-ordering */
 
 export function applySpatialPlacement(tx: Matrix4, placement: Immutable<SpatialPlacementJsonLd>): Matrix4 {
   const p = placement;
@@ -32,7 +29,7 @@ export function applySpatialPlacement(tx: Matrix4, placement: Immutable<SpatialP
       factor = 1;
       break;
   }
-  const T = [p.x_translation, p.y_translation, p.z_translation].map(t => t * factor);
+  const T = [p.x_translation, p.y_translation, p.z_translation].map((t) => t * factor);
   const R = [p.x_rotation, p.y_rotation, p.z_rotation].map<number>(toRadians) as [number, number, number];
   const S = [p.x_scaling, p.y_scaling, p.z_scaling];
 
@@ -68,15 +65,14 @@ export interface OrganData {
     extractionSets: {},
     sceneNodeLookup: {},
     simpleSceneNodeLookup: {},
-    placementPatches: {}
-  }
+    placementPatches: {},
+  },
 })
 @Injectable()
 export class ReferenceDataState extends NgxsImmutableDataRepository<ReferenceDataStateModel> {
-
   constructor(
     private readonly globals: GlobalsService,
-    private globalConfig: GlobalConfigState<GlobalConfig>
+    private globalConfig: GlobalConfigState<GlobalConfig>,
   ) {
     super();
   }
@@ -87,7 +83,7 @@ export class ReferenceDataState extends NgxsImmutableDataRepository<ReferenceDat
   override ngxsOnInit(): void {
     super.ngxsOnInit();
 
-    this.getSourceDB().subscribe(db => {
+    this.getSourceDB().subscribe((db) => {
       this.setState(db);
 
       // In development, make the db globally accessible
@@ -99,11 +95,13 @@ export class ReferenceDataState extends NgxsImmutableDataRepository<ReferenceDat
 
   private getSourceDB(): Observable<ReferenceDataStateModel> {
     return this.globalConfig.getOption('baseHref').pipe(
-      map(baseHref => (baseHref ?? '') + 'assets/reference-organ-data.json'),
-      switchMap(url => from(fetch(url)).pipe(
-        switchMap(data => data.json()),
-        catchError(() => EMPTY)
-      ))
+      map((baseHref) => (baseHref ?? '') + 'assets/reference-organ-data.json'),
+      switchMap((url) =>
+        from(fetch(url)).pipe(
+          switchMap((data) => data.json()),
+          catchError(() => EMPTY),
+        ),
+      ),
     );
   }
 
@@ -113,7 +111,7 @@ export class ReferenceDataState extends NgxsImmutableDataRepository<ReferenceDat
     if (patchPlacement) {
       const matrix = applySpatialPlacement(new Matrix4(Matrix4.IDENTITY), patchPlacement);
       const position: XYZTriplet = { x: place.x_translation, y: place.y_translation, z: place.z_translation };
-      const [x, y, z] = matrix.transformAsPoint([ position.x, position.y, position.z ], []);
+      const [x, y, z] = matrix.transformAsPoint([position.x, position.y, position.z], []);
       const newPlacement = { ...place, target: patchPlacement.target };
       newPlacement.x_translation = x;
       newPlacement.y_translation = y;
@@ -132,7 +130,12 @@ export class ReferenceDataState extends NgxsImmutableDataRepository<ReferenceDat
    * @param side the side: left, right, or undefined
    * @returns An IRI if there is a reference organ for this state, otherwise undefined
    */
-  getReferenceOrganIri(organ: string, sex?: 'Male' | 'Female' | string, side?: 'Left' | 'Right' | string, organInfo?: OrganInfo): string | undefined {
+  getReferenceOrganIri(
+    organ: string,
+    sex?: 'Male' | 'Female' | string,
+    side?: 'Left' | 'Right' | string,
+    organInfo?: OrganInfo,
+  ): string | undefined {
     const db = this.snapshot;
     if (organ.toUpperCase() !== 'KIDNEY') {
       side = '';
@@ -161,7 +164,9 @@ export class ReferenceDataState extends NgxsImmutableDataRepository<ReferenceDat
     }
 
     const name = entity.label ?? '';
-    const organ = ALL_ORGANS.find(info => name.endsWith(info.organ) && (!entity.side || entity.side.toLowerCase() === info.side));
+    const organ = ALL_ORGANS.find(
+      (info) => name.endsWith(info.organ) && (!entity.side || entity.side.toLowerCase() === info.side),
+    );
     if (!organ) {
       return undefined;
     }
@@ -169,7 +174,7 @@ export class ReferenceDataState extends NgxsImmutableDataRepository<ReferenceDat
     return {
       organ,
       sex: entity.sex?.toLowerCase() as 'male' | 'female',
-      side: entity.side?.toLowerCase() as 'left' | 'right'
+      side: entity.side?.toLowerCase() as 'left' | 'right',
     };
   }
 

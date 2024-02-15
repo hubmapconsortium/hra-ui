@@ -1,18 +1,7 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { GlobalConfigState } from 'ccf-shared';
 
-import {
-  ConfigManager,
-  ConfigManagerOptions,
-  GenericGlobalConfig,
-} from './config-manager';
+import { ConfigManager, ConfigManagerOptions, GenericGlobalConfig } from './config-manager';
 
 export interface BaseWebComponentOptions extends ConfigManagerOptions {
   initialDelay?: number;
@@ -28,14 +17,11 @@ export class BaseWebComponent implements OnInit, OnChanges, OnDestroy {
   constructor(
     readonly configState: GlobalConfigState<GenericGlobalConfig>,
     readonly cdr: ChangeDetectorRef,
-    readonly options: BaseWebComponentOptions = {}
+    readonly options: BaseWebComponentOptions = {},
   ) {}
 
   ngOnInit(): void {
-    this._init = setTimeout(
-      () => this.initialize(),
-      this.options.initialDelay ?? 0
-    );
+    this._init = setTimeout(() => this.initialize(), this.options.initialDelay ?? 0);
   }
 
   ngOnDestroy(): void {

@@ -1,10 +1,17 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 import { DEFAULT_FILTER } from '../../../core/store/data/data.state';
 import { SpatialSearchFilterItem } from '../../../core/store/spatial-search-filter/spatial-search-filter.state';
 import { Sex } from '../../../shared/components/spatial-search-config/spatial-search-config.component';
-
 
 /**
  * Contains components of the filters popup and handles changes in filter settings
@@ -13,10 +20,9 @@ import { Sex } from '../../../shared/components/spatial-search-config/spatial-se
   selector: 'ccf-filters-content',
   templateUrl: './filters-content.component.html',
   styleUrls: ['./filters-content.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FiltersContentComponent implements OnChanges {
-
   /**
    * Determines if the filters are visible
    */
@@ -87,14 +93,14 @@ export class FiltersContentComponent implements OnChanges {
    *
    * @param ga Analytics service
    */
-  constructor(private readonly ga: GoogleAnalyticsService) { }
+  constructor(private readonly ga: GoogleAnalyticsService) {}
 
   /**
    * Handle input changes
    */
   ngOnChanges(changes: SimpleChanges): void {
     if ('spatialSearchFilters' in changes) {
-      this.updateSexFromSelection(this.spatialSearchFilters.filter(item => item.selected));
+      this.updateSexFromSelection(this.spatialSearchFilters.filter((item) => item.selected));
     }
   }
 
@@ -114,7 +120,7 @@ export class FiltersContentComponent implements OnChanges {
    * Emits the current filters when the apply button is clicked
    */
   applyButtonClick(): void {
-    this.updateSearchSelection(this.spatialSearchFilters.filter(item => item.selected));
+    this.updateSearchSelection(this.spatialSearchFilters.filter((item) => item.selected));
     this.ga.event('filters_applied', 'filter_content');
     this.applyFilters.emit(this.filters);
   }
@@ -135,7 +141,7 @@ export class FiltersContentComponent implements OnChanges {
    * @param items New set of selected items
    */
   updateSearchSelection(items: SpatialSearchFilterItem[]): void {
-    const searches = items.map(item => item.search);
+    const searches = items.map((item) => item.search);
 
     this.spatialSearchSelected.emit(items);
     this.updateFilter(searches, 'spatialSearches');
@@ -147,7 +153,7 @@ export class FiltersContentComponent implements OnChanges {
    */
   updateSexFromSelection(items: SpatialSearchFilterItem[]): void {
     const currentSex = this.sex;
-    const selectedSexes = new Set(items.map(item => item.sex));
+    const selectedSexes = new Set(items.map((item) => item.sex));
 
     if (items.length > 0 && (selectedSexes.size > 1 || !selectedSexes.has(currentSex))) {
       this.updateFilter('Both', 'sex');

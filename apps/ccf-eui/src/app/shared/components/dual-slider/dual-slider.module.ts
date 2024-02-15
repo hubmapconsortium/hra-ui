@@ -9,15 +9,8 @@ import { NgxSliderModule } from 'ngx-slider-v2';
 import { DualSliderComponent } from './dual-slider.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    OverlayModule,
-    PortalModule,
-    NgxSliderModule,
-    MatFormFieldModule,
-    MatSelectModule
-  ],
+  imports: [CommonModule, OverlayModule, PortalModule, NgxSliderModule, MatFormFieldModule, MatSelectModule],
   declarations: [DualSliderComponent],
-  exports: [DualSliderComponent]
+  exports: [DualSliderComponent],
 })
-export class DualSliderModule { }
+export class DualSliderModule {}

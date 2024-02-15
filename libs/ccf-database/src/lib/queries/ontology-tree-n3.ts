@@ -1,15 +1,10 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-import memoize from 'lodash/memoize';
+import { memoize } from 'lodash';
 import { readQuads, Store } from 'triple-store-utils';
 import { OntologyTreeModel, OntologyTreeNode } from '../interfaces';
 import { getEntries } from '../util/n3-functions';
 import { ccf, rdfs, rui } from '../util/prefixes';
 
-export function getOntologyTreeNode(
-  store: Store,
-  iri: string,
-  relationshipIri: string
-): OntologyTreeNode {
+export function getOntologyTreeNode(store: Store, iri: string, relationshipIri: string): OntologyTreeNode {
   const result: OntologyTreeNode = {
     '@id': iri,
     '@type': 'OntologyTreeNode',
@@ -30,12 +25,10 @@ export function getOntologyTreeNode(
     if (key === 'synonymLabels') {
       result.synonymLabels.push(value as string);
     } else {
-      result[key] = value;
+      result[key as keyof OntologyTreeNode] = value as never;
     }
   }
-  result.children = store
-    .getSubjects(relationshipIri, iri, null)
-    .map((s) => s.id);
+  result.children = store.getSubjects(relationshipIri, iri, null).map((s) => s.id);
 
   return result;
 }
@@ -44,7 +37,7 @@ export function getOntologyTreeModel(
   store: Store,
   rootIri: string,
   rootLabel: string,
-  relationshipIri: string
+  relationshipIri: string,
 ): OntologyTreeModel {
   const result: OntologyTreeModel = { root: rootIri, nodes: {} };
   const seen = new Set<string>();
@@ -86,11 +79,7 @@ export function getOntologyTreeModel(
  * @param nodeIri the tree node iri to modify. Starts at root in the base case
  * @param seen a set of IRIs that have been 'seen' so far to remove loops in the graph
  */
-function treeify(
-  model: OntologyTreeModel,
-  nodeIri: string | undefined = undefined,
-  seen: Set<string> = new Set()
-) {
+function treeify(model: OntologyTreeModel, nodeIri: string | undefined = undefined, seen: Set<string> = new Set()) {
   const node = model.nodes[nodeIri ?? model.root];
   if (node) {
     node.children = node.children.filter((n) => !seen.has(n));
@@ -104,15 +93,8 @@ function treeify(
   }
 }
 
-export function getAnatomicalStructureTreeModelSlowly(
-  store: Store
-): OntologyTreeModel {
-  const model = getOntologyTreeModel(
-    store,
-    rui.body.id,
-    'body',
-    ccf.asctb.part_of.id
-  );
+export function getAnatomicalStructureTreeModelSlowly(store: Store): OntologyTreeModel {
+  const model = getOntologyTreeModel(store, rui.body.id, 'body', ccf.asctb.part_of.id);
   model.nodes[rui.body.id].children = [
     'http://purl.obolibrary.org/obo/UBERON_0000955', // Brain
     'http://purl.obolibrary.org/obo/UBERON_0000029', // Lymph Node
@@ -165,21 +147,13 @@ export function getAnatomicalStructureTreeModelSlowly(
   return model;
 }
 
-export const getAnatomicalStructureTreeModel = memoize(
-  getAnatomicalStructureTreeModelSlowly,
-  () => ''
-);
+export const getAnatomicalStructureTreeModel = memoize(getAnatomicalStructureTreeModelSlowly, () => '');
 
 export function getCellTypeTreeModel(store: Store): OntologyTreeModel {
   return getOntologyTreeModel(store, rui.cell.id, 'cell', ccf.asctb.ct_is_a.id);
 }
 
-function formBiomarkerNode(
-  id: string,
-  label: string,
-  parent: string,
-  children: string[]
-): OntologyTreeNode {
+function formBiomarkerNode(id: string, label: string, parent: string, children: string[]): OntologyTreeNode {
   return {
     ['@id']: `http://purl.org/ccf/${id}`,
     id,
@@ -201,12 +175,7 @@ export function getBiomarkerTreeModel(store: Store): OntologyTreeModel {
     const bm = quad.object.value;
     const iri = quad.subject.id;
     if (!nodes[bm]) {
-      nodes[bm] = formBiomarkerNode(
-        bm,
-        bm[0].toUpperCase() + bm.slice(1),
-        'biomarkers',
-        []
-      );
+      nodes[bm] = formBiomarkerNode(bm, bm[0].toUpperCase() + bm.slice(1), 'biomarkers', []);
       nodes['biomarkers'].children.push(bm);
     }
     nodes[bm].children.push(iri);
@@ -223,15 +192,13 @@ export function getBiomarkerTreeModel(store: Store): OntologyTreeModel {
           result.synonymLabels.push(value as string);
         }
       } else {
-        result[key] = value;
+        result[key as keyof OntologyTreeNode] = value as never;
       }
     }
 
     for (const node of Object.values(nodes)) {
       if (node.children.length > 1) {
-        node.children.sort((a, b) =>
-          nodes[a]?.label.localeCompare(nodes[b]?.label)
-        );
+        node.children.sort((a, b) => nodes[a]?.label.localeCompare(nodes[b]?.label));
       }
     }
 

@@ -3,13 +3,10 @@ import { Subscription } from 'rxjs';
 
 import { Consent, ConsentService } from './consent.service';
 
-export const LOCAL_STORAGE_CONSENT_KEY = new InjectionToken(
-  'Key under which consent is stored',
-  {
-    providedIn: 'root',
-    factory: () => 'ALLOW_TELEMETRY',
-  }
-);
+export const LOCAL_STORAGE_CONSENT_KEY = new InjectionToken('Key under which consent is stored', {
+  providedIn: 'root',
+  factory: () => 'ALLOW_TELEMETRY',
+});
 
 @Injectable()
 export class LocalStorageSyncService implements OnDestroy {
@@ -18,7 +15,7 @@ export class LocalStorageSyncService implements OnDestroy {
 
   constructor(
     consentService: ConsentService,
-    @Inject(LOCAL_STORAGE_CONSENT_KEY) private readonly key: string
+    @Inject(LOCAL_STORAGE_CONSENT_KEY) private readonly key: string,
   ) {
     try {
       this.storage = localStorage;
@@ -27,11 +24,7 @@ export class LocalStorageSyncService implements OnDestroy {
     }
 
     consentService.setConsent(this.loadConsent());
-    this.subscriptions.add(
-      consentService.consentChange.subscribe((consent) =>
-        this.saveConsent(consent)
-      )
-    );
+    this.subscriptions.add(consentService.consentChange.subscribe((consent) => this.saveConsent(consent)));
   }
 
   ngOnDestroy(): void {

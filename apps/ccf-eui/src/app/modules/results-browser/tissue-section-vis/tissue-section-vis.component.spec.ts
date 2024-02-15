@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { TissueSectionResult } from 'ccf-database';
 import { Shallow } from 'shallow-render';
 import { TissueSectionVisComponent } from './tissue-section-vis.component';
@@ -16,7 +15,7 @@ function getTissueSections(count: number): TissueSectionResult[] {
       '@id': `${i}`,
       label: `${i}`,
       description: `${i}`,
-      link: `${i}`
+      link: `${i}`,
     });
   }
 

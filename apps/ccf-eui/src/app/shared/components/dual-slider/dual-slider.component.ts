@@ -1,13 +1,20 @@
-/* eslint-disable @typescript-eslint/member-ordering */
 import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { CdkPortal } from '@angular/cdk/portal';
 import {
   ChangeDetectionStrategy,
-  Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, OnDestroy, Output, SimpleChanges, ViewChild,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnChanges,
+  OnDestroy,
+  Output,
+  SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import { Options } from '@angular-slider/ngx-slider';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-
 
 /**
  * Component containing a button that when clicked will show a slider popover.
@@ -16,7 +23,7 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
   selector: 'ccf-dual-slider',
   templateUrl: './dual-slider.component.html',
   styleUrls: ['./dual-slider.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DualSliderComponent implements OnDestroy, OnChanges {
   /**
@@ -106,13 +113,13 @@ export class DualSliderComponent implements OnDestroy, OnChanges {
   constructor(
     overlay: Overlay,
     private element: ElementRef<HTMLElement>,
-    private readonly ga: GoogleAnalyticsService
+    private readonly ga: GoogleAnalyticsService,
   ) {
     const position: ConnectedPosition = { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' };
     const positionStrategy = overlay.position().flexibleConnectedTo(element).withPositions([position]);
     this.overlayRef = overlay.create({
       panelClass: 'slider-pane',
-      positionStrategy
+      positionStrategy,
     });
   }
 
@@ -141,7 +148,7 @@ export class DualSliderComponent implements OnDestroy, OnChanges {
       ceil: this.valueRange ? this.valueRange[1] : 0,
       step: 1,
       hideLimitLabels: true,
-      hidePointerLabels: true
+      hidePointerLabels: true,
     };
     this.lowValue = this.options.floor ?? 0;
     this.highValue = this.options.ceil ?? 0;

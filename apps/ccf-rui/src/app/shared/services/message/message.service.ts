@@ -1,7 +1,6 @@
 import { Inject, Injectable, InjectionToken, OnDestroy, Optional, SkipSelf } from '@angular/core';
-import { from, Observable, Subject } from 'rxjs';
+import { Observable, Subject, from } from 'rxjs';
 import { filter, mergeAll, takeWhile } from 'rxjs/operators';
-
 
 /**
  * Message service configuration options.
@@ -27,18 +26,14 @@ export interface Message<T> {
 
 /** Default message service configuration. */
 export const MESSAGE_SERVICE_DEFAULT_CONFIG: MessageServiceConfig = {
-  isolated: true
+  isolated: true,
 };
 
 /** Token for specifying the message service configuration. */
-export const MESSAGE_SERVICE_CONFIG = new InjectionToken<MessageServiceConfig>(
-  'Message service configuration',
-  {
-    providedIn: 'root',
-    factory: () => MESSAGE_SERVICE_DEFAULT_CONFIG
-  }
-);
-
+export const MESSAGE_SERVICE_CONFIG = new InjectionToken<MessageServiceConfig>('Message service configuration', {
+  providedIn: 'root',
+  factory: () => MESSAGE_SERVICE_DEFAULT_CONFIG,
+});
 
 /**
  * Channel for sending and receiving messages.
@@ -59,8 +54,8 @@ export class MessageChannel<T> {
   constructor(
     readonly source: unknown,
     private channel: Subject<Message<T>>,
-    private messages: Observable<Message<T>>
-  ) { }
+    private messages: Observable<Message<T>>,
+  ) {}
 
   /**
    * Sends a single message with a payload.
@@ -71,7 +66,7 @@ export class MessageChannel<T> {
     this.channel.next({
       id: this.nextMessageId(),
       source: this.source,
-      payload
+      payload,
     });
   }
 
@@ -81,7 +76,7 @@ export class MessageChannel<T> {
    * @returns The message observable.
    */
   getMessages(): Observable<Message<T>> {
-    return this.messages.pipe(filter(msg => msg.source !== this.source));
+    return this.messages.pipe(filter((msg) => msg.source !== this.source));
   }
 
   /**
@@ -91,7 +86,7 @@ export class MessageChannel<T> {
    * @returns The message observable.
    */
   getMessagesFromSource(source: unknown): Observable<Message<T>> {
-    return this.getMessages().pipe(filter(msg => msg.source === source));
+    return this.getMessages().pipe(filter((msg) => msg.source === source));
   }
 
   /**
@@ -101,7 +96,7 @@ export class MessageChannel<T> {
    * @returns The message observable.
    */
   getMessagesFromSources(sources: unknown[]): Observable<Message<T>> {
-    return this.getMessages().pipe(filter(msg => sources.includes(msg.source)));
+    return this.getMessages().pipe(filter((msg) => sources.includes(msg.source)));
   }
 
   /**
@@ -114,14 +109,13 @@ export class MessageChannel<T> {
   }
 }
 
-
 /**
  * Service for creating message channels.
  *
  * @template T The message payload type.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MessageService<T> implements OnDestroy {
   /** The message channel. */
@@ -135,15 +129,16 @@ export class MessageService<T> implements OnDestroy {
    * @param [config] The configuration for this service.
    * @param [parent] The parent message service, if any.
    */
-  constructor(@Inject(MESSAGE_SERVICE_CONFIG) readonly config: MessageServiceConfig,
-              @Optional() @SkipSelf() readonly parent: MessageService<T> | null) {
+  constructor(
+    @Inject(MESSAGE_SERVICE_CONFIG) readonly config: MessageServiceConfig,
+    @Optional() @SkipSelf() readonly parent: MessageService<T> | null,
+  ) {
     if (config.isolated || !parent) {
       this.messages = this.channel.asObservable();
     } else {
-      this.messages = from([
-        this.channel,
-        parent.messages.pipe(takeWhile(() => !this.channel.closed))
-      ]).pipe(mergeAll());
+      this.messages = from([this.channel, parent.messages.pipe(takeWhile(() => !this.channel.closed))]).pipe(
+        mergeAll(),
+      );
     }
   }
 

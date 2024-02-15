@@ -17,7 +17,7 @@ const initialReferenceDataState = {
   extractionSets: {},
   sceneNodeLookup: {},
   simpleSceneNodeLookup: {},
-  placementPatches: {}
+  placementPatches: {},
 };
 
 const updatedReferenceDataState = {
@@ -27,7 +27,7 @@ const updatedReferenceDataState = {
   extractionSets: {},
   sceneNodeLookup: {},
   simpleSceneNodeLookup: {},
-  placementPatches: {}
+  placementPatches: {},
 };
 
 const initialModelState = {
@@ -48,13 +48,13 @@ const initialModelState = {
   showPrevious: false,
   extractionSites: [],
   anatomicalStructures: [],
-  extractionSets: []
+  extractionSets: [],
 };
 
 const initialPageState: PageStateModel = {
   user: {
     firstName: '',
-    lastName: ''
+    lastName: '',
   },
   registrationStarted: false,
   useCancelRegistrationCallback: false,
@@ -62,7 +62,7 @@ const initialPageState: PageStateModel = {
   skipConfirmation: true,
   hasChanges: false,
   organOptions: [],
-  orcidValid: true
+  orcidValid: true,
 };
 
 describe('RegistrationModalComponent', () => {
@@ -80,19 +80,19 @@ describe('RegistrationModalComponent', () => {
 
     shallow = new Shallow(RegistrationModalComponent, RegistrationModalModule)
       .mock(MatDialog, {
-        open: () => ({})
+        open: () => ({}),
       })
       .mock(PageState, {
-        state$: pageSubject
+        state$: pageSubject,
       })
       .mock(ModelState, {
-        state$: modelSubject
+        state$: modelSubject,
       })
       .mock(ReferenceDataState, {
-        state$: referenceSubject
+        state$: referenceSubject,
       })
       .mock(GlobalConfigState, {
-        state$: globalConfigSubject
+        state$: globalConfigSubject,
       });
   });
 
@@ -120,11 +120,11 @@ describe('RegistrationModalComponent', () => {
     referenceSubject.next(updatedReferenceDataState);
     pageSubject.next({
       ...initialPageState,
-      user: { firstName: 'John', lastName: 'Doe' }
+      user: { firstName: 'John', lastName: 'Doe' },
     });
     modelSubject.next({
-      ...initialModelState as ModelStateModel,
-      organ: { src: 'areallygoodvalue', name: '', organ: '' }
+      ...(initialModelState as ModelStateModel),
+      organ: { src: 'areallygoodvalue', name: '', organ: '' },
     });
     expect(spy).not.toHaveBeenCalled();
   });
@@ -136,11 +136,11 @@ describe('RegistrationModalComponent', () => {
     referenceSubject.next(initialReferenceDataState);
     pageSubject.next({
       ...initialPageState,
-      user: { firstName: 'John', lastName: 'Doe' }
+      user: { firstName: 'John', lastName: 'Doe' },
     });
     modelSubject.next({
-      ...initialModelState as ModelStateModel,
-      organ: { src: 'areallygoodvalue', name: '', organ: '' }
+      ...(initialModelState as ModelStateModel),
+      organ: { src: 'areallygoodvalue', name: '', organ: '' },
     });
     expect(spy).not.toHaveBeenCalled();
   });

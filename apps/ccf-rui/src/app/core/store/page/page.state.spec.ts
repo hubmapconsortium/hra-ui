@@ -2,16 +2,15 @@ import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { TestBed } from '@angular/core/testing';
 import { NgxsModule, Store } from '@ngxs/store';
 import { GlobalConfigState } from 'ccf-shared';
-import { lastValueFrom, Observable, of } from 'rxjs';
+import { Observable, lastValueFrom, of } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 import { GLOBAL_CONFIG } from '../../services/config/config';
 import { AnatomicalStructureTagState } from '../anatomical-structure-tags/anatomical-structure-tags.state';
 import { ReferenceDataState } from '../reference-data/reference-data.state';
+import { RegistrationState } from '../registration/registration.state';
 import { ModelState } from './../model/model.state';
 import { PageState } from './page.state';
-import { RegistrationState } from '../registration/registration.state';
-
 
 function nextValue<T>(obs: Observable<T>): Promise<T> {
   return lastValueFrom(obs.pipe(take(1)));
@@ -20,42 +19,43 @@ function nextValue<T>(obs: Observable<T>): Promise<T> {
 describe('PageState', () => {
   let state: PageState;
 
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         NgxsDataPluginModule.forRoot(),
-        NgxsModule.forRoot([PageState, ModelState, AnatomicalStructureTagState, GlobalConfigState])
+        NgxsModule.forRoot([PageState, ModelState, AnatomicalStructureTagState, GlobalConfigState]),
       ],
       providers: [
         ModelState,
         ReferenceDataState,
         {
-          provide: AnatomicalStructureTagState, useValue: {
-            tags$: of([])
-          }
+          provide: AnatomicalStructureTagState,
+          useValue: {
+            tags$: of([]),
+          },
         },
         GlobalConfigState,
         { provide: GLOBAL_CONFIG, useValue: {} },
         {
-          provide: RegistrationState, useValue: {
-            state$: of([])
-          }
-        }
-      ]
+          provide: RegistrationState,
+          useValue: {
+            state$: of([]),
+          },
+        },
+      ],
     });
 
     TestBed.inject(Store).reset({
       page: {
         user: {
           firstName: 'Bob',
-          lastName: 'the Dragon'
+          lastName: 'the Dragon',
         },
-        useCancelRegistrationCallback: false
+        useCancelRegistrationCallback: false,
       },
       globalConfig: {
-        skipUnsavedChangesConfirmation: true
-      }
+        skipUnsavedChangesConfirmation: true,
+      },
     });
 
     state = TestBed.inject(PageState);

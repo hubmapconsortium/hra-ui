@@ -1,17 +1,32 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable @typescript-eslint/member-ordering */
-/* eslint-disable @typescript-eslint/naming-convention */
 import { DataAction, Payload, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
 import { Injectable } from '@angular/core';
 import { Action, NgxsOnInit, State } from '@ngxs/store';
 import { bind } from 'bind-decorator';
-import { AggregateResult, DatabaseStatus, Filter, OntologyTreeModel, SpatialSceneNode, TissueBlockResult } from 'ccf-database';
+import {
+  AggregateResult,
+  DatabaseStatus,
+  Filter,
+  OntologyTreeModel,
+  SpatialSceneNode,
+  TissueBlockResult,
+} from 'ccf-database';
 import { DataSourceService } from 'ccf-shared';
 import { ObservableInput, ObservedValueOf, OperatorFunction, ReplaySubject, Subject, combineLatest, defer } from 'rxjs';
-import { delay, distinct, map, publishReplay, refCount, repeat, filter as rxjsFilter, switchMap, take, takeWhile, tap } from 'rxjs/operators';
+import {
+  delay,
+  distinct,
+  map,
+  publishReplay,
+  refCount,
+  repeat,
+  filter as rxjsFilter,
+  switchMap,
+  take,
+  takeWhile,
+  tap,
+} from 'rxjs/operators';
 import { UpdateFilter } from './data.actions';
-
 
 /** Default values for filters. */
 export const DEFAULT_FILTER: Filter = {
@@ -24,7 +39,7 @@ export const DEFAULT_FILTER: Filter = {
   ontologyTerms: ['http://purl.obolibrary.org/obo/UBERON_0013702'],
   cellTypeTerms: ['http://purl.obolibrary.org/obo/CL_0000000'],
   biomarkerTerms: ['http://purl.org/ccf/biomarkers'],
-  spatialSearches: []
+  spatialSearches: [],
 };
 
 /** Current state of data queries. */
@@ -33,7 +48,7 @@ export enum DataQueryState {
   /** One or more queries are running. */
   Running = 'running',
   /** All queries have completed. */
-  Completed = 'completed'
+  Completed = 'completed',
 }
 
 /**
@@ -43,7 +58,7 @@ export enum DataQueryState {
  * @returns true if all values in the array is `Completed`.
  */
 function allCompleted(states: DataQueryState[]): boolean {
-  return states.every(state => state === DataQueryState.Completed);
+  return states.every((state) => state === DataQueryState.Completed);
 }
 
 /**
@@ -66,14 +81,9 @@ function sendCompletedTo(subject: Subject<DataQueryState>): () => void {
  */
 function queryData<T, O extends ObservableInput<unknown>>(
   query: (value: T, index: number) => O,
-  next?: (value: ObservedValueOf<O>) => void
+  next?: (value: ObservedValueOf<O>) => void,
 ): OperatorFunction<T, ObservedValueOf<O>> {
-  return source => source.pipe(
-    switchMap(query),
-    tap(next),
-    publishReplay(1),
-    refCount()
-  );
+  return (source) => source.pipe(switchMap(query), tap(next), publishReplay(1), refCount());
 }
 
 /** Store data state. */
@@ -96,13 +106,17 @@ export interface DataStateModel {
   defaults: {
     filter: DEFAULT_FILTER,
     status: 'Loading',
-    statusMessage: 'Loading database'
-  }
+    statusMessage: 'Loading database',
+  },
 })
 @Injectable()
 export class DataState extends NgxsDataRepository<DataStateModel> implements NgxsOnInit {
   /** Emits when the database is ready. */
-  readonly databaseReady$ = this.state$.pipe(map(x => x?.status), distinct(), rxjsFilter((status) => status === 'Ready'));
+  readonly databaseReady$ = this.state$.pipe(
+    map((x) => x?.status),
+    distinct(),
+    rxjsFilter((status) => status === 'Ready'),
+  );
 
   /** Implementation subject for tissueBlockDataQueryStatus$. */
   private readonly _tissueBlockDataQueryStatus$ = new ReplaySubject<DataQueryState>(1);
@@ -127,39 +141,37 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
   readonly biomarkerTermsFullData$ = new ReplaySubject<Record<string, number>>(1);
 
   /** Current filter. */
-  readonly filter$ = this.state$.pipe(map(x => x?.filter));
+  readonly filter$ = this.state$.pipe(map((x) => x?.filter));
   /** Latest tissue block query data. */
-  readonly tissueBlockData$ = this.filter$.pipe(queryData(
-    this.tissueBlockData, sendCompletedTo(this._tissueBlockDataQueryStatus$)
-  ));
+  readonly tissueBlockData$ = this.filter$.pipe(
+    queryData(this.tissueBlockData, sendCompletedTo(this._tissueBlockDataQueryStatus$)),
+  );
   /** Latest aggregate query data. */
-  readonly aggregateData$ = this.filter$.pipe(queryData(
-    this.aggregateData, sendCompletedTo(this._aggregateDataQueryStatus$)
-  ));
+  readonly aggregateData$ = this.filter$.pipe(
+    queryData(this.aggregateData, sendCompletedTo(this._aggregateDataQueryStatus$)),
+  );
   /** Latest ontology term occurences query data. */
-  readonly ontologyTermOccurencesData$ = this.filter$.pipe(queryData(
-    this.ontologyTermOccurencesData, sendCompletedTo(this._ontologyTermOccurencesDataQueryStatus$)
-  ));
+  readonly ontologyTermOccurencesData$ = this.filter$.pipe(
+    queryData(this.ontologyTermOccurencesData, sendCompletedTo(this._ontologyTermOccurencesDataQueryStatus$)),
+  );
   /** Latest ontology term occurences query data. */
-  readonly biomarkerTermOccurencesData$ = this.filter$.pipe(queryData(
-    this.biomarkerTermOccurencesData, sendCompletedTo(this._biomarkerTermOccurencesDataQueryStatus$)
-  ));
+  readonly biomarkerTermOccurencesData$ = this.filter$.pipe(
+    queryData(this.biomarkerTermOccurencesData, sendCompletedTo(this._biomarkerTermOccurencesDataQueryStatus$)),
+  );
   /** Latest cell type term occurences query data. */
-  readonly cellTypeTermOccurencesData$ = this.filter$.pipe(queryData(
-    this.cellTypeTermOccurencesData, sendCompletedTo(this._cellTypeTermOccurencesDataQueryStatus$)
-  ));
+  readonly cellTypeTermOccurencesData$ = this.filter$.pipe(
+    queryData(this.cellTypeTermOccurencesData, sendCompletedTo(this._cellTypeTermOccurencesDataQueryStatus$)),
+  );
   /** Latest scene query data. */
-  readonly sceneData$ = this.filter$.pipe(queryData(
-    this.sceneData, sendCompletedTo(this._sceneDataQueryStatus$)
-  ));
+  readonly sceneData$ = this.filter$.pipe(queryData(this.sceneData, sendCompletedTo(this._sceneDataQueryStatus$)));
   /** Latest technology filter label query data. */
-  readonly technologyFilterData$ = this.filter$.pipe(queryData(
-    this.technologyFilterData, sendCompletedTo(this._technologyFilterQueryStatus$)
-  ));
+  readonly technologyFilterData$ = this.filter$.pipe(
+    queryData(this.technologyFilterData, sendCompletedTo(this._technologyFilterQueryStatus$)),
+  );
   /** Latest provider filter label query data. */
-  readonly providerFilterData$ = this.filter$.pipe(queryData(
-    this.providerFilterData, sendCompletedTo(this._providerFilterQueryStatus$)
-  ));
+  readonly providerFilterData$ = this.filter$.pipe(
+    queryData(this.providerFilterData, sendCompletedTo(this._providerFilterQueryStatus$)),
+  );
 
   /** Current status of queries in the tissueBlockData$ observable. */
   readonly tissueBlockDataQueryStatus$ = this._tissueBlockDataQueryStatus$.pipe(distinct());
@@ -186,10 +198,10 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
     this.cellTypeTermOccurencesDataQueryStatus$,
     this.sceneDataQueryStatus$,
     this.technologyFilterQueryStatus$,
-    this.providerFilterQueryStatus$
+    this.providerFilterQueryStatus$,
   ]).pipe(
-    map(states => allCompleted(states) ? DataQueryState.Completed : DataQueryState.Running),
-    distinct()
+    map((states) => (allCompleted(states) ? DataQueryState.Completed : DataQueryState.Running)),
+    distinct(),
   );
 
   /**
@@ -210,61 +222,87 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
   }
 
   override ngxsOnInit(): void {
-    const { ontologyTermsFullData$, ontologyTermOccurencesData$, cellTypeTermsFullData$, biomarkerTermsFullData$, cellTypeTermOccurencesData$, biomarkerTermOccurencesData$, source, snapshot: { filter } } = this;
+    const {
+      ontologyTermsFullData$,
+      ontologyTermOccurencesData$,
+      cellTypeTermsFullData$,
+      biomarkerTermsFullData$,
+      cellTypeTermOccurencesData$,
+      biomarkerTermOccurencesData$,
+      source,
+      snapshot: { filter },
+    } = this;
+
     if (filter === DEFAULT_FILTER) {
       // Common case - Reuse the result of the regular query
       ontologyTermOccurencesData$.pipe(take(1)).subscribe(ontologyTermsFullData$);
       cellTypeTermOccurencesData$.pipe(take(1)).subscribe(cellTypeTermsFullData$);
       biomarkerTermOccurencesData$.pipe(take(1)).subscribe(biomarkerTermsFullData$);
-
     } else {
       source.getOntologyTermOccurences().pipe(take(1)).subscribe(ontologyTermsFullData$);
       source.getCellTypeTermOccurences().pipe(take(1)).subscribe(cellTypeTermsFullData$);
       source.getBiomarkerTermOccurences().pipe(take(1)).subscribe(biomarkerTermsFullData$);
-
     }
-    this.source.getOntologyTreeModel().pipe(take(1)).subscribe((model) => this.updateAnatomicalStructuresTreeModel(model));
-    this.source.getCellTypeTreeModel().pipe(take(1)).subscribe((model) => this.updateCellTypesTreeModel(model));
-    this.source.getBiomarkerTreeModel().pipe(take(1)).subscribe((model) => this.updateBiomarkersTreeModel(model));
+
+    this.source
+      .getOntologyTreeModel()
+      .pipe(take(1))
+      .subscribe((model) => this.updateAnatomicalStructuresTreeModel(model));
+    this.source
+      .getCellTypeTreeModel()
+      .pipe(take(1))
+      .subscribe((model) => this.updateCellTypesTreeModel(model));
+    this.source
+      .getBiomarkerTreeModel()
+      .pipe(take(1))
+      .subscribe((model) => this.updateBiomarkersTreeModel(model));
     this.warmUpDatabase();
   }
 
   private warmUpDatabase(): void {
-    defer(() => this.source.getDatabaseStatus()).pipe(
-      tap((status) => this.updateStatus(status)),
-      delay(2000),
-      take(1)
-    ).pipe(
-      repeat(1000),
-      takeWhile((status) => status.status === 'Loading')
-    ).subscribe();
+    defer(() => this.source.getDatabaseStatus())
+      .pipe(
+        tap((status) => this.updateStatus(status)),
+        delay(2000),
+        take(1),
+      )
+      .pipe(
+        repeat(1000),
+        takeWhile((status) => status.status === 'Loading'),
+      )
+      .subscribe();
 
-    this.databaseReady$.pipe(take(1), tap(() => {
-      this.updateStatus({
-        status: 'Ready',
-        message: 'Loading HRA Exploration User Interface (EUI)'
-      });
-    })).subscribe();
+    this.databaseReady$
+      .pipe(
+        take(1),
+        tap(() => {
+          this.updateStatus({
+            status: 'Ready',
+            message: 'Loading HRA Exploration User Interface (EUI)',
+          });
+        }),
+      )
+      .subscribe();
   }
 
   @DataAction()
   updateAnatomicalStructuresTreeModel(@Payload('treeModel') model: OntologyTreeModel): void {
     this.ctx.patchState({
-      anatomicalStructuresTreeModel: model
+      anatomicalStructuresTreeModel: model,
     });
   }
 
   @DataAction()
   updateCellTypesTreeModel(@Payload('treeModel') model: OntologyTreeModel): void {
     this.ctx.patchState({
-      cellTypesTreeModel: model
+      cellTypesTreeModel: model,
     });
   }
 
   @DataAction()
   updateBiomarkersTreeModel(@Payload('treeModel') model: OntologyTreeModel): void {
     this.ctx.patchState({
-      biomarkersTreeModel: model
+      biomarkersTreeModel: model,
     });
   }
 
@@ -272,7 +310,7 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
   updateStatus(@Payload('status') status: DatabaseStatus): void {
     this.ctx.patchState({
       status: status.status,
-      statusMessage: status.message
+      statusMessage: status.message,
     });
   }
 
@@ -285,7 +323,7 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
   updateFilter(@Payload('filter') filter: Partial<Filter>): void {
     this.ctx.patchState({
       // Might need to do a deep compare of current and new filter
-      filter: { ...this.getState().filter, ...filter }
+      filter: { ...this.getState().filter, ...filter },
     });
   }
 

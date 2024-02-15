@@ -1,10 +1,8 @@
-/* eslint-disable no-underscore-dangle */
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { Injectable, ElementRef } from '@angular/core';
-
+import { ElementRef, Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AppRootOverlayContainer extends OverlayContainer {
   private rootElement!: ElementRef<HTMLElement>;
@@ -23,7 +21,6 @@ export class AppRootOverlayContainer extends OverlayContainer {
     this.appendToRoot();
   }
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   protected override _createContainer(): void {
     super._createContainer();
     this.appendToRoot();

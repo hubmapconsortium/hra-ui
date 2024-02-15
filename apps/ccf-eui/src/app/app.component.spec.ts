@@ -98,7 +98,7 @@ describe('AppComponent', () => {
         consent: 'not-set',
       })
       .mock(MatSnackBar, {
-        openFromComponent: (): MatSnackBarRef<unknown> => ({} as unknown as MatSnackBarRef<unknown>),
+        openFromComponent: (): MatSnackBarRef<unknown> => ({}) as unknown as MatSnackBarRef<unknown>,
       })
       .mock(ThemingService, {
         initialize: () => undefined,
@@ -232,10 +232,10 @@ describe('AppComponent', () => {
       },
     });
     instance.selectedtoggleOptions = ['body', 'cell'];
-    instance.toggleSelection('body');
+    instance.toggleSelection('body' as never);
 
     expect(instance.selectedtoggleOptions).toBeDefined();
-    instance.toggleSelection('a');
+    instance.toggleSelection('a' as never);
 
     expect(instance.selectedtoggleOptions).toBeDefined();
   });

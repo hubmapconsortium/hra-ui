@@ -1,18 +1,15 @@
-import { NgModule } from '@angular/core';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
+import { NgModule } from '@angular/core';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsModule } from '@ngxs/store';
 
-import { environment } from '../../../environments/environment';
 import { GlobalConfigState } from 'ccf-shared';
-
+import { environment } from '../../../environments/environment';
 
 /**
  * States shared across the entire app.
  */
-export const ROOT_STATES = [
-  GlobalConfigState,
-];
+export const ROOT_STATES = [GlobalConfigState];
 
 @NgModule({
   imports: [
@@ -20,15 +17,15 @@ export const ROOT_STATES = [
     NgxsDataPluginModule.forRoot(),
 
     NgxsModule.forRoot(ROOT_STATES, {
-      developmentMode: !environment.production
+      developmentMode: !environment.production,
       // Consider setting compatibility and executionStrategy
       // https://www.ngxs.io/advanced/options
     }),
 
     // Logger plugin must be last!
     NgxsLoggerPluginModule.forRoot({
-      disabled: environment.production
-    })
-  ]
+      disabled: environment.production,
+    }),
+  ],
 })
-export class StoreModule { }
+export class StoreModule {}

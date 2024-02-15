@@ -9,13 +9,13 @@ describe('VisibilityMenuComponent', () => {
     id: 1,
     name: 'test',
     visible: false,
-    opacity: 100
+    opacity: 100,
   };
   const testItem2 = {
     id: 1,
     name: 'test',
     visible: true,
-    opacity: 100
+    opacity: 100,
   };
   const testItems = [testItem, testItem2];
 
@@ -36,7 +36,6 @@ describe('VisibilityMenuComponent', () => {
     instance.toggleVisibility(instance.items[0]);
     expect(instance.selection?.visible).toBeTrue();
   });
-
 
   it('should emit the item when user hovers over an item', async () => {
     const { instance, outputs } = await shallow.render({ bind: { items: testItems } });

@@ -8,7 +8,6 @@ import { environment } from '../../environments/environment';
 import { DelegateDataSourceService } from './services/data-source/data-source.service';
 import { StoreModule } from './store/store.module';
 
-
 @NgModule({
   imports: [
     HttpClientModule,
@@ -18,19 +17,20 @@ import { StoreModule } from './store/store.module';
       appName: 'organ-info',
       projectName: 'ccf',
 
-      developmentMode: !environment.production
+      developmentMode: !environment.production,
     }),
 
-    CcfApiModule.forRoot(() => new CcfApiConfiguration({
-      basePath: environment.dbOptions.remoteApiEndpoint
-    })),
+    CcfApiModule.forRoot(
+      () =>
+        new CcfApiConfiguration({
+          basePath: environment.dbOptions.remoteApiEndpoint,
+        }),
+    ),
 
-    StoreModule
+    StoreModule,
   ],
-  providers: [
-    { provide: DataSourceService, useExisting: DelegateDataSourceService }
-  ],
-  exports: []
+  providers: [{ provide: DataSourceService, useExisting: DelegateDataSourceService }],
+  exports: [],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() core: CoreModule) {

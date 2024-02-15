@@ -10,14 +10,12 @@ import { PageState } from '../../../core/store/page/page.state';
 import { ReferenceDataState } from '../../../core/store/reference-data/reference-data.state';
 import { RegistrationContentComponent } from '../registration-content/registration-content.component';
 
-
 /**
  * Registration modal that appears on startup
  */
-// eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
 @Component({
   selector: 'ccf-registration-modal',
-  templateUrl: './registration-modal.component.html'
+  templateUrl: './registration-modal.component.html',
 })
 export class RegistrationModalComponent implements OnInit {
   /** HTML class name */
@@ -36,31 +34,33 @@ export class RegistrationModalComponent implements OnInit {
     private readonly page: PageState,
     private readonly model: ModelState,
     private readonly referenceData: ReferenceDataState,
-    private readonly globalConfig: GlobalConfigState<GlobalConfig>
+    private readonly globalConfig: GlobalConfigState<GlobalConfig>,
   ) {}
 
   /**
    * Opens the dialog on startup (but not if cancel registration callback is set)
    */
   ngOnInit(): void {
-    combineLatest([this.page.state$, this.model.state$, this.referenceData.state$, this.globalConfig.state$]).pipe(
-      tap(([page, model, data, global]) => {
-        if (this.dialogOpen) {
-          return;
-        }
-        if (global.editRegistration) {
-          return;
-        }
-        if (Object.keys(data.organIRILookup).length === 0) {
-          return;
-        }
-        if (page.user.firstName !== '' && page.user.lastName !== '' && model.organ.src !== '') {
-          return;
-        }
-        this.dialogOpen = true;
-        this.openDialog();
-      })
-    ).subscribe();
+    combineLatest([this.page.state$, this.model.state$, this.referenceData.state$, this.globalConfig.state$])
+      .pipe(
+        tap(([page, model, data, global]) => {
+          if (this.dialogOpen) {
+            return;
+          }
+          if (global.editRegistration) {
+            return;
+          }
+          if (Object.keys(data.organIRILookup).length === 0) {
+            return;
+          }
+          if (page.user.firstName !== '' && page.user.lastName !== '' && model.organ.src !== '') {
+            return;
+          }
+          this.dialogOpen = true;
+          this.openDialog();
+        }),
+      )
+      .subscribe();
   }
 
   /**

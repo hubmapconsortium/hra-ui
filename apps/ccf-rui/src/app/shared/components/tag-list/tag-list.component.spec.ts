@@ -4,7 +4,6 @@ import { Tag } from '../../../core/models/anatomical-structure-tag';
 import { TagListComponent } from './tag-list.component';
 import { TagListModule } from './tag-list.module';
 
-
 describe('TagListComponent', () => {
   let shallow: Shallow<TagListComponent>;
 
@@ -37,7 +36,7 @@ describe('TagListComponent', () => {
   describe('removeTag(tag)', () => {
     const tags: Tag[] = [
       { id: 1, label: 'a', type: 'assigned' },
-      { id: 2, label: 'b', type: 'added' }
+      { id: 2, label: 'b', type: 'added' },
     ];
 
     it('removes the tag from the tags array', async () => {

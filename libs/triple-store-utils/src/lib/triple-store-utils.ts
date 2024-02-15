@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import jsonld from 'jsonld';
+import { toRDF } from 'jsonld';
 import { JsonLd, Url } from 'jsonld/jsonld-spec';
 import { DataFactory, Parser, Quad, Store } from 'n3';
 import * as rdf from 'rdf-js';
@@ -9,12 +9,7 @@ import { Readable } from 'readable-stream';
 // Temporary solution for using the new readQuads function on Store until the @types are updated
 type OTerm = rdf.Term | string | null;
 interface QuadReader {
-  readQuads(
-    subject: OTerm,
-    predicate: OTerm,
-    object: OTerm,
-    graph: OTerm
-  ): Generator<Quad>;
+  readQuads(subject: OTerm, predicate: OTerm, object: OTerm, graph: OTerm): Generator<Quad>;
 }
 
 export function readQuads(
@@ -22,14 +17,9 @@ export function readQuads(
   subject: OTerm,
   predicate: OTerm,
   object: OTerm,
-  graph: OTerm
+  graph: OTerm,
 ): Generator<Quad> {
-  return (store as unknown as QuadReader).readQuads(
-    subject,
-    predicate,
-    object,
-    graph
-  );
+  return (store as unknown as QuadReader).readQuads(subject, predicate, object, graph);
 }
 
 /**
@@ -38,9 +28,7 @@ export function readQuads(
  * @param readStream The input stream.
  * @returns A promise that resolves to an array of values when the stream completes.
  */
-export function streamToArray<T = unknown>(
-  readStream: EventEmitter
-): Promise<T[]> {
+export function streamToArray<T = unknown>(readStream: EventEmitter): Promise<T[]> {
   return new Promise((resolve, reject) => {
     const chunks: T[] = [];
     readStream
@@ -84,7 +72,7 @@ export function arrayToStream<T>(arr: T[]): Readable {
  */
 export async function addJsonLdToStore(
   uri: JsonLd | Url,
-  store: rdf.Sink<EventEmitter, EventEmitter>
+  store: rdf.Sink<EventEmitter, EventEmitter>,
 ): Promise<rdf.Sink<EventEmitter, EventEmitter>> {
   let jsonLdData: JsonLd | undefined;
   if (typeof uri === 'string') {
@@ -97,7 +85,7 @@ export async function addJsonLdToStore(
   }
 
   if (jsonLdData) {
-    const quads = (await jsonld.toRDF(jsonLdData)) as unknown[];
+    const quads = (await toRDF(jsonLdData)) as unknown[];
     store.import(arrayToStream(quads) as unknown as EventEmitter);
   }
   return store;
@@ -113,7 +101,7 @@ export async function addJsonLdToStore(
  */
 export async function addRdfXmlToStore(
   uri: string,
-  store: rdf.Sink<EventEmitter, EventEmitter>
+  store: rdf.Sink<EventEmitter, EventEmitter>,
 ): Promise<rdf.Sink<EventEmitter, EventEmitter>> {
   let xmlData: string | undefined;
   if (typeof uri === 'string' && uri?.startsWith('http')) {
@@ -130,11 +118,9 @@ export async function addRdfXmlToStore(
       dataFactory: DataFactory,
       strict: true,
     });
-    const result = new Promise<rdf.Sink<EventEmitter, EventEmitter>>(
-      (resolve) => {
-        xmlParser.once('end', () => resolve(store));
-      }
-    );
+    const result = new Promise<rdf.Sink<EventEmitter, EventEmitter>>((resolve) => {
+      xmlParser.once('end', () => resolve(store));
+    });
 
     store.import(xmlParser);
     xmlParser.write(xmlData);
@@ -155,7 +141,7 @@ export async function addRdfXmlToStore(
  */
 export async function addN3ToStore(
   uri: string | Url,
-  store: rdf.Sink<EventEmitter, EventEmitter>
+  store: rdf.Sink<EventEmitter, EventEmitter>,
 ): Promise<rdf.Sink<EventEmitter, EventEmitter>> {
   let data: string | undefined;
   if (typeof uri === 'string' && uri?.startsWith('http')) {
@@ -181,10 +167,7 @@ export function serializeN3Store(store: Store): string {
   return JSON.stringify(storeData);
 }
 
-export function deserializeN3Store(
-  serializedStore: string,
-  factory?: rdf.DataFactory
-): Store {
+export function deserializeN3Store(serializedStore: string, factory?: rdf.DataFactory): Store {
   const storeData = JSON.parse(serializedStore);
   const store = new Store();
   // eslint-disable-next-line @typescript-eslint/naming-convention

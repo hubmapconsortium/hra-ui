@@ -5,14 +5,9 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { TagListComponent } from './tag-list.component';
 
-
 @NgModule({
-  imports: [
-    CommonModule,
-    MatChipsModule,
-    MatIconModule
-  ],
+  imports: [CommonModule, MatChipsModule, MatIconModule],
   declarations: [TagListComponent],
   exports: [TagListComponent],
 })
-export class TagListModule { }
+export class TagListModule {}

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
+import { NgModule } from '@angular/core';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NgxsModule } from '@ngxs/store';
@@ -14,7 +14,6 @@ import { ReferenceDataState } from './reference-data/reference-data.state';
 import { RegistrationState } from './registration/registration.state';
 import { SceneState } from './scene/scene.state';
 
-
 /**
  * States shared across the entire app.
  */
@@ -26,7 +25,7 @@ export const ROOT_STATES = [
   AnatomicalStructureTagState,
   ReferenceDataState,
   RegistrationState,
-  SceneState
+  SceneState,
 ];
 
 @NgModule({
@@ -35,20 +34,20 @@ export const ROOT_STATES = [
     NgxsDataPluginModule.forRoot(),
 
     NgxsModule.forRoot(ROOT_STATES, {
-      developmentMode: !environment.production
+      developmentMode: !environment.production,
       // Consider setting compatibility and executionStrategy
       // https://www.ngxs.io/advanced/options
     }),
 
     // Must come before all other plugins except the ngxs data plugin!
     NgxsStoragePluginModule.forRoot({
-      key: ['registration.registrations']
+      key: ['registration.registrations'],
     }),
 
     // Logger plugin must be last!
     NgxsLoggerPluginModule.forRoot({
-      disabled: environment.production
-    })
-  ]
+      disabled: environment.production,
+    }),
+  ],
 })
 export class StoreModule {}

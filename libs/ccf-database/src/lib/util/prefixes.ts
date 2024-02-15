@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { DataFactory, Util } from 'triple-store-utils';
 
 /** Constants used to create entity accessors. */
@@ -87,9 +86,7 @@ export const ccf = {
     parent: ccfx('ccf_part_of'),
     children: ccfx('ccf_part_of'),
     rui_rank: ccfx('rui_rank'),
-    synonymLabels: DataFactory.namedNode(
-      'http://www.geneontology.org/formats/oboInOwl#hasExactSynonym'
-    ),
+    synonymLabels: DataFactory.namedNode('http://www.geneontology.org/formats/oboInOwl#hasExactSynonym'),
   },
   asctb: {
     part_of: ccfx('ccf_part_of'),

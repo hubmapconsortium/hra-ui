@@ -1,9 +1,9 @@
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Shallow } from 'shallow-render';
+import { PanelData } from '../info-button/info-button.service';
 import { InfoButtonComponent } from './info-button.component';
 import { InfoButtonModule } from './info-button.module';
 import { DocumentationContent, InfoButtonService } from './info-button.service';
-import { PanelData } from '../info-button/info-button.service';
 
 describe('InfoButtonComponent', () => {
   let shallow: Shallow<InfoButtonComponent>;
@@ -12,9 +12,8 @@ describe('InfoButtonComponent', () => {
     open(..._args: unknown[]): MatDialogRef<unknown, unknown> {
       return undefined as unknown as MatDialogRef<unknown, unknown>;
     },
-    openDialogs: []
+    openDialogs: [],
   };
-
 
   beforeEach(() => {
     shallow = new Shallow(InfoButtonComponent, InfoButtonModule);

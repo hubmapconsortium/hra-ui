@@ -57,4 +57,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: dist/ccf-ui
           publish_branch: beta
-          commit_message: "Beta deploy -- ${{ github.event.head_commit.message }}"
+          commit_message: 'Beta deploy -- ${{ github.event.head_commit.message }}'

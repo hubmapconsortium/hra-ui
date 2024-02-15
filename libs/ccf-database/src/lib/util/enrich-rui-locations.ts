@@ -18,7 +18,7 @@ export function enrichRuiLocations(store: Store): void {
     null,
     ccf.spatialEntity.representation_of,
     null,
-    null
+    null,
   )) {
     const annotations = new Set([term.id]);
     let parent = tree.nodes[term.id]?.parent;
@@ -32,38 +32,16 @@ export function enrichRuiLocations(store: Store): void {
     }
     refOrganMap.set(
       organ.id,
-      [...annotations].map((s) => DataFactory.namedNode(s))
+      [...annotations].map((s) => DataFactory.namedNode(s)),
     );
   }
 
   // Add AS terms for rui locations based on the reference organs they are placed relative to
-  for (const { object: ruiLocation } of readQuads(
-    store,
-    null,
-    entity.spatialEntity,
-    null,
-    null
-  )) {
-    for (const { subject: placement } of readQuads(
-      store,
-      null,
-      ccf.spatialPlacement.source,
-      ruiLocation,
-      null
-    )) {
-      for (const { object: organ } of readQuads(
-        store,
-        placement,
-        ccf.spatialPlacement.target,
-        null,
-        null
-      )) {
+  for (const { object: ruiLocation } of readQuads(store, null, entity.spatialEntity, null, null)) {
+    for (const { subject: placement } of readQuads(store, null, ccf.spatialPlacement.source, ruiLocation, null)) {
+      for (const { object: organ } of readQuads(store, placement, ccf.spatialPlacement.target, null, null)) {
         for (const term of refOrganMap.get(organ.id) ?? []) {
-          store.addQuad(
-            DataFactory.namedNode(ruiLocation.id),
-            ccf.spatialEntity.ccf_annotations,
-            term
-          );
+          store.addQuad(DataFactory.namedNode(ruiLocation.id), ccf.spatialEntity.ccf_annotations, term);
         }
       }
     }

@@ -11,7 +11,7 @@ import {
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GlobalConfigState, TrackingPopupComponent } from 'ccf-shared';
 import { ConsentService } from 'ccf-shared/analytics';
-import { combineLatest, ReplaySubject, Subscription } from 'rxjs';
+import { ReplaySubject, Subscription, combineLatest } from 'rxjs';
 
 import { GlobalConfig } from './core/services/config/config';
 import { ThemingService } from './core/services/theming/theming.service';
@@ -37,7 +37,7 @@ interface AppOptions extends GlobalConfig {
   selector: 'ccf-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnDestroy, OnInit {
   /** False until the initial registration modal is closed */
@@ -69,15 +69,21 @@ export class AppComponent implements OnDestroy, OnInit {
   private readonly subscriptions = new Subscription();
 
   constructor(
-    readonly model: ModelState, readonly page: PageState,
-    readonly consentService: ConsentService, readonly snackbar: MatSnackBar, readonly theming: ThemingService,
-    el: ElementRef<unknown>, injector: Injector, private readonly globalConfig: GlobalConfigState<AppOptions>, cdr: ChangeDetectorRef
+    readonly model: ModelState,
+    readonly page: PageState,
+    readonly consentService: ConsentService,
+    readonly snackbar: MatSnackBar,
+    readonly theming: ThemingService,
+    el: ElementRef<unknown>,
+    injector: Injector,
+    private readonly globalConfig: GlobalConfigState<AppOptions>,
+    cdr: ChangeDetectorRef,
   ) {
     theming.initialize(el, injector);
     this.subscriptions.add(
       page.registrationStarted$.subscribe((registrationStarted) => {
         this.registrationStarted = registrationStarted;
-      })
+      }),
     );
     this.theme$.subscribe((theme) => {
       this.theme = theme ?? 'light';
@@ -89,12 +95,10 @@ export class AppComponent implements OnDestroy, OnInit {
       this.logoTooltip = tooltip ?? '';
     });
 
-    combineLatest([this.theme$, this.themeMode$]).subscribe(
-      ([theme, mode]) => {
-        this.theming.setTheme(`${theme}-theme-${mode}`);
-        cdr.markForCheck();
-      }
-    );
+    combineLatest([this.theme$, this.themeMode$]).subscribe(([theme, mode]) => {
+      this.theming.setTheme(`${theme}-theme-${mode}`);
+      cdr.markForCheck();
+    });
   }
 
   ngOnInit(): void {
@@ -102,9 +106,9 @@ export class AppComponent implements OnDestroy, OnInit {
       data: {
         preClose: () => {
           snackBar.dismiss();
-        }
+        },
       },
-      duration: this.consentService.consent === 'not-set' ? Infinity : 3000
+      duration: this.consentService.consent === 'not-set' ? Infinity : 3000,
     });
 
     this.themeMode$.next('light');

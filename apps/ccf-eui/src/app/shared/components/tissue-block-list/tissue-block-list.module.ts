@@ -6,12 +6,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { TissueBlockListComponent } from './tissue-block-list.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MatIconModule,
-    MatTooltipModule
-  ],
+  imports: [CommonModule, MatIconModule, MatTooltipModule],
   declarations: [TissueBlockListComponent],
-  exports: [TissueBlockListComponent]
+  exports: [TissueBlockListComponent],
 })
-export class TissueBlockListModule { }
+export class TissueBlockListModule {}

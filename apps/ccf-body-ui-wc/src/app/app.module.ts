@@ -2,10 +2,10 @@ import { DoBootstrap, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
-import { AppWebComponent } from './app-web-component.component';
-import { StoreModule } from './core/store/store.module';
 import { BodyUiModule } from 'ccf-shared';
+import { AppWebComponent } from './app-web-component.component';
+import { AppComponent } from './app.component';
+import { StoreModule } from './core/store/store.module';
 
 @NgModule({
   imports: [BrowserModule, StoreModule, BodyUiModule],

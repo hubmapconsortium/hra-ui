@@ -7,10 +7,7 @@ import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 import { CallToActionBehaviorComponent } from '../../components/call-to-action-behavior/call-to-action-behavior.component';
-import {
-  DocumentationContent,
-  InfoButtonService,
-} from '../../components/info/info-button/info-button.service';
+import { DocumentationContent, InfoButtonService } from '../../components/info/info-button/info-button.service';
 import { InfoDialogComponent } from '../../components/info/info-dialog/info-dialog.component';
 import { LocalStorageService } from '../../services/local-storage/local-storage.service';
 import { CloseDialog, LearnMore, OpenDialog } from './call-to-action.actions';
@@ -74,15 +71,12 @@ export class CallToActionState implements NgxsOnInit {
     private readonly ga: GoogleAnalyticsService,
     private readonly storage: LocalStorageService,
     private readonly infoService: InfoButtonService,
-    private readonly http: HttpClient
+    private readonly http: HttpClient,
   ) {}
 
   ngxsOnInit(ctx: StateContext<CallToActionModel>): void {
     const { expirationDate, popupShown } = ctx.getState();
-    const popupShownStr = this.storage.getItem(
-      POPUP_SHOWN_STORAGE_KEY,
-      `${popupShown}`
-    );
+    const popupShownStr = this.storage.getItem(POPUP_SHOWN_STORAGE_KEY, `${popupShown}`);
     const pastExpiration = CallToActionState.ctaDatePassed(expirationDate);
     const showPopup = popupShownStr !== 'true' && !pastExpiration;
     if (showPopup) {
@@ -120,9 +114,7 @@ export class CallToActionState implements NgxsOnInit {
    * @param _ctx
    */
   @Action(LearnMore)
-  learnMore(
-    _ctx: StateContext<CallToActionModel>
-  ): Observable<DocumentationContent[]> {
+  learnMore(_ctx: StateContext<CallToActionModel>): Observable<DocumentationContent[]> {
     this.dialog.closeAll();
     this.ga.event('open_learn_more', 'call_to_action');
 

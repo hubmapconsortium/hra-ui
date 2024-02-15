@@ -23,7 +23,7 @@
 
   ::ng-deep .mdc-text-field {
     padding: 0;
-    padding-bottom: .3rem !important;
+    padding-bottom: 0.3rem !important;
   }
 
   .author-section {
@@ -83,5 +83,4 @@
   .mdc-line-ripple::after {
     border-bottom-width: 0.125rem !important;
   }
-
 }

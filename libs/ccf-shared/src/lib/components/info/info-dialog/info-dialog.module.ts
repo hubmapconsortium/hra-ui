@@ -1,16 +1,22 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InfoDialogComponent } from './info-dialog.component';
+import { NgModule } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MarkdownModule } from 'ngx-markdown';
+import { MatIconModule } from '@angular/material/icon';
 import { YouTubePlayerModule } from '@angular/youtube-player';
-
+import { MarkdownModule } from 'ngx-markdown';
+import { InfoDialogComponent } from './info-dialog.component';
 
 @NgModule({
   declarations: [InfoDialogComponent],
-  imports: [CommonModule, MatDialogModule, MatIconModule, MatExpansionModule, YouTubePlayerModule, MarkdownModule.forRoot({})],
-  exports: [InfoDialogComponent]
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    MatIconModule,
+    MatExpansionModule,
+    YouTubePlayerModule,
+    MarkdownModule.forRoot({}),
+  ],
+  exports: [InfoDialogComponent],
 })
 export class InfoDialogModule {}

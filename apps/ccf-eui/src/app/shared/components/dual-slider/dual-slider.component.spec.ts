@@ -4,7 +4,6 @@ import { Shallow } from 'shallow-render';
 import { DualSliderComponent } from './dual-slider.component';
 import { DualSliderModule } from './dual-slider.module';
 
-
 describe('DualSliderComponent', () => {
   let shallow: Shallow<DualSliderComponent>;
   let mockOverlay: jasmine.SpyObj<Overlay>;
@@ -24,8 +23,7 @@ describe('DualSliderComponent', () => {
     mockOverlay.position.and.returnValue(mockPositionBuilder);
     mockPositionBuilder.flexibleConnectedTo.and.returnValue(mockPositionStrategy);
 
-    shallow = new Shallow(DualSliderComponent, DualSliderModule)
-      .mock(Overlay, mockOverlay);
+    shallow = new Shallow(DualSliderComponent, DualSliderModule).mock(Overlay, mockOverlay);
   });
 
   it('should create an overlay', async () => {
@@ -106,9 +104,9 @@ describe('DualSliderComponent', () => {
     const mockEvent = {
       target: {
         value: '5',
-        blur: () => undefined
+        blur: () => undefined,
       } as unknown as HTMLElement,
-      key:'Enter'
+      key: 'Enter',
     } as unknown as KeyboardEvent;
 
     const { instance } = await shallow.render({ bind: { selection: [2, 9] } });
@@ -121,9 +119,9 @@ describe('DualSliderComponent', () => {
     const mockEvent = {
       target: {
         value: '8',
-        blur: () => undefined
+        blur: () => undefined,
       } as unknown as HTMLElement,
-      key:'Enter'
+      key: 'Enter',
     } as unknown as KeyboardEvent;
 
     const { instance } = await shallow.render({ bind: { selection: [2, 9] } });

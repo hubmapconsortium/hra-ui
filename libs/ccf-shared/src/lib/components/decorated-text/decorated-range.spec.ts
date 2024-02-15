@@ -7,7 +7,7 @@ describe('DecoratedRange', () => {
       start: 3,
       end: -5,
       classes: ['foo'],
-      styles: { color: 'yellow' }
+      styles: { color: 'yellow' },
     };
 
     it('fills any undefined fields with defaults', () => {

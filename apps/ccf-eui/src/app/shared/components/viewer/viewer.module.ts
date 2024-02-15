@@ -6,17 +6,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { ViewerComponent } from './viewer.component';
 
-
-
 @NgModule({
-  imports: [
-    CommonModule,
-
-    MatButtonModule,
-    MatIconModule,
-    MatProgressSpinnerModule
-  ],
+  imports: [CommonModule, MatButtonModule, MatIconModule, MatProgressSpinnerModule],
   declarations: [ViewerComponent],
-  exports: [ViewerComponent]
+  exports: [ViewerComponent],
 })
-export class ViewerModule { }
+export class ViewerModule {}

@@ -1,6 +1,5 @@
 @use '@angular/material' as mat;
 
-
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
   $primary: map-get($color-config, primary);
@@ -37,7 +36,6 @@
     }
 
     .visibility {
-
       &:active {
         background-color: #f5f5f5;
       }
@@ -47,7 +45,6 @@
     }
 
     .reset {
-
       &:active {
         background-color: #f5f5f5;
       }

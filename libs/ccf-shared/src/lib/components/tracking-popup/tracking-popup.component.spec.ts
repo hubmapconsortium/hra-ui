@@ -1,12 +1,11 @@
 import { Shallow } from 'shallow-render';
 
+import { ConsentService } from 'ccf-shared/analytics';
 import { TrackingPopupComponent } from './tracking-popup.component';
 import { TrackingPopupModule } from './tracking-popup.module';
-import { ConsentService } from 'ccf-shared/analytics';
 
 import { ElementRef } from '@angular/core';
 import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
-
 
 describe('TrackingPopupComponent', () => {
   let shallow: Shallow<TrackingPopupComponent>;
@@ -19,7 +18,7 @@ describe('TrackingPopupComponent', () => {
       .provide({ provide: ConsentService, useValue: {} })
       .mock(ConsentService, {
         ...mockConsentService,
-        consent: 'not-set'
+        consent: 'not-set',
       })
       .mock(MAT_SNACK_BAR_DATA, { preClose: () => undefined });
   });

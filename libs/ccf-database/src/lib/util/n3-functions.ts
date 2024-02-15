@@ -12,14 +12,11 @@ import { Store, readQuads } from 'triple-store-utils';
 export function* getEntries(
   store: Store,
   iri: string,
-  mapping: { [iri: string]: string }
+  mapping: { [iri: string]: string },
 ): Generator<[string, string | number]> {
   for (const [predicate, key] of Object.entries(mapping)) {
     for (const quad of readQuads(store, iri, predicate, null, null)) {
-      const value =
-        quad.object.termType === 'Literal'
-          ? fromRdf(quad.object)
-          : quad.object.id;
+      const value = quad.object.termType === 'Literal' ? fromRdf(quad.object) : quad.object.id;
       yield [key, value];
     }
   }
@@ -38,17 +35,13 @@ export function getMappedResult<T = unknown>(
   store: Store,
   iri: string,
   type: string,
-  mapping: { [iri: string]: string }
+  mapping: { [iri: string]: string },
 ): T {
-  /* eslint-disable-next-line @typescript-eslint/naming-convention */
   const result = { '@id': iri, '@type': type };
   for (const [predicate, key] of Object.entries(mapping)) {
     for (const quad of readQuads(store, result['@id'], predicate, null, null)) {
-      const value =
-        quad.object.termType === 'Literal'
-          ? fromRdf(quad.object)
-          : quad.object.id;
-      result[key] = value;
+      const value = quad.object.termType === 'Literal' ? fromRdf(quad.object) : quad.object.id;
+      result[key as never] = value as never;
     }
   }
   return result as unknown as T;

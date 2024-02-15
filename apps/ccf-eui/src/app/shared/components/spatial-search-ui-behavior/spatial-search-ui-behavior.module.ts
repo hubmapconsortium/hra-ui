@@ -6,12 +6,8 @@ import { SpatialSearchUiModule } from '../spatial-search-ui/spatial-search-ui.mo
 import { SpatialSearchUiBehaviorComponent } from './spatial-search-ui-behavior.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    SpatialSearchUiModule,
-    MatDialogModule
-  ],
+  imports: [CommonModule, SpatialSearchUiModule, MatDialogModule],
   declarations: [SpatialSearchUiBehaviorComponent],
-  exports: [SpatialSearchUiBehaviorComponent]
+  exports: [SpatialSearchUiBehaviorComponent],
 })
-export class SpatialSearchUiBehaviorModule { }
+export class SpatialSearchUiBehaviorModule {}

@@ -1,13 +1,13 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RotationSliderComponent } from './rotation-slider.component';
 
-import { MatIconModule } from '@angular/material/icon';
-import { MatSliderModule } from '@angular/material/slider';
 import { MatRippleModule } from '@angular/material/core';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [RotationSliderComponent],
@@ -18,8 +18,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatRippleModule,
     MatTooltipModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
   ],
-  exports: [RotationSliderComponent]
+  exports: [RotationSliderComponent],
 })
-export class RotationSliderModule { }
+export class RotationSliderModule {}

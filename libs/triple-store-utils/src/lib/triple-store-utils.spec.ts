@@ -3,15 +3,20 @@ import { DataFactory, Quad, Store as N3Store } from 'n3';
 import { Sink } from 'rdf-js';
 import { Readable } from 'readable-stream';
 import {
-  addJsonLdToStore, addN3ToStore, addRdfXmlToStore, arrayToStream, deserializeN3Store, serializeN3Store, streamToArray
+  addJsonLdToStore,
+  addN3ToStore,
+  addRdfXmlToStore,
+  arrayToStream,
+  deserializeN3Store,
+  serializeN3Store,
+  streamToArray,
 } from './triple-store-utils';
-
 
 function quad(subject: string, predicate: string, object: string): Quad {
   return DataFactory.quad(
     DataFactory.namedNode(subject),
     DataFactory.namedNode(predicate),
-    DataFactory.namedNode(object)
+    DataFactory.namedNode(object),
   );
 }
 
@@ -34,7 +39,6 @@ function getGlobalThis(): typeof globalThis {
 // so readable-stream will work
 globalThis.process = {} as unknown as NodeJS.Process;
 globalThis.process.nextTick = (cb, ...args) => queueMicrotask(() => cb(...args));
-
 
 describe('triple-store-utils', () => {
   describe('streamToArray(stream)', () => {
@@ -190,7 +194,7 @@ describe('triple-store-utils', () => {
 
       fetchSpy.and.resolveTo(responseSpy);
       responseSpy.text.and.resolveTo('');
-      storeSpy.import.and.callFake(stream => stream.on('data', () => undefined));
+      storeSpy.import.and.callFake((stream) => stream.on('data', () => undefined));
 
       await addRdfXmlToStore(uri, storeSpy);
     });
@@ -237,12 +241,15 @@ describe('triple-store-utils', () => {
 
     beforeEach(async () => {
       storeSpy = jasmine.createSpyObj<Store>('Store', ['import']);
-      await addN3ToStore(`
+      await addN3ToStore(
+        `
         PREFIX c: <http://example.org/cartoons#>
         c:Tom a c:Cat.
         c:Jerry a c:Mouse;
                 c:smarterThan c:Tom.
-      `, storeSpy);
+      `,
+        storeSpy,
+      );
     });
 
     it('adds data to the store', () => {
@@ -255,9 +262,7 @@ describe('triple-store-utils', () => {
 
     beforeEach(() => {
       store = new N3Store(undefined, { factory: DataFactory });
-      store.addQuads([
-        quad('sub1', 'thing', 'sub2')
-      ]);
+      store.addQuads([quad('sub1', 'thing', 'sub2')]);
     });
 
     it('serializes a store', () => {
@@ -272,9 +277,7 @@ describe('triple-store-utils', () => {
 
     beforeEach(() => {
       store = new N3Store(undefined, { factory: DataFactory });
-      store.addQuads([
-        quad('sub1', 'thing', 'sub2')
-      ]);
+      store.addQuads([quad('sub1', 'thing', 'sub2')]);
       storeQuads = store.getQuads(null, null, null, null);
     });
 

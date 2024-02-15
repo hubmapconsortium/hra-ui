@@ -31,7 +31,9 @@
     font-weight: 500;
   }
 
-  .logo, .download, .refresh {
+  .logo,
+  .download,
+  .refresh {
     display: flex;
     align-items: center;
     transition: color 1s;
@@ -52,7 +54,9 @@
     display: flex;
     align-items: center;
     height: 100%;
-    font: 400 1rem/1.25rem Inter, sans-serif;
+    font:
+      400 1rem/1.25rem Inter,
+      sans-serif;
   }
 
   .disabled {

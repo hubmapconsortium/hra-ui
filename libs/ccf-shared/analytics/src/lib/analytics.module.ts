@@ -1,8 +1,5 @@
 import { APP_INITIALIZER, ModuleWithProviders, NgModule } from '@angular/core';
-import {
-  IGoogleAnalyticsCommand,
-  NgxGoogleAnalyticsModule,
-} from 'ngx-google-analytics';
+import { IGoogleAnalyticsCommand, NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
 
 import { ConsentService } from './consent.service';
 import { GoogleAnalyticsSyncService } from './google-analytics-sync.service';
@@ -17,23 +14,16 @@ export interface AnalyticsOptions {
   developmentMode?: boolean;
 }
 
-const EAGERLY_LOADED_SERVICES = [
-  ConsentService,
-  GoogleAnalyticsSyncService,
-  LocalStorageSyncService,
-];
+const EAGERLY_LOADED_SERVICES = [ConsentService, GoogleAnalyticsSyncService, LocalStorageSyncService];
 
 function toAttributes(obj: Record<string, unknown>): Record<string, string> {
-  return Object.entries(obj).reduce<Record<string, string>>(
-    (attrs, [key, value]) => {
-      if (value != null) {
-        attrs[key] = `${value}`;
-      }
+  return Object.entries(obj).reduce<Record<string, string>>((attrs, [key, value]) => {
+    if (value != null) {
+      attrs[key] = `${value}`;
+    }
 
-      return attrs;
-    },
-    {}
-  );
+    return attrs;
+  }, {});
 }
 
 function initCommands(options: AnalyticsOptions): IGoogleAnalyticsCommand[] {
@@ -67,13 +57,8 @@ function initCommands(options: AnalyticsOptions): IGoogleAnalyticsCommand[] {
   ],
 })
 export class AnalyticsModule {
-  static forRoot(
-    options: AnalyticsOptions
-  ): ModuleWithProviders<AnalyticsModule> {
-    const { providers = [] } = NgxGoogleAnalyticsModule.forRoot(
-      options.gaToken,
-      initCommands(options)
-    );
+  static forRoot(options: AnalyticsOptions): ModuleWithProviders<AnalyticsModule> {
+    const { providers = [] } = NgxGoogleAnalyticsModule.forRoot(options.gaToken, initCommands(options));
 
     return { ngModule: AnalyticsModule, providers };
   }

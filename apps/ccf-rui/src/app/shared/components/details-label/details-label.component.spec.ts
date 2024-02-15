@@ -15,7 +15,7 @@ describe('DetailsLabelComponent', () => {
     const { instance } = await shallow.render({ bind: { details } });
 
     const result = instance.arrayToString(details);
-    expect(typeof(result)).toEqual('string');
+    expect(typeof result).toEqual('string');
   });
 
   it('should insert the correct number of commas into the string for display.', async () => {

@@ -11,7 +11,6 @@ import { CallToActionBehaviorComponent } from './call-to-action-behavior.compone
 @NgModule({
   declarations: [CallToActionBehaviorComponent],
   imports: [CommonModule, NgxsModule, MatIconModule, MatDialogModule, MatCardModule, CallToActionModule],
-  exports: [CallToActionBehaviorComponent]
+  exports: [CallToActionBehaviorComponent],
 })
-export class CallToActionBehaviorModule { }
-
+export class CallToActionBehaviorModule {}

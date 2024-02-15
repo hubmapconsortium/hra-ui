@@ -10,10 +10,9 @@ import { ExtractionSet } from '../../../core/models/extraction-set';
   selector: 'ccf-extraction-set-dropdown',
   templateUrl: './extraction-set-dropdown.component.html',
   styleUrls: ['./extraction-set-dropdown.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExtractionSetDropdownComponent {
-
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-extraction-set-dropdown';
 
@@ -37,7 +36,7 @@ export class ExtractionSetDropdownComponent {
    *
    * @param ga Analytics service
    */
-  constructor(private readonly ga: GoogleAnalyticsService) { }
+  constructor(private readonly ga: GoogleAnalyticsService) {}
 
   /**
    * Sets the selected extraction set and emits the extraction set

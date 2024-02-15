@@ -49,7 +49,7 @@ export class IconRegistryState extends NgxsDataRepository<void> {
   constructor(
     @Optional() private readonly registry: MatIconRegistry | null,
     sanitizer: DomSanitizer,
-    private readonly globalConfig: GlobalConfigState<{ baseHref: string }>
+    private readonly globalConfig: GlobalConfigState<{ baseHref: string }>,
   ) {
     super();
     this.globalConfig.getOption('baseHref').subscribe((ref) => {

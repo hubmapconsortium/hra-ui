@@ -1,30 +1,20 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Euler, Matrix4, toDegrees, toRadians } from '@math.gl/core';
 import * as graphology from 'graphology';
 import shortestPath from 'graphology-shortest-path/unweighted';
-import get from 'lodash/get';
+import { get } from 'lodash';
 import { readQuads } from 'triple-store-utils';
 import { v4 as uuidV4 } from 'uuid';
 
 import { CCFDatabase } from './ccf-database';
 import { getSpatialPlacement } from './queries/spatial-result-n3';
-import {
-  FlatSpatialPlacement,
-  SpatialEntity,
-  SpatialPlacement,
-} from './spatial-types';
+import { FlatSpatialPlacement, SpatialEntity, SpatialPlacement } from './spatial-types';
 import { ccf, rdf } from './util/prefixes';
 
 // Ugly workaround to make ccf database work both on the browser and node.js 18+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const DirectedGraph = ((graphology.default || graphology) as any).DirectedGraph;
 
-export function applySpatialPlacement(
-  tx: Matrix4,
-  placement: SpatialPlacement
-): Matrix4 {
+export function applySpatialPlacement(tx: Matrix4, placement: SpatialPlacement): Matrix4 {
   const p = placement;
   let factor: number;
   switch (p.translation_units) {
@@ -39,12 +29,8 @@ export function applySpatialPlacement(
       factor = 1;
       break;
   }
-  const T = [p.x_translation, p.y_translation, p.z_translation].map(
-    (t) => t * factor
-  );
-  const R = [p.x_rotation, p.y_rotation, p.z_rotation].map<number>(
-    toRadians
-  ) as [number, number, number];
+  const T = [p.x_translation, p.y_translation, p.z_translation].map((t) => t * factor);
+  const R = [p.x_rotation, p.y_rotation, p.z_rotation].map<number>(toRadians) as [number, number, number];
   const S = [p.x_scaling, p.y_scaling, p.z_scaling];
 
   return tx.translate(T).rotateXYZ(R).scale(S);
@@ -69,7 +55,7 @@ export class CCFSpatialGraph {
       },
       rdf.type,
       ccf.SpatialObjectReference,
-      null
+      null,
     );
 
     // Add all Spatial Entities
@@ -79,35 +65,18 @@ export class CCFSpatialGraph {
       },
       rdf.type,
       ccf.SpatialEntity,
-      null
+      null,
     );
 
     // Add all Spatial Placements
     const edgeSource: Record<string, string> = {};
-    for (const quad of readQuads(
-      store,
-      null,
-      ccf.spatialPlacement.source,
-      null,
-      null
-    )) {
+    for (const quad of readQuads(store, null, ccf.spatialPlacement.source, null, null)) {
       edgeSource[quad.subject.id] = quad.object.id;
     }
-    for (const quad of readQuads(
-      store,
-      null,
-      ccf.spatialPlacement.target,
-      null,
-      null
-    )) {
+    for (const quad of readQuads(store, null, ccf.spatialPlacement.target, null, null)) {
       const source = edgeSource[quad.subject.id];
       if (source) {
-        this.addEdge(
-          quad.subject.id,
-          source,
-          quad.object.id,
-          'SpatialPlacement'
-        );
+        this.addEdge(quad.subject.id, source, quad.object.id, 'SpatialPlacement');
       }
     }
   }
@@ -120,10 +89,7 @@ export class CCFSpatialGraph {
     this.graph.mergeDirectedEdge(source, target, { type, id });
   }
 
-  getTransformationMatrix(
-    sourceIRI: string,
-    targetIRI: string
-  ): Matrix4 | undefined {
+  getTransformationMatrix(sourceIRI: string, targetIRI: string): Matrix4 | undefined {
     if (sourceIRI === targetIRI) {
       return new Matrix4(Matrix4.IDENTITY); // identity
     }
@@ -151,25 +117,13 @@ export class CCFSpatialGraph {
     }
   }
 
-  getSpatialPlacement(
-    source: SpatialEntity,
-    targetIri: string
-  ): FlatSpatialPlacement | undefined {
-    const sourceIri = this.graph.hasNode(source['@id'])
-      ? source['@id']
-      : undefined;
-    const placement: SpatialPlacement = get(
-      source,
-      'placement[0]',
-      get(source, 'placement', undefined)
-    )!;
+  getSpatialPlacement(source: SpatialEntity, targetIri: string): FlatSpatialPlacement | undefined {
+    const sourceIri = this.graph.hasNode(source['@id']) ? source['@id'] : undefined;
+    const placement: SpatialPlacement = get(source, 'placement[0]', get(source, 'placement', undefined))!;
 
     let matrix: Matrix4 | undefined;
     if (placement && this.graph.hasNode(placement.target)) {
-      matrix = this.getTransformationMatrix(
-        placement.target as unknown as string,
-        targetIri
-      );
+      matrix = this.getTransformationMatrix(placement.target as unknown as string, targetIri);
       if (matrix) {
         matrix = applySpatialPlacement(matrix, placement);
       }
@@ -179,27 +133,12 @@ export class CCFSpatialGraph {
 
     if (matrix) {
       const euler = new Euler().fromRotationMatrix(matrix, Euler.XYZ);
-      const T = matrix.getTranslation().map((n) => n * 1000) as [
-        number,
-        number,
-        number
-      ];
-      const R = euler.toVector3().map<number>(toDegrees) as [
-        number,
-        number,
-        number
-      ];
-      const S = matrix
-        .getScale()
-        .map((n) => (n < 1 && n > 0.999999 ? 1 : n)) as [
-        number,
-        number,
-        number
-      ];
+      const T = matrix.getTranslation().map((n) => n * 1000) as [number, number, number];
+      const R = euler.toVector3().map<number>(toDegrees) as [number, number, number];
+      const S = matrix.getScale().map((n) => (n < 1 && n > 0.999999 ? 1 : n)) as [number, number, number];
 
       return {
-        '@context':
-          'https://hubmapconsortium.github.io/hubmap-ontology/ccf-context.jsonld',
+        '@context': 'https://hubmapconsortium.github.io/hubmap-ontology/ccf-context.jsonld',
         '@id': `http://purl.org/ccf/1.5/${uuidV4()}_placement`,
         '@type': 'SpatialPlacement',
         source: source['@id'],

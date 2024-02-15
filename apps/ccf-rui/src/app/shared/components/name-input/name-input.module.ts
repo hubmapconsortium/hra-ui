@@ -6,16 +6,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { NameInputComponent } from './name-input.component';
 
-
 @NgModule({
-  imports: [
-    CommonModule,
-    MatInputModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatTooltipModule
-  ],
+  imports: [CommonModule, MatInputModule, FormsModule, ReactiveFormsModule, MatTooltipModule],
   declarations: [NameInputComponent],
-  exports: [NameInputComponent]
+  exports: [NameInputComponent],
 })
-export class NameInputModule { }
+export class NameInputModule {}

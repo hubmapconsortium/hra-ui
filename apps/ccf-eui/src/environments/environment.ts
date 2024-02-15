@@ -2,7 +2,6 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-
 /** Testing environment configuration. */
 export const environment = {
   production: false,
@@ -10,7 +9,7 @@ export const environment = {
   acceptableViewerDomains: [
     'https://portal.hubmapconsortium.org',
     'https://portal.test.hubmapconsortium.org',
-    'https://data.sennetconsortium.org'
+    'https://data.sennetconsortium.org',
   ],
   dbOptions: {
     ccfOwlUrl: 'assets/ccf.owl.n3store.json',
@@ -20,16 +19,16 @@ export const environment = {
     hubmapToken: localStorage.getItem('HUBMAP_TOKEN') ?? '',
 
     useRemoteApi: false,
-    remoteApiEndpoint: 'https://apps.humanatlas.io/hra-api--staging/v1'
+    remoteApiEndpoint: 'https://apps.humanatlas.io/hra-api--staging/v1',
   },
   customization: {
     theme: 'default',
     header: true,
     homeUrl: 'https://portal.hubmapconsortium.org/',
     logoTooltip: 'Human BioMolecular Atlas Project',
-    loginDisabled: false
+    loginDisabled: false,
   },
-  googleAnalyticsToken: 'G-B3DT7XPMRT'
+  googleAnalyticsToken: 'G-B3DT7XPMRT',
 };
 
 /*

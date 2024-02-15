@@ -1,7 +1,6 @@
 import { GlobalsService } from 'ccf-shared';
 import { globalConfigFactory } from './config';
 
-
 describe('GlobalConfig', () => {
   describe('globalConfigFactory', () => {
     it('fetches the ruiConfig object from the global object', () => {

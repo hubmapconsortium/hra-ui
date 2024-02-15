@@ -33,11 +33,11 @@ export abstract class CCFDatabaseDataSourceBaseService extends DelegateDataSourc
       switchMap((config) =>
         using(
           () => this.createDatabase(config),
-          (manager) => this.connectDatabase(manager as CCFDatabaseManager, config)
-        )
+          (manager) => this.connectDatabase(manager as CCFDatabaseManager, config),
+        ),
       ),
       map((manager) => manager.database),
-      shareReplay(1)
+      shareReplay(1),
     );
   }
 
@@ -93,7 +93,7 @@ const REMOTE_METHODS: (keyof DataSource)[] = [
 export class HybridCCfDatabaseDatasourceService extends ForwardingDataSource {
   constructor(
     private readonly remote: ApiEndpointDataSourceService,
-    private readonly local: CCFDatabaseDataSourceService
+    private readonly local: CCFDatabaseDataSourceService,
   ) {
     super();
   }

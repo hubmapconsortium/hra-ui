@@ -1,11 +1,5 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { Store } from 'triple-store-utils';
-import {
-  DatasetResult,
-  DonorResult,
-  TissueBlockResult,
-  TissueSectionResult,
-} from '../interfaces';
+import { DatasetResult, DonorResult, TissueBlockResult, TissueSectionResult } from '../interfaces';
 import { getEntries, getMappedResult } from '../util/n3-functions';
 import { entity } from '../util/prefixes';
 
@@ -76,10 +70,7 @@ export function getDatasetResult(store: Store, iri: string): DatasetResult {
  * @param iri The entity id.
  * @returns The list data.
  */
-export function getTissueSectionResult(
-  store: Store,
-  iri: string
-): TissueSectionResult {
+export function getTissueSectionResult(store: Store, iri: string): TissueSectionResult {
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   const result = {
     '@id': iri,
@@ -91,7 +82,7 @@ export function getTissueSectionResult(
       const dataset = getDatasetResult(store, value as string);
       result[key].push(dataset);
     } else {
-      result[key] = value;
+      result[key as keyof TissueSectionResult] = value as never;
     }
   }
   return result;
@@ -104,10 +95,7 @@ export function getTissueSectionResult(
  * @param iri The entity id.
  * @returns The list data.
  */
-export function getTissueBlockResult(
-  store: Store,
-  iri: string
-): TissueBlockResult {
+export function getTissueBlockResult(store: Store, iri: string): TissueBlockResult {
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   const result = {
     '@id': iri,
@@ -125,7 +113,7 @@ export function getTissueBlockResult(
     } else if (key === 'donor') {
       result[key] = getDonorResult(store, value as string);
     } else {
-      result[key] = value;
+      result[key as keyof TissueBlockResult] = value as never;
     }
   }
   return result;

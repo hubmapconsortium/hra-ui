@@ -5,14 +5,9 @@ import { CommonModule } from '@angular/common';
 import { ResultsBrowserComponent } from './results-browser.component';
 import { DonorCardModule } from '../donor-card/donor-card.module';
 
-
 @NgModule({
   declarations: [ResultsBrowserComponent],
-  imports: [
-    CommonModule,
-    ScrollingModule,
-    DonorCardModule
-  ],
-  exports: [ResultsBrowserComponent]
+  imports: [CommonModule, ScrollingModule, DonorCardModule],
+  exports: [ResultsBrowserComponent],
 })
-export class ResultsBrowserModule { }
+export class ResultsBrowserModule {}

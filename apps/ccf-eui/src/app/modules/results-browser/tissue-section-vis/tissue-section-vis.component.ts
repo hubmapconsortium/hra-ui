@@ -5,7 +5,7 @@ import { TissueSectionResult } from 'ccf-database';
   selector: 'ccf-tissue-section-vis',
   templateUrl: './tissue-section-vis.component.html',
   styleUrls: ['./tissue-section-vis.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TissueSectionVisComponent {
   /** HTML Class Name */
@@ -19,7 +19,7 @@ export class TissueSectionVisComponent {
 
   /** Returns whether or not the given section number exists in the tissueSection array */
   tissueSectionExists(sectionNumber: number): boolean {
-    if (this.tissueSections.filter(section => section.sectionNumber === sectionNumber).length > 0) {
+    if (this.tissueSections.filter((section) => section.sectionNumber === sectionNumber).length > 0) {
       return true;
     }
 

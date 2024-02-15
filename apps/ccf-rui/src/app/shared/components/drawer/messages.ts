@@ -1,7 +1,8 @@
 import {
-  Message as GenericMessage, MessageChannel as GenericMessageChannel, MessageService as GenericMessageService,
+  Message as GenericMessage,
+  MessageChannel as GenericMessageChannel,
+  MessageService as GenericMessageService,
 } from '../../services/message/message.service';
-
 
 /** Message sent when the content component changes. */
 export interface ContentContainerChanged {
@@ -21,7 +22,6 @@ export interface DrawerContainersChanged {
 
 /** Payload types for messages sent from the drawer container. */
 export type ContainerPayload = ContentContainerChanged | DrawerContainersChanged;
-
 
 /** Message sent when a drawer has finished initializing. */
 export interface DrawerInitialized {
@@ -45,7 +45,6 @@ export interface DrawerToggled {
 
 /** Payload types for messages sent from the drawers. */
 export type DrawerPayload = DrawerToggled | DrawerInitialized;
-
 
 /** Combined payload type for all drawer sub components. */
 export type Payload = ContainerPayload | DrawerPayload;

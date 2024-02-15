@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/member-ordering */
 import * as idb from 'idb-keyval';
 import { JsonLd } from 'jsonld/jsonld-spec';
-import hash from 'object-hash';
+import * as hash from 'object-hash';
 import {
   addJsonLdToStore,
   addN3ToStore,
@@ -167,7 +166,7 @@ export class CCFDatabase {
     } else if (ccfOwlUrl.endsWith('.n3store.json')) {
       const storeString = await fetch(ccfOwlUrl)
         .then((r) => r.text())
-        .catch(() => console.log('Couldn\'t locate serialized store.'));
+        .catch(() => console.log("Couldn't locate serialized store."));
       if (storeString) {
         this.store = deserializeN3Store(storeString, DataFactory);
       }
@@ -187,14 +186,14 @@ export class CCFDatabase {
             this.options.hubmapDataUrl,
             this.options.hubmapDataService,
             this.options.hubmapQuery,
-            this.options.hubmapToken
+            this.options.hubmapToken,
           ).then((jsonld) => {
             if (jsonld) {
               return this.addDataSources([jsonld]);
             } else {
               return undefined;
             }
-          })
+          }),
         );
       }
     }
@@ -231,7 +230,7 @@ export class CCFDatabase {
           source = patchJsonLd(JSON.stringify(source));
           await addJsonLdToStore(source, store);
         }
-      })
+      }),
     );
     return this;
   }

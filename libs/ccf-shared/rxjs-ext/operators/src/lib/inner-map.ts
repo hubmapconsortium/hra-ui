@@ -8,9 +8,7 @@ import { map } from 'rxjs/operators';
  * @returns An `Observable` operator
  */
 export function innerMap<T, R>(
-  project: (value: T, index: number, outerIndex: number) => R
+  project: (value: T, index: number, outerIndex: number) => R,
 ): OperatorFunction<readonly T[], R[]> {
-  return map((array, outerIndex) =>
-    array.map((value, index) => project(value, index, outerIndex))
-  );
+  return map((array, outerIndex) => array.map((value, index) => project(value, index, outerIndex)));
 }

@@ -4,10 +4,9 @@ import { MatSelectModule } from '@angular/material/select';
 
 import { ExtractionSetDropdownComponent } from './extraction-set-dropdown.component';
 
-
 @NgModule({
   imports: [CommonModule, MatSelectModule],
   declarations: [ExtractionSetDropdownComponent],
-  exports: [ExtractionSetDropdownComponent]
+  exports: [ExtractionSetDropdownComponent],
 })
-export class ExtractionSetDropdownModule { }
+export class ExtractionSetDropdownModule {}

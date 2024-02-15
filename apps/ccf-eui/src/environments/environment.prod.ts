@@ -5,7 +5,7 @@ export const environment = {
   acceptableViewerDomains: [
     'https://portal.hubmapconsortium.org',
     'https://portal.test.hubmapconsortium.org',
-    'https://data.sennetconsortium.org'
+    'https://data.sennetconsortium.org',
   ],
   dbOptions: {
     ccfOwlUrl: 'https://apps.humanatlas.io/hra-api/v1/ccf.owl.n3store.json',
@@ -15,13 +15,13 @@ export const environment = {
     hubmapToken: localStorage.getItem('HUBMAP_TOKEN') ?? '',
 
     useRemoteApi: false,
-    remoteApiEndpoint: 'https://apps.humanatlas.io/hra-api/v1'
+    remoteApiEndpoint: 'https://apps.humanatlas.io/hra-api/v1',
   },
   customization: {
     theme: 'hubmap',
     header: true,
     homeUrl: 'https://portal.hubmapconsortium.org/',
-    logoTooltip: 'Human BioMolecular Atlas Project'
+    logoTooltip: 'Human BioMolecular Atlas Project',
   },
-  googleAnalyticsToken: window.location.hostname === 'portal.hubmapconsortium.org' ? 'G-1WRJHN9FM6' : 'G-J9HWV9QPJ4'
+  googleAnalyticsToken: window.location.hostname === 'portal.hubmapconsortium.org' ? 'G-1WRJHN9FM6' : 'G-J9HWV9QPJ4',
 };

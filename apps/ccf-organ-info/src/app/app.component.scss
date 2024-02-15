@@ -3,14 +3,17 @@
   display: flex;
   flex-direction: row;
   padding: 1rem;
-  font-family: var(--ccf-ui-font, ""), Inter, Inter Variable, sans-serif;
+  font-family:
+    var(--ccf-ui-font, ''),
+    Inter,
+    Inter Variable,
+    sans-serif;
   font-size: 0.95rem;
   line-height: 1.5;
   text-align: left;
   position: relative;
   background-color: white;
   color: black;
-
 
   .left {
     width: auto;

@@ -13,8 +13,8 @@ export interface ProcessedNode extends SpatialSceneNode {
   center: Vec3;
 }
 
-/* eslint-disable  */
-function childNames(scene, names: string[] = []): string[] {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function childNames(scene: { nodes: any; children: any }, names: string[] = []): string[] {
   for (const child of scene.nodes || scene.children || []) {
     names.push(child.name);
     childNames(child, names);
@@ -26,13 +26,10 @@ export async function processSceneNodes(
   gltfUrl: string,
   worldMatrix?: Matrix4,
   scenegraphNode?: string,
-  gltfCache?: { [url: string]: Promise<Blob> }
+  gltfCache?: { [url: string]: Promise<Blob> },
 ): Promise<{ [node: string]: ProcessedNode }> {
   registerGLTFLoaders();
-  const gltf = await loadGLTF(
-    { scenegraph: gltfUrl, scenegraphNode } as SpatialSceneNode,
-    gltfCache
-  );
+  const gltf = await loadGLTF({ scenegraph: gltfUrl, scenegraphNode } as SpatialSceneNode, gltfCache);
   const nodes: { [node: string]: ProcessedNode } = {};
   const gltfNodes: ProcessedNode[] = [];
   for (const scene of gltf.scenes) {
@@ -57,31 +54,14 @@ export async function processSceneNodes(
         zoomBasedOpacity: true,
         node,
       } as ProcessedNode);
-      if (
-        node.mesh &&
-        node.mesh.primitives &&
-        node.mesh.primitives.length > 0
-      ) {
+      if (node.mesh && node.mesh.primitives && node.mesh.primitives.length > 0) {
         for (const primitive of node.mesh.primitives) {
-          if (
-            primitive.attributes.POSITION &&
-            primitive.attributes.POSITION.min
-          ) {
-            const lowerBound = modelMatrix.transformAsPoint(
-              primitive.attributes.POSITION.min,
-              []
-            );
-            const upperBound = modelMatrix.transformAsPoint(
-              primitive.attributes.POSITION.max,
-              []
-            );
+          if (primitive.attributes.POSITION && primitive.attributes.POSITION.min) {
+            const lowerBound = modelMatrix.transformAsPoint(primitive.attributes.POSITION.min, []);
+            const upperBound = modelMatrix.transformAsPoint(primitive.attributes.POSITION.max, []);
             processedNode.bbox = new AABB({
-              lowerBound: new Vec3(
-                ...lowerBound.map((n, i) => Math.min(n, upperBound[i]))
-              ),
-              upperBound: new Vec3(
-                ...upperBound.map((n, i) => Math.max(n, lowerBound[i]))
-              ),
+              lowerBound: new Vec3(...lowerBound.map((n, i) => Math.min(n, upperBound[i]))),
+              upperBound: new Vec3(...upperBound.map((n, i) => Math.max(n, lowerBound[i]))),
             });
           }
         }
@@ -92,7 +72,7 @@ export async function processSceneNodes(
   }
 
   for (const node of Object.values(nodes).filter((n) => !n.bbox)) {
-    for (const child of childNames(node.node)
+    for (const child of childNames(node.node as never)
       .map((n) => nodes[n])
       .filter((n) => n.bbox)) {
       if (!node.bbox) {
@@ -112,9 +92,7 @@ export async function processSceneNodes(
     const halfSize = size.clone().vmul(new Vec3(0.5, 0.5, 0.5));
     const center = (node.center = lb.clone().vadd(halfSize));
 
-    node.transformMatrix = new Matrix4(Matrix4.IDENTITY)
-      .translate(center.toArray())
-      .scale(halfSize.toArray());
+    node.transformMatrix = new Matrix4(Matrix4.IDENTITY).translate(center.toArray()).scale(halfSize.toArray());
   }
   for (const node of gltfNodes) {
     nodes[node['@id']] = node;

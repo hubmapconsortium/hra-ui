@@ -1,6 +1,5 @@
 @use '@angular/material' as mat;
 
-
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
   $primary: map-get($color-config, primary);
@@ -63,7 +62,8 @@
       color: mat.get-color-from-palette($foreground, contrast-icon);
     }
 
-    .info, .close {
+    .info,
+    .close {
       color: mat.get-color-from-palette($foreground, main);
 
       &:hover {

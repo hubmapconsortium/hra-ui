@@ -1,6 +1,5 @@
 @use '@angular/material' as mat;
 
-
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
   $primary: map-get($color-config, primary);
@@ -9,7 +8,8 @@
   $accent: map-get($color-config, accent);
 
   .ccf-labeled-slide-toggle {
-    .mdc-switch__track::before, .mdc-switch__track::after {
+    .mdc-switch__track::before,
+    .mdc-switch__track::after {
       background: mat.get-color-from-palette($foreground, donor-sex-bg) !important;
     }
 

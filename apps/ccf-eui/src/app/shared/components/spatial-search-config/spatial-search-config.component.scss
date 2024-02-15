@@ -6,7 +6,7 @@
   gap: 2rem;
   width: 30.5rem;
   box-shadow: 0px 25rem 25rem rgba(0, 0, 0, 0.16);
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   font-size: 1rem;
 
   .button {
@@ -68,7 +68,7 @@
 
     ::ng-deep .mat-mdc-text-field-wrapper {
       font-size: 1rem;
-      padding-bottom: .75rem;
+      padding-bottom: 0.75rem;
       padding-top: 3rem;
       margin-left: 0.5rem;
       width: 14rem;
@@ -94,17 +94,17 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: .25rem 1rem;
+    padding: 0.25rem 1rem;
     width: 14rem;
     height: 2rem;
     border-width: 1px;
     border-style: solid;
-    border-radius: .25rem;
+    border-radius: 0.25rem;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.16);
 
     &.disabled {
       pointer-events: none;
-      opacity: .5;
+      opacity: 0.5;
     }
   }
 }

@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, O
 import { TissueBlockResult } from 'ccf-database';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
-
 /**
  * Donor card component which displays data from a patient
  */
@@ -10,7 +9,7 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
   selector: 'ccf-donor-card',
   templateUrl: './donor-card.component.html',
   styleUrls: ['./donor-card.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DonorCardComponent {
   /** HTML Class Name */
@@ -44,7 +43,7 @@ export class DonorCardComponent {
    *
    * @param ga Analytics service
    */
-  constructor(private readonly ga: GoogleAnalyticsService) { }
+  constructor(private readonly ga: GoogleAnalyticsService) {}
 
   /**
    * Handles the logic that needs to run when the checkbox is clicked on.

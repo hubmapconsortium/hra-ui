@@ -15,17 +15,20 @@ describe('LeftSidebarComponent', () => {
   let shallow: Shallow<LeftSidebarComponent>;
 
   beforeEach(() => {
-    const mockModelState = jasmine.createSpyObj<ModelState>(
-      'ModelState', ['setViewType', 'setViewSide', 'toggleRegistrationBlocksVisibility', 'setSex', 'setSide']
-    );
+    const mockModelState = jasmine.createSpyObj<ModelState>('ModelState', [
+      'setViewType',
+      'setViewSide',
+      'toggleRegistrationBlocksVisibility',
+      'setSex',
+      'setSide',
+    ]);
 
-    const mockPageState = jasmine.createSpyObj<PageState>(
-      'PageState', ['setUserName']
-    );
+    const mockPageState = jasmine.createSpyObj<PageState>('PageState', ['setUserName']);
 
-    const mockRegistrationState = jasmine.createSpyObj<RegistrationState>(
-      'RegistrationState', ['isValid', 'editRegistration']
-    );
+    const mockRegistrationState = jasmine.createSpyObj<RegistrationState>('RegistrationState', [
+      'isValid',
+      'editRegistration',
+    ]);
 
     shallow = new Shallow(LeftSidebarComponent, LeftSidebarModule)
       .mock(ModelState, {
@@ -36,15 +39,14 @@ describe('LeftSidebarComponent', () => {
         side$: of('left' as 'left' | 'right'),
         organ$: of({ src: 'app:heart', name: 'Heart' } as OrganInfo),
         anatomicalStructures$: of(testVisibilityItems),
-        snapshot: { anatomicalStructures: testVisibilityItems }
+        snapshot: { anatomicalStructures: testVisibilityItems },
       })
       .mock(PageState, mockPageState)
       .mock(RegistrationState, {
         ...mockRegistrationState,
-        displayErrors$: of(false)
+        displayErrors$: of(false),
       });
   });
-
 
   it('should successfully set the extractionSiteTooltip to the VisibilityItem tooltip passed in', async () => {
     const { instance } = await shallow.render();
@@ -52,7 +54,7 @@ describe('LeftSidebarComponent', () => {
       id: 1,
       name: 'test',
       visible: false,
-      tooltip: 'test tooltip'
+      tooltip: 'test tooltip',
     };
 
     instance.updateExtractionSiteTooltip(testVisibilityItem);

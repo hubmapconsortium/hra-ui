@@ -3,7 +3,6 @@ import { Shallow } from 'shallow-render';
 import { DecoratedTextComponent } from './decorated-text.component';
 import { DecoratedTextModule } from './decorated-text.module';
 
-
 describe('DecoratedTextComponent', () => {
   let shallow: Shallow<DecoratedTextComponent>;
 

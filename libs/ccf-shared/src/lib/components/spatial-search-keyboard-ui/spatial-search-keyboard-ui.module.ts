@@ -4,13 +4,9 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { SpatialSearchKeyboardUIComponent } from './spatial-search-keyboard-ui.component';
 
-
 @NgModule({
-  imports: [
-    CommonModule,
-    MatIconModule
-  ],
+  imports: [CommonModule, MatIconModule],
   declarations: [SpatialSearchKeyboardUIComponent],
-  exports: [SpatialSearchKeyboardUIComponent]
+  exports: [SpatialSearchKeyboardUIComponent],
 })
-export class SpatialSearchKeyboardUIModule { }
+export class SpatialSearchKeyboardUIModule {}

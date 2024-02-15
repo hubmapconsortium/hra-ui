@@ -9,7 +9,6 @@ import { MatInputModule } from '@angular/material/input';
 
 import { TagSearchComponent } from './tag-search.component';
 
-
 @NgModule({
   imports: [
     CommonModule,
@@ -23,6 +22,6 @@ import { TagSearchComponent } from './tag-search.component';
     MatInputModule,
   ],
   declarations: [TagSearchComponent],
-  exports: [TagSearchComponent]
+  exports: [TagSearchComponent],
 })
-export class TagSearchModule { }
+export class TagSearchModule {}

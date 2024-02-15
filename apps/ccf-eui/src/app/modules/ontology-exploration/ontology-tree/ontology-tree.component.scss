@@ -28,11 +28,11 @@
   .node {
     min-height: 0;
     font-size: 1rem;
-    margin-bottom: .25rem;
+    margin-bottom: 0.25rem;
 
     .slider {
       width: 100%;
-      transition-duration: .25s;
+      transition-duration: 0.25s;
       transition-timing-function: ease-in-out;
       transition-property: width;
       position: relative;
@@ -78,7 +78,6 @@
 
     &.inner-node {
       button {
-
         &.hidden {
           display: none;
         }

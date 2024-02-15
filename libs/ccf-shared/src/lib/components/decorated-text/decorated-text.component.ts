@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  Input,
-  OnChanges,
-  SimpleChanges,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import { DecoratedRange, normalize } from './decorated-range';
 
@@ -104,9 +97,7 @@ export class DecoratedTextComponent implements OnChanges {
 
     // Build segments based on the stack operations
     for (const op of stackOps) {
-      segments.push(
-        this.makeDecoratedSegment(text.slice(lastIndex, op.index), stack)
-      );
+      segments.push(this.makeDecoratedSegment(text.slice(lastIndex, op.index), stack));
 
       lastIndex = op.index;
       stack = this.updateStack(stack, op);
@@ -128,8 +119,7 @@ export class DecoratedTextComponent implements OnChanges {
    */
   private createStackOps(ranges: DecoratedRange[]): StackOp[] {
     const ops: Record<number, StackOp> = {};
-    const getOp = (index: number) =>
-      (ops[index] ??= { index, added: [], removed: [] });
+    const getOp = (index: number) => (ops[index] ??= { index, added: [], removed: [] });
 
     for (const range of ranges) {
       getOp(range.start).added.push(range);
@@ -194,18 +184,9 @@ export class DecoratedTextComponent implements OnChanges {
    * @param decorations Decorations for this segment
    * @returns A decorated segment
    */
-  private makeDecoratedSegment(
-    text: string,
-    decorations: DecoratedRange[]
-  ): Segment {
-    const classes = decorations.reduce<string[]>(
-      (result, range) => result.concat(range.classes),
-      []
-    );
-    const styles = decorations.reduce(
-      (result, range) => ({ ...result, ...range.styles }),
-      {}
-    );
+  private makeDecoratedSegment(text: string, decorations: DecoratedRange[]): Segment {
+    const classes = decorations.reduce<string[]>((result, range) => result.concat(range.classes), []);
+    const styles = decorations.reduce((result, range) => ({ ...result, ...range.styles }), {});
 
     return { text, classes, styles };
   }

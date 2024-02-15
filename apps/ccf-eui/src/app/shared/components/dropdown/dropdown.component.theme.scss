@@ -1,6 +1,5 @@
 @use '@angular/material' as mat;
 
-
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
   $primary: map-get($color-config, primary);
@@ -32,7 +31,7 @@
 
   .dropdown-form-field {
     .label {
-      color: mat.get-color-from-palette($foreground, text-muted)
+      color: mat.get-color-from-palette($foreground, text-muted);
     }
 
     .mat-mdc-text-field-wrapper {

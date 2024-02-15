@@ -1,6 +1,4 @@
-
 import { LocalStorageService } from './local-storage.service';
-
 
 describe('LocalStorageService', () => {
   let storageSpy: jasmine.SpyObj<Storage>;
@@ -8,16 +6,13 @@ describe('LocalStorageService', () => {
 
   describe('with storage', () => {
     beforeEach(() => {
-      storageSpy = jasmine.createSpyObj<Storage>(
-        ['key', 'getItem', 'setItem', 'removeItem', 'clear'],
-        { length: 0 }
-      );
+      storageSpy = jasmine.createSpyObj<Storage>(['key', 'getItem', 'setItem', 'removeItem', 'clear'], { length: 0 });
       ls = new LocalStorageService();
       LocalStorageService.storage = storageSpy;
     });
 
     it('should return length', async () => {
-      if (Object.getOwnPropertyDescriptor(storageSpy, 'length')){
+      if (Object.getOwnPropertyDescriptor(storageSpy, 'length')) {
         const lengthSpy = Object.getOwnPropertyDescriptor(storageSpy, 'length')!.get;
         ls.length;
         expect(lengthSpy).toHaveBeenCalled();
@@ -52,10 +47,7 @@ describe('LocalStorageService', () => {
 
   describe('with no storage', () => {
     beforeEach(() => {
-      storageSpy = jasmine.createSpyObj<Storage>(
-        ['key', 'getItem', 'setItem', 'removeItem', 'clear'],
-        { length: 0 }
-      );
+      storageSpy = jasmine.createSpyObj<Storage>(['key', 'getItem', 'setItem', 'removeItem', 'clear'], { length: 0 });
       ls = new LocalStorageService();
       LocalStorageService.storage = undefined;
     });

@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
-
 /**
  * Generic toggle slider component
  */
@@ -9,9 +8,8 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
   selector: 'ccf-labeled-slide-toggle',
   templateUrl: './labeled-slide-toggle.component.html',
   styleUrls: ['./labeled-slide-toggle.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
 export class LabeledSlideToggleComponent {
   /**
    * HTML class name
@@ -43,7 +41,7 @@ export class LabeledSlideToggleComponent {
    *
    * @param ga Analytics service
    */
-  constructor(private readonly ga: GoogleAnalyticsService) { }
+  constructor(private readonly ga: GoogleAnalyticsService) {}
 
   /**
    * Determines if left toggle option is selected

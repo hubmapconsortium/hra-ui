@@ -4,16 +4,13 @@ import { ListResult } from '../../../core/models/list-result';
 import { ResultsBrowserComponent } from './results-browser.component';
 import { ResultsBrowserModule } from './results-browser.module';
 
-
-function makeScrollEventObject(
-  clientHeight: number, scrollHeight: number, scrollTop: number
-): UIEvent {
+function makeScrollEventObject(clientHeight: number, scrollHeight: number, scrollTop: number): UIEvent {
   return {
     target: {
       clientHeight,
       scrollHeight,
-      scrollTop
-    }
+      scrollTop,
+    },
   } as unknown as UIEvent;
 }
 
@@ -72,7 +69,7 @@ describe('ResultsBrowserComponent', () => {
   it('onScroll returns nothing if no target', async () => {
     // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     const mockEvent = {
-      target: null
+      target: null,
     } as UIEvent;
     const { instance } = await shallow.render();
     instance.onScroll(mockEvent);

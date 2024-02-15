@@ -103,7 +103,7 @@ function spatialSceneNodeReviver(nodes: RawSpatialSceneNode[]): SpatialSceneNode
 export class ApiEndpointDataSourceService implements DataSource {
   constructor(
     private readonly api: DefaultService,
-    private readonly globalConfig: GlobalConfigState<ApiEndpointDataSourceOptions>
+    private readonly globalConfig: GlobalConfigState<ApiEndpointDataSourceOptions>,
   ) {
     globalConfig.getOption('hubmapToken').subscribe(buster$);
   }
@@ -183,29 +183,29 @@ export class ApiEndpointDataSourceService implements DataSource {
       (params) => this.api.referenceOrganScene(params),
       filter,
       { organIri },
-      spatialSceneNodeReviver
+      spatialSceneNodeReviver,
     );
   }
 
   private doRequest<T, P>(
     method: RequestMethod<DefaultParams & FilterParams & P, T>,
     filter?: Filter | undefined,
-    params?: P
+    params?: P,
   ): Observable<T>;
   private doRequest<T, P, U>(
     method: RequestMethod<DefaultParams & FilterParams & P, T>,
     filter: Filter | undefined,
     params: P | undefined,
-    reviver: DataReviver<T, U>
+    reviver: DataReviver<T, U>,
   ): Observable<U>;
   private doRequest<P>(
     method: RequestMethod<unknown, unknown>,
     filter: Filter | undefined,
     params?: P,
-    reviver?: DataReviver<unknown, unknown>
+    reviver?: DataReviver<unknown, unknown>,
   ): Observable<unknown> {
     const { api, globalConfig } = this;
-    const requestParams = { ...filterToParams(filter), ...params };
+    const requestParams: Record<string, unknown> = { ...filterToParams(filter), ...params };
 
     return combineLatest([globalConfig.getOption('remoteApiEndpoint'), globalConfig.getOption('hubmapToken')]).pipe(
       take(1),
@@ -216,7 +216,7 @@ export class ApiEndpointDataSourceService implements DataSource {
         }
       }),
       switchMap(() => method(requestParams)),
-      map((data) => (reviver ? reviver(data) : data))
+      map((data) => (reviver ? reviver(data) : data)),
     );
   }
 }

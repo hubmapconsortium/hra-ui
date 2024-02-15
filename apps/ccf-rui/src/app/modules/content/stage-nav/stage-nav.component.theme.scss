@@ -1,6 +1,5 @@
 @use '@angular/material' as mat;
 
-
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
   $primary: map-get($color-config, primary);
@@ -53,14 +52,14 @@
       &.dropdowncontainer {
         background-color: white;
 
-        .mdc-form-field, .slide-label {
+        .mdc-form-field,
+        .slide-label {
           color: mat.get-color-from-palette($foreground, text);
 
           .mdc-radio__outer-circle {
             border-color: mat.get-color-from-palette($foreground, text) !important;
           }
         }
-
 
         .mat-mdc-radio-checked {
           color: mat.get-color-from-palette($accent);
@@ -76,7 +75,8 @@
       }
     }
 
-    .mdc-switch__track::before, .mdc-switch__track::after {
+    .mdc-switch__track::before,
+    .mdc-switch__track::after {
       background-color: mat.get-color-from-palette($accent, 900) !important;
     }
 

@@ -1,5 +1,12 @@
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostBinding, Input, OnDestroy, OnInit
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  HostBinding,
+  Input,
+  OnDestroy,
+  OnInit,
 } from '@angular/core';
 import { NodeDragEvent } from 'ccf-body-ui';
 import { ResizeSensor } from 'css-element-queries';
@@ -11,7 +18,6 @@ import { PageState } from '../../core/store/page/page.state';
 import { RegistrationState } from '../../core/store/registration/registration.state';
 import { SceneState } from '../../core/store/scene/scene.state';
 
-
 /**
  * Main content component
  */
@@ -19,7 +25,7 @@ import { SceneState } from '../../core/store/scene/scene.state';
   selector: 'ccf-content',
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContentComponent implements OnInit, OnDestroy {
   /** HTML class name */
@@ -28,22 +34,20 @@ export class ContentComponent implements OnInit, OnDestroy {
   @Input() disablePositionChange = false;
 
   readonly position$ = this.model.position$.pipe(
-    map(p => ({ x: Math.floor(p.x), y: Math.floor(p.y), z: Math.floor(p.z) }))
+    map((p) => ({ x: Math.floor(p.x), y: Math.floor(p.y), z: Math.floor(p.z) })),
   );
 
   /** Whether the view type is 3d or register */
-  readonly is3DView$ = this.model.viewType$.pipe(
-    map(type => type === '3d')
-  );
+  readonly is3DView$ = this.model.viewType$.pipe(map((type) => type === '3d'));
 
   readonly bounds$ = this.model.organDimensions$.pipe(
-    map(dims => ({
+    map((dims) => ({
       x: Math.max(dims.x, this.model.defaultPosition.x + 40) / 1000,
       y: Math.max(dims.y, this.model.defaultPosition.y + 40) / 1000,
-      z: Math.max(dims.z, this.model.defaultPosition.z + 40) / 1000
+      z: Math.max(dims.z, this.model.defaultPosition.z + 40) / 1000,
     })),
     distinctUntilKeyChanged('x'),
-    distinctUntilKeyChanged('y')
+    distinctUntilKeyChanged('y'),
   );
 
   /** Whether the content area is very narrow */
@@ -77,8 +81,8 @@ export class ContentComponent implements OnInit, OnDestroy {
     readonly registration: RegistrationState,
     readonly scene: SceneState,
     private readonly rootRef: ElementRef<HTMLElement>,
-    private readonly cdr: ChangeDetectorRef
-  ) { }
+    private readonly cdr: ChangeDetectorRef,
+  ) {}
 
   /**
    * Sets up the resize sensor
@@ -126,9 +130,9 @@ export class ContentComponent implements OnInit, OnDestroy {
   handleNodeDrag(event: NodeDragEvent): void {
     if (event.node['@id'] === '#DraftPlacement') {
       if (event.info.coordinate) {
-        const [a, b] = (event.info.coordinate as number[]).map(n => n * 1000) as [number, number];
+        const [a, b] = (event.info.coordinate as number[]).map((n) => n * 1000) as [number, number];
         const { position, viewSide, organDimensions } = this.model.snapshot;
-        const dims = [organDimensions.x, organDimensions.y, organDimensions.z].map(n => n / 2);
+        const dims = [organDimensions.x, organDimensions.y, organDimensions.z].map((n) => n / 2);
         let newPosition = position;
         switch (viewSide) {
           case 'anterior':

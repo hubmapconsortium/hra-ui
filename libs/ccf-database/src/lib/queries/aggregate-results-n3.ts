@@ -1,14 +1,9 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { readQuads, Store } from 'triple-store-utils';
 
 import { AggregateResult } from '../interfaces';
 import { entity } from '../util/prefixes';
 
-function getObjects(
-  store: Store,
-  ids: Set<string>,
-  predicate: string
-): Set<string> {
+function getObjects(store: Store, ids: Set<string>, predicate: string): Set<string> {
   const objects = new Set<string>();
   for (const id of ids) {
     for (const quad of readQuads(store, id, predicate, null, null)) {
@@ -25,10 +20,7 @@ function getObjects(
  * @param store The triple store.
  * @returns The list of aggregate results.
  */
-export function getAggregateResults(
-  ids: Set<string>,
-  store: Store
-): AggregateResult[] {
+export function getAggregateResults(ids: Set<string>, store: Store): AggregateResult[] {
   const donors = getObjects(store, ids, entity.donor.id);
   const centers = getObjects(store, donors, entity.providerUUID.id);
 

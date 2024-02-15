@@ -9,13 +9,15 @@ import { ContentComponent } from './content/content.component';
 import { DrawerComponent } from './drawer/drawer.component';
 import { ToggleButtonComponent } from './toggle-button/toggle-button.component';
 
-
 @NgModule({
   imports: [BrowserModule, BrowserAnimationsModule, MatIconModule],
-  providers: [{
-    provide: MESSAGE_SERVICE_CONFIG, useValue: MESSAGE_SERVICE_DEFAULT_CONFIG
-  }],
+  providers: [
+    {
+      provide: MESSAGE_SERVICE_CONFIG,
+      useValue: MESSAGE_SERVICE_DEFAULT_CONFIG,
+    },
+  ],
   declarations: [ContainerComponent, ContentComponent, DrawerComponent, ToggleButtonComponent],
-  exports: [ContainerComponent, ContentComponent, DrawerComponent, ToggleButtonComponent]
+  exports: [ContainerComponent, ContentComponent, DrawerComponent, ToggleButtonComponent],
 })
-export class DrawerModule { }
+export class DrawerModule {}

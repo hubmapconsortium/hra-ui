@@ -3,7 +3,6 @@ import { Shallow } from 'shallow-render';
 import { XYZPositionComponent } from './xyz-position.component';
 import { XYZPositionModule } from './xyz-position.module';
 
-
 describe('XYZPositionComponent', () => {
   let shallow: Shallow<XYZPositionComponent>;
 

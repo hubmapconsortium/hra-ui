@@ -55,16 +55,13 @@ export class GlobalsService {
    * @returns The value if it exists otherwise the default value
    */
   get<K extends keyof GlobalThis>(key: K): GlobalThis[K];
-  get<K extends keyof GlobalThis, D>(
-    key: K,
-    def: D
-  ): NonNullable<GlobalThis[K]> | D;
+  get<K extends keyof GlobalThis, D>(key: K, def: D): NonNullable<GlobalThis[K]> | D;
   get<T = unknown>(key: GlobalKey): T | null | undefined;
   get<T = unknown, D = T>(key: GlobalKey, def: D): T | D;
 
   get(key: GlobalKey, def?: unknown): unknown {
     const { obj } = this;
-    return (obj && (obj[key] as unknown)) ?? def;
+    return (obj && (obj[key as never] as unknown)) ?? def;
   }
 
   /**
@@ -81,7 +78,7 @@ export class GlobalsService {
   set(key: GlobalKey, value: unknown): void {
     const { obj } = this;
     if (obj) {
-      obj[key] = value;
+      obj[key as never] = value as never;
     }
   }
 
@@ -95,7 +92,7 @@ export class GlobalsService {
   remove(key: GlobalKey): void {
     const { obj } = this;
     if (obj) {
-      delete obj[key];
+      delete obj[key as never];
     }
   }
 

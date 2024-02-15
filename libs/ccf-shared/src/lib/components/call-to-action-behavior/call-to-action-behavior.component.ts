@@ -3,10 +3,7 @@ import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs/internal/Observable';
 
-import {
-  CloseDialog,
-  LearnMore,
-} from '../../states/call-to-action/call-to-action.actions';
+import { CloseDialog, LearnMore } from '../../states/call-to-action/call-to-action.actions';
 import { CallToActionSelectors } from '../../states/call-to-action/call-to-action.selectors';
 
 /**

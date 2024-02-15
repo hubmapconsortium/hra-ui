@@ -10,13 +10,8 @@ describe('DataState', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NgxsDataPluginModule.forRoot(),
-        NgxsModule.forRoot([DataState, GlobalConfigState])
-      ],
-      providers: [
-        { provide: DataSourceService, useExisting: CCFDatabaseDataSourceService }
-      ]
+      imports: [NgxsDataPluginModule.forRoot(), NgxsModule.forRoot([DataState, GlobalConfigState])],
+      providers: [{ provide: DataSourceService, useExisting: CCFDatabaseDataSourceService }],
     });
 
     dataState = TestBed.inject(DataState);

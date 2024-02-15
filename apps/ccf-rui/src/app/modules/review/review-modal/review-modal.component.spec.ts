@@ -5,9 +5,8 @@ import { MetaData } from '../../../core/models/meta-data';
 import { ReviewModalComponent } from './review-modal.component';
 import { ReviewModalModule } from './review-modal.module';
 
-
 function wait(duration: number): Promise<void> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(resolve, duration);
   });
 }
@@ -22,7 +21,7 @@ const metaData: MetaData = [
   { label: 'Extraction Site(s)', value: 'Bisection line' },
   { label: 'Anatomical Structure Tags', value: 'Tag 1, Tag 2, Tag 3' },
   { label: 'Time Stamp', value: '7/10/2020 9:53:04 AM' },
-  { label: 'Alignment ID', value: '5dae2c44-aad-5-4f7a-aa12-c0551de97b' }
+  { label: 'Alignment ID', value: '5dae2c44-aad-5-4f7a-aa12-c0551de97b' },
 ];
 
 describe('ReviewModalComponent', () => {
@@ -32,10 +31,11 @@ describe('ReviewModalComponent', () => {
     shallow = new Shallow(ReviewModalComponent, ReviewModalModule)
       .provide({ provide: MatDialogRef, useValue: {} })
       .provide({
-        provide: MAT_DIALOG_DATA, useValue: {
+        provide: MAT_DIALOG_DATA,
+        useValue: {
           registrationCallbackSet: true,
-          metaData
-        }
+          metaData,
+        },
       });
   });
 
@@ -51,7 +51,11 @@ describe('ReviewModalComponent', () => {
 
   it('should close the dialog when the close() method is called', async () => {
     const { instance, inject } = await shallow
-      .mock(MatDialogRef, { close(): void { /* Empty */ } })
+      .mock(MatDialogRef, {
+        close(): void {
+          /* Empty */
+        },
+      })
       .render();
     const ref = inject(MatDialogRef);
     instance.close();

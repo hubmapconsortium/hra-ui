@@ -1,10 +1,7 @@
 import { Immutable } from '@angular-ru/common/typings';
 import { Computed, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import {
-  ImmutablePatchValue,
-  ImmutableStateValue,
-} from '@angular-ru/ngxs/typings';
+import { ImmutablePatchValue, ImmutableStateValue } from '@angular-ru/ngxs/typings';
 import { Injectable } from '@angular/core';
 import { State } from '@ngxs/store';
 import { filterNulls } from 'ccf-shared/rxjs-ext/operators';
@@ -37,20 +34,17 @@ export class GlobalConfigState<T> extends NgxsImmutableDataRepository<T> {
     return this.config$.pipe(
       pluck(...(path as [string])) as OperatorFunction<Immutable<T>, R>,
       distinctUntilChanged(),
-      shareReplay(1)
+      shareReplay(1),
     );
   }
 
   getOption<K1 extends keyof T>(k1: K1): Observable<T[K1]>;
-  getOption<K1 extends keyof T, K2 extends keyof T[K1]>(
+  getOption<K1 extends keyof T, K2 extends keyof T[K1]>(k1: K1, k2: K2): Observable<T[K1][K2]>;
+  getOption<K1 extends keyof T, K2 extends keyof T[K1], K3 extends keyof T[K1][K2]>(
     k1: K1,
-    k2: K2
-  ): Observable<T[K1][K2]>;
-  getOption<
-    K1 extends keyof T,
-    K2 extends keyof T[K1],
-    K3 extends keyof T[K1][K2]
-  >(k1: K1, k2: K2, k3: K3): Observable<T[K1][K2][K3]>;
+    k2: K2,
+    k3: K3,
+  ): Observable<T[K1][K2][K3]>;
   getOption<R>(...path: (string | number)[]): Observable<R>;
   getOption(...path: (string | number)[]): Observable<unknown> {
     const key = this.getPathKey(path);
@@ -58,11 +52,7 @@ export class GlobalConfigState<T> extends NgxsImmutableDataRepository<T> {
       return this.optionCache.get(key)!;
     }
 
-    const obs = this.config$.pipe(
-      pluck(...(path as string[])),
-      distinctUntilChanged(),
-      shareReplay(1)
-    );
+    const obs = this.config$.pipe(pluck(...(path as string[])), distinctUntilChanged(), shareReplay(1));
 
     this.optionCache.set(key, obs);
     return obs;

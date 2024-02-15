@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/member-ordering */
-/* eslint-disable no-underscore-dangle */
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -12,12 +10,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import {
-  BodyUI,
-  NodeClickEvent,
-  NodeDragEvent,
-  SpatialSceneNode,
-} from 'ccf-body-ui';
+import { BodyUI, NodeClickEvent, NodeDragEvent, SpatialSceneNode } from 'ccf-body-ui';
 import { Subscription } from 'rxjs';
 
 interface XYZTriplet<T = number> {
@@ -157,7 +150,7 @@ export class BodyUiComponent implements AfterViewInit, OnDestroy {
    * Reference to the div we are using to mount the body UI to.
    */
   @ViewChild('bodyCanvas', { read: ElementRef })
-    bodyCanvas!: ElementRef<HTMLCanvasElement>;
+  bodyCanvas!: ElementRef<HTMLCanvasElement>;
 
   /**
    * Performs setup required after initialization
@@ -172,7 +165,7 @@ export class BodyUiComponent implements AfterViewInit, OnDestroy {
       const pxRatio = window.devicePixelRatio;
       const zoom = Math.min(
         Math.log2((width - margin.x) / pxRatio / bounds.x),
-        Math.log2((height - margin.y) / pxRatio / bounds.y)
+        Math.log2((height - margin.y) / pxRatio / bounds.y),
       );
       this.zoom = zoom;
     }
@@ -208,17 +201,11 @@ export class BodyUiComponent implements AfterViewInit, OnDestroy {
       this.bodyUI.setTarget(this.target);
     }
     this.subscriptions = [
-      this.bodyUI.sceneRotation$.subscribe((rotation) =>
-        this.rotationChange.next(rotation)
-      ),
+      this.bodyUI.sceneRotation$.subscribe((rotation) => this.rotationChange.next(rotation)),
       this.bodyUI.nodeDrag$.subscribe((event) => this.nodeDrag.emit(event)),
       this.bodyUI.nodeClick$.subscribe((event) => this.nodeClick.emit(event)),
-      this.bodyUI.nodeHoverStart$.subscribe((event) =>
-        this.nodeHoverStart.emit(event)
-      ),
-      this.bodyUI.nodeHoverStop$.subscribe((event) =>
-        this.nodeHoverStop.emit(event)
-      ),
+      this.bodyUI.nodeHoverStart$.subscribe((event) => this.nodeHoverStart.emit(event)),
+      this.bodyUI.nodeHoverStop$.subscribe((event) => this.nodeHoverStop.emit(event)),
     ];
     this.initialized.emit();
   }

@@ -4,14 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { RegistrationMetadataComponent } from './registration-metadata.component';
-import { NameInputModule } from '../name-input/name-input.module';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 import { JsonFileReaderModule } from '../json-file-reader/json-file-reader.module';
-
+import { NameInputModule } from '../name-input/name-input.module';
+import { RegistrationMetadataComponent } from './registration-metadata.component';
 
 @NgModule({
   imports: [
@@ -26,9 +25,9 @@ import { JsonFileReaderModule } from '../json-file-reader/json-file-reader.modul
     MatSelectModule,
     MatButtonModule,
     MatTooltipModule,
-    JsonFileReaderModule
+    JsonFileReaderModule,
   ],
   declarations: [RegistrationMetadataComponent],
-  exports: [RegistrationMetadataComponent]
+  exports: [RegistrationMetadataComponent],
 })
-export class RegistrationMetadataModule { }
+export class RegistrationMetadataModule {}

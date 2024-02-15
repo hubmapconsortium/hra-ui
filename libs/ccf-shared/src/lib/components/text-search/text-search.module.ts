@@ -8,7 +8,6 @@ import { MatInputModule } from '@angular/material/input';
 import { DecoratedTextModule } from '../decorated-text/decorated-text.module';
 import { TextSearchComponent } from './text-search.component';
 
-
 @NgModule({
   imports: [
     CommonModule,
@@ -19,7 +18,7 @@ import { TextSearchComponent } from './text-search.component';
     MatFormFieldModule,
     MatInputModule,
 
-    DecoratedTextModule
+    DecoratedTextModule,
   ],
   declarations: [TextSearchComponent],
   exports: [
@@ -27,7 +26,7 @@ import { TextSearchComponent } from './text-search.component';
 
     // Reexport prefix/suffix markers
     MatPrefix,
-    MatSuffix
-  ]
+    MatSuffix,
+  ],
 })
-export class TextSearchModule { }
+export class TextSearchModule {}
