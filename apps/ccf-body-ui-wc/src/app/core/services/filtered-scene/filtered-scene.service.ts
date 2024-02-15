@@ -63,13 +63,10 @@ export class FilteredSceneService {
     } else if (organs) {
       const organ = organs.find((tempOrgan) => tempOrgan['@id'] === organUrls[0]);
       if (organ) {
-        return this.source.getOrganScene(
-          organ.representation_of as string,
-          {
-            ontologyTerms: [organ.reference_organ as string],
-            sex: organ.sex,
-          } as Filter,
-        );
+        return this.source.getOrganScene(organ.representation_of ?? '', {
+          ontologyTerms: [organ.reference_organ],
+          sex: organ.sex,
+        } as Filter);
       }
     }
     return of([]);
@@ -92,9 +89,7 @@ export class FilteredSceneService {
     const neededReferenceOrgans = this.getNeededReferenceOrgans(referenceOrgans, organs);
     const neededSkins = this.getNeededSkins(neededReferenceOrgans);
     const neededOrgans = new Set([...organs, ...neededSkins]);
-    const filteredNodes = nodes.filter((node) => !node.reference_organ || neededOrgans.has(node.reference_organ));
-
-    return filteredNodes;
+    return nodes.filter((node) => !node.reference_organ || neededOrgans.has(node.reference_organ));
   }
 
   private getNeededReferenceOrgans(referenceOrgans: SpatialEntity[], organs: Set<string>): SpatialEntity[] {

@@ -53,8 +53,8 @@ export class MessageChannel<T> {
    */
   constructor(
     readonly source: unknown,
-    private channel: Subject<Message<T>>,
-    private messages: Observable<Message<T>>,
+    private readonly channel: Subject<Message<T>>,
+    private readonly messages: Observable<Message<T>>,
   ) {}
 
   /**
@@ -105,7 +105,9 @@ export class MessageChannel<T> {
    * @returns The identifier number.
    */
   private nextMessageId(): number {
-    return MessageChannel.counter++;
+    const result = MessageChannel.counter;
+    MessageChannel.counter++;
+    return result;
   }
 }
 
@@ -119,9 +121,9 @@ export class MessageChannel<T> {
 })
 export class MessageService<T> implements OnDestroy {
   /** The message channel. */
-  private channel = new Subject<Message<T>>();
+  private readonly channel = new Subject<Message<T>>();
   /** The message listener. */
-  private messages: Observable<Message<T>>;
+  private readonly messages: Observable<Message<T>>;
 
   /**
    * Creates an instance of message service.

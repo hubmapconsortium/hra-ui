@@ -11,13 +11,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Select } from '@ngxs/store';
 import { CCFDatabaseOptions, Filter, OntologyTreeModel } from 'ccf-database';
-import { DataSourceService, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
+import { BodyUiComponent, DataSourceService, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
 import { ConsentService } from 'ccf-shared/analytics';
 import { Observable, ReplaySubject, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Immutable } from '@angular-ru/common/typings';
-import { BodyUiComponent } from 'ccf-shared';
 import { environment } from '../environments/environment';
 import { OntologySelection } from './core/models/ontology-selection';
 import { AppRootOverlayContainer } from './core/services/app-root-overlay/app-root-overlay.service';
@@ -118,7 +117,7 @@ export class AppComponent implements OnInit {
   }
 
   get isFirefox(): boolean {
-    return navigator.userAgent.indexOf('Firefox') != -1;
+    return navigator.userAgent.indexOf('Firefox') !== -1;
   }
 
   /** Emits true whenever the overlay spinner should activate. */

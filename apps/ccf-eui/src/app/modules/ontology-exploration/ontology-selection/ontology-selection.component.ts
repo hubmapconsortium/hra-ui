@@ -87,7 +87,9 @@ export class OntologySelectionComponent implements OnChanges {
         this.rootNode = { ...rootNode };
         if (this.rootNode.id === 'biomarkers') {
           this.tooltips = [...rootNode.children];
-          this.biomarkerMenuOptions = [...rootNode.children].map((option) => this.biomarkerLabelMap.get(option)!);
+          this.biomarkerMenuOptions = [...rootNode.children]
+            .map((option) => this.biomarkerLabelMap.get(option))
+            .filter((x): x is string => x !== undefined);
           this.filterNodes(this.biomarkerMenuOptions);
         }
       }),

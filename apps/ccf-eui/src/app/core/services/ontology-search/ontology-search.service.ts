@@ -74,8 +74,8 @@ export class OntologySearchService {
 
           if (match && !searchResults.get(node.id)) {
             searchResults.set(node.id, {
-              index: this.getIndexOfMatch(node.label + ' (' + match + ')', searchValue),
-              displayLabel: this.formatLabel(node.label + ' (' + match + ')', searchValue),
+              index: this.getIndexOfMatch(`${node.label} (${match})`, searchValue),
+              displayLabel: this.formatLabel(`${node.label} (${match})`, searchValue),
               node: node as OntologyTreeNode,
             });
           }

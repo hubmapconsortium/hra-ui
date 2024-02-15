@@ -5,7 +5,7 @@ import { ImmutablePatchValue, ImmutableStateValue } from '@angular-ru/ngxs/typin
 import { Injectable } from '@angular/core';
 import { State } from '@ngxs/store';
 import { filterNulls } from 'ccf-shared/rxjs-ext/operators';
-import { Observable, OperatorFunction } from 'rxjs';
+import { Observable, OperatorFunction, of } from 'rxjs';
 import { distinctUntilChanged, pluck, shareReplay } from 'rxjs/operators';
 
 @StateRepository()
@@ -49,7 +49,7 @@ export class GlobalConfigState<T> extends NgxsImmutableDataRepository<T> {
   getOption(...path: (string | number)[]): Observable<unknown> {
     const key = this.getPathKey(path);
     if (this.optionCache.has(key)) {
-      return this.optionCache.get(key)!;
+      return this.optionCache.get(key) ?? of();
     }
 
     const obs = this.config$.pipe(pluck(...(path as string[])), distinctUntilChanged(), shareReplay(1));

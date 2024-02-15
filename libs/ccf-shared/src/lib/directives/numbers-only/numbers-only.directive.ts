@@ -12,7 +12,7 @@ export class NumberDirective {
    *
    * @param el Reference to input element
    */
-  constructor(private el: ElementRef<HTMLInputElement>) {}
+  constructor(private readonly el: ElementRef<HTMLInputElement>) {}
 
   /**
    * Listens to input changes and updates the text to only include numbers.

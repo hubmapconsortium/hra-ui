@@ -19,10 +19,10 @@ export class VideoModalComponent implements OnInit {
    * Creates an instance of video modal component.
    */
   constructor(
-    private renderer2: Renderer2,
-    public dialogRef: MatDialogRef<VideoModalComponent>,
+    private readonly renderer2: Renderer2,
+    public readonly dialogRef: MatDialogRef<VideoModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: unknown,
-    @Inject(DOCUMENT) private document: Document,
+    @Inject(DOCUMENT) private readonly document: Document,
   ) {}
 
   /**

@@ -37,7 +37,7 @@ export class ContentComponent implements OnDestroy {
   /** References to the side drawers. */
   private drawers: DrawerComponent[] = [];
   /** Subscriptions managed by this component. */
-  private subscriptions = new Subscription();
+  private readonly subscriptions = new Subscription();
 
   /**
    * Creates an instance of content component.

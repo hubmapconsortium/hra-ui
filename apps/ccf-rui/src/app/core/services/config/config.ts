@@ -30,8 +30,10 @@ export interface GlobalConfig {
   collisionsEndpoint?: string;
 }
 
+export type OrganName = 'large intestine' | 'heart' | 'kidney' | 'spleen';
+
 export interface OrganConfig {
-  name: 'large intestine' | 'heart' | 'kidney' | 'spleen';
+  name: OrganName;
   ontologyId?: string;
   sex?: 'male' | 'female';
   side?: 'left' | 'right';

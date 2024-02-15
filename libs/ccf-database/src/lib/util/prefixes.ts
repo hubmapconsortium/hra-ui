@@ -209,7 +209,15 @@ export const rui = {
   male_reproductive_system: uberon.x('0000079'),
   lymph_node: uberon.x('0000029'),
 
-  // Derived using console.log(ALL_POSSIBLE_ORGANS.map(o => `  ${o.name.toLowerCase().replace(',', '').replace(/ /g, '_')}: ${o.id.split('/').slice(-1)[0].split('_')[0].toLowerCase()}.x('${o.id.split('_').slice(-1)[0]}'),`).join('\n'));
+  // Derived using
+  // console.log(ALL_POSSIBLE_ORGANS.map(
+  //   o => `  ${
+  //     o.name.toLowerCase().replace(',', '').replace(/ /g, '_')
+  //   }: ${
+  //     o.id.split('/').slice(-1)[0].split('_')[0].toLowerCase()
+  //   }.x('${
+  //     o.id.split('_').slice(-1)[0]
+  //   }'),`).join('\n'));
   blood_vasculature: uberon.x('0004537'),
   brain: uberon.x('0000955'),
   eye_left: uberon.x('0004548'),

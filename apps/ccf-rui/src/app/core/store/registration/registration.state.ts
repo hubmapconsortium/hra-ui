@@ -281,7 +281,7 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
    *
    * @param [useCallback] Explicit override selecting the register/download action
    */
-  register(useCallback?: boolean): void {
+  register(useCallback?: boolean | undefined): void {
     this.page.registrationStarted();
     if (!this.isValid) {
       return;

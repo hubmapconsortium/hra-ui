@@ -88,7 +88,7 @@ export async function processReferenceData(
     if (Array.isArray(entity.placement)) {
       const bodyPlacement = entity.placement.find((p) => p.target === '#VHFemale' || p.target === '#VHMale');
       const ruiPlacement: SpatialPlacementJsonLd = {
-        ...bodyPlacement!,
+        ...(bodyPlacement as SpatialPlacementJsonLd),
         '@id': `${entity['@id']}_RUIPlacement`,
         x_rotation: 0,
         source: bodyPlacement?.target,

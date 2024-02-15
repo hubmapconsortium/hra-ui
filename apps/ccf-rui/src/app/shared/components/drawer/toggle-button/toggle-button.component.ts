@@ -45,7 +45,7 @@ export class ToggleButtonComponent implements AfterViewInit, OnDestroy {
   /** Whether the owning drawer is opened. */
   private opened = false;
   /** Subscriptions managed by this component. */
-  private subscriptions = new Subscription();
+  private readonly subscriptions = new Subscription();
 
   /**
    * Creates an instance of toggle button component.
@@ -55,9 +55,9 @@ export class ToggleButtonComponent implements AfterViewInit, OnDestroy {
    * @param cdr The change detector reference.
    */
   constructor(
-    private drawer: DrawerComponent,
+    private readonly drawer: DrawerComponent,
     messageService: MessageService,
-    private cdr: ChangeDetectorRef,
+    private readonly cdr: ChangeDetectorRef,
   ) {
     const channel = messageService.connect(this);
     this.subscriptions.add(

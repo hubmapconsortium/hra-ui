@@ -13,8 +13,8 @@ describe('LocalStorageService', () => {
 
     it('should return length', async () => {
       if (Object.getOwnPropertyDescriptor(storageSpy, 'length')) {
-        const lengthSpy = Object.getOwnPropertyDescriptor(storageSpy, 'length')!.get;
-        ls.length;
+        const lengthSpy = Object.getOwnPropertyDescriptor(storageSpy, 'length')?.get;
+        expect(ls.length).toEqual(0);
         expect(lengthSpy).toHaveBeenCalled();
       }
     });

@@ -15,6 +15,7 @@ function makeScrollEventObject(clientHeight: number, scrollHeight: number, scrol
 }
 
 describe('ResultsBrowserComponent', () => {
+  const resultsBrowserListSelector = '.results-browser-list';
   let shallow: Shallow<ResultsBrowserComponent>;
 
   beforeEach(() => {
@@ -23,7 +24,7 @@ describe('ResultsBrowserComponent', () => {
 
   it('should re-run the gradient display logic on a scroll event', async () => {
     const { instance, find } = await shallow.render();
-    const list = find('.results-browser-list');
+    const list = find(resultsBrowserListSelector);
     const spy = spyOn(instance, 'onScroll');
 
     list.triggerEventHandler('scroll', {});
@@ -32,7 +33,7 @@ describe('ResultsBrowserComponent', () => {
 
   it('should disable gradient if close to the bottom', async () => {
     const { instance, find } = await shallow.render();
-    const list = find('.results-browser-list');
+    const list = find(resultsBrowserListSelector);
 
     instance.atScrollBottom = false;
     list.triggerEventHandler('scroll', makeScrollEventObject(100, 200, 100));
@@ -41,7 +42,7 @@ describe('ResultsBrowserComponent', () => {
 
   it('should enable gradient if not close to the bottom', async () => {
     const { instance, find } = await shallow.render();
-    const list = find('.results-browser-list');
+    const list = find(resultsBrowserListSelector);
 
     instance.atScrollBottom = true;
     list.triggerEventHandler('scroll', makeScrollEventObject(100, 300, 100));

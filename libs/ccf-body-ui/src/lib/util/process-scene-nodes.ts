@@ -32,8 +32,10 @@ export async function processSceneNodes(
   const gltf = await loadGLTF({ scenegraph: gltfUrl, scenegraphNode } as SpatialSceneNode, gltfCache);
   const nodes: { [node: string]: ProcessedNode } = {};
   const gltfNodes: ProcessedNode[] = [];
+
+  worldMatrix = new Matrix4(worldMatrix ?? Matrix4.IDENTITY);
+
   for (const scene of gltf.scenes) {
-    worldMatrix = new Matrix4(worldMatrix || Matrix4.IDENTITY);
     traverseScene(scene, worldMatrix, (node, modelMatrix: Matrix4) => {
       const processedNode: ProcessedNode = {
         '@id': (node.name || node.id) as string,

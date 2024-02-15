@@ -281,7 +281,6 @@ export class SpatialSearchUiState {
     const { position, radius, sex, organId, referenceOrgans = [], executeSearchOnGeneration } = ctx.getState();
     const organ = this.store.selectSnapshot(SpatialSearchUiState.organEntity);
     const info = referenceOrgans.find((item) => item.id === organId);
-    // const { spatialSearches = [] } = this.store.selectSnapshot(DataStateSelectors.filter);
 
     if (position && radius && organ?.representation_of && info) {
       const search: SpatialSearch = {
@@ -324,7 +323,7 @@ export class SpatialSearchUiState {
    */
   private organValidForSex(organId: string, sex: Sex): boolean {
     const organs = this.store.selectSnapshot(SceneState.referenceOrgans);
-    const organ = organs.find((o) => o.id === organId)!;
-    return organ.hasSex || organ.sex === sex;
+    const organ = organs.find((o) => o.id === organId);
+    return organ?.hasSex || organ?.sex === sex;
   }
 }

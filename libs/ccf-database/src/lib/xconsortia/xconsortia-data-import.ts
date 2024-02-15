@@ -126,7 +126,7 @@ async function doApiSearch(url: string, token?: string, query?: unknown): Promis
     return undefined;
   }
 
-  const items = results.map((res) => res!.hits.hits);
+  const items = results.map((res) => res?.hits.hits);
   return {
     ...firstResult,
     hits: {

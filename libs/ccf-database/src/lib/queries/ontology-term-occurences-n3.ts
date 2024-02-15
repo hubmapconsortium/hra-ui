@@ -10,7 +10,7 @@ function getSpatialEntityMapping(subjects: Set<string>, store: Store): Map<strin
       if (!spatial2entity.has(quad.object.id)) {
         spatial2entity.set(quad.object.id, new Set<string>([subject]));
       } else {
-        spatial2entity.get(quad.object.id)!.add(subject);
+        spatial2entity.get(quad.object.id)?.add(subject);
       }
     }
   }
@@ -22,13 +22,13 @@ function getAnatomicalStructureMapping(ids: Set<string>, store: Store): Map<stri
   const term2entity = new Map<string, Set<string>>();
 
   for (const subject of spatial2entity.keys()) {
-    const entities = spatial2entity.get(subject)!;
+    const entities = spatial2entity.get(subject);
     for (const quad of readQuads(store, subject, ccf.spatialEntity.ccf_annotations, null, null)) {
       if (!term2entity.has(quad.object.id)) {
         term2entity.set(quad.object.id, new Set<string>(entities));
       } else {
-        const termEntities = term2entity.get(quad.object.id)!;
-        entities.forEach((value) => termEntities.add(value));
+        const termEntities = term2entity.get(quad.object.id);
+        entities?.forEach((value) => termEntities?.add(value));
       }
     }
   }
@@ -65,14 +65,14 @@ export function getBiomarkerTermOccurences(ids: Set<string>, store: Store): Reco
   const bmTerm2entities = new Map<string, Set<string>>();
 
   for (const asTerm of asTerm2entities.keys()) {
-    const entities = asTerm2entities.get(asTerm)!;
+    const entities = asTerm2entities.get(asTerm);
     for (const quad of readQuads(store, null, ccf.asctb.bm_located_in, asTerm, null)) {
       const biomarker = quad.subject.id;
       if (!bmTerm2entities.has(biomarker)) {
         bmTerm2entities.set(biomarker, new Set<string>(entities));
       } else {
-        const termEntities = bmTerm2entities.get(biomarker)!;
-        entities.forEach((value) => termEntities.add(value));
+        const termEntities = bmTerm2entities.get(biomarker);
+        entities?.forEach((value) => termEntities?.add(value));
       }
     }
   }
@@ -100,14 +100,14 @@ export function getCellTypeTermOccurences(ids: Set<string>, store: Store): Recor
   const ctTerm2entities = new Map<string, Set<string>>();
 
   for (const asTerm of asTerm2entities.keys()) {
-    const entities = asTerm2entities.get(asTerm)!;
+    const entities = asTerm2entities.get(asTerm);
     for (const quad of readQuads(store, null, ccf.asctb.located_in, asTerm, null)) {
       const cellType = quad.subject.id;
       if (!ctTerm2entities.has(cellType)) {
         ctTerm2entities.set(cellType, new Set<string>(entities));
       } else {
-        const termEntities = ctTerm2entities.get(cellType)!;
-        entities.forEach((value) => termEntities.add(value));
+        const termEntities = ctTerm2entities.get(cellType);
+        entities?.forEach((value) => termEntities?.add(value));
       }
     }
   }

@@ -25,7 +25,7 @@ export class ButtonToggleComponent {
 
   toggleSelection(value: string): void {
     if (this.isItemSelected(value)) {
-      this.selectedItems = this.selectedItems?.filter((el) => el != value);
+      this.selectedItems = this.selectedItems?.filter((el) => el !== value);
     } else {
       this.selectedItems?.push(value);
     }

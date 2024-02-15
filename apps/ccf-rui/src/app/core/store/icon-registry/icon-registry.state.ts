@@ -48,7 +48,7 @@ export class IconRegistryState extends NgxsDataRepository<void> {
    * @param sanitizer Service used to sanitize default imported urls and html.
    */
   constructor(
-    @Optional() private registry: MatIconRegistry | null,
+    @Optional() private readonly registry: MatIconRegistry | null,
     private readonly sanitizer: DomSanitizer,
     private readonly globalConfig: GlobalConfigState<GlobalConfig>,
   ) {
@@ -58,7 +58,7 @@ export class IconRegistryState extends NgxsDataRepository<void> {
   override ngxsOnInit(): void {
     // Register html icons as they don't depend on baseHref
     DEFAULT_ICONS.filter((def) => def.html !== undefined)
-      .map((def) => ({ ...def, html: this.sanitizer.bypassSecurityTrustHtml(def.html!) }))
+      .map((def) => ({ ...def, html: this.sanitizer.bypassSecurityTrustHtml(def.html ?? '') }))
       .forEach((def) => this.registerIconImpl(def));
 
     // Use resolver for url icons

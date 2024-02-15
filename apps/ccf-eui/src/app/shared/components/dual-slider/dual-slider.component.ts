@@ -96,7 +96,7 @@ export class DualSliderComponent implements OnDestroy, OnChanges {
   /**
    * Reference to the slider popover overlay.
    */
-  private overlayRef: OverlayRef;
+  private readonly overlayRef: OverlayRef;
 
   /**
    * Determines whether slider popover has been created and initialized.
@@ -112,7 +112,7 @@ export class DualSliderComponent implements OnDestroy, OnChanges {
    */
   constructor(
     overlay: Overlay,
-    private element: ElementRef<HTMLElement>,
+    private readonly element: ElementRef<HTMLElement>,
     private readonly ga: GoogleAnalyticsService,
   ) {
     const position: ConnectedPosition = { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' };
@@ -168,16 +168,13 @@ export class DualSliderComponent implements OnDestroy, OnChanges {
    *
    * @param target The element on which the event was fired.
    */
-  @HostListener('document:click', ['$event.target']) // eslint-disable-line
-  // eslint-disable-line
-  @HostListener('document:touchstart', ['$event.target']) // eslint-disable-line
+  @HostListener('document:click', ['$event.target'])
+  @HostListener('document:touchstart', ['$event.target'])
   closeSliderPopover(target: HTMLElement): void {
     const { element, isSliderOpen, popoverElement } = this;
-    if (!isSliderOpen) {
-      return;
-    } else if (element.nativeElement.contains(target)) {
-      return;
-    } else if (popoverElement?.nativeElement?.contains?.(target)) {
+    const isEventOutside =
+      !isSliderOpen || element.nativeElement.contains(target) || popoverElement?.nativeElement?.contains?.(target);
+    if (isEventOutside) {
       return;
     }
 

@@ -187,7 +187,6 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
     FlatNode.create,
     getLevel,
     isExpandable,
-    // FIXME
     invoke.bind(undefined, this, 'getChildren') as GetChildrenFunc,
   );
 

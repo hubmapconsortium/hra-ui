@@ -40,7 +40,7 @@ export class CCFSpatialGraph {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   graph: any;
 
-  constructor(private db: CCFDatabase) {
+  constructor(private readonly db: CCFDatabase) {
     this.createGraph();
   }
 
@@ -119,7 +119,7 @@ export class CCFSpatialGraph {
 
   getSpatialPlacement(source: SpatialEntity, targetIri: string): FlatSpatialPlacement | undefined {
     const sourceIri = this.graph.hasNode(source['@id']) ? source['@id'] : undefined;
-    const placement: SpatialPlacement = get(source, 'placement[0]', get(source, 'placement', undefined))!;
+    const placement = get(source, 'placement[0]', get(source, 'placement', undefined)) as unknown as SpatialPlacement;
 
     let matrix: Matrix4 | undefined;
     if (placement && this.graph.hasNode(placement.target)) {

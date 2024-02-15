@@ -41,6 +41,8 @@ globalThis.process = {} as unknown as NodeJS.Process;
 globalThis.process.nextTick = (cb, ...args) => queueMicrotask(() => cb(...args));
 
 describe('triple-store-utils', () => {
+  const uri = 'http://test-uri';
+
   describe('streamToArray(stream)', () => {
     let stream: jasmine.SpyObj<EventEmitter>;
     let result: Promise<unknown[]>;
@@ -142,7 +144,6 @@ describe('triple-store-utils', () => {
   });
 
   describe('addJsonLdToStore(uri, store)', () => {
-    const uri = 'http://test-uri';
     let fetchSpy: jasmine.Spy<typeof fetch>;
     let responseSpy: jasmine.SpyObj<Response>;
     let storeSpy: jasmine.SpyObj<Store>;
@@ -182,7 +183,6 @@ describe('triple-store-utils', () => {
   });
 
   describe('addRdfXmlToStore(uri, store)', () => {
-    const uri = 'http://test-uri';
     let fetchSpy: jasmine.Spy<typeof fetch>;
     let responseSpy: jasmine.SpyObj<Response>;
     let storeSpy: jasmine.SpyObj<Store>;

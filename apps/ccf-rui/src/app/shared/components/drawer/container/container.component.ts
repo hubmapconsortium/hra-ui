@@ -43,14 +43,14 @@ export class ContainerComponent implements AfterViewInit, OnDestroy {
 
   /** Drawer components in this container. */
   @ContentChildren(DrawerComponent, { descendants: true })
-  private drawers!: QueryList<DrawerComponent>;
+  private readonly drawers!: QueryList<DrawerComponent>;
 
   /** Content component if provided already wrapped. */
   @ContentChildren(ContentComponent, { descendants: true })
-  private content1!: QueryList<ContentComponent>;
+  private readonly content1!: QueryList<ContentComponent>;
   /** Content component if provided without wrapping. */
   @ViewChildren(ContentComponent)
-  private content2!: QueryList<ContentComponent>;
+  private readonly content2!: QueryList<ContentComponent>;
   /** Resolves the content component. */
   private get content(): ContentComponent {
     return this.content1.first ?? this.content2.first;
@@ -62,9 +62,9 @@ export class ContainerComponent implements AfterViewInit, OnDestroy {
   }
 
   /** The connected message channel. */
-  private channel: MessageChannel;
+  private readonly channel: MessageChannel;
   /** All subscriptions managed by the container. */
-  private subscriptions = new Subscription();
+  private readonly subscriptions = new Subscription();
 
   /**
    * Creates an instance of container component.
@@ -74,7 +74,7 @@ export class ContainerComponent implements AfterViewInit, OnDestroy {
    */
   constructor(
     messageService: MessageService,
-    private cdr: ChangeDetectorRef,
+    private readonly cdr: ChangeDetectorRef,
   ) {
     this.channel = messageService.connect(this);
     this.subscriptions.add(

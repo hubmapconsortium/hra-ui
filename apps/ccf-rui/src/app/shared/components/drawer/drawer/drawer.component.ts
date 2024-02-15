@@ -40,7 +40,7 @@ class InitializationState {
   /** Whether this state is true or false. */
   private initialized = false;
   /** Promise used to await on. */
-  private deferred = new Promise<void>((resolve) => {
+  private readonly deferred = new Promise<void>((resolve) => {
     this.resolve = resolve;
   });
   /** Resolve function for the promise. */
@@ -245,11 +245,11 @@ export class DrawerComponent implements AfterViewInit, OnDestroy {
   private margin2 = 0;
 
   /** Initialization state. */
-  private initialized = new InitializationState();
+  private readonly initialized = new InitializationState();
   /** Connected message channel. */
-  private channel: MessageChannel;
+  private readonly channel: MessageChannel;
   /** Subscriptions managed by this component. */
-  private subscriptions = new Subscription();
+  private readonly subscriptions = new Subscription();
 
   /**
    * Creates an instance of drawer component.
@@ -261,7 +261,7 @@ export class DrawerComponent implements AfterViewInit, OnDestroy {
   constructor(
     messageService: MessageService,
     cdr: ChangeDetectorRef,
-    private element: ElementRef<HTMLElement>,
+    private readonly element: ElementRef<HTMLElement>,
   ) {
     this.channel = messageService.connect(this);
     this.subscriptions.add(
@@ -403,16 +403,13 @@ export class DrawerComponent implements AfterViewInit, OnDestroy {
    * @returns true if change detection should run.
    */
   private handleMessage(msg: Message): boolean {
-    switch (msg.payload.type) {
-      case 'drawer-toggled': {
-        const other = msg.source as DrawerComponent;
-        this.syncExpanded(other);
-        return true;
-      }
-
-      default:
-        return false;
+    if (msg.payload.type === 'drawer-toggled') {
+      const other = msg.source as DrawerComponent;
+      this.syncExpanded(other);
+      return true;
     }
+
+    return false;
   }
 
   /**

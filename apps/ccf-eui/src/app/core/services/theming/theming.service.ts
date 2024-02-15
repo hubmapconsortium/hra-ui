@@ -21,7 +21,7 @@ export class ThemingService {
   private element!: ElementRef<unknown>;
   private injector!: Injector;
   /** Default theme class. */
-  private defaultTheme: string;
+  private readonly defaultTheme: string;
   /** Currently active theme class. */
   private theme: string;
 

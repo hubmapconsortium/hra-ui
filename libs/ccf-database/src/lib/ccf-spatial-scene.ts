@@ -39,7 +39,7 @@ export interface SpatialSceneNode {
 }
 
 export class CCFSpatialScene {
-  constructor(private db: CCFDatabase) {}
+  constructor(private readonly db: CCFDatabase) {}
 
   getSpatialEntity(iri: string): SpatialEntity {
     return getSpatialEntity(this.db.store, iri);

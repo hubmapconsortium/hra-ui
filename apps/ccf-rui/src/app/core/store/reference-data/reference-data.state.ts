@@ -72,7 +72,7 @@ export interface OrganData {
 export class ReferenceDataState extends NgxsImmutableDataRepository<ReferenceDataStateModel> {
   constructor(
     private readonly globals: GlobalsService,
-    private globalConfig: GlobalConfigState<GlobalConfig>,
+    private readonly globalConfig: GlobalConfigState<GlobalConfig>,
   ) {
     super();
   }

@@ -76,7 +76,7 @@ export class BodyUI {
   private cursor?: string;
   private lastHovered?: SpatialSceneNode;
 
-  constructor(private deckProps: Partial<BodyUIProps>) {
+  constructor(private readonly deckProps: Partial<BodyUIProps>) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const props: any = {
       ...deckProps,
@@ -96,7 +96,6 @@ export class BodyUI {
       getCursor: (e: { isDragging: boolean }) => this.cursor ?? (e.isDragging ? 'grabbing' : 'grab'),
     };
     if (deckProps.legacyLighting) {
-      // eslint-disable-next-line
       props.effects = [
         new LightingEffect({
           ambientLight: new AmbientLight({
@@ -126,7 +125,6 @@ export class BodyUI {
 
   async initialize(): Promise<void> {
     while (!this.bodyUILayer.state) {
-      // eslint-disable-next-line no-await-in-loop
       await new Promise((r) => {
         setTimeout(r, 200);
       });
@@ -157,17 +155,14 @@ export class BodyUI {
   }
 
   debugSceneNodeProcessing(data: SpatialSceneNode[], zoomOpacity: number): void {
-    // const gltfUrl = 'https://hubmapconsortium.github.io/ccf-3d-reference-object-library/VH_Male/United/VHM_United_Color.glb';
     const gltfUrl =
       'https://hubmapconsortium.github.io/ccf-3d-reference-object-library/VH_Female/United/VHF_United_Color.glb';
-    // const gltfUrl = 'https://hubmapconsortium.github.io/hubmap-ontology/objects/VHF_United_v01_060420.glb';
     const gltfTransform = new Matrix4([
       0.076, 0, 0, 0, 0, 0.076, 1.6875389974302382e-17, 0, 0, -1.6875389974302382e-17, 0.076, 0, 0.49, 0.034, 0.11, 1,
     ]);
     processSceneNodes(gltfUrl, gltfTransform, 'VHF_Kidney_L_Low1').then((results) => {
       console.log('results', results);
       console.log('data', data);
-      // data = Object.values(results);
       data = data.concat(Object.values(results));
       data.push({
         '@id': 'TEST',
@@ -176,7 +171,6 @@ export class BodyUI {
         scenegraphNode: 'VHF_Kidney_R_Low',
         transformMatrix: gltfTransform,
         color: [255, 255, 255, 200],
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         _lighting: 'pbr',
         zoomBasedOpacity: false,
       });

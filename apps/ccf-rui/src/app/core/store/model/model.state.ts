@@ -469,7 +469,7 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
         if (!asLookup[iri]) {
           asLookup[iri] = {
             id: entity.representation_of ?? entity['@id'],
-            name: entity.label!,
+            name: entity.label ?? '',
             visible: true,
             opacity: 20,
             tooltip: entity.comment,
@@ -489,7 +489,7 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
           sortBy(
             set.extractionSites.map((entity) => ({
               id: entity['@id'],
-              name: entity.label!,
+              name: entity.label ?? '',
               visible: true,
               opacity: 0,
               tooltip: entity.comment,

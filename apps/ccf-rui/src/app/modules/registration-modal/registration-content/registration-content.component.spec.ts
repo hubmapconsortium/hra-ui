@@ -10,6 +10,7 @@ import { RegistrationContentComponent } from './registration-content.component';
 import { RegistrationContentModule } from './registration-content.module';
 
 describe('RegistrationContentComponent', () => {
+  const registrationContentSelector = '.registration-button';
   let shallow: Shallow<RegistrationContentComponent>;
   const mockModelState = jasmine.createSpyObj<ModelState>('ModelState', [
     'setViewType',
@@ -61,7 +62,6 @@ describe('RegistrationContentComponent', () => {
 
   it('should set the appropriate organ', async () => {
     const { instance } = await shallow.render();
-    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     const testOrgan = { src: 'test', name: 'test', organ: 'test' } as OrganInfo;
     instance.organSelect(testOrgan);
     expect(instance.currentOrgan).toBe(testOrgan);
@@ -73,7 +73,7 @@ describe('RegistrationContentComponent', () => {
     instance.organSelected = true;
     instance.nameValid = true;
     const spy = spyOn(instance, 'closeDialog');
-    find('.registration-button').triggerEventHandler('click', '');
+    find(registrationContentSelector).triggerEventHandler('click', '');
     expect(spy).toHaveBeenCalled();
   });
 
@@ -81,7 +81,7 @@ describe('RegistrationContentComponent', () => {
     const { find, instance } = await shallow.render();
     instance.organSelected = false;
     const spy = spyOn(instance, 'closeDialog');
-    find('.registration-button').triggerEventHandler('click', '');
+    find(registrationContentSelector).triggerEventHandler('click', '');
     expect(spy).toHaveBeenCalledTimes(0);
   });
 
@@ -89,7 +89,7 @@ describe('RegistrationContentComponent', () => {
     const { find, instance } = await shallow.render();
     instance.nameValid = true;
     const spy = spyOn(instance, 'closeDialog');
-    find('.registration-button').triggerEventHandler('click', '');
+    find(registrationContentSelector).triggerEventHandler('click', '');
     expect(spy).toHaveBeenCalledTimes(0);
   });
 
@@ -100,7 +100,6 @@ describe('RegistrationContentComponent', () => {
   });
 
   it('prevents default', async () => {
-    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     const mockEvent = {
       preventDefault: () => undefined,
     } as MouseEvent;

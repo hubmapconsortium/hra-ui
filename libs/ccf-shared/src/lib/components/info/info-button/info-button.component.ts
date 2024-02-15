@@ -61,7 +61,7 @@ export class InfoButtonComponent implements OnDestroy {
    * Opens the info dialogue with the project details
    */
   launchInfoDialog(data: PanelData): void {
-    if (this.dialog.openDialogs.length == 0) {
+    if (this.dialog.openDialogs.length === 0) {
       //Prevent multiple dialogs from opening
       this.dialog.open(InfoDialogComponent, {
         autoFocus: false,

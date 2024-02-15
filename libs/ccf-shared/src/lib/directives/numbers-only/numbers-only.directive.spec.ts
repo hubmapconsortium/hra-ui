@@ -4,6 +4,7 @@ import { NumberDirective } from './numbers-only.directive';
 import { NumbersOnlyModule } from './numbers-only.module';
 
 describe('NumbersOnlyDirective', () => {
+  const template = '<input ccfNumbersOnly>';
   let shallow: Shallow<NumberDirective>;
 
   beforeEach(() => {
@@ -11,7 +12,7 @@ describe('NumbersOnlyDirective', () => {
   });
 
   it('should not accept letters in input', async () => {
-    const { element } = await shallow.render('<input ccfNumbersOnly>');
+    const { element } = await shallow.render(template);
     const input = element.nativeElement as HTMLInputElement;
     input.value = 'test';
     element.triggerEventHandler('input', {
@@ -25,7 +26,7 @@ describe('NumbersOnlyDirective', () => {
   });
 
   it('should not accept symbols in input', async () => {
-    const { element } = await shallow.render('<input ccfNumbersOnly>');
+    const { element } = await shallow.render(template);
     const input = element.nativeElement as HTMLInputElement;
     input.value = '!@#$%$^&*(';
     element.triggerEventHandler('input', {
@@ -39,7 +40,7 @@ describe('NumbersOnlyDirective', () => {
   });
 
   it('should accept numbers in input', async () => {
-    const { element } = await shallow.render('<input ccfNumbersOnly>');
+    const { element } = await shallow.render(template);
     const input = element.nativeElement as HTMLInputElement;
     input.value = '1234567890';
     element.triggerEventHandler('input', {

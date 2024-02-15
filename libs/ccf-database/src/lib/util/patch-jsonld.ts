@@ -1,12 +1,13 @@
 import { Context, JsonLd } from 'jsonld/jsonld-spec';
 
-/* eslint-disable @typescript-eslint/naming-convention */
+const basePurlUrl = 'http://purl.org/ccf/';
+
 /** CCF v2.0 JSON-LD Context */
 const CCF_CONTEXT: JsonLd = {
   '@context': {
-    '@base': 'http://purl.org/ccf/',
-    '@vocab': 'http://purl.org/ccf/',
-    ccf: 'http://purl.org/ccf/',
+    '@base': basePurlUrl,
+    '@vocab': basePurlUrl,
+    ccf: basePurlUrl,
     rdfs: 'http://www.w3.org/2000/01/rdf-schema#',
     dcterms: 'http://purl.org/dc/terms/',
     label: 'rdfs:label',
