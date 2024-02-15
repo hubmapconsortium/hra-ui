@@ -52,5 +52,5 @@
       }
     }
   },
-  "tags": ["ccf"]
+  "tags": ["ccf", "karma-test-runner"]
 }
