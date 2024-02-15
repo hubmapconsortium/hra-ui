@@ -24,6 +24,10 @@ import { DrawerComponent } from './shared/components/drawer/drawer/drawer.compon
 @NgModule()
 class EmptyModule {}
 
+function collapseWhitespaces(value: string | undefined | null): string | undefined {
+  return value?.trim().replace(/\s+/, ' ');
+}
+
 describe('AppComponent', () => {
   let shallow: Shallow<AppComponent>;
   let left: jasmine.SpyObj<DrawerComponent>;
@@ -153,19 +157,19 @@ describe('AppComponent', () => {
   it('should display the current sex', async () => {
     const { find } = await shallow.render();
     const label = find('.filter-text .sex').nativeElement as HTMLElement;
-    expect(label.textContent).toBe('Sex: Both');
+    expect(collapseWhitespaces(label.textContent)).toBe('Sex: Both');
   });
 
   it('should display the current age range', async () => {
     const { find } = await shallow.render();
     const label = find('.filter-text .age').nativeElement as HTMLElement;
-    expect(label.textContent).toBe('Age: 5-99');
+    expect(collapseWhitespaces(label.textContent)).toBe('Age: 5-99');
   });
 
   it('should display the current BMI range', async () => {
     const { find } = await shallow.render();
     const label = find('.filter-text .bmi').nativeElement as HTMLElement;
-    expect(label.textContent).toBe('BMI: 30-80');
+    expect(collapseWhitespaces(label.textContent)).toBe('BMI: 30-80');
   });
 
   it('should set this.url to the passed in url when openiFrameViewer is called', async () => {
