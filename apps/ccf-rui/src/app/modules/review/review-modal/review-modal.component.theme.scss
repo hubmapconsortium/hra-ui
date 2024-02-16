@@ -1,0 +1,30 @@
+@use '@angular/material' as mat;
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $primary: map-get($color-config, primary);
+  $background: map-get($color-config, background);
+  $foreground: map-get($color-config, foreground);
+  $accent: map-get($color-config, accent);
+
+  .ccf-review-modal {
+    background-color: mat.get-color-from-palette($background, background);
+    mat-dialog-content {
+      color: mat.get-color-from-palette($foreground, text);
+    }
+
+    .footer {
+      .download-button {
+        background-color: mat.get-color-from-palette($foreground, active-icon);
+        color: mat.get-color-from-palette($foreground, sidebar-dividers);
+        border: 1px solid mat.get-color-from-palette($foreground, active-icon);
+
+        &:hover {
+          background-color: mat.get-color-from-palette($foreground, sidebar-dividers);
+          color: mat.get-color-from-palette($foreground, active-icon);
+          border: 1px solid mat.get-color-from-palette($foreground, active-icon);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>HuBMAP CCF Organ Info Component</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet" />
+  </head>
+
+  <body class="mat-typography">
+    <ccf-organ-info
+      organ-iri="http://purl.obolibrary.org/obo/UBERON_0002113"
+      use-remote-api="true"
+      highlight-providers="TMC-Vanderbilt"
+    ></ccf-organ-info>
+
+    <!-- <ccf-organ-info
+    organ-iri="http://purl.obolibrary.org/obo/UBERON_0004538"
+    hubmap-data-service="search-api"
+    hubmap-portal-url="https://portal.hubmapconsortium.org/"
+    hubmap-data-url="https://search.api.hubmapconsortium.org/v3/entities/search"
+    hubmap-asset-url="https://assets.hubmapconsortium.org"
+    highlight-providers="TMC-Vanderbilt"
+  ></ccf-organ-info> -->
+  </body>
+</html>

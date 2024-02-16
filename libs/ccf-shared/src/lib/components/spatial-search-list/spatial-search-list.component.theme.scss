@@ -1,0 +1,39 @@
+@use '@angular/material' as mat;
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $primary: map-get($color-config, primary);
+  $background: map-get($color-config, background);
+  $foreground: map-get($color-config, foreground);
+  $accent: map-get($color-config, accent);
+
+  .ccf-spatial-search-list {
+    .label {
+      color: mat.get-color-from-palette($primary, text);
+    }
+
+    .item .item-content {
+      .description {
+        color: mat.get-color-from-palette($primary, text);
+      }
+
+      .delete {
+        color: mat.get-color-from-palette($foreground, contrast-icon);
+        background-color: transparent;
+
+        &:hover {
+          background-color: map-get($background, icon-background-hover2);
+        }
+      }
+    }
+
+    .mdc-checkbox__background {
+      border-color: mat.get-color-from-palette($foreground, contrast-icon) !important;
+    }
+
+    .mat-mdc-checkbox-checked.mat-accent .mdc-checkbox__background {
+      border-color: mat.get-color-from-palette($accent) !important;
+      background-color: mat.get-color-from-palette($accent) !important;
+    }
+  }
+}

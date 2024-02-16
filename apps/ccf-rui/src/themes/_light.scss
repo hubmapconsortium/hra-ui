@@ -1,0 +1,142 @@
+@use '@angular/material' as mat;
+
+@use 'common/utility';
+
+$primary-colors: utility.add-colors(
+  mat.$gray-palette,
+  (
+    'white': white,
+    'black': black,
+    light-header: #444a65,
+    light-disabled: #e0e0e0,
+
+    contrast: (
+      'white': black,
+      'black': white,
+      light-header: mat.$private-dark-primary-text,
+      light-disabled: mat.$private-dark-primary-text,
+    ),
+  )
+);
+
+$primary: mat.define-palette($primary-colors, $text: 900);
+$accent: mat.define-palette(mat.$blue-palette, 700);
+$warn: mat.define-palette(mat.$red-palette);
+
+$foreground: map-merge(
+  mat.$light-theme-foreground-palette,
+  (
+    active-icon: map-get(mat.$blue-palette, 700),
+    app-bar-shadow: map-get($primary-colors, light-header),
+    contrast-icon: map-get($primary-colors, 500),
+    // #9E9E9E (icons on light background)
+    contrast-text: map-get($primary-colors, 500),
+    // #9E9E9E (text on dark background)
+    disabled: map-get($primary-colors, light-disabled),
+    // #E0E0E0
+    disabled-text: #cccccc,
+    divider: map-get($primary-colors, 600),
+    // #757575
+    header-border: map-get($primary-colors, 800),
+    // #424242
+    icon: map-get($primary-colors, 500),
+    // #9E9E9E
+    carousel-arrow: map-get($primary-colors, 500),
+    // #9E9E9E
+    info-icon: map-get($primary-colors, 'white'),
+    legend-contrast: #992661,
+    // Not in any builtin palettes
+    logo: #8289a3,
+    placeholder-text: map-get($primary-colors, 600),
+    // #757575
+    scrollbar-thumb: #cdcdcd,
+    // Can't find this color in any builtin palettes!?
+    secondary-text: map-get($primary, 500),
+    // #9E9E9E
+    sidebar-dividers: map-get($primary-colors, 'white'),
+    slider-blue: map-get(mat.$blue-palette, A400),
+    // #2979FF
+    slider-green: map-get(mat.$green-palette, A700),
+    // #00C853
+    slider-red: map-get(mat.$red-palette, A700),
+    // #D50000
+    slider-blue-light: map-get(mat.$blue-palette, A100),
+    slider-green-light: map-get(mat.$green-palette, A200),
+    slider-red-light: map-get(mat.$red-palette, A100),
+    text: map-get($primary-colors, 900),
+    // #212121
+    modal-borders: map-get($primary-colors, 'black'),
+    borders: map-get($primary-colors, 300),
+    // #E0E0E0
+    button-text: map-get($accent, 700),
+    button-border: map-get($primary-colors, 'black'),
+    button-background: map-get($primary-colors, light-header),
+    button-background-hover: #2f3346,
+    headers: map-get($primary-colors, 300),
+    // #E0E0E0
+    search-result-text: map-get($primary-colors, 600),
+    // #757575
+    download-icon: map-get($primary-colors, 600),
+    // #757575
+    highlight: map-get($primary-colors, 'black'),
+    chip-icon-block-primary: map-get($primary-colors, light-header),
+    chip-icon-done-green: map-get(mat.$green-palette, A700),
+    chip-icon-background: #e9e9e9,
+    chip-border-primary: map-get($primary-colors, light-header),
+    toggle-thumb: map-get($primary-colors, light-header),
+    toggle-bg: #ececec,
+    mat-divider: rgba(0, 0, 0, 0.03),
+    main: #444a65,
+    opacity-numbers: #cccccc,
+    icons-disabled: #cccccc,
+    icons-hover: #eeeeee,
+    organ-off: #cccccc,
+    carousel-text: map-get($primary-colors, 'black'),
+    icon-active: #f5f5f5,
+    donor-sex-toggle-nob: map-get($primary-colors, light-header),
+    donor-sex-bg: #cccccc,
+    inactive-sex: #636363,
+    active-sex: #212121,
+  )
+);
+
+$background: map-merge(
+  mat.$light-theme-background-palette,
+  (
+    app-bar: map-get($primary-colors, light-header),
+    // #444A65
+    background: map-get($primary-colors, 'white'),
+    card: map-get($primary-colors, 'white'),
+    content-background: map-get($primary-colors, 'black'),
+    legend-background: map-get($primary-colors, 'white'),
+    modal: map-get($primary-colors, 'white'),
+    sidebar-background: map-get($primary-colors, 'white'),
+    stage-background: map-get($primary-colors, 'black'),
+    hover-background: map-get($primary-colors, 100),
+    // #E0E0E0
+    dialog: map-get($primary-colors, 50),
+    // #FAFAFA
+    authentication: map-get($primary-colors, 50),
+    // #FAFAFA
+    dropdown-menu: map-get($primary-colors, 300),
+    // #E0E0E0
+    dropdown-hover: map-get($primary-colors, 300),
+    // #E0E0E0
+    image-placeholder: map-get($primary-colors, light-disabled),
+    // #BDBDBD
+    drawer-background: map-get($primary-colors, 'white'),
+    drawer-hover: map-get($primary-colors, 300),
+    info-button-hover: map-get($primary-colors, 300),
+  )
+);
+
+$theme: (
+  is-dark: false,
+  color: (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+    foreground: $foreground,
+    background: $background,
+  ),
+);

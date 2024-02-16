@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  height: calc(100% - 5.5rem);
+  z-index: 2;
+  overflow: auto;
+
+  &.cff-drawer-content-animations {
+    transition: {
+      duration: 0.5s;
+      timing-function: ease-in-out;
+      property: margin-left, margin-right;
+    }
+  }
+}

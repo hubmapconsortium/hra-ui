@@ -47,6 +47,10 @@
               {
                 "sourceTag": "shared",
                 "onlyDependOnLibsWithTags": ["utils", "shared"]
+              },
+              {
+                "sourceTag": "ccf",
+                "onlyDependOnLibsWithTags": ["*"]
               }
             ]
           }

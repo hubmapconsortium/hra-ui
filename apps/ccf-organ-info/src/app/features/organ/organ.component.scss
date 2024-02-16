@@ -1,0 +1,16 @@
+:host {
+  display: block;
+  background-color: black;
+  border-radius: 0.5rem;
+  color: white;
+  height: 100%;
+
+  .body-ui {
+    height: 90%;
+  }
+
+  .stage-options {
+    padding: 1rem;
+    min-width: 352px;
+  }
+}

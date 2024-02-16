@@ -1,0 +1,28 @@
+.filter-label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  text-wrap: nowrap;
+}
+
+.options-container {
+  display: flex;
+  flex-wrap: wrap;
+
+  .option {
+    display: flex;
+    height: 2rem;
+    align-items: center;
+  }
+
+  &.three {
+    .option {
+      width: 14.375rem;
+    }
+  }
+
+  &.five {
+    .option {
+      width: 20%;
+    }
+  }
+}

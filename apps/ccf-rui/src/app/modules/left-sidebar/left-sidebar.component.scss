@@ -1,0 +1,103 @@
+:host {
+  display: block;
+  height: calc(100% - 2.5rem);
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+
+  .scroll-wrapper {
+    overflow-y: scroll;
+    height: 100%;
+    margin-right: 0.375rem;
+
+    scrollbar-width: thin;
+    &::-webkit-scrollbar {
+      width: 0.75rem;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      margin-left: 1.5rem;
+      margin-right: 0.375rem;
+      min-height: 100%;
+
+      mat-divider {
+        border-top-width: 3px;
+      }
+
+      .ccf-organ-selector {
+        margin-top: 1.5rem;
+      }
+
+      .organ-sliders {
+        .slider-label {
+          font-weight: 600;
+        }
+
+        display: flex;
+        height: 3rem;
+        align-items: center;
+      }
+
+      mat-expansion-panel {
+        box-shadow: none;
+        mat-expansion-panel-header {
+          .expansion-title {
+            font-size: 1rem;
+            font-weight: 600;
+          }
+        }
+      }
+
+      ::ng-deep .mat-expansion-panel-body {
+        padding: 0;
+      }
+
+      .extraction-menu,
+      .anatomical-structures-menu {
+        ::ng-deep .expansion-header {
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          padding: 0;
+          font-weight: bold;
+          height: 3rem;
+
+          .mat-expansion-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 24px;
+            width: 24px;
+          }
+        }
+
+        .expansion-content {
+          margin-bottom: 0.75rem;
+          text-align: center;
+          margin-top: 1.75rem;
+
+          .expansion-placeholder {
+            width: 100%;
+            font-size: 0.9rem;
+            font-weight: 400;
+          }
+        }
+      }
+
+      .extraction-site-tooltip {
+        position: absolute;
+        top: 4rem;
+        left: 27rem;
+        width: 21rem;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid;
+        z-index: 2;
+      }
+    }
+  }
+
+  .filler {
+    flex-grow: 1;
+  }
+}

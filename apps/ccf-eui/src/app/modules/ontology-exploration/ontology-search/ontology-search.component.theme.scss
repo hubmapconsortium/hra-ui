@@ -1,0 +1,37 @@
+@use '@angular/material' as mat;
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $primary: map-get($color-config, primary);
+  $background: map-get($color-config, background);
+  $foreground: map-get($color-config, foreground);
+  $accent: map-get($color-config, accent);
+
+  .ccf-ontology-search {
+    &.detached {
+      border-color: mat.get-color-from-palette($foreground, divider) !important;
+      background-color: mat.get-color-from-palette($background, modal);
+
+      mat-option {
+        color: mat.get-color-from-palette($foreground, search-result-text);
+      }
+    }
+    .input::placeholder {
+      color: mat.get-color-from-palette($foreground, search-result-text) !important;
+    }
+
+    .input {
+      color: mat.get-color-from-palette($foreground, text);
+    }
+
+    .mat-mdc-text-field-wrapper {
+      background-color: mat.get-color-from-palette($background, modal);
+    }
+
+    .mat-form-field-appearance-outline {
+      .mdc-notched-outline {
+        color: mat.get-color-from-palette($foreground, divider);
+      }
+    }
+  }
+}

@@ -1,0 +1,130 @@
+:host {
+  display: block;
+  height: calc(100% - 2.5rem);
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+
+  .info-button-container {
+    height: 3.75rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .scroll-wrapper {
+    overflow-y: scroll;
+    height: calc(100% - 6rem);
+
+    scrollbar-width: thin;
+    &::-webkit-scrollbar {
+      width: 0.75rem;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      margin: 0 1.5rem;
+
+      .review-button {
+        position: absolute;
+        bottom: 1.5rem;
+        z-index: 999;
+        width: calc(100% - 3.5rem);
+      }
+
+      mat-divider {
+        border-top-width: 3px;
+      }
+
+      mat-expansion-panel {
+        box-shadow: none;
+
+        mat-expansion-panel-header {
+          padding: 0 0.5rem 0 0;
+          font-weight: bold;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          font-size: 1rem;
+          height: 3rem;
+        }
+
+        ::ng-deep .mat-expansion-panel-body {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+
+      .tags-container {
+        // Allow tag search to overflow when displaying results
+        overflow: visible;
+
+        ::ng-deep .mat-expansion-panel-body {
+          padding-left: 0;
+          padding-right: 0;
+        }
+
+        .header {
+          height: 3rem;
+        }
+
+        .search {
+          margin-top: 1rem;
+
+          .icon.add {
+            position: absolute;
+            // Sizes and offsets found by experimentation
+            width: 3.625rem;
+            height: 3.625rem;
+            font-size: 3.625rem;
+            top: -1.9375rem;
+            right: -1.1875rem;
+          }
+        }
+
+        .tag-list {
+          max-height: 32rem;
+          margin-left: -1rem;
+        }
+
+        .tag-list-placeholder {
+          display: flex;
+          height: 4rem;
+          align-items: center;
+          justify-content: center;
+          font-weight: 400;
+        }
+
+        .legend {
+          display: flex;
+          width: 100%;
+          margin-top: 1.5rem;
+          align-items: center;
+          font-size: 0.9rem;
+
+          .dot {
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+
+            &.assigned {
+              margin-left: 0.5rem;
+            }
+
+            &.added {
+              margin-left: 1rem;
+            }
+          }
+
+          .text {
+            margin-left: 0.5rem;
+          }
+        }
+      }
+
+      .filler {
+        flex-grow: 1;
+      }
+    }
+  }
+}

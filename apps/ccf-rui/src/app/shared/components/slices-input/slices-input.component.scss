@@ -1,0 +1,75 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    height: 1.5rem;
+    padding: 0.5rem 0;
+
+    .title {
+      font-weight: 400;
+    }
+
+    .refresh {
+      transform: scaleX(-1);
+      cursor: pointer;
+      transition: 0.6s;
+
+      &:hover {
+        border-radius: 2px;
+      }
+    }
+  }
+
+  .slices-inputs {
+    display: flex;
+    justify-content: space-between;
+    width: 20rem;
+    margin: 0 auto;
+
+    .field {
+      width: 9rem;
+
+      &:not(:last-child) {
+        padding-right: 0.75rem;
+      }
+
+      .input {
+        text-align: center;
+      }
+
+      .suffix {
+        display: none;
+      }
+
+      &.mat-focused .suffix,
+      .suffix.show {
+        display: initial;
+      }
+
+      ::ng-deep .mdc-text-field {
+        padding: 0;
+
+        .mat-mdc-form-field-infix {
+          padding-bottom: 0;
+          min-height: inherit;
+        }
+
+        .mat-mdc-form-field-icon-suffix {
+          padding: 1.5rem 0 0 0;
+        }
+      }
+    }
+  }
+
+  .filler {
+    flex-grow: 1;
+  }
+}
