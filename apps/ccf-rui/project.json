@@ -86,6 +86,15 @@
               "maximumError": "10kb"
             }
           ]
+        },
+        "preview": {
+          "baseHref": "/apps/ccf-rui/",
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
         }
       },
       "defaultConfiguration": ""

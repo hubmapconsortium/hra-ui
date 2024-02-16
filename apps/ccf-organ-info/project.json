@@ -80,6 +80,15 @@
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
+        },
+        "preview": {
+          "baseHref": "/apps/ccf-organ-info/",
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
         }
       },
       "defaultConfiguration": "production"
