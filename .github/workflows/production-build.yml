@@ -1,4 +1,4 @@
-name: Staging Build
+name: Production Build
 
 on:
   workflow_run:
