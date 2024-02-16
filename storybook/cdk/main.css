@@ -4346,13 +4346,13 @@ html {
   --mat-fab-state-layer-color: var(--palette-warn-contrast-500);
 }
 
-.mat-mdc-icon-button.mat-primary, .isDarkTheme .mat-mdc-icon-button.mat-primary {
+html .mat-mdc-icon-button.mat-primary, .isDarkTheme .mat-mdc-icon-button.mat-primary {
   --mat-icon-button-ripple-color: rgba(var(--palette-primary-500-no-rgb), 0.1);
 }
-.mat-mdc-icon-button.mat-accent, .isDarkTheme .mat-mdc-icon-button.mat-accent {
+html .mat-mdc-icon-button.mat-accent, .isDarkTheme .mat-mdc-icon-button.mat-accent {
   --mat-icon-button-ripple-color: rgba(var(--palette-accent-500-no-rgb), 0.1);
 }
-.mat-mdc-icon-button.mat-warn, .isDarkTheme .mat-mdc-icon-button.mat-warn {
+html .mat-mdc-icon-button.mat-warn, .isDarkTheme .mat-mdc-icon-button.mat-warn {
   --mat-icon-button-ripple-color: rgba(var(--palette-warn-500-no-rgb), 0.1);
 }
 
