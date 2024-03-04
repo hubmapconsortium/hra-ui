@@ -107,6 +107,10 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         disabled: true,
       },
       {
+        menuName: 'Functional Tissue Unit Explorer',
+        url: 'https://apps.humanatlas.io/ftu-explorer/#/',
+      },
+      {
         menuName: 'Organ Gallery in VR',
         route: 'organ-gallery-in-vr',
       },
