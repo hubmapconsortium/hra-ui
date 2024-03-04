@@ -40,6 +40,11 @@
       body: An interactive tool for exploring and validating spatially registered tissue blocks and cell type populations
       route: exploration-user-interface
       alt: Exploration user interface icon
+    - icon: assets/images/ftu_explorer.svg
+      title: Functional Tissue Unit Explorer
+      body: An interactive tool for exploring functional tissue units (FTUs) via cell types by gene, protein, and lipid biomarkers
+      externalLink: https://apps.humanatlas.io/ftu-explorer/#/
+      alt: Functional Tissue Unit Explorer icon
     - icon: assets/images/vr_gallery.svg
       title: Organ Gallery in VR
       body: An immersive application that allows users to explore 3D reference organs, anatomical structures, and cell types in virtual reality
