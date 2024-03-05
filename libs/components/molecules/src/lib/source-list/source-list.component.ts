@@ -1,32 +1,83 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { SelectionModel } from '@angular/cdk/collections';
 import { CommonModule } from '@angular/common';
-import { MatTableModule } from '@angular/material/table';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { EmptyBiomarkerComponent, LabelBoxComponent } from '@hra-ui/components/atoms';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 /** SourceListItem interface contains title and link to the dataset for the SourceList*/
 export interface SourceListItem {
+  authors?: string;
+  year?: number;
   /** Title of the dataset in the SourceList */
-  title: string;
+  title?: string;
+  doi?: string;
 
   /** Label of the dataset in the SourceList */
-  label: string;
+  label?: string;
 
   /** Link to the dataset in the SourceList */
   link: string;
 }
 
+const testSources: SourceListItem[] = [
+  {
+    authors: 'aaaaaaaaaa',
+    year: 2020,
+    title: 'aaaaa',
+    doi: 'sdfaefj',
+    label: 'label',
+    link: 'aaaaaaa',
+  },
+  {
+    authors: 'bbbbbbb',
+    year: 2017,
+    title: 'b sg',
+    doi: '6475tr',
+    label: 'hierafskd',
+    link: 'peptperfggr',
+  },
+  {
+    authors: 'ccccccccc',
+    year: 44444,
+    title: 'fewhfskljeg',
+    doi: '86u79508603573957',
+    label: 'mcvlkfgmnwjeryhfvui',
+    link: 'uthykjednflkhl',
+  },
+];
+
 /** This component shows list of sources with title and links to the datasets */
 @Component({
   selector: 'hra-source-list',
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatIconModule, LabelBoxComponent, EmptyBiomarkerComponent],
+  imports: [
+    CommonModule,
+    MatTableModule,
+    MatIconModule,
+    MatSortModule,
+    LabelBoxComponent,
+    EmptyBiomarkerComponent,
+    MatCheckboxModule,
+  ],
   templateUrl: './source-list.component.html',
   styleUrls: ['./source-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SourceListComponent {
+export class SourceListComponent implements OnChanges {
   /** List of sources with titles and links displayed to the user */
   @Input() sources: SourceListItem[] = [];
   /**
@@ -44,11 +95,27 @@ export class SourceListComponent {
    */
   showTable = true;
 
+  selection = new SelectionModel<SourceListItem>(true, []);
+
+  dataSource = new MatTableDataSource<SourceListItem>();
+
+  displayedColumns: string[] = ['select', 'authors', 'year', 'title', 'doi', 'link'];
+
   /** Emits when the contact button is clicked */
   @Output() readonly collaborateClick = new EventEmitter<void>();
 
+  @ViewChild(MatSort) sort: MatSort;
+
   /** Google analytics tracking service */
   private readonly ga = inject(GoogleAnalyticsService);
+
+  ngOnChanges(changes: SimpleChanges) {
+    if ('sources' in changes) {
+      this.sources = testSources;
+      this.dataSource = new MatTableDataSource<SourceListItem>(this.sources);
+      this.dataSource.sort = this.sort;
+    }
+  }
 
   /**
    * It changes the value of showTable to false if value it true
@@ -65,5 +132,22 @@ export class SourceListComponent {
    */
   sourceLinkClicked(item: SourceListItem): void {
     this.ga.event('source_link_clicked', 'link_click', item.link);
+  }
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  toggleAllRows() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      return;
+    }
+
+    this.selection.select(...this.dataSource.data);
   }
 }
