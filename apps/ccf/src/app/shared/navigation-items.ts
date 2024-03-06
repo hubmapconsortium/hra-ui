@@ -146,7 +146,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         disabled: true,
       },
       {
-        menuName: 'HRA Standard Operating Procedures',
+        menuName: 'Standard Operating Procedures',
         route: 'standard-operating-procedures',
         disabled: true,
       },
@@ -155,22 +155,9 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         url: 'https://docs.google.com/document/d/1I4gFPY47EBKEIDQ-hWTcxCUsGRxL7yJqKfCvlQAQe5Y/edit#heading=h.6n4dk68tke9a',
       },
       {
-        menuName: 'Kaggle #1: HuBMAP - Hacking the Kidney',
-        route: 'kaggle-one',
-        disabled: true,
-      },
-      {
-        menuName: 'Kaggle #2: HuBMAP + HPA - Hacking the Human Body',
-        route: 'kaggle-two',
-        disabled: true,
-      },
-      {
-        menuName: 'Kaggle #3: HuBMAP - Hacking the Human Vasculature',
-        url: 'https://www.kaggle.com/competitions/hubmap-hacking-the-human-vasculature',
-      },
-      {
-        menuName: '24 Hour Human Reference Atlas Event',
-        url: 'https://humanatlas.io/events/2022-24h/',
+        menuName: 'Outreach',
+        route: 'overview-training-outreach',
+        fragment: 'outreach',
       },
       {
         menuName: 'Release Notes',
