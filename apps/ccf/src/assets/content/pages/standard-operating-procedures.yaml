@@ -21,40 +21,41 @@
   pageData:
     - heading: Table of Contents
       descriptions: |
-        [Overview](https://docs.google.com/document/u/0/d/1oMPWB454auN-FTe7XVtxWk7SbJgWFtcS6LvOjgN89wA/edit)
+        <a href="https://docs.google.com/document/u/0/d/1oMPWB454auN-FTe7XVtxWk7SbJgWFtcS6LvOjgN89wA/edit" target="_blank">Overview</a>
 
-        [Introduction to Standard Operating Procedures](https://docs.google.com/document/u/0/d/1bHi61R2T2GqwgRGH2OtlimWtz2HL_5KyH5tQpzzH898/edit)
-        > [Managing SOPs](https://docs.google.com/document/d/1FNERIQqn8sZVfIaqtg5VKjoTfogmLAVNYIR5mM-4TjE/edit#heading=h.lpsf90jpnlzf)
+        <a href="https://docs.google.com/document/u/0/d/1bHi61R2T2GqwgRGH2OtlimWtz2HL_5KyH5tQpzzH898/edit" target="_blank">Introduction to Standard Operating Procedures</a>
 
-        >> [Section Overview Template](https://docs.google.com/document/u/0/d/18c9OZ8glq7Avgef9yuf5bzSMQ_p12EuxmPr0vW01Wck/edit)
+        > <a href="https://docs.google.com/document/d/1FNERIQqn8sZVfIaqtg5VKjoTfogmLAVNYIR5mM-4TjE/edit#heading=h.lpsf90jpnlzf" target="_blank">Managing SOPs</a>
 
-        >> [SOP Template](https://docs.google.com/document/d/1LxC74bJqpF7WuuxcensALPnmURcjxmt6DTm7F9xiJDU/edit#heading=h.lpsf90jpnlzf)
+        >> <a href="https://docs.google.com/document/u/0/d/18c9OZ8glq7Avgef9yuf5bzSMQ_p12EuxmPr0vW01Wck/edit" target="_blank">Section Overview Template</a>
 
-        > [Glossary](https://docs.google.com/document/d/1IBuPOt2mkPOOMF9vUsZk5HQ3vm9M7WjnlW-ZOMG6wSY/edit#)
+        >> <a href="https://docs.google.com/document/d/1LxC74bJqpF7WuuxcensALPnmURcjxmt6DTm7F9xiJDU/edit#heading=h.lpsf90jpnlzf" target="_blank">SOP Template</a>
+
+        > <a href="https://docs.google.com/document/d/1IBuPOt2mkPOOMF9vUsZk5HQ3vm9M7WjnlW-ZOMG6wSY/edit#" target="_blank">Glossary</a>
 
         > Design Style Guide
 
-        [3D Tissue Registration](https://docs.google.com/document/u/0/d/1l20H7brenvTh4Vomrns4SPZbqQxRnrnO7sOF3BtN2b4/edit)
+        <a href="https://docs.google.com/document/u/0/d/1l20H7brenvTh4Vomrns4SPZbqQxRnrnO7sOF3BtN2b4/edit" target="_blank">3D Tissue Registration</a>
 
-        > [Using the CCF Registration User Interface (RUI)](https://doi.org/10.5281/zenodo.5575776)
+        > <a href="https://doi.org/10.5281/zenodo.5575776" target="_blank">Using the CCF Registration User Interface (RUI)</a>
 
-        > [Assigning RUI Data to Multiple Tissue Blocks](https://doi.org/10.5281/zenodo.5746143)
+        > <a href="https://doi.org/10.5281/zenodo.5746143" target="_blank">Assigning RUI Data to Multiple Tissue Blocks</a>
 
-        > [Managing Human Reference Atlas (HRA) Registrations](https://zenodo.org/doi/10.5281/zenodo.10359228)
+        > <a href="https://zenodo.org/doi/10.5281/zenodo.10359228" target="_blank">Managing Human Reference Atlas (HRA) Registrations</a>
 
-        > [Constructing a Millitome and Generating Virtual Tissue Blocks](https://doi.org/10.5281/zenodo.7901004)
+        > <a href="https://doi.org/10.5281/zenodo.7901004" target="_blank">Constructing a Millitome and Generating Virtual Tissue Blocks</a>
 
-        > [Using a Millitome](https://doi.org/10.5281/zenodo.7382703)
+        > <a href="https://doi.org/10.5281/zenodo.7382703" target="_blank">Using a Millitome</a>
 
         Anatomical Structures and Cell-Type Segmentation
 
-        > [Manual Segmentation of Tissue](https://doi.org/10.5281/zenodo.5565027)
+        > <a href="https://doi.org/10.5281/zenodo.5565027" target="_blank">Manual Segmentation of Tissue</a>
 
         > Segmentation of Single Cells and Anatomical Structures
 
-        > [Running a Kaggle Competition](https://zenodo.org/doi/10.5281/zenodo.10019549)
+        > <a href="https://zenodo.org/doi/10.5281/zenodo.10019549" target="_blank">Running a Kaggle Competition</a>
 
-        [Anatomical Structures and their Cell Type Populations](https://docs.google.com/document/d/1QdM6neW2zAaQGY9CalGQkQh9ZURfiZM10eyPpoaWfAg/edit)
+        <a href="https://docs.google.com/document/d/1QdM6neW2zAaQGY9CalGQkQh9ZURfiZM10eyPpoaWfAg/edit" target="_blank">Anatomical Structures and their Cell Type Populations</a>
 
         > Computing Cell Type Populations From Single Cell Bulk Data (Cell by Gene Matrices)
 
@@ -64,7 +65,7 @@
 
         > Using Cell Type Population Data to Predict The Location or Biomolecular Composition of Tissue Blocks
 
-        [Vasculature Common Coordinate Framework](https://docs.google.com/document/d/1DNYeE7eQ0fGj-OSMQ5ccM2sLWqUg2BpEZwoG6l6aSvY/edit#heading=h.4ou04n97ttbd)
+        <a href="https://docs.google.com/document/d/1DNYeE7eQ0fGj-OSMQ5ccM2sLWqUg2BpEZwoG6l6aSvY/edit#heading=h.4ou04n97ttbd" target="_blank">Vasculature Common Coordinate Framework</a>
 
         > Creating Organ Vessel Maps
 
@@ -76,47 +77,47 @@
 
         > Computing Vessel Properties
 
-        > [Computing Cell Type to Vasculature Distance Distributions](https://zenodo.org/doi/10.5281/zenodo.10371472)
+        > <a href="https://zenodo.org/doi/10.5281/zenodo.10371472" target="_blank">Computing Cell Type to Vasculature Distance Distributions</a>
 
-        [Anatomical Structures, Cell Types, Plus Biomarkers (ASCT+B) Tables](https://docs.google.com/document/d/1oppBW06hfCUifii7LAI2MpaFED78atMx-r6ezyzPTqw/edit#heading=h.6ys5lo962o6b)
+        <a href="https://docs.google.com/document/d/1oppBW06hfCUifii7LAI2MpaFED78atMx-r6ezyzPTqw/edit#heading=h.6ys5lo962o6b" target="_blank">Anatomical Structures, Cell Types, Plus Biomarkers (ASCT+B) Tables</a>
 
-        > [Authoring ASCT+B Tables](https://doi.org/10.5281/zenodo.5746152)
+        > <a href="https://doi.org/10.5281/zenodo.5746152" target="_blank">Authoring ASCT+B Tables</a>
 
         > Authoring ASCT+B Tables Using The ASCT+B Generator Python Script
 
-        > [Construction of Organ Mapping Antibody Panels (OMAPs)](https://doi.org/10.5281/zenodo.5749882)
+        > <a href="https://doi.org/10.5281/zenodo.5749882" target="_blank">Construction of Organ Mapping Antibody Panels (OMAPs)</a>
 
-        >> [FAQ: Frequently Asked Questions (FAQ) for Organ Mapping Antibody Panels (OMAPs)](https://humanatlas.io/faq/omap)
+        >> <a href="https://humanatlas.io/faq/omap" target="_blank">FAQ: Frequently Asked Questions (FAQ) for Organ Mapping Antibody Panels (OMAPs)</a>
 
-        > [Constructing Antibody Validation Reports (AVRs)](https://doi.org/10.5281/zenodo.7418623)
+        > <a href="https://doi.org/10.5281/zenodo.7418623" target="_blank">Constructing Antibody Validation Reports (AVRs)</a>
 
-        >> [FAQ: Frequently Asked Questions (FAQ) for Antibody Validation Report (AVR)](https://software.docs.hubmapconsortium.org/avr/avr-faq.html)
+        >> <a href="https://software.docs.hubmapconsortium.org/avr/avr-faq.html" target="_blank">FAQ: Frequently Asked Questions (FAQ) for Antibody Validation Report (AVR)</a>
 
         > Creating Crosswalks Between ASCT+B Tables and Azimuth Reference Maps
 
         > Mapping Experimental Data to the HRA Using OMAPs or Azimuth
 
-        > [ASCT+B Table Communications](https://doi.org/10.5281/zenodo.5639622)
+        > <a href="https://doi.org/10.5281/zenodo.5639622" target="_blank">ASCT+B Table Communications</a>
 
-        [3D Reference Object Library](https://docs.google.com/document/d/1NOY6PsjGr1GDa39PZaTxoSvr0Ee4L8rW6lyYqNgyBC0/edit#heading=h.6ys5lo962o6b)
+        <a href="https://docs.google.com/document/d/1NOY6PsjGr1GDa39PZaTxoSvr0Ee4L8rW6lyYqNgyBC0/edit#heading=h.6ys5lo962o6b" target="_blank">3D Reference Object Library</a>
 
-        > [Creating 3D Models from Datasets](https://doi.org/10.5281/zenodo.7384275)
+        > <a href="https://doi.org/10.5281/zenodo.7384275" target="_blank">Creating 3D Models from Datasets</a>
 
         > Creating Crosswalks between ASCT+B Tables and 3D Reference Objects
 
-        > [3D Reference Object Approval](https://doi.org/10.5281/zenodo.5944196)
+        > <a href="https://doi.org/10.5281/zenodo.5944196" target="_blank">3D Reference Object Approval</a>
 
-        > [Adding 3D Reference Objects to the Human Reference Atlas](https://zenodo.org/doi/10.5281/zenodo.5639651)
+        > <a href="https://zenodo.org/doi/10.5281/zenodo.5639651" target="_blank">Adding 3D Reference Objects to the Human Reference Atlas</a>
 
         2D Functional Tissue Unit (FTU) Reference Object Library
 
-        > [Creating 2D Illustrations of Functional Tissue Units](https://doi.org/10.5281/zenodo.6703107)
+        > <a href="https://doi.org/10.5281/zenodo.6703107" target="_blank">Creating 2D Illustrations of Functional Tissue Units</a>
 
-        > [Style Guide: Human Reference Atlas 2D Functional Tissue Unit (FTU) Illustrations](https://doi.org/10.5281/zenodo.6703376)
+        > <a href="https://doi.org/10.5281/zenodo.6703376" target="_blank">Style Guide: Human Reference Atlas 2D Functional Tissue Unit (FTU) Illustrations</a>
 
-        > [Mapping Functional Tissue Unit Illustrations to ASTC+B Tables](https://zenodo.org/doi/10.5281/zenodo.5748154)
+        > <a href="https://zenodo.org/doi/10.5281/zenodo.5748154" target="_blank">Mapping Functional Tissue Unit Illustrations to ASTC+B Tables</a>
 
-        [Human Reference Atlas Validation and Review](https://docs.google.com/document/d/1zT_BTZ3v31juq0hhRMG2Ya36DdZp_9P5muyxWFdOyIU/edit)
+        <a href="https://docs.google.com/document/d/1zT_BTZ3v31juq0hhRMG2Ya36DdZp_9P5muyxWFdOyIU/edit" target="_blank">Human Reference Atlas Validation and Review</a>
 
         > Internal Validation of ASCT+B Tables, and 2D and 3D Reference Objects
 
@@ -130,13 +131,13 @@
 
         > <a href="https://zenodo.org/record/7577521#.Y9R0knbMJmM" target="_blank">HRA Editorial Procedures</a>
 
-        [Human Reference Atlas Tracking and Publication](https://docs.google.com/document/d/1ZlJV61GA60ZtWoCu8HE93fBPOxPootfAe-ggAzipWEM/edit#heading=h.6ys5lo962o6b)
+        <a href="https://docs.google.com/document/d/1ZlJV61GA60ZtWoCu8HE93fBPOxPootfAe-ggAzipWEM/edit#heading=h.6ys5lo962o6b" target="_blank">Human Reference Atlas Tracking and Publication</a>
 
         > Tracking Digital Object Status
 
         > Maintaining the HRA Portal and Designing Organ Icons
 
-        > [Registering Digital Object Identifiers](https://doi.org/10.5281/zenodo.7384461)
+        > <a href="https://doi.org/10.5281/zenodo.7384461" target="_blank">Registering Digital Object Identifiers</a>
 
         > Publishing CCF.OWL on BioPortal and OLS
 
