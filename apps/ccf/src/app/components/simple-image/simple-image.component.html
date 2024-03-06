@@ -6,7 +6,14 @@
     <div *ngIf="headerData" class="header-container">
       <div class="title-btn">
         <div>{{ headerData.title }}</div>
-        <ccf-use-button [buttonData]="headerData.buttonData"></ccf-use-button>
+        <a
+          mat-raised-button
+          disableRipple
+          href="{{ headerData.buttonData.url }}"
+          target="_blank"
+        >
+          {{ headerData.buttonData.text }}
+        </a>
       </div>
       <div class="header-subtitle">{{ headerData.subtitle }}</div>
     </div>

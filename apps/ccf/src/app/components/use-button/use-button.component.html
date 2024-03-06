@@ -4,6 +4,7 @@
   target="_blank"
   [attr.href]="buttonData.url"
   [attr.download]="buttonData.icon === 'download' ? '' : null"
+  disableRipple
 >
   <span *ngIf="buttonData.icon" class="material-symbols-outlined icon">{{
     buttonData.icon
