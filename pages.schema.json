@@ -280,6 +280,9 @@
                   "required": ["url", "plainButton", "dynamicButton"],
                   "additionalProperties": false
                 }
+              },
+              "styles": {
+                "$ref": "#/definitions/mySchema/items/anyOf/2/properties/styles"
               }
             },
             "required": ["type", "clipboardData"],

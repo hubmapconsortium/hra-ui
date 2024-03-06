@@ -185,6 +185,7 @@ export const CopyClipboard = z.object({
       }),
     })
     .array(),
+  styles: Styles.optional(),
 });
 
 /**

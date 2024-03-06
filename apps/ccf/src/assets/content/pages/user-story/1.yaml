@@ -30,27 +30,37 @@
 
         This website lets computational biologists annotate cell types in bulk or spatial data. The API combines biomarker expression profile and 3D location data, resulting in enhanced cell type prediction accuracy.
 
+- type: button
+  text: Use Demo Application
+  url: https://apps.humanatlas.io/us1/
+
+- type: margin
+  bottom: 5rem
+
 - type: player
   youtubePlayer:
-    height: 584
-    width: 1232
+    height: 311
+    width: 652
     videoId: KuZ_bwLHipM
     playerTitle: 'Demonstration: Improving Cell Type Annotations'
 
 - type: margin
-  bottom: 1rem
-
-- type: button
-  text: Use API Demonstration
-  url: https://apps.humanatlas.io/us1/
+  bottom: 5rem
 
 - type: page-data
   pageData:
     - heading: Demonstration Primary APIs
+      descriptions: ''
+  styles:
+    margin-bottom: unset
+
+- type: page-data
+  pageData:
+    - heading: ''
       descriptions: |
         Use an existing dataset to see how location information improves the accuracy of cell type predictions.
   styles:
-    margin-bottom: unset
+    margin-bottom: 2rem
 
 - type: copy-clipboard
   clipboardData:
@@ -62,18 +72,33 @@
       dynamicButton:
         label: Try Me
         url: https://apps.humanatlas.io/api/#post-/hra-pop/rui-location-cell-summary
+  styles:
+    display: block
+    margin-bottom: 1rem
+
+- type: margin
+  bottom: 2rem
 
 - type: button
   text: Open API Link
   url: https://apps.humanatlas.io/api/
 
+- type: margin
+  bottom: 5rem
+
 - type: page-data
   pageData:
     - heading: Demo Code
+      descriptions: ''
+  styles:
+    margin-bottom: unset
+- type: page-data
+  pageData:
+    - heading: ''
       descriptions: |
         Human Reference Atlas APIs are available freely on GitHub.
   styles:
-    margin-bottom: unset
+    margin-bottom: 2rem
 
 - type: button
   text: GitHub Repository

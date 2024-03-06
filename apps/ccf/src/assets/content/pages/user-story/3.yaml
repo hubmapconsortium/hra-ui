@@ -26,6 +26,20 @@
       descriptions: |
         Biomarker expression levels depend on demographic groups (e.g., sex, age) and assay types (bulk vs. spatial data). The enhanced Exploration User Interface (EUI) supports the study of biomarker expression across cell types and organs. Users can now filter data by anatomical structures, cell types, and biomarkers. The biomarker list includes genes, lipids, proteins, metabolites, and proteoforms.
 
+- type: styled-group
+  styles:
+    display: flex
+    gap: 2.5rem
+    margin-bottom: 3.25rem
+  components:
+    - type: button
+      text: Use Demo Application
+      url: https://apps.humanatlas.io/eui/
+
+    - type: button
+      text: Explore the EUI
+      url: https://portal.hubmapconsortium.org/ccf-eui
+
 - type: image
   imageSource: assets/images/us3.png
   alt: Image of US3 App
@@ -33,25 +47,21 @@
     width: 100%
 
 - type: margin
-  bottom: 1rem
-
-- type: styled-group
-  styles:
-    display: flex
-    gap: 1rem
-  class: use-btns-us3
-  components:
-    - type: button
-      text: Use API Demonstration
-      url: https://apps.humanatlas.io/eui/
+  bottom: 5rem
 
 - type: page-data
   pageData:
     - heading: Demonstration Primary APIs
+      descriptions: ''
+  styles:
+    margin-bottom: unset
+- type: page-data
+  pageData:
+    - heading: ''
       descriptions: |
         Use an existing dataset to see how location information improves the accuracy of cell type predictions.
   styles:
-    margin-bottom: unset
+    margin-bottom: 2rem
 
 - type: copy-clipboard
   clipboardData:
@@ -74,24 +84,37 @@
   text: Open API Link
   url: https://apps.humanatlas.io/hra-api/
 
+- type: margin
+  bottom: 5rem
+
 - type: page-data
   pageData:
     - heading: Demo Code
+      descriptions: ''
+  styles:
+    margin-bottom: unset
+
+- type: page-data
+  pageData:
+    - heading: ''
       descriptions: |
         Human Reference Atlas APIs are available freely on GitHub.
   styles:
-    margin-bottom: unset
+    margin-bottom: 2rem
 
 - type: button
   text: GitHub Repository
   url: https://github.com/x-atlas-consortia/hra-apps/tree/main/applications/eui-exploration-user-interface
 
+- type: margin
+  bottom: 5rem
+
 - type: simple-image
   imageData:
     - title: ''
       description: ''
-      image: assets/images/eui_features.png
-      imageDialog: assets/images/eui_features.png
+      image: assets/images/eui_features.svg
+      imageDialog: assets/images/eui_features.svg
       alt: A knowledge architecture image
   headerData:
     title: Exploration User Interface Features

@@ -1,7 +1,6 @@
 import { Component, Input, TemplateRef } from '@angular/core';
 import { CardHeader, ImageData } from './simple-image';
 import { MatDialog } from '@angular/material/dialog';
-import { UseButton } from '../use-button/use-button';
 
 /** Displays an image and image modal */
 @Component({
