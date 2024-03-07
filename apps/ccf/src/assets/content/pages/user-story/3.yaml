@@ -31,6 +31,7 @@
     display: flex
     gap: 2.5rem
     margin-bottom: 3.25rem
+    margin-top: -2rem
   components:
     - type: button
       text: Use Demo Application
@@ -54,7 +55,7 @@
     - heading: Demonstration Primary APIs
       descriptions: ''
   styles:
-    margin-bottom: unset
+    margin-bottom: -2rem
 - type: page-data
   pageData:
     - heading: ''
@@ -92,7 +93,7 @@
     - heading: Demo Code
       descriptions: ''
   styles:
-    margin-bottom: unset
+    margin-bottom: -2rem
 
 - type: page-data
   pageData:

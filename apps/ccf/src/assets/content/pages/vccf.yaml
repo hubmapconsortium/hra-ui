@@ -15,7 +15,7 @@
       emoji: '🎉'
 
 - type: margin
-  bottom: 2.5rem
+  bottom: 3.5rem
 
 - type: page-data
   pageData:
@@ -31,6 +31,9 @@
     - heading: HRA-VCCF Data Files
       descriptions: |
         The HRA-VCCF is available as comma-separated values in <a href="https://github.com/hubmapconsortium/hra-vccf" target="_blank">GitHub</a>.
+
+- type: margin
+  top: -3rem
 
 - type: download-ftu
   versions:
@@ -284,7 +287,7 @@
           dot: ASCT+B Table
 
 - type: margin
-  bottom: 3.5rem
+  bottom: 5rem
 
 - type: page-data
   pageData:

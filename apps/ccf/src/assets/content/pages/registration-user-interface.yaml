@@ -15,7 +15,7 @@
       emoji: '🎉'
 
 - type: margin
-  bottom: 2.5rem
+  bottom: 3.5rem
 
 - type: page-data
   pageData:
@@ -31,9 +31,14 @@
         current versions of the Common Coordinate Framework and on the
         <a href="https://hubmapconsortium.github.io/ccf-ui/">Exploration User Interface (EUI)</a> developed within HuBMAP.
 
+- type: margin
+  top: -3rem
+
 - type: button
   text: Use the Registration User Interface
   url: https://apps.humanatlas.io/rui/
+  styles:
+    margin-bottom: 5rem
 
 - type: sop-links
   sopData:
@@ -43,7 +48,7 @@
         href: https://doi.org/10.5281/zenodo.5575776
 
 - type: margin
-  bottom: 2.5rem
+  bottom: 5rem
 
 - type: player
   youtubePlayer:
@@ -53,7 +58,7 @@
     width: 1232
 
 - type: margin
-  bottom: 2.5rem
+  bottom: 5rem
 
 - type: page-data
   pageData:

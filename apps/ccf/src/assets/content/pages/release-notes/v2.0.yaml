@@ -100,12 +100,12 @@
               imageSource: assets/images/6th_release_intro.svg
               alt: HRA Release Calendar
               styles:
-                margin-bottom: 2rem
+                margin-bottom: 5rem
                 margin-top: 1rem
                 width: 100%
             - type: divider
               styles:
-                margin-bottom: 1rem
+                margin-bottom: 3rem
         - type: styled-group
           id: new-and-revised
           components:
@@ -131,9 +131,12 @@
             - type: button
               text: 6th Release Digital Objects
               url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/index.html
+              styles:
+                margin-bottom: 5rem
+                margin-top: -3rem
             - type: divider
               styles:
-                margin-bottom: 1rem
+                margin-bottom: 3rem
         - type: styled-group
           id: hra-interlinkage
           components:
@@ -148,10 +151,11 @@
               text: HuBMAP AVR Search
               url: https://avr.hubmapconsortium.org
               styles:
-                margin-top: -1rem
+                margin-bottom: 5rem
+                margin-top: -3rem
             - type: divider
               styles:
-                margin-bottom: 1rem
+                margin-bottom: 3rem
         - type: styled-group
           id: ontology-updates
           components:
@@ -176,10 +180,11 @@
               text: View the Heart
               url: http://purl.obolibrary.org/obo/UBERON_0000948
               styles:
-                margin-top: -1rem
+                margin-bottom: 5rem
+                margin-top: -3rem
             - type: divider
               styles:
-                margin-bottom: 1rem
+                margin-bottom: 3rem
         - type: styled-group
           id: use-hra
           components:
@@ -201,7 +206,7 @@
 
             - type: divider
               styles:
-                margin-bottom: 1rem
+                margin-bottom: 3rem
         - type: styled-group
           id: api-and-ui
           components:
@@ -268,12 +273,13 @@
                     A major new release with an improved pipeline and server infrastructure is now available!
             - type: button
               styles:
-                margin-bottom: 2rem
+                margin-bottom: 5rem
+                margin-top: -3rem
               text: HRA-KG 2.0
               url: https://lod.humanatlas.io
             - type: divider
               styles:
-                margin-bottom: 1rem
+                margin-bottom: 3rem
         - type: styled-group
           id: publications
           components:
@@ -296,7 +302,7 @@
 
             - type: divider
               styles:
-                margin-bottom: 1rem
+                margin-bottom: 3rem
 
         - type: styled-group
           id: human-atlas-stories
@@ -317,7 +323,8 @@
               imageSource: assets/images/hra_stories.svg
               alt: HRA ASCTB Reporter
               styles:
-                margin-bottom: 2rem
+                margin-bottom: 5rem
+                margin-top: -3rem
                 width: 100%
 
             - type: divider
@@ -328,7 +335,7 @@
           components:
             - type: page-data
               styles:
-                margin-bottom: unset
+                margin-bottom: 2rem
               pageData:
                 - heading: ''
                   descriptions: |
@@ -338,7 +345,7 @@
 
             - type: button
               styles:
-                margin-bottom: 1rem
+                margin-bottom: 2rem
                 text-decoration: none
               url: assets/images/hra-release-calendar.jpg
               text: Download JPG
@@ -348,18 +355,18 @@
               imageSource: assets/images/hra-release-calendar.svg
               alt: HRA ASCTB Reporter
               styles:
-                margin-bottom: 2rem
+                margin-bottom: 5rem
                 width: 100%
 
             - type: divider
               styles:
-                margin-bottom: 1rem
+                margin-bottom: 3rem
         - type: styled-group
           id: contact-us
           components:
             - type: page-data
               styles:
-                margin-bottom: unset
+                margin-bottom: 2rem
               pageData:
                 - heading: ''
                   descriptions: |

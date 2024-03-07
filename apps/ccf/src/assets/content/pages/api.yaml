@@ -17,7 +17,7 @@
       emoji: '🎉'
 
 - type: margin
-  bottom: 2.5rem
+  bottom: 3.5rem
 
 - type: page-data
   pageData:
@@ -61,6 +61,8 @@
 - type: button
   text: Use the Human Reference Atlas APIs
   url: https://apps.humanatlas.io/hra-api/
+  styles:
+    margin-bottom: 5rem
 
 - type: image
   imageSource: assets/images/api-interface.png

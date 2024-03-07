@@ -15,7 +15,7 @@
       emoji: '🎉'
 
 - type: margin
-  bottom: 2.5rem
+  bottom: 3.5rem
 
 - type: page-data
   pageData:
@@ -47,7 +47,7 @@
         href: https://zenodo.org/record/6703377
 
 - type: margin
-  bottom: 2.5rem
+  bottom: 5rem
 
 - type: title
   title: Functional Tissue Units
@@ -804,6 +804,9 @@
         SVG files may not display correctly until viewed in a browser window. 
         AI files may be edited in Adobe Illustrator, where users can change labels, colors, and illustration components as desired.
 
+- type: margin
+  top: -3rem
+
 - type: download-ftu
   versions:
     - release: '5th HRA Release (v1.4), June 2023'
@@ -832,19 +835,23 @@
           links:
             - link: https://cdn.humanatlas.io/hra-releases/v1.4/2d-ftu/asct-b-2d-models-crosswalk.csv
               label: CSV
+
 - type: margin
-  bottom: 3.5rem
+  bottom: 5rem
 
 - type: page-data
   pageData:
     - heading: Organ Icon Downloads
       descriptions: Human Reference Atlas organ icons are available freely on GitHub.
   styles:
-    margin-bottom: 1rem
+    margin-bottom: 2rem
 
 - type: button
   text: HRA Organ Icons GitHub Repository
   url: https://github.com/cns-iu/md-icons/tree/main/other-icons/organs
+
+- type: margin
+  bottom: 5rem
 
 - type: page-data
   pageData:

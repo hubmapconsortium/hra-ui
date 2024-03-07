@@ -15,7 +15,7 @@
       emoji: '🎉'
 
 - type: margin
-  bottom: 2.5rem
+  bottom: 3.5rem
 
 - type: page-data
   pageData:
@@ -276,6 +276,7 @@
     flex-flow: row wrap
     justify-content: space-between
     padding-bottom: 2.5rem
+    margin-top: -3rem
   links:
     - class: datasets
       href: https://portal.hubmapconsortium.org/browse/dataset/8adc3c31ca84ec4b958ed20a7c4f4919
