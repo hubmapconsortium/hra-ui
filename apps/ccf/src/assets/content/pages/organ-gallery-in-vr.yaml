@@ -15,7 +15,7 @@
       emoji: '🎉'
 
 - type: margin
-  bottom: 2.5rem
+  bottom: 3.5rem
 
 - type: page-data
   pageData:
@@ -87,7 +87,7 @@
     playerTitle: Please view the video below for a demo of the HRA Organ VR Gallery
 
 - type: margin
-  bottom: 2.5rem
+  bottom: 5rem
 
 - type: page-data
   pageData:

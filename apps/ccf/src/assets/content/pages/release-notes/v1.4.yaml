@@ -92,7 +92,7 @@
                     Download the Human Reference Atlas (HRA) Release Calendar to stay on top of deadlines.
             - type: button
               styles:
-                margin-bottom: 1rem
+                margin-bottom: 2rem
                 text-decoration: none
               url: assets/images/hra-release-calendar.jpg
               text: Download JPG
@@ -101,11 +101,11 @@
               imageSource: assets/images/hra-release-calendar.svg
               alt: HRA Release Calendar
               styles:
-                margin-bottom: 2rem
+                margin-bottom: 5rem
                 width: 100%
             - type: divider
               styles:
-                margin-bottom: 1rem
+                margin-bottom: 3rem
         - type: styled-group
           id: whats-new
           components:
@@ -127,7 +127,7 @@
 
             - type: divider
               styles:
-                margin-bottom: 1rem
+                margin-bottom: 5rem
         - type: styled-group
           id: hra-diversity
           components:
@@ -201,12 +201,13 @@
                     support the creation of OMAPs. Check out ASCT+B Reporter to see the interconnectedness.
             - type: button
               styles:
-                margin-bottom: 2rem
+                margin-bottom: 5rem
+                margin-top: -3rem
               text: Use the ASCT+B Reporter
               url: https://hubmapconsortium.github.io/ccf-asct-reporter/
             - type: divider
               styles:
-                margin-bottom: 1rem
+                margin-bottom: 3rem
         - type: styled-group
           id: vccf-updates
           components:
@@ -224,12 +225,13 @@
                     - Muscular system and Skeleton ASCT+B tables
             - type: button
               styles:
-                margin-bottom: 2rem
+                margin-bottom: 5rem
+                margin-top: -3rem
               text: Learn about the VCCF
               url: https://humanatlas.io/vccf
             - type: divider
               styles:
-                margin-bottom: 1rem
+                margin-bottom: 3rem
         - type: styled-group
           id: asctb-ontology-validations
           components:
@@ -243,12 +245,13 @@
                     established ontologies (namely Uberon and Cell Ontology). Check out the results in GitHub.
             - type: button
               styles:
-                margin-bottom: 2rem
+                margin-bottom: 5rem
+                margin-top: -3rem
               text: Validation Tools GitHub Repository
               url: https://hubmapconsortium.github.io/ccf-validation-tools/
             - type: divider
               styles:
-                margin-bottom: 1rem
+                margin-bottom: 3rem
         - type: styled-group
           id: previews
           components:
@@ -262,7 +265,8 @@
                     animated essays interconnected stories designed to introduce the Human Reference Atlas (HRA) to a general audience.
             - type: button
               styles:
-                margin-bottom: 2rem
+                margin-bottom: 5rem
+                margin-top: -3rem
               text: 'Preview: Human Atlas Stories'
               url: https://hubmapconsortium.github.io/hra-previews/pilots/pilot4.html
             - type: divider
@@ -281,12 +285,13 @@
                     A Beta version of the knowledge graph is available on GitHub. We will be releasing the final version in December.
             - type: button
               styles:
-                margin-bottom: 2rem
+                margin-bottom: 5rem
+                margin-top: -3rem
               text: 'Preview: HRA-KG 2.0 Beta GitHub Repository'
               url: https://github.com/hubmapconsortium/hra-kg/releases
             - type: divider
               styles:
-                margin-bottom: 1rem
+                margin-bottom: 3rem
         - type: styled-group
           id: contact-us
           components:
@@ -327,8 +332,8 @@
                   alt: Bruce Herr II profile image
             - type: divider
               styles:
-                margin-bottom: 1rem
-                margin-top: 2rem
+                margin-bottom: 3rem
+                margin-top: 5rem
         - type: styled-group
           id: outro
           components:
@@ -345,6 +350,7 @@
               alt: Outro
               styles:
                 width: 100%
+                margin-top: -3rem
 
 - type: margin
   bottom: 6.5rem

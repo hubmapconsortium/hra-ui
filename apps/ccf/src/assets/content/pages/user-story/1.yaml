@@ -30,6 +30,9 @@
 
         This website lets computational biologists annotate cell types in bulk or spatial data. The API combines biomarker expression profile and 3D location data, resulting in enhanced cell type prediction accuracy.
 
+- type: margin
+  bottom: -3rem
+
 - type: button
   text: Use Demo Application
   url: https://apps.humanatlas.io/us1/
@@ -52,7 +55,7 @@
     - heading: Demonstration Primary APIs
       descriptions: ''
   styles:
-    margin-bottom: unset
+    margin-bottom: -2rem
 
 - type: page-data
   pageData:
@@ -91,7 +94,7 @@
     - heading: Demo Code
       descriptions: ''
   styles:
-    margin-bottom: unset
+    margin-bottom: -2rem
 - type: page-data
   pageData:
     - heading: ''

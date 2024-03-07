@@ -8,7 +8,10 @@
     padding-bottom: 1rem;
   }
 
-  .description,
+  .description {
+    margin-bottom: 5rem;
+  }
+
   .button-container {
     margin-bottom: 2.5rem;
     width: fit-content;
@@ -16,8 +19,7 @@
 
   .page-header {
     display: block;
-    margin-top: 3.5rem;
-    margin-bottom: 1.5rem;
+    margin: 3.5rem 0;
   }
 
   a:hover {

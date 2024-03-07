@@ -26,6 +26,9 @@
       descriptions: |
         Determining the spatial location from which a human tissue sample was extracted is important for analyses when tissue context matters. Traditional methods rely on textual annotations (e.g., organ or anatomical terms) and lack details on the 3D size, location, and rotation of tissue. The HRA API uses biomarker expression profile similarities to predict tissue locations in 3D, a critical improvement for atlas construction and essential for downstream applications like disease diagnostics and targeted treatments.
 
+- type: margin
+  bottom: -3rem
+
 - type: button
   text: Use Demo Application
   url: https://apps.humanatlas.io/us2/
@@ -48,7 +51,7 @@
     - heading: Demonstration Primary APIs
       descriptions: ''
   styles:
-    margin-bottom: unset
+    margin-bottom: -2rem
 
 - type: page-data
   pageData:
@@ -105,7 +108,7 @@
     - heading: Demo Code
       descriptions: ''
   styles:
-    margin-bottom: unset
+    margin-bottom: -2rem
 - type: page-data
   pageData:
     - heading: ''

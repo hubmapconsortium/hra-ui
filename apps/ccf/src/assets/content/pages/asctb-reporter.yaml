@@ -15,7 +15,7 @@
       emoji: '🎉'
 
 - type: margin
-  bottom: 2.5rem
+  bottom: 3.5rem
 
 - type: page-data
   pageData:
@@ -26,9 +26,14 @@
 
         The CCF ASCT+B Reporter is a visualization tool for inspecting and exploring the tables. It includes a partonomy tree that presents relationships between various anatomical structures and substructures, that are linked to their respective cell types and biomarkers via bimodal networks. The Reporter also presents an indented list view of the partonomy tree. In addition to the network visualizations, the Reporter lists statistics for various metadata (e.g., counts of ASCT table entity types and relationship types) which are downloadable. The debug logger lists any issues related to the data provided in the table. The Reporter has a backend server, the ASCT+B API, to retrieve the data from Google Sheets and convert it to a machine-readable format.
 
+- type: margin
+  top: -3rem
+
 - type: button
   text: Use the ASCT+B Table Reporter
   url: https://hubmapconsortium.github.io/ccf-asct-reporter/
+  styles:
+    margin-bottom: 5rem
 
 - type: player
   youtubePlayer:

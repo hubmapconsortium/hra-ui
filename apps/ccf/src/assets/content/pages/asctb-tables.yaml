@@ -15,7 +15,7 @@
       emoji: '🎉'
 
 - type: margin
-  bottom: 2.5rem
+  bottom: 3.5rem
 
 - type: page-data
   pageData:
@@ -32,13 +32,16 @@
         href: https://doi.org/10.5281/zenodo.5639622
 
 - type: margin
-  bottom: 2rem
+  bottom: 5rem
 
 - type: page-data
   pageData:
     - heading: Existing Tables
       descriptions: |
         The below table lists for each organ the number of anatomical structures (#AS), the number of cell types (#CT), the number of biomarkers (#B), the number of <i>part_of</i> relationships between AS, the number of <i>located_in</i> links between CT and AS, and the number of CT and B (i.e., which B <i>characterize</i> a CT). Biomarker abbreviations: genes (BG), proteins (BP), metabolites (BM), proteoforms (BF), and lipids (BL).
+
+- type: margin
+  top: -3rem
 
 - type: table-version
   versionChooserDisabled: false
@@ -145,11 +148,14 @@
       descriptions: ASCT+B table drafts are run through a Python script called <a href="https://github.com/hubmapconsortium/ccf-validation-tools" target="_blank">CCF_Tools</a> each week. The script reads them in, compares them against the Resource Description Framework (RDF) triple store database called Ubergraph (Uberon and Cell Ontology), and outputs a validation report that can be used to improve tables during creation or revision cycles.
 
 - type: margin
-  bottom: -1.5rem
+  bottom: -3rem
 
 - type: button
   text: ASCT+B Ontology Validation Reports
   url: https://hubmapconsortium.github.io/ccf-validation-tools/
+
+- type: margin
+  bottom: 5rem
 
 - type: page-data
   pageData:
