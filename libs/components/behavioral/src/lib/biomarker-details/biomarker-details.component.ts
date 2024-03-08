@@ -14,14 +14,16 @@ import {
   SizeLegend,
   SizeLegendComponent,
 } from '@hra-ui/components/atoms';
-import { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/components/molecules';
+import { BiomarkerTableDataCardComponent, SourceListComponent, SourceListItem } from '@hra-ui/components/molecules';
 import { BiomarkerTableComponent, TissueInfo } from '@hra-ui/components/organisms';
 import {
+  ActiveFtuActions,
   ActiveFtuSelectors,
+  CellSummaryActions,
   CellSummarySelectors,
+  ResourceIds as Ids,
   IllustratorActions,
   IllustratorSelectors,
-  ResourceIds as Ids,
   ResourceTypes as RTypes,
   ScreenModeAction,
   SourceRefsSelectors,
@@ -29,6 +31,7 @@ import {
 } from '@hra-ui/state';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
+import { FtuDataService, SourceReference } from '@hra-ui/services';
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
 /**
@@ -62,6 +65,8 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BiomarkerDetailsComponent {
+  private readonly dataService = inject(FtuDataService);
+
   /** Table tabs */
   readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);
 
@@ -85,6 +90,9 @@ export class BiomarkerDetailsComponent {
   /** List of sources with titles and links displayed to the user */
   readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);
 
+  /** List of sources with titles and links displayed to the user */
+  readonly sources = selectSnapshot(ActiveFtuSelectors.sources);
+
   /**
    * Iri  of medical illustration behavior component
    */
@@ -104,13 +112,23 @@ export class BiomarkerDetailsComponent {
   /** Action to highlight a cell type */
   readonly highlightCell = dispatch(IllustratorActions.HighlightCellType);
 
+  readonly setSources = dispatch(ActiveFtuActions.SetSources);
+
+  readonly setIllustrationUrl = dispatch(ActiveFtuActions.SetIllustrationUrl);
+
+  readonly load = dispatch(CellSummaryActions.Load);
+
+  readonly computeAggregates = dispatch(CellSummaryActions.ComputeAggregates);
+
+  readonly updateSummaries = dispatch(CellSummaryActions.UpdateSummaries);
+
   /**
    * Gets tissue title from the list of tissues
    */
   get tissueInfo(): TissueInfo {
     const iri = this.iri();
     const tissues = this.tissues();
-    if (iri === undefined) {
+    if (iri === undefined || tissues === undefined) {
       return EMPTY_TISSUE_INFO;
     }
     const { id, label } = tissues[iri];
@@ -174,5 +192,23 @@ export class BiomarkerDetailsComponent {
    */
   logTabChange(event: MatTabChangeEvent) {
     this.ga.event('biomarker_tab_change', event.tab ? event.tab.textLabel : '');
+  }
+
+  updateSourceSelection(sources: SourceListItem[]) {
+    // console.log(sources)
+    // console.log(this.iri())
+    // console.log(this.sources())
+    this.setSources(sources as SourceReference[]);
+    // console.log(sources)
+    // console.log(this.iri())
+    // console.log(this.sources())
+    this.dataService.getCellSummaries(this.iri()!, sources as SourceReference[]).subscribe((data) => {
+      // console.log(sources)
+      // console.log(this.iri())
+      this.setIllustrationUrl(this.iri()!);
+      // console.log(this.sources())
+      // console.log(data)
+      this.updateSummaries(data);
+    });
   }
 }

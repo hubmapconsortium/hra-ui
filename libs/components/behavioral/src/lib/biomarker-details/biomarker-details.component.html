@@ -12,7 +12,7 @@
   color="accent"
   (selectedTabChange)="logTabChange($event)"
 >
-  <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="tab.label">
+  <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="'Cell Types by ' + tab.label">
     <hra-biomarker-table
       *ngIf="tab.rows.length !== 0"
       [data]="$any(tab.rows)"
@@ -22,6 +22,7 @@
       [tissueInfo]="tissueInfo"
       [highlightedCellId]="selectedOnHovered()?.ontologyId ?? ''"
       [illustrationIds]="illustrationIds"
+      [dataSources]="source()"
       (rowHover)="highlightCells($event)"
     ></hra-biomarker-table>
     <hra-empty-biomarker
@@ -56,6 +57,7 @@
     (collaborateClick)="collaborate()"
     [sources]="source()"
     class="content"
+    (selectionChanged)="updateSourceSelection($event)"
   ></hra-source-list>
 </div>
 

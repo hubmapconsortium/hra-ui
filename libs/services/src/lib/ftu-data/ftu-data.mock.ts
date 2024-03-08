@@ -17,21 +17,25 @@ import { FtuDataService } from './ftu-data.service';
  */
 const sourceReferences = [
   {
+    id: 'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
     title: 'Kidney Precision Medicine Project',
     label: 'Ancillary Study Data, Clinical Data, HRT Codebook',
     link: 'google.com',
   },
   {
+    id: 'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
     title: '[Dataset Owner Title]',
     label: '<Dataset Title + Link to Dataset>',
     link: 'google.com',
   },
   {
+    id: 'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
     title: '[Dataset Owner Title]',
     label: '<Dataset Title + Link to Dataset>',
     link: 'google.com',
   },
   {
+    id: 'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
     title:
       '[Dataset Owner Title but extremely long and wraps around to the next line as you can see here in this example]',
     label:
@@ -39,21 +43,25 @@ const sourceReferences = [
     link: 'google.com',
   },
   {
+    id: 'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
     title: 'Kidney Precision Medicine Project',
     label: 'Ancillary Study Data, Clinical Data, HRT Codebook',
     link: 'google.com',
   },
   {
+    id: 'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
     title: '[Dataset Owner Title]',
     label: '<Dataset Title + Link to Dataset>',
     link: 'google.com',
   },
   {
+    id: 'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
     title: '[Dataset Owner Title]',
     label: '<Dataset Title + Link to Dataset>',
     link: 'google.com',
   },
   {
+    id: 'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
     title:
       '[Dataset Owner Title but extremely long and wraps around to the next line as you can see here in this example]',
     label:

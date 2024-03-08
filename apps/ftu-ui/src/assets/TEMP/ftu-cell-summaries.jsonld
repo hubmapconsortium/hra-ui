@@ -28,6 +28,7 @@
     {
       "@type": "CellSummary",
       "cell_source": "https://purl.humanatlas.io/2d-ftu/kidney-nephron",
+      "dataset_id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
       "annotation_method": "Aggregation",
       "biomarker_type": "gene",
       "summary": [
@@ -3747,6 +3748,7 @@
     {
       "@type": "CellSummary",
       "cell_source": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle",
+      "dataset_id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
       "annotation_method": "Aggregation",
       "biomarker_type": "gene",
       "summary": [
@@ -6745,6 +6747,7 @@
     {
       "@type": "CellSummary",
       "cell_source": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct",
+      "dataset_id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
       "annotation_method": "Aggregation",
       "biomarker_type": "gene",
       "summary": [
@@ -9757,6 +9760,7 @@
     {
       "@type": "CellSummary",
       "cell_source": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle",
+      "dataset_id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
       "annotation_method": "Aggregation",
       "biomarker_type": "gene",
       "summary": [
@@ -11267,6 +11271,7 @@
     {
       "@type": "CellSummary",
       "cell_source": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule",
+      "dataset_id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
       "annotation_method": "Aggregation",
       "biomarker_type": "gene",
       "summary": [
@@ -13486,6 +13491,7 @@
     {
       "@type": "CellSummary",
       "cell_source": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus",
+      "dataset_id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
       "annotation_method": "Aggregation",
       "biomarker_type": "gene",
       "summary": [
@@ -16400,6 +16406,7 @@
     {
       "@type": "CellSummary",
       "cell_source": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland",
+      "dataset_id": "https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung",
       "annotation_method": "Aggregation",
       "biomarker_type": "gene",
       "summary": [

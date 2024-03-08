@@ -33,33 +33,6 @@ export interface SourceListItem {
   link: string;
 }
 
-const testSources: SourceListItem[] = [
-  {
-    authors: 'aaaaaaaaaa',
-    year: 2020,
-    title: 'aaaaa',
-    doi: 'sdfaefj',
-    label: 'label',
-    link: 'aaaaaaa',
-  },
-  {
-    authors: 'bbbbbbb',
-    year: 2017,
-    title: 'b sg',
-    doi: '6475tr',
-    label: 'hierafskd',
-    link: 'peptperfggr',
-  },
-  {
-    authors: 'ccccccccc',
-    year: 44444,
-    title: 'fewhfskljeg',
-    doi: '86u79508603573957',
-    label: 'mcvlkfgmnwjeryhfvui',
-    link: 'uthykjednflkhl',
-  },
-];
-
 /** This component shows list of sources with title and links to the datasets */
 @Component({
   selector: 'hra-source-list',
@@ -104,6 +77,8 @@ export class SourceListComponent implements OnChanges {
   /** Emits when the contact button is clicked */
   @Output() readonly collaborateClick = new EventEmitter<void>();
 
+  @Output() readonly selectionChanged = new EventEmitter<SourceListItem[]>();
+
   @ViewChild(MatSort) sort: MatSort;
 
   /** Google analytics tracking service */
@@ -111,9 +86,10 @@ export class SourceListComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if ('sources' in changes) {
-      this.sources = testSources;
       this.dataSource = new MatTableDataSource<SourceListItem>(this.sources);
       this.dataSource.sort = this.sort;
+      this.dataSource.data.forEach((row) => this.selection.select(row));
+      this.selectionChanged.emit(this.selection.selected);
     }
   }
 
@@ -145,9 +121,16 @@ export class SourceListComponent implements OnChanges {
   toggleAllRows() {
     if (this.isAllSelected()) {
       this.selection.clear();
+      this.selectionChanged.emit(this.selection.selected);
       return;
     }
 
     this.selection.select(...this.dataSource.data);
+    this.selectionChanged.emit(this.selection.selected);
+  }
+
+  toggleRow(row: SourceListItem) {
+    this.selection.toggle(row);
+    this.selectionChanged.emit(this.selection.selected);
   }
 }

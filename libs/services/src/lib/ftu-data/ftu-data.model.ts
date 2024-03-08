@@ -82,6 +82,7 @@ export const DATA_FILE_REFERENCE = z.object({
 
 /** Zod Schema for a SOURCE_REFERENCE */
 export const SOURCE_REFERENCE = z.object({
+  id: IRI,
   title: z.string(),
   label: z.string(),
   link: z.string().url(),

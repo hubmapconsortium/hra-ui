@@ -1,20 +1,21 @@
-import { Injectable } from '@angular/core';
-import { Iri } from '@hra-ui/services';
+import { Injectable, inject } from '@angular/core';
+import { LinkRegistryActions, LinkType } from '@hra-ui/cdk/state';
+import { FtuDataService, Iri, SourceReference } from '@hra-ui/services';
 import { Action, State, StateContext } from '@ngxs/store';
 import { Observable, tap } from 'rxjs';
 import { CellSummaryActions, CellSummaryState } from '../cell-summary';
-import { IllustratorActions, IllustratorState } from '../illustrator';
-import { SourceRefsActions, SourceRefsState } from '../source-refs';
-import { Clear, Load, Reset, SetIllustrationUrl } from './active-ftu.actions';
 import { DownloadActions, DownloadState } from '../download';
-import { LinkRegistryActions, LinkType } from '@hra-ui/cdk/state';
+import { IllustratorActions, IllustratorState } from '../illustrator';
 import { Illustration } from '../link-ids';
+import { SourceRefsActions, SourceRefsState } from '../source-refs';
+import { Clear, Load, Reset, SetIllustrationUrl, SetIri, SetSources } from './active-ftu.actions';
 
 /**
  * Interface for ActiveFtuModel */
 export interface ActiveFtuModel {
   /** Iri for the current Ftu  */
   iri?: Iri;
+  sources?: SourceReference[];
 }
 
 type Context = StateContext<ActiveFtuModel>;
@@ -24,11 +25,13 @@ type Context = StateContext<ActiveFtuModel>;
  */
 @State<ActiveFtuModel>({
   name: 'activeFtu',
-  defaults: {},
+  defaults: { sources: [] },
   children: [CellSummaryState, DownloadState, IllustratorState, SourceRefsState],
 })
 @Injectable()
 export class ActiveFtuState {
+  private readonly dataService = inject(FtuDataService);
+
   /**
    * loads the Cell summary, Illustrator and Source Refs
    * with the current iri
@@ -37,7 +40,8 @@ export class ActiveFtuState {
    */
   @Action(Load, { cancelUncompleted: true })
   load({ getState, patchState, dispatch }: Context, { iri }: Load): Observable<void> | void {
-    if (getState().iri !== iri) {
+    // console.log(iri)
+    if (iri && getState().iri !== iri) {
       return dispatch([
         new CellSummaryActions.Load(iri),
         new IllustratorActions.Load(iri),
@@ -58,6 +62,16 @@ export class ActiveFtuState {
     const [name] = iri.split('/').slice(-1);
     const url = `${BASE_URL}2d-ftu-${name}.html`;
     return dispatch(new LinkRegistryActions.Add(Illustration, { type: LinkType.External, url }));
+  }
+
+  @Action(SetSources)
+  setSources({ patchState }: Context, { sources }: SetSources): void {
+    patchState({ sources });
+  }
+
+  @Action(SetIri)
+  setIri({ patchState }: Context, { iri }: SetIri): void {
+    patchState({ iri });
   }
 
   /**

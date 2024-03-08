@@ -6,7 +6,10 @@ import { z } from 'zod';
 
 import { IRI, Iri, setUrl, Url } from '../shared/common.model';
 import {
+  Biomarker,
+  Cell,
   CellSummary,
+  CellSummaryRow,
   DataFileReference,
   IllustrationMappingItem,
   SourceReference,
@@ -83,6 +86,7 @@ const DATASETS = z.object({
     '@id': IRI,
     data_sources: z
       .object({
+        '@id': IRI,
         label: z.string(),
         description: z.string(),
         link: z.string(),
@@ -94,12 +98,14 @@ const DATASETS = z.object({
 /** Base CELL_SOURCE_ITEM Object  having cell_source */
 const CELL_SOURCE_ITEM = z.object({
   cell_source: IRI,
+  dataset_id: IRI,
 });
 
 /** CELL_SUMMARIES zod Object reflecting the format in the file*/
 const CELL_SUMMARIES = z.object({
   '@graph': CELL_SOURCE_ITEM.extend({
     cell_source: IRI,
+    dataset_id: IRI,
     biomarker_type: z.string(),
     summary: z
       .object({
@@ -200,9 +206,9 @@ export class FtuDataImplService extends FtuDataService {
   @param iri The Iri of the illustration.
   @returns An Observable that emits an CellSummary array.
   */
-  override getCellSummaries(iri: Iri): Observable<CellSummary[]> {
+  override getCellSummaries(iri: Iri, sources: SourceReference[]): Observable<CellSummary[]> {
     return this.fetchData(iri, 'summaries', CELL_SUMMARIES).pipe(
-      map((data) => this.findCellSummaries(data, iri)),
+      map((data) => this.findCellSummaries(data, iri, sources)),
       map((data) => (data ? this.constructCellSummaries(data) : [])),
     );
   }
@@ -286,12 +292,14 @@ export class FtuDataImplService extends FtuDataService {
    * @param iri
    * @returns cell summaries
    */
-  private findCellSummaries<T extends CellSourceItem>(data: Graph<T>, iri: Iri): T[] {
+  private findCellSummaries<T extends CellSourceItem>(data: Graph<T>, iri: Iri, sources: SourceReference[]): T[] {
+    const sourceIds = sources.map((source) => source.id);
     const item = data['@graph'].filter(({ cell_source }) => cell_source === iri);
-    if (item === undefined || item.length == 0) {
+    const itemFilteredBySource = item.filter((source) => sourceIds.includes(source['dataset_id']));
+    if (itemFilteredBySource === undefined || itemFilteredBySource.length == 0) {
       return [];
     }
-    return item;
+    return itemFilteredBySource;
   }
 
   /**
@@ -354,8 +362,8 @@ export class FtuDataImplService extends FtuDataService {
    */
   private toSourceReferences(data: dataSources): SourceReference[] {
     const results: SourceReference[] = [];
-    for (const { label, link, description } of data) {
-      results.push({ label, link, title: description });
+    for (const { '@id': id, label, link, description } of data) {
+      results.push({ id, label, link, title: description });
     }
     return results;
   }
@@ -417,7 +425,7 @@ export class FtuDataImplService extends FtuDataService {
         });
       }
     });
-    return cellSummary;
+    return this.combineSummaries(cellSummary);
   }
 
   /**
@@ -434,5 +442,44 @@ export class FtuDataImplService extends FtuDataService {
       nodes[parentId]?.children.push(id);
     }
     return { root: BASE_IRI, nodes };
+  }
+
+  private combineSummaries(summaries: CellSummary[]): CellSummary[] {
+    const types = ['Gene Biomarkers', 'Protein Biomarkers', 'Lipid Biomarkers'];
+    return types.map((type) => this.mergeCellSummaries(summaries, type));
+  }
+
+  private mergeCellSummaries(summaries: CellSummary[], label: string): CellSummary {
+    const filteredSummaries = summaries.filter((summary) => summary.label === label);
+    const aggregateBiomarkersSet = new Set();
+    const aggregateCells: Cell[] = [];
+    const aggregateSummaries: CellSummaryRow[] = [];
+    for (const summary of filteredSummaries) {
+      for (const biomarker of summary.biomarkers) {
+        aggregateBiomarkersSet.add(biomarker);
+      }
+      for (const cell of summary.cells) {
+        aggregateCells.push(cell);
+      }
+      for (const sum of summary.summaries) {
+        const match = aggregateSummaries.find((entry) => entry.biomarker === sum.biomarker);
+        if (match) {
+          match.count += sum.count;
+          match.meanExpression =
+            (match.count * match.meanExpression + sum.count * sum.meanExpression) / (match.count + sum.count);
+        } else {
+          aggregateSummaries.push(sum);
+        }
+      }
+    }
+
+    const aggregateBiomarkers = Array.from(aggregateBiomarkersSet) as Biomarker[];
+
+    return {
+      label: label,
+      biomarkers: aggregateBiomarkers,
+      cells: aggregateCells,
+      summaries: aggregateSummaries,
+    };
   }
 }

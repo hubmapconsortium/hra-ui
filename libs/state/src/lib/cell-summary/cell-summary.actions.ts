@@ -1,5 +1,5 @@
 import { ActionGroup } from '@hra-ui/cdk/state';
-import { Iri } from '@hra-ui/services';
+import { CellSummary, Iri } from '@hra-ui/services';
 
 /** Action base class factory */
 const Action = ActionGroup('CellSummary');
@@ -8,6 +8,13 @@ const Action = ActionGroup('CellSummary');
 export class Load extends Action('Load') {
   /** Intializes the set iri */
   constructor(readonly iri: Iri) {
+    super();
+  }
+}
+
+export class UpdateSummaries extends Action('Update SUmmaries') {
+  /** Intializes the set iri */
+  constructor(readonly summaries: CellSummary[]) {
     super();
   }
 }

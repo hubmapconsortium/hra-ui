@@ -1,5 +1,5 @@
 import { ActionGroup } from '@hra-ui/cdk/state';
-import { Iri } from '@hra-ui/services';
+import { Iri, SourceReference } from '@hra-ui/services';
 
 /** Action base class factory */
 const Action = ActionGroup('ActiveFtu');
@@ -21,6 +21,20 @@ export class SetIllustrationUrl extends Action('Set Illustration Url') {
    * Creates an instance of set iri.
    * @param iri
    */
+  constructor(readonly iri: Iri) {
+    super();
+  }
+}
+
+export class SetSources extends Action('Set Sources') {
+  /** Intializes the set iri */
+  constructor(readonly sources: SourceReference[]) {
+    super();
+  }
+}
+
+export class SetIri extends Action('Set Iri') {
+  /** Intializes the set iri */
   constructor(readonly iri: Iri) {
     super();
   }
