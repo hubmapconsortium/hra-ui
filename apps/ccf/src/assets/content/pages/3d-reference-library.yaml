@@ -2013,6 +2013,43 @@
               alt: The lymph nodes, female
               threeDimImage: https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-releases@main/v1.0/models/VH_M_Vasculature.glb
 
+- type: title
+  title: Number of Anatomical Structures per Reference Organ
+  styles:
+    font-weight: 300
+    font-size: 1.5rem
+    line-height: 2rem
+    margin-bottom: 2rem
+
+- type: table-version
+  versionChooserDisabled: false
+  versionData:
+    - release: 6th HRA Release (v2.0), December 2023
+      version: 2.0
+      file: as-per-organ.csv
+  isTotal: false
+  isDownload: true
+  headerInfo:
+    - header: Organ
+      columnDef: organ
+      cell: |
+        `<a class="cell-link" href="${element['url'] || 'TODO:Please add a url column to this.csv!'}">
+          ${element['organ']}
+        </a>`
+      alignment: left
+    - header: Sex
+      columnDef: sex
+      cell: "`${element['sex']}`"
+      alignment: left
+    - header: Number of Anatomical Structures
+      columnDef: as_count
+      cell: "`${element['as_count']}`"
+      alignment: left
+    - header: Uberon ID
+      columnDef: uberon_id
+      cell: "`${element['uberon_id']}`"
+      alignment: left
+
 - type: page-data
   pageData:
     - heading: Terms Of Use
