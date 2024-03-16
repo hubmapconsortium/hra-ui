@@ -86,6 +86,7 @@ export class SourceListComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if ('sources' in changes) {
+      this.selection.clear();
       this.dataSource = new MatTableDataSource<SourceListItem>(this.sources);
       this.dataSource.sort = this.sort;
       this.dataSource.data.forEach((row) => this.selection.select(row));
