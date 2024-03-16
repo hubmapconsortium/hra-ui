@@ -1,6 +1,3 @@
-<!-- <hra-label-box class="table-header">
-  Cell Types by Gene Biomarkers
-</hra-label-box> -->
 <span (click)="toggleFullscreen()" class="end material-symbols-outlined cursor">
   {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}
 </span>
@@ -11,6 +8,7 @@
   mat-stretch-tabs="true"
   color="accent"
   (selectedTabChange)="logTabChange($event)"
+  disablePagination="true"
 >
   <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="'Cell Types by ' + tab.label">
     <hra-biomarker-table

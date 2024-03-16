@@ -195,19 +195,9 @@ export class BiomarkerDetailsComponent {
   }
 
   updateSourceSelection(sources: SourceListItem[]) {
-    // console.log(sources)
-    // console.log(this.iri())
-    // console.log(this.sources())
     this.setSources(sources as SourceReference[]);
-    // console.log(sources)
-    // console.log(this.iri())
-    // console.log(this.sources())
     this.dataService.getCellSummaries(this.iri()!, sources as SourceReference[]).subscribe((data) => {
-      // console.log(sources)
-      // console.log(this.iri())
       this.setIllustrationUrl(this.iri()!);
-      // console.log(this.sources())
-      // console.log(data)
       this.updateSummaries(data);
     });
   }

@@ -22,46 +22,48 @@
   .table th {
     background-color: #fff7f8;
     color: #59264d;
-    text-align: right;
-    font-weight: 400;
+    font-weight: 500;
+    height: 4.5rem;
+    width: 2.75rem;
+    padding: 0 0.5rem;
+    border-bottom: 1px solid #d5dbe3;
   }
 
   .table td {
-    border-bottom: 0.063rem solid #d3d3d3;
-    border-left: 0.063rem solid #d3d3d3;
+    border-bottom: 1px solid #d5dbe3;
+    border-left: 1px solid #d5dbe3;
+    padding: 0 0.5rem;
   }
 
   .table tr {
-    height: 3rem;
+    height: 2rem;
+    font-size: 0.75rem;
   }
 
   .table tr:first-child td {
-    border-top: 0rem solid #d3d3d3;
+    border-top: 0rem solid #d5dbe3;
   }
 
   tr > td:first-child {
     text-align: left;
-    padding: 0 2rem;
   }
 
   tr > th:first-child {
     text-align: left;
-    padding: 0 2rem;
   }
 
   tr > td:last-of-type {
-    border-right: 0.063rem solid #d3d3d3;
+    border-right: 1px solid #d5dbe3;
   }
 
   tr > th:last-of-type {
-    border-right: 0.063rem solid #d3d3d3;
-    border-left: solid #d3d3d3 1px;
+    border-right: 1px solid #d5dbe3;
+    border-left: 1px solid #d5dbe3;
   }
 
   .type {
-    height: 3rem;
-    max-width: 26rem;
-    min-width: 17rem;
+    height: 2rem;
+    max-width: 13.5rem;
     border-radius: 0rem;
     white-space: nowrap;
 
@@ -77,13 +79,12 @@
   }
 
   .count {
-    text-align: right;
-    height: 3rem;
-    min-width: 6.5rem;
+    height: 2rem;
+    min-width: 4.25rem;
   }
 
   th:not(:first-child) {
-    border-left: solid #d3d3d3 1px;
+    border-left: 1px solid #d5dbe3;
   }
 
   .icon-header {
@@ -91,20 +92,20 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    .header-column-text {
+      transform: rotate(-45deg);
+    }
   }
 
   .icon-cell {
     max-width: 5rem;
-    min-height: 3rem;
+    min-height: 2rem;
 
     .icon {
       margin: auto;
     }
   }
-}
-
-::ng-deep .mat-mdc-tab-header {
-  margin-left: -1px !important;
 }
 
 .mat-mdc-row:hover .mat-mdc-cell {
@@ -115,7 +116,7 @@
   display: flex;
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
-  box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
+  box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
   background-color: vars.$primary-contrast-rgb;
   overflow: auto;
   max-width: fit-content;

@@ -22,7 +22,9 @@
 
   <ng-container *ngFor="let column of columns; let index = index" [matColumnDef]="column">
     <th class="icon-header" mat-header-cell *matHeaderCellDef [hraHover]="columnHover" [hraHoverData]="column">
-      {{ column }}
+      <div class="header-column-text">
+        {{ column }}
+      </div>
     </th>
 
     <td class="icon-cell" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">
