@@ -3,12 +3,13 @@ import { HoverDirective } from '@hra-ui/cdk';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors } from '@hra-ui/cdk/state';
 import { ActiveFtuSelectors, IllustratorSelectors, TissueLibrarySelectors } from '@hra-ui/state';
-import { calledWithFn } from 'jest-mock-extended';
+import { calledWithFn, mock } from 'jest-mock-extended';
 import { Shallow } from 'shallow-render';
 import { BiomarkerDetailsComponent } from './biomarker-details.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MarkdownModule } from 'ngx-markdown';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { FtuDataService } from '@hra-ui/services';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Any = any;
@@ -41,6 +42,7 @@ describe('BiomarkerDetailsComponent', () => {
   const selectSnapshotSpy = calledWithFn<Any, Any[]>({ fallbackMockImplementation: () => () => [] });
   const selectQuerySnapshotSpy = calledWithFn<Any, Any[]>({ fallbackMockImplementation: () => () => [] });
   const iriSpy = jest.fn((): string | undefined => 'test');
+  const dataService = mock<FtuDataService>();
   let shallow: Shallow<BiomarkerDetailsComponent>;
 
   beforeEach(() => {
@@ -57,7 +59,8 @@ describe('BiomarkerDetailsComponent', () => {
 
     shallow = new Shallow(BiomarkerDetailsComponent)
       .import(MarkdownModule.forRoot())
-      .dontMock(MatTableModule, HoverDirective, MatDialogModule);
+      .dontMock(MatTableModule, HoverDirective, MatDialogModule)
+      .provideMock({ provide: FtuDataService, useValue: dataService });
   });
 
   it('should create', async () => {
