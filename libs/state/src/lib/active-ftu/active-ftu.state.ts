@@ -1,8 +1,9 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { LinkRegistryActions, LinkType } from '@hra-ui/cdk/state';
-import { FtuDataService, Iri, SourceReference } from '@hra-ui/services';
+import { Iri, SourceReference } from '@hra-ui/services';
 import { Action, State, StateContext } from '@ngxs/store';
 import { Observable, tap } from 'rxjs';
+
 import { CellSummaryActions, CellSummaryState } from '../cell-summary';
 import { DownloadActions, DownloadState } from '../download';
 import { IllustratorActions, IllustratorState } from '../illustrator';
@@ -30,8 +31,6 @@ type Context = StateContext<ActiveFtuModel>;
 })
 @Injectable()
 export class ActiveFtuState {
-  private readonly dataService = inject(FtuDataService);
-
   /**
    * loads the Cell summary, Illustrator and Source Refs
    * with the current iri
@@ -40,7 +39,6 @@ export class ActiveFtuState {
    */
   @Action(Load, { cancelUncompleted: true })
   load({ getState, patchState, dispatch }: Context, { iri }: Load): Observable<void> | void {
-    // console.log(iri)
     if (iri && getState().iri !== iri) {
       return dispatch([
         new CellSummaryActions.Load(iri),

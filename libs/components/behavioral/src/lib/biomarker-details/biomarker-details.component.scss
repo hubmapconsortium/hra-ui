@@ -53,8 +53,7 @@
     }
 
     ::ng-deep .mdc-tab-indicator__content--underline {
-      border-color: #990000 !important;
-      border-top-width: 4px !important;
+      border-color: #e00d3a !important;
     }
   }
 
@@ -72,6 +71,12 @@
 
     &.size {
       grid-area: size-legend-header;
+    }
+
+    .icon {
+      font-size: 1.125rem;
+      height: 1.125rem;
+      width: 1.125rem;
     }
   }
 
