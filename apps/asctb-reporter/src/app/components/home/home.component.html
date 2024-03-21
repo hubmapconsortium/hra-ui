@@ -97,14 +97,8 @@
         </div>
       </div>
       <div class="col-xl-7 col-md-8 col-sm-6">
-        <div class="w-100 video-tutorial" id="tutorialVideo">
-          <youtube-player
-            #tutorialVideo
-            videoId="pzUFmDhQEO8"
-            width="100%"
-            height="100%"
-            [playerVars]="{ rel: 0, showinfo: 0 }"
-          ></youtube-player>
+        <div class="w-100 video-tutorial" id="tutorialVideo" #tutorialVideoContainer>
+          <youtube-player #tutorialVideo videoId="pzUFmDhQEO8" [playerVars]="{ rel: 0, showinfo: 0 }"></youtube-player>
         </div>
       </div>
     </div>

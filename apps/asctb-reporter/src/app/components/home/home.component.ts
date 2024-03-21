@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
@@ -15,7 +15,7 @@ import { CONTIRBUTORS, IMAGES, VIDEO_ACTIONS } from '../../static/home';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements AfterViewInit {
+export class HomeComponent implements AfterViewInit, OnDestroy {
   window = window;
   dataVersion = 'latest';
   VIDEO_ACTIONS = VIDEO_ACTIONS;
@@ -33,7 +33,10 @@ export class HomeComponent implements AfterViewInit {
   masterSheetLink: string = '';
   sheetOptions: SheetDetails[] = [];
 
+  @ViewChild('tutorialVideoContainer') videoContainer!: ElementRef<HTMLElement>;
   @ViewChild('tutorialVideo') player!: YouTubePlayer;
+
+  private videoContainerResizeObserver?: ResizeObserver;
 
   constructor(
     public configService: ConfigService,
@@ -55,6 +58,22 @@ export class HomeComponent implements AfterViewInit {
       actionsDiv.style.maxHeight = `${this.player.height + 50}px`;
       actionsDiv.style.overflowY = 'auto';
     }
+
+    this.videoContainerResizeObserver = new ResizeObserver((entries) => {
+      const [
+        {
+          contentBoxSize: [{ inlineSize: width, blockSize: height }],
+        },
+      ] = entries;
+
+      this.player.width = width;
+      this.player.height = height;
+    });
+    this.videoContainerResizeObserver.observe(this.videoContainer.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    this.videoContainerResizeObserver?.disconnect();
   }
 
   seekVideo(seconds: number, id: number) {
