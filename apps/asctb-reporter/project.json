@@ -149,5 +149,6 @@
         }
       }
     }
-  }
+  },
+  "tags": ["asctb", "karma-test-runner"]
 }
