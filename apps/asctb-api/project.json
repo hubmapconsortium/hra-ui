@@ -47,6 +47,24 @@
       "options": {
         "jestConfig": "apps/asctb-api/jest.config.ts"
       }
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "apps/asctb-api/tsconfig.json",
+        "outputPath": "dist/compodoc/asctb-api"
+      },
+      "configurations": {
+        "ci": {
+          "silent": true
+        },
+        "serve": {
+          "watch": true,
+          "disableCoverage": false,
+          "disablePrivate": false,
+          "disableInternal": false
+        }
+      }
     }
   },
   "tags": ["asctb"]
