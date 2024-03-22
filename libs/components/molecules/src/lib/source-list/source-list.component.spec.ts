@@ -46,4 +46,10 @@ describe('SourceListComponent', () => {
     instance.toggleRow({ link: 'test' });
     expect(instance.selectionChanged.emit).toHaveBeenCalledWith([{ link: 'test' }]);
   });
+
+  it('handles sorting', async () => {
+    const { instance } = await shallow.render();
+    instance.handleSort();
+    expect(instance.dataSource.sort).toEqual(instance.sort);
+  });
 });

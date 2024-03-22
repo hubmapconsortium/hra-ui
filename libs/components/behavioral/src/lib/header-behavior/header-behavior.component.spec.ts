@@ -3,7 +3,8 @@ import { Shallow } from 'shallow-render';
 
 import { HeaderBehaviorComponent } from './header-behavior.component';
 import { FTU_DATA_IMPL_ENDPOINTS } from '@hra-ui/services';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MarkdownModule } from 'ngx-markdown';
 
 jest.mock('@hra-ui/cdk/injectors');
 
@@ -14,16 +15,19 @@ describe('HeaderBehaviorComponent', () => {
   jest.mocked(dispatch).mockReturnValue(jest.fn());
 
   beforeEach(async () => {
-    shallow = new Shallow(HeaderBehaviorComponent).provide([
-      {
-        provide: FTU_DATA_IMPL_ENDPOINTS,
-        useClass: {
-          datasets: '',
-          illustrations: '',
-          summaries: '',
+    shallow = new Shallow(HeaderBehaviorComponent)
+      .provide([
+        {
+          provide: FTU_DATA_IMPL_ENDPOINTS,
+          useClass: {
+            datasets: '',
+            illustrations: '',
+            summaries: '',
+          },
         },
-      },
-    ]);
+      ])
+      .import(MarkdownModule.forRoot())
+      .dontMock(MatDialogModule);
   });
 
   it('should create', async () => {

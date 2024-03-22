@@ -1,7 +1,5 @@
-import { MatDialogModule } from '@angular/material/dialog';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { FTU_DATA_IMPL_ENDPOINTS } from '@hra-ui/services';
-import { MarkdownModule } from 'ngx-markdown';
 import { Shallow } from 'shallow-render';
 import { FooterBehaviorComponent } from './footer-behavior.component';
 
@@ -15,19 +13,16 @@ describe('FooterBehaviorComponent', () => {
   jest.mocked(dispatch).mockReturnValue(jest.fn());
 
   beforeEach(async () => {
-    shallow = new Shallow(FooterBehaviorComponent)
-      .provide([
-        {
-          provide: FTU_DATA_IMPL_ENDPOINTS,
-          useClass: {
-            datasets: '',
-            illustrations: '',
-            summaries: '',
-          },
+    shallow = new Shallow(FooterBehaviorComponent).provide([
+      {
+        provide: FTU_DATA_IMPL_ENDPOINTS,
+        useClass: {
+          datasets: '',
+          illustrations: '',
+          summaries: '',
         },
-      ])
-      .import(MarkdownModule.forRoot())
-      .dontMock(MatDialogModule);
+      },
+    ]);
   });
 
   afterEach(() => jest.clearAllMocks());
