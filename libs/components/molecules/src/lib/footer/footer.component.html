@@ -32,16 +32,6 @@
 
 <div class="filler" *ngIf="!isSmall"></div>
 
-<button class="button" mat-stroked-button color="accent" (click)="contactClick.emit()" disableRipple>
-  <mat-icon>mail_outlined</mat-icon>
-  Contact
-</button>
-
-<button class="button" mat-stroked-button color="accent" [hraLink]="hraPortal" disableRipple>
-  <mat-icon>open_in_new</mat-icon>
-  HRA Portal
-</button>
-
 <ng-template
   cdkConnectedOverlay
   [cdkConnectedOverlayOrigin]="anchor"
