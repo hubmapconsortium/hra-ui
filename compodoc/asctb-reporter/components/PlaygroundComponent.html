@@ -1,0 +1,1559 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>asctb-reporter</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">asctb-reporter</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  PlaygroundComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/modules/playground/playground.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>AfterViewInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-playground</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./playground.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./playground.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#currentSheet" >currentSheet</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#data$" >data$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#ga" >ga</a>
+                            </li>
+                            <li>
+                                <a href="#linkFormControl" >linkFormControl</a>
+                            </li>
+                            <li>
+                                <a href="#prevTab" >prevTab</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#sheet$" >sheet$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#spreadsheet" >spreadsheet</a>
+                            </li>
+                            <li>
+                                <a href="#spreadSheetData" >spreadSheetData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#store" >store</a>
+                            </li>
+                            <li>
+                                <a href="#tabIndex" >tabIndex</a>
+                            </li>
+                            <li>
+                                <a href="#table" >table</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#checkLinkFormat" >checkLinkFormat</a>
+                            </li>
+                            <li>
+                                <a href="#generateColumns" >generateColumns</a>
+                            </li>
+                            <li>
+                                <a href="#initTable" >initTable</a>
+                            </li>
+                            <li>
+                                <a href="#tabChange" >tabChange</a>
+                            </li>
+                            <li>
+                                <a href="#upload" >upload</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(store: Store, ga: GoogleAnalyticsService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/modules/playground/playground.component.ts:53</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                    <code>Store</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>ga</td>
+                                                  
+                                                        <td>
+                                                                    <code>GoogleAnalyticsService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkLinkFormat"></a>
+                    <span class="name">
+                        <span ><b>checkLinkFormat</b></span>
+                        <a href="#checkLinkFormat"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkLinkFormat(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="280"
+                                    class="link-to-prism">src/app/modules/playground/playground.component.ts:280</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Link validation function</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>{ sheetID: any; gid: any; csvUrl: string; }</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateColumns"></a>
+                    <span class="name">
+                        <span ><b>generateColumns</b></span>
+                        <a href="#generateColumns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>generateColumns(len: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="81"
+                                    class="link-to-prism">src/app/modules/playground/playground.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Add colums</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>len</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>jexcel.Column[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initTable"></a>
+                    <span class="name">
+                        <span ><b>initTable</b></span>
+                        <a href="#initTable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initTable(data: string[][])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="97"
+                                    class="link-to-prism">src/app/modules/playground/playground.component.ts:97</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Initialize jexcel table</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                        <code>string[][]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>table data</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tabChange"></a>
+                    <span class="name">
+                        <span ><b>tabChange</b></span>
+                        <a href="#tabChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>tabChange(tab: MatTabChangeEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="249"
+                                    class="link-to-prism">src/app/modules/playground/playground.component.ts:249</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Change tabs</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>tab</td>
+                                            <td>
+                                                        <code>MatTabChangeEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>table change event</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="upload"></a>
+                    <span class="name">
+                        <span ><b>upload</b></span>
+                        <a href="#upload"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>upload(data: <a href="../interfaces/UploadForm.html" target="_self">UploadForm</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="263"
+                                    class="link-to-prism">src/app/modules/playground/playground.component.ts:263</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Read the google sheet link and upload</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                            <code><a href="../interfaces/UploadForm.html" target="_self" >UploadForm</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentSheet"></a>
+                    <span class="name">
+                        <span ><b>currentSheet</b></span>
+                        <a href="#currentSheet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Sheet.html" target="_self" >Sheet</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/modules/playground/playground.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Selected sheet</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="data$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>data$</b></span>
+                        <a href="#data$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;[][]&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(SheetState.getParsedData)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/modules/playground/playground.component.ts:21</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ga"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>ga</b></span>
+                        <a href="#ga"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>GoogleAnalyticsService</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/modules/playground/playground.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="linkFormControl"></a>
+                    <span class="name">
+                        <span ><b>linkFormControl</b></span>
+                        <a href="#linkFormControl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new UntypedFormControl(&#x27;&#x27;, [
+    Validators.compose([
+      Validators.required,
+      Validators.pattern(/\/([\w-_]{15,})\/(.*?gid&#x3D;(\d+))?|\w*csv$/),
+    ]) as ValidatorFn,
+  ])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/modules/playground/playground.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Controller for entering the link</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="prevTab"></a>
+                    <span class="name">
+                        <span ><b>prevTab</b></span>
+                        <a href="#prevTab"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/modules/playground/playground.component.ts:35</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Keep track of previous tab. Default to 0</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sheet$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>sheet$</b></span>
+                        <a href="#sheet$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Sheet.html" target="_self" >Observable&lt;Sheet&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(SheetState.getSheet)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/modules/playground/playground.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="spreadsheet"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>spreadsheet</b></span>
+                        <a href="#spreadsheet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;spreadsheet&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/modules/playground/playground.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="spreadSheetData"></a>
+                    <span class="name">
+                        <span ><b>spreadSheetData</b></span>
+                        <a href="#spreadSheetData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[][]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/modules/playground/playground.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Data for the table view</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="store"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>store</b></span>
+                        <a href="#store"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Store</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/modules/playground/playground.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tabIndex"></a>
+                    <span class="name">
+                        <span ><b>tabIndex</b></span>
+                        <a href="#tabIndex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/modules/playground/playground.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Keeps track of the tab index</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="table"></a>
+                    <span class="name">
+                        <span ><b>table</b></span>
+                        <a href="#table"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>jexcel.JspreadsheetInstance</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/modules/playground/playground.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Instance of jspreadsheet-ce(Earlier: jexcel) table</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AfterViewInit, Component, ElementRef, ViewChild } from &#x27;@angular/core&#x27;;
+import { UntypedFormControl, ValidatorFn, Validators } from &#x27;@angular/forms&#x27;;
+import { MatTabChangeEvent } from &#x27;@angular/material/tabs&#x27;;
+import { Select, Store } from &#x27;@ngxs/store&#x27;;
+import * as jexcel from &#x27;jspreadsheet-ce&#x27;;
+import { GoogleAnalyticsService } from &#x27;ngx-google-analytics&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { FetchSheetData, UpdatePlaygroundData } from &#x27;../../actions/sheet.actions&#x27;;
+import { GaAction, GaCategory } from &#x27;../../models/ga.model&#x27;;
+import { Sheet, UploadForm } from &#x27;../../models/sheet.model&#x27;;
+import { SheetState } from &#x27;../../store/sheet.state&#x27;;
+
+@Component({
+  selector: &#x27;app-playground&#x27;,
+  templateUrl: &#x27;./playground.component.html&#x27;,
+  styleUrls: [&#x27;./playground.component.scss&#x27;],
+})
+export class PlaygroundComponent implements AfterViewInit {
+  @ViewChild(&#x27;spreadsheet&#x27;) spreadsheet!: ElementRef;
+
+  @Select(SheetState.getParsedData) data$!: Observable&lt;string[][]&gt;;
+  @Select(SheetState.getSheet) sheet$!: Observable&lt;Sheet&gt;;
+
+  /**
+   * Data for the table view
+   */
+  spreadSheetData: string[][] &#x3D; [];
+  /**
+   * Instance of jspreadsheet-ce(Earlier: jexcel) table
+   */
+  table!: jexcel.JspreadsheetInstance;
+  /**
+   * Keep track of previous tab. Default to 0
+   */
+  prevTab &#x3D; 0;
+  /**
+   * Selected sheet
+   */
+  currentSheet!: Sheet;
+  /**
+   * Keeps track of the tab index
+   */
+  tabIndex!: number;
+
+  /**
+   * Controller for entering the link
+   */
+  linkFormControl &#x3D; new UntypedFormControl(&#x27;&#x27;, [
+    Validators.compose([
+      Validators.required,
+      Validators.pattern(/\/([\w-_]{15,})\/(.*?gid&#x3D;(\d+))?|\w*csv$/),
+    ]) as ValidatorFn,
+  ]);
+
+  constructor(
+    public readonly store: Store,
+    public readonly ga: GoogleAnalyticsService,
+  ) {
+    this.sheet$.subscribe((sheet) &#x3D;&gt; {
+      this.currentSheet &#x3D; sheet;
+    });
+  }
+
+  ngAfterViewInit() {
+    this.data$.subscribe((data) &#x3D;&gt; {
+      if (data.length) {
+        this.spreadSheetData &#x3D; data;
+        if (!this.table) {
+          this.initTable(data);
+        } else {
+          this.table.destroy();
+          this.initTable(data);
+        }
+      }
+    });
+  }
+
+  /**
+   * Add colums
+   */
+  generateColumns(len: number): jexcel.Column[] {
+    const columns &#x3D; [];
+    for (let i &#x3D; 0; i &lt; len; i++) {
+      columns.push({
+        type: &#x27;text&#x27; as const,
+        width: 125,
+      });
+    }
+    return columns;
+  }
+
+  /**
+   * Initialize jexcel table
+   *
+   * @param data table data
+   */
+  initTable(data: string[][]) {
+    this.table &#x3D; jexcel(this.spreadsheet.nativeElement, {
+      data,
+      minDimensions: [50, 50],
+      onchange: () &#x3D;&gt; {
+        this.spreadSheetData &#x3D; data;
+      },
+      contextMenu(obj, x, y) {
+        const items &#x3D; [];
+
+        if (y &#x3D;&#x3D;&#x3D; null) {
+          // Insert a new column
+          if (obj.options.allowInsertColumn &#x3D;&#x3D;&#x3D; true) {
+            items.push({
+              title: obj.options.text?.insertANewColumnBefore,
+              onclick() {
+                obj.insertColumn(1, parseInt(x ?? &#x27;&#x27;, 10), true);
+              },
+            });
+          }
+
+          if (obj.options.allowInsertColumn &#x3D;&#x3D;&#x3D; true) {
+            items.push({
+              title: obj.options.text?.insertANewColumnAfter,
+              onclick() {
+                obj.insertColumn(1, parseInt(x ?? &#x27;&#x27;, 10), false);
+              },
+            });
+          }
+
+          // Delete a column
+          if (obj.options.allowDeleteColumn &#x3D;&#x3D;&#x3D; true) {
+            items.push({
+              title: obj.options.text?.deleteSelectedColumns,
+              onclick() {
+                obj.deleteColumn(obj.getSelectedColumns().length ? undefined : parseInt(x ?? &#x27;&#x27;, 10));
+              },
+            });
+          }
+
+          // Rename column
+          if (obj.options.allowRenameColumn &#x3D;&#x3D;&#x3D; true) {
+            items.push({
+              title: obj.options.text?.renameThisColumn,
+              onclick() {
+                obj.setHeader(parseInt(x ?? &#x27;&#x27;, 10));
+              },
+            });
+          }
+
+          // Sorting
+          if (obj.options.columnSorting &#x3D;&#x3D;&#x3D; true) {
+            // Line
+            items.push({ type: &#x27;line&#x27; });
+
+            items.push({
+              title: obj.options.text?.orderAscending,
+              onclick() {
+                obj.orderBy(parseInt(x ?? &#x27;&#x27;, 10), 0);
+              },
+            });
+            items.push({
+              title: obj.options.text?.orderDescending,
+              onclick() {
+                obj.orderBy(parseInt(x ?? &#x27;&#x27;, 10), 1);
+              },
+            });
+          }
+        } else {
+          // Insert new row
+          if (obj.options.allowInsertRow &#x3D;&#x3D;&#x3D; true) {
+            items.push({
+              title: obj.options.text?.insertANewRowBefore,
+              onclick() {
+                obj.insertRow(1, parseInt(y, 10), 1);
+              },
+            });
+
+            items.push({
+              title: obj.options.text?.insertANewRowAfter,
+              onclick() {
+                obj.insertRow(1, parseInt(y, 10));
+              },
+            });
+          }
+
+          if (obj.options.allowDeleteRow &#x3D;&#x3D;&#x3D; true) {
+            items.push({
+              title: obj.options.text?.deleteSelectedRows,
+              onclick() {
+                obj.deleteRow(obj.getSelectedRows().length ? undefined : parseInt(y, 10));
+              },
+            });
+          }
+
+          if (x) {
+            if (obj.options.allowComments &#x3D;&#x3D;&#x3D; true) {
+              items.push({ type: &#x27;line&#x27; });
+
+              const title &#x3D; obj.records[+y][+x].getAttribute(&#x27;title&#x27;) || &#x27;&#x27;;
+
+              items.push({
+                title: title ? obj.options.text?.editComments : obj.options.text?.addComments,
+                onclick() {
+                  obj.setComments(
+                    [parseInt(x, 10), parseInt(y, 10)],
+                    prompt(obj.options.text?.comments, title) ?? &#x27;&#x27;,
+                    &#x27;&#x27;,
+                  );
+                },
+              });
+
+              if (title) {
+                items.push({
+                  title: obj.options.text?.clearComments,
+                  onclick() {
+                    obj.setComments([parseInt(x, 10), parseInt(y, 10)], &#x27;&#x27;, &#x27;&#x27;);
+                  },
+                });
+              }
+            }
+          }
+        }
+
+        // Line
+        items.push({ type: &#x27;line&#x27; });
+
+        // Save
+        if (obj.options.allowExport) {
+          items.push({
+            title: obj.options.text?.saveAs,
+            shortcut: &#x27;Ctrl + S&#x27;,
+            onclick() {
+              obj.download(true);
+            },
+          });
+        }
+
+        return items;
+      },
+      columns: [...this.generateColumns(data[0].length)],
+      style: {
+        A1: &#x27;width: 100px;&#x27;,
+      },
+    });
+  }
+
+  /**
+   * Change tabs
+   *
+   * @param tab table change event
+   */
+  tabChange(tab: MatTabChangeEvent) {
+    if (this.prevTab &#x3D;&#x3D;&#x3D; 1 &amp;&amp; tab.index &#x3D;&#x3D;&#x3D; 0) {
+      this.spreadSheetData &#x3D; this.spreadSheetData.filter((row) &#x3D;&gt; {
+        return row.some((cell) &#x3D;&gt; cell.length &gt; 0 &amp;&amp; cell !&#x3D;&#x3D; &#x27;\u0000&#x27;);
+      });
+      this.store.dispatch(new UpdatePlaygroundData(this.spreadSheetData));
+    }
+    this.prevTab &#x3D; tab.index;
+    this.ga.event(GaAction.NAV, GaCategory.PLAYGROUND, &#x27;Change playground tab&#x27;, tab.index);
+  }
+
+  /**
+   * Read the google sheet link and upload
+   */
+  upload(data: UploadForm) {
+    const sheet &#x3D; JSON.parse(JSON.stringify(this.currentSheet));
+    sheet.gid &#x3D; data.gid;
+    sheet.sheetId &#x3D; data.sheetId;
+    sheet.csvUrl &#x3D; data.csvUrl;
+    this.tabIndex &#x3D; 0;
+    sheet.config.height &#x3D; 1400;
+    if (data.formData) {
+      sheet.formData &#x3D; data.formData;
+    }
+    this.store.dispatch(new FetchSheetData(sheet));
+    this.ga.event(GaAction.CLICK, GaCategory.PLAYGROUND, &#x27;Upload Playground Sheet&#x27;, sheet.sheetId);
+  }
+
+  /**
+   * Link validation function
+   */
+  checkLinkFormat(url: string) {
+    if (url.startsWith(&#x27;https://docs.google.com/spreadsheets/d/&#x27;)) {
+      const splitUrl &#x3D; url.split(&#x27;/&#x27;);
+      if (splitUrl.length &#x3D;&#x3D;&#x3D; 7) {
+        return {
+          sheetID: splitUrl[5],
+          gid: splitUrl[6].split(&#x27;&#x3D;&#x27;)[1],
+          csvUrl: &#x27;&#x27;,
+        };
+      }
+    }
+
+    return {
+      sheetID: &#x27;0&#x27;,
+      gid: &#x27;0&#x27;,
+      csvUrl: url,
+    };
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;mat-tab-group
+  (selectedTabChange)&#x3D;&quot;tabChange($event)&quot;
+  [mat-stretch-tabs]&#x3D;&quot;false&quot;
+  class&#x3D;&quot;remove-border-bottom&quot;
+  [(selectedIndex)]&#x3D;&quot;tabIndex&quot;
+&gt;
+  &lt;mat-tab label&#x3D;&quot;Visualization&quot;&gt;
+    &lt;app-tree&gt;&lt;/app-tree&gt;
+  &lt;/mat-tab&gt;
+  &lt;mat-tab label&#x3D;&quot;Table&quot;&gt;
+    &lt;div #spreadsheet&gt;&lt;/div&gt;
+  &lt;/mat-tab&gt;
+  &lt;mat-tab label&#x3D;&quot;Upload&quot;&gt;
+    &lt;app-upload class&#x3D;&quot;upload&quot; (uploadForm)&#x3D;&quot;upload($event)&quot;&gt;&lt;/app-upload&gt;
+  &lt;/mat-tab&gt;
+&lt;/mat-tab-group&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./playground.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.jexcel_about {
+  visibility: none !important;
+}
+
+::ng-deep .jexcel tbody tr:nth-child(11) {
+  font-weight: bold;
+}
+
+.remove-border-bottom ::ng-deep .mat-tab-header {
+  // border-bottom: none;
+  border-bottom: 0.1875rem solid #444a6510;
+}
+
+::ng-deep .mat-tab-labels {
+  background-color: white !important;
+  border: 0rem !important;
+}
+
+::ng-deep .mat-mdc-tab.mdc-tab {
+  padding: 0rem 3.75rem;
+}
+
+::ng-deep .jexcel &gt; tbody &gt; tr &gt; td:nth-child(2) {
+  border: 0.0625rem solid #e3e3e3;
+  overflow: visible;
+}
+
+::ng-deep .jexcel &gt; thead &gt; tr &gt; td {
+  border: 0.0625rem solid #e3e3e3;
+  overflow: visible;
+}
+
+.upload {
+  margin-top: 1rem;
+  display: block;
+  width: 50rem;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><mat-tab-group  (selectedTabChange)="tabChange($event)"  [mat-stretch-tabs]="false"  class="remove-border-bottom"  [(selectedIndex)]="tabIndex">  <mat-tab label="Visualization">    <app-tree></app-tree>  </mat-tab>  <mat-tab label="Table">    <div #spreadsheet></div>  </mat-tab>  <mat-tab label="Upload">    <app-upload class="upload" (uploadForm)="upload($event)"></app-upload>  </mat-tab></mat-tab-group></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-reporter'},{'name': 'CompareComponent', 'selector': 'app-compare'},{'name': 'ControlPaneComponent', 'selector': 'app-control-pane'},{'name': 'DebugLogsComponent', 'selector': 'app-debug-logs'},{'name': 'DocsComponent', 'selector': 'app-docs'},{'name': 'DocsNavComponent', 'selector': 'app-docs-nav'},{'name': 'DoiComponent', 'selector': 'app-doi'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'FileUploadComponent', 'selector': 'app-file-upload'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'FunctionsComponent', 'selector': 'app-functions'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IndentedListComponent', 'selector': 'app-indent'},{'name': 'InfoComponent', 'selector': 'app-info'},{'name': 'LegendComponent', 'selector': 'app-legend'},{'name': 'LoadingComponent', 'selector': 'app-loading'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NavItemComponent', 'selector': 'app-nav-item'},{'name': 'OmapControlsComponent', 'selector': 'app-omap-controls'},{'name': 'OrganTableSelectorComponent', 'selector': 'app-organ-table-selector'},{'name': 'PlaygroundComponent', 'selector': 'app-playground'},{'name': 'ReportComponent', 'selector': 'app-report'},{'name': 'RootComponent', 'selector': 'app-root'},{'name': 'SearchComponent', 'selector': 'app-search'},{'name': 'SidenavComponent', 'selector': 'app-sidenav'},{'name': 'SidenavHeaderComponent', 'selector': 'app-sidenav-header'},{'name': 'TableNestedMenuComponent', 'selector': 'app-table-nested-menu'},{'name': 'TrackingPopupComponent', 'selector': 'app-tracking-popup'},{'name': 'TreeComponent', 'selector': 'app-tree'},{'name': 'UploadComponent', 'selector': 'app-upload'},{'name': 'VisControlsComponent', 'selector': 'app-vis-controls'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'PlaygroundComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'PlaygroundComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

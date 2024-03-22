@@ -1,0 +1,1349 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>asctb-reporter</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">asctb-reporter</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >BimodalMarkGroup</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/modules/tree/spec/groups/bimodal.ts</code>
+        </p>
+
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#group" >group</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#create" >create</a>
+                            </li>
+                            <li>
+                                <a href="#makeBimodalMarkGroup" >makeBimodalMarkGroup</a>
+                            </li>
+                            <li>
+                                <a href="#makeBimodalPathMarks" >makeBimodalPathMarks</a>
+                            </li>
+                            <li>
+                                <a href="#makeBimodalSymbolMarks" >makeBimodalSymbolMarks</a>
+                            </li>
+                            <li>
+                                <a href="#makeBimodalTextDiscrepencyIdMarks" >makeBimodalTextDiscrepencyIdMarks</a>
+                            </li>
+                            <li>
+                                <a href="#makeBimodalTextDiscrepencyLabelMarks" >makeBimodalTextDiscrepencyLabelMarks</a>
+                            </li>
+                            <li>
+                                <a href="#makeBimodalTextDuplicateIdMarks" >makeBimodalTextDuplicateIdMarks</a>
+                            </li>
+                            <li>
+                                <a href="#makeBimodalTextSearchMarks" >makeBimodalTextSearchMarks</a>
+                            </li>
+                            <li>
+                                <a href="#makeBiomodalTextLinkMarks" >makeBiomodalTextLinkMarks</a>
+                            </li>
+                            <li>
+                                <a href="#makeBiomodalTextMarks" >makeBiomodalTextMarks</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/modules/tree/spec/groups/bimodal.ts:8</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="group"></a>
+                    <span class="name">
+                        <span ><b>group</b></span>
+                        <a href="#group"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>GroupMark</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/modules/tree/spec/groups/bimodal.ts:8</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="create"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>create</b></span>
+                        <a href="#create"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>create()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="4"
+                                    class="link-to-prism">src/app/modules/tree/spec/groups/bimodal.ts:4</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>GroupMark</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeBimodalMarkGroup"></a>
+                    <span class="name">
+                        <span ><b>makeBimodalMarkGroup</b></span>
+                        <a href="#makeBimodalMarkGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeBimodalMarkGroup()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="17"
+                                    class="link-to-prism">src/app/modules/tree/spec/groups/bimodal.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Function to create the mark groups for the bimodal network</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>GroupMark</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeBimodalPathMarks"></a>
+                    <span class="name">
+                        <span ><b>makeBimodalPathMarks</b></span>
+                        <a href="#makeBimodalPathMarks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeBimodalPathMarks()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="234"
+                                    class="link-to-prism">src/app/modules/tree/spec/groups/bimodal.ts:234</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Bimodal paths</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Mark</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeBimodalSymbolMarks"></a>
+                    <span class="name">
+                        <span ><b>makeBimodalSymbolMarks</b></span>
+                        <a href="#makeBimodalSymbolMarks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeBimodalSymbolMarks()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="398"
+                                    class="link-to-prism">src/app/modules/tree/spec/groups/bimodal.ts:398</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Bimodal symbols</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Mark</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeBimodalTextDiscrepencyIdMarks"></a>
+                    <span class="name">
+                        <span ><b>makeBimodalTextDiscrepencyIdMarks</b></span>
+                        <a href="#makeBimodalTextDiscrepencyIdMarks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeBimodalTextDiscrepencyIdMarks()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="136"
+                                    class="link-to-prism">src/app/modules/tree/spec/groups/bimodal.ts:136</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Rectangle around the bimodal text mark when discrepency Id toggle is turned on</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Mark</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeBimodalTextDiscrepencyLabelMarks"></a>
+                    <span class="name">
+                        <span ><b>makeBimodalTextDiscrepencyLabelMarks</b></span>
+                        <a href="#makeBimodalTextDiscrepencyLabelMarks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeBimodalTextDiscrepencyLabelMarks()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="87"
+                                    class="link-to-prism">src/app/modules/tree/spec/groups/bimodal.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Rectangle around the bimodal text mark when discrepency label toggle is turned on</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Mark</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeBimodalTextDuplicateIdMarks"></a>
+                    <span class="name">
+                        <span ><b>makeBimodalTextDuplicateIdMarks</b></span>
+                        <a href="#makeBimodalTextDuplicateIdMarks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeBimodalTextDuplicateIdMarks()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="185"
+                                    class="link-to-prism">src/app/modules/tree/spec/groups/bimodal.ts:185</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Rectangle around the bimodal text mark when duplicate Id toggle is turned on</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Mark</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeBimodalTextSearchMarks"></a>
+                    <span class="name">
+                        <span ><b>makeBimodalTextSearchMarks</b></span>
+                        <a href="#makeBimodalTextSearchMarks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeBimodalTextSearchMarks()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="38"
+                                    class="link-to-prism">src/app/modules/tree/spec/groups/bimodal.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Rectangle around the bimodal text mark</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Mark</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeBiomodalTextLinkMarks"></a>
+                    <span class="name">
+                        <span ><b>makeBiomodalTextLinkMarks</b></span>
+                        <a href="#makeBiomodalTextLinkMarks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeBiomodalTextLinkMarks()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="458"
+                                    class="link-to-prism">src/app/modules/tree/spec/groups/bimodal.ts:458</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Bimodal link texts</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Mark</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeBiomodalTextMarks"></a>
+                    <span class="name">
+                        <span ><b>makeBiomodalTextMarks</b></span>
+                        <a href="#makeBiomodalTextMarks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeBiomodalTextMarks()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="538"
+                                    class="link-to-prism">src/app/modules/tree/spec/groups/bimodal.ts:538</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Bimodal text marks</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Mark</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { GroupMark, Mark } from &#x27;vega&#x27;;
+
+export class BimodalMarkGroup {
+  static create(): GroupMark {
+    return new BimodalMarkGroup().group;
+  }
+
+  group: GroupMark;
+
+  constructor() {
+    this.group &#x3D; this.makeBimodalMarkGroup();
+  }
+
+  /**
+   * Function to create the mark groups for the bimodal network
+   */
+  makeBimodalMarkGroup(): GroupMark {
+    return {
+      type: &#x27;group&#x27;,
+      signals: [{ name: &#x27;bgoffset&#x27;, value: 8 }],
+      name: &#x27;bimodal-network&#x27;,
+      marks: [
+        this.makeBimodalPathMarks(),
+        this.makeBimodalSymbolMarks(),
+        this.makeBiomodalTextMarks(),
+        this.makeBimodalTextSearchMarks(),
+        this.makeBiomodalTextLinkMarks(),
+        this.makeBimodalTextDiscrepencyLabelMarks(),
+        this.makeBimodalTextDiscrepencyIdMarks(),
+        this.makeBimodalTextDuplicateIdMarks(),
+      ],
+    };
+  }
+
+  /**
+   * Rectangle around the bimodal text mark
+   */
+  makeBimodalTextSearchMarks(): Mark {
+    return {
+      name: &#x27;rectmark&#x27;,
+      type: &#x27;rect&#x27;,
+      from: { data: &#x27;textmark&#x27; },
+      encode: {
+        enter: {
+          x: {
+            field: &#x27;bounds.x1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          x2: {
+            field: &#x27;bounds.x2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          y: {
+            field: &#x27;bounds.y1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          y2: {
+            field: &#x27;bounds.y2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          fill: { value: &#x27;aliceblue&#x27; },
+          stroke: { value: &#x27;steelblue&#x27; },
+          zindex: { value: -1 },
+        },
+        update: {
+          opacity: [
+            {
+              test: &quot;node__click &#x3D;&#x3D;&#x3D; null &amp;&amp; indata(&#x27;search&#x27;, &#x27;id&#x27;, datum.datum.id)&quot;,
+              value: 1,
+            },
+            {
+              value: 0,
+            },
+          ],
+        },
+      },
+    };
+  }
+
+  /**
+   * Rectangle around the bimodal text mark when discrepency label toggle is turned on
+   */
+  makeBimodalTextDiscrepencyLabelMarks(): Mark {
+    return {
+      name: &#x27;rectmarkdiscrepencylabel&#x27;,
+      type: &#x27;rect&#x27;,
+      from: { data: &#x27;textmark&#x27; },
+      encode: {
+        enter: {
+          x: {
+            field: &#x27;bounds.x1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          x2: {
+            field: &#x27;bounds.x2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          y: {
+            field: &#x27;bounds.y1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          y2: {
+            field: &#x27;bounds.y2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          fill: { value: &#x27;lightblue&#x27; },
+          stroke: { value: &#x27;darkblue&#x27; },
+          zindex: { value: -1 },
+        },
+        update: {
+          opacity: [
+            {
+              test: &quot;node__click &#x3D;&#x3D;&#x3D; null &amp;&amp; indata(&#x27;discrepencyLabel&#x27;, &#x27;id&#x27;, datum.datum.id)&quot;,
+              value: 1,
+            },
+            {
+              value: 0,
+            },
+          ],
+        },
+      },
+    };
+  }
+
+  /**
+   * Rectangle around the bimodal text mark when discrepency Id toggle is turned on
+   */
+  makeBimodalTextDiscrepencyIdMarks(): Mark {
+    return {
+      name: &#x27;rectmarkdiscrepencyid&#x27;,
+      type: &#x27;rect&#x27;,
+      from: { data: &#x27;textmark&#x27; },
+      encode: {
+        enter: {
+          x: {
+            field: &#x27;bounds.x1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          x2: {
+            field: &#x27;bounds.x2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          y: {
+            field: &#x27;bounds.y1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          y2: {
+            field: &#x27;bounds.y2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          fill: { value: &#x27;bisque&#x27; },
+          stroke: { value: &#x27;burlywood&#x27; },
+          zindex: { value: -1 },
+        },
+        update: {
+          opacity: [
+            {
+              test: &quot;node__click &#x3D;&#x3D;&#x3D; null &amp;&amp; indata(&#x27;discrepencyId&#x27;, &#x27;id&#x27;, datum.datum.id)&quot;,
+              value: 1,
+            },
+            {
+              value: 0,
+            },
+          ],
+        },
+      },
+    };
+  }
+
+  /**
+   * Rectangle around the bimodal text mark when duplicate Id toggle is turned on
+   */
+  makeBimodalTextDuplicateIdMarks(): Mark {
+    return {
+      name: &#x27;rectmarkduplicateid&#x27;,
+      type: &#x27;rect&#x27;,
+      from: { data: &#x27;textmark&#x27; },
+      encode: {
+        enter: {
+          x: {
+            field: &#x27;bounds.x1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          x2: {
+            field: &#x27;bounds.x2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          y: {
+            field: &#x27;bounds.y1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          y2: {
+            field: &#x27;bounds.y2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          fill: { value: &#x27;lightyellow&#x27; },
+          stroke: { value: &#x27;burlywood&#x27; },
+          zindex: { value: -1 },
+        },
+        update: {
+          opacity: [
+            {
+              test: &quot;node__click &#x3D;&#x3D;&#x3D; null &amp;&amp; indata(&#x27;duplicateId&#x27;, &#x27;id&#x27;, datum.datum.id)&quot;,
+              value: 1,
+            },
+            {
+              value: 0,
+            },
+          ],
+        },
+      },
+    };
+  }
+
+  /**
+   * Bimodal paths
+   */
+  makeBimodalPathMarks(): Mark {
+    return {
+      type: &#x27;path&#x27;,
+      name: &#x27;bimodal-path&#x27;,
+      from: { data: &#x27;edges&#x27; },
+      encode: {
+        enter: {
+          stroke: { value: &#x27;#ccc&#x27; },
+          strokeWidth: { value: 1.5 },
+          x: { value: 0 },
+          y: { value: 5 },
+        },
+        update: {
+          tooltip: [
+            {
+              test: &#x27;node__click &#x3D;&#x3D;&#x3D; null &amp;&amp; datum.target.group &#x3D;&#x3D;&#x3D; 2&#x27;,
+              signal: &quot;length(datum.target.references) &gt; 0 ? &#x27;Click to see DOI References&#x27; : &#x27;No DOI References&#x27;&quot;,
+            },
+            {
+              test: &#x27;node__click &#x3D;&#x3D;&#x3D; null &amp;&amp; datum.target.group !&#x3D;&#x3D; 2&#x27;,
+              signal:
+                &quot;isValid(datum.source.references) &amp;&amp; length(datum.source.references) &gt; 0 ? &#x27;Click to see DOI References&#x27; : &#x27;No DOI References&#x27;&quot;,
+            },
+          ],
+          strokeWidth: { value: 5 },
+          path: { field: &#x27;path&#x27; },
+          stroke: [
+            // red: E41A1C, green: 4DAF4A, blue: 377EB8
+            {
+              test: &#x27;datum.source.id &#x3D;&#x3D;&#x3D; node__hover &amp;&amp; datum.source.group &#x3D;&#x3D; 1&#x27;,
+              value: &#x27;#E41A1C&#x27;,
+            }, // for hover
+            {
+              test: &#x27;datum.source.id &#x3D;&#x3D;&#x3D; node__hover &amp;&amp; datum.source.group &#x3D;&#x3D; 2 &amp;&amp; !datum.pathColor&#x27;,
+              value: &#x27;#377EB8&#x27;,
+            }, // for hover
+            {
+              test: &#x27;datum.source.id &#x3D;&#x3D;&#x3D; node__hover &amp;&amp; datum.source.group &#x3D;&#x3D; 2 &amp;&amp; datum.pathColor&#x27;,
+              field: &#x27;pathColor&#x27;,
+            }, // for hover
+            {
+              test: &#x27;datum.target.id &#x3D;&#x3D;&#x3D; node__hover &amp;&amp; datum.target.group &#x3D;&#x3D; 2&#x27;,
+              value: &#x27;#E41A1C&#x27;,
+            }, // for hover
+            {
+              test: &#x27;datum.target.id &#x3D;&#x3D;&#x3D; node__hover &amp;&amp; datum.target.group &#x3D;&#x3D; 3 &amp;&amp; !datum.pathColor&#x27;,
+              value: &#x27;#4DAF4A&#x27;,
+            }, // for hover
+            {
+              test: &#x27;datum.target.id &#x3D;&#x3D;&#x3D; node__hover &amp;&amp; datum.target.group &#x3D;&#x3D; 3 &amp;&amp; datum.pathColor&#x27;,
+              field: &#x27;pathColor&#x27;,
+            }, // for hover
+            {
+              test: &#x27;datum.source.id &#x3D;&#x3D;&#x3D; node__click &amp;&amp; datum.source.group &#x3D;&#x3D; 1&#x27;,
+              value: &#x27;#E41A1C&#x27;,
+            }, // for click
+            {
+              test: &#x27;datum.source.id &#x3D;&#x3D;&#x3D; node__click &amp;&amp; datum.source.group &#x3D;&#x3D; 2 &amp;&amp; !datum.pathColor&#x27;,
+              value: &#x27;#377EB8&#x27;,
+            }, // for click
+            {
+              test: &#x27;datum.source.id &#x3D;&#x3D;&#x3D; node__click &amp;&amp; datum.source.group &#x3D;&#x3D; 2 &amp;&amp; datum.pathColor&#x27;,
+              field: &#x27;pathColor&#x27;,
+            }, // for click
+            {
+              test: &#x27;datum.target.id &#x3D;&#x3D;&#x3D; node__click &amp;&amp; datum.target.group &#x3D;&#x3D; 2&#x27;,
+              value: &#x27;#E41A1C&#x27;,
+            }, // for click
+            {
+              test: &#x27;datum.target.id &#x3D;&#x3D;&#x3D; node__click &amp;&amp; datum.target.group &#x3D;&#x3D; 3 &amp;&amp; !datum.pathColor&#x27;,
+              value: &#x27;#4DAF4A&#x27;,
+            }, // for click
+            {
+              test: &#x27;datum.target.id &#x3D;&#x3D;&#x3D; node__click &amp;&amp; datum.target.group &#x3D;&#x3D; 3 &amp;&amp; datum.pathColor&#x27;,
+              field: &#x27;pathColor&#x27;,
+            }, // for click
+            {
+              test: &#x27;(node__click !&#x3D;&#x3D; null || node__hover !&#x3D;&#x3D; null) &amp;&amp; datum.target.group &#x3D;&#x3D; 3&#x27;,
+              value: &#x27;#ccc&#x27;, // for greying out other paths when clicking on a node
+            },
+            {
+              test: &#x27;(node__click !&#x3D;&#x3D; null || node__hover !&#x3D;&#x3D; null) &amp;&amp; datum.target.group &#x3D;&#x3D; 2&#x27;,
+              value: &#x27;#ccc&#x27;, // for greying out other paths when clicking on a node
+            },
+            // for getting AS -&gt; CT -&gt; B
+            {
+              test: &quot;indata(&#x27;targets_hovered_array&#x27;, &#x27;id&#x27;, datum.source.id)&quot;,
+              value: &#x27;#377EB8&#x27;,
+            },
+
+            {
+              test: &quot;indata(&#x27;targets_clicked_array&#x27;, &#x27;id&#x27;, datum.source.id)&quot;,
+              value: &#x27;#377EB8&#x27;,
+            },
+            // for getting B -&gt; CT -&gt; AS
+            {
+              test: &quot;indata(&#x27;sources_hovered_array&#x27;, &#x27;id&#x27;, datum.target.id) &amp;&amp; datum.source.group !&#x3D;&#x3D; 2&quot;,
+              value: &#x27;#377EB8&#x27;,
+            },
+            {
+              test: &quot;indata(&#x27;sources_clicked_array&#x27;, &#x27;id&#x27;, datum.target.id) &amp;&amp; datum.source.group !&#x3D;&#x3D; 2&quot;,
+              value: &#x27;#377EB8&#x27;,
+            },
+            {
+              signal:
+                &#x27;datum.pathColor? datum.pathColor :datum.source.pathColor &#x3D;&#x3D;&#x3D; datum.target.pathColor ? datum.source.pathColor : &quot;#ccc&quot;&#x27;,
+            },
+          ],
+          opacity: [
+            { test: &#x27;datum.target.id &#x3D;&#x3D;&#x3D; node__click&#x27;, value: 0.5 },
+            { test: &#x27;datum.source.id &#x3D;&#x3D;&#x3D; node__click&#x27;, value: 0.5 },
+            {
+              test: &quot;indata(&#x27;targets_clicked_array&#x27;, &#x27;id&#x27;, datum.source.id)&quot;,
+              value: 0.5,
+            },
+            {
+              test: &quot;indata(&#x27;sources_clicked_array&#x27;, &#x27;id&#x27;, datum.target.id) &amp;&amp; datum.source.group !&#x3D;&#x3D; 2&quot;,
+              value: 0.5,
+            },
+            {
+              test: &quot;indata(&#x27;targets_hovered_array&#x27;, &#x27;id&#x27;, datum.source.id)&quot;,
+              value: 0.3,
+            },
+            {
+              test: &quot;indata(&#x27;sources_hovered_array&#x27;, &#x27;id&#x27;, datum.target.id)&quot;,
+              value: 0.3,
+            },
+            {
+              test: &quot;indata(&#x27;view_mode__hover&#x27;, &#x27;id&#x27;, datum.source.id) &amp;&amp; indata(&#x27;view_mode__hover&#x27;, &#x27;id&#x27;, datum.target.id)&quot;,
+              value: 0.3,
+            },
+            {
+              test: &#x27;node__hover &amp;&amp; datum.source.id !&#x3D;&#x3D; node__hover &amp;&amp; node__click &#x3D;&#x3D;&#x3D; null&#x27;,
+              value: 0.15,
+            },
+            {
+              test: &#x27;node__click !&#x3D;&#x3D; null&#x27;,
+              value: 0.1,
+            },
+            { value: 0.3 },
+          ],
+          zindex: [
+            { test: &#x27;datum.source.id &#x3D;&#x3D;&#x3D; node__hover&#x27;, value: 2 },
+            { test: &#x27;datum.target.id &#x3D;&#x3D;&#x3D; node__hover&#x27;, value: 2 },
+            { test: &#x27;datum.source.id &#x3D;&#x3D;&#x3D; node__click&#x27;, value: 2 },
+            { test: &#x27;datum.target.id &#x3D;&#x3D;&#x3D; node__click&#x27;, value: 2 },
+            {
+              test: &quot;indata(&#x27;targets_clicked_array&#x27;, &#x27;id&#x27;, datum.source.id)&quot;,
+              value: 2,
+            },
+          ],
+        },
+        hover: {
+          strokeWidth: [{ test: &#x27;node__click &#x3D;&#x3D;&#x3D; null&#x27;, value: 3.5 }],
+          stroke: { value: &#x27;#6c6a63&#x27; },
+          cursor: [{ test: &#x27;node__click &#x3D;&#x3D;&#x3D; null&#x27;, value: &#x27;pointer&#x27; }],
+        },
+      },
+    };
+  }
+
+  /**
+   * Bimodal symbols
+   */
+  makeBimodalSymbolMarks(): Mark {
+    return {
+      type: &#x27;symbol&#x27;,
+      name: &#x27;bimodal-symbol&#x27;,
+      from: { data: &#x27;nodes&#x27; },
+      encode: {
+        enter: {
+          shape: {
+            signal: &#x60;datum.bType &#x3D;&#x3D;&#x3D; &quot;gene&quot; ?
+              &quot;circle&quot; : datum.bType &#x3D;&#x3D;&#x3D; &quot;protein&quot; ?
+              &quot;diamond&quot; : datum.bType &#x3D;&#x3D;&#x3D; &quot;lipids&quot; ?
+              &quot;square&quot; : datum.bType &#x3D;&#x3D;&#x3D; &quot;metabolites&quot; ?
+              &quot;triangle&quot;: datum.bType &#x3D;&#x3D;&#x3D; &quot;proteoforms&quot; ?
+              &quot;cross&quot; : &quot;circle&quot;&#x60;,
+          },
+          size: { field: &#x27;nodeSize&#x27; },
+          fill: { signal: &#x27;datum.isNew ? &quot;#fafafa&quot; : datum.color&#x27; },
+          x: { field: &#x27;x&#x27; },
+          y: { field: &#x27;y&#x27;, offset: 5 },
+          cursor: { value: &#x27;pointer&#x27; },
+          tooltip: {
+            signal:
+              &#x27;{\&#x27;Name\&#x27;: datum.name, \&#x27;Degree\&#x27;: datum.group &#x3D;&#x3D;&#x3D; 1 ? length(datum.sources) + length(datum.targets) + 1 : length(datum.sources) + length(datum.targets), &quot;Indegree&quot;: datum.group &#x3D;&#x3D; 1 ? 1 : length(datum.sources), &quot;Outdegree&quot;: length(datum.targets), &quot;Ontology ID&quot;: datum.ontologyId, &quot;rdfs:label&quot;: datum.label}&#x27;,
+          },
+        },
+        update: {
+          opacity: [
+            {
+              test: &#x27;node__click &#x3D;&#x3D;&#x3D; null &amp;&amp; node__hover &#x3D;&#x3D;&#x3D; null&#x27;,
+              value: 1,
+            },
+            {
+              test: &quot;indata(&#x27;view_mode__click&#x27;, &#x27;id&#x27;, datum.id) || indata(&#x27;targets_of_targets__click&#x27;, &#x27;targets&#x27;, datum.id) || (indata(&#x27;sources_of_sources__click&#x27;, &#x27;sources&#x27;, datum.id) &amp;&amp; datum.group !&#x3D;&#x3D; 2 &amp;&amp; datum.group !&#x3D;&#x3D; 3)&quot;,
+              value: 1,
+            },
+            {
+              test: &quot;node__hover !&#x3D;&#x3D; null &amp;&amp; indata(&#x27;view_mode__hover&#x27;, &#x27;id&#x27;, datum.id) || indata(&#x27;targets_of_targets__hover&#x27;, &#x27;targets&#x27;, datum.id) || (indata(&#x27;sources_of_sources__hover&#x27;, &#x27;sources&#x27;, datum.id) &amp;&amp; datum.group !&#x3D;&#x3D; 2 &amp;&amp; datum.group !&#x3D;&#x3D; 3)&quot;,
+              value: 1,
+            },
+            {
+              test: &#x27;node__hover !&#x3D;&#x3D; null &amp;&amp; datum.id !&#x3D;&#x3D; node__hover &amp;&amp; node__click &#x3D;&#x3D;&#x3D; null&#x27;,
+              value: 0.5,
+            },
+            {
+              value: 0.1,
+            },
+          ],
+          stroke: {
+            signal: &#x27;datum.problem ? &quot;#000&quot; : datum.isNew ? datum.color : &quot;#fff&quot;&#x27;,
+          },
+          strokeWidth: { signal: &#x27;datum.isNew ? 4 : 0&#x27; },
+          strokeDash: { signal: &#x27;datum.isNew ? [3, 3] : [0, 0]&#x27; },
+        },
+      },
+    };
+  }
+
+  /**
+   * Bimodal link texts
+   */
+  makeBiomodalTextLinkMarks(): Mark {
+    return {
+      type: &#x27;text&#x27;,
+      name: &#x27;textlinkmark&#x27;,
+      zindex: 5,
+      from: { data: &#x27;nodes&#x27; },
+      encode: {
+        update: {
+          x: { field: &#x27;x&#x27; },
+          y: { field: &#x27;y&#x27;, offset: 5 },
+          dx: { value: 20 },
+          dy: { value: 10 },
+          align: { value: &#x27;left&#x27; },
+          baseline: { value: &#x27;middle&#x27; },
+          text: { field: &#x27;ontologyId&#x27; },
+          fontSize: { value: 11 },
+          fill: [
+            {
+              value: &#x27;grey&#x27;,
+            },
+          ],
+          fontWeight: [
+            {
+              test: &quot;indata(&#x27;targets_clicked_array&#x27;, &#x27;id&#x27;, datum.id)&quot;,
+              value: &#x27;bold&#x27;,
+            },
+            {
+              test: &#x27;datum.id &#x3D;&#x3D;&#x3D; node__click&#x27;,
+              value: &#x27;bold&#x27;,
+            },
+            {
+              test: &quot;indata(&#x27;sources_clicked_array&#x27;, &#x27;id&#x27;, datum.id)&quot;,
+              value: &#x27;bold&#x27;,
+            },
+            {
+              test: &quot;indata(&#x27;targets_of_targets__click&#x27;, &#x27;targets&#x27;, datum.id)&quot;,
+              value: &#x27;bold&#x27;,
+            },
+            {
+              test: &quot;indata(&#x27;sources_of_sources__click&#x27;, &#x27;sources&#x27;, datum.id)  &amp;&amp; datum.group !&#x3D;&#x3D; 2 &amp;&amp; datum.group !&#x3D;&#x3D; 3&quot;,
+              value: &#x27;bold&#x27;,
+            },
+          ],
+          opacity: [
+            {
+              test: &#x27;!show_ontology&#x27;,
+              value: 0,
+            },
+            {
+              test: &#x27;node__click &#x3D;&#x3D;&#x3D; null &amp;&amp; node__hover &#x3D;&#x3D;&#x3D; null&#x27;,
+              value: 1,
+            },
+            {
+              test: &quot;indata(&#x27;view_mode__click&#x27;, &#x27;id&#x27;, datum.id) || indata(&#x27;targets_of_targets__click&#x27;, &#x27;targets&#x27;, datum.id) || (indata(&#x27;sources_of_sources__click&#x27;, &#x27;sources&#x27;, datum.id) &amp;&amp; datum.group !&#x3D;&#x3D; 2 &amp;&amp; datum.group !&#x3D;&#x3D; 3)&quot;,
+              value: 1,
+            },
+            {
+              test: &quot;node__hover !&#x3D;&#x3D; null &amp;&amp; indata(&#x27;view_mode__hover&#x27;, &#x27;id&#x27;, datum.id) || indata(&#x27;targets_of_targets__hover&#x27;, &#x27;targets&#x27;, datum.id) || (indata(&#x27;sources_of_sources__hover&#x27;, &#x27;sources&#x27;, datum.id) &amp;&amp; datum.group !&#x3D;&#x3D; 2 &amp;&amp; datum.group !&#x3D;&#x3D; 3)&quot;,
+              value: 1,
+            },
+            {
+              test: &#x27;node__hover !&#x3D;&#x3D; null &amp;&amp; datum.id !&#x3D;&#x3D; node__hover &amp;&amp; node__click &#x3D;&#x3D;&#x3D; null&#x27;,
+              value: 0.5,
+            },
+            {
+              value: 0.1,
+            },
+          ],
+          limit: {
+            signal:
+              &quot;node__click &#x3D;&#x3D;&#x3D; datum.id || node__hover &#x3D;&#x3D;&#x3D; datum.id || indata(&#x27;view_mode__click&#x27;, &#x27;id&#x27;, datum.id) || indata(&#x27;view_mode__hover&#x27;, &#x27;id&#x27;, datum.id) || indata(&#x27;targets_of_targets__click&#x27;, &#x27;targets&#x27;, datum.id) || indata(&#x27;sources_of_sources__click&#x27;, &#x27;sources&#x27;, datum.id) || indata(&#x27;targets_of_targets__hover&#x27;, &#x27;targets&#x27;, datum.id) || indata(&#x27;sources_of_sources__hover&#x27;, &#x27;sources&#x27;, datum.id)? null : 150&quot;,
+          },
+        },
+      },
+    };
+  }
+
+  /**
+   * Bimodal text marks
+   */
+  makeBiomodalTextMarks(): Mark {
+    return {
+      type: &#x27;text&#x27;,
+      name: &#x27;textmark&#x27;,
+      zindex: 5,
+      from: { data: &#x27;nodes&#x27; },
+      encode: {
+        update: {
+          x: { field: &#x27;x&#x27; },
+          y: { field: &#x27;y&#x27;, offset: 5 },
+          dx: { value: 20 },
+          dy: { signal: &#x27;show_ontology ? -8 : 0&#x27; },
+          align: { value: &#x27;left&#x27; },
+          baseline: { value: &#x27;middle&#x27; },
+          text: { field: &#x27;name&#x27; },
+          fontSize: { field: &#x27;fontSize&#x27; },
+          cursor: { value: &#x27;pointer&#x27; },
+          fill: [
+            {
+              test: &#x27;datum &#x3D;&#x3D;&#x3D; bimodal_text__hover&#x27;,
+              value: &#x27;steelblue&#x27;,
+            },
+            {
+              value: &#x27;black&#x27;,
+            },
+          ],
+          fontWeight: [
+            {
+              test: &quot;indata(&#x27;targets_clicked_array&#x27;, &#x27;id&#x27;, datum.id)&quot;,
+              value: &#x27;bold&#x27;,
+            },
+            {
+              test: &#x27;datum.id &#x3D;&#x3D;&#x3D; node__click&#x27;,
+              value: &#x27;bold&#x27;,
+            },
+            {
+              test: &quot;indata(&#x27;sources_clicked_array&#x27;, &#x27;id&#x27;, datum.id)&quot;,
+              value: &#x27;bold&#x27;,
+            },
+            {
+              test: &quot;indata(&#x27;targets_of_targets__click&#x27;, &#x27;targets&#x27;, datum.id)&quot;,
+              value: &#x27;bold&#x27;,
+            },
+            {
+              test: &quot;indata(&#x27;sources_of_sources__click&#x27;, &#x27;sources&#x27;, datum.id)  &amp;&amp; datum.group !&#x3D;&#x3D; 2 &amp;&amp; datum.group !&#x3D;&#x3D; 3&quot;,
+              value: &#x27;bold&#x27;,
+            },
+          ],
+          opacity: [
+            {
+              test: &#x27;node__click &#x3D;&#x3D;&#x3D; null &amp;&amp; node__hover &#x3D;&#x3D;&#x3D; null&#x27;,
+              value: 1,
+            },
+            {
+              test: &quot;indata(&#x27;view_mode__click&#x27;, &#x27;id&#x27;, datum.id) || indata(&#x27;targets_of_targets__click&#x27;, &#x27;targets&#x27;, datum.id) || (indata(&#x27;sources_of_sources__click&#x27;, &#x27;sources&#x27;, datum.id) &amp;&amp; datum.group !&#x3D;&#x3D; 2 &amp;&amp; datum.group !&#x3D;&#x3D; 3)&quot;,
+              value: 1,
+            },
+            {
+              test: &quot;node__hover !&#x3D;&#x3D; null &amp;&amp; indata(&#x27;view_mode__hover&#x27;, &#x27;id&#x27;, datum.id) || indata(&#x27;targets_of_targets__hover&#x27;, &#x27;targets&#x27;, datum.id) || (indata(&#x27;sources_of_sources__hover&#x27;, &#x27;sources&#x27;, datum.id) &amp;&amp; datum.group !&#x3D;&#x3D; 2 &amp;&amp; datum.group !&#x3D;&#x3D; 3)&quot;,
+              value: 1,
+            },
+            {
+              test: &#x27;node__hover !&#x3D;&#x3D; null &amp;&amp; datum.id !&#x3D;&#x3D; node__hover &amp;&amp; node__click &#x3D;&#x3D;&#x3D; null&#x27;,
+              value: 0.5,
+            },
+            {
+              value: 0.1,
+            },
+          ],
+          limit: {
+            signal:
+              &quot;node__click &#x3D;&#x3D;&#x3D; datum.id || node__hover &#x3D;&#x3D;&#x3D; datum.id || indata(&#x27;view_mode__click&#x27;, &#x27;id&#x27;, datum.id) || indata(&#x27;view_mode__hover&#x27;, &#x27;id&#x27;, datum.id) || indata(&#x27;targets_of_targets__click&#x27;, &#x27;targets&#x27;, datum.id) || indata(&#x27;sources_of_sources__click&#x27;, &#x27;sources&#x27;, datum.id) || indata(&#x27;targets_of_targets__hover&#x27;, &#x27;targets&#x27;, datum.id) || indata(&#x27;sources_of_sources__hover&#x27;, &#x27;sources&#x27;, datum.id)? null : 150&quot;,
+          },
+        },
+      },
+    };
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'BimodalMarkGroup.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

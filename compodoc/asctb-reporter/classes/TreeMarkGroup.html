@@ -1,0 +1,1243 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>asctb-reporter</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">asctb-reporter</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >TreeMarkGroup</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/modules/tree/spec/groups/tree.ts</code>
+        </p>
+
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#group" >group</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#create" >create</a>
+                            </li>
+                            <li>
+                                <a href="#makeBimodalTextDiscrepencyIdMarks" >makeBimodalTextDiscrepencyIdMarks</a>
+                            </li>
+                            <li>
+                                <a href="#makeBimodalTextDiscrepencyLabelMarks" >makeBimodalTextDiscrepencyLabelMarks</a>
+                            </li>
+                            <li>
+                                <a href="#makeBimodalTextDuplicateIdMarks" >makeBimodalTextDuplicateIdMarks</a>
+                            </li>
+                            <li>
+                                <a href="#makeBimodalTextSearchMarks" >makeBimodalTextSearchMarks</a>
+                            </li>
+                            <li>
+                                <a href="#makeTreeMarkGroup" >makeTreeMarkGroup</a>
+                            </li>
+                            <li>
+                                <a href="#makeTreePathMarks" >makeTreePathMarks</a>
+                            </li>
+                            <li>
+                                <a href="#makeTreeSymbolMarks" >makeTreeSymbolMarks</a>
+                            </li>
+                            <li>
+                                <a href="#makeTreeTextLinkMarks" >makeTreeTextLinkMarks</a>
+                            </li>
+                            <li>
+                                <a href="#makeTreeTextMarks" >makeTreeTextMarks</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/modules/tree/spec/groups/tree.ts:8</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="group"></a>
+                    <span class="name">
+                        <span ><b>group</b></span>
+                        <a href="#group"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>GroupMark</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/modules/tree/spec/groups/tree.ts:8</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="create"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>create</b></span>
+                        <a href="#create"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>create()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="4"
+                                    class="link-to-prism">src/app/modules/tree/spec/groups/tree.ts:4</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>GroupMark</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeBimodalTextDiscrepencyIdMarks"></a>
+                    <span class="name">
+                        <span ><b>makeBimodalTextDiscrepencyIdMarks</b></span>
+                        <a href="#makeBimodalTextDiscrepencyIdMarks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeBimodalTextDiscrepencyIdMarks()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="182"
+                                    class="link-to-prism">src/app/modules/tree/spec/groups/tree.ts:182</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Rectangle around the bimodal text mark when discrepency Id toggle is turned on</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Mark</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeBimodalTextDiscrepencyLabelMarks"></a>
+                    <span class="name">
+                        <span ><b>makeBimodalTextDiscrepencyLabelMarks</b></span>
+                        <a href="#makeBimodalTextDiscrepencyLabelMarks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeBimodalTextDiscrepencyLabelMarks()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="110"
+                                    class="link-to-prism">src/app/modules/tree/spec/groups/tree.ts:110</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Rectangle around the bimodal text mark when discrepency label toggle is turned on</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Mark</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeBimodalTextDuplicateIdMarks"></a>
+                    <span class="name">
+                        <span ><b>makeBimodalTextDuplicateIdMarks</b></span>
+                        <a href="#makeBimodalTextDuplicateIdMarks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeBimodalTextDuplicateIdMarks()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="254"
+                                    class="link-to-prism">src/app/modules/tree/spec/groups/tree.ts:254</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Rectangle around the bimodal text mark when duplicate Id toggle is turned on</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Mark</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeBimodalTextSearchMarks"></a>
+                    <span class="name">
+                        <span ><b>makeBimodalTextSearchMarks</b></span>
+                        <a href="#makeBimodalTextSearchMarks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeBimodalTextSearchMarks()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="38"
+                                    class="link-to-prism">src/app/modules/tree/spec/groups/tree.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Mark for the blue rectangle for search</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Mark</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeTreeMarkGroup"></a>
+                    <span class="name">
+                        <span ><b>makeTreeMarkGroup</b></span>
+                        <a href="#makeTreeMarkGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeTreeMarkGroup()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="17"
+                                    class="link-to-prism">src/app/modules/tree/spec/groups/tree.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Mark group for the AS tree</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>GroupMark</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeTreePathMarks"></a>
+                    <span class="name">
+                        <span ><b>makeTreePathMarks</b></span>
+                        <a href="#makeTreePathMarks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeTreePathMarks()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="326"
+                                    class="link-to-prism">src/app/modules/tree/spec/groups/tree.ts:326</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>AS Tree paths marks</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Mark</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeTreeSymbolMarks"></a>
+                    <span class="name">
+                        <span ><b>makeTreeSymbolMarks</b></span>
+                        <a href="#makeTreeSymbolMarks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeTreeSymbolMarks()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="358"
+                                    class="link-to-prism">src/app/modules/tree/spec/groups/tree.ts:358</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>AS tree symbol marks</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Mark</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeTreeTextLinkMarks"></a>
+                    <span class="name">
+                        <span ><b>makeTreeTextLinkMarks</b></span>
+                        <a href="#makeTreeTextLinkMarks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeTreeTextLinkMarks()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="402"
+                                    class="link-to-prism">src/app/modules/tree/spec/groups/tree.ts:402</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>AS tree link text marks (these are clikable to get info )</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Mark</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeTreeTextMarks"></a>
+                    <span class="name">
+                        <span ><b>makeTreeTextMarks</b></span>
+                        <a href="#makeTreeTextMarks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeTreeTextMarks()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="457"
+                                    class="link-to-prism">src/app/modules/tree/spec/groups/tree.ts:457</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>AS Tree text marks</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Mark</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { GroupMark, Mark } from &#x27;vega&#x27;;
+
+export class TreeMarkGroup {
+  static create(): GroupMark {
+    return new TreeMarkGroup().group;
+  }
+
+  group: GroupMark;
+
+  constructor() {
+    this.group &#x3D; this.makeTreeMarkGroup();
+  }
+
+  /**
+   * Mark group for the AS tree
+   */
+  makeTreeMarkGroup(): GroupMark {
+    return {
+      type: &#x27;group&#x27;,
+      signals: [{ name: &#x27;bgoffset&#x27;, value: 6 }],
+      name: &#x27;asTree&#x27;,
+      marks: [
+        this.makeTreePathMarks(),
+        this.makeTreeSymbolMarks(),
+        this.makeTreeTextMarks(),
+        this.makeBimodalTextSearchMarks(),
+        this.makeTreeTextLinkMarks(),
+        this.makeBimodalTextDiscrepencyLabelMarks(),
+        this.makeBimodalTextDiscrepencyIdMarks(),
+        this.makeBimodalTextDuplicateIdMarks(),
+      ],
+    };
+  }
+
+  /**
+   * Mark for the blue rectangle for search
+   */
+  makeBimodalTextSearchMarks(): Mark {
+    return {
+      name: &#x27;rectmark&#x27;,
+      type: &#x27;rect&#x27;,
+      from: {
+        data: &#x27;astextmark&#x27;,
+      },
+      encode: {
+        enter: {
+          x: {
+            field: &#x27;bounds.x1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          x2: {
+            field: &#x27;bounds.x2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          y: {
+            field: &#x27;bounds.y1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          y2: {
+            field: &#x27;bounds.y2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          fill: { value: &#x27;aliceblue&#x27; },
+          stroke: { value: &#x27;steelblue&#x27; },
+        },
+        update: {
+          x: {
+            field: &#x27;bounds.x1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          x2: {
+            field: &#x27;bounds.x2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          y: {
+            field: &#x27;bounds.y1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          y2: {
+            field: &#x27;bounds.y2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          fill: { value: &#x27;aliceblue&#x27; },
+          stroke: { value: &#x27;steelblue&#x27; },
+          opacity: [
+            {
+              test: &quot;node__click &#x3D;&#x3D;&#x3D; null &amp;&amp; indata(&#x27;search&#x27;, &#x27;id&#x27;, datum.datum.id)&quot;,
+              value: 1,
+            },
+            {
+              value: 0,
+            },
+          ],
+        },
+      },
+    };
+  }
+
+  /**
+   * Rectangle around the bimodal text mark when discrepency label toggle is turned on
+   */
+  makeBimodalTextDiscrepencyLabelMarks(): Mark {
+    return {
+      name: &#x27;rectmarkdiscrepencylabel&#x27;,
+      type: &#x27;rect&#x27;,
+      from: { data: &#x27;astextmark&#x27; },
+      encode: {
+        enter: {
+          x: {
+            field: &#x27;bounds.x1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          x2: {
+            field: &#x27;bounds.x2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          y: {
+            field: &#x27;bounds.y1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          y2: {
+            field: &#x27;bounds.y2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          fill: { value: &#x27;lightblue&#x27; },
+          stroke: { value: &#x27;darkblue&#x27; },
+          zindex: { value: -1 },
+        },
+        update: {
+          x: {
+            field: &#x27;bounds.x1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          x2: {
+            field: &#x27;bounds.x2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          y: {
+            field: &#x27;bounds.y1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          y2: {
+            field: &#x27;bounds.y2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          fill: { value: &#x27;lightblue&#x27; },
+          stroke: { value: &#x27;darkblue&#x27; },
+          zindex: { value: -1 },
+          opacity: [
+            {
+              test: &quot;node__click &#x3D;&#x3D;&#x3D; null &amp;&amp; indata(&#x27;discrepencyLabel&#x27;, &#x27;id&#x27;, datum.datum.id) &amp;&amp; datum.datum.children !&#x3D;0&quot;,
+              value: 1,
+            },
+            {
+              value: 0,
+            },
+          ],
+        },
+      },
+    };
+  }
+
+  /**
+   * Rectangle around the bimodal text mark when discrepency Id toggle is turned on
+   */
+  makeBimodalTextDiscrepencyIdMarks(): Mark {
+    return {
+      name: &#x27;rectmarkdiscrepencyid&#x27;,
+      type: &#x27;rect&#x27;,
+      from: { data: &#x27;astextmark&#x27; },
+      encode: {
+        enter: {
+          x: {
+            field: &#x27;bounds.x1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          x2: {
+            field: &#x27;bounds.x2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          y: {
+            field: &#x27;bounds.y1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          y2: {
+            field: &#x27;bounds.y2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          fill: { value: &#x27;bisque&#x27; },
+          stroke: { value: &#x27;burlywood&#x27; },
+          zindex: { value: -1 },
+        },
+        update: {
+          x: {
+            field: &#x27;bounds.x1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          x2: {
+            field: &#x27;bounds.x2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          y: {
+            field: &#x27;bounds.y1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          y2: {
+            field: &#x27;bounds.y2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          fill: { value: &#x27;lightblue&#x27; },
+          stroke: { value: &#x27;darkblue&#x27; },
+          zindex: { value: -1 },
+          opacity: [
+            {
+              test: &quot;node__click &#x3D;&#x3D;&#x3D; null &amp;&amp; indata(&#x27;discrepencyId&#x27;, &#x27;id&#x27;, datum.datum.id) &amp;&amp; datum.datum.children !&#x3D;0&quot;,
+              value: 1,
+            },
+            {
+              value: 0,
+            },
+          ],
+        },
+      },
+    };
+  }
+
+  /**
+   * Rectangle around the bimodal text mark when duplicate Id toggle is turned on
+   */
+  makeBimodalTextDuplicateIdMarks(): Mark {
+    return {
+      name: &#x27;rectmarkduplicateid&#x27;,
+      type: &#x27;rect&#x27;,
+      from: { data: &#x27;astextmark&#x27; },
+      encode: {
+        enter: {
+          x: {
+            field: &#x27;bounds.x1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          x2: {
+            field: &#x27;bounds.x2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          y: {
+            field: &#x27;bounds.y1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          y2: {
+            field: &#x27;bounds.y2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          fill: { value: &#x27;lightyellow&#x27; },
+          stroke: { value: &#x27;burlywood&#x27; },
+          zindex: { value: -1 },
+        },
+        update: {
+          x: {
+            field: &#x27;bounds.x1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          x2: {
+            field: &#x27;bounds.x2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          y: {
+            field: &#x27;bounds.y1&#x27;,
+            round: true,
+            offset: { signal: &#x27;-bgoffset&#x27; },
+          },
+          y2: {
+            field: &#x27;bounds.y2&#x27;,
+            round: true,
+            offset: { signal: &#x27;bgoffset&#x27; },
+          },
+          fill: { value: &#x27;lightblue&#x27; },
+          stroke: { value: &#x27;darkblue&#x27; },
+          zindex: { value: -1 },
+          opacity: [
+            {
+              test: &quot;node__click &#x3D;&#x3D;&#x3D; null &amp;&amp; indata(&#x27;duplicateId&#x27;, &#x27;id&#x27;, datum.datum.id) &amp;&amp; datum.datum.children !&#x3D;0&quot;,
+              value: 1,
+            },
+            {
+              value: 0,
+            },
+          ],
+        },
+      },
+    };
+  }
+
+  /**
+   * AS Tree paths marks
+   */
+  makeTreePathMarks(): Mark {
+    return {
+      type: &#x27;path&#x27;,
+      from: { data: &#x27;links&#x27; },
+      encode: {
+        update: {
+          path: { field: &#x27;path&#x27; },
+          stroke: {
+            signal: &#x27;datum.source.pathColor &#x3D;&#x3D;&#x3D; datum.target.pathColor ? datum.source.pathColor : &quot;#ccc&quot;&#x27;,
+          },
+          opacity: [
+            {
+              test: &#x27;node__click !&#x3D;&#x3D; null&#x27;,
+              value: 0.1,
+            },
+            {
+              test: &#x27;node__hover !&#x3D;&#x3D; null &amp;&amp; datum.source.id !&#x3D;&#x3D; node__hover &amp;&amp; node__click &#x3D;&#x3D;&#x3D; null&#x27;,
+              value: 0.25,
+            },
+            {
+              value: 0.4,
+            },
+          ],
+          strokeWidth: { value: 5 },
+        },
+      },
+    };
+  }
+
+  /**
+   * AS tree symbol marks
+   */
+  makeTreeSymbolMarks(): Mark {
+    return {
+      type: &#x27;symbol&#x27;,
+      from: { data: &#x27;tree&#x27; },
+      encode: {
+        enter: {
+          size: { value: 300 },
+          stroke: {
+            signal: &#x27;datum.problem ? &quot;#000&quot;: datum.isNew ? datum.color :&quot;#fff&quot;&#x27;,
+          },
+          strokeWidth: { signal: &#x27;datum.problem ? 3: datum.isNew ? 3 : 0&#x27; },
+          strokeDash: { signal: &#x27;datum.isNew ? [3, 3] : [0, 0]&#x27; },
+        },
+        update: {
+          x: { field: &#x27;x&#x27; },
+          y: { field: &#x27;y&#x27; },
+          tooltip: { signal: &#x27;{&quot;Ontology ID&quot;: datum.ontologyId}&#x27; },
+          opacity: [
+            {
+              test: &#x27;node__click &#x3D;&#x3D;&#x3D; null &amp;&amp; node__hover &#x3D;&#x3D;&#x3D; null&#x27;,
+              value: 1,
+            },
+            {
+              test: &#x27;node__hover !&#x3D;&#x3D; null &amp;&amp; node__click &#x3D;&#x3D;&#x3D; null&#x27;,
+              value: 0.5,
+            },
+            {
+              test: &#x27;node__click !&#x3D;&#x3D; null&#x27;,
+              value: 0.1,
+            },
+            {
+              value: 0,
+            },
+          ],
+          zIndex: { value: 1 },
+          fill: { signal: &#x27;datum.isNew ? &quot;#fafafa&quot; : datum.color&#x27; },
+        },
+      },
+    };
+  }
+
+  /**
+   * AS tree link text marks (these are clikable to get info )
+   */
+  makeTreeTextLinkMarks(): Mark {
+    return {
+      type: &#x27;text&#x27;,
+      name: &#x27;aslinktextmark&#x27;,
+      from: { data: &#x27;tree&#x27; },
+      zindex: 5,
+      encode: {
+        enter: {
+          text: { field: &#x27;ontologyId&#x27; },
+          limit: { value: 180 },
+          fontSize: { value: 11 },
+          baseline: { value: &#x27;middle&#x27; },
+          fontWeight: { value: 600 },
+        },
+        update: {
+          x: { field: &#x27;x&#x27; },
+          y: { field: &#x27;y&#x27; },
+          dy: { value: 8 },
+          dx: { signal: &#x27;datum.children ? 15: -15&#x27; },
+          fill: [
+            {
+              value: &#x27;grey&#x27;,
+            },
+          ],
+          opacity: [
+            {
+              test: &#x27;!show_ontology&#x27;,
+              value: 0,
+            },
+            {
+              test: &#x27;!datum.children&#x27;,
+              value: 0,
+            },
+            {
+              test: &#x27;node__click !&#x3D;&#x3D; null&#x27;,
+              value: 0.1,
+            },
+            {
+              test: &#x27;node__click &#x3D;&#x3D;&#x3D; null &amp;&amp; node__hover &#x3D;&#x3D;&#x3D; null&#x27;,
+              value: 1,
+            },
+            {
+              test: &#x27;node__hover !&#x3D;&#x3D; null &amp;&amp; node__click &#x3D;&#x3D;&#x3D; null&#x27;,
+              value: 0.5,
+            },
+          ],
+          align: { signal: &quot;datum.children ? &#x27;left&#x27; : &#x27;right&#x27;&quot; },
+        },
+      },
+    };
+  }
+
+  /**
+   * AS Tree text marks
+   */
+  makeTreeTextMarks(): Mark {
+    return {
+      type: &#x27;text&#x27;,
+      name: &#x27;astextmark&#x27;,
+      from: { data: &#x27;tree&#x27; },
+      zindex: 5,
+      encode: {
+        enter: {
+          text: { field: &#x27;name&#x27; },
+          limit: { value: 180 },
+          fontSize: { value: 14 },
+          baseline: { value: &#x27;middle&#x27; },
+          fontWeight: { value: 400 },
+          cursor: { signal: &#x27;datum.children ? &quot;pointer&quot; : &quot;null&quot;&#x27; },
+        },
+        update: {
+          x: { field: &#x27;x&#x27; },
+          y: { field: &#x27;y&#x27; },
+          dy: { signal: &#x27;show_ontology ? -8 : 0&#x27; },
+          dx: { signal: &#x27;datum.children ? 15: -15&#x27; },
+          fill: [
+            {
+              test: &#x27;datum &#x3D;&#x3D;&#x3D; bimodal_text__hover&#x27;,
+              value: &#x27;steelblue&#x27;,
+            },
+            {
+              value: &#x27;black&#x27;,
+            },
+          ],
+          opacity: [
+            {
+              test: &#x27;!datum.children&#x27;,
+              value: 0,
+            },
+            {
+              test: &#x27;node__click !&#x3D;&#x3D; null&#x27;,
+              value: 0.1,
+            },
+            {
+              test: &#x27;node__click &#x3D;&#x3D;&#x3D; null &amp;&amp; node__hover &#x3D;&#x3D;&#x3D; null&#x27;,
+              value: 1,
+            },
+            {
+              test: &#x27;node__hover !&#x3D;&#x3D; null &amp;&amp; node__click &#x3D;&#x3D;&#x3D; null&#x27;,
+              value: 0.5,
+            },
+          ],
+          align: { signal: &quot;datum.children ? &#x27;left&#x27; : &#x27;right&#x27;&quot; },
+        },
+      },
+    };
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'TreeMarkGroup.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

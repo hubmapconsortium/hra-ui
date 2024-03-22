@@ -1,0 +1,1280 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>asctb-reporter</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">asctb-reporter</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  UIStateModel</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/store/ui.state.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Interface to keep track of all UI elements</p>
+
+            </p>
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#bottomSheetOpen" 
+>
+                                            bottomSheetOpen
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#compareOpen" 
+>
+                                            compareOpen
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#controlPaneOpen" 
+>
+                                            controlPaneOpen
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#debugLogOpen" 
+>
+                                            debugLogOpen
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#error" 
+>
+                                            error
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#indentListOpen" 
+>
+                                            indentListOpen
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#loading" 
+>
+                                            loading
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#loadingText" 
+>
+                                            loadingText
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#reportOpen" 
+>
+                                            reportOpen
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#rightSideNavOpen" 
+>
+                                            rightSideNavOpen
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#searchOpen" 
+>
+                                            searchOpen
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#snackbar" 
+>
+                                            snackbar
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="bottomSheetOpen"></a>
+                                        <span class="name "><b>bottomSheetOpen</b>
+                                            <a href="#bottomSheetOpen">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>bottomSheetOpen:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Keep track of the bottom sheet that shows info</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="compareOpen"></a>
+                                        <span class="name "><b>compareOpen</b>
+                                            <a href="#compareOpen">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>compareOpen:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Keep track of the compare sidebar</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="controlPaneOpen"></a>
+                                        <span class="name "><b>controlPaneOpen</b>
+                                            <a href="#controlPaneOpen">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>controlPaneOpen:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Keep track of the control pane on the left</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="debugLogOpen"></a>
+                                        <span class="name "><b>debugLogOpen</b>
+                                            <a href="#debugLogOpen">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>debugLogOpen:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Keep track of the debug log sidebar</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="error"></a>
+                                        <span class="name "><b>error</b>
+                                            <a href="#error">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>error:         <code><a href="../interfaces/Error.html" target="_self" >Error</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../interfaces/Error.html" target="_self" >Error</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Store UI in error state</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="indentListOpen"></a>
+                                        <span class="name "><b>indentListOpen</b>
+                                            <a href="#indentListOpen">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>indentListOpen:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Keep track of the indented list sidebar</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="loading"></a>
+                                        <span class="name "><b>loading</b>
+                                            <a href="#loading">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>loading:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Is the UI in loading state</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="loadingText"></a>
+                                        <span class="name "><b>loadingText</b>
+                                            <a href="#loadingText">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>loadingText:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Store the loading state</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="reportOpen"></a>
+                                        <span class="name "><b>reportOpen</b>
+                                            <a href="#reportOpen">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>reportOpen:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Keep track of the report sidebar</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="rightSideNavOpen"></a>
+                                        <span class="name "><b>rightSideNavOpen</b>
+                                            <a href="#rightSideNavOpen">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>rightSideNavOpen:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Keep track of the right sidebar</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="searchOpen"></a>
+                                        <span class="name "><b>searchOpen</b>
+                                            <a href="#searchOpen">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>searchOpen:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Keep track of the search panel state</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="snackbar"></a>
+                                        <span class="name "><b>snackbar</b>
+                                            <a href="#snackbar">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>snackbar:         <code><a href="../interfaces/Snackbar.html" target="_self" >Snackbar</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../interfaces/Snackbar.html" target="_self" >Snackbar</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Sotre snackbar state</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { Action, Select, Selector, State, StateContext, Store } from &#x27;@ngxs/store&#x27;;
+import { GoogleAnalyticsService } from &#x27;ngx-google-analytics&#x27;;
+import { ReportLog } from &#x27;../actions/logs.actions&#x27;;
+import { UpdateBottomSheetDOI, UpdateBottomSheetInfo } from &#x27;../actions/sheet.actions&#x27;;
+import { UpdateBottomSheetData } from &#x27;../actions/tree.actions&#x27;;
+import {
+  CloseBottomSheet,
+  CloseBottomSheetDOI,
+  CloseCompare,
+  CloseLoading,
+  CloseRightSideNav,
+  CloseSearch,
+  CloseSnackbar,
+  HasError,
+  OpenBottomSheet,
+  OpenBottomSheetDOI,
+  OpenCompare,
+  OpenLoading,
+  OpenSearch,
+  OpenSnackbar,
+  ToggleControlPane,
+  ToggleDebugLogs,
+  ToggleIndentList,
+  ToggleReport,
+  UpdateLoadingText,
+} from &#x27;../actions/ui.actions&#x27;;
+import { GaAction, GaCategory } from &#x27;../models/ga.model&#x27;;
+import { LOG_ICONS, LOG_TYPES } from &#x27;../models/logs.model&#x27;;
+import { Error, SnackbarType } from &#x27;../models/response.model&#x27;;
+import { Snackbar } from &#x27;../models/ui.model&#x27;;
+import { TreeState } from &#x27;./tree.state&#x27;;
+
+/** Interface to keep track of all UI elements */
+export interface UIStateModel {
+  /**
+   * Keep track of the right sidebar
+   */
+  rightSideNavOpen: boolean;
+  /**
+   * Keep track of the control pane on the left
+   */
+  controlPaneOpen: boolean;
+  /**
+   * Is the UI in loading state
+   */
+  loading: boolean;
+  /**
+   * Store the loading state
+   */
+  loadingText: string;
+  /**
+   * Store UI in error state
+   */
+  error: Error;
+  /**
+   * Sotre snackbar state
+   */
+  snackbar: Snackbar;
+  /**
+   * Keep track of the indented list sidebar
+   */
+  indentListOpen: boolean;
+  /**
+   * Keep track of the report sidebar
+   */
+  reportOpen: boolean;
+  /**
+   * Keep track of the debug log sidebar
+   */
+  debugLogOpen: boolean;
+  /**
+   * Keep track of the bottom sheet that shows info
+   */
+  bottomSheetOpen: boolean;
+  /**
+   * Keep track of the compare sidebar
+   */
+  compareOpen: boolean;
+  /**
+   * Keep track of the search panel state
+   */
+  searchOpen: boolean;
+}
+
+@State&lt;UIStateModel&gt;({
+  name: &#x27;uiState&#x27;,
+  defaults: {
+    rightSideNavOpen: false,
+    controlPaneOpen: true,
+    loading: true,
+    loadingText: &#x27;&#x27;,
+    error: {},
+    snackbar: { opened: false, text: &#x27;&#x27;, type: SnackbarType.success },
+    indentListOpen: false,
+    reportOpen: false,
+    debugLogOpen: false,
+    bottomSheetOpen: false,
+    compareOpen: false,
+    searchOpen: false,
+  },
+})
+@Injectable()
+export class UIState {
+  constructor(
+    public store: Store,
+    public ga: GoogleAnalyticsService,
+  ) {}
+
+  /**
+   * Select the snackbar state
+   *
+   * @param state - UI State Model
+   */
+  @Selector()
+  static getSnackbar(state: UIStateModel) {
+    return state.snackbar;
+  }
+
+  /**
+   * Select the loading state
+   *
+   * @param state - UI State Model
+   */
+  @Selector()
+  static getLoading(state: UIStateModel) {
+    return state.loading;
+  }
+
+  /**
+   * Select the loading text
+   *
+   * @param state - UI State Model
+   */
+  @Select()
+  static getLoadingText(state: UIStateModel) {
+    return state.loadingText;
+  }
+
+  /**
+   * Select control pane state
+   *
+   * @param state - UI State Model
+   */
+  @Selector()
+  static getControlPaneState(state: UIStateModel) {
+    return state.controlPaneOpen;
+  }
+
+  /**
+   * Select the error state
+   *
+   * @param state - UI State Model
+   */
+  @Selector()
+  static getError(state: UIStateModel) {
+    return {
+      error: state.error,
+    };
+  }
+
+  /**
+   * Select indented list sidenav state
+   *
+   * @param state - UI State Model
+   */
+  @Selector()
+  static getIndentList(state: UIStateModel) {
+    return state.indentListOpen;
+  }
+
+  /**
+   * Select the report sidenav state
+   *
+   * @param state - UI State Model
+   */
+  @Selector()
+  static getReport(state: UIStateModel) {
+    return state.reportOpen;
+  }
+
+  /**
+   * Select the right sidenav state
+   *
+   * @param state - UI State Model
+   */
+  @Selector()
+  static getRightSideNav(state: UIStateModel) {
+    return state.rightSideNavOpen;
+  }
+
+  /**
+   * Select the debug sidenav state
+   *
+   * @param state - UI State Model
+   */
+  @Selector()
+  static getDebugLog(state: UIStateModel) {
+    return state.debugLogOpen;
+  }
+
+  /**
+   * Select the bottom sheet state
+   *
+   * @param state - UI State Model
+   */
+  @Selector()
+  static getBottomSheet(state: UIStateModel) {
+    return state.bottomSheetOpen;
+  }
+
+  /**
+   * Select the compare sidenav state
+   *
+   * @param state - UI State Model
+   */
+  @Selector()
+  static getCompareState(state: UIStateModel) {
+    return state.compareOpen;
+  }
+
+  /**
+   * Select the search panel state
+   *
+   * @param state - UI State Model
+   */
+  @Selector()
+  static getSearchState(state: UIStateModel) {
+    return state.searchOpen;
+  }
+
+  /**
+   * Action to open snackbar. Update the UI State by setting the
+   * snackbar state to true and text
+   */
+  @Action(OpenSnackbar)
+  openSnackbar({ getState, setState }: StateContext&lt;UIStateModel&gt;, { text, type }: OpenSnackbar) {
+    const state &#x3D; getState();
+    setState({
+      ...state,
+      snackbar: { opened: true, text, type },
+    });
+  }
+
+  /**
+   * Action to close snackbar. Update the UI State by setting the
+   * snackbar state to false and success state
+   */
+  @Action(CloseSnackbar)
+  closeSnackbar({ getState, setState }: StateContext&lt;UIStateModel&gt;) {
+    const state &#x3D; getState();
+    setState({
+      ...state,
+      snackbar: {
+        opened: false,
+        text: &#x27;&#x27;,
+        type: SnackbarType.success,
+      },
+    });
+  }
+
+  /**
+   * Action to toggle control pane by inverting the current state
+   */
+  @Action(ToggleControlPane)
+  toggleControlPane({ getState, setState }: StateContext&lt;UIStateModel&gt;) {
+    const state &#x3D; getState();
+    setState({
+      ...state,
+      controlPaneOpen: !state.controlPaneOpen,
+    });
+    this.ga.event(GaAction.TOGGLE, GaCategory.NAVBAR, &#x27;Toggle Control Pane&#x27;, undefined, getState().controlPaneOpen);
+  }
+
+  /**
+   * Action to open loading. Set loading to true and text to text
+   */
+  @Action(OpenLoading)
+  openLoading({ getState, setState }: StateContext&lt;UIStateModel&gt;, { text }: OpenLoading) {
+    const state &#x3D; getState();
+    setState({
+      ...state,
+      loadingText: text,
+      loading: true,
+      error: {},
+    });
+  }
+
+  /**
+   * Action to update loading text
+   */
+  @Action(UpdateLoadingText)
+  UpdateLoadingText({ getState, setState }: StateContext&lt;UIStateModel&gt;, { text }: UpdateLoadingText) {
+    const state &#x3D; getState();
+    setState({
+      ...state,
+      loadingText: text,
+    });
+  }
+
+  /**
+   * Action to close loading. Set loading to false and clear loading text
+   */
+  @Action(CloseLoading)
+  closeLoading({ getState, setState, dispatch }: StateContext&lt;UIStateModel&gt;, { text }: CloseLoading) {
+    const state &#x3D; getState();
+    setState({
+      ...state,
+      loading: false,
+      loadingText: &#x27;&#x27;,
+    });
+
+    dispatch(new OpenSnackbar(text ?? &#x27;&#x27;, SnackbarType.success));
+  }
+
+  /**
+   * Action to update error state.
+   * Close loading and open snackbar with appropriate message and type
+   */
+  @Action(HasError)
+  hasError({ getState, setState, dispatch }: StateContext&lt;UIStateModel&gt;, { error }: HasError) {
+    dispatch(new ReportLog(LOG_TYPES.MSG, error.msg ?? &#x27;&#x27;, LOG_ICONS.error));
+    const state &#x3D; getState();
+    setState({
+      ...state,
+      error,
+      loading: false,
+      loadingText: &#x27;&#x27;,
+      snackbar: {
+        opened: true,
+        text: error.msg ?? &#x27;&#x27;,
+        type: SnackbarType.error,
+      },
+    });
+  }
+
+  /**
+   * Action to toggle Indent list sidebar
+   */
+  @Action(ToggleIndentList)
+  toggleIndentList({ getState, setState }: StateContext&lt;UIStateModel&gt;) {
+    const state &#x3D; getState();
+    setState({
+      ...state,
+      indentListOpen: !state.indentListOpen,
+    });
+    this.ga.event(GaAction.TOGGLE, GaCategory.NAVBAR, &#x27;Toggle Indent List&#x27;, undefined, getState().indentListOpen);
+  }
+
+  /**
+   * Action to toggle Report sidebar
+   */
+  @Action(ToggleReport)
+  toggleReport({ getState, setState }: StateContext&lt;UIStateModel&gt;) {
+    const state &#x3D; getState();
+    setState({
+      ...state,
+      reportOpen: !state.reportOpen,
+    });
+    this.ga.event(GaAction.TOGGLE, GaCategory.NAVBAR, &#x27;Toggle Report&#x27;, undefined, getState().reportOpen);
+  }
+
+  /**
+   * Action to close right side. Set Report, IL, Debug Log, Compare to false.
+   */
+  @Action(CloseRightSideNav)
+  closeRightSideNav({ getState, setState }: StateContext&lt;UIStateModel&gt;) {
+    const state &#x3D; getState();
+    setState({
+      ...state,
+      indentListOpen: false,
+      reportOpen: false,
+      debugLogOpen: false,
+      compareOpen: false,
+    });
+    this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, &#x27;Close All Right-Sidenav Elements &#x27;, undefined, false);
+  }
+
+  /**
+   * Action to toggle debug logs sidebar
+   */
+  @Action(ToggleDebugLogs)
+  toggleDebugLogs({ getState, setState }: StateContext&lt;UIStateModel&gt;) {
+    const state &#x3D; getState();
+    setState({
+      ...state,
+      debugLogOpen: !state.debugLogOpen,
+    });
+    this.ga.event(GaAction.TOGGLE, GaCategory.NAVBAR, &#x27;Toggle Debug Logs&#x27;, undefined, getState().debugLogOpen);
+  }
+
+  /**
+   * Action to open bottom sheet. Accept the data (name of structure)
+   * First close the bottom sheet, incase it is open.
+   * Then dispatch new action to update bottom sheet data
+   */
+  @Action(OpenBottomSheet)
+  openBottomSheet({ getState, setState, dispatch }: StateContext&lt;UIStateModel&gt;, { data }: OpenBottomSheet) {
+    const state &#x3D; getState();
+    dispatch(new CloseBottomSheet());
+    dispatch(new CloseBottomSheetDOI());
+    dispatch(new UpdateBottomSheetData(data)).subscribe((_unused) &#x3D;&gt; {
+      setState({
+        ...state,
+        bottomSheetOpen: true,
+      });
+    });
+    dispatch(new UpdateBottomSheetInfo(data));
+  }
+
+  /**
+   * Action to open bottom sheet DOI. Accept the data (name of structure)
+   * First close the bottom sheet Info, incase it is open.
+   * Second close the bottom sheet DOI, incase it is open.
+   * Then dispatch new action to update bottom sheet data DOI
+   */
+  @Action(OpenBottomSheetDOI)
+  OpenBottomSheetDOI({ dispatch }: StateContext&lt;UIStateModel&gt;, { data }: OpenBottomSheetDOI) {
+    dispatch(new CloseBottomSheet());
+    dispatch(new CloseBottomSheetDOI());
+    dispatch(new UpdateBottomSheetDOI(data));
+  }
+
+  /**
+   * Action to close bottom sheet.
+   * Empty the bottom sheet data from the state
+   */
+  @Action(CloseBottomSheetDOI)
+  closeBottomSheetDOI({ dispatch }: StateContext&lt;UIStateModel&gt;) {
+    dispatch(new UpdateBottomSheetData({}));
+  }
+
+  /**
+   * Action to close bottom sheet.
+   * Empty the bottom sheet data from the state
+   * Set the bottom sheet open variable to false
+   */
+  @Action(CloseBottomSheet)
+  closeBottomSheet({ getState, setState, dispatch }: StateContext&lt;UIStateModel&gt;) {
+    dispatch(new UpdateBottomSheetData({}));
+
+    const view &#x3D; this.store.selectSnapshot(TreeState.getVegaView);
+    if (Object.entries(view).length) {
+      view.signal(&#x27;bimodal_text__click&#x27;, {});
+    }
+
+    setState({
+      ...getState(),
+      bottomSheetOpen: false,
+    });
+  }
+
+  /**
+   * Action to open compare sidenav
+   */
+  @Action(OpenCompare)
+  openCompare({ getState, setState }: StateContext&lt;UIStateModel&gt;) {
+    const state &#x3D; getState();
+    setState({
+      ...state,
+      compareOpen: true,
+    });
+    this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, &#x27;Open Compare&#x27;, undefined, getState().compareOpen);
+  }
+
+  /**
+   * Action to close compare sidenav
+   */
+  @Action(CloseCompare)
+  closeCompare({ getState, setState }: StateContext&lt;UIStateModel&gt;) {
+    const state &#x3D; getState();
+    setState({
+      ...state,
+      compareOpen: false,
+    });
+    this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, &#x27;Close Compare&#x27;, undefined, getState().compareOpen);
+  }
+
+  @Action(OpenSearch)
+  openSearch({ getState, setState }: StateContext&lt;UIStateModel&gt;) {
+    const state &#x3D; getState();
+    setState({
+      ...state,
+      searchOpen: true,
+    });
+    this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, &#x27;Open Search&#x27;, undefined, getState().searchOpen);
+  }
+
+  @Action(CloseSearch)
+  closeSearch({ getState, setState }: StateContext&lt;UIStateModel&gt;) {
+    const state &#x3D; getState();
+    setState({
+      ...state,
+      searchOpen: false,
+    });
+    this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, &#x27;Close Search&#x27;, undefined, getState().searchOpen);
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'UIStateModel.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

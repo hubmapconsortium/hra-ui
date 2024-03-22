@@ -1,0 +1,2353 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>asctb-reporter</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">asctb-reporter</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  SearchComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/modules/search/search.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-search</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./search.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./search.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#bms" >bms</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#ga" >ga</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#groupFilteredStructures" >groupFilteredStructures</a>
+                            </li>
+                            <li>
+                                <a href="#nodes" >nodes</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#router" >router</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#searchFieldContent" >searchFieldContent</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#searchFilteredStructures" >searchFilteredStructures</a>
+                            </li>
+                            <li>
+                                <a href="#searchOpen" >searchOpen</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#searchState$" >searchState$</a>
+                            </li>
+                            <li>
+                                <a href="#searchValue" >searchValue</a>
+                            </li>
+                            <li>
+                                <a href="#selectedOptions" >selectedOptions</a>
+                            </li>
+                            <li>
+                                <a href="#selectedValues" >selectedValues</a>
+                            </li>
+                            <li>
+                                <a href="#selectionCompareFunction" >selectionCompareFunction</a>
+                            </li>
+                            <li>
+                                <a href="#selectionMemory" >selectionMemory</a>
+                            </li>
+                            <li>
+                                <a href="#sheetConfig" >sheetConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#sheetConfig$" >sheetConfig$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#store" >store</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#structures" >structures</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#tree$" >tree$</a>
+                            </li>
+                            <li>
+                                <a href="#treeData" >treeData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#ui$" >ui$</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#clearSearchField" >clearSearchField</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#clickOutsideSearchList" >clickOutsideSearchList</a>
+                            </li>
+                            <li>
+                                <a href="#closeSearchList" >closeSearchList</a>
+                            </li>
+                            <li>
+                                <a href="#deselectAllOptions" >deselectAllOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#filterStructuresOnSearch" >filterStructuresOnSearch</a>
+                            </li>
+                            <li>
+                                <a href="#filterToggleChange" >filterToggleChange</a>
+                            </li>
+                            <li>
+                                <a href="#hideStructure" >hideStructure</a>
+                            </li>
+                            <li>
+                                <a href="#isSelected" >isSelected</a>
+                            </li>
+                            <li>
+                                <a href="#openSearchList" >openSearchList</a>
+                            </li>
+                            <li>
+                                <a href="#selectAllOptions" >selectAllOptions</a>
+                            </li>
+                            <li>
+                                <a href="#selectFirstOption" >selectFirstOption</a>
+                            </li>
+                            <li>
+                                <a href="#selectOption" >selectOption</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#disabled" >disabled</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#document:click" >document:click</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(bms: <a href="../injectables/BimodalService.html" target="_self">BimodalService</a>, store: Store, ga: GoogleAnalyticsService, router: Router, elementRef: ElementRef)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/modules/search/search.component.ts:49</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>bms</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BimodalService.html" target="_self" >BimodalService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                    <code>Store</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>ga</td>
+                                                  
+                                                        <td>
+                                                                    <code>GoogleAnalyticsService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>elementRef</td>
+                                                  
+                                                        <td>
+                                                                    <code>ElementRef</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="disabled"></a>
+                        <b>disabled</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/modules/search/search.component.ts:24</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="document:click"></a>
+                    <span class="name">
+                        <span ><b>document:click</b></span>
+                        <a href="#document:click"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>document:click(event: MouseEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="184"
+                                    class="link-to-prism">src/app/modules/search/search.component.ts:184</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clearSearchField"></a>
+                    <span class="name">
+                        <span ><b>clearSearchField</b></span>
+                        <a href="#clearSearchField"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clearSearchField()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="178"
+                                    class="link-to-prism">src/app/modules/search/search.component.ts:178</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clickOutsideSearchList"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>clickOutsideSearchList</b></span>
+                        <a href="#clickOutsideSearchList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>clickOutsideSearchList(event: MouseEvent)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;document:click&#x27;, [&#x27;$event&#x27;])<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="184"
+                                    class="link-to-prism">src/app/modules/search/search.component.ts:184</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MouseEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeSearchList"></a>
+                    <span class="name">
+                        <span ><b>closeSearchList</b></span>
+                        <a href="#closeSearchList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closeSearchList()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="171"
+                                    class="link-to-prism">src/app/modules/search/search.component.ts:171</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deselectAllOptions"></a>
+                    <span class="name">
+                        <span ><b>deselectAllOptions</b></span>
+                        <a href="#deselectAllOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deselectAllOptions()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="117"
+                                    class="link-to-prism">src/app/modules/search/search.component.ts:117</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterStructuresOnSearch"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>filterStructuresOnSearch</b></span>
+                        <a href="#filterStructuresOnSearch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>filterStructuresOnSearch()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="193"
+                                    class="link-to-prism">src/app/modules/search/search.component.ts:193</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterToggleChange"></a>
+                    <span class="name">
+                        <span ><b>filterToggleChange</b></span>
+                        <a href="#filterToggleChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>filterToggleChange(value: string[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="209"
+                                    class="link-to-prism">src/app/modules/search/search.component.ts:209</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                        <code>string[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hideStructure"></a>
+                    <span class="name">
+                        <span ><b>hideStructure</b></span>
+                        <a href="#hideStructure"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>hideStructure(structure: <a href="../interfaces/SearchStructure.html" target="_self">SearchStructure</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="222"
+                                    class="link-to-prism">src/app/modules/search/search.component.ts:222</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>structure</td>
+                                            <td>
+                                                            <code><a href="../interfaces/SearchStructure.html" target="_self" >SearchStructure</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSelected"></a>
+                    <span class="name">
+                        <span ><b>isSelected</b></span>
+                        <a href="#isSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isSelected(structure: <a href="../interfaces/SearchStructure.html" target="_self">SearchStructure</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="113"
+                                    class="link-to-prism">src/app/modules/search/search.component.ts:113</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>structure</td>
+                                            <td>
+                                                            <code><a href="../interfaces/SearchStructure.html" target="_self" >SearchStructure</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openSearchList"></a>
+                    <span class="name">
+                        <span ><b>openSearchList</b></span>
+                        <a href="#openSearchList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openSearchList()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="133"
+                                    class="link-to-prism">src/app/modules/search/search.component.ts:133</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectAllOptions"></a>
+                    <span class="name">
+                        <span ><b>selectAllOptions</b></span>
+                        <a href="#selectAllOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectAllOptions()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="125"
+                                    class="link-to-prism">src/app/modules/search/search.component.ts:125</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectFirstOption"></a>
+                    <span class="name">
+                        <span ><b>selectFirstOption</b></span>
+                        <a href="#selectFirstOption"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectFirstOption()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="108"
+                                    class="link-to-prism">src/app/modules/search/search.component.ts:108</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectOption"></a>
+                    <span class="name">
+                        <span ><b>selectOption</b></span>
+                        <a href="#selectOption"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectOption()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="79"
+                                    class="link-to-prism">src/app/modules/search/search.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bms"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>bms</b></span>
+                        <a href="#bms"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/BimodalService.html" target="_self" >BimodalService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/modules/search/search.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ga"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>ga</b></span>
+                        <a href="#ga"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>GoogleAnalyticsService</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/modules/search/search.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="groupFilteredStructures"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>groupFilteredStructures</b></span>
+                        <a href="#groupFilteredStructures"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>SearchStructure[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/modules/search/search.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nodes"></a>
+                    <span class="name">
+                        <span ><b>nodes</b></span>
+                        <a href="#nodes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/BMNode.html" target="_self" >BMNode[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/modules/search/search.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="router"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>router</b></span>
+                        <a href="#router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Router</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/modules/search/search.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchFieldContent"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>searchFieldContent</b></span>
+                        <a href="#searchFieldContent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;searchField&#x27;, {static: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/modules/search/search.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchFilteredStructures"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>searchFilteredStructures</b></span>
+                        <a href="#searchFilteredStructures"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>SearchStructure[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/modules/search/search.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchOpen"></a>
+                    <span class="name">
+                        <span ><b>searchOpen</b></span>
+                        <a href="#searchOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/modules/search/search.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchState$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>searchState$</b></span>
+                        <a href="#searchState$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(UIState.getSearchState)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/modules/search/search.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchValue"></a>
+                    <span class="name">
+                        <span ><b>searchValue</b></span>
+                        <a href="#searchValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/modules/search/search.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedOptions"></a>
+                    <span class="name">
+                        <span ><b>selectedOptions</b></span>
+                        <a href="#selectedOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>SearchStructure[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/modules/search/search.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedValues"></a>
+                    <span class="name">
+                        <span ><b>selectedValues</b></span>
+                        <a href="#selectedValues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/modules/search/search.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectionCompareFunction"></a>
+                    <span class="name">
+                        <span ><b>selectionCompareFunction</b></span>
+                        <a href="#selectionCompareFunction"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/modules/search/search.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectionMemory"></a>
+                    <span class="name">
+                        <span ><b>selectionMemory</b></span>
+                        <a href="#selectionMemory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>SearchStructure[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/modules/search/search.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sheetConfig"></a>
+                    <span class="name">
+                        <span ><b>sheetConfig</b></span>
+                        <a href="#sheetConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/SheetConfig.html" target="_self" >SheetConfig</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/modules/search/search.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sheetConfig$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>sheetConfig$</b></span>
+                        <a href="#sheetConfig$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;SheetConfig&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(SheetState.getSheetConfig)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/modules/search/search.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="store"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>store</b></span>
+                        <a href="#store"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Store</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/modules/search/search.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="structures"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>structures</b></span>
+                        <a href="#structures"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>SearchStructure[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/modules/search/search.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tree$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>tree$</b></span>
+                        <a href="#tree$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/TreeState.html" target="_self" >Observable&lt;TreeStateModel&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(TreeState)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/modules/search/search.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="treeData"></a>
+                    <span class="name">
+                        <span ><b>treeData</b></span>
+                        <a href="#treeData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Node.html" target="_self" >TNode[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/modules/search/search.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ui$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>ui$</b></span>
+                        <a href="#ui$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/UIState.html" target="_self" >Observable&lt;UIStateModel&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(UIState)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/modules/search/search.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ElementRef, HostListener, Input, ViewChild } from &#x27;@angular/core&#x27;;
+import { NavigationEnd, Router } from &#x27;@angular/router&#x27;;
+import { Select, Store } from &#x27;@ngxs/store&#x27;;
+import { GoogleAnalyticsService } from &#x27;ngx-google-analytics&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { UpdateConfig } from &#x27;../../actions/sheet.actions&#x27;;
+import { DiscrepencyId, DiscrepencyLabel, DoSearch, DuplicateId } from &#x27;../../actions/tree.actions&#x27;;
+import { CloseSearch, OpenSearch } from &#x27;../../actions/ui.actions&#x27;;
+import { BMNode } from &#x27;../../models/bimodal.model&#x27;;
+import { GaAction, GaCategory } from &#x27;../../models/ga.model&#x27;;
+import { SheetConfig } from &#x27;../../models/sheet.model&#x27;;
+import { SearchStructure, TNode } from &#x27;../../models/tree.model&#x27;;
+import { BimodalService } from &#x27;../../modules/tree/bimodal.service&#x27;;
+import { SheetState } from &#x27;../../store/sheet.state&#x27;;
+import { TreeState, TreeStateModel } from &#x27;../../store/tree.state&#x27;;
+import { UIState, UIStateModel } from &#x27;../../store/ui.state&#x27;;
+
+@Component({
+  selector: &#x27;app-search&#x27;,
+  templateUrl: &#x27;./search.component.html&#x27;,
+  styleUrls: [&#x27;./search.component.scss&#x27;],
+})
+export class SearchComponent {
+  @Input() disabled &#x3D; false;
+
+  // Structures contains the full list of structures to render for the search
+  public structures: SearchStructure[] &#x3D; [];
+  // Contains the subset matching the search term, to hide filtered out
+  // elements without removing them from the DOM completely
+  public searchFilteredStructures: SearchStructure[] &#x3D; [];
+  // Contains the subset of structures matching the group name button toggle
+  public groupFilteredStructures: SearchStructure[] &#x3D; [];
+
+  @ViewChild(&#x27;searchField&#x27;, { static: false }) searchFieldContent!: ElementRef;
+
+  @Select(TreeState) tree$!: Observable&lt;TreeStateModel&gt;;
+  @Select(UIState) ui$!: Observable&lt;UIStateModel&gt;;
+  @Select(UIState.getSearchState) searchState$!: Observable&lt;boolean&gt;;
+  @Select(SheetState.getSheetConfig) sheetConfig$!: Observable&lt;SheetConfig&gt;;
+
+  treeData: TNode[] &#x3D; [];
+  nodes: BMNode[] &#x3D; [];
+  searchValue &#x3D; &#x27;&#x27;;
+  selectedValues &#x3D; &#x27;&#x27;;
+  selectedOptions: SearchStructure[] &#x3D; [];
+  selectionMemory: SearchStructure[] &#x3D; [];
+  sheetConfig!: SheetConfig;
+  searchOpen &#x3D; false;
+  selectionCompareFunction &#x3D; (o1: SearchStructure, o2: SearchStructure) &#x3D;&gt; o1.id &#x3D;&#x3D;&#x3D; o2.id;
+
+  constructor(
+    public bms: BimodalService,
+    public store: Store,
+    public ga: GoogleAnalyticsService,
+    public router: Router,
+    private readonly elementRef: ElementRef,
+  ) {
+    this.tree$.subscribe((tree) &#x3D;&gt; {
+      this.selectedOptions &#x3D; tree.search;
+      this.treeData &#x3D; tree.treeData;
+      this.nodes &#x3D; tree.bimodal.nodes;
+    });
+
+    // On tree selection, reset the selected options and structures array
+    this.router.events.subscribe((event) &#x3D;&gt; {
+      if (event instanceof NavigationEnd) {
+        this.structures &#x3D; [];
+        this.selectedValues &#x3D; &#x27;&#x27;;
+        this.selectedOptions &#x3D; [];
+        this.selectionMemory &#x3D; [];
+      }
+    });
+
+    this.sheetConfig$.subscribe((config) &#x3D;&gt; {
+      this.sheetConfig &#x3D; config;
+    });
+  }
+
+  selectOption() {
+    // Find the latest option clicked
+    const newSelections &#x3D; this.selectedOptions.filter((item) &#x3D;&gt; this.selectionMemory.indexOf(item) &lt; 0);
+    let lastClickedOption &#x3D; null;
+    if (newSelections.length &gt; 0) {
+      lastClickedOption &#x3D; newSelections[0];
+    }
+
+    console.log(lastClickedOption);
+    // Toggling the Discrepency fields to off
+    this.sheetConfig.discrepencyId &#x3D; false;
+    this.sheetConfig.discrepencyLabel &#x3D; false;
+    this.sheetConfig.duplicateId &#x3D; false;
+    this.store.dispatch(new UpdateConfig(this.sheetConfig));
+    // Dispatch the search data to the tree store
+    this.store.dispatch(new DoSearch(this.selectedOptions, lastClickedOption as SearchStructure));
+
+    // Clearing Discrepency fields so that searched options can appear
+    this.store.dispatch(new DiscrepencyLabel([]));
+    this.store.dispatch(new DiscrepencyId([]));
+    this.store.dispatch(new DuplicateId([]));
+    // Update the memory
+    this.selectionMemory &#x3D; this.selectedOptions.slice();
+    // Build values for search bar UI text
+    this.selectedValues &#x3D; this.selectedOptions.map((obj) &#x3D;&gt; obj.name).join(&#x27;, &#x27;);
+
+    this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, &#x27;Select/Deselect Search Filters&#x27;);
+  }
+
+  selectFirstOption() {
+    this.selectedOptions.push(this.searchFilteredStructures[0]);
+    this.selectOption();
+  }
+
+  isSelected(structure: SearchStructure) {
+    return this.selectedOptions.includes(structure);
+  }
+
+  deselectAllOptions() {
+    this.selectedOptions &#x3D; [];
+    this.selectionMemory &#x3D; [];
+    this.selectedValues &#x3D; &#x27;&#x27;;
+    this.store.dispatch(new DoSearch(this.selectedOptions, null as unknown as SearchStructure));
+    this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, &#x27;Deselect All Search Filters&#x27;);
+  }
+
+  selectAllOptions() {
+    this.selectedOptions &#x3D; this.groupFilteredStructures.filter((s) &#x3D;&gt; this.searchFilteredStructures.indexOf(s) &gt;&#x3D; 0);
+    this.selectionMemory &#x3D; this.selectedOptions.slice();
+    this.selectedValues &#x3D; this.selectedOptions.map((obj) &#x3D;&gt; obj.name).join(&#x27;, &#x27;);
+    this.store.dispatch(new DoSearch(this.selectedOptions, this.selectedOptions[0]));
+    this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, &#x27;Select All Searched Options&#x27;);
+  }
+
+  openSearchList() {
+    if (this.structures.length &#x3D;&#x3D;&#x3D; 0) {
+      const searchSet &#x3D; new Set&lt;SearchStructure&gt;();
+
+      for (const node of this.treeData) {
+        if (node.children !&#x3D;&#x3D; 0) {
+          searchSet.add({
+            id: node.id,
+            name: node.name,
+            groupName: &#x27;Anatomical Structures&#x27;,
+            x: node.x,
+            y: node.y,
+          });
+        }
+      }
+
+      for (const node of this.nodes) {
+        searchSet.add({
+          id: node.id,
+          name: node.name,
+          groupName: node.groupName,
+          x: node.x,
+          y: node.y,
+        });
+      }
+
+      this.structures &#x3D; [...searchSet];
+      this.searchFilteredStructures &#x3D; this.structures.slice();
+      this.groupFilteredStructures &#x3D; this.structures.slice();
+    }
+
+    // Show search dropdown
+    this.store.dispatch(new OpenSearch());
+    this.searchOpen &#x3D; true;
+    this.searchFieldContent.nativeElement.focus();
+    this.selectedOptions &#x3D; this.selectionMemory.slice();
+  }
+
+  closeSearchList() {
+    if (this.searchOpen) {
+      this.store.dispatch(new CloseSearch());
+      this.searchOpen &#x3D; false;
+    }
+  }
+
+  clearSearchField() {
+    this.searchValue &#x3D; &#x27;&#x27;;
+    this.filterStructuresOnSearch();
+  }
+
+  @HostListener(&#x27;document:click&#x27;, [&#x27;$event&#x27;])
+  clickOutsideSearchList(event: MouseEvent) {
+    const targetElement &#x3D; event.target as HTMLElement;
+    // Check if the click was outside the element
+    if (targetElement &amp;&amp; !this.elementRef.nativeElement.contains(targetElement)) {
+      this.closeSearchList();
+    }
+  }
+
+  // This method filters the structures on every letter typed
+  public filterStructuresOnSearch() {
+    if (!this.structures) {
+      return;
+    }
+    if (!this.searchValue) {
+      this.searchFilteredStructures &#x3D; this.structures.slice();
+      return;
+    }
+    // filter the structures
+    this.searchFilteredStructures &#x3D; this.structures.filter((structures) &#x3D;&gt;
+      structures.name.toLowerCase().includes(this.searchValue.toLowerCase()),
+    );
+    // This event fires for every letter typed
+    this.ga.event(GaAction.INPUT, GaCategory.NAVBAR, &#x60;Search term typed in: ${this.searchValue}&#x60;);
+  }
+
+  filterToggleChange(value: string[]) {
+    this.ga.event(GaAction.TOGGLE, GaCategory.NAVBAR, &#x60;Structure Group Name Toggle: ${this.searchValue}&#x60;);
+
+    if (value.length &#x3D;&#x3D;&#x3D; 0) {
+      this.groupFilteredStructures &#x3D; this.structures.slice();
+      return;
+    }
+
+    this.groupFilteredStructures &#x3D; this.structures.filter((structure) &#x3D;&gt; value.includes(structure.groupName));
+  }
+
+  // Hide a structure if it is absent from the filtered group list, otherwise hide when absent from the
+  // filtered search list
+  hideStructure(structure: SearchStructure) {
+    return (
+      this.groupFilteredStructures.indexOf(structure) &lt;&#x3D; -1 || this.searchFilteredStructures.indexOf(structure) &lt;&#x3D; -1
+    );
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;h-100 w-100 search-container&quot;&gt;
+  &lt;div class&#x3D;&quot;pl-2 br-left search-icon-container&quot;&gt;
+    &lt;mat-icon class&#x3D;&quot;mt-2&quot;&gt;search&lt;/mat-icon&gt;
+  &lt;/div&gt;
+  &lt;button
+    mat-flat-button
+    id&#x3D;&quot;searchBtn&quot;
+    [disabled]&#x3D;&quot;disabled&quot;
+    (click)&#x3D;&quot;openSearchList()&quot;
+    class&#x3D;&quot;w-100 secondary ch text-start&quot;
+    #tooltip&#x3D;&quot;matTooltip&quot;
+    matTooltip&#x3D;&quot;Search Structures&quot;
+    matTooltipPosition&#x3D;&quot;below&quot;
+  &gt;
+    &lt;span&gt;{{ selectedValues }}&lt;/span&gt;
+    &lt;mat-icon class&#x3D;&quot;droprown-arrow-icon&quot;&gt;arrow_drop_down&lt;/mat-icon&gt;
+  &lt;/button&gt;
+  &lt;div class&#x3D;&quot;search-modal mat-elevation-z4&quot; [hidden]&#x3D;&quot;(searchState$ | async) &#x3D;&#x3D;&#x3D; false&quot;&gt;
+    &lt;div class&#x3D;&quot;search-controls br-top&quot;&gt;
+      &lt;mat-form-field class&#x3D;&quot;br-top&quot; appearance&#x3D;&quot;fill&quot; floatLabel&#x3D;&quot;auto&quot;&gt;
+        &lt;input
+          matInput
+          cdkFocusInitial
+          #searchField
+          (keyup.enter)&#x3D;&quot;selectFirstOption()&quot;
+          [(ngModel)]&#x3D;&quot;searchValue&quot;
+          placeholder&#x3D;&quot;Search Structures&quot;
+          (input)&#x3D;&quot;filterStructuresOnSearch()&quot;
+        /&gt;
+        &lt;button
+          matSuffix
+          mat-icon-button
+          #clearBtn
+          [hidden]&#x3D;&quot;!searchValue&quot;
+          aria-label&#x3D;&quot;Clear Search&quot;
+          matTooltip&#x3D;&quot;Clear Search&quot;
+          (click)&#x3D;&quot;clearSearchField()&quot;
+        &gt;
+          &lt;mat-icon&gt;close&lt;/mat-icon&gt;
+        &lt;/button&gt;
+        &lt;button matSuffix mat-icon-button aria-label&#x3D;&quot;Close&quot; matTooltip&#x3D;&quot;Close&quot; (click)&#x3D;&quot;closeSearchList()&quot;&gt;
+          &lt;mat-icon&gt;arrow_drop_up&lt;/mat-icon&gt;
+        &lt;/button&gt;
+      &lt;/mat-form-field&gt;
+      &lt;br /&gt;
+      &lt;p&gt;
+        &lt;span id&#x3D;&quot;label&quot;&gt;Show&lt;br /&gt;only:&lt;/span&gt;
+        &lt;mat-button-toggle-group
+          multiple
+          #group&#x3D;&quot;matButtonToggleGroup&quot;
+          (change)&#x3D;&quot;filterToggleChange(group.value)&quot;
+          name&#x3D;&quot;searchFilterButtons&quot;
+          aria-label&#x3D;&quot;searchFilterButtons&quot;
+        &gt;
+          &lt;mat-button-toggle value&#x3D;&quot;Anatomical Structures&quot; matTooltip&#x3D;&quot;Anatomical Structures&quot;&gt;AS&lt;/mat-button-toggle&gt;
+          &lt;mat-button-toggle value&#x3D;&quot;Cell Types&quot; matTooltip&#x3D;&quot;Cell Types&quot;&gt;CT&lt;/mat-button-toggle&gt;
+          &lt;mat-button-toggle value&#x3D;&quot;Biomarkers&quot; matTooltip&#x3D;&quot;Biomarkers&quot;&gt;B&lt;/mat-button-toggle&gt;
+        &lt;/mat-button-toggle-group&gt;
+        &lt;button class&#x3D;&quot;selectBtn&quot; mat-stroked-button aria-label&#x3D;&quot;Select All&quot; (click)&#x3D;&quot;selectAllOptions()&quot;&gt;
+          Select All
+        &lt;/button&gt;
+        &lt;button class&#x3D;&quot;selectBtn&quot; mat-stroked-button aria-label&#x3D;&quot;Deselect All&quot; (click)&#x3D;&quot;deselectAllOptions()&quot;&gt;
+          Deselect All
+        &lt;/button&gt;
+      &lt;/p&gt;
+    &lt;/div&gt;
+    &lt;mat-selection-list
+      #multiSelect
+      [disabled]&#x3D;&quot;disabled&quot;
+      [multiple]&#x3D;&quot;true&quot;
+      (selectionChange)&#x3D;&quot;selectOption()&quot;
+      [(ngModel)]&#x3D;&quot;selectedOptions&quot;
+      [compareWith]&#x3D;&quot;selectionCompareFunction&quot;
+    &gt;
+      &lt;mat-list-item *ngIf&#x3D;&quot;searchFilteredStructures.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp; groupFilteredStructures.length &#x3D;&#x3D;&#x3D; 0&quot;&gt;
+        &lt;div&gt;No entries found.&lt;/div&gt;
+      &lt;/mat-list-item&gt;
+      &lt;mat-list-option
+        *ngFor&#x3D;&quot;let structure of structures&quot;
+        [value]&#x3D;&quot;structure&quot;
+        color&#x3D;&quot;primary&quot;
+        [hidden]&#x3D;&quot;hideStructure(structure)&quot;
+        [selected]&#x3D;&quot;isSelected(structure)&quot;
+        checkboxPosition&#x3D;&quot;before&quot;
+      &gt;
+        &lt;div class&#x3D;&quot;structure-name&quot;&gt;
+          &lt;div&gt;
+            {{ structure.name }}
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;structure-group-name&quot;&gt;
+            &lt;em&gt;{{ structure.groupName }}&lt;/em&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/mat-list-option&gt;
+    &lt;/mat-selection-list&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./search.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;@angular/material&#x27; as mat;
+.mat-select-arrow {
+  visibility: hidden;
+}
+
+.selection-icon {
+  position: relative;
+  top: 0.375rem;
+  margin-right: 1rem;
+}
+
+.ch {
+  height: 2.5812rem !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.br-left {
+  border-top-left-radius: 0.5rem !important;
+  border-bottom-left-radius: 0.5rem !important;
+}
+
+.br-top {
+  border-top-left-radius: 0.25rem !important;
+  border-top-right-radius: 0.25rem !important;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+.search-icon-container {
+  display: inline-block;
+  background: #f5f5f5;
+  padding-left: 0.6rem;
+}
+.structure-name {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11pt;
+}
+.structure-group-name {
+  font-size: 8pt;
+}
+::ng-deep .search-container .mat-form-field-underline {
+  display: none;
+}
+
+#searchBtn {
+  mat-icon {
+    float: right;
+    position: absolute;
+    top: 9px;
+    right: 10px;
+  }
+
+  ::ng-deep .mat-button-wrapper {
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-right: 10px;
+  }
+}
+
+.search-modal {
+  background: white;
+  position: absolute;
+  width: 375px;
+  top: 10px;
+  z-index: 20;
+  border-bottom: 0.1875rem solid rgba(68, 74, 101, 0.063);
+  border-radius: 0.25rem;
+
+  .search-controls {
+    position: fixed;
+    z-index: 30;
+    border-bottom: 1px lightgray solid;
+    background: white;
+    width: 375px;
+
+    p {
+      padding: 0px 15px;
+      font-size: 10pt;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      margin-bottom: 10px;
+    }
+
+    #label {
+      width: 35px;
+      line-height: 14px;
+      font-size: 8pt;
+      display: inline-block;
+      padding-top: 4px;
+    }
+
+    ::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+      line-height: 32px !important;
+    }
+
+    button.selectBtn {
+      font-size: 13px;
+      margin-left: 12px;
+      padding: 0px 7px;
+    }
+  }
+
+  mat-form-field {
+    padding: 10px 15px;
+    width: 100%;
+    height: 55px;
+    font-size: 12pt;
+    //border-bottom: 1px rgb(238, 238, 238) solid;
+    color: gray;
+
+    button {
+      font-size: 18pt;
+      color: black;
+    }
+
+    input {
+      color: rgba(0, 0, 0, 0.87);
+    }
+  }
+
+  .mat-form-field-flex {
+    padding-top: 0px;
+  }
+
+  mat-selection-list {
+    margin-top: 95px;
+    overflow-y: scroll;
+    height: 300px;
+  }
+
+  mat-list-option {
+    height: 40px;
+    font-size: 11pt;
+  }
+}
+
+.droprown-arrow-icon {
+  transform: scale(1.4);
+}
+//@include mat.checkbox-theme($mat-reporter-primary);
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="h-100 w-100 search-container">  <div class="pl-2 br-left search-icon-container">    <mat-icon class="mt-2">search</mat-icon>  </div>  <button    mat-flat-button    id="searchBtn"    [disabled]="disabled"    (click)="openSearchList()"    class="w-100 secondary ch text-start"    #tooltip="matTooltip"    matTooltip="Search Structures"    matTooltipPosition="below"  >    <span>{{ selectedValues }}</span>    <mat-icon class="droprown-arrow-icon">arrow_drop_down</mat-icon>  </button>  <div class="search-modal mat-elevation-z4" [hidden]="(searchState$ | async) === false">    <div class="search-controls br-top">      <mat-form-field class="br-top" appearance="fill" floatLabel="auto">        <input          matInput          cdkFocusInitial          #searchField          (keyup.enter)="selectFirstOption()"          [(ngModel)]="searchValue"          placeholder="Search Structures"          (input)="filterStructuresOnSearch()"        />        <button          matSuffix          mat-icon-button          #clearBtn          [hidden]="!searchValue"          aria-label="Clear Search"          matTooltip="Clear Search"          (click)="clearSearchField()"        >          <mat-icon>close</mat-icon>        </button>        <button matSuffix mat-icon-button aria-label="Close" matTooltip="Close" (click)="closeSearchList()">          <mat-icon>arrow_drop_up</mat-icon>        </button>      </mat-form-field>      <br />      <p>        <span id="label">Show<br />only:</span>        <mat-button-toggle-group          multiple          #group="matButtonToggleGroup"          (change)="filterToggleChange(group.value)"          name="searchFilterButtons"          aria-label="searchFilterButtons"        >          <mat-button-toggle value="Anatomical Structures" matTooltip="Anatomical Structures">AS</mat-button-toggle>          <mat-button-toggle value="Cell Types" matTooltip="Cell Types">CT</mat-button-toggle>          <mat-button-toggle value="Biomarkers" matTooltip="Biomarkers">B</mat-button-toggle>        </mat-button-toggle-group>        <button class="selectBtn" mat-stroked-button aria-label="Select All" (click)="selectAllOptions()">          Select All        </button>        <button class="selectBtn" mat-stroked-button aria-label="Deselect All" (click)="deselectAllOptions()">          Deselect All        </button>      </p>    </div>    <mat-selection-list      #multiSelect      [disabled]="disabled"      [multiple]="true"      (selectionChange)="selectOption()"      [(ngModel)]="selectedOptions"      [compareWith]="selectionCompareFunction"    >      <mat-list-item *ngIf="searchFilteredStructures.length === 0 && groupFilteredStructures.length === 0">        <div>No entries found.</div>      </mat-list-item>      <mat-list-option        *ngFor="let structure of structures"        [value]="structure"        color="primary"        [hidden]="hideStructure(structure)"        [selected]="isSelected(structure)"        checkboxPosition="before"      >        <div class="structure-name">          <div>            {{ structure.name }}          </div>          <div class="structure-group-name">            <em>{{ structure.groupName }}</em>          </div>        </div>      </mat-list-option>    </mat-selection-list>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-reporter'},{'name': 'CompareComponent', 'selector': 'app-compare'},{'name': 'ControlPaneComponent', 'selector': 'app-control-pane'},{'name': 'DebugLogsComponent', 'selector': 'app-debug-logs'},{'name': 'DocsComponent', 'selector': 'app-docs'},{'name': 'DocsNavComponent', 'selector': 'app-docs-nav'},{'name': 'DoiComponent', 'selector': 'app-doi'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'FileUploadComponent', 'selector': 'app-file-upload'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'FunctionsComponent', 'selector': 'app-functions'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IndentedListComponent', 'selector': 'app-indent'},{'name': 'InfoComponent', 'selector': 'app-info'},{'name': 'LegendComponent', 'selector': 'app-legend'},{'name': 'LoadingComponent', 'selector': 'app-loading'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NavItemComponent', 'selector': 'app-nav-item'},{'name': 'OmapControlsComponent', 'selector': 'app-omap-controls'},{'name': 'OrganTableSelectorComponent', 'selector': 'app-organ-table-selector'},{'name': 'PlaygroundComponent', 'selector': 'app-playground'},{'name': 'ReportComponent', 'selector': 'app-report'},{'name': 'RootComponent', 'selector': 'app-root'},{'name': 'SearchComponent', 'selector': 'app-search'},{'name': 'SidenavComponent', 'selector': 'app-sidenav'},{'name': 'SidenavHeaderComponent', 'selector': 'app-sidenav-header'},{'name': 'TableNestedMenuComponent', 'selector': 'app-table-nested-menu'},{'name': 'TrackingPopupComponent', 'selector': 'app-tracking-popup'},{'name': 'TreeComponent', 'selector': 'app-tree'},{'name': 'UploadComponent', 'selector': 'app-upload'},{'name': 'VisControlsComponent', 'selector': 'app-vis-controls'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'SearchComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'SearchComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,4134 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>asctb-reporter</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">asctb-reporter</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  RootComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/modules/root/root.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnDestroy</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-root</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./root.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./root.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#allCompareData$" >allCompareData$</a>
+                            </li>
+                            <li>
+                                <a href="#bimodalConfig" >bimodalConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#bm$" >bm$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#bms" >bms</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#bmType$" >bmType$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#bottomSheetDOI$" >bottomSheetDOI$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#bottomSheetInfo$" >bottomSheetInfo$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#bs$" >bs$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#c$" >c$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#compareData$" >compareData$</a>
+                            </li>
+                            <li>
+                                <a href="#compareDetails" >compareDetails</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#compareSheets$" >compareSheets$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#config$" >config$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#configService" >configService</a>
+                            </li>
+                            <li>
+                                <a href="#data" >data</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#data$" >data$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#dialog" >dialog</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#dl$" >dl$</a>
+                            </li>
+                            <li>
+                                <a href="#error" >error</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#error$" >error$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#fullAsData$" >fullAsData$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#fullDataByOrgan$" >fullDataByOrgan$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getFromCache$" >getFromCache$</a>
+                            </li>
+                            <li>
+                                <a href="#hasError" >hasError</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#il$" >il$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#indent" >indent</a>
+                            </li>
+                            <li>
+                                <a href="#infoSheetRef" >infoSheetRef</a>
+                            </li>
+                            <li>
+                                <a href="#isControlPaneOpen" >isControlPaneOpen</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#links$" >links$</a>
+                            </li>
+                            <li>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#loading$" >loading$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#loadingText$" >loadingText$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#logs$" >logs$</a>
+                            </li>
+                            <li>
+                                <a href="#mode" >mode</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#mode$" >mode$</a>
+                            </li>
+                            <li>
+                                <a href="#omapSheetConfig" >omapSheetConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#pane$" >pane$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#rd$" >rd$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#report" >report</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#report$" >report$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#route" >route</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#router" >router</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#searchOption$" >searchOption$</a>
+                            </li>
+                            <li>
+                                <a href="#sheet" >sheet</a>
+                            </li>
+                            <li>
+                                <a href="#sheetConfig" >sheetConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#sheetConfig$" >sheetConfig$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#sheetService" >sheetService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#snack$" >snack$</a>
+                            </li>
+                            <li>
+                                <a href="#snackbarRef" >snackbarRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#store" >store</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#treeData$" >treeData$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#ts" >ts</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#uiState$" >uiState$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#verticalScrollEntity" >verticalScrollEntity</a>
+                            </li>
+                            <li>
+                                <a href="#view" >view</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#closeLoading" >closeLoading</a>
+                            </li>
+                            <li>
+                                <a href="#compareData" >compareData</a>
+                            </li>
+                            <li>
+                                <a href="#deleteSheet" >deleteSheet</a>
+                            </li>
+                            <li>
+                                <a href="#exportVis" >exportVis</a>
+                            </li>
+                            <li>
+                                <a href="#getStructureInfo" >getStructureInfo</a>
+                            </li>
+                            <li>
+                                <a href="#openLoading" >openLoading</a>
+                            </li>
+                            <li>
+                                <a href="#openSnackBarToUpdateFilter" >openSnackBarToUpdateFilter</a>
+                            </li>
+                            <li>
+                                <a href="#parseSheetUrl" >parseSheetUrl</a>
+                            </li>
+                            <li>
+                                <a href="#toggleSideNav" >toggleSideNav</a>
+                            </li>
+                            <li>
+                                <a href="#updateReport" >updateReport</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#export" >export</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(configService: <a href="../injectables/ConfigService.html" target="_self">ConfigService</a>, store: Store, ts: <a href="../injectables/TreeService.html" target="_self">TreeService</a>, route: ActivatedRoute, dialog: MatDialog, snackbar: <a href="../interfaces/B.html" target="_self">MatSnackBar</a>, indent: <a href="../injectables/IndentedListService.html" target="_self">IndentedListService</a>, report: <a href="../injectables/ReportService.html" target="_self">ReportService</a>, infoSheet: MatBottomSheet, sheetService: <a href="../injectables/SheetService.html" target="_self">SheetService</a>, router: Router, bms: <a href="../injectables/BimodalService.html" target="_self">BimodalService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/app/modules/root/root.component.ts:171</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>configService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ConfigService.html" target="_self" >ConfigService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                    <code>Store</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>ts</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/TreeService.html" target="_self" >TreeService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>snackbar</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/B.html" target="_self" >MatSnackBar</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>indent</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/IndentedListService.html" target="_self" >IndentedListService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>report</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ReportService.html" target="_self" >ReportService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>infoSheet</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatBottomSheet</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>sheetService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SheetService.html" target="_self" >SheetService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>bms</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BimodalService.html" target="_self" >BimodalService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="export"></a>
+                        <b>export</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/modules/root/root.component.ts:122</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeLoading"></a>
+                    <span class="name">
+                        <span ><b>closeLoading</b></span>
+                        <a href="#closeLoading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closeLoading()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="508"
+                                    class="link-to-prism">src/app/modules/root/root.component.ts:508</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Close loading dialog</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="compareData"></a>
+                    <span class="name">
+                        <span ><b>compareData</b></span>
+                        <a href="#compareData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>compareData(data: <a href="../interfaces/CompareData.html" target="_self">CompareData[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="526"
+                                    class="link-to-prism">src/app/modules/root/root.component.ts:526</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Set compare data</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                            <code><a href="../interfaces/CompareData.html" target="_self" >CompareData[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>compare data</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteSheet"></a>
+                    <span class="name">
+                        <span ><b>deleteSheet</b></span>
+                        <a href="#deleteSheet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteSheet(i: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="455"
+                                    class="link-to-prism">src/app/modules/root/root.component.ts:455</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Deletes a sheeet from the compare</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>i</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>index of sheet</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportVis"></a>
+                    <span class="name">
+                        <span ><b>exportVis</b></span>
+                        <a href="#exportVis"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>exportVis(option: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="571"
+                                    class="link-to-prism">src/app/modules/root/root.component.ts:571</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Exports the visualiation into 3 formats</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>option</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Export option. PNG | SVG | Vega Spec</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getStructureInfo"></a>
+                    <span class="name">
+                        <span ><b>getStructureInfo</b></span>
+                        <a href="#getStructureInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getStructureInfo(data: literal type)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="562"
+                                    class="link-to-prism">src/app/modules/root/root.component.ts:562</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Dispatch action to open bottom sheet</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openLoading"></a>
+                    <span class="name">
+                        <span ><b>openLoading</b></span>
+                        <a href="#openLoading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openLoading(text?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="464"
+                                    class="link-to-prism">src/app/modules/root/root.component.ts:464</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Opens loading dialog</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>text</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Loading text</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openSnackBarToUpdateFilter"></a>
+                    <span class="name">
+                        <span ><b>openSnackBarToUpdateFilter</b></span>
+                        <a href="#openSnackBarToUpdateFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openSnackBarToUpdateFilter()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="678"
+                                    class="link-to-prism">src/app/modules/root/root.component.ts:678</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="parseSheetUrl"></a>
+                    <span class="name">
+                        <span ><b>parseSheetUrl</b></span>
+                        <a href="#parseSheetUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>parseSheetUrl(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="481"
+                                    class="link-to-prism">src/app/modules/root/root.component.ts:481</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>of the sheet to compare</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>literal type</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>a object with the sheetID, gid, and CsvUrl</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleSideNav"></a>
+                    <span class="name">
+                        <span ><b>toggleSideNav</b></span>
+                        <a href="#toggleSideNav"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleSideNav()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="518"
+                                    class="link-to-prism">src/app/modules/root/root.component.ts:518</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Toggling sidebars for Report, IL, Debug, Compare</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateReport"></a>
+                    <span class="name">
+                        <span ><b>updateReport</b></span>
+                        <a href="#updateReport"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateReport(data: <a href="../interfaces/Report.html" target="_self">Report</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="446"
+                                    class="link-to-prism">src/app/modules/root/root.component.ts:446</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Function to update the report with the data</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Report.html" target="_self" >Report</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>sheet data</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="allCompareData$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>allCompareData$</b></span>
+                        <a href="#allCompareData$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;literal type&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(SheetState.getAllCompareData)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/app/modules/root/root.component.ts:129</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bimodalConfig"></a>
+                    <span class="name">
+                        <span ><b>bimodalConfig</b></span>
+                        <a href="#bimodalConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/BimodalConfig.html" target="_self" >BimodalConfig</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/modules/root/root.component.ts:117</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Bimodal filter values to snd via snackbar update</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bm$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>bm$</b></span>
+                        <a href="#bm$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Data.html" target="_self" >Observable&lt;BimodalData&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(TreeState.getBimodal)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/app/modules/root/root.component.ts:146</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bms"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>bms</b></span>
+                        <a href="#bms"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/BimodalService.html" target="_self" >BimodalService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/app/modules/root/root.component.ts:185</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bmType$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>bmType$</b></span>
+                        <a href="#bmType$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(TreeState.getBiomarkerType)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/app/modules/root/root.component.ts:147</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bottomSheetDOI$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>bottomSheetDOI$</b></span>
+                        <a href="#bottomSheetDOI$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/DOI.html" target="_self" >Observable&lt;DOI[]&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(SheetState.getBottomSheetDOI)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/app/modules/root/root.component.ts:136</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bottomSheetInfo$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>bottomSheetInfo$</b></span>
+                        <a href="#bottomSheetInfo$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;SheetInfo&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(SheetState.getBottomSheetInfo)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/app/modules/root/root.component.ts:135</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bs$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>bs$</b></span>
+                        <a href="#bs$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(UIState.getBottomSheet)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/app/modules/root/root.component.ts:164</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="c$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>c$</b></span>
+                        <a href="#c$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(UIState.getCompareState)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/app/modules/root/root.component.ts:165</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="compareData$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>compareData$</b></span>
+                        <a href="#compareData$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Row.html" target="_self" >Observable&lt;Row[]&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(SheetState.getCompareData)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/app/modules/root/root.component.ts:128</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="compareDetails"></a>
+                    <span class="name">
+                        <span ><b>compareDetails</b></span>
+                        <a href="#compareDetails"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/CompareData.html" target="_self" >CompareData[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/modules/root/root.component.ts:113</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Comparison sheets details</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="compareSheets$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>compareSheets$</b></span>
+                        <a href="#compareSheets$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/CompareData.html" target="_self" >Observable&lt;CompareData[]&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(SheetState.getCompareSheets)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/app/modules/root/root.component.ts:126</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="config$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>config$</b></span>
+                        <a href="#config$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;BimodalConfig&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(TreeState.getBimodalConfig)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/app/modules/root/root.component.ts:150</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="configService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>configService</b></span>
+                        <a href="#configService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/ConfigService.html" target="_self" >ConfigService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">src/app/modules/root/root.component.ts:174</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="data"></a>
+                    <span class="name">
+                        <span ><b>data</b></span>
+                        <a href="#data"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Row.html" target="_self" >Row[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/modules/root/root.component.ts:72</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Organ sheet data</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="data$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>data$</b></span>
+                        <a href="#data$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Row.html" target="_self" >Observable&lt;Row[]&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(SheetState.getData)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/app/modules/root/root.component.ts:125</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dialog"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>dialog</b></span>
+                        <a href="#dialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatDialog</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/app/modules/root/root.component.ts:178</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dl$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>dl$</b></span>
+                        <a href="#dl$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(UIState.getDebugLog)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/app/modules/root/root.component.ts:163</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="error"></a>
+                    <span class="name">
+                        <span ><b>error</b></span>
+                        <a href="#error"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Error.html" target="_self" >Error</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/modules/root/root.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Stores the error</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="error$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>error$</b></span>
+                        <a href="#error$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;literal type&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(UIState.getError)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/app/modules/root/root.component.ts:157</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fullAsData$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>fullAsData$</b></span>
+                        <a href="#fullAsData$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Row.html" target="_self" >Observable&lt;Row[]&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(SheetState.getFullAsData)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/app/modules/root/root.component.ts:138</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fullDataByOrgan$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>fullDataByOrgan$</b></span>
+                        <a href="#fullDataByOrgan$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;[][]&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(SheetState.getFullDataByOrgan)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/app/modules/root/root.component.ts:139</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFromCache$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>getFromCache$</b></span>
+                        <a href="#getFromCache$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(SheetState.getDataFromCache)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/app/modules/root/root.component.ts:140</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasError"></a>
+                    <span class="name">
+                        <span ><b>hasError</b></span>
+                        <a href="#hasError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/modules/root/root.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Denotesthe error state</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="il$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>il$</b></span>
+                        <a href="#il$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(UIState.getIndentList)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/app/modules/root/root.component.ts:154</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="indent"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>indent</b></span>
+                        <a href="#indent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/IndentedListService.html" target="_self" >IndentedListService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/app/modules/root/root.component.ts:180</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="infoSheetRef"></a>
+                    <span class="name">
+                        <span ><b>infoSheetRef</b></span>
+                        <a href="#infoSheetRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatBottomSheetRef</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/modules/root/root.component.ts:104</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Botton input sheet ref</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isControlPaneOpen"></a>
+                    <span class="name">
+                        <span ><b>isControlPaneOpen</b></span>
+                        <a href="#isControlPaneOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/modules/root/root.component.ts:100</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Dnotes of sidebar control pane is open</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="links$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>links$</b></span>
+                        <a href="#links$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Data.html" target="_self" >Observable&lt;LinksASCTBData&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(TreeState.getLinksData)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/app/modules/root/root.component.ts:145</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/modules/root/root.component.ts:76</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Denotes if loading</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>loading$</b></span>
+                        <a href="#loading$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(UIState.getLoading)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/app/modules/root/root.component.ts:158</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadingText$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>loadingText$</b></span>
+                        <a href="#loadingText$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(UIState.getLoadingText)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/app/modules/root/root.component.ts:159</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logs$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>logs$</b></span>
+                        <a href="#logs$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;Logs&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(LogsState)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">src/app/modules/root/root.component.ts:168</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mode"></a>
+                    <span class="name">
+                        <span ><b>mode</b></span>
+                        <a href="#mode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;vis&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/app/modules/root/root.component.ts:109</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mode of the application. Playground or visualiization
+Default is vis</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mode$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>mode$</b></span>
+                        <a href="#mode$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(SheetState.getMode)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/app/modules/root/root.component.ts:133</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="omapSheetConfig"></a>
+                    <span class="name">
+                        <span ><b>omapSheetConfig</b></span>
+                        <a href="#omapSheetConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>SheetDetails[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/app/modules/root/root.component.ts:171</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pane$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>pane$</b></span>
+                        <a href="#pane$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(UIState.getControlPaneState)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/app/modules/root/root.component.ts:153</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rd$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>rd$</b></span>
+                        <a href="#rd$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Report.html" target="_self" >Observable&lt;Report&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(SheetState.getReportdata)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/app/modules/root/root.component.ts:127</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="report"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>report</b></span>
+                        <a href="#report"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/ReportService.html" target="_self" >ReportService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/app/modules/root/root.component.ts:181</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="report$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>report$</b></span>
+                        <a href="#report$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(UIState.getReport)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/app/modules/root/root.component.ts:162</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="route"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>route</b></span>
+                        <a href="#route"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ActivatedRoute</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/app/modules/root/root.component.ts:177</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="router"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>router</b></span>
+                        <a href="#router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Router</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/app/modules/root/root.component.ts:184</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchOption$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>searchOption$</b></span>
+                        <a href="#searchOption$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;SearchStructure&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(TreeState.getLatestSearchStructure)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/app/modules/root/root.component.ts:149</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sheet"></a>
+                    <span class="name">
+                        <span ><b>sheet</b></span>
+                        <a href="#sheet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Sheet.html" target="_self" >Sheet</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/modules/root/root.component.ts:84</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Selected sheet</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sheetConfig"></a>
+                    <span class="name">
+                        <span ><b>sheetConfig</b></span>
+                        <a href="#sheetConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>SheetDetails[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/app/modules/root/root.component.ts:170</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sheetConfig$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>sheetConfig$</b></span>
+                        <a href="#sheetConfig$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;SheetConfig&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(SheetState.getSheetConfig)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/app/modules/root/root.component.ts:137</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sheetService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>sheetService</b></span>
+                        <a href="#sheetService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/SheetService.html" target="_self" >SheetService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/app/modules/root/root.component.ts:183</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="snack$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>snack$</b></span>
+                        <a href="#snack$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Snackbar.html" target="_self" >Observable&lt;Snackbar&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(UIState.getSnackbar)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/app/modules/root/root.component.ts:161</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="snackbarRef"></a>
+                    <span class="name">
+                        <span ><b>snackbarRef</b></span>
+                        <a href="#snackbarRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/B.html" target="_self" >MatSnackBarRef&lt;TextOnlySnackBar&gt;</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/modules/root/root.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Reference to the snackbar</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="store"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>store</b></span>
+                        <a href="#store"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Store</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/app/modules/root/root.component.ts:175</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="treeData$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>treeData$</b></span>
+                        <a href="#treeData$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Node.html" target="_self" >Observable&lt;TNode[]&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(TreeState.getTreeData)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/app/modules/root/root.component.ts:143</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ts"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>ts</b></span>
+                        <a href="#ts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/TreeService.html" target="_self" >TreeService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="176" class="link-to-prism">src/app/modules/root/root.component.ts:176</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="uiState$"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>uiState$</b></span>
+                        <a href="#uiState$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/UIState.html" target="_self" >Observable&lt;UIStateModel&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(UIState)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/app/modules/root/root.component.ts:160</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="verticalScrollEntity"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>verticalScrollEntity</b></span>
+                        <a href="#verticalScrollEntity"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/TreeComponent.html" target="_self" >TreeComponent</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(TreeComponent)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/modules/root/root.component.ts:121</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="view"></a>
+                    <span class="name">
+                        <span ><b>view</b></span>
+                        <a href="#view"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>View</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/modules/root/root.component.ts:80</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Vega view</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, OnDestroy, Output, ViewChild } from &#x27;@angular/core&#x27;;
+import { MatBottomSheet, MatBottomSheetRef } from &#x27;@angular/material/bottom-sheet&#x27;;
+import { MatDialog, MatDialogConfig } from &#x27;@angular/material/dialog&#x27;;
+import { MatSnackBar, MatSnackBarConfig, MatSnackBarRef, TextOnlySnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
+import { Select, Store } from &#x27;@ngxs/store&#x27;;
+import * as moment from &#x27;moment&#x27;;
+import { StateReset } from &#x27;ngxs-reset-plugin&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { View } from &#x27;vega&#x27;;
+import { UpdateBimodalConfig } from &#x27;../../actions/tree.actions&#x27;;
+import {
+  CloseCompare,
+  CloseLoading,
+  CloseRightSideNav,
+  CloseSnackbar,
+  HasError,
+  OpenBottomSheet,
+} from &#x27;../../actions/ui.actions&#x27;;
+import { ConfigService } from &#x27;../../app-config.service&#x27;;
+import { DoiComponent } from &#x27;../../components/doi/doi.component&#x27;;
+import { IndentedListService } from &#x27;../../components/indented-list/indented-list.service&#x27;;
+import { InfoComponent } from &#x27;../../components/info/info.component&#x27;;
+import { LoadingComponent } from &#x27;../../components/loading/loading.component&#x27;;
+import { OrganTableSelectorComponent } from &#x27;../../components/organ-table-selector/organ-table-selector.component&#x27;;
+import { ReportService } from &#x27;../../components/report/report.service&#x27;;
+import { BimodalConfig, BimodalData } from &#x27;../../models/bimodal.model&#x27;;
+import { Report } from &#x27;../../models/report.model&#x27;;
+import { Error } from &#x27;../../models/response.model&#x27;;
+import {
+  CompareData,
+  DOI,
+  GraphData,
+  Row,
+  Sheet,
+  SheetConfig,
+  SheetDetails,
+  SheetInfo,
+  VersionDetail,
+} from &#x27;../../models/sheet.model&#x27;;
+import { LinksASCTBData, SearchStructure, TNode } from &#x27;../../models/tree.model&#x27;;
+import { Logs, OpenBottomSheetData, Snackbar } from &#x27;../../models/ui.model&#x27;;
+import { SheetService } from &#x27;../../services/sheet.service&#x27;;
+import { LogsState } from &#x27;../../store/logs.state&#x27;;
+import { UIState, UIStateModel } from &#x27;../../store/ui.state&#x27;;
+import { BimodalService } from &#x27;../tree/bimodal.service&#x27;;
+import { TreeComponent } from &#x27;../tree/tree.component&#x27;;
+import {
+  DeleteCompareSheet,
+  FetchAllOrganData,
+  FetchDataFromAssets,
+  FetchInitialPlaygroundData,
+  FetchSelectedOrganData,
+  FetchSheetData,
+  UpdateGetFromCache,
+  UpdateMode,
+  UpdateReport,
+} from &#x27;./../../actions/sheet.actions&#x27;;
+import { SheetState } from &#x27;./../../store/sheet.state&#x27;;
+import { TreeState } from &#x27;./../../store/tree.state&#x27;;
+import { TreeService } from &#x27;./../tree/tree.service&#x27;;
+
+@Component({
+  selector: &#x27;app-root&#x27;,
+  templateUrl: &#x27;./root.component.html&#x27;,
+  styleUrls: [&#x27;./root.component.scss&#x27;],
+})
+export class RootComponent implements OnDestroy {
+  /**
+   * Organ sheet data
+   */
+  data: Row[] &#x3D; [];
+  /**
+   * Denotes if loading
+   */
+  loading &#x3D; true;
+  /**
+   * Vega view
+   */
+  view!: View;
+  /**
+   * Selected sheet
+   */
+  sheet!: Sheet;
+  /**
+   * Denotesthe error state
+   */
+  hasError &#x3D; false;
+  /**
+   * Stores the error
+   */
+  error!: Error;
+  /**
+   * Reference to the snackbar
+   */
+  snackbarRef!: MatSnackBarRef&lt;TextOnlySnackBar&gt;;
+  /**
+   * Dnotes of sidebar control pane is open
+   */
+  isControlPaneOpen &#x3D; false;
+  /**
+   * Botton input sheet ref
+   */
+  infoSheetRef!: MatBottomSheetRef;
+  /**
+   * Mode of the application. Playground or visualiization
+   * Default is vis
+   */
+  mode &#x3D; &#x27;vis&#x27;;
+  /**
+   * Comparison sheets details
+   */
+  compareDetails: CompareData[] &#x3D; [];
+  /**
+   * Bimodal filter values to snd via snackbar update
+   */
+  bimodalConfig!: BimodalConfig;
+
+  // The container used for vertical scrolling of the viz is different than the one used for horizontal scrolling
+  // Here we get references to both values.
+  @ViewChild(TreeComponent) verticalScrollEntity!: TreeComponent;
+  @Output() export &#x3D; new EventEmitter&lt;unknown&gt;();
+
+  // Sheet Observables
+  @Select(SheetState.getData) data$!: Observable&lt;Row[]&gt;;
+  @Select(SheetState.getCompareSheets) compareSheets$!: Observable&lt;CompareData[]&gt;;
+  @Select(SheetState.getReportdata) rd$!: Observable&lt;Report&gt;;
+  @Select(SheetState.getCompareData) compareData$!: Observable&lt;Row[]&gt;;
+  @Select(SheetState.getAllCompareData) allCompareData$!: Observable&lt;{
+    data: Row[];
+    sheets: CompareData[];
+  }&gt;;
+  @Select(SheetState.getMode) mode$!: Observable&lt;string&gt;;
+  @Select(SheetState.getBottomSheetInfo)
+  bottomSheetInfo$!: Observable&lt;SheetInfo&gt;;
+  @Select(SheetState.getBottomSheetDOI) bottomSheetDOI$!: Observable&lt;DOI[]&gt;;
+  @Select(SheetState.getSheetConfig) sheetConfig$!: Observable&lt;SheetConfig&gt;;
+  @Select(SheetState.getFullAsData) fullAsData$!: Observable&lt;Row[]&gt;;
+  @Select(SheetState.getFullDataByOrgan) fullDataByOrgan$!: Observable&lt;Row[][]&gt;;
+  @Select(SheetState.getDataFromCache) getFromCache$!: Observable&lt;boolean&gt;;
+
+  // Tree Observables
+  @Select(TreeState.getTreeData) treeData$!: Observable&lt;TNode[]&gt;;
+  // @Select(TreeState.getBottomSheetData) bsd$!: Observable&lt;any&gt;;
+  @Select(TreeState.getLinksData) links$!: Observable&lt;LinksASCTBData&gt;;
+  @Select(TreeState.getBimodal) bm$!: Observable&lt;BimodalData&gt;;
+  @Select(TreeState.getBiomarkerType) bmType$!: Observable&lt;string&gt;;
+  @Select(TreeState.getLatestSearchStructure)
+  searchOption$!: Observable&lt;SearchStructure&gt;;
+  @Select(TreeState.getBimodalConfig) config$!: Observable&lt;BimodalConfig&gt;;
+
+  // Control Pane Observables
+  @Select(UIState.getControlPaneState) pane$!: Observable&lt;boolean&gt;;
+  @Select(UIState.getIndentList) il$!: Observable&lt;boolean&gt;;
+
+  // UI Observables
+  @Select(UIState.getError) error$!: Observable&lt;{ error: Error }&gt;;
+  @Select(UIState.getLoading) loading$!: Observable&lt;boolean&gt;;
+  @Select(UIState.getLoadingText) loadingText$!: Observable&lt;string&gt;;
+  @Select(UIState) uiState$!: Observable&lt;UIStateModel&gt;;
+  @Select(UIState.getSnackbar) snack$!: Observable&lt;Snackbar&gt;;
+  @Select(UIState.getReport) report$!: Observable&lt;boolean&gt;;
+  @Select(UIState.getDebugLog) dl$!: Observable&lt;boolean&gt;;
+  @Select(UIState.getBottomSheet) bs$!: Observable&lt;boolean&gt;;
+  @Select(UIState.getCompareState) c$!: Observable&lt;boolean&gt;;
+
+  // Logs Oberservables
+  @Select(LogsState) logs$!: Observable&lt;Logs&gt;;
+
+  sheetConfig: SheetDetails[] &#x3D; [];
+  omapSheetConfig: SheetDetails[] &#x3D; [];
+
+  constructor(
+    public configService: ConfigService,
+    public store: Store,
+    public ts: TreeService,
+    public route: ActivatedRoute,
+    public dialog: MatDialog,
+    private readonly snackbar: MatSnackBar,
+    public indent: IndentedListService,
+    public report: ReportService,
+    private readonly infoSheet: MatBottomSheet,
+    public sheetService: SheetService,
+    public router: Router,
+    public bms: BimodalService,
+  ) {
+    this.configService.sheetConfiguration$.subscribe((sheetOptions) &#x3D;&gt; {
+      this.sheetConfig &#x3D; sheetOptions;
+    });
+
+    this.configService.omapsheetConfiguration$.subscribe((sheetOptions) &#x3D;&gt; {
+      this.omapSheetConfig &#x3D; sheetOptions;
+    });
+
+    this.data$.subscribe((data) &#x3D;&gt; {
+      if (data.length) {
+        this.data &#x3D; data;
+        try {
+          this.ts.makeTreeData(this.sheet, data, []);
+        } catch (err) {
+          console.log(err);
+          this.store.dispatch(new HasError({ hasError: true, msg: err as string, status: 400 }));
+        }
+      }
+    });
+
+    this.error$.subscribe((err) &#x3D;&gt; {
+      this.error &#x3D; err.error;
+    });
+
+    this.config$.subscribe((config) &#x3D;&gt; {
+      this.bimodalConfig &#x3D; config;
+    });
+
+    this.route.queryParamMap.subscribe((query) &#x3D;&gt; {
+      const selectedOrgans &#x3D; query.get(&#x27;selectedOrgans&#x27;) ?? &#x27;&#x27;;
+      const version &#x3D; query.get(&#x27;version&#x27;);
+      const comparisonCSV &#x3D; query.get(&#x27;comparisonCSVURL&#x27;);
+      const comparisonName &#x3D; query.get(&#x27;comparisonName&#x27;);
+      const comparisonColor &#x3D; query.get(&#x27;comparisonColor&#x27;);
+      const comparisonHasFile &#x3D; query.get(&#x27;comparisonHasFile&#x27;);
+      const sheet &#x3D; query.get(&#x27;sheet&#x27;);
+      const playground &#x3D; query.get(&#x27;playground&#x27;);
+      const omapSelectedOrgans &#x3D; query.get(&#x27;omapSelectedOrgans&#x27;) ?? &#x27;&#x27;;
+      if (!(selectedOrgans || omapSelectedOrgans) &amp;&amp; playground !&#x3D;&#x3D; &#x27;true&#x27;) {
+        store.dispatch(new UpdateMode(&#x27;vis&#x27;));
+        store.dispatch(new CloseLoading(&#x27;Select Organ Model Rendered&#x27;));
+        const config &#x3D; new MatDialogConfig();
+        config.disableClose &#x3D; true;
+        config.autoFocus &#x3D; true;
+        config.id &#x3D; &#x27;OrganTableSelector&#x27;;
+        config.width &#x3D; &#x27;fit-content&#x27;;
+        config.data &#x3D; {
+          isIntilalSelect: true,
+          getFromCache: true,
+        };
+        const dialogRef &#x3D; this.dialog.open(OrganTableSelectorComponent, config);
+        dialogRef.afterClosed().subscribe(({ organs, cache, omapOrgans }) &#x3D;&gt; {
+          store.dispatch(new UpdateGetFromCache(cache));
+          if (organs !&#x3D;&#x3D; false) {
+            this.router.navigate([&#x27;/vis&#x27;], {
+              queryParams: {
+                selectedOrgans: organs?.join(&#x27;,&#x27;),
+                playground: false,
+                omapSelectedOrgans: omapOrgans?.join(&#x27;,&#x27;),
+              },
+              queryParamsHandling: &#x27;merge&#x27;,
+            });
+          }
+        });
+      } else if (
+        (selectedOrgans || omapSelectedOrgans) &amp;&amp;
+        playground !&#x3D;&#x3D; &#x27;true&#x27; &amp;&amp;
+        (comparisonCSV || comparisonHasFile)
+      ) {
+        store.dispatch(new UpdateMode(&#x27;vis&#x27;));
+        const comparisonCSVURLList &#x3D; comparisonCSV?.split(&#x27;|&#x27;);
+        const comparisonColorList &#x3D; comparisonColor?.split(&#x27;|&#x27;);
+        const comparisonNameList &#x3D; comparisonName?.split(&#x27;|&#x27;);
+
+        const comparisonDetails &#x3D; this.compareDetails;
+        this.sheet &#x3D; this.sheetConfig.find((i) &#x3D;&gt; i.name &#x3D;&#x3D;&#x3D; &#x27;some&#x27;) as Sheet;
+
+        if (!comparisonDetails.length) {
+          const colors &#x3D; [
+            &#x27;#6457A6&#x27;,
+            &#x27;#2C666E&#x27;,
+            &#x27;#72A98F&#x27;,
+            &#x27;#3D5A6C&#x27;,
+            &#x27;#F37748&#x27;,
+            &#x27;#FB4B4E&#x27;,
+            &#x27;#FFCBDD&#x27;,
+            &#x27;#7C0B2B&#x27;,
+            &#x27;#067BC2&#x27;,
+            &#x27;#ECC30B&#x27;,
+          ];
+          comparisonCSVURLList?.forEach((linkUrl, index) &#x3D;&gt; {
+            linkUrl &#x3D; linkUrl.trim();
+            comparisonDetails.push({
+              title:
+                comparisonNameList !&#x3D;&#x3D; undefined &amp;&amp; comparisonNameList.length - 1 &gt;&#x3D; index
+                  ? comparisonNameList[index]
+                  : &#x60;Sheet ${index + 1}&#x60;,
+              description: &#x27;&#x27;,
+              link: linkUrl,
+              color:
+                comparisonColorList !&#x3D;&#x3D; undefined &amp;&amp; comparisonColorList.length - 1 &gt;&#x3D; index
+                  ? comparisonColorList[index]
+                  : colors[index % colors.length],
+              sheetId: this.parseSheetUrl(linkUrl).sheetID,
+              gid: this.parseSheetUrl(linkUrl).gid,
+              csvUrl: this.parseSheetUrl(linkUrl).csvUrl,
+            });
+          });
+        }
+        store.dispatch(
+          new FetchSelectedOrganData(
+            this.sheet,
+            selectedOrgans.split(&#x27;,&#x27;),
+            omapSelectedOrgans.split(&#x27;,&#x27;),
+            comparisonDetails,
+          ),
+        );
+        sessionStorage.setItem(&#x27;selectedOrgans&#x27;, selectedOrgans);
+        if (omapSelectedOrgans) {
+          this.openSnackBarToUpdateFilter();
+        }
+      } else if ((selectedOrgans || omapSelectedOrgans) &amp;&amp; playground !&#x3D;&#x3D; &#x27;true&#x27;) {
+        store.dispatch(new UpdateMode(&#x27;vis&#x27;));
+        this.sheet &#x3D; this.sheetConfig.find((i) &#x3D;&gt; i.name &#x3D;&#x3D;&#x3D; &#x27;some&#x27;) as Sheet;
+        store.dispatch(
+          new FetchSelectedOrganData(this.sheet, selectedOrgans.split(&#x27;,&#x27;), omapSelectedOrgans.split(&#x27;,&#x27;)),
+        );
+        sessionStorage.setItem(&#x27;selectedOrgans&#x27;, selectedOrgans);
+        if (omapSelectedOrgans) {
+          this.openSnackBarToUpdateFilter();
+        }
+      } else if (playground &#x3D;&#x3D;&#x3D; &#x27;true&#x27;) {
+        store.dispatch(new UpdateMode(&#x27;playground&#x27;));
+        this.sheet &#x3D; this.sheetConfig.find((i) &#x3D;&gt; i.name &#x3D;&#x3D;&#x3D; &#x27;some&#x27;) as Sheet;
+        this.store.dispatch(new FetchInitialPlaygroundData());
+        store.dispatch(new CloseLoading());
+      } else {
+        store.dispatch(new UpdateMode(&#x27;vis&#x27;));
+        this.sheet &#x3D; this.sheetConfig.find((i) &#x3D;&gt; i.name &#x3D;&#x3D;&#x3D; sheet) as Sheet;
+        localStorage.setItem(&#x27;sheet&#x27;, this.sheet.name);
+        if (version &#x3D;&#x3D;&#x3D; &#x27;latest&#x27;) {
+          if (this.sheet.name &#x3D;&#x3D;&#x3D; &#x27;all&#x27;) {
+            store.dispatch(new FetchAllOrganData(this.sheet));
+          } else {
+            store.dispatch(new FetchSheetData(this.sheet));
+          }
+        } else {
+          store.dispatch(new FetchDataFromAssets(version ?? &#x27;&#x27;, this.sheet));
+        }
+      }
+    });
+
+    this.loading$.subscribe((l) &#x3D;&gt; {
+      if (l &amp;&amp; !this.dialog.getDialogById(&#x27;LoadingDialog&#x27;)) {
+        this.openLoading();
+      } else if (!l) {
+        this.closeLoading();
+      }
+    });
+
+    this.uiState$.subscribe((state) &#x3D;&gt; {
+      this.isControlPaneOpen &#x3D; state.controlPaneOpen;
+    });
+
+    this.snack$.subscribe((sb) &#x3D;&gt; {
+      if (sb.opened) {
+        const config: MatSnackBarConfig &#x3D; {
+          duration: 1500,
+          verticalPosition: &#x27;bottom&#x27;,
+          horizontalPosition: &#x27;end&#x27;,
+          panelClass: [&#x60;${sb.type}-snackbar&#x60;],
+        };
+        this.snackbarRef &#x3D; this.snackbar.open(sb.text, &#x27;Dismiss&#x27;, config);
+        this.snackbarRef.afterDismissed();
+        store.dispatch(new CloseSnackbar());
+      }
+    });
+
+    this.pane$.subscribe((_unused) &#x3D;&gt; {
+      if (this.data) {
+        ts.makeTreeData(this.sheet, this.data, []);
+      }
+    });
+
+    this.bs$.subscribe((value) &#x3D;&gt; {
+      if (value) {
+        this.infoSheetRef &#x3D; this.infoSheet.open(InfoComponent, {
+          disableClose: false,
+          hasBackdrop: false,
+          autoFocus: false,
+          panelClass: &#x27;bottom-sheet-style&#x27;,
+          data: this.bottomSheetInfo$,
+        });
+      } else {
+        if (this.infoSheetRef) {
+          this.infoSheetRef.dismiss();
+        }
+      }
+    });
+
+    this.bottomSheetDOI$.subscribe((data) &#x3D;&gt; {
+      if (data.length) {
+        this.infoSheetRef &#x3D; this.infoSheet.open(DoiComponent, {
+          disableClose: false,
+          hasBackdrop: false,
+          autoFocus: false,
+          panelClass: &#x27;bottom-sheet-style&#x27;,
+          data,
+        });
+      } else {
+        if (this.infoSheetRef) {
+          this.infoSheetRef.dismiss();
+        }
+      }
+    });
+
+    // Listen for changes in the last selected search structure
+    this.searchOption$.subscribe((structure) &#x3D;&gt; {
+      // Structure will be null when all structures are deselected
+      if (this.verticalScrollEntity &amp;&amp; structure) {
+        const yPos &#x3D; structure.y + 30; // 30 accounts for top-padding
+        const xPos &#x3D; structure.x;
+
+        // The vertical scroll div is a CdkScrollable component, but the horizontal scroll element is a normal div.
+        // This leads to differences in the scrollTo interface.
+        const contentHeight &#x3D; this.verticalScrollEntity.treeElementRef.nativeElement.offsetHeight;
+        const contentWidth &#x3D; this.verticalScrollEntity.treeElementRef.nativeElement.offsetWidth;
+        const yScrollPos &#x3D; this.verticalScrollEntity.treeElementRef.nativeElement.scrollTop;
+        const xScrollPos &#x3D; this.verticalScrollEntity.treeElementRef.nativeElement.scrollLeft;
+
+        // Scroll to the selected structure if it&#x27;s outside the area of the screen
+        if (xPos &gt; xScrollPos + contentWidth || xPos &lt; xScrollPos) {
+          this.verticalScrollEntity.treeElementRef.nativeElement.scrollTo(xPos, yScrollPos);
+        }
+        if (yPos &gt; yScrollPos + contentHeight || yPos &lt; yScrollPos) {
+          this.verticalScrollEntity.treeElementRef.nativeElement.scrollTo({
+            top: yPos - contentHeight / 2,
+          });
+        }
+      }
+    });
+
+    this.compareSheets$.subscribe((sheets) &#x3D;&gt; {
+      const omapSheets &#x3D; sheets.filter((sheet) &#x3D;&gt; sheet.isOmap);
+      if (omapSheets.length &gt; 0) {
+        this.openSnackBarToUpdateFilter();
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.store.dispatch(new StateReset(SheetState));
+  }
+
+  /**
+   * Function to update the report with the data
+   *
+   * @param data sheet data
+   */
+  updateReport(data: Report) {
+    this.store.dispatch(new UpdateReport(data));
+  }
+
+  /**
+   * Deletes a sheeet from the compare
+   *
+   * @param i index of sheet
+   */
+  deleteSheet(i: number) {
+    this.store.dispatch(new DeleteCompareSheet(i));
+  }
+
+  /**
+   * Opens loading dialog
+   *
+   * @param text Loading text
+   */
+  openLoading(text?: string) {
+    const config &#x3D; new MatDialogConfig();
+    config.disableClose &#x3D; true;
+    config.autoFocus &#x3D; true;
+    config.id &#x3D; &#x27;LoadingDialog&#x27;;
+    config.data &#x3D; text;
+    config.width &#x3D; &#x27;300px&#x27;;
+
+    this.dialog.open(LoadingComponent, config);
+  }
+
+  /**
+   *
+   * @param url  of the sheet to compare
+   * @returns a object with the sheetID, gid, and CsvUrl
+   */
+
+  parseSheetUrl(url: string): { sheetID: string; gid: string; csvUrl: string } {
+    if (url.startsWith(&#x27;https://docs.google.com/spreadsheets/d/&#x27;)) {
+      const splitUrl &#x3D; url.split(&#x27;/&#x27;);
+      if (splitUrl.length &#x3D;&#x3D;&#x3D; 7) {
+        return {
+          sheetID: splitUrl[5],
+          gid: splitUrl[6].split(&#x27;&#x3D;&#x27;)[1],
+          csvUrl: &#x27;&#x27;,
+        };
+      }
+      return {
+        sheetID: &#x27;0&#x27;,
+        gid: &#x27;0&#x27;,
+        csvUrl: url,
+      };
+    } else {
+      return {
+        sheetID: &#x27;0&#x27;,
+        gid: &#x27;0&#x27;,
+        csvUrl: url,
+      };
+    }
+  }
+
+  /**
+   * Close loading dialog
+   */
+  closeLoading() {
+    const loadingDialog &#x3D; this.dialog.getDialogById(&#x27;LoadingDialog&#x27;);
+    if (loadingDialog) {
+      loadingDialog.close();
+    }
+  }
+
+  /**
+   * Toggling sidebars for Report, IL, Debug, Compare
+   */
+  toggleSideNav() {
+    this.store.dispatch(new CloseRightSideNav());
+  }
+
+  /**
+   * Set compare data
+   * @param data compare data
+   */
+  compareData(data: CompareData[]) {
+    this.store.dispatch(new CloseCompare());
+    this.compareDetails &#x3D; data;
+    const compareDataString &#x3D; data
+      .filter((compareData: CompareData) &#x3D;&gt; compareData.link !&#x3D;&#x3D; &#x27;&#x27;)
+      .map((compareData: CompareData) &#x3D;&gt; compareData.link)
+      .join(&#x27;|&#x27;);
+
+    const compareColorString &#x3D; data
+      .filter((compareData: CompareData) &#x3D;&gt; compareData.color !&#x3D;&#x3D; &#x27;&#x27;)
+      .map((compareData: CompareData) &#x3D;&gt; compareData.color)
+      .join(&#x27;|&#x27;);
+
+    const compareNameString &#x3D; data
+      .filter((compareData: CompareData) &#x3D;&gt; compareData.title !&#x3D;&#x3D; &#x27;&#x27;)
+      .map((compareData: CompareData) &#x3D;&gt; compareData.title)
+      .join(&#x27;|&#x27;);
+
+    const compareHasFile &#x3D; data // check if any of the sheets has a file
+      .some((compareData: CompareData) &#x3D;&gt; compareData.formData !&#x3D;&#x3D; null);
+
+    this.router.navigate([&#x27;/vis&#x27;], {
+      queryParams: {
+        comparisonCSVURL: compareDataString,
+        comparisonName: compareNameString,
+        comparisonColor: compareColorString,
+        comparisonHasFile: compareHasFile ? &#x27;true&#x27; : &#x27;false&#x27;,
+      },
+      queryParamsHandling: &#x27;merge&#x27;,
+    });
+  }
+
+  /**
+   * Dispatch action to open bottom sheet
+   * @param id ontology id
+   */
+  getStructureInfo(data: { name: string; ontologyId: string }) {
+    this.store.dispatch(new OpenBottomSheet(data as OpenBottomSheetData));
+  }
+
+  /**
+   * Exports the visualiation into 3 formats
+   *
+   * @param option Export option. PNG | SVG | Vega Spec
+   */
+  exportVis(option: string) {
+    const dt &#x3D; moment(new Date()).format(&#x27;YYYY.MM.DD_hh.mm&#x27;);
+    const sn &#x3D; this.sheet.display.toLowerCase().replace(&#x27; &#x27;, &#x27;_&#x27;);
+    const formatType &#x3D; option.toLowerCase();
+    let csvURL;
+    const sheet &#x3D; this.store.selectSnapshot(SheetState.getSheet);
+    const selectedOrgans &#x3D; this.store.selectSnapshot(SheetState.getSelectedOrgans);
+    const omapSelectedOrgans &#x3D; this.store.selectSnapshot(SheetState.getOMAPSelectedOrgans);
+    const urls: string[] &#x3D; [];
+    if (sheet.name &#x3D;&#x3D;&#x3D; &#x27;all&#x27; || sheet.name &#x3D;&#x3D;&#x3D; &#x27;some&#x27;) {
+      for (const organ of selectedOrgans) {
+        this.sheetConfig.forEach((config) &#x3D;&gt; {
+          config.version?.forEach((version: VersionDetail) &#x3D;&gt; {
+            if (version.value &#x3D;&#x3D;&#x3D; organ) {
+              if (version.csvUrl) {
+                urls.push(version.csvUrl);
+              } else {
+                urls.push(this.sheetService.formURL(version.sheetId ?? &#x27;&#x27;, version.gid ?? &#x27;&#x27;));
+              }
+            }
+          });
+        });
+      }
+      for (const organ of omapSelectedOrgans) {
+        this.omapSheetConfig.forEach((config) &#x3D;&gt; {
+          config.version?.forEach((version: VersionDetail) &#x3D;&gt; {
+            if (version.value &#x3D;&#x3D;&#x3D; organ) {
+              if (version.csvUrl) {
+                urls.push(version.csvUrl);
+              } else {
+                urls.push(this.sheetService.formURL(version.sheetId ?? &#x27;&#x27;, version.gid ?? &#x27;&#x27;));
+              }
+            }
+          });
+        });
+      }
+      csvURL &#x3D; urls.join(&#x27;|&#x27;);
+    }
+
+    if (option &#x3D;&#x3D;&#x3D; &#x27;Graph Data&#x27;) {
+      this.sheetService
+        .fetchSheetData(sheet.sheetId ?? &#x27;&#x27;, sheet.gid ?? &#x27;&#x27;, csvURL ? csvURL : sheet.csvUrl, undefined, &#x27;graph&#x27;)
+        .subscribe((g) &#x3D;&gt; {
+          const graphData &#x3D; g as GraphData;
+          const graphDataStr &#x3D; &#x27;data:text/json;charset&#x3D;utf-8,&#x27; + encodeURIComponent(JSON.stringify(graphData.data));
+          const downloadAnchorNode &#x3D; document.createElement(&#x27;a&#x27;);
+          downloadAnchorNode.setAttribute(&#x27;href&#x27;, graphDataStr);
+          downloadAnchorNode.setAttribute(&#x27;download&#x27;, &#x60;asct+b_graph_data_${sn}_${dt}&#x60; + &#x27;.json&#x27;);
+          document.body.appendChild(downloadAnchorNode);
+          downloadAnchorNode.click();
+          downloadAnchorNode.remove();
+        });
+    } else if (option &#x3D;&#x3D;&#x3D; &#x27;Vega Spec&#x27;) {
+      const spec &#x3D; this.store.selectSnapshot(TreeState.getVegaSpec);
+      const dataStr &#x3D; &#x27;data:text/json;charset&#x3D;utf-8,&#x27; + encodeURIComponent(JSON.stringify(spec, null, 4));
+      const downloadAnchorNode &#x3D; document.createElement(&#x27;a&#x27;);
+      downloadAnchorNode.setAttribute(&#x27;href&#x27;, dataStr);
+      downloadAnchorNode.setAttribute(&#x27;download&#x27;, &#x60;asct+b_${sn}_${dt}&#x60; + &#x27;.json&#x27;);
+      document.body.appendChild(downloadAnchorNode);
+      downloadAnchorNode.click();
+      downloadAnchorNode.remove();
+    } else if (option &#x3D;&#x3D;&#x3D; &#x27;JSON-LD&#x27;) {
+      this.sheetService
+        .fetchSheetData(sheet.sheetId ?? &#x27;&#x27;, sheet.gid ?? &#x27;&#x27;, csvURL ? csvURL : sheet.csvUrl, undefined, &#x27;jsonld&#x27;)
+        .subscribe((g) &#x3D;&gt; {
+          const graphData &#x3D; g as GraphData;
+          const graphDataStr &#x3D; &#x27;data:text/json;charset&#x3D;utf-8,&#x27; + encodeURIComponent(JSON.stringify(graphData));
+          const downloadAnchorNode &#x3D; document.createElement(&#x27;a&#x27;);
+          downloadAnchorNode.setAttribute(&#x27;href&#x27;, graphDataStr);
+          downloadAnchorNode.setAttribute(&#x27;download&#x27;, &#x60;asct+b_json_ld_${sn}_${dt}&#x60; + &#x27;.json&#x27;);
+          document.body.appendChild(downloadAnchorNode);
+          downloadAnchorNode.click();
+          downloadAnchorNode.remove();
+        });
+    } else if (option &#x3D;&#x3D;&#x3D; &#x27;OWL (RDF/XML)&#x27;) {
+      this.sheetService
+        .fetchSheetData(sheet.sheetId ?? &#x27;&#x27;, sheet.gid ?? &#x27;&#x27;, csvURL ? csvURL : sheet.csvUrl, undefined, &#x27;owl&#x27;)
+        .subscribe((g) &#x3D;&gt; {
+          const graphData &#x3D; g as GraphData;
+          const graphDataStr &#x3D;
+            &#x27;data:application/rdf+xml;charset&#x3D;utf-8,&#x27; + encodeURIComponent(JSON.stringify(graphData));
+          const downloadAnchorNode &#x3D; document.createElement(&#x27;a&#x27;);
+          downloadAnchorNode.setAttribute(&#x27;href&#x27;, graphDataStr);
+          downloadAnchorNode.setAttribute(&#x27;download&#x27;, &#x60;asct+b_owl_${sn}_${dt}&#x60; + &#x27;.owl&#x27;);
+          document.body.appendChild(downloadAnchorNode);
+          downloadAnchorNode.click();
+          downloadAnchorNode.remove();
+        });
+    } else {
+      const view &#x3D; this.store.selectSnapshot(TreeState.getVegaView);
+      const fileName &#x3D; &#x60;asct+b_${sn}_${dt}.${formatType}&#x60;;
+      view.background(&#x27;#fafafa&#x27;);
+      view
+        .toImageURL(formatType)
+        .then((url: string) &#x3D;&gt; {
+          const link &#x3D; document.createElement(&#x27;a&#x27;);
+          link.setAttribute(&#x27;href&#x27;, url);
+          link.setAttribute(&#x27;target&#x27;, &#x27;_blank&#x27;);
+          link.setAttribute(&#x27;download&#x27;, fileName);
+          link.dispatchEvent(new MouseEvent(&#x27;click&#x27;));
+        })
+        .catch((error) &#x3D;&gt; {
+          console.log(error);
+        });
+    }
+  }
+
+  openSnackBarToUpdateFilter() {
+    if (this.bimodalConfig.BM.type !&#x3D;&#x3D; &#x27;Protein&#x27;) {
+      const config: MatSnackBarConfig &#x3D; {
+        duration: 10000,
+        verticalPosition: &#x27;bottom&#x27;,
+        horizontalPosition: &#x27;center&#x27;,
+      };
+
+      setTimeout(() &#x3D;&gt; {
+        this.snackbarRef &#x3D; this.snackbar.open(
+          &#x27;OMAP Detected, Do you want to filter out only Proteins &#x27; + &#x27;from the available BioMarkers?&#x27;,
+          &#x27;Filter&#x27;,
+          config,
+        );
+        this.snackbarRef.onAction().subscribe(() &#x3D;&gt; {
+          this.bimodalConfig.BM.type &#x3D; &#x27;Protein&#x27;;
+          this.store.dispatch(new UpdateBimodalConfig(this.bimodalConfig)).subscribe((states) &#x3D;&gt; {
+            const data &#x3D; states.sheetState.data;
+            const treeData &#x3D; states.treeState.treeData;
+            const bimodalConfig &#x3D; states.treeState.bimodal.config;
+            const sheetConfig &#x3D; states.sheetState.sheetConfig;
+            const omapConfig &#x3D; states.treeState.omapConfig;
+            const filteredProtiens &#x3D; states.sheetState.filteredProtiens;
+
+            if (data.length) {
+              this.bms.makeBimodalData(data, treeData, bimodalConfig, false, sheetConfig, omapConfig, filteredProtiens);
+            }
+          });
+        });
+      }, 2000);
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;h-100 w-100&quot;&gt;
+  &lt;mat-drawer-container class&#x3D;&quot;control-pane-container h-100&quot; autosize&gt;
+    &lt;mat-drawer #controlPaneDrawer class&#x3D;&quot;control-pane&quot; mode&#x3D;&quot;side&quot; [opened]&#x3D;&quot;pane$ | async&quot;&gt;
+      &lt;app-control-pane [error]&#x3D;&quot;error&quot;&gt;&lt;/app-control-pane&gt;
+    &lt;/mat-drawer&gt;
+
+    &lt;mat-drawer
+      #rightDrawer
+      class&#x3D;&quot;right-sidenav&quot;
+      mode&#x3D;&quot;over&quot;
+      [opened]&#x3D;&quot;(il$ | async) || (report$ | async) || (dl$ | async) || (c$ | async)&quot;
+      position&#x3D;&quot;end&quot;
+      (closedStart)&#x3D;&quot;toggleSideNav()&quot;
+      autoFocus&#x3D;&quot;false&quot;
+      style&#x3D;&quot;z-index: 3&quot;
+    &gt;
+      &lt;app-report
+        (deleteSheet)&#x3D;&quot;deleteSheet($event)&quot;
+        [compareData]&#x3D;&quot;allCompareData$&quot;
+        [inputReportData]&#x3D;&quot;rd$&quot;
+        (closeReport)&#x3D;&quot;rightDrawer.close()&quot;
+        *ngIf&#x3D;&quot;report$ | async&quot;
+        [sheetData]&#x3D;&quot;data&quot;
+        [asFullData]&#x3D;&quot;(fullAsData$ | async) ?? []&quot;
+        [fullDataByOrgan]&#x3D;&quot;(fullDataByOrgan$ | async) ?? []&quot;
+        [currentSheet]&#x3D;&quot;sheet&quot;
+        [currentSheetConfig]&#x3D;&quot;sheetConfig$&quot;
+        [linksData$]&#x3D;&quot;links$&quot;
+        (computedReport)&#x3D;&quot;updateReport($event)&quot;
+        [bmType]&#x3D;&quot;(bmType$ | async) ?? &#x27;&#x27;&quot;
+        [hideReportCompareTab]&#x3D;&quot;(mode$ | async) &#x3D;&#x3D;&#x3D; &#x27;playground&#x27;&quot;
+      &gt;&lt;/app-report&gt;
+
+      &lt;app-indent
+        (closeIL)&#x3D;&quot;rightDrawer.close()&quot;
+        *ngIf&#x3D;&quot;il$ | async&quot;
+        [sheetData]&#x3D;&quot;data&quot;
+        [currentSheet]&#x3D;&quot;sheet&quot;
+        (openBottomSheet)&#x3D;&quot;getStructureInfo($event)&quot;
+      &gt;&lt;/app-indent&gt;
+
+      &lt;app-debug-logs
+        (closeDebug)&#x3D;&quot;rightDrawer.close()&quot;
+        *ngIf&#x3D;&quot;dl$ | async&quot;
+        [currentSheet]&#x3D;&quot;sheet&quot;
+        [logs]&#x3D;&quot;(logs$ | async)!&quot;
+      &gt;&lt;/app-debug-logs&gt;
+
+      &lt;app-compare
+        (closeCompare)&#x3D;&quot;rightDrawer.close()&quot;
+        *ngIf&#x3D;&quot;c$ | async&quot;
+        class&#x3D;&quot;compare-sidenav&quot;
+        (compareData)&#x3D;&quot;compareData($event)&quot;
+        [compareSheets]&#x3D;&quot;compareSheets$&quot;
+      &gt;&lt;/app-compare&gt;
+    &lt;/mat-drawer&gt;
+    &lt;mat-drawer-content&gt;
+      &lt;app-navbar (export)&#x3D;&quot;exportVis($event)&quot; [cache]&#x3D;&quot;(getFromCache$ | async) ?? false&quot;&gt;&lt;/app-navbar&gt;
+      &lt;div id&#x3D;&quot;content&quot; class&#x3D;&quot;h-100 w-100&quot;&gt;
+        &lt;app-error *ngIf&#x3D;&quot;error.hasError&quot; [error]&#x3D;&quot;error&quot;&gt;&lt;/app-error&gt;
+        &lt;div
+          class&#x3D;&quot;example-box box-container&quot;
+          cdkDrag
+          [ngStyle]&#x3D;&quot;{
+            &#x27;margin-top&#x27;: (mode$ | async) &#x3D;&#x3D;&#x3D; &#x27;vis&#x27; ? &#x27;1.25rem&#x27; : &#x27;4.0625rem&#x27;
+          }&quot;
+          *ngIf&#x3D;&quot;(pane$ | async) &#x3D;&#x3D;&#x3D; false&quot;
+        &gt;
+          &lt;app-legend
+            [treeData]&#x3D;&quot;(treeData$ | async) ?? []&quot;
+            [bimodalData]&#x3D;&quot;(bm$ | async)!&quot;
+            [compareData]&#x3D;&quot;(compareSheets$ | async) ?? []&quot;
+            [error]&#x3D;&quot;error&quot;
+          &gt;&lt;/app-legend&gt;
+        &lt;/div&gt;
+        &lt;div #treeDiv class&#x3D;&quot;tree-div&quot; *ngIf&#x3D;&quot;(mode$ | async) &#x3D;&#x3D;&#x3D; &#x27;vis&#x27;&quot;&gt;
+          &lt;app-tree *ngIf&#x3D;&quot;!error.hasError&quot;&gt;&lt;/app-tree&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;playground-dig&quot; *ngIf&#x3D;&quot;(mode$ | async) &#x3D;&#x3D;&#x3D; &#x27;playground&#x27;&quot;&gt;
+          &lt;app-playground&gt;&lt;/app-playground&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/mat-drawer-content&gt;
+  &lt;/mat-drawer-container&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./root.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.control-pane-container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+}
+
+.control-pane {
+  width: 15.625rem;
+  border-right: 0.1875rem solid #444a6510;
+  min-width: 3.125rem;
+}
+
+.tree-div {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.right-sidenav {
+  min-width: 31.25rem;
+  max-width: 43.75rem;
+  overflow-x: auto;
+  border-left: 0.1875rem solid #ececec;
+  box-shadow: none !important;
+  z-index: 10 !important;
+}
+
+.compare-sidenav {
+  width: 40.625rem !important;
+}
+
+.example-box {
+  cursor: move;
+  z-index: 5;
+}
+.box-container {
+  position: absolute;
+  width: 15.625rem;
+  left: 0.625rem;
+  z-index: 2;
+}
+
+#content {
+  padding-top: 4rem;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="h-100 w-100">  <mat-drawer-container class="control-pane-container h-100" autosize>    <mat-drawer #controlPaneDrawer class="control-pane" mode="side" [opened]="pane$ | async">      <app-control-pane [error]="error"></app-control-pane>    </mat-drawer>    <mat-drawer      #rightDrawer      class="right-sidenav"      mode="over"      [opened]="(il$ | async) || (report$ | async) || (dl$ | async) || (c$ | async)"      position="end"      (closedStart)="toggleSideNav()"      autoFocus="false"      style="z-index: 3"    >      <app-report        (deleteSheet)="deleteSheet($event)"        [compareData]="allCompareData$"        [inputReportData]="rd$"        (closeReport)="rightDrawer.close()"        *ngIf="report$ | async"        [sheetData]="data"        [asFullData]="(fullAsData$ | async) ?? []"        [fullDataByOrgan]="(fullDataByOrgan$ | async) ?? []"        [currentSheet]="sheet"        [currentSheetConfig]="sheetConfig$"        [linksData$]="links$"        (computedReport)="updateReport($event)"        [bmType]="(bmType$ | async) ?? \'\'"        [hideReportCompareTab]="(mode$ | async) === \'playground\'"      ></app-report>      <app-indent        (closeIL)="rightDrawer.close()"        *ngIf="il$ | async"        [sheetData]="data"        [currentSheet]="sheet"        (openBottomSheet)="getStructureInfo($event)"      ></app-indent>      <app-debug-logs        (closeDebug)="rightDrawer.close()"        *ngIf="dl$ | async"        [currentSheet]="sheet"        [logs]="(logs$ | async)!"      ></app-debug-logs>      <app-compare        (closeCompare)="rightDrawer.close()"        *ngIf="c$ | async"        class="compare-sidenav"        (compareData)="compareData($event)"        [compareSheets]="compareSheets$"      ></app-compare>    </mat-drawer>    <mat-drawer-content>      <app-navbar (export)="exportVis($event)" [cache]="(getFromCache$ | async) ?? false"></app-navbar>      <div id="content" class="h-100 w-100">        <app-error *ngIf="error.hasError" [error]="error"></app-error>        <div          class="example-box box-container"          cdkDrag          [ngStyle]="{            \'margin-top\': (mode$ | async) === \'vis\' ? \'1.25rem\' : \'4.0625rem\'          }"          *ngIf="(pane$ | async) === false"        >          <app-legend            [treeData]="(treeData$ | async) ?? []"            [bimodalData]="(bm$ | async)!"            [compareData]="(compareSheets$ | async) ?? []"            [error]="error"          ></app-legend>        </div>        <div #treeDiv class="tree-div" *ngIf="(mode$ | async) === \'vis\'">          <app-tree *ngIf="!error.hasError"></app-tree>        </div>        <div class="playground-dig" *ngIf="(mode$ | async) === \'playground\'">          <app-playground></app-playground>        </div>      </div>    </mat-drawer-content>  </mat-drawer-container></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-reporter'},{'name': 'CompareComponent', 'selector': 'app-compare'},{'name': 'ControlPaneComponent', 'selector': 'app-control-pane'},{'name': 'DebugLogsComponent', 'selector': 'app-debug-logs'},{'name': 'DocsComponent', 'selector': 'app-docs'},{'name': 'DocsNavComponent', 'selector': 'app-docs-nav'},{'name': 'DoiComponent', 'selector': 'app-doi'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'FileUploadComponent', 'selector': 'app-file-upload'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'FunctionsComponent', 'selector': 'app-functions'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IndentedListComponent', 'selector': 'app-indent'},{'name': 'InfoComponent', 'selector': 'app-info'},{'name': 'LegendComponent', 'selector': 'app-legend'},{'name': 'LoadingComponent', 'selector': 'app-loading'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NavItemComponent', 'selector': 'app-nav-item'},{'name': 'OmapControlsComponent', 'selector': 'app-omap-controls'},{'name': 'OrganTableSelectorComponent', 'selector': 'app-organ-table-selector'},{'name': 'PlaygroundComponent', 'selector': 'app-playground'},{'name': 'ReportComponent', 'selector': 'app-report'},{'name': 'RootComponent', 'selector': 'app-root'},{'name': 'SearchComponent', 'selector': 'app-search'},{'name': 'SidenavComponent', 'selector': 'app-sidenav'},{'name': 'SidenavHeaderComponent', 'selector': 'app-sidenav-header'},{'name': 'TableNestedMenuComponent', 'selector': 'app-table-nested-menu'},{'name': 'TrackingPopupComponent', 'selector': 'app-tracking-popup'},{'name': 'TreeComponent', 'selector': 'app-tree'},{'name': 'UploadComponent', 'selector': 'app-upload'},{'name': 'VisControlsComponent', 'selector': 'app-vis-controls'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'RootComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'RootComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

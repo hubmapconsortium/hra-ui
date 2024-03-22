@@ -1,0 +1,3370 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>asctb-reporter</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">asctb-reporter</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ReportComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/report/report.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-report</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./report.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./report.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#biomarkersCounts" >biomarkersCounts</a>
+                            </li>
+                            <li>
+                                <a href="#biomarkersSeperateNames" >biomarkersSeperateNames</a>
+                            </li>
+                            <li>
+                                <a href="#clickButton" >clickButton</a>
+                            </li>
+                            <li>
+                                <a href="#compareReport" >compareReport</a>
+                            </li>
+                            <li>
+                                <a href="#countsByOrgan" >countsByOrgan</a>
+                            </li>
+                            <li>
+                                <a href="#displayedColumns" >displayedColumns</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#ga" >ga</a>
+                            </li>
+                            <li>
+                                <a href="#ontologyLinkGraphData" >ontologyLinkGraphData</a>
+                            </li>
+                            <li>
+                                <a href="#reportData" >reportData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#reportService" >reportService</a>
+                            </li>
+                            <li>
+                                <a href="#resultDataByOrganName" >resultDataByOrganName</a>
+                            </li>
+                            <li>
+                                <a href="#SheetConfig" >SheetConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#sort" >sort</a>
+                            </li>
+                            <li>
+                                <a href="#total_AS_AS" >total_AS_AS</a>
+                            </li>
+                            <li>
+                                <a href="#total_AS_CT" >total_AS_CT</a>
+                            </li>
+                            <li>
+                                <a href="#total_CT_B" >total_CT_B</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#ts" >ts</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#customColors" >customColors</a>
+                            </li>
+                            <li>
+                                <a href="#deleteCompareSheetReport" >deleteCompareSheetReport</a>
+                            </li>
+                            <li>
+                                <a href="#downloadCompareSheetReport" >downloadCompareSheetReport</a>
+                            </li>
+                            <li>
+                                <a href="#downloadData" >downloadData</a>
+                            </li>
+                            <li>
+                                <a href="#downloadReport" >downloadReport</a>
+                            </li>
+                            <li>
+                                <a href="#downloadReportByOrgan" >downloadReportByOrgan</a>
+                            </li>
+                            <li>
+                                <a href="#getBiomarkerLabel" >getBiomarkerLabel</a>
+                            </li>
+                            <li>
+                                <a href="#getBMCTAS" >getBMCTAS</a>
+                            </li>
+                            <li>
+                                <a href="#getTotals" >getTotals</a>
+                            </li>
+                            <li>
+                                <a href="#makeOntologyLinksGraphData" >makeOntologyLinksGraphData</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#asFullData" >asFullData</a>
+                            </li>
+                            <li>
+                                <a href="#bmType" >bmType</a>
+                            </li>
+                            <li>
+                                <a href="#compareData" >compareData</a>
+                            </li>
+                            <li>
+                                <a href="#compareSheets" >compareSheets</a>
+                            </li>
+                            <li>
+                                <a href="#currentSheet" >currentSheet</a>
+                            </li>
+                            <li>
+                                <a href="#currentSheetConfig" >currentSheetConfig</a>
+                            </li>
+                            <li>
+                                <a href="#fullDataByOrgan" >fullDataByOrgan</a>
+                            </li>
+                            <li>
+                                <a href="#hideReportCompareTab" >hideReportCompareTab</a>
+                            </li>
+                            <li>
+                                <a href="#inputReportData" >inputReportData</a>
+                            </li>
+                            <li>
+                                <a href="#linksData$" >linksData$</a>
+                            </li>
+                            <li>
+                                <a href="#sheetData" >sheetData</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#closeReport" >closeReport</a>
+                            </li>
+                            <li>
+                                <a href="#computedReport" >computedReport</a>
+                            </li>
+                            <li>
+                                <a href="#deleteSheet" >deleteSheet</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(reportService: <a href="../injectables/ReportService.html" target="_self">ReportService</a>, ts: <a href="../injectables/TreeService.html" target="_self">TreeService</a>, ga: GoogleAnalyticsService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/components/report/report.component.ts:81</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>reportService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ReportService.html" target="_self" >ReportService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>ts</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/TreeService.html" target="_self" >TreeService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>ga</td>
+                                                  
+                                                        <td>
+                                                                    <code>GoogleAnalyticsService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="asFullData"></a>
+                        <b>asFullData</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Row.html" target="_self" >Row[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/components/report/report.component.ts:68</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="bmType"></a>
+                        <b>bmType</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/components/report/report.component.ts:75</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="compareData"></a>
+                        <b>compareData</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;literal type&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/components/report/report.component.ts:74</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="compareSheets"></a>
+                        <b>compareSheets</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/CompareData.html" target="_self" >CompareData[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/components/report/report.component.ts:66</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentSheet"></a>
+                        <b>currentSheet</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Sheet.html" target="_self" >Sheet</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/components/report/report.component.ts:70</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentSheetConfig"></a>
+                        <b>currentSheetConfig</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;SheetConfig&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/components/report/report.component.ts:73</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="fullDataByOrgan"></a>
+                        <b>fullDataByOrgan</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Row.html" target="_self" >Row[][]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/components/report/report.component.ts:69</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="hideReportCompareTab"></a>
+                        <b>hideReportCompareTab</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/components/report/report.component.ts:76</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="inputReportData"></a>
+                        <b>inputReportData</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Report.html" target="_self" >Observable&lt;Report&gt;</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/components/report/report.component.ts:72</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="linksData$"></a>
+                        <b>linksData$</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Data.html" target="_self" >Observable&lt;LinksASCTBData&gt;</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/components/report/report.component.ts:71</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sheetData"></a>
+                        <b>sheetData</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Row.html" target="_self" >Row[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/components/report/report.component.ts:67</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="closeReport"></a>
+                        <b>closeReport</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/components/report/report.component.ts:77</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="computedReport"></a>
+                        <b>computedReport</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/components/report/report.component.ts:78</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="deleteSheet"></a>
+                        <b>deleteSheet</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/components/report/report.component.ts:79</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="customColors"></a>
+                    <span class="name">
+                        <span ><b>customColors</b></span>
+                        <a href="#customColors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>customColors(v: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="224"
+                                    class="link-to-prism">src/app/components/report/report.component.ts:224</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>v</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteCompareSheetReport"></a>
+                    <span class="name">
+                        <span ><b>deleteCompareSheetReport</b></span>
+                        <a href="#deleteCompareSheetReport"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteCompareSheetReport(i: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="236"
+                                    class="link-to-prism">src/app/components/report/report.component.ts:236</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>i</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="downloadCompareSheetReport"></a>
+                    <span class="name">
+                        <span ><b>downloadCompareSheetReport</b></span>
+                        <a href="#downloadCompareSheetReport"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>downloadCompareSheetReport(i: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="362"
+                                    class="link-to-prism">src/app/components/report/report.component.ts:362</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>i</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>{ sheet: any; sheetName: any; name: string; }</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="downloadData"></a>
+                    <span class="name">
+                        <span ><b>downloadData</b></span>
+                        <a href="#downloadData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>downloadData()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="250"
+                                    class="link-to-prism">src/app/components/report/report.component.ts:250</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>{ sheet: any; sheetName: any; name: string; }</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="downloadReport"></a>
+                    <span class="name">
+                        <span ><b>downloadReport</b></span>
+                        <a href="#downloadReport"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>downloadReport(i)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="302"
+                                    class="link-to-prism">src/app/components/report/report.component.ts:302</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>i</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>-1</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="downloadReportByOrgan"></a>
+                    <span class="name">
+                        <span ><b>downloadReportByOrgan</b></span>
+                        <a href="#downloadReportByOrgan"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>downloadReportByOrgan()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="333"
+                                    class="link-to-prism">src/app/components/report/report.component.ts:333</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getBiomarkerLabel"></a>
+                    <span class="name">
+                        <span ><b>getBiomarkerLabel</b></span>
+                        <a href="#getBiomarkerLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getBiomarkerLabel(bmType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="210"
+                                    class="link-to-prism">src/app/components/report/report.component.ts:210</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>bmType</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/B.html" target="_self" >&quot;Total Gene Biomarkers&quot; | &quot;Total Protein Biomarkers&quot; | &quot;Total Lipids Biomarkers&quot; | &quot;Total Metabolites Biomarkers&quot; | &quot;Total Proteoforms Biomarkers&quot; | &quot;Total Biomarkers&quot;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getBMCTAS"></a>
+                    <span class="name">
+                        <span ><b>getBMCTAS</b></span>
+                        <a href="#getBMCTAS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getBMCTAS(bmCtPairs: BmCtPairings[], download: Record<string, string>[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="413"
+                                    class="link-to-prism">src/app/components/report/report.component.ts:413</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>bmCtPairs</td>
+                                            <td>
+                                                        <code>BmCtPairings[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>download</td>
+                                            <td>
+                                                        <code>Record&lt;string, string&gt;[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>{}</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTotals"></a>
+                    <span class="name">
+                        <span ><b>getTotals</b></span>
+                        <a href="#getTotals"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getTotals(data: CByOrgan[], key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="244"
+                                    class="link-to-prism">src/app/components/report/report.component.ts:244</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                        <code>CByOrgan[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>key</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeOntologyLinksGraphData"></a>
+                    <span class="name">
+                        <span ><b>makeOntologyLinksGraphData</b></span>
+                        <a href="#makeOntologyLinksGraphData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeOntologyLinksGraphData(reportData: <a href="../interfaces/Report.html" target="_self">Report</a>, sheetData: <a href="../interfaces/Row.html" target="_self">Row[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="123"
+                                    class="link-to-prism">src/app/components/report/report.component.ts:123</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>reportData</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Report.html" target="_self" >Report</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>sheetData</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Row.html" target="_self" >Row[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>{}</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="biomarkersCounts"></a>
+                    <span class="name">
+                        <span ><b>biomarkersCounts</b></span>
+                        <a href="#biomarkersCounts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>BiomarkersCounts[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/components/report/report.component.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="biomarkersSeperateNames"></a>
+                    <span class="name">
+                        <span ><b>biomarkersSeperateNames</b></span>
+                        <a href="#biomarkersSeperateNames"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>BiomarkersNamesInReport[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/components/report/report.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clickButton"></a>
+                    <span class="name">
+                        <span ><b>clickButton</b></span>
+                        <a href="#clickButton"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/components/report/report.component.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="compareReport"></a>
+                    <span class="name">
+                        <span ><b>compareReport</b></span>
+                        <a href="#compareReport"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>CompareReport[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/components/report/report.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="countsByOrgan"></a>
+                    <span class="name">
+                        <span ><b>countsByOrgan</b></span>
+                        <a href="#countsByOrgan"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Data.html" target="_self" >MatTableDataSource&lt;CByOrgan&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new MatTableDataSource()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/components/report/report.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayedColumns"></a>
+                    <span class="name">
+                        <span ><b>displayedColumns</b></span>
+                        <a href="#displayedColumns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    &#x27;organName&#x27;,
+    &#x27;ASWithNoLink&#x27;,
+    &#x27;CTWithNoLink&#x27;,
+    &#x27;BWithNoLink&#x27;,
+    &#x27;ASWithNoCT&#x27;,
+    &#x27;CTWithNoB&#x27;,
+    &#x27;AS_AS&#x27;,
+    &#x27;AS_CT&#x27;,
+    &#x27;CT_BM&#x27;,
+    &#x27;anatomicalStructures&#x27;,
+    &#x27;cellTypes&#x27;,
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/components/report/report.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ga"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>ga</b></span>
+                        <a href="#ga"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>GoogleAnalyticsService</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/components/report/report.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ontologyLinkGraphData"></a>
+                    <span class="name">
+                        <span ><b>ontologyLinkGraphData</b></span>
+                        <a href="#ontologyLinkGraphData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ReturnType&lt;&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/components/report/report.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reportData"></a>
+                    <span class="name">
+                        <span ><b>reportData</b></span>
+                        <a href="#reportData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Report.html" target="_self" >Report</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    anatomicalStructures: [],
+    cellTypes: [],
+    biomarkers: [],
+    ASWithNoLink: [],
+    CTWithNoLink: [],
+    BWithNoLink: [],
+    ASWithNoCT: [],
+    CTWithNoB: [],
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/report/report.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reportService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>reportService</b></span>
+                        <a href="#reportService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/ReportService.html" target="_self" >ReportService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/components/report/report.component.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resultDataByOrganName"></a>
+                    <span class="name">
+                        <span ><b>resultDataByOrganName</b></span>
+                        <a href="#resultDataByOrganName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Report.html" target="_self" >Report</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    anatomicalStructures: [],
+    ASWithNoLink: [],
+    CTWithNoLink: [],
+    BWithNoLink: [],
+    cellTypes: [],
+    biomarkers: [],
+    ASWithNoCT: [],
+    CTWithNoB: [],
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/components/report/report.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SheetConfig"></a>
+                    <span class="name">
+                        <span ><b>SheetConfig</b></span>
+                        <a href="#SheetConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/SheetConfig.html" target="_self" >SheetConfig</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/components/report/report.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sort"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>sort</b></span>
+                        <a href="#sort"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatSort</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(MatSort)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/components/report/report.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="total_AS_AS"></a>
+                    <span class="name">
+                        <span ><b>total_AS_AS</b></span>
+                        <a href="#total_AS_AS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/components/report/report.component.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="total_AS_CT"></a>
+                    <span class="name">
+                        <span ><b>total_AS_CT</b></span>
+                        <a href="#total_AS_CT"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/components/report/report.component.ts:80</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="total_CT_B"></a>
+                    <span class="name">
+                        <span ><b>total_CT_B</b></span>
+                        <a href="#total_CT_B"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/components/report/report.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ts"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>ts</b></span>
+                        <a href="#ts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/TreeService.html" target="_self" >TreeService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/components/report/report.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from &#x27;@angular/core&#x27;;
+import { BiomarkersCounts, BiomarkersNamesInReport, CByOrgan, Report } from &#x27;../../models/report.model&#x27;;
+import { CompareData, CompareReport, Row, Sheet, SheetConfig } from &#x27;../../models/sheet.model&#x27;;
+import { ReportService } from &#x27;./report.service&#x27;;
+
+import { MatSort } from &#x27;@angular/material/sort&#x27;;
+import { MatTableDataSource } from &#x27;@angular/material/table&#x27;;
+import * as moment from &#x27;moment&#x27;;
+import { GoogleAnalyticsService } from &#x27;ngx-google-analytics&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import * as XLSX from &#x27;xlsx&#x27;;
+import { GaAction, GaCategory } from &#x27;../../models/ga.model&#x27;;
+import { BmCtPairings, LinksASCTBData } from &#x27;../../models/tree.model&#x27;;
+import { TreeService } from &#x27;../../modules/tree/tree.service&#x27;;
+
+@Component({
+  selector: &#x27;app-report&#x27;,
+  templateUrl: &#x27;./report.component.html&#x27;,
+  styleUrls: [&#x27;./report.component.scss&#x27;],
+})
+export class ReportComponent implements OnInit {
+  reportData: Report &#x3D; {
+    anatomicalStructures: [],
+    cellTypes: [],
+    biomarkers: [],
+    ASWithNoLink: [],
+    CTWithNoLink: [],
+    BWithNoLink: [],
+    ASWithNoCT: [],
+    CTWithNoB: [],
+  };
+  resultDataByOrganName: Report &#x3D; {
+    anatomicalStructures: [],
+    ASWithNoLink: [],
+    CTWithNoLink: [],
+    BWithNoLink: [],
+    cellTypes: [],
+    biomarkers: [],
+    ASWithNoCT: [],
+    CTWithNoB: [],
+  };
+  countsByOrgan: MatTableDataSource&lt;CByOrgan&gt; &#x3D; new MatTableDataSource();
+  displayedColumns: string[] &#x3D; [
+    &#x27;organName&#x27;,
+    &#x27;ASWithNoLink&#x27;,
+    &#x27;CTWithNoLink&#x27;,
+    &#x27;BWithNoLink&#x27;,
+    &#x27;ASWithNoCT&#x27;,
+    &#x27;CTWithNoB&#x27;,
+    &#x27;AS_AS&#x27;,
+    &#x27;AS_CT&#x27;,
+    &#x27;CT_BM&#x27;,
+    &#x27;anatomicalStructures&#x27;,
+    &#x27;cellTypes&#x27;,
+  ];
+  biomarkersSeperateNames: BiomarkersNamesInReport[] &#x3D; [];
+  compareReport: CompareReport[] &#x3D; [];
+  clickButton &#x3D; false; // for mat expansion panel download button
+
+  @ViewChild(MatSort) sort!: MatSort;
+  ontologyLinkGraphData: ReturnType&lt;typeof this.makeOntologyLinksGraphData&gt; &#x3D; [];
+  SheetConfig!: SheetConfig;
+  total_AS_AS &#x3D; 0;
+  biomarkersCounts: BiomarkersCounts[] &#x3D; [];
+
+  @Input() compareSheets: CompareData[] &#x3D; [];
+  @Input() sheetData: Row[] &#x3D; [];
+  @Input() asFullData: Row[] &#x3D; [];
+  @Input() fullDataByOrgan: Row[][] &#x3D; [];
+  @Input() currentSheet!: Sheet;
+  @Input() linksData$!: Observable&lt;LinksASCTBData&gt;;
+  @Input() inputReportData!: Observable&lt;Report&gt;;
+  @Input() currentSheetConfig!: Observable&lt;SheetConfig&gt;;
+  @Input() compareData!: Observable&lt;{ data: Row[]; sheets: CompareData[] }&gt;;
+  @Input() bmType &#x3D; &#x27;&#x27;;
+  @Input() hideReportCompareTab &#x3D; false;
+  @Output() closeReport &#x3D; new EventEmitter&lt;void&gt;();
+  @Output() computedReport &#x3D; new EventEmitter&lt;Report&gt;();
+  @Output() deleteSheet &#x3D; new EventEmitter&lt;number&gt;();
+  total_AS_CT &#x3D; 0;
+  total_CT_B &#x3D; 0;
+
+  constructor(
+    public reportService: ReportService,
+    public ts: TreeService,
+    public ga: GoogleAnalyticsService,
+  ) {}
+
+  ngOnInit(): void {
+    this.reportService.reportData$.subscribe((data) &#x3D;&gt; {
+      this.reportData &#x3D; data.data as Report;
+      this.computedReport.emit(data.data as Report);
+
+      this.ontologyLinkGraphData &#x3D; this.makeOntologyLinksGraphData(data.data as Report, this.sheetData);
+    });
+    this.linksData$.subscribe((data) &#x3D;&gt; {
+      this.total_AS_AS &#x3D; data.AS_AS;
+      this.total_AS_CT &#x3D; data.AS_CT;
+      this.total_CT_B &#x3D; data.CT_B;
+    });
+
+    this.reportService.compareData$.subscribe((data) &#x3D;&gt; {
+      this.compareReport &#x3D; data.data;
+    });
+
+    this.currentSheetConfig.subscribe((data) &#x3D;&gt; {
+      this.SheetConfig &#x3D; data;
+    });
+
+    this.compareData.subscribe((data) &#x3D;&gt; {
+      if (data.sheets.length &amp;&amp; data.data.length) {
+        this.reportService.makeCompareData(this.reportData, data.data, data.sheets);
+      }
+    });
+
+    this.fullDataByOrgan.forEach((data) &#x3D;&gt; {
+      this.ts.makeTreeData(this.currentSheet, data, this.compareData, true);
+    });
+
+    this.reportService.makeReportData(this.currentSheet, this.sheetData, this.bmType, true);
+  }
+
+  makeOntologyLinksGraphData(reportData: Report, sheetData: Row[]) {
+    const { result, biomarkersSeperateNames } &#x3D; this.reportService.makeAllOrganReportDataByOrgan(
+      sheetData,
+      this.asFullData,
+    );
+
+    const biomarkerCols: string[] &#x3D; [];
+    biomarkersSeperateNames.forEach((bm) &#x3D;&gt; {
+      if (this.displayedColumns.includes(bm.name) &#x3D;&#x3D;&#x3D; false) {
+        biomarkerCols.push(bm.name);
+      }
+      this.displayedColumns &#x3D; [
+        &#x27;organName&#x27;,
+        &#x27;tableVersion&#x27;,
+        &#x27;anatomicalStructures&#x27;,
+        &#x27;cellTypes&#x27;,
+        &#x27;b_total&#x27;,
+        ...biomarkerCols,
+        &#x27;ASWithNoLink&#x27;,
+        &#x27;CTWithNoLink&#x27;,
+        &#x27;BWithNoLink&#x27;,
+        &#x27;ASWithNoCT&#x27;,
+        &#x27;CTWithNoB&#x27;,
+        &#x27;AS_AS&#x27;,
+        &#x27;AS_CT&#x27;,
+        &#x27;CT_BM&#x27;,
+      ];
+    });
+    const tableVersions &#x3D; new Map&lt;string, string&gt;();
+    sheetData.forEach((element) &#x3D;&gt; {
+      if (!(element.organName in tableVersions.keys())) {
+        tableVersions.set(element.organName, element.tableVersion);
+      }
+    });
+    this.biomarkersSeperateNames &#x3D; biomarkersSeperateNames;
+    this.linksData$.subscribe((data) &#x3D;&gt; {
+      this.countsByOrgan &#x3D; new MatTableDataSource(
+        this.reportService
+          .makeAllOrganReportDataCountsByOrgan(result, data, tableVersions)
+          .sort((a, b) &#x3D;&gt; a.organName?.localeCompare(b.organName ?? &#x27;&#x27;) ?? 0),
+      );
+      this.biomarkersCounts &#x3D; [];
+      this.biomarkersSeperateNames.forEach((bm) &#x3D;&gt; {
+        this.biomarkersCounts.push({
+          name: bm.name,
+          value: this.countsByOrgan.data[0][bm.name as keyof CByOrgan] as number,
+        });
+      });
+      this.countsByOrgan.sort &#x3D; this.sort;
+    });
+    return [
+      {
+        results: [
+          {
+            name: &#x27;with Uberon Links&#x27;,
+            value: reportData.anatomicalStructures.length - reportData.ASWithNoLink.length,
+          },
+          {
+            name: &#x27;without Uberon Links&#x27;,
+            value: reportData.ASWithNoLink.length,
+          },
+        ],
+        label: &#x27;Total Anatomical Structures&#x27;,
+      },
+      {
+        results: [
+          {
+            name: &#x27;with CL Links&#x27;,
+            value: reportData.cellTypes.length - reportData.CTWithNoLink.length,
+          },
+          { name: &#x27;without CL Links&#x27;, value: reportData.CTWithNoLink.length },
+        ],
+        label: &#x27;Total Cell Types&#x27;,
+      },
+      {
+        results: [
+          {
+            name: &#x27;with HGNC Links&#x27;,
+            value: reportData.biomarkers.length - reportData.BWithNoLink.length,
+          },
+          { name: &#x27;without HGNC Links&#x27;, value: reportData.BWithNoLink.length },
+        ],
+        label: this.getBiomarkerLabel(this.bmType),
+      },
+    ];
+  }
+
+  getBiomarkerLabel(bmType: string) {
+    return bmType &#x3D;&#x3D;&#x3D; &#x27;Gene&#x27;
+      ? &#x27;Total Gene Biomarkers&#x27;
+      : bmType &#x3D;&#x3D;&#x3D; &#x27;Protein&#x27;
+        ? &#x27;Total Protein Biomarkers&#x27;
+        : bmType &#x3D;&#x3D;&#x3D; &#x27;Lipids&#x27;
+          ? &#x27;Total Lipids Biomarkers&#x27;
+          : bmType &#x3D;&#x3D;&#x3D; &#x27;Metabolites&#x27;
+            ? &#x27;Total Metabolites Biomarkers&#x27;
+            : bmType &#x3D;&#x3D;&#x3D; &#x27;Proteoforms&#x27;
+              ? &#x27;Total Proteoforms Biomarkers&#x27;
+              : &#x27;Total Biomarkers&#x27;;
+  }
+
+  customColors(v: string) {
+    const mapper &#x3D; {
+      &#x27;with Uberon Links&#x27;: &#x27;#E41A1C&#x27;,
+      &#x27;without Uberon Links&#x27;: &#x27;#f5bcba&#x27;,
+      &#x27;with CL Links&#x27;: &#x27;#377EB8&#x27;,
+      &#x27;without CL Links&#x27;: &#x27;#abc9eb&#x27;,
+      &#x27;with HGNC Links&#x27;: &#x27;#4DAF4A&#x27;,
+      &#x27;without HGNC Links&#x27;: &#x27;#bce8be&#x27;,
+    };
+    return mapper[v as keyof typeof mapper];
+  }
+
+  deleteCompareSheetReport(i: number) {
+    this.clickButton &#x3D; true;
+    this.compareReport.splice(i, 1);
+    this.deleteSheet.emit(i);
+
+    this.ga.event(GaAction.CLICK, GaCategory.REPORT, &#x27;Delete a sheet comparison&#x27;, i);
+  }
+
+  getTotals(data: CByOrgan[], key: string) {
+    return data
+      .map((t) &#x3D;&gt; (t[key as keyof CByOrgan] ? (t[key as keyof CByOrgan] as number) : 0))
+      .reduce((acc, value) &#x3D;&gt; acc + value, 0);
+  }
+
+  downloadData() {
+    const download: Record&lt;string, string&gt;[] &#x3D; [];
+    const totalRows &#x3D; 6;
+    for (
+      let i &#x3D; 0;
+      i &lt;
+      Math.max(
+        this.reportData.anatomicalStructures.length,
+        this.reportData.cellTypes.length,
+        this.reportData.biomarkers.length,
+      );
+      i++
+    ) {
+      const row: Record&lt;string, string&gt; &#x3D; {};
+      if (i &lt; this.reportData.anatomicalStructures.length) {
+        row[&#x27;Unique Anatomical Structures&#x27;] &#x3D; this.reportData.anatomicalStructures[i].structure;
+        if (!this.reportData.anatomicalStructures[i].uberon.includes(&#x27;UBERON&#x27;)) {
+          row[&#x27;AS with no Uberon Link&#x27;] &#x3D; this.reportData.anatomicalStructures[i].structure;
+        }
+      }
+      if (i &lt; this.reportData.cellTypes.length) {
+        row[&#x27;Unique Cell Types&#x27;] &#x3D; this.reportData.cellTypes[i].structure;
+        row[&#x27;CT ID&#x27;] &#x3D; this.reportData.cellTypes[i].link;
+        if (!this.reportData.cellTypes[i].link.includes(&#x27;CL&#x27;)) {
+          row[&#x27;CL with no Link&#x27;] &#x3D; this.reportData.cellTypes[i].structure;
+        }
+      }
+      if (i &lt; this.reportData.biomarkers.length) {
+        row[&#x27;Unique Biomarkers&#x27;] &#x3D; this.reportData.biomarkers[i].structure;
+        row[&#x27;BM ID&#x27;] &#x3D; this.reportData.biomarkers[i].link;
+      }
+      if (i &lt; this.reportData.BWithNoLink.length) {
+        row[&#x27;Biomarkers with no links&#x27;] &#x3D; this.reportData.BWithNoLink[i].structure;
+      }
+      download.push(row);
+    }
+
+    const sheetWS &#x3D; XLSX.utils.json_to_sheet(download);
+    sheetWS[&#x27;!cols&#x27;] &#x3D; [];
+    for (let i &#x3D; 0; i &lt; totalRows; i++) {
+      sheetWS[&#x27;!cols&#x27;].push({ wch: 30 });
+    }
+    const dt &#x3D; moment(new Date()).format(&#x27;YYYY.MM.DD_hh.mm&#x27;);
+    const sn &#x3D; this.currentSheet.display.toLowerCase().replace(&#x27; &#x27;, &#x27;_&#x27;);
+
+    return {
+      sheet: sheetWS,
+      sheetName: this.currentSheet.display,
+      name: &#x60;ASCT+B-Reporter_${sn}_${dt}_Report.xlsx&#x60;,
+    };
+  }
+
+  downloadReport(i &#x3D; -1) {
+    const wb &#x3D; XLSX.utils.book_new();
+    const allReport &#x3D; [];
+
+    /**
+     * When all reports need to be downloaded
+     */
+    if (i &#x3D;&#x3D;&#x3D; -1) {
+      allReport.push(this.downloadData());
+      this.ga.event(GaAction.CLICK, GaCategory.REPORT, &#x27;Download Full Report&#x27;);
+
+      if (this.compareReport) {
+        for (const [sheet, _unused] of this.compareReport.entries()) {
+          allReport.push(this.downloadCompareSheetReport(sheet));
+        }
+      }
+    } else {
+      /**
+       * When a single compare sheet report needs to be downloaded
+       * Not firing a Google Analytics event in this case since the downloadCompareSheetReport() method already does so.
+       */
+      allReport.push(this.downloadCompareSheetReport(i));
+    }
+
+    for (const book of allReport) {
+      XLSX.utils.book_append_sheet(wb, book.sheet, book.sheetName);
+    }
+
+    XLSX.writeFile(wb, allReport[0].name);
+  }
+
+  downloadReportByOrgan() {
+    const sheetName &#x3D; &#x27;countByOrgan&#x27;;
+    const fileName &#x3D; &#x27;countsByOrgans&#x27;;
+    const targetTableElm &#x3D; document.getElementById(&#x27;countsByOrgans&#x27;);
+    const allReport: ReturnType&lt;typeof this.downloadData&gt;[] &#x3D; [];
+
+    const organsList: string[] &#x3D; [];
+
+    const wb &#x3D; XLSX.utils.table_to_book(targetTableElm, {
+      sheet: sheetName,
+    } as XLSX.Table2SheetOpts);
+
+    this.fullDataByOrgan.forEach((data) &#x3D;&gt; {
+      organsList.push(data[0].organName);
+      this.reportService.makeReportData(this.currentSheet, data, this.bmType);
+      allReport.push(this.downloadData());
+    });
+
+    this.reportService.makeReportData(this.currentSheet, this.sheetData, this.bmType);
+
+    let i &#x3D; 0;
+    for (const book of allReport) {
+      XLSX.utils.book_append_sheet(wb, book.sheet, organsList[i]);
+      i +&#x3D; 1;
+    }
+
+    XLSX.writeFile(wb, &#x60;${fileName}.xlsx&#x60;);
+  }
+
+  downloadCompareSheetReport(i: number) {
+    this.clickButton &#x3D; true;
+    const totalRows &#x3D; 6;
+    const sheet &#x3D; this.compareReport[i];
+    const keyMapper &#x3D; {
+      identicalAS: &#x27;Identical Anatomical Structures&#x27;,
+      newAS: &#x27;New Anatomical Structres&#x27;,
+      identicalCT: &#x27;Identical Cell Types&#x27;,
+      newCT: &#x27;New Cell Types&#x27;,
+      identicalB: &#x27;Identical Biomarkers&#x27;,
+      newB: &#x27;New Biomarkers&#x27;,
+    };
+
+    let download: Record&lt;string, string&gt;[] &#x3D; [];
+    const keys &#x3D; Object.keys(this.compareReport[i]);
+
+    for (const key of keys) {
+      if (typeof sheet[key as keyof CompareReport] &#x3D;&#x3D;&#x3D; &#x27;object&#x27; &amp;&amp; key in keyMapper) {
+        for (const [idx, value] of (sheet[key as keyof CompareReport] as string[]).entries()) {
+          const t: Record&lt;string, string&gt; &#x3D; {};
+          t[keyMapper[key as keyof typeof keyMapper]] &#x3D; value;
+
+          if (download[idx]) {
+            download[idx] &#x3D; { ...download[idx], ...t };
+          } else {
+            download.push(t);
+          }
+        }
+      }
+    }
+    download &#x3D; this.getBMCTAS(sheet.identicalBMCTPair as unknown as BmCtPairings[], download);
+    const sheetWS &#x3D; XLSX.utils.json_to_sheet(download, {
+      header: Object.values(keyMapper),
+    });
+
+    sheetWS[&#x27;!cols&#x27;] &#x3D; [];
+    for (let j &#x3D; 0; j &lt; totalRows; j++) {
+      sheetWS[&#x27;!cols&#x27;].push({ wch: 30 });
+    }
+    const dt &#x3D; moment(new Date()).format(&#x27;YYYY.MM.DD_hh.mm&#x27;);
+    const sn &#x3D; sheet.title.toLowerCase().replace(&#x27; &#x27;, &#x27;_&#x27;);
+
+    this.ga.event(GaAction.CLICK, GaCategory.REPORT, &#x27;Compare sheet download&#x27;, sn as never);
+
+    return {
+      sheet: sheetWS,
+      sheetName: sheet.title,
+      name: &#x60;ASCT+B-Reporter_Derived_${sn}_${dt}_Report.xlsx&#x60;,
+    };
+  }
+
+  getBMCTAS(bmCtPairs: BmCtPairings[], download: Record&lt;string, string&gt;[]) {
+    const AS_CT_BM: Set&lt;string&gt; &#x3D; new Set&lt;string&gt;();
+    let index &#x3D; 0;
+    bmCtPairs.forEach((pair) &#x3D;&gt; {
+      const newPair &#x3D; &#x60;${pair.AS_NAME} (${pair.AS_ID}), ${pair.CT_NAME} (${pair.CT_ID}), ${pair.BM_NAME}(${pair.BM_ID})&#x60;;
+      if (!AS_CT_BM.has(newPair)) {
+        AS_CT_BM.add(newPair);
+        const t &#x3D; {
+          &#x27;&#x27;: &#x27;&#x27;,
+          AS: &#x60;${pair.AS_NAME} (${pair.AS_ID})&#x60;,
+          CT: &#x60;${pair.CT_NAME} (${pair.CT_ID})&#x60;,
+          Biomarker: &#x60;${pair.BM_NAME} (${pair.BM_ID})&#x60;,
+        };
+
+        if (download[index]) {
+          download[index] &#x3D; { ...download[index], ...t };
+        } else {
+          download.push(t);
+        }
+        index +&#x3D; 1;
+      }
+    });
+    return download;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;app-sidenav&gt;
+  &lt;div header&gt;
+    &lt;app-sidenav-header
+      [title]&#x3D;&quot;&#x27;Report for &#x27; + currentSheet.display&quot;
+      [download]&#x3D;&quot;true&quot;
+      (downloadFn)&#x3D;&quot;downloadReport()&quot;
+      [tooltipString]&#x3D;&quot;&#x27;Various statistics calculated from the data&#x27;&quot;
+      (closeSideNav)&#x3D;&quot;closeReport.emit()&quot;
+    &gt;
+    &lt;/app-sidenav-header&gt;
+  &lt;/div&gt;
+
+  &lt;div body class&#x3D;&quot;report&quot;&gt;
+    &lt;mat-tab-group mat-stretch-tabs class&#x3D;&quot;tabs px-4 mt-4&quot;&gt;
+      &lt;mat-tab [label]&#x3D;&quot;&#x27;Main Sheet&#x27;&quot;&gt;
+        &lt;div class&#x3D;&quot;content&quot;&gt;
+          &lt;br /&gt;
+          &lt;div class&#x3D;&quot;h5&quot;&gt;Overview&lt;/div&gt;
+          &lt;br /&gt;
+
+          &lt;div class&#x3D;&quot;overview&quot;&gt;
+            &lt;p class&#x3D;&quot;text-muted mb-3&quot;&gt;
+              &lt;small class&#x3D;&quot;fw-bolder&quot;&gt;UNIQUE ENTITIES&lt;/small&gt;
+            &lt;/p&gt;
+            &lt;div class&#x3D;&quot;d-flex justify-content-between align-content-center pr-5 h6&quot;&gt;
+              &lt;span class&#x3D;&quot;fw-normal&quot;&gt;Anatomical structures&lt;/span&gt;
+              &lt;span class&#x3D;&quot;number fw-bolder numerical-padding&quot;&gt;{{ reportData.anatomicalStructures.length }}&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;hr /&gt;
+            &lt;div class&#x3D;&quot;d-flex justify-content-between align-content-center pr-5 h6&quot;&gt;
+              &lt;span class&#x3D;&quot;fw-normal&quot;&gt;Cell types &lt;/span&gt;
+              &lt;span class&#x3D;&quot;number fw-bolder&quot;&gt;{{ reportData.cellTypes.length }}&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;hr /&gt;
+            &lt;div class&#x3D;&quot;d-flex justify-content-between align-content-center pr-5 h6&quot;&gt;
+              &lt;span class&#x3D;&quot;fw-normal&quot;&gt;Biomarkers &lt;/span&gt;
+              &lt;span class&#x3D;&quot;number fw-bolder&quot;&gt;{{ reportData.biomarkers.length }}&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;hr /&gt;
+            &lt;br /&gt;
+
+            &lt;p class&#x3D;&quot;text-muted mb-3&quot;&gt;
+              &lt;small class&#x3D;&quot;fw-bolder&quot;&gt;ENTITY LINKS&lt;/small&gt;
+            &lt;/p&gt;
+            &lt;div class&#x3D;&quot;d-flex justify-content-between align-content-center pr-5 h6&quot;&gt;
+              &lt;span class&#x3D;&quot;fw-normal&quot;
+                &gt;Anatomical Structures &lt;span class&#x3D;&quot;badge bg-danger&quot;&gt;part_of&lt;/span&gt; AS links
+              &lt;/span&gt;
+              &lt;span class&#x3D;&quot;number fw-bolder&quot;&gt;{{ total_AS_AS }}&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;hr /&gt;
+            &lt;div class&#x3D;&quot;d-flex justify-content-between align-content-center pr-5 h6&quot;&gt;
+              &lt;span class&#x3D;&quot;fw-normal&quot;&gt;Cell Types &lt;span class&#x3D;&quot;badge badge-primary&quot;&gt;located_in&lt;/span&gt; AS links &lt;/span&gt;
+              &lt;span class&#x3D;&quot;number fw-bolder&quot;&gt;{{ total_AS_CT }}&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;hr /&gt;
+            &lt;div class&#x3D;&quot;d-flex justify-content-between align-content-center pr-5 h6&quot;&gt;
+              &lt;span class&#x3D;&quot;fw-normal&quot;&gt;Biomarker &lt;span class&#x3D;&quot;badge bg-success&quot;&gt;characterizes&lt;/span&gt; CT links &lt;/span&gt;
+              &lt;span class&#x3D;&quot;number fw-bolder&quot;&gt;{{ total_CT_B }}&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;hr /&gt;
+            &lt;br /&gt;
+
+            &lt;p class&#x3D;&quot;text-muted mb-3&quot;&gt;
+              &lt;small class&#x3D;&quot;fw-bold&quot;&gt;ONTOLOGY LINKS&lt;/small&gt;
+            &lt;/p&gt;
+            &lt;div *ngFor&#x3D;&quot;let report of ontologyLinkGraphData&quot;&gt;
+              &lt;ngx-charts-advanced-pie-chart
+                [customColors]&#x3D;&quot;customColors&quot;
+                [view]&#x3D;&quot;[600, 175]&quot;
+                [results]&#x3D;&quot;report.results&quot;
+                class&#x3D;&quot;w-100&quot;
+                [label]&#x3D;&quot;report.label&quot;
+              &gt;
+              &lt;/ngx-charts-advanced-pie-chart&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;br /&gt;
+
+          &lt;div class&#x3D;&quot;h5 mt-3 mb-3&quot;&gt;Details&lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;details pr-4&quot;&gt;
+            &lt;div *ngIf&#x3D;&quot;countsByOrgan.data.length &gt; 1&quot;&gt;
+              &lt;div class&#x3D;&quot;count-by-organ-title&quot;&gt;
+                &lt;p class&#x3D;&quot;text-muted mb-3&quot;&gt;
+                  &lt;small class&#x3D;&quot;fw-normal&quot;&gt;Counts by Organ&lt;/small&gt;
+                &lt;/p&gt;
+                &lt;div class&#x3D;&quot;display-option&quot; #tooltip&#x3D;&quot;matTooltip&quot; matTooltip&#x3D;&quot;Export as Xlsx&quot;&gt;
+                  &lt;button mat-icon-button (click)&#x3D;&quot;downloadReportByOrgan()&quot; class&#x3D;&quot;mr-2&quot;&gt;
+                    &lt;mat-icon&gt;get_app&lt;/mat-icon&gt;
+                  &lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;table
+                mat-table
+                matSort
+                id&#x3D;&quot;countsByOrgans&quot;
+                [dataSource]&#x3D;&quot;countsByOrgan&quot;
+                class&#x3D;&quot;mat-elevation-z8 count_by_organ_table&quot;
+              &gt;
+                &lt;caption class&#x3D;&quot;sr-only&quot;&gt;
+                  Counts by Organ
+                &lt;/caption&gt;
+                &lt;!-- Organ Name  --&gt;
+                &lt;ng-container matColumnDef&#x3D;&quot;organName&quot;&gt;
+                  &lt;th mat-sort-header mat-header-cell *matHeaderCellDef id&#x3D;&quot;organName&quot;&gt;Organ&lt;/th&gt;
+                  &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+                    {{ element.organName | titlecase }}
+                  &lt;/td&gt;
+                  &lt;td mat-footer-cell *matFooterCellDef&gt;Total Counts&lt;/td&gt;
+                &lt;/ng-container&gt;
+
+                &lt;!-- hraVersion Column --&gt;
+                &lt;ng-container matColumnDef&#x3D;&quot;tableVersion&quot;&gt;
+                  &lt;th mat-header-cell *matHeaderCellDef [hidden]&#x3D;&quot;true&quot; class&#x3D;&quot;center_align&quot; id&#x3D;&quot;tableVersion&quot;&gt;
+                    table_version
+                  &lt;/th&gt;
+                  &lt;td mat-cell [hidden]&#x3D;&quot;true&quot; *matCellDef&#x3D;&quot;let element&quot; class&#x3D;&quot;center_align&quot;&gt;
+                    {{ element.tableVersion ? element.tableVersion : &#x27;unknown&#x27; }}
+                  &lt;/td&gt;
+                  &lt;td mat-footer-cell [hidden]&#x3D;&quot;true&quot; class&#x3D;&quot;center_align&quot; *matFooterCellDef&gt;
+                    {{ &#x27;&#x27; }}
+                  &lt;/td&gt;
+                &lt;/ng-container&gt;
+
+                &lt;!-- ASWithNoCT Column --&gt;
+                &lt;ng-container matColumnDef&#x3D;&quot;ASWithNoCT&quot;&gt;
+                  &lt;th mat-header-cell *matHeaderCellDef [hidden]&#x3D;&quot;true&quot; class&#x3D;&quot;center_align&quot; id&#x3D;&quot;ASWithNoCT&quot;&gt;
+                    ASWithNoCT
+                  &lt;/th&gt;
+                  &lt;td mat-cell [hidden]&#x3D;&quot;true&quot; *matCellDef&#x3D;&quot;let element&quot; class&#x3D;&quot;center_align&quot;&gt;
+                    {{ element.ASWithNoCT ? element.ASWithNoCT : 0 }}
+                  &lt;/td&gt;
+                  &lt;td mat-footer-cell class&#x3D;&quot;center_align&quot; [hidden]&#x3D;&quot;true&quot; *matFooterCellDef&gt;
+                    {{ getTotals(countsByOrgan.data, &#x27;ASWithNoCT&#x27;) }}
+                  &lt;/td&gt;
+                &lt;/ng-container&gt;
+
+                &lt;!-- CTWithNoB Column --&gt;
+                &lt;ng-container matColumnDef&#x3D;&quot;CTWithNoB&quot;&gt;
+                  &lt;th mat-header-cell *matHeaderCellDef [hidden]&#x3D;&quot;true&quot; class&#x3D;&quot;center_align&quot; id&#x3D;&quot;CTWithNoB&quot;&gt;
+                    CTWithNoB
+                  &lt;/th&gt;
+                  &lt;td mat-cell [hidden]&#x3D;&quot;true&quot; *matCellDef&#x3D;&quot;let element&quot; class&#x3D;&quot;center_align&quot;&gt;
+                    {{ element.CTWithNoB ? element.CTWithNoB : 0 }}
+                  &lt;/td&gt;
+                  &lt;td mat-footer-cell class&#x3D;&quot;center_align&quot; [hidden]&#x3D;&quot;true&quot; *matFooterCellDef&gt;
+                    {{ getTotals(countsByOrgan.data, &#x27;CTWithNoB&#x27;) }}
+                  &lt;/td&gt;
+                &lt;/ng-container&gt;
+
+                &lt;!-- ASWithNoLink Column --&gt;
+                &lt;ng-container matColumnDef&#x3D;&quot;ASWithNoLink&quot;&gt;
+                  &lt;th mat-header-cell *matHeaderCellDef [hidden]&#x3D;&quot;true&quot; class&#x3D;&quot;center_align&quot; id&#x3D;&quot;ASWithNoLink&quot;&gt;
+                    ASWithNoLink
+                  &lt;/th&gt;
+                  &lt;td mat-cell [hidden]&#x3D;&quot;true&quot; *matCellDef&#x3D;&quot;let element&quot; class&#x3D;&quot;center_align&quot;&gt;
+                    {{ element.ASWithNoLink ? element.ASWithNoLink : 0 }}
+                  &lt;/td&gt;
+                  &lt;td mat-footer-cell class&#x3D;&quot;center_align&quot; [hidden]&#x3D;&quot;true&quot; *matFooterCellDef&gt;
+                    {{ getTotals(countsByOrgan.data, &#x27;ASWithNoLink&#x27;) }}
+                  &lt;/td&gt;
+                &lt;/ng-container&gt;
+
+                &lt;!-- CTWithNoLink Column --&gt;
+                &lt;ng-container matColumnDef&#x3D;&quot;CTWithNoLink&quot;&gt;
+                  &lt;th mat-header-cell *matHeaderCellDef [hidden]&#x3D;&quot;true&quot; class&#x3D;&quot;center_align&quot; id&#x3D;&quot;CTWithNoLink&quot;&gt;
+                    CTWithNoLink
+                  &lt;/th&gt;
+                  &lt;td mat-cell [hidden]&#x3D;&quot;true&quot; *matCellDef&#x3D;&quot;let element&quot; class&#x3D;&quot;center_align&quot;&gt;
+                    {{ element.CTWithNoLink ? element.CTWithNoLink : 0 }}
+                  &lt;/td&gt;
+                  &lt;td mat-footer-cell class&#x3D;&quot;center_align&quot; [hidden]&#x3D;&quot;true&quot; *matFooterCellDef&gt;
+                    {{ getTotals(countsByOrgan.data, &#x27;CTWithNoLink&#x27;) }}
+                  &lt;/td&gt;
+                &lt;/ng-container&gt;
+
+                &lt;!-- BWithNoLink Column --&gt;
+                &lt;ng-container matColumnDef&#x3D;&quot;BWithNoLink&quot;&gt;
+                  &lt;th mat-header-cell *matHeaderCellDef [hidden]&#x3D;&quot;true&quot; class&#x3D;&quot;center_align&quot; id&#x3D;&quot;BWithNoLink&quot;&gt;
+                    BWithNoLink
+                  &lt;/th&gt;
+                  &lt;td mat-cell [hidden]&#x3D;&quot;true&quot; *matCellDef&#x3D;&quot;let element&quot; class&#x3D;&quot;center_align&quot;&gt;
+                    {{ element.BWithNoLink ? element.BWithNoLink : 0 }}
+                  &lt;/td&gt;
+                  &lt;td mat-footer-cell class&#x3D;&quot;center_align&quot; [hidden]&#x3D;&quot;true&quot; *matFooterCellDef&gt;
+                    {{ getTotals(countsByOrgan.data, &#x27;BWithNoLink&#x27;) }}
+                  &lt;/td&gt;
+                &lt;/ng-container&gt;
+
+                &lt;!-- AS_AS Column --&gt;
+                &lt;ng-container matColumnDef&#x3D;&quot;AS_AS&quot;&gt;
+                  &lt;th mat-header-cell *matHeaderCellDef class&#x3D;&quot;center_align&quot; id&#x3D;&quot;AS_AS&quot;&gt;AS_AS&lt;/th&gt;
+                  &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot; class&#x3D;&quot;center_align&quot;&gt;
+                    {{ element.AS_AS ? element.AS_AS : 0 }}
+                  &lt;/td&gt;
+                  &lt;td mat-footer-cell class&#x3D;&quot;center_align&quot; *matFooterCellDef&gt;
+                    {{ getTotals(countsByOrgan.data, &#x27;AS_AS&#x27;) }}
+                  &lt;/td&gt;
+                &lt;/ng-container&gt;
+
+                &lt;!-- AS_CT Column --&gt;
+                &lt;ng-container matColumnDef&#x3D;&quot;AS_CT&quot;&gt;
+                  &lt;th mat-header-cell *matHeaderCellDef class&#x3D;&quot;center_align&quot; id&#x3D;&quot;AS_CT&quot;&gt;AS_CT&lt;/th&gt;
+                  &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot; class&#x3D;&quot;center_align&quot;&gt;
+                    {{ element.AS_CT ? element.AS_CT : 0 }}
+                  &lt;/td&gt;
+                  &lt;td mat-footer-cell class&#x3D;&quot;center_align&quot; *matFooterCellDef&gt;
+                    {{ getTotals(countsByOrgan.data, &#x27;AS_CT&#x27;) }}
+                  &lt;/td&gt;
+                &lt;/ng-container&gt;
+
+                &lt;!-- CT_BM Column --&gt;
+                &lt;ng-container matColumnDef&#x3D;&quot;CT_BM&quot;&gt;
+                  &lt;th mat-header-cell *matHeaderCellDef class&#x3D;&quot;center_align&quot; id&#x3D;&quot;CT_BM&quot;&gt;CT_BM&lt;/th&gt;
+                  &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot; class&#x3D;&quot;center_align&quot;&gt;
+                    {{ element.CT_BM ? element.CT_BM : 0 }}
+                  &lt;/td&gt;
+                  &lt;td mat-footer-cell class&#x3D;&quot;center_align&quot; *matFooterCellDef&gt;
+                    {{ getTotals(countsByOrgan.data, &#x27;CT_BM&#x27;) }}
+                  &lt;/td&gt;
+                &lt;/ng-container&gt;
+
+                &lt;!-- Anatomical Structures Column --&gt;
+                &lt;ng-container matColumnDef&#x3D;&quot;anatomicalStructures&quot;&gt;
+                  &lt;th mat-header-cell *matHeaderCellDef class&#x3D;&quot;center_align&quot; id&#x3D;&quot;anatomicalStructures&quot;&gt;AS&lt;/th&gt;
+                  &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot; class&#x3D;&quot;center_align&quot;&gt;
+                    {{ element.anatomicalStructures ? element.anatomicalStructures : 0 }}
+                  &lt;/td&gt;
+                  &lt;td mat-footer-cell class&#x3D;&quot;center_align&quot; *matFooterCellDef&gt;
+                    {{ getTotals(countsByOrgan.data, &#x27;anatomicalStructures&#x27;) }}
+                  &lt;/td&gt;
+                &lt;/ng-container&gt;
+
+                &lt;!-- Cell Types Column --&gt;
+                &lt;ng-container matColumnDef&#x3D;&quot;cellTypes&quot;&gt;
+                  &lt;th mat-header-cell *matHeaderCellDef class&#x3D;&quot;center_align&quot; id&#x3D;&quot;cellTypes&quot;&gt;CT&lt;/th&gt;
+                  &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot; class&#x3D;&quot;center_align&quot;&gt;
+                    {{ element.cellTypes ? element.cellTypes : 0 }}
+                  &lt;/td&gt;
+                  &lt;td mat-footer-cell class&#x3D;&quot;center_align&quot; *matFooterCellDef&gt;
+                    {{ getTotals(countsByOrgan.data, &#x27;cellTypes&#x27;) }}
+                  &lt;/td&gt;
+                &lt;/ng-container&gt;
+
+                &lt;!-- Biomarkers Columns --&gt;
+                &lt;ng-container matColumnDef&#x3D;&quot;b_total&quot;&gt;
+                  &lt;th mat-header-cell *matHeaderCellDef class&#x3D;&quot;center_align&quot; id&#x3D;&quot;b_total&quot;&gt;B_Total&lt;/th&gt;
+                  &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot; class&#x3D;&quot;center_align&quot;&gt;
+                    {{ element.biomarkers ? element.biomarkers : 0 }}
+                  &lt;/td&gt;
+                  &lt;td mat-footer-cell class&#x3D;&quot;center_align&quot; *matFooterCellDef&gt;
+                    {{ getTotals(countsByOrgan.data, &#x27;biomarkers&#x27;) }}
+                  &lt;/td&gt;
+                &lt;/ng-container&gt;
+                &lt;ng-container *ngFor&#x3D;&quot;let biomarker of biomarkersSeperateNames&quot; matColumnDef&#x3D;&quot;{{ biomarker.name }}&quot;&gt;
+                  &lt;th mat-header-cell class&#x3D;&quot;center_align&quot; id&#x3D;&quot;{{ biomarker.name }}&quot; *matHeaderCellDef&gt;
+                    {{ biomarker.type }}
+                  &lt;/th&gt;
+                  &lt;td mat-cell class&#x3D;&quot;center_align&quot; *matCellDef&#x3D;&quot;let element&quot;&gt;
+                    {{ element[biomarker.name] ? element[biomarker.name] : 0 }}
+                  &lt;/td&gt;
+                  &lt;td mat-footer-cell class&#x3D;&quot;center_align&quot; *matFooterCellDef&gt;
+                    {{ getTotals(countsByOrgan.data, biomarker.name) }}
+                  &lt;/td&gt;
+                &lt;/ng-container&gt;
+                &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;displayedColumns&quot;&gt;&lt;/tr&gt;
+                &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: displayedColumns&quot;&gt;&lt;/tr&gt;
+                &lt;tr mat-footer-row *matFooterRowDef&#x3D;&quot;displayedColumns&quot;&gt;&lt;/tr&gt;
+              &lt;/table&gt;
+            &lt;/div&gt;
+            &lt;p class&#x3D;&quot;text-muted my-3&quot;&gt;
+              &lt;small class&#x3D;&quot;fw-normal&quot;&gt;Alphabetically sorted listings of all AS, CT, &amp; B&lt;/small&gt;
+            &lt;/p&gt;
+            &lt;mat-expansion-panel [expanded]&#x3D;&quot;false&quot;&gt;
+              &lt;mat-expansion-panel-header&gt;
+                &lt;mat-panel-title&gt;
+                  &lt;div class&#x3D;&quot;h6 m-0&quot;&gt;
+                    Unique Anatomical Structures
+                    &lt;span class&#x3D;&quot;text-muted&quot;&gt;({{ reportData.anatomicalStructures.length }})&lt;/span&gt;
+                  &lt;/div&gt;
+                &lt;/mat-panel-title&gt;
+              &lt;/mat-expansion-panel-header&gt;
+
+              &lt;div class&#x3D;&quot;mt-2&quot;&gt;
+                &lt;div
+                  *ngFor&#x3D;&quot;let a of reportData.anatomicalStructures | orderBy: &#x27;structure&#x27;&quot;
+                  class&#x3D;&quot;py-1 d-flex justify-content-between align-items-center&quot;
+                &gt;
+                  &lt;div class&#x3D;&quot;h6 pr-2&quot;&gt;
+                    &lt;span class&#x3D;&quot;fw-normal&quot;
+                      &gt;{{ a.structure }}
+                      &lt;span class&#x3D;&quot;text-muted&quot;&gt;({{ a.label ? a.label : &#x27;label not found&#x27; }})&lt;/span&gt;&lt;/span
+                    &gt;
+                  &lt;/div&gt;
+
+                  &lt;div&gt;
+                    &lt;span&gt;{{ a.uberon }}&lt;/span&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/mat-expansion-panel&gt;
+            &lt;br /&gt;
+
+            &lt;mat-expansion-panel&gt;
+              &lt;mat-expansion-panel-header&gt;
+                &lt;mat-panel-title&gt;
+                  &lt;div class&#x3D;&quot;h6 m-0&quot;&gt;
+                    Unique Cell Types
+                    &lt;span class&#x3D;&quot;text-muted&quot;&gt;({{ reportData.cellTypes.length }})&lt;/span&gt;
+                  &lt;/div&gt;
+                &lt;/mat-panel-title&gt;
+              &lt;/mat-expansion-panel-header&gt;
+
+              &lt;div class&#x3D;&quot;mt-2&quot;&gt;
+                &lt;div
+                  *ngFor&#x3D;&quot;let a of reportData.cellTypes | orderBy: &#x27;structure&#x27;&quot;
+                  class&#x3D;&quot;py-1 d-flex justify-content-between align-items-center&quot;
+                &gt;
+                  &lt;div class&#x3D;&quot;h6&quot;&gt;
+                    &lt;span class&#x3D;&quot;fw-normal&quot;
+                      &gt;{{ a.structure }}
+                      &lt;span class&#x3D;&quot;text-muted&quot;&gt;({{ a.label ? a.label : &#x27;label not found&#x27; }})&lt;/span&gt;&lt;/span
+                    &gt;
+                  &lt;/div&gt;
+
+                  &lt;div&gt;
+                    &lt;span&gt;{{ a.link }}&lt;/span&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/mat-expansion-panel&gt;
+            &lt;br /&gt;
+
+            &lt;mat-expansion-panel&gt;
+              &lt;mat-expansion-panel-header&gt;
+                &lt;mat-panel-title&gt;
+                  &lt;div class&#x3D;&quot;h6 m-0&quot;&gt;
+                    Unique biomarkers
+                    &lt;span class&#x3D;&quot;text-muted&quot;&gt;({{ reportData.biomarkers.length }})&lt;/span&gt;
+                  &lt;/div&gt;
+                &lt;/mat-panel-title&gt;
+              &lt;/mat-expansion-panel-header&gt;
+
+              &lt;div class&#x3D;&quot;mt-2&quot;&gt;
+                &lt;div
+                  *ngFor&#x3D;&quot;let a of reportData.biomarkers | orderBy: &#x27;structure&#x27;&quot;
+                  class&#x3D;&quot;py-1 d-flex justify-content-between align-items-center&quot;
+                &gt;
+                  &lt;div class&#x3D;&quot;h6&quot;&gt;
+                    &lt;span class&#x3D;&quot;fw-normal&quot;&gt;{{ a.structure }}&lt;/span&gt;
+                  &lt;/div&gt;
+
+                  &lt;div&gt;
+                    &lt;span&gt;{{ a.link }}&lt;/span&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/mat-expansion-panel&gt;
+            &lt;br /&gt;
+
+            &lt;mat-expansion-panel *ngIf&#x3D;&quot;countsByOrgan.data.length &#x3D;&#x3D;&#x3D; 1&quot;&gt;
+              &lt;mat-expansion-panel-header&gt;
+                &lt;mat-panel-title&gt;
+                  &lt;div class&#x3D;&quot;h6 m-0&quot;&gt;Biomarker Counts By Type&lt;/div&gt;
+                &lt;/mat-panel-title&gt;
+              &lt;/mat-expansion-panel-header&gt;
+
+              &lt;div class&#x3D;&quot;mt-2&quot;&gt;
+                &lt;div *ngFor&#x3D;&quot;let a of biomarkersCounts&quot; class&#x3D;&quot;py-1 d-flex justify-content-between align-items-center&quot;&gt;
+                  &lt;div class&#x3D;&quot;h6&quot;&gt;
+                    &lt;span class&#x3D;&quot;fw-normal&quot;&gt;{{ a.name + &#x27; Biomarkers&#x27; | titlecase }}&lt;/span&gt;
+                  &lt;/div&gt;
+
+                  &lt;div&gt;
+                    &lt;span&gt;{{ a.value }}&lt;/span&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/mat-expansion-panel&gt;
+            &lt;br /&gt;
+
+            &lt;p class&#x3D;&quot;text-muted my-3&quot;&gt;
+              &lt;small class&#x3D;&quot;fw-normal&quot;&gt;Missing Ontology Links&lt;/small&gt;
+            &lt;/p&gt;
+
+            &lt;mat-expansion-panel&gt;
+              &lt;mat-expansion-panel-header&gt;
+                &lt;mat-panel-title&gt;
+                  &lt;div class&#x3D;&quot;h6 m-0&quot;&gt;
+                    Anatomical Structures with no Uberon link
+                    &lt;span class&#x3D;&quot;text-muted&quot;&gt;({{ reportData.ASWithNoLink.length }})&lt;/span&gt;
+                  &lt;/div&gt;
+                &lt;/mat-panel-title&gt;
+              &lt;/mat-expansion-panel-header&gt;
+
+              &lt;div class&#x3D;&quot;mt-2&quot;&gt;
+                &lt;div
+                  *ngFor&#x3D;&quot;let a of reportData.ASWithNoLink | orderBy: &#x27;structure&#x27;&quot;
+                  class&#x3D;&quot;py-1 d-flex justify-content-between align-items-center&quot;
+                &gt;
+                  &lt;div class&#x3D;&quot;h6&quot;&gt;
+                    &lt;span class&#x3D;&quot;fw-normal&quot;
+                      &gt;{{ a.structure }}
+                      &lt;span class&#x3D;&quot;text-muted&quot;&gt;({{ a.label ? a.label : &#x27;label not found&#x27; }})&lt;/span&gt;&lt;/span
+                    &gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/mat-expansion-panel&gt;
+            &lt;br /&gt;
+
+            &lt;mat-expansion-panel&gt;
+              &lt;mat-expansion-panel-header&gt;
+                &lt;mat-panel-title&gt;
+                  &lt;div class&#x3D;&quot;h6 m-0&quot;&gt;
+                    Cell Types with no CL link
+                    &lt;span class&#x3D;&quot;text-muted&quot;&gt;({{ reportData.CTWithNoLink.length }})&lt;/span&gt;
+                  &lt;/div&gt;
+                &lt;/mat-panel-title&gt;
+              &lt;/mat-expansion-panel-header&gt;
+
+              &lt;div class&#x3D;&quot;mt-2&quot;&gt;
+                &lt;div
+                  *ngFor&#x3D;&quot;let a of reportData.CTWithNoLink | orderBy: &#x27;structure&#x27;&quot;
+                  class&#x3D;&quot;py-1 d-flex justify-content-between align-items-center&quot;
+                &gt;
+                  &lt;div class&#x3D;&quot;h6&quot;&gt;
+                    &lt;span class&#x3D;&quot;fw-normal&quot;
+                      &gt;{{ a.structure }}
+                      &lt;span class&#x3D;&quot;text-muted&quot;&gt;({{ a.label ? a.label : &#x27;label not found&#x27; }})&lt;/span&gt;&lt;/span
+                    &gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/mat-expansion-panel&gt;
+            &lt;br /&gt;
+
+            &lt;mat-expansion-panel&gt;
+              &lt;mat-expansion-panel-header&gt;
+                &lt;mat-panel-title&gt;
+                  &lt;div class&#x3D;&quot;h6 m-0&quot;&gt;
+                    Biomarkers with no HGNC links
+                    &lt;span class&#x3D;&quot;text-muted&quot;&gt;({{ reportData.BWithNoLink.length }})&lt;/span&gt;
+                  &lt;/div&gt;
+                &lt;/mat-panel-title&gt;
+              &lt;/mat-expansion-panel-header&gt;
+
+              &lt;div class&#x3D;&quot;mt-2&quot;&gt;
+                &lt;div
+                  *ngFor&#x3D;&quot;let a of reportData.BWithNoLink | orderBy: &#x27;structure&#x27;&quot;
+                  class&#x3D;&quot;py-1 d-flex justify-content-between align-items-center&quot;
+                &gt;
+                  &lt;div class&#x3D;&quot;h6&quot;&gt;
+                    &lt;span class&#x3D;&quot;fw-normal&quot;&gt;{{ a.structure }}&lt;/span&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/mat-expansion-panel&gt;
+
+            &lt;br /&gt;
+          &lt;/div&gt;
+          &lt;br /&gt;
+        &lt;/div&gt;
+      &lt;/mat-tab&gt;
+      &lt;mat-tab *ngIf&#x3D;&quot;!hideReportCompareTab&quot; label&#x3D;&quot;Compare Sheets&quot;&gt;
+        &lt;div *ngIf&#x3D;&quot;(compareData | async)?.data?.length &#x3D;&#x3D;&#x3D; 0&quot;&gt;
+          &lt;p class&#x3D;&quot;i2&quot;&gt;You have not linked any sheets to compare yet.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div *ngIf&#x3D;&quot;((compareData | async)?.data?.length ?? 0) &gt; 0&quot;&gt;
+          &lt;br /&gt;
+          &lt;div *ngFor&#x3D;&quot;let sheet of compareReport; let i &#x3D; index&quot;&gt;
+            &lt;mat-expansion-panel hideToggle&#x3D;&quot;true&quot; [disabled]&#x3D;&quot;clickButton&quot; (click)&#x3D;&quot;clickButton &#x3D; false&quot;&gt;
+              &lt;mat-expansion-panel-header [style.backgroundColor]&#x3D;&quot;sheet.color&quot; class&#x3D;&quot;compare&quot;&gt;
+                &lt;mat-panel-title&gt;
+                  &lt;div class&#x3D;&quot;text-white h6 m-0&quot;&gt;
+                    {{ sheet.title }}
+                  &lt;/div&gt;
+                &lt;/mat-panel-title&gt;
+                &lt;mat-panel-description&gt;
+                  &lt;button mat-icon-button (click)&#x3D;&quot;downloadReport(i)&quot; class&#x3D;&quot;download-report&quot;&gt;
+                    &lt;mat-icon&gt;get_app&lt;/mat-icon&gt;
+                  &lt;/button&gt;
+                  &lt;button mat-icon-button (click)&#x3D;&quot;deleteCompareSheetReport(i)&quot; class&#x3D;&quot;delete-report&quot;&gt;
+                    &lt;mat-icon&gt;delete&lt;/mat-icon&gt;
+                  &lt;/button&gt;
+                &lt;/mat-panel-description&gt;
+              &lt;/mat-expansion-panel-header&gt;
+
+              &lt;div class&#x3D;&quot;pt-2&quot;&gt;
+                &lt;p class&#x3D;&quot;sheet-description pt-2&quot;&gt;
+                  {{ sheet.description }}
+                &lt;/p&gt;
+                &lt;div class&#x3D;&quot;title2&quot;&gt;Overview&lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;overview&quot;&gt;
+                  &lt;div class&#x3D;&quot;i1&quot;&gt;
+                    &lt;span&gt;Identical anatomical structures: &lt;/span&gt;
+                    &lt;span class&#x3D;&quot;number&quot;&gt;{{ sheet.identicalAS.length }}&lt;/span&gt;
+                  &lt;/div&gt;
+                  &lt;div class&#x3D;&quot;i1&quot;&gt;
+                    &lt;span&gt;Identical cell types: &lt;/span&gt;
+                    &lt;span class&#x3D;&quot;number&quot;&gt;{{ sheet.identicalCT.length }}&lt;/span&gt;
+                  &lt;/div&gt;
+                  &lt;div class&#x3D;&quot;i1&quot;&gt;
+                    &lt;span&gt;Identical biomarkers: &lt;/span&gt;
+                    &lt;span class&#x3D;&quot;number&quot;&gt;{{ sheet.identicalB.length }}&lt;/span&gt;
+                  &lt;/div&gt;
+                  &lt;br /&gt;
+
+                  &lt;div class&#x3D;&quot;i1&quot;&gt;
+                    &lt;span&gt;New anatomical structures: &lt;/span&gt;
+                    &lt;span class&#x3D;&quot;number&quot;&gt;{{ sheet.newAS.length }}&lt;/span&gt;
+                  &lt;/div&gt;
+                  &lt;div class&#x3D;&quot;i1&quot;&gt;
+                    &lt;span&gt;New cell types: &lt;/span&gt;
+                    &lt;span class&#x3D;&quot;number&quot;&gt;{{ sheet.newCT.length }}&lt;/span&gt;
+                  &lt;/div&gt;
+                  &lt;div class&#x3D;&quot;i1&quot;&gt;
+                    &lt;span&gt;New biomarkers: &lt;/span&gt;
+                    &lt;span class&#x3D;&quot;number&quot;&gt;{{ sheet.newB.length }}&lt;/span&gt;
+                  &lt;/div&gt;
+                  &lt;br /&gt;
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;title2&quot;&gt;Details&lt;/div&gt;
+
+                &lt;mat-expansion-panel&gt;
+                  &lt;mat-expansion-panel-header class&#x3D;&quot;mb-2&quot;&gt;
+                    &lt;div class&#x3D;&quot;report-expansion-header&quot;&gt;Identical Anatomical Structures&lt;/div&gt;
+                  &lt;/mat-expansion-panel-header&gt;
+                  &lt;div class&#x3D;&quot;i2&quot; *ngFor&#x3D;&quot;let ia of sheet.identicalAS&quot;&gt;
+                    {{ ia }}
+                  &lt;/div&gt;
+                &lt;/mat-expansion-panel&gt;
+
+                &lt;mat-expansion-panel class&#x3D;&quot;mt-2&quot;&gt;
+                  &lt;mat-expansion-panel-header class&#x3D;&quot;mb-2&quot;&gt;
+                    &lt;div class&#x3D;&quot;report-expansion-header&quot;&gt;Identical Cell Types&lt;/div&gt;
+                  &lt;/mat-expansion-panel-header&gt;
+                  &lt;div class&#x3D;&quot;i2&quot; *ngFor&#x3D;&quot;let ia of sheet.identicalCT&quot;&gt;
+                    {{ ia }}
+                  &lt;/div&gt;
+                &lt;/mat-expansion-panel&gt;
+
+                &lt;mat-expansion-panel class&#x3D;&quot;mt-2&quot;&gt;
+                  &lt;mat-expansion-panel-header class&#x3D;&quot;mb-2&quot;&gt;
+                    &lt;div class&#x3D;&quot;report-expansion-header&quot;&gt;Identical Biomarkers&lt;/div&gt;
+                  &lt;/mat-expansion-panel-header&gt;
+                  &lt;div class&#x3D;&quot;i2&quot; *ngFor&#x3D;&quot;let ia of sheet.identicalB&quot;&gt;
+                    {{ ia }}
+                  &lt;/div&gt;
+                &lt;/mat-expansion-panel&gt;
+
+                &lt;mat-expansion-panel class&#x3D;&quot;mt-2&quot;&gt;
+                  &lt;mat-expansion-panel-header class&#x3D;&quot;mb-2&quot;&gt;
+                    &lt;div class&#x3D;&quot;report-expansion-header&quot;&gt;New Anatomical Structures&lt;/div&gt;
+                  &lt;/mat-expansion-panel-header&gt;
+                  &lt;div class&#x3D;&quot;i2&quot; *ngFor&#x3D;&quot;let ia of sheet.newAS&quot;&gt;
+                    {{ ia }}
+                  &lt;/div&gt;
+                &lt;/mat-expansion-panel&gt;
+
+                &lt;mat-expansion-panel class&#x3D;&quot;mt-2&quot;&gt;
+                  &lt;mat-expansion-panel-header class&#x3D;&quot;mb-2&quot;&gt;
+                    &lt;div class&#x3D;&quot;report-expansion-header&quot;&gt;New Cell Types&lt;/div&gt;
+                  &lt;/mat-expansion-panel-header&gt;
+                  &lt;div class&#x3D;&quot;i2&quot; *ngFor&#x3D;&quot;let ia of sheet.newCT&quot;&gt;
+                    {{ ia }}
+                  &lt;/div&gt;
+                &lt;/mat-expansion-panel&gt;
+
+                &lt;mat-expansion-panel class&#x3D;&quot;mt-2&quot;&gt;
+                  &lt;mat-expansion-panel-header class&#x3D;&quot;mb-2&quot;&gt;
+                    &lt;div class&#x3D;&quot;report-expansion-header&quot;&gt;New Biomarkers&lt;/div&gt;
+                  &lt;/mat-expansion-panel-header&gt;
+                  &lt;div class&#x3D;&quot;i2&quot; *ngFor&#x3D;&quot;let ia of sheet.newB&quot;&gt;
+                    {{ ia }}
+                  &lt;/div&gt;
+                &lt;/mat-expansion-panel&gt;
+              &lt;/div&gt;
+            &lt;/mat-expansion-panel&gt;
+
+            &lt;br /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/mat-tab&gt;
+    &lt;/mat-tab-group&gt;
+  &lt;/div&gt;
+&lt;/app-sidenav&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./report.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.report {
+  width: 43.75rem;
+}
+.download-report {
+  color: white;
+}
+.count_by_organ_table {
+  width: 100%;
+  box-shadow: none;
+  border: solid 1px #f5f5f5;
+  border-collapse: collapse;
+}
+tr.mat-footer-row {
+  font-weight: bold;
+}
+.count-by-organ-title {
+  display: flex;
+  justify-content: space-between;
+}
+th.mat-header-cell:last-of-type,
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type {
+  padding-right: unset !important;
+}
+.center_align {
+  text-align: center;
+}
+.delete-report {
+  margin-left: 0.25rem;
+  margin-top: -0.1875rem;
+  color: white;
+}
+.sheet-description {
+  color: grey;
+  font-style: italic;
+}
+.report-expansion-header {
+  font-weight: 400;
+  font-size: 12pt;
+}
+.date {
+  color: grey;
+  font-size: 9pt;
+}
+hr {
+  margin-top: 0.625rem;
+  margin-bottom: 0.625rem;
+}
+
+::ng-deep .mat-list-item-content {
+  padding: 0 !important;
+  margin-top: -0.625rem;
+}
+
+::ng-deep .mat-subheader {
+  padding: 0 !important;
+}
+
+::ng-deep .mat-tab-body {
+  text-align: left;
+}
+
+.content {
+  margin-top: 0.9375rem;
+  z-index: 1;
+}
+
+.title {
+  font-size: 20pt;
+  line-height: 1.6;
+}
+
+.title1 {
+  font-size: 18pt;
+  font-weight: 400;
+  margin-bottom: 1.25rem;
+}
+
+.title2 {
+  font-size: 14pt;
+  font-weight: 400;
+  margin-bottom: 0.9375rem;
+}
+
+.i1 {
+  font-size: 14pt;
+  margin-top: 0.625rem;
+  margin-bottom: 0.625rem;
+  font-weight: 300;
+}
+
+.i1:hover {
+  color: #1976d2;
+}
+
+.i2 {
+  font-size: 12pt;
+  margin-top: 0.625rem;
+  margin-bottom: 0.625rem;
+  font-weight: 300;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0rem;
+  height: 3.75rem;
+  left: 0rem;
+  right: 0rem;
+  padding-left: 0.3125rem;
+  padding-right: 0.3125rem;
+  padding-top: 0.9375rem;
+  display: flex;
+  z-index: 2;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 0.0625rem solid rgb(203, 203, 203);
+}
+
+// .overview {
+//   font-size: 14pt;
+// }
+
+.number {
+  font-weight: 400;
+  padding-right: 3.1rem;
+}
+
+.details {
+  font-size: 14pt;
+}
+
+.mat-expansion-panel:not([class*&#x3D;&#x27;mat-elevation-z&#x27;]) {
+  box-shadow: none;
+}
+
+.mat-expansion-panel-header:not(.compare) {
+  background: #f5f5f5 !important;
+}
+
+.mat-expansion-panel-header:hover {
+  opacity: 0.85 !important;
+}
+
+.compare .mat-expansion-panel-header-description {
+  justify-content: flex-end !important;
+  align-items: center;
+  margin-right: 0 !important;
+}
+
+.compare .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.compare .mat-expansion-panel-header-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+::ng-deep.mat-expansion-indicator {
+  margin-top: -0.3125rem !important;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.tabs {
+  position: absolute;
+  top: 4.0625rem;
+  bottom: 3.125rem;
+  overflow: auto;
+  right: 0rem;
+  left: 0rem;
+  padding-left: 0.3125rem;
+  padding-right: 0.3125rem;
+  /* height: 100%; */
+  /* flex: 1 1 auto; */
+}
+.loader {
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.loader &gt; embed {
+  display: block;
+  width: 9.375rem;
+  height: 4.6875rem;
+  text-align: center;
+}
+
+.dbtn {
+  border: 0.0625rem solid #444a65;
+  border-radius: 0.5rem;
+  width: 100%;
+  transition: all 0.3s;
+}
+
+.dbtn:hover {
+  background-color: #444a65;
+  color: white;
+}
+
+// CHART
+
+::ng-deep .advanced-pie-legend .total-value {
+  font-size: 1.25rem !important;
+  font-weight: 600;
+  margin-bottom: 0.3125rem !important;
+}
+
+::ng-deep .advanced-pie-legend .total-label {
+  font-size: 1rem !important;
+  margin-bottom: 0.625rem !important;
+}
+
+::ng-deep .advanced-pie-legend .legend-items-container .legend-items .legend-item .item-value {
+  font-size: 1rem !important;
+  font-weight: 600;
+}
+
+::ng-deep .advanced-pie-legend .legend-items-container .legend-items .legend-item .item-percent {
+  display: none;
+}
+
+// ::ng-deep .advanced-pie-legend .legend-items-container .legend-items .legend-item .item-label {
+// }
+
+::ng-deep .advanced-pie-legend .legend-items-container .legend-items .legend-item .item-value {
+  padding-bottom: 0.3125rem;
+  padding-top: 0.3125rem;
+}
+
+.badge-primary {
+  background-color: #377eb8 !important;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><app-sidenav>  <div header>    <app-sidenav-header      [title]="\'Report for \' + currentSheet.display"      [download]="true"      (downloadFn)="downloadReport()"      [tooltipString]="\'Various statistics calculated from the data\'"      (closeSideNav)="closeReport.emit()"    >    </app-sidenav-header>  </div>  <div body class="report">    <mat-tab-group mat-stretch-tabs class="tabs px-4 mt-4">      <mat-tab [label]="\'Main Sheet\'">        <div class="content">          <br />          <div class="h5">Overview</div>          <br />          <div class="overview">            <p class="text-muted mb-3">              <small class="fw-bolder">UNIQUE ENTITIES</small>            </p>            <div class="d-flex justify-content-between align-content-center pr-5 h6">              <span class="fw-normal">Anatomical structures</span>              <span class="number fw-bolder numerical-padding">{{ reportData.anatomicalStructures.length }}</span>            </div>            <hr />            <div class="d-flex justify-content-between align-content-center pr-5 h6">              <span class="fw-normal">Cell types </span>              <span class="number fw-bolder">{{ reportData.cellTypes.length }}</span>            </div>            <hr />            <div class="d-flex justify-content-between align-content-center pr-5 h6">              <span class="fw-normal">Biomarkers </span>              <span class="number fw-bolder">{{ reportData.biomarkers.length }}</span>            </div>            <hr />            <br />            <p class="text-muted mb-3">              <small class="fw-bolder">ENTITY LINKS</small>            </p>            <div class="d-flex justify-content-between align-content-center pr-5 h6">              <span class="fw-normal"                >Anatomical Structures <span class="badge bg-danger">part_of</span> AS links              </span>              <span class="number fw-bolder">{{ total_AS_AS }}</span>            </div>            <hr />            <div class="d-flex justify-content-between align-content-center pr-5 h6">              <span class="fw-normal">Cell Types <span class="badge badge-primary">located_in</span> AS links </span>              <span class="number fw-bolder">{{ total_AS_CT }}</span>            </div>            <hr />            <div class="d-flex justify-content-between align-content-center pr-5 h6">              <span class="fw-normal">Biomarker <span class="badge bg-success">characterizes</span> CT links </span>              <span class="number fw-bolder">{{ total_CT_B }}</span>            </div>            <hr />            <br />            <p class="text-muted mb-3">              <small class="fw-bold">ONTOLOGY LINKS</small>            </p>            <div *ngFor="let report of ontologyLinkGraphData">              <ngx-charts-advanced-pie-chart                [customColors]="customColors"                [view]="[600, 175]"                [results]="report.results"                class="w-100"                [label]="report.label"              >              </ngx-charts-advanced-pie-chart>            </div>          </div>          <br />          <div class="h5 mt-3 mb-3">Details</div>          <div class="details pr-4">            <div *ngIf="countsByOrgan.data.length > 1">              <div class="count-by-organ-title">                <p class="text-muted mb-3">                  <small class="fw-normal">Counts by Organ</small>                </p>                <div class="display-option" #tooltip="matTooltip" matTooltip="Export as Xlsx">                  <button mat-icon-button (click)="downloadReportByOrgan()" class="mr-2">                    <mat-icon>get_app</mat-icon>                  </button>                </div>              </div>              <table                mat-table                matSort                id="countsByOrgans"                [dataSource]="countsByOrgan"                class="mat-elevation-z8 count_by_organ_table"              >                <caption class="sr-only">                  Counts by Organ                </caption>                <!-- Organ Name  -->                <ng-container matColumnDef="organName">                  <th mat-sort-header mat-header-cell *matHeaderCellDef id="organName">Organ</th>                  <td mat-cell *matCellDef="let element">                    {{ element.organName | titlecase }}                  </td>                  <td mat-footer-cell *matFooterCellDef>Total Counts</td>                </ng-container>                <!-- hraVersion Column -->                <ng-container matColumnDef="tableVersion">                  <th mat-header-cell *matHeaderCellDef [hidden]="true" class="center_align" id="tableVersion">                    table_version                  </th>                  <td mat-cell [hidden]="true" *matCellDef="let element" class="center_align">                    {{ element.tableVersion ? element.tableVersion : \'unknown\' }}                  </td>                  <td mat-footer-cell [hidden]="true" class="center_align" *matFooterCellDef>                    {{ \'\' }}                  </td>                </ng-container>                <!-- ASWithNoCT Column -->                <ng-container matColumnDef="ASWithNoCT">                  <th mat-header-cell *matHeaderCellDef [hidden]="true" class="center_align" id="ASWithNoCT">                    ASWithNoCT                  </th>                  <td mat-cell [hidden]="true" *matCellDef="let element" class="center_align">                    {{ element.ASWithNoCT ? element.ASWithNoCT : 0 }}                  </td>                  <td mat-footer-cell class="center_align" [hidden]="true" *matFooterCellDef>                    {{ getTotals(countsByOrgan.data, \'ASWithNoCT\') }}                  </td>                </ng-container>                <!-- CTWithNoB Column -->                <ng-container matColumnDef="CTWithNoB">                  <th mat-header-cell *matHeaderCellDef [hidden]="true" class="center_align" id="CTWithNoB">                    CTWithNoB                  </th>                  <td mat-cell [hidden]="true" *matCellDef="let element" class="center_align">                    {{ element.CTWithNoB ? element.CTWithNoB : 0 }}                  </td>                  <td mat-footer-cell class="center_align" [hidden]="true" *matFooterCellDef>                    {{ getTotals(countsByOrgan.data, \'CTWithNoB\') }}                  </td>                </ng-container>                <!-- ASWithNoLink Column -->                <ng-container matColumnDef="ASWithNoLink">                  <th mat-header-cell *matHeaderCellDef [hidden]="true" class="center_align" id="ASWithNoLink">                    ASWithNoLink                  </th>                  <td mat-cell [hidden]="true" *matCellDef="let element" class="center_align">                    {{ element.ASWithNoLink ? element.ASWithNoLink : 0 }}                  </td>                  <td mat-footer-cell class="center_align" [hidden]="true" *matFooterCellDef>                    {{ getTotals(countsByOrgan.data, \'ASWithNoLink\') }}                  </td>                </ng-container>                <!-- CTWithNoLink Column -->                <ng-container matColumnDef="CTWithNoLink">                  <th mat-header-cell *matHeaderCellDef [hidden]="true" class="center_align" id="CTWithNoLink">                    CTWithNoLink                  </th>                  <td mat-cell [hidden]="true" *matCellDef="let element" class="center_align">                    {{ element.CTWithNoLink ? element.CTWithNoLink : 0 }}                  </td>                  <td mat-footer-cell class="center_align" [hidden]="true" *matFooterCellDef>                    {{ getTotals(countsByOrgan.data, \'CTWithNoLink\') }}                  </td>                </ng-container>                <!-- BWithNoLink Column -->                <ng-container matColumnDef="BWithNoLink">                  <th mat-header-cell *matHeaderCellDef [hidden]="true" class="center_align" id="BWithNoLink">                    BWithNoLink                  </th>                  <td mat-cell [hidden]="true" *matCellDef="let element" class="center_align">                    {{ element.BWithNoLink ? element.BWithNoLink : 0 }}                  </td>                  <td mat-footer-cell class="center_align" [hidden]="true" *matFooterCellDef>                    {{ getTotals(countsByOrgan.data, \'BWithNoLink\') }}                  </td>                </ng-container>                <!-- AS_AS Column -->                <ng-container matColumnDef="AS_AS">                  <th mat-header-cell *matHeaderCellDef class="center_align" id="AS_AS">AS_AS</th>                  <td mat-cell *matCellDef="let element" class="center_align">                    {{ element.AS_AS ? element.AS_AS : 0 }}                  </td>                  <td mat-footer-cell class="center_align" *matFooterCellDef>                    {{ getTotals(countsByOrgan.data, \'AS_AS\') }}                  </td>                </ng-container>                <!-- AS_CT Column -->                <ng-container matColumnDef="AS_CT">                  <th mat-header-cell *matHeaderCellDef class="center_align" id="AS_CT">AS_CT</th>                  <td mat-cell *matCellDef="let element" class="center_align">                    {{ element.AS_CT ? element.AS_CT : 0 }}                  </td>                  <td mat-footer-cell class="center_align" *matFooterCellDef>                    {{ getTotals(countsByOrgan.data, \'AS_CT\') }}                  </td>                </ng-container>                <!-- CT_BM Column -->                <ng-container matColumnDef="CT_BM">                  <th mat-header-cell *matHeaderCellDef class="center_align" id="CT_BM">CT_BM</th>                  <td mat-cell *matCellDef="let element" class="center_align">                    {{ element.CT_BM ? element.CT_BM : 0 }}                  </td>                  <td mat-footer-cell class="center_align" *matFooterCellDef>                    {{ getTotals(countsByOrgan.data, \'CT_BM\') }}                  </td>                </ng-container>                <!-- Anatomical Structures Column -->                <ng-container matColumnDef="anatomicalStructures">                  <th mat-header-cell *matHeaderCellDef class="center_align" id="anatomicalStructures">AS</th>                  <td mat-cell *matCellDef="let element" class="center_align">                    {{ element.anatomicalStructures ? element.anatomicalStructures : 0 }}                  </td>                  <td mat-footer-cell class="center_align" *matFooterCellDef>                    {{ getTotals(countsByOrgan.data, \'anatomicalStructures\') }}                  </td>                </ng-container>                <!-- Cell Types Column -->                <ng-container matColumnDef="cellTypes">                  <th mat-header-cell *matHeaderCellDef class="center_align" id="cellTypes">CT</th>                  <td mat-cell *matCellDef="let element" class="center_align">                    {{ element.cellTypes ? element.cellTypes : 0 }}                  </td>                  <td mat-footer-cell class="center_align" *matFooterCellDef>                    {{ getTotals(countsByOrgan.data, \'cellTypes\') }}                  </td>                </ng-container>                <!-- Biomarkers Columns -->                <ng-container matColumnDef="b_total">                  <th mat-header-cell *matHeaderCellDef class="center_align" id="b_total">B_Total</th>                  <td mat-cell *matCellDef="let element" class="center_align">                    {{ element.biomarkers ? element.biomarkers : 0 }}                  </td>                  <td mat-footer-cell class="center_align" *matFooterCellDef>                    {{ getTotals(countsByOrgan.data, \'biomarkers\') }}                  </td>                </ng-container>                <ng-container *ngFor="let biomarker of biomarkersSeperateNames" matColumnDef="{{ biomarker.name }}">                  <th mat-header-cell class="center_align" id="{{ biomarker.name }}" *matHeaderCellDef>                    {{ biomarker.type }}                  </th>                  <td mat-cell class="center_align" *matCellDef="let element">                    {{ element[biomarker.name] ? element[biomarker.name] : 0 }}                  </td>                  <td mat-footer-cell class="center_align" *matFooterCellDef>                    {{ getTotals(countsByOrgan.data, biomarker.name) }}                  </td>                </ng-container>                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>                <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>              </table>            </div>            <p class="text-muted my-3">              <small class="fw-normal">Alphabetically sorted listings of all AS, CT, & B</small>            </p>            <mat-expansion-panel [expanded]="false">              <mat-expansion-panel-header>                <mat-panel-title>                  <div class="h6 m-0">                    Unique Anatomical Structures                    <span class="text-muted">({{ reportData.anatomicalStructures.length }})</span>                  </div>                </mat-panel-title>              </mat-expansion-panel-header>              <div class="mt-2">                <div                  *ngFor="let a of reportData.anatomicalStructures | orderBy: \'structure\'"                  class="py-1 d-flex justify-content-between align-items-center"                >                  <div class="h6 pr-2">                    <span class="fw-normal"                      >{{ a.structure }}                      <span class="text-muted">({{ a.label ? a.label : \'label not found\' }})</span></span                    >                  </div>                  <div>                    <span>{{ a.uberon }}</span>                  </div>                </div>              </div>            </mat-expansion-panel>            <br />            <mat-expansion-panel>              <mat-expansion-panel-header>                <mat-panel-title>                  <div class="h6 m-0">                    Unique Cell Types                    <span class="text-muted">({{ reportData.cellTypes.length }})</span>                  </div>                </mat-panel-title>              </mat-expansion-panel-header>              <div class="mt-2">                <div                  *ngFor="let a of reportData.cellTypes | orderBy: \'structure\'"                  class="py-1 d-flex justify-content-between align-items-center"                >                  <div class="h6">                    <span class="fw-normal"                      >{{ a.structure }}                      <span class="text-muted">({{ a.label ? a.label : \'label not found\' }})</span></span                    >                  </div>                  <div>                    <span>{{ a.link }}</span>                  </div>                </div>              </div>            </mat-expansion-panel>            <br />            <mat-expansion-panel>              <mat-expansion-panel-header>                <mat-panel-title>                  <div class="h6 m-0">                    Unique biomarkers                    <span class="text-muted">({{ reportData.biomarkers.length }})</span>                  </div>                </mat-panel-title>              </mat-expansion-panel-header>              <div class="mt-2">                <div                  *ngFor="let a of reportData.biomarkers | orderBy: \'structure\'"                  class="py-1 d-flex justify-content-between align-items-center"                >                  <div class="h6">                    <span class="fw-normal">{{ a.structure }}</span>                  </div>                  <div>                    <span>{{ a.link }}</span>                  </div>                </div>              </div>            </mat-expansion-panel>            <br />            <mat-expansion-panel *ngIf="countsByOrgan.data.length === 1">              <mat-expansion-panel-header>                <mat-panel-title>                  <div class="h6 m-0">Biomarker Counts By Type</div>                </mat-panel-title>              </mat-expansion-panel-header>              <div class="mt-2">                <div *ngFor="let a of biomarkersCounts" class="py-1 d-flex justify-content-between align-items-center">                  <div class="h6">                    <span class="fw-normal">{{ a.name + \' Biomarkers\' | titlecase }}</span>                  </div>                  <div>                    <span>{{ a.value }}</span>                  </div>                </div>              </div>            </mat-expansion-panel>            <br />            <p class="text-muted my-3">              <small class="fw-normal">Missing Ontology Links</small>            </p>            <mat-expansion-panel>              <mat-expansion-panel-header>                <mat-panel-title>                  <div class="h6 m-0">                    Anatomical Structures with no Uberon link                    <span class="text-muted">({{ reportData.ASWithNoLink.length }})</span>                  </div>                </mat-panel-title>              </mat-expansion-panel-header>              <div class="mt-2">                <div                  *ngFor="let a of reportData.ASWithNoLink | orderBy: \'structure\'"                  class="py-1 d-flex justify-content-between align-items-center"                >                  <div class="h6">                    <span class="fw-normal"                      >{{ a.structure }}                      <span class="text-muted">({{ a.label ? a.label : \'label not found\' }})</span></span                    >                  </div>                </div>              </div>            </mat-expansion-panel>            <br />            <mat-expansion-panel>              <mat-expansion-panel-header>                <mat-panel-title>                  <div class="h6 m-0">                    Cell Types with no CL link                    <span class="text-muted">({{ reportData.CTWithNoLink.length }})</span>                  </div>                </mat-panel-title>              </mat-expansion-panel-header>              <div class="mt-2">                <div                  *ngFor="let a of reportData.CTWithNoLink | orderBy: \'structure\'"                  class="py-1 d-flex justify-content-between align-items-center"                >                  <div class="h6">                    <span class="fw-normal"                      >{{ a.structure }}                      <span class="text-muted">({{ a.label ? a.label : \'label not found\' }})</span></span                    >                  </div>                </div>              </div>            </mat-expansion-panel>            <br />            <mat-expansion-panel>              <mat-expansion-panel-header>                <mat-panel-title>                  <div class="h6 m-0">                    Biomarkers with no HGNC links                    <span class="text-muted">({{ reportData.BWithNoLink.length }})</span>                  </div>                </mat-panel-title>              </mat-expansion-panel-header>              <div class="mt-2">                <div                  *ngFor="let a of reportData.BWithNoLink | orderBy: \'structure\'"                  class="py-1 d-flex justify-content-between align-items-center"                >                  <div class="h6">                    <span class="fw-normal">{{ a.structure }}</span>                  </div>                </div>              </div>            </mat-expansion-panel>            <br />          </div>          <br />        </div>      </mat-tab>      <mat-tab *ngIf="!hideReportCompareTab" label="Compare Sheets">        <div *ngIf="(compareData | async)?.data?.length === 0">          <p class="i2">You have not linked any sheets to compare yet.</p>        </div>        <div *ngIf="((compareData | async)?.data?.length ?? 0) > 0">          <br />          <div *ngFor="let sheet of compareReport; let i = index">            <mat-expansion-panel hideToggle="true" [disabled]="clickButton" (click)="clickButton = false">              <mat-expansion-panel-header [style.backgroundColor]="sheet.color" class="compare">                <mat-panel-title>                  <div class="text-white h6 m-0">                    {{ sheet.title }}                  </div>                </mat-panel-title>                <mat-panel-description>                  <button mat-icon-button (click)="downloadReport(i)" class="download-report">                    <mat-icon>get_app</mat-icon>                  </button>                  <button mat-icon-button (click)="deleteCompareSheetReport(i)" class="delete-report">                    <mat-icon>delete</mat-icon>                  </button>                </mat-panel-description>              </mat-expansion-panel-header>              <div class="pt-2">                <p class="sheet-description pt-2">                  {{ sheet.description }}                </p>                <div class="title2">Overview</div>                <div class="overview">                  <div class="i1">                    <span>Identical anatomical structures: </span>                    <span class="number">{{ sheet.identicalAS.length }}</span>                  </div>                  <div class="i1">                    <span>Identical cell types: </span>                    <span class="number">{{ sheet.identicalCT.length }}</span>                  </div>                  <div class="i1">                    <span>Identical biomarkers: </span>                    <span class="number">{{ sheet.identicalB.length }}</span>                  </div>                  <br />                  <div class="i1">                    <span>New anatomical structures: </span>                    <span class="number">{{ sheet.newAS.length }}</span>                  </div>                  <div class="i1">                    <span>New cell types: </span>                    <span class="number">{{ sheet.newCT.length }}</span>                  </div>                  <div class="i1">                    <span>New biomarkers: </span>                    <span class="number">{{ sheet.newB.length }}</span>                  </div>                  <br />                </div>                <div class="title2">Details</div>                <mat-expansion-panel>                  <mat-expansion-panel-header class="mb-2">                    <div class="report-expansion-header">Identical Anatomical Structures</div>                  </mat-expansion-panel-header>                  <div class="i2" *ngFor="let ia of sheet.identicalAS">                    {{ ia }}                  </div>                </mat-expansion-panel>                <mat-expansion-panel class="mt-2">                  <mat-expansion-panel-header class="mb-2">                    <div class="report-expansion-header">Identical Cell Types</div>                  </mat-expansion-panel-header>                  <div class="i2" *ngFor="let ia of sheet.identicalCT">                    {{ ia }}                  </div>                </mat-expansion-panel>                <mat-expansion-panel class="mt-2">                  <mat-expansion-panel-header class="mb-2">                    <div class="report-expansion-header">Identical Biomarkers</div>                  </mat-expansion-panel-header>                  <div class="i2" *ngFor="let ia of sheet.identicalB">                    {{ ia }}                  </div>                </mat-expansion-panel>                <mat-expansion-panel class="mt-2">                  <mat-expansion-panel-header class="mb-2">                    <div class="report-expansion-header">New Anatomical Structures</div>                  </mat-expansion-panel-header>                  <div class="i2" *ngFor="let ia of sheet.newAS">                    {{ ia }}                  </div>                </mat-expansion-panel>                <mat-expansion-panel class="mt-2">                  <mat-expansion-panel-header class="mb-2">                    <div class="report-expansion-header">New Cell Types</div>                  </mat-expansion-panel-header>                  <div class="i2" *ngFor="let ia of sheet.newCT">                    {{ ia }}                  </div>                </mat-expansion-panel>                <mat-expansion-panel class="mt-2">                  <mat-expansion-panel-header class="mb-2">                    <div class="report-expansion-header">New Biomarkers</div>                  </mat-expansion-panel-header>                  <div class="i2" *ngFor="let ia of sheet.newB">                    {{ ia }}                  </div>                </mat-expansion-panel>              </div>            </mat-expansion-panel>            <br />          </div>        </div>      </mat-tab>    </mat-tab-group>  </div></app-sidenav></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-reporter'},{'name': 'CompareComponent', 'selector': 'app-compare'},{'name': 'ControlPaneComponent', 'selector': 'app-control-pane'},{'name': 'DebugLogsComponent', 'selector': 'app-debug-logs'},{'name': 'DocsComponent', 'selector': 'app-docs'},{'name': 'DocsNavComponent', 'selector': 'app-docs-nav'},{'name': 'DoiComponent', 'selector': 'app-doi'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'FileUploadComponent', 'selector': 'app-file-upload'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'FunctionsComponent', 'selector': 'app-functions'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IndentedListComponent', 'selector': 'app-indent'},{'name': 'InfoComponent', 'selector': 'app-info'},{'name': 'LegendComponent', 'selector': 'app-legend'},{'name': 'LoadingComponent', 'selector': 'app-loading'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NavItemComponent', 'selector': 'app-nav-item'},{'name': 'OmapControlsComponent', 'selector': 'app-omap-controls'},{'name': 'OrganTableSelectorComponent', 'selector': 'app-organ-table-selector'},{'name': 'PlaygroundComponent', 'selector': 'app-playground'},{'name': 'ReportComponent', 'selector': 'app-report'},{'name': 'RootComponent', 'selector': 'app-root'},{'name': 'SearchComponent', 'selector': 'app-search'},{'name': 'SidenavComponent', 'selector': 'app-sidenav'},{'name': 'SidenavHeaderComponent', 'selector': 'app-sidenav-header'},{'name': 'TableNestedMenuComponent', 'selector': 'app-table-nested-menu'},{'name': 'TrackingPopupComponent', 'selector': 'app-tracking-popup'},{'name': 'TreeComponent', 'selector': 'app-tree'},{'name': 'UploadComponent', 'selector': 'app-upload'},{'name': 'VisControlsComponent', 'selector': 'app-vis-controls'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ReportComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ReportComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

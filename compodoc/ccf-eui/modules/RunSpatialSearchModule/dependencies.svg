@@ -28,13 +28,13 @@
 <title>cluster_RunSpatialSearchModule_imports</title>
 <polygon fill="none" stroke="black" points="230,-78 230,-130 472,-130 472,-78 230,-78"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_RunSpatialSearchModule_declarations</title>
-<polygon fill="none" stroke="black" points="24,-78 24,-130 222,-130 222,-78 24,-78"/>
-</g>
 <g id="clust5" class="cluster">
 <title>cluster_RunSpatialSearchModule_exports</title>
 <polygon fill="none" stroke="black" points="137,-208 137,-260 339,-260 339,-208 137,-208"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_RunSpatialSearchModule_declarations</title>
+<polygon fill="none" stroke="black" points="24,-78 24,-130 222,-130 222,-78 24,-78"/>
 </g>
 <!-- RunSpatialSearchComponent -->
 <g id="node1" class="node">

@@ -1,0 +1,1136 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>asctb-reporter</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">asctb-reporter</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >BimodalService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/modules/tree/bimodal.service.ts</code>
+        </p>
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#makeBimodalData" >makeBimodalData</a>
+                            </li>
+                            <li>
+                                <a href="#updateBimodalData" >updateBimodalData</a>
+                            </li>
+                            <li>
+                                <a href="#updateSpec" >updateSpec</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(store: Store)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/modules/tree/bimodal.service.ts:19</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                    <code>Store</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeBimodalData"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>makeBimodalData</b></span>
+                        <a href="#makeBimodalData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>makeBimodalData(sheetData: <a href="../interfaces/Row.html" target="_self">Row[]</a>, treeData: <a href="../interfaces/Node.html" target="_self">TNode[]</a>, bimodalConfig: <a href="../interfaces/BimodalConfig.html" target="_self">BimodalConfig</a>, isReport, sheetConfig?: <a href="../interfaces/SheetConfig.html" target="_self">SheetConfig</a>, omapConfig?: <a href="../interfaces/OmapConfig.html" target="_self">OmapConfig</a>, filteredProtiens?: string[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="30"
+                                    class="link-to-prism">src/app/modules/tree/bimodal.service.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Function to create the bimodal network
+last layer is used to create the CT layer</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>sheetData</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Row.html" target="_self" >Row[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    <p>current sheet data</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>treeData</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Node.html" target="_self" >TNode[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    <p>data from the vega tree. the coordinates from the
+last layer is used to create the CT layer</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>bimodalConfig</td>
+                                            <td>
+                                                            <code><a href="../interfaces/BimodalConfig.html" target="_self" >BimodalConfig</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    <p>bimodal configuration for x and y distances</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>isReport</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>false</code>
+                                            </td>
+
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>sheetConfig</td>
+                                            <td>
+                                                            <code><a href="../interfaces/SheetConfig.html" target="_self" >SheetConfig</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    <p>sheet configuration for height and width</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>omapConfig</td>
+                                            <td>
+                                                            <code><a href="../interfaces/OmapConfig.html" target="_self" >OmapConfig</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>filteredProtiens</td>
+                                            <td>
+                                                        <code>string[]</code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateBimodalData"></a>
+                    <span class="name">
+                        <span ><b>updateBimodalData</b></span>
+                        <a href="#updateBimodalData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateBimodalData(view: View, spec: Spec, nodes: <a href="../classes/BMNode.html" target="_self">BMNode[]</a>, links: <a href="../interfaces/Link.html" target="_self">Link[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="393"
+                                    class="link-to-prism">src/app/modules/tree/bimodal.service.ts:393</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Function to reset the signals and data of the visualization</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>view</td>
+                                            <td>
+                                                        <code>View</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>vega view</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>spec</td>
+                                            <td>
+                                                        <code>Spec</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>vega spec</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>nodes</td>
+                                            <td>
+                                                            <code><a href="../classes/BMNode.html" target="_self" >BMNode[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>bimodal network nodes</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>links</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Link.html" target="_self" >Link[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>bimodal network links</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateSpec"></a>
+                    <span class="name">
+                        <span ><b>updateSpec</b></span>
+                        <a href="#updateSpec"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateSpec(spec: Spec, nodes: <a href="../classes/BMNode.html" target="_self">BMNode[]</a>, links: <a href="../interfaces/Link.html" target="_self">Link[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="414"
+                                    class="link-to-prism">src/app/modules/tree/bimodal.service.ts:414</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Function to update the spec with bimodal data</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>spec</td>
+                                            <td>
+                                                        <code>Spec</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>vega spec</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>nodes</td>
+                                            <td>
+                                                            <code><a href="../classes/BMNode.html" target="_self" >BMNode[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>bimodal network nodes</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>links</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Link.html" target="_self" >Link[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>bimodal network links</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { Store } from &#x27;@ngxs/store&#x27;;
+import { Spec, ValuesData, View } from &#x27;vega&#x27;;
+import { ReportLog } from &#x27;../../actions/logs.actions&#x27;;
+import { UpdateBimodal, UpdateLinksData, UpdateVegaSpec } from &#x27;../../actions/tree.actions&#x27;;
+import { CloseLoading, HasError } from &#x27;../../actions/ui.actions&#x27;;
+import { BMNode, BimodalConfig, Link } from &#x27;../../models/bimodal.model&#x27;;
+import { LOG_ICONS, LOG_TYPES } from &#x27;../../models/logs.model&#x27;;
+import { OmapConfig } from &#x27;../../models/omap.model&#x27;;
+import { Error } from &#x27;../../models/response.model&#x27;;
+import { PROTEIN_PRESENCE, Row, SheetConfig } from &#x27;../../models/sheet.model&#x27;;
+import { AS, B, B_GREEN, CT, CT_BLUE, TNode } from &#x27;../../models/tree.model&#x27;;
+import { TreeState } from &#x27;../../store/tree.state&#x27;;
+import { makeAS, makeBioMarkers, makeCellTypes } from &#x27;./tree.functions&#x27;;
+
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class BimodalService {
+  constructor(private readonly store: Store) {}
+
+  /**
+   * Function to create the bimodal network
+   * @param sheetData current sheet data
+   * @param treeData data from the vega tree. the coordinates from the
+   * last layer is used to create the CT layer
+   * @param bimodalConfig bimodal configuration for x and y distances
+   * @param sheetConfig sheet configuration for height and width
+   */
+  async makeBimodalData(
+    sheetData: Row[],
+    treeData: TNode[],
+    bimodalConfig: BimodalConfig,
+    isReport &#x3D; false,
+    sheetConfig?: SheetConfig,
+    omapConfig?: OmapConfig,
+    filteredProtiens?: string[],
+  ) {
+    try {
+      filteredProtiens &#x3D; filteredProtiens?.map((word) &#x3D;&gt; word.toLowerCase()) ?? [];
+      const anatomicalStructuresData &#x3D; makeAS(sheetData);
+      const links: { s: number; t: number; pathColor?: string }[] &#x3D; [];
+      const nodes: BMNode[] &#x3D; [];
+      let treeX &#x3D; 0;
+      let treeY &#x3D; 50;
+      let AS_CT_LINKS &#x3D; 0;
+      let CT_BM_LINKS &#x3D; 0;
+      const CT_BM: Record&lt;string, number&gt; &#x3D; {};
+      const AS_CT: Record&lt;string, number&gt; &#x3D; {};
+      const distance &#x3D; sheetConfig?.bimodal_distance_x ?? 0;
+      const distanceY &#x3D; sheetConfig?.bimodal_distance_y ?? 0;
+      let id &#x3D; treeData.length + 1;
+      let biomarkers &#x3D; [];
+      treeData.forEach((td) &#x3D;&gt; {
+        if (td.children &#x3D;&#x3D;&#x3D; 0 || isReport) {
+          const leaf &#x3D; td.name;
+          const newLeaf &#x3D; new BMNode(leaf, 1, td.x, td.y - 5, 14, td.notes, td.organName, td.ontologyId);
+          newLeaf.id &#x3D; id;
+          newLeaf.problem &#x3D; td.problem;
+          newLeaf.pathColor &#x3D; td.pathColor;
+          newLeaf.isNew &#x3D; td.isNew;
+          newLeaf.color &#x3D; td.color;
+          newLeaf.ontologyId &#x3D; td.ontologyId;
+          if (td.ontologyId &amp;&amp; td.ontologyId.toLowerCase() !&#x3D;&#x3D; &#x27;not found&#x27;) {
+            newLeaf.indegree &#x3D; anatomicalStructuresData.find((a: AS) &#x3D;&gt; {
+              return a.comparatorId &#x3D;&#x3D;&#x3D; td.ontologyId;
+            })?.indegree;
+            newLeaf.outdegree &#x3D; anatomicalStructuresData.find((a: AS) &#x3D;&gt; {
+              return a.comparatorId &#x3D;&#x3D;&#x3D; td.ontologyId;
+            })?.outdegree;
+            newLeaf.label &#x3D; anatomicalStructuresData.find((a: AS) &#x3D;&gt; {
+              return a.comparatorId &#x3D;&#x3D;&#x3D; td.ontologyId;
+            })?.label;
+          } else {
+            newLeaf.indegree &#x3D; anatomicalStructuresData.find((a: AS) &#x3D;&gt; {
+              return a.comparatorName &#x3D;&#x3D;&#x3D; td.name;
+            })?.indegree;
+            newLeaf.outdegree &#x3D; anatomicalStructuresData.find((a: AS) &#x3D;&gt; {
+              return a.comparatorName &#x3D;&#x3D;&#x3D; td.name;
+            })?.outdegree;
+            newLeaf.label &#x3D; anatomicalStructuresData.find((a: AS) &#x3D;&gt; {
+              return a.comparatorName &#x3D;&#x3D;&#x3D; td.name;
+            })?.label;
+          }
+          nodes.push(newLeaf);
+          id +&#x3D; 1;
+          treeX &#x3D; td.x;
+        }
+      });
+
+      // adding x distance to build the next layer of bimodal
+      treeX +&#x3D; distance;
+
+      // making group 2: cell type
+      const cellTypes &#x3D; await makeCellTypes(sheetData);
+
+      switch (bimodalConfig.CT.sort) {
+        case &#x27;Alphabetically&#x27;:
+          cellTypes.sort((a, b) &#x3D;&gt; {
+            return a.structure.toLowerCase() &gt; b.structure.toLowerCase()
+              ? 1
+              : b.structure.toLowerCase() &gt; a.structure.toLowerCase()
+                ? -1
+                : 0;
+          });
+          break;
+
+        case &#x27;Degree&#x27;:
+          cellTypes.sort((a, b) &#x3D;&gt; {
+            return (
+              (b.outdegree?.size ?? 0) + (b.indegree?.size ?? 0) - ((a.outdegree?.size ?? 0) + (a.indegree?.size ?? 0))
+            );
+          });
+          break;
+      }
+
+      switch (bimodalConfig.CT.size) {
+        case &#x27;None&#x27;:
+          break;
+        case &#x27;Degree&#x27;:
+          cellTypes.forEach((c) &#x3D;&gt; {
+            c.nodeSize &#x3D; ((c.indegree?.size ?? 0) + (c.outdegree?.size ?? 0)) * 25;
+          });
+          break;
+        case &#x27;Indegree&#x27;:
+          cellTypes.forEach((c) &#x3D;&gt; {
+            c.nodeSize &#x3D; (c.indegree?.size ?? 0) * 25;
+          });
+          break;
+        case &#x27;Outdegree&#x27;:
+          cellTypes.forEach((c) &#x3D;&gt; {
+            c.nodeSize &#x3D; (c.outdegree?.size ?? 0) * 25;
+          });
+          break;
+      }
+
+      cellTypes.forEach((cell: CT) &#x3D;&gt; {
+        const newNode &#x3D; new BMNode(
+          cell.structure,
+          2,
+          treeX,
+          treeY,
+          14,
+          cell.notes,
+          cell.organName ?? &#x27;&#x27;,
+          cell.link,
+          CT_BLUE,
+          cell.nodeSize,
+        );
+        newNode.id &#x3D; id;
+        newNode.isNew &#x3D; cell.isNew;
+        newNode.pathColor &#x3D; cell.color;
+        newNode.color &#x3D; cell.color;
+        newNode.indegree &#x3D; cell.indegree;
+        newNode.outdegree &#x3D; cell.outdegree;
+        newNode.label &#x3D; cell.label;
+        newNode.references &#x3D; cell.references;
+
+        nodes.push(newNode);
+        treeY +&#x3D; distanceY;
+        id +&#x3D; 1;
+      });
+
+      treeY &#x3D; distanceY;
+      treeX +&#x3D; distance;
+
+      biomarkers &#x3D; await makeBioMarkers(sheetData);
+      if (omapConfig?.proteinsOnly) {
+        biomarkers &#x3D; biomarkers.filter((elem) &#x3D;&gt; filteredProtiens?.includes(elem.comparatorName?.toLowerCase() ?? &#x27;&#x27;));
+      }
+      switch (bimodalConfig.BM.sort) {
+        case &#x27;Alphabetically&#x27;:
+          biomarkers.sort((a, b) &#x3D;&gt; {
+            return a.structure.toLowerCase() &gt; b.structure.toLowerCase()
+              ? 1
+              : b.structure.toLowerCase() &gt; a.structure.toLowerCase()
+                ? -1
+                : 0;
+          });
+          break;
+
+        case &#x27;Degree&#x27;:
+          biomarkers.sort((a, b) &#x3D;&gt; {
+            return (b.indegree?.size ?? 0) - (a.indegree?.size ?? 0);
+          });
+          break;
+      }
+
+      switch (bimodalConfig.BM.size) {
+        case &#x27;None&#x27;:
+          break;
+        case &#x27;Degree&#x27;:
+          biomarkers.forEach((b) &#x3D;&gt; {
+            b.nodeSize &#x3D; (b.nodeSize ?? 0) + ((b.indegree?.size ?? 0) + (b.outdegree?.size ?? 0)) * 25;
+          });
+          break;
+      }
+
+      switch (bimodalConfig.BM.type) {
+        case &#x27;All&#x27;:
+          break;
+        case &#x27;Gene&#x27;:
+          biomarkers &#x3D; biomarkers.filter((b) &#x3D;&gt; b.bType &#x3D;&#x3D;&#x3D; &#x27;gene&#x27;);
+          break;
+        case &#x27;Protein&#x27;:
+          biomarkers &#x3D; biomarkers.filter((b) &#x3D;&gt; b.bType &#x3D;&#x3D;&#x3D; &#x27;protein&#x27;);
+          break;
+        case &#x27;Lipids&#x27;:
+          biomarkers &#x3D; biomarkers.filter((b) &#x3D;&gt; b.bType &#x3D;&#x3D;&#x3D; &#x27;lipids&#x27;);
+          break;
+        case &#x27;Metabolites&#x27;:
+          biomarkers &#x3D; biomarkers.filter((b) &#x3D;&gt; b.bType &#x3D;&#x3D;&#x3D; &#x27;metabolites&#x27;);
+          break;
+        case &#x27;Proteoforms&#x27;:
+          biomarkers &#x3D; biomarkers.filter((b) &#x3D;&gt; b.bType &#x3D;&#x3D;&#x3D; &#x27;proteoforms&#x27;);
+          break;
+      }
+
+      // making group 3: bio markers
+      biomarkers.forEach((marker: B) &#x3D;&gt; {
+        const newNode &#x3D; new BMNode(
+          marker.structure,
+          3,
+          treeX,
+          treeY,
+          14,
+          marker.notes,
+          marker.organName ?? &#x27;&#x27;,
+          marker.link,
+          B_GREEN,
+          marker.nodeSize,
+          marker.proteinPresence,
+        );
+        newNode.id &#x3D; id;
+        newNode.isNew &#x3D; marker.isNew;
+        newNode.pathColor &#x3D; marker.color;
+        newNode.color &#x3D; marker.color;
+        newNode.indegree &#x3D; marker.indegree;
+        newNode.outdegree &#x3D; marker.outdegree;
+        newNode.bType &#x3D; marker.bType;
+
+        nodes.push(newNode);
+        treeY +&#x3D; distanceY;
+        id +&#x3D; 1;
+      });
+
+      nodes.forEach((node) &#x3D;&gt; {
+        if (node.group &#x3D;&#x3D;&#x3D; 1) {
+          node.sources &#x3D; [];
+          node.outdegree?.forEach((str) &#x3D;&gt; {
+            let foundIndex: number;
+            if (str.id &amp;&amp; str.id.toLowerCase() !&#x3D;&#x3D; &#x27;not found&#x27;) {
+              foundIndex &#x3D; nodes.findIndex((i: BMNode) &#x3D;&gt; i.ontologyId &#x3D;&#x3D;&#x3D; str.id &amp;&amp; i.group !&#x3D;&#x3D; 1);
+            } else {
+              foundIndex &#x3D; nodes.findIndex((i: BMNode) &#x3D;&gt; i.name &#x3D;&#x3D;&#x3D; str.name &amp;&amp; i.group !&#x3D;&#x3D; 1);
+            }
+            if (node.targets.findIndex((l) &#x3D;&gt; l &#x3D;&#x3D;&#x3D; nodes[foundIndex].id) &#x3D;&#x3D;&#x3D; -1) {
+              node.targets.push(nodes[foundIndex].id);
+            }
+            links.push({ s: node.id, t: nodes[foundIndex].id });
+          });
+        }
+
+        if (node.group &#x3D;&#x3D;&#x3D; 3) {
+          node.indegree?.forEach((str) &#x3D;&gt; {
+            let pathColor &#x3D; &#x27;&#x27;;
+            let foundIndex: number;
+            if (str.id) {
+              foundIndex &#x3D; nodes.findIndex((i: BMNode) &#x3D;&gt; i.ontologyId &#x3D;&#x3D;&#x3D; str.id);
+            } else {
+              foundIndex &#x3D; nodes.findIndex((i: BMNode) &#x3D;&gt; i.name &#x3D;&#x3D;&#x3D; str.name);
+            }
+            if (node.sources.findIndex((l) &#x3D;&gt; l &#x3D;&#x3D;&#x3D; nodes[foundIndex].id) &#x3D;&#x3D;&#x3D; -1) {
+              node.sources.push(nodes[foundIndex].id);
+            }
+            nodes[foundIndex].outdegree?.forEach((cellOut) &#x3D;&gt; {
+              if (cellOut.name &#x3D;&#x3D;&#x3D; node.name) {
+                if (cellOut.proteinPresence &#x3D;&#x3D;&#x3D; PROTEIN_PRESENCE.POS) {
+                  pathColor &#x3D; &#x27;#00008B&#x27;;
+                } else if (cellOut.proteinPresence &#x3D;&#x3D;&#x3D; PROTEIN_PRESENCE.NEG) {
+                  pathColor &#x3D; &#x27;#E16156&#x27;;
+                } else if (cellOut.proteinPresence &#x3D;&#x3D;&#x3D; PROTEIN_PRESENCE.INTERMEDIATE) {
+                  pathColor &#x3D; &#x27;#4B2079&#x27;;
+                }
+              }
+            });
+            links.push({ s: nodes[foundIndex].id, t: node.id, pathColor });
+          });
+        }
+      });
+
+      nodes.forEach((node: BMNode) &#x3D;&gt; {
+        if (node.group &#x3D;&#x3D;&#x3D; 2) {
+          node.outdegree?.forEach((str) &#x3D;&gt; {
+            const tt &#x3D; nodes
+              .map((val, idx) &#x3D;&gt; ({ val, idx }))
+              .filter(({ val }) &#x3D;&gt; {
+                if (str.id) {
+                  return val.ontologyId &#x3D;&#x3D;&#x3D; str.id;
+                } else {
+                  return val.name &#x3D;&#x3D;&#x3D; str.name;
+                }
+              })
+              .map(({ idx }) &#x3D;&gt; idx);
+            const targets: number[] &#x3D; [];
+            tt.forEach((s) &#x3D;&gt; {
+              targets.push(nodes[s].id);
+            });
+
+            // make targets only if there is a link from CT to B
+            targets.forEach((s) &#x3D;&gt; {
+              if (links.some((l) &#x3D;&gt; l.s &#x3D;&#x3D;&#x3D; node.id &amp;&amp; l.t &#x3D;&#x3D;&#x3D; s)) {
+                if (node.targets.findIndex((l) &#x3D;&gt; l &#x3D;&#x3D;&#x3D; s) &#x3D;&#x3D;&#x3D; -1) {
+                  if (Object.prototype.hasOwnProperty.call(CT_BM, node.organName)) {
+                    CT_BM[node.organName] +&#x3D; 1;
+                  } else {
+                    CT_BM[node.organName] &#x3D; 1;
+                  }
+                  CT_BM_LINKS +&#x3D; 1;
+                  node.targets.push(s);
+                }
+              }
+            });
+          });
+          // make sources only if there is a link from AS to CT
+          node.indegree?.forEach((str) &#x3D;&gt; {
+            const ss &#x3D; nodes
+              .map((val, idx) &#x3D;&gt; ({ val, idx }))
+              .filter(({ val }) &#x3D;&gt; {
+                if (str.id &amp;&amp; str.id.toLowerCase() !&#x3D;&#x3D; &#x27;not found&#x27;) {
+                  return val.ontologyId &#x3D;&#x3D;&#x3D; str.id;
+                } else {
+                  return val.name &#x3D;&#x3D;&#x3D; str.name;
+                }
+              })
+              .map(({ idx }) &#x3D;&gt; idx);
+            const sources: number[] &#x3D; [];
+            ss.forEach((s) &#x3D;&gt; {
+              sources.push(nodes[s].id);
+            });
+            sources.forEach((s) &#x3D;&gt; {
+              if (links.some((l) &#x3D;&gt; l.s &#x3D;&#x3D;&#x3D; s &amp;&amp; l.t &#x3D;&#x3D;&#x3D; node.id)) {
+                if (node.sources.findIndex((l) &#x3D;&gt; l &#x3D;&#x3D;&#x3D; s) &#x3D;&#x3D;&#x3D; -1) {
+                  if (Object.prototype.hasOwnProperty.call(AS_CT, node.organName)) {
+                    AS_CT[node.organName] +&#x3D; 1;
+                  } else {
+                    AS_CT[node.organName] &#x3D; 1;
+                  }
+                  AS_CT_LINKS +&#x3D; 1;
+                  node.sources.push(s);
+                }
+              }
+            });
+          });
+        }
+      });
+
+      if (!isReport) {
+        this.store.dispatch(new UpdateLinksData(AS_CT_LINKS, CT_BM_LINKS, AS_CT, CT_BM));
+
+        this.store.dispatch(new UpdateBimodal(nodes, links)).subscribe(() &#x3D;&gt; {
+          const state &#x3D; this.store.selectSnapshot(TreeState);
+          const view &#x3D; TreeState.getVegaView(state);
+          const updatedNodes &#x3D; state.bimodal.nodes;
+          const updatedLinks &#x3D; state.bimodal.links;
+          const spec &#x3D; state.spec;
+          this.updateBimodalData(view, spec, updatedNodes, updatedLinks);
+        });
+      } else {
+        this.store.dispatch(new UpdateLinksData(AS_CT_LINKS, CT_BM_LINKS, AS_CT, CT_BM, 0, undefined, true));
+      }
+    } catch (error) {
+      console.log(error);
+      const status &#x3D; (error as { status: number }).status;
+      const err: Error &#x3D; {
+        msg: &#x60;${error} (Status: ${status})&#x60;,
+        status: status,
+        hasError: true,
+      };
+      this.store.dispatch(new ReportLog(LOG_TYPES.MSG, &#x27;Failed to create Tree&#x27;, LOG_ICONS.error));
+      this.store.dispatch(new HasError(err));
+    }
+  }
+
+  /**
+   * Function to reset the signals and data of the visualization
+   *
+   * @param view vega view
+   * @param spec vega spec
+   * @param nodes bimodal network nodes
+   * @param links bimodal network links
+   */
+  updateBimodalData(view: View, spec: Spec, nodes: BMNode[], links: Link[]) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const anyView: any &#x3D; view;
+    anyView._runtime.signals.node__click.value &#x3D; null; // removing clicked highlighted nodes if at all
+    anyView._runtime.signals.sources__click.value &#x3D; []; // removing clicked bold source nodes if at all
+    anyView._runtime.signals.targets__click.value &#x3D; [];
+    view.data(&#x27;nodes&#x27;, nodes).data(&#x27;edges&#x27;, links).resize().runAsync();
+
+    this.updateSpec(spec, nodes, links);
+
+    this.store.dispatch(new CloseLoading(&#x27;Visualization Rendered&#x27;));
+    this.store.dispatch(new ReportLog(LOG_TYPES.MSG, &#x27;Visualization successfully rendered&#x27;, LOG_ICONS.success));
+  }
+
+  /**
+   * Function to update the spec with bimodal data
+   *
+   * @param spec vega spec
+   * @param nodes bimodal network nodes
+   * @param links bimodal network links
+   */
+  updateSpec(spec: Spec, nodes: BMNode[], links: Link[]) {
+    const data &#x3D; spec.data ?? [];
+    const nodeData &#x3D; data[data.findIndex((i) &#x3D;&gt; i.name &#x3D;&#x3D;&#x3D; &#x27;nodes&#x27;)] as ValuesData;
+    const edgeData &#x3D; data[data.findIndex((i) &#x3D;&gt; i.name &#x3D;&#x3D;&#x3D; &#x27;edges&#x27;)] as ValuesData;
+    nodeData.values &#x3D; nodes;
+    edgeData.values &#x3D; links;
+
+    this.store.dispatch(new UpdateVegaSpec(spec));
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'BimodalService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
