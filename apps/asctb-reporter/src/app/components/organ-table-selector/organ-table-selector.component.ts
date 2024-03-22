@@ -38,7 +38,7 @@ export class OrganTableSelectorComponent {
   /**
    * Organ sheet selected
    */
-  selectedSheetOption: string = '';
+  selectedSheetOption = '';
   organs: string[] = [];
   omapOrgans: string[] = [];
   getFromCache: boolean;

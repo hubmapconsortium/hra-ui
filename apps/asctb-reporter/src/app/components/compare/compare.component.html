@@ -68,23 +68,10 @@
             <div [formGroupName]="i">
               <div class="w-100 title-sheet-container">
                 <div class="w-75 mr-1 flex-container">
-                  <!-- <mat-form-field
-                    [floatLabel]="'always'"
-                    class="link-input-field"
-                  >
-                    <mat-label>Title</mat-label>
-                    <input
-                      matInput
-                      [placeholder]="'Sheet ' + (i + 1)"
-                      formControlName="title"
-                    />
-                    <mat-hint>A title for your sheet</mat-hint>
-                  </mat-form-field> -->
                   <p>
                     <mat-form-field appearance="fill">
                       <mat-label>Title</mat-label>
                       <input matInput placeholder="Sheet {{ i + 1 }}" formControlName="title" />
-                      <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                       <mat-hint>A title for your sheet</mat-hint>
                     </mat-form-field>
                   </p>
@@ -99,22 +86,9 @@
                           placeholder="This data maps amazing structures!"
                           formControlName="description"
                         />
-                        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                         <mat-hint>A suitable description</mat-hint>
                       </mat-form-field>
                     </p>
-                    <!-- <mat-form-field
-                      [floatLabel]="'always'"
-                      class="link-input-field"
-                    >
-                      <mat-label>Description</mat-label>
-                      <input
-                        matInput
-                        placeholder="This data maps amazing structures!"
-                        formControlName="description"
-                      />
-                      <mat-hint>A suitable description</mat-hint>
-                    </mat-form-field> -->
                   </div>
                   <div class="ml-2">
                     <button
@@ -148,10 +122,6 @@
                 <div class="w-100 flex-container">
                   <p>
                     <mat-form-field appearance="fill" class="w-75">
-                      <!-- <mat-form-field
-                    [floatLabel]="'always'"
-                    class="link-input-field"
-                  > -->
                       <mat-label>Google Sheet (or CSV) Link</mat-label>
                       <input class="w-100" matInput placeholder="Enter link..." formControlName="link" />
                       <mat-hint>Enter Browser URL address for your public Google Sheet (or CSV)</mat-hint>

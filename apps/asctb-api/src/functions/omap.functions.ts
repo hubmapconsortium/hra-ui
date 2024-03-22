@@ -2,16 +2,16 @@ import { LEGACY_OMAP_HEADER_FIRST_COLUMN, OMAP_HEADER_FIRST_COLUMN, OMAP_ORGAN }
 import { buildMetadata, findHeaderIndex } from './api.functions';
 
 export class OmapDataTransformer {
-  private data: string[][];
-  private headerRow: number;
-  private _warnings: Set<string>;
-  private metaData: Record<string, string | string[]>;
-  private _transformedData: string[][];
+  private readonly data: string[][];
+  private readonly headerRow: number;
+  private readonly _warnings: Set<string>;
+  private readonly metaData: Record<string, string | string[]>;
+  private readonly _transformedData: string[][];
+  private readonly isLegacyOmap: boolean;
   private columns: string[];
-  private isLegacyOmap: boolean;
 
-  constructor(data: string[][], legacy?: boolean) {
-    this.isLegacyOmap = legacy ?? false;
+  constructor(data: string[][], legacy: boolean = false) {
+    this.isLegacyOmap = legacy;
     this.data = data;
     this.headerRow = legacy
       ? findHeaderIndex(0, this.data, LEGACY_OMAP_HEADER_FIRST_COLUMN)
@@ -87,7 +87,7 @@ export class OmapDataTransformer {
           organUberonMissingWarningAdded = true;
         }
       }
-      if (data.uniprot_accession_number != '' && data.HGNC_ID != '' && data.target_name != '') {
+      if (data.uniprot_accession_number !== '' && data.HGNC_ID !== '' && data.target_name !== '') {
         const newrow = this.isLegacyOmap
           ? [organ.name, organ.rdfs_label, organ.id]
           : [data.organ, data.organ, data.organ_uberon];

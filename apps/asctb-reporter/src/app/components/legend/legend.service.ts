@@ -9,8 +9,8 @@ import { TNode } from '../../models/tree.model';
   providedIn: 'root',
 })
 export class LegendService {
-  private legendData = new Subject<Legend[]>();
-  legendData$ = this.legendData.asObservable();
+  private readonly legendData = new Subject<Legend[]>();
+  readonly legendData$ = this.legendData.asObservable();
 
   makeLegendData(treeData: TNode[], bimodalData: BMNode[], compareData: CompareData[] = []): Legend[] {
     const legends: Legend[] = [];
@@ -167,11 +167,11 @@ export class LegendService {
       }
     }
 
-    for (const i in compareData) {
-      if (legends.findIndex((l) => l.color === compareData[i].color) === -1) {
+    for (const item of compareData) {
+      if (legends.findIndex((l) => l.color === item.color) === -1) {
         legends.push({
-          name: compareData[i].title,
-          color: compareData[i].color,
+          name: item.title,
+          color: item.color,
           style: '',
           sortOrder: 10,
         });

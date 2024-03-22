@@ -20,7 +20,7 @@
   <ng-template #resultBlock>
     <div *ngIf="error.hasError; else infoBlock" class="pt-3">
       Could not fetch data {{ !info.notes ? 'and notes' : '' }} for
-      <b>{{ info.name }}</b>
+      <strong>{{ info.name }}</strong>
       {{
         info.notes
           ? 'but we have some

@@ -4,7 +4,7 @@ export class ReportLog {
     public type: string,
     public message: string,
     public icon?: string,
-    public version: string = 'latest',
+    public version = 'latest',
   ) {}
 }
 

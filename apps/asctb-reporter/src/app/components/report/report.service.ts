@@ -9,10 +9,10 @@ import { makeAS, makeBioMarkers, makeCellTypes } from '../../modules/tree/tree.f
   providedIn: 'root',
 })
 export class ReportService {
-  private reportData = new Subject<{ data: Report | null; sheet?: Sheet }>();
-  reportData$ = this.reportData.asObservable();
-  private compareData = new Subject<CompareReportData>();
-  compareData$ = this.compareData.asObservable();
+  private readonly reportData = new Subject<{ data: Report | null; sheet?: Sheet }>();
+  readonly reportData$ = this.reportData.asObservable();
+  private readonly compareData = new Subject<CompareReportData>();
+  readonly compareData$ = this.compareData.asObservable();
   BM_TYPE = {
     gene: 'BG',
     protein: 'BP',
@@ -162,11 +162,12 @@ export class ReportService {
   }
 
   makeAllOrganReportDataCountsByOrgan(data: Report, linksByOrgan: LinksASCTBData, tableVersion: Map<string, string>) {
-    let allData: (AS | CT | B | EntityWithNoOtherEntity)[] = [];
+    type Data = AS | CT | B | EntityWithNoOtherEntity;
+    let allData: Data[] = [];
     Object.keys(data).forEach((type) => {
       allData = [...allData, ...data[type as keyof Report]];
     });
-    allData = allData.reduce<(AS | CT | B | EntityWithNoOtherEntity)[]>((acc, curr) => {
+    allData = allData.reduce<Data[]>((acc, curr) => {
       let item = acc.find((x) => x.organName === curr.organName);
       const index = acc.findIndex((x) => x.organName === curr.organName);
       if (!item) {

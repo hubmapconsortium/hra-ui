@@ -73,7 +73,7 @@ export class RootComponent implements OnDestroy {
   /**
    * Denotes if loading
    */
-  loading: boolean = true;
+  loading = true;
   /**
    * Vega view
    */
@@ -85,7 +85,7 @@ export class RootComponent implements OnDestroy {
   /**
    * Denotesthe error state
    */
-  hasError: boolean = false;
+  hasError = false;
   /**
    * Stores the error
    */
@@ -97,7 +97,7 @@ export class RootComponent implements OnDestroy {
   /**
    * Dnotes of sidebar control pane is open
    */
-  isControlPaneOpen: boolean = false;
+  isControlPaneOpen = false;
   /**
    * Botton input sheet ref
    */
@@ -176,7 +176,7 @@ export class RootComponent implements OnDestroy {
     public ts: TreeService,
     public route: ActivatedRoute,
     public dialog: MatDialog,
-    private snackbar: MatSnackBar,
+    private readonly snackbar: MatSnackBar,
     public indent: IndentedListService,
     public report: ReportService,
     private readonly infoSheet: MatBottomSheet,
@@ -428,7 +428,9 @@ export class RootComponent implements OnDestroy {
 
     this.compareSheets$.subscribe((sheets) => {
       const omapSheets = sheets.filter((sheet) => sheet.isOmap);
-      if (omapSheets.length > 0) this.openSnackBarToUpdateFilter();
+      if (omapSheets.length > 0) {
+        this.openSnackBarToUpdateFilter();
+      }
     });
   }
 
@@ -674,7 +676,7 @@ export class RootComponent implements OnDestroy {
   }
 
   openSnackBarToUpdateFilter() {
-    if (this.bimodalConfig.BM.type != 'Protein') {
+    if (this.bimodalConfig.BM.type !== 'Protein') {
       const config: MatSnackBarConfig = {
         duration: 10000,
         verticalPosition: 'bottom',

@@ -47,8 +47,7 @@ async function getData(draftItems) {
   const workbook = XLSX.utils.book_new();
   const worksheets = {};
 
-  for (let i = 0; i < draftItems.length; i++) {
-    const item = draftItems[i];
+  for (const item of draftItems) {
     const sheetId = item.sheetId;
     const gid = item.gid;
     const apiUrl = `${API_ENDPOINT}/v2/csv?csvUrl=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F${sheetId}%2Fedit%23gid%3D${gid}&output=validate`;

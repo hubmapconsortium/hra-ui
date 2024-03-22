@@ -1,5 +1,3 @@
-// TODO: Add Doc String
-
 export enum WarningCode {
   InvalidCsvFile = 1,
   UnmappedMetadata = 2,

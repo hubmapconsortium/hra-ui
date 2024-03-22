@@ -9,7 +9,7 @@ import { URL, getAssetsURL } from './../static/url';
   providedIn: 'root',
 })
 export class SheetService {
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   /**
    * Service to fetch the data for a sheet from CSV file or Google sheet using the api

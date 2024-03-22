@@ -62,10 +62,8 @@ function setData(column: string[], _columnNumber: number, row: Row, value: strin
         // FIXME: Temporarily deal with blank columns since so many tables are non-conformant
         arrayIndex = objectArray.length - 1;
         if (arrayIndex < objectArray.length) {
-          switch (fieldName) {
-            case 'id':
-              value = fixOntologyId(value);
-              break;
+          if (fieldName === 'id') {
+            value = fixOntologyId(value);
           }
           if (objectArray[arrayIndex]) {
             objectArray[arrayIndex][fieldName] = value;
@@ -196,7 +194,7 @@ function validateHeaderRow(headerData: string[][], rowIndex: number, warnings: S
       const invalidHeader = `WARNING: Invalid Header found at column: ${colName}, row: ${rowIndex} where Header Value: ${value.join(
         '/',
       )} (Code ${WarningCode.InvalidHeader})`;
-      const columnBlank = value.join('').trim().length == 0;
+      const columnBlank = value.join('').trim().length === 0;
       const col0Warnings = value[0].trim().length === 0 || !arrayNameMap[value[0].toUpperCase()];
       const col1Warnings = value[1].trim().length === 0 || Number.isNaN(parseInt(value[1]));
       const showWarnings = col0Warnings || col1Warnings;
@@ -246,7 +244,7 @@ function checkMissingIds(
           })`,
         );
       }
-      if (column.join('/') == 'CT/1/ID' && (!idValue || !idValue.startsWith('CL:'))) {
+      if (column.join('/') === 'CT/1/ID' && (!idValue || !idValue.startsWith('CL:'))) {
         const colName = columnIndexToName(index);
         warnings.add(
           `WARNING: CT/1/ID is not a CL ID (required) at Column: ${colName}, Row: ${row.rowNumber + 1} (Code ${
@@ -264,15 +262,15 @@ export function getHeaderRow(
   asctbHeader: string,
   legacyOmapHeader: string,
 ): string[] | undefined {
-  for (let i = 0; i < data.length; i++) {
-    if (data[i][0] === omapHeader) {
-      return data[i];
+  for (const item of data) {
+    if (item[0] === omapHeader) {
+      return item;
     }
-    if (data[i][0] === asctbHeader) {
-      return data[i];
+    if (item[0] === asctbHeader) {
+      return item;
     }
-    if (data[i][0] === legacyOmapHeader) {
-      return data[i];
+    if (item[0] === legacyOmapHeader) {
+      return item;
     }
   }
   return undefined;
@@ -340,8 +338,6 @@ export function makeASCTBDataWork(data: string[][]): ASCTBData {
   // build metadata key value store.
   const metadataRows = data.slice(0, headerRow);
   const metadata = buildMetadata(metadataRows, warnings);
-
-  // console.log([...warnings].sort().join('\n'));
 
   return {
     data: results,

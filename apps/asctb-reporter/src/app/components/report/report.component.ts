@@ -60,7 +60,7 @@ export class ReportComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   ontologyLinkGraphData: ReturnType<typeof this.makeOntologyLinksGraphData> = [];
   SheetConfig!: SheetConfig;
-  total_AS_AS: number = 0;
+  total_AS_AS = 0;
   biomarkersCounts: BiomarkersCounts[] = [];
 
   @Input() compareSheets: CompareData[] = [];
@@ -72,13 +72,13 @@ export class ReportComponent implements OnInit {
   @Input() inputReportData!: Observable<Report>;
   @Input() currentSheetConfig!: Observable<SheetConfig>;
   @Input() compareData!: Observable<{ data: Row[]; sheets: CompareData[] }>;
-  @Input() bmType: string = '';
+  @Input() bmType = '';
   @Input() hideReportCompareTab = false;
   @Output() closeReport = new EventEmitter<void>();
   @Output() computedReport = new EventEmitter<Report>();
   @Output() deleteSheet = new EventEmitter<number>();
-  total_AS_CT: number = 0;
-  total_CT_B: number = 0;
+  total_AS_CT = 0;
+  total_CT_B = 0;
 
   constructor(
     public reportService: ReportService,

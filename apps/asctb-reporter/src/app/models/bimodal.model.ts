@@ -15,13 +15,13 @@ export class BMNode {
   fontSize: number;
   x: number;
   y: number;
-  id: number = 0;
+  id = 0;
   color: string;
   nodeSize: number;
   targets: number[];
   sources: number[];
 
-  problem: boolean = false;
+  problem = false;
   pathColor: string;
   isNew: boolean;
   type: string;

@@ -20,10 +20,10 @@ export class InfoComponent implements OnInit {
   // @Output() close: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
-    @Inject(MAT_BOTTOM_SHEET_DATA) public data: Observable<SheetInfo>,
-    private changeDetectorRef: ChangeDetectorRef,
-    public sheetRef: MatBottomSheetRef,
-    public ga: GoogleAnalyticsService,
+    @Inject(MAT_BOTTOM_SHEET_DATA) public readonly data: Observable<SheetInfo>,
+    private readonly changeDetectorRef: ChangeDetectorRef,
+    public readonly sheetRef: MatBottomSheetRef,
+    public readonly ga: GoogleAnalyticsService,
   ) {}
 
   ngOnInit(): void {

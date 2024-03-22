@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./nav-item.component.scss'],
 })
 export class NavItemComponent {
-  @Input() label: string = '';
-  @Input() disabled: boolean = false;
+  @Input() label = '';
+  @Input() disabled = false;
 }

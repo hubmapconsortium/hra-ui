@@ -46,7 +46,7 @@ export class IndentedListComponent implements OnInit, OnDestroy, AfterViewInit {
     (node) => node.expandable,
   );
 
-  private transformer = (node: Node, level: number) => {
+  private readonly transformer = (node: Node, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
       name: node.name,

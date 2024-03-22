@@ -2,7 +2,7 @@
   <mat-expansion-panel-header [expandedHeight]="'3.125rem'" class="controls">
     <mat-panel-title>
       <div>
-        <b> Controls </b>
+        <strong> Controls </strong>
       </div>
     </mat-panel-title>
     <mat-panel-description>
@@ -45,7 +45,9 @@
         <span class="control-title">Tree Width</span>
       </div>
       <div class="text-end w-50">
-        <b><input [(ngModel)]="config.width" type="number" matInput (change)="changeWidth()" class="numberInput" /></b>
+        <strong
+          ><input [(ngModel)]="config.width" type="number" matInput (change)="changeWidth()" class="numberInput"
+        /></strong>
       </div>
       <div></div>
     </div>
@@ -72,9 +74,9 @@
         <span class="control-title">Tree Height</span>
       </div>
       <div class="text-end w-50">
-        <b
-          ><input [(ngModel)]="config.height" type="number" matInput (change)="changeHeight()" class="numberInput"
-        /></b>
+        <strong>
+          <input [(ngModel)]="config.height" type="number" matInput (change)="changeHeight()" class="numberInput"
+        /></strong>
       </div>
       <div></div>
     </div>
@@ -99,14 +101,15 @@
         <span class="control-title">Bimodal Distance X</span>
       </div>
       <div class="text-end w-50">
-        <b
-          ><input
+        <strong>
+          <input
             [(ngModel)]="config.bimodal_distance_x"
             type="number"
             matInput
             (change)="changeBimodalDistanceX()"
             class="numberInput"
-        /></b>
+          />
+        </strong>
       </div>
       <div></div>
     </div>
@@ -131,14 +134,15 @@
         <span class="control-title">Bimodal Distance Y</span>
       </div>
       <div class="text-end w-50">
-        <b
-          ><input
+        <strong>
+          <input
             [(ngModel)]="config.bimodal_distance_y"
             type="number"
             matInput
             (change)="changeBimodalDistanceY()"
             class="numberInput"
-        /></b>
+          />
+        </strong>
       </div>
       <div></div>
     </div>

@@ -9,7 +9,7 @@ import { SheetDetails } from '../../models/sheet.model';
 })
 export class TableNestedMenuComponent {
   @Input() sheetDetails: SheetDetails[] = [];
-  @Input() title: string = '';
+  @Input() title = '';
   window = window;
   @ViewChild('childMenu', { static: true }) public childMenu!: MatMenu;
   sheetURL = 'https://docs.google.com/spreadsheets/d/';

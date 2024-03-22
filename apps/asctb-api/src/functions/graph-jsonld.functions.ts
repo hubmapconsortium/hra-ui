@@ -2,6 +2,24 @@ import { JsonLd } from 'jsonld/jsonld-spec';
 import { Edge_type, GraphData } from '../models/graph.model';
 import { fixOntologyId, guessIri } from './lookup.functions';
 
+enum OwlType {
+  CLASS = 'owl:Class',
+  RESTRICTION = 'owl:Restriction',
+}
+
+enum OwlProperty {
+  ANNOTATION = 'owl:AnnotationProperty',
+  OBJECT = 'owl:ObjectProperty',
+}
+
+enum CcfProperty {
+  PART_OF = 'ccf:ccf_part_of',
+  LOCATED_IN = 'ccf:located_in',
+  CT_IS_A = 'ccf:ct_is_a',
+  CHARACTERIZES = 'ccf:characterizes',
+  OCCURS_IN = 'ccf:occurs_in',
+}
+
 export function makeJsonLdData(data: GraphData, withSubclasses = true): JsonLd {
   const { nodes, edges } = data;
   const iriLookup: Record<number, string> = {};
@@ -29,7 +47,7 @@ export function makeJsonLdData(data: GraphData, withSubclasses = true): JsonLd {
     if (!nodeMap.has(iri)) {
       nodeMap.set(iri, {
         '@id': iri,
-        '@type': 'owl:Class',
+        '@type': OwlType.CLASS,
         id: ontologyId,
         asctb_type: node.type,
         label: node.metadata.label || node.metadata.name,
@@ -95,8 +113,8 @@ export function makeJsonLdData(data: GraphData, withSubclasses = true): JsonLd {
         subclasses = subclasses.concat(
           node.part_of.map((iri: string, index: number) => ({
             '@id': `_:n${node.id.replace(':', '')}_ASAS${index}`,
-            '@type': 'owl:Restriction',
-            onProperty: 'ccf:ccf_part_of',
+            '@type': OwlType.RESTRICTION,
+            onProperty: CcfProperty.PART_OF,
             // onProperty: 'http://purl.obolibrary.org/obo/RO_0001025',
             someValuesFrom: iri,
           })),
@@ -106,8 +124,8 @@ export function makeJsonLdData(data: GraphData, withSubclasses = true): JsonLd {
         subclasses = subclasses.concat(
           node.located_in.map((iri: string, index: number) => ({
             '@id': `_:n${node.id.replace(':', '')}_ASCT${index}`,
-            '@type': 'owl:Restriction',
-            onProperty: 'ccf:located_in',
+            '@type': OwlType.RESTRICTION,
+            onProperty: CcfProperty.LOCATED_IN,
             someValuesFrom: iri,
           })),
         );
@@ -116,8 +134,8 @@ export function makeJsonLdData(data: GraphData, withSubclasses = true): JsonLd {
         subclasses = subclasses.concat(
           node.is_a.map((iri: string, index: number) => ({
             '@id': `_:n${node.id.replace(':', '')}_CTCT${index}`,
-            '@type': 'owl:Restriction',
-            onProperty: 'ccf:ct_is_a',
+            '@type': OwlType.RESTRICTION,
+            onProperty: CcfProperty.CT_IS_A,
             someValuesFrom: iri,
           })),
         );
@@ -126,8 +144,8 @@ export function makeJsonLdData(data: GraphData, withSubclasses = true): JsonLd {
         subclasses = subclasses.concat(
           node.characterizes.map((iri: string, index: number) => ({
             '@id': `_:n${node.id.replace(':', '')}_CTBM${index}`,
-            '@type': 'owl:Restriction',
-            onProperty: 'ccf:characterizes',
+            '@type': OwlType.RESTRICTION,
+            onProperty: CcfProperty.CHARACTERIZES,
             someValuesFrom: iri,
           })),
         );
@@ -136,8 +154,8 @@ export function makeJsonLdData(data: GraphData, withSubclasses = true): JsonLd {
         subclasses = subclasses.concat(
           node.occurs_in.map((iri: string, index: number) => ({
             '@id': `_:n${node.id.replace(':', '')}_ASBM${index}`,
-            '@type': 'owl:Restriction',
-            onProperty: 'ccf:occurs_in',
+            '@type': OwlType.RESTRICTION,
+            onProperty: CcfProperty.OCCURS_IN,
             someValuesFrom: iri,
           })),
         );
@@ -149,7 +167,7 @@ export function makeJsonLdData(data: GraphData, withSubclasses = true): JsonLd {
     }
   }
 
-  const propertyType = withSubclasses ? 'owl:ObjectProperty' : 'owl:AnnotationProperty';
+  const propertyType = withSubclasses ? OwlProperty.OBJECT : OwlProperty.ANNOTATION;
 
   return {
     '@context': Object.assign(
@@ -179,24 +197,24 @@ export function makeJsonLdData(data: GraphData, withSubclasses = true): JsonLd {
         ? {}
         : {
             part_of: {
-              '@id': 'ccf:ccf_part_of',
+              '@id': CcfProperty.PART_OF,
               // '@id': 'http://purl.obolibrary.org/obo/RO_0001025',
               '@type': '@id',
             },
             located_in: {
-              '@id': 'ccf:located_in',
+              '@id': CcfProperty.LOCATED_IN,
               '@type': '@id',
             },
             is_a: {
-              '@id': 'ccf:ct_is_a',
+              '@id': CcfProperty.CT_IS_A,
               '@type': '@id',
             },
             characterizes: {
-              '@id': 'ccf:characterizes',
+              '@id': CcfProperty.CHARACTERIZES,
               '@type': '@id',
             },
             occurs_in: {
-              '@id': 'ccf:occurs_in',
+              '@id': CcfProperty.OCCURS_IN,
               '@type': '@id',
             },
           },
@@ -209,27 +227,27 @@ export function makeJsonLdData(data: GraphData, withSubclasses = true): JsonLd {
           label: 'CCF ASCT+B Tables',
           defines: [
             {
-              '@id': 'ccf:ccf_part_of',
+              '@id': CcfProperty.PART_OF,
               '@type': propertyType,
               label: 'ccf part of',
             },
             {
-              '@id': 'ccf:characterizes',
+              '@id': CcfProperty.CHARACTERIZES,
               '@type': propertyType,
               label: 'characterizes',
             },
             {
-              '@id': 'ccf:ct_is_a',
+              '@id': CcfProperty.CT_IS_A,
               '@type': propertyType,
               label: 'cell type is a',
             },
             {
-              '@id': 'ccf:located_in',
+              '@id': CcfProperty.LOCATED_IN,
               '@type': propertyType,
               label: 'located in',
             },
             {
-              '@id': 'ccf:occurs_in',
+              '@id': CcfProperty.OCCURS_IN,
               '@type': propertyType,
               label: 'occurs in',
             },
@@ -237,17 +255,17 @@ export function makeJsonLdData(data: GraphData, withSubclasses = true): JsonLd {
         },
         {
           '@id': 'oboInOwl:id',
-          '@type': 'owl:AnnotationProperty',
+          '@type': OwlProperty.ANNOTATION,
           label: 'ID',
         },
         {
           '@id': 'ccf:asctb_type',
-          '@type': 'owl:AnnotationProperty',
+          '@type': OwlProperty.ANNOTATION,
           label: 'ASCT+B type',
         },
         {
           '@id': 'ccf:ccf_preferred_label',
-          '@type': 'owl:AnnotationProperty',
+          '@type': OwlProperty.ANNOTATION,
           label: 'CCF preferred label',
         },
       ],

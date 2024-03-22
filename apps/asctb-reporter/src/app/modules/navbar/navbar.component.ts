@@ -107,7 +107,7 @@ export class NavbarComponent implements OnInit {
   get selectedOrgansLabel(): string {
     let x = this.selectedOrgansValues?.length > 0 ? 'ASCT+B: ' + this.selectedOrgansValues : '';
     x = this.selectedOrgansValues?.length > 0 && this.omapSelectedOrgansValues?.length > 0 ? x + ' | ' : x;
-    x = this.omapSelectedOrgansValues?.length > 0 ? x + 'OMAP: ' + this.omapSelectedOrgansValues : x;
+    x = this.omapSelectedOrgansValues?.length > 0 ? `${x}OMAP: ${this.omapSelectedOrgansValues}` : x;
     if (x.length > 35) {
       return `${this.selectedOrgansValues?.split(',').length} ASCT+B Tables, ${this.omapSelectedOrgansValues?.split(',')
         .length} OMAPs`;

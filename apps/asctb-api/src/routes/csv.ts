@@ -21,7 +21,7 @@ export function setupCSVRoutes(app: Express): void {
     const csvUrls = req.query.csvUrl as string;
     const expanded = req.query.expanded !== 'false';
     const withSubclasses = req.query.subclasses !== 'false';
-    const output = req.query.output as 'json' | 'graph' | 'jsonld' | 'validate' | string;
+    const output = req.query.output as string;
 
     try {
       const asctbDataResponses = await Promise.all(

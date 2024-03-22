@@ -66,7 +66,7 @@
   <!-- IMAGES  -->
   <div class="container w-100 h-50 position-relative">
     <div class="d-flex justify-content-center align-items-center w-100 h-100 mt-5 pt-3 img-contail">
-      <img [src]="img.path" class="w-100 home-img h-100" *ngFor="let img of IMAGES" [alt]="img.alt" />
+      <img [src]="img.path" alt="" class="w-100 home-img h-100" *ngFor="let img of IMAGES" [alt]="img.alt" />
     </div>
   </div>
 
@@ -105,9 +105,7 @@
   </div>
 
   <!-- SPACING -->
-  <div class="w-100 mt-5 pt-5">
-    <!-- <hr class="w-25"> -->
-  </div>
+  <div class="w-100 mt-5 pt-5"></div>
 
   <!-- CONTRIBUTORS -->
   <div class="w-100 my-5 py-5 px-5">
@@ -123,7 +121,7 @@
         <div class="col-xl-4 col-md-6 col-sm-6 col-lg-4 px-3 mt-4" *ngFor="let con of CONTIRBUTORS; let i = index">
           <div class="card text-center con-card">
             <div class="card-header">
-              <img class="contributors-img" [src]="con.img" alt="sans" width="140px" height="140px" />
+              <img class="contributors-img" alt="" [src]="con.img" alt="sans" width="140px" height="140px" />
             </div>
             <div class="card-body">
               <p class="title4">{{ con.name }}</p>
@@ -169,12 +167,12 @@
           Various institutions that the CCF ASCT+B Reporter is affiliated with are listed below.
         </p>
       </div>
-      <!-- <hr width="5%" color="#ededed" class="mt-1" /> -->
       <div class="affiliations-image-container p-5">
         <div class="row">
           <div class="col-lg-4 col-md-4 mt-5">
             <img
               src="assets/affiliations/iu.jpg"
+              alt=""
               height="100"
               class="affiliation-img"
               (click)="window.open('https://www.indiana.edu', '_blank')"
@@ -183,6 +181,7 @@
           <div class="col-lg-4 col-md-4 mt-5">
             <img
               src="assets/affiliations/cns.png"
+              alt=""
               class="affiliation-img"
               height="100"
               (click)="window.open('https://cns.iu.edu', '_blank')"
@@ -191,6 +190,7 @@
           <div class="col-lg-4 col-md-4 mt-5">
             <img
               src="assets/affiliations/hubmap.png"
+              alt=""
               height="100"
               class="affiliation-img"
               (click)="window.open('https://github.com/hubmapconsortium', '_blank')"

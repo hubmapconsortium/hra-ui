@@ -7,8 +7,8 @@ import { Row, Sheet } from '../../models/sheet.model';
   providedIn: 'root',
 })
 export class IndentedListService {
-  private indentData = new Subject<{ data: ILNode | null; sheet?: string }>();
-  indentData$ = this.indentData.asObservable();
+  private readonly indentData = new Subject<{ data: ILNode | null; sheet?: string }>();
+  readonly indentData$ = this.indentData.asObservable();
 
   public makeIndentData(currentSheet: Sheet, data: Row[]) {
     let root = new ILNode(data[0].anatomical_structures[0].name ?? '', [], data[0].anatomical_structures[0].id ?? '');

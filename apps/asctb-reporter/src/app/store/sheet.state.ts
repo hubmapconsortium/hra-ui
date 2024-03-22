@@ -206,7 +206,7 @@ export class SheetState {
   sheetConfig: SheetDetails[] = [];
   omapSheetConfig: SheetDetails[] = [];
   exampleSheet?: SheetDetails;
-  headerCount: number = 0;
+  headerCount = 0;
   faliureMsg = 'Failed to fetch data';
   bodyId = 'UBERON:0013702';
   bodyLabel = 'body proper';
@@ -661,8 +661,8 @@ export class SheetState {
       tableVersion: '',
     };
     if (
-      (selectedOrgans.length == 0 || selectedOrgans[0] == '') &&
-      (omapSelectedOrgans.length == 0 || omapSelectedOrgans[0] == '')
+      (selectedOrgans.length === 0 || selectedOrgans[0] === '') &&
+      (omapSelectedOrgans.length === 0 || omapSelectedOrgans[0] === '')
     ) {
       patchState({
         data: [bodyRow],
@@ -719,7 +719,7 @@ export class SheetState {
 
   private organFiltering(selectedOrgans: string[], omapSelectedOrgans: string[]): string[] {
     // If no OMAP organs selected
-    if (omapSelectedOrgans.length > 0 && omapSelectedOrgans[0] != '') {
+    if (omapSelectedOrgans.length > 0 && omapSelectedOrgans[0] !== '') {
       const selectedOmapOrgans = omapSelectedOrgans.map((organ) =>
         organ.split('-')[0].split('_').join(' ').toLowerCase(),
       );
@@ -865,7 +865,6 @@ export class SheetState {
   ) {
     const mode = getState().mode;
     dispatch(new OpenLoading('Fetching data...'));
-    // dispatch(new StateReset(SheetState));
     dispatch(new StateReset(TreeState));
     dispatch(new CloseBottomSheet());
     dispatch(new ReportLog(LOG_TYPES.MSG, sheet.display, LOG_ICONS.file));

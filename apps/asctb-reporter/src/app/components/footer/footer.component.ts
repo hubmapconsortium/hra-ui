@@ -21,7 +21,7 @@ export class FooterComponent {
   faTwitterSquare = faTwitterSquare;
 
   copyrightYear = new Date().getFullYear();
-  masterSheetLink: string = '';
+  masterSheetLink = '';
 
   constructor(
     public configService: ConfigService,

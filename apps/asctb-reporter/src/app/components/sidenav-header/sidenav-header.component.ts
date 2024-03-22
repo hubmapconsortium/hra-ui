@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./sidenav-header.component.scss'],
 })
 export class SidenavHeaderComponent {
-  @Input() title: string = '';
+  @Input() title = '';
   @Input() download = false;
   @Input() tooltipString = 'Hello';
   @Output() closeSideNav = new EventEmitter<void>();

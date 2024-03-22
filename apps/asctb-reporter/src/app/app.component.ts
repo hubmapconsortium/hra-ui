@@ -18,9 +18,9 @@ export class AppComponent implements OnInit {
   constructor(
     readonly consentService: ConsentService,
     readonly snackbar: MatSnackBar,
-    private matIconRegistry: MatIconRegistry,
+    private readonly matIconRegistry: MatIconRegistry,
     private readonly domSanitizer: DomSanitizer,
-    public router: Router,
+    public readonly router: Router,
   ) {
     switch (environment.tag) {
       case 'Staging':

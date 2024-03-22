@@ -30,7 +30,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   faEnvelope = faEnvelope;
 
   copyrightYear = new Date().getFullYear();
-  masterSheetLink: string = '';
+  masterSheetLink = '';
   sheetOptions: SheetDetails[] = [];
 
   @ViewChild('tutorialVideoContainer') videoContainer!: ElementRef<HTMLElement>;

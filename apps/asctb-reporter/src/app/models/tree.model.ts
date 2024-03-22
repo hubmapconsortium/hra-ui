@@ -18,19 +18,19 @@ export class TNode {
   ontologyId: string;
   color: string;
   problem: boolean;
-  found: boolean = false;
+  found = false;
   groupName: string;
   isNew: boolean;
   pathColor: string;
   parents: number[];
-  children: number = 0;
-  x: number = 0;
-  y: number = 0;
+  children = 0;
+  x = 0;
+  y = 0;
   type: string;
   comparator: string;
   comparatorName: string;
   comparatorId: string;
-  label: string = '';
+  label = '';
   notes: string;
   organName: string;
 
