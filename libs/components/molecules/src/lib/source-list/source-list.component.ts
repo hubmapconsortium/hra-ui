@@ -9,7 +9,6 @@ import {
   OnChanges,
   Output,
   SimpleChanges,
-  ViewChild,
 } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
@@ -79,18 +78,22 @@ export class SourceListComponent implements OnChanges {
 
   @Output() readonly selectionChanged = new EventEmitter<SourceListItem[]>();
 
-  @ViewChild(MatSort) sort: MatSort;
+  set sort(sorter: MatSort) {
+    this.dataSource.sort = sorter;
+  }
 
   /** Google analytics tracking service */
   private readonly ga = inject(GoogleAnalyticsService);
 
+  constructor() {
+    this.handleSort();
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if ('sources' in changes) {
       this.selection.clear();
-      this.dataSource = new MatTableDataSource<SourceListItem>(this.sources);
-      this.dataSource.sort = this.sort;
-      this.dataSource.data.forEach((row) => this.selection.select(row));
-      this.selectionChanged.emit(this.selection.selected);
+      this.dataSource.data = this.sources;
+      this.toggleAllRows();
     }
   }
 
@@ -126,7 +129,7 @@ export class SourceListComponent implements OnChanges {
       return;
     }
 
-    this.selection.select(...this.dataSource.data);
+    this.dataSource.data.forEach((row) => this.selection.select(row));
     this.selectionChanged.emit(this.selection.selected);
   }
 
@@ -136,6 +139,6 @@ export class SourceListComponent implements OnChanges {
   }
 
   handleSort() {
-    this.dataSource.sort = this.sort;
+    this.dataSource.sort = this.sort || null;
   }
 }

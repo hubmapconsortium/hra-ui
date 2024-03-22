@@ -1,10 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';
-import { FtuDataService } from '@hra-ui/services';
+import { FtuDataService, SourceReference } from '@hra-ui/services';
 import { Action, State } from '@ngxs/store';
-import { Observable, switchMap, tap } from 'rxjs';
+import { Observable, of, switchMap, tap } from 'rxjs';
 import { ActiveFtuActions, ActiveFtuSelectors } from '../active-ftu';
-import { ComputeAggregates, Load, Reset, UpdateSummaries } from './cell-summary.actions';
+import { ComputeAggregates, Load, Reset, UpdateSources, UpdateSummaries } from './cell-summary.actions';
 import { computeAggregate } from './cell-summary.helpers';
 import { CellSummaryModel, Context } from './cell-summary.model';
 
@@ -21,11 +21,15 @@ export class CellSummaryState {
   /** Data service to load the FTU data */
   private readonly dataService = inject(FtuDataService);
 
-  readonly sources = selectSnapshot(ActiveFtuSelectors.sources);
+  private readonly sources = selectSnapshot(ActiveFtuSelectors.sources);
 
-  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);
+  private readonly iri = selectSnapshot(ActiveFtuSelectors.iri);
 
-  readonly setIri = dispatch(ActiveFtuActions.SetIri);
+  private readonly setIri = dispatch(ActiveFtuActions.SetIri);
+
+  readonly setSources = dispatch(ActiveFtuActions.SetSources);
+
+  readonly setIllustrationUrl = dispatch(ActiveFtuActions.SetIllustrationUrl);
 
   /**
    * Loads the cell summary data and aggregrated of the current Iri into
@@ -33,11 +37,26 @@ export class CellSummaryState {
    */
   @Action(Load, { cancelUncompleted: true })
   load({ patchState, dispatch }: Context, { iri }: Load): Observable<unknown> {
-    this.setIri(iri);
-    return this.dataService.getCellSummaries(iri, this.sources()!).pipe(
-      tap((summaries) => patchState({ summaries, aggregates: [] })),
-      switchMap(() => dispatch(new ComputeAggregates())),
-    );
+    const loadData = () =>
+      this.dataService.getCellSummaries(iri, this.sources() ?? []).pipe(
+        tap((summaries) => patchState({ summaries, aggregates: [] })),
+        switchMap(() => dispatch(new ComputeAggregates())),
+      );
+
+    return of(this.setIri(iri)).pipe(switchMap(loadData));
+  }
+
+  @Action(UpdateSources, { cancelUncompleted: true })
+  updateSources({ patchState }: Context, { sources }: UpdateSources) {
+    this.setSources(sources as SourceReference[]);
+    const iri = this.iri();
+    if (iri) {
+      this.dataService.getCellSummaries(iri, sources as SourceReference[]).subscribe((data) => {
+        this.setIllustrationUrl(iri);
+        const aggregates = data.map(computeAggregate);
+        patchState({ aggregates });
+      });
+    }
   }
 
   /**
@@ -51,9 +70,9 @@ export class CellSummaryState {
   }
 
   @Action(UpdateSummaries)
-  updateSummaries({ patchState }: Context, { summaries }: UpdateSummaries): void {
-    const aggregates = summaries.map(computeAggregate);
-    patchState({ aggregates });
+  updateSummaries({ getState, patchState, setState, dispatch }: Context, { summaries }: UpdateSummaries): void {
+    patchState({ summaries });
+    this.computeAggregates({ getState, patchState, setState, dispatch });
   }
 
   /**

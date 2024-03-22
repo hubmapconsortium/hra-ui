@@ -3,7 +3,7 @@
 :host {
   display: grid;
   grid-template-columns: 1fr 1fr auto;
-  grid-template-rows: auto 3rem 5rem auto;
+  grid-template-rows: min-content 3rem 5rem auto;
   grid-template-areas:
     'table table table'
     'gradient-legend-header size-legend-header .'
@@ -14,8 +14,6 @@
     grid-area: table;
     max-width: 100%;
     border-bottom: 1px solid #d5dbe3;
-    min-height: 28rem;
-    max-height: 55vh;
 
     ::ng-deep .mat-mdc-tab-body-wrapper {
       border-top: 1px solid #d5dbe3;
@@ -82,7 +80,7 @@
   }
 
   .legend {
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
 
     &.gradient {
       grid-area: gradient-legend;
@@ -110,6 +108,21 @@
     right: 2rem;
     top: 5.25rem;
     z-index: 3;
+  }
+
+  hra-biomarker-table {
+    min-height: 24.5rem;
+    max-height: 45vh;
+
+    &.small {
+      height: fit-content;
+      min-height: fit-content;
+    }
+  }
+
+  hra-label-box {
+    font-size: 0.875rem;
+    padding-left: 1.5rem;
   }
 }
 

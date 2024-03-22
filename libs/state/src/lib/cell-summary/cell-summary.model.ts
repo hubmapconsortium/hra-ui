@@ -2,6 +2,21 @@ import { CellSummary, FtuDataSchemas } from '@hra-ui/services';
 import { StateContext } from '@ngxs/store';
 import { z } from 'zod';
 
+/** SourceListItem interface contains title and link to the dataset for the SourceList*/
+export interface SourceListItem {
+  authors?: string;
+  year?: number;
+  /** Title of the dataset in the SourceList */
+  title?: string;
+  doi?: string;
+
+  /** Label of the dataset in the SourceList */
+  label?: string;
+
+  /** Link to the dataset in the SourceList */
+  link: string;
+}
+
 /** Type representing a single AGGREGATE_ROW */
 export type CellSummaryAggregateRow = z.infer<typeof AGGREGATE_ROW>;
 

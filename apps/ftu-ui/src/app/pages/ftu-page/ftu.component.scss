@@ -6,7 +6,7 @@
   .content-container {
     display: flex;
 
-    .illustration {
+    .left-side {
       max-width: calc(100% - 46.3125rem);
       width: 100%;
     }
@@ -15,6 +15,7 @@
       &,
       .illustration-details {
         height: 100%;
+        z-index: 1;
       }
 
       .illustration-details {

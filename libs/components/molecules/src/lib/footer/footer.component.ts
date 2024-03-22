@@ -61,9 +61,6 @@ export class FooterComponent<T extends DownloadFormat = DownloadFormat> {
   /** Input for product title to displayed on the left side. */
   @Input() productTitle = '';
 
-  // /** Input for HRA Portal link */
-  // @Input() hraPortal = EMPTY_LINK;
-
   /** Input for Illustration metadata page link in HRA Portal */
   @Input() illustrationMetadata = EMPTY_LINK;
 
@@ -75,9 +72,6 @@ export class FooterComponent<T extends DownloadFormat = DownloadFormat> {
 
   /** Emits the selected download format */
   @Output() readonly download = new EventEmitter<T>();
-
-  // /** Emits when the contact button is clicked */
-  // @Output() readonly contactClick = new EventEmitter<void>();
 
   /** Download list popup overlay positioning */
   readonly DOWNLOADS_LIST_POSITION = DOWNLOADS_LIST_POSITION;

@@ -39,7 +39,7 @@ export class ActiveFtuState {
    */
   @Action(Load, { cancelUncompleted: true })
   load({ getState, patchState, dispatch }: Context, { iri }: Load): Observable<void> | void {
-    if (iri && getState().iri !== iri) {
+    if (getState().iri !== iri) {
       return dispatch([
         new CellSummaryActions.Load(iri),
         new IllustratorActions.Load(iri),

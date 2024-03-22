@@ -1,5 +1,6 @@
 import { ActionGroup } from '@hra-ui/cdk/state';
 import { CellSummary, Iri } from '@hra-ui/services';
+import { SourceListItem } from './cell-summary.model';
 
 /** Action base class factory */
 const Action = ActionGroup('CellSummary');
@@ -12,9 +13,16 @@ export class Load extends Action('Load') {
   }
 }
 
-export class UpdateSummaries extends Action('Update SUmmaries') {
+export class UpdateSummaries extends Action('Update Summaries') {
   /** Intializes the set iri */
   constructor(readonly summaries: CellSummary[]) {
+    super();
+  }
+}
+
+export class UpdateSources extends Action('Update Sources') {
+  /** Intializes the set iri */
+  constructor(readonly sources: SourceListItem[]) {
     super();
   }
 }

@@ -4,7 +4,6 @@ import { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { LabelBoxComponent } from '@hra-ui/components/atoms';
 import { InteractiveSvgComponent } from '@hra-ui/components/molecules';
 import { ActiveFtuSelectors, IllustratorActions, IllustratorSelectors, TissueLibrarySelectors } from '@hra-ui/state';
-import { FooterBehaviorComponent } from '../footer-behavior/footer-behavior.component';
 
 /**
  * Behavior component for medical illustration component
@@ -12,7 +11,7 @@ import { FooterBehaviorComponent } from '../footer-behavior/footer-behavior.comp
 @Component({
   selector: 'ftu-medical-illustration-behavior',
   standalone: true,
-  imports: [CommonModule, InteractiveSvgComponent, LabelBoxComponent, FooterBehaviorComponent],
+  imports: [CommonModule, InteractiveSvgComponent, LabelBoxComponent],
   templateUrl: './medical-illustration-behavior.component.html',
   styleUrls: ['./medical-illustration-behavior.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

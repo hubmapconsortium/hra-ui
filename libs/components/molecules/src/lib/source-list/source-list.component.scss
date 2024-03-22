@@ -5,6 +5,15 @@
   display: block;
   height: 100%;
 
+  .sr-only {
+    height: 0;
+  }
+
+  hra-label-box {
+    font-size: 0.875rem;
+    padding-left: 1.5rem;
+  }
+
   .toggle {
     display: flex;
     align-items: center;
@@ -17,31 +26,51 @@
 
   .table-content {
     height: calc(100% - 3.5rem);
-    overflow-y: scroll;
+    overflow: auto;
 
     &.hidden {
       display: none;
     }
 
+    .mat-column-authors {
+      padding-left: 0;
+    }
+
+    .mat-column-select,
+    .mat-column-year {
+      max-width: 56px;
+      min-width: 56px;
+    }
+
+    .mat-column-authors,
+    .mat-column-title,
+    .mat-column-doi,
+    .mat-column-link {
+      max-width: 112px;
+      min-width: 112px;
+    }
+
+    .mat-column-title,
+    .mat-column-doi,
+    .mat-column-link {
+      color: #b20a2f;
+      font-weight: 500;
+    }
+
     .mat-mdc-cell,
     .mat-mdc-header-cell {
-      padding: 0 0.5rem 0 0.5rem;
-      max-width: 7rem;
       text-overflow: ellipsis;
       white-space: nowrap;
       border-bottom-color: #d5dbe3;
     }
 
-    ::ng-deep .mat-column-title,
-    ::ng-deep .mat-column-doi,
-    ::ng-deep .mat-column-link {
-      color: #b20a2f;
-      font-weight: 500;
-    }
-
     tr {
       font-size: 0.75rem;
       height: 2rem;
+
+      .mat-column-link {
+        cursor: pointer;
+      }
     }
   }
 

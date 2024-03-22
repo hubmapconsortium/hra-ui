@@ -31,7 +31,7 @@ import {
 } from '@hra-ui/state';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
-import { FtuDataService, SourceReference } from '@hra-ui/services';
+import { FtuDataService } from '@hra-ui/services';
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
 /**
@@ -122,6 +122,8 @@ export class BiomarkerDetailsComponent {
 
   readonly updateSummaries = dispatch(CellSummaryActions.UpdateSummaries);
 
+  readonly updateSources = dispatch(CellSummaryActions.UpdateSources);
+
   /**
    * Gets tissue title from the list of tissues
    */
@@ -195,10 +197,6 @@ export class BiomarkerDetailsComponent {
   }
 
   updateSourceSelection(sources: SourceListItem[]) {
-    this.setSources(sources as SourceReference[]);
-    this.dataService.getCellSummaries(this.iri()!, sources as SourceReference[]).subscribe((data) => {
-      this.setIllustrationUrl(this.iri()!);
-      this.updateSummaries(data);
-    });
+    this.updateSources(sources);
   }
 }

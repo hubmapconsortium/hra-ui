@@ -146,6 +146,45 @@ function titleCase(name: string) {
     .join(' ');
 }
 
+function combineSummaries(summaries: CellSummary[]): CellSummary[] {
+  const types = ['Gene Biomarkers', 'Protein Biomarkers', 'Lipid Biomarkers'];
+  return types.map((type) => mergeCellSummaries(summaries, type));
+}
+
+function mergeCellSummaries(summaries: CellSummary[], label: string): CellSummary {
+  const filteredSummaries = summaries.filter((summary) => summary.label === label);
+  const aggregateBiomarkersSet = new Set<Biomarker>();
+  const aggregateCells: Cell[] = [];
+  const aggregateSummaries: CellSummaryRow[] = [];
+  for (const summary of filteredSummaries) {
+    for (const biomarker of summary.biomarkers) {
+      aggregateBiomarkersSet.add(biomarker);
+    }
+    for (const cell of summary.cells) {
+      aggregateCells.push(cell);
+    }
+    for (const sum of summary.summaries) {
+      const match = aggregateSummaries.find((entry) => entry.biomarker === sum.biomarker);
+      if (match) {
+        match.count += sum.count;
+        match.meanExpression =
+          (match.count * match.meanExpression + sum.count * sum.meanExpression) / (match.count + sum.count);
+      } else {
+        aggregateSummaries.push(sum);
+      }
+    }
+  }
+
+  const aggregateBiomarkers = Array.from(aggregateBiomarkersSet);
+
+  return {
+    label: label,
+    biomarkers: aggregateBiomarkers,
+    cells: aggregateCells,
+    summaries: aggregateSummaries,
+  };
+}
+
 /**
  * FtuDataImplService - Angular service for handling FTU (Functional Tissue Unit) data operations.
  */
@@ -296,7 +335,7 @@ export class FtuDataImplService extends FtuDataService {
     const sourceIds = sources.map((source) => source.id);
     const item = data['@graph'].filter(({ cell_source }) => cell_source === iri);
     const itemFilteredBySource = item.filter((source) => sourceIds.includes(source['dataset_id']));
-    if (itemFilteredBySource === undefined || itemFilteredBySource.length == 0) {
+    if (itemFilteredBySource.length == 0) {
       return [];
     }
     return itemFilteredBySource;
@@ -425,7 +464,7 @@ export class FtuDataImplService extends FtuDataService {
         });
       }
     });
-    return this.combineSummaries(cellSummary);
+    return combineSummaries(cellSummary);
   }
 
   /**
@@ -442,44 +481,5 @@ export class FtuDataImplService extends FtuDataService {
       nodes[parentId]?.children.push(id);
     }
     return { root: BASE_IRI, nodes };
-  }
-
-  private combineSummaries(summaries: CellSummary[]): CellSummary[] {
-    const types = ['Gene Biomarkers', 'Protein Biomarkers', 'Lipid Biomarkers'];
-    return types.map((type) => this.mergeCellSummaries(summaries, type));
-  }
-
-  private mergeCellSummaries(summaries: CellSummary[], label: string): CellSummary {
-    const filteredSummaries = summaries.filter((summary) => summary.label === label);
-    const aggregateBiomarkersSet = new Set();
-    const aggregateCells: Cell[] = [];
-    const aggregateSummaries: CellSummaryRow[] = [];
-    for (const summary of filteredSummaries) {
-      for (const biomarker of summary.biomarkers) {
-        aggregateBiomarkersSet.add(biomarker);
-      }
-      for (const cell of summary.cells) {
-        aggregateCells.push(cell);
-      }
-      for (const sum of summary.summaries) {
-        const match = aggregateSummaries.find((entry) => entry.biomarker === sum.biomarker);
-        if (match) {
-          match.count += sum.count;
-          match.meanExpression =
-            (match.count * match.meanExpression + sum.count * sum.meanExpression) / (match.count + sum.count);
-        } else {
-          aggregateSummaries.push(sum);
-        }
-      }
-    }
-
-    const aggregateBiomarkers = Array.from(aggregateBiomarkersSet) as Biomarker[];
-
-    return {
-      label: label,
-      biomarkers: aggregateBiomarkers,
-      cells: aggregateCells,
-      summaries: aggregateSummaries,
-    };
   }
 }

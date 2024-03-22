@@ -7,9 +7,9 @@
 
 <div class="table-content" [class.hidden]="!showTable">
   <table *ngIf="sources.length !== 0" mat-table [dataSource]="dataSource" matSort (matSortChange)="handleSort()">
-    <!-- <caption class="sr-only">
+    <caption class="sr-only">
       Source List Table with Title and Links
-    </caption> -->
+    </caption>
 
     <!-- Checkbox Column -->
     <ng-container matColumnDef="select">
