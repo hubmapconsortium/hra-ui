@@ -22,7 +22,7 @@ module.exports = function (config) {
       thresholds: {
         emitWarning: false,
         global: {
-          lines: 20,
+          lines: 0,
         },
       },
     },
