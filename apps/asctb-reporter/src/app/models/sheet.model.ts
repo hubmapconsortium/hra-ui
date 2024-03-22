@@ -255,7 +255,7 @@ export interface UploadForm {
   gid: string;
 }
 
-export interface selectedOrganBeforeFilter {
+export interface SelectedOrganBeforeFilter {
   selector?: string;
   organName?: string;
   filteredOut?: boolean;

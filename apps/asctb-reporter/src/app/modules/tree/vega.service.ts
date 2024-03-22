@@ -125,11 +125,7 @@ export class VegaService {
       const filteredProtiens = states.sheetState.filteredProtiens;
 
       if (data.length) {
-        try {
-          this.bm.makeBimodalData(data, treeData, bimodalConfig, false, sheetConfig, omapConfig, filteredProtiens);
-        } catch (err) {
-          console.log(err);
-        }
+        this.bm.makeBimodalData(data, treeData, bimodalConfig, false, sheetConfig, omapConfig, filteredProtiens);
       }
     });
   }

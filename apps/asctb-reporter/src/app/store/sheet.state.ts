@@ -45,7 +45,7 @@ import {
   SheetInfo,
   Structure,
   VersionDetail,
-  selectedOrganBeforeFilter,
+  SelectedOrganBeforeFilter,
 } from '../models/sheet.model';
 import { SheetService } from '../services/sheet.service';
 import { TreeState } from './tree.state';
@@ -131,8 +131,10 @@ export interface SheetStateModel {
   /**
    * Stores all organs before OMAP organs only filter
    */
-  selectedOrgansBeforeFilter: selectedOrganBeforeFilter[];
+  selectedOrgansBeforeFilter: SelectedOrganBeforeFilter[];
 }
+
+const FETCHING_TEXT = 'Fetching data...';
 
 @State<SheetStateModel>({
   name: 'sheetState',
@@ -426,7 +428,7 @@ export class SheetState {
     { getState, dispatch, patchState }: StateContext<SheetStateModel>,
     { compareData }: FetchCompareData,
   ) {
-    dispatch(new OpenLoading('Fetching data...'));
+    dispatch(new OpenLoading(FETCHING_TEXT));
     dispatch(new CloseBottomSheet());
 
     patchState({
@@ -527,7 +529,7 @@ export class SheetState {
 
     selectedOrgans = this.omapFiltering(state, omapConfig, selectedOrgans);
 
-    dispatch(new OpenLoading('Fetching data...'));
+    dispatch(new OpenLoading(FETCHING_TEXT));
 
     dispatch(new StateReset(TreeState));
     dispatch(new CloseBottomSheet());
@@ -707,7 +709,7 @@ export class SheetState {
   }
 
   private unionOldSelectedAndNewSelected(
-    beforeFilterOrgans: selectedOrganBeforeFilter[],
+    beforeFilterOrgans: SelectedOrganBeforeFilter[],
     currentlySelectedOrgans: string[],
   ): string[] {
     // Don't add if was removed by user in currentlySelected
@@ -751,7 +753,7 @@ export class SheetState {
     }
   }
 
-  private convertOrganToBeforeFilterFormat(organ: string, filteredOut: boolean): selectedOrganBeforeFilter {
+  private convertOrganToBeforeFilterFormat(organ: string, filteredOut: boolean): SelectedOrganBeforeFilter {
     const [organName, version] = organ.split('-');
     return { selector: organ, organName, version, filteredOut };
   }
@@ -777,7 +779,7 @@ export class SheetState {
     { getState, dispatch, patchState }: StateContext<SheetStateModel>,
     { sheet }: FetchAllOrganData,
   ) {
-    dispatch(new OpenLoading('Fetching data...'));
+    dispatch(new OpenLoading(FETCHING_TEXT));
     dispatch(new StateReset(TreeState));
     dispatch(new CloseBottomSheet());
     dispatch(new ReportLog(LOG_TYPES.MSG, sheet.display, LOG_ICONS.file));
@@ -864,7 +866,7 @@ export class SheetState {
     { sheet }: FetchSheetData,
   ) {
     const mode = getState().mode;
-    dispatch(new OpenLoading('Fetching data...'));
+    dispatch(new OpenLoading(FETCHING_TEXT));
     dispatch(new StateReset(TreeState));
     dispatch(new CloseBottomSheet());
     dispatch(new ReportLog(LOG_TYPES.MSG, sheet.display, LOG_ICONS.file));

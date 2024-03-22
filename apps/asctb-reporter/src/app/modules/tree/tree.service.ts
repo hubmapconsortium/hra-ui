@@ -131,7 +131,7 @@ export class TreeService {
       delete (root as { parent?: unknown }).parent;
       nodes.push(root);
       let flag = 0;
-      const AS_AS_organWise: Record<string, number> = {};
+      const AsByAsOrganWise: Record<string, number> = {};
 
       data.forEach((row) => {
         parent = root;
@@ -163,11 +163,11 @@ export class TreeService {
             });
           }
           if (s === -1) {
-            if (Object.prototype.hasOwnProperty.call(AS_AS_organWise, row?.organName) && flag >= 2) {
-              AS_AS_organWise[row?.organName] += 1;
+            if (Object.prototype.hasOwnProperty.call(AsByAsOrganWise, row?.organName) && flag >= 2) {
+              AsByAsOrganWise[row?.organName] += 1;
             } else {
               flag += 1;
-              AS_AS_organWise[row?.organName] = 1;
+              AsByAsOrganWise[row?.organName] = 1;
             }
             id += 1;
             const newNode = new TNode(
@@ -214,11 +214,11 @@ export class TreeService {
       allParentIds.delete(1);
       const allParentIdsArray = [...allParentIds];
       if (!isReport) {
-        this.store.dispatch(new UpdateLinksData(0, 0, {}, {}, 0, AS_AS_organWise));
+        this.store.dispatch(new UpdateLinksData(0, 0, {}, {}, 0, AsByAsOrganWise));
         this.store.dispatch(new UpdateVegaSpec(spec));
         this.vs.renderGraph(spec);
       } else {
-        this.store.dispatch(new UpdateLinksData(0, 0, {}, {}, 0, AS_AS_organWise));
+        this.store.dispatch(new UpdateLinksData(0, 0, {}, {}, 0, AsByAsOrganWise));
         this.bm.makeBimodalData(
           data,
           ((spec.data?.[0] as ValuesData).values as TNode[]).filter((x) => !allParentIdsArray.includes(x.id)),

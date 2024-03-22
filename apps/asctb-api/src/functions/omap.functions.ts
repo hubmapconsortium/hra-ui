@@ -10,7 +10,7 @@ export class OmapDataTransformer {
   private readonly isLegacyOmap: boolean;
   private columns: string[];
 
-  constructor(data: string[][], legacy: boolean = false) {
+  constructor(data: string[][], legacy = false) {
     this.isLegacyOmap = legacy;
     this.data = data;
     this.headerRow = legacy
