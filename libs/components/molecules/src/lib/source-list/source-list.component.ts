@@ -88,6 +88,8 @@ export class SourceListComponent implements OnChanges {
     if ('sources' in changes) {
       this.selection.clear();
       this.dataSource = new MatTableDataSource<SourceListItem>(this.sources);
+      console.log(this.dataSource.data);
+      console.log('sort');
       this.dataSource.sort = this.sort;
       this.dataSource.data.forEach((row) => this.selection.select(row));
       this.selectionChanged.emit(this.selection.selected);
@@ -133,5 +135,9 @@ export class SourceListComponent implements OnChanges {
   toggleRow(row: SourceListItem) {
     this.selection.toggle(row);
     this.selectionChanged.emit(this.selection.selected);
+  }
+
+  handleSort() {
+    this.dataSource.sort = this.sort;
   }
 }

@@ -8,7 +8,7 @@
   .toggle {
     display: flex;
     align-items: center;
-    height: 3.5rem;
+    height: 3rem;
     grid-area: source-list-header;
     color: var(--dark-primary-text);
     border-top: 1px solid #d5dbe3;
@@ -17,6 +17,7 @@
 
   .table-content {
     height: calc(100% - 3.5rem);
+    overflow-y: scroll;
 
     &.hidden {
       display: none;
@@ -36,15 +37,11 @@
     ::ng-deep .mat-column-link {
       color: #b20a2f;
       font-weight: 500;
-
-      &:hover {
-        overflow: visible;
-        white-space: unset;
-      }
     }
 
     tr {
       font-size: 0.75rem;
+      height: 2rem;
     }
   }
 

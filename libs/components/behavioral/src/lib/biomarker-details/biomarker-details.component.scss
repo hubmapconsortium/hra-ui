@@ -3,7 +3,7 @@
 :host {
   display: grid;
   grid-template-columns: 1fr 1fr auto;
-  grid-template-rows: auto 3rem 5rem minmax(auto, 1fr);
+  grid-template-rows: auto 3rem 5rem auto;
   grid-template-areas:
     'table table table'
     'gradient-legend-header size-legend-header .'
@@ -14,10 +14,11 @@
     grid-area: table;
     max-width: 100%;
     border-bottom: 1px solid #d5dbe3;
+    min-height: 28rem;
+    max-height: 55vh;
 
     ::ng-deep .mat-mdc-tab-body-wrapper {
       border-top: 1px solid #d5dbe3;
-      max-height: 36rem;
     }
 
     ::ng-deep .mat-mdc-tab {
@@ -99,6 +100,8 @@
 
   .source-list {
     grid-area: source-list;
+    overflow: hidden;
+    min-height: 16.5rem;
   }
 
   .cursor {
