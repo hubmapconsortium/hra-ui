@@ -116,6 +116,7 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if ('data' in changes) {
       this.dataSource.data = this.data;
+      this.sortTable();
     }
 
     if ('illustrationIds' in changes) {

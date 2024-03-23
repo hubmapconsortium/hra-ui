@@ -95,35 +95,39 @@ const DATASETS = z.object({
   }).array(),
 });
 
+const CELL_SUMMARY = z.object({
+  cell_source: IRI,
+  summary: z
+    .object({
+      cell_id: z.string(),
+      cell_label: z.string(),
+      genes: z
+        .object({
+          '@type': z.string(),
+          gene_id: z.string(),
+          gene_label: z.string(),
+          mean_expression: z.number(),
+        })
+        .array(),
+      count: z.number(),
+      percentage: z.number(),
+      dataset_count: z.number().optional(),
+    })
+    .array(),
+});
+
 /** Base CELL_SOURCE_ITEM Object  having cell_source */
 const CELL_SOURCE_ITEM = z.object({
   cell_source: IRI,
-  dataset_id: IRI,
+  dataset_id: CELL_SUMMARY,
 });
 
 /** CELL_SUMMARIES zod Object reflecting the format in the file*/
 const CELL_SUMMARIES = z.object({
   '@graph': CELL_SOURCE_ITEM.extend({
     cell_source: IRI,
-    dataset_id: IRI,
+    dataset_id: CELL_SUMMARY,
     biomarker_type: z.string(),
-    summary: z
-      .object({
-        cell_id: z.string(),
-        cell_label: z.string(),
-        genes: z
-          .object({
-            '@type': z.string(),
-            gene_id: z.string(),
-            gene_label: z.string(),
-            mean_expression: z.number(),
-          })
-          .array(),
-        count: z.number(),
-        percentage: z.number(),
-        dataset_count: z.number().optional(),
-      })
-      .array(),
   }).array(),
 });
 
@@ -334,7 +338,7 @@ export class FtuDataImplService extends FtuDataService {
   private findCellSummaries<T extends CellSourceItem>(data: Graph<T>, iri: Iri, sources: SourceReference[]): T[] {
     const sourceIds = sources.map((source) => source.id);
     const item = data['@graph'].filter(({ cell_source }) => cell_source === iri);
-    const itemFilteredBySource = item.filter((source) => sourceIds.includes(source['dataset_id']));
+    const itemFilteredBySource = item.filter((source) => sourceIds.includes(source['dataset_id']['cell_source']));
     if (itemFilteredBySource.length == 0) {
       return [];
     }
@@ -413,7 +417,7 @@ export class FtuDataImplService extends FtuDataService {
    * @returns
    */
   private constructCellSummaries(data: Cell_Summary['@graph']): CellSummary[] {
-    type SummaryItem = Cell_Summary['@graph'][number]['summary'][number];
+    type SummaryItem = Cell_Summary['@graph'][number]['dataset_id']['summary'][number];
     const cellSummary: CellSummary[] = [];
     const defaultBiomarkerLables = ['gene', 'protein', 'lipid'];
     const biomarkersPresent = new Set(data.map((summary) => summary.biomarker_type.toLowerCase()));
@@ -424,7 +428,7 @@ export class FtuDataImplService extends FtuDataService {
       }));
 
     data.forEach((summaryGroup) => {
-      const nestedSummaries = summaryGroup.summary.map(expandGenes);
+      const nestedSummaries = summaryGroup.dataset_id.summary.map(expandGenes);
       const summary = nestedSummaries.reduce((acc, items) => acc.concat(items), [] as (typeof nestedSummaries)[number]);
 
       const cells = summary.map((entry) => ({
