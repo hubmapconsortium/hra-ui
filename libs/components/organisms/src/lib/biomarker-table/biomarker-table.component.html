@@ -3,7 +3,7 @@
     Cell type table by Biomarker
   </caption>
 
-  <ng-container matColumnDef="type">
+  <ng-container matColumnDef="type" sticky>
     <th mat-header-cell *matHeaderCellDef>Cell Type</th>
 
     <td class="type" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">
@@ -12,7 +12,7 @@
     </td>
   </ng-container>
 
-  <ng-container matColumnDef="count">
+  <ng-container matColumnDef="count" sticky>
     <th class="count" mat-header-cell *matHeaderCellDef>Cell Count</th>
 
     <td class="count" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">

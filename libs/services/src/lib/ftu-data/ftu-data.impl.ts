@@ -49,7 +49,6 @@ type Datasets = z.infer<typeof DATASETS>;
 type Cell_Summary = z.infer<typeof CELL_SUMMARIES>;
 type IllusrationFiles = Illustrations['@graph'][number]['illustration_files'];
 type dataSources = Datasets['@graph'][number]['data_sources'];
-
 /** Base ID Object */
 const ID_ITEM = z.object({
   '@id': IRI,
@@ -95,39 +94,33 @@ const DATASETS = z.object({
   }).array(),
 });
 
-const CELL_SUMMARY = z.object({
-  cell_source: IRI,
-  summary: z
-    .object({
-      cell_id: z.string(),
-      cell_label: z.string(),
-      genes: z
-        .object({
-          '@type': z.string(),
-          gene_id: z.string(),
-          gene_label: z.string(),
-          mean_expression: z.number(),
-        })
-        .array(),
-      count: z.number(),
-      percentage: z.number(),
-      dataset_count: z.number().optional(),
-    })
-    .array(),
-});
-
 /** Base CELL_SOURCE_ITEM Object  having cell_source */
 const CELL_SOURCE_ITEM = z.object({
   cell_source: IRI,
-  dataset_id: CELL_SUMMARY,
 });
 
 /** CELL_SUMMARIES zod Object reflecting the format in the file*/
 const CELL_SUMMARIES = z.object({
   '@graph': CELL_SOURCE_ITEM.extend({
     cell_source: IRI,
-    dataset_id: CELL_SUMMARY,
     biomarker_type: z.string(),
+    summary: z
+      .object({
+        cell_id: z.string(),
+        cell_label: z.string(),
+        genes: z
+          .object({
+            '@type': z.string(),
+            gene_id: z.string(),
+            gene_label: z.string(),
+            mean_expression: z.number(),
+          })
+          .array(),
+        count: z.number(),
+        percentage: z.number(),
+        dataset_count: z.number().optional(),
+      })
+      .array(),
   }).array(),
 });
 
@@ -150,6 +143,16 @@ function titleCase(name: string) {
     .join(' ');
 }
 
+function calculateDatasetCount(id: string, countsList: Record<string, boolean>[]): number {
+  let result = 0;
+  for (const list of countsList) {
+    if (list[id]) {
+      result = result + 1;
+    }
+  }
+  return result;
+}
+
 function combineSummaries(summaries: CellSummary[]): CellSummary[] {
   const types = ['Gene Biomarkers', 'Protein Biomarkers', 'Lipid Biomarkers'];
   return types.map((type) => mergeCellSummaries(summaries, type));
@@ -157,29 +160,45 @@ function combineSummaries(summaries: CellSummary[]): CellSummary[] {
 
 function mergeCellSummaries(summaries: CellSummary[], label: string): CellSummary {
   const filteredSummaries = summaries.filter((summary) => summary.label === label);
-  const aggregateBiomarkersSet = new Set<Biomarker>();
+  const aggregateBiomarkers: Biomarker[] = [];
   const aggregateCells: Cell[] = [];
   const aggregateSummaries: CellSummaryRow[] = [];
+  const summariesList: CellSummaryRow[][] = [];
+
   for (const summary of filteredSummaries) {
     for (const biomarker of summary.biomarkers) {
-      aggregateBiomarkersSet.add(biomarker);
+      aggregateBiomarkers.push(biomarker);
     }
     for (const cell of summary.cells) {
       aggregateCells.push(cell);
     }
+
+    summariesList.push(summary.summaries);
+    const countsList: Record<string, boolean>[] = [];
+    for (const summaries of summariesList) {
+      const datasetCounts: Record<string, boolean> = {};
+      for (const sum of summaries) {
+        const id = sum.cell + sum.biomarker;
+        if (!datasetCounts[id]) {
+          datasetCounts[id] = true;
+        }
+      }
+      countsList.push(datasetCounts);
+    }
+
     for (const sum of summary.summaries) {
-      const match = aggregateSummaries.find((entry) => entry.biomarker === sum.biomarker);
+      const match = aggregateSummaries.find((entry) => entry.biomarker === sum.biomarker && entry.cell === sum.cell);
       if (match) {
+        const id = match.cell + match.biomarker;
         match.count += sum.count;
         match.meanExpression =
           (match.count * match.meanExpression + sum.count * sum.meanExpression) / (match.count + sum.count);
+        match.dataset_count = calculateDatasetCount(id, countsList);
       } else {
-        aggregateSummaries.push(sum);
+        aggregateSummaries.push({ ...sum, dataset_count: 1 });
       }
     }
   }
-
-  const aggregateBiomarkers = Array.from(aggregateBiomarkersSet);
 
   return {
     label: label,
@@ -337,8 +356,7 @@ export class FtuDataImplService extends FtuDataService {
    */
   private findCellSummaries<T extends CellSourceItem>(data: Graph<T>, iri: Iri, sources: SourceReference[]): T[] {
     const sourceIds = sources.map((source) => source.id);
-    const item = data['@graph'].filter(({ cell_source }) => cell_source === iri);
-    const itemFilteredBySource = item.filter((source) => sourceIds.includes(source['dataset_id']['cell_source']));
+    const itemFilteredBySource = data['@graph'].filter((source) => sourceIds.includes(source['cell_source']));
     if (itemFilteredBySource.length == 0) {
       return [];
     }
@@ -417,7 +435,7 @@ export class FtuDataImplService extends FtuDataService {
    * @returns
    */
   private constructCellSummaries(data: Cell_Summary['@graph']): CellSummary[] {
-    type SummaryItem = Cell_Summary['@graph'][number]['dataset_id']['summary'][number];
+    type SummaryItem = Cell_Summary['@graph'][number]['summary'][number];
     const cellSummary: CellSummary[] = [];
     const defaultBiomarkerLables = ['gene', 'protein', 'lipid'];
     const biomarkersPresent = new Set(data.map((summary) => summary.biomarker_type.toLowerCase()));
@@ -428,7 +446,7 @@ export class FtuDataImplService extends FtuDataService {
       }));
 
     data.forEach((summaryGroup) => {
-      const nestedSummaries = summaryGroup.dataset_id.summary.map(expandGenes);
+      const nestedSummaries = summaryGroup.summary.map(expandGenes);
       const summary = nestedSummaries.reduce((acc, items) => acc.concat(items), [] as (typeof nestedSummaries)[number]);
 
       const cells = summary.map((entry) => ({
@@ -447,7 +465,6 @@ export class FtuDataImplService extends FtuDataService {
         count: entry.count,
         percentage: entry.percentage,
         meanExpression: entry.mean_expression,
-        dataset_count: entry.dataset_count,
       }));
 
       cellSummary.push({
