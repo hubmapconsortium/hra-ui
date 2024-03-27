@@ -74,12 +74,12 @@
     }
   }
 
-  ::ng-deep .mdc-checkbox__background {
-    background-color: transparent !important;
-    border-color: black !important;
+  ::ng-deep mat-checkbox {
+    --mdc-checkbox-selected-checkmark-color: #201e3d !important;
 
-    .mdc-checkbox__checkmark {
-      color: #201e3d !important;
+    .mdc-checkbox__background {
+      background-color: transparent !important;
+      border-color: black !important;
     }
   }
 }

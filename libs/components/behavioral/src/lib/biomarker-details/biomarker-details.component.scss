@@ -6,7 +6,7 @@
   grid-template-rows: min-content 3rem 5rem auto;
   grid-template-areas:
     'table table table'
-    'gradient-legend-header size-legend-header .'
+    'gradient-legend-header size-legend-header size-legend-header'
     'gradient-legend size-legend .'
     'source-list source-list source-list';
 
