@@ -6,14 +6,14 @@
 
 <div class="filler"></div>
 
-<button class="button" mat-stroked-button color="accent" (click)="aboutClicked()" disableRipple>
+<button class="button explorer" mat-button (click)="aboutClicked()" disableRipple>
   <a class="about" [hraLink]="aboutLink">
     <mat-icon class="icon">info_outlined</mat-icon>
     <span class="text">FTU Explorer</span>
   </a>
 </button>
 
-<button class="button" mat-stroked-button color="accent" (click)="contactClick.emit()" disableRipple>
+<button class="button contact" mat-button (click)="contactClick.emit()" disableRipple>
   <mat-icon>mail_outlined</mat-icon>
   Contact
 </button>
