@@ -5,8 +5,8 @@ import { selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import { HeaderComponent } from '@hra-ui/components/molecules';
 import { ResourceIds as Ids, LinkIds } from '@hra-ui/state';
-import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
 /** Component for Header Behavior */
 @Component({

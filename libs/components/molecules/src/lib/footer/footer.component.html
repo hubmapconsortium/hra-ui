@@ -24,9 +24,19 @@
   Download Illustration
 </button>
 
-<button class="button" mat-button [hraLink]="illustrationMetadata" disableRipple>
+<button class="button illustration-metadata" mat-button [hraLink]="illustrationMetadata" disableRipple>
   <mat-icon>info_outlined</mat-icon>
   Illustration Metadata
+</button>
+
+<button class="button contact" *ngIf="isSmall" mat-button (click)="contactClick.emit()" disableRipple>
+  <mat-icon>mail_outlined</mat-icon>
+  Contact
+</button>
+
+<button class="button ftu-explorer" *ngIf="isSmall" mat-button [hraLink]="aboutLink" disableRipple>
+  <mat-icon>open_in_new</mat-icon>
+  HRA Portal
 </button>
 
 <div class="filler" *ngIf="!isSmall"></div>

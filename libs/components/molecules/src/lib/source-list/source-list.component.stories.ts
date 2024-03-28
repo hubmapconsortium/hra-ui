@@ -1,13 +1,13 @@
 import { Meta, Story } from '@storybook/angular';
 
-import { SourceListComponent } from './source-list.component';
+import { SourceListComponent, SourceListItem } from './source-list.component';
 
 export default {
   title: 'SourceListComponent',
   component: SourceListComponent,
-} as Meta<SourceListComponent>;
+} as Meta<SourceListComponent<SourceListItem>>;
 
-const Template: Story<SourceListComponent> = (args) => ({ props: args });
+const Template: Story<SourceListComponent<SourceListItem>> = (args) => ({ props: args });
 
 export const Default = Template.bind({});
 Default.args = {
@@ -16,16 +16,25 @@ Default.args = {
       title: 'Kidney Precision Medicine Project',
       label: 'Ancillary Study Data, Clinical Data, HRT Codebook',
       link: 'google.com',
+      authors: ['Author', 'Author'],
+      year: 1999,
+      doi: 'aaaaaaaaaaaaa',
     },
     {
       title: '[Dataset Owner Title]',
       label: '<Dataset Title + Link to Dataset>',
       link: 'google.com',
+      authors: ['Author', 'Author', 'Author', 'Author', 'Author'],
+      year: 1980,
+      doi: 'bbbbbbbbbb',
     },
     {
       title: '[Dataset Owner Title]',
       label: '<Dataset Title + Link to Dataset>',
       link: 'google.com',
+      authors: ['Author', 'Author', 'Author'],
+      year: 2022,
+      doi: 'cccccccccc',
     },
     {
       title:
@@ -33,6 +42,9 @@ Default.args = {
       label:
         '<Extremely long dataset title that wraps around to the next line as you can see in this example + link to dataset>',
       link: 'google.com',
+      authors: ['Author', 'Author', 'Author'],
+      year: 2015,
+      doi: 'dddddddddddddd',
     },
   ],
 };

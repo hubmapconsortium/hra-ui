@@ -33,6 +33,9 @@ export class FooterBehaviorComponent {
   /** Metadata page link routing after clicking on Illustration */
   readonly illustrationMetadata = LinkIds.Illustration;
 
+  /** Input for about link for user click action. */
+  readonly aboutLink = LinkIds.About;
+
   /** Embed link routing after clicking on Embed */
   readonly embed = LinkIds.Embed;
 
