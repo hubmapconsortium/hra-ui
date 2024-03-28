@@ -1,6 +1,5 @@
 import { ActionGroup } from '@hra-ui/cdk/state';
-import { CellSummary, Iri } from '@hra-ui/services';
-import { SourceListItem } from './cell-summary.model';
+import { CellSummary, Iri, SourceReference } from '@hra-ui/services';
 
 /** Action base class factory */
 const Action = ActionGroup('CellSummary');
@@ -13,16 +12,17 @@ export class Load extends Action('Load') {
   }
 }
 
-export class UpdateSummaries extends Action('Update Summaries') {
-  /** Intializes the set iri */
-  constructor(readonly summaries: CellSummary[]) {
+export class FilterSummaries extends Action('Filter Summaries') {
+  constructor(readonly sources: SourceReference[]) {
     super();
   }
 }
 
-export class UpdateSources extends Action('Update Sources') {
+export class CombineSummariesByBiomarker extends Action('Combine Summaries by Biomarker') {}
+
+export class UpdateSummaries extends Action('Update Summaries') {
   /** Intializes the set iri */
-  constructor(readonly sources: SourceListItem[]) {
+  constructor(readonly summaries: CellSummary[]) {
     super();
   }
 }

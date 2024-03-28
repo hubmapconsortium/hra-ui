@@ -15,24 +15,33 @@ import { FtuDataService } from './ftu-data.service';
 /**
  * Dummy data for Source References
  */
-const sourceReferences = [
+const sourceReferences: SourceReference[] = [
   {
     id: 'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
     title: 'Kidney Precision Medicine Project',
     label: 'Ancillary Study Data, Clinical Data, HRT Codebook',
     link: 'google.com',
+    authors: [],
+    year: -1,
+    doi: '',
   },
   {
     id: 'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
     title: '[Dataset Owner Title]',
     label: '<Dataset Title + Link to Dataset>',
     link: 'google.com',
+    authors: [],
+    year: -1,
+    doi: '',
   },
   {
     id: 'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
     title: '[Dataset Owner Title]',
     label: '<Dataset Title + Link to Dataset>',
     link: 'google.com',
+    authors: [],
+    year: -1,
+    doi: '',
   },
   {
     id: 'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
@@ -41,24 +50,36 @@ const sourceReferences = [
     label:
       '<Extremely long dataset title that wraps around to the next line as you can see in this example + link to dataset>',
     link: 'google.com',
+    authors: [],
+    year: -1,
+    doi: '',
   },
   {
     id: 'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
     title: 'Kidney Precision Medicine Project',
     label: 'Ancillary Study Data, Clinical Data, HRT Codebook',
     link: 'google.com',
+    authors: [],
+    year: -1,
+    doi: '',
   },
   {
     id: 'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
     title: '[Dataset Owner Title]',
     label: '<Dataset Title + Link to Dataset>',
     link: 'google.com',
+    authors: [],
+    year: -1,
+    doi: '',
   },
   {
     id: 'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
     title: '[Dataset Owner Title]',
     label: '<Dataset Title + Link to Dataset>',
     link: 'google.com',
+    authors: [],
+    year: -1,
+    doi: '',
   },
   {
     id: 'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
@@ -67,6 +88,9 @@ const sourceReferences = [
     label:
       '<Extremely long dataset title that wraps around to the next line as you can see in this example + link to dataset>',
     link: 'google.com',
+    authors: [],
+    year: -1,
+    doi: '',
   },
 ];
 
@@ -75,6 +99,7 @@ const sourceReferences = [
  */
 const CELL_SUMMARY_DATA: CellSummary[] = Object.values(MOCK_SUMMARIES).map((summary) => ({
   label: summary.label,
+  cellSource: summary.cellSource,
   cells: summary.entries.map((entry) => ({
     id: entry.cell.id as Iri,
     label: entry.cell.label,

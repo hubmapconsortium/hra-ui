@@ -14,7 +14,7 @@ import {
   SizeLegend,
   SizeLegendComponent,
 } from '@hra-ui/components/atoms';
-import { BiomarkerTableDataCardComponent, SourceListComponent, SourceListItem } from '@hra-ui/components/molecules';
+import { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/components/molecules';
 import { BiomarkerTableComponent, TissueInfo } from '@hra-ui/components/organisms';
 import {
   ActiveFtuActions,
@@ -26,6 +26,7 @@ import {
   IllustratorSelectors,
   ResourceTypes as RTypes,
   ScreenModeAction,
+  SourceRefsActions,
   SourceRefsSelectors,
   TissueLibrarySelectors,
 } from '@hra-ui/state';
@@ -90,9 +91,6 @@ export class BiomarkerDetailsComponent {
   /** List of sources with titles and links displayed to the user */
   readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);
 
-  /** List of sources with titles and links displayed to the user */
-  readonly sources = selectSnapshot(ActiveFtuSelectors.sources);
-
   /**
    * Iri  of medical illustration behavior component
    */
@@ -112,7 +110,7 @@ export class BiomarkerDetailsComponent {
   /** Action to highlight a cell type */
   readonly highlightCell = dispatch(IllustratorActions.HighlightCellType);
 
-  readonly setSources = dispatch(ActiveFtuActions.SetSources);
+  readonly setSelectedSources = dispatch(SourceRefsActions.SetSelectedSources);
 
   readonly setIllustrationUrl = dispatch(ActiveFtuActions.SetIllustrationUrl);
 
@@ -121,8 +119,6 @@ export class BiomarkerDetailsComponent {
   readonly computeAggregates = dispatch(CellSummaryActions.ComputeAggregates);
 
   readonly updateSummaries = dispatch(CellSummaryActions.UpdateSummaries);
-
-  readonly updateSources = dispatch(CellSummaryActions.UpdateSources);
 
   /**
    * Gets tissue title from the list of tissues
@@ -194,9 +190,5 @@ export class BiomarkerDetailsComponent {
    */
   logTabChange(event: MatTabChangeEvent) {
     this.ga.event('biomarker_tab_change', event.tab ? event.tab.textLabel : '');
-  }
-
-  updateSourceSelection(sources: SourceListItem[]) {
-    this.updateSources(sources);
   }
 }

@@ -19,15 +19,16 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 /** SourceListItem interface contains title and link to the dataset for the SourceList*/
 export interface SourceListItem {
-  authors?: string;
-  year?: number;
+  authors: string[];
+
+  year: number;
   /** Title of the dataset in the SourceList */
-  title?: string;
-  doi?: string;
+  title: string;
+
+  doi: string;
 
   /** Label of the dataset in the SourceList */
-  label?: string;
-
+  label: string;
   /** Link to the dataset in the SourceList */
   link: string;
 }
@@ -49,9 +50,9 @@ export interface SourceListItem {
   styleUrls: ['./source-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SourceListComponent implements OnChanges {
+export class SourceListComponent<T extends SourceListItem> implements OnChanges {
   /** List of sources with titles and links displayed to the user */
-  @Input() sources: SourceListItem[] = [];
+  @Input() sources: T[] = [];
   /**
    * Input  buttonon text of empty biomarker component.
    */
@@ -67,16 +68,16 @@ export class SourceListComponent implements OnChanges {
    */
   showTable = true;
 
-  selection = new SelectionModel<SourceListItem>(true, []);
+  selection = new SelectionModel<T>(true, []);
 
-  dataSource = new MatTableDataSource<SourceListItem>();
+  dataSource = new MatTableDataSource<T>();
 
   displayedColumns: string[] = ['select', 'authors', 'year', 'title', 'doi', 'link'];
 
   /** Emits when the contact button is clicked */
   @Output() readonly collaborateClick = new EventEmitter<void>();
 
-  @Output() readonly selectionChanged = new EventEmitter<SourceListItem[]>();
+  @Output() readonly selectionChanged = new EventEmitter<T[]>();
 
   set sort(sorter: MatSort) {
     this.dataSource.sort = sorter;
@@ -133,7 +134,7 @@ export class SourceListComponent implements OnChanges {
     this.selectionChanged.emit(this.selection.selected);
   }
 
-  toggleRow(row: SourceListItem) {
+  toggleRow(row: T) {
     this.selection.toggle(row);
     this.selectionChanged.emit(this.selection.selected);
   }

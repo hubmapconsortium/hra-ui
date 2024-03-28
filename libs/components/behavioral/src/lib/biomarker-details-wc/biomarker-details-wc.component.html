@@ -11,6 +11,7 @@
   mat-stretch-tabs="false"
   color="accent"
   (selectedTabChange)="logTabChange($event)"
+  disablePagination="true"
 >
   <mat-tab labelClass="extraTab" label="FTU Illustration">
     <hra-interactive-svg
@@ -21,7 +22,7 @@
     >
     </hra-interactive-svg>
   </mat-tab>
-  <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="tab.label">
+  <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="'Cell Types by ' + tab.label">
     <hra-biomarker-table
       *ngIf="tab.rows.length !== 0"
       [data]="$any(tab.rows)"
@@ -29,6 +30,7 @@
       [gradient]="gradients()"
       [sizes]="sizes()"
       [tissueInfo]="tissueInfo"
+      [dataSources]="source()"
     ></hra-biomarker-table>
 
     <div *ngIf="tab.rows.length !== 0" class="legends">
@@ -66,6 +68,7 @@
         [message]="message"
         (collaborateClick)="collaborate()"
         [sources]="source()"
+        (selectionChanged)="setSelectedSources($event)"
         class="content"
       ></hra-source-list>
     </div>

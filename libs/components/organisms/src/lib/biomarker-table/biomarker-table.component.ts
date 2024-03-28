@@ -80,7 +80,7 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   /** Columns for the table */
   @Input() columns: string[] = [];
 
-  @Input() dataSources: { label: string; link: string; title: string }[] = [];
+  @Input() dataSources: { id: string; label: string; link: string; title: string }[] = [];
 
   /** Rows of the table */
   @Input() data: DataRow<T>[] = [];

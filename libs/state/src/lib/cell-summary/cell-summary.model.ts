@@ -2,21 +2,6 @@ import { CellSummary, FtuDataSchemas } from '@hra-ui/services';
 import { StateContext } from '@ngxs/store';
 import { z } from 'zod';
 
-/** SourceListItem interface contains title and link to the dataset for the SourceList*/
-export interface SourceListItem {
-  authors?: string;
-  year?: number;
-  /** Title of the dataset in the SourceList */
-  title?: string;
-  doi?: string;
-
-  /** Label of the dataset in the SourceList */
-  label?: string;
-
-  /** Link to the dataset in the SourceList */
-  link: string;
-}
-
 /** Type representing a single AGGREGATE_ROW */
 export type CellSummaryAggregateRow = z.infer<typeof AGGREGATE_ROW>;
 
@@ -28,13 +13,22 @@ export type CellSummaryAggregate = z.infer<typeof AGGREGATE>;
  * having the summaries and aggregrates
  */
 export interface CellSummaryModel {
+  biomarkerTypes: string[];
+
   /** Array of summaries of the Cell Summary */
   summaries: CellSummary[];
+
+  filteredSummaries: CellSummary[];
+
+  summariesByBiomarker: CellSummary[];
+
   /** Array of aggregates of the Cell Summary */
   aggregates: CellSummaryAggregate[];
 }
 
 export type Context = StateContext<CellSummaryModel>;
+
+export const BIOMARKER_TYPES = ['Gene Biomarkers', 'Protein Biomarkers', 'Lipid Biomarkers'];
 
 /**
  * The AGGREGATE_CELL is an object that contains the color, size and

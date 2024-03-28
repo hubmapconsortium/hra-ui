@@ -1,4 +1,4 @@
-import { Iri, SourceReference } from '@hra-ui/services';
+import { Iri } from '@hra-ui/services';
 import { Selector } from '@ngxs/store';
 import { ActiveFtuModel, ActiveFtuState } from './active-ftu.state';
 
@@ -14,10 +14,5 @@ export class ActiveFtuSelectors {
   @Selector([ActiveFtuState])
   static iri({ iri }: ActiveFtuModel): Iri | undefined {
     return iri;
-  }
-
-  @Selector([ActiveFtuState])
-  static sources({ sources }: ActiveFtuModel): SourceReference[] | undefined {
-    return sources;
   }
 }

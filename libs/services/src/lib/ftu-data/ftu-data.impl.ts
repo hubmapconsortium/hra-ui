@@ -6,10 +6,7 @@ import { z } from 'zod';
 
 import { IRI, Iri, setUrl, Url } from '../shared/common.model';
 import {
-  Biomarker,
-  Cell,
   CellSummary,
-  CellSummaryRow,
   DataFileReference,
   IllustrationMappingItem,
   SourceReference,
@@ -42,13 +39,14 @@ export const FTU_DATA_IMPL_FILE_FORMAT_MAPPING = new InjectionToken<Record<strin
 });
 
 type IdItem = z.infer<typeof ID_ITEM>;
-type CellSourceItem = z.infer<typeof CELL_SOURCE_ITEM>;
+// type CellSourceItem = z.infer<typeof CELL_SOURCE_ITEM>;
 type Graph<T> = { '@graph': T[] };
 type Illustrations = z.infer<typeof ILLUSTRATIONS>;
 type Datasets = z.infer<typeof DATASETS>;
 type Cell_Summary = z.infer<typeof CELL_SUMMARIES>;
 type IllusrationFiles = Illustrations['@graph'][number]['illustration_files'];
-type dataSources = Datasets['@graph'][number]['data_sources'];
+type DataSources = Datasets['@graph'][number]['data_sources'];
+
 /** Base ID Object */
 const ID_ITEM = z.object({
   '@id': IRI,
@@ -88,6 +86,9 @@ const DATASETS = z.object({
         '@id': IRI,
         label: z.string(),
         description: z.string(),
+        authors: z.string().array().optional(),
+        year: z.number().optional(),
+        doi: z.string().optional(),
         link: z.string(),
       })
       .array(),
@@ -141,71 +142,6 @@ function titleCase(name: string) {
     .split(' ')
     .map((l: string) => l[0].toUpperCase() + l.slice(1))
     .join(' ');
-}
-
-function calculateDatasetCount(id: string, countsList: Record<string, boolean>[]): number {
-  let result = 0;
-  for (const list of countsList) {
-    if (list[id]) {
-      result = result + 1;
-    }
-  }
-  return result;
-}
-
-function combineSummaries(summaries: CellSummary[]): CellSummary[] {
-  const types = ['Gene Biomarkers', 'Protein Biomarkers', 'Lipid Biomarkers'];
-  return types.map((type) => mergeCellSummaries(summaries, type));
-}
-
-function mergeCellSummaries(summaries: CellSummary[], label: string): CellSummary {
-  const filteredSummaries = summaries.filter((summary) => summary.label === label);
-  const aggregateBiomarkers: Biomarker[] = [];
-  const aggregateCells: Cell[] = [];
-  const aggregateSummaries: CellSummaryRow[] = [];
-  const summariesList: CellSummaryRow[][] = [];
-
-  for (const summary of filteredSummaries) {
-    for (const biomarker of summary.biomarkers) {
-      aggregateBiomarkers.push(biomarker);
-    }
-    for (const cell of summary.cells) {
-      aggregateCells.push(cell);
-    }
-
-    summariesList.push(summary.summaries);
-    const countsList: Record<string, boolean>[] = [];
-    for (const summaries of summariesList) {
-      const datasetCounts: Record<string, boolean> = {};
-      for (const sum of summaries) {
-        const id = sum.cell + sum.biomarker;
-        if (!datasetCounts[id]) {
-          datasetCounts[id] = true;
-        }
-      }
-      countsList.push(datasetCounts);
-    }
-
-    for (const sum of summary.summaries) {
-      const match = aggregateSummaries.find((entry) => entry.biomarker === sum.biomarker && entry.cell === sum.cell);
-      if (match) {
-        const id = match.cell + match.biomarker;
-        match.count += sum.count;
-        match.meanExpression =
-          (match.count * match.meanExpression + sum.count * sum.meanExpression) / (match.count + sum.count);
-        match.dataset_count = calculateDatasetCount(id, countsList);
-      } else {
-        aggregateSummaries.push({ ...sum, dataset_count: 1 });
-      }
-    }
-  }
-
-  return {
-    label: label,
-    biomarkers: aggregateBiomarkers,
-    cells: aggregateCells,
-    summaries: aggregateSummaries,
-  };
 }
 
 /**
@@ -268,9 +204,10 @@ export class FtuDataImplService extends FtuDataService {
   @param iri The Iri of the illustration.
   @returns An Observable that emits an CellSummary array.
   */
-  override getCellSummaries(iri: Iri, sources: SourceReference[]): Observable<CellSummary[]> {
+  override getCellSummaries(iri: Iri): Observable<CellSummary[]> {
     return this.fetchData(iri, 'summaries', CELL_SUMMARIES).pipe(
-      map((data) => this.findCellSummaries(data, iri, sources)),
+      // map((data) => this.findCellSummaries(data, iri, sources)),
+      map((data) => data['@graph']),
       map((data) => (data ? this.constructCellSummaries(data) : [])),
     );
   }
@@ -348,22 +285,6 @@ export class FtuDataImplService extends FtuDataService {
   }
 
   /**
-   * Finds cell summaries from fetched Data based on cell_source field
-   * @template T
-   * @param data
-   * @param iri
-   * @returns cell summaries
-   */
-  private findCellSummaries<T extends CellSourceItem>(data: Graph<T>, iri: Iri, sources: SourceReference[]): T[] {
-    const sourceIds = sources.map((source) => source.id);
-    const itemFilteredBySource = data['@graph'].filter((source) => sourceIds.includes(source['cell_source']));
-    if (itemFilteredBySource.length == 0) {
-      return [];
-    }
-    return itemFilteredBySource;
-  }
-
-  /**
    * Finds illustration url and formates it to Url
    * @param files
    * @returns illustration url
@@ -421,10 +342,10 @@ export class FtuDataImplService extends FtuDataService {
    * @param data
    * @returns source references
    */
-  private toSourceReferences(data: dataSources): SourceReference[] {
+  private toSourceReferences(data: DataSources): SourceReference[] {
     const results: SourceReference[] = [];
-    for (const { '@id': id, label, link, description } of data) {
-      results.push({ id, label, link, title: description });
+    for (const { '@id': id, label, link, description, authors = [], year = -1, doi = '' } of data) {
+      results.push({ id, label, link, title: description, authors, year, doi });
     }
     return results;
   }
@@ -436,7 +357,7 @@ export class FtuDataImplService extends FtuDataService {
    */
   private constructCellSummaries(data: Cell_Summary['@graph']): CellSummary[] {
     type SummaryItem = Cell_Summary['@graph'][number]['summary'][number];
-    const cellSummary: CellSummary[] = [];
+    const cellSummaries: CellSummary[] = [];
     const defaultBiomarkerLables = ['gene', 'protein', 'lipid'];
     const biomarkersPresent = new Set(data.map((summary) => summary.biomarker_type.toLowerCase()));
     const expandGenes = (summary: SummaryItem) =>
@@ -467,8 +388,9 @@ export class FtuDataImplService extends FtuDataService {
         meanExpression: entry.mean_expression,
       }));
 
-      cellSummary.push({
+      cellSummaries.push({
         label: `${capitalize(summaryGroup.biomarker_type)} Biomarkers`,
+        cellSource: summaryGroup.cell_source,
         cells,
         biomarkers,
         summaries,
@@ -477,15 +399,18 @@ export class FtuDataImplService extends FtuDataService {
 
     defaultBiomarkerLables.forEach((defaultLabel) => {
       if (!biomarkersPresent.has(defaultLabel)) {
-        cellSummary.push({
+        cellSummaries.push({
           label: `${capitalize(defaultLabel)} Biomarkers`,
+          cellSource: '',
           cells: [],
           biomarkers: [],
           summaries: [],
         });
       }
     });
-    return combineSummaries(cellSummary);
+
+    return cellSummaries;
+    // return combineSummaries(cellSummary);
   }
 
   /**

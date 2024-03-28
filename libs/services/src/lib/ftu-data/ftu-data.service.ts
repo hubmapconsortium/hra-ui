@@ -33,7 +33,7 @@ export abstract class FtuDataService {
    * @param iri and
    * @returns observable of cell summaries
    */
-  abstract getCellSummaries(iri: Iri, sources: SourceReference[]): Observable<CellSummary[]>;
+  abstract getCellSummaries(iri: Iri): Observable<CellSummary[]>;
   /**
    * Gets the
    * @param iri

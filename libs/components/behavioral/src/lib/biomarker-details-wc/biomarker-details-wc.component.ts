@@ -1,38 +1,39 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
 import { HoverDirective } from '@hra-ui/cdk';
-import { selectSnapshot, selectQuerySnapshot, dispatch } from '@hra-ui/cdk/injectors';
+import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import {
-  GradientLegendComponent,
-  LabelBoxComponent,
-  SizeLegendComponent,
   EmptyBiomarkerComponent,
+  GradientLegendComponent,
   GradientPoint,
+  LabelBoxComponent,
   SizeLegend,
+  SizeLegendComponent,
 } from '@hra-ui/components/atoms';
 import {
   BiomarkerTableDataCardComponent,
   InteractiveSvgComponent,
   SourceListComponent,
 } from '@hra-ui/components/molecules';
-import { TissueInfo, BiomarkerTableComponent } from '@hra-ui/components/organisms';
+import { BiomarkerTableComponent, TissueInfo } from '@hra-ui/components/organisms';
 import {
   ActiveFtuSelectors,
-  TissueLibrarySelectors,
-  ScreenModeAction,
-  IllustratorActions,
-  IllustratorSelectors,
   CellSummarySelectors,
   ResourceIds as Ids,
+  IllustratorActions,
+  IllustratorSelectors,
   ResourceTypes as RTypes,
+  ScreenModeAction,
+  SourceRefsActions,
   SourceRefsSelectors,
+  TissueLibrarySelectors,
 } from '@hra-ui/state';
-import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
 /**
  * PlaceHolder for Empty Tissue Info
@@ -150,6 +151,8 @@ export class BiomarkerDetailsWcComponent {
    */
   readonly message = `We currently do not have cell type data for this biomarker.
 <br><br> Please contact us to discuss your dataset.`;
+
+  readonly setSelectedSources = dispatch(SourceRefsActions.SetSelectedSources);
 
   /** A dispatcher function to set the screen mode */
   private readonly setScreenMode = dispatch(ScreenModeAction.Set);

@@ -55,8 +55,8 @@
     [message]="message"
     (collaborateClick)="collaborate()"
     [sources]="source()"
+    (selectionChanged)="setSelectedSources($event)"
     class="content"
-    (selectionChanged)="updateSourceSelection($event)"
   ></hra-source-list>
 </div>
 
