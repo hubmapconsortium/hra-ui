@@ -8,6 +8,7 @@ import { Load } from './source-refs.actions';
 
 describe('SourceRefsState', () => {
   const testIri = 'https://www.example.com/test-iri' as Iri;
+  const testId = 'https://www.example.com/test-id' as Iri;
 
   let state: SourceRefsState;
   let ctx: MockProxy<StateContext<SourceReference[]>>;
@@ -25,7 +26,7 @@ describe('SourceRefsState', () => {
 
   describe('load(ctx, action)', () => {
     it('should load source references', () => {
-      const mockSourceReferences = [{ title: '', label: '', link: '' }];
+      const mockSourceReferences = [{ id: testId, title: '', label: '', link: '' }];
       dataService.getSourceReferences.mockReturnValue(of(mockSourceReferences));
 
       state.load(ctx, new Load(testIri)).subscribe();

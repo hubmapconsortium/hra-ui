@@ -43,6 +43,7 @@ const MOCK_REFERENCE_ORGANS = Object.values(MOCK_TISSUE_DATA.nodes).filter(isRef
 export const MOCK_SUMMARIES = {
   summary1: {
     label: 'Summary 1',
+    cellSource: '',
     entries: [
       createCell('cell1', 'Cell 1', 'biomarker1', 'Biomarker 1', 10, 1.0, 1.0, [
         [
@@ -77,10 +78,12 @@ export const MOCK_SUMMARIES = {
   },
   summary2: {
     label: 'Summary 2',
+    cellSource: '',
     entries: [createCell('cell1', 'Cell 1', 'biomarker2', 'Biomarker 2', 20, 1, 0.9)],
   },
   summary3: {
     label: 'Summary 3',
+    cellSource: '',
     entries: [],
   },
 };

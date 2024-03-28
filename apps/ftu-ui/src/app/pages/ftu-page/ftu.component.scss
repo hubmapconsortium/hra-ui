@@ -6,8 +6,8 @@
   .content-container {
     display: flex;
 
-    .illustration {
-      max-width: calc(100% - 43rem);
+    .left-side {
+      max-width: calc(100% - 46.3125rem);
       width: 100%;
     }
 
@@ -15,10 +15,11 @@
       &,
       .illustration-details {
         height: 100%;
+        z-index: 1;
       }
 
       .illustration-details {
-        border-left: 0.063rem solid #d3d3d3;
+        border-left: 1px solid #d5dbe3;
       }
     }
   }

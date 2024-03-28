@@ -1,5 +1,5 @@
-import { CellSummary } from '@hra-ui/services';
-import { CellSummaryAggregate, CellSummaryAggregateRow } from './cell-summary.model';
+import { Biomarker, Cell, CellSummary, CellSummaryRow, SourceReference } from '@hra-ui/services';
+import { BIOMARKER_TYPES, CellSummaryAggregate, CellSummaryAggregateRow } from './cell-summary.model';
 
 /**
  * This function gets the index of the column if it does not have any
@@ -79,4 +79,74 @@ export function computeAggregate(summary: CellSummary): CellSummaryAggregate {
 
   const columns = Array.from(columnIndexByBiomarker.keys()).map((id) => getLabel(biomarkers, id, 'biomarker'));
   return { label, columns, rows: Array.from(rowsByCell.values()) };
+}
+
+export function filterSummaries(summaries: CellSummary[], sources: SourceReference[]): CellSummary[] {
+  const sourceIds = new Set<string>(sources.map((source) => source.id));
+  return summaries.filter((summary) => sourceIds.has(summary.cellSource));
+}
+
+export function calculateDatasetCount(id: string, countsList: Record<string, boolean>[]): number {
+  let result = 0;
+  for (const list of countsList) {
+    if (list[id]) {
+      result = result + 1;
+    }
+  }
+  return result;
+}
+
+export function combineSummaries(summaries: CellSummary[]): CellSummary[] {
+  return BIOMARKER_TYPES.map((type) => mergeCellSummaries(summaries, type));
+}
+
+export function mergeCellSummaries(summaries: CellSummary[], label: string): CellSummary {
+  const filteredSummaries = summaries.filter((summary) => summary.label === label);
+  const aggregateBiomarkers: Biomarker[] = [];
+  const aggregateCells: Cell[] = [];
+  const aggregateSummaries: CellSummaryRow[] = [];
+  const summariesList: CellSummaryRow[][] = [];
+
+  for (const summary of filteredSummaries) {
+    for (const biomarker of summary.biomarkers) {
+      aggregateBiomarkers.push(biomarker);
+    }
+    for (const cell of summary.cells) {
+      aggregateCells.push(cell);
+    }
+
+    summariesList.push(summary.summaries);
+    const countsList: Record<string, boolean>[] = [];
+    for (const summaries of summariesList) {
+      const datasetCounts: Record<string, boolean> = {};
+      for (const sum of summaries) {
+        const id = sum.cell + sum.biomarker;
+        if (!datasetCounts[id]) {
+          datasetCounts[id] = true;
+        }
+      }
+      countsList.push(datasetCounts);
+    }
+
+    for (const sum of summary.summaries) {
+      const match = aggregateSummaries.find((entry) => entry.biomarker === sum.biomarker && entry.cell === sum.cell);
+      if (match) {
+        const id = match.cell + match.biomarker;
+        match.count += sum.count;
+        match.meanExpression =
+          (match.count * match.meanExpression + sum.count * sum.meanExpression) / (match.count + sum.count);
+        match.dataset_count = calculateDatasetCount(id, countsList);
+      } else {
+        aggregateSummaries.push({ ...sum, dataset_count: 1 });
+      }
+    }
+  }
+
+  return {
+    label: label,
+    biomarkers: aggregateBiomarkers,
+    cells: aggregateCells,
+    summaries: aggregateSummaries,
+    cellSource: '',
+  };
 }

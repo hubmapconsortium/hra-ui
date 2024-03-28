@@ -17,18 +17,22 @@ import {
 import { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/components/molecules';
 import { BiomarkerTableComponent, TissueInfo } from '@hra-ui/components/organisms';
 import {
+  ActiveFtuActions,
   ActiveFtuSelectors,
+  CellSummaryActions,
   CellSummarySelectors,
+  ResourceIds as Ids,
   IllustratorActions,
   IllustratorSelectors,
-  ResourceIds as Ids,
   ResourceTypes as RTypes,
   ScreenModeAction,
+  SourceRefsActions,
   SourceRefsSelectors,
   TissueLibrarySelectors,
 } from '@hra-ui/state';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
+import { FtuDataService } from '@hra-ui/services';
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
 /**
@@ -62,6 +66,8 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BiomarkerDetailsComponent {
+  private readonly dataService = inject(FtuDataService);
+
   /** Table tabs */
   readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);
 
@@ -104,13 +110,23 @@ export class BiomarkerDetailsComponent {
   /** Action to highlight a cell type */
   readonly highlightCell = dispatch(IllustratorActions.HighlightCellType);
 
+  readonly setSelectedSources = dispatch(SourceRefsActions.SetSelectedSources);
+
+  readonly setIllustrationUrl = dispatch(ActiveFtuActions.SetIllustrationUrl);
+
+  readonly load = dispatch(CellSummaryActions.Load);
+
+  readonly computeAggregates = dispatch(CellSummaryActions.ComputeAggregates);
+
+  readonly updateSummaries = dispatch(CellSummaryActions.UpdateSummaries);
+
   /**
    * Gets tissue title from the list of tissues
    */
   get tissueInfo(): TissueInfo {
     const iri = this.iri();
     const tissues = this.tissues();
-    if (iri === undefined) {
+    if (iri === undefined || tissues === undefined) {
       return EMPTY_TISSUE_INFO;
     }
     const { id, label } = tissues[iri];

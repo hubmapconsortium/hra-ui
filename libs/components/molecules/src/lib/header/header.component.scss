@@ -37,25 +37,35 @@
     margin-left: 0.5rem;
   }
 
-  .about {
-    width: 9rem;
-    height: 3rem;
-    text-decoration: none;
-    span {
-      border-bottom: 1px solid var(--palette-primary-500-rgb);
-      letter-spacing: normal;
-    }
-    .icon {
-      width: 1.5rem;
-      height: 1.5rem;
-      font-size: 1.5rem;
-    }
+  .button {
+    background: #d5dbe3;
+    height: 1.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0;
+    width: 7.5rem;
+    color: #201e3d;
 
-    &:active {
-      .icon {
-        z-index: 1;
-      }
+    mat-icon {
+      height: 1rem;
+      width: 1rem;
+      font-size: 1rem;
     }
+  }
+
+  .explorer {
+    .about {
+      display: flex;
+      height: 100%;
+      text-decoration: none;
+      align-items: center;
+      color: #201e3d;
+      gap: 0.25rem;
+    }
+  }
+
+  .contact {
+    margin-left: 1rem;
   }
 
   @media (max-width: 30rem) {

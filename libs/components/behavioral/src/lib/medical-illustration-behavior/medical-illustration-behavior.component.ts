@@ -48,7 +48,7 @@ export class MedicalIllustrationBehaviorComponent {
   get tissueTitle(): string {
     const iri = this.iri();
     const tissues = this.tissues();
-    return iri ? tissues[iri].label : '';
+    return iri && tissues ? tissues[iri].label : '';
   }
 
   /**

@@ -46,7 +46,7 @@ export class TissueLibraryBehaviorComponent {
   constructor() {
     /** Get iris from the observable else reset selection if iri is undefined */
     select$(ActiveFtuSelectors.iri).subscribe((iri) => {
-      this.selected = iri && this.tissues()[iri];
+      this.selected = iri && this.tissues() && this.tissues()[iri];
       if (iri === undefined) {
         this.list?.resetSelection();
       }

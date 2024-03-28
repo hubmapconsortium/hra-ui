@@ -80,6 +80,8 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   /** Columns for the table */
   @Input() columns: string[] = [];
 
+  @Input() dataSources: { id: string; label: string; link: string; title: string }[] = [];
+
   /** Rows of the table */
   @Input() data: DataRow<T>[] = [];
 
@@ -114,6 +116,7 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if ('data' in changes) {
       this.dataSource.data = this.data;
+      this.sortTable();
     }
 
     if ('illustrationIds' in changes) {
