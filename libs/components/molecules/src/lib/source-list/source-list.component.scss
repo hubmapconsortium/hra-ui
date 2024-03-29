@@ -19,9 +19,8 @@
     align-items: center;
     height: 3rem;
     grid-area: source-list-header;
-    color: var(--dark-primary-text);
-    border-top: 1px solid #d5dbe3;
-    border-bottom: 1px solid #d5dbe3;
+    border-top: 1px solid rgba(vars.$light-dividers);
+    border-bottom: 1px solid rgba(vars.$light-dividers);
   }
 
   .table-content {
@@ -32,36 +31,44 @@
       display: none;
     }
 
-    .mat-column-authors {
-      padding-left: 0;
+    ::ng-deep thead {
+      tr {
+        color: rgba(vars.$primary-darker);
+      }
     }
 
-    .mat-column-select,
-    .mat-column-year {
-      max-width: 56px;
-      min-width: 56px;
-    }
+    ::ng-deep tbody {
+      .mat-column-authors {
+        padding-left: 0;
+      }
 
-    .mat-column-authors,
-    .mat-column-title,
-    .mat-column-doi,
-    .mat-column-link {
-      max-width: 112px;
-      min-width: 112px;
-    }
+      .mat-column-select,
+      .mat-column-year {
+        max-width: 3.5rem;
+        min-width: 3.5rem;
+      }
 
-    .mat-column-title,
-    .mat-column-doi,
-    .mat-column-link {
-      color: #b20a2f;
-      font-weight: 500;
+      .mat-column-authors,
+      .mat-column-title,
+      .mat-column-doi,
+      .mat-column-link {
+        max-width: 7rem;
+        min-width: 7rem;
+      }
+
+      .mat-column-title,
+      .mat-column-doi,
+      .mat-column-link {
+        color: rgba(vars.$accent);
+        font-weight: 500;
+      }
     }
 
     .mat-mdc-cell,
     .mat-mdc-header-cell {
       text-overflow: ellipsis;
       white-space: nowrap;
-      border-bottom-color: #d5dbe3;
+      border-bottom-color: rgba(vars.$light-dividers);
     }
 
     tr {
@@ -75,11 +82,11 @@
   }
 
   ::ng-deep mat-checkbox {
-    --mdc-checkbox-selected-checkmark-color: #201e3d !important;
+    --mdc-checkbox-selected-checkmark-color: rgba(vars.$primary) !important;
 
     .mdc-checkbox__background {
       background-color: transparent !important;
-      border-color: black !important;
+      border-color: rgba(vars.$primary) !important;
     }
   }
 }

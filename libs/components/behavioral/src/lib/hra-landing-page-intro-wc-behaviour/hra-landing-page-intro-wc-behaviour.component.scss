@@ -1,8 +1,10 @@
+@use 'variables' as vars;
+
 :host {
   display: block;
 
   .intro {
-    border: 1px solid #d5dbe3;
+    border: 1px solid rgba(vars.$light-dividers);
     width: 100%;
   }
 }

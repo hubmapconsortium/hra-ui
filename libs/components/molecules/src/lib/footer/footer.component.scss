@@ -1,14 +1,14 @@
+@use 'variables' as vars;
+
 :host {
   display: flex;
-  padding: 0.75rem 2rem;
-  border-top: 1px solid #d5dbe3;
+  padding: 0 2rem;
+  border-top: 1px solid rgba(vars.$light-dividers);
   align-items: center;
-  background-color: #f8f9fa;
+  background: rgba(vars.$primary-lighter);
   gap: 2rem;
   height: 5rem;
   width: 100%;
-
-  --palette-primary-500: #abcdef;
 
   .controls {
     display: flex;
@@ -34,13 +34,13 @@
   }
 
   button {
-    background: #d5dbe3;
+    background: rgba(vars.$light-dividers);
     height: 1.75rem;
     font-size: 0.75rem;
     font-weight: 500;
     padding: 0;
     min-width: 10rem;
-    color: #201e3d;
+    color: rgba(vars.$primary);
 
     mat-icon,
     span {
@@ -58,7 +58,8 @@
     background-color: #ffffff;
   }
 }
-::ng-deep .download-button {
+::ng-deep .download-button,
+::ng-deep .illustration-download {
   .mdc-button__label {
     display: flex;
     align-items: center;

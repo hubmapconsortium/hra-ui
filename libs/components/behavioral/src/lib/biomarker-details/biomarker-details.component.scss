@@ -13,10 +13,10 @@
   .table {
     grid-area: table;
     max-width: 100%;
-    border-bottom: 1px solid #d5dbe3;
+    border-bottom: 1px solid rgba(vars.$light-dividers);
 
     ::ng-deep .mat-mdc-tab-body-wrapper {
-      border-top: 1px solid #d5dbe3;
+      border-top: 1px solid rgba(vars.$light-dividers);
     }
 
     ::ng-deep .mat-mdc-tab {
@@ -31,10 +31,7 @@
       height: calc(3rem - 1px);
 
       &:hover {
-        background-color: #f8f9fa;
-      }
-      .mat-tab__text-label {
-        --palette-accent-500-rgb: #243142;
+        background: rgba(vars.$primary-lighter);
       }
     }
   }
@@ -42,30 +39,33 @@
   ::ng-deep {
     .table-tab-header > .mdc-tab__content > span {
       color: vars.$primary;
+      user-select: none;
     }
-    .mat-mdc-tab-group.mat-accent .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
+
+    .mat-mdc-tab-group.mat-accent .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active {
       color: vars.$primary;
+      user-select: none;
     }
 
-    ::ng-deep .mdc-tab__text-label {
-      color: black !important;
+    .mdc-tab__text-label {
+      color: rgba(vars.$primary-600) !important;
     }
 
-    ::ng-deep .mdc-tab-indicator__content--underline {
-      border-color: #e00d3a !important;
+    .mdc-tab-indicator__content--underline {
+      border-color: rgba(vars.$accent-lighter) !important;
     }
   }
 
   .legend-header {
     color: vars.$dark-primary-text;
-    border-bottom: 1px solid #d5dbe3;
+    border-bottom: 1px solid rgba(vars.$light-dividers);
     gap: 0.5rem;
     min-width: max-content;
     line-height: normal;
 
     &.gradient {
       grid-area: gradient-legend-header;
-      border-right: 1px solid #d5dbe3;
+      border-right: 1px solid rgba(vars.$light-dividers);
     }
 
     &.size {
@@ -84,7 +84,7 @@
 
     &.gradient {
       grid-area: gradient-legend;
-      border-right: 1px solid #d5dbe3;
+      border-right: 1px solid rgba(vars.$light-dividers);
 
       .content {
         width: 10rem;

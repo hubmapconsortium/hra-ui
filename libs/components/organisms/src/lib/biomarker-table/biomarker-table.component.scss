@@ -12,7 +12,7 @@
     margin-left: -1px;
 
     .highlight {
-      background-color: #f8f9fa;
+      background: rgba(vars.$primary-lighter);
     }
     td.type {
       text-transform: lowercase;
@@ -20,18 +20,18 @@
   }
 
   .table th {
-    background-color: #fff7f8;
-    color: #59264d;
+    background: rgba(vars.$primary-lighter);
+    color: rgba(vars.$accent-darker);
     font-weight: 500;
     height: 4.5rem;
     width: 2.75rem;
     padding: 0 0.5rem;
-    border-bottom: 1px solid #d5dbe3;
+    border-bottom: 1px solid rgba(vars.$light-dividers);
   }
 
   .table td {
-    border-bottom: 1px solid #d5dbe3;
-    border-left: 1px solid #d5dbe3;
+    border-bottom: 1px solid rgba(vars.$light-dividers);
+    border-left: 1px solid rgba(vars.$light-dividers);
     padding: 0 0.5rem;
   }
 
@@ -41,7 +41,7 @@
   }
 
   .table tr:first-child td {
-    border-top: 0rem solid #d5dbe3;
+    border-top: 0rem solid rgba(vars.$light-dividers);
   }
 
   tr > td:first-child {
@@ -53,12 +53,12 @@
   }
 
   tr > td:last-of-type {
-    border-right: 1px solid #d5dbe3;
+    border-right: 1px solid rgba(vars.$light-dividers);
   }
 
   tr > th:last-of-type {
-    border-right: 1px solid #d5dbe3;
-    border-left: 1px solid #d5dbe3;
+    border-right: 1px solid rgba(vars.$light-dividers);
+    border-left: 1px solid rgba(vars.$light-dividers);
   }
 
   .type {
@@ -81,11 +81,11 @@
   .count {
     height: 2rem;
     min-width: 4.25rem;
-    border-right: 1px solid #d5dbe3;
+    border-right: 1px solid rgba(vars.$light-dividers);
   }
 
   th:not(:first-child) {
-    border-left: 1px solid #d5dbe3;
+    border-left: 1px solid rgba(vars.$light-dividers);
   }
 
   .icon-header {
@@ -110,7 +110,7 @@
 }
 
 .mat-mdc-row:hover .mat-mdc-cell {
-  background-color: #f8f9fa;
+  background: rgba(vars.$primary-lighter);
 }
 
 ::ng-deep .biomarker-table-hover.full-column-name {

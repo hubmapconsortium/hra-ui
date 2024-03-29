@@ -46,10 +46,16 @@
 
   .sidebar {
     grid-area: sidebar;
-    border-right: 1px solid #d5dbe3;
+    border-right: 1px solid rgba(vars.$light-dividers);
     overflow: auto;
     width: 21rem;
-    border: 1px solid #d5dbe3;
+    border: 1px solid rgba(vars.$light-dividers);
+
+    ::ng-deep .label {
+      height: 3.5rem;
+      font-size: 1rem;
+    }
+
     ::ng-deep .tissue-tree {
       height: calc(100% - 3.5rem);
     }
@@ -64,7 +70,7 @@
 
   .footer {
     grid-area: footer;
-    border: 1px solid #d5dbe3;
+    border: 1px solid rgba(vars.$light-dividers);
   }
 }
 ::ng-deep .fullscreen-on {

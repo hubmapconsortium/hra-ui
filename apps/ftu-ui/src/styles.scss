@@ -2,11 +2,13 @@
 @use 'reset';
 @use 'theming';
 @use 'overrides';
+@use 'variables' as vars;
 
 html,
 body {
   height: 100%;
   overflow-y: hidden;
+  color: rgba(vars.$primary);
 }
 body {
   margin: 0;
@@ -19,11 +21,25 @@ body {
 $mat-css-default-light-theme: map-merge(
   mat-css.$default-light-theme,
   (
+    --light-dividers: mat-css.hex-to-rgb(#d5dbe3),
+    //light-dividers
+    --palette-primary-100: mat-css.hex-to-rgb(#fcfcfc),
+    //primary-lighter
+    --palette-primary-500: mat-css.hex-to-rgb(#201e3d),
+    //primary
+    --palette-primary-600: mat-css.hex-to-rgb(#464954),
+    //primary-600
+    --palette-primary-700: mat-css.hex-to-rgb(#4c4c58),
+    //primary-darker
     --palette-primary-100-no-rgb: mat-css.hex-to-rgb(#c6ecf6),
     --palette-primary-500-no-rgb: mat-css.hex-to-rgb(#006298),
     --palette-primary-700-no-rgb: mat-css.hex-to-rgb(#00385f),
-    --palette-accent-A100: mat-css.hex-to-rgb(#fff7f8),
-    --palette-accent-A200: mat-css.hex-to-rgb(#990000),
+    --palette-accent-A100: mat-css.hex-to-rgb(#e00d3a),
+    //accent-lighter
+    --palette-accent-A200: mat-css.hex-to-rgb(#b20a2f),
+    //accent
+    --palette-accent-A400: mat-css.hex-to-rgb(#6a061c),
+    //accent-darker
     --palette-warn-500: mat-css.hex-to-rgb(#dc231e),
   )
 );

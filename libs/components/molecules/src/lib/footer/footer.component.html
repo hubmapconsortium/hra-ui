@@ -29,6 +29,11 @@
   Illustration Metadata
 </button>
 
+<button class="button illustration-download" *ngIf="!isSmall" mat-button [hraLink]="illustrationMetadata" disableRipple>
+  <span class="material-symbols-outlined"> download </span>
+  Download Illustration
+</button>
+
 <button class="button contact" *ngIf="isSmall" mat-button (click)="contactClick.emit()" disableRipple>
   <mat-icon>mail_outlined</mat-icon>
   Contact

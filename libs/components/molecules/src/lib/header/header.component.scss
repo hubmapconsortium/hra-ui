@@ -38,13 +38,13 @@
   }
 
   .button {
-    background: #d5dbe3;
+    background: rgba(vars.$light-dividers);
     height: 1.75rem;
     font-size: 0.75rem;
     font-weight: 500;
     padding: 0;
     width: 7.5rem;
-    color: #201e3d;
+    color: rgba(vars.$primary);
 
     mat-icon {
       height: 1rem;
@@ -59,7 +59,7 @@
       height: 100%;
       text-decoration: none;
       align-items: center;
-      color: #201e3d;
+      color: rgba(vars.$primary);
       gap: 0.25rem;
     }
   }

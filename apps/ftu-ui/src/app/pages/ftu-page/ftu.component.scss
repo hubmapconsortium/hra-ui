@@ -1,3 +1,5 @@
+@use 'variables' as vars;
+
 :host {
   display: flex;
   flex-direction: column;
@@ -19,7 +21,7 @@
       }
 
       .illustration-details {
-        border-left: 1px solid #d5dbe3;
+        border-left: 1px solid rgba(vars.$light-dividers);
       }
     }
   }
