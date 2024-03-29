@@ -6,8 +6,14 @@
   <ng-container matColumnDef="type" sticky>
     <th mat-header-cell *matHeaderCellDef>Cell Type</th>
 
-    <td class="type" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">
-      <div class="pseudo-type">{{ element[0] }}</div>
+    <td
+      class="type"
+      mat-cell
+      *matCellDef="let element"
+      [class.highlight]="isHighlighted(element)"
+      [hraHover]="columnHover"
+      [hraHoverData]="element[0]"
+    >
       {{ element[0] }}
     </td>
   </ng-container>

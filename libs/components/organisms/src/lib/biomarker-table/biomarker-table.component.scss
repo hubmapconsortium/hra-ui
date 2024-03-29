@@ -32,8 +32,11 @@
 
   .table td {
     border-bottom: 1px solid rgba(vars.$light-dividers);
-    border-left: 1px solid rgba(vars.$light-dividers);
     padding: 0 0.5rem;
+
+    &:not(:first-child) {
+      border-left: 1px solid rgba(vars.$light-dividers);
+    }
   }
 
   .table tr {
@@ -68,12 +71,6 @@
     max-width: 13.5rem;
     border-radius: 0rem;
     white-space: nowrap;
-
-    .pseudo-type {
-      font-weight: bold;
-      opacity: 0;
-      height: 0;
-    }
 
     &.highlight {
       font-weight: bold;
