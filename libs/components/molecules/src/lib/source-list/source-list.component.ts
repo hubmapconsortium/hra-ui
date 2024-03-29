@@ -9,6 +9,7 @@ import {
   OnChanges,
   Output,
   SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
@@ -79,7 +80,7 @@ export class SourceListComponent<T extends SourceListItem> implements OnChanges 
 
   @Output() readonly selectionChanged = new EventEmitter<T[]>();
 
-  set sort(sorter: MatSort) {
+  @ViewChild(MatSort) set sort(sorter: MatSort) {
     this.dataSource.sort = sorter;
   }
 
