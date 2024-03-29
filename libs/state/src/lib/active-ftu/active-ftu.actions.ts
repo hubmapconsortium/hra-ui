@@ -26,13 +26,6 @@ export class SetIllustrationUrl extends Action('Set Illustration Url') {
   }
 }
 
-export class SetIri extends Action('Set Iri') {
-  /** Intializes the set iri */
-  constructor(readonly iri: Iri) {
-    super();
-  }
-}
-
 /** Clears the Iri */
 export class Clear extends Action('Clear') {}
 

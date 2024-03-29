@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,15 +8,15 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatTableModule, MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { HoverDirective } from '@hra-ui/cdk';
+import { GradientPoint, SizeLegend } from '@hra-ui/components/atoms';
 import {
   BiomarkerTableDataCardComponent,
   BiomarkerTableDataIconComponent,
   DataItem,
+  SourceListItem,
 } from '@hra-ui/components/molecules';
-import { HoverDirective } from '@hra-ui/cdk';
-import { GradientPoint, SizeLegend } from '@hra-ui/components/atoms';
 
 /**
  * RGBTriblet of type RGB to store color
@@ -80,7 +81,7 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   /** Columns for the table */
   @Input() columns: string[] = [];
 
-  @Input() dataSources: { id: string; label: string; link: string; title: string }[] = [];
+  @Input() dataSources: SourceListItem[] = [];
 
   /** Rows of the table */
   @Input() data: DataRow<T>[] = [];

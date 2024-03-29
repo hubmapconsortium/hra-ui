@@ -115,8 +115,6 @@ export class BiomarkerDetailsComponent {
 
   readonly computeAggregates = dispatch(CellSummaryActions.ComputeAggregates);
 
-  readonly updateSummaries = dispatch(CellSummaryActions.UpdateSummaries);
-
   /**
    * Gets tissue title from the list of tissues
    */

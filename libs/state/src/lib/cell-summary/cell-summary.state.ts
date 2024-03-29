@@ -3,14 +3,7 @@ import { FtuDataService } from '@hra-ui/services';
 import { Action, State } from '@ngxs/store';
 import { Observable, switchMap, tap } from 'rxjs';
 import { SourceRefsActions } from '../source-refs';
-import {
-  CombineSummariesByBiomarker,
-  ComputeAggregates,
-  FilterSummaries,
-  Load,
-  Reset,
-  UpdateSummaries,
-} from './cell-summary.actions';
+import { CombineSummariesByBiomarker, ComputeAggregates, FilterSummaries, Load, Reset } from './cell-summary.actions';
 import { combineSummaries, computeAggregate, filterSummaries } from './cell-summary.helpers';
 import { BIOMARKER_TYPES, CellSummaryModel, Context } from './cell-summary.model';
 
@@ -74,13 +67,6 @@ export class CellSummaryState {
     const aggregates = summariesByBiomarker.map(computeAggregate);
 
     patchState({ aggregates });
-  }
-
-  @Action(UpdateSummaries)
-  updateSummaries({ getState, patchState, setState, dispatch }: Context, { summaries }: UpdateSummaries): void {
-    // TODO fix me!!!
-    patchState({ summaries });
-    this.computeAggregates({ getState, patchState, setState, dispatch });
   }
 
   /**

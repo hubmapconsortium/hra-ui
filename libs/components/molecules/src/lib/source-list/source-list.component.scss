@@ -6,7 +6,7 @@
   height: 100%;
 
   .sr-only {
-    height: 0;
+    @include utils.sr-only();
   }
 
   hra-label-box {

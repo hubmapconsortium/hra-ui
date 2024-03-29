@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
-import { FtuDataService, Iri } from '@hra-ui/services';
-import { MockProxy, calledWithFn, mock } from 'jest-mock-extended';
-import { CellSummaryState } from './cell-summary.state';
-import { of } from 'rxjs';
-import { StateContext } from '@ngxs/store';
-import { CellSummaryModel } from './cell-summary.model';
-import { Load, UpdateSummaries } from './cell-summary.actions';
 import { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { FtuDataService, Iri } from '@hra-ui/services';
+import { StateContext } from '@ngxs/store';
+import { MockProxy, calledWithFn, mock } from 'jest-mock-extended';
+import { of } from 'rxjs';
 import { ActiveFtuSelectors } from '../active-ftu';
+import { Load } from './cell-summary.actions';
+import { CellSummaryModel } from './cell-summary.model';
+import { CellSummaryState } from './cell-summary.state';
 
 jest.mock('@hra-ui/cdk/injectors');
 
@@ -30,7 +30,6 @@ describe('CellSummaryState', () => {
     jest.mocked(dispatch).mockReturnValue(jest.fn());
 
     selectSnapshotSpy.calledWith(ActiveFtuSelectors.iri).mockReturnValue(iriSpy);
-    selectSnapshotSpy.calledWith(ActiveFtuSelectors.sources).mockReturnValue(() => []);
 
     TestBed.overrideProvider(FtuDataService, {
       useValue: (dataService = mock()),
@@ -39,7 +38,13 @@ describe('CellSummaryState', () => {
     dataService.getCellSummaries.mockReturnValue(of([]));
     ctx = mock();
 
-    ctx.getState.mockReturnValue({ summaries: [], aggregates: [] });
+    ctx.getState.mockReturnValue({
+      summaries: [],
+      aggregates: [],
+      biomarkerTypes: [],
+      filteredSummaries: [],
+      summariesByBiomarker: [],
+    });
   });
 
   describe('load(ctx, action)', () => {
@@ -58,16 +63,14 @@ describe('CellSummaryState', () => {
 
   describe('computeAggregates', () => {
     it('should compute aggregrate data and update state', () => {
-      ctx.getState.mockReturnValue({ summaries: [], aggregates: [] });
+      ctx.getState.mockReturnValue({
+        summaries: [],
+        aggregates: [],
+        biomarkerTypes: [],
+        filteredSummaries: [],
+        summariesByBiomarker: [],
+      });
       state.computeAggregates(ctx);
-      expect(ctx.patchState).toHaveBeenCalledWith({ aggregates: [] });
-    });
-  });
-
-  describe('updateSummaries', () => {
-    it('should update summaries and update state', () => {
-      ctx.getState.mockReturnValue({ summaries: [], aggregates: [] });
-      state.updateSummaries(ctx, new UpdateSummaries([]));
       expect(ctx.patchState).toHaveBeenCalledWith({ aggregates: [] });
     });
   });

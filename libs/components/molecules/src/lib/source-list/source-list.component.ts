@@ -83,15 +83,11 @@ export class SourceListComponent<T extends SourceListItem> implements OnChanges 
   @Output() readonly selectionChanged = new EventEmitter<T[]>();
 
   @ViewChild(MatSort) set sort(sorter: MatSort) {
-    this.dataSource.sort = sorter;
+    this.dataSource.sort = sorter || null;
   }
 
   /** Google analytics tracking service */
   private readonly ga = inject(GoogleAnalyticsService);
-
-  constructor() {
-    this.handleSort();
-  }
 
   ngOnChanges(changes: SimpleChanges) {
     if ('sources' in changes) {
@@ -140,9 +136,5 @@ export class SourceListComponent<T extends SourceListItem> implements OnChanges 
   toggleRow(row: T) {
     this.selection.toggle(row);
     this.selectionChanged.emit(this.selection.selected);
-  }
-
-  handleSort() {
-    this.dataSource.sort = this.sort || null;
   }
 }

@@ -39,7 +39,6 @@ export const FTU_DATA_IMPL_FILE_FORMAT_MAPPING = new InjectionToken<Record<strin
 });
 
 type IdItem = z.infer<typeof ID_ITEM>;
-// type CellSourceItem = z.infer<typeof CELL_SOURCE_ITEM>;
 type Graph<T> = { '@graph': T[] };
 type Illustrations = z.infer<typeof ILLUSTRATIONS>;
 type Datasets = z.infer<typeof DATASETS>;
@@ -410,7 +409,6 @@ export class FtuDataImplService extends FtuDataService {
     });
 
     return cellSummaries;
-    // return combineSummaries(cellSummary);
   }
 
   /**
