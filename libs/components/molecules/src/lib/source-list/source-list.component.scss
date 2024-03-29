@@ -84,6 +84,9 @@
   }
 
   ::ng-deep mat-checkbox {
+    .mdc-form-field {
+      height: 2.25rem;
+    }
     --mdc-checkbox-selected-checkmark-color: rgba(vars.$primary) !important;
 
     .mdc-checkbox__background {
