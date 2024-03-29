@@ -33,7 +33,9 @@
 
     ::ng-deep thead {
       tr {
+        height: 3rem !important;
         color: rgba(vars.$primary-darker);
+        background: rgba(vars.$primary-lighter);
       }
     }
 
@@ -88,5 +90,9 @@
       background-color: transparent !important;
       border-color: rgba(vars.$primary) !important;
     }
+  }
+
+  .end {
+    cursor: pointer;
   }
 }

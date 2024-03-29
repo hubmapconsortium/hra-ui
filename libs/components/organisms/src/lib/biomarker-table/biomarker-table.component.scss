@@ -24,8 +24,9 @@
     color: rgba(vars.$accent-darker);
     font-weight: 500;
     height: 4.5rem;
-    width: 2.75rem;
-    padding: 0 0.5rem;
+    padding: 0;
+    max-width: 2.75rem;
+    min-width: 2.75rem;
     border-bottom: 1px solid rgba(vars.$light-dividers);
   }
 
@@ -42,6 +43,7 @@
 
   .table tr:first-child td {
     border-top: 0rem solid rgba(vars.$light-dividers);
+    max-width: 13.5rem;
   }
 
   tr > td:first-child {
@@ -88,19 +90,22 @@
     border-left: 1px solid rgba(vars.$light-dividers);
   }
 
-  .icon-header {
-    max-width: 5rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  th:first-child,
+  th:nth-child(2) {
+    padding: 0 0.5rem !important;
+  }
 
+  .icon-header {
     .header-column-text {
       transform: rotate(-45deg);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
   .icon-cell {
-    max-width: 5rem;
+    width: 2rem;
     min-height: 2rem;
 
     .icon {

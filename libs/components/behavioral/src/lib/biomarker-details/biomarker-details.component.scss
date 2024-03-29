@@ -112,7 +112,7 @@
 
   hra-biomarker-table {
     min-height: 24.5rem;
-    max-height: 45vh;
+    max-height: calc(100vh - 30.125rem);
 
     &.small {
       height: fit-content;
