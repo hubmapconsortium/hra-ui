@@ -205,7 +205,6 @@ export class FtuDataImplService extends FtuDataService {
   */
   override getCellSummaries(iri: Iri): Observable<CellSummary[]> {
     return this.fetchData(iri, 'summaries', CELL_SUMMARIES).pipe(
-      // map((data) => this.findCellSummaries(data, iri, sources)),
       map((data) => data['@graph']),
       map((data) => (data ? this.constructCellSummaries(data) : [])),
     );

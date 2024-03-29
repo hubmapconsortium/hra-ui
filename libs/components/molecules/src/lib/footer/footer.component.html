@@ -34,7 +34,7 @@
   Download Illustration
 </button>
 
-<button class="button contact" *ngIf="isSmall" mat-button (click)="contactClick.emit()" disableRipple>
+<button class="button contact" *ngIf="isSmall" mat-button (mouseup)="contactClick.emit()" disableRipple>
   <mat-icon>mail_outlined</mat-icon>
   Contact
 </button>
