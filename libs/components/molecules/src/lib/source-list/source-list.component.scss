@@ -52,6 +52,10 @@
     }
 
     ::ng-deep thead {
+      .mat-sort-header-arrow {
+        color: rgba(vars.$primary);
+      }
+
       tr {
         height: 3rem !important;
         color: rgba(vars.$primary-darker);
