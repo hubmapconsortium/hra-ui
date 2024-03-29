@@ -5,7 +5,6 @@
     padding-left: 1rem;
     padding-right: 1rem;
     letter-spacing: 0;
-    font-family: Inter;
     font-weight: 400;
 
     &:last-child {
@@ -154,7 +153,6 @@
   background-color: vars.$primary-contrast-rgb;
   max-width: 21rem;
   font-size: small;
-  font-family: Inter;
 }
 
 ::ng-deep {

@@ -70,7 +70,14 @@
     .mat-mdc-header-cell {
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+
+    .mat-mdc-header-cell {
       border-bottom-color: rgba(vars.$light-dividers);
+    }
+
+    .mat-mdc-cell {
+      border-bottom: none;
     }
 
     tr {
@@ -86,12 +93,18 @@
   ::ng-deep mat-checkbox {
     .mdc-form-field {
       height: 2.25rem;
+
+      .mdc-checkbox {
+        padding: 9px;
+      }
     }
     --mdc-checkbox-selected-checkmark-color: rgba(vars.$primary) !important;
 
     .mdc-checkbox__background {
       background-color: transparent !important;
       border-color: rgba(vars.$primary) !important;
+      top: 9px;
+      left: 9px;
     }
   }
 

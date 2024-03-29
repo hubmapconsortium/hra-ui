@@ -32,7 +32,6 @@ import {
 } from '@hra-ui/state';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
-import { FtuDataService } from '@hra-ui/services';
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
 /**
@@ -66,8 +65,6 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BiomarkerDetailsComponent {
-  private readonly dataService = inject(FtuDataService);
-
   /** Table tabs */
   readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);
 
