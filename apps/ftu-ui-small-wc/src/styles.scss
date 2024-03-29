@@ -9,7 +9,7 @@ body {
   height: 100%;
   overflow-y: hidden;
   color: rgba(vars.$primary);
-  font-family: 'Metropolis', 'Inter', sans-serif;
+  font-family: 'Metropolis';
 }
 body {
   margin: 0;
@@ -26,6 +26,8 @@ $mat-css-default-light-theme: map-merge(
     //light-dividers
     --palette-primary-100: mat-css.hex-to-rgb(#fcfcfc),
     //primary-lighter
+    --palette-primary-400: mat-css.hex-to-rgb(#4b4b5e),
+    //primary-400
     --palette-primary-500: mat-css.hex-to-rgb(#201e3d),
     //primary
     --palette-primary-600: mat-css.hex-to-rgb(#464954),

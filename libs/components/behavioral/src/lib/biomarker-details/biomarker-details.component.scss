@@ -38,17 +38,14 @@
 
   ::ng-deep {
     .table-tab-header > .mdc-tab__content > span {
-      color: vars.$primary;
+      color: rgba(vars.$primary-600);
       user-select: none;
+      font-weight: 500;
     }
 
     .mat-mdc-tab-group.mat-accent .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active {
       color: vars.$primary;
       user-select: none;
-    }
-
-    .mdc-tab__text-label {
-      color: rgba(vars.$primary-600) !important;
     }
 
     .mdc-tab-indicator__content--underline {
@@ -128,13 +125,15 @@
 
 ::ng-deep .biomarker-details.info-tooltip {
   display: flex;
-  padding: 1rem;
-  border: 1px solid #a8a3a3;
+  padding: 1rem 1.5rem;
   border-radius: 0.5rem;
-  box-shadow: 1px 2px 16px 2px #00000029;
+  box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
   background-color: vars.$primary-contrast-rgb;
   max-width: 21rem;
-  font-size: small;
+  font-family: Metropolis;
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 1.375rem;
 }
 
 ::ng-deep .mdc-tab__ripple::before {

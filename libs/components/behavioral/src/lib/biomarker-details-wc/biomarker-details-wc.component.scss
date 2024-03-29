@@ -5,7 +5,7 @@
     padding-left: 1rem;
     padding-right: 1rem;
     letter-spacing: 0;
-    font-weight: 400;
+    font-weight: 500;
 
     &:last-child {
       border-right: 1px solid rgba(vars.$light-dividers);
@@ -52,7 +52,7 @@
       padding-right: 1rem;
       border-left: 1px solid rgba(vars.$light-dividers);
       background-color: white;
-      font-weight: 400;
+      font-weight: 500;
       letter-spacing: 0;
 
       &:last-child {
@@ -81,6 +81,8 @@
   .legends {
     display: inline-flex;
     width: 100%;
+    height: 8rem;
+
     .legends-right {
       width: 50%;
     }
@@ -91,12 +93,15 @@
 
   .legend-header {
     color: vars.$dark-primary-text;
-    border-top: 1px solid rgba(vars.$light-dividers);
     border-bottom: 1px solid rgba(vars.$light-dividers);
-    border-right: 1px solid rgba(vars.$light-dividers);
+    gap: 0.5rem;
+    min-width: max-content;
+    line-height: normal;
+    height: 3rem;
 
     &.gradient {
       grid-area: gradient-legend-header;
+      border-right: 1px solid rgba(vars.$light-dividers);
     }
 
     &.size {
@@ -104,25 +109,27 @@
     }
 
     .icon {
-      margin-left: 0.6rem;
+      font-size: 1.125rem;
+      height: 1.125rem;
+      width: 1.125rem;
     }
   }
 
   .legend {
-    padding: 1rem 2rem;
-    border-right: 1px solid rgba(vars.$light-dividers);
+    padding: 1rem 1.5rem;
+    height: 5rem;
 
     &.gradient {
       grid-area: gradient-legend-header;
-      font-size: 0.75rem;
+      border-right: 1px solid rgba(vars.$light-dividers);
 
-      .content {
+      hra-gradient-legend {
         width: 10rem !important;
       }
     }
 
     &.size {
-      grid-area: size-legend-header;
+      grid-area: size-legend;
       font-size: 0.75rem;
     }
 
@@ -146,20 +153,23 @@
 
 ::ng-deep .biomarker-details.info-tooltip {
   display: flex;
-  padding: 1rem;
-  border: 1px solid #a8a3a3;
+  padding: 1rem 1.5rem;
   border-radius: 0.5rem;
-  box-shadow: 1px 2px 16px 2px #00000029;
+  box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
   background-color: vars.$primary-contrast-rgb;
   max-width: 21rem;
-  font-size: small;
+  font-family: Metropolis;
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 1.375rem;
 }
 
 ::ng-deep {
   .table-tab-header,
   .extraTab > .mdc-tab__content > span {
-    color: vars.$primary;
+    color: rgba(vars.$primary-600);
     user-select: none;
+    font-weight: 500;
   }
 
   mat-tab-header {
@@ -175,13 +185,13 @@
   }
 
   .mdc-tab__text-label {
-    color: black !important;
+    color: rgba(vars.$primary-600) !important;
   }
 
   .mdc-tab-indicator__content--underline {
-    border-color: #990000 !important;
-    border-top-width: 4px !important;
+    border-color: rgba(vars.$accent-lighter) !important;
   }
+
   .mdc-tab__ripple::before {
     opacity: 0 !important;
   }

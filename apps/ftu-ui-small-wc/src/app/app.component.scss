@@ -82,7 +82,7 @@
 
 ::ng-deep hra-biomarker-table {
   max-width: unset !important;
-  max-height: calc(100% - 8rem) !important;
+  height: calc(100% - 8rem) !important;
 }
 
 ::ng-deep .content {
