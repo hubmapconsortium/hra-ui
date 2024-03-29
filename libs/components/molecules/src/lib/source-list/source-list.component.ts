@@ -17,6 +17,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { EmptyBiomarkerComponent, LabelBoxComponent } from '@hra-ui/components/atoms';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import { HoverDirective } from '@hra-ui/cdk';
 
 /** SourceListItem interface contains title and link to the dataset for the SourceList*/
 export interface SourceListItem {
@@ -46,6 +47,7 @@ export interface SourceListItem {
     LabelBoxComponent,
     EmptyBiomarkerComponent,
     MatCheckboxModule,
+    HoverDirective,
   ],
   templateUrl: './source-list.component.html',
   styleUrls: ['./source-list.component.scss'],

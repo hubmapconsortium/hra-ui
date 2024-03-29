@@ -31,6 +31,26 @@
       display: none;
     }
 
+    .mat-column-select {
+      width: 1rem;
+      padding-right: 0;
+    }
+
+    .mat-column-authors,
+    .mat-column-title,
+    .mat-column-doi,
+    .mat-column-link {
+      max-width: 7rem;
+    }
+
+    .mat-column-year {
+      max-width: 3.5rem;
+    }
+
+    .mat-column-link {
+      padding-right: 3rem;
+    }
+
     ::ng-deep thead {
       tr {
         height: 3rem !important;
@@ -40,24 +60,6 @@
     }
 
     ::ng-deep tbody {
-      .mat-column-authors {
-        padding-left: 0;
-      }
-
-      .mat-column-select,
-      .mat-column-year {
-        max-width: 3.5rem;
-        min-width: 3.5rem;
-      }
-
-      .mat-column-authors,
-      .mat-column-title,
-      .mat-column-doi,
-      .mat-column-link {
-        max-width: 7rem;
-        min-width: 7rem;
-      }
-
       .mat-column-title,
       .mat-column-doi,
       .mat-column-link {
