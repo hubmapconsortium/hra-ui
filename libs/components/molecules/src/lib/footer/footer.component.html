@@ -12,7 +12,7 @@
 </button>
 
 <button
-  class="button download-button"
+  class="button download"
   mat-button
   (click)="downloadListOpen = !downloadListOpen"
   type="button"
@@ -29,9 +29,9 @@
   Illustration Metadata
 </button>
 
-<button class="button illustration-download" *ngIf="!isSmall" mat-button [hraLink]="illustrationMetadata" disableRipple>
+<button class="button data-download" *ngIf="!isSmall" mat-button disableRipple>
   <span class="material-symbols-outlined"> download </span>
-  Download Illustration
+  Download Data
 </button>
 
 <button class="button contact" *ngIf="isSmall" mat-button (mouseup)="contactClick.emit()" disableRipple>
