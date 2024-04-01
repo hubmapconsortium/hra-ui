@@ -1,0 +1,49 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: grey;
+  gap: 5rem;
+  height: 100%;
+
+  .img-bg {
+    opacity: 0.45;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    width: 60%;
+    max-width: 72rem;
+
+    .title {
+      font-size: 72px;
+      font-weight: 500;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 5rem;
+
+      .creation-step {
+        mat-card-content {
+          flex-wrap: wrap;
+          display: flex;
+          gap: 5rem;
+        }
+
+        mat-card-content > div {
+          display: flex;
+          flex-direction: column;
+          width: 25%;
+        }
+      }
+    }
+  }
+}

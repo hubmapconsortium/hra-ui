@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { CreateVisualizationPageComponent } from './pages/create-visualization-page/create-visualization-page.component';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent],
+  imports: [CreateVisualizationPageComponent],
   selector: 'cde-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
