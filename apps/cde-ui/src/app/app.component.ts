@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent],
+  imports: [RouterOutlet],
   selector: 'cde-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
