@@ -17,7 +17,7 @@
         "tsConfig": "apps/cde-ui/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/cde-ui/src/favicon.ico", "apps/cde-ui/src/assets"],
-        "styles": ["apps/cde-ui/src/styles.scss"],
+        "styles": ["apps/cde-ui/src/styles.scss", "apps/cde-ui/src/assets/fonts/fonts.scss"],
         "stylePreprocessorOptions": {
           "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
         },

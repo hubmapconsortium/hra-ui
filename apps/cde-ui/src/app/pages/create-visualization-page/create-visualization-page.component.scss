@@ -1,14 +1,20 @@
 :host {
+  --mat-card-title-text-font: 'Metropolis';
+  --mat-card-title-text-size: 42px;
+  --mat-card-title-text-line-height: 52.5px;
+  --mat-form-field-container-text-font: 'Metropolis';
+  --mat-select-trigger-text-font: 'Metropolis';
+  --mat-option-label-text-font: 'Metropolis';
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: grey;
   gap: 5rem;
   height: 100%;
 
   .img-bg {
     opacity: 0.45;
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -18,30 +24,47 @@
     display: flex;
     flex-direction: column;
     gap: 5rem;
-    width: 60%;
     max-width: 72rem;
 
     .title {
       font-size: 72px;
       font-weight: 500;
+      letter-spacing: -0.05em;
     }
 
-    .steps {
-      display: flex;
-      flex-direction: column;
-      gap: 5rem;
+    mat-card {
+      padding: 56px 64px;
 
-      .creation-step {
-        mat-card-content {
-          flex-wrap: wrap;
-          display: flex;
-          gap: 5rem;
-        }
+      mat-card-header {
+        padding: 0 0 3rem;
+      }
 
-        mat-card-content > div {
+      mat-card-content {
+        display: flex;
+        padding: 0;
+      }
+
+      mat-card-actions {
+        padding: 0;
+      }
+    }
+
+    .metadata {
+      mat-card-content {
+        flex-direction: column;
+        gap: 3rem;
+
+        .row-1,
+        .row-2,
+        .row-3 {
           display: flex;
-          flex-direction: column;
-          width: 25%;
+          justify-content: space-between;
+
+          div {
+            display: flex;
+            flex-direction: column;
+            width: 288px;
+          }
         }
       }
     }
