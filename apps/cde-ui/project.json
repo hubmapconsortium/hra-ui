@@ -118,7 +118,7 @@
       "executor": "@twittwer/compodoc:compodoc",
       "options": {
         "tsConfig": "apps/cde-ui/tsconfig.app.json",
-        "outputPath": "dist/compodoc/components-atoms",
+        "outputPath": "dist/compodoc/cde-ui",
         "exportFormat": "json"
       }
     },
