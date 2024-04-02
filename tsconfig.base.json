@@ -78,6 +78,9 @@
       "ccf-shared/web-components": [
         "libs/ccf-shared/web-components/src/public-api.ts"
       ],
+      "cde-ui": [
+        "apps/cde-ui/src/index.ts"
+      ],
       "stream": [
         "./node_modules/stream-browserify"
       ],
