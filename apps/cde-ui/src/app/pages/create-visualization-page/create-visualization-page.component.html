@@ -1,26 +1,27 @@
-<img class="img-bg" src="assets/background.png" />
-
 <div class="content">
   <span class="title">Create a Cell Distance Visualization</span>
 
-  <mat-card class="creation-step">
+  <mat-card class="creation-step data">
     <mat-card-header>
       <mat-card-title>Format and Upload Data</mat-card-title>
     </mat-card-header>
     <mat-card-content> </mat-card-content>
     <mat-card-actions>
-      <button mat-button *ngIf="!dataUploaded" (click)="upload()">Upload CSV</button>
-      <button mat-button *ngIf="dataUploaded" (click)="removeCSV()">Upload CSV</button>
+      @if (dataUploaded) {
+        <button mat-button (click)="removeCSV()">Remove CSV</button>
+      } @else {
+        <button mat-button (click)="upload()">Upload CSV</button>
+      }
     </mat-card-actions>
   </mat-card>
 
-  <mat-card class="creation-step">
+  <mat-card class="creation-step anchor">
     <mat-card-header>
       <mat-card-title>Optional: Select Anchor Cell type</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <mat-form-field>
-        <mat-select [(value)]="cellTypes[0].value" (selectionChange)="updateAnchorCellType($event.value)">
+        <mat-select [value]="settings.anchorCellType" (selectionChange)="updateAnchorCellType($event.value)">
           @for (cell of cellTypes; track cell) {
             <mat-option [value]="cell.value">{{ cell.viewValue }}</mat-option>
           }
@@ -35,22 +36,22 @@
     </mat-card-header>
     <mat-card-content>
       <div class="row-1">
-        <div>
+        <div class="metadata-option">
           <span>Visualization Title</span>
           <mat-form-field>
             <input matInput placeholder="Title" value="" />
           </mat-form-field>
         </div>
-        <div>
+        <div class="metadata-option">
           <span>Imaging Technology</span>
           <mat-form-field>
             <input matInput placeholder="Title" value="" />
           </mat-form-field>
         </div>
-        <div>
+        <div class="metadata-option">
           <span>Organ</span>
           <mat-form-field>
-            <mat-select [(value)]="cellTypes[0].value" (selectionChange)="updateAnchorCellType($event.value)">
+            <mat-select [value]="cellTypes[0].value" (selectionChange)="updateAnchorCellType($event.value)">
               @for (cell of cellTypes; track cell) {
                 <mat-option [value]="cell.value">{{ cell.viewValue }}</mat-option>
               }
@@ -60,44 +61,44 @@
       </div>
 
       <div class="row-2">
-        <div>
+        <div class="metadata-option">
           <span>Sex</span>
           <mat-form-field>
-            <mat-select [(value)]="cellTypes[0].value" (selectionChange)="updateAnchorCellType($event.value)">
+            <mat-select [value]="cellTypes[0].value" (selectionChange)="updateAnchorCellType($event.value)">
               @for (cell of cellTypes; track cell) {
                 <mat-option [value]="cell.value">{{ cell.viewValue }}</mat-option>
               }
             </mat-select>
           </mat-form-field>
         </div>
-        <div>
+        <div class="metadata-option">
           <span>Age</span>
           <mat-form-field>
             <input matInput placeholder="Age" value="" />
           </mat-form-field>
         </div>
-        <div></div>
+        <div class="filler"></div>
       </div>
 
       <div class="row-3">
-        <div>
+        <div class="metadata-option">
           <span>Thickness (um)</span>
           <mat-form-field>
             <input matInput placeholder="Thickness" value="" />
           </mat-form-field>
         </div>
-        <div>
+        <div class="metadata-option">
           <span>Pixel size (um/pixel)</span>
           <mat-form-field>
             <input matInput placeholder="Pixel size" value="" />
           </mat-form-field>
         </div>
-        <div></div>
+        <div class="filler"></div>
       </div>
     </mat-card-content>
   </mat-card>
 
-  <mat-card class="creation-step">
+  <mat-card class="creation-step colors">
     <mat-card-header>
       <mat-card-title>Optional: Configure Color Map</mat-card-title>
     </mat-card-header>
@@ -109,7 +110,7 @@
     </mat-card-actions>
   </mat-card>
 
-  <mat-card class="creation-step">
+  <mat-card class="creation-step visualize">
     <mat-card-header>
       <mat-card-title>Visualize Cell Distance Data</mat-card-title>
     </mat-card-header>

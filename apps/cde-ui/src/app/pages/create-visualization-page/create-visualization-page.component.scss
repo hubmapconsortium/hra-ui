@@ -2,6 +2,9 @@
   --mat-card-title-text-font: 'Metropolis';
   --mat-card-title-text-size: 42px;
   --mat-card-title-text-line-height: 52.5px;
+  --mdc-elevated-card-container-shape: 1rem;
+  --mdc-elevated-card-container-elevation: 0px 5px 16px 0px #201e3d3d;
+
   --mat-form-field-container-text-font: 'Metropolis';
   --mat-select-trigger-text-font: 'Metropolis';
   --mat-option-label-text-font: 'Metropolis';
@@ -12,12 +15,16 @@
   gap: 5rem;
   height: 100%;
 
-  .img-bg {
-    opacity: 0.45;
+  &:before {
+    content: '';
     position: fixed;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url('../../../assets/backgrounds/create-visualization-page-background.png');
+    opacity: 0.45;
+    background-size: cover;
   }
 
   .content {
@@ -60,10 +67,17 @@
           display: flex;
           justify-content: space-between;
 
-          div {
+          .metadata-option,
+          .filler {
             display: flex;
             flex-direction: column;
             width: 288px;
+
+            span {
+              font-size: 15px;
+              font-weight: 500;
+              line-height: 22.5px;
+            }
           }
         }
       }
