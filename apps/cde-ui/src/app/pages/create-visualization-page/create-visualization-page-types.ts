@@ -29,7 +29,6 @@ export interface Color {
 
 export interface CellTypeOption {
   value: string;
-  default?: boolean;
   viewValue: string;
 }
 
