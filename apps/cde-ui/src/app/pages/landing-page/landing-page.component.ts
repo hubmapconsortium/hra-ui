@@ -2,6 +2,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VisualCardComponent } from '../../components/visual-card/visual-card.component';
 
+/**
+ * Landing page component
+ */
 @Component({
   selector: 'cde-landing-page',
   standalone: true,
