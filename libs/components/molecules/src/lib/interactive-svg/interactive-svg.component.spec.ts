@@ -32,7 +32,7 @@ describe('InteractiveSvgComponent', () => {
     shallow = new Shallow(InteractiveSvgComponent).dontMock(OverlayModule);
     renderer = mock<Renderer2>();
 
-    mockedInject.mockReset().mockReturnValue(renderer);
+    mockedInject.mockReset().mockReturnValue(renderer as never);
     renderer.listen.mockReturnValue(() => undefined);
     svg.querySelector.mockReturnValue(crosswalk);
     crosswalk.querySelector.mockReturnValue(nodeList[0]);

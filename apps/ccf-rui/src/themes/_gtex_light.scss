@@ -9,8 +9,8 @@ $gtex-light-palette: utility.add-colors(
     main: #46a4ad,
     light-disabled: #e0e0e0,
     contrast: (
-      main: mat.$private-dark-primary-text,
-      light-disabled: mat.$private-dark-primary-text,
+      main: rgba(black, 0.87),
+      light-disabled: rgba(black, 0.87),
     ),
   )
 );
