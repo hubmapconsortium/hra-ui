@@ -14,6 +14,7 @@
   align-items: center;
   gap: 5rem;
   height: 100%;
+  color: #201e3d;
 
   &:before {
     content: '';
@@ -25,6 +26,7 @@
     background-image: url('../../../assets/backgrounds/create-visualization-page-background.png');
     opacity: 0.45;
     background-size: cover;
+    z-index: -1;
   }
 
   .content {
@@ -46,6 +48,23 @@
 
       mat-card-header {
         padding: 0 0 3rem;
+
+        mat-card-title {
+          display: flex;
+
+          .step-number {
+            width: 56px;
+            height: 56px;
+            background: #464954;
+            text-align: center;
+            padding: 1rem;
+            line-height: 28px;
+            margin-right: 1.5rem;
+            border-radius: 50%;
+            font-size: 24px;
+            color: white;
+          }
+        }
       }
 
       mat-card-content {

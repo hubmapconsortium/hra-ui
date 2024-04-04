@@ -1,5 +1,7 @@
 import { ApplicationConfig } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { Routes, provideRouter } from '@angular/router';
+import { CreateVisualizationPageComponent } from './pages/create-visualization-page/create-visualization-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 
 /**
@@ -22,9 +24,7 @@ const routes: Routes = [
 
 /**
  * Set of config options available during the application bootstrap operation.
- */ import { provideAnimations } from '@angular/platform-browser/animations';
-import { CreateVisualizationPageComponent } from './pages/create-visualization-page/create-visualization-page.component';
-
+ */
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), provideAnimations()],
 };

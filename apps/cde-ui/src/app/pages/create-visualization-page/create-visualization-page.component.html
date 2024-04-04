@@ -1,9 +1,12 @@
-<div class="content">
+<form class="content" [formGroup]="visualizationForm" (ngSubmit)="onSubmit()" (keydown.enter)="$event.preventDefault()">
   <span class="title">Create a Cell Distance Visualization</span>
 
   <mat-card class="creation-step data">
     <mat-card-header>
-      <mat-card-title>Format and Upload Data</mat-card-title>
+      <mat-card-title>
+        <div class="step-number">1</div>
+        Format and Upload Data
+      </mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div class="left-side">
@@ -43,14 +46,14 @@
 
   <mat-card class="creation-step anchor">
     <mat-card-header>
-      <mat-card-title>Optional: Select Anchor Cell type</mat-card-title>
+      <mat-card-title>
+        <div class="step-number">2</div>
+        Optional: Select Anchor Cell type
+      </mat-card-title>
     </mat-card-header>
     <mat-card-actions>
       <mat-form-field>
-        <mat-select
-          [value]="settings.anchorCellType"
-          (selectionChange)="updateSettings('anchorCellType', $event.value)"
-        >
+        <mat-select [value]="visualizationForm.value.anchorCellType" formControlName="anchorCellType">
           @for (cell of cellTypes; track cell) {
             <mat-option [value]="cell.value">{{ cell.viewValue }}</mat-option>
           }
@@ -59,9 +62,12 @@
     </mat-card-actions>
   </mat-card>
 
-  <mat-card class="creation-step metadata">
+  <mat-card class="creation-step metadata" formGroupName="metadata">
     <mat-card-header>
-      <mat-card-title>Add Metadata</mat-card-title>
+      <mat-card-title>
+        <div class="step-number">3</div>
+        Add metadata
+      </mat-card-title>
     </mat-card-header>
     <mat-card-actions>
       <div class="row-1">
@@ -71,8 +77,8 @@
             <input
               matInput
               placeholder="Title"
-              value=""
-              (input)="updateSettings('metadata', getInput($event), 'title')"
+              [value]="visualizationForm.value.metadata ? visualizationForm.value.metadata.title : ''"
+              formControlName="title"
             />
           </mat-form-field>
         </div>
@@ -82,8 +88,8 @@
             <input
               matInput
               placeholder="Technology"
-              value=""
-              (input)="updateSettings('metadata', getInput($event), 'technology')"
+              [value]="visualizationForm.value.metadata ? visualizationForm.value.metadata.technology : ''"
+              formControlName="technology"
             />
           </mat-form-field>
         </div>
@@ -91,9 +97,9 @@
           <span>Organ</span>
           <mat-form-field>
             <mat-select
-              [value]="settings.metadata.organ"
-              (selectionChange)="updateSettings('metadata', $event.value, 'organ')"
+              [value]="visualizationForm.value.metadata ? visualizationForm.value.metadata.organ : ''"
               placeholder="Organ"
+              formControlName="organ"
             >
               <mat-option>None</mat-option>
               @for (organ of organs; track organ) {
@@ -109,8 +115,8 @@
           <span>Sex</span>
           <mat-form-field>
             <mat-select
-              [value]="settings.metadata.sex"
-              (selectionChange)="updateSettings('metadata', $event.value, 'sex')"
+              [value]="visualizationForm.value.metadata ? visualizationForm.value.metadata.sex : ''"
+              formControlName="sex"
             >
               @for (sex of sexes; track sex) {
                 <mat-option [value]="sex.value">{{ sex.viewValue }}</mat-option>
@@ -121,7 +127,13 @@
         <div class="metadata-option">
           <span>Age</span>
           <mat-form-field>
-            <input matInput placeholder="Age" value="" (input)="updateSettings('metadata', getInput($event), 'age')" />
+            <input
+              matInput
+              type="number"
+              placeholder="Age"
+              [value]="visualizationForm.value.metadata ? visualizationForm.value.metadata.age : ''"
+              formControlName="age"
+            />
           </mat-form-field>
         </div>
         <div class="filler"></div>
@@ -133,9 +145,10 @@
           <mat-form-field>
             <input
               matInput
+              type="number"
               placeholder="Thickness"
-              value=""
-              (input)="updateSettings('metadata', getInput($event), 'thickness')"
+              [value]="visualizationForm.value.metadata ? visualizationForm.value.metadata.thickness : ''"
+              formControlName="thickness"
             />
           </mat-form-field>
         </div>
@@ -144,9 +157,10 @@
           <mat-form-field>
             <input
               matInput
+              type="number"
               placeholder="Pixel size"
-              value=""
-              (input)="updateSettings('metadata', getInput($event), 'pixelSize')"
+              [value]="visualizationForm.value.metadata ? visualizationForm.value.metadata.pixelSize : ''"
+              formControlName="pixelSize"
             />
           </mat-form-field>
         </div>
@@ -157,10 +171,13 @@
 
   <mat-card class="creation-step colors">
     <mat-card-header>
-      <mat-card-title>Optional: Configure Color Map</mat-card-title>
+      <mat-card-title>
+        <div class="step-number">4</div>
+        Optional: Configure Color Map
+      </mat-card-title>
     </mat-card-header>
     <mat-card-actions>
-      <mat-button-toggle-group aria-label="Font Style">
+      <mat-button-toggle-group aria-label="Font Style" formControlName="colorMapOption">
         <mat-button-toggle value="default">Use Default Colors</mat-button-toggle>
         <mat-button-toggle value="custom">Upload Custom Color Map</mat-button-toggle>
       </mat-button-toggle-group>
@@ -169,10 +186,13 @@
 
   <mat-card class="creation-step visualize">
     <mat-card-header>
-      <mat-card-title>Visualize Cell Distance Data</mat-card-title>
+      <mat-card-title>
+        <div class="step-number">5</div>
+        Visualize Cell Distance Data
+      </mat-card-title>
     </mat-card-header>
     <mat-card-actions>
-      <button mat-button (click)="visualize.emit(settings)">Visualize</button>
+      <button type="submit" mat-button>Visualize</button>
     </mat-card-actions>
   </mat-card>
-</div>
+</form>

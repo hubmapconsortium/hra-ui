@@ -1,19 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { produce } from 'immer';
+
 import {
-  MetadataSelectOption,
+  ColorMap,
+  DEFAULT_COLOR_MAP,
   DEFAULT_SETTINGS,
   MetaData,
+  MetadataSelectOption,
   VisualizationSettings,
 } from './create-visualization-page-types';
-import { produce } from 'immer';
 
 @Component({
   selector: 'cde-create-visualization-page',
@@ -27,35 +30,53 @@ import { produce } from 'immer';
     MatSelectModule,
     MatInputModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   templateUrl: './create-visualization-page.component.html',
   styleUrl: './create-visualization-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateVisualizationPageComponent implements OnInit {
-  @Input() defaultCellType = 'endothelial';
+  @Output() readonly visualize = new EventEmitter<VisualizationSettings>();
 
-  @Input() cellTypes: MetadataSelectOption[] = [
+  defaultCellType = 'endothelial';
+
+  settings: VisualizationSettings = DEFAULT_SETTINGS;
+
+  colorMap: ColorMap = DEFAULT_COLOR_MAP;
+
+  visualizationForm = new FormGroup({
+    anchorCellType: new FormControl<string>(this.defaultCellType),
+    metadata: new FormGroup({
+      title: new FormControl<string>(''),
+      technology: new FormControl<string>(''),
+      organ: new FormControl<string>(''),
+      sex: new FormControl<string>('female'),
+      age: new FormControl<number>(NaN),
+      thickness: new FormControl<number>(NaN),
+      pixelSize: new FormControl<number>(NaN),
+    }),
+    colorMapOption: new FormControl<string>('default'),
+  });
+
+  dataUploaded = false;
+
+  cellTypes: MetadataSelectOption[] = [
     { value: 'endothelial', viewValue: 'Endothelial' },
     { value: 'b', viewValue: 'B' },
     { value: 'c', viewValue: 'C' },
   ];
 
-  @Input() organs: MetadataSelectOption[] = [
+  organs: MetadataSelectOption[] = [
     { value: 'a', viewValue: 'A' },
     { value: 'b', viewValue: 'B' },
     { value: 'c', viewValue: 'C' },
   ];
 
-  @Input() sexes: MetadataSelectOption[] = [
+  sexes: MetadataSelectOption[] = [
     { value: 'male', viewValue: 'Male' },
     { value: 'female', viewValue: 'Female' },
   ];
-
-  @Output() readonly visualize = new EventEmitter<VisualizationSettings>();
-  settings: VisualizationSettings = DEFAULT_SETTINGS;
-
-  dataUploaded = false;
 
   ngOnInit(): void {
     const defaultCellTypeOption = this.cellTypes.find((celltype) => celltype.value === this.defaultCellType);
@@ -65,9 +86,13 @@ export class CreateVisualizationPageComponent implements OnInit {
           ? { ...option, viewValue: `Default: ${defaultCellTypeOption.viewValue}` }
           : option,
       );
-      this.updateSettings('anchorCellType', defaultCellTypeOption.value);
+      this.visualizationForm.patchValue({
+        anchorCellType: defaultCellTypeOption.value,
+      });
     } else {
-      this.updateSettings('anchorCellType', 'none');
+      this.visualizationForm.patchValue({
+        anchorCellType: '',
+      });
     }
     console.log(this.cellTypes);
   }
@@ -79,37 +104,28 @@ export class CreateVisualizationPageComponent implements OnInit {
 
   removeCSV() {
     this.dataUploaded = false;
-    this.settings.data = {
-      x: 0,
-      y: 0,
-      cellType: '',
-    };
-  }
-
-  updateSettings<K extends keyof VisualizationSettings, J extends keyof MetaData>(
-    key: K,
-    value: string | number,
-    metadataKey?: J,
-  ): void {
-    let newValue: VisualizationSettings[K] | MetaData;
-
-    if (metadataKey) {
-      const newMetadata = produce(this.settings.metadata, (draft) => {
-        draft[metadataKey] = value as MetaData[J];
-      });
-      newValue = newMetadata;
-    } else {
-      newValue = value as VisualizationSettings[K];
-    }
-
     this.settings = produce(this.settings, (draft) => {
-      draft[key] = newValue as VisualizationSettings[K];
+      draft.data = {
+        x: 0,
+        y: 0,
+        cellType: '',
+      };
     });
-    console.log(this.settings);
   }
 
   getInput(event: Event): string | number {
     const target = event.target as HTMLInputElement;
     return target.value;
+  }
+
+  onSubmit() {
+    console.warn(this.visualizationForm.value);
+    this.settings = produce(this.settings, (draft) => {
+      draft.metadata = this.visualizationForm.value.metadata as MetaData;
+      draft.anchorCellType = this.visualizationForm.value.anchorCellType || undefined;
+      draft.colorMap = this.colorMap;
+    });
+    console.warn(this.settings);
+    this.visualize.emit(this.settings);
   }
 }

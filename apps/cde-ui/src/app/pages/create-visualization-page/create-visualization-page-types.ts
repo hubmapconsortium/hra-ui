@@ -1,8 +1,10 @@
+export type ColorMap = Record<string, [number, number, number]>;
+
 export interface VisualizationSettings {
   data: CellTypeTableData;
   anchorCellType?: string;
   metadata: MetaData;
-  colorMap: Color[];
+  colorMap: ColorMap;
 }
 
 export interface CellTypeTableData {
@@ -23,10 +25,6 @@ export interface MetaData {
   organ?: string;
 }
 
-export interface Color {
-  cellType: number[];
-}
-
 export interface MetadataSelectOption {
   value: string;
   viewValue: string;
@@ -41,5 +39,7 @@ export const DEFAULT_SETTINGS: VisualizationSettings = {
   metadata: {
     sex: 'female',
   },
-  colorMap: [],
+  colorMap: {},
 };
+
+export const DEFAULT_COLOR_MAP: ColorMap = { default: [1, 2, 3] };
