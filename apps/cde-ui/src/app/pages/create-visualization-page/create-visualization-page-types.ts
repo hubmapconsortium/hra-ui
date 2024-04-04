@@ -15,7 +15,7 @@ export interface CellTypeTableData {
 
 export interface MetaData {
   title?: string;
-  sex?: string;
+  sex: string;
   thickness?: number;
   technology?: string;
   age?: number;
@@ -27,7 +27,7 @@ export interface Color {
   cellType: number[];
 }
 
-export interface CellTypeOption {
+export interface MetadataSelectOption {
   value: string;
   viewValue: string;
 }
@@ -38,6 +38,8 @@ export const DEFAULT_SETTINGS: VisualizationSettings = {
     y: 0,
     cellType: '',
   },
-  metadata: {},
+  metadata: {
+    sex: 'female',
+  },
   colorMap: [],
 };

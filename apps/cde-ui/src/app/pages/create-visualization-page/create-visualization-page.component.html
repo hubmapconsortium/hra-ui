@@ -5,9 +5,35 @@
     <mat-card-header>
       <mat-card-title>Format and Upload Data</mat-card-title>
     </mat-card-header>
-    <mat-card-content> </mat-card-content>
+    <mat-card-content>
+      <div class="left-side">
+        <div class="column-content">
+          <h2 class="subtitle">Upload Cell Type Table</h2>
+          <div class="column-info">
+            <div class="column-info-column">
+              <span class="column-info-header">Required Columns</span>
+              <span class="column-info-list">X, Y, and Cell Type</span>
+            </div>
+            <div class="column-info-column">
+              <span class="column-info-header">Optional Columns</span>
+              <span class="column-info-list">Z and Cell Ontology ID</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-side">
+        <div class="column-content">
+          <h2 class="subtitle">Cell Type Table Template</h2>
+          <button mat-button>Use Template -></button>
+        </div>
+      </div>
+    </mat-card-content>
     <mat-card-actions>
       @if (dataUploaded) {
+        <div class="column-info-column">
+          <span class="column-info-header">File loaded:</span>
+          <span class="column-info-list">(file name)</span>
+        </div>
         <button mat-button (click)="removeCSV()">Remove CSV</button>
       } @else {
         <button mat-button (click)="upload()">Upload CSV</button>
@@ -19,41 +45,59 @@
     <mat-card-header>
       <mat-card-title>Optional: Select Anchor Cell type</mat-card-title>
     </mat-card-header>
-    <mat-card-content>
+    <mat-card-actions>
       <mat-form-field>
-        <mat-select [value]="settings.anchorCellType" (selectionChange)="updateAnchorCellType($event.value)">
+        <mat-select
+          [value]="settings.anchorCellType"
+          (selectionChange)="updateSettings('anchorCellType', $event.value)"
+        >
           @for (cell of cellTypes; track cell) {
             <mat-option [value]="cell.value">{{ cell.viewValue }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
-    </mat-card-content>
+    </mat-card-actions>
   </mat-card>
 
   <mat-card class="creation-step metadata">
     <mat-card-header>
       <mat-card-title>Add Metadata</mat-card-title>
     </mat-card-header>
-    <mat-card-content>
+    <mat-card-actions>
       <div class="row-1">
         <div class="metadata-option">
           <span>Visualization Title</span>
           <mat-form-field>
-            <input matInput placeholder="Title" value="" />
+            <input
+              matInput
+              placeholder="Title"
+              value=""
+              (input)="updateSettings('metadata', getInput($event), 'title')"
+            />
           </mat-form-field>
         </div>
         <div class="metadata-option">
           <span>Imaging Technology</span>
           <mat-form-field>
-            <input matInput placeholder="Title" value="" />
+            <input
+              matInput
+              placeholder="Technology"
+              value=""
+              (input)="updateSettings('metadata', getInput($event), 'technology')"
+            />
           </mat-form-field>
         </div>
         <div class="metadata-option">
           <span>Organ</span>
           <mat-form-field>
-            <mat-select [value]="cellTypes[0].value" (selectionChange)="updateAnchorCellType($event.value)">
-              @for (cell of cellTypes; track cell) {
-                <mat-option [value]="cell.value">{{ cell.viewValue }}</mat-option>
+            <mat-select
+              [value]="settings.metadata.organ"
+              (selectionChange)="updateSettings('metadata', $event.value, 'organ')"
+              placeholder="Organ"
+            >
+              <mat-option>None</mat-option>
+              @for (organ of organs; track organ) {
+                <mat-option [value]="organ.value">{{ organ.viewValue }}</mat-option>
               }
             </mat-select>
           </mat-form-field>
@@ -64,9 +108,12 @@
         <div class="metadata-option">
           <span>Sex</span>
           <mat-form-field>
-            <mat-select [value]="cellTypes[0].value" (selectionChange)="updateAnchorCellType($event.value)">
-              @for (cell of cellTypes; track cell) {
-                <mat-option [value]="cell.value">{{ cell.viewValue }}</mat-option>
+            <mat-select
+              [value]="settings.metadata.sex"
+              (selectionChange)="updateSettings('metadata', $event.value, 'sex')"
+            >
+              @for (sex of sexes; track sex) {
+                <mat-option [value]="sex.value">{{ sex.viewValue }}</mat-option>
               }
             </mat-select>
           </mat-form-field>
@@ -74,7 +121,7 @@
         <div class="metadata-option">
           <span>Age</span>
           <mat-form-field>
-            <input matInput placeholder="Age" value="" />
+            <input matInput placeholder="Age" value="" (input)="updateSettings('metadata', getInput($event), 'age')" />
           </mat-form-field>
         </div>
         <div class="filler"></div>
@@ -84,18 +131,28 @@
         <div class="metadata-option">
           <span>Thickness (um)</span>
           <mat-form-field>
-            <input matInput placeholder="Thickness" value="" />
+            <input
+              matInput
+              placeholder="Thickness"
+              value=""
+              (input)="updateSettings('metadata', getInput($event), 'thickness')"
+            />
           </mat-form-field>
         </div>
         <div class="metadata-option">
           <span>Pixel size (um/pixel)</span>
           <mat-form-field>
-            <input matInput placeholder="Pixel size" value="" />
+            <input
+              matInput
+              placeholder="Pixel size"
+              value=""
+              (input)="updateSettings('metadata', getInput($event), 'pixelSize')"
+            />
           </mat-form-field>
         </div>
         <div class="filler"></div>
       </div>
-    </mat-card-content>
+    </mat-card-actions>
   </mat-card>
 
   <mat-card class="creation-step colors">

@@ -7,7 +7,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { CellTypeOption, DEFAULT_SETTINGS, VisualizationSettings } from './create-visualization-page-types';
+import {
+  MetadataSelectOption,
+  DEFAULT_SETTINGS,
+  MetaData,
+  VisualizationSettings,
+} from './create-visualization-page-types';
 import { produce } from 'immer';
 
 @Component({
@@ -30,11 +35,21 @@ import { produce } from 'immer';
 export class CreateVisualizationPageComponent implements OnInit {
   @Input() defaultCellType = 'endothelial';
 
-  @Input() cellTypes: CellTypeOption[] = [
-    { value: 'none', viewValue: 'None' },
+  @Input() cellTypes: MetadataSelectOption[] = [
     { value: 'endothelial', viewValue: 'Endothelial' },
     { value: 'b', viewValue: 'B' },
     { value: 'c', viewValue: 'C' },
+  ];
+
+  @Input() organs: MetadataSelectOption[] = [
+    { value: 'a', viewValue: 'A' },
+    { value: 'b', viewValue: 'B' },
+    { value: 'c', viewValue: 'C' },
+  ];
+
+  @Input() sexes: MetadataSelectOption[] = [
+    { value: 'male', viewValue: 'Male' },
+    { value: 'female', viewValue: 'Female' },
   ];
 
   @Output() readonly visualize = new EventEmitter<VisualizationSettings>();
@@ -71,14 +86,30 @@ export class CreateVisualizationPageComponent implements OnInit {
     };
   }
 
-  updateAnchorCellType(value: string) {
-    this.updateSettings('anchorCellType', value);
-  }
+  updateSettings<K extends keyof VisualizationSettings, J extends keyof MetaData>(
+    key: K,
+    value: string | number,
+    metadataKey?: J,
+  ): void {
+    let newValue: VisualizationSettings[K] | MetaData;
 
-  updateSettings<K extends keyof VisualizationSettings>(key: K, value: VisualizationSettings[K]): void {
+    if (metadataKey) {
+      const newMetadata = produce(this.settings.metadata, (draft) => {
+        draft[metadataKey] = value as MetaData[J];
+      });
+      newValue = newMetadata;
+    } else {
+      newValue = value as VisualizationSettings[K];
+    }
+
     this.settings = produce(this.settings, (draft) => {
-      draft[key] = value;
+      draft[key] = newValue as VisualizationSettings[K];
     });
     console.log(this.settings);
+  }
+
+  getInput(event: Event): string | number {
+    const target = event.target as HTMLInputElement;
+    return target.value;
   }
 }

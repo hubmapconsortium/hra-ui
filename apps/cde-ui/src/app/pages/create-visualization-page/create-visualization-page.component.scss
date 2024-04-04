@@ -32,15 +32,17 @@
     flex-direction: column;
     gap: 5rem;
     max-width: 72rem;
+    margin: 0 24rem;
+    width: 100%;
 
     .title {
-      font-size: 72px;
+      font-size: 4.5rem;
       font-weight: 500;
       letter-spacing: -0.05em;
     }
 
     mat-card {
-      padding: 56px 64px;
+      padding: 3.5rem 4rem;
 
       mat-card-header {
         padding: 0 0 3rem;
@@ -49,6 +51,8 @@
       mat-card-content {
         display: flex;
         padding: 0;
+        padding-bottom: 2.5rem;
+        justify-content: space-between;
       }
 
       mat-card-actions {
@@ -56,8 +60,68 @@
       }
     }
 
+    .data {
+      .left-side {
+        border-right: 1px solid #d5dbe3;
+
+        .column-content {
+          max-width: 26.75rem;
+        }
+      }
+
+      .right-side {
+        display: flex;
+        justify-content: flex-end;
+
+        .column-content {
+          width: 100%;
+          align-items: flex-start;
+        }
+      }
+
+      .left-side,
+      .right-side {
+        width: 50%;
+
+        .column-content {
+          max-width: 26.75rem;
+          display: flex;
+          flex-direction: column;
+
+          .column-info {
+            display: flex;
+            justify-content: space-between;
+            font-family: Omnes;
+            letter-spacing: 0.07em;
+
+            .column-info-column {
+              display: flex;
+              flex-direction: column;
+
+              .column-info-header {
+                font-size: 20px;
+                line-height: 30px;
+                padding-bottom: 0.5rem;
+              }
+
+              .column-info-list {
+                display: flex;
+                flex-direction: column;
+                font-size: 18px;
+                line-height: 27px;
+              }
+            }
+          }
+        }
+
+        .subtitle {
+          font-weight: 500;
+        }
+      }
+    }
+
     .metadata {
-      mat-card-content {
+      mat-card-actions {
         flex-direction: column;
         gap: 3rem;
 
@@ -66,12 +130,13 @@
         .row-3 {
           display: flex;
           justify-content: space-between;
+          width: 100%;
 
           .metadata-option,
           .filler {
             display: flex;
             flex-direction: column;
-            width: 288px;
+            width: 18rem;
 
             span {
               font-size: 15px;
