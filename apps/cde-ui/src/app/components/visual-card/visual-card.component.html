@@ -1,9 +1,9 @@
-<div class="visual-card" *ngFor="let card of cardData">
-  <img src="{{ card.cardImage }}" />
-  <div class="card-label">
-    <a
-      >{{ card.cardLabel }}
-      <img src="../../assets/icons/arrow_right.svg" />
-    </a>
-  </div>
-</div>
+@for (card of cardData(); track card.label) {
+  <a class="visual-card cta-flat" [href]="card.url" target="_blank">
+    <img [attr.src]="card.image" />
+    <div class="label">
+      {{ card.label }}
+      <mat-icon iconPositionEnd> east </mat-icon>
+    </div>
+  </a>
+}

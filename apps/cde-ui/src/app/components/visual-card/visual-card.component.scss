@@ -1,7 +1,10 @@
+@use '../../../styles/cta' as cta;
+
 :host {
   font-family: 'Metropolis';
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4rem;
 
   .visual-card {
     max-height: 30.5rem;
@@ -9,50 +12,35 @@
     border-radius: 1rem;
     overflow: hidden;
     box-shadow: 0px 5px 16px 0px rgba(32, 30, 61, 0.24);
+    outline-offset: 0;
+    cursor: pointer;
 
     &:hover {
-      .card-label a {
-        color: rgba(142, 8, 37, 1);
-      }
+      box-shadow: 0px 5px 16px 5px rgba(32, 30, 61, 0.24);
     }
 
-    &:active {
-      outline: 4px solid rgba(106, 6, 28, 1);
-
-      .card-label a {
-        color: rgba(106, 6, 28, 1);
-      }
-    }
-
-    &:focus-visible {
-      outline: 4px solid rgba(224, 13, 58, 1);
-
-      .card-label a {
-        outline: 4px solid rgba(224, 13, 58, 1);
-        color: rgba(32, 30, 61, 1);
-      }
+    &:focus-visible .label {
+      @include cta.flatFocus();
     }
 
     img {
-      max-height: 21rem;
+      height: 21rem;
+      width: 100%;
+      object-fit: contain;
     }
 
-    .card-label {
-      margin: 54.5px 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    a {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
+    .label {
+      margin: 3.4063rem auto;
       padding: 0.5rem 1.5rem;
       font-size: 1.125rem;
       line-height: 1.6875rem;
       font-weight: 500;
-      width: max-content;
+      width: fit-content;
+    }
+
+    mat-icon {
+      vertical-align: middle;
+      margin-left: 0.75rem;
     }
   }
 }

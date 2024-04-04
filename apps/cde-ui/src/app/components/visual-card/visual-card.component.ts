@@ -1,31 +1,21 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
-interface VisualCard {
-  cardImage: string;
-  cardLabel: string;
+export interface VisualCard {
+  image: string;
+  label: string;
+  url: string;
 }
 @Component({
   selector: 'cde-visual-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule],
   templateUrl: './visual-card.component.html',
   styleUrl: './visual-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VisualCardComponent {
-  @Input() cardData: VisualCard[] = [
-    {
-      cardImage: '../../assets/intestine.svg',
-      cardLabel: 'Explore 2D Intestine Data',
-    },
-    {
-      cardImage: '../../assets/skin.svg',
-      cardLabel: 'Explore 3D Skin Data',
-    },
-    {
-      cardImage: '../../assets/tonsil.svg',
-      cardLabel: 'Create a Visualization',
-    },
-  ];
+  cardData = input.required<VisualCard[]>();
 }

@@ -1,13 +1,15 @@
-<section class="create-explore">
-  <div class="header">
-    <h1>Create and Explore Cell Distance Visualizations</h1>
-    <p>
-      This website supports visualization and quantification of cells and cell-cell distance distributions in processed
-      spatial molecular data. Resulting data and visualizations can be explored, downloaded, and can be embedded on
-      websites.
-    </p>
+<section class="create-and-explore">
+  <div class="create-explore-content">
+    <div class="header">
+      <h1>Create and Explore Cell Distance Visualizations</h1>
+      <p>
+        This website supports visualization and quantification of cells and cell-cell distance distributions in
+        processed spatial molecular data. Resulting data and visualizations can be explored, downloaded, and can be
+        embedded on websites.
+      </p>
+    </div>
+    <cde-visual-card [cardData]="data"></cde-visual-card>
   </div>
-  <cde-visual-card></cde-visual-card>
 </section>
 <section class="vccf">
   <div class="paper">
@@ -18,8 +20,16 @@
       Vasculature Common Coordinate Framework (VCCF) taps into this organic infrastructure in order to map the cells in
       the body based on their proximity to nearby blood vessels.
     </p>
-    <button class="primary-btn">Read VCCF Paper</button>
-    <button>VCCF Visualization Poster</button>
+    <a class="hra-btn cta-filled" href="https://doi.org/10.3389/fcvm.2020.00029" target="_blank"
+      >Read VCCF Paper
+      <mat-icon iconPositionEnd> east </mat-icon>
+    </a>
+    <a class="hra-btn cta-flat" href="https://humanatlas.io/vccf" target="_blank"
+      >VCCF Visualization Poster
+      <mat-icon iconPositionEnd> east </mat-icon>
+    </a>
   </div>
-  <div class="youtube-player">Player here</div>
+  <div class="youtube-player">
+    <youtube-player videoId="zQeMgxo8n_U"></youtube-player>
+  </div>
 </section>

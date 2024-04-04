@@ -1,14 +1,17 @@
 :host {
-  max-width: 120rem;
+  & > * {
+    max-width: 120rem;
+    margin: 0 auto;
+  }
   display: block;
   background-color: rgba(252, 252, 252, 1);
 
-  .create-explore {
-    margin: 64px 160px 112px;
+  .create-explore-content {
+    margin: 4rem 10rem 7rem;
   }
 
   .header {
-    margin: 0 72px 0 40px;
+    margin: 0 4.5rem 0 2.5rem;
   }
 
   .header h1 {
@@ -19,7 +22,7 @@
   }
 
   .header p {
-    font-family: Omnes;
+    font-family: 'Omnes';
     margin: 0 0 4rem 0;
     font-size: 1.25rem;
     font-weight: 400;
@@ -27,15 +30,21 @@
   }
 
   .vccf {
-    background: url(../../../assets/eui_bg.png) no-repeat;
+    background: url(../../../assets/backgrounds/eui_bg.png) no-repeat;
     opacity: 98%;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    height: 62.8125rem;
+  }
+
+  .vccf a:first-of-type {
+    margin-right: 3rem;
   }
 
   .paper {
     max-width: 46.5rem;
-    margin: 17.5rem 7.5rem 17.5rem 13.5rem;
+    margin-left: 13.5rem;
   }
 
   .paper h2 {
@@ -49,9 +58,26 @@
     font-weight: 400;
     font-size: 1.25rem;
     line-height: 1.875rem;
+    letter-spacing: 1.4px;
   }
 
-  .primary-btn {
-    margin-right: 3rem;
+  .hra-btn {
+    display: inline-block;
+    font-weight: 500;
+    font-size: 1.125rem;
+    padding: 0.15625rem 1.5rem;
+    width: max-content;
+    line-height: 2.15625rem;
+
+    .mat-icon {
+      vertical-align: middle;
+      margin-left: 0.75rem;
+    }
+  }
+
+  .youtube-player {
+    max-height: min(100vh, 22.625rem);
+    max-width: min(100vw, 40.25rem);
+    margin: 0 12.25rem 0 7.5rem;
   }
 }
