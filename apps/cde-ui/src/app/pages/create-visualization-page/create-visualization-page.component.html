@@ -30,6 +30,15 @@
             <button mat-button (click)="removeCSV()">Remove CSV</button>
           } @else {
             <button mat-button (click)="upload()">Upload CSV</button>
+            <input
+              #fileInput
+              (change)="handleFile($event)"
+              type="file"
+              accept="text/csv"
+              name="fileInput"
+              id="fileInput"
+              style="display: none"
+            />
           }
         </div>
       </div>

@@ -1,5 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  inject,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -48,6 +57,8 @@ export class CreateVisualizationPageComponent implements OnInit {
   private readonly cellTypeDataService = inject(CellTypeDataService);
 
   @Output() readonly visualize = new EventEmitter<VisualizationSettings>();
+
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLElement>;
 
   defaultCellType = 'endothelial';
 
@@ -107,12 +118,29 @@ export class CreateVisualizationPageComponent implements OnInit {
   }
 
   upload() {
-    this.dataUploaded = true;
-    this.cellTypeDataService.getCellTypeData().then((result) => {
-      this.settings = produce(this.settings, (draft) => {
-        draft.data = result;
+    const fileInputElement: HTMLElement = this.fileInput.nativeElement;
+    fileInputElement.click();
+  }
+
+  handleFile(event: Event): void {
+    const inputTarget = event.target as HTMLInputElement;
+    if (!inputTarget.files) {
+      return;
+    }
+
+    const file = inputTarget.files[0];
+    const fileReader = new FileReader();
+
+    fileReader.onload = () => {
+      this.dataUploaded = true;
+      this.cellTypeDataService.getCellTypeData().then((result) => {
+        this.settings = produce(this.settings, (draft) => {
+          draft.data = result;
+        });
       });
-    });
+    };
+
+    fileReader.readAsText(file);
   }
 
   removeCSV() {
@@ -128,11 +156,14 @@ export class CreateVisualizationPageComponent implements OnInit {
   }
 
   onSubmit() {
-    this.settings = produce(this.settings, (draft) => {
-      draft.metadata = this.visualizationForm.value.metadata as MetaData;
-      draft.anchorCellType = this.visualizationForm.value.anchorCellType || undefined;
-      draft.colorMap = this.colorMap;
-    });
-    this.visualize.emit(this.settings);
+    if (this.dataUploaded) {
+      this.settings = produce(this.settings, (draft) => {
+        draft.metadata = this.visualizationForm.value.metadata as MetaData;
+        draft.anchorCellType = this.visualizationForm.value.anchorCellType || undefined;
+        draft.colorMap = this.colorMap;
+      });
+      console.warn(this.settings);
+      this.visualize.emit(this.settings);
+    }
   }
 }
