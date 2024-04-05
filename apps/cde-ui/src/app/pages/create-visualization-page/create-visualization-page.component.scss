@@ -67,15 +67,11 @@
         }
       }
 
-      mat-card-content {
+      mat-card-actions {
         display: flex;
         padding: 0;
         padding-bottom: 2.5rem;
         justify-content: space-between;
-      }
-
-      mat-card-actions {
-        padding: 0;
       }
     }
 

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -16,7 +16,9 @@ import {
   MetaData,
   MetadataSelectOption,
   VisualizationSettings,
-} from './create-visualization-page-types';
+} from '../../models/create-visualization-page-types';
+import { CellTypeDataService } from '../../services/service';
+import { MockCellTypeDataService } from '../../services/service.mock';
 
 @Component({
   selector: 'cde-create-visualization-page',
@@ -32,11 +34,19 @@ import {
     FormsModule,
     ReactiveFormsModule,
   ],
+  providers: [
+    {
+      provide: CellTypeDataService,
+      useExisting: MockCellTypeDataService,
+    },
+  ],
   templateUrl: './create-visualization-page.component.html',
   styleUrl: './create-visualization-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateVisualizationPageComponent implements OnInit {
+  private readonly cellTypeDataService = inject(CellTypeDataService);
+
   @Output() readonly visualize = new EventEmitter<VisualizationSettings>();
 
   defaultCellType = 'endothelial';
@@ -94,22 +104,21 @@ export class CreateVisualizationPageComponent implements OnInit {
         anchorCellType: '',
       });
     }
-    console.log(this.cellTypes);
   }
 
   upload() {
     this.dataUploaded = true;
-    //load the data
+    this.cellTypeDataService.getCellTypeData().then((result) => {
+      this.settings = produce(this.settings, (draft) => {
+        draft.data = result;
+      });
+    });
   }
 
   removeCSV() {
     this.dataUploaded = false;
     this.settings = produce(this.settings, (draft) => {
-      draft.data = {
-        x: 0,
-        y: 0,
-        cellType: '',
-      };
+      draft.data = [];
     });
   }
 
@@ -119,13 +128,11 @@ export class CreateVisualizationPageComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn(this.visualizationForm.value);
     this.settings = produce(this.settings, (draft) => {
       draft.metadata = this.visualizationForm.value.metadata as MetaData;
       draft.anchorCellType = this.visualizationForm.value.anchorCellType || undefined;
       draft.colorMap = this.colorMap;
     });
-    console.warn(this.settings);
     this.visualize.emit(this.settings);
   }
 }

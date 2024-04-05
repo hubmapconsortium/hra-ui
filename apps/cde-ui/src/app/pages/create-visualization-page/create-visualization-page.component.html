@@ -8,7 +8,7 @@
         Format and Upload Data
       </mat-card-title>
     </mat-card-header>
-    <mat-card-content>
+    <mat-card-actions>
       <div class="left-side">
         <div class="column-content">
           <h2 class="subtitle">Upload Cell Type Table</h2>
@@ -22,6 +22,15 @@
               <span class="column-info-list">Z and Cell Ontology ID</span>
             </div>
           </div>
+          @if (dataUploaded) {
+            <div class="column-info-column">
+              <span class="column-info-header">File loaded:</span>
+              <span class="column-info-list">(file name)</span>
+            </div>
+            <button mat-button (click)="removeCSV()">Remove CSV</button>
+          } @else {
+            <button mat-button (click)="upload()">Upload CSV</button>
+          }
         </div>
       </div>
       <div class="right-side">
@@ -30,17 +39,6 @@
           <button mat-button>Use Template -></button>
         </div>
       </div>
-    </mat-card-content>
-    <mat-card-actions>
-      @if (dataUploaded) {
-        <div class="column-info-column">
-          <span class="column-info-header">File loaded:</span>
-          <span class="column-info-list">(file name)</span>
-        </div>
-        <button mat-button (click)="removeCSV()">Remove CSV</button>
-      } @else {
-        <button mat-button (click)="upload()">Upload CSV</button>
-      }
     </mat-card-actions>
   </mat-card>
 
