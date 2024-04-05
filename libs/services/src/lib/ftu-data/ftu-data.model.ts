@@ -48,6 +48,7 @@ export const TISSUE_LIBRARY = z.object({
 export const CELL = z.object({
   id: IRI,
   label: z.string(),
+  count: z.number(),
 });
 
 /** Zod Schema for a BIOMARKER */
