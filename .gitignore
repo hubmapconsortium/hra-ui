@@ -7,7 +7,7 @@
 /bazel-out
 
 # data-schema.js is compiled on the fly
-apps/ccf/src/app/utils/data-schema.js
+apps/human-atlas/src/app/utils/data-schema.js
 
 # Node
 /node_modules
