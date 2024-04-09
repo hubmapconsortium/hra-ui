@@ -5,7 +5,6 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     max-height: 30.3125rem;
-    overflow: hidden;
   }
 
   .footer-left {
@@ -22,7 +21,6 @@
       line-height: 1.4063rem;
       color: white;
       margin-left: 5.5rem;
-      margin-bottom: 9rem;
 
       img {
         vertical-align: bottom;
@@ -36,22 +34,51 @@
 
     .social-funded {
       display: flex;
-      margin: 136px 390px 0 104px;
+      margin: 8.5rem 24.375rem 0 6.5rem;
       gap: 13.875rem;
 
       .social-media {
         display: flex;
+        align-items: flex-end;
         gap: 2.5rem;
+
+        a {
+          .mat-icon {
+            height: 3rem;
+            width: 3rem;
+            color: hsla(347, 89%, 46%, 1);
+          }
+
+          &:hover .mat-icon {
+            color: hsla(347, 89%, 37%, 1);
+          }
+
+          &:active .mat-icon {
+            color: hsla(347, 89%, 29%, 1);
+          }
+        }
       }
 
       .funded-by {
-        display: flex;
-        gap: 2rem;
+        span {
+          display: block;
+          font-size: 0.9375rem;
+          line-height: 1.4063rem;
+          font-weight: 500;
+          margin-bottom: 1rem;
+          color: hsla(240, 11%, 33%, 1);
+        }
+
+        .funded-logo {
+          display: flex;
+          gap: 2rem;
+        }
       }
     }
 
     .disclaimer {
-      margin: 80px 104px 136px;
+      margin: 80px 6.5rem 8.5rem;
+      color: hsla(240, 11%, 33%, 1);
       span {
         display: block;
         font-weight: 500;
