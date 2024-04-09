@@ -4,7 +4,7 @@
     "outDir": "../../dist/out-tsc",
     "types": [],
     "paths": {
-      "@components/": ["apps/ccf/src/app/components/"]
+      "@components/": ["apps/human-atlas/src/app/components/"]
     }
   },
   "files": [

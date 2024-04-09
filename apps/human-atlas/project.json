@@ -1,5 +1,5 @@
 {
-  "name": "ccf",
+  "name": "human-atlas",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "generators": {
@@ -7,20 +7,20 @@
       "style": "scss"
     }
   },
-  "sourceRoot": "apps/ccf/src",
-  "prefix": "ccf",
+  "sourceRoot": "apps/human-atlas/src",
+  "prefix": "human-atlas",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
       "options": {
-        "outputPath": "dist/apps/ccf",
-        "index": "apps/ccf/src/index.html",
-        "main": "apps/ccf/src/main.ts",
-        "polyfills": "apps/ccf/src/polyfills.ts",
-        "tsConfig": "apps/ccf/tsconfig.app.json",
+        "outputPath": "dist/apps/human-atlas",
+        "index": "apps/human-atlas/src/index.html",
+        "main": "apps/human-atlas/src/main.ts",
+        "polyfills": "apps/human-atlas/src/polyfills.ts",
+        "tsConfig": "apps/human-atlas/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/ccf/src/favicon.ico", "apps/ccf/src/assets"],
-        "styles": ["apps/ccf/src/styles.scss"],
+        "assets": ["apps/human-atlas/src/favicon.ico", "apps/human-atlas/src/assets"],
+        "styles": ["apps/human-atlas/src/styles.scss"],
         "stylePreprocessorOptions": {
           "includePaths": ["node_modules/swiper"]
         },
@@ -42,8 +42,8 @@
           ],
           "fileReplacements": [
             {
-              "replace": "apps/ccf/src/environments/environment.ts",
-              "with": "apps/ccf/src/environments/environment.prod.ts"
+              "replace": "apps/human-atlas/src/environments/environment.ts",
+              "with": "apps/human-atlas/src/environments/environment.prod.ts"
             }
           ],
           "outputHashing": "all"
@@ -76,10 +76,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "ccf:build:production"
+          "buildTarget": "human-atlas:build:production"
         },
         "development": {
-          "buildTarget": "ccf:build:development"
+          "buildTarget": "human-atlas:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -87,7 +87,7 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "ccf:build"
+        "buildTarget": "human-atlas:build"
       }
     },
     "lint": {
@@ -97,14 +97,14 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/ccf/jest.config.ts"
+        "jestConfig": "apps/human-atlas/jest.config.ts"
       }
     },
     "compodoc": {
       "executor": "@twittwer/compodoc:compodoc",
       "options": {
-        "tsConfig": "apps/ccf/tsconfig.json",
-        "outputPath": "dist/compodoc/ccf"
+        "tsConfig": "apps/human-atlas/tsconfig.json",
+        "outputPath": "dist/compodoc/human-atlas"
       },
       "configurations": {
         "ci": {
@@ -121,8 +121,8 @@
     "compodoc-json": {
       "executor": "@twittwer/compodoc:compodoc",
       "options": {
-        "tsConfig": "apps/ccf/tsconfig.json",
-        "outputPath": "dist/compodoc/ccf",
+        "tsConfig": "apps/human-atlas/tsconfig.json",
+        "outputPath": "dist/compodoc/human-atlas",
         "exportFormat": "json"
       }
     }

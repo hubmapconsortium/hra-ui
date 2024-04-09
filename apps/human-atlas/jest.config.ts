@@ -1,8 +1,8 @@
 /* eslint-disable */
 export default {
-  displayName: 'ccf',
+  displayName: 'human-atlas',
   preset: '../../jest.preset.cjs',
-  coverageDirectory: '../../coverage/apps/ccf',
+  coverageDirectory: '../../coverage/apps/human-atlas',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {},
   transform: {
