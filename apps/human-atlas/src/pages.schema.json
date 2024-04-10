@@ -166,9 +166,9 @@
                   },
                   "required": ["title", "body", "image", "buttonText", "alt"],
                   "additionalProperties": false,
-                  "description": "This object has the following optional fields.\n    - url: External Link to redirect to when the button is pressed.\n    - route: Name of the route of the page to be loaded when button is pressed.\n    \n    Enter either url or route."
+                  "description": "This object has the following optional fields.\n    - url: External Link to redirect to when the button is pressed.\n    - route: Name of the route of the page to be loaded when button is pressed.\n\n    Enter either url or route."
                 },
-                "description": "This object has the following optional fields.\n    - url: External Link to redirect to when the button is pressed.\n    - route: Name of the route of the page to be loaded when button is pressed.\n    \n    Enter either url or route."
+                "description": "This object has the following optional fields.\n    - url: External Link to redirect to when the button is pressed.\n    - route: Name of the route of the page to be loaded when button is pressed.\n\n    Enter either url or route."
               }
             },
             "required": ["type", "carouselContainerStyles", "carouselInfo"],

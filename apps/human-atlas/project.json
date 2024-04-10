@@ -133,6 +133,16 @@
         "outputPath": "dist/compodoc/human-atlas",
         "exportFormat": "json"
       }
+    },
+    "build-pages-schema": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "tsc --target esnext -m nodenext --skipLibCheck ./apps/human-atlas/src/app/utils/data-schema.ts",
+          "node ./apps/human-atlas/src/app/utils/cli.mjs json-schemas ./apps/human-atlas/src/pages.schema.json",
+          "npx nx format:write --files apps/human-atlas/src/pages.schema.json"
+        ]
+      }
     }
   }
 }
