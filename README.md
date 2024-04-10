@@ -1,7 +1,7 @@
 # HRA Portal
 
-* Production URL: https://humanatlas.io/
-* Staging URL: https://humanatlas-io.netlify.app/
+- Production URL: https://humanatlas.io/
+- Staging URL: https://humanatlas-io.netlify.app/
 
 ## Editing content on pages
 
