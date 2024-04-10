@@ -1,9 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ActivatedRoute } from '@angular/router';
+import { Shallow } from 'shallow-render';
 import { TissueInfoPageComponent } from './tissue-info-page.component';
 import { TissueInfoPageModule } from './tissue-info-page.module';
-import { Shallow } from 'shallow-render';
-import { ActivatedRoute } from '@angular/router';
 
 describe('TissueInfoPageComponent', () => {
   let shallow: Shallow<TissueInfoPageComponent>;

@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/pages.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/apps/human-atlas/src/pages.schema.json
 
 - type: header
   headerCard:
@@ -120,7 +120,7 @@
   pageData:
     - heading: HRA Diversity Metrics
       descriptions: |
-        The Human Reference Atlas diversity survey was designed to provide a baseline measurement of the diversity of the people building and using the Human Reference Atlas. 
+        The Human Reference Atlas diversity survey was designed to provide a baseline measurement of the diversity of the people building and using the Human Reference Atlas.
         The survey will be conducted annually to measure how the Human Reference Atlas community evolves over time.
 
         Respondents hold the following roles in the Human Reference Atlas:
@@ -134,26 +134,26 @@
         - Other
         - I prefer not to respond
 
-        Gender and sexual orientation  
-        Female: 52%  
-        Male: 48%  
+        Gender and sexual orientation
+        Female: 52%
+        Male: 48%
         Identify as LGBTIA+: 4.3%
 
-        Ethnicity and race  
-        White: 82.6%  
-        Asian: 13%  
-        Hispanic, Latino, or Spanish: 4.3%  
+        Ethnicity and race
+        White: 82.6%
+        Asian: 13%
+        Hispanic, Latino, or Spanish: 4.3%
 
-        Disability  
+        Disability
         5.3%
 
-        Continent of residence  
-        North America: 19  
-        Europe: 3  
+        Continent of residence
+        North America: 19
+        Europe: 3
         Australia/Oceania: 1
 
-        Socio-economic background  
-        Individuals from disadvantaged backgrounds, as defined using 
+        Socio-economic background
+        Individuals from disadvantaged backgrounds, as defined using
         [National Institutes of Health criteria](https://extramural-diversity.nih.gov/diversity-matters/disadvantaged-backgrounds): 47%
 
         The survey used to gather this information can be found [here](https://drive.google.com/file/d/1_Sv27z4rmg92Fin_JuCSrO0JlaBQSRwK/view?usp=share_link).

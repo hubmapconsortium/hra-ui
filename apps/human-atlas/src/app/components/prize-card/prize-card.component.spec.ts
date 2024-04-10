@@ -1,9 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Shallow } from 'shallow-render';
 import { PrizeCardComponent } from './prize-card.component';
 import { PrizeCardModule } from './prize-card.module';
-
-import { Shallow } from 'shallow-render';
 
 describe('PrizeCardComponent', () => {
   let shallow: Shallow<PrizeCardComponent>;

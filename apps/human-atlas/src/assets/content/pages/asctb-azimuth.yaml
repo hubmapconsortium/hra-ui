@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/pages.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/apps/human-atlas/src/pages.schema.json
 
 - type: header
   headerCard:
@@ -35,8 +35,8 @@
   pageData:
     - heading: Comparison of CxG in ASCT+B vs. Azimuth
       descriptions: |
-        The below table shows the comparison of the CxG matrix in ASCT+B tables vs. CxG matrix in Azimuth for each organ in January 2022. 
-        An automatically generated, up-to-date comparison is available for download <a href="https://hubmapconsortium.github.io/asctb-azimuth-data-comparison/Azimuth_vs_ASCTB.summaries.xlsx">here</a>; this XLS file also contains separate sheets with cell-types that are not (yet) covered in the ASCT+B tables. 
+        The below table shows the comparison of the CxG matrix in ASCT+B tables vs. CxG matrix in Azimuth for each organ in January 2022.
+        An automatically generated, up-to-date comparison is available for download <a href="https://hubmapconsortium.github.io/asctb-azimuth-data-comparison/Azimuth_vs_ASCTB.summaries.xlsx">here</a>; this XLS file also contains separate sheets with cell-types that are not (yet) covered in the ASCT+B tables.
         Details on how the comparison is calculated are on <a href="https://github.com/hubmapconsortium/asctb-azimuth-data-comparison" target="_blank">GitHub</a>. Note that not all Azimuth cell types have CL IDs; in these cases, matching is done based on cell-type names.
 
         Data from <a href="https://github.com/satijalab/azimuth_website" target="_blank">Azimuth Website GitHub Repository</a> has been parsed to derive cell-type typologies:

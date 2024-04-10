@@ -1,17 +1,14 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { OrganVersionComponent } from './organ-version.component';
-import { OrganVersionModule } from './organ-version.module';
-import { Shallow } from 'shallow-render';
-import {
-  TableDataService,
-  TableDataWithColumns,
-} from '../../services/table-data/tabledata.service';
 import { NgIf } from '@angular/common';
-import { OrganData, VersionOrgans } from '../two-dim-image/two-dim-image';
-import { ChooseVersion } from '../choose-version/choose-version';
+import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom, of } from 'rxjs';
+import { Shallow } from 'shallow-render';
+import { TableDataService } from '../../services/table-data/tabledata.service';
+import { ChooseVersion } from '../choose-version/choose-version';
 import { HeaderData } from '../table/header';
 import { TableData } from '../table/table';
+import { OrganData, VersionOrgans } from '../two-dim-image/two-dim-image';
+import { OrganVersionComponent } from './organ-version.component';
+import { OrganVersionModule } from './organ-version.module';
 
 describe('OrganVersionComponent', () => {
   const testVersionData: ChooseVersion[] = [

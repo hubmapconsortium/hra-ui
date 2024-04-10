@@ -1,5 +1,5 @@
 import { NgFor, NgSwitchCase, ViewportScroller } from '@angular/common';
-import { Component, Input, NgModule, Type } from '@angular/core';
+import { Type } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { from } from 'rxjs';
 import { Shallow } from 'shallow-render';
@@ -7,34 +7,6 @@ import { LongCard } from '../card-button-long/long-card';
 import { PageDef } from './page-def';
 import { PageElementComponent } from './page-element.component';
 import { PageElementModule } from './page-element.module';
-
-jest.mock('swiper', () => {
-  return {
-    default: {
-      use() {},
-    },
-    angular: {},
-  };
-});
-
-jest.mock('swiper/angular/swiper-angular', () => {
-  @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'swiper',
-    template: '<ng-content></ng-content>',
-  })
-  class SwiperComponent {
-    @Input() config: any;
-  }
-
-  @NgModule({
-    declarations: [SwiperComponent],
-    exports: [SwiperComponent],
-  })
-  class SwiperModule {}
-
-  return { SwiperModule };
-});
 
 describe('PageElementComponent', () => {
   let shallow: Shallow<PageElementComponent>;
@@ -75,7 +47,7 @@ describe('PageElementComponent', () => {
     it('should return scrolled as true of scroll position is greater than 220', async () => {
       jest
         .spyOn(window, 'addEventListener')
-        .mockImplementation((_type, cb) => (cb as any)());
+        .mockImplementation((_type, cb) => (cb as () => void)());
       window.pageYOffset = 300;
 
       const { instance } = await shallow.render({ bind: { def: testDef } });
@@ -85,7 +57,7 @@ describe('PageElementComponent', () => {
     it('should return scrolled as false of scroll position is less than 220', async () => {
       jest
         .spyOn(window, 'addEventListener')
-        .mockImplementation((_type, cb) => (cb as any)());
+        .mockImplementation((_type, cb) => (cb as () => void)());
       window.pageYOffset = 100;
 
       const { instance } = await shallow.render({ bind: { def: testDef } });
@@ -116,7 +88,6 @@ describe('PageElementComponent', () => {
         bind: { def: testDef },
       });
       instance.scrollTo('id');
-      const router = inject(Router);
       const scroller = inject(ViewportScroller);
       expect(scroller.scrollToAnchor).toHaveBeenCalledWith('id');
     });

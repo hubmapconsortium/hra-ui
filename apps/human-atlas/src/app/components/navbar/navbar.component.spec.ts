@@ -1,8 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
-import { NavbarComponent } from './navbar.component';
 import { ToolbarModule } from '../toolbar/toolbar.module';
-import { url } from 'inspector';
+import { NavbarComponent } from './navbar.component';
 
 describe('NavbarComponent', () => {
   let shallow: Shallow<NavbarComponent>;

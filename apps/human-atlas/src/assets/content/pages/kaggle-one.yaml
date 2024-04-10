@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/pages.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/apps/human-atlas/src/pages.schema.json
 
 - type: header
   headerCard:
@@ -43,7 +43,7 @@
         See HuBMAP datasets and interactive visualizations on the <a href="https://portal.hubmapconsortium.org/browse/publication/eb975811a1a3005622c4da37d948117e" target="_blank">
         HuBMAP Data Portal</a>.
 
-        <strong>Citation:</strong>  
+        <strong>Citation:</strong>
         Jain, Y., Godwin, L.L., Ju, Y. et al. Segmentation of human functional tissue units in support of a Human Reference Atlas. Commun Biol 6, 717 (2023).
         <a href="https://doi.org/10.1038/s42003-023-04848-5" target="_blank">https://doi.org/10.1038/s42003-023-04848-5</a>
 
@@ -51,8 +51,8 @@
   pageData:
     - heading: Awards Ceremony
       descriptions: |
-        On May 21, 2021, judges announced winning teams at the annual HubMAP All-Hands Meeting and the HuBMAP Awards: Hacking the Kidney on Kaggle ceremony. 
-        A <a href="https://www.youtube.com/watch?v=fZebsmQoUEY">recording</a> of the event and competitor presentations will be posted at the 
+        On May 21, 2021, judges announced winning teams at the annual HubMAP All-Hands Meeting and the HuBMAP Awards: Hacking the Kidney on Kaggle ceremony.
+        A <a href="https://www.youtube.com/watch?v=fZebsmQoUEY">recording</a> of the event and competitor presentations will be posted at the
         <a href="https://www.youtube.com/channel/UCbSvPJ9dXASL14KoDeutMFg">HuBMAP Consortium YouTube channel</a>.
 
 - type: title
@@ -266,8 +266,8 @@
   pageData:
     - heading: Datasets
       descriptions: |
-        All datasets have been published as a HuBMAP 
-        <a href="https://portal.hubmapconsortium.org/browse/collection/4964d24bbc6668a72c4cbb5e0393a6bc">collection</a>. 
+        All datasets have been published as a HuBMAP
+        <a href="https://portal.hubmapconsortium.org/browse/collection/4964d24bbc6668a72c4cbb5e0393a6bc">collection</a>.
         Here is the link to the <a href="https://hubmapconsortium.github.io/ccf/dld/kaggle-metadata.csv">metadata file</a> and below are the direct links to all 30 datasets:
 
 - type: datasets
@@ -403,7 +403,7 @@
   pageData:
     - heading: Code
       descriptions: |
-        All code submitted by the winning teams is made publicly available as part of the scientific paper showcasing the results of the competition using the GitHub repository located 
+        All code submitted by the winning teams is made publicly available as part of the scientific paper showcasing the results of the competition using the GitHub repository located
         at <a href="https://github.com/cns-iu/ccf-research-kaggle-2021" target="_blank">https://github.com/cns-iu/ccf-research-kaggle-2021</a>.
 
 - type: page-data

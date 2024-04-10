@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/pages.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/apps/human-atlas/src/pages.schema.json
 
 - type: header
   headerCard:
@@ -21,17 +21,17 @@
   pageData:
     - heading: Overview
       descriptions: |
-        A millitome is a device designed to hold a freshly procured human organ and facilitate cutting it into many small tissue blocks for usage in single-cell analysis. 
-        A millitome has discrete, equally placed cutting grooves in three dimensions (x, y, and z) to guide a carbon steel cutting knife to produce standard size slices or cubes of tissue material. 
+        A millitome is a device designed to hold a freshly procured human organ and facilitate cutting it into many small tissue blocks for usage in single-cell analysis.
+        A millitome has discrete, equally placed cutting grooves in three dimensions (x, y, and z) to guide a carbon steel cutting knife to produce standard size slices or cubes of tissue material.
         Millitomes are used to create uniformly sized tissue blocks that match the shape and size of organs from the
         <a href="https://humanatlas.io/3d-reference-library" target="_blank">CCF 3D Reference Object Library</a>.
 
         This page allows you to download complete millitome sets for 3D-printing.
 
-        Specific download packages are accessed by selecting the organ (i.e., VH_F_Kidney_L = female kidney, left). 
+        Specific download packages are accessed by selecting the organ (i.e., VH_F_Kidney_L = female kidney, left).
         Each organ folder contains three compressed download packages, distinguished by sample block size (i.e., VH_F_Kidney_L_20 = female kidney, left, 20mm block size).
 
-        Each package contains six 3D-printable .STL files for the requested organ, three each for the bottom and top half. Each millitome comes in three size variations to cover a range of organ sizes: large (115%), medium (100%), small (85%). 
+        Each package contains six 3D-printable .STL files for the requested organ, three each for the bottom and top half. Each millitome comes in three size variations to cover a range of organ sizes: large (115%), medium (100%), small (85%).
         Also included in each package are six matching lookup files in .CSV file format to record data about the sample blocks taken from the organ.
 
 - type: styled-group

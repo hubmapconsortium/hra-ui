@@ -1,10 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { NestedTreeControl } from '@angular/cdk/tree';
-import { MatTreeNestedDataSource } from '@angular/material/tree';
-import { NavItems } from '../toolbar/nav-items';
-import { Router } from '@angular/router';
-import { ViewportScroller } from '@angular/common';
 import { ConnectedPosition, Overlay } from '@angular/cdk/overlay';
+import { NestedTreeControl } from '@angular/cdk/tree';
+import { ViewportScroller } from '@angular/common';
+import { Component, Input } from '@angular/core';
+import { MatTreeNestedDataSource } from '@angular/material/tree';
+import { Router } from '@angular/router';
+import { NavItems } from '../toolbar/nav-items';
 
 /** Displays a menu overlay on smaller screens */
 @Component({

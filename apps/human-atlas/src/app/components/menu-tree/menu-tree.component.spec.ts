@@ -1,14 +1,13 @@
 import { CdkConnectedOverlay, Overlay } from '@angular/cdk/overlay';
+import { NestedTreeControl } from '@angular/cdk/tree';
+import { NgIf, ViewportScroller } from '@angular/common';
+import { Type } from '@angular/core';
+import { MatTreeModule } from '@angular/material/tree';
 import { Router } from '@angular/router';
-import { mock } from 'jest-mock-extended';
 import { Shallow } from 'shallow-render';
 import { NavItems } from '../toolbar/nav-items';
 import { MenuTreeComponent } from './menu-tree.component';
 import { MenuTreeModule } from './menu-tree.module';
-import { MatTreeModule } from '@angular/material/tree';
-import { NgIf, ViewportScroller } from '@angular/common';
-import { Type } from '@angular/core';
-import { NestedTreeControl } from '@angular/cdk/tree';
 
 describe('MenuTreeComponent', () => {
   let shallow: Shallow<MenuTreeComponent>;

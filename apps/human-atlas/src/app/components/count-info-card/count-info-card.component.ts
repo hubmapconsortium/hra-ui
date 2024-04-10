@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CountInfoCard } from './count-info-card';
 
 /** Displays a card to navigate to other pages or external links */

@@ -1,7 +1,6 @@
-import { NavItems } from './nav-items';
+import { Shallow } from 'shallow-render';
 import { ToolbarComponent } from './toolbar.component';
 import { ToolbarModule } from './toolbar.module';
-import { Shallow } from 'shallow-render';
 
 describe('ToolbarComponent', () => {
   let shallow: Shallow<ToolbarComponent>;

@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/pages.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/apps/human-atlas/src/pages.schema.json
 
 - type: header
   headerCard:
@@ -26,7 +26,7 @@
       descriptions: |
         Predicting the type of a cell (e.g., endothelial cell or B cell) is crucial in computational biology (e.g., tailored therapeutics that, which target specific cell types) and reference atlas construction. Given a cell type, we can derive the functions, pathways, and role of cells in disease and aging.
 
-        Existing cell type annotation tools analyze gene or protein expression profiles specific for an organ but independent of their location within an organ. However, location matters-tissue cut from different locations in the very same anatomical structure can have very different cell types and biomarker expression profiles. 
+        Existing cell type annotation tools analyze gene or protein expression profiles specific for an organ but independent of their location within an organ. However, location matters-tissue cut from different locations in the very same anatomical structure can have very different cell types and biomarker expression profiles.
 
         This website lets computational biologists annotate cell types in bulk or spatial data. The API combines biomarker expression profile and 3D location data, resulting in enhanced cell type prediction accuracy.
 

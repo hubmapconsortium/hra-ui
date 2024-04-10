@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/pages.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/apps/human-atlas/src/pages.schema.json
 
 - type: header
   headerCard:
@@ -42,11 +42,11 @@
   pageData:
     - heading: Publication
       descriptions: |
-        The competition results are published in Nature Communications at 
+        The competition results are published in Nature Communications at
         <a href="https://www.nature.com/articles/s41467-023-40291-0" target="_blank">https://www.nature.com/articles/s41467-023-40291-0</a>.
 
-        <strong>Citation:</strong>  
-        Jain, Y., Godwin, L.L., Joshi, S. et al. Segmenting functional tissue units across human organs using community-driven development of generalizable machine learning algorithms. 
+        <strong>Citation:</strong>
+        Jain, Y., Godwin, L.L., Joshi, S. et al. Segmenting functional tissue units across human organs using community-driven development of generalizable machine learning algorithms.
         Nat Commun 14, 4656 (2023).
         <a href="https://doi.org/10.1038/s41467-023-40291-0" target="_blank">https://doi.org/10.1038/s41467-023-40291-0</a>
 
@@ -177,7 +177,7 @@
   pageData:
     - heading: Code
       descriptions: |
-        All code submitted by the winning teams is made publicly available as part of the scientific paper showcasing the results of the competition using the GitHub repository 
+        All code submitted by the winning teams is made publicly available as part of the scientific paper showcasing the results of the competition using the GitHub repository
         located at <a href="https://github.com/cns-iu/ccf-research-kaggle-2022" target="_blank">https://github.com/cns-iu/ccf-research-kaggle-2022</a>.
 
 - type: page-data

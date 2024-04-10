@@ -44,6 +44,9 @@
           "codeCoverage": true
         }
       }
+    },
+    "build-storybook": {
+      "cache": true
     }
   },
   "nxCloudAccessToken": "ZDllYjhmZjQtM2U2MC00NjYwLTg5MWEtZTZkODZiZmIyY2Q2fHJlYWQtd3JpdGU="

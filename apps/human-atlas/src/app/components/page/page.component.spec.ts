@@ -1,6 +1,6 @@
 import { ErrorHandler } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { concat, of, throwError } from 'rxjs';
+import { of } from 'rxjs';
 import { Shallow } from 'shallow-render';
 import { ContentService } from '../../services/content/content.service';
 import { PageComponent } from './page.component';

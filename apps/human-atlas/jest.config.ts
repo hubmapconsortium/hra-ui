@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'human-atlas',
   preset: '../../jest.preset.cjs',

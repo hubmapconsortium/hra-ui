@@ -1,7 +1,7 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { MarkdownModule } from 'ngx-markdown';
 import { PageDataComponent } from './page-data.component';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, SecurityContext } from '@angular/core';
 
 @NgModule({
   declarations: [PageDataComponent],

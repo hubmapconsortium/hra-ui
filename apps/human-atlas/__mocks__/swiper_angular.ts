@@ -1,15 +1,15 @@
 import { Component, Input, NgModule } from '@angular/core';
 import { Shallow } from 'shallow-render';
 
-/** Mock component for the swiper */
+/** Mock component for swiper */
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'swiper',
   template: '<ng-content></ng-content>',
 })
-class SwiperComponent {
-  /** Configuration for the Swiper */
-  @Input() config: any;
+export class SwiperComponent {
+  /** Configuration for Swiper */
+  @Input() config: unknown;
 }
 
 @NgModule({

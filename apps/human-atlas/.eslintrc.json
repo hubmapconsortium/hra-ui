@@ -1,17 +1,11 @@
 {
+  "extends": ["../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
       "files": ["*.ts"],
-      "parserOptions": {
-        "project": ["apps/human-atlas/tsconfig.*?.json"],
-        "createDefaultProgram": true
-      },
-      "extends": [
-        "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates"
-      ],
       "rules": {
+        // TODO: Update components to use a prefix
         // "@angular-eslint/directive-selector": [
         //   "error",
         //   {
@@ -28,13 +22,16 @@
         //     "style": "kebab-case"
         //   }
         // ]
-      }
+      },
+      "extends": [
+        "plugin:@nx/angular",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ]
     },
     {
       "files": ["*.html"],
-      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "extends": ["plugin:@nx/angular-template"],
       "rules": {}
     }
-  ],
-  "extends": "../../.eslintrc.json"
+  ]
 }

@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { TableData } from '../../components/table/table';
-import { map, Observable, shareReplay } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { parse, ParseResult } from 'papaparse';
+import { Injectable } from '@angular/core';
+import { parse } from 'papaparse';
+import { map, Observable, shareReplay } from 'rxjs';
+import { TableData } from '../../components/table/table';
 
 /** An interface representing the details of Table data with columns */
 export interface TableDataWithColumns {

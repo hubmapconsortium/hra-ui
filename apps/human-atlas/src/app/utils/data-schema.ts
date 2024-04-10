@@ -134,7 +134,7 @@ export const CarouselSlides = z.object({
       `This object has the following optional fields.
     - url: External Link to redirect to when the button is pressed.
     - route: Name of the route of the page to be loaded when button is pressed.
-    
+
     Enter either url or route.`
     )
     .array(),
@@ -912,6 +912,7 @@ export const YoutubePlayer = z.object({
 /**
  * An array of discriminated union of the objects of all components
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const PageSpec: any = z
   .discriminatedUnion('type', [
     AnnouncementCard,

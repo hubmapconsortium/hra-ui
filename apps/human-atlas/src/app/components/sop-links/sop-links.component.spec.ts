@@ -1,9 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { SopLinksComponent } from './sop-links.component';
-import { SopLinksModule } from './sop-links.module';
 import { Shallow } from 'shallow-render';
 import { SopLinks } from './sop-links';
+import { SopLinksComponent } from './sop-links.component';
+import { SopLinksModule } from './sop-links.module';
 
 describe('SopLinksComponent', () => {
   const sopLinks: SopLinks = {

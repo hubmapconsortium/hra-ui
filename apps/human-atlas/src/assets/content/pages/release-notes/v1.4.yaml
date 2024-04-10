@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/pages.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/apps/human-atlas/src/pages.schema.json
 
 - type: menu-tree
   overlayClass: overlay-position-fifth-release
@@ -86,7 +86,7 @@
                   descriptions: |
                     **Introduction**
 
-                    HuBMAP's Indiana University Mapping Component (MC-IU) has published the 5th Release of the Human Reference Atlas (v1.4), 
+                    HuBMAP's Indiana University Mapping Component (MC-IU) has published the 5th Release of the Human Reference Atlas (v1.4),
                     a digital atlas of the human body that lets users query & explore key anatomical structures, cell types, and biomarkers down to the cellular level.
 
                     Download the Human Reference Atlas (HRA) Release Calendar to stay on top of deadlines.
@@ -147,9 +147,9 @@
               pageData:
                 - heading: ''
                   descriptions: |
-                    The Human Reference Atlas diversity survey was designed to provide a baseline measurement of the diversity of the people building and using the Human Reference Atlas. 
-                    The survey is conducted annually to measure how the Human Reference Atlas community evolves over time. 
-                    This baseline survey was shared with 297 individuals and the response rate was 7.7%. 
+                    The Human Reference Atlas diversity survey was designed to provide a baseline measurement of the diversity of the people building and using the Human Reference Atlas.
+                    The survey is conducted annually to measure how the Human Reference Atlas community evolves over time.
+                    This baseline survey was shared with 297 individuals and the response rate was 7.7%.
                     The first survey was run in April of 2023 and the survey will be rerun in March-April of 2024.\
                     Respondents hold the following roles in the Human Reference Atlas:
                     - ASCT+B Table author
@@ -181,7 +181,7 @@
                     Australia/Oceania: 1
 
                     **Socio-economic background**\
-                    Individuals from disadvantaged backgrounds, as defined using 
+                    Individuals from disadvantaged backgrounds, as defined using
                     <a href="https://extramural-diversity.nih.gov/diversity-matters/disadvantaged-backgrounds" target="_blank">National Institutes of Health criteria</a>: 47%
 
                     The survey used to gather this information can be found <a href="https://drive.google.com/file/d/1_Sv27z4rmg92Fin_JuCSrO0JlaBQSRwK/view?usp=share_link" target="_blank">here</a>.
@@ -197,7 +197,7 @@
                   descriptions: |
                     **ASCT+B Reporter & OMAPs Support**
 
-                    Want to visualize anatomical structure, biomarker, and cell type (ASCT+B) tables? The ASCT+B Reporter has been upgraded to 
+                    Want to visualize anatomical structure, biomarker, and cell type (ASCT+B) tables? The ASCT+B Reporter has been upgraded to
                     support the creation of OMAPs. Check out ASCT+B Reporter to see the interconnectedness.
             - type: button
               styles:
@@ -241,7 +241,7 @@
                   descriptions: |
                     **ASCT+B Ontology Validations**
 
-                    How are ASCT+B tables validated? We use Ubergraph to check all relationships experts have asserted in the tables against 
+                    How are ASCT+B tables validated? We use Ubergraph to check all relationships experts have asserted in the tables against
                     established ontologies (namely Uberon and Cell Ontology). Check out the results in GitHub.
             - type: button
               styles:
@@ -261,7 +261,7 @@
                   descriptions: |
                     **Previews**
 
-                    The Human Atlas Stories is a collection of scrollytelling features and 
+                    The Human Atlas Stories is a collection of scrollytelling features and
                     animated essays interconnected stories designed to introduce the Human Reference Atlas (HRA) to a general audience.
             - type: button
               styles:
@@ -281,7 +281,7 @@
                   descriptions: |
                     **Human Reference Atlas Knowledge Graph (HRA-KG) 2.0 Beta**
 
-                    A major new release with an improved pipeline and server infrastructure is under active development! 
+                    A major new release with an improved pipeline and server infrastructure is under active development!
                     A Beta version of the knowledge graph is available on GitHub. We will be releasing the final version in December.
             - type: button
               styles:
@@ -343,7 +343,7 @@
                   descriptions: |
                     **Outro**
 
-                    Every six months, a new version of Human Reference Atlas data is released together with user interfaces that make it possible 
+                    Every six months, a new version of Human Reference Atlas data is released together with user interfaces that make it possible
                     to visually explore the atlas or programmatically access the data. The 6th release is in December. Thanks for reading!
             - type: image
               imageSource: assets/images/carousel1.svg
