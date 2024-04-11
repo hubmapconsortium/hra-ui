@@ -1,0 +1,13 @@
+<mat-card *ngFor="let cardDetails of headerCard" class="header-card">
+  <div class="icon">
+    <img [src]="cardDetails.image" [alt]="cardDetails.alt" class="card-image" />
+  </div>
+  <div class="body">
+    <div class="card-heading">
+      {{ cardDetails.title }}
+    </div>
+    <div class="card-subheading">
+      {{ cardDetails.subtitle }}
+    </div>
+  </div>
+</mat-card>

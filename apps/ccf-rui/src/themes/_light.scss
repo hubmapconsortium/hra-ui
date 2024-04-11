@@ -13,8 +13,8 @@ $primary-colors: utility.add-colors(
     contrast: (
       'white': black,
       'black': white,
-      light-header: mat.$private-dark-primary-text,
-      light-disabled: mat.$private-dark-primary-text,
+      light-header: rgba(black, 0.87),
+      light-disabled: rgba(black, 0.87),
     ),
   )
 );

@@ -1,0 +1,38 @@
+:host {
+  .download-table {
+    width: 100%;
+    box-shadow: none;
+    border: 1px solid #e0e0e0;
+
+    td {
+      font-weight: 300;
+    }
+
+    th {
+      font-weight: 500;
+      font-size: 0.875rem;
+      color: black;
+    }
+  }
+
+  .organ-link,
+  .download-link {
+    &:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      color: #444c65;
+    }
+  }
+}
+
+::ng-deep {
+  .mat-sort-header-arrow {
+    color: #ebebeb !important;
+    opacity: 0.57 !important;
+    transform: rotate(180deg) !important;
+  }
+
+  .mat-sort-header-sorted .mat-sort-header-arrow {
+    color: #212121 !important;
+  }
+}
