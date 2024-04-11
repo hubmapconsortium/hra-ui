@@ -1,5 +1,5 @@
 import { ViewportScroller } from '@angular/common';
-import { Component, HostListener, Input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LongCard } from '../card-button-long/long-card';
@@ -10,6 +10,7 @@ import { PageDef } from './page-def';
   selector: 'page-element',
   templateUrl: './page-element.component.html',
   styleUrls: ['./page-element.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageElementComponent {
   /** Details of element to be displayed */
@@ -27,6 +28,7 @@ export class PageElementComponent {
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly scroller: ViewportScroller,
+    private readonly cdr: ChangeDetectorRef,
   ) {
     this.subscriptions.add(
       this.route.fragment.subscribe((anchor) => {
@@ -39,11 +41,11 @@ export class PageElementComponent {
 
   /** Updates scrolled value if page is scrolled */
   @HostListener('document:scroll')
-  onScroll({ screenY: scrollPosition }: { screenY: number } = window): void {
-    if (scrollPosition > 220) {
-      this.scrolled = true;
-    } else {
-      this.scrolled = false;
+  onScroll({ scrollY: scrollPosition }: { scrollY: number } = window): void {
+    const scrolled = scrollPosition > 235;
+    if (scrolled !== this.scrolled) {
+      this.scrolled = scrolled;
+      this.cdr.markForCheck();
     }
   }
 

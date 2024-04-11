@@ -44,13 +44,13 @@ describe('PageElementComponent', () => {
   describe('ngOnInit()', () => {
     it('should return scrolled as true of scroll position is greater than 220', async () => {
       const { instance } = await shallow.render({ bind: { def: testDef } });
-      instance.onScroll({ screenY: 300 });
+      instance.onScroll({ scrollY: 300 });
       expect(instance.scrolled).toEqual(true);
     });
 
     it('should return scrolled as false of scroll position is less than 220', async () => {
       const { instance } = await shallow.render({ bind: { def: testDef } });
-      instance.onScroll({ screenY: 100 });
+      instance.onScroll({ scrollY: 100 });
       expect(instance.scrolled).toEqual(false);
     });
   });
