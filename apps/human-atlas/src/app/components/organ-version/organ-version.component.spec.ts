@@ -85,7 +85,7 @@ describe('OrganVersionComponent', () => {
         organ: 'testOrgan',
       };
       const { instance, inject } = await shallow.render({
-        bind: { organInfo: testOrganInfo },
+        bind: { versionData: testVersionData, organInfo: testOrganInfo },
       });
       const route = inject(ActivatedRoute);
       route.snapshot.queryParams = queryParams;
@@ -108,7 +108,7 @@ describe('OrganVersionComponent', () => {
   describe('setVersion()', () => {
     it('should set the initial organinfo if specified version is not found', async () => {
       const { instance } = await shallow.render({
-        bind: { organInfo: testOrganInfo },
+        bind: { versionData: testVersionData, organInfo: testOrganInfo },
       });
       const testVersion = 'test-version-3';
       instance.setVersion(testVersion);
@@ -119,7 +119,7 @@ describe('OrganVersionComponent', () => {
   describe('setOrgan()', () => {
     it('should set the initial organ if passed organ does not match', async () => {
       const { instance } = await shallow.render({
-        bind: { organInfo: testOrganInfo },
+        bind: { versionData: testVersionData, organInfo: testOrganInfo },
       });
       const testOrgan = 'test';
       instance.setOrgan(testOrgan);
@@ -128,7 +128,7 @@ describe('OrganVersionComponent', () => {
 
     it('should set the default title of the table if header data is not present', async () => {
       const { instance } = await shallow.render({
-        bind: { organInfo: testOrganInfo },
+        bind: { versionData: testVersionData, organInfo: testOrganInfo },
       });
       const testOrgan = 'test';
       instance.setOrgan(testOrgan);
@@ -144,7 +144,7 @@ describe('OrganVersionComponent', () => {
         },
       ];
       const { instance } = await shallow.render({
-        bind: { organInfo: testOrganInfo, headerInfo: testHeaderInfo },
+        bind: { versionData: testVersionData, organInfo: testOrganInfo, headerInfo: testHeaderInfo },
       });
       const testOrgan = 'test';
       instance.setOrgan(testOrgan);
@@ -155,7 +155,7 @@ describe('OrganVersionComponent', () => {
   describe('setFtu()', () => {
     it('should get data from the provided csv file', async () => {
       const { instance, inject } = await shallow.render({
-        bind: { organInfo: testOrganInfo },
+        bind: { versionData: testVersionData, organInfo: testOrganInfo },
       });
       const testOrganName = 'value';
       const displayedColumnsData: string[] = [];

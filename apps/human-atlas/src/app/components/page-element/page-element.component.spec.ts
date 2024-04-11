@@ -43,18 +43,14 @@ describe('PageElementComponent', () => {
 
   describe('ngOnInit()', () => {
     it('should return scrolled as true of scroll position is greater than 220', async () => {
-      jest.spyOn(window, 'addEventListener').mockImplementation((_type, cb) => (cb as () => void)());
-      window.scrollY = 300;
-
       const { instance } = await shallow.render({ bind: { def: testDef } });
+      instance.onScroll({ screenY: 300 });
       expect(instance.scrolled).toEqual(true);
     });
 
     it('should return scrolled as false of scroll position is less than 220', async () => {
-      jest.spyOn(window, 'addEventListener').mockImplementation((_type, cb) => (cb as () => void)());
-      window.scrollY = 100;
-
       const { instance } = await shallow.render({ bind: { def: testDef } });
+      instance.onScroll({ screenY: 100 });
       expect(instance.scrolled).toEqual(false);
     });
   });

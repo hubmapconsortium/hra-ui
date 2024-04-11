@@ -1,5 +1,5 @@
 import { ViewportScroller } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LongCard } from '../card-button-long/long-card';
@@ -11,7 +11,7 @@ import { PageDef } from './page-def';
   templateUrl: './page-element.component.html',
   styleUrls: ['./page-element.component.scss'],
 })
-export class PageElementComponent implements OnInit {
+export class PageElementComponent {
   /** Details of element to be displayed */
   @Input() def!: PageDef;
 
@@ -38,15 +38,13 @@ export class PageElementComponent implements OnInit {
   }
 
   /** Updates scrolled value if page is scrolled */
-  ngOnInit(): void {
-    window.addEventListener('scroll', () => {
-      const scrollPosition = window.screenY;
-      if (scrollPosition > 220) {
-        this.scrolled = true;
-      } else {
-        this.scrolled = false;
-      }
-    });
+  @HostListener('document:scroll')
+  onScroll({ screenY: scrollPosition }: { screenY: number } = window): void {
+    if (scrollPosition > 220) {
+      this.scrolled = true;
+    } else {
+      this.scrolled = false;
+    }
   }
 
   /** Navigates to specified route */
