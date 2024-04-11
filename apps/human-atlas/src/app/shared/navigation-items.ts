@@ -1,5 +1,8 @@
 import { NavItems } from '../components/toolbar/nav-items';
 
+/** Training outreach route */
+const trainingOutreachRoute = 'overview-training-outreach';
+
 /** Details of Menu items their children and their routes */
 export const NAVIGATION_ITEMS: NavItems[] = [
   {
@@ -121,11 +124,6 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         route: 'api',
         disabled: true,
       },
-      // {
-      //   menuName: 'Usage Metrics',
-      //   route: 'usage-metrics',
-      //   disabled: true
-      // }
     ],
   },
   {
@@ -133,7 +131,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
     children: [
       {
         menuName: 'Overview: HRA Training and Outreach',
-        route: 'overview-training-outreach',
+        route: trainingOutreachRoute,
         disabled: true,
         divider: true,
       },
@@ -153,22 +151,22 @@ export const NAVIGATION_ITEMS: NavItems[] = [
       },
       {
         menuName: 'Outreach',
-        route: 'overview-training-outreach',
+        route: trainingOutreachRoute,
         fragment: 'outreach',
       },
       {
         menuName: 'Release Notes',
-        route: 'overview-training-outreach',
+        route: trainingOutreachRoute,
         fragment: 'release-notes',
       },
       {
         menuName: 'Human Atlas Stories',
-        route: 'overview-training-outreach',
+        route: trainingOutreachRoute,
         fragment: 'human-atlas-stories',
       },
       {
         menuName: 'Previews',
-        route: 'overview-training-outreach',
+        route: trainingOutreachRoute,
         fragment: 'previews',
       },
     ],

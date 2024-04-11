@@ -19,7 +19,7 @@ export class PageElementComponent implements OnInit {
   private readonly subscriptions = new Subscription();
 
   /** Flag to check if page is scrolled */
-  scrolled: boolean = false;
+  scrolled = false;
 
   /** Creates instance of Router, ActivatedRoute, ViewportScroller
    * and navigates to page element if fragment is changed */

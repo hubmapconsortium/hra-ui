@@ -9,5 +9,5 @@ import { PrizeCard } from './prize-card';
 })
 export class PrizeCardComponent {
   /** Details to be displayed inside the card */
-  @Input() prizeCard: PrizeCard[];
+  @Input() prizeCard: PrizeCard[] = [];
 }

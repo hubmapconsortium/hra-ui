@@ -45,7 +45,7 @@ export class OrganVersionComponent implements OnInit {
   columns: Observable<string[]> = EMPTY;
 
   /** Title for the FTU Table */
-  tableTitle: string = '';
+  tableTitle = '';
 
   /** Images of the organs to be displayed in the tabs */
   filterImages: OrganData[] = [];

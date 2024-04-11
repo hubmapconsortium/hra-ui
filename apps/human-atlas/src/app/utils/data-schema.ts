@@ -28,6 +28,9 @@ const defaultDatasetsStyles = {
   'padding-bottom': '2.5rem',
 };
 
+/** Description for class name */
+const classNameDescription = 'Class name defined in the css file';
+
 /**
  * Array of Announcement cards. Each announcement is defined by a message, route with it's label, and
  * emoji.
@@ -83,6 +86,12 @@ const buttonDescription = `This object has the following properties as optional.
 - icon: icon name for the icon to be displayed on the button.
 - styles: Additional styling for the button.`;
 
+/** Description for button text */
+const buttonTextDescription = 'Text for the button';
+
+/** Description for url in buttons */
+const buttonUrlDescription = 'External URL for the button';
+
 /**
  * A button is defined by a label, route, URL and icon to be displayed in the button.
  * Can also contain optional common styles for it.
@@ -91,7 +100,7 @@ export const Button = z
   .object({
     type: z.literal('button', { description: buttonDescription }),
     text: z.string({ description: 'Text on the button' }),
-    url: z.string({ description: 'External URL for the button' }),
+    url: z.string({ description: buttonUrlDescription }),
     route: z.string({
       description: 'Route for the another page in current project',
     }),
@@ -121,9 +130,9 @@ export const CarouselSlides = z.object({
       title: z.string({ description: 'Title of the slide' }),
       body: z.string({ description: 'Subtitle of the slide' }),
       image: z.string({ description: 'Image of the slide' }),
-      url: z.string({ description: 'External URL for the button' }).optional(),
+      url: z.string({ description: buttonUrlDescription }).optional(),
       route: z.string({ description: 'Route of the page for the button' }).optional(),
-      buttonText: z.string({ description: 'Text for the button' }),
+      buttonText: z.string({ description: buttonTextDescription }),
       alt: z.string({
         description: 'Alternative text for the carousel image.',
       }),
@@ -175,16 +184,25 @@ export const CopyClipboard = z.object({
         .optional(),
       plainButton: z.object({
         icon: z.string({ description: 'Icon name for the button' }),
-        label: z.string({ description: 'Text for the button' }),
+        label: z.string({ description: buttonTextDescription }),
       }),
       dynamicButton: z.object({
-        label: z.string({ description: 'Text for the button' }),
-        url: z.string({ description: 'External URL for the button' }),
+        label: z.string({ description: buttonTextDescription }),
+        url: z.string({ description: buttonUrlDescription }),
       }),
     })
     .array(),
   styles: Styles.optional(),
 });
+
+/** Description of card text */
+const cardTextDescription = 'Title of the card';
+
+/** Description of card subtitle */
+const cardSubtitleDescription = 'Subtitle of the card';
+
+/** Description of recursive fields */
+const recursiveComponentsDescription = 'To add components recursively';
 
 /**
  * Array of metric cards. Each card is defined by a metric's label, count,
@@ -196,7 +214,7 @@ export const CountCard = z.object({
     .object({
       image: z.string({ description: 'Icon for the card' }),
       count: z.number({ description: 'Count of the card' }).or(z.string()),
-      text: z.string({ description: 'Title of the card' }),
+      text: z.string({ description: cardTextDescription }),
       alt: z.string({ description: 'Alternative text for the image' }),
     })
     .array(),
@@ -212,7 +230,7 @@ export const Datasets = z
     type: z.literal('datasets'),
     links: z
       .object({
-        class: z.string({ description: 'Class name defined in the css file' }).default('datasets'),
+        class: z.string({ description: classNameDescription }).default('datasets'),
         href: z.string({ description: 'URL of the items' }),
         title: z.string({ description: 'Tooltip title for the item' }),
         data: z.string({ description: 'Label for the item' }),
@@ -310,7 +328,7 @@ export const Drawer = z.object({
     })
     .array(),
   drawerStyles: Styles,
-  components: z.lazy(() => PageSpec).describe('To add components recursively'),
+  components: z.lazy(() => PageSpec).describe(recursiveComponentsDescription),
 });
 
 /**
@@ -393,7 +411,7 @@ export const ImageInCard = z.object({
     .array(),
   headerData: z
     .object({
-      title: z.string({ description: 'Title of the card' }),
+      title: z.string({ description: cardTextDescription }),
       buttonData: z.object({
         text: z.string({ description: 'Label for the button' }),
         url: z.string({ description: 'Url for the button' }),
@@ -412,8 +430,8 @@ export const ImageInCard = z.object({
 const LongCardItems = z
   .object({
     icon: z.string({ description: 'Icon of the card' }),
-    title: z.string({ description: 'Title of the card' }),
-    body: z.string({ description: 'Subtitle of the card' }),
+    title: z.string({ description: cardTextDescription }),
+    body: z.string({ description: cardSubtitleDescription }),
     route: z.string({ description: 'Route for the card to be redirected' }),
     color: z.string({
       description: 'Background color for the icon if necessary',
@@ -455,7 +473,7 @@ export const LongCardWithTitle = z.object({
   type: z.literal('long-card-with-title'),
   longCardWithTitleData: z
     .object({
-      heading: z.string({ description: 'Title of the Card' }),
+      heading: z.string({ description: cardTextDescription }),
       headerSize: Styles.describe('Inline styles for the title of the card'),
       id: z.string({ description: 'Unique ID for the title of the card' }),
       cardData: LongCardItems,
@@ -502,7 +520,7 @@ export const Margin = z
  */
 export const MatCard = z.object({
   type: z.literal('mat-card'),
-  components: z.lazy(() => PageSpec).describe('To add components recursively'),
+  components: z.lazy(() => PageSpec).describe(recursiveComponentsDescription),
   styles: Styles.optional(),
 });
 
@@ -610,8 +628,8 @@ export const PageHeaderCard = z.object({
   type: z.literal('header'),
   headerCard: z
     .object({
-      title: z.string({ description: 'Title of the card' }),
-      subtitle: z.string({ description: 'Subtitle of the card' }),
+      title: z.string({ description: cardTextDescription }),
+      subtitle: z.string({ description: cardSubtitleDescription }),
       image: z.string({ description: 'Icon of the card' }),
       alt: z.string({ description: 'Text Alternative for card image' }),
     })
@@ -700,8 +718,8 @@ export const SectionCard = z.object({
   type: z.literal('section-card'),
   cardsInfo: z
     .object({
-      title: z.string({ description: 'Title of the card' }),
-      description: z.string({ description: 'Subtitle of the card' }),
+      title: z.string({ description: cardTextDescription }),
+      description: z.string({ description: cardSubtitleDescription }),
       image: z.string({ description: 'URL of the Image of the card' }),
       gif: z.string({ description: 'URL for the GIF on the card' }),
       route: z.string({ description: 'Route to redirect the card' }),
@@ -753,9 +771,9 @@ const styledGroup = `This object has the following properties as optional:
 const StyledGroup = z
   .object({
     type: z.literal('styled-group', { description: styledGroup }),
-    components: z.lazy(() => PageSpec).describe('To add components recursively'),
+    components: z.lazy(() => PageSpec).describe(recursiveComponentsDescription),
     id: z.string({ description: 'ID of the page element' }).optional(),
-    class: z.string({ description: 'Class name defined in the css file' }).optional(),
+    class: z.string({ description: classNameDescription }).optional(),
     styles: Styles.optional(),
   })
   .describe(styledGroup);
@@ -832,7 +850,7 @@ export const Title = z
   .object({
     type: z.literal('title', { description: titleDescription }),
     title: z.string({ description: 'Title/Text to be displayed' }),
-    class: z.string().optional().describe('Class name defined in the css file'),
+    class: z.string().optional().describe(classNameDescription),
     styles: Styles.optional(),
   })
   .describe(titleDescription);
