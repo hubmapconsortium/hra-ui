@@ -9,5 +9,5 @@ import { UseButton } from './use-button';
 })
 export class UseButtonComponent {
   /** Details of the button */
-  @Input() buttonData: UseButton;
+  @Input() buttonData!: UseButton;
 }

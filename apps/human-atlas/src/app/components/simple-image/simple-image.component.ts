@@ -16,10 +16,10 @@ export class SimpleImageComponent {
   @Input() headerData?: CardHeader;
 
   /** Custom class for the modal */
-  @Input() customModalClass: string;
+  @Input() customModalClass = '';
 
   /** Creates instance of MatDialog */
-  constructor(private dialog: MatDialog) {}
+  constructor(private readonly dialog: MatDialog) {}
 
   /** Opens a modal when clicked on image */
   openImageViewer(content: TemplateRef<unknown>): void {

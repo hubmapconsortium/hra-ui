@@ -23,10 +23,7 @@
         //   }
         // ]
       },
-      "extends": [
-        "plugin:@nx/angular",
-        "plugin:@angular-eslint/template/process-inline-templates"
-      ]
+      "extends": ["plugin:@nx/angular", "plugin:@angular-eslint/template/process-inline-templates"]
     },
     {
       "files": ["*.html"],

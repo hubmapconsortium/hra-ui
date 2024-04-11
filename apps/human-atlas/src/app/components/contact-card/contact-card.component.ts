@@ -9,5 +9,5 @@ import { ContactCard } from './contact-card';
 })
 export class ContactCardComponent {
   /** Details of an user to be displayed inside the card */
-  @Input() contactCard: ContactCard[];
+  @Input() contactCard: ContactCard[] = [];
 }

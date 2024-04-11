@@ -34,7 +34,7 @@ export class TableVersionComponent implements OnInit {
   @HostBinding('class.scroll-end') tableScrollAtEnd = false;
 
   /** Details of release and version */
-  @Input() versionData: ChooseVersion[];
+  @Input() versionData: ChooseVersion[] = [];
 
   /** Flag to enable/disable version selector */
   @Input() versionChooserDisabled = false;
@@ -43,7 +43,7 @@ export class TableVersionComponent implements OnInit {
   @Input() isTotal = false;
 
   /** Flag to display/hide Download CSV button */
-  @Input() isDownload: boolean = false;
+  @Input() isDownload = false;
 
   /** Sets the header information and column definitions */
   @Input() set headerInfo(items: HeaderData[]) {
@@ -79,7 +79,7 @@ export class TableVersionComponent implements OnInit {
   }
 
   /** Release and Version data */
-  release: ChooseVersion;
+  release!: ChooseVersion;
 
   /** Column definitions of the columns */
   displayedColumnsData: string[] = [];
@@ -113,7 +113,8 @@ export class TableVersionComponent implements OnInit {
 
   /** Sets the table data with default data */
   ngOnInit(): void {
-    this.setData((this.release = this.versionData[0]));
+    this.release = this.versionData[0];
+    this.setData(this.release);
   }
 
   /** Sets the table data according to the selected version */

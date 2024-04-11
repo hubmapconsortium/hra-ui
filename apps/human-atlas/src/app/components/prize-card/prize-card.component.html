@@ -2,7 +2,7 @@
   <div class="content">
     <div class="prize-place">{{ prize.title }}</div>
     <div *ngIf="prize.presentedBy" class="presented-container">
-      <div class="presented"><b>Presented by:</b> {{ prize.presentedBy }}</div>
+      <div class="presented"><strong>Presented by:</strong> {{ prize.presentedBy }}</div>
       <div>
         <img [src]="prize.orgImage" [alt]="prize.alt" />
       </div>
@@ -10,7 +10,7 @@
     <mat-divider *ngIf="prize.matDivider"></mat-divider>
     <div class="winner" *ngFor="let win of prize.winner">
       <div class="kaggle-id">
-        <markdown><b>Winner: </b>{{ win.winner }}</markdown>
+        <markdown><strong>Winner: </strong>{{ win.winner }}</markdown>
       </div>
       <div>
         <markdown>{{ win.kaggleId }}</markdown>

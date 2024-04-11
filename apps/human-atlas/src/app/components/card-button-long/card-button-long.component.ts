@@ -9,7 +9,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class CardButtonLongComponent {
   /** Details to be displayed inside the card */
-  @Input() longButtonItems: LongCard[];
+  @Input() longButtonItems: LongCard[] = [];
 
   /**Emits the card data when card is clicked */
   @Output() readonly cardRoutes = new EventEmitter<LongCard>();

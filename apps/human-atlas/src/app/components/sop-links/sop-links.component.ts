@@ -9,5 +9,5 @@ import { SopLinks } from './sop-links';
 })
 export class SopLinksComponent {
   /** Title and details of URLs to be displayed */
-  @Input() links: SopLinks;
+  @Input() links!: SopLinks;
 }

@@ -211,14 +211,7 @@
                       "description": "Alternate text for image"
                     }
                   },
-                  "required": [
-                    "field",
-                    "name",
-                    "role",
-                    "email",
-                    "image",
-                    "alt"
-                  ],
+                  "required": ["field", "name", "role", "email", "image", "alt"],
                   "additionalProperties": false
                 }
               }
@@ -532,12 +525,7 @@
                 "description": "To add components recursively"
               }
             },
-            "required": [
-              "type",
-              "navigationItems",
-              "drawerStyles",
-              "components"
-            ],
+            "required": ["type", "navigationItems", "drawerStyles", "components"],
             "additionalProperties": false
           },
           {
@@ -600,13 +588,7 @@
                       "description": "Alternate text for image"
                     }
                   },
-                  "required": [
-                    "title",
-                    "description",
-                    "image",
-                    "imageDialog",
-                    "alt"
-                  ],
+                  "required": ["title", "description", "image", "imageDialog", "alt"],
                   "additionalProperties": false
                 }
               },
@@ -816,14 +798,7 @@
                       "type": "number"
                     }
                   },
-                  "required": [
-                    "originX",
-                    "originY",
-                    "overlayX",
-                    "overlayY",
-                    "offsetX",
-                    "offsetY"
-                  ],
+                  "required": ["originX", "originY", "overlayX", "overlayY", "offsetX", "offsetY"],
                   "additionalProperties": false
                 }
               },
@@ -847,12 +822,7 @@
                 "$ref": "#/definitions/mySchema/items/anyOf/2/properties/styles"
               }
             },
-            "required": [
-              "type",
-              "overlayClass",
-              "positions",
-              "mobileNavigationItems"
-            ],
+            "required": ["type", "overlayClass", "positions", "mobileNavigationItems"],
             "additionalProperties": false
           },
           {
@@ -1014,13 +984,7 @@
                 "description": "This object has the following fields as optional\n- headerInfo: this is the data about column headers and their definition. Add this data if you want to display data table"
               }
             },
-            "required": [
-              "type",
-              "isMultiRow",
-              "tableRequired",
-              "versionData",
-              "organInfo"
-            ],
+            "required": ["type", "isMultiRow", "tableRequired", "versionData", "organInfo"],
             "additionalProperties": false
           },
           {
@@ -1399,14 +1363,7 @@
                 "description": "Additional column names and definitions if any"
               }
             },
-            "required": [
-              "type",
-              "isTotal",
-              "isDownload",
-              "versionChooserDisabled",
-              "headerInfo",
-              "versionData"
-            ],
+            "required": ["type", "isTotal", "isDownload", "versionChooserDisabled", "headerInfo", "versionData"],
             "additionalProperties": false,
             "description": "This object has the following properties as optional:\n- additionalHeaders: Add details here to display additional table header for the table.\n- cellHeaders: Add details here to display cell headers for the table."
           },

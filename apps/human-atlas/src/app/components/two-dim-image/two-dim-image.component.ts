@@ -21,7 +21,7 @@ export class TwoDimImageComponent {
 
   /** Initializes MatDialog and FileDownloadService */
   constructor(
-    private dialog: MatDialog,
+    private readonly dialog: MatDialog,
     private readonly downloader: FileDownloadService,
   ) {}
 

@@ -9,5 +9,5 @@ import { CountInfoCard } from './count-info-card';
 })
 export class CountInfoCardComponent {
   /** Metrics and other details to be displayed inside the card */
-  @Input() cardInformation: CountInfoCard[];
+  @Input() cardInformation: CountInfoCard[] = [];
 }

@@ -18,7 +18,7 @@ export interface TableDataWithColumns {
 })
 export class TableDataService {
   /** Initializes the HttpClient */
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   /** Parses the CSV file and returns an observable */
   getData(file: string | undefined, validColumns: string[]): Observable<TableDataWithColumns> {

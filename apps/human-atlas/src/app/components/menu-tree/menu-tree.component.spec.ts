@@ -91,7 +91,7 @@ describe('MenuTreeComponent', () => {
     });
 
     it('should navigate to a fragment', async () => {
-      const testId: string = 'intro';
+      const testId = 'intro';
       const { instance, inject } = await shallow.render();
       const router = inject(Router);
       instance.scrollTo(testId);

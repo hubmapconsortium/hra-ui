@@ -48,10 +48,10 @@ export class DownloadFtuComponent {
   };
 
   /** Icon name for the icon to be displayed on download column */
-  @Input() downloadIcon: string;
+  @Input() downloadIcon = '';
 
   /** Flag to show/hide releaseVersion and digitalObjectType column */
-  @Input() displayMetadata: boolean = false;
+  @Input() displayMetadata = false;
 
   /** Gets the column definitions of columns to be displayed */
   get displayedColumns(): string[] {

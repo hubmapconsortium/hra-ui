@@ -21,19 +21,19 @@ export class OrganVersionComponent implements OnInit {
   @Input() organInfo: VersionOrgans[] = [];
 
   /** Flag to view/hide organ ftu table */
-  @Input() tableRequired: boolean = false;
+  @Input() tableRequired = false;
 
   /** Details of column definitions and headers */
   @Input() headerInfo: HeaderData[] = [];
 
   /** Flag to view tissue details in multiple rows */
-  @Input() isMultiRow: boolean = false;
+  @Input() isMultiRow = false;
 
   /** Current selected version and it's organ data */
-  info: VersionOrgans;
+  info!: VersionOrgans;
 
   /** Organ data of current selected organ */
-  organData: OrganData[];
+  organData: OrganData[] = [];
 
   /** Tile of the card */
   cardTitle = '';
@@ -48,17 +48,17 @@ export class OrganVersionComponent implements OnInit {
   tableTitle: string = '';
 
   /** Images of the organs to be displayed in the tabs */
-  filterImages: OrganData[];
+  filterImages: OrganData[] = [];
 
   /** Selected version from the version data */
-  version: ChooseVersion;
+  version!: ChooseVersion;
 
   /** Column definitons of the columns to be displayed */
   displayedColumnsData: string[] = [];
 
   /** Creates instance of Router, ActivatedRoute, TableDataService */
   constructor(
-    private router: Router,
+    private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly dataService: TableDataService,
   ) {}
@@ -93,11 +93,13 @@ export class OrganVersionComponent implements OnInit {
   /** Sets version data according to the selected version and organ */
   setVersion(version: string, organ?: string): void {
     const info = this.organInfo.find((item) => this.iCaseEquals(item.version, version)) ?? this.organInfo[0];
-    const choose = this.versionData.find((item) => item.version === info.version)!;
-    this.info = info;
-    this.version = choose;
-    this.filterImages = info.organData;
-    this.setOrgan(organ ?? info.organData[0].name);
+    const choose = this.versionData.find((item) => item.version === info.version);
+    if (choose) {
+      this.info = info;
+      this.version = choose;
+      this.filterImages = info.organData;
+      this.setOrgan(organ ?? info.organData[0].name);
+    }
   }
 
   /** Sets organ data according to the selected organ */

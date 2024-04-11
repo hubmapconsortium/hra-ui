@@ -12,7 +12,7 @@ import { PageSpec } from '../../utils/data-schema';
 })
 export class ContentService {
   /** Initializes the HttpClient */
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   /** Gets data from YAML file and returns an observable */
   getContent(fileName: string): Observable<PageDef[]> {

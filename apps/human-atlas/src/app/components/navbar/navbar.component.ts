@@ -9,10 +9,10 @@ import { NavItems } from '../toolbar/nav-items';
 })
 export class NavbarComponent {
   /** Menu items to be displayed on the navigation bar */
-  @Input() items: NavItems[];
+  @Input() items: NavItems[] = [];
 
   /** Emits the menu item data when option is selected */
-  @Output() itemClick = new EventEmitter<NavItems>();
+  @Output() readonly itemClick = new EventEmitter<NavItems>();
 
   /** Opens menu item link in external window */
   externalWindow(url: string): void {

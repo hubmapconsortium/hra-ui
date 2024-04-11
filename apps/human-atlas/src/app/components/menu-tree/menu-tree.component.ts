@@ -19,16 +19,16 @@ export class MenuTreeComponent {
   }
 
   /** Icon name for the menu button */
-  @Input() icon: string;
+  @Input() icon = '';
 
   /** Custom class name for the overlay */
-  @Input() overlayClass: string;
+  @Input() overlayClass = '';
 
   /** Default class name for the menu */
-  @Input() treeClass: string;
+  @Input() treeClass = '';
 
   /** Position details of the overlay */
-  @Input() positions: ConnectedPosition[];
+  @Input() positions: ConnectedPosition[] = [];
 
   /** Flag to check if menu is open */
   isOpen = false;
@@ -47,8 +47,8 @@ export class MenuTreeComponent {
 
   /** Creates instance of Router, ViewportScroller and Overlay */
   constructor(
-    private router: Router,
-    private scroller: ViewportScroller,
+    private readonly router: Router,
+    private readonly scroller: ViewportScroller,
     private readonly overlay: Overlay,
   ) {}
 

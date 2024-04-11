@@ -18,7 +18,7 @@ export class TableComponent {
   }
 
   /** Flag to check if column is of organ */
-  @Input() isOrgan: boolean;
+  @Input() isOrgan = false;
 
   /** Sets the data to the table datasource */
   @Input()
@@ -33,7 +33,7 @@ export class TableComponent {
   @Input() columns: HeaderData[] = [];
 
   /** Flag to show/hide the total below the table */
-  @Input() isTotal: boolean = false;
+  @Input() isTotal = false;
 
   /** Details of additional columns to be displayed */
   @Input() additionalHeaders?: ExtraHeader[];

@@ -9,16 +9,16 @@ import { OrganData } from '../two-dim-image/two-dim-image';
 })
 export class OrganTabsComponent {
   /** Details of images to be displayed as tabs */
-  @Input() tabs: OrganData[];
+  @Input() tabs: OrganData[] = [];
 
   /** Default organ name to be set initially */
-  @Input() currentOrgan: string;
+  @Input() currentOrgan = '';
 
   /** Class name of the panel */
-  @Input() panelClass: string;
+  @Input() panelClass = '';
 
   /** Emits the organ data when tab is clicked */
-  @Output() organName = new EventEmitter<string>();
+  @Output() readonly organName = new EventEmitter<string>();
 
   /** Returns the index of the current selected organ tab */
   get selectedIndex(): number {

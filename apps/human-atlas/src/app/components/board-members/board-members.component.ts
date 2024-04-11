@@ -9,5 +9,5 @@ import { BoardMemberItems } from './board-members';
 })
 export class BoardMembersComponent {
   /** Details for each board member card */
-  @Input() membersData: BoardMemberItems[];
+  @Input() membersData: BoardMemberItems[] = [];
 }

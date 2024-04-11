@@ -13,10 +13,10 @@ import { PageDef } from './page-def';
 })
 export class PageElementComponent implements OnInit {
   /** Details of element to be displayed */
-  @Input() def: PageDef;
+  @Input() def!: PageDef;
 
   /** Subscriptions managed by this component. */
-  private subscriptions = new Subscription();
+  private readonly subscriptions = new Subscription();
 
   /** Flag to check if page is scrolled */
   scrolled: boolean = false;
@@ -24,9 +24,9 @@ export class PageElementComponent implements OnInit {
   /** Creates instance of Router, ActivatedRoute, ViewportScroller
    * and navigates to page element if fragment is changed */
   constructor(
-    private router: Router,
+    private readonly router: Router,
     private readonly route: ActivatedRoute,
-    private scroller: ViewportScroller,
+    private readonly scroller: ViewportScroller,
   ) {
     this.subscriptions.add(
       this.route.fragment.subscribe((anchor) => {
@@ -40,7 +40,7 @@ export class PageElementComponent implements OnInit {
   /** Updates scrolled value if page is scrolled */
   ngOnInit(): void {
     window.addEventListener('scroll', () => {
-      const scrollPosition = window.pageYOffset;
+      const scrollPosition = window.screenY;
       if (scrollPosition > 220) {
         this.scrolled = true;
       } else {

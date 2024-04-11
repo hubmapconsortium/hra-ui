@@ -9,7 +9,7 @@ import { YoutubeModel } from './youtube-model';
 })
 export class YoutubeModelComponent implements OnInit {
   /** Details of youtube player and video */
-  @Input() playerData: YoutubeModel;
+  @Input() playerData!: YoutubeModel;
 
   /** Flag to check if the script is loaded */
   apiLoaded = false;

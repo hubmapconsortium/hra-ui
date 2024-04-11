@@ -13,7 +13,7 @@ export class CopyClipboardComponent {
   @Input() clipBoardData: CopyClipBoard[] = [];
 
   /** Initializes Clipboard */
-  constructor(private clipboard: Clipboard) {}
+  constructor(private readonly clipboard: Clipboard) {}
 
   /** Copies data inside the card to clipboard */
   copyData(request: string) {

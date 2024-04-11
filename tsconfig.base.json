@@ -18,6 +18,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@components/*": [
+        "apps/human-atlas/src/app/components/*"
+      ],
       "@hra-ui/cdk": [
         "libs/cdk/src/index.ts"
       ],
@@ -81,11 +84,12 @@
       "stream": [
         "./node_modules/stream-browserify"
       ],
+      "swiper_angular": [
+        "node_modules/swiper/angular"
+      ],
       "triple-store-utils": [
         "libs/triple-store-utils/src/public-api.ts"
-      ],
-      "@components/*": ["apps/human-atlas/src/app/components/*"],
-      "swiper_angular": ["node_modules/swiper/angular"]
+      ]
     }
   },
   "exclude": [
