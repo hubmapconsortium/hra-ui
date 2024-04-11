@@ -66,11 +66,11 @@
           "namedChunks": true
         },
         "staging": {
-          "baseHref": "/",
+          "baseHref": "/apps/human-atlas/",
           "outputHashing": "none"
         },
         "preview": {
-          "baseHref": "/",
+          "baseHref": "/apps/human-atlas/",
           "buildOptimizer": false,
           "optimization": false,
           "vendorChunk": true,
