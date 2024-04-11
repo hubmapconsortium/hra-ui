@@ -24,13 +24,13 @@
 <title>cluster_NavItemModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="165,-70 165,-268 331,-268 331,-70 165,-70"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_NavItemModule_declarations</title>
-<polygon fill="none" stroke="black" points="175,-78 175,-130 321,-130 321,-78 175,-78"/>
-</g>
 <g id="clust5" class="cluster">
 <title>cluster_NavItemModule_exports</title>
 <polygon fill="none" stroke="black" points="173,-208 173,-260 323,-260 323,-208 173,-208"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_NavItemModule_declarations</title>
+<polygon fill="none" stroke="black" points="175,-78 175,-130 321,-130 321,-78 175,-78"/>
 </g>
 <!-- NavItemComponent -->
 <g id="node1" class="node">

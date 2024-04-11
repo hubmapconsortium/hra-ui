@@ -24,10 +24,6 @@
 <title>cluster_ControlPaneModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 858,-268 858,-70 8,-70"/>
 </g>
-<g id="clust5" class="cluster">
-<title>cluster_ControlPaneModule_exports</title>
-<polygon fill="none" stroke="black" points="335,-208 335,-260 505,-260 505,-208 335,-208"/>
-</g>
 <g id="clust2" class="cluster">
 <title>cluster_ControlPaneModule_declarations</title>
 <polygon fill="none" stroke="black" points="682,-78 682,-130 850,-130 850,-78 682,-78"/>
@@ -35,6 +31,10 @@
 <g id="clust4" class="cluster">
 <title>cluster_ControlPaneModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 674,-130 674,-78 16,-78"/>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_ControlPaneModule_exports</title>
+<polygon fill="none" stroke="black" points="335,-208 335,-260 505,-260 505,-208 335,-208"/>
 </g>
 <!-- ControlPaneComponent -->
 <g id="node1" class="node">

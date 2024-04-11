@@ -24,10 +24,6 @@
 <title>cluster_CompareModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 604,-268 604,-70 8,-70"/>
 </g>
-<g id="clust5" class="cluster">
-<title>cluster_CompareModule_exports</title>
-<polygon fill="none" stroke="black" points="219,-208 219,-260 371,-260 371,-208 219,-208"/>
-</g>
 <g id="clust2" class="cluster">
 <title>cluster_CompareModule_declarations</title>
 <polygon fill="none" stroke="black" points="448,-78 448,-130 596,-130 596,-78 448,-78"/>
@@ -35,6 +31,10 @@
 <g id="clust4" class="cluster">
 <title>cluster_CompareModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 440,-130 440,-78 16,-78"/>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_CompareModule_exports</title>
+<polygon fill="none" stroke="black" points="219,-208 219,-260 371,-260 371,-208 219,-208"/>
 </g>
 <!-- CompareComponent -->
 <g id="node1" class="node">

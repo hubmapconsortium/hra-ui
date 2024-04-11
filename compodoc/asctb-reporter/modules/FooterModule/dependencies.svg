@@ -24,13 +24,13 @@
 <title>cluster_FooterModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="171,-70 171,-268 325,-268 325,-70 171,-70"/>
 </g>
-<g id="clust5" class="cluster">
-<title>cluster_FooterModule_exports</title>
-<polygon fill="none" stroke="black" points="179,-208 179,-260 317,-260 317,-208 179,-208"/>
-</g>
 <g id="clust2" class="cluster">
 <title>cluster_FooterModule_declarations</title>
 <polygon fill="none" stroke="black" points="181,-78 181,-130 315,-130 315,-78 181,-78"/>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_FooterModule_exports</title>
+<polygon fill="none" stroke="black" points="179,-208 179,-260 317,-260 317,-208 179,-208"/>
 </g>
 <!-- FooterComponent -->
 <g id="node1" class="node">

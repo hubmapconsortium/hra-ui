@@ -28,13 +28,13 @@
 <title>cluster_ReportModule_declarations</title>
 <polygon fill="none" stroke="black" points="415,-78 415,-130 551,-130 551,-78 415,-78"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_ReportModule_imports</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-130 407,-130 407,-78 16,-78"/>
-</g>
 <g id="clust5" class="cluster">
 <title>cluster_ReportModule_exports</title>
 <polygon fill="none" stroke="black" points="217,-208 217,-260 355,-260 355,-208 217,-208"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_ReportModule_imports</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 407,-130 407,-78 16,-78"/>
 </g>
 <!-- ReportComponent -->
 <g id="node1" class="node">

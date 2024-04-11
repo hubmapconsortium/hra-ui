@@ -1,0 +1,1144 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>human-atlas</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">human-atlas</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  TwoDimImageComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/two-dim-image/two-dim-image.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Displays an image and a modal inside a card</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>ccf-two-dim-image</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./two-dim-image.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./two-dim-image.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#downloadClick" >downloadClick</a>
+                            </li>
+                            <li>
+                                <a href="#openImageViewer" >openImageViewer</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cardTitle" >cardTitle</a>
+                            </li>
+                            <li>
+                                <a href="#isMultirow" >isMultirow</a>
+                            </li>
+                            <li>
+                                <a href="#tissueData" >tissueData</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(dialog: MatDialog, downloader: <a href="../injectables/FileDownloadService.html" target="_self">FileDownloadService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/components/two-dim-image/two-dim-image.component.ts:20</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Initializes MatDialog and FileDownloadService</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>downloader</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/FileDownloadService.html" target="_self" >FileDownloadService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="cardTitle"></a>
+                        <b>cardTitle</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/components/two-dim-image/two-dim-image.component.ts:14</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Title of the card</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isMultirow"></a>
+                        <b>isMultirow</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/components/two-dim-image/two-dim-image.component.ts:20</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Flag to view tissue details in multiple rows</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tissueData"></a>
+                        <b>tissueData</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/OrganData.html" target="_self" >OrganData[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/components/two-dim-image/two-dim-image.component.ts:17</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Tissue data to be displayed in the cards</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="downloadClick"></a>
+                    <span class="name">
+                        <span ><b>downloadClick</b></span>
+                        <a href="#downloadClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>downloadClick(event: Event, url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="39"
+                                    class="link-to-prism">src/app/components/two-dim-image/two-dim-image.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Downloads PNG and SVG files</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openImageViewer"></a>
+                    <span class="name">
+                        <span ><b>openImageViewer</b></span>
+                        <a href="#openImageViewer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openImageViewer(content: TemplateRef<>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/app/components/two-dim-image/two-dim-image.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Opens a modal with image when large screen size</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>content</td>
+                                            <td>
+                                                        <code>TemplateRef&lt;&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, TemplateRef } from &#x27;@angular/core&#x27;;
+import { MatDialog } from &#x27;@angular/material/dialog&#x27;;
+import { FileDownloadService } from &#x27;../../services/file-download/file-download.service&#x27;;
+import { OrganData } from &#x27;./two-dim-image&#x27;;
+
+/** Displays an image and a modal inside a card */
+@Component({
+  selector: &#x27;ccf-two-dim-image&#x27;,
+  templateUrl: &#x27;./two-dim-image.component.html&#x27;,
+  styleUrls: [&#x27;./two-dim-image.component.scss&#x27;],
+})
+export class TwoDimImageComponent {
+  /** Title of the card */
+  @Input() cardTitle &#x3D; &#x27;&#x27;;
+
+  /** Tissue data to be displayed in the cards */
+  @Input() tissueData: OrganData[] &#x3D; [];
+
+  /** Flag to view tissue details in multiple rows */
+  @Input() isMultirow &#x3D; false;
+
+  /** Initializes MatDialog and FileDownloadService */
+  constructor(
+    private readonly dialog: MatDialog,
+    private readonly downloader: FileDownloadService,
+  ) {}
+
+  /** Opens a modal with image when large screen size */
+  openImageViewer(content: TemplateRef&lt;unknown&gt;): void {
+    const fontSize &#x3D; parseFloat(getComputedStyle(document.documentElement).fontSize);
+    const isSmallScreen &#x3D; window.innerWidth / fontSize &lt; 63;
+
+    if (!isSmallScreen) {
+      this.dialog.open(content, { panelClass: &#x27;two-dim-image-modal&#x27; });
+    }
+  }
+
+  /** Downloads PNG and SVG files */
+  downloadClick(event: Event, url: string): void {
+    event.preventDefault();
+    this.downloader.download(url);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;mat-card&gt;
+  &lt;mat-card-title class&#x3D;&quot;card-title&quot;&gt;{{ cardTitle }}&lt;/mat-card-title&gt;
+  &lt;mat-divider&gt;&lt;/mat-divider&gt;
+  &lt;span *ngFor&#x3D;&quot;let tissues of tissueData&quot; [class.multirow]&#x3D;&quot;!isMultirow&quot;&gt;
+    &lt;ng-container *ngFor&#x3D;&quot;let tissue of tissues.tissueData; let i &#x3D; index; even as even; last as last; odd as odd&quot;&gt;
+      &lt;mat-card-actions
+        [class.split]&#x3D;&quot;!isMultirow &amp;&amp; tissues.tissueData?.length !&#x3D;&#x3D; 1&quot;
+        [class.no-split]&#x3D;&quot;tissues.tissueData?.length &#x3D;&#x3D;&#x3D; 1&quot;
+      &gt;
+        &lt;div class&#x3D;&quot;units-container&quot; *ngIf&#x3D;&quot;isMultirow; else downloadGlb&quot;&gt;
+          &lt;div class&#x3D;&quot;tissue-name&quot;&gt;{{ tissue.name }}&lt;/div&gt;
+          &lt;div class&#x3D;&quot;download-button-container&quot;&gt;
+            &lt;a mat-stroked-button disableRipple&#x3D;&quot;true&quot; href&#x3D;&quot;{{ tissue.url }}&quot;&gt;
+              &lt;span class&#x3D;&quot;material-symbols-outlined&quot;&gt;info&lt;/span&gt;
+              Metadata
+            &lt;/a&gt;
+            &lt;a
+              *ngIf&#x3D;&quot;tissue.png&quot;
+              mat-stroked-button
+              disableRipple&#x3D;&quot;true&quot;
+              [href]&#x3D;&quot;tissue.png&quot;
+              (click)&#x3D;&quot;downloadClick($event, tissue.png)&quot;
+            &gt;
+              &lt;span class&#x3D;&quot;material-symbols-outlined&quot;&gt;download&lt;/span&gt;
+              Download PNG
+            &lt;/a&gt;
+            &lt;a
+              *ngIf&#x3D;&quot;tissue.svg&quot;
+              mat-stroked-button
+              disableRipple&#x3D;&quot;true&quot;
+              [href]&#x3D;&quot;tissue.svg&quot;
+              (click)&#x3D;&quot;downloadClick($event, tissue.svg)&quot;
+            &gt;
+              &lt;span class&#x3D;&quot;material-symbols-outlined&quot;&gt;download&lt;/span&gt;
+              Download SVG
+            &lt;/a&gt;
+            &lt;a *ngIf&#x3D;&quot;tissue.ai&quot; [href]&#x3D;&quot;tissue.ai&quot; mat-stroked-button disableRipple&#x3D;&quot;true&quot; download&gt;
+              &lt;span class&#x3D;&quot;material-symbols-outlined&quot;&gt;download&lt;/span&gt;
+              Download AI
+            &lt;/a&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;mat-divider&gt;&lt;/mat-divider&gt;
+
+        &lt;ng-template #downloadGlb&gt;
+          &lt;mat-divider *ngIf&#x3D;&quot;i !&#x3D;&#x3D; 0 &amp;&amp; i !&#x3D;&#x3D; 1&quot;&gt;&lt;/mat-divider&gt;
+          &lt;div class&#x3D;&quot;units-container&quot;&gt;
+            &lt;div class&#x3D;&quot;three-dim-name&quot;&gt;{{ tissue.name }}&lt;/div&gt;
+            &lt;div class&#x3D;&quot;filler&quot;&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;download-buttons&quot;&gt;
+              &lt;a [href]&#x3D;&quot;tissue.threeDimImage&quot; download mat-stroked-button disableRipple&#x3D;&quot;true&quot;&gt;
+                &lt;span class&#x3D;&quot;material-symbols-outlined&quot;&gt;download&lt;/span&gt;
+                Download GLB
+              &lt;/a&gt;
+              &lt;a mat-stroked-button disableRipple&#x3D;&quot;true&quot; href&#x3D;&quot;{{ tissue.url }}&quot;&gt;
+                &lt;span class&#x3D;&quot;material-symbols-outlined&quot;&gt;info&lt;/span&gt;
+                Metadata
+              &lt;/a&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/ng-template&gt;
+        &lt;div class&#x3D;&quot;image-container&quot; *ngIf&#x3D;&quot;tissue.image; else threeDimensionContainer&quot;&gt;
+          &lt;img [ngSrc]&#x3D;&quot;tissue.image&quot; [alt]&#x3D;&quot;tissue.alt&quot; (click)&#x3D;&quot;openImageViewer(imageContent)&quot; priority fill /&gt;
+          &lt;ng-template #imageContent&gt;
+            &lt;div class&#x3D;&quot;dialog-header&quot;&gt;
+              &lt;div mat-dialog-title&gt;{{ tissue.name }}&lt;/div&gt;
+              &lt;div class&#x3D;&quot;filler&quot;&gt;&lt;/div&gt;
+              &lt;button mat-dialog-close mat-button [disableRipple]&#x3D;&quot;true&quot;&gt;
+                &lt;mat-icon&gt;close&lt;/mat-icon&gt;
+              &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;dialog-buttons&quot;&gt;
+              &lt;a mat-dialog-close mat-stroked-button [disableRipple]&#x3D;&quot;true&quot; href&#x3D;&quot;{{ tissue.url }}&quot;&gt;
+                &lt;span class&#x3D;&quot;material-symbols-outlined&quot;&gt;info&lt;/span&gt;
+                Metadata
+              &lt;/a&gt;
+              &lt;a
+                *ngIf&#x3D;&quot;tissue.png&quot;
+                mat-stroked-button
+                disableRipple&#x3D;&quot;true&quot;
+                [href]&#x3D;&quot;tissue.png&quot;
+                (click)&#x3D;&quot;downloadClick($event, tissue.png)&quot;
+              &gt;
+                &lt;span class&#x3D;&quot;material-symbols-outlined&quot;&gt;download&lt;/span&gt;
+                Download PNG
+              &lt;/a&gt;
+              &lt;a
+                *ngIf&#x3D;&quot;tissue.svg&quot;
+                [href]&#x3D;&quot;tissue.svg&quot;
+                mat-stroked-button
+                disableRipple&#x3D;&quot;true&quot;
+                (click)&#x3D;&quot;downloadClick($event, tissue.svg)&quot;
+              &gt;
+                &lt;span class&#x3D;&quot;material-symbols-outlined&quot;&gt;download&lt;/span&gt;
+                Download SVG
+              &lt;/a&gt;
+              &lt;a *ngIf&#x3D;&quot;tissue.ai&quot; [href]&#x3D;&quot;tissue.ai&quot; mat-stroked-button disableRipple&#x3D;&quot;true&quot; download&gt;
+                &lt;span class&#x3D;&quot;material-symbols-outlined&quot;&gt;download&lt;/span&gt;
+                Download AI
+              &lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;img-container&quot;&gt;
+              &lt;img [src]&#x3D;&quot;tissue.expandedImage&quot; [alt]&#x3D;&quot;tissue.alt&quot; class&#x3D;&quot;dialog-image&quot; /&gt;
+            &lt;/div&gt;
+          &lt;/ng-template&gt;
+        &lt;/div&gt;
+        &lt;ng-template #threeDimensionContainer&gt;
+          &lt;div class&#x3D;&quot;model-container&quot;&gt;
+            &lt;model-viewer
+              class&#x3D;&quot;model-viewer&quot;
+              alt&#x3D;&quot;{{ tissue.alt }}&quot;
+              src&#x3D;&quot;{{ tissue.threeDimImage }}&quot;
+              shadow-intensity&#x3D;&quot;1&quot;
+              camera-controls
+              auto-rotate
+              style&#x3D;&quot;height: 400px&quot;
+            &gt;
+            &lt;/model-viewer&gt;
+          &lt;/div&gt;
+        &lt;/ng-template&gt;
+      &lt;/mat-card-actions&gt;
+      &lt;mat-divider [vertical]&#x3D;&quot;!isMultirow&quot; *ngIf&#x3D;&quot;(isMultirow &amp;&amp; last) || even || (odd &amp;&amp; !last)&quot;&gt;&lt;/mat-divider&gt;
+    &lt;/ng-container&gt;
+  &lt;/span&gt;
+&lt;/mat-card&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./two-dim-image.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">:host {
+  .mat-mdc-card {
+    margin-bottom: 5rem;
+    padding: unset;
+  }
+
+  .mdc-card__actions {
+    flex-direction: column;
+    align-items: unset;
+    padding: unset;
+  }
+
+  .card-title {
+    font-weight: 300;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005em;
+    padding: 1.6875rem 2rem;
+    margin-bottom: unset;
+  }
+
+  .mat-mdc-outlined-button {
+    padding: 0rem 1.5rem;
+    margin-left: 1px;
+    min-width: 11.5rem;
+    color: #444c65;
+    border-radius: 6.25rem;
+    height: 40px;
+    background-color: #f7f2fa;
+    box-shadow:
+      0px 1px 2px rgba(0, 0, 0, 0.3),
+      0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  }
+
+  .mat-card-actions .mat-stroked-button {
+    margin-right: 1rem;
+  }
+
+  a,
+  button {
+    float: right;
+  }
+
+  .image-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 28rem;
+    position: relative;
+  }
+
+  .multirow {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .split {
+    width: 49%;
+  }
+
+  .no-split {
+    width: 100%;
+  }
+
+  .units-container {
+    padding: 1.688rem 2rem;
+    font-weight: 300;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005rem;
+    color: #212121;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .model-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  a:-webkit-any-link {
+    text-decoration: unset !important;
+  }
+
+  .filler {
+    flex-grow: 1;
+  }
+
+  //3d-styles
+  .mat-mdc-card-actions:not(.mat-mdc-card-actions-align-end) .mat-mdc-outlined-button:first-child {
+    margin: 0 1rem;
+  }
+
+  .image-container img {
+    object-fit: contain;
+    width: 100%;
+  }
+
+  .download-button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .download-button-container .mat-mdc-outlined-button:not(:last-child) {
+    margin-right: 1rem;
+  }
+
+  @media (max-width: 72rem) {
+    //3d-styles
+    .mat-mdc-card-actions:not(.mat-mdc-card-actions-align-end) .mat-mdc-outlined-button:first-child {
+      margin: 0;
+      margin-bottom: 1rem;
+    }
+    .mat-card-actions .mat-stroked-button {
+      margin: 0 0.5rem;
+      margin-bottom: 1rem;
+      padding: 0;
+    }
+
+    .mat-card-actions:not(.mat-card-actions-align-end) .mat-stroked-button:first-child {
+      margin: 0 0.5rem 1rem 0.5rem;
+    }
+  }
+
+  @media (max-width: 46rem) {
+    .download-button-container .mat-mdc-outlined-button:not(:last-child) {
+      margin-right: unset;
+      margin-bottom: 1rem;
+      width: max-content;
+    }
+
+    .multirow {
+      flex-direction: column;
+    }
+
+    .split {
+      width: unset;
+    }
+
+    .download-buttons {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .units-container {
+      flex-direction: row;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      padding: 1rem;
+    }
+
+    .tissue-name {
+      margin-bottom: 1rem;
+      font-size: 1.125rem;
+    }
+
+    .card-title {
+      font-size: 1.125rem;
+      padding: 1rem;
+    }
+
+    .three-dim-name {
+      font-size: 1.125rem;
+    }
+
+    .mat-card-actions .mat-divider {
+      max-width: unset;
+      width: 100%;
+    }
+
+    .download-button-container {
+      justify-content: flex-start;
+    }
+  }
+}
+
+::ng-deep .two-dim-image-modal {
+  .dialog-header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mat-mdc-dialog-container .mdc-dialog__surface {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 55rem;
+    min-width: 55rem;
+    object-fit: contain;
+    padding: 1.5rem;
+  }
+
+  .mdc-dialog__surface {
+    overflow-y: unset;
+  }
+
+  .mat-mdc-dialog-title {
+    --mdc-dialog-subhead-weight: 300;
+    --mdc-dialog-subhead-size: 1.5rem;
+    --mdc-dialog-subhead-line-height: 1.5rem;
+    margin: unset;
+    margin-right: 0.5rem;
+  }
+
+  .mdc-dialog__title {
+    padding: 0;
+    &amp;::before {
+      content: none;
+    }
+  }
+
+  .mat-mdc-outlined-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 0.875rem;
+    padding: 0rem 1.5rem;
+    margin-left: 1px;
+    min-width: 10.5rem;
+    color: #444c65;
+    border-radius: 6.25rem;
+    height: 40px;
+    background-color: #f7f2fa;
+    box-shadow:
+      0px 1px 2px rgba(0, 0, 0, 0.3),
+      0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    margin-right: 1rem;
+  }
+
+  .mat-stroked-button:last-child {
+    margin-right: unset;
+  }
+
+  .mat-stroked-button:not([class*&#x3D;&#x27;mat-elevation-z&#x27;]) {
+    box-shadow:
+      0px 1px 2px rgba(0, 0, 0, 0.3),
+      0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  }
+
+  .dialog-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .img-container {
+    max-width: 664px;
+    height: 792px;
+  }
+
+  a:-webkit-any-link {
+    text-decoration: unset !important;
+  }
+
+  .dialog-buttons {
+    display: flex;
+    padding-top: 1.5rem;
+  }
+
+  .filler {
+    flex-grow: 1;
+  }
+
+  @media (max-width: 26.75rem) {
+    .filler {
+      display: none;
+    }
+  }
+}
+
+::ng-deep {
+  .mat-mdc-outlined-button .mdc-button__label {
+    display: flex;
+    align-items: center;
+    letter-spacing: 0;
+  }
+
+  .material-symbols-outlined {
+    margin-right: 0.5rem;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><mat-card>  <mat-card-title class="card-title">{{ cardTitle }}</mat-card-title>  <mat-divider></mat-divider>  <span *ngFor="let tissues of tissueData" [class.multirow]="!isMultirow">    <ng-container *ngFor="let tissue of tissues.tissueData; let i = index; even as even; last as last; odd as odd">      <mat-card-actions        [class.split]="!isMultirow && tissues.tissueData?.length !== 1"        [class.no-split]="tissues.tissueData?.length === 1"      >        <div class="units-container" *ngIf="isMultirow; else downloadGlb">          <div class="tissue-name">{{ tissue.name }}</div>          <div class="download-button-container">            <a mat-stroked-button disableRipple="true" href="{{ tissue.url }}">              <span class="material-symbols-outlined">info</span>              Metadata            </a>            <a              *ngIf="tissue.png"              mat-stroked-button              disableRipple="true"              [href]="tissue.png"              (click)="downloadClick($event, tissue.png)"            >              <span class="material-symbols-outlined">download</span>              Download PNG            </a>            <a              *ngIf="tissue.svg"              mat-stroked-button              disableRipple="true"              [href]="tissue.svg"              (click)="downloadClick($event, tissue.svg)"            >              <span class="material-symbols-outlined">download</span>              Download SVG            </a>            <a *ngIf="tissue.ai" [href]="tissue.ai" mat-stroked-button disableRipple="true" download>              <span class="material-symbols-outlined">download</span>              Download AI            </a>          </div>        </div>        <mat-divider></mat-divider>        <ng-template #downloadGlb>          <mat-divider *ngIf="i !== 0 && i !== 1"></mat-divider>          <div class="units-container">            <div class="three-dim-name">{{ tissue.name }}</div>            <div class="filler"></div>            <div class="download-buttons">              <a [href]="tissue.threeDimImage" download mat-stroked-button disableRipple="true">                <span class="material-symbols-outlined">download</span>                Download GLB              </a>              <a mat-stroked-button disableRipple="true" href="{{ tissue.url }}">                <span class="material-symbols-outlined">info</span>                Metadata              </a>            </div>          </div>        </ng-template>        <div class="image-container" *ngIf="tissue.image; else threeDimensionContainer">          <img [ngSrc]="tissue.image" [alt]="tissue.alt" (click)="openImageViewer(imageContent)" priority fill />          <ng-template #imageContent>            <div class="dialog-header">              <div mat-dialog-title>{{ tissue.name }}</div>              <div class="filler"></div>              <button mat-dialog-close mat-button [disableRipple]="true">                <mat-icon>close</mat-icon>              </button>            </div>            <div class="dialog-buttons">              <a mat-dialog-close mat-stroked-button [disableRipple]="true" href="{{ tissue.url }}">                <span class="material-symbols-outlined">info</span>                Metadata              </a>              <a                *ngIf="tissue.png"                mat-stroked-button                disableRipple="true"                [href]="tissue.png"                (click)="downloadClick($event, tissue.png)"              >                <span class="material-symbols-outlined">download</span>                Download PNG              </a>              <a                *ngIf="tissue.svg"                [href]="tissue.svg"                mat-stroked-button                disableRipple="true"                (click)="downloadClick($event, tissue.svg)"              >                <span class="material-symbols-outlined">download</span>                Download SVG              </a>              <a *ngIf="tissue.ai" [href]="tissue.ai" mat-stroked-button disableRipple="true" download>                <span class="material-symbols-outlined">download</span>                Download AI              </a>            </div>            <div class="img-container">              <img [src]="tissue.expandedImage" [alt]="tissue.alt" class="dialog-image" />            </div>          </ng-template>        </div>        <ng-template #threeDimensionContainer>          <div class="model-container">            <model-viewer              class="model-viewer"              alt="{{ tissue.alt }}"              src="{{ tissue.threeDimImage }}"              shadow-intensity="1"              camera-controls              auto-rotate              style="height: 400px"            >            </model-viewer>          </div>        </ng-template>      </mat-card-actions>      <mat-divider [vertical]="!isMultirow" *ngIf="(isMultirow && last) || even || (odd && !last)"></mat-divider>    </ng-container>  </span></mat-card></div>'
+    var COMPONENTS = [{'name': 'AnnouncementCardComponent', 'selector': 'announcement-card'},{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'BoardMembersComponent', 'selector': 'ccf-board-members'},{'name': 'BottomToolbarComponent', 'selector': 'ccf-bottom-toolbar'},{'name': 'CardButtonLongComponent', 'selector': 'ccf-card-button-long'},{'name': 'CardWithHeaderComponent', 'selector': 'card-with-header'},{'name': 'CarouselComponent', 'selector': 'ccf-carousel'},{'name': 'ChooseVersionComponent', 'selector': 'ccf-choose-version'},{'name': 'ContactCardComponent', 'selector': 'contact-card'},{'name': 'CopyClipboardComponent', 'selector': 'copy-clipboard'},{'name': 'CountInfoCardComponent', 'selector': 'count-info-card'},{'name': 'DownloadFtuComponent', 'selector': 'ccf-download-ftu'},{'name': 'MenuTreeComponent', 'selector': 'menu-tree'},{'name': 'NavbarComponent', 'selector': 'ccf-navbar'},{'name': 'OrganTabsComponent', 'selector': 'ccf-organ-tabs'},{'name': 'OrganVersionComponent', 'selector': 'ccf-organ-version'},{'name': 'PageComponent', 'selector': 'page'},{'name': 'PageDataComponent', 'selector': 'ccf-page-data'},{'name': 'PageElementComponent', 'selector': 'page-element'},{'name': 'PageHeaderComponent', 'selector': 'ccf-page-header'},{'name': 'PageRendererComponent', 'selector': 'ccf-page-renderer'},{'name': 'PrizeCardComponent', 'selector': 'ccf-prize-card'},{'name': 'SectionCardComponent', 'selector': 'ccf-section-card'},{'name': 'SimpleImageComponent', 'selector': 'ccf-simple-image'},{'name': 'SimpleTileComponent', 'selector': 'ccf-simple-tile'},{'name': 'SopLinksComponent', 'selector': 'ccf-sop-links'},{'name': 'SwiperComponent', 'selector': 'swiper'},{'name': 'TableComponent', 'selector': 'ccf-table'},{'name': 'TableVersionComponent', 'selector': 'table-version'},{'name': 'TissueInfoPageComponent', 'selector': 'ccf-tissue-info-page'},{'name': 'TissueInfoTableComponent', 'selector': 'ccf-tissue-info'},{'name': 'ToolbarComponent', 'selector': 'ccf-toolbar'},{'name': 'TwoDimImageComponent', 'selector': 'ccf-two-dim-image'},{'name': 'UseButtonComponent', 'selector': 'ccf-use-button'},{'name': 'YoutubeModelComponent', 'selector': 'youtube-model'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'TwoDimImageComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TwoDimImageComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

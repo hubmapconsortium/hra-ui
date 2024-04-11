@@ -24,13 +24,13 @@
 <title>cluster_TreeModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="177,-70 177,-268 319,-268 319,-70 177,-70"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_TreeModule_declarations</title>
-<polygon fill="none" stroke="black" points="187,-78 187,-130 309,-130 309,-78 187,-78"/>
-</g>
 <g id="clust5" class="cluster">
 <title>cluster_TreeModule_exports</title>
 <polygon fill="none" stroke="black" points="185,-208 185,-260 311,-260 311,-208 185,-208"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_TreeModule_declarations</title>
+<polygon fill="none" stroke="black" points="187,-78 187,-130 309,-130 309,-78 187,-78"/>
 </g>
 <!-- TreeComponent -->
 <g id="node1" class="node">

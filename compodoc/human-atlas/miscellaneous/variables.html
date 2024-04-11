@@ -1,0 +1,2931 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>human-atlas</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">human-atlas</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-variables">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Variables</li>
+</ol>
+
+<section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#AnnouncementCard" title="src/app/utils/data-schema.ts" ><b>AnnouncementCard</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#BoardMembers" title="src/app/utils/data-schema.ts" ><b>BoardMembers</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Button" title="src/app/utils/data-schema.ts" ><b>Button</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#buttonDescription" title="src/app/utils/data-schema.ts" ><b>buttonDescription</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#buttonTextDescription" title="src/app/utils/data-schema.ts" ><b>buttonTextDescription</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#buttonUrlDescription" title="src/app/utils/data-schema.ts" ><b>buttonUrlDescription</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#cardSubtitleDescription" title="src/app/utils/data-schema.ts" ><b>cardSubtitleDescription</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#cardTextDescription" title="src/app/utils/data-schema.ts" ><b>cardTextDescription</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CarouselSlides" title="src/app/utils/data-schema.ts" ><b>CarouselSlides</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#classNameDescription" title="src/app/utils/data-schema.ts" ><b>classNameDescription</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ColumnName" title="src/app/utils/data-schema.ts" ><b>ColumnName</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ContactCard" title="src/app/utils/data-schema.ts" ><b>ContactCard</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CopyClipboard" title="src/app/utils/data-schema.ts" ><b>CopyClipboard</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CountCard" title="src/app/utils/data-schema.ts" ><b>CountCard</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Datasets" title="src/app/utils/data-schema.ts" ><b>Datasets</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#defaultDatasetsStyles" title="src/app/utils/data-schema.ts" ><b>defaultDatasetsStyles</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#descriptionData" title="src/app/pages/tissue-info-page/tissue-info-page.content.ts" ><b>descriptionData</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-info-page.content.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Divider" title="src/app/utils/data-schema.ts" ><b>Divider</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DownloadFtu" title="src/app/utils/data-schema.ts" ><b>DownloadFtu</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#downloadFtuDescription" title="src/app/utils/data-schema.ts" ><b>downloadFtuDescription</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Drawer" title="src/app/utils/data-schema.ts" ><b>Drawer</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#environment" title="src/environments/environment.prod.ts" ><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.prod.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#environment" title="src/environments/environment.ts" ><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ExtraHeader" title="src/app/utils/data-schema.ts" ><b>ExtraHeader</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#HeaderData" title="src/app/utils/data-schema.ts" ><b>HeaderData</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Image" title="src/app/utils/data-schema.ts" ><b>Image</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ImageInCard" title="src/app/utils/data-schema.ts" ><b>ImageInCard</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#LongCard" title="src/app/utils/data-schema.ts" ><b>LongCard</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#LongCardItems" title="src/app/utils/data-schema.ts" ><b>LongCardItems</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#LongCardWithTitle" title="src/app/utils/data-schema.ts" ><b>LongCardWithTitle</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Margin" title="src/app/utils/data-schema.ts" ><b>Margin</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MatCard" title="src/app/utils/data-schema.ts" ><b>MatCard</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MenuTree" title="src/app/utils/data-schema.ts" ><b>MenuTree</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#NAVIGATION_ITEMS" title="src/app/shared/navigation-items.ts" ><b>NAVIGATION_ITEMS</b>&nbsp;&nbsp;&nbsp;(src/.../navigation-items.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#OrganData" title="src/app/utils/data-schema.ts" ><b>OrganData</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#OrganVersion" title="src/app/utils/data-schema.ts" ><b>OrganVersion</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#organVersionDescription" title="src/app/utils/data-schema.ts" ><b>organVersionDescription</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PageData" title="src/app/utils/data-schema.ts" ><b>PageData</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PageHeaderCard" title="src/app/utils/data-schema.ts" ><b>PageHeaderCard</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PageSpec" title="src/app/utils/data-schema.ts" ><b>PageSpec</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PrizeButton" title="src/app/utils/data-schema.ts" ><b>PrizeButton</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PrizeCard" title="src/app/utils/data-schema.ts" ><b>PrizeCard</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PrizeWinner" title="src/app/utils/data-schema.ts" ><b>PrizeWinner</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#recursiveComponentsDescription" title="src/app/utils/data-schema.ts" ><b>recursiveComponentsDescription</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SectionCard" title="src/app/utils/data-schema.ts" ><b>SectionCard</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SimpleTile" title="src/app/utils/data-schema.ts" ><b>SimpleTile</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SopLinks" title="src/app/utils/data-schema.ts" ><b>SopLinks</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#styledGroup" title="src/app/utils/data-schema.ts" ><b>styledGroup</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#StyledGroup" title="src/app/utils/data-schema.ts" ><b>StyledGroup</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Styles" title="src/app/utils/data-schema.ts" ><b>Styles</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TABLE_SCROLL_END_MARGIN" title="src/app/components/table-version/table-version.component.ts" ><b>TABLE_SCROLL_END_MARGIN</b>&nbsp;&nbsp;&nbsp;(src/.../table-version.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TableVersion" title="src/app/utils/data-schema.ts" ><b>TableVersion</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#tissueData" title="src/app/pages/tissue-info-page/tissue-info-page.content.ts" ><b>tissueData</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-info-page.content.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TissueData" title="src/app/utils/data-schema.ts" ><b>TissueData</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Title" title="src/app/utils/data-schema.ts" ><b>Title</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#titleDescription" title="src/app/utils/data-schema.ts" ><b>titleDescription</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#trainingOutreachRoute" title="src/app/shared/navigation-items.ts" ><b>trainingOutreachRoute</b>&nbsp;&nbsp;&nbsp;(src/.../navigation-items.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#VersionEntry" title="src/app/utils/data-schema.ts" ><b>VersionEntry</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#VersionOrgans" title="src/app/utils/data-schema.ts" ><b>VersionOrgans</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#VersionSelector" title="src/app/utils/data-schema.ts" ><b>VersionSelector</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#YoutubePlayer" title="src/app/utils/data-schema.ts" ><b>YoutubePlayer</b>&nbsp;&nbsp;&nbsp;(src/.../data-schema.ts)</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>src/app/utils/data-schema.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AnnouncementCard"></a>
+                    <span class="name">
+                        <span ><b>AnnouncementCard</b></span>
+                        <a href="#AnnouncementCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;announcement&#x27;),
+  announcementCard: z
+    .object({
+      message: z.string({
+        description: &#x27;The message to be displayed on the card&#x27;,
+      }),
+      route: z.string({ description: &#x27;Route for another release notes page&#x27; }),
+      routeText: z.string({
+        description: &#x27;Text to be clicked to redirect to different route&#x27;,
+      }),
+      emoji: z.string({ description: &#x27;To add emoji if required&#x27; }),
+    })
+    .describe(
+      &#x60;The announcementCard field has three optional fields:
+            - route: Route of the page where user will be redirected to when clicked on it.
+            - routeText: Label for the route where we want the user to click.
+            - emoji: Paste any emoji in this field if required.&#x60;,
+    )
+    .partial({
+      route: true,
+      routeText: true,
+      emoji: true,
+    })
+    .array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Array of Announcement cards. Each announcement is defined by a message, route with it&#39;s label, and
+emoji.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BoardMembers"></a>
+                    <span class="name">
+                        <span ><b>BoardMembers</b></span>
+                        <a href="#BoardMembers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;board-members&#x27;),
+  boardMembersData: z
+    .object({
+      image: z.string({ description: &#x27;URL for the image of the board member&#x27; }),
+      description: z.string({
+        description: &#x27;Introduction of the board member&#x27;,
+      }),
+      alt: z.string({ description: &#x27;alternate text for image&#x27; }),
+    })
+    .array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Array of board members. Each board member is defined by a description and
+image with it&#39;s alternate text.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Button"></a>
+                    <span class="name">
+                        <span ><b>Button</b></span>
+                        <a href="#Button"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;button&#x27;, { description: buttonDescription }),
+    text: z.string({ description: &#x27;Text on the button&#x27; }),
+    url: z.string({ description: buttonUrlDescription }),
+    route: z.string({
+      description: &#x27;Route for the another page in current project&#x27;,
+    }),
+    icon: z.string({ description: &#x27;Icon on the button&#x27; }),
+    styles: Styles.optional(),
+  })
+  .partial({
+    url: true,
+    route: true,
+    icon: true,
+    styles: true,
+  })
+  .describe(buttonDescription)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>A button is defined by a label, route, URL and icon to be displayed in the button.
+Can also contain optional common styles for it.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="buttonDescription"></a>
+                    <span class="name">
+                        <span ><b>buttonDescription</b></span>
+                        <a href="#buttonDescription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;This object has the following properties as optional.
+- url: External link to redirect the page to when button is pressed.
+- route: Route Name of the page to redirect to when the button is pressed.
+- icon: icon name for the icon to be displayed on the button.
+- styles: Additional styling for the button.&#x60;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Description of the button object</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="buttonTextDescription"></a>
+                    <span class="name">
+                        <span ><b>buttonTextDescription</b></span>
+                        <a href="#buttonTextDescription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Text for the button&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Description for button text</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="buttonUrlDescription"></a>
+                    <span class="name">
+                        <span ><b>buttonUrlDescription</b></span>
+                        <a href="#buttonUrlDescription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;External URL for the button&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Description for url in buttons</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cardSubtitleDescription"></a>
+                    <span class="name">
+                        <span ><b>cardSubtitleDescription</b></span>
+                        <a href="#cardSubtitleDescription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Subtitle of the card&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Description of card subtitle</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cardTextDescription"></a>
+                    <span class="name">
+                        <span ><b>cardTextDescription</b></span>
+                        <a href="#cardTextDescription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Title of the card&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Description of card text</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CarouselSlides"></a>
+                    <span class="name">
+                        <span ><b>CarouselSlides</b></span>
+                        <a href="#CarouselSlides"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;carousel&#x27;),
+  carouselContainerStyles: z.object({
+    width: z.string().describe(&#x27;Width of the container for carousel&#x27;),
+  }),
+  carouselInfo: z
+    .object({
+      title: z.string({ description: &#x27;Title of the slide&#x27; }),
+      body: z.string({ description: &#x27;Subtitle of the slide&#x27; }),
+      image: z.string({ description: &#x27;Image of the slide&#x27; }),
+      url: z.string({ description: buttonUrlDescription }).optional(),
+      route: z.string({ description: &#x27;Route of the page for the button&#x27; }).optional(),
+      buttonText: z.string({ description: buttonTextDescription }),
+      alt: z.string({
+        description: &#x27;Alternative text for the carousel image.&#x27;,
+      }),
+    })
+    .describe(
+      &#x60;This object has the following optional fields.
+    - url: External Link to redirect to when the button is pressed.
+    - route: Name of the route of the page to be loaded when button is pressed.
+
+    Enter either url or route.&#x60;,
+    )
+    .array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Array of carousel slides. Each slide is defined by a title, subtitle,
+an image with it&#39;s alternate text. URL, route and label for the button.
+It also contains an object of styles to style the carousel container.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="classNameDescription"></a>
+                    <span class="name">
+                        <span ><b>classNameDescription</b></span>
+                        <a href="#classNameDescription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Class name defined in the css file&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Description for class name</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ColumnName"></a>
+                    <span class="name">
+                        <span ><b>ColumnName</b></span>
+                        <a href="#ColumnName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.string({ description: &#x27;Column name&#x27; })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Name of the column</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ContactCard"></a>
+                    <span class="name">
+                        <span ><b>ContactCard</b></span>
+                        <a href="#ContactCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;contact-card&#x27;),
+  contactData: z
+    .object({
+      field: z.string({ description: &#x27;Field of work of the contact&#x27; }),
+      name: z.string({ description: &#x27;Name of the contact&#x27; }),
+      role: z.string({ description: &#x27;Role/ Position of the contact&#x27; }),
+      email: z.string({ description: &#x27;Email ID of the contact&#x27; }),
+      image: z.string({ description: &#x27;Image of the contact&#x27; }),
+      alt: z.string({ description: &#x27;Alternate text for image&#x27; }),
+    })
+    .array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Array of contact cards. Each card is defined by a person&#39;s name, role,
+field, email and image with it&#39;s alternate text.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CopyClipboard"></a>
+                    <span class="name">
+                        <span ><b>CopyClipboard</b></span>
+                        <a href="#CopyClipboard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;copy-clipboard&#x27;),
+  clipboardData: z
+    .object({
+      url: z.string({
+        description: &#x27;URL/Text to be displayed inside the card&#x27;,
+      }),
+      borderColor: z
+        .string({
+          description: &#x27;Border color of card according to the request type&#x27;,
+        })
+        .optional(),
+      plainButton: z.object({
+        icon: z.string({ description: &#x27;Icon name for the button&#x27; }),
+        label: z.string({ description: buttonTextDescription }),
+      }),
+      dynamicButton: z.object({
+        label: z.string({ description: buttonTextDescription }),
+        url: z.string({ description: buttonUrlDescription }),
+      }),
+    })
+    .array(),
+  styles: Styles.optional(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Array of clipboard data. Each object is defined by a url for the card,
+icon name and label for the plain button and url and label for the
+dynamic button</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CountCard"></a>
+                    <span class="name">
+                        <span ><b>CountCard</b></span>
+                        <a href="#CountCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;count-card&#x27;),
+  countCardInfo: z
+    .object({
+      image: z.string({ description: &#x27;Icon for the card&#x27; }),
+      count: z.number({ description: &#x27;Count of the card&#x27; }).or(z.string()),
+      text: z.string({ description: cardTextDescription }),
+      alt: z.string({ description: &#x27;Alternative text for the image&#x27; }),
+    })
+    .array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Array of metric cards. Each card is defined by a metric&#39;s label, count,
+and image with it&#39;s alternate text.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Datasets"></a>
+                    <span class="name">
+                        <span ><b>Datasets</b></span>
+                        <a href="#Datasets"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;datasets&#x27;),
+    links: z
+      .object({
+        class: z.string({ description: classNameDescription }).default(&#x27;datasets&#x27;),
+        href: z.string({ description: &#x27;URL of the items&#x27; }),
+        title: z.string({ description: &#x27;Tooltip title for the item&#x27; }),
+        data: z.string({ description: &#x27;Label for the item&#x27; }),
+      })
+      .array(),
+    styles: Styles.default(defaultDatasetsStyles),
+  })
+  .required({ styles: true })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Array of dataset links. Each link is defined by label,
+href and class name for the link.
+Can also contain optional common styles for the container.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="defaultDatasetsStyles"></a>
+                    <span class="name">
+                        <span ><b>defaultDatasetsStyles</b></span>
+                        <a href="#defaultDatasetsStyles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  display: &#x27;flex&#x27;,
+  &#x27;flex-flow&#x27;: &#x27;row wrap&#x27;,
+  &#x27;justify-content&#x27;: &#x27;space-between&#x27;,
+  &#x27;padding-bottom&#x27;: &#x27;2.5rem&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Default styles for the dataset object</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Divider"></a>
+                    <span class="name">
+                        <span ><b>Divider</b></span>
+                        <a href="#Divider"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;divider&#x27;),
+  styles: Styles.optional(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>A divider. It contains optional common styles for the divider.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DownloadFtu"></a>
+                    <span class="name">
+                        <span ><b>DownloadFtu</b></span>
+                        <a href="#DownloadFtu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;download-ftu&#x27;, { description: downloadFtuDescription }),
+    versions: VersionEntry.array().describe(&#x27;Release name and version number.&#x27;),
+    displayMetadata: z
+      .boolean({
+        description: &#x27;Flag to display the Release Version and Digital Object type&#x27;,
+      })
+      .optional(),
+    downloadIcon: z.string({ description: &#x27;Icon name to display the icon&#x27; }).optional(),
+    columnLabels: z
+      .record(z.string(), z.string(), {
+        description: &#x27;Object of column definition and column header label&#x27;,
+      })
+      .optional()
+      .default({
+        type: &#x27;Type&#x27;,
+        download: &#x27;Download&#x27;,
+        releaseVersion: &#x27;Release Version&#x27;,
+        digitalObjectType: &#x27;Digital Object Type&#x27;,
+      }),
+    versionedData: z
+      .object({
+        version: z.string({ description: &#x27;Version Number of the data&#x27; }),
+        rows: z
+          .object({
+            label: z.string({ description: &#x27;Label for the Organ/Type column&#x27; }),
+            links: z
+              .object({
+                label: z.string({
+                  description: &#x27;Label for the link in the download column&#x27;,
+                }),
+                link: z.string({
+                  description: &#x27;URL for the label in the download column&#x27;,
+                }),
+              })
+              .array(),
+            releaseVersion: z.string({ description: &#x27;Table Data for release version column.&#x27; }).optional(),
+            dot: z.string().optional().describe(&#x27;Table data for Digital Object Type column.&#x27;),
+            url: z.string({ description: &#x27;URL for Organ or its type&#x27; }).optional(),
+          })
+          .describe(
+            &#x60;Following properties in this object are optional:
+        - releaseVersion: Release version of the organ.
+        - dot: Digital object type of the organ.
+        - url: External link to be embedded in the organ.&#x60;,
+          )
+          .array(),
+      })
+      .describe(&#x60;Add version and rows data for the table&#x60;)
+      .array(),
+  })
+  .describe(downloadFtuDescription)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Contains an array of version information and version data.
+It also containes an object of column labels, a displayMetaData and download icon
+flag to show/hide additional columns and download icon.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="downloadFtuDescription"></a>
+                    <span class="name">
+                        <span ><b>downloadFtuDescription</b></span>
+                        <a href="#downloadFtuDescription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;This object has the following fields as optional.
+- displayMetaData: True if you want to display Release Version and Digital Object type. If you set this to true, make sure to add releaseVersion and dot properties in rows object.
+- downloadIcon: name of the icon you want to display in download column header
+- columnLabels: Object of column definition and column headers for the table
+&#x60;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Description of the DownloadFtu Object</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Drawer"></a>
+                    <span class="name">
+                        <span ><b>Drawer</b></span>
+                        <a href="#Drawer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;drawer&#x27;),
+  navigationItems: z
+    .object({
+      menuName: z.string({ description: &#x27;Label of the menu item&#x27; }),
+      id: z.string({ description: &#x27;ID of the menu item&#x27; }),
+    })
+    .array(),
+  drawerStyles: Styles,
+  components: z.lazy(() &#x3D;&gt; PageSpec).describe(recursiveComponentsDescription),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>An array of navigation items inside a drawer.
+Each item contains a label and the id.
+It contains drawerStyles to style the drawer and
+components to add components inside the drawer.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ExtraHeader"></a>
+                    <span class="name">
+                        <span ><b>ExtraHeader</b></span>
+                        <a href="#ExtraHeader"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    columnDef: z.string({ description: &#x27;Definition of the column&#x27; }),
+    header: ColumnName,
+    colspan: z.number().optional().describe(&#x27;Number of columns to span&#x27;),
+    rowspan: z.number().optional().describe(&#x27;Number of rows to span&#x27;),
+  })
+  .describe(&#x60;colspan and rowspan are optional fields. Add appropriate number to span the cells accordingly.&#x60;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Object of extra header. Each header is defined by a column definition,
+header, and optional rowspan and a colspan.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="HeaderData"></a>
+                    <span class="name">
+                        <span ><b>HeaderData</b></span>
+                        <a href="#HeaderData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    header: ColumnName,
+    columnDef: z.string({ description: &#x27;Definition of the column&#x27; }),
+    cell: z.unknown().describe(&#x27;Code to display the cell data&#x27;),
+    isTotalRequired: z.boolean({
+      description: &#x27;True of want the total to be displayed&#x27;,
+    }),
+    sorting: z.boolean({ description: &#x27;True if sorting is required&#x27; }),
+    alignment: z.string({
+      description: &#x27;Alignment of the data (start or end)&#x27;,
+    }),
+  })
+  .partial({
+    isTotalRequired: true,
+    sorting: true,
+    alignment: true,
+  })
+  .array().describe(&#x60;The following fields are optional in this object.
+- isTotalRequired: True if want to display the sum of column numbers below the table.
+- sorting: True if sorting required on the column.
+- alignment: Alignment of the data (start or end)&#x60;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Array of header data. Each header object is defined by a column definition,
+header, cell, and a optional isTotalRequired and a sorting flag, an alignment property.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Image"></a>
+                    <span class="name">
+                        <span ><b>Image</b></span>
+                        <a href="#Image"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;image&#x27;),
+    class: z
+      .string({
+        description: &#x27;Class name of the class defined in the CSS file&#x27;,
+      })
+      .optional(),
+    imageSource: z.string({ description: &#x27;URL for the image&#x27; }),
+    alt: z.string({ description: &#x27;Alternative text for the image&#x27; }),
+    styles: Styles.optional(),
+  })
+  .describe(
+    &#x60;Property &#x27;class&#x27; is optional. It is the class name for the image. Define this class in page-element.component.scss&#x60;,
+  )</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Object of image. Each object is defined by a class name
+image url and it&#39;s alternate text. Can also contain optional common styles for it.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ImageInCard"></a>
+                    <span class="name">
+                        <span ><b>ImageInCard</b></span>
+                        <a href="#ImageInCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;simple-image&#x27;),
+  imageData: z
+    .object({
+      title: z.string({ description: &#x27;Title of the image on the card&#x27; }),
+      description: z.string({ description: &#x27;Description of the image&#x27; }),
+      image: z.string({ description: &#x27;URL of the image&#x27; }),
+      imageDialog: z.string({
+        description: &#x27;URL of the image to be displayed on the dialog&#x27;,
+      }),
+      alt: z.string({ description: &#x27;Alternate text for image&#x27; }),
+    })
+    .array(),
+  headerData: z
+    .object({
+      title: z.string({ description: cardTextDescription }),
+      buttonData: z.object({
+        text: z.string({ description: &#x27;Label for the button&#x27; }),
+        url: z.string({ description: &#x27;Url for the button&#x27; }),
+      }),
+      subtitle: z.string({ description: &#x27;Subtitle for the card&#x27; }),
+    })
+    .optional(),
+  customModalClass: z.string({ description: &#x27;Custom class for the modal&#x27; }).optional(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Array of image data. Each image data object is defined by a title,
+description, url of image, modal image along with their alternate text.
+image url and it&#39;s alternate text.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="LongCard"></a>
+                    <span class="name">
+                        <span ><b>LongCard</b></span>
+                        <a href="#LongCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;long-card&#x27;),
+  longCardItems: LongCardItems,
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Object of card items. Each card object is defined by a title,
+description, url or route of the card,
+card&#39;s image along with its background color and alternate text.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="LongCardItems"></a>
+                    <span class="name">
+                        <span ><b>LongCardItems</b></span>
+                        <a href="#LongCardItems"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    icon: z.string({ description: &#x27;Icon of the card&#x27; }),
+    title: z.string({ description: cardTextDescription }),
+    body: z.string({ description: cardSubtitleDescription }),
+    route: z.string({ description: &#x27;Route for the card to be redirected&#x27; }),
+    color: z.string({
+      description: &#x27;Background color for the icon if necessary&#x27;,
+    }),
+    externalLink: z.string({ description: &#x27;External URL to be redirected&#x27; }),
+    alt: z.string({ description: &#x27;alternate text for card icon&#x27; }),
+  })
+  .partial({
+    route: true,
+    externalLink: true,
+    color: true,
+    body: true,
+  })
+  .describe(
+    &#x60;Properties mentioned here are optional. Either use route or externalLink
+- route: route for the page to be redirected
+- externalLink: URL of the page to be opened when the card is clicked
+- color: background color of the image
+- body: Subtitle for the card&#x60;,
+  )
+  .array()</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Object of card items. Each card object is defined by a title,
+description, url or route of the card,
+card&#39;s image along with its background color and alternate text.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="LongCardWithTitle"></a>
+                    <span class="name">
+                        <span ><b>LongCardWithTitle</b></span>
+                        <a href="#LongCardWithTitle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;long-card-with-title&#x27;),
+  longCardWithTitleData: z
+    .object({
+      heading: z.string({ description: cardTextDescription }),
+      headerSize: Styles.describe(&#x27;Inline styles for the title of the card&#x27;),
+      id: z.string({ description: &#x27;Unique ID for the title of the card&#x27; }),
+      cardData: LongCardItems,
+    })
+    .partial({
+      headerSize: true,
+      id: true,
+    })
+    .describe(
+      &#x60;Properties mentioned here are optional
+    - headerSize: Pass inline styles for the header of the card
+    - id: Pass id as an attribute to the title of the card&#x60;,
+    )
+    .array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Array of card items with tile. Each object is defined by a
+LongCardItems object, title, along with it&#39;s optional
+font size and element id.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Margin"></a>
+                    <span class="name">
+                        <span ><b>Margin</b></span>
+                        <a href="#Margin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object(
+    {
+      type: z.literal(&#x27;margin&#x27;),
+      top: z.string(),
+      bottom: z.string(),
+      left: z.string(),
+      right: z.string(),
+    },
+    {
+      description: &#x27;To add margin around any component. Add top/ bottom/ left/ right and margin value&#x27;,
+    },
+  )
+  .partial({
+    top: true,
+    bottom: true,
+    left: true,
+    right: true,
+  })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>A Margin object. It contains optional
+margin properties like top, bottom, left. right</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MatCard"></a>
+                    <span class="name">
+                        <span ><b>MatCard</b></span>
+                        <a href="#MatCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;mat-card&#x27;),
+  components: z.lazy(() &#x3D;&gt; PageSpec).describe(recursiveComponentsDescription),
+  styles: Styles.optional(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>A MatCard object. Each card contains an array of components.
+Can also contain optional common styles for it.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MenuTree"></a>
+                    <span class="name">
+                        <span ><b>MenuTree</b></span>
+                        <a href="#MenuTree"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;menu-tree&#x27;),
+  overlayClass: z.string(),
+  positions: z
+    .object({
+      originX: z.string(),
+      originY: z.string(),
+      overlayX: z.string(),
+      overlayY: z.string(),
+      offsetX: z.number(),
+      offsetY: z.number(),
+    })
+    .array(),
+  mobileNavigationItems: z
+    .object({
+      menuName: z.string(),
+      id: z.string(),
+    })
+    .array(),
+  styles: Styles.optional(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Object of menu tree. Each object is defined by a
+a overlay class name, a position object and an array
+of navigation items object. Can also contain optional common styles for it.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OrganData"></a>
+                    <span class="name">
+                        <span ><b>OrganData</b></span>
+                        <a href="#OrganData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  name: z.string({ description: &#x27;Name of the organ&#x27; }),
+  image: z.string({ description: &#x27;Path to the Icon/Image of the organ&#x27; }),
+  alt: z.string({ description: &#x27;Alternate text for icon&#x27; }),
+  tissueData: z
+    .lazy(() &#x3D;&gt; TissueData)
+    .array()
+    .optional().describe(&#x60;Tissue data for the above organ.
+    Following properties are optional in this object.
+    - image: URL of the image of the tissue.
+    - expandedImage: URL of the image to be shown in the modal, when it is clicked.
+    - threeDimImage: URL of the 3D object (.glb) file.
+    - alt: Alternate text for the image.
+    - url: URL for the metadata button.
+    - svg: URL to download the SVG file of the tissue.
+    - ai: URL to download the AI file of the tissue.
+    - png: URL to download the PNG file of the tissue.&#x60;),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Object of organ data. Each object is defined by a
+name, image with it&#39;s alternate text, and an array of tissue data object</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OrganVersion"></a>
+                    <span class="name">
+                        <span ><b>OrganVersion</b></span>
+                        <a href="#OrganVersion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;organ-version&#x27;, { description: organVersionDescription }),
+  isMultiRow: z.boolean({
+    description: &#x27;True if want to display organs one below other. False if want to display organs beside one another&#x27;,
+  }),
+  tableRequired: z.boolean({
+    description: &#x27;True of want to display data table&#x27;,
+  }),
+  versionData: z.lazy(() &#x3D;&gt; VersionSelector).array().describe(&#x60;Release name, source csv file and version number
+    Property &#x27;file&#x27; is optional. If required, add property &#x27;file&#x27; ans pass the path to the CSV file. It is only required if tableRequired is True.&#x60;),
+  headerInfo: HeaderData.optional().describe(&#x60;Names of columns and their definitions
+        There are three optional values in this object:
+        - isTotalRequired: To display total at the end of the table
+        - sorting: To enable sorting in the table
+        - alignment: start or end to align data left or right&#x60;),
+  organInfo: z
+    .lazy(() &#x3D;&gt; VersionOrgans)
+    .array()
+    .describe(organVersionDescription),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Object of organ version. Each object is defined by an
+array of version data, header information and organ information,
+isMultiRow and isTableRequired flag.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="organVersionDescription"></a>
+                    <span class="name">
+                        <span ><b>organVersionDescription</b></span>
+                        <a href="#organVersionDescription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;This object has the following fields as optional
+- headerInfo: this is the data about column headers and their definition. Add this data if you want to display data table&#x60;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Description of OrganVersion object</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PageData"></a>
+                    <span class="name">
+                        <span ><b>PageData</b></span>
+                        <a href="#PageData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;page-data&#x27;),
+  pageData: z
+    .object({
+      heading: z.string({ description: &#x27;Title of the data&#x27; }),
+      descriptions: z.string({ description: &#x27;Description of the data&#x27; }),
+    })
+    .array(),
+  styles: Styles.optional(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>An array of page data. Each object is defined by a
+heading and description. It may also contain optional styles.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PageHeaderCard"></a>
+                    <span class="name">
+                        <span ><b>PageHeaderCard</b></span>
+                        <a href="#PageHeaderCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;header&#x27;),
+  headerCard: z
+    .object({
+      title: z.string({ description: cardTextDescription }),
+      subtitle: z.string({ description: cardSubtitleDescription }),
+      image: z.string({ description: &#x27;Icon of the card&#x27; }),
+      alt: z.string({ description: &#x27;Text Alternative for card image&#x27; }),
+    })
+    .array(),
+  styles: Styles.optional(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>An array of page header card. Each card object is defined by a
+title, subtitle and image along with it&#39;s alternate text.
+It may also contain optional styles.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PageSpec"></a>
+                    <span class="name">
+                        <span ><b>PageSpec</b></span>
+                        <a href="#PageSpec"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .discriminatedUnion(&#x27;type&#x27;, [
+    AnnouncementCard,
+    BoardMembers,
+    Button,
+    CarouselSlides,
+    ContactCard,
+    CopyClipboard,
+    CountCard,
+    Datasets,
+    Divider,
+    DownloadFtu,
+    Drawer,
+    Image,
+    ImageInCard,
+    LongCard,
+    LongCardWithTitle,
+    Margin,
+    MatCard,
+    MenuTree,
+    OrganVersion,
+    PageData,
+    PageHeaderCard,
+    PrizeCard,
+    SectionCard,
+    SimpleTile,
+    SopLinks,
+    StyledGroup,
+    TableVersion,
+    Title,
+    YoutubePlayer,
+  ])
+  .array()</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>An array of discriminated union of the objects of all components</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PrizeButton"></a>
+                    <span class="name">
+                        <span ><b>PrizeButton</b></span>
+                        <a href="#PrizeButton"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  label: z.string({ description: &#x27;Text on the button&#x27; }),
+  link: z.string({ description: &#x27;URL for the button&#x27; }),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>An object of prize button. Each button is defined by a
+label and URL.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PrizeCard"></a>
+                    <span class="name">
+                        <span ><b>PrizeCard</b></span>
+                        <a href="#PrizeCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;prize-card&#x27;),
+  prizeCard: z
+    .object({
+      title: z.string({
+        description: &#x27;Title of the card (eg. Position in the competition)&#x27;,
+      }),
+      presentedBy: z.string({
+        description: &#x27;Name of the person who presented&#x27;,
+      }),
+      orgImage: z.string({ description: &#x27;Logo/Image of the organization&#x27; }),
+      winner: PrizeWinner.describe(
+        &#x60;
+                The following properties are optional in this object:
+                - button: Data of buttons to show on the Prize Card.
+                - kaggleId: kaggle id&#x27;s of the winners.&#x60;,
+      ).array(),
+      userImage: z
+        .object({
+          image: z.string({ description: &#x27;Images of all the participants&#x27; }),
+          alt: z.string({ description: &#x27;Alternate text for user image&#x27; }),
+        })
+        .array(),
+      matDivider: z.boolean({ description: &#x27;True if divider is needed&#x27; }),
+      alt: z.string({ description: &#x27;Alternate text for the org image&#x27; }),
+    })
+    .partial({
+      presentedBy: true,
+      orgImage: true,
+      userImage: true,
+      alt: true,
+    })
+    .describe(
+      &#x60;
+        The following properties are optional in this object:
+        - presentedBy: Name of the presenter.
+        - orgImage: URL to the image of the organization.
+        - userImage: URL(s) to the image of the participants.&#x60;,
+    )
+    .array(),
+  styles: Styles.optional(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>An array of prize card. Each card object is defined by a
+title, presentedBy, organization image along with it&#39;s alternate text,
+an array of prize winner object and user image object and matDivider.
+It may also contain optional styles.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PrizeWinner"></a>
+                    <span class="name">
+                        <span ><b>PrizeWinner</b></span>
+                        <a href="#PrizeWinner"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    winner: z.string({ description: &#x27;Name of the winner&#x27; }),
+    kaggleId: z.string({ description: &#x27;Kaggle ID of the winner&#x27; }),
+    button: PrizeButton.array(),
+  })
+  .partial({
+    button: true,
+    kaggleId: true,
+  })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>An object of prize winner. Each object is defined by a
+winner name, their kaggle id and an array of PrizeButton object.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="recursiveComponentsDescription"></a>
+                    <span class="name">
+                        <span ><b>recursiveComponentsDescription</b></span>
+                        <a href="#recursiveComponentsDescription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;To add components recursively&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Description of recursive fields</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SectionCard"></a>
+                    <span class="name">
+                        <span ><b>SectionCard</b></span>
+                        <a href="#SectionCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;section-card&#x27;),
+  cardsInfo: z
+    .object({
+      title: z.string({ description: cardTextDescription }),
+      description: z.string({ description: cardSubtitleDescription }),
+      image: z.string({ description: &#x27;URL of the Image of the card&#x27; }),
+      gif: z.string({ description: &#x27;URL for the GIF on the card&#x27; }),
+      route: z.string({ description: &#x27;Route to redirect the card&#x27; }),
+    })
+    .array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>An array of section card. Each card object is defined by a
+title, description, image, gif and route.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SimpleTile"></a>
+                    <span class="name">
+                        <span ><b>SimpleTile</b></span>
+                        <a href="#SimpleTile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;simple-tile&#x27;),
+  description: z
+    .object({
+      title: z.string({
+        description: &#x27;Message to be displayed inside the tile&#x27;,
+      }),
+    })
+    .array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>An array of simple tile. Each tile object is defined by a
+title</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SopLinks"></a>
+                    <span class="name">
+                        <span ><b>SopLinks</b></span>
+                        <a href="#SopLinks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;sop-links&#x27;),
+  sopData: z.object({
+    sopTitle: z.string({ description: &#x27;Title of the links&#x27; }),
+    href: z
+      .object({
+        title: z.string({ description: &#x27;Label for the link&#x27; }),
+        href: z.string({ description: &#x27;URL for the link&#x27; }),
+      })
+      .array(),
+  }),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>An object of sop data. Each object is defined by a
+title and an array of href objects that contain title and url for the link.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="styledGroup"></a>
+                    <span class="name">
+                        <span ><b>styledGroup</b></span>
+                        <a href="#styledGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;This object has the following properties as optional:
+- id: Label for the id attribute for the component
+- class: Class name defined in the css file for this component.&#x60;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Description for styled group object</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="StyledGroup"></a>
+                    <span class="name">
+                        <span ><b>StyledGroup</b></span>
+                        <a href="#StyledGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;styled-group&#x27;, { description: styledGroup }),
+    components: z.lazy(() &#x3D;&gt; PageSpec).describe(recursiveComponentsDescription),
+    id: z.string({ description: &#x27;ID of the page element&#x27; }).optional(),
+    class: z.string({ description: classNameDescription }).optional(),
+    styles: Styles.optional(),
+  })
+  .describe(styledGroup)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>An object of styled group. Each object is defined by a
+components, and optional properties like id, class and styles.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Styles"></a>
+                    <span class="name">
+                        <span ><b>Styles</b></span>
+                        <a href="#Styles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.record(z.union([z.string(), z.number()]))</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Styles for the element</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TableVersion"></a>
+                    <span class="name">
+                        <span ><b>TableVersion</b></span>
+                        <a href="#TableVersion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;table-version&#x27;),
+  isTotal: z.boolean({
+    description: &#x27;True if want to display total below the table in the last row&#x27;,
+  }),
+  isDownload: z.boolean({
+    description: &#x27;True if want to download the table data csv file&#x27;,
+  }),
+  versionChooserDisabled: z.boolean({
+    description: &#x27;To show/hide the version select input&#x27;,
+  }),
+  headerInfo: HeaderData.describe(&#x60;The following fields are optional in this object.
+    - isTotalRequired: True if want to display the sum of column numbers below the table.
+    - sorting: True if sorting required on the column.
+    - alignment: Alignment of the data (start or end)&#x60;),
+  versionData: z.lazy(() &#x3D;&gt; VersionSelector.array()).describe(&#x27;Release name, source csv file and version number&#x27;),
+  additionalHeaders: ExtraHeader.array().optional().describe(&#x27;Additional column names and definitions if any&#x27;),
+  cellHeaders: ExtraHeader.array().optional().describe(&#x27;Additional column names and definitions if any&#x27;),
+}).describe(&#x60;This object has the following properties as optional:
+- additionalHeaders: Add details here to display additional table header for the table.
+- cellHeaders: Add details here to display cell headers for the table.&#x60;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>An object of table version. Each object is defined by a
+flags of isTotal, isDownload, versionChooserDisabled,
+an object of headerInfo, an array of versionData object,
+an array of ExtraHeader object.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TissueData"></a>
+                    <span class="name">
+                        <span ><b>TissueData</b></span>
+                        <a href="#TissueData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    name: z.string({ description: &#x27;Name of the Tissue&#x27; }),
+    image: z.string({ description: &#x27;URL of the image of the Tissue&#x27; }),
+    expandedImage: z.string({
+      description: &#x27;URL of the image of the Tissue when dialog is open&#x27;,
+    }),
+    threeDimImage: z.string({ description: &#x27;URL of the 3D model file (.glb)&#x27; }),
+    alt: z.string({ description: &#x27;Alternate text for the image&#x27; }),
+    url: z.string({ description: &#x27;URL for the metadata button&#x27; }),
+    svg: z.string({
+      description: &#x27;URL to download the SVG file of the tissue&#x27;,
+    }),
+    ai: z.string({ description: &#x27;URL to download the AI file of the tissue&#x27; }),
+    png: z.string({
+      description: &#x27;URL to download the PNG file of the tissue&#x27;,
+    }),
+  })
+  .partial({
+    image: true,
+    expandedImage: true,
+    threeDimImage: true,
+    alt: true,
+    svg: true,
+    ai: true,
+    png: true,
+  })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>An object of tissueData. Each object is defined by a
+name, image with it&#39;s alternate text, links for url,
+ai, png, svg and threeDimImage.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Title"></a>
+                    <span class="name">
+                        <span ><b>Title</b></span>
+                        <a href="#Title"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;title&#x27;, { description: titleDescription }),
+    title: z.string({ description: &#x27;Title/Text to be displayed&#x27; }),
+    class: z.string().optional().describe(classNameDescription),
+    styles: Styles.optional(),
+  })
+  .describe(titleDescription)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>An object of title. Object is defined by a
+title, class and may contain optional styles.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="titleDescription"></a>
+                    <span class="name">
+                        <span ><b>titleDescription</b></span>
+                        <a href="#titleDescription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;Properties &#x27;class&#x27; and &#x27;styles&#x27; are optional. Add styling in styles to apply styles to the title.&#x60;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Description of Title object</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="VersionEntry"></a>
+                    <span class="name">
+                        <span ><b>VersionEntry</b></span>
+                        <a href="#VersionEntry"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  release: z.string(),
+  version: z.string(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Object of Version entry. Each entry is defined by a release and version.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="VersionOrgans"></a>
+                    <span class="name">
+                        <span ><b>VersionOrgans</b></span>
+                        <a href="#VersionOrgans"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  version: z.string({ description: &#x27;HRA Release version (1.3/1.4/etc)&#x27; }),
+  organData: OrganData.array().optional().describe(&#x60;Organ data for the version.
+        Property tissueData in this object is optional. Add tissue data to display details about tissues for each organ.&#x60;),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>An object of version organs. Each object is defined by a
+version and an array of OrganData object.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="VersionSelector"></a>
+                    <span class="name">
+                        <span ><b>VersionSelector</b></span>
+                        <a href="#VersionSelector"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  release: z.string({ description: &#x27;Label for release and release date,year&#x27; }),
+  version: z.number().or(z.string()).describe(&#x27;Version Number of the release&#x27;),
+  file: z.string().optional().describe(&#x27;Name of the csv file&#x27;),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>An object of version selector. Each object is defined by a
+release and version and a file name.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="YoutubePlayer"></a>
+                    <span class="name">
+                        <span ><b>YoutubePlayer</b></span>
+                        <a href="#YoutubePlayer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  type: z.literal(&#x27;player&#x27;),
+  youtubePlayer: z.object({
+    height: z.number({ description: &#x27;Height of the youtube player&#x27; }).default(584),
+    width: z.number({ description: &#x27;Width of the youtube player&#x27; }).default(1232),
+    videoId: z.string({ description: &#x27;ID of the youtube video&#x27; }),
+    playerTitle: z.string({ description: &#x27;Title of the player&#x27; }),
+  }),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>An object of youtube player. Each object is defined by a
+height, width, videoId and playerTitle.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/tissue-info-page/tissue-info-page.content.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="descriptionData"></a>
+                    <span class="name">
+                        <span ><b>descriptionData</b></span>
+                        <a href="#descriptionData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/PageDataItems.html" target="_self" >PageDataItems[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Description of the tissue</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tissueData"></a>
+                    <span class="name">
+                        <span ><b>tissueData</b></span>
+                        <a href="#tissueData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/TissueTableInfo.html" target="_self" >TissueTableInfo[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Table data of the tissue</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/environments/environment.prod.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="environment"></a>
+                    <span class="name">
+                        <span ><b>environment</b></span>
+                        <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  production: true,
+  googleAnalyticsToken: &#x27;G-VEGFSW3SCV&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Production environment configuration</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/environments/environment.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="environment"></a>
+                    <span class="name">
+                        <span ><b>environment</b></span>
+                        <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  production: false,
+  googleAnalyticsToken: &#x27;&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Development environment configuration</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/shared/navigation-items.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="NAVIGATION_ITEMS"></a>
+                    <span class="name">
+                        <span ><b>NAVIGATION_ITEMS</b></span>
+                        <a href="#NAVIGATION_ITEMS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/NavItems.html" target="_self" >NavItems[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    menuName: &#x27;Data&#x27;,
+    children: [
+      {
+        menuName: &#x27;Overview: HRA Data&#x27;,
+        route: &#x27;overview-data&#x27;,
+        disabled: false,
+        divider: true,
+      },
+      {
+        menuName: &#x27;Anatomical Structures, Cell Types + Biomarkers (ASCT+B) Tables&#x27;,
+        route: &#x27;asctb-tables&#x27;,
+        disabled: true,
+      },
+      {
+        menuName: &#x27;Anatomical Structures, Cell Types + Biomarkers (ASCT+B) Cell Types Data from Azimuth&#x27;,
+        route: &#x27;asctb-azimuth&#x27;,
+        disabled: true,
+      },
+      {
+        menuName: &#x27;Vasculature Common Coordinate Framework&#x27;,
+        route: &#x27;vccf&#x27;,
+      },
+      {
+        menuName: &#x27;2D Functional Tissue Unit (FTU) Illustrations&#x27;,
+        route: &#x27;2d-ftu-illustrations&#x27;,
+        disabled: true,
+      },
+      {
+        menuName: &#x27;3D Reference Object Library&#x27;,
+        route: &#x27;3d-reference-library&#x27;,
+        disabled: true,
+      },
+      {
+        menuName: &#x27;Organ Mapping Antibody Panels (OMAPs)&#x27;,
+        route: &#x27;omap&#x27;,
+        disabled: true,
+      },
+      {
+        menuName: &#x27;CCF Ontology&#x27;,
+        route: &#x27;ccf-ontology&#x27;,
+        divider: true,
+      },
+      {
+        menuName: &#x27;HuBMAP Data Portal&#x27;,
+        disabled: true,
+        url: &#x27;https://portal.hubmapconsortium.org/&#x27;,
+      },
+    ],
+  },
+  {
+    menuName: &#x27;Use the HRA&#x27;,
+    children: [
+      {
+        menuName: &#x27;Overview: HRA Use Cases&#x27;,
+        route: &#x27;overview-use-the-hra&#x27;,
+        divider: true,
+      },
+      {
+        menuName: &#x27;Improve Cell Type Annotations&#x27;,
+        route: &#x27;user-story/1&#x27;,
+      },
+      {
+        menuName: &#x27;Predict 3D Spatial Origin of Tissue Samples&#x27;,
+        route: &#x27;user-story/2&#x27;,
+      },
+      {
+        menuName: &#x27;Explore Biomarker Expressions for Cell Types&#x27;,
+        route: &#x27;user-story/3&#x27;,
+      },
+    ],
+  },
+  {
+    menuName: &#x27;Tools&#x27;,
+    children: [
+      {
+        menuName: &#x27;Overview: HRA Tools&#x27;,
+        route: &#x27;overview-tools&#x27;,
+        disabled: true,
+        divider: true,
+      },
+      {
+        menuName: &#x27;Anatomical Structures, Cell Types + Biomarkers (ASCT+B) Reporter&#x27;,
+        route: &#x27;asctb-reporter&#x27;,
+        disabled: true,
+      },
+      {
+        menuName: &#x27;Cell Population Graphs&#x27;,
+        route: &#x27;cell-population-graphs&#x27;,
+        disabled: true,
+      },
+      {
+        menuName: &#x27;Registration User Interface (RUI)&#x27;,
+        route: &#x27;registration-user-interface&#x27;,
+        disabled: true,
+      },
+      {
+        menuName: &#x27;Exploration User Interface (EUI)&#x27;,
+        route: &#x27;exploration-user-interface&#x27;,
+        disabled: true,
+      },
+      {
+        menuName: &#x27;Functional Tissue Unit Explorer&#x27;,
+        url: &#x27;https://apps.humanatlas.io/ftu-explorer/#/&#x27;,
+      },
+      {
+        menuName: &#x27;Organ Gallery in VR&#x27;,
+        route: &#x27;organ-gallery-in-vr&#x27;,
+      },
+      {
+        menuName: &#x27;Millitome&#x27;,
+        route: &#x27;millitome&#x27;,
+        disabled: true,
+      },
+      {
+        menuName: &#x27;Application Programming Interfaces (APIs)&#x27;,
+        route: &#x27;api&#x27;,
+        disabled: true,
+      },
+    ],
+  },
+  {
+    menuName: &#x27;Training &amp; Outreach&#x27;,
+    children: [
+      {
+        menuName: &#x27;Overview: HRA Training and Outreach&#x27;,
+        route: trainingOutreachRoute,
+        disabled: true,
+        divider: true,
+      },
+      {
+        menuName: &#x27;Visible Human Massive Open Online Course&#x27;,
+        url: &#x27;https://expand.iu.edu/browse/sice/cns/courses/hubmap-visible-human-mooc&#x27;,
+        disabled: true,
+      },
+      {
+        menuName: &#x27;Standard Operating Procedures&#x27;,
+        route: &#x27;standard-operating-procedures&#x27;,
+        disabled: true,
+      },
+      {
+        menuName: &#x27;HRA User Stories&#x27;,
+        url: &#x27;https://docs.google.com/document/d/1I4gFPY47EBKEIDQ-hWTcxCUsGRxL7yJqKfCvlQAQe5Y/edit#heading&#x3D;h.6n4dk68tke9a&#x27;,
+      },
+      {
+        menuName: &#x27;Outreach&#x27;,
+        route: trainingOutreachRoute,
+        fragment: &#x27;outreach&#x27;,
+      },
+      {
+        menuName: &#x27;Release Notes&#x27;,
+        route: trainingOutreachRoute,
+        fragment: &#x27;release-notes&#x27;,
+      },
+      {
+        menuName: &#x27;Human Atlas Stories&#x27;,
+        route: trainingOutreachRoute,
+        fragment: &#x27;human-atlas-stories&#x27;,
+      },
+      {
+        menuName: &#x27;Previews&#x27;,
+        route: trainingOutreachRoute,
+        fragment: &#x27;previews&#x27;,
+      },
+    ],
+  },
+  {
+    menuName: &#x27;About&#x27;,
+    children: [
+      {
+        menuName: &#x27;About the Team&#x27;,
+        route: &#x27;team&#x27;,
+      },
+      {
+        menuName: &#x27;HRA Editorial Board&#x27;,
+        route: &#x27;editorial-board&#x27;,
+      },
+    ],
+  },
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Details of Menu items their children and their routes</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trainingOutreachRoute"></a>
+                    <span class="name">
+                        <span ><b>trainingOutreachRoute</b></span>
+                        <a href="#trainingOutreachRoute"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;overview-training-outreach&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Training outreach route</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/components/table-version/table-version.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TABLE_SCROLL_END_MARGIN"></a>
+                    <span class="name">
+                        <span ><b>TABLE_SCROLL_END_MARGIN</b></span>
+                        <a href="#TABLE_SCROLL_END_MARGIN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>10</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Margin to be left when scrolling the table</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
+            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
