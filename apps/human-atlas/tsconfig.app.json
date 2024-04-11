@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "types": [],
+    "paths": {
+      "@components/": ["apps/human-atlas/src/app/components/"]
+    }
+  },
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts",
+    "src/environments/environment.prod.ts"
+  ],
+  "include": ["src/**/*.d.ts"]
+}

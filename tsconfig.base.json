@@ -83,7 +83,9 @@
       ],
       "triple-store-utils": [
         "libs/triple-store-utils/src/public-api.ts"
-      ]
+      ],
+      "@components/*": ["apps/human-atlas/src/app/components/*"],
+      "swiper_angular": ["node_modules/swiper/angular"]
     }
   },
   "exclude": [

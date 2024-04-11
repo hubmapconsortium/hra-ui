@@ -1,0 +1,64 @@
+:host {
+  .header-card {
+    display: flex;
+    flex-direction: row;
+    max-width: 77rem;
+  }
+
+  .icon {
+    height: 10rem;
+    background-color: #444a65;
+  }
+
+  .card-image {
+    height: 100%;
+  }
+
+  .body {
+    padding-left: 1.5rem;
+    align-self: center;
+  }
+
+  .card-heading {
+    display: flex;
+    flex-direction: column wrap;
+    font-weight: 300;
+    font-size: 2.25rem;
+    line-height: 2.75rem;
+    letter-spacing: 0.005em;
+    color: #212121;
+  }
+
+  .card-subheading {
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 2.5rem;
+    letter-spacing: 0.005em;
+    color: #212121;
+  }
+
+  mat-card {
+    padding: 0rem 1rem 0rem 0rem;
+    flex-direction: row;
+    display: flex;
+    overflow: hidden;
+  }
+
+  @media (max-width: 62.5rem) {
+    .body {
+      padding: 1rem;
+    }
+    .card-image {
+      display: none;
+    }
+
+    .card-heading {
+      margin-bottom: 1rem;
+      font-size: 1.75rem;
+    }
+
+    .card-subheading {
+      line-height: 1.5rem;
+    }
+  }
+}
