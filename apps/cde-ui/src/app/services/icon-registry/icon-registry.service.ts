@@ -111,7 +111,7 @@ export class IconRegistryService {
   /**
    * Injects injection token for SVG icons.
    */
-  private readonly defs = inject(SVG_ICON_DEFS, { optional: true });
+  private readonly defs = inject(SVG_ICON_DEFS);
   /**
    * Checks if all SVG's are registered
    */
@@ -121,7 +121,7 @@ export class IconRegistryService {
    * Registers all icons
    */
   registerAll(): void {
-    if (!this.allRegistered && this.defs) {
+    if (!this.allRegistered) {
       for (const outerDefArray of this.defs) {
         for (const def of outerDefArray) {
           this.register(def);

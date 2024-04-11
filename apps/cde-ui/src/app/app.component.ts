@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FooterComponent } from './shared/footer/footer.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 /**
  * App component for CDE
@@ -12,9 +12,4 @@ import { FooterComponent } from './shared/footer/footer.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  /**
-   * Application title
-   */
-  title = 'cde-ui';
-}
+export class AppComponent {}
