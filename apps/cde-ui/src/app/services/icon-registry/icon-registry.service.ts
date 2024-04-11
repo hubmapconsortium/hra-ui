@@ -11,8 +11,14 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer, SafeHtml, SafeResourceUrl, SafeValue } from '@angular/platform-browser';
 import { BaseSvgIconDef, SvgIconDef } from './icon-registry.types';
 
+/**
+ * Injection Token for SVG Icons.
+ */
 export const SVG_ICON_DEFS = new InjectionToken<SvgIconDef[][]>('Svg icons');
 
+/**
+ * Providers array for Environment Providers.
+ */
 export function provideIcons(defs: SvgIconDef[] = []): EnvironmentProviders {
   return makeEnvironmentProviders([
     {
@@ -29,6 +35,9 @@ export function provideIcons(defs: SvgIconDef[] = []): EnvironmentProviders {
   ]);
 }
 
+/**
+ * Creates Unique integer key for each method in Icon Registry.
+ */
 const enum DefType {
   Literal = 0,
   Url = 1 << 0,
@@ -44,8 +53,14 @@ const enum DefType {
   NamespacedNamedUrl = Url | Named | Namespaced,
 }
 
+/**
+ * Type for the values of registry dispatch table object.
+ */
 type RegistryDispatcher = (reg: MatIconRegistry, resource: SafeValue, def: BaseSvgIconDef) => void;
 
+/**
+ * Maps the relevant icon registry method according to type of arguments.
+ */
 const REGISTRY_DISPATCH_TABLE: Record<DefType, RegistryDispatcher> = {
   [DefType.Url]: (reg, url, { options }) => reg.addSvgIconSet(url, options),
   [DefType.NamedUrl]: (reg, url, { name, options }) => reg.addSvgIcon(name ?? '', url, options),
@@ -62,26 +77,49 @@ const REGISTRY_DISPATCH_TABLE: Record<DefType, RegistryDispatcher> = {
     reg.addSvgIconLiteralInNamespace(namespace ?? '', name ?? '', literal, options),
 };
 
+/**
+ * Checks if given key has a value in object.
+ */
 function defHasValue(def: SvgIconDef, key: keyof SvgIconDef): boolean {
   return typeof def[key] === 'string';
 }
 
+/**
+ * Returns an unique integer according to available arguments.
+ */
 function getDefType(def: SvgIconDef): DefType {
   const named = +defHasValue(def, 'name');
   const namespaced = +defHasValue(def, 'namespace');
   const hasUrl = +defHasValue(def, 'url');
   return (named * DefType.Named) | (namespaced * DefType.Namespaced) | (hasUrl * DefType.Url);
 }
-
+/**
+ * Service for registering svg icons.
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class IconRegistryService {
+  /**
+   * Injects MatIconRegistry service.
+   */
   private readonly registry = inject(MatIconRegistry);
+  /**
+   * Injects DomSanitizer.
+   */
   private readonly sanitizer = inject(DomSanitizer);
+  /**
+   * Injects injection token for SVG icons.
+   */
   private readonly defs = inject(SVG_ICON_DEFS, { optional: true });
+  /**
+   * Checks if all SVG's are registered
+   */
   private allRegistered = false;
 
+  /**
+   * Registers all icons
+   */
   registerAll(): void {
     if (!this.allRegistered && this.defs) {
       for (const outerDefArray of this.defs) {
@@ -93,6 +131,9 @@ export class IconRegistryService {
     }
   }
 
+  /**
+   * Registers a svg icon
+   */
   register(def: SvgIconDef): void {
     const defType = getDefType(def);
     const resource = this.sanitizeResource(def);
@@ -100,6 +141,9 @@ export class IconRegistryService {
     dispatch(this.registry, resource, def);
   }
 
+  /**
+   * Returns a sanitized url
+   */
   private sanitizeResource(def: SvgIconDef): SafeResourceUrl | SafeHtml {
     if (typeof def.url === 'string') {
       return this.sanitizer.bypassSecurityTrustResourceUrl(def.url);
