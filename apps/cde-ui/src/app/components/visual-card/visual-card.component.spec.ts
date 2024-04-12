@@ -1,21 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { VisualCardComponent } from './visual-card.component';
+import { Shallow } from 'shallow-render';
 
 describe('VisualCardComponent', () => {
-  let component: VisualCardComponent;
-  let fixture: ComponentFixture<VisualCardComponent>;
+  let shallow: Shallow<VisualCardComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [VisualCardComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(VisualCardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    shallow = new Shallow(VisualCardComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async () => {
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 });

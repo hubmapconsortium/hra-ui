@@ -1,5 +1,5 @@
 @for (card of cardData(); track card.label) {
-  <a class="visual-card cta-flat" [href]="card.url" target="_blank">
+  <a class="visual-card cta-flat" [href]="card.url" target="_blank" rel="noopener noreferrer">
     <img [attr.src]="card.image" />
     <div class="label">
       {{ card.label }}
