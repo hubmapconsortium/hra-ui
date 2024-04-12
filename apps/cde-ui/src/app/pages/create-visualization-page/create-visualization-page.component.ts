@@ -1,32 +1,26 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  EventEmitter,
-  inject,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, inject, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { produce } from 'immer';
 
 import {
+  CellTypeTableData,
   ColorMap,
+  CsvType,
   DEFAULT_COLOR_MAP,
   DEFAULT_SETTINGS,
   MetaData,
   MetadataSelectOption,
   VisualizationSettings,
 } from '../../models/create-visualization-page-types';
-import { CellTypeDataService } from '../../services/service';
+import { CellTypeDataService } from '../../services/cell-type-data-service';
 import { MockCellTypeDataService } from '../../services/service.mock';
 
 @Component({
@@ -42,6 +36,7 @@ import { MockCellTypeDataService } from '../../services/service.mock';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
+    MatIconModule,
   ],
   providers: [
     {
@@ -53,18 +48,22 @@ import { MockCellTypeDataService } from '../../services/service.mock';
   styleUrl: './create-visualization-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CreateVisualizationPageComponent implements OnInit {
+export class CreateVisualizationPageComponent {
   private readonly cellTypeDataService = inject(CellTypeDataService);
 
   @Output() readonly visualize = new EventEmitter<VisualizationSettings>();
 
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLElement>;
 
-  defaultCellType = 'endothelial';
+  @ViewChild('colorMapInput') colorMapInput!: ElementRef<HTMLElement>;
+
+  defaultCellType = 'type a';
 
   settings: VisualizationSettings = DEFAULT_SETTINGS;
 
-  colorMap: ColorMap = DEFAULT_COLOR_MAP;
+  uploadedData: CellTypeTableData[] = [];
+
+  colorMap: ColorMap = DEFAULT_SETTINGS.colorMap;
 
   visualizationForm = new FormGroup({
     anchorCellType: new FormControl<string>(this.defaultCellType),
@@ -82,24 +81,22 @@ export class CreateVisualizationPageComponent implements OnInit {
 
   dataUploaded = false;
 
-  cellTypes: MetadataSelectOption[] = [
-    { value: 'endothelial', viewValue: 'Endothelial' },
-    { value: 'b', viewValue: 'B' },
-    { value: 'c', viewValue: 'C' },
-  ];
+  colorMapUploaded = false;
 
-  organs: MetadataSelectOption[] = [
-    { value: 'a', viewValue: 'A' },
-    { value: 'b', viewValue: 'B' },
-    { value: 'c', viewValue: 'C' },
-  ];
+  uploadedFile = '';
+
+  uploadedColorMapFile = '';
+
+  cellTypes: MetadataSelectOption[] = [];
+
+  organs: MetadataSelectOption[] = [];
 
   sexes: MetadataSelectOption[] = [
     { value: 'male', viewValue: 'Male' },
     { value: 'female', viewValue: 'Female' },
   ];
 
-  ngOnInit(): void {
+  setDefaultCellType(): void {
     const defaultCellTypeOption = this.cellTypes.find((celltype) => celltype.value === this.defaultCellType);
     if (defaultCellTypeOption) {
       this.cellTypes = this.cellTypes.map((option) =>
@@ -115,14 +112,17 @@ export class CreateVisualizationPageComponent implements OnInit {
         anchorCellType: '',
       });
     }
+    this.defaultCellType = this.cellTypes[0].value ?? '';
+    this.visualizationForm.value.anchorCellType = this.cellTypes[0].value;
   }
 
-  upload() {
-    const fileInputElement: HTMLElement = this.fileInput.nativeElement;
+  upload(type: CsvType): void {
+    const inputRef = type === 'data' ? this.fileInput : this.colorMapInput;
+    const fileInputElement: HTMLElement = inputRef.nativeElement;
     fileInputElement.click();
   }
 
-  handleFile(event: Event): void {
+  handleFile(event: Event, type: CsvType) {
     const inputTarget = event.target as HTMLInputElement;
     if (!inputTarget.files) {
       return;
@@ -132,22 +132,47 @@ export class CreateVisualizationPageComponent implements OnInit {
     const fileReader = new FileReader();
 
     fileReader.onload = () => {
-      this.dataUploaded = true;
-      this.cellTypeDataService.getCellTypeData().then((result) => {
-        this.settings = produce(this.settings, (draft) => {
-          draft.data = result;
+      if (type === 'data') {
+        this.cellTypeDataService.getCellTypeData().then((result) => {
+          this.cellTypes = result.map((result) => {
+            return {
+              value: result.cellType,
+              viewValue: result.cellType
+                .split(' ')
+                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' '),
+            };
+          });
+          this.setDefaultCellType();
+          this.uploadedData = result;
         });
-      });
+      } else {
+        this.cellTypeDataService.getColorMap().then((result) => {
+          this.colorMap = result;
+        });
+      }
     };
 
+    if (type === 'data') {
+      this.dataUploaded = true;
+      this.uploadedFile = file.name;
+    } else {
+      this.colorMapUploaded = true;
+      this.uploadedColorMapFile = file.name;
+    }
     fileReader.readAsText(file);
   }
 
-  removeCSV() {
-    this.dataUploaded = false;
-    this.settings = produce(this.settings, (draft) => {
-      draft.data = [];
-    });
+  removeFile(type: CsvType) {
+    if (type === 'data') {
+      this.dataUploaded = false;
+      this.visualizationForm.value.anchorCellType = undefined;
+      this.cellTypes = [];
+      this.uploadedData = [];
+    } else {
+      this.colorMapUploaded = false;
+      this.colorMap = {};
+    }
   }
 
   getInput(event: Event): string | number {
@@ -158,12 +183,17 @@ export class CreateVisualizationPageComponent implements OnInit {
   onSubmit() {
     if (this.dataUploaded) {
       this.settings = produce(this.settings, (draft) => {
+        draft.data = this.uploadedData;
         draft.metadata = this.visualizationForm.value.metadata as MetaData;
         draft.anchorCellType = this.visualizationForm.value.anchorCellType || undefined;
         draft.colorMap = this.colorMap;
       });
-      console.warn(this.settings);
+      console.log(this.settings);
       this.visualize.emit(this.settings);
     }
+  }
+
+  toggleDefaultColorMap(): void {
+    this.colorMap = DEFAULT_COLOR_MAP;
   }
 }

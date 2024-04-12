@@ -5,9 +5,39 @@
   --mdc-elevated-card-container-shape: 1rem;
   --mdc-elevated-card-container-elevation: 0px 5px 16px 0px #201e3d3d;
 
+  --mat-form-field-container-height: 22px;
+  --mat-form-field-container-vertical-padding: 7px;
   --mat-form-field-container-text-font: 'Metropolis';
+  --mat-form-field-container-text-size: 12px;
+  --mat-form-field-container-text-weight: 500;
+  --mat-form-field-container-text-line-height: 22px;
+  --mat-form-field-container-text-tracking: 0.005em;
+
   --mat-select-trigger-text-font: 'Metropolis';
+  --mat-select-trigger-text-size: 12px;
+  --mat-select-trigger-text-weight: 500;
+  --mat-select-trigger-text-line-height: 22px;
+  --mat-select-trigger-text-tracking: 0.005em;
+
   --mat-option-label-text-font: 'Metropolis';
+  --mdc-filled-text-field-container-color: white;
+
+  --mat-standard-button-toggle-divider-color: #4c4c58;
+  --mat-standard-button-toggle-label-text-size: 18px;
+  --mat-standard-button-toggle-label-text-font: 'Metropolis';
+  --mat-standard-button-toggle-label-text-weight: 500;
+  --mat-standard-button-toggle-height: 43px;
+  --mat-standard-button-toggle-label-text-line-height: 27px;
+  --mat-standard-button-toggle-selected-state-text-color: white;
+  --mat-standard-button-toggle-selected-state-background-color: #e00d3a;
+
+  --mdc-extended-fab-container-height: 43px;
+  --mdc-extended-fab-container-shape: 4px;
+  --mdc-extended-fab-label-text-font: 'Metropolis';
+  --mdc-extended-fab-label-text-size: 18px;
+  --mdc-extended-fab-label-text-weight: 500;
+  --mdc-extended-fab-label-text-tracking: 0.005em;
+  --mdc-fab-container-color: #d5dbe3;
 
   display: flex;
   flex-direction: column;
@@ -34,13 +64,10 @@
     flex-direction: column;
     gap: 5rem;
     max-width: 72rem;
-    margin: 0 24rem;
     width: 100%;
 
     .title {
-      font-size: 4.5rem;
-      font-weight: 500;
-      letter-spacing: -0.05em;
+      margin: 0;
     }
 
     mat-card {
@@ -68,20 +95,14 @@
       }
 
       mat-card-actions {
-        display: flex;
         padding: 0;
-        padding-bottom: 2.5rem;
-        justify-content: space-between;
+        align-items: flex-start;
       }
     }
 
     .data {
       .left-side {
         border-right: 1px solid #d5dbe3;
-
-        .column-content {
-          max-width: 26.75rem;
-        }
       }
 
       .right-side {
@@ -106,32 +127,34 @@
           .column-info {
             display: flex;
             justify-content: space-between;
-            font-family: Omnes;
-            letter-spacing: 0.07em;
-
-            .column-info-column {
-              display: flex;
-              flex-direction: column;
-
-              .column-info-header {
-                font-size: 20px;
-                line-height: 30px;
-                padding-bottom: 0.5rem;
-              }
-
-              .column-info-list {
-                display: flex;
-                flex-direction: column;
-                font-size: 18px;
-                line-height: 27px;
-              }
-            }
           }
         }
 
-        .subtitle {
-          font-weight: 500;
+        .column-info-column {
+          display: flex;
+          flex-direction: column;
+
+          .column-info-header {
+            margin: 0 0 0.5rem;
+          }
+
+          .column-info-list {
+            font-weight: 200;
+          }
         }
+
+        .file-upload-controls {
+          display: flex;
+          margin-top: 40px;
+          align-items: flex-end;
+          justify-content: space-between;
+        }
+      }
+    }
+
+    .anchor {
+      .anchor-select {
+        min-width: 384px;
       }
     }
 
@@ -152,14 +175,73 @@
             display: flex;
             flex-direction: column;
             width: 18rem;
+            gap: 0.5rem;
 
             span {
               font-size: 15px;
-              font-weight: 500;
               line-height: 22.5px;
+              font-family: Metropolis;
+              font-weight: 500;
+              letter-spacing: normal;
             }
           }
         }
+      }
+    }
+
+    .colors {
+      mat-card-actions {
+        flex-direction: column;
+
+        .column-info {
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-between;
+        }
+
+        .file-upload-controls {
+          display: flex;
+          width: 100%;
+          margin-top: 2rem;
+
+          .left-side,
+          .right-side {
+            width: 50%;
+          }
+
+          .right-side > .column-content {
+            width: fit-content;
+            margin: 0 auto;
+          }
+        }
+      }
+    }
+
+    ::ng-deep mat-form-field {
+      .mdc-text-field {
+        border-radius: 1rem;
+        box-shadow: 0px 5px 16px 0px #201e3d3d;
+      }
+
+      .mdc-line-ripple {
+        display: none;
+      }
+    }
+
+    ::ng-deep .mat-button-toggle-label-content {
+      padding: 0 24px;
+    }
+
+    .use-template {
+      display: flex;
+      flex-direction: row-reverse;
+      padding: 0;
+      background: transparent;
+      color: #b20a2f;
+
+      mat-icon {
+        margin-right: calc(12px - 20px);
+        margin-left: 12px;
       }
     }
   }

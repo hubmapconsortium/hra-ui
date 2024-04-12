@@ -30,12 +30,14 @@ export interface MetadataSelectOption {
   viewValue: string;
 }
 
+export type CsvType = 'data' | 'colormap';
+
+export const DEFAULT_COLOR_MAP: ColorMap = { default: [1, 2, 3] };
+
 export const DEFAULT_SETTINGS: VisualizationSettings = {
   data: [],
   metadata: {
     sex: 'female',
   },
-  colorMap: {},
+  colorMap: DEFAULT_COLOR_MAP,
 };
-
-export const DEFAULT_COLOR_MAP: ColorMap = { default: [1, 2, 3] };
