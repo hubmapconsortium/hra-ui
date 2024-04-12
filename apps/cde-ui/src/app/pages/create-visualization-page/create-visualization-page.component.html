@@ -52,7 +52,7 @@
       <div class="right-side">
         <div class="column-content">
           <h3 class="subtitle">Cell Type Table Template</h3>
-          <button mat-fab extended class="use-template button">
+          <button mat-fab extended class="cta-button">
             Use Template
             <mat-icon class="material-symbols-rounded">arrow_right_alt</mat-icon>
           </button>
@@ -70,8 +70,11 @@
     </mat-card-header>
     <mat-card-actions>
       <mat-form-field class="anchor-select">
-        <mat-select formControlName="anchorCellType">
-          @for (cell of cellTypes; track cell) {
+        <mat-select
+          formControlName="anchorCellType"
+          [value]="anchorCellTypes[0] ? anchorCellTypes[0].value : undefined"
+        >
+          @for (cell of anchorCellTypes; track cell) {
             <mat-option [value]="cell.value">{{ cell.viewValue }}</mat-option>
           }
         </mat-select>
@@ -199,7 +202,7 @@
           <div class="right-side">
             <div class="column-content">
               <h3 class="subtitle">Color Map Template</h3>
-              <button mat-fab extended class="use-template button">
+              <button mat-fab extended class="cta-button">
                 Use Template
                 <mat-icon class="material-symbols-rounded">arrow_right_alt</mat-icon>
               </button>
@@ -218,7 +221,10 @@
       </h2>
     </mat-card-header>
     <mat-card-actions>
-      <button type="submit" mat-button (click)="onSubmit()">Visualize</button>
+      <button type="submit" mat-fab extended class="cta-button visualize-button" (click)="onSubmit()">
+        Visualize
+        <mat-icon class="material-symbols-rounded">arrow_right_alt</mat-icon>
+      </button>
     </mat-card-actions>
   </mat-card>
 </form>

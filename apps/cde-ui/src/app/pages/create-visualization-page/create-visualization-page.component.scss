@@ -94,6 +94,7 @@
       mat-card-actions {
         padding: 0;
         align-items: flex-start;
+        min-height: 40px;
       }
     }
 
@@ -229,16 +230,24 @@
       padding: 0 24px;
     }
 
-    .use-template {
+    .cta-button {
       display: flex;
       flex-direction: row-reverse;
-      padding: 0;
+      padding-left: 0;
       background: transparent;
       color: #b20a2f;
 
       mat-icon {
-        margin-right: calc(12px - 20px);
         margin-left: 12px;
+      }
+    }
+
+    .visualize {
+      .cta-button {
+        height: 40px;
+        padding: 8px 4px 8px 24px;
+        background: #e00d3a;
+        color: white;
       }
     }
   }
