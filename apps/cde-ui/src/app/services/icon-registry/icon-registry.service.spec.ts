@@ -12,8 +12,8 @@ class IconRegistryServiceTestModule {}
 describe('IconsService', () => {
   const testUrl = 'https://example.com';
   const testName = 'my-icon';
-  // const testNamespace = 'test';
-  // const testLiteral = '<svg></svg>';
+  const testNamespace = 'test';
+  const testLiteral = '<svg></svg>';
   let shallow: Shallow<IconRegistryService>;
 
   beforeEach(() => {
@@ -63,6 +63,51 @@ describe('IconsService', () => {
       testIconRegistration('addSvgIcon', {
         url: testUrl,
         name: testName,
+      });
+    });
+
+    it('can register an icon using addSvgIconInNamespace', () => {
+      testIconRegistration('addSvgIconInNamespace', {
+        url: testUrl,
+        name: testName,
+        namespace: testNamespace,
+      });
+    });
+    it('can register an icon using addSvgIconLiteral', () => {
+      testIconRegistration('addSvgIconLiteral', {
+        name: testName,
+        literal: testLiteral,
+      });
+    });
+    it('can register an icon using addSvgIconLiteralInNamespace', () => {
+      testIconRegistration('addSvgIconLiteralInNamespace', {
+        name: testName,
+        literal: testLiteral,
+        namespace: testNamespace,
+      });
+    });
+    it('can register an icon using addSvgIconSet', () => {
+      testIconRegistration('addSvgIconSet', {
+        url: testUrl,
+      });
+    });
+    it('can register an icon using addSvgIconSetInNamespace', () => {
+      testIconRegistration('addSvgIconSetInNamespace', {
+        url: testUrl,
+        namespace: testNamespace,
+      });
+    });
+
+    it('can register an icon using addSvgIconSetLiteral', () => {
+      testIconRegistration('addSvgIconSetLiteral', {
+        literal: testLiteral,
+      });
+    });
+
+    it('can register an icon using addSvgIconSetLiteralInNamespace', () => {
+      testIconRegistration('addSvgIconSetLiteralInNamespace', {
+        namespace: testNamespace,
+        literal: testLiteral,
       });
     });
   });
