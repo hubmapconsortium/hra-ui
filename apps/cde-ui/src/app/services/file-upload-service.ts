@@ -115,7 +115,7 @@ export class FileUploadService {
     if (type === 'data') {
       this.data.set([]);
     } else {
-      this.colorMap.set({});
+      this.useDefaultColors();
     }
   }
 

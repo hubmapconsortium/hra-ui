@@ -21,6 +21,8 @@ const DEFAULT_SETTINGS: VisualizationSettings = {
   colorMap: {},
 };
 
+const DEFAULT_CELL_TYPE = 'endothelial';
+
 @Component({
   selector: 'cde-create-visualization-page',
   standalone: true,
@@ -50,22 +52,22 @@ export class CreateVisualizationPageComponent {
 
   @ViewChild('colorMapInput') colorMapInput!: ElementRef<HTMLElement>;
 
-  defaultCellType = 'type a';
+  defaultCellType = DEFAULT_CELL_TYPE;
 
   settings: VisualizationSettings = DEFAULT_SETTINGS;
 
   visualizationForm = new FormGroup({
-    anchorCellType: new FormControl<string>(this.defaultCellType),
+    anchorCellType: new FormControl(this.defaultCellType),
     metadata: new FormGroup({
-      title: new FormControl<string>(''),
-      technology: new FormControl<string>(''),
-      organ: new FormControl<string>(''),
-      sex: new FormControl<string>('female'),
-      age: new FormControl<number>(NaN),
-      thickness: new FormControl<number>(NaN),
-      pixelSize: new FormControl<number>(NaN),
+      title: new FormControl(),
+      technology: new FormControl(),
+      organ: new FormControl(),
+      sex: new FormControl('female'),
+      age: new FormControl(),
+      thickness: new FormControl(),
+      pixelSize: new FormControl(),
     }),
-    colorMapOption: new FormControl<string>('default'),
+    colorMapOption: new FormControl('default'),
   });
 
   dataUploaded = false;
@@ -122,7 +124,6 @@ export class CreateVisualizationPageComponent {
       this.dataUploaded = false;
     } else {
       this.colorMapUploaded = false;
-      this.toggleDefaultColorMap();
     }
   }
 
