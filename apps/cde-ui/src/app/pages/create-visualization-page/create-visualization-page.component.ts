@@ -9,9 +9,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { produce } from 'immer';
+import { parse } from 'papaparse';
 
 import {
-  CellTypeTableData,
   ColorMap,
   CsvType,
   DEFAULT_COLOR_MAP,
@@ -20,8 +20,12 @@ import {
   MetadataSelectOption,
   VisualizationSettings,
 } from '../../models/create-visualization-page-types';
-import { CellTypeDataService } from '../../services/cell-type-data-service';
-import { MockCellTypeDataService } from '../../services/service.mock';
+import {
+  CellTypeData,
+  CellTypeDataService,
+  CellTypeTableData,
+  ColorMapData,
+} from '../../services/cell-type-data-service';
 
 @Component({
   selector: 'cde-create-visualization-page',
@@ -38,12 +42,7 @@ import { MockCellTypeDataService } from '../../services/service.mock';
     ReactiveFormsModule,
     MatIconModule,
   ],
-  providers: [
-    {
-      provide: CellTypeDataService,
-      useExisting: MockCellTypeDataService,
-    },
-  ],
+  providers: [CellTypeDataService],
   templateUrl: './create-visualization-page.component.html',
   styleUrl: './create-visualization-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -129,12 +128,15 @@ export class CreateVisualizationPageComponent {
     }
 
     const file = inputTarget.files[0];
-    const fileReader = new FileReader();
-
-    fileReader.onload = () => {
-      if (type === 'data') {
-        this.cellTypeDataService.getCellTypeData().then((result) => {
-          this.cellTypes = result.map((result) => {
+    parse(file, {
+      header: true,
+      skipEmptyLines: true,
+      dynamicTyping: true,
+      complete: (r) => {
+        if (type === 'data') {
+          const data = r.data as CellTypeData;
+          const results = this.cellTypeDataService.getCellTypeData(data);
+          this.cellTypes = results.map((result) => {
             return {
               value: result.cellType,
               viewValue: result.cellType
@@ -144,14 +146,13 @@ export class CreateVisualizationPageComponent {
             };
           });
           this.setDefaultCellType();
-          this.uploadedData = result;
-        });
-      } else {
-        this.cellTypeDataService.getColorMap().then((result) => {
-          this.colorMap = result;
-        });
-      }
-    };
+          this.uploadedData = results;
+        } else {
+          const data = r.data as ColorMapData;
+          this.colorMap = this.cellTypeDataService.getColorMap(data);
+        }
+      },
+    });
 
     if (type === 'data') {
       this.dataUploaded = true;
@@ -160,7 +161,6 @@ export class CreateVisualizationPageComponent {
       this.colorMapUploaded = true;
       this.uploadedColorMapFile = file.name;
     }
-    fileReader.readAsText(file);
   }
 
   removeFile(type: CsvType) {

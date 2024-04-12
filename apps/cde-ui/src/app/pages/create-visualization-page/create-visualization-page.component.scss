@@ -1,7 +1,4 @@
 :host {
-  --mat-card-title-text-font: 'Metropolis';
-  --mat-card-title-text-size: 42px;
-  --mat-card-title-text-line-height: 52.5px;
   --mdc-elevated-card-container-shape: 1rem;
   --mdc-elevated-card-container-elevation: 0px 5px 16px 0px #201e3d3d;
 
@@ -70,28 +67,28 @@
       margin: 0;
     }
 
+    .step-title {
+      display: flex;
+
+      .step-number {
+        width: 56px;
+        height: 56px;
+        background: #464954;
+        text-align: center;
+        padding: 1rem;
+        line-height: 28px;
+        margin-right: 1.5rem;
+        border-radius: 50%;
+        font-size: 24px;
+        color: white;
+      }
+    }
+
     mat-card {
       padding: 3.5rem 4rem;
 
       mat-card-header {
         padding: 0 0 3rem;
-
-        mat-card-title {
-          display: flex;
-
-          .step-number {
-            width: 56px;
-            height: 56px;
-            background: #464954;
-            text-align: center;
-            padding: 1rem;
-            line-height: 28px;
-            margin-right: 1.5rem;
-            border-radius: 50%;
-            font-size: 24px;
-            color: white;
-          }
-        }
       }
 
       mat-card-actions {

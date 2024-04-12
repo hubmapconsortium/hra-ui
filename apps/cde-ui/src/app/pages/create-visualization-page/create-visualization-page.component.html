@@ -3,10 +3,10 @@
 
   <mat-card class="creation-step data">
     <mat-card-header>
-      <mat-card-title>
-        <div class="step-number">1</div>
+      <h2 mat-card-title class="step-title">
+        <span class="step-number">1</span>
         Format and Upload Data
-      </mat-card-title>
+      </h2>
     </mat-card-header>
     <mat-card-actions>
       <div class="left-side">
@@ -63,10 +63,10 @@
 
   <mat-card class="creation-step anchor">
     <mat-card-header>
-      <mat-card-title>
-        <div class="step-number">2</div>
+      <h2 mat-card-title class="step-title">
+        <span class="step-number">2</span>
         Optional: Select Anchor Cell Type
-      </mat-card-title>
+      </h2>
     </mat-card-header>
     <mat-card-actions>
       <mat-form-field class="anchor-select">
@@ -81,10 +81,10 @@
 
   <mat-card class="creation-step metadata" formGroupName="metadata">
     <mat-card-header>
-      <mat-card-title>
-        <div class="step-number">3</div>
+      <h2 mat-card-title class="step-title">
+        <span class="step-number">3</span>
         Add Metadata
-      </mat-card-title>
+      </h2>
     </mat-card-header>
     <mat-card-actions>
       <div class="row-1">
@@ -153,10 +153,10 @@
 
   <mat-card class="creation-step colors">
     <mat-card-header>
-      <mat-card-title>
-        <div class="step-number">4</div>
+      <h2 mat-card-title class="step-title">
+        <span class="step-number">4</span>
         Optional: Configure Color Map
-      </mat-card-title>
+      </h2>
     </mat-card-header>
     <mat-card-actions>
       <mat-button-toggle-group aria-label="Font Style" formControlName="colorMapOption">
@@ -212,10 +212,10 @@
 
   <mat-card class="creation-step visualize">
     <mat-card-header>
-      <mat-card-title>
-        <div class="step-number">5</div>
+      <h2 mat-card-title class="step-title">
+        <span class="step-number">5</span>
         Visualize Cell Distance Data
-      </mat-card-title>
+      </h2>
     </mat-card-header>
     <mat-card-actions>
       <button type="submit" mat-button (click)="onSubmit()">Visualize</button>

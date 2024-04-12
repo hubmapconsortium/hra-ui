@@ -1,3 +1,5 @@
+import { CellTypeTableData } from '../services/cell-type-data-service';
+
 export type ColorMap = Record<string, [number, number, number]>;
 
 export interface VisualizationSettings {
@@ -5,14 +7,6 @@ export interface VisualizationSettings {
   anchorCellType?: string;
   metadata: MetaData;
   colorMap: ColorMap;
-}
-
-export interface CellTypeTableData {
-  x: number;
-  y: number;
-  cellType: string;
-  z?: number;
-  ontologyId?: string;
 }
 
 export interface MetaData {
