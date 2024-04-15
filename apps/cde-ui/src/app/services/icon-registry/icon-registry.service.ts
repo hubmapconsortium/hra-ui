@@ -53,6 +53,18 @@ const enum DefType {
 }
 
 /**
+ * Throws the error if value is empty else returns value
+ */
+function throwIfEmpty<T>(value: T | undefined): T {
+  /* istanbul ignore if */
+  if (value === undefined) {
+    throw new Error('empty value');
+  }
+
+  return value;
+}
+
+/**
  * Type for the values of registry dispatch table object.
  */
 type RegistryDispatcher = (reg: MatIconRegistry, resource: SafeValue, def: BaseSvgIconDef) => void;
@@ -62,18 +74,19 @@ type RegistryDispatcher = (reg: MatIconRegistry, resource: SafeValue, def: BaseS
  */
 const REGISTRY_DISPATCH_TABLE: Record<DefType, RegistryDispatcher> = {
   [DefType.Url]: (reg, url, { options }) => reg.addSvgIconSet(url, options),
-  [DefType.NamedUrl]: (reg, url, { name, options }) => reg.addSvgIcon(name ?? '', url, options),
+  [DefType.NamedUrl]: (reg, url, { name, options }) => reg.addSvgIcon(throwIfEmpty(name), url, options),
   [DefType.NamespacedUrl]: (reg, url, { namespace, options }) =>
-    reg.addSvgIconSetInNamespace(namespace ?? '', url, options),
+    reg.addSvgIconSetInNamespace(throwIfEmpty(namespace), url, options),
   [DefType.NamespacedNamedUrl]: (reg, url, { name, namespace, options }) =>
-    reg.addSvgIconInNamespace(namespace ?? '', name ?? '', url, options),
+    reg.addSvgIconInNamespace(throwIfEmpty(namespace), throwIfEmpty(name), url, options),
 
   [DefType.Literal]: (reg, literal, { options }) => reg.addSvgIconSetLiteral(literal, options),
-  [DefType.NamedLiteral]: (reg, literal, { name, options }) => reg.addSvgIconLiteral(name ?? '', literal, options),
+  [DefType.NamedLiteral]: (reg, literal, { name, options }) =>
+    reg.addSvgIconLiteral(throwIfEmpty(name), literal, options),
   [DefType.NamespacedLiteral]: (reg, literal, { namespace, options }) =>
-    reg.addSvgIconSetLiteralInNamespace(namespace ?? '', literal, options),
+    reg.addSvgIconSetLiteralInNamespace(throwIfEmpty(namespace), literal, options),
   [DefType.NamespacedNamedLiteral]: (reg, literal, { name, namespace, options }) =>
-    reg.addSvgIconLiteralInNamespace(namespace ?? '', name ?? '', literal, options),
+    reg.addSvgIconLiteralInNamespace(throwIfEmpty(namespace), throwIfEmpty(name), literal, options),
 };
 
 /**
