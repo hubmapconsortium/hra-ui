@@ -27,7 +27,7 @@ jobs:
         npx nx affected --target=test --parallel=3 --ci --code-coverage
         npx nx affected --target=test-doc-coverage --parallel=3
         npx nx affected --target=build --parallel=3
-      main-branch-name: develop
+      main-branch-name: ${{ github.base_ref || github.ref_name }}
 
   agents:
     name: Nx Cloud - Agents
