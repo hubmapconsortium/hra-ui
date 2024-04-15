@@ -2,7 +2,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsModule } from '@ngxs/store';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -29,7 +28,9 @@ import { UIState } from './store/ui.state';
 
 export function initializeApp(configService: ConfigService): () => Promise<void> {
   return () =>
-    Promise.all([configService.sheetConfiguration$.toPromise(), configService.config$.toPromise()]).then(() => {});
+    Promise.all([configService.sheetConfiguration$.toPromise(), configService.config$.toPromise()]).then(
+      () => undefined,
+    );
 }
 
 @NgModule({
@@ -42,7 +43,6 @@ export function initializeApp(configService: ConfigService): () => Promise<void>
     HttpClientModule,
     NgxsModule.forRoot([SheetState, TreeState, UIState, LogsState]),
     NgxsResetPluginModule.forRoot(),
-    NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot({
       disabled: environment.production,
     }),

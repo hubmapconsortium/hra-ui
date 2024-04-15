@@ -1,8 +1,8 @@
+import * as rdf from '@rdfjs/types';
 import { EventEmitter } from 'events';
 import { toRDF } from 'jsonld';
 import { JsonLd, Url } from 'jsonld/jsonld-spec';
 import { DataFactory, Parser, Quad, Store } from 'n3';
-import * as rdf from 'rdf-js';
 import { RdfXmlParser } from 'rdfxml-streaming-parser';
 import { Readable } from 'readable-stream';
 
@@ -114,10 +114,7 @@ export async function addRdfXmlToStore(
   }
 
   if (xmlData) {
-    const xmlParser = new RdfXmlParser({
-      dataFactory: DataFactory,
-      strict: true,
-    });
+    const xmlParser = new RdfXmlParser({ dataFactory: DataFactory });
     const result = new Promise<rdf.Sink<EventEmitter, EventEmitter>>((resolve) => {
       xmlParser.once('end', () => resolve(store));
     });

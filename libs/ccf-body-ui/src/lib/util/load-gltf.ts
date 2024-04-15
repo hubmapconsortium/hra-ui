@@ -55,7 +55,7 @@ export async function loadGLTF(
   } else {
     gltfPromise = fetch(gltfUrl);
   }
-  const gltf = await parse(gltfPromise, GLTFLoader, {
+  const { json: gltf } = await parse(gltfPromise, GLTFLoader, {
     DracoLoader,
     gltf: { decompressMeshes: true, postProcess: true },
   });

@@ -13,7 +13,6 @@ interface Collision {
   hits: { '@id': string; name: string }[];
 }
 
-/* eslint-disable  */
 export async function doCollisions(scene: SpatialSceneNode[]): Promise<Collision[]> {
   console.log('Starting Collisioning');
   const sourceBoxes = scene
@@ -41,13 +40,13 @@ export async function doCollisions(scene: SpatialSceneNode[]): Promise<Collision
     gltf: unknown;
   }[] = [];
   for (const model of scene.filter((d) => !!d.scenegraph)) {
-    const gltf = await load(model.scenegraph as string, GLTFLoader, {
+    const { json: gltf } = await load(model.scenegraph as string, GLTFLoader, {
       DracoLoader,
       decompress: true,
       postProcess: true,
     });
-    for (const gltfScene of gltf.scenes) {
-      traverseScene(gltfScene, new Matrix4(model.transformMatrix), (node, modelMatrix) => {
+    for (const gltfScene of gltf.scenes ?? []) {
+      traverseScene(gltfScene as never, new Matrix4(model.transformMatrix), (node, modelMatrix) => {
         if (node.mesh && node.mesh.primitives && node.mesh.primitives.length > 0) {
           for (const primitive of node.mesh.primitives) {
             if (primitive.attributes.POSITION && primitive.attributes.POSITION.min) {
@@ -120,4 +119,3 @@ export async function doCollisions(scene: SpatialSceneNode[]): Promise<Collision
 
   return report;
 }
-/* eslint-enable */

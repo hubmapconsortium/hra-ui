@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 import { DataFactory, Quad, Store as N3Store } from 'n3';
-import { Sink } from 'rdf-js';
+import { Sink } from '@rdfjs/types';
 import { Readable } from 'readable-stream';
 import {
   addJsonLdToStore,

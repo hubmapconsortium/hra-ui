@@ -1,4 +1,4 @@
-import { AmbientLight, Deck, LightingEffect, OrbitView, OrthographicView } from '@deck.gl/core/typed';
+import { AmbientLight, Deck, LightingEffect, OrbitView, OrthographicView } from '@deck.gl/core';
 import { Matrix4 } from '@math.gl/core';
 import { bind } from 'bind-decorator';
 import { BehaviorSubject, Subject } from 'rxjs';
@@ -10,7 +10,7 @@ import { processSceneNodes } from './util/process-scene-nodes';
 
 interface BodyUIViewStateProps {
   orbitAxis?: string;
-  target?: Matrix4 | number[];
+  target?: [number, number, number];
   zoom: number;
   rotationOrbit: number;
   rotationX: number;
@@ -22,7 +22,7 @@ export interface BodyUIProps {
   canvas: string | HTMLCanvasElement;
   parent: HTMLElement;
   debugSceneNodeProcessing?: boolean;
-  target: Matrix4 | number[];
+  target: [number, number, number];
   interactive: boolean;
   rotation: number;
   minRotationX: number;
@@ -54,7 +54,7 @@ export type NodeClickEvent = { node: SpatialSceneNode; ctrlClick: boolean };
  * A convenience wrapper class for the CCF Body UI
  */
 export class BodyUI {
-  deck: Deck;
+  deck: Deck<OrthographicView | OrbitView>;
   private readonly bodyUILayer = new BodyUILayer({});
 
   private readonly nodeClickSubject = new Subject<NodeClickEvent>();

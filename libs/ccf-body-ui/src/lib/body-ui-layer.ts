@@ -1,9 +1,7 @@
-import { CompositeLayer, COORDINATE_SYSTEM, LayersList } from '@deck.gl/core/typed';
-import { TextLayer } from '@deck.gl/layers/typed';
-import { ScenegraphLayer, SimpleMeshLayer } from '@deck.gl/mesh-layers/typed';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore Ignore missing typings
-import { ConeGeometry, CubeGeometry, CylinderGeometry, Geometry, SphereGeometry } from '@luma.gl/core';
+import { CompositeLayer, COORDINATE_SYSTEM, LayersList } from '@deck.gl/core';
+import { TextLayer } from '@deck.gl/layers';
+import { ScenegraphLayer, SimpleMeshLayer } from '@deck.gl/mesh-layers';
+import { ConeGeometry, CubeGeometry, CylinderGeometry, Geometry, SphereGeometry } from '@luma.gl/engine';
 import { Matrix4 } from '@math.gl/core';
 
 import { SpatialSceneNode } from './shared/spatial-scene-node';
