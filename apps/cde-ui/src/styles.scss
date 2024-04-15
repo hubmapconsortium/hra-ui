@@ -1,3 +1,31 @@
 @use './styles/resets';
 @use './styles/fonts';
 @use './styles/material-theming';
+
+.header-nav {
+  color: #201e3d;
+  box-shadow: 0 -2px 0 #4b4b5e inset;
+
+  &:hover {
+    box-shadow: 0 -2px 0 #b20a2f inset;
+  }
+
+  &:active {
+    color: #6a061c;
+    box-shadow: 0 -2px 0 #6a061c inset;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    box-shadow: none;
+    background-color: white;
+    outline: solid #e00d3a 4px;
+  }
+}
+
+.selected {
+  box-shadow: 0 -2px 0 #e00d3a inset;
+}
