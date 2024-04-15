@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/angular';
+import { Meta, StoryFn } from '@storybook/angular';
 
 import { BiomarkerTableDataCardComponent } from './biomarker-table-data-card.component';
 
@@ -7,9 +7,9 @@ export default {
   component: BiomarkerTableDataCardComponent,
 } as Meta<BiomarkerTableDataCardComponent>;
 
-const Template: Story<BiomarkerTableDataCardComponent> = (args) => ({ props: args });
-
-export const Default = Template.bind({});
+const Template: StoryFn<BiomarkerTableDataCardComponent> = (args) => ({
+  props: args,
+});
 
 export const Data = [
   [
@@ -56,6 +56,10 @@ export const Data = [
   ],
 ];
 
-Default.args = {
-  data: Data,
+export const Default = {
+  render: Template,
+
+  args: {
+    data: Data,
+  },
 };
