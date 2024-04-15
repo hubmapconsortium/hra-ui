@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+/**
+ * Component for header
+ */
 @Component({
   selector: 'cde-header',
   standalone: true,
