@@ -201,6 +201,9 @@ having the summaries and aggregrates</p>
 import { StateContext } from &#x27;@ngxs/store&#x27;;
 import { z } from &#x27;zod&#x27;;
 
+/** Single aggregate cell */
+export type CellSummaryAggregateCell &#x3D; z.infer&lt;typeof AGGREGATE_CELL&gt;;
+
 /** Type representing a single AGGREGATE_ROW */
 export type CellSummaryAggregateRow &#x3D; z.infer&lt;typeof AGGREGATE_ROW&gt;;
 

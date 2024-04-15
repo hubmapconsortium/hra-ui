@@ -62,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/lib/download/download.action.ts</code>
+            <code>src/lib/illustrator/illustrator.actions.ts</code>
         </p>
 
 
@@ -70,7 +70,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Action to load entries from data service</p>
+                <p>Loads the state with the current Iri</p>
 
             </p>
 
@@ -89,13 +89,13 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/lib/download/download.action.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/lib/illustrator/illustrator.actions.ts:10</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Creates a action to load from the enteries from the data service</p>
+                            <div class="io-description"><p>Intializes the set iri</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -105,7 +105,6 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
-                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -120,10 +119,6 @@
                                                             No
                                                     </td>
                                                     
-                                                        <td>
-                                                                <p>Organ Iri for which the entries are loaded</p>
-
-                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -146,65 +141,60 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ActionGroup } from &#x27;@hra-ui/cdk/state&#x27;;
-import { DownloadEntry, DownloadFormat, DownloadFormatId } from &#x27;./download.model&#x27;;
-import { Iri } from &#x27;@hra-ui/services&#x27;;
+import { IllustrationMappingItem, Iri } from &#x27;@hra-ui/services&#x27;;
 
-/**Action Group for Download Action */
-const Action &#x3D; ActionGroup(&#x27;Download&#x27;);
-
-/**
- * Register format into state
- */
-export class RegisterFormat extends Action(&#x27;Register Format&#x27;) {
-  /**
-   * Creates an instance of register format.
-   * @param format
-   */
-  constructor(readonly format: DownloadFormat) {
-    super();
-  }
-}
+/** Action base class factory */
+const Action &#x3D; ActionGroup(&#x27;Illustrator&#x27;);
 
 /**
- * Action to load entries from data service
+ * Loads the state with the current Iri
  */
 export class Load extends Action(&#x27;Load&#x27;) {
-  /**
-   * Creates a action to load from the enteries from the data service
-   * @param iri Organ Iri for which the entries are loaded
-   */
+  /** Intializes the set iri */
   constructor(readonly iri: Iri) {
     super();
   }
 }
 
 /**
- * Add entry into download state
+ * Sets the selection for the Item in the current state on SetHover
  */
-export class AddEntry extends Action(&#x27;Add&#x27;) {
-  /** Constructor for Addd Entry */
-  constructor(readonly id: DownloadFormatId, readonly entry: DownloadEntry) {
+export class SetHover extends Action(&#x27;Set Selection on Hover&#x27;) {
+  /** Initializes the Mapping Item */
+  constructor(readonly selectedOnHover: IllustrationMappingItem) {
     super();
   }
 }
 
 /**
- * Clear all entries from download state
+ * Sets the selection for the Item in the current state on SetClicked
  */
-export class ClearEntries extends Action(&#x27;Clear&#x27;) {}
-
-/**
- * Download file Action
- */
-export class Download extends Action(&#x27;Download&#x27;) {
-  /**
-   * Creates an instance of download.
-   * @param selectedFormat
-   */
-  constructor(readonly format: DownloadFormatId) {
+export class SetClicked extends Action(&#x27;Set Selection on Clicked&#x27;) {
+  /** Initializes the Mapping Item */
+  constructor(readonly selectedOnClick: IllustrationMappingItem) {
     super();
   }
 }
+
+/**
+ * Sets highlighted cell type id in the state from label
+ */
+export class HighlightCellType extends Action(&#x27;Highlight Cell Type Id&#x27;) {
+  /** Initializes the Mapping Item */
+  constructor(readonly hoverLabel?: string) {
+    super();
+  }
+}
+
+/**
+ * Clears the selection for the current state
+ */
+export class ClearSelection extends Action(&#x27;Clear Selection&#x27;) {}
+
+/**
+ * Resets the state
+ */
+export class Reset extends Action(&#x27;Reset&#x27;) {}
 </code></pre>
     </div>
 </div>
