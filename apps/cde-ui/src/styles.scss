@@ -4,15 +4,15 @@
 
 .header-nav {
   color: #201e3d;
-  box-shadow: 0 -2px 0 #4b4b5e inset;
+  border-bottom: solid #4b4b5e 2px;
 
   &:hover {
-    box-shadow: 0 -2px 0 #b20a2f inset;
+    border-bottom: solid #b20a2f 2px;
   }
 
   &:active {
     color: #6a061c;
-    box-shadow: 0 -2px 0 #6a061c inset;
+    border-bottom: solid #6a061c 2px;
   }
 
   &:focus {
@@ -20,9 +20,11 @@
   }
 
   &:focus-visible {
-    box-shadow: none;
+    border-bottom: none;
+    outline: none;
+    margin: -0.25rem -0.25rem -0.125rem -0.25rem;
     background-color: white;
-    outline: solid #e00d3a 4px;
+    border: solid #e00d3a 4px;
   }
 }
 
