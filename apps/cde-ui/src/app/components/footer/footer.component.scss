@@ -1,10 +1,11 @@
 :host {
   display: block;
+  background: linear-gradient(to right, #4b4b5e 0%, #4b4b5e 50%, #e6eaf0 50%, #e6eaf0 100%) no-repeat;
+  max-height: 30.3125rem;
 
   .footer-wrapper {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    max-height: 30.3125rem;
   }
 
   .footer-left {
