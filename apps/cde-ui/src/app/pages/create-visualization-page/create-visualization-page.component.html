@@ -130,7 +130,7 @@
         <div class="metadata-option">
           <span>Age</span>
           <mat-form-field>
-            <input matInput type="number" placeholder="Age" formControlName="age" />
+            <input matInput type="number" placeholder="Age" formControlName="age" min="0" />
           </mat-form-field>
         </div>
         <div class="filler"></div>
@@ -140,13 +140,13 @@
         <div class="metadata-option">
           <span>Thickness (µm)</span>
           <mat-form-field>
-            <input matInput type="number" placeholder="Thickness" formControlName="thickness" />
+            <input matInput type="number" placeholder="Thickness" formControlName="thickness" min="0" />
           </mat-form-field>
         </div>
         <div class="metadata-option">
           <span>Pixel size (µm/pixel)</span>
           <mat-form-field>
-            <input matInput type="number" placeholder="Pixel size" formControlName="pixelSize" />
+            <input matInput type="number" placeholder="Pixel size" formControlName="pixelSize" min="0" />
           </mat-form-field>
         </div>
         <div class="filler"></div>

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, inject, Output, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
@@ -38,13 +38,13 @@ const DEFAULT_CELL_TYPE = 'endothelial';
     ReactiveFormsModule,
     MatIconModule,
   ],
-  providers: [FileUploadService],
   templateUrl: './create-visualization-page.component.html',
   styleUrl: './create-visualization-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateVisualizationPageComponent {
   readonly fileUploadService = inject(FileUploadService);
+  readonly formBuilder = inject(FormBuilder);
 
   @Output() readonly visualize = new EventEmitter<VisualizationSettings>();
 
@@ -56,18 +56,18 @@ export class CreateVisualizationPageComponent {
 
   settings: VisualizationSettings = DEFAULT_SETTINGS;
 
-  visualizationForm = new FormGroup({
-    anchorCellType: new FormControl(this.defaultCellType),
-    metadata: new FormGroup({
-      title: new FormControl(),
-      technology: new FormControl(),
-      organ: new FormControl(),
-      sex: new FormControl('female'),
-      age: new FormControl(),
-      thickness: new FormControl(),
-      pixelSize: new FormControl(),
+  visualizationForm = this.formBuilder.group({
+    anchorCellType: [this.defaultCellType],
+    metadata: this.formBuilder.group({
+      title: [],
+      technology: [],
+      organ: [],
+      sex: ['female'],
+      age: [Validators.min(0)],
+      thickness: [Validators.min(0)],
+      pixelSize: [Validators.min(0)],
     }),
-    colorMapOption: new FormControl('default'),
+    colorMapOption: ['default'],
   });
 
   dataUploaded = false;
