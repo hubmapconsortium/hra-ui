@@ -3,7 +3,6 @@ import {
   EnvironmentProviders,
   Injectable,
   InjectionToken,
-  SecurityContext,
   inject,
   makeEnvironmentProviders,
 } from '@angular/core';
@@ -148,8 +147,7 @@ export class IconRegistryService {
     if (typeof def.url === 'string') {
       return this.sanitizer.bypassSecurityTrustResourceUrl(def.url);
     } else {
-      const safe = this.sanitizer.sanitize(SecurityContext.HTML, def.literal);
-      return this.sanitizer.bypassSecurityTrustHtml(safe ?? '');
+      return this.sanitizer.bypassSecurityTrustHtml(def.literal);
     }
   }
 }
