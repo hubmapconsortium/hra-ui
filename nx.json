@@ -38,14 +38,6 @@
       ],
       "cache": true
     },
-    "lint": {
-      "inputs": [
-        "default",
-        "{workspaceRoot}/.eslintrc.json",
-        "{workspaceRoot}/eslint.config.js"
-      ],
-      "cache": true
-    },
     "storybook": {
       "dependsOn": [
         "compodoc-json"
@@ -124,6 +116,14 @@
         "{workspaceRoot}/dist/{projectRoot}/webcomponent-example.html"
       ],
       "cache": true
+    },
+    "@nx/eslint:lint": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/eslint.config.js"
+      ],
+      "cache": true
     }
   },
   "generators": {
@@ -145,5 +145,6 @@
       "standalone": true
     }
   },
-  "nxCloudAccessToken": "NWM3NTZiNjktMDcyMS00ZmQ3LWFlNzYtZDZkZmY0OTVjYzU3fHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "NWM3NTZiNjktMDcyMS00ZmQ3LWFlNzYtZDZkZmY0OTVjYzU3fHJlYWQtd3JpdGU=",
+  "useInferencePlugins": false
 }
