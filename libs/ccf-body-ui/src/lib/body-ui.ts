@@ -1,4 +1,4 @@
-import { AmbientLight, Deck, LightingEffect, OrbitView, OrthographicView } from '@deck.gl/core';
+import { AmbientLight, Deck, LightingEffect, OrbitView, OrthographicView } from '@deck.gl/core/typed';
 import { Matrix4 } from '@math.gl/core';
 import { bind } from 'bind-decorator';
 import { BehaviorSubject, Subject } from 'rxjs';
@@ -54,7 +54,7 @@ export type NodeClickEvent = { node: SpatialSceneNode; ctrlClick: boolean };
  * A convenience wrapper class for the CCF Body UI
  */
 export class BodyUI {
-  deck: Deck<OrthographicView | OrbitView>;
+  deck: Deck;
   private readonly bodyUILayer = new BodyUILayer({});
 
   private readonly nodeClickSubject = new Subject<NodeClickEvent>();

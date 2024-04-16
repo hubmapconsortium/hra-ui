@@ -1,7 +1,7 @@
-import { CompositeLayer, COORDINATE_SYSTEM, LayersList } from '@deck.gl/core';
-import { TextLayer } from '@deck.gl/layers';
-import { ScenegraphLayer, SimpleMeshLayer } from '@deck.gl/mesh-layers';
-import { ConeGeometry, CubeGeometry, CylinderGeometry, Geometry, SphereGeometry } from '@luma.gl/engine';
+import { CompositeLayer, COORDINATE_SYSTEM, LayersList } from '@deck.gl/core/typed';
+import { TextLayer } from '@deck.gl/layers/typed';
+import { ScenegraphLayer, SimpleMeshLayer } from '@deck.gl/mesh-layers/typed';
+import { ConeGeometry, CubeGeometry, CylinderGeometry, Geometry, SphereGeometry } from '@luma.gl/core';
 import { Matrix4 } from '@math.gl/core';
 
 import { SpatialSceneNode } from './shared/spatial-scene-node';
@@ -133,7 +133,6 @@ export class BodyUILayer extends CompositeLayer<SpatialSceneNode> {
               scenegraph: model.scenegraphNode
                 ? loadGLTF2(model.scenegraphNode, url2gltf[model.scenegraph as string])
                 : (model.scenegraph as unknown as URL),
-              // eslint-disable-next-line @typescript-eslint/naming-convention
               _lighting: model._lighting as 'pbr', // 'pbr' | undefined
               getTransformMatrix: model.transformMatrix,
               getColor: model.color ?? [0, 255, 0, 0.5 * 255],
