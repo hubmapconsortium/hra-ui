@@ -9,6 +9,7 @@ import {
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer, SafeHtml, SafeResourceUrl, SafeValue } from '@angular/platform-browser';
 import { BaseSvgIconDef, SvgIconDef } from './icon-registry.types';
+import { Location } from '@angular/common';
 
 /**
  * Injection Token for SVG Icons.
@@ -105,6 +106,7 @@ function getDefType(def: SvgIconDef): DefType {
   const hasUrl = +defHasValue(def, 'url');
   return (named * DefType.Named) | (namespaced * DefType.Namespaced) | (hasUrl * DefType.Url);
 }
+
 /**
  * Service for registering svg icons.
  */
@@ -116,14 +118,22 @@ export class IconRegistryService {
    * Injects MatIconRegistry service.
    */
   private readonly registry = inject(MatIconRegistry);
+
   /**
    * Injects DomSanitizer.
    */
   private readonly sanitizer = inject(DomSanitizer);
+
+  /**
+   * Injects Location.
+   */
+  private readonly location = inject(Location);
+
   /**
    * Injects injection token for SVG icons.
    */
   private readonly defs = inject(SVG_ICON_DEFS);
+
   /**
    * Checks if all SVG's are registered
    */
@@ -158,7 +168,8 @@ export class IconRegistryService {
    */
   private sanitizeResource(def: SvgIconDef): SafeResourceUrl | SafeHtml {
     if (typeof def.url === 'string') {
-      return this.sanitizer.bypassSecurityTrustResourceUrl(def.url);
+      const url = this.location.prepareExternalUrl(def.url);
+      return this.sanitizer.bypassSecurityTrustResourceUrl(url);
     } else {
       return this.sanitizer.bypassSecurityTrustHtml(def.literal);
     }
