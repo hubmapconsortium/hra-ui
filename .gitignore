@@ -5,6 +5,9 @@ dist
 tmp
 /out-tsc
 
+# data-schema.js is compiled on the fly
+apps/human-atlas/src/app/utils/data-schema.js
+
 # dependencies
 node_modules
 /dist
