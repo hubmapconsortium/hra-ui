@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  margin: 3rem 5rem;
+
+  a {
+    text-decoration: none;
+  }
+
+  .header-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .hra-logo {
+      margin-right: 2rem;
+    }
+
+    .hra-logo,
+    .cde-logo {
+      height: 3rem;
+    }
+
+    .help {
+      padding: 0.5rem 5rem 0.5rem 0.25rem;
+      font-weight: 500;
+      font-size: 1.5rem;
+      line-height: 2.25rem;
+    }
+  }
+}
