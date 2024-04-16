@@ -26,8 +26,8 @@ export async function doCollisions(scene: SpatialSceneNode[]): Promise<Collision
         name: model.tooltip,
         entityId: model.entityId,
         bbox: new AABB({
-          lowerBound: new Vec3(...lowerBound.map((n, i) => Math.min(n, upperBound[i]))),
-          upperBound: new Vec3(...upperBound.map((n, i) => Math.max(n, lowerBound[i]))),
+          lowerBound: new Vec3(...lowerBound.map((n: number, i: number) => Math.min(n, upperBound[i]))),
+          upperBound: new Vec3(...upperBound.map((n: number, i: number) => Math.max(n, lowerBound[i]))),
         }),
       };
     });
@@ -40,7 +40,7 @@ export async function doCollisions(scene: SpatialSceneNode[]): Promise<Collision
     gltf: unknown;
   }[] = [];
   for (const model of scene.filter((d) => !!d.scenegraph)) {
-    const { json: gltf } = await load(model.scenegraph as string, GLTFLoader, {
+    const gltf = await load(model.scenegraph as string, GLTFLoader, {
       DracoLoader,
       decompress: true,
       postProcess: true,
