@@ -19,19 +19,19 @@ export class LandingPageComponent {
   /** Input data for card */
   readonly data: VisualCard[] = [
     {
-      image: '../../assets/examples/intestine.svg',
+      image: 'assets/examples/intestine.svg',
       label: 'Explore 2D Intestine Data',
       route: 'vis-app',
       alt: 'Image for Intestine',
     },
     {
-      image: '../../assets/examples/skin.svg',
+      image: 'assets/examples/skin.svg',
       label: 'Explore 3D Skin Data',
       route: 'home',
       alt: 'Image for Skin',
     },
     {
-      image: '../../assets/examples/tonsil.svg',
+      image: 'assets/examples/tonsil.svg',
       label: 'Create a Visualization',
       route: 'create',
       alt: 'Image for Tonsil',
