@@ -1,11 +1,13 @@
 :host {
   display: block;
   background: linear-gradient(to right, #4b4b5e 0%, #4b4b5e 50%, #e6eaf0 50%, #e6eaf0 100%) no-repeat;
-  max-height: 30.3125rem;
+  display: flex;
+  justify-content: center;
 
   .footer-wrapper {
+    max-width: 120rem;
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: minmax(30.8125rem, auto) 2fr;
   }
 
   .footer-left {
@@ -35,8 +37,9 @@
 
     .social-funded {
       display: flex;
-      margin: 8.5rem 24.375rem 0 6.5rem;
-      gap: 13.875rem;
+      flex-wrap: wrap;
+      margin: 8.5rem auto 0 6.5rem;
+      column-gap: 13.875rem;
 
       .social-media {
         display: flex;
