@@ -1,6 +1,8 @@
 import { CompositeLayer, COORDINATE_SYSTEM, LayersList } from '@deck.gl/core/typed';
 import { TextLayer } from '@deck.gl/layers/typed';
 import { ScenegraphLayer, SimpleMeshLayer } from '@deck.gl/mesh-layers/typed';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore Ignore missing typings
 import { ConeGeometry, CubeGeometry, CylinderGeometry, Geometry, SphereGeometry } from '@luma.gl/core';
 import { Matrix4 } from '@math.gl/core';
 
