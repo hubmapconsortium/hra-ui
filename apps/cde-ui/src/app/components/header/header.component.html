@@ -1,7 +1,9 @@
 <div class="header-wrapper">
   <div class="logos">
-    <img src="../../../assets/logo/hra_logo_black.svg" class="hra-logo" alt="Human Reference Atlas Logo" />
-    <img src="../../../assets/logo/cde_logo.svg" class="cde-logo" alt="Cell Distance Explorer Logo" />
+    <a href="https://humanatlas.io" target="_blank">
+      <img src="assets/logo/hra_logo_black.svg" class="hra-logo" alt="Human Reference Atlas Logo" />
+    </a>
+    <img src="assets/logo/cde_logo.svg" class="cde-logo" alt="Cell Distance Explorer Logo" />
   </div>
-  <a href="cde-guide" class="help header-nav">Help</a>
+  <a [routerLink]="['/home']" class="help header-nav">Help</a>
 </div>

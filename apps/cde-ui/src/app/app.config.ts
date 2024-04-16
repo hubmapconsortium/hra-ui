@@ -28,32 +28,32 @@ export const appConfig: ApplicationConfig = {
     provideIcons([
       {
         name: 'facebook',
-        url: '../assets/logo/facebook.svg',
+        url: 'assets/logo/facebook.svg',
         namespace: 'social',
       },
       {
         name: 'x',
-        url: '../assets/logo/x.svg',
+        url: 'assets/logo/x.svg',
         namespace: 'social',
       },
       {
         name: 'instagram',
-        url: '../assets/logo/instagram.svg',
+        url: 'assets/logo/instagram.svg',
         namespace: 'social',
       },
       {
         name: 'youtube',
-        url: '../assets/logo/youtube.svg',
+        url: 'assets/logo/youtube.svg',
         namespace: 'social',
       },
       {
         name: 'linkedin',
-        url: '../assets/logo/linkedin.svg',
+        url: 'assets/logo/linkedin.svg',
         namespace: 'social',
       },
       {
         name: 'email',
-        url: '../assets/logo/email.svg',
+        url: 'assets/logo/email.svg',
         namespace: 'social',
       },
     ]),
