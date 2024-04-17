@@ -40,7 +40,11 @@ describe('TwoDimImageComponent', () => {
     const template = mock<TemplateRef<unknown>>();
 
     beforeEach(() => {
-      shallow.mock(MatDialog, { open: () => {} });
+      shallow.mock(MatDialog, {
+        open: () => {
+          // Intentionally empty
+        },
+      });
     });
 
     it('should open image dialog when clicked', async () => {

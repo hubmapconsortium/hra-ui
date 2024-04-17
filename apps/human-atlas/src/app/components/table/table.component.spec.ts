@@ -54,7 +54,9 @@ describe('TableComponent', () => {
     const testColumn: HeaderData = {
       header: 'test',
       columnDef: 'test',
-      cell: function () {},
+      cell: function () {
+        // Intentionally empty
+      },
       alignment: 'start',
     };
     it('should return the class name for a column', async () => {
@@ -67,7 +69,9 @@ describe('TableComponent', () => {
       const testColumn: HeaderData = {
         header: 'test',
         columnDef: 'test',
-        cell: function () {},
+        cell: function () {
+          // Intentionally empty
+        },
       };
       const { instance } = await shallow.render();
       const alignment = instance.getAlignmentClass(testColumn);
