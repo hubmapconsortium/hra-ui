@@ -371,7 +371,6 @@ export class FtuDataImplService extends FtuDataService {
       const cells = summary.map((entry) => ({
         id: entry.cell_id as Iri,
         label: entry.cell_label,
-        count: entry.count,
       }));
 
       const biomarkers = summary.map((entry) => ({

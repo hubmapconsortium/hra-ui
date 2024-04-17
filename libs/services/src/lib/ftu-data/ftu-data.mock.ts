@@ -103,7 +103,6 @@ const CELL_SUMMARY_DATA: CellSummary[] = Object.values(MOCK_SUMMARIES).map((summ
   cells: summary.entries.map((entry) => ({
     id: entry.cell.id as Iri,
     label: entry.cell.label,
-    count: entry.count,
   })),
   biomarkers: summary.entries.map((entry) => ({
     id: entry.biomarker.id as Iri,
