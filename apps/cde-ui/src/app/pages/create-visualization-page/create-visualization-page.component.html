@@ -6,6 +6,7 @@
       <h2 mat-card-title class="step-title">
         <span class="step-number">1</span>
         Format and Upload Data
+        <span class="material-symbols-rounded info"> info </span>
       </h2>
     </mat-card-header>
     <mat-card-actions>
@@ -23,29 +24,33 @@
             </div>
           </div>
           <div class="file-upload-controls">
-            @if (dataUploaded) {
-              <div class="column-info-column">
-                <h4 class="column-info-header">File loaded:</h4>
-                <span class="column-info-list">{{ uploadedFile }}</span>
-              </div>
-              <button class="upload" mat-fab extended (click)="removeFile('data')">
-                <mat-icon class="material-symbols-rounded">cancel</mat-icon>
-                Remove CSV
-              </button>
+            <cde-file-upload
+              accept="text/csv,.csv"
+              [loader]="loadCsv"
+              (progress)="log('progress', $event)"
+              (loadStarted)="log('start', $event)"
+              (loadCompleted)="log('completed', $event)"
+              (loadCancelled)="log('cancel')"
+              (loadErrored)="log('error', $event)"
+            >
+            </cde-file-upload>
+            <!-- @if (dataUploaded) {
+            <div class="column-info-column">
+              <h4 class="column-info-header">File loaded:</h4>
+              <span class="column-info-list">{{ uploadedFile }}</span>
+            </div>
+            <button class="upload" mat-fab extended (click)="removeFile('data')">
+              <mat-icon class="material-symbols-rounded">cancel</mat-icon>
+              Remove CSV
+            </button>
             } @else {
-              <button class="upload" mat-fab extended (click)="upload('data')">
-                <mat-icon class="material-symbols-rounded">upload</mat-icon>
-                Upload CSV
-              </button>
-              <input
-                #fileInput
-                (change)="handleFile($event, 'data')"
-                type="file"
-                accept="text/csv,.csv"
-                name="fileInput"
-                style="display: none"
-              />
-            }
+            <button class="upload" mat-fab extended (click)="upload('data')">
+              <mat-icon class="material-symbols-rounded">upload</mat-icon>
+              Upload CSV
+            </button>
+            <input #fileInput (change)="handleFile($event, 'data')" type="file" accept="text/csv,.csv" name="fileInput"
+              style="display: none" />
+            } -->
           </div>
         </div>
       </div>

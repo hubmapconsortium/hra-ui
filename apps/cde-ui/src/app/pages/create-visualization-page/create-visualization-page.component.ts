@@ -12,6 +12,8 @@ import { produce } from 'immer';
 
 import { ColorMap, CsvType, MetaData, VisualizationSettings } from '../../models/create-visualization-page-types';
 import { FileUploadService, MetadataSelectOption } from '../../services/file-upload-service';
+import { FileUploadComponent } from '../../components/file-upload/file-upload.component';
+import { CsvLoaderService } from '../../services/csv-loader/csv-loader.service';
 
 const DEFAULT_SETTINGS: VisualizationSettings = {
   data: [],
@@ -37,6 +39,7 @@ const DEFAULT_CELL_TYPE = 'endothelial';
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
+    FileUploadComponent,
   ],
   templateUrl: './create-visualization-page.component.html',
   styleUrl: './create-visualization-page.component.scss',
@@ -47,8 +50,6 @@ export class CreateVisualizationPageComponent {
   readonly formBuilder = inject(FormBuilder);
 
   @Output() readonly visualize = new EventEmitter<VisualizationSettings>();
-
-  @ViewChild('fileInput') fileInput!: ElementRef<HTMLElement>;
 
   @ViewChild('colorMapInput') colorMapInput!: ElementRef<HTMLElement>;
 
@@ -69,6 +70,8 @@ export class CreateVisualizationPageComponent {
     }),
     colorMapOption: ['default'],
   });
+
+  data?: unknown[];
 
   dataUploaded = false;
 
@@ -93,8 +96,21 @@ export class CreateVisualizationPageComponent {
     { value: 'female', viewValue: 'Female' },
   ];
 
-  upload(type: CsvType): void {
-    const inputRef = type === 'data' ? this.fileInput : this.colorMapInput;
+  service = inject(CsvLoaderService);
+  loadCsv = this.service.createLoader({
+    // dynamicTyping: {
+    //   x: true,
+    //   y: true,
+    //   z: true
+    // }
+  });
+
+  log(name: string, data?: unknown) {
+    console.log(`From ${name}:`, data);
+  }
+
+  upload(_type: CsvType): void {
+    const inputRef = this.colorMapInput;
     const fileInputElement: HTMLElement = inputRef.nativeElement;
     fileInputElement.click();
   }

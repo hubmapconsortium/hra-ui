@@ -69,6 +69,7 @@
 
     .step-title {
       display: flex;
+      align-items: center;
 
       .step-number {
         width: 56px;
@@ -81,6 +82,10 @@
         border-radius: 50%;
         font-size: 24px;
         color: white;
+      }
+
+      .info {
+        margin-left: 1.25rem;
       }
     }
 
