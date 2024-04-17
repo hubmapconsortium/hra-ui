@@ -2,13 +2,14 @@
   "name": "asctb-reporter",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
+  "sourceRoot": "apps/asctb-reporter/src",
+  "prefix": "app",
+  "tags": ["asctb", "karma-test-runner"],
   "generators": {
     "@schematics/angular:component": {
       "style": "scss"
     }
   },
-  "sourceRoot": "apps/asctb-reporter/src",
-  "prefix": "app",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
@@ -145,7 +146,7 @@
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": ["apps/asctb-reporter/**/*.ts", "apps/asctb-reporter/**/*.html"]
+        "lintFilePatterns": ["{projectRoot}/**/*.ts", "{projectRoot}/**/*.html"]
       }
     },
     "compodoc": {
@@ -166,6 +167,5 @@
         }
       }
     }
-  },
-  "tags": ["asctb", "karma-test-runner"]
+  }
 }

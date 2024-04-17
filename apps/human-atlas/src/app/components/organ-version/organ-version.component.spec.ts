@@ -140,7 +140,9 @@ describe('OrganVersionComponent', () => {
         {
           header: 'test',
           columnDef: 'test',
-          cell: function () {},
+          cell: function () {
+            // Intentionally empty
+          },
         },
       ];
       const { instance } = await shallow.render({

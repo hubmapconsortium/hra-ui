@@ -1,5 +1,5 @@
 import { MatIconModule } from '@angular/material/icon';
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { moduleMetadata, StoryFn, Meta } from '@storybook/angular';
 import { LabelBoxComponent } from './label-box.component';
 
 export default {
@@ -13,7 +13,7 @@ export default {
 } as Meta<LabelBoxComponent>;
 
 const Template =
-  (content = ''): Story<LabelBoxComponent> =>
+  (content = ''): StoryFn<LabelBoxComponent> =>
   (args) => ({
     props: args,
     template: `

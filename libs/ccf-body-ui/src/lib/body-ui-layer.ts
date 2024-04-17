@@ -135,7 +135,6 @@ export class BodyUILayer extends CompositeLayer<SpatialSceneNode> {
               scenegraph: model.scenegraphNode
                 ? loadGLTF2(model.scenegraphNode, url2gltf[model.scenegraph as string])
                 : (model.scenegraph as unknown as URL),
-              // eslint-disable-next-line @typescript-eslint/naming-convention
               _lighting: model._lighting as 'pbr', // 'pbr' | undefined
               getTransformMatrix: model.transformMatrix,
               getColor: model.color ?? [0, 255, 0, 0.5 * 255],

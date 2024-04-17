@@ -19,5 +19,4 @@ export class ReportMultiLog {
 
 export class ClearSheetLogs {
   static readonly type = '[CLEAR] Sheet Logs';
-  constructor() {}
 }

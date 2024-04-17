@@ -10,7 +10,7 @@
     "../src/**/*.stories.js",
     "../src/**/*.stories.jsx",
     "../src/**/*.stories.tsx",
-    "../src/**/*.stories.mdx",
+    "../src/**/*.mdx",
     "*.ts",
     "*.js",
     "../**/*.ts"

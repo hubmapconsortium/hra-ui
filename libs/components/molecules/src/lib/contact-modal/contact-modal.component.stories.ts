@@ -1,4 +1,4 @@
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { moduleMetadata, StoryFn, Meta } from '@storybook/angular';
 import { ContactModalComponent } from './contact-modal.component';
 
 export default {
@@ -11,12 +11,15 @@ export default {
   ],
 } as Meta<ContactModalComponent>;
 
-const Template: Story<ContactModalComponent> = (args: ContactModalComponent) => ({
+const Template: StoryFn<ContactModalComponent> = (args) => ({
   props: args,
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
-  productLogoUrl: 'assets/icons/logo-icon.svg',
-  productTitle: 'Human Reference Atlas',
+export const Primary = {
+  render: Template,
+
+  args: {
+    productLogoUrl: 'assets/icons/logo-icon.svg',
+    productTitle: 'Human Reference Atlas',
+  },
 };

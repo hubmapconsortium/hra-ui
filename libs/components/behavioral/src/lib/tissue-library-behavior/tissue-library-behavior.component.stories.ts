@@ -15,7 +15,10 @@ export default {
   decorators: [
     applicationConfig({
       providers: [
-        { provide: TissueLibraryService, useExisting: MockTissueLibraryService },
+        {
+          provide: TissueLibraryService,
+          useExisting: MockTissueLibraryService,
+        },
         { provide: FtuDataService, useExisting: MockFtuDataService },
       ],
     }),

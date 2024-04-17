@@ -1,4 +1,4 @@
-import { Story, Meta } from '@storybook/angular';
+import { StoryFn, Meta } from '@storybook/angular';
 import { RequiredInputComponent } from './required-input.component';
 
 export default {
@@ -6,12 +6,15 @@ export default {
   component: RequiredInputComponent,
 } as Meta<RequiredInputComponent>;
 
-const Template: Story<RequiredInputComponent> = (args: RequiredInputComponent) => ({
+const Template: StoryFn<RequiredInputComponent> = (args) => ({
   props: args,
   styles: [],
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
-  label: 'Enter Name',
+export const Primary = {
+  render: Template,
+
+  args: {
+    label: 'Enter Name',
+  },
 };

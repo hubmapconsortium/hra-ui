@@ -1,4 +1,4 @@
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { moduleMetadata, StoryFn, Meta } from '@storybook/angular';
 import { EmailInputComponent } from './email-input.component';
 
 export default {
@@ -11,11 +11,14 @@ export default {
   ],
 } as Meta<EmailInputComponent>;
 
-const Template: Story<EmailInputComponent> = (args: EmailInputComponent) => ({
+const Template: StoryFn<EmailInputComponent> = (args) => ({
   props: args,
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
-  placeholder: 'ecmaier@iu.edu',
+export const Primary = {
+  render: Template,
+
+  args: {
+    placeholder: 'ecmaier@iu.edu',
+  },
 };
