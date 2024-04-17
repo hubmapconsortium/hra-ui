@@ -161,13 +161,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/DualSliderModule.html" data-type="entity-link" >DualSliderModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-DualSliderModule-59ed7ef03a0433a269a83c2696c44813c1182ea7fb6d93d8d051a9cf9f025ca141ca8a4438d0ea29bf7876999fe9d1eba60c2ae456d35437cd1d0eb8b113670b"' : 'data-bs-target="#xs-components-links-module-DualSliderModule-59ed7ef03a0433a269a83c2696c44813c1182ea7fb6d93d8d051a9cf9f025ca141ca8a4438d0ea29bf7876999fe9d1eba60c2ae456d35437cd1d0eb8b113670b"' }>
+                                            'data-bs-target="#components-links-module-DualSliderModule-7fe689be88f778e70a824b4ab40ec6550fec0d4b95c7ef74db3f8431dfa18f424c1bb289a9cc3adc96a45186e26848ed03d663a1f11ff20dcb86994f90576364"' : 'data-bs-target="#xs-components-links-module-DualSliderModule-7fe689be88f778e70a824b4ab40ec6550fec0d4b95c7ef74db3f8431dfa18f424c1bb289a9cc3adc96a45186e26848ed03d663a1f11ff20dcb86994f90576364"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-DualSliderModule-59ed7ef03a0433a269a83c2696c44813c1182ea7fb6d93d8d051a9cf9f025ca141ca8a4438d0ea29bf7876999fe9d1eba60c2ae456d35437cd1d0eb8b113670b"' :
-                                            'id="xs-components-links-module-DualSliderModule-59ed7ef03a0433a269a83c2696c44813c1182ea7fb6d93d8d051a9cf9f025ca141ca8a4438d0ea29bf7876999fe9d1eba60c2ae456d35437cd1d0eb8b113670b"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-DualSliderModule-7fe689be88f778e70a824b4ab40ec6550fec0d4b95c7ef74db3f8431dfa18f424c1bb289a9cc3adc96a45186e26848ed03d663a1f11ff20dcb86994f90576364"' :
+                                            'id="xs-components-links-module-DualSliderModule-7fe689be88f778e70a824b4ab40ec6550fec0d4b95c7ef74db3f8431dfa18f424c1bb289a9cc3adc96a45186e26848ed03d663a1f11ff20dcb86994f90576364"' }>
                                             <li class="link">
                                                 <a href="components/DualSliderComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >DualSliderComponent</a>
                                             </li>

@@ -132,13 +132,13 @@
 <title>cluster_AppModule_imports</title>
 <polygon fill="none" stroke="black" points="174,-78 174,-130 1587,-130 1587,-78 174,-78"/>
 </g>
-<g id="clust7" class="cluster">
-<title>cluster_AppModule_providers</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-130 166,-130 166,-78 16,-78"/>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster_AppModule_bootstrap</title>
 <polygon fill="none" stroke="black" points="887,-208 887,-260 1011,-260 1011,-208 887,-208"/>
+</g>
+<g id="clust7" class="cluster">
+<title>cluster_AppModule_providers</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 166,-130 166,-78 16,-78"/>
 </g>
 <!-- AppComponent -->
 <g id="node1" class="node">
@@ -423,7 +423,6 @@
 import { APP_INITIALIZER, NgModule } from &#x27;@angular/core&#x27;;
 import { BrowserModule } from &#x27;@angular/platform-browser&#x27;;
 import { BrowserAnimationsModule } from &#x27;@angular/platform-browser/animations&#x27;;
-import { NgxsReduxDevtoolsPluginModule } from &#x27;@ngxs/devtools-plugin&#x27;;
 import { NgxsLoggerPluginModule } from &#x27;@ngxs/logger-plugin&#x27;;
 import { NgxsModule } from &#x27;@ngxs/store&#x27;;
 import { NgxChartsModule } from &#x27;@swimlane/ngx-charts&#x27;;
@@ -450,7 +449,9 @@ import { UIState } from &#x27;./store/ui.state&#x27;;
 
 export function initializeApp(configService: ConfigService): () &#x3D;&gt; Promise&lt;void&gt; {
   return () &#x3D;&gt;
-    Promise.all([configService.sheetConfiguration$.toPromise(), configService.config$.toPromise()]).then(() &#x3D;&gt; {});
+    Promise.all([configService.sheetConfiguration$.toPromise(), configService.config$.toPromise()]).then(
+      () &#x3D;&gt; undefined,
+    );
 }
 
 @NgModule({
@@ -463,7 +464,6 @@ export function initializeApp(configService: ConfigService): () &#x3D;&gt; Promi
     HttpClientModule,
     NgxsModule.forRoot([SheetState, TreeState, UIState, LogsState]),
     NgxsResetPluginModule.forRoot(),
-    NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot({
       disabled: environment.production,
     }),

@@ -338,8 +338,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="53"
-                                    class="link-to-prism">src/app/components/file-upload/file-upload.component.ts:53</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/app/components/file-upload/file-upload.component.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -472,8 +472,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="62"
-                                    class="link-to-prism">src/app/components/file-upload/file-upload.component.ts:62</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="68"
+                                    class="link-to-prism">src/app/components/file-upload/file-upload.component.ts:68</a></div>
                         </td>
                     </tr>
 
@@ -539,8 +539,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="66"
-                                    class="link-to-prism">src/app/components/file-upload/file-upload.component.ts:66</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="72"
+                                    class="link-to-prism">src/app/components/file-upload/file-upload.component.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -606,8 +606,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="70"
-                                    class="link-to-prism">src/app/components/file-upload/file-upload.component.ts:70</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/app/components/file-upload/file-upload.component.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -673,8 +673,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="74"
-                                    class="link-to-prism">src/app/components/file-upload/file-upload.component.ts:74</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="80"
+                                    class="link-to-prism">src/app/components/file-upload/file-upload.component.ts:80</a></div>
                         </td>
                     </tr>
 
@@ -740,8 +740,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="58"
-                                    class="link-to-prism">src/app/components/file-upload/file-upload.component.ts:58</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/app/components/file-upload/file-upload.component.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -892,7 +892,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/file-upload/file-upload.component.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/file-upload/file-upload.component.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -917,7 +917,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/file-upload/file-upload.component.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/file-upload/file-upload.component.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -976,11 +976,17 @@ export class FileUploadComponent implements ControlValueAccessor, Validator {
 
   fileUploadError &#x3D; false;
 
-  onChange &#x3D; (_fileName: string) &#x3D;&gt; {};
+  onChange &#x3D; (_fileName: string) &#x3D;&gt; {
+    // Intentionally empty
+  };
 
-  onTouched &#x3D; () &#x3D;&gt; {};
+  onTouched &#x3D; () &#x3D;&gt; {
+    // Intentionally empty
+  };
 
-  onValidatorChange &#x3D; () &#x3D;&gt; {};
+  onValidatorChange &#x3D; () &#x3D;&gt; {
+    // Intentionally empty
+  };
 
   onClick(fileUpload: HTMLInputElement) {
     this.onTouched();

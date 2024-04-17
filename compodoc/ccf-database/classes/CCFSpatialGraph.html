@@ -199,7 +199,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/ccf-spatial-graph.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/lib/ccf-spatial-graph.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -261,7 +261,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/ccf-spatial-graph.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/lib/ccf-spatial-graph.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -295,8 +295,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="88"
-                                    class="link-to-prism">src/lib/ccf-spatial-graph.ts:88</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="84"
+                                    class="link-to-prism">src/lib/ccf-spatial-graph.ts:84</a></div>
                         </td>
                     </tr>
 
@@ -398,8 +398,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="84"
-                                    class="link-to-prism">src/lib/ccf-spatial-graph.ts:84</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="80"
+                                    class="link-to-prism">src/lib/ccf-spatial-graph.ts:80</a></div>
                         </td>
                     </tr>
 
@@ -477,8 +477,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="47"
-                                    class="link-to-prism">src/lib/ccf-spatial-graph.ts:47</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/lib/ccf-spatial-graph.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -514,8 +514,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="120"
-                                    class="link-to-prism">src/lib/ccf-spatial-graph.ts:120</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="116"
+                                    class="link-to-prism">src/lib/ccf-spatial-graph.ts:116</a></div>
                         </td>
                     </tr>
 
@@ -593,8 +593,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="92"
-                                    class="link-to-prism">src/lib/ccf-spatial-graph.ts:92</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="88"
+                                    class="link-to-prism">src/lib/ccf-spatial-graph.ts:88</a></div>
                         </td>
                     </tr>
 
@@ -663,8 +663,8 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Euler, Matrix4, toDegrees, toRadians } from &#x27;@math.gl/core&#x27;;
-import * as graphology from &#x27;graphology&#x27;;
-import shortestPath from &#x27;graphology-shortest-path/unweighted&#x27;;
+import { DirectedGraph } from &#x27;graphology&#x27;;
+import { bidirectional } from &#x27;graphology-shortest-path/unweighted&#x27;;
 import { get } from &#x27;lodash&#x27;;
 import { readQuads } from &#x27;triple-store-utils&#x27;;
 import { v4 as uuidV4 } from &#x27;uuid&#x27;;
@@ -673,10 +673,6 @@ import { CCFDatabase } from &#x27;./ccf-database&#x27;;
 import { getSpatialPlacement } from &#x27;./queries/spatial-result-n3&#x27;;
 import { FlatSpatialPlacement, SpatialEntity, SpatialPlacement } from &#x27;./spatial-types&#x27;;
 import { ccf, rdf } from &#x27;./util/prefixes&#x27;;
-
-// Ugly workaround to make ccf database work both on the browser and node.js 18+
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const DirectedGraph &#x3D; ((graphology.default || graphology) as any).DirectedGraph;
 
 export function applySpatialPlacement(tx: Matrix4, placement: SpatialPlacement): Matrix4 {
   const p &#x3D; placement;
@@ -763,7 +759,7 @@ export class CCFSpatialGraph {
 
     const store &#x3D; this.db.store;
     const tx &#x3D; new Matrix4(Matrix4.IDENTITY);
-    const path &#x3D; shortestPath(this.graph, sourceIRI, targetIRI);
+    const path &#x3D; bidirectional(this.graph, sourceIRI, targetIRI);
     if (path &amp;&amp; path.length &gt; 0) {
       path.reverse();
       let target: string | number &#x3D; &#x27;&#x27;;

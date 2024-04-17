@@ -274,11 +274,11 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EventEmitter } from &#x27;events&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import * as rdf from &#x27;@rdfjs/types&#x27;;
+import { EventEmitter } from &#x27;events&#x27;;
 import { toRDF } from &#x27;jsonld&#x27;;
 import { JsonLd, Url } from &#x27;jsonld/jsonld-spec&#x27;;
 import { DataFactory, Parser, Quad, Store } from &#x27;n3&#x27;;
-import * as rdf from &#x27;rdf-js&#x27;;
 import { RdfXmlParser } from &#x27;rdfxml-streaming-parser&#x27;;
 import { Readable } from &#x27;readable-stream&#x27;;
 
@@ -390,10 +390,7 @@ export async function addRdfXmlToStore(
   }
 
   if (xmlData) {
-    const xmlParser &#x3D; new RdfXmlParser({
-      dataFactory: DataFactory,
-      strict: true,
-    });
+    const xmlParser &#x3D; new RdfXmlParser({ dataFactory: DataFactory });
     const result &#x3D; new Promise&lt;rdf.Sink&lt;EventEmitter, EventEmitter&gt;&gt;((resolve) &#x3D;&gt; {
       xmlParser.once(&#x27;end&#x27;, () &#x3D;&gt; resolve(store));
     });

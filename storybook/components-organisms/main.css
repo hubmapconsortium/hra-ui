@@ -1719,7 +1719,7 @@ html {
   --mdc-list-list-item-disabled-leading-icon-opacity: 0.38;
   --mdc-list-list-item-disabled-trailing-icon-opacity: 0.38;
   --mat-list-active-indicator-color: transparent;
-  --mat-list-active-indicator-shape: 0;
+  --mat-list-active-indicator-shape: 4px;
 }
 
 html {
@@ -3229,7 +3229,7 @@ html {
   --mdc-list-list-item-disabled-leading-icon-opacity: 0.38;
   --mdc-list-list-item-disabled-trailing-icon-opacity: 0.38;
   --mat-list-active-indicator-color: transparent;
-  --mat-list-active-indicator-shape: 0;
+  --mat-list-active-indicator-shape: 4px;
   --mdc-list-list-item-label-text-color: white;
   --mdc-list-list-item-supporting-text-color: rgba(255, 255, 255, 0.7);
   --mdc-list-list-item-leading-icon-color: rgba(255, 255, 255, 0.5);

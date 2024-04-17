@@ -24,83 +24,83 @@
 <title>cluster_UploadModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 594,-268 594,-70 8,-70"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_UploadModule_imports</title>
-<polygon fill="none" stroke="black" points="162,-78 162,-130 586,-130 586,-78 162,-78"/>
+<g id="clust2" class="cluster">
+<title>cluster_UploadModule_declarations</title>
+<polygon fill="none" stroke="black" points="448,-78 448,-130 586,-130 586,-78 448,-78"/>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_UploadModule_exports</title>
-<polygon fill="none" stroke="black" points="222,-208 222,-260 364,-260 364,-208 222,-208"/>
+<polygon fill="none" stroke="black" points="224,-208 224,-260 366,-260 366,-208 224,-208"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_UploadModule_declarations</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-130 154,-130 154,-78 16,-78"/>
+<g id="clust4" class="cluster">
+<title>cluster_UploadModule_imports</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 440,-130 440,-78 16,-78"/>
 </g>
 <!-- UploadComponent -->
 <g id="node1" class="node">
 <title>UploadComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="146.05,-122 23.95,-122 23.95,-86 146.05,-86 146.05,-122"/>
-<text text-anchor="middle" x="85" y="-99.8" font-family="Times,serif" font-size="14.00">UploadComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="578.05,-122 455.95,-122 455.95,-86 578.05,-86 578.05,-122"/>
+<text text-anchor="middle" x="517" y="-99.8" font-family="Times,serif" font-size="14.00">UploadComponent</text>
 </g>
 <!-- UploadModule -->
 <g id="node2" class="node">
 <title>UploadModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="343.26,-187 340.26,-191 319.26,-191 316.26,-187 242.74,-187 242.74,-151 343.26,-151 343.26,-187"/>
-<text text-anchor="middle" x="293" y="-164.8" font-family="Times,serif" font-size="14.00">UploadModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="345.26,-187 342.26,-191 321.26,-191 318.26,-187 244.74,-187 244.74,-151 345.26,-151 345.26,-187"/>
+<text text-anchor="middle" x="295" y="-164.8" font-family="Times,serif" font-size="14.00">UploadModule</text>
 </g>
 <!-- UploadComponent&#45;&gt;UploadModule -->
 <g id="edge1" class="edge">
 <title>UploadComponent&#45;&gt;UploadModule</title>
-<path fill="none" stroke="black" d="M85,-122.11C85,-141.34 85,-169 85,-169 85,-169 232.65,-169 232.65,-169"/>
-<polygon fill="black" stroke="black" points="232.65,-172.5 242.65,-169 232.65,-165.5 232.65,-172.5"/>
+<path fill="none" stroke="black" d="M517,-122.11C517,-141.34 517,-169 517,-169 517,-169 355.38,-169 355.38,-169"/>
+<polygon fill="black" stroke="black" points="355.38,-165.5 345.38,-169 355.38,-172.5 355.38,-165.5"/>
 </g>
 <!-- UploadComponent  -->
 <g id="node6" class="node">
 <title>UploadComponent </title>
-<polygon fill="#fb8072" stroke="black" points="356.04,-252 229.96,-252 229.96,-216 356.04,-216 356.04,-252"/>
-<text text-anchor="middle" x="293" y="-229.8" font-family="Times,serif" font-size="14.00">UploadComponent </text>
+<polygon fill="#fb8072" stroke="black" points="358.04,-252 231.96,-252 231.96,-216 358.04,-216 358.04,-252"/>
+<text text-anchor="middle" x="295" y="-229.8" font-family="Times,serif" font-size="14.00">UploadComponent </text>
 </g>
 <!-- UploadModule&#45;&gt;UploadComponent  -->
 <g id="edge5" class="edge">
 <title>UploadModule&#45;&gt;UploadComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M293,-187.11C293,-187.11 293,-205.99 293,-205.99"/>
-<polygon fill="black" stroke="black" points="289.5,-205.99 293,-215.99 296.5,-205.99 289.5,-205.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M295,-187.11C295,-187.11 295,-205.99 295,-205.99"/>
+<polygon fill="black" stroke="black" points="291.5,-205.99 295,-215.99 298.5,-205.99 291.5,-205.99"/>
 </g>
 <!-- FileUploadModule -->
 <g id="node3" class="node">
 <title>FileUploadModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="578.04,-122 575.04,-126 554.04,-126 551.04,-122 455.96,-122 455.96,-86 578.04,-86 578.04,-122"/>
-<text text-anchor="middle" x="517" y="-99.8" font-family="Times,serif" font-size="14.00">FileUploadModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="432.04,-122 429.04,-126 408.04,-126 405.04,-122 309.96,-122 309.96,-86 432.04,-86 432.04,-122"/>
+<text text-anchor="middle" x="371" y="-99.8" font-family="Times,serif" font-size="14.00">FileUploadModule</text>
 </g>
 <!-- FileUploadModule&#45;&gt;UploadModule -->
 <g id="edge2" class="edge">
 <title>FileUploadModule&#45;&gt;UploadModule</title>
-<path fill="none" stroke="black" d="M517,-122.11C517,-141.34 517,-169 517,-169 517,-169 353.27,-169 353.27,-169"/>
-<polygon fill="black" stroke="black" points="353.27,-165.5 343.27,-169 353.27,-172.5 353.27,-165.5"/>
+<path fill="none" stroke="black" d="M327.56,-122.11C327.56,-122.11 327.56,-140.99 327.56,-140.99"/>
+<polygon fill="black" stroke="black" points="324.06,-140.99 327.56,-150.99 331.06,-140.99 324.06,-140.99"/>
 </g>
 <!-- SidenavHeaderModule -->
 <g id="node4" class="node">
 <title>SidenavHeaderModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="437.56,-122 434.56,-126 413.56,-126 410.56,-122 292.44,-122 292.44,-86 437.56,-86 437.56,-122"/>
-<text text-anchor="middle" x="365" y="-99.8" font-family="Times,serif" font-size="14.00">SidenavHeaderModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="291.56,-122 288.56,-126 267.56,-126 264.56,-122 146.44,-122 146.44,-86 291.56,-86 291.56,-122"/>
+<text text-anchor="middle" x="219" y="-99.8" font-family="Times,serif" font-size="14.00">SidenavHeaderModule</text>
 </g>
 <!-- SidenavHeaderModule&#45;&gt;UploadModule -->
 <g id="edge3" class="edge">
 <title>SidenavHeaderModule&#45;&gt;UploadModule</title>
-<path fill="none" stroke="black" d="M317.92,-122.11C317.92,-122.11 317.92,-140.99 317.92,-140.99"/>
-<polygon fill="black" stroke="black" points="314.42,-140.99 317.92,-150.99 321.42,-140.99 314.42,-140.99"/>
+<path fill="none" stroke="black" d="M268.08,-122.11C268.08,-122.11 268.08,-140.99 268.08,-140.99"/>
+<polygon fill="black" stroke="black" points="264.58,-140.99 268.08,-150.99 271.58,-140.99 264.58,-140.99"/>
 </g>
 <!-- SidenavModule -->
 <g id="node5" class="node">
 <title>SidenavModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="274.15,-122 271.15,-126 250.15,-126 247.15,-122 169.85,-122 169.85,-86 274.15,-86 274.15,-122"/>
-<text text-anchor="middle" x="222" y="-99.8" font-family="Times,serif" font-size="14.00">SidenavModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="128.15,-122 125.15,-126 104.15,-126 101.15,-122 23.85,-122 23.85,-86 128.15,-86 128.15,-122"/>
+<text text-anchor="middle" x="76" y="-99.8" font-family="Times,serif" font-size="14.00">SidenavModule</text>
 </g>
 <!-- SidenavModule&#45;&gt;UploadModule -->
 <g id="edge4" class="edge">
 <title>SidenavModule&#45;&gt;UploadModule</title>
-<path fill="none" stroke="black" d="M258.47,-122.11C258.47,-122.11 258.47,-140.99 258.47,-140.99"/>
-<polygon fill="black" stroke="black" points="254.97,-140.99 258.47,-150.99 261.97,-140.99 254.97,-140.99"/>
+<path fill="none" stroke="black" d="M76,-122.11C76,-141.34 76,-169 76,-169 76,-169 234.48,-169 234.48,-169"/>
+<polygon fill="black" stroke="black" points="234.48,-172.5 244.48,-169 234.48,-165.5 234.48,-172.5"/>
 </g>
 </g>
 </svg>
