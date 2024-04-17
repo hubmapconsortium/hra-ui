@@ -4,7 +4,7 @@ import {
   ResourceRegistryActions,
   ResourceRegistryState,
 } from '@hra-ui/cdk/state';
-import { Meta, Story } from '@storybook/angular';
+import { Meta, StoryFn } from '@storybook/angular';
 import { HeaderBehaviorComponent } from './header-behavior.component';
 
 export default {
@@ -21,9 +21,11 @@ export default {
   },
 } as Meta<HeaderBehaviorComponent>;
 
-const Template: Story<HeaderBehaviorComponent> = (args: HeaderBehaviorComponent) => ({
+const Template: StoryFn<HeaderBehaviorComponent> = (args) => ({
   props: args,
 });
 
-export const Primary = Template.bind({});
-Primary.args = {};
+export const Primary = {
+  render: Template,
+  args: {},
+};

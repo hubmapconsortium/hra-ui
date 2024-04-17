@@ -1,4 +1,4 @@
-import { Meta, moduleMetadata, Story } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
 
 import { FooterComponent } from './footer.component';
 
@@ -20,7 +20,7 @@ const DownloadFormat = [
   { label: 'Download PNG' },
 ];
 
-const Template: Story<FooterComponent> = (args: FooterComponent) => ({
+const Template: StoryFn<FooterComponent> = (args) => ({
   props: args,
   styles: [
     `
@@ -32,18 +32,24 @@ const Template: Story<FooterComponent> = (args: FooterComponent) => ({
   ],
 });
 
-export const Large = Template.bind({});
-Large.args = {
-  size: 'large',
-  productLogoUrl: 'assets/icons/logo-icon.svg',
-  productTitle: 'Human Reference Atlas',
-  downloadFormats: DownloadFormat,
+export const Large = {
+  render: Template,
+
+  args: {
+    size: 'large',
+    productLogoUrl: 'assets/icons/logo-icon.svg',
+    productTitle: 'Human Reference Atlas',
+    downloadFormats: DownloadFormat,
+  },
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small',
-  productLogoUrl: 'assets/icons/logo-icon.svg',
-  productTitle: 'Human Reference Atlas',
-  downloadFormats: DownloadFormat,
+export const Small = {
+  render: Template,
+
+  args: {
+    size: 'small',
+    productLogoUrl: 'assets/icons/logo-icon.svg',
+    productTitle: 'Human Reference Atlas',
+    downloadFormats: DownloadFormat,
+  },
 };

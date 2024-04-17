@@ -10,7 +10,7 @@ import { processSceneNodes } from './util/process-scene-nodes';
 
 interface BodyUIViewStateProps {
   orbitAxis?: string;
-  target?: Matrix4 | number[];
+  target?: [number, number, number];
   zoom: number;
   rotationOrbit: number;
   rotationX: number;
@@ -22,7 +22,7 @@ export interface BodyUIProps {
   canvas: string | HTMLCanvasElement;
   parent: HTMLElement;
   debugSceneNodeProcessing?: boolean;
-  target: Matrix4 | number[];
+  target: [number, number, number];
   interactive: boolean;
   rotation: number;
   minRotationX: number;

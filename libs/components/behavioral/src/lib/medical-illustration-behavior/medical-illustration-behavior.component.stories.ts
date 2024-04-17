@@ -1,5 +1,5 @@
 import { IllustratorActions, IllustratorState } from '@hra-ui/state';
-import { Meta, Story, applicationConfig, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryFn, applicationConfig, moduleMetadata } from '@storybook/angular';
 
 import { FtuDataService, Iri, MockFtuDataService } from '@hra-ui/services';
 import { NgxsModule } from '@ngxs/store';
@@ -26,9 +26,11 @@ export default {
   ],
 } as Meta<MedicalIllustrationBehaviorComponent>;
 
-const Template: Story<MedicalIllustrationBehaviorComponent> = (args: MedicalIllustrationBehaviorComponent) => ({
+const Template: StoryFn<MedicalIllustrationBehaviorComponent> = (args) => ({
   props: args,
 });
 
-export const Primary = Template.bind({});
-Primary.args = {};
+export const Primary = {
+  render: Template,
+  args: {},
+};

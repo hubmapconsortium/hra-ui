@@ -2,13 +2,14 @@
   "name": "ccf-eui",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
+  "sourceRoot": "apps/ccf-eui/src",
+  "prefix": "ccf",
+  "tags": ["ccf", "karma-test-runner"],
   "generators": {
     "@schematics/angular:component": {
       "style": "scss"
     }
   },
-  "sourceRoot": "apps/ccf-eui/src",
-  "prefix": "ccf",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
@@ -146,7 +147,7 @@
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": ["apps/ccf-eui/**/*.ts", "apps/ccf-eui/**/*.html"]
+        "lintFilePatterns": ["{projectRoot}/**/*.ts", "{projectRoot}/**/*.html"]
       }
     },
     "build-webcomponent": {
@@ -170,6 +171,5 @@
         }
       }
     }
-  },
-  "tags": ["ccf", "karma-test-runner"]
+  }
 }

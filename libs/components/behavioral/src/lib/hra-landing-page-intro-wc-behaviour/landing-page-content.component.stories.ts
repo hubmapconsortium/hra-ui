@@ -1,5 +1,5 @@
 import { ResourceRegistryActions, ResourceRegistryState } from '@hra-ui/cdk/state';
-import { Meta, Story } from '@storybook/angular';
+import { Meta, StoryFn } from '@storybook/angular';
 
 import { HraLandingPageIntroWcBehaviourComponent } from './hra-landing-page-intro-wc-behaviour.component';
 
@@ -14,6 +14,10 @@ export default {
   },
 } as Meta<HraLandingPageIntroWcBehaviourComponent>;
 
-const Template: Story<HraLandingPageIntroWcBehaviourComponent> = (args) => ({ props: args });
+const Template: StoryFn<HraLandingPageIntroWcBehaviourComponent> = (args) => ({
+  props: args,
+});
 
-export const Default = Template.bind({});
+export const Default = {
+  render: Template,
+};

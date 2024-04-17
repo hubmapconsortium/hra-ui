@@ -1,5 +1,5 @@
 import { moduleMetadata } from '@storybook/angular';
-import { Meta, Story } from '@storybook/angular';
+import { Meta, StoryFn } from '@storybook/angular';
 import { FullscreenContentComponent } from './fullscreen-content.component';
 import { FullscreenContainerComponent } from './fullscreen-container.component';
 
@@ -14,7 +14,7 @@ export default {
 } as Meta<FullscreenContainerComponent>;
 
 const Template =
-  (content: string): Story<FullscreenContainerComponent> =>
+  (content: string): StoryFn<FullscreenContainerComponent> =>
   (args) => ({
     props: args,
     template: `

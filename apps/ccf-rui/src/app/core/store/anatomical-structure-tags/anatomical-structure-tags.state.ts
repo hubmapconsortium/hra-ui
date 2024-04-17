@@ -13,6 +13,7 @@ import { PageState } from '../page/page.state';
 import { SceneState } from '../scene/scene.state';
 
 /** Tag state model */
+/* eslint-disable @typescript-eslint/no-empty-interface */
 export interface AnatomicalStructureTagStateModel {}
 
 /**

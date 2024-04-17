@@ -1,0 +1,19 @@
+:host {
+  .player-title {
+    font-weight: 300;
+    font-size: 1.5rem;
+    line-height: 2.125rem;
+    letter-spacing: 0.005rem;
+    margin-bottom: 2rem;
+  }
+
+  ::ng-deep youtube-player iframe {
+    max-height: 584px;
+  }
+
+  @media (max-width: 26.75rem) {
+    ::ng-deep youtube-player iframe {
+      height: 232px;
+    }
+  }
+}

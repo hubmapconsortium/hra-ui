@@ -1,6 +1,6 @@
 import { ResourceRegistryActions, ResourceRegistryState } from '@hra-ui/cdk/state';
 import { NgxsModule } from '@ngxs/store';
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { moduleMetadata, StoryFn, Meta } from '@storybook/angular';
 import { FooterBehaviorComponent } from './footer-behavior.component';
 
 export default {
@@ -19,9 +19,11 @@ export default {
   ],
 } as Meta<FooterBehaviorComponent>;
 
-const Template: Story<FooterBehaviorComponent> = (args: FooterBehaviorComponent) => ({
+const Template: StoryFn<FooterBehaviorComponent> = (args) => ({
   props: args,
 });
 
-export const Primary = Template.bind({});
-Primary.args = {};
+export const Primary = {
+  render: Template,
+  args: {},
+};

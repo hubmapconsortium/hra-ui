@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/angular';
+import { Meta, StoryFn } from '@storybook/angular';
 
 import { InteractiveSvgComponent, NodeMapEntry } from './interactive-svg.component';
 
@@ -36,6 +36,10 @@ export default {
   },
 } as Meta<InteractiveSvgComponent<NodeMapEntry>>;
 
-const Template: Story<InteractiveSvgComponent<NodeMapEntry>> = (args) => ({ props: args });
+const Template: StoryFn<InteractiveSvgComponent<NodeMapEntry>> = (args) => ({
+  props: args,
+});
 
-export const Default = Template.bind({});
+export const Default = {
+  render: Template,
+};

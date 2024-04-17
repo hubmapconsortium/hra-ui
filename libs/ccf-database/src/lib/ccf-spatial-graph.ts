@@ -1,6 +1,6 @@
 import { Euler, Matrix4, toDegrees, toRadians } from '@math.gl/core';
-import * as graphology from 'graphology';
-import shortestPath from 'graphology-shortest-path/unweighted';
+import { DirectedGraph } from 'graphology';
+import { bidirectional } from 'graphology-shortest-path/unweighted';
 import { get } from 'lodash';
 import { readQuads } from 'triple-store-utils';
 import { v4 as uuidV4 } from 'uuid';
@@ -9,10 +9,6 @@ import { CCFDatabase } from './ccf-database';
 import { getSpatialPlacement } from './queries/spatial-result-n3';
 import { FlatSpatialPlacement, SpatialEntity, SpatialPlacement } from './spatial-types';
 import { ccf, rdf } from './util/prefixes';
-
-// Ugly workaround to make ccf database work both on the browser and node.js 18+
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const DirectedGraph = ((graphology.default || graphology) as any).DirectedGraph;
 
 export function applySpatialPlacement(tx: Matrix4, placement: SpatialPlacement): Matrix4 {
   const p = placement;
@@ -99,7 +95,7 @@ export class CCFSpatialGraph {
 
     const store = this.db.store;
     const tx = new Matrix4(Matrix4.IDENTITY);
-    const path = shortestPath(this.graph, sourceIRI, targetIRI);
+    const path = bidirectional(this.graph, sourceIRI, targetIRI);
     if (path && path.length > 0) {
       path.reverse();
       let target: string | number = '';

@@ -1,0 +1,42 @@
+:host {
+  display: block;
+  .sop-title {
+    font-weight: 300;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005rem;
+    color: #000000;
+    margin-bottom: 2rem;
+  }
+
+  .sop-items {
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005rem;
+    color: #054f89;
+  }
+
+  .text:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    color: #444c65;
+  }
+
+  a {
+    text-decoration: none;
+    &:visited {
+      color: #054f89;
+    }
+
+    &:link {
+      color: #054f89;
+    }
+  }
+
+  @media (max-width: 26.75rem) {
+    .sop-title {
+      line-height: 2.125rem;
+    }
+  }
+}
