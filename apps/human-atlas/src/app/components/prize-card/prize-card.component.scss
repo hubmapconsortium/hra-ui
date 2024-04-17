@@ -1,0 +1,113 @@
+:host {
+  display: block;
+  mat-card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .content {
+    max-width: 20rem;
+  }
+
+  .presented-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: inherit;
+  }
+
+  .presented {
+    max-width: 8.438rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-weight: 300;
+    font-size: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .winner {
+    padding-top: 1rem;
+    gap: 0.5rem;
+    font-size: 1rem;
+    max-width: 20rem;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .prize-place {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.5rem;
+    letter-spacing: 0.005rem;
+    padding-bottom: 1rem;
+  }
+
+  .solution-button {
+    margin-top: 1rem;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 0.875rem;
+    padding: 0rem 1.5rem;
+    margin-left: 1px;
+    color: #444c65;
+    border-radius: 6.25rem;
+    height: 40px;
+    background-color: #f7f2fa;
+    box-shadow:
+      0px 1px 2px rgba(0, 0, 0, 0.3),
+      0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    letter-spacing: 0;
+  }
+
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .users {
+    padding-left: 3rem;
+  }
+
+  .user-image {
+    padding-right: 1rem;
+  }
+
+  a:-webkit-any-link {
+    text-decoration: none;
+  }
+
+  ::ng-deep p {
+    margin-block-start: unset;
+    margin-block-end: unset;
+    margin-inline-start: unset;
+    margin-inline-end: unset;
+  }
+
+  @media (max-width: 26.75rem) {
+    mat-card {
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
+
+    .users {
+      padding: unset;
+      padding-top: 3rem;
+    }
+  }
+}
+
+::ng-deep .kaggle-id a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  color: #444c65;
+}

@@ -1,0 +1,73 @@
+:host {
+  display: flex;
+  font-weight: 300;
+  flex-wrap: wrap;
+
+  .count-card {
+    display: flex;
+    flex-direction: row;
+    height: 11.5rem;
+    width: 7.6rem;
+    justify-content: center;
+    border: 0.0625rem solid #e0e0e0;
+    box-shadow: 0rem 0.125rem 0.0625rem rgba(0, 0, 0, 0.16);
+    border-radius: 0.25rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding: unset;
+  }
+
+  .mat-mdc-card-content {
+    padding: 0;
+  }
+
+  .mat-mdc-card:last-child {
+    margin-right: unset;
+  }
+
+  .mat-mdc-card-content {
+    text-align: center;
+  }
+
+  img {
+    height: 2.5rem;
+    width: 2.3125rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-count {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    margin: 0;
+  }
+
+  .card-text {
+    font-size: 0.875rem;
+    padding: 0rem 0.5rem;
+    margin: 0;
+  }
+
+  @media (max-width: 80rem) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: unset;
+
+    .mat-mdc-card {
+      width: unset;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .mat-mdc-card:nth-child(3n) {
+      margin-right: unset;
+    }
+  }
+
+  @media (max-width: 25.125rem) {
+    .mat-mdc-card {
+      height: 14rem;
+    }
+  }
+}

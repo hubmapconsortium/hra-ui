@@ -47,3 +47,33 @@ a {
     @include cta.flatFocus();
   }
 }
+
+.header-nav {
+  color: #201e3d;
+  border-bottom: solid #4b4b5e 2px;
+
+  &:hover {
+    border-bottom: solid #b20a2f 2px;
+  }
+
+  &:active {
+    color: #6a061c;
+    border-bottom: solid #6a061c 2px;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    border-bottom: none;
+    outline: none;
+    margin: -0.25rem -0.25rem -0.125rem -0.25rem;
+    background-color: white;
+    border: solid #e00d3a 4px;
+  }
+}
+
+.selected {
+  box-shadow: 0 -2px 0 #e00d3a inset;
+}
