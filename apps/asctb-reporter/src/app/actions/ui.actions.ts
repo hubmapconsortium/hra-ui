@@ -28,7 +28,6 @@ export class NoError {
 
 export class ToggleControlPane {
   static readonly type = '[TOGGLE] Control Pane';
-  constructor() {}
 }
 
 export class OpenSnackbar {
@@ -41,32 +40,26 @@ export class OpenSnackbar {
 
 export class CloseSnackbar {
   static readonly type = '[CLOSE] Snackbar';
-  constructor() {}
 }
 
 export class ToggleIndentList {
   static readonly type = '[TOGGLE] Indent List';
-  constructor() {}
 }
 
 export class ToggleReport {
   static readonly type = '[TOGGLE] Report';
-  constructor() {}
 }
 
 export class ToggleDebugLogs {
   static readonly type = '[TOGGLE] Debug Logs';
-  constructor() {}
 }
 
 export class CloseRightSideNav {
   static readonly type = '[CLOSE] Right Side Nav';
-  constructor() {}
 }
 
 export class ToggleBottomSheet {
   static readonly type = '[TOGGLE] Bottom Sheet';
-  constructor() {}
 }
 
 export class OpenBottomSheet {
@@ -81,30 +74,24 @@ export class OpenBottomSheetDOI {
 
 export class CloseBottomSheet {
   static readonly type = '[CLOSE] Bottom Sheet';
-  constructor() {}
 }
 
 export class CloseBottomSheetDOI {
   static readonly type = '[CLOSE] Bottom Sheet DOI';
-  constructor() {}
 }
 
 export class OpenCompare {
   static readonly type = '[OPEN] Compare';
-  constructor() {}
 }
 
 export class CloseCompare {
   static readonly type = '[CLOSE] Compare';
-  constructor() {}
 }
 
 export class OpenSearch {
   static readonly type = '[OPEN] Search';
-  constructor() {}
 }
 
 export class CloseSearch {
   static readonly type = '[CLOSE] Search';
-  constructor() {}
 }

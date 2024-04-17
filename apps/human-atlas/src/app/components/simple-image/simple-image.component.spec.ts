@@ -9,7 +9,11 @@ describe('SimpleImageComponent', () => {
   let shallow: Shallow<SimpleImageComponent>;
 
   beforeEach(() => {
-    shallow = new Shallow(SimpleImageComponent, SimpleImageModule).mock(MatDialog, { open: () => {} });
+    shallow = new Shallow(SimpleImageComponent, SimpleImageModule).mock(MatDialog, {
+      open: () => {
+        // Intentionally empty
+      },
+    });
   });
 
   it('should create', async () => {

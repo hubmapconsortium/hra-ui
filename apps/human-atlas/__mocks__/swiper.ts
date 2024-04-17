@@ -1,3 +1,5 @@
 export default {
-  use() {},
+  use() {
+    // Intentionally empty
+  },
 };

@@ -1,4 +1,4 @@
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { moduleMetadata, StoryFn, Meta } from '@storybook/angular';
 import { HeaderComponent } from './header.component';
 
 export default {
@@ -11,13 +11,16 @@ export default {
   ],
 } as Meta<HeaderComponent>;
 
-const Template: Story<HeaderComponent> = (args: HeaderComponent) => ({
+const Template: StoryFn<HeaderComponent> = (args) => ({
   props: args,
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
-  productLogoUrl: 'assets/icons/logo-icon.svg',
-  productTitle: 'Human Reference Atlas',
-  appTitle: 'Functional Tissue Unit Explorer',
+export const Primary = {
+  render: Template,
+
+  args: {
+    productLogoUrl: 'assets/icons/logo-icon.svg',
+    productTitle: 'Human Reference Atlas',
+    appTitle: 'Functional Tissue Unit Explorer',
+  },
 };

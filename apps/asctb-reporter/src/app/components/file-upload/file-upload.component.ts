@@ -44,11 +44,17 @@ export class FileUploadComponent implements ControlValueAccessor, Validator {
 
   fileUploadError = false;
 
-  onChange = (_fileName: string) => {};
+  onChange = (_fileName: string) => {
+    // Intentionally empty
+  };
 
-  onTouched = () => {};
+  onTouched = () => {
+    // Intentionally empty
+  };
 
-  onValidatorChange = () => {};
+  onValidatorChange = () => {
+    // Intentionally empty
+  };
 
   onClick(fileUpload: HTMLInputElement) {
     this.onTouched();
