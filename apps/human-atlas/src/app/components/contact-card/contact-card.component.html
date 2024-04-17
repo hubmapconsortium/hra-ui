@@ -1,0 +1,17 @@
+<mat-card class="contact-card" *ngFor="let card of contactCard">
+  <div class="image-container">
+    <img mat-card-image [src]="card.image" [alt]="card.alt" />
+  </div>
+  <mat-card-content>
+    <p class="work-field">{{ card.field }}</p>
+    <p class="contact-name">{{ card.name }}</p>
+    <mat-divider></mat-divider>
+    <p class="designation">
+      {{ card.role }}
+    </p>
+    <p class="contact-email">
+      <span class="material-symbols-outlined">email</span>&nbsp;
+      <a href="mailto:{{ card.email }}">{{ card.email }}</a>
+    </p>
+  </mat-card-content>
+</mat-card>

@@ -43,7 +43,7 @@ export function fixArgTypes(): ArgTypesEnhancer<AngularRenderer, Args> {
     const exclude = [...(context.parameters['controls']?.exclude ?? [])];
 
     for (const [key, type] of Object.entries(argTypes)) {
-      switch (type['table'].category) {
+      switch (type['table']?.category) {
         case 'inputs':
           const defaultValue = parseDefaultValue(type);
           if (defaultValue !== type.defaultValue) {
