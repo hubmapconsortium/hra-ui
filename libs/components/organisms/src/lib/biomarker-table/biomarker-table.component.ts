@@ -1,14 +1,20 @@
+import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   OnChanges,
+  OnInit,
   Output,
   SimpleChanges,
+  ViewChild,
+  inject,
 } from '@angular/core';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { HoverDirective } from '@hra-ui/cdk';
 import { GradientPoint, SizeLegend } from '@hra-ui/components/atoms';
 import {
@@ -17,6 +23,8 @@ import {
   DataItem,
   SourceListItem,
 } from '@hra-ui/components/molecules';
+import { TableVirtualScrollDataSource, TableVirtualScrollModule } from 'ng-table-virtual-scroll';
+import { ReplaySubject } from 'rxjs';
 
 /**
  * RGBTriblet of type RGB to store color
@@ -64,12 +72,14 @@ export type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];
     BiomarkerTableDataIconComponent,
     HoverDirective,
     BiomarkerTableDataCardComponent,
+    ScrollingModule,
+    TableVirtualScrollModule,
   ],
   templateUrl: './biomarker-table.component.html',
   styleUrls: ['./biomarker-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
+export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnChanges {
   /**
    * Input: TissueInfo carrying the details of the tissue open
    */
@@ -101,13 +111,37 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   /** Emits cell type label when row is hovered */
   @Output() readonly rowHover = new EventEmitter<string>();
 
-  /** Getter method to provide the definations of the columns */
-  get columnsWithTypeAndCount(): string[] {
-    return ['type', 'count', ...this.columns];
+  @ViewChild(CdkVirtualScrollViewport, { static: true }) vscroll!: CdkVirtualScrollViewport;
+  @ViewChild('table', { static: true, read: ElementRef }) table!: ElementRef;
+
+  readonly columns$ = new ReplaySubject<string[]>(1);
+
+  private readonly cellWidth = 44;
+  private readonly extraDisplayedColumnCount = 2;
+
+  private horizontalViewportSize = 400;
+  private horizontalScrollOffset = 0;
+  private displayedColumnCount = 14;
+  private displayedColumnOffset = 0;
+
+  get preFillerWidth(): string {
+    return `${this.cellWidth * this.displayedColumnOffset}px`;
+  }
+
+  get postFillerWidth(): string {
+    const count = this.columns.length - this.displayedColumnCount - this.displayedColumnOffset;
+    return `${this.cellWidth * count}px`;
   }
 
   /** Source for the table */
-  readonly dataSource = new MatTableDataSource<DataRow<T>>([]);
+  readonly dataSource = new TableVirtualScrollDataSource<DataRow<T>>([]);
+
+  private readonly cdr = inject(ChangeDetectorRef);
+
+  ngOnInit(): void {
+    const scroll$ = this.vscroll.scrollable.elementScrolled();
+    scroll$.subscribe(() => this.checkDisplayedColumns());
+  }
 
   /**
    * Sets the data source for the table on every change
@@ -118,6 +152,7 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
     if ('data' in changes) {
       this.dataSource.data = this.data;
       this.sortTable();
+      this.updateColumns();
     }
 
     if ('illustrationIds' in changes) {
@@ -129,6 +164,59 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
       }
       this.sortTable();
     }
+  }
+
+  trackByIndex(index: number): number {
+    return index;
+  }
+
+  checkDisplayedColumns(): void {
+    const scrollable = this.vscroll.scrollable;
+    const size = scrollable.measureViewportSize('horizontal');
+    const offset = scrollable.measureScrollOffset('start');
+    let shouldUpdate = false;
+
+    if (size !== this.horizontalViewportSize) {
+      this.updateHorizontalViewportSize(size);
+      shouldUpdate = true;
+    }
+    if (offset !== this.horizontalScrollOffset) {
+      this.updateHorizontalViewportOffset(offset);
+      shouldUpdate = true;
+    }
+
+    if (shouldUpdate) {
+      this.updateColumns();
+    }
+  }
+
+  updateHorizontalViewportSize(size: number): void {
+    this.horizontalViewportSize = size;
+    this.displayedColumnCount =
+      Math.ceil(this.horizontalViewportSize / this.cellWidth) + this.extraDisplayedColumnCount;
+  }
+
+  updateHorizontalViewportOffset(offset: number): void {
+    this.horizontalScrollOffset = offset;
+    this.displayedColumnOffset = Math.max(Math.floor(offset / this.cellWidth) - this.extraDisplayedColumnCount / 2, 0);
+  }
+
+  updateColumns(): void {
+    const { displayedColumnCount, displayedColumnOffset } = this;
+    const columns = ['type', 'count'];
+    if (this.displayedColumnOffset > 0) {
+      columns.push('preFiller');
+    }
+
+    const displayedColumns = this.columns.slice(displayedColumnOffset, displayedColumnOffset + displayedColumnCount);
+    columns.push(...displayedColumns);
+
+    if (displayedColumnOffset + displayedColumnCount < this.columns.length) {
+      columns.push('postFiller');
+    }
+
+    this.columns$.next(columns);
+    this.cdr.markForCheck();
   }
 
   /**
