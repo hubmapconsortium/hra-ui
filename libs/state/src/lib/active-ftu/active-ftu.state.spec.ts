@@ -1,26 +1,19 @@
+import { LinkRegistryActions, LinkType } from '@hra-ui/cdk/state';
+import { Iri } from '@hra-ui/services';
 import { StateContext } from '@ngxs/store';
+import { mock, MockProxy } from 'jest-mock-extended';
 import { firstValueFrom, of } from 'rxjs';
-import { Load, SetIllustrationUrl, SetIri, SetSources } from './active-ftu.actions';
-import { ActiveFtuModel, ActiveFtuState } from './active-ftu.state';
-import { IllustratorActions } from '../illustrator';
-import { SourceRefsActions } from '../source-refs';
+
 import { CellSummaryActions } from '../cell-summary';
 import { DownloadActions } from '../download';
-import { Iri, SourceReference } from '@hra-ui/services';
-import { MockProxy, mock } from 'jest-mock-extended';
-import { LinkRegistryActions, LinkType } from '@hra-ui/cdk/state';
+import { IllustratorActions } from '../illustrator';
 import { Illustration } from '../link-ids';
+import { SourceRefsActions } from '../source-refs';
+import { Load, SetIllustrationUrl } from './active-ftu.actions';
+import { ActiveFtuModel, ActiveFtuState } from './active-ftu.state';
 
 describe('ActiveFtuState', () => {
   const testIri = 'https://www.example.com/test-iri' as Iri;
-  const testSources = [
-    {
-      id: 'testId',
-      title: 'testTitle',
-      label: 'testLabel',
-      link: 'testLink',
-    },
-  ] as SourceReference[];
   let state: ActiveFtuState;
   let ctx: MockProxy<StateContext<ActiveFtuModel>>;
 
@@ -67,22 +60,6 @@ describe('ActiveFtuState', () => {
       expect(ctx.dispatch).toHaveBeenCalledWith(
         new LinkRegistryActions.Add(Illustration, { type: LinkType.External, url: mockurl }),
       );
-    });
-  });
-
-  describe('setSources(ctx)', () => {
-    it('sets the data sources', () => {
-      ctx.getState.mockReturnValue({ sources: testSources });
-      state.setSources(ctx, new SetSources(testSources));
-      expect(ctx.patchState).toHaveBeenCalledWith({ sources: testSources });
-    });
-  });
-
-  describe('setIri(ctx)', () => {
-    it('sets the Iri for the current Ftu ', () => {
-      ctx.getState.mockReturnValue({ iri: testIri });
-      state.setIri(ctx, new SetIri(testIri));
-      expect(ctx.patchState).toHaveBeenCalledWith({ iri: testIri });
     });
   });
 

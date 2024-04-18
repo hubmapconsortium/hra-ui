@@ -4,8 +4,16 @@ import { Shallow } from 'shallow-render';
 import { SourceListComponent, SourceListItem } from './source-list.component';
 
 describe('SourceListComponent', () => {
-  let shallow: Shallow<SourceListComponent>;
-  const testSources = [{ link: 'test' }] as SourceListItem[];
+  let shallow: Shallow<SourceListComponent<SourceListItem>>;
+  const testItem = {
+    link: 'test',
+    authors: ['test'],
+    year: 2000,
+    title: 'test',
+    doi: 'test',
+    label: 'test',
+  } as SourceListItem;
+  const testSources = [testItem] as SourceListItem[];
   beforeEach(() => {
     shallow = new Shallow(SourceListComponent).dontMock(MatTableModule);
   });
@@ -43,13 +51,7 @@ describe('SourceListComponent', () => {
 
   it('toggles row selection', async () => {
     const { instance } = await shallow.render();
-    instance.toggleRow({ link: 'test' });
-    expect(instance.selectionChanged.emit).toHaveBeenCalledWith([{ link: 'test' }]);
-  });
-
-  it('handles sorting', async () => {
-    const { instance } = await shallow.render();
-    instance.handleSort();
-    expect(instance.dataSource.sort).toEqual(instance.sort);
+    instance.toggleRow(testItem);
+    expect(instance.selectionChanged.emit).toHaveBeenCalledWith(testSources);
   });
 });

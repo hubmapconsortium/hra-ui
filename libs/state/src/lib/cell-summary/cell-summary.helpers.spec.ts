@@ -1,4 +1,5 @@
 import { Biomarker, CellSummary, Iri } from '@hra-ui/services';
+
 import { computeAggregate, getColumnIndex, getRow } from './cell-summary.helpers';
 import { CellSummaryAggregate, CellSummaryAggregateRow } from './cell-summary.model';
 
@@ -15,6 +16,7 @@ describe('Cell Summary Helpers', () => {
 
   const mockSummary: CellSummary = {
     label: 'Summary Label',
+    cellSource: 'source',
     cells: mockCells,
     biomarkers: mockBiomarkers,
     summaries: [
