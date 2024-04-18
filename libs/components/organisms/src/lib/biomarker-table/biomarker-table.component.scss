@@ -4,6 +4,10 @@
 :host {
   display: block;
 
+  cdk-virtual-scroll-viewport {
+    min-height: 24.5rem;
+  }
+
   .sr-only {
     @include utils.sr-only();
   }
