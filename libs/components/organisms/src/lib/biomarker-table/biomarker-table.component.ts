@@ -6,13 +6,13 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  inject,
   Input,
   OnChanges,
   OnInit,
   Output,
   SimpleChanges,
   ViewChild,
-  inject,
 } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { HoverDirective } from '@hra-ui/cdk';

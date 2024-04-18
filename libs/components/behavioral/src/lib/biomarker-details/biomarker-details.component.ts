@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
@@ -15,15 +15,15 @@ import {
   SizeLegendComponent,
 } from '@hra-ui/components/atoms';
 import { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/components/molecules';
-import { BiomarkerTableComponent, TissueInfo } from '@hra-ui/components/organisms';
+import { BiomarkerTableComponent, DataCell, TissueInfo } from '@hra-ui/components/organisms';
 import {
   ActiveFtuActions,
   ActiveFtuSelectors,
   CellSummaryActions,
   CellSummarySelectors,
-  ResourceIds as Ids,
   IllustratorActions,
   IllustratorSelectors,
+  ResourceIds as Ids,
   ResourceTypes as RTypes,
   ScreenModeAction,
   SourceRefsActions,
@@ -65,6 +65,10 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BiomarkerDetailsComponent {
+  private readonly cdr = inject(ChangeDetectorRef);
+
+  @ViewChild('table') table!: BiomarkerTableComponent<DataCell>;
+
   /** Table tabs */
   readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);
 
@@ -159,6 +163,10 @@ export class BiomarkerDetailsComponent {
    * calls the setScreenMode function.
    */
   toggleFullscreen(): void {
+    setTimeout(() => {
+      this.table.checkDisplayedColumns();
+    }, 250);
+
     this.isTableFullScreen = !this.isTableFullScreen;
     this.setScreenMode(this.isTableFullScreen);
   }

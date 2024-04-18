@@ -12,6 +12,7 @@
 >
   <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="'Cell Types by ' + tab.label">
     <hra-biomarker-table
+      #table
       *ngIf="tab.rows.length !== 0"
       [class.small]="tab.rows.length < 10"
       [data]="$any(tab.rows)"
