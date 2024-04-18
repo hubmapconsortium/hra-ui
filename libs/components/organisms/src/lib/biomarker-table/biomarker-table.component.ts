@@ -216,7 +216,7 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
     }
 
     this.columns$.next(columns);
-    this.cdr.markForCheck();
+    this.cdr.detectChanges();
   }
 
   /**
