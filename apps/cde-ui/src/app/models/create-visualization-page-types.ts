@@ -1,12 +1,18 @@
 import { CellTypeTableData } from '../services/file-upload-service';
 
-export type ColorMap = Record<string, [number, number, number]>;
+export interface ColorMapItem {
+  cell_id: number;
+  cell_type: string;
+  cell_color: [number, number, number];
+}
+
+export type ColorMap = ColorMapItem[];
 
 export interface VisualizationSettings {
   data: CellTypeTableData[];
   anchorCellType?: string;
   metadata: MetaData;
-  colorMap: ColorMap;
+  colorMap?: ColorMap;
 }
 
 export interface MetaData {

@@ -2,6 +2,17 @@
 @use './styles/fonts';
 @use './styles/material-theming';
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type='number'] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
 .header-nav {
   color: #201e3d;
   border-bottom: solid #4b4b5e 2px;

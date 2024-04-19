@@ -1,23 +1,34 @@
 <div class="column-content">
+  @if (!file && fileTitle(); as title) {
+    <h3 class="subtitle">{{ fileTitle() }}</h3>
+  }
   @if (file) {
-    @if (fileTitle(); as title) {
-      <h3 class="subtitle">{{ title }}</h3>
-    }
-    <div class="column-info">
-      <div class="column-info-column">
+    <div class="upload-success">
+      <div class="filename">
+        @if (fileTitle(); as title) {
+          <h3 class="subtitle">File Loaded:</h3>
+        } @else {
+          <span class="loaded-label">File loaded:</span>
+        }
         <span class="column-info-list">{{ file.name }}</span>
       </div>
-      <button class="upload" mat-fab extended (click)="cancelLoad()">
+      <button class="remove-file" mat-fab extended (click)="cancelLoad()" type="button">
         <mat-icon class="material-symbols-rounded">cancel</mat-icon>
         Remove CSV
       </button>
     </div>
   } @else {
-    <h3 class="subtitle">Action Required: Upload Color Map</h3>
-    <button class="upload" mat-fab extended (click)="fileInput.click()">
+    <button class="upload" mat-fab extended (click)="fileInput.click()" type="button">
       <mat-icon class="material-symbols-rounded">upload</mat-icon>
       Upload CSV
     </button>
-    <input #fileInput (change)="load(fileInput)" type="file" [attr.accept]="accept()" name="fileInput" />
+    <input
+      #fileInput
+      (change)="load(fileInput)"
+      type="file"
+      [attr.accept]="accept()"
+      name="fileInput"
+      style="display: none"
+    />
   }
 </div>

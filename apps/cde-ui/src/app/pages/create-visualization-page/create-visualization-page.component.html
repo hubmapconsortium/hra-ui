@@ -1,4 +1,4 @@
-<form class="content" [formGroup]="visualizationForm" (keydown.enter)="$event.preventDefault()">
+<form class="content" [formGroup]="visualizationForm" (ngSubmit)="onSubmit()">
   <h1 class="title">Create a Cell Distance Visualization</h1>
 
   <mat-card class="creation-step data">
@@ -9,59 +9,23 @@
         <span class="material-symbols-rounded info"> info </span>
       </h2>
     </mat-card-header>
-    <mat-card-actions>
-      <div class="left-side">
-        <div class="column-content">
-          <h3 class="subtitle">Upload Cell Type Table</h3>
-          <div class="column-info">
-            <div class="column-info-column">
-              <h4 class="column-info-header">Required Columns</h4>
-              <span class="column-info-list">X, Y, and Cell Type</span>
-            </div>
-            <div class="column-info-column">
-              <h4 class="column-info-header">Optional Columns</h4>
-              <span class="column-info-list">Z and Cell Ontology ID</span>
-            </div>
-          </div>
-          <div class="file-upload-controls">
-            <cde-file-upload
-              accept="text/csv,.csv"
-              [loader]="loadCsv"
-              (progress)="log('progress', $event)"
-              (loadStarted)="log('start', $event)"
-              (loadCompleted)="log('completed', $event)"
-              (loadCancelled)="log('cancel')"
-              (loadErrored)="log('error', $event)"
-            >
-            </cde-file-upload>
-            <!-- @if (dataUploaded) {
-            <div class="column-info-column">
-              <h4 class="column-info-header">File loaded:</h4>
-              <span class="column-info-list">{{ uploadedFile }}</span>
-            </div>
-            <button class="upload" mat-fab extended (click)="removeFile('data')">
-              <mat-icon class="material-symbols-rounded">cancel</mat-icon>
-              Remove CSV
-            </button>
-            } @else {
-            <button class="upload" mat-fab extended (click)="upload('data')">
-              <mat-icon class="material-symbols-rounded">upload</mat-icon>
-              Upload CSV
-            </button>
-            <input #fileInput (change)="handleFile($event, 'data')" type="file" accept="text/csv,.csv" name="fileInput"
-              style="display: none" />
-            } -->
-          </div>
-        </div>
-      </div>
-      <div class="right-side">
-        <div class="column-content">
-          <h3 class="subtitle">Cell Type Table Template</h3>
-          <button mat-fab extended class="cta-button">
-            Use Template
-            <mat-icon class="material-symbols-rounded">arrow_right_alt</mat-icon>
-          </button>
-        </div>
+    <mat-card-actions class="upload-data">
+      <h3 class="upload-table subtitle">Upload Cell Type Table</h3>
+      <h4 class="required-col column-info-header">Required Columns</h4>
+      <h4 class="optional-col column-info-header">Optional Columns</h4>
+      <span class="reqd-col-info column-info-list">X, Y, and Cell Type</span>
+      <span class="opt-col-info column-info-list">Z and Cell Ontology ID</span>
+      <cde-file-upload class="upload-csv" accept="text/csv,.csv" [loader]="loadCsv" (loadCompleted)="data = $event">
+      </cde-file-upload>
+
+      <mat-divider vertical class="divider"> </mat-divider>
+
+      <h3 class="template">Cell Type Table Template</h3>
+      <div class="use-template">
+        <button mat-fab extended class="cta-button use-template" type="button">
+          Use Template
+          <mat-icon class="material-symbols-rounded">arrow_right_alt</mat-icon>
+        </button>
       </div>
     </mat-card-actions>
   </mat-card>
@@ -71,14 +35,13 @@
       <h2 mat-card-title class="step-title">
         <span class="step-number">2</span>
         Optional: Select Anchor Cell Type
+        <span class="material-symbols-rounded info"> info </span>
       </h2>
     </mat-card-header>
     <mat-card-actions>
       <mat-form-field class="anchor-select">
-        <mat-select
-          formControlName="anchorCellType"
-          [value]="anchorCellTypes[0] ? anchorCellTypes[0].value : undefined"
-        >
+        <mat-select formControlName="anchorCellType">
+          <mat-option value="endothelial">Default: Endothelial</mat-option>
           @for (cell of anchorCellTypes; track cell) {
             <mat-option [value]="cell.value">{{ cell.viewValue }}</mat-option>
           }
@@ -92,69 +55,61 @@
       <h2 mat-card-title class="step-title">
         <span class="step-number">3</span>
         Add Metadata
+        <span class="material-symbols-rounded info"> info </span>
       </h2>
     </mat-card-header>
-    <mat-card-actions>
-      <div class="row-1">
-        <div class="metadata-option">
-          <span>Visualization Title</span>
-          <mat-form-field>
-            <input matInput placeholder="Title" formControlName="title" />
-          </mat-form-field>
-        </div>
-        <div class="metadata-option">
-          <span>Imaging Technology</span>
-          <mat-form-field>
-            <input matInput placeholder="Technology" formControlName="technology" />
-          </mat-form-field>
-        </div>
-        <div class="metadata-option">
-          <span>Organ</span>
-          <mat-form-field>
-            <mat-select placeholder="Organ" formControlName="organ">
-              <mat-option>None</mat-option>
-              @for (organ of organs; track organ) {
-                <mat-option [value]="organ.value">{{ organ.viewValue }}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-        </div>
+    <mat-card-actions class="add-metadata">
+      <div class="metadata-option">
+        <span>Visualization Title</span>
+        <mat-form-field>
+          <input matInput placeholder="Title" formControlName="title" />
+        </mat-form-field>
+      </div>
+      <div class="metadata-option">
+        <span>Imaging Technology</span>
+        <mat-form-field>
+          <input matInput placeholder="Technology" formControlName="technology" />
+        </mat-form-field>
+      </div>
+      <div class="metadata-option">
+        <span>Organ</span>
+        <mat-form-field>
+          <mat-select placeholder="Organ" formControlName="organ">
+            @for (organ of organs; track organ) {
+              <mat-option [value]="organ.value">{{ organ.viewValue }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
       </div>
 
-      <div class="row-2">
-        <div class="metadata-option">
-          <span>Sex</span>
-          <mat-form-field>
-            <mat-select formControlName="sex">
-              @for (sex of sexes; track sex) {
-                <mat-option [value]="sex.value">{{ sex.viewValue }}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="metadata-option">
-          <span>Age</span>
-          <mat-form-field>
-            <input matInput type="number" placeholder="Age" formControlName="age" min="0" />
-          </mat-form-field>
-        </div>
-        <div class="filler"></div>
+      <div class="metadata-option">
+        <span>Sex</span>
+        <mat-form-field>
+          <mat-select formControlName="sex" value="Female">
+            <mat-option value="male">Male</mat-option>
+            <mat-option value="female">Female</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
+      <div class="metadata-option">
+        <span>Age</span>
+        <mat-form-field>
+          <input matInput type="number" placeholder="Age" formControlName="age" min="0" max="120" />
+        </mat-form-field>
+      </div>
+      <div class="filler"></div>
 
-      <div class="row-3">
-        <div class="metadata-option">
-          <span>Thickness (µm)</span>
-          <mat-form-field>
-            <input matInput type="number" placeholder="Thickness" formControlName="thickness" min="0" />
-          </mat-form-field>
-        </div>
-        <div class="metadata-option">
-          <span>Pixel size (µm/pixel)</span>
-          <mat-form-field>
-            <input matInput type="number" placeholder="Pixel size" formControlName="pixelSize" min="0" />
-          </mat-form-field>
-        </div>
-        <div class="filler"></div>
+      <div class="metadata-option">
+        <span>Thickness (µm)</span>
+        <mat-form-field>
+          <input matInput type="number" placeholder="Thickness" formControlName="thickness" min="0" />
+        </mat-form-field>
+      </div>
+      <div class="metadata-option">
+        <span>Pixel size (µm/pixel)</span>
+        <mat-form-field>
+          <input matInput type="number" placeholder="Pixel size" formControlName="pixelSize" min="0" />
+        </mat-form-field>
       </div>
     </mat-card-actions>
   </mat-card>
@@ -164,6 +119,7 @@
       <h2 mat-card-title class="step-title">
         <span class="step-number">4</span>
         Optional: Configure Color Map
+        <span class="material-symbols-rounded info"> info </span>
       </h2>
     </mat-card-header>
     <mat-card-actions>
@@ -172,48 +128,60 @@
         <mat-button-toggle value="custom">Upload Custom Color Map</mat-button-toggle>
       </mat-button-toggle-group>
 
-      @if (visualizationForm.value.colorMapOption === 'custom') {
-        <div class="file-upload-controls">
-          <div class="left-side">
-            <div class="column-content">
-              @if (colorMapUploaded) {
-                <h3 class="subtitle">File Loaded:</h3>
-                <div class="column-info">
-                  <div class="column-info-column">
-                    <span class="column-info-list">{{ uploadedColorMapFile }}</span>
-                  </div>
-                  <button class="upload" mat-fab extended (click)="removeFile('colormap')">
-                    <mat-icon class="material-symbols-rounded">cancel</mat-icon>
-                    Remove CSV
-                  </button>
-                </div>
-              } @else {
-                <h3 class="subtitle">Action Required: Upload Color Map</h3>
-                <button class="upload" mat-fab extended (click)="upload('colormap')">
-                  <mat-icon class="material-symbols-rounded">upload</mat-icon>
-                  Upload CSV
-                </button>
-                <input
-                  #colorMapInput
-                  (change)="handleFile($event, 'colormap')"
-                  type="file"
-                  accept="text/csv,.csv"
-                  name="colorMapInput"
-                  style="display: none"
-                />
-              }
-            </div>
-          </div>
-          <div class="right-side">
-            <div class="column-content">
-              <h3 class="subtitle">Color Map Template</h3>
-              <button mat-fab extended class="cta-button">
-                Use Template
-                <mat-icon class="material-symbols-rounded">arrow_right_alt</mat-icon>
+      <!-- @if (visualizationForm.value.colorMapOption === 'custom') {
+      <div class="file-upload-controls">
+        <div class="left-side">
+          <div class="column-content">
+            @if (colorMapUploaded) {
+            <h3 class="subtitle">File Loaded:</h3>
+            <div class="column-info">
+              <div class="column-info-column">
+                <span class="column-info-list">{{ uploadedColorMapFile }}</span>
+              </div>
+              <button class="upload" mat-fab extended (click)="removeFile('colormap')" type="reset">
+                <mat-icon class="material-symbols-rounded">cancel</mat-icon>
+                Remove CSV
               </button>
             </div>
+            } @else {
+            <h3 class="subtitle">Action Required: Upload Color Map</h3>
+            <button class="upload" mat-fab extended (click)="upload('colormap')" type="reset">
+              <mat-icon class="material-symbols-rounded">upload</mat-icon>
+              Upload CSV
+            </button>
+            <input #colorMapInput (change)="handleFile($event, 'colormap')" type="file" accept="text/csv,.csv"
+              name="colorMapInput" style="display: none" />
+            }
           </div>
         </div>
+        <div class="right-side">
+          <div class="column-content">
+            <h3 class="subtitle">Color Map Template</h3>
+            <button mat-fab extended class="cta-button" type="button">
+              Use Template
+              <mat-icon class="material-symbols-rounded">arrow_right_alt</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+      } -->
+      @if (visualizationForm.value.colorMapOption === 'custom') {
+        <div class="use-template">
+          <h3 class="template">Color Map Template</h3>
+          <button mat-fab extended class="cta-button use-template" type="button">
+            Use Template
+            <mat-icon class="material-symbols-rounded">arrow_right_alt</mat-icon>
+          </button>
+        </div>
+        <mat-divider vertical class="divider"> </mat-divider>
+        <cde-file-upload
+          class="upload-colormap"
+          [fileTitle]="'Action Required: Upload Color Map'"
+          accept="text/csv,.csv"
+          [loader]="loadColorMap"
+          (loadCompleted)="colorMap = $event"
+        >
+        </cde-file-upload>
       }
     </mat-card-actions>
   </mat-card>
@@ -223,10 +191,11 @@
       <h2 mat-card-title class="step-title">
         <span class="step-number">5</span>
         Visualize Cell Distance Data
+        <span class="material-symbols-rounded info"> info </span>
       </h2>
     </mat-card-header>
     <mat-card-actions>
-      <button type="submit" mat-fab extended class="cta-button visualize-button" (click)="onSubmit()">
+      <button type="submit" mat-fab extended class="cta-button visualize-button">
         Visualize
         <mat-icon class="material-symbols-rounded">arrow_right_alt</mat-icon>
       </button>

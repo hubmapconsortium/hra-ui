@@ -2,39 +2,27 @@
   --mdc-elevated-card-container-shape: 1rem;
   --mdc-elevated-card-container-elevation: 0px 5px 16px 0px #201e3d3d;
 
-  --mat-form-field-container-height: 22px;
-  --mat-form-field-container-vertical-padding: 7px;
-  --mat-form-field-container-text-font: 'Metropolis';
-  --mat-form-field-container-text-size: 12px;
-  --mat-form-field-container-text-weight: 500;
-  --mat-form-field-container-text-line-height: 22px;
-  --mat-form-field-container-text-tracking: 0.005em;
-
-  --mat-select-trigger-text-font: 'Metropolis';
-  --mat-select-trigger-text-size: 12px;
-  --mat-select-trigger-text-weight: 500;
-  --mat-select-trigger-text-line-height: 22px;
-  --mat-select-trigger-text-tracking: 0.005em;
-
-  --mat-option-label-text-font: 'Metropolis';
-  --mdc-filled-text-field-container-color: white;
-
-  --mat-standard-button-toggle-divider-color: #4c4c58;
-  --mat-standard-button-toggle-label-text-size: 18px;
-  --mat-standard-button-toggle-label-text-font: 'Metropolis';
-  --mat-standard-button-toggle-label-text-weight: 500;
-  --mat-standard-button-toggle-height: 43px;
-  --mat-standard-button-toggle-label-text-line-height: 27px;
-  --mat-standard-button-toggle-selected-state-text-color: white;
-  --mat-standard-button-toggle-selected-state-background-color: #e00d3a;
-
-  --mdc-extended-fab-container-height: 43px;
-  --mdc-extended-fab-container-shape: 4px;
-  --mdc-extended-fab-label-text-font: 'Metropolis';
-  --mdc-extended-fab-label-text-size: 18px;
+  --mdc-extended-fab-container-height: 2.6875rem;
+  --mdc-extended-fab-container-shape: 0.25rem;
+  --mdc-extended-fab-label-text-size: 1.125rem;
   --mdc-extended-fab-label-text-weight: 500;
   --mdc-extended-fab-label-text-tracking: 0.005em;
   --mdc-fab-container-color: #d5dbe3;
+
+  --mat-standard-button-toggle-divider-color: #4c4c58;
+  --mat-standard-button-toggle-height: 2.6875rem;
+  --mat-standard-button-toggle-selected-state-text-color: white;
+  --mat-standard-button-toggle-selected-state-background-color: #e00d3a;
+
+  --mat-select-trigger-text-size: 0.75rem;
+  --mat-select-trigger-text-weight: 500;
+  --mat-select-trigger-text-line-height: 1.375rem;
+  --mat-select-trigger-text-tracking: 0.005em;
+
+  --mat-form-field-container-height: 1.375rem;
+  --mat-form-field-container-vertical-padding: 0.4375rem;
+  --mat-form-field-container-text-size: 0.75rem;
+  --mdc-filled-text-field-container-color: white;
 
   display: flex;
   flex-direction: column;
@@ -72,15 +60,15 @@
       align-items: center;
 
       .step-number {
-        width: 56px;
-        height: 56px;
+        width: 3.5rem;
+        height: 3.5rem;
         background: #464954;
         text-align: center;
         padding: 1rem;
-        line-height: 28px;
+        line-height: 1.75rem;
         margin-right: 1.5rem;
         border-radius: 50%;
-        font-size: 24px;
+        font-size: 1.5rem;
         color: white;
       }
 
@@ -92,109 +80,130 @@
     mat-card {
       padding: 3.5rem 4rem;
 
+      &:last-child {
+        margin-bottom: 8rem;
+      }
+
       mat-card-header {
         padding: 0 0 3rem;
       }
-
-      mat-card-actions {
-        padding: 0;
-        align-items: flex-start;
-        min-height: 40px;
-      }
     }
 
-    .data {
-      .left-side {
-        border-right: 1px solid #d5dbe3;
+    .creation-step.data {
+      --mat-divider-width: 1px;
+      --mat-divider-color: #d5dbe3;
+
+      .divider {
+        height: 100%;
+        grid-area: divider;
+        place-self: center;
       }
 
-      .right-side {
-        display: flex;
-        justify-content: flex-end;
-
-        .column-content {
-          width: 100%;
-          align-items: flex-start;
-        }
+      .upload-data {
+        display: grid;
+        grid-template-columns: 1fr 1fr 0.5fr 1.5fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+          'upload-table upload-table divider template'
+          'required-col optional-col divider use-template'
+          'reqd-col-info opt-col-info divider .'
+          'upload-csv upload-csv divider .';
       }
 
-      .left-side,
-      .right-side {
-        width: 50%;
+      .upload-table {
+        grid-area: upload-table;
+      }
 
-        .column-content {
-          max-width: 26.75rem;
-          display: flex;
-          flex-direction: column;
+      .template {
+        grid-area: template;
+      }
 
-          .column-info {
-            display: flex;
-            justify-content: space-between;
-          }
-        }
+      .required-col {
+        grid-area: required-col;
+      }
 
-        .column-info-column {
-          display: flex;
-          flex-direction: column;
+      .optional-col {
+        grid-area: optional-col;
+      }
 
-          .column-info-header {
-            margin: 0 0 0.5rem;
-          }
+      .use-template {
+        grid-area: use-template;
+      }
 
-          .column-info-list {
-            font-weight: 200;
-          }
-        }
+      .reqd-col-info {
+        grid-area: reqd-col-info;
+      }
 
-        .file-upload-controls {
-          display: flex;
-          margin-top: 40px;
-          align-items: flex-end;
-          justify-content: space-between;
-        }
+      .opt-col-info {
+        grid-area: opt-col-info;
+      }
+
+      .upload-csv {
+        grid-area: upload-csv;
+        margin-top: 2.5rem;
+      }
+
+      .column-info-header {
+        margin: 0 0 0.5rem;
+      }
+
+      .column-info-list {
+        font-weight: 300;
+        color: #4b4b5e;
       }
     }
 
     .anchor {
       .anchor-select {
-        min-width: 384px;
+        min-width: 24rem;
       }
     }
 
-    .metadata {
-      mat-card-actions {
+    .add-metadata {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+
+      .metadata-option,
+      .filler {
+        display: flex;
         flex-direction: column;
-        gap: 3rem;
+        width: 18rem;
+        gap: 0.5rem;
 
-        .row-1,
-        .row-2,
-        .row-3 {
-          display: flex;
-          justify-content: space-between;
-          width: 100%;
-
-          .metadata-option,
-          .filler {
-            display: flex;
-            flex-direction: column;
-            width: 18rem;
-            gap: 0.5rem;
-
-            span {
-              font-size: 15px;
-              line-height: 22.5px;
-              font-family: Metropolis;
-              font-weight: 500;
-              letter-spacing: normal;
-            }
-          }
+        span {
+          font-size: 0.9375rem;
+          line-height: 1.4063rem;
+          font-family: Metropolis;
+          font-weight: 500;
+          letter-spacing: normal;
         }
       }
     }
 
     .colors {
       mat-card-actions {
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1.25fr 0.5fr 1.25fr;
+        grid-template-areas:
+          'upload-toggle upload-toggle upload-toggle'
+          'upload-colormap divider use-template';
+
+        mat-button-toggle-group {
+          width: max-content;
+          margin-bottom: 3.5rem;
+          grid-area: upload-toggle;
+        }
+
+        .upload-colormap {
+          grid-area: upload-colormap;
+        }
+
+        .divider {
+          height: 100%;
+          grid-area: divider;
+          place-self: center;
+        }
 
         .column-info {
           display: flex;
@@ -217,22 +226,30 @@
             margin: 0 auto;
           }
         }
+
+        .upload-colormap .loaded-label {
+          font-weight: 500;
+          font-size: 1.5rem;
+          line-height: 2.25rem;
+        }
       }
     }
 
-    ::ng-deep mat-form-field {
-      .mdc-text-field {
-        border-radius: 1rem;
-        box-shadow: 0px 5px 16px 0px #201e3d3d;
+    ::ng-deep {
+      mat-form-field {
+        .mdc-text-field {
+          border-radius: 1rem;
+          box-shadow: 0px 5px 1rem 0px #201e3d3d;
+        }
+
+        .mdc-line-ripple {
+          display: none;
+        }
       }
 
-      .mdc-line-ripple {
-        display: none;
+      .mat-button-toggle-label-content {
+        padding: 0 1.5rem;
       }
-    }
-
-    ::ng-deep .mat-button-toggle-label-content {
-      padding: 0 24px;
     }
 
     .cta-button {
@@ -243,14 +260,14 @@
       color: #b20a2f;
 
       mat-icon {
-        margin-left: 12px;
+        margin-left: 0.75rem;
       }
     }
 
     .visualize {
       .cta-button {
-        height: 40px;
-        padding: 8px 4px 8px 24px;
+        height: 2.5rem;
+        padding: 0.5rem 0.25rem 0.5rem 1.5rem;
         background: #e00d3a;
         color: white;
       }
