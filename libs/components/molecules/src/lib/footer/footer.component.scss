@@ -2,20 +2,28 @@
 
 :host {
   display: flex;
-  padding: 0 2rem;
+  padding: 2rem;
   border-top: 1px solid rgba(vars.$light-dividers);
   align-items: center;
   background: rgba(vars.$primary-lighter);
   gap: 2rem;
-  height: 5rem;
+  height: 100%;
   width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media (min-width: 120rem) {
+    .filler {
+      flex-grow: 1;
+    }
+  }
 
   .controls {
     display: flex;
     justify-content: flex-end;
   }
   .filler {
-    flex-grow: 1;
+    display: none;
   }
 
   .product-title {

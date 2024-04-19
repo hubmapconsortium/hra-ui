@@ -7,6 +7,14 @@
   .row {
     min-height: unset;
 
+    &.child {
+      padding-left: 2rem !important;
+
+      @media (min-width: 90rem) {
+        padding-left: 4rem !important;
+      }
+    }
+
     &.selected {
       background-color: #fff3f0;
     }

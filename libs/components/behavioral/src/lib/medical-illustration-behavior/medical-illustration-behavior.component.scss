@@ -3,6 +3,7 @@
 :host {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 
   hra-label-box {
     border-bottom: 1px solid rgba(vars.$light-dividers);
@@ -12,6 +13,6 @@
   }
 
   hra-interactive-svg {
-    height: calc(100vh - 12rem);
+    height: calc(100% - 3rem);
   }
 }

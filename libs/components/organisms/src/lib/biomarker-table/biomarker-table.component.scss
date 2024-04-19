@@ -5,7 +5,11 @@
   display: block;
 
   cdk-virtual-scroll-viewport {
-    min-height: 25rem;
+    height: max(calc(100vh - 45rem), 25rem);
+
+    @media (max-height: 60.75rem) {
+      height: 23rem;
+    }
   }
 
   .sr-only {
