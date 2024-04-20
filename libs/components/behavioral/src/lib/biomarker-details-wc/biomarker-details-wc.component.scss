@@ -176,6 +176,11 @@
     border-bottom: 1px solid rgba(vars.$light-dividers);
   }
 
+  .mdc-tab {
+    width: 20%;
+    min-width: 15rem !important;
+  }
+
   .mat-mdc-tab-body-wrapper {
     height: calc(100% - 3rem);
   }
@@ -194,5 +199,9 @@
 
   .mdc-tab__ripple::before {
     opacity: 0 !important;
+  }
+
+  cdk-virtual-scroll-viewport {
+    height: 100% !important;
   }
 }

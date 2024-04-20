@@ -121,7 +121,7 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
 
   private horizontalViewportSize = 400;
   private horizontalScrollOffset = 0;
-  private displayedColumnCount = 14;
+  private displayedColumnCount = 30;
   private displayedColumnOffset = 0;
 
   get preFillerWidth(): string {

@@ -14,10 +14,14 @@
       display: flex;
       flex-direction: column;
       max-width: calc(100% - 46.3125rem);
-      width: 100%;
+      flex-grow: 1;
 
       ftu-medical-illustration-behavior {
         max-height: calc(100% - 5rem);
+      }
+
+      ftu-footer-behavior {
+        min-height: 5rem;
       }
     }
 

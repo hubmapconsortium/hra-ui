@@ -1,8 +1,6 @@
 @use 'variables' as vars;
 
 :host {
-  display: flex;
-  flex-direction: column;
   flex-grow: 1;
 
   hra-label-box {
@@ -10,9 +8,5 @@
     width: 100%;
     height: 3rem;
     font-size: 1.25rem;
-  }
-
-  hra-interactive-svg {
-    height: calc(100% - 3rem);
   }
 }

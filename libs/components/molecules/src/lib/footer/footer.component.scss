@@ -13,6 +13,8 @@
   justify-content: center;
 
   @media (min-width: 120rem) {
+    padding: 0 2rem;
+
     .filler {
       flex-grow: 1;
     }
