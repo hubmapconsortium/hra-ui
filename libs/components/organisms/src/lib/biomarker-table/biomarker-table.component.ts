@@ -311,12 +311,15 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
    * @returns
    */
   getColor(value: number): string {
-    const { minColor, maxColor } = this.getMinMaxColor(value);
+    const { minColor, maxColor } = this.getMinMaxColor(value * 100);
     return (
       '#' +
       minColor
         .map((min, index) => this.lerp(value, min, maxColor[index]))
-        .map((component) => Math.round(component).toString(16))
+        .map((component) => {
+          const hex = Math.round(component).toString(16);
+          return hex.length == 1 ? '0' + hex : hex;
+        })
         .join('')
     );
   }
