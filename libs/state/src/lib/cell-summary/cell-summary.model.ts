@@ -2,6 +2,9 @@ import { CellSummary, FtuDataSchemas } from '@hra-ui/services';
 import { StateContext } from '@ngxs/store';
 import { z } from 'zod';
 
+/** Single aggregate cell */
+export type CellSummaryAggregateCell = z.infer<typeof AGGREGATE_CELL>;
+
 /** Type representing a single AGGREGATE_ROW */
 export type CellSummaryAggregateRow = z.infer<typeof AGGREGATE_ROW>;
 

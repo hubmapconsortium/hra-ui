@@ -1,5 +1,10 @@
 import { Biomarker, Cell, CellSummary, CellSummaryRow, SourceReference } from '@hra-ui/services';
-import { BIOMARKER_TYPES, CellSummaryAggregate, CellSummaryAggregateRow } from './cell-summary.model';
+import {
+  BIOMARKER_TYPES,
+  CellSummaryAggregate,
+  CellSummaryAggregateCell,
+  CellSummaryAggregateRow,
+} from './cell-summary.model';
 
 /**
  * This function gets the index of the column if it does not have any
@@ -74,7 +79,7 @@ export function computeAggregate(summary: CellSummary): CellSummaryAggregate {
 
   for (const [cell, row] of rowsByCell.entries()) {
     row[0] = getLabel(cells, cell, 'cell');
-    row[1] = row[1] = getTotalCount(row);
+    row[1] = row.find((item): item is CellSummaryAggregateCell => typeof item === 'object')?.data.count;
   }
 
   const columns = Array.from(columnIndexByBiomarker.keys()).map((id) => getLabel(biomarkers, id, 'biomarker'));
