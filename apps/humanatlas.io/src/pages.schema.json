@@ -695,7 +695,7 @@
                   "properties": {
                     "heading": {
                       "type": "string",
-                      "description": "Title of the Card"
+                      "description": "Title of the card"
                     },
                     "headerSize": {
                       "type": "object",
