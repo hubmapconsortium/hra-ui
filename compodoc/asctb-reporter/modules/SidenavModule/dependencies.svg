@@ -24,13 +24,13 @@
 <title>cluster_SidenavModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="167,-70 167,-268 329,-268 329,-70 167,-70"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_SidenavModule_declarations</title>
-<polygon fill="none" stroke="black" points="177,-78 177,-130 319,-130 319,-78 177,-78"/>
-</g>
 <g id="clust5" class="cluster">
 <title>cluster_SidenavModule_exports</title>
 <polygon fill="none" stroke="black" points="175,-208 175,-260 321,-260 321,-208 175,-208"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_SidenavModule_declarations</title>
+<polygon fill="none" stroke="black" points="177,-78 177,-130 319,-130 319,-78 177,-78"/>
 </g>
 <!-- SidenavComponent -->
 <g id="node1" class="node">

@@ -1,0 +1,564 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>humanatlas.io</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">humanatlas.io</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  PageComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/page/page.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Calls page renderer with data from yaml files</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>page</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./page.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./page.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#data$" >data$</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(router: Router, route: ActivatedRoute, errorHandler: ErrorHandler, contentService: <a href="../injectables/ContentService.html" target="_self">ContentService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/page/page.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Creates instance of Router, ActivatedRoute, ErrorHandler,
+ContentService and invokes addScrollToTopListener</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>errorHandler</td>
+                                                  
+                                                        <td>
+                                                                    <code>ErrorHandler</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>contentService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ContentService.html" target="_self" >ContentService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="data$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>data$</b></span>
+                        <a href="#data$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.resolveData()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/components/page/page.component.ts:16</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Observable of file content</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpErrorResponse } from &#x27;@angular/common/http&#x27;;
+import { Component, ErrorHandler, isDevMode } from &#x27;@angular/core&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
+import { catchError, distinctUntilChanged, map, Observable, switchMap } from &#x27;rxjs&#x27;;
+import { ContentService } from &#x27;../../services/content/content.service&#x27;;
+import { PageDef } from &#x27;../page-element/page-def&#x27;;
+
+/** Calls page renderer with data from yaml files*/
+@Component({
+  selector: &#x27;page&#x27;,
+  templateUrl: &#x27;./page.component.html&#x27;,
+  styleUrls: [&#x27;./page.component.scss&#x27;],
+})
+export class PageComponent {
+  /** Observable of file content */
+  readonly data$ &#x3D; this.resolveData();
+
+  /** Landing page file name */
+  private readonly LANDING_PAGE_FILE &#x3D; &#x27;landing-page&#x27;;
+
+  /** Creates instance of Router, ActivatedRoute, ErrorHandler,
+   * ContentService and invokes addScrollToTopListener */
+  constructor(
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
+    private readonly errorHandler: ErrorHandler,
+    private readonly contentService: ContentService,
+  ) {
+    this.addScrollToTopListener();
+  }
+
+  /** Returns an observable of page content */
+  private resolveData(): Observable&lt;PageDef[]&gt; {
+    const loadData &#x3D; (file: string) &#x3D;&gt;
+      this.contentService.getContent(file).pipe(
+        catchError((error) &#x3D;&gt; {
+          if (isDevMode() &amp;&amp; (!(error instanceof HttpErrorResponse) || error.status !&#x3D;&#x3D; 404)) {
+            this.errorHandler.handleError(error);
+          }
+          this.router.navigateByUrl(&#x27;&#x27;);
+          return this.contentService.getContent(this.LANDING_PAGE_FILE);
+        }),
+      );
+    return this.route.url.pipe(
+      map(() &#x3D;&gt; this.router.routerState.snapshot.url),
+      map((url) &#x3D;&gt; this.getFileName(url)),
+      switchMap(loadData),
+    );
+  }
+
+  /** Scrolls to the top of the page when the URL is changed */
+  private addScrollToTopListener(): void {
+    this.route.url.pipe(distinctUntilChanged()).subscribe(() &#x3D;&gt; {
+      setTimeout(() &#x3D;&gt; {
+        this.router.navigate([], {
+          relativeTo: this.route,
+          preserveFragment: true,
+          queryParamsHandling: &#x27;preserve&#x27;,
+        });
+      }, 100);
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: &#x27;smooth&#x27;,
+      });
+    });
+  }
+
+  /** Returns a valid file name */
+  private getFileName(url: string): string {
+    return url.slice(1).split(&#x27;#&#x27;)[0].split(&#x27;?&#x27;)[0] || this.LANDING_PAGE_FILE;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ccf-page-renderer [defs]&#x3D;&quot;(data$ | async) ?? []&quot;&gt;&lt;/ccf-page-renderer&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./page.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">:host {
+  max-width: 77rem;
+
+  @media (max-width: 80rem) {
+    padding: 0rem 1rem;
+    max-width: 100vw;
+  }
+}
+
+::ng-deep .cell-link:hover {
+  color: #444c65;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ccf-page-renderer [defs]="(data$ | async) ?? []"></ccf-page-renderer></div>'
+    var COMPONENTS = [{'name': 'AnnouncementCardComponent', 'selector': 'announcement-card'},{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'BoardMembersComponent', 'selector': 'ccf-board-members'},{'name': 'BottomToolbarComponent', 'selector': 'ccf-bottom-toolbar'},{'name': 'CardButtonLongComponent', 'selector': 'ccf-card-button-long'},{'name': 'CardWithHeaderComponent', 'selector': 'card-with-header'},{'name': 'CarouselComponent', 'selector': 'ccf-carousel'},{'name': 'ChooseVersionComponent', 'selector': 'ccf-choose-version'},{'name': 'ContactCardComponent', 'selector': 'contact-card'},{'name': 'CopyClipboardComponent', 'selector': 'copy-clipboard'},{'name': 'CountInfoCardComponent', 'selector': 'count-info-card'},{'name': 'DownloadFtuComponent', 'selector': 'ccf-download-ftu'},{'name': 'MenuTreeComponent', 'selector': 'menu-tree'},{'name': 'NavbarComponent', 'selector': 'ccf-navbar'},{'name': 'OrganTabsComponent', 'selector': 'ccf-organ-tabs'},{'name': 'OrganVersionComponent', 'selector': 'ccf-organ-version'},{'name': 'PageComponent', 'selector': 'page'},{'name': 'PageDataComponent', 'selector': 'ccf-page-data'},{'name': 'PageElementComponent', 'selector': 'page-element'},{'name': 'PageHeaderComponent', 'selector': 'ccf-page-header'},{'name': 'PageRendererComponent', 'selector': 'ccf-page-renderer'},{'name': 'PrizeCardComponent', 'selector': 'ccf-prize-card'},{'name': 'SectionCardComponent', 'selector': 'ccf-section-card'},{'name': 'SimpleImageComponent', 'selector': 'ccf-simple-image'},{'name': 'SimpleTileComponent', 'selector': 'ccf-simple-tile'},{'name': 'SopLinksComponent', 'selector': 'ccf-sop-links'},{'name': 'SwiperComponent', 'selector': 'swiper'},{'name': 'TableComponent', 'selector': 'ccf-table'},{'name': 'TableVersionComponent', 'selector': 'table-version'},{'name': 'TissueInfoPageComponent', 'selector': 'ccf-tissue-info-page'},{'name': 'TissueInfoTableComponent', 'selector': 'ccf-tissue-info'},{'name': 'ToolbarComponent', 'selector': 'ccf-toolbar'},{'name': 'TwoDimImageComponent', 'selector': 'ccf-two-dim-image'},{'name': 'UseButtonComponent', 'selector': 'ccf-use-button'},{'name': 'YoutubeModelComponent', 'selector': 'youtube-model'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'PageComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'PageComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

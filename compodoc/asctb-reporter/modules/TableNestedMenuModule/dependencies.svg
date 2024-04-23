@@ -24,13 +24,13 @@
 <title>cluster_TableNestedMenuModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="138,-70 138,-268 358,-268 358,-70 138,-70"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_TableNestedMenuModule_declarations</title>
-<polygon fill="none" stroke="black" points="148,-78 148,-130 348,-130 348,-78 148,-78"/>
-</g>
 <g id="clust5" class="cluster">
 <title>cluster_TableNestedMenuModule_exports</title>
 <polygon fill="none" stroke="black" points="146,-208 146,-260 350,-260 350,-208 146,-208"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_TableNestedMenuModule_declarations</title>
+<polygon fill="none" stroke="black" points="148,-78 148,-130 348,-130 348,-78 148,-78"/>
 </g>
 <!-- TableNestedMenuComponent -->
 <g id="node1" class="node">
