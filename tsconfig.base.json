@@ -18,9 +18,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@components/*": [
-        "apps/human-atlas/src/app/components/*"
-      ],
       "@hra-ui/cdk": [
         "libs/cdk/src/index.ts"
       ],
