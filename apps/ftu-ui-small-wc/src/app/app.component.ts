@@ -108,7 +108,7 @@ export class AppComponent implements OnInit, OnChanges {
         tap(() => {
           this.reloadDataSets();
           this.reloadActiveFtu(changes['organIri']?.currentValue);
-        })
+        }),
       )
       .subscribe();
   }
@@ -123,7 +123,7 @@ export class AppComponent implements OnInit, OnChanges {
               break;
             }
           }
-        })
+        }),
       )
       .subscribe();
   }

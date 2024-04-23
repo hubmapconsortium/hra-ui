@@ -1,0 +1,9 @@
+<ng-container *ngFor="let cardBlock of cardBlockData">
+  <div class="heading" [style]="cardBlock.headerSize" id="{{ cardBlock.id }}">
+    {{ cardBlock.heading }}
+  </div>
+  <ccf-card-button-long
+    [longButtonItems]="cardBlock.cardData"
+    (cardRoutes)="router.navigate([$event.route])"
+  ></ccf-card-button-long>
+</ng-container>

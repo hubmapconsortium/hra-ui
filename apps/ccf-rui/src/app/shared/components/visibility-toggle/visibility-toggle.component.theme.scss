@@ -1,0 +1,42 @@
+@use '@angular/material' as mat;
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $primary: map-get($color-config, primary);
+  $background: map-get($color-config, background);
+  $foreground: map-get($color-config, foreground);
+  $accent: map-get($color-config, accent);
+
+  .ccf-visibility-toggle {
+    .toggle-wrapper {
+      border-color: mat.get-color-from-palette($foreground, chip-border-primary);
+
+      &:hover {
+        background-color: mat.get-color-from-palette($foreground, toggle-bg);
+      }
+
+      &.disabled {
+        color: mat.get-color-from-palette($foreground, icons-disabled);
+        border-color: mat.get-color-from-palette($foreground, icons-disabled);
+      }
+
+      .icon {
+        color: mat.get-color-from-palette($foreground, chip-icon-block-primary);
+        &.visible {
+          color: mat.get-color-from-palette($accent);
+        }
+      }
+
+      .green {
+        color: mat.get-color-from-palette($foreground, chip-icon-done-green);
+      }
+
+      .icon-background {
+        background-color: mat.get-color-from-palette($foreground, chip-icon-background);
+        &.disabled {
+          opacity: 40%;
+        }
+      }
+    }
+  }
+}

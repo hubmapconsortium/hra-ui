@@ -77,7 +77,7 @@ export class AppWebComponent implements OnChanges {
     return this.http.get<JsonLd>(this.baseHref + lookupSrc, { responseType: 'json' }).pipe(
       tap((result) => {
         this.setUrlAndMapping(result, illustrationSrc);
-      })
+      }),
     );
   }
 
@@ -104,7 +104,7 @@ export class AppWebComponent implements OnChanges {
   private setUrlandMappingValues(illustrationSrc?: IllustrationData) {
     if (illustrationSrc) {
       const illustrationFile = illustrationSrc.illustration_files.find(
-        (file) => file['file_format'] === 'image/svg+xml'
+        (file) => file['file_format'] === 'image/svg+xml',
       );
       if (illustrationFile) {
         this.url = setUrl(illustrationFile.file, this.baseHref);

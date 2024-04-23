@@ -68,10 +68,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "ftu-ui:build:production"
+          "buildTarget": "ftu-ui:build:production"
         },
         "development": {
-          "browserTarget": "ftu-ui:build:development"
+          "buildTarget": "ftu-ui:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -79,28 +79,18 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "ftu-ui:build"
+        "buildTarget": "ftu-ui:build"
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/ftu-ui/**/*.ts", "apps/ftu-ui/**/*.html"]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/ftu-ui/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "apps/ftu-ui/jest.config.ts"
       }
     }
   },

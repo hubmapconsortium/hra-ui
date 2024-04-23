@@ -1,5 +1,5 @@
 import { MatButtonModule } from '@angular/material/button';
-import { Meta, moduleMetadata, Story } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
 
 export default {
   title: 'ButtonOverrideTest',
@@ -11,8 +11,8 @@ export default {
 } as Meta<object>;
 
 const Template =
-  (template: string): Story<object> =>
-  (args: object) => ({
+  (template: string): StoryFn<object> =>
+  (args) => ({
     props: args,
     template,
   });

@@ -1,7 +1,8 @@
 import { importProvidersFrom } from '@angular/core';
 import { applicationConfig } from '@storybook/angular';
 import { InlineSVGModule } from 'ng-inline-svg-2';
-import { argTypesEnhancers, decorators as rootDecorators, parameters, setDocs } from '../../../../.storybook/preview';
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import { argTypesEnhancers, parameters, decorators as rootDecorators, setDocs } from '../../../../.storybook/preview';
 
 export { argTypesEnhancers, parameters };
 

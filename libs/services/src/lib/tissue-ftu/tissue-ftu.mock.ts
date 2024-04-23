@@ -18,7 +18,7 @@ function createCell(
   count: number,
   percentage: number,
   meanExpression: number,
-  metadata: { label: string; value: string }[][] = []
+  metadata: { label: string; value: string }[][] = [],
 ) {
   return {
     cell: {

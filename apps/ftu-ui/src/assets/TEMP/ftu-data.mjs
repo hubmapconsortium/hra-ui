@@ -104,8 +104,8 @@ async function main() {
         '@graph': datasets,
       },
       null,
-      2
-    )
+      2,
+    ),
   );
 
   writeFileSync(
@@ -116,8 +116,8 @@ async function main() {
         '@graph': summaries,
       },
       null,
-      2
-    )
+      2,
+    ),
   );
 }
 main();

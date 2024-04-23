@@ -1,4 +1,4 @@
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { moduleMetadata, StoryFn, Meta } from '@storybook/angular';
 import { BiomarkerTableDataIconComponent } from './biomarker-table-data-icon.component';
 
 export default {
@@ -11,12 +11,15 @@ export default {
   ],
 } as Meta<BiomarkerTableDataIconComponent>;
 
-const Template: Story<BiomarkerTableDataIconComponent> = (args: BiomarkerTableDataIconComponent) => ({
+const Template: StoryFn<BiomarkerTableDataIconComponent> = (args: BiomarkerTableDataIconComponent) => ({
   props: args,
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
-  color: '#FFFFFF',
-  size: 1,
+export const Primary = {
+  render: Template,
+
+  args: {
+    color: 'grey',
+    size: 2,
+  },
 };

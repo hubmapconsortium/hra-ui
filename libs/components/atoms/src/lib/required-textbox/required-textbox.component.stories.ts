@@ -1,4 +1,4 @@
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { moduleMetadata, StoryFn, Meta } from '@storybook/angular';
 import { RequiredTextboxComponent } from './required-textbox.component';
 
 export default {
@@ -11,12 +11,15 @@ export default {
   ],
 } as Meta<RequiredTextboxComponent>;
 
-const Template: Story<RequiredTextboxComponent> = (args: RequiredTextboxComponent) => ({
+const Template: StoryFn<RequiredTextboxComponent> = (args) => ({
   props: args,
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
-  placeholder: 'Enter Message',
-  label: 'Message',
+export const Primary = {
+  render: Template,
+
+  args: {
+    placeholder: 'Enter Message',
+    label: 'Message',
+  },
 };

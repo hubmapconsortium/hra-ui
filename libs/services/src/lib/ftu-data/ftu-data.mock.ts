@@ -113,7 +113,7 @@ export class MockFtuDataService extends FtuDataService {
   @param iri The Iri of the illustration.
   @returns An Observable that emits an IllustrationMappingItem array.
   */
-  override getIllustrationMapping(iri: Iri): Observable<IllustrationMappingItem[]> {
+  override getIllustrationMapping(_iri: Iri): Observable<IllustrationMappingItem[]> {
     return of([]);
   }
 
@@ -122,7 +122,7 @@ export class MockFtuDataService extends FtuDataService {
   @param iri The Iri of the illustration.
   @returns An Observable that emits an CellSummary array.
   */
-  override getCellSummaries(iri: Iri): Observable<CellSummary[]> {
+  override getCellSummaries(_iri: Iri): Observable<CellSummary[]> {
     return of(CELL_SUMMARY_DATA);
   }
   /**
@@ -143,7 +143,7 @@ export class MockFtuDataService extends FtuDataService {
   @param iri The Iri of the illustration.
   @returns An Observable that emits an empty array.
   */
-  override getSourceReferences(iri: Iri): Observable<SourceReference[]> {
+  override getSourceReferences(_iri: Iri): Observable<SourceReference[]> {
     return of(sourceReferences);
   }
 }

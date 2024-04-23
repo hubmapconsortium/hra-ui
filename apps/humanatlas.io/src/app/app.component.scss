@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  width: 100%;
+  min-height: calc(100% - 3.5rem);
+  flex-direction: column;
+  align-items: center;
+  padding-top: 3.5rem;
+  overflow: auto;
+
+  .filler {
+    flex-grow: 1;
+  }
+
+  .toolbar-class {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    background-color: #444c65;
+    box-shadow: 0rem 0.063rem 0.188rem 0.063rem rgb(0 0 0 / 41%);
+  }
+}

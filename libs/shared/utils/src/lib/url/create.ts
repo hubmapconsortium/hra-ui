@@ -29,7 +29,7 @@ export function createInternalUrl(
   injector: Injector,
   commands: Any[],
   extras: UrlCreationOptions,
-  isResourceUrl: boolean
+  isResourceUrl: boolean,
 ): string | undefined {
   const router = injector.get(Router, null);
   const locationStrategy = injector.get(LocationStrategy, null);

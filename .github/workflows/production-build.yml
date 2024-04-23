@@ -1,4 +1,4 @@
-name: Staging Build
+name: Production Build
 
 on:
   workflow_run:
@@ -24,10 +24,18 @@ jobs:
           main-branch-name: main
           app-configuration: production
           nx-command: run-many
+          build-compodoc: false
+          build-storybook: false
+
+      - name: Deploy to S3
+        run: |
+          aws s3 sync --delete deploy/apps/ s3://${{ secrets.AWS_S3_BUCKET_NAME }}/ui/
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/ui/*"
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_HUMANATLAS_IO_DISTRIBUTION_ID }} --paths "/*"
 
       - name: Publish
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: deploy
-          commit_message: 'Staging deploy -- ${{ github.event.head_commit.message }}'
+          publish_dir: deploy/apps
+          commit_message: 'Production deploy -- ${{ github.event.head_commit.message }}'

@@ -21,7 +21,7 @@ export type FieldQuery = <T extends ResourceEntry, K extends keyof T>(
   id: ResourceId,
   type: ResourceType<T>,
   field: K,
-  defaultValue?: T[K]
+  defaultValue?: T[K],
 ) => T[K];
 
 /** Query function for resource data */
@@ -110,7 +110,7 @@ export class ResourceRegistrySelectors {
    * @returns Url query function
    */
   @Selector([ResourceRegistrySelectors.field, BaseHrefSelectors.baseHref])
-  static url(getField: FieldQuery, baseHref: string): DataQuery<string> {
+  static url(getField: FieldQuery, baseHref = ''): DataQuery<string> {
     return (id) => {
       const relUrl = getField(id, BuiltinResourceType.Url, 'url', '');
       return relUrl !== '' ? baseHref + relUrl : '';

@@ -1,0 +1,49 @@
+:host {
+  display: block;
+  position: relative;
+
+  .spacer {
+    // Calculated by adding up all padding/margin/height of material form fields
+    height: 3.5rem;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+
+    .search-box {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      height: 3rem;
+
+      .add-button {
+        border-radius: 0.25rem;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        height: 100%;
+      }
+    }
+
+    .results {
+      margin-top: 0.5rem;
+
+      .count {
+        margin-top: 0.5rem;
+        font-size: 0.75rem;
+        text-align: end;
+      }
+    }
+
+    ::ng-deep .mat-mdc-form-field-infix {
+      min-height: inherit;
+      padding: 0;
+    }
+  }
+}

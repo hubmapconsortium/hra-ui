@@ -5,8 +5,27 @@ dist
 tmp
 /out-tsc
 
+# data-schema.js is compiled on the fly
+apps/humanatlas.io/src/app/utils/data-schema.js
+
 # dependencies
 node_modules
+/dist
+/tmp
+/out-tsc
+# Only exists if Bazel was run
+/bazel-out
+
+# Documentation
+/docs/*
+!/docs/index.html
+
+# dependencies
+/node_modules
+
+# profiling files
+chrome-profiler-events*.json
+speed-measure-plugin*.json
 
 # IDEs and editors
 /.idea
@@ -25,6 +44,15 @@ node_modules
 !.vscode/extensions.json
 
 # misc
+.history/*
+
+# Virtual environments
+.env
+.venv
+
+# misc
+/.angular/cache
+.nx/cache
 /.sass-cache
 /connect.lock
 /coverage
@@ -33,11 +61,8 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+svgo.config.js
 
 # System Files
 .DS_Store
 Thumbs.db
-
-.angular
-.nx
-env/

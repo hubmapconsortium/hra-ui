@@ -1,0 +1,58 @@
+:host {
+  display: block;
+
+  .body-title {
+    font-weight: 300;
+    font-size: 1.5rem;
+    line-height: 2.125rem;
+    color: #000000;
+    padding-bottom: 2rem;
+  }
+
+  .body-description {
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005em;
+    color: #000000;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+
+  ::ng-deep a:-webkit-any-link {
+    color: #054f89;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      color: #444c65;
+    }
+  }
+
+  ::ng-deep {
+    h2,
+    h4 {
+      margin: 0 0 0px;
+    }
+
+    h4 {
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      letter-spacing: 0.005em;
+      color: #000000;
+      text-decoration: none;
+    }
+
+    p {
+      margin: 0 0 1rem;
+    }
+
+    .body-description ul {
+      margin: 0;
+    }
+  }
+}

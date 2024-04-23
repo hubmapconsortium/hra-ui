@@ -94,7 +94,7 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
    */
   readonly control = new FlatTreeControl<InternalNode<K, T>>(
     (node) => node.level,
-    (node) => node.expandable
+    (node) => node.expandable,
   );
 
   /**
@@ -109,7 +109,7 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
     }),
     (node) => node.level,
     (node) => node.expandable,
-    (node) => node.children?.map((id) => this.nodes[id])
+    (node) => node.children?.map((id) => this.nodes[id]),
   );
 
   /**

@@ -1,0 +1,151 @@
+{
+  "name": "humanatlas.io",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  },
+  "tags": ["app", "humanatlas.io"],
+  "sourceRoot": "apps/humanatlas.io/src",
+  "prefix": "humanatlas.io",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/apps/humanatlas.io",
+        "index": "apps/humanatlas.io/src/index.html",
+        "main": "apps/humanatlas.io/src/main.ts",
+        "polyfills": "apps/humanatlas.io/src/polyfills.ts",
+        "tsConfig": "apps/humanatlas.io/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/humanatlas.io/src/favicon.ico",
+          "apps/humanatlas.io/src/assets",
+          {
+            "glob": "**/*",
+            "input": "apps/humanatlas.io/src/static",
+            "output": "."
+          }
+        ],
+        "styles": ["apps/humanatlas.io/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["node_modules/swiper"]
+        },
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "1mb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/humanatlas.io/src/environments/environment.ts",
+              "with": "apps/humanatlas.io/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        },
+        "staging": {
+          "baseHref": "/apps/humanatlas.io/",
+          "outputHashing": "none"
+        },
+        "preview": {
+          "baseHref": "/apps/humanatlas.io/",
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "humanatlas.io:build:production"
+        },
+        "development": {
+          "buildTarget": "humanatlas.io:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "humanatlas.io:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/humanatlas.io/jest.config.ts"
+      }
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "apps/humanatlas.io/tsconfig.json",
+        "outputPath": "dist/compodoc/humanatlas.io"
+      },
+      "configurations": {
+        "ci": {
+          "silent": true
+        },
+        "serve": {
+          "watch": true,
+          "disableCoverage": false,
+          "disablePrivate": false,
+          "disableInternal": false
+        }
+      }
+    },
+    "compodoc-json": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "apps/humanatlas.io/tsconfig.json",
+        "outputPath": "dist/compodoc/humanatlas.io",
+        "exportFormat": "json"
+      }
+    },
+    "build-pages-schema": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf ./apps/humanatlas.io/src/app/utils/data-schema.js",
+          "tsc --target esnext -m nodenext --skipLibCheck ./apps/humanatlas.io/src/app/utils/data-schema.ts",
+          "node ./apps/humanatlas.io/src/app/utils/cli.mjs json-schemas ./apps/humanatlas.io/src/pages.schema.json",
+          "npx nx format:write --files apps/humanatlas.io/src/pages.schema.json"
+        ],
+        "parallel": false
+      }
+    }
+  }
+}

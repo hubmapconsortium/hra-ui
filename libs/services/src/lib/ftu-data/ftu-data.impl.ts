@@ -165,7 +165,7 @@ export class FtuDataImplService extends FtuDataService {
   */
   override getTissueLibrary(): Observable<TissueLibrary> {
     return this.fetchData(undefined, 'illustrations', ILLUSTRATIONS).pipe(
-      map((data) => this.constructTissueLibrary(data['@graph']))
+      map((data) => this.constructTissueLibrary(data['@graph'])),
     );
   }
 
@@ -179,7 +179,7 @@ export class FtuDataImplService extends FtuDataService {
       .pipe(map((data) => this.findIllustrationUrl(data)))
       .pipe(
         withLatestFrom(this.endpoints),
-        map(([url, { baseHref }]) => setUrl(url, baseHref))
+        map(([url, { baseHref }]) => setUrl(url, baseHref)),
       );
   }
 
@@ -191,7 +191,7 @@ export class FtuDataImplService extends FtuDataService {
   override getIllustrationMapping(iri: Iri): Observable<IllustrationMappingItem[]> {
     return this.fetchData(iri, 'illustrations', ILLUSTRATIONS).pipe(
       map((data) => this.findGraphItem(data, iri).mapping),
-      map((data) => (data ? this.toIllustrationMapping(data) : []))
+      map((data) => (data ? this.toIllustrationMapping(data) : [])),
     );
   }
 
@@ -203,7 +203,7 @@ export class FtuDataImplService extends FtuDataService {
   override getCellSummaries(iri: Iri): Observable<CellSummary[]> {
     return this.fetchData(iri, 'summaries', CELL_SUMMARIES).pipe(
       map((data) => this.findCellSummaries(data, iri)),
-      map((data) => (data ? this.constructCellSummaries(data) : []))
+      map((data) => (data ? this.constructCellSummaries(data) : [])),
     );
   }
 
@@ -215,7 +215,7 @@ export class FtuDataImplService extends FtuDataService {
   override getDataFileReferences(iri: Iri): Observable<DataFileReference[]> {
     return this.fetchData(iri, 'illustrations', ILLUSTRATIONS).pipe(
       map((data) => this.findGraphItem(data, iri).illustration_files),
-      map((data) => (data ? this.toDataFileReferences(data) : []))
+      map((data) => (data ? this.toDataFileReferences(data) : [])),
     );
   }
 
@@ -227,7 +227,7 @@ export class FtuDataImplService extends FtuDataService {
   override getSourceReferences(iri: Iri): Observable<SourceReference[]> {
     return this.fetchData(iri, 'datasets', DATASETS).pipe(
       map((data) => this.findGraphItem(data, iri).data_sources),
-      map((data) => (data ? this.toSourceReferences(data) : []))
+      map((data) => (data ? this.toSourceReferences(data) : [])),
     );
   }
 
@@ -242,7 +242,7 @@ export class FtuDataImplService extends FtuDataService {
   private fetchData<T extends z.ZodTypeAny>(
     iri: Iri | undefined,
     endpoint: keyof FtuDataImplEndpoints,
-    schema: T
+    schema: T,
   ): Observable<z.infer<T>> {
     return this.endpoints.pipe(
       map((endpoints) => endpoints[endpoint]),
@@ -260,7 +260,7 @@ export class FtuDataImplService extends FtuDataService {
         return from(cache.get(url) as Promise<z.infer<T>>);
       }),
       take(1),
-      shareReplay(1)
+      shareReplay(1),
     );
   }
 
@@ -274,7 +274,6 @@ export class FtuDataImplService extends FtuDataService {
   private findGraphItem<T extends IdItem>(data: Graph<T>, iri: Iri): T {
     const item = data['@graph'].find(({ '@id': id }) => id === iri);
     if (item === undefined) {
-      console.error(`Iri not found in data: ${iri}`);
       return {} as T;
     }
     return item;
@@ -290,7 +289,6 @@ export class FtuDataImplService extends FtuDataService {
   private findCellSummaries<T extends CellSourceItem>(data: Graph<T>, iri: Iri): T[] {
     const item = data['@graph'].filter(({ cell_source }) => cell_source === iri);
     if (item === undefined || item.length == 0) {
-      console.error(`Cell Summary not found in data: ${iri}`);
       return [];
     }
     return item;
@@ -306,7 +304,6 @@ export class FtuDataImplService extends FtuDataService {
     const svgFormat = fileFormatMapping['image/svg+xml'];
     const ref = files.find(({ format }) => format === svgFormat);
     if (ref === undefined) {
-      console.error('Illustration url not found');
       return '' as Url;
     }
     return ref.url;
@@ -318,7 +315,7 @@ export class FtuDataImplService extends FtuDataService {
    * @returns illustration mapping
    */
   private toIllustrationMapping(
-    mappings: { label: string; svg_id: string; svg_group_id: string; representation_of: string }[]
+    mappings: { label: string; svg_id: string; svg_group_id: string; representation_of: string }[],
   ): IllustrationMappingItem[] {
     const results: IllustrationMappingItem[] = [];
     for (const { label, svg_id, svg_group_id, representation_of } of mappings) {

@@ -1,21 +1,33 @@
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { LinkRegistryState } from '@hra-ui/cdk/state';
+import { Meta, StoryFn } from '@storybook/angular';
 import { ScreenSizeNoticeComponent } from './screen-size-notice.component';
 
 export default {
   title: 'ScreenSizeNoticeComponent',
   component: ScreenSizeNoticeComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [],
-    }),
-  ],
+  parameters: {
+    state: {
+      states: [LinkRegistryState],
+      actions: [],
+    },
+  },
 } as Meta<ScreenSizeNoticeComponent>;
 
-const Template: Story<ScreenSizeNoticeComponent> = (args: ScreenSizeNoticeComponent) => ({
+const Template: StoryFn<ScreenSizeNoticeComponent> = (args) => ({
   props: args,
+  styles: [
+    `
+      hra-screen-size-notice {
+        display: flex;
+      }
+    `,
+  ],
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
-  content: 'assets/screen-size-notice-content.md',
+export const Primary = {
+  render: Template,
+
+  args: {
+    content: 'Test test test',
+  },
 };

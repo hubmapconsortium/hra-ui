@@ -1,0 +1,68 @@
+@use '@angular/material' as mat;
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $primary: map-get($color-config, primary);
+  $background: map-get($color-config, background);
+  $foreground: map-get($color-config, foreground);
+  $accent: map-get($color-config, accent);
+
+  .slider-form-field {
+    .mat-mdc-text-field-wrapper {
+      .mdc-line-ripple {
+        color: mat.get-color-from-palette($foreground, contrast-icon);
+      }
+    }
+  }
+
+  .mat-mdc-select-arrow {
+    color: mat.get-color-from-palette($foreground, contrast-icon);
+  }
+
+  .name-label {
+    color: mat.get-color-from-palette($foreground, text-muted);
+  }
+
+  .range-label {
+    color: mat.get-color-from-palette($background, text);
+  }
+
+  .slider-pane {
+    border-color: mat.get-color-from-palette($foreground, modal-borders);
+  }
+
+  .ccf-slider {
+    background-color: mat.get-color-from-palette($background, modal);
+
+    .slider {
+      .ngx-slider-bar,
+      .ngx-slider-selection,
+      .ngx-slider-pointer {
+        background-color: mat.get-color-from-palette($background, mat-slider-primary);
+      }
+
+      .ngx-slider-pointer {
+        border-color: mat.get-color-from-palette($background, modal);
+      }
+    }
+
+    .label {
+      &.min,
+      &.max {
+        input {
+          color: mat.get-color-from-palette($primary, text);
+        }
+      }
+
+      &.ceil,
+      &.floor {
+        color: mat.get-color-from-palette($foreground, text-muted);
+      }
+    }
+  }
+
+  .input-high,
+  .input-low {
+    background-color: mat.get-color-from-palette($foreground, input-bg);
+  }
+}

@@ -6,3 +6,7 @@ nx.json
 tsconfig.base.json
 
 .angular
+.nx/cache
+
+# Ignore big asset files
+*.n3store.json

@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-@use 'angular-material-css-vars/src/lib/main' as mat-css;
+@use 'angular-material-css-vars' as mat-css;
 
 $default-typography-config: mat.define-typography-config(
   $font-family: (

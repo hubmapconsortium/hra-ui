@@ -56,6 +56,36 @@
       ],
       "@hra-ui/utils/types": [
         "libs/shared/utils/types/src/index.ts"
+      ],
+      "ccf-body-ui": [
+        "libs/ccf-body-ui/src/public-api.ts"
+      ],
+      "ccf-database": [
+        "libs/ccf-database/src/public-api.ts"
+      ],
+      "ccf-shared": [
+        "libs/ccf-shared/src/public-api.ts"
+      ],
+      "ccf-shared/analytics": [
+        "libs/ccf-shared/analytics/src/public-api.ts"
+      ],
+      "ccf-shared/rxjs-ext": [
+        "libs/ccf-shared/rxjs-ext/src/public-api.ts"
+      ],
+      "ccf-shared/rxjs-ext/operators": [
+        "libs/ccf-shared/rxjs-ext/operators/src/public-api.ts"
+      ],
+      "ccf-shared/web-components": [
+        "libs/ccf-shared/web-components/src/public-api.ts"
+      ],
+      "stream": [
+        "./node_modules/stream-browserify"
+      ],
+      "swiper_angular": [
+        "node_modules/swiper/angular"
+      ],
+      "triple-store-utils": [
+        "libs/triple-store-utils/src/public-api.ts"
       ]
     }
   },

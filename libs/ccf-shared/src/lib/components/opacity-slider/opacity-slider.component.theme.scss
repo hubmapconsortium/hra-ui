@@ -1,0 +1,53 @@
+@use '@angular/material' as mat;
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $primary: map-get($color-config, primary);
+  $background: map-get($color-config, background);
+  $foreground: map-get($color-config, foreground);
+  $accent: map-get($color-config, accent);
+
+  .ccf-opacity-slider {
+    mat-slider {
+      .mdc-slider__track--active {
+        border-top-color: mat.get-color-from-palette($foreground, main) !important;
+        background-color: mat.get-color-from-palette($foreground, icons-disabled);
+      }
+
+      .mdc-slider__track--active_fill {
+        background-color: mat.get-color-from-palette($foreground, main);
+      }
+
+      .mdc-slider__thumb-knob {
+        background-color: mat.get-color-from-palette($foreground, main) !important;
+        border-color: mat.get-color-from-palette($foreground, main) !important;
+      }
+    }
+
+    .opacity-value {
+      color: mat.get-color-from-palette($foreground, opacity-numbers);
+    }
+
+    .icon {
+      color: mat.get-color-from-palette($foreground, main);
+      &:hover {
+        background: mat.get-color-from-palette($foreground, icons-hover);
+      }
+    }
+
+    .visibility {
+      &:active {
+        background-color: #f5f5f5;
+      }
+      &.invisible {
+        color: mat.get-color-from-palette($foreground, icons-disabled);
+      }
+    }
+
+    .reset {
+      &:active {
+        background-color: #f5f5f5;
+      }
+    }
+  }
+}

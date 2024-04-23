@@ -12,14 +12,17 @@
 
   .header {
     grid-area: header;
-    border-bottom: 0.0625rem solid rgba(vars.$dark-dividers);
+    border-bottom: 0.0625rem solid #d3d3d3;
     width: 100%;
     z-index: 1;
   }
 
   .sidebar {
     grid-area: sidebar;
-    border-right: 0.0625rem solid rgba(vars.$dark-dividers);
+
+    ::ng-deep .label {
+      border-right: 0.0625rem solid #d3d3d3;
+    }
   }
 
   .page-content::ng-deep {
