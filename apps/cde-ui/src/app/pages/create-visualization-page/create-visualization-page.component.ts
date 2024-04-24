@@ -14,6 +14,8 @@ import { FileUploadComponent } from '../../components/file-upload/file-upload.co
 import { CsvLoaderService } from '../../services/csv-loader/csv-loader.service';
 import { MatDividerModule } from '@angular/material/divider';
 import { validateInteger } from '../../shared/form-validators/is-integer';
+import { HeaderComponent } from '../../components/header/header.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
   selector: 'cde-create-visualization-page',
@@ -31,6 +33,8 @@ import { validateInteger } from '../../shared/form-validators/is-integer';
     MatIconModule,
     FileUploadComponent,
     MatDividerModule,
+    HeaderComponent,
+    FooterComponent,
   ],
   templateUrl: './create-visualization-page.component.html',
   styleUrl: './create-visualization-page.component.scss',
@@ -45,12 +49,12 @@ export class CreateVisualizationPageComponent {
   @ViewChild('colorMapInput') colorMapInput!: ElementRef<HTMLElement>;
 
   visualizationForm = this.formBuilder.nonNullable.group({
-    anchorCellType: ['endothelial'],
+    anchorCellType: [''],
     metadata: this.formBuilder.nonNullable.group({
       title: [''],
       technology: [''],
       organ: [''],
-      sex: ['female'],
+      sex: [''],
       age: [undefined, [Validators.min(0), Validators.max(120), validateInteger()]],
       thickness: [undefined, Validators.min(0)],
       pixelSize: [undefined, Validators.min(0)],
@@ -60,6 +64,7 @@ export class CreateVisualizationPageComponent {
 
   data?: CellTypeTableData[];
   colorMap?: ColorMap;
+  selectedValue?: string;
   organs: MetadataSelectOption[] = [];
   service = inject(CsvLoaderService);
   loadCsv = this.service.createLoader<CellTypeTableData>({

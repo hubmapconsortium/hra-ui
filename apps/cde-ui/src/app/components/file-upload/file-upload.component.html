@@ -12,13 +12,13 @@
         }
         <span class="column-info-list">{{ file.name }}</span>
       </div>
-      <button class="remove-file" mat-fab extended (click)="cancelLoad()" type="button">
+      <button class="remove-file" mat-flat-button (click)="cancelLoad()" type="button" color="primary">
         <mat-icon class="material-symbols-rounded">cancel</mat-icon>
         Remove CSV
       </button>
     </div>
   } @else {
-    <button class="upload" mat-fab extended (click)="fileInput.click()" type="button">
+    <button class="upload" mat-flat-button (click)="fileInput.click()" type="button" color="primary">
       <mat-icon class="material-symbols-rounded">upload</mat-icon>
       Upload CSV
     </button>

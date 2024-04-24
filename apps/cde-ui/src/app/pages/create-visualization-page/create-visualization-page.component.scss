@@ -1,141 +1,131 @@
-:host {
-  --mdc-elevated-card-container-shape: 1rem;
-  --mdc-elevated-card-container-elevation: 0px 5px 16px 0px #201e3d3d;
+@use '@angular/material' as mat;
 
-  --mdc-extended-fab-container-height: 2.6875rem;
-  --mdc-extended-fab-container-shape: 0.25rem;
-  --mdc-extended-fab-label-text-size: 1.125rem;
-  --mdc-extended-fab-label-text-weight: 500;
-  --mdc-extended-fab-label-text-tracking: 0.005em;
-  --mdc-fab-container-color: #d5dbe3;
+$higher-density-theme: mat.define-light-theme(
+  (
+    density: -1,
+  )
+);
 
-  --mat-standard-button-toggle-divider-color: #4c4c58;
-  --mat-standard-button-toggle-height: 2.6875rem;
-  --mat-standard-button-toggle-selected-state-text-color: white;
-  --mat-standard-button-toggle-selected-state-background-color: #e00d3a;
-
-  --mat-select-trigger-text-size: 0.75rem;
-  --mat-select-trigger-text-weight: 500;
-  --mat-select-trigger-text-line-height: 1.375rem;
-  --mat-select-trigger-text-tracking: 0.005em;
-
-  --mat-form-field-container-height: 1.375rem;
-  --mat-form-field-container-vertical-padding: 0.4375rem;
-  --mat-form-field-container-text-size: 0.75rem;
-  --mdc-filled-text-field-container-color: white;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5rem;
-  height: 100%;
-  color: #201e3d;
-
-  &:before {
-    content: '';
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-image: url('../../../assets/backgrounds/create-visualization-page-background.png');
-    opacity: 0.45;
-    background-size: cover;
-    z-index: -1;
+::ng-deep {
+  .cdk-overlay-container div.cdk-overlay-pane div.select-options-container {
+    border-radius: 1rem;
   }
+}
+
+:host {
+  display: block;
+  background-image: url('../../../assets/backgrounds/create-visualization-page-background.png');
 
   .content {
     display: flex;
     flex-direction: column;
     gap: 5rem;
     max-width: 72rem;
+    margin: 0 auto;
     width: 100%;
 
+    > :last-child {
+      margin-bottom: 8rem;
+    }
+
+    @include mat.form-field-density($higher-density-theme);
+    @include mat.select-density($higher-density-theme);
+
     .title {
-      margin: 0;
+      margin-top: 5rem;
     }
 
-    .step-title {
-      display: flex;
-      align-items: center;
-
-      .step-number {
-        width: 3.5rem;
-        height: 3.5rem;
-        background: #464954;
-        text-align: center;
-        padding: 1rem;
-        line-height: 1.75rem;
-        margin-right: 1.5rem;
-        border-radius: 50%;
-        font-size: 1.5rem;
-        color: white;
-      }
-
-      .info {
-        margin-left: 1.25rem;
-      }
-    }
-
-    mat-card {
+    .card {
+      background-color: white;
+      box-shadow: 0 5px 16px 0 rgba(32, 30, 61, 0.24);
+      border-radius: 1rem;
       padding: 3.5rem 4rem;
+      --mdc-filled-text-field-active-indicator-height: 0;
+      --mdc-filled-text-field-focus-active-indicator-height: 0;
+      // --mdc-filled-button-label-text-color: rgba(224, 13, 58, 1);
+      --mdc-filled-button-container-height: 2.5rem;
 
-      &:last-child {
-        margin-bottom: 8rem;
+      ::ng-deep {
+        .mat-mdc-text-field-wrapper,
+        .mdc-text-field {
+          border-radius: 1rem;
+          box-shadow: 0 5px 16px 0 rgba(32, 30, 61, 0.24);
+        }
       }
 
-      mat-card-header {
-        padding: 0 0 3rem;
+      .header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 3rem;
+
+        .step-number {
+          display: inline-block;
+          width: 3.5rem;
+          height: 3.5rem;
+          background: #464954;
+          text-align: center;
+          padding: 1rem;
+          line-height: 1.75rem;
+          margin-right: 1.5rem;
+          border-radius: 50%;
+          font-size: 1.5rem;
+          color: white;
+        }
+
+        .info {
+          margin-left: 1.25rem;
+        }
       }
     }
 
-    .creation-step.data {
-      --mat-divider-width: 1px;
-      --mat-divider-color: #d5dbe3;
+    .select-form {
+      min-width: 26.75rem;
+    }
+
+    .data-upload {
+      display: grid;
+      display: grid;
+      grid-template-columns: 1fr 1fr 0.5fr 1.5fr;
+      grid-template-rows: auto;
+      grid-template-areas:
+        'header header header header'
+        'subheader-1 subheader-1 divider subheader-2'
+        'subheader-required-columns subheader-optional-columns divider use-template'
+        'required-columns optional-columns divider .'
+        'upload-csv upload-csv divider .';
+
+      .header {
+        grid-area: header;
+      }
+
+      .subheader-1 {
+        grid-area: subheader-1;
+      }
+
+      .subheader-2 {
+        grid-area: subheader-2;
+      }
+
+      .subheader-required-columns {
+        grid-area: subheader-required-columns;
+      }
+
+      .subheader-optional-columns {
+        grid-area: subheader-optional-columns;
+      }
 
       .divider {
-        height: 100%;
         grid-area: divider;
         place-self: center;
+        height: 100%;
       }
 
-      .upload-data {
-        display: grid;
-        grid-template-columns: 1fr 1fr 0.5fr 1.5fr;
-        grid-template-rows: auto;
-        grid-template-areas:
-          'upload-table upload-table divider template'
-          'required-col optional-col divider use-template'
-          'reqd-col-info opt-col-info divider .'
-          'upload-csv upload-csv divider .';
+      .required-columns {
+        grid-area: required-columns;
       }
 
-      .upload-table {
-        grid-area: upload-table;
-      }
-
-      .template {
-        grid-area: template;
-      }
-
-      .required-col {
-        grid-area: required-col;
-      }
-
-      .optional-col {
-        grid-area: optional-col;
-      }
-
-      .use-template {
-        grid-area: use-template;
-      }
-
-      .reqd-col-info {
-        grid-area: reqd-col-info;
-      }
-
-      .opt-col-info {
-        grid-area: opt-col-info;
+      .optional-columns {
+        grid-area: optional-columns;
       }
 
       .upload-csv {
@@ -143,51 +133,50 @@
         margin-top: 2.5rem;
       }
 
-      .column-info-header {
-        margin: 0 0 0.5rem;
-      }
+      .use-template {
+        grid-area: use-template;
 
-      .column-info-list {
-        font-weight: 300;
-        color: #4b4b5e;
-      }
-    }
-
-    .anchor {
-      .anchor-select {
-        min-width: 24rem;
-      }
-    }
-
-    .add-metadata {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 3rem;
-
-      .metadata-option,
-      .filler {
-        display: flex;
-        flex-direction: column;
-        width: 18rem;
-        gap: 0.5rem;
-
-        span {
-          font-size: 0.9375rem;
-          line-height: 1.4063rem;
-          font-family: Metropolis;
-          font-weight: 500;
-          letter-spacing: normal;
+        button {
+          gap: 0.75rem;
+          padding: 0;
         }
       }
     }
 
-    .colors {
-      mat-card-actions {
+    .metadata {
+      .metadata-options {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 5rem;
+        row-gap: 3rem;
+
+        .metadata-option {
+          gap: 0.5rem;
+          display: flex;
+          flex-direction: column;
+        }
+      }
+
+      div.metadata-option:nth-child(-n + 2) {
+        width: calc(50% - 4rem);
+      }
+
+      .metadata-option:nth-child(n + 3):nth-child(-n + 7) {
+        width: calc(33% - 4rem);
+      }
+    }
+
+    .color-config {
+      .mat-button-toggle {
+        padding: 0 1.5rem;
+      }
+
+      .toggle-actions {
         display: grid;
-        grid-template-columns: 1.25fr 0.5fr 1.25fr;
+        grid-template-columns: 1.625fr 0.25fr 1.125fr;
         grid-template-areas:
           'upload-toggle upload-toggle upload-toggle'
-          'upload-colormap divider use-template';
+          'upload-colormap divider colormap-template';
 
         mat-button-toggle-group {
           width: max-content;
@@ -205,71 +194,20 @@
           place-self: center;
         }
 
-        .column-info {
-          display: flex;
-          align-items: flex-end;
-          justify-content: space-between;
-        }
+        .colormap-template {
+          grid-area: colormap-template;
 
-        .file-upload-controls {
-          display: flex;
-          width: 100%;
-          margin-top: 2rem;
-
-          .left-side,
-          .right-side {
-            width: 50%;
-          }
-
-          .right-side > .column-content {
-            width: fit-content;
-            margin: 0 auto;
+          button {
+            padding: 0;
           }
         }
-
-        .upload-colormap .loaded-label {
-          font-weight: 500;
-          font-size: 1.5rem;
-          line-height: 2.25rem;
-        }
-      }
-    }
-
-    ::ng-deep {
-      mat-form-field {
-        .mdc-text-field {
-          border-radius: 1rem;
-          box-shadow: 0px 5px 1rem 0px #201e3d3d;
-        }
-
-        .mdc-line-ripple {
-          display: none;
-        }
-      }
-
-      .mat-button-toggle-label-content {
-        padding: 0 1.5rem;
-      }
-    }
-
-    .cta-button {
-      display: flex;
-      flex-direction: row-reverse;
-      padding-left: 0;
-      background: transparent;
-      color: #b20a2f;
-
-      mat-icon {
-        margin-left: 0.75rem;
       }
     }
 
     .visualize {
-      .cta-button {
-        height: 2.5rem;
-        padding: 0.5rem 0.25rem 0.5rem 1.5rem;
-        background: #e00d3a;
+      .visualize-button {
         color: white;
+        background-color: rgba(224, 13, 58, 1);
       }
     }
   }

@@ -1,0 +1,91 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use '../../../styles/palettes' as palettes;
+
+$gray: mat.define-palette(palettes.$hra-gray1-palette, 500);
+$red: mat.define-palette(palettes.$hra-red2-palette, 500);
+$blue: mat.define-palette(palettes.$hra-blue4-palette, 500);
+
+$gray-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $gray,
+      accent: $gray,
+    ),
+  )
+);
+
+$red-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $red,
+      accent: $red,
+    ),
+  )
+);
+
+$blue-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $blue,
+      accent: $blue,
+    ),
+  )
+);
+
+@mixin color($theme) {
+  cde-create-visualization-page {
+    @include mat.form-field-color($gray-theme);
+    @include mat.select-color($gray-theme);
+    @include mat.option-color($gray-theme);
+
+    $divider-color: map.get(palettes.$hra-blue4-palette, 500);
+    --mat-divider-color: #{$divider-color};
+
+    cde-file-upload {
+      @include mat.button-color($blue-theme);
+      --mdc-filled-button-label-text-color: black;
+    }
+
+    mat-button-toggle-group {
+      $button-toggle-selected-background: map.get(palettes.$hra-red2-palette, 500);
+      --mat-standard-button-toggle-selected-state-background-color: #{$button-toggle-selected-background};
+      --mat-standard-button-toggle-selected-state-text-color: white;
+      --mat-standard-button-toggle-divider-color: #4c4c58;
+    }
+
+    mat-form-field {
+      $label-color: map.get(palettes.$hra-gray1-palette, 500);
+      --mdc-filled-text-field-label-text-color: #{$label-color};
+      --mdc-filled-text-field-label-text-weight: 500;
+    }
+
+    .metadata .metadata-options mat-form-field {
+      --mat-form-field-hover-state-layer-opacity: 0;
+      --mdc-filled-text-field-hover-label-text-color: var(--mdc-filled-text-field-label-text-color);
+
+      &:hover {
+        --mdc-filled-text-field-container-color: #eff2f5;
+      }
+    }
+  }
+}
+
+@mixin typography($theme) {
+  cde-create-visualization-page {
+    .metadata .metadata-options mat-form-field {
+      font: mat.get-theme-typography($theme, button);
+    }
+  }
+  //
+}
+
+@mixin theme($theme) {
+  @if mat.theme-has($theme, color) {
+    @include color($theme);
+  }
+
+  @if mat.theme-has($theme, typography) {
+    @include typography($theme);
+  }
+}

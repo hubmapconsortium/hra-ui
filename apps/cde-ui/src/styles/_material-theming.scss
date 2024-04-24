@@ -1,9 +1,10 @@
 @use '@angular/material' as mat;
+@use './custom-component-theming' as custom-components;
 @use './palettes' as palettes;
 
 @include mat.core();
 
-$primary: mat.define-palette(palettes.$hra-red1-palette, 500);
+$primary: mat.define-palette(palettes.$hra-red2-palette, 500);
 $accent: mat.define-palette(palettes.$hra-blue1-palette, 500);
 
 $typography: mat.define-rem-typography-config(
@@ -14,7 +15,7 @@ $typography: mat.define-rem-typography-config(
   $body-1: mat.define-typography-level(20px, 30px, 400, 'Nunito Sans', $letter-spacing: 0.07em),
   $body-2: mat.define-typography-level(18px, 27px, 400, 'Nunito Sans', $letter-spacing: 0.07em),
   $button: mat.define-typography-level(18px, 34.5px, 500),
-  $caption: mat.define-typography-level(14px, 21px, 400, $letter-spacing: 0.005em),
+  $caption: mat.define-typography-level(12px, 22px, 500, $letter-spacing: 0.005em),
 );
 
 $theme: mat.define-light-theme(
@@ -34,12 +35,15 @@ $theme: mat.define-light-theme(
 /** Add theme mixin for material components here! */
 @include mat.button-theme($theme);
 @include mat.button-toggle-theme($theme);
+@include mat.fab-theme($theme);
 @include mat.card-theme($theme);
 @include mat.divider-theme($theme);
 @include mat.form-field-theme($theme);
 @include mat.icon-theme($theme);
 @include mat.progress-bar-theme($theme);
 @include mat.select-theme($theme);
+
+@include custom-components.theme($theme);
 
 // TODO: Maybe use strong-focus-indicators? https://material.angular.io/guide/theming#strong-focus-indicators
 
