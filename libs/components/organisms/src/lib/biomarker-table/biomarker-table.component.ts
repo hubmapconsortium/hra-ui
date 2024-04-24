@@ -6,13 +6,13 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  inject,
   Input,
   OnChanges,
   OnInit,
   Output,
   SimpleChanges,
   ViewChild,
+  inject,
 } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { HoverDirective } from '@hra-ui/cdk';
@@ -121,7 +121,7 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
 
   private horizontalViewportSize = 400;
   private horizontalScrollOffset = 0;
-  private displayedColumnCount = 30;
+  private displayedColumnCount = 10;
   private displayedColumnOffset = 0;
 
   get preFillerWidth(): string {
@@ -151,7 +151,7 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
   ngOnChanges(changes: SimpleChanges): void {
     if ('data' in changes || 'illustrationIds' in changes) {
       this.dataSource.data = this.sortTableData(this.data);
-      this.updateColumns();
+      this.checkDisplayedColumns();
     }
   }
 

@@ -23,9 +23,9 @@ import { BiomarkerTableComponent, DataCell, TissueInfo } from '@hra-ui/component
 import {
   ActiveFtuSelectors,
   CellSummarySelectors,
+  ResourceIds as Ids,
   IllustratorActions,
   IllustratorSelectors,
-  ResourceIds as Ids,
   ResourceTypes as RTypes,
   ScreenModeAction,
   SourceRefsActions,
@@ -35,6 +35,7 @@ import {
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
+import { IllustrationMappingItem } from '@hra-ui/services';
 
 /**
  * PlaceHolder for Empty Tissue Info
@@ -145,6 +146,19 @@ export class BiomarkerDetailsWcComponent {
   }
 
   /**
+   * Gets ids for cells in the illustration
+   */
+  get illustrationIds(): string[] {
+    const mapping = this.mapping();
+    if (mapping !== this.mapping_) {
+      this.mapping_ = mapping;
+      this.illustrationIds_ = Array.from(new Set(this.mapping().map((data) => data.ontologyId)));
+    }
+
+    return this.illustrationIds_;
+  }
+
+  /**
    * button text of empty biomarker component.
    */
   readonly collaborateText = 'Collaborate with the HRA Team';
@@ -165,6 +179,9 @@ export class BiomarkerDetailsWcComponent {
 
   /** Google analytics tracking service */
   private readonly ga = inject(GoogleAnalyticsService);
+
+  private mapping_: IllustrationMappingItem[] = [];
+  private illustrationIds_: string[] = [];
 
   /** A function that toggles isTableFullScreen and
    * calls the setScreenMode function.

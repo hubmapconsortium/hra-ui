@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { FtuDataService, SourceReference } from '@hra-ui/services';
 import { Action, State, StateContext } from '@ngxs/store';
 import { Observable, tap } from 'rxjs';
-import { Load, Reset, SetSelectedSources } from './source-refs.actions';
+import { Load, Reset, ResetSelectedSources, SetSelectedSources } from './source-refs.actions';
 
 export interface SourceRefsModel {
   sources: SourceReference[];
@@ -37,8 +37,13 @@ export class SourceRefsState {
   }
 
   @Action(SetSelectedSources)
-  setSources({ patchState }: Context, { sources }: SetSelectedSources): void {
+  setSelectedSources({ patchState }: Context, { sources }: SetSelectedSources): void {
     patchState({ selected: sources });
+  }
+
+  @Action(ResetSelectedSources)
+  resetSelectedSources({ getState, dispatch }: Context): Observable<void> {
+    return dispatch(new SetSelectedSources(getState().sources));
   }
 
   /**

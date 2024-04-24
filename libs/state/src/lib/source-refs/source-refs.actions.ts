@@ -14,12 +14,14 @@ export class Load extends Action('Load') {
   }
 }
 
-export class SetSelectedSources extends Action('Set Sources') {
+export class SetSelectedSources extends Action('Set Selected Sources') {
   /** Intializes the set iri */
   constructor(readonly sources: SourceReference[]) {
     super();
   }
 }
+
+export class ResetSelectedSources extends Action('Reset Selected Sources') {}
 
 /**
  * Action to reset the state

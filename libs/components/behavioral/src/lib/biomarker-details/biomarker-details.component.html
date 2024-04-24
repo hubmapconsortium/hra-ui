@@ -20,9 +20,9 @@
       [gradient]="gradients()"
       [sizes]="sizes()"
       [tissueInfo]="tissueInfo"
-      [highlightedCellId]="selectedOnHovered()?.ontologyId ?? ''"
       [illustrationIds]="illustrationIds"
       [dataSources]="source()"
+      [highlightedCellId]="selectedOnHovered()?.ontologyId ?? ''"
       (rowHover)="highlightCells($event)"
     ></hra-biomarker-table>
     <hra-empty-biomarker

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
@@ -22,9 +22,9 @@ import {
   ActiveFtuSelectors,
   CellSummaryActions,
   CellSummarySelectors,
+  ResourceIds as Ids,
   IllustratorActions,
   IllustratorSelectors,
-  ResourceIds as Ids,
   ResourceTypes as RTypes,
   ScreenModeAction,
   SourceRefsActions,
@@ -66,8 +66,6 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BiomarkerDetailsComponent {
-  private readonly cdr = inject(ChangeDetectorRef);
-
   @ViewChild('table') table!: BiomarkerTableComponent<DataCell>;
 
   /** Table tabs */
