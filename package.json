@@ -197,9 +197,5 @@
     "typescript": "5.4.5",
     "webpack": "^5.90.1",
     "zod-to-json-schema": "^3.22.3"
-  },
-  "lint-staged": {
-    "*.{js,ts}": "eslint --cache --cache-location \"node_modules/.cache/.eslintcache\" --fix",
-    "*.{js,ts,css,scss,md,html}": "prettier --write"
   }
 }
