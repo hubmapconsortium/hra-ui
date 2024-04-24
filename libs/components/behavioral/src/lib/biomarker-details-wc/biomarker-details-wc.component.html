@@ -22,7 +22,11 @@
     >
     </hra-interactive-svg>
   </mat-tab>
-  <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="'Cell Types by ' + tab.label">
+  <mat-tab
+    *ngFor="let tab of tabs; trackBy: trackByIndex"
+    labelClass="table-tab-header"
+    [label]="'Cell Types by ' + tab.label"
+  >
     <ng-template matTabContent>
       <hra-biomarker-table
         *ngIf="tab.rows.length !== 0"

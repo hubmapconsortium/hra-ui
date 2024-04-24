@@ -22,6 +22,7 @@ import {
 import { BiomarkerTableComponent, DataCell, TissueInfo } from '@hra-ui/components/organisms';
 import {
   ActiveFtuSelectors,
+  CellSummaryAggregate,
   CellSummarySelectors,
   ResourceIds as Ids,
   IllustratorActions,
@@ -34,8 +35,8 @@ import {
 } from '@hra-ui/state';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
-import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 import { IllustrationMappingItem } from '@hra-ui/services';
+import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
 /**
  * PlaceHolder for Empty Tissue Info
@@ -111,7 +112,7 @@ export class BiomarkerDetailsWcComponent {
   readonly updateNodeOnClicked = dispatch(IllustratorActions.SetClicked);
 
   /** Table tabs */
-  readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);
+  readonly getTabs = selectSnapshot(CellSummarySelectors.aggregates);
 
   /** Info to be shown on the tooltip for Gradient Legend */
   readonly gradientHoverInfo = selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);
@@ -143,6 +144,15 @@ export class BiomarkerDetailsWcComponent {
     }
     const { id, label } = tissues[iri];
     return { id, label };
+  }
+
+  get tabs(): CellSummaryAggregate[] {
+    const tabs = this.getTabs();
+    if (tabs !== this.tabs_ && tabs.length !== 0) {
+      this.tabs_ = tabs;
+    }
+
+    return this.tabs_;
   }
 
   /**
@@ -182,6 +192,11 @@ export class BiomarkerDetailsWcComponent {
 
   private mapping_: IllustrationMappingItem[] = [];
   private illustrationIds_: string[] = [];
+  private tabs_: CellSummaryAggregate[] = [];
+
+  trackByIndex(index: number): number {
+    return index;
+  }
 
   /** A function that toggles isTableFullScreen and
    * calls the setScreenMode function.
@@ -208,6 +223,7 @@ export class BiomarkerDetailsWcComponent {
    * @param event tab change event
    */
   logTabChange(event: MatTabChangeEvent) {
+    console.log(event);
     this.ga.event('biomarker_tab_change', event.tab ? event.tab.textLabel : '');
   }
 }
