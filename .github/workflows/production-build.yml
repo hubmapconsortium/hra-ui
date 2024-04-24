@@ -44,5 +44,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: deploy/apps
+          publish_dir: deploy
           commit_message: 'Production deploy -- ${{ github.event.head_commit.message }}'
