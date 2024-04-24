@@ -145,24 +145,13 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
 
   /**
    * Sets the data source for the table on every change
-   * Sorts the biomarker table on illustrationLabels change
+   * Sorts the biomarker table on illustrationIds change
    * @param changes object consisting of change in the Input
    */
   ngOnChanges(changes: SimpleChanges): void {
-    if ('data' in changes) {
-      this.dataSource.data = this.data;
-      this.sortTable();
+    if ('data' in changes || 'illustrationIds' in changes) {
+      this.dataSource.data = this.sortTableData(this.data);
       this.updateColumns();
-    }
-
-    if ('illustrationIds' in changes) {
-      if (!changes['illustrationIds'].previousValue) {
-        return;
-      }
-      if (changes['illustrationIds'].currentValue.toString() === changes['illustrationIds'].previousValue.toString()) {
-        return;
-      }
-      this.sortTable();
     }
   }
 
@@ -222,15 +211,25 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
   /**
    * Sorts table by cell type alphabetically, then puts cells that are in the illustration on top
    */
-  sortTable(): void {
-    this.dataSource.data = this.data.sort((a, b) => {
-      return a[0].toLowerCase() < b[0].toLowerCase() ? -1 : 1;
-    });
+  sortTableData(data: DataRow<T>[]): DataRow<T>[] {
+    const illustrationIdsSet = new Set(this.illustrationIds);
+    const inIllustration = new Map<DataRow<T>, boolean>();
+    for (const row of data) {
+      const id = this.getHoverId(row);
+      inIllustration.set(row, illustrationIdsSet.has(id));
+    }
 
-    this.dataSource.data = this.dataSource.data.sort((a, b) => {
-      const id1 = this.illustrationIds.includes(this.getHoverId(a));
-      const id2 = this.illustrationIds.includes(this.getHoverId(b));
-      return id1 && !id2 ? -1 : 1;
+    return [...data].sort((row1, row2) => {
+      const in1 = inIllustration.get(row1);
+      const in2 = inIllustration.get(row2);
+
+      if (in1 && !in2) {
+        return -1;
+      } else if (!in1 && in2) {
+        return 1;
+      }
+
+      return row1[0].localeCompare(row2[0]);
     });
   }
 

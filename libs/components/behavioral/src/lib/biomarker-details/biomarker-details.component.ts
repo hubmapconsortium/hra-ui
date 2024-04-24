@@ -16,6 +16,7 @@ import {
 } from '@hra-ui/components/atoms';
 import { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/components/molecules';
 import { BiomarkerTableComponent, DataCell, TissueInfo } from '@hra-ui/components/organisms';
+import { IllustrationMappingItem } from '@hra-ui/services';
 import {
   ActiveFtuActions,
   ActiveFtuSelectors,
@@ -136,7 +137,13 @@ export class BiomarkerDetailsComponent {
    * Gets ids for cells in the illustration
    */
   get illustrationIds(): string[] {
-    return Array.from(new Set(this.mapping().map((data) => data.ontologyId)));
+    const mapping = this.mapping();
+    if (mapping !== this.mapping_) {
+      this.mapping_ = mapping;
+      this.illustrationIds_ = Array.from(new Set(this.mapping().map((data) => data.ontologyId)));
+    }
+
+    return this.illustrationIds_;
   }
 
   /**
@@ -158,6 +165,9 @@ export class BiomarkerDetailsComponent {
 
   /** Google analytics tracking service */
   private readonly ga = inject(GoogleAnalyticsService);
+
+  private mapping_: IllustrationMappingItem[] = [];
+  private illustrationIds_: string[] = [];
 
   /** A function that toggles isTableFullScreen and
    * calls the setScreenMode function.
