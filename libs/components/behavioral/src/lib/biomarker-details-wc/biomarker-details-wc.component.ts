@@ -223,7 +223,6 @@ export class BiomarkerDetailsWcComponent {
    * @param event tab change event
    */
   logTabChange(event: MatTabChangeEvent) {
-    console.log(event);
     this.ga.event('biomarker_tab_change', event.tab ? event.tab.textLabel : '');
   }
 }

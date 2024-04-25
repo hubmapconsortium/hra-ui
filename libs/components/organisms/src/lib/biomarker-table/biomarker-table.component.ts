@@ -6,13 +6,14 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  HostListener,
+  inject,
   Input,
   OnChanges,
   OnInit,
   Output,
   SimpleChanges,
   ViewChild,
-  inject,
 } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { HoverDirective } from '@hra-ui/cdk';
@@ -153,6 +154,11 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
       this.dataSource.data = this.sortTableData(this.data);
       this.checkDisplayedColumns();
     }
+  }
+
+  @HostListener('window:mousemove', ['$event'])
+  onMouseMove() {
+    this.checkDisplayedColumns();
   }
 
   trackByIndex(index: number): number {
