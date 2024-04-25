@@ -150,9 +150,9 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
    * @param changes object consisting of change in the Input
    */
   ngOnChanges(changes: SimpleChanges): void {
+    this.checkDisplayedColumns();
     if ('data' in changes || 'illustrationIds' in changes) {
       this.dataSource.data = this.sortTableData(this.data);
-      this.checkDisplayedColumns();
     }
   }
 

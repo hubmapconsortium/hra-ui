@@ -52,8 +52,29 @@
     }
 
     ::ng-deep thead {
+      .mat-sort-header-stem,
+      .mat-sort-header-indicator {
+        opacity: 0 !important;
+      }
+
       .mat-sort-header-arrow {
-        color: rgba(vars.$primary);
+        background-image: url('../../assets/icons/arrow-upward.svg');
+        background-size: contain;
+        height: 16px;
+        width: 16px;
+      }
+
+      [aria-sort='descending'] {
+        .mat-sort-header-arrow {
+          background-image: url('../../assets/icons/arrow-down.svg');
+        }
+      }
+
+      [aria-sort='none'] {
+        .mat-sort-header-arrow {
+          background-image: url('../../assets/icons/arrow-upward.svg');
+          transition: 0.5s;
+        }
       }
 
       tr {
