@@ -5,7 +5,7 @@
 
   .footer-wrapper {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: minmax(30.8125rem, auto) 2fr;
   }
 
   .footer-left {
@@ -35,8 +35,9 @@
 
     .social-funded {
       display: flex;
-      margin: 8.5rem 24.375rem 0 6.5rem;
-      gap: 13.875rem;
+      flex-wrap: wrap;
+      margin: 8.5rem 6.5rem 0 6.5rem;
+      column-gap: 13.875rem;
 
       .social-media {
         display: flex;
@@ -108,7 +109,7 @@
     }
 
     .disclaimer {
-      margin: 5rem 6.5rem 8.5rem;
+      margin: 5rem 6.5rem 8.5rem 6.5rem;
       color: hsla(240, 11%, 33%, 1);
       span {
         display: block;

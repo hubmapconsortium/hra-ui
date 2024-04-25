@@ -9,12 +9,18 @@ $higher-density-theme: mat.define-light-theme(
 ::ng-deep {
   .cdk-overlay-container div.cdk-overlay-pane div.select-options-container {
     border-radius: 1rem;
+
+    mat-option {
+      --mat-option-selected-state-label-text-color: #201e3d;
+      --mat-minimal-pseudo-checkbox-selected-checkmark-color: #b20a2f;
+    }
   }
 }
 
 :host {
   display: block;
-  background-image: url('../../../assets/backgrounds/create-visualization-page-background.png');
+  background: url('../../../assets/backgrounds/create-visualization-page-background.png') no-repeat;
+  background-size: 100%;
 
   .content {
     display: flex;
@@ -42,7 +48,6 @@ $higher-density-theme: mat.define-light-theme(
       padding: 3.5rem 4rem;
       --mdc-filled-text-field-active-indicator-height: 0;
       --mdc-filled-text-field-focus-active-indicator-height: 0;
-      // --mdc-filled-button-label-text-color: rgba(224, 13, 58, 1);
       --mdc-filled-button-container-height: 2.5rem;
 
       ::ng-deep {

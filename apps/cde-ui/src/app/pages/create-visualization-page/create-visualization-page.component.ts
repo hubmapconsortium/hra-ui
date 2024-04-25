@@ -16,6 +16,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { validateInteger } from '../../shared/form-validators/is-integer';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
 
 @Component({
   selector: 'cde-create-visualization-page',
@@ -35,6 +36,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
     MatDividerModule,
     HeaderComponent,
     FooterComponent,
+    MarkEmptyFormControlDirective,
   ],
   templateUrl: './create-visualization-page.component.html',
   styleUrl: './create-visualization-page.component.scss',
@@ -101,5 +103,18 @@ export class CreateVisualizationPageComponent {
         colorMap: this.colorMap,
       });
     }
+  }
+
+  constructor() {
+    this.visualizationForm
+      .get('metadata')
+      ?.get('title')
+      ?.valueChanges.subscribe((val) => {
+        this.log(val);
+      });
+  }
+
+  log(value: unknown): void {
+    console.log('log:', value);
   }
 }
