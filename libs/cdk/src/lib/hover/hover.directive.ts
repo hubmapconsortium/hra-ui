@@ -1,6 +1,6 @@
 import { ConnectionPositionPair, Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { Directive, ElementRef, HostListener, Input, TemplateRef, ViewContainerRef, inject } from '@angular/core';
+import { Directive, ElementRef, HostListener, inject, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
 /**  Context passed to hover content templates */
 export interface HoverContext<T = unknown> {
@@ -34,6 +34,7 @@ export class HoverDirective<T = unknown> {
   /**  Reference to the element that the directive is attached to */
   private readonly el: Element = inject(ElementRef).nativeElement;
 
+  /** Overlay service */
   private readonly overlay = inject(Overlay);
 
   /**  Reference to the overlay that is created when the userhovers over the element along with its position setting */
@@ -74,6 +75,7 @@ export class HoverDirective<T = unknown> {
     }
   }
 
+  /** Function to create overlay and set its position */
   private createOverlay(): OverlayRef {
     return this.overlay.create({
       positionStrategy: this.overlay
