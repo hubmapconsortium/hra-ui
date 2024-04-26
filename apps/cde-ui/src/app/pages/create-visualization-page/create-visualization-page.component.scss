@@ -20,7 +20,7 @@ $higher-density-theme: mat.define-light-theme(
 :host {
   display: block;
   background: url('../../../assets/backgrounds/create-visualization-page-background.png') no-repeat;
-  background-size: 100%;
+  background-size: 100% 100%;
 
   .content {
     display: flex;

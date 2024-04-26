@@ -99,7 +99,7 @@ $blue-theme: mat.define-light-theme(
         }
       }
 
-      &:has(mat-select:focus-visible, .empty:focus-visible) {
+      &:has(mat-select:focus-visible, input:focus-visible) {
         label {
           --mdc-filled-text-field-focus-label-text-color: #{$selected-option-color};
           --mdc-filled-text-field-label-text-color: #{$selected-option-color};
@@ -118,7 +118,6 @@ $blue-theme: mat.define-light-theme(
       font: mat.get-theme-typography($theme, button);
     }
   }
-  //
 }
 
 @mixin theme($theme) {
