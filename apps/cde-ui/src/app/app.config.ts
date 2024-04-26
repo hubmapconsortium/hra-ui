@@ -3,6 +3,7 @@ import { Routes, provideRouter } from '@angular/router';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { provideIcons } from './services/icon-registry/icon-registry.service';
 import { provideHttpClient } from '@angular/common/http';
+import { VisualizationPageComponent } from './pages/visualization-page/visualization-page.component';
 
 /**
  * App routes
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'home',
     loadComponent: () => LandingPageComponent,
+  },
+  {
+    path: 'visualize',
+    loadComponent: () => VisualizationPageComponent,
   },
   {
     path: '**',

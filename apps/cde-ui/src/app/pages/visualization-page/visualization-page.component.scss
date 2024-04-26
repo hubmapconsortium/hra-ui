@@ -1,0 +1,21 @@
+:host {
+  background-color: gray;
+  padding: 6px 4px;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(auto, 18.375rem) 1fr;
+  grid-template-areas:
+    'header header'
+    'visualization visualization';
+
+  .header {
+    grid-area: header;
+  }
+
+  .visualization {
+    display: grid;
+    grid-area: visualization;
+    grid-template-columns: subgrid;
+  }
+}
