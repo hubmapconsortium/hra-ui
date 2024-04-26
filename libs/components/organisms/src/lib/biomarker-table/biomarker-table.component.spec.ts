@@ -1,8 +1,9 @@
-import { BiomarkerTableComponent, DataCell, DataRow, TissueInfo } from './biomarker-table.component';
-import { Shallow } from 'shallow-render';
 import { MatTableModule } from '@angular/material/table';
 import { HoverDirective } from '@hra-ui/cdk';
 import { GradientPoint, SizeLegend } from '@hra-ui/components/atoms';
+import { Shallow } from 'shallow-render';
+
+import { BiomarkerTableComponent, DataCell, DataRow, TissueInfo } from './biomarker-table.component';
 
 describe('BiomarkerTableComponent', () => {
   const columns = ['RGMB', 'SOX9', 'CD44', 'LGR5'];
@@ -106,7 +107,7 @@ describe('BiomarkerTableComponent', () => {
         illustrationIds: ['cellName'],
       },
     });
-    instance.sortTable();
+    instance.sortTableData(instance.data);
     expect(instance.dataSource.data).toStrictEqual(sortedData);
   });
 
