@@ -14,6 +14,9 @@ export class Load extends Action('Load') {
   }
 }
 
+/**
+ * Action to set selected source references
+ */
 export class SetSelectedSources extends Action('Set Selected Sources') {
   /** Intializes the set iri */
   constructor(readonly sources: SourceReference[]) {
@@ -21,6 +24,9 @@ export class SetSelectedSources extends Action('Set Selected Sources') {
   }
 }
 
+/**
+ * Action to reset selected source references
+ */
 export class ResetSelectedSources extends Action('Reset Selected Sources') {}
 
 /**

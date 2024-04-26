@@ -18,13 +18,11 @@ import { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/co
 import { BiomarkerTableComponent, DataCell, TissueInfo } from '@hra-ui/components/organisms';
 import { IllustrationMappingItem } from '@hra-ui/services';
 import {
-  ActiveFtuActions,
   ActiveFtuSelectors,
-  CellSummaryActions,
   CellSummarySelectors,
-  ResourceIds as Ids,
   IllustratorActions,
   IllustratorSelectors,
+  ResourceIds as Ids,
   ResourceTypes as RTypes,
   ScreenModeAction,
   SourceRefsActions,
@@ -66,6 +64,7 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BiomarkerDetailsComponent {
+  /** Reference to biomarker table */
   @ViewChild('table') table!: BiomarkerTableComponent<DataCell>;
 
   /** Table tabs */
@@ -110,13 +109,8 @@ export class BiomarkerDetailsComponent {
   /** Action to highlight a cell type */
   readonly highlightCell = dispatch(IllustratorActions.HighlightCellType);
 
+  /** Action to set selected sources */
   readonly setSelectedSources = dispatch(SourceRefsActions.SetSelectedSources);
-
-  readonly setIllustrationUrl = dispatch(ActiveFtuActions.SetIllustrationUrl);
-
-  readonly load = dispatch(CellSummaryActions.Load);
-
-  readonly computeAggregates = dispatch(CellSummaryActions.ComputeAggregates);
 
   /**
    * Gets tissue title from the list of tissues
@@ -164,7 +158,9 @@ export class BiomarkerDetailsComponent {
   /** Google analytics tracking service */
   private readonly ga = inject(GoogleAnalyticsService);
 
+  /** Mapping items reference */
   private mapping_: IllustrationMappingItem[] = [];
+  /** Illustration ids reference */
   private illustrationIds_: string[] = [];
 
   /** A function that toggles isTableFullScreen and

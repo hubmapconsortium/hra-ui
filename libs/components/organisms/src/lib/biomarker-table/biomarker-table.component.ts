@@ -42,10 +42,13 @@ export interface DataCell {
   size: number;
   /** Represents the data for the data card */
   data: {
+    /** Cell name */
     cell: string;
+    /** Biomarker name */
     biomarker: string;
+    /** Mean expression value */
     meanExpression: number;
-    /** Number of datasets for this Tissue */
+    /** Dataset count */
     dataset_count: number;
   };
 }
@@ -92,6 +95,7 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
   /** Columns for the table */
   @Input() columns: string[] = [];
 
+  /** Source list for biomarker table */
   @Input() dataSources: SourceListItem[] = [];
 
   /** Rows of the table */
@@ -112,23 +116,35 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
   /** Emits cell type label when row is hovered */
   @Output() readonly rowHover = new EventEmitter<string>();
 
+  /** Reference to virtual scroll viewport */
   @ViewChild(CdkVirtualScrollViewport, { static: true }) vscroll!: CdkVirtualScrollViewport;
+
+  /** Reference to biomarker table */
   @ViewChild('table', { static: true, read: ElementRef }) table!: ElementRef;
 
+  /** Columns replaysubject */
   readonly columns$ = new ReplaySubject<string[]>(1);
 
+  /** Cell width (px) */
   private readonly cellWidth = 44;
+  /** Extra columns to render outside the visible viewport */
   private readonly extraDisplayedColumnCount = 2;
 
+  /** Current horizontal viewport size */
   private horizontalViewportSize = 400;
+  /** Current horizontal scroll offset */
   private horizontalScrollOffset = 0;
+  /** Current displayed column count */
   private displayedColumnCount = 10;
+  /** Current displayed column offset */
   private displayedColumnOffset = 0;
 
+  /** Gets the current width of the prefiller column */
   get preFillerWidth(): string {
     return `${this.cellWidth * this.displayedColumnOffset}px`;
   }
 
+  /** Gets the current width of the postfiller column */
   get postFillerWidth(): string {
     const count = this.columns.length - this.displayedColumnCount - this.displayedColumnOffset;
     return `${this.cellWidth * count}px`;
@@ -137,8 +153,12 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
   /** Source for the table */
   readonly dataSource = new TableVirtualScrollDataSource<DataRow<T>>([]);
 
+  /** Change detection */
   private readonly cdr = inject(ChangeDetectorRef);
 
+  /**
+   * Subscribes to scroll event on virtual scroll viewport and checks displayed columns
+   */
   ngOnInit(): void {
     const scroll$ = this.vscroll.scrollable.elementScrolled();
     scroll$.subscribe(() => this.checkDisplayedColumns());
@@ -156,15 +176,24 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
     }
   }
 
+  /**
+   * Checks for column updates on mouse move
+   */
   @HostListener('window:mousemove', ['$event'])
   onMouseMove() {
     this.checkDisplayedColumns();
   }
 
+  /**
+   * Returns index value
+   */
   trackByIndex(index: number): number {
     return index;
   }
 
+  /**
+   * Checks to see if columns should be updated
+   */
   checkDisplayedColumns(): void {
     const scrollable = this.vscroll.scrollable;
     const size = scrollable.measureViewportSize('horizontal');
@@ -185,17 +214,26 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
     }
   }
 
+  /**
+   * Updates horizontal viewport size and updates displayed column count
+   */
   updateHorizontalViewportSize(size: number): void {
     this.horizontalViewportSize = size;
     this.displayedColumnCount =
       Math.ceil(this.horizontalViewportSize / this.cellWidth) + this.extraDisplayedColumnCount;
   }
 
+  /**
+   * Updates horizontal viewport offset and updates displayed column offset
+   */
   updateHorizontalViewportOffset(offset: number): void {
     this.horizontalScrollOffset = offset;
     this.displayedColumnOffset = Math.max(Math.floor(offset / this.cellWidth) - this.extraDisplayedColumnCount / 2, 0);
   }
 
+  /**
+   * Updates table columns with prefiller and postfiller columns
+   */
   updateColumns(): void {
     const { displayedColumnCount, displayedColumnOffset } = this;
     const columns = ['type', 'count'];

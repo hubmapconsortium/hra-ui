@@ -37,6 +37,9 @@ export class CellSummaryState {
     );
   }
 
+  /**
+   * Filters summaries by source list and updates filteredSummaries
+   */
   @Action([FilterSummaries, SourceRefsActions.SetSelectedSources])
   filterSummaries(
     { getState, patchState, dispatch }: Context,
@@ -49,6 +52,9 @@ export class CellSummaryState {
     return dispatch(new CombineSummariesByBiomarker());
   }
 
+  /**
+   * Combines summaries into array of cell summaries grouped by biomarker type, updates summariesByBiomarker
+   */
   @Action(CombineSummariesByBiomarker)
   combineSummariesByBiomarker({ getState, patchState, dispatch }: Context): Observable<void> {
     const { filteredSummaries: summaries } = getState();
@@ -59,7 +65,7 @@ export class CellSummaryState {
   }
 
   /**
-   * computes aggregate data and stores in the current state
+   * Computes aggregate data and stores in the current state
    */
   @Action(ComputeAggregates)
   computeAggregates({ getState, patchState }: Context): void {

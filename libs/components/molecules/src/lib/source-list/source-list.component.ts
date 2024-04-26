@@ -56,32 +56,32 @@ export interface SourceListItem {
 export class SourceListComponent<T extends SourceListItem> implements OnChanges {
   /** List of sources with titles and links displayed to the user */
   @Input() sources: T[] = [];
-  /**
-   * Input  buttonon text of empty biomarker component.
-   */
+
+  /** Text that appears in the empty biomarker collaborate button */
   @Input() collaborateText = '';
 
-  /**
-   * Input  message markdown of empty biomarker component.
-   */
+  /** Text that appears in the empty biomarker message */
   @Input() message = '';
-  /**
-   * Show table of source list component which toggles to true or false
-   * based on click
-   */
+
+  /** Whether to show the biomarker table */
   showTable = true;
 
+  /** Current source selection */
   selection = new SelectionModel<T>(true, []);
 
+  /** Data source for table */
   dataSource = new MatTableDataSource<T>();
 
+  /** Columns to display in the sources list */
   displayedColumns: string[] = ['select', 'authors', 'year', 'title', 'doi', 'link'];
 
   /** Emits when the contact button is clicked */
   @Output() readonly collaborateClick = new EventEmitter<void>();
 
+  /** Emits when source selection changed */
   @Output() readonly selectionChanged = new EventEmitter<T[]>();
 
+  /** Sorter for sources list */
   @ViewChild(MatSort) set sort(sorter: MatSort) {
     this.dataSource.sort = sorter || null;
   }
@@ -89,6 +89,7 @@ export class SourceListComponent<T extends SourceListItem> implements OnChanges 
   /** Google analytics tracking service */
   private readonly ga = inject(GoogleAnalyticsService);
 
+  /** On sources change, resets selection and selects all sources */
   ngOnChanges(changes: SimpleChanges) {
     if ('sources' in changes) {
       this.selection.clear();
@@ -133,6 +134,7 @@ export class SourceListComponent<T extends SourceListItem> implements OnChanges 
     this.selectionChanged.emit(this.selection.selected);
   }
 
+  /** Toggles selection status of a row */
   toggleRow(row: T) {
     this.selection.toggle(row);
     this.selectionChanged.emit(this.selection.selected);

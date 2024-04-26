@@ -1,4 +1,5 @@
 import { Biomarker, Cell, CellSummary, CellSummaryRow, SourceReference } from '@hra-ui/services';
+
 import {
   BIOMARKER_TYPES,
   CellSummaryAggregate,
@@ -86,11 +87,17 @@ export function computeAggregate(summary: CellSummary): CellSummaryAggregate {
   return { label, columns, rows: Array.from(rowsByCell.values()) };
 }
 
+/**
+ * Returns summaries with ids that are included in a source reference array
+ */
 export function filterSummaries(summaries: CellSummary[], sources: SourceReference[]): CellSummary[] {
   const sourceIds = new Set<string>(sources.map((source) => source.id));
   return summaries.filter((summary) => sourceIds.has(summary.cellSource));
 }
 
+/**
+ * Returns the number of times an id shows up in countsList array
+ */
 export function calculateDatasetCount(id: string, countsList: Record<string, boolean>[]): number {
   let result = 0;
   for (const list of countsList) {
@@ -101,10 +108,17 @@ export function calculateDatasetCount(id: string, countsList: Record<string, boo
   return result;
 }
 
+/**
+ * Merges summaries of each biomarker type and returns an array of summaries
+ */
 export function combineSummaries(summaries: CellSummary[]): CellSummary[] {
   return BIOMARKER_TYPES.map((type) => mergeCellSummaries(summaries, type));
 }
 
+/**
+ * Merges cell summaries together into one cell summary
+ * Calculates total dataset counts and mean expressions for summaries
+ */
 export function mergeCellSummaries(summaries: CellSummary[], label: string): CellSummary {
   const filteredSummaries = summaries.filter((summary) => summary.label === label);
   const aggregateBiomarkers: Biomarker[] = [];

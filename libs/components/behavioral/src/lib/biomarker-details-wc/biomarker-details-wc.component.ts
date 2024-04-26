@@ -20,13 +20,14 @@ import {
   SourceListComponent,
 } from '@hra-ui/components/molecules';
 import { BiomarkerTableComponent, DataCell, TissueInfo } from '@hra-ui/components/organisms';
+import { IllustrationMappingItem } from '@hra-ui/services';
 import {
   ActiveFtuSelectors,
   CellSummaryAggregate,
   CellSummarySelectors,
-  ResourceIds as Ids,
   IllustratorActions,
   IllustratorSelectors,
+  ResourceIds as Ids,
   ResourceTypes as RTypes,
   ScreenModeAction,
   SourceRefsActions,
@@ -35,7 +36,6 @@ import {
 } from '@hra-ui/state';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
-import { IllustrationMappingItem } from '@hra-ui/services';
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
 /**
@@ -70,6 +70,9 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BiomarkerDetailsWcComponent {
+  /**
+   * Reference to the biomarker table component
+   */
   @ViewChild('table') table!: BiomarkerTableComponent<DataCell>;
 
   /**
@@ -133,6 +136,7 @@ export class BiomarkerDetailsWcComponent {
 
   /** List of sources with titles and links displayed to the user */
   readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);
+
   /**
    * Gets tissue title from the list of tissues
    */
@@ -146,6 +150,9 @@ export class BiomarkerDetailsWcComponent {
     return { id, label };
   }
 
+  /**
+   * Gets tabs containing cell summary aggregate data
+   */
   get tabs(): CellSummaryAggregate[] {
     const tabs = this.getTabs();
     if (tabs !== this.tabs_ && tabs.length !== 0) {
@@ -179,6 +186,7 @@ export class BiomarkerDetailsWcComponent {
   readonly message = `We currently do not have cell type data for this biomarker.
 <br><br> Please contact us to discuss your dataset.`;
 
+  /** Sets currently selected sources */
   readonly setSelectedSources = dispatch(SourceRefsActions.SetSelectedSources);
 
   /** A dispatcher function to set the screen mode */
@@ -190,10 +198,14 @@ export class BiomarkerDetailsWcComponent {
   /** Google analytics tracking service */
   private readonly ga = inject(GoogleAnalyticsService);
 
+  /** Mapping item reference */
   private mapping_: IllustrationMappingItem[] = [];
+  /** Illustration ids reference */
   private illustrationIds_: string[] = [];
+  /** Tabs reference */
   private tabs_: CellSummaryAggregate[] = [];
 
+  /** Returns the index number */
   trackByIndex(index: number): number {
     return index;
   }
