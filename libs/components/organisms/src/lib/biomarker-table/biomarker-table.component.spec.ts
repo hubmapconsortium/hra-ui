@@ -1,6 +1,8 @@
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { MatTableModule } from '@angular/material/table';
 import { HoverDirective } from '@hra-ui/cdk';
 import { GradientPoint, SizeLegend } from '@hra-ui/components/atoms';
+import { of } from 'rxjs';
 import { Shallow } from 'shallow-render';
 
 import { BiomarkerTableComponent, DataCell, DataRow, TissueInfo } from './biomarker-table.component';
@@ -30,7 +32,21 @@ describe('BiomarkerTableComponent', () => {
         data: dataCell_data,
       },
     ],
-    ['goblet cell', undefined, undefined, undefined],
+    [
+      'goblet cell',
+      undefined,
+      {
+        color: '#00385F',
+        size: 0.625,
+        data: {
+          cell: 'cellName',
+          biomarker: 'BioMarkerName',
+          meanExpression: 0.1,
+          dataset_count: undefined,
+        },
+      },
+      undefined,
+    ],
   ];
 
   const sortedData: DataRow<DataCell>[] = [
@@ -48,9 +64,23 @@ describe('BiomarkerTableComponent', () => {
         data: dataCell_data,
       },
     ],
+    [
+      'goblet cell',
+      undefined,
+      {
+        color: '#00385F',
+        size: 0.625,
+        data: {
+          cell: 'cellName',
+          biomarker: 'BioMarkerName',
+          meanExpression: 0.1,
+          dataset_count: undefined,
+        },
+      },
+      undefined,
+    ],
     ['absorptive cell', 2764, undefined, undefined],
     ['enteroendocrine cell', 17, undefined, undefined],
-    ['goblet cell', undefined, undefined, undefined],
   ];
 
   const gradient: GradientPoint[] = [
@@ -60,7 +90,7 @@ describe('BiomarkerTableComponent', () => {
     },
     {
       color: '#00ffff',
-      percentage: 0,
+      percentage: 50,
     },
     {
       color: '#ffffff',
@@ -82,7 +112,17 @@ describe('BiomarkerTableComponent', () => {
   let shallow: Shallow<BiomarkerTableComponent<DataCell>>;
 
   beforeEach(() => {
-    shallow = new Shallow(BiomarkerTableComponent<DataCell>).dontMock(MatTableModule).dontMock(HoverDirective);
+    shallow = new Shallow(BiomarkerTableComponent<DataCell>)
+      .dontMock(MatTableModule)
+      .dontMock(HoverDirective)
+      .provide(CdkVirtualScrollViewport)
+      .mock(CdkVirtualScrollViewport, {
+        scrollable: {
+          elementScrolled: () => of(),
+          measureViewportSize: () => 0,
+          measureScrollOffset: () => 0,
+        },
+      });
   });
 
   it('should create BiomarkerTableComponent', async () => {
@@ -93,7 +133,7 @@ describe('BiomarkerTableComponent', () => {
 
   it('should update dataSource', async () => {
     const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
-    expect(instance.dataSource.data).toBe(data);
+    expect(instance.dataSource.data).toStrictEqual(instance.sortTableData(instance.data));
   });
 
   it('should sort the table', async () => {
@@ -111,14 +151,38 @@ describe('BiomarkerTableComponent', () => {
     expect(instance.dataSource.data).toStrictEqual(sortedData);
   });
 
+  it('gets prefiller width', async () => {
+    const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
+    instance.updateHorizontalViewportOffset(176);
+    expect(instance.preFillerWidth).toEqual('132px');
+  });
+
+  it('gets postfiller width', async () => {
+    const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
+    instance.updateHorizontalViewportOffset(176);
+    expect(instance.postFillerWidth).toEqual('-44px');
+  });
+
   it('returns a size - getMinMaxSize function', async () => {
     const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
+    expect(instance.getSize(0.9)).toBeDefined();
+    instance.getMinMaxSize(150);
+  });
+
+  it('returns a color - getMinMaxColor function', async () => {
+    const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
     expect(instance.getColor(0.9)).toBeDefined();
+    instance.getMinMaxColor(150);
   });
 
   it('returns a result from getHoverData function', async () => {
     const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
     expect(instance.getHoverData([2, data[2]])).toBeDefined();
+  });
+
+  it('returns empty array from getHoverData if row not found', async () => {
+    const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
+    expect(instance.getHoverData([1, data[3]])).toEqual([]);
   });
 
   it('returns a result with tissueInfo empty as provided from getHoverData function', async () => {
@@ -138,8 +202,28 @@ describe('BiomarkerTableComponent', () => {
     const { instance, outputs } = await shallow.render({
       bind: { columns: columns, data: data, gradient, sizes, tissueInfo },
     });
+
     instance.setHoverId('test');
     expect(instance.highlightedCellId).toEqual('test');
-    expect(outputs.rowHover.emit).toBeCalledWith('test');
+    expect(outputs.rowHover.emit).toHaveBeenCalledWith('test');
+
+    instance.setHoverId(undefined);
+    expect(instance.highlightedCellId).toEqual('');
+  });
+
+  it('updates horizontal viewport size', async () => {
+    const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
+    const spy = jest.spyOn(instance, 'updateHorizontalViewportSize');
+    instance.updateHorizontalViewportSize(200);
+    instance.checkDisplayedColumns();
+    expect(spy).toHaveBeenCalledWith(200);
+  });
+
+  it('updates horizontal viewport offset', async () => {
+    const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
+    const spy = jest.spyOn(instance, 'updateHorizontalViewportOffset');
+    instance.updateHorizontalViewportOffset(100);
+    instance.checkDisplayedColumns();
+    expect(spy).toHaveBeenCalledWith(100);
   });
 });

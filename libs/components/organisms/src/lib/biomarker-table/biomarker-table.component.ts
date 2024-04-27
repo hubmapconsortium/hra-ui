@@ -49,7 +49,7 @@ export interface DataCell {
     /** Mean expression value */
     meanExpression: number;
     /** Dataset count */
-    dataset_count: number;
+    dataset_count?: number;
   };
 }
 

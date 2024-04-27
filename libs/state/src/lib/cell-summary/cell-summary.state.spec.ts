@@ -1,14 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 import { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';
-import { FtuDataService, Iri } from '@hra-ui/services';
+import { FtuDataService, Iri, SourceReference } from '@hra-ui/services';
 import { StateContext } from '@ngxs/store';
 import { calledWithFn, mock, MockProxy } from 'jest-mock-extended';
 import { of } from 'rxjs';
 
 import { ActiveFtuSelectors } from '../active-ftu';
-import { Load } from './cell-summary.actions';
+import { FilterSummaries, Load } from './cell-summary.actions';
 import { CellSummaryModel } from './cell-summary.model';
 import { CellSummaryState } from './cell-summary.state';
+import { filterSummaries } from './cell-summary.helpers';
 
 jest.mock('@hra-ui/cdk/injectors');
 
@@ -17,6 +18,26 @@ type Any = any;
 
 describe('CellSummaryState', () => {
   const testIri = 'https://www.example.com/test-iri' as Iri;
+  const sourceReferences: SourceReference[] = [
+    {
+      id: 'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
+      title: 'Kidney Precision Medicine Project',
+      label: 'Ancillary Study Data, Clinical Data, HRT Codebook',
+      link: 'google.com',
+      authors: [],
+      year: -1,
+      doi: '',
+    },
+    {
+      id: 'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
+      title: '[Dataset Owner Title]',
+      label: '<Dataset Title + Link to Dataset>',
+      link: 'google.com',
+      authors: [],
+      year: -1,
+      doi: '',
+    },
+  ];
   let state: CellSummaryState;
   let ctx: MockProxy<StateContext<CellSummaryModel>>;
   let dataService: MockProxy<FtuDataService>;
@@ -63,6 +84,30 @@ describe('CellSummaryState', () => {
         filteredSummaries: [],
         aggregates: [],
         summariesByBiomarker: [],
+      });
+    });
+  });
+
+  describe('filterSummaries(ctx, action)', () => {
+    it('should filter summaries by source references', () => {
+      const summaries: never[] = [];
+      dataService.getCellSummaries.mockReturnValue(of(summaries));
+      state.filterSummaries(ctx, new FilterSummaries(sourceReferences));
+      expect(ctx.patchState).toHaveBeenCalledWith({ filteredSummaries: filterSummaries(summaries, sourceReferences) });
+    });
+  });
+
+  describe('combineSummariesByBiomarker(ctx, action)', () => {
+    it('should combine summaries into cell summaries grouped by biomarker type', () => {
+      const summaries: never[] = [];
+      dataService.getCellSummaries.mockReturnValue(of(summaries));
+      state.combineSummariesByBiomarker(ctx);
+      expect(ctx.patchState).toHaveBeenCalledWith({
+        summariesByBiomarker: [
+          { biomarkers: [], cellSource: '', cells: [], label: 'Gene Biomarkers', summaries: [] },
+          { biomarkers: [], cellSource: '', cells: [], label: 'Protein Biomarkers', summaries: [] },
+          { biomarkers: [], cellSource: '', cells: [], label: 'Lipid Biomarkers', summaries: [] },
+        ],
       });
     });
   });

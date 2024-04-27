@@ -53,9 +53,9 @@ export function getLabel<T extends { id: string; label: string }>(items: T[], id
  * This function calculates and returns the total count by iterating over a row array and summing
  * up the count property of each object entry, while ignoring non-object entries, with an initial value of 0.
  */
-export function getTotalCount(row: CellSummaryAggregateRow): number {
-  return row.reduce<number>((acc, entry) => acc + (typeof entry === 'object' ? entry.data.count : 0), 0);
-}
+// export function getTotalCount(row: CellSummaryAggregateRow): number {
+//   return row.reduce<number>((acc, entry) => acc + (typeof entry === 'object' ? entry.data.count : 0), 0);
+// }
 
 /**
  * The computeAggregate function takes a summary object and performs aggregation operations on its properties
