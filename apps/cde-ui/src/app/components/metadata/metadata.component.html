@@ -1,0 +1,56 @@
+<mat-accordion>
+  <mat-expansion-panel hideToggle (opened)="panelOpen = true" (closed)="panelOpen = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="mat-caption title">
+        <mat-icon class="material-symbols-rounded" *ngIf="!panelOpen">add</mat-icon>
+        <mat-icon class="material-symbols-rounded" *ngIf="panelOpen">remove</mat-icon>
+        Sample Metadata
+        <mat-icon class="material-symbols-rounded">info</mat-icon>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="mat-caption label">Title</div>
+    <span class="mat-caption">{{ data().title }}</span>
+    <div class="metadata-details">
+      <div class="mat-caption">
+        Source Data
+        <span class="mat-caption">{{ data().sourceData }}</span>
+      </div>
+      <div class="mat-caption">
+        Color Map
+        <span class="mat-caption">{{ data().colorMap }}</span>
+      </div>
+      <div class="mat-caption">
+        Organ
+        <span>{{ data().organ }}</span>
+      </div>
+      <div class="mat-caption">
+        Technology
+        <span>{{ data().technology }}</span>
+      </div>
+      <div class="mat-caption">
+        Sex
+        <span>{{ data().sex }}</span>
+      </div>
+      <div class="mat-caption">
+        Age
+        <span>{{ data().age }}</span>
+      </div>
+      <div class="mat-caption">
+        Thickness
+        <span>{{ data().thickness }}</span>
+      </div>
+      <div class="mat-caption">
+        Pixel Size
+        <span>{{ data().pixelSize }}</span>
+      </div>
+      <div class="mat-caption">
+        Creation Date
+        <span>{{ data().creationDate }}</span>
+      </div>
+      <div class="mat-caption">
+        Creation Time
+        <span>{{ data().creationTime }}</span>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
