@@ -5,7 +5,7 @@
   display: block;
   height: 100%;
 
-  @media (min-height: 972px) {
+  @media (min-height: 60.75rem) {
     .toggle {
       height: 3rem !important;
     }
@@ -70,8 +70,8 @@
       .mat-sort-header-arrow {
         background-image: url('../../assets/icons/arrow-upward.svg');
         background-size: contain;
-        height: 16px;
-        width: 16px;
+        height: 1rem;
+        width: 1rem;
       }
 
       [aria-sort='descending'] {
@@ -90,7 +90,7 @@
       tr {
         color: rgba(vars.$primary-darker);
         background: rgba(vars.$primary-lighter);
-        height: 40px;
+        height: 2.5rem;
       }
     }
 
@@ -119,7 +119,7 @@
 
     tr {
       font-size: 0.75rem;
-      height: 36px;
+      height: 2.25rem;
 
       .mat-column-link {
         cursor: pointer;

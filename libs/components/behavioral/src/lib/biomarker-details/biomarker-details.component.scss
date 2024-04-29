@@ -22,14 +22,14 @@
     }
   }
 
-  @media (min-height: 792px) {
+  @media (min-height: 49.5rem) {
     grid-template-rows: min-content 37px 69px auto;
     ::ng-deep .table-tab-header {
       height: calc(3rem - 1px) !important;
     }
   }
 
-  @media (min-height: 972px) {
+  @media (min-height: 60.75rem) {
     grid-template-rows: min-content 3rem 5rem auto;
   }
 
@@ -40,7 +40,7 @@
     right: 2rem;
     z-index: 3;
 
-    @media (min-height: 792px) {
+    @media (min-height: 49.5rem) {
       top: 5.25rem;
     }
   }
