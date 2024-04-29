@@ -1,6 +1,9 @@
 @use 'variables' as vars;
 
 :host {
+  display: flex;
+  flex-direction: column;
+
   ::ng-deep .extraTab {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -29,7 +32,16 @@
     border: 1px solid rgba(vars.$light-dividers);
     border-bottom: none;
     width: 43rem;
-    height: 3.5rem;
+    height: 2.5rem;
+
+    @media (min-height: 49.5rem) {
+      height: 3rem;
+    }
+
+    @media (min-height: 60.75rem) {
+      font-size: 1.25rem;
+    }
+
     span {
       cursor: pointer;
       padding: 0.4rem;
@@ -45,7 +57,7 @@
     max-width: 100%;
     overflow: auto;
     border: 1px solid rgba(vars.$light-dividers);
-    height: calc(100% - 3.5rem);
+    flex-grow: 1;
 
     ::ng-deep .table-tab-header {
       padding-left: 1rem;
