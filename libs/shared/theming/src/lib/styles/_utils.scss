@@ -1,6 +1,4 @@
-@forward 'angular-material-css-vars';
-
-/// Mixin to make an element visually hidden but still accessible to screen readers.
+// Mixin to make an element visually hidden but still accessible to screen readers.
 @mixin sr-only() {
   position: absolute;
   width: 1px;
