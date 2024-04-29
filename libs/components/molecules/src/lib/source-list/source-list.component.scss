@@ -5,6 +5,16 @@
   display: block;
   height: 100%;
 
+  @media (min-height: 972px) {
+    .toggle {
+      height: 3rem !important;
+    }
+
+    ::ng-deep thead > tr {
+      height: 3rem !important;
+    }
+  }
+
   .sr-only {
     @include utils.sr-only();
   }
@@ -17,7 +27,7 @@
   .toggle {
     display: flex;
     align-items: center;
-    height: 3rem;
+    height: 2.5rem;
     grid-area: source-list-header;
     border-top: 1px solid rgba(vars.$light-dividers);
     border-bottom: 1px solid rgba(vars.$light-dividers);
@@ -78,9 +88,9 @@
       }
 
       tr {
-        height: 3rem !important;
         color: rgba(vars.$primary-darker);
         background: rgba(vars.$primary-lighter);
+        height: 40px;
       }
     }
 
@@ -109,7 +119,7 @@
 
     tr {
       font-size: 0.75rem;
-      height: 2rem;
+      height: 36px;
 
       .mat-column-link {
         cursor: pointer;

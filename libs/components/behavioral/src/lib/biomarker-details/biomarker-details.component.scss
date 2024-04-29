@@ -3,12 +3,47 @@
 :host {
   display: grid;
   grid-template-columns: 1fr 1fr auto;
-  grid-template-rows: min-content 3rem 5rem auto;
+  grid-template-rows: min-content 2rem 69px auto;
   grid-template-areas:
     'table table table'
     'gradient-legend-header size-legend-header size-legend-header'
     'gradient-legend size-legend .'
     'source-list source-list source-list';
+
+  ::ng-deep .table-tab-header {
+    height: 39px !important;
+    background-color: white;
+    font-weight: 400;
+    letter-spacing: 0;
+    font-size: 0.75rem;
+
+    &:hover {
+      background: rgba(vars.$primary-lighter);
+    }
+  }
+
+  @media (min-height: 792px) {
+    grid-template-rows: min-content 37px 69px auto;
+    ::ng-deep .table-tab-header {
+      height: calc(3rem - 1px) !important;
+    }
+  }
+
+  @media (min-height: 972px) {
+    grid-template-rows: min-content 3rem 5rem auto;
+  }
+
+  .cursor {
+    cursor: pointer;
+    position: fixed;
+    top: 4.5rem;
+    right: 2rem;
+    z-index: 3;
+
+    @media (min-height: 792px) {
+      top: 5.25rem;
+    }
+  }
 
   .table {
     grid-area: table;
@@ -21,18 +56,6 @@
 
     ::ng-deep .mat-mdc-tab {
       max-width: 14rem;
-    }
-
-    ::ng-deep .table-tab-header {
-      background-color: white;
-      font-weight: 400;
-      letter-spacing: 0;
-      font-size: 0.75rem;
-      height: calc(3rem - 1px);
-
-      &:hover {
-        background: rgba(vars.$primary-lighter);
-      }
     }
   }
 
@@ -99,19 +122,11 @@
     min-height: 16.5rem;
   }
 
-  .cursor {
-    cursor: pointer;
-    position: fixed;
-    right: 2rem;
-    top: 5.25rem;
-    z-index: 3;
-  }
-
   hra-biomarker-table {
     height: max(calc(100vh - 45rem), 25rem);
 
     @media (max-height: 60.75rem) {
-      height: 23rem;
+      height: 22rem;
     }
 
     &.small {
@@ -141,4 +156,20 @@
 
 ::ng-deep .mdc-tab__ripple::before {
   opacity: 0 !important;
+}
+
+::ng-deep .biomarker-table-hover.full-column-name {
+  display: flex;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
+  background-color: vars.$primary-contrast-rgb;
+  overflow: auto;
+  max-width: fit-content;
+  font-family: Metropolis;
+  font-size: 0.75rem;
+
+  &.empty {
+    display: none;
+  }
 }

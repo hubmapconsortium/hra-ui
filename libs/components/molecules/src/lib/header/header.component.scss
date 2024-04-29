@@ -4,7 +4,7 @@
 :host {
   display: flex;
   align-items: center;
-  height: 4.5rem;
+  height: 4rem;
   padding: 0 2rem;
 
   @include utils.define-flex-filler();
@@ -109,5 +109,9 @@
 
   @media (max-width: 22.5rem) {
     padding: 0 1rem;
+  }
+
+  @media (min-height: 792px) {
+    height: 4.5rem;
   }
 }

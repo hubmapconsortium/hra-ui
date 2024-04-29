@@ -4,12 +4,14 @@
 :host {
   display: block;
 
-  cdk-virtual-scroll-viewport {
-    height: max(calc(100vh - 45rem), 25rem);
-
-    @media (max-height: 60.75rem) {
-      height: 23rem;
+  @media (min-height: 972px) {
+    .table th {
+      height: 4.5rem !important;
     }
+  }
+
+  cdk-virtual-scroll-viewport {
+    height: 100%;
   }
 
   .sr-only {
@@ -31,7 +33,7 @@
     background: rgba(vars.$primary-lighter);
     color: rgba(vars.$accent-darker);
     font-weight: 500;
-    height: 4.5rem;
+    height: 56px;
     padding: 0;
     max-width: 2.75rem;
     min-width: 2.75rem;
@@ -121,16 +123,4 @@
 
 .mat-mdc-row:hover .mat-mdc-cell {
   background: rgba(vars.$primary-lighter);
-}
-
-::ng-deep .biomarker-table-hover.full-column-name {
-  display: flex;
-  padding: 1rem 1.5rem;
-  border-radius: 0.5rem;
-  box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
-  background-color: vars.$primary-contrast-rgb;
-  overflow: auto;
-  max-width: fit-content;
-  font-family: Metropolis;
-  font-size: 0.75rem;
 }

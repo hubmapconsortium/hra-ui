@@ -5,7 +5,8 @@
   width: 100%;
   height: 100%;
   grid-template-columns: 14.75rem auto;
-  grid-template-rows: 4.5rem max(100% - 4.5rem);
+  grid-template-rows: 4rem max(100% - 4rem, 45.25rem);
+
   grid-template-areas:
     'header header'
     'sidebar content';
@@ -16,6 +17,10 @@
 
   @media (min-width: 120rem) {
     grid-template-columns: 21rem auto;
+  }
+
+  @media (min-height: 792px) {
+    grid-template-rows: 4.5rem max(100% - 4.5rem);
   }
 
   .header {

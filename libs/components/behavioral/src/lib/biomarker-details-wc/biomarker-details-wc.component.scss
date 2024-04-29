@@ -205,3 +205,19 @@
     height: 100% !important;
   }
 }
+
+::ng-deep .biomarker-table-hover.full-column-name {
+  display: flex;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
+  background-color: vars.$primary-contrast-rgb;
+  overflow: auto;
+  max-width: fit-content;
+  font-family: Metropolis;
+  font-size: 0.75rem;
+
+  &.empty {
+    display: none;
+  }
+}

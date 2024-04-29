@@ -92,7 +92,7 @@
 </div>
 
 <ng-template #dataHover let-columnName>
-  <div class="biomarker-table-hover full-column-name">
+  <div class="biomarker-table-hover full-column-name" [class.empty]="columnName.toString() === ''">
     {{ columnName }}
   </div>
 </ng-template>
