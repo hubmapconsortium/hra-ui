@@ -67,7 +67,7 @@ export class CellTypesComponent implements AfterViewInit {
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    return numSelected === this.totalCellTypes;
+    return numSelected === this.dataSource.data.length;
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */

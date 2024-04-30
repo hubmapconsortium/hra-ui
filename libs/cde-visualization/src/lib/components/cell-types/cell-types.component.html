@@ -19,7 +19,14 @@
   </div>
 </div>
 <div class="table-overflow-container">
-  <table mat-table matSort [dataSource]="dataSource" matSortDirection="desc" matSortActive="count">
+  <table
+    mat-table
+    matSort
+    [dataSource]="dataSource"
+    matSortDirection="desc"
+    matSortActive="count"
+    aria-label="Cell Types Count Table"
+  >
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
         <mat-checkbox
