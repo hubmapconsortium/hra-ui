@@ -45,7 +45,7 @@ export interface Metadata {
 })
 export class MetadataComponent {
   /** Flag to check if panel is open */
-  panelOpen = false;
+  panelOpen = true;
   /** Input for metadata */
   data = input.required<Metadata>();
 }

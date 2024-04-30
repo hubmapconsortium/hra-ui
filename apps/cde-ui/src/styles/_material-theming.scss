@@ -40,6 +40,7 @@ $theme: mat.define-light-theme(
 @include mat.icon-theme($theme);
 @include mat.progress-bar-theme($theme);
 @include mat.select-theme($theme);
+@include mat.table-theme($theme);
 
 // TODO: Maybe use strong-focus-indicators? https://material.angular.io/guide/theming#strong-focus-indicators
 

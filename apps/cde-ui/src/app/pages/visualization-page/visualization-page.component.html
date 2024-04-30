@@ -1,9 +1,11 @@
 <div class="header">
   <cde-visualization-header></cde-visualization-header>
 </div>
-<div class="visualization">
+<div class="metadata">
   <cde-metadata [data]="metadata"></cde-metadata>
-  <div>right up</div>
-  <div>left down</div>
-  <div>right down</div>
+  <cde-cell-types [data]="cellTypeOptionData"></cde-cell-types>
+</div>
+<div class="visualizations">
+  <div>Main Visualization Here</div>
+  <div>Histogram Here</div>
 </div>
