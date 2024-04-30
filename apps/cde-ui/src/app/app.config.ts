@@ -1,10 +1,10 @@
+import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { Routes, provideRouter } from '@angular/router';
+import { CdeVisualizationComponent } from '@hra-ui/cde-visualization';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { provideIcons } from './services/icon-registry/icon-registry.service';
-import { provideHttpClient } from '@angular/common/http';
-import { VisualizationPageComponent } from './pages/visualization-page/visualization-page.component';
-import { provideAnimations } from '@angular/platform-browser/animations';
 
 /**
  * App routes
@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'visualize',
-    loadComponent: () => VisualizationPageComponent,
+    loadComponent: () => CdeVisualizationComponent,
   },
   {
     path: '**',

@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-@use '../../../styles/palettes' as palettes;
+@use '../../../../../../apps/cde-ui/src/styles/palettes' as palettes;
 @use 'sass:map';
 
 $blue: mat.define-palette(palettes.$hra-blue4-palette, 500);

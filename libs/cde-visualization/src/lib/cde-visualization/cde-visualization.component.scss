@@ -1,3 +1,32 @@
 :host {
-  display: block;
+  background-color: gray;
+  padding: 6px 4px;
+  height: 100%;
+  width: 100%;
+  row-gap: 0.375rem;
+  column-gap: 0.25rem;
+  display: grid;
+  grid-template-columns: minmax(auto, 18.375rem) 1fr;
+  grid-template-areas:
+    'header header'
+    'metadata visualization';
+
+  .header {
+    grid-area: header;
+  }
+
+  .metadata {
+    display: grid;
+    grid-area: metadata;
+    grid-template-rows: repeat(2, auto);
+    row-gap: 0.25rem;
+    overflow: hidden;
+  }
+
+  .visualizations {
+    display: grid;
+    grid-area: visualization;
+    grid-template-rows: 2fr 1fr;
+    row-gap: 0.25rem;
+  }
 }
