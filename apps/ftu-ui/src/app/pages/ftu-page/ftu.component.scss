@@ -17,11 +17,34 @@
       flex-grow: 1;
 
       ftu-medical-illustration-behavior {
-        max-height: calc(100% - 5rem);
+        height: calc(100% - 17rem);
+
+        @media (min-width: 1440px) {
+          height: calc(100% - 9.5rem);
+        }
+
+        @media (min-width: 1820px) {
+          height: calc(100% - 5rem);
+        }
       }
 
       ftu-footer-behavior {
         min-height: 5rem;
+
+        @media (min-width: 1820px) {
+          ::ng-deep hra-footer {
+            padding: 0 2rem;
+
+            .filler {
+              flex-grow: 1;
+            }
+          }
+        }
+      }
+
+      ::ng-deep hra-interactive-svg {
+        display: flex;
+        height: calc(100% - 3rem);
       }
     }
 

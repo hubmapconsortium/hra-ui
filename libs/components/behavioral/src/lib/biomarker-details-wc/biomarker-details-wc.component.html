@@ -8,10 +8,11 @@
 <mat-tab-group
   class="table"
   [class.table-fullscreen]="isTableFullScreen"
-  mat-stretch-tabs="false"
+  mat-stretch-tabs="true"
   color="accent"
   (selectedTabChange)="logTabChange($event)"
   disablePagination="true"
+  disableRipple="true"
 >
   <mat-tab labelClass="extraTab" label="FTU Illustration">
     <hra-interactive-svg

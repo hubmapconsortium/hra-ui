@@ -82,6 +82,7 @@
   }
 
   hra-interactive-svg {
+    display: block;
     height: calc(100% - 3px);
   }
 
@@ -186,11 +187,6 @@
 
   mat-tab-header {
     border-bottom: 1px solid rgba(vars.$light-dividers);
-  }
-
-  .mdc-tab {
-    width: 20%;
-    min-width: 15rem !important;
   }
 
   .mat-mdc-tab-body-wrapper {

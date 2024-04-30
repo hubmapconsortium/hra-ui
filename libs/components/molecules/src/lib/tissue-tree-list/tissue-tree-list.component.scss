@@ -1,9 +1,8 @@
 @use 'variables' as vars;
 
 :host {
-  display: block;
-  height: calc(100% - 3rem);
   overflow-y: auto;
+
   .row {
     min-height: unset;
 

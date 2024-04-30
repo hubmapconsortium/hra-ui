@@ -9,6 +9,7 @@
   color="accent"
   (selectedTabChange)="logTabChange($event)"
   disablePagination="true"
+  disableRipple="true"
 >
   <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="'Cell Types by ' + tab.label">
     <hra-biomarker-table
