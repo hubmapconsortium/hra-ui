@@ -16,6 +16,12 @@ $blue-theme: mat.define-light-theme(
   @include mat.button-color($blue-theme);
 
   display: grid;
+  grid:
+    'cell-types . download'
+    'total-cell-types . total-cells'
+    'table table table' 1fr
+    / auto 1fr auto;
+  align-items: start;
   row-gap: 0.75rem;
   overflow: hidden;
   background-color: white;
@@ -29,38 +35,37 @@ $blue-theme: mat.define-light-theme(
   --mat-table-row-item-outline-width: 0;
   --mat-table-header-headline-color: var(--mat-sort-arrow-color);
 
-  .title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    span {
-      font-size: 0.9375rem;
-      mat-icon {
-        vertical-align: middle;
-      }
-    }
-
-    button {
-      --mdc-filled-button-label-text-color: #{button-text-color};
+  span.cell-types-label {
+    grid-area: cell-types;
+    font-size: 0.9375rem;
+    mat-icon {
+      vertical-align: middle;
     }
   }
 
-  .cell-count {
-    display: flex;
-    justify-content: space-between;
+  button.download-csv {
+    --mdc-filled-button-label-text-color: #{button-text-color};
+    grid-area: download;
+  }
 
-    .mat-caption {
-      font-weight: 400;
+  .mat-caption,
+  .total-ct-label {
+    font-weight: 400;
+    grid-area: total-cell-types;
 
-      span {
-        display: block;
-      }
+    span {
+      display: block;
     }
+  }
+
+  .total-cells {
+    grid-area: total-cells;
   }
 
   .table-overflow-container {
     overflow: auto;
+    grid-area: table;
+    height: 100%;
 
     table {
       ::ng-deep {
@@ -88,6 +93,10 @@ $blue-theme: mat.define-light-theme(
 
         & > * {
           padding-bottom: 0.5rem;
+        }
+
+        .mat-mdc-checkbox {
+          padding-right: 0.5rem;
         }
       }
 

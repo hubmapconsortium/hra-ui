@@ -56,6 +56,7 @@ export class CellTypesComponent implements AfterViewInit {
   constructor() {
     effect(() => {
       this.dataSource.data = this.data();
+      this.totalCellTypes = this.dataSource.data.length;
     });
   }
 

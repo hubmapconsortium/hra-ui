@@ -1,22 +1,18 @@
-<div class="title">
-  <span class="mat-caption"
-    >Cell Types
-    <mat-icon class="material-symbols-rounded">info</mat-icon>
-  </span>
-  <button mat-flat-button color="primary" class="mat-caption">
-    <mat-icon class="material-symbols-rounded">download</mat-icon>
-    CSV
-  </button>
+<span class="mat-caption cell-types-label"
+  >Cell Types
+  <mat-icon class="material-symbols-rounded">info</mat-icon>
+</span>
+<button mat-flat-button color="primary" class="mat-caption download-csv">
+  <mat-icon class="material-symbols-rounded">download</mat-icon>
+  CSV
+</button>
+<div class="mat-caption total-ct-label">
+  Total Cell Types
+  <span>{{ totalCellTypes }}</span>
 </div>
-<div class="cell-count">
-  <div class="mat-caption">
-    Total Cell Types
-    <span>{{ totalCellTypes }}</span>
-  </div>
-  <div class="mat-caption">
-    Total Cells
-    <span>{{ totalCells() }}</span>
-  </div>
+<div class="mat-caption total-cells">
+  Total Cells
+  <span>{{ totalCells() }}</span>
 </div>
 <div class="table-overflow-container">
   <table
