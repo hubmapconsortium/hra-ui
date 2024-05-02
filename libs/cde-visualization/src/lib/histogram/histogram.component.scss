@@ -1,3 +1,52 @@
 :host {
-  display: block;
+  mat-expansion-panel {
+    --mat-expansion-container-shape: 0.5rem;
+    --mat-expansion-container-background-color: white;
+
+    mat-expansion-panel-header {
+      padding: 0.75rem;
+
+      .title {
+        font-size: 0.9375rem;
+        gap: 0.25rem;
+
+        mat-icon {
+          vertical-align: middle;
+        }
+      }
+    }
+
+    ::ng-deep {
+      .mat-expansion-panel-body {
+        padding: 0 0.75rem 0.75rem;
+      }
+    }
+  }
+
+  .histogram-container {
+    display: flex;
+    gap: 2rem;
+    max-height: 283px;
+
+    .visualization {
+      display: flex;
+      width: calc(100% - 249px - 2rem);
+    }
+
+    .legend {
+      width: 249px;
+      overflow-y: auto;
+
+      .legend-entry {
+        display: flex;
+      }
+
+      .color-icon {
+        height: 18px;
+        width: 18px;
+        border-radius: 2rem;
+        margin: 4px;
+      }
+    }
+  }
 }

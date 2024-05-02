@@ -1,1 +1,25 @@
-<div #vis></div>
+<mat-accordion>
+  <mat-expansion-panel hideToggle (opened)="panelOpen = true" (closed)="panelOpen = false" expanded>
+    <mat-expansion-panel-header>
+      <mat-panel-title class="mat-caption title">
+        <mat-icon class="material-symbols-rounded" *ngIf="!panelOpen">add</mat-icon>
+        <mat-icon class="material-symbols-rounded" *ngIf="panelOpen">remove</mat-icon>
+        Histogram
+        <mat-icon class="material-symbols-rounded">info</mat-icon>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="histogram-container">
+      <div class="visualization" #vis></div>
+      <div class="legend">
+        <div class="legend-entry">
+          <div class="color-icon" [style.background]="'black'"></div>
+          All Cells
+        </div>
+        <div class="legend-entry" *ngFor="let color of colorMap">
+          <div class="color-icon" [style.background]="toRGB(color.cell_color)"></div>
+          {{ color.cell_type }}
+        </div>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

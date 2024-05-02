@@ -1,4 +1,5 @@
 import { ApplicationConfig } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { Routes, provideRouter } from '@angular/router';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { provideIcons } from './services/icon-registry/icon-registry.service';
@@ -28,6 +29,7 @@ const routes: Routes = [
  */
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideAnimations(),
     provideRouter(routes),
     provideHttpClient(),
     provideIcons([

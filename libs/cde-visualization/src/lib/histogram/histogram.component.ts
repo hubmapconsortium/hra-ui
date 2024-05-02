@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
 import embed, { VisualizationSpec } from 'vega-embed';
 
 const TEST_DATA: HistogramData[] = [
@@ -52,10 +54,18 @@ export interface HistogramData {
   numCells: number;
 }
 
+export interface ColorMapItem {
+  cell_id: number;
+  cell_type: string;
+  cell_color: [number, number, number];
+}
+
+export type ColorMap = ColorMapItem[];
+
 @Component({
   selector: 'cde-histogram',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatIconModule, MatExpansionModule],
   templateUrl: './histogram.component.html',
   styleUrl: './histogram.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -64,11 +74,76 @@ export class HistogramComponent implements AfterViewInit {
   /** Visualization element */
   @ViewChild('vis') vis?: ElementRef;
 
-  /** Vega lite spec for visualization */
-  @Input() spec: VisualizationSpec = {};
-
   /** Data */
   @Input() data: HistogramData[] = TEST_DATA;
+
+  /** Vega lite spec for visualization */
+  spec: VisualizationSpec = {};
+
+  panelOpen = true;
+
+  colorMap: ColorMap = [
+    {
+      cell_id: 1,
+      cell_type: 'a',
+      cell_color: [189, 189, 189],
+    },
+    {
+      cell_id: 2,
+      cell_type: 'b',
+      cell_color: [93, 102, 127],
+    },
+    {
+      cell_id: 3,
+      cell_type: 'b',
+      cell_color: [93, 102, 127],
+    },
+    {
+      cell_id: 4,
+      cell_type: 'b',
+      cell_color: [93, 102, 127],
+    },
+    {
+      cell_id: 5,
+      cell_type: 'b',
+      cell_color: [93, 102, 127],
+    },
+    {
+      cell_id: 6,
+      cell_type: 'b',
+      cell_color: [93, 102, 127],
+    },
+    {
+      cell_id: 7,
+      cell_type: 'b',
+      cell_color: [93, 102, 127],
+    },
+    {
+      cell_id: 8,
+      cell_type: 'b',
+      cell_color: [93, 102, 127],
+    },
+    {
+      cell_id: 9,
+      cell_type: 'b',
+      cell_color: [93, 102, 127],
+    },
+    {
+      cell_id: 10,
+      cell_type: 'b',
+      cell_color: [93, 102, 127],
+    },
+    {
+      cell_id: 11,
+      cell_type: 'b',
+      cell_color: [93, 102, 127],
+    },
+    {
+      cell_id: 12,
+      cell_type: 'b',
+      cell_color: [93, 102, 127],
+    },
+  ];
 
   ngAfterViewInit(): void {
     this.spec = this.createHistogram(this.data);
@@ -77,10 +152,20 @@ export class HistogramComponent implements AfterViewInit {
     }
   }
 
+  toRGB(color: [number, number, number]): string {
+    return `rgba(${color.join(', ')})`;
+  }
+
+  rgbToHex(color: [number, number, number]) {
+    return '#' + ((1 << 24) + (color[0] << 16) + (color[1] << 8) + color[2]).toString(16).slice(1);
+  }
+
   private createHistogram(data: HistogramData[]): VisualizationSpec {
     return {
       $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-      width: 1000,
+      width: 'container',
+      height: 'container',
+      autosize: { type: 'fit', contains: 'content' },
       data: {
         values: data,
       },
@@ -97,7 +182,12 @@ export class HistogramComponent implements AfterViewInit {
           type: 'quantitative',
           title: 'Number of Cells',
         },
-        color: { field: 'type', type: 'nominal' },
+        color: {
+          field: 'type',
+          type: 'nominal',
+          legend: null,
+          scale: { range: this.colorMap.map((entry) => this.rgbToHex(entry.cell_color)) },
+        },
       },
     };
   }
