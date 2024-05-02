@@ -1,3 +1,10 @@
 :host {
   display: block;
+
+  cde-histogram {
+    position: absolute;
+    top: calc(100% - 360px);
+    right: 0;
+    width: calc(100% - 294px);
+  }
 }

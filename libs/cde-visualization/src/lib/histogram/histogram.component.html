@@ -16,7 +16,20 @@
           All Cells
         </div>
         <div class="legend-entry" *ngFor="let color of colorMap">
-          <div class="color-icon" [style.background]="toRGB(color.cell_color)"></div>
+          <div
+            class="color-icon"
+            (click)="setCurrentColor(color.cell_color)"
+            [style.background]="toRGB(color.cell_color)"
+            [(colorPicker)]="currentColor"
+            [cpOutputFormat]="'hex'"
+            [cpOKButton]="true"
+            [cpCancelButton]="true"
+            [cpPosition]="'top-left'"
+            [cpOKButtonClass]="'accept-button'"
+            [cpOKButtonText]="'Accept'"
+            [cpCancelButtonClass]="'cancel-button'"
+            [cpAlphaChannel]="'always'"
+          ></div>
           {{ color.cell_type }}
         </div>
       </div>

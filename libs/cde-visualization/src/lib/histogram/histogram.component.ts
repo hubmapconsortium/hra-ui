@@ -3,6 +3,7 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, V
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import embed, { VisualizationSpec } from 'vega-embed';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 const TEST_DATA: HistogramData[] = [
   {
@@ -65,7 +66,7 @@ export type ColorMap = ColorMapItem[];
 @Component({
   selector: 'cde-histogram',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatExpansionModule],
+  imports: [CommonModule, MatIconModule, MatExpansionModule, ColorPickerModule],
   templateUrl: './histogram.component.html',
   styleUrl: './histogram.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -145,6 +146,8 @@ export class HistogramComponent implements AfterViewInit {
     },
   ];
 
+  currentColor = '#5D667F';
+
   ngAfterViewInit(): void {
     this.spec = this.createHistogram(this.data);
     if (this.vis) {
@@ -158,6 +161,10 @@ export class HistogramComponent implements AfterViewInit {
 
   rgbToHex(color: [number, number, number]) {
     return '#' + ((1 << 24) + (color[0] << 16) + (color[1] << 8) + color[2]).toString(16).slice(1);
+  }
+
+  setCurrentColor(color: [number, number, number]) {
+    this.currentColor = this.rgbToHex(color);
   }
 
   private createHistogram(data: HistogramData[]): VisualizationSpec {
