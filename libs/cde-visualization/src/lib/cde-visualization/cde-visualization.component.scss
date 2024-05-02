@@ -1,10 +1,11 @@
 :host {
-  display: block;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 100vh;
 
   cde-histogram {
-    position: absolute;
-    top: calc(100% - 360px);
-    right: 0;
+    height: 360px;
     width: calc(100% - 294px);
   }
 }

@@ -146,7 +146,7 @@ export class HistogramComponent implements AfterViewInit {
     },
   ];
 
-  currentColor = '#5D667F';
+  currentColor = '';
 
   ngAfterViewInit(): void {
     this.spec = this.createHistogram(this.data);

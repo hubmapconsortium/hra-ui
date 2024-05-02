@@ -1,10 +1,20 @@
 :host {
-  mat-expansion-panel {
+  ::ng-deep mat-expansion-panel {
     --mat-expansion-container-shape: 0.5rem;
     --mat-expansion-container-background-color: white;
 
     &.mat-expanded {
       overflow: visible;
+
+      .mat-expansion-panel-content {
+        opacity: 1;
+      }
+    }
+
+    .mat-expansion-panel-content {
+      opacity: 0;
+      transition: opacity 255ms;
+      transition-delay: 255ms !important;
     }
 
     mat-expansion-panel-header {
@@ -13,6 +23,7 @@
       .title {
         font-size: 0.9375rem;
         gap: 0.25rem;
+        user-select: none;
 
         mat-icon {
           vertical-align: middle;
@@ -20,10 +31,8 @@
       }
     }
 
-    ::ng-deep {
-      .mat-expansion-panel-body {
-        padding: 0 0.75rem 0.75rem;
-      }
+    .mat-expansion-panel-body {
+      padding: 0 0.75rem 0.75rem;
     }
   }
 

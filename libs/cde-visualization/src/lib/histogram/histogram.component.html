@@ -18,7 +18,7 @@
         <div class="legend-entry" *ngFor="let color of colorMap">
           <div
             class="color-icon"
-            (click)="setCurrentColor(color.cell_color)"
+            (colorPickerOpen)="setCurrentColor(color.cell_color)"
             [style.background]="toRGB(color.cell_color)"
             [(colorPicker)]="currentColor"
             [cpOutputFormat]="'hex'"
