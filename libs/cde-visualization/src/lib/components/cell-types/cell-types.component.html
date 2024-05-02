@@ -47,7 +47,19 @@
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header start="desc">Name</th>
       <td mat-cell *matCellDef="let element" class="mat-caption name">
-        <span class="color-picker"></span>
+        <span
+          class="color-pick"
+          [(colorPicker)]="defaultCellTypeColor"
+          [style.background]="defaultCellTypeColor"
+          [cpOutputFormat]="'hex'"
+          [cpOKButton]="true"
+          [cpCancelButton]="true"
+          [cpPosition]="'right'"
+          [cpOKButtonClass]="'accept-button'"
+          [cpOKButtonText]="'Accept'"
+          [cpCancelButtonClass]="'cancel-button'"
+          [cpAlphaChannel]="'always'"
+        ></span>
         <mat-icon class="material-symbols-rounded anchor"> anchor </mat-icon>
         {{ element.name }}
       </td>

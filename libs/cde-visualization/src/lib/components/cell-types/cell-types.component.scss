@@ -86,6 +86,64 @@ $blue-theme: mat.define-light-theme(
           padding-right: 0.75rem;
           color: var(--mat-sort-arrow-color);
         }
+
+        .color-picker {
+          border-radius: 0.5rem;
+          border: none;
+          box-shadow: 0px 5px 16px 0px #201e3d3d;
+
+          .hex-text {
+            display: flex !important;
+            flex-direction: row-reverse;
+            padding: 0 0.5rem;
+
+            .box {
+              width: 100%;
+              padding: 1.25rem 0;
+              align-items: center;
+
+              input {
+                border: none;
+                box-shadow: 0px 5px 16px 0px #201e3d3d;
+                border-radius: 1rem;
+                padding: 0.5625rem 0;
+                height: 2.5rem;
+              }
+            }
+          }
+
+          .arrow.arrow-right,
+          .type-policy {
+            display: none;
+          }
+
+          .button-area {
+            display: flex;
+            flex-direction: row-reverse;
+          }
+          .cursor {
+            height: 0.5rem;
+            width: 0.5rem;
+            border-color: white;
+          }
+
+          .selected-color {
+            border: none;
+          }
+
+          .saturation-lightness {
+            width: 86%;
+            margin: 1rem;
+          }
+        }
+
+        .hue-alpha {
+          .hue,
+          .alpha {
+            border-radius: 0.25rem;
+            height: 0.5rem;
+          }
+        }
       }
 
       .mat-mdc-header-row {
@@ -110,7 +168,7 @@ $blue-theme: mat.define-light-theme(
         padding: 0;
       }
 
-      .color-picker {
+      .color-pick {
         height: 1.125rem;
         width: 1.125rem;
         background-color: #201e3d;
@@ -118,6 +176,7 @@ $blue-theme: mat.define-light-theme(
         border-radius: 50%;
         vertical-align: middle;
         margin-right: 4px;
+        position: relative;
       }
 
       .anchor {

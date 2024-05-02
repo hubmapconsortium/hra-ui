@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 /** Interface for Cell Type Option */
 export interface CellTypeOption {
@@ -30,6 +31,7 @@ export interface CellTypeOption {
     MatTableModule,
     MatCheckboxModule,
     MatSortModule,
+    ColorPickerModule,
   ],
   templateUrl: './cell-types.component.html',
   styleUrl: './cell-types.component.scss',
@@ -48,6 +50,9 @@ export class CellTypesComponent implements AfterViewInit {
   selection = new SelectionModel<CellTypeOption>(true, []);
   /** Total number of cell type rows */
   totalCellTypes = this.dataSource.data.length;
+
+  /** Default cell type color */
+  defaultCellTypeColor = '#5D667F';
 
   /** Sorts the Cell Types table */
   sort = viewChild.required(MatSort);
