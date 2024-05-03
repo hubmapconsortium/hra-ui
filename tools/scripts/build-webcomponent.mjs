@@ -11,6 +11,7 @@ async function build(app_name) {
     `${distDir}/runtime*.js`,
     `${distDir}/polyfills*.js`,
     `${distDir}/scripts*.js`,
+    `${distDir}/vendor*.js`,
     `${distDir}/main*.js`,
   ]);
 
