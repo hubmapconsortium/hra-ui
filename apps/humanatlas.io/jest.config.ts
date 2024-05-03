@@ -1,7 +1,7 @@
 export default {
-  displayName: 'human-atlas',
+  displayName: 'humanatlas.io',
   preset: '../../jest.preset.cjs',
-  coverageDirectory: '../../coverage/apps/human-atlas',
+  coverageDirectory: '../../coverage/apps/humanatlas.io',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {},
   transform: {
