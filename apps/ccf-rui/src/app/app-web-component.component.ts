@@ -30,6 +30,7 @@ function parseOrgan(value: unknown): string | Organ {
 export class AppWebComponent extends BaseWebComponent {
   @Input() baseHref!: string;
   @Input() useDownload!: string | boolean;
+  @Input() referenceData!: string;
   @Input() user!: string | User;
   @Input() organ!: string | Organ;
   @Input() editRegistration!: string | SpatialEntityJsonLd;
