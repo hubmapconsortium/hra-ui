@@ -142,7 +142,7 @@ export class HistogramComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.spec = this.createHistogram(this.data);
     if (this.vis) {
-      embed(this.vis.nativeElement, this.spec, { actions: true, renderer: 'svg' });
+      embed(this.vis.nativeElement, this.spec, { actions: false, renderer: 'svg' });
     }
   }
 
