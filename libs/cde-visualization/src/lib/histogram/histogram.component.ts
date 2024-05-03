@@ -5,6 +5,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { ColorPickerModule } from 'ngx-color-picker';
 import embed, { VisualizationSpec } from 'vega-embed';
+import { saveAs } from 'file-saver';
+// @ts-expect-error TODO: fix this later
+import { saveSvgAsPng } from 'save-svg-as-png';
 
 const TEST_DATA: HistogramData[] = [
   {
@@ -139,7 +142,7 @@ export class HistogramComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.spec = this.createHistogram(this.data);
     if (this.vis) {
-      embed(this.vis.nativeElement, this.spec, { actions: false, renderer: 'svg' });
+      embed(this.vis.nativeElement, this.spec, { actions: true, renderer: 'svg' });
     }
   }
 
@@ -184,5 +187,22 @@ export class HistogramComponent implements AfterViewInit {
         },
       },
     };
+  }
+
+  download(event: MouseEvent, type: 'svg' | 'png') {
+    event.stopPropagation();
+    const vis = this.vis?.nativeElement;
+    if (vis === null) {
+      return;
+    } else {
+      const svg = vis.querySelector('svg') as SVGElement;
+      const svgString = new XMLSerializer().serializeToString(svg);
+      if (type === 'svg') {
+        const blob = new Blob([svgString], { type: 'image/svg+xml' });
+        saveAs(blob, 'image.svg');
+      } else {
+        saveSvgAsPng(svg, 'image.png');
+      }
+    }
   }
 }

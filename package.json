@@ -95,6 +95,7 @@
     "rdfxml-streaming-parser": "^2.4.0",
     "readable-stream": "^4.5.2",
     "rxjs": "7.8.0",
+    "save-svg-as-png": "^1.4.17",
     "stream-browserify": "^3.0.0",
     "swiper": "^8.4.7",
     "ts-cacheable": "^1.0.10",

@@ -8,11 +8,11 @@
         <mat-icon class="material-symbols-rounded">info</mat-icon>
       </mat-panel-title>
       <!-- <div class="download-buttons"> -->
-      <button mat-flat-button color="primary" class="mat-caption download" (click)="$event.stopPropagation()">
+      <button mat-flat-button color="primary" class="mat-caption download" (click)="download($event, 'svg')">
         <mat-icon class="material-symbols-rounded">download</mat-icon>
         SVG
       </button>
-      <button mat-flat-button color="primary" class="mat-caption download" (click)="$event.stopPropagation()">
+      <button mat-flat-button color="primary" class="mat-caption download" (click)="download($event, 'png')">
         <mat-icon class="material-symbols-rounded">download</mat-icon>
         PNG
       </button>
