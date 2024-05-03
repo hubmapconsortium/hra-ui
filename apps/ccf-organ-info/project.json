@@ -33,6 +33,7 @@
       },
       "configurations": {
         "production": {
+          "baseHref": "/ui/ccf-organ-info/",
           "budgets": [
             {
               "type": "initial",
@@ -54,6 +55,7 @@
           "outputHashing": "none"
         },
         "staging": {
+          "baseHref": "/ui--staging/ccf-organ-info/",
           "budgets": [
             {
               "type": "initial",

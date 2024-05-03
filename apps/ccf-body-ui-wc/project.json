@@ -33,6 +33,7 @@
       },
       "configurations": {
         "production": {
+          "baseHref": "/ui/ccf-body-ui-wc/",
           "budgets": [
             {
               "type": "initial",
@@ -52,6 +53,34 @@
             }
           ],
           "outputHashing": "none"
+        },
+        "staging": {
+          "baseHref": "/ui--staging/ccf-body-ui-wc/",
+          "fileReplacements": [
+            {
+              "replace": "apps/ccf-body-ui-wc/src/environments/environment.ts",
+              "with": "apps/ccf-body-ui-wc/src/environments/environment.staging.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "none",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }
+          ]
         },
         "development": {
           "buildOptimizer": false,
