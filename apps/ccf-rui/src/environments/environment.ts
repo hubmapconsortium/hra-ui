@@ -19,6 +19,7 @@ export const environment = {
     header: true,
     homeUrl: 'https://portal.hubmapconsortium.org/',
     logoTooltip: 'Human BioMolecular Atlas Project',
+    referenceData: 'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/rui/assets/reference-organ-data.json',
   },
   skipUnsavedChangesConfirmation: true,
   googleAnalyticsToken: 'G-B3DT7XPMRT',
