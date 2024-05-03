@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import embed, { VisualizationSpec } from 'vega-embed';
 import { ColorPickerModule } from 'ngx-color-picker';
+import embed, { VisualizationSpec } from 'vega-embed';
 
 const TEST_DATA: HistogramData[] = [
   {
@@ -65,7 +66,7 @@ export type ColorMap = CellColorData[];
 @Component({
   selector: 'cde-histogram',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatExpansionModule, ColorPickerModule],
+  imports: [CommonModule, MatIconModule, MatButtonModule, MatExpansionModule, ColorPickerModule],
   templateUrl: './histogram.component.html',
   styleUrl: './histogram.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

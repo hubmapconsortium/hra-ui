@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-import { HistogramComponent } from '../histogram/histogram.component';
-import { VisualizationHeaderComponent } from '../components/visualization-header/visualization-header.component';
-import { Metadata, MetadataComponent } from '../components/metadata/metadata.component';
 import { CellTypeOption, CellTypesComponent } from '../components/cell-types/cell-types.component';
+import { Metadata, MetadataComponent } from '../components/metadata/metadata.component';
+import { VisualizationHeaderComponent } from '../components/visualization-header/visualization-header.component';
+import { HistogramComponent } from '../histogram/histogram.component';
 
 export interface Node {
   x: number;

@@ -8,12 +8,12 @@
 
       .mat-expansion-panel-content {
         opacity: 1;
+        transition: opacity 255ms;
       }
     }
 
     .mat-expansion-panel-content {
       opacity: 0;
-      transition: opacity 255ms;
       transition-delay: 255ms !important;
     }
 
@@ -33,6 +33,18 @@
 
     .mat-expansion-panel-body {
       padding: 0 0.75rem 0.75rem;
+    }
+  }
+
+  .download {
+    height: 1.75rem;
+    --mdc-filled-button-container-color: #d5dbe3;
+    --mdc-filled-button-label-text-color: #4b4b5e;
+    --mat-filled-button-state-layer-color: #4b4b5e;
+    --mat-filled-button-ripple-color: rgba(75, 75, 94, 0.1);
+
+    &:first-of-type {
+      margin-right: 1rem;
     }
   }
 
