@@ -38,32 +38,32 @@
 
   .histogram-container {
     display: flex;
+    justify-content: space-between;
     gap: 2rem;
-    height: 300px;
+    max-height: 18.75rem;
 
     .visualization {
-      display: flex;
-      width: calc(100% - 249px - 2rem);
+      width: calc(100vw - 39rem);
     }
 
     .legend {
       width: 249px;
       overflow-y: auto;
-      height: 300px;
 
       .legend-entry {
         display: flex;
       }
 
       .color-icon {
-        height: 18px;
-        width: 18px;
+        height: 1.125rem;
+        width: 1.125rem;
         border-radius: 2rem;
-        margin: 4px;
+        margin: 0.25rem;
       }
     }
   }
 
+  // Color picker styling
   ::ng-deep .color-picker {
     border-radius: 0.5rem;
     border: none;

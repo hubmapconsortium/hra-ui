@@ -55,13 +55,12 @@ export interface HistogramData {
   numCells: number;
 }
 
-export interface ColorMapItem {
-  cell_id: number;
+export interface CellColorData {
   cell_type: string;
   cell_color: [number, number, number];
 }
 
-export type ColorMap = ColorMapItem[];
+export type ColorMap = CellColorData[];
 
 @Component({
   selector: 'cde-histogram',
@@ -85,62 +84,50 @@ export class HistogramComponent implements AfterViewInit {
 
   colorMap: ColorMap = [
     {
-      cell_id: 1,
       cell_type: 'a',
       cell_color: [189, 189, 189],
     },
     {
-      cell_id: 2,
       cell_type: 'b',
       cell_color: [93, 102, 127],
     },
     {
-      cell_id: 3,
       cell_type: 'b',
       cell_color: [93, 102, 127],
     },
     {
-      cell_id: 4,
       cell_type: 'b',
       cell_color: [93, 102, 127],
     },
     {
-      cell_id: 5,
       cell_type: 'b',
       cell_color: [93, 102, 127],
     },
     {
-      cell_id: 6,
       cell_type: 'b',
       cell_color: [93, 102, 127],
     },
     {
-      cell_id: 7,
       cell_type: 'b',
       cell_color: [93, 102, 127],
     },
     {
-      cell_id: 8,
       cell_type: 'b',
       cell_color: [93, 102, 127],
     },
     {
-      cell_id: 9,
       cell_type: 'b',
       cell_color: [93, 102, 127],
     },
     {
-      cell_id: 10,
       cell_type: 'b',
       cell_color: [93, 102, 127],
     },
     {
-      cell_id: 11,
       cell_type: 'b',
       cell_color: [93, 102, 127],
     },
     {
-      cell_id: 12,
       cell_type: 'b',
       cell_color: [93, 102, 127],
     },
@@ -163,16 +150,15 @@ export class HistogramComponent implements AfterViewInit {
     return '#' + ((1 << 24) + (color[0] << 16) + (color[1] << 8) + color[2]).toString(16).slice(1);
   }
 
-  setCurrentColor(color: [number, number, number]) {
-    this.currentColor = this.rgbToHex(color);
-  }
+  // setCurrentColor(color: [number, number, number]) {
+  //   this.currentColor = this.rgbToHex(color);
+  // }
 
   private createHistogram(data: HistogramData[]): VisualizationSpec {
     return {
       $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
       width: 'container',
       height: 'container',
-      autosize: { type: 'fit', contains: 'content' },
       data: {
         values: data,
       },
