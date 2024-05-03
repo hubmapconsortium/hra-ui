@@ -24,6 +24,7 @@
       },
       "configurations": {
         "production": {
+          "baseHref": "/ui/medical-illustration/",
           "budgets": [
             {
               "type": "initial",
@@ -45,9 +46,22 @@
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
+        },
+        "staging": {
+          "baseHref": "/ui--staging/medical-illustration/",
+          "outputHashing": "none"
+        },
+        "preview": {
+          "baseHref": "/apps/medical-illustration/",
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
         }
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": ""
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",

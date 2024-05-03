@@ -37,6 +37,7 @@
       },
       "configurations": {
         "production": {
+          "baseHref": "/ui/humanatlas.io/",
           "budgets": [
             {
               "type": "initial",
@@ -66,7 +67,7 @@
           "namedChunks": true
         },
         "staging": {
-          "baseHref": "/apps/humanatlas.io/",
+          "baseHref": "/ui--staging/humanatlas.io/",
           "outputHashing": "none"
         },
         "preview": {
