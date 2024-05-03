@@ -2676,7 +2676,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const NODE_COLLISION_THROTTLE_DURATION = 10;
-const DEFAULT_COLLISIONS_ENDPOINT = 'https://pfn8zf2gtu.us-east-2.awsapprunner.com/get-collisions';
 function getNodeBbox(model) {
   const mat = new _math_gl_core__WEBPACK_IMPORTED_MODULE_8__["default"](model.transformMatrix);
   const lowerBound = mat.transformAsPoint([-1, -1, -1], []);
@@ -2875,11 +2874,11 @@ let SceneState = class SceneState extends _angular_ru_ngxs_repositories__WEBPACK
     return db.organSpatialEntities[organIri];
   }
   getCollisions(jsonld) {
-    return this.globalConfig.getOption('collisionsEndpoint').pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_22__.switchMap)((endpoint = DEFAULT_COLLISIONS_ENDPOINT) => this.http.post(endpoint, JSON.stringify(jsonld), {
+    return this.globalConfig.getOption('collisionsEndpoint').pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_22__.switchMap)(endpoint => endpoint ? this.http.post(endpoint, JSON.stringify(jsonld), {
       headers: {
         'Content-Type': 'application/json'
       }
-    })), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_23__.catchError)(() => (0,rxjs__WEBPACK_IMPORTED_MODULE_21__.of)(undefined)), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_24__.take)(1));
+    }) : (0,rxjs__WEBPACK_IMPORTED_MODULE_21__.of)(undefined)), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_23__.catchError)(() => (0,rxjs__WEBPACK_IMPORTED_MODULE_21__.of)(undefined)), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_24__.take)(1));
   }
   filterNodeCollisions(nodes, collisions) {
     const collidedIds = new Set(collisions.map(node => node.id));
@@ -9290,6 +9289,7 @@ const environment = {
     header: true,
     homeUrl: 'https://portal.hubmapconsortium.org/',
     logoTooltip: 'Human BioMolecular Atlas Project',
+    collisionsEndpoint: 'https://apps.humanatlas.io/api/v1/collisions',
     referenceData: 'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/rui/assets/reference-organ-data.json'
   },
   skipUnsavedChangesConfirmation: true,
