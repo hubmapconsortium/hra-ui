@@ -43,8 +43,6 @@ interface Collision {
 
 const NODE_COLLISION_THROTTLE_DURATION = 10;
 
-const DEFAULT_COLLISIONS_ENDPOINT = 'https://pfn8zf2gtu.us-east-2.awsapprunner.com/get-collisions';
-
 function getNodeBbox(model: SpatialSceneNode): AABB {
   const mat = new Matrix4(model.transformMatrix);
   const lowerBound = mat.transformAsPoint([-1, -1, -1], []);
@@ -360,10 +358,12 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
 
   private getCollisions(jsonld: unknown): Observable<Collision[] | undefined> {
     return this.globalConfig.getOption('collisionsEndpoint').pipe(
-      switchMap((endpoint = DEFAULT_COLLISIONS_ENDPOINT) =>
-        this.http.post<Collision[]>(endpoint, JSON.stringify(jsonld), {
-          headers: { 'Content-Type': 'application/json' },
-        }),
+      switchMap((endpoint) =>
+        endpoint
+          ? this.http.post<Collision[]>(endpoint, JSON.stringify(jsonld), {
+              headers: { 'Content-Type': 'application/json' },
+            })
+          : of(undefined),
       ),
       catchError(() => of(undefined)),
       take(1),
