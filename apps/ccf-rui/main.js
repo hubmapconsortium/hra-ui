@@ -69,6 +69,7 @@ class AppWebComponent extends ccf_shared_web_components__WEBPACK_IMPORTED_MODULE
     inputs: {
       baseHref: "baseHref",
       useDownload: "useDownload",
+      referenceData: "referenceData",
       user: "user",
       organ: "organ",
       editRegistration: "editRegistration",
@@ -2004,20 +2005,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   ReferenceDataState: () => (/* binding */ ReferenceDataState),
 /* harmony export */   applySpatialPlacement: () => (/* binding */ applySpatialPlacement)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! tslib */ 24398);
-/* harmony import */ var _angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular-ru/ngxs/decorators */ 11884);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tslib */ 24398);
+/* harmony import */ var _angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular-ru/ngxs/decorators */ 11884);
 /* harmony import */ var _angular_ru_ngxs_repositories__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular-ru/ngxs/repositories */ 48954);
 /* harmony import */ var _math_gl_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @math.gl/core */ 11984);
-/* harmony import */ var _math_gl_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @math.gl/core */ 7493);
+/* harmony import */ var _math_gl_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @math.gl/core */ 7493);
 /* harmony import */ var _ngxs_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngxs/store */ 87911);
 /* harmony import */ var ccf_shared__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ccf-shared */ 85172);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs */ 95429);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs */ 59400);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 70271);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 36647);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/operators */ 61318);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs */ 95429);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs */ 59400);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 36647);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ 61318);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../environments/environment */ 14755);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ 37580);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 37580);
 
 
 
@@ -2072,13 +2072,13 @@ let ReferenceDataState = class ReferenceDataState extends _angular_ru_ngxs_repos
     });
   }
   getSourceDB() {
-    return this.globalConfig.getOption('baseHref').pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.map)(baseHref => (baseHref ?? '') + 'assets/reference-organ-data.json'), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.switchMap)(url => (0,rxjs__WEBPACK_IMPORTED_MODULE_7__.from)(fetch(url)).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.switchMap)(data => data.json()), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.catchError)(() => rxjs__WEBPACK_IMPORTED_MODULE_9__.EMPTY))));
+    return this.globalConfig.getOption('referenceData').pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.switchMap)(url => (0,rxjs__WEBPACK_IMPORTED_MODULE_6__.from)(fetch(url)).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.switchMap)(data => data.json()), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_7__.catchError)(() => rxjs__WEBPACK_IMPORTED_MODULE_8__.EMPTY))));
   }
   normalizePlacement(place) {
     const db = this.snapshot;
     const patchPlacement = db.placementPatches[place?.target];
     if (patchPlacement) {
-      const matrix = applySpatialPlacement(new _math_gl_core__WEBPACK_IMPORTED_MODULE_10__["default"](_math_gl_core__WEBPACK_IMPORTED_MODULE_10__["default"].IDENTITY), patchPlacement);
+      const matrix = applySpatialPlacement(new _math_gl_core__WEBPACK_IMPORTED_MODULE_9__["default"](_math_gl_core__WEBPACK_IMPORTED_MODULE_9__["default"].IDENTITY), patchPlacement);
       const position = {
         x: place.x_translation,
         y: place.y_translation,
@@ -2150,14 +2150,14 @@ let ReferenceDataState = class ReferenceDataState extends _angular_ru_ngxs_repos
     return organEntry ? this.getLatestIri(organEntry.target) : organ;
   }
   static #_ = this.ɵfac = function ReferenceDataState_Factory(t) {
-    return new (t || ReferenceDataState)(_angular_core__WEBPACK_IMPORTED_MODULE_11__["ɵɵinject"](ccf_shared__WEBPACK_IMPORTED_MODULE_1__.GlobalsService), _angular_core__WEBPACK_IMPORTED_MODULE_11__["ɵɵinject"](ccf_shared__WEBPACK_IMPORTED_MODULE_1__.GlobalConfigState));
+    return new (t || ReferenceDataState)(_angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵinject"](ccf_shared__WEBPACK_IMPORTED_MODULE_1__.GlobalsService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵinject"](ccf_shared__WEBPACK_IMPORTED_MODULE_1__.GlobalConfigState));
   };
-  static #_2 = this.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_11__["ɵɵdefineInjectable"]({
+  static #_2 = this.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdefineInjectable"]({
     token: ReferenceDataState,
     factory: ReferenceDataState.ɵfac
   });
 };
-ReferenceDataState = (0,tslib__WEBPACK_IMPORTED_MODULE_12__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_13__.StateRepository)(), (0,_ngxs_store__WEBPACK_IMPORTED_MODULE_0__.State)({
+ReferenceDataState = (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_12__.StateRepository)(), (0,_ngxs_store__WEBPACK_IMPORTED_MODULE_0__.State)({
   name: 'reference',
   defaults: {
     organIRILookup: {},
@@ -2168,7 +2168,7 @@ ReferenceDataState = (0,tslib__WEBPACK_IMPORTED_MODULE_12__.__decorate)([(0,_ang
     simpleSceneNodeLookup: {},
     placementPatches: {}
   }
-}), (0,tslib__WEBPACK_IMPORTED_MODULE_12__.__metadata)("design:paramtypes", [ccf_shared__WEBPACK_IMPORTED_MODULE_1__.GlobalsService, ccf_shared__WEBPACK_IMPORTED_MODULE_1__.GlobalConfigState])], ReferenceDataState);
+}), (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__metadata)("design:paramtypes", [ccf_shared__WEBPACK_IMPORTED_MODULE_1__.GlobalsService, ccf_shared__WEBPACK_IMPORTED_MODULE_1__.GlobalConfigState])], ReferenceDataState);
 
 
 /***/ }),
@@ -9289,7 +9289,8 @@ const environment = {
     theme: 'default',
     header: true,
     homeUrl: 'https://portal.hubmapconsortium.org/',
-    logoTooltip: 'Human BioMolecular Atlas Project'
+    logoTooltip: 'Human BioMolecular Atlas Project',
+    referenceData: 'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/rui/assets/reference-organ-data.json'
   },
   skipUnsavedChangesConfirmation: true,
   googleAnalyticsToken: 'G-B3DT7XPMRT'
