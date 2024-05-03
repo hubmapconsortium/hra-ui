@@ -1,0 +1,76 @@
+<span class="mat-caption cell-types-label"
+  >Cell Types
+  <mat-icon class="material-symbols-rounded">info</mat-icon>
+</span>
+<button mat-flat-button color="primary" class="mat-caption download-csv">
+  <mat-icon class="material-symbols-rounded">download</mat-icon>
+  CSV
+</button>
+<div class="mat-caption total-ct-label">
+  Total Cell Types
+  <span>{{ totalCellTypes }}</span>
+</div>
+<div class="mat-caption total-cells">
+  Total Cells
+  <span>{{ totalCells() }}</span>
+</div>
+<div class="table-overflow-container">
+  <table
+    mat-table
+    matSort
+    [dataSource]="dataSource"
+    matSortDirection="desc"
+    matSortActive="count"
+    aria-label="Cell Types Count Table"
+  >
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox
+          (change)="toggleAllRows()"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"
+          [aria-label]="checkboxLabel()"
+        >
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row; let index = index">
+        <mat-checkbox
+          (click)="$event.stopPropagation()"
+          (change)="selection.toggle(row)"
+          [checked]="selection.isSelected(row)"
+          [aria-label]="checkboxLabel(row, index)"
+        >
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header start="desc">Name</th>
+      <td mat-cell *matCellDef="let element" class="mat-caption name">
+        <span
+          class="color-pick"
+          [(colorPicker)]="defaultCellTypeColor"
+          [style.background]="defaultCellTypeColor"
+          [cpOutputFormat]="'hex'"
+          [cpOKButton]="true"
+          [cpCancelButton]="true"
+          [cpPosition]="'right'"
+          [cpOKButtonClass]="'accept-button'"
+          [cpOKButtonText]="'Accept'"
+          [cpCancelButtonClass]="'cancel-button'"
+          [cpAlphaChannel]="'always'"
+        ></span>
+        <mat-icon class="material-symbols-rounded anchor"> anchor </mat-icon>
+        {{ element.name }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="count">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header start="desc">Count</th>
+      <td mat-cell *matCellDef="let element" class="mat-caption">{{ element.count.toLocaleString() }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

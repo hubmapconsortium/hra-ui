@@ -2,6 +2,10 @@
 @use './styles/fonts';
 @use './styles/material-theming';
 
+body {
+  height: 100vh;
+}
+
 .header-nav {
   color: #201e3d;
   border-bottom: solid #4b4b5e 2px;

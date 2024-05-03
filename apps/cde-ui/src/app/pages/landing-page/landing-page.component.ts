@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { CdeVisualizationComponent } from '@hra-ui/cde-visualization';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 /**
  * Landing page component
@@ -9,7 +9,7 @@ import { CdeVisualizationComponent } from '@hra-ui/cde-visualization';
 @Component({
   selector: 'cde-landing-page',
   standalone: true,
-  imports: [CommonModule, RouterLink, CdeVisualizationComponent],
+  imports: [CommonModule, RouterModule],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

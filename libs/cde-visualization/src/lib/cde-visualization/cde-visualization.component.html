@@ -1,1 +1,11 @@
-<cde-histogram></cde-histogram>
+<div class="header">
+  <cde-visualization-header></cde-visualization-header>
+</div>
+<div class="metadata">
+  <cde-metadata [data]="metadata()"></cde-metadata>
+  <cde-cell-types [data]="cellTypeOptions()"></cde-cell-types>
+</div>
+<div class="visualizations">
+  <cde-histogram></cde-histogram>
+  <div>Histogram Here</div>
+</div>
