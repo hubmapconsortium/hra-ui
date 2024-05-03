@@ -49,8 +49,9 @@
       <td mat-cell *matCellDef="let element" class="mat-caption name">
         <span
           class="color-pick"
-          [(colorPicker)]="defaultCellTypeColor"
-          [style.background]="defaultCellTypeColor"
+          [cpWidth]="'264px'"
+          [(colorPicker)]="element.color"
+          [style.background]="element.color"
           [cpOutputFormat]="'hex'"
           [cpOKButton]="true"
           [cpCancelButton]="true"

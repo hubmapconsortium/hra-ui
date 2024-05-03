@@ -15,6 +15,8 @@ export interface CellTypeOption {
   name: string;
   /** Count of the cell */
   count: number;
+  /** Color of the cell */
+  color?: string;
 }
 
 /**
@@ -50,9 +52,6 @@ export class CellTypesComponent implements AfterViewInit {
   selection = new SelectionModel<CellTypeOption>(true, []);
   /** Total number of cell type rows */
   totalCellTypes = this.dataSource.data.length;
-
-  /** Default cell type color */
-  defaultCellTypeColor = '#5D667F';
 
   /** Sorts the Cell Types table */
   sort = viewChild.required(MatSort);
