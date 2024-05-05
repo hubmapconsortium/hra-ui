@@ -6,7 +6,7 @@
 
 On Sunday, May 5th, 2024, [Bruce W. Herr II](https://orcid.org/0000-0002-6703-7647) presented the Keynote Address: "_The Human Reference Atlas_" at the [_AUA2024 Basic Sciences Symposium_](https://aua2021.app.swapcard.com/event/2024-annual-meeting-san-antonio/planning/UGxhbm5pbmdfMTczMDU1Nw==) in San Antonio, Texas. This resource site provides links to resources referenced in the Keynote and potentially relevant to the urology community.
 
-More information about the Human Reference Atlas can be found at <https://humanatlas.io>.
+More information about the Human Reference Atlas can be found at <https://humanatlas.io>. Contact [infoccf@indiana.edu](mailto:infoccf@indiana.edu) for information on how to join the HRA Working Group.
 
 ## Atlas Resources
 
@@ -48,6 +48,8 @@ Organ Mapping Antibody Panels (OMAPs) are collections of antibodies that allow s
 ### Vascular Geometries (VCCF)
 
 The VCCF is the first open, computer-readable, and comprehensive database of the adult human blood vasculature. It contains a list of blood vessels and their branching relationships, as well as associated cell types and biomarkers, the vessel type, anastomoses, portal systems, microvasculature, functional tissue units, links to 3D reference objects, vessel geometries (length, diameter), and mappings to anatomical structures the vessels supply or drain. [More Information](https://humanatlas.io/vccf).
+
+- VCCF Video: <https://youtu.be/zQeMgxo8n_U>
 
 ### Experimental Data (Donors, Tissues, Datasets)
 
