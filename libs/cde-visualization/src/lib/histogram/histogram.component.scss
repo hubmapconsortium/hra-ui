@@ -64,6 +64,7 @@
 
       .legend-entry {
         display: flex;
+        align-items: center;
       }
 
       .color-icon {
@@ -71,6 +72,19 @@
         width: 1.125rem;
         border-radius: 2rem;
         margin: 0.25rem;
+      }
+
+      .anchor {
+        --mdc-checkbox-unselected-icon-color: #201e3d;
+        border-radius: 50%;
+        color: white;
+        vertical-align: middle;
+        height: 1.125rem;
+        width: 1.125rem;
+        font-size: 1rem;
+        text-align: center;
+        align-content: center;
+        background-color: var(--mdc-checkbox-unselected-icon-color);
       }
     }
   }

@@ -41,7 +41,8 @@
             [cpCancelButtonClass]="'cancel-button'"
             [cpAlphaChannel]="'always'"
           ></div> -->
-          <div class="color-icon" [style.background]="toRGB(color.cell_color)"></div>
+          <span class="color-icon" [style.background]="toRGB(color.cell_color)"></span>
+          <mat-icon *ngIf="color.anchor" class="material-symbols-rounded anchor"> anchor </mat-icon>
           {{ color.cell_type }}
         </div>
       </div>
