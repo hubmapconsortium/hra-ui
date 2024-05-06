@@ -3,11 +3,9 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, V
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import moment from 'moment';
 import { ColorPickerModule } from 'ngx-color-picker';
 import embed, { VisualizationSpec } from 'vega-embed';
-import { saveAs } from 'file-saver';
-// @ts-expect-error TODO: fix this later
-import { saveSvgAsPng } from 'save-svg-as-png';
 
 const TEST_DATA: HistogramData[] = [
   {
@@ -62,6 +60,7 @@ export interface HistogramData {
 export interface CellColorData {
   cell_type: string;
   cell_color: [number, number, number];
+  anchor?: boolean;
 }
 
 export type ColorMap = CellColorData[];
@@ -90,6 +89,7 @@ export class HistogramComponent implements AfterViewInit {
     {
       cell_type: 'a',
       cell_color: [189, 189, 189],
+      anchor: true,
     },
     {
       cell_type: 'b',
@@ -191,18 +191,17 @@ export class HistogramComponent implements AfterViewInit {
 
   download(event: MouseEvent, type: 'svg' | 'png') {
     event.stopPropagation();
-    const vis = this.vis?.nativeElement;
-    if (vis === null) {
-      return;
-    } else {
-      const svg = vis.querySelector('svg') as SVGElement;
-      const svgString = new XMLSerializer().serializeToString(svg);
-      if (type === 'svg') {
-        const blob = new Blob([svgString], { type: 'image/svg+xml' });
-        saveAs(blob, 'image.svg');
-      } else {
-        saveSvgAsPng(svg, 'image.png');
-      }
-    }
+    embed(this.vis?.nativeElement, this.spec).then((result) => {
+      const view = result.view;
+      const dt = moment(new Date()).format('YYYY.MM.DD_hh.mm');
+      const fileName = `cde_${dt}.${type}`;
+      view.toImageURL(type).then((url: string) => {
+        const link = document.createElement('a');
+        link.setAttribute('href', url);
+        link.setAttribute('target', '_blank');
+        link.setAttribute('download', fileName);
+        link.dispatchEvent(new MouseEvent('click'));
+      });
+    });
   }
 }
