@@ -4,9 +4,35 @@
 </div>
 <mat-divider vertical></mat-divider>
 <div class="reset">
-  <span class="mat-caption">
+  <span class="mat-caption" cdkOverlayOrigin #resetTrigger="cdkOverlayOrigin">
     Reset
-    <mat-icon class="material-symbols-rounded info"> info </mat-icon>
+    <mat-icon
+      class="material-symbols-rounded info"
+      (mouseover)="resetInfoOpen = !resetInfoOpen"
+      (mouseout)="resetInfoOpen = !resetInfoOpen"
+    >
+      info
+    </mat-icon>
+    <ng-container>
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'reset-panel']"
+        [cdkConnectedOverlayOrigin]="resetTrigger"
+        [cdkConnectedOverlayOpen]="resetInfoOpen"
+        [cdkConnectedOverlayOffsetY]="10"
+      >
+        <div>
+          <span>Reset Visualization View</span>
+          <span class="break">Button restoring the initial view of the cell distance visualization</span>
+
+          <span>Reset All Settings</span>
+          <span>
+            Button restoring all settings: Cell distance visualization view, cell type list selections, cell type color
+            settings, and histogram color settings
+          </span>
+        </div>
+      </ng-template>
+    </ng-container>
   </span>
   <button mat-flat-button color="primary" class="mat-caption">
     <mat-icon class="material-symbols-rounded"> restart_alt </mat-icon>
@@ -19,9 +45,29 @@
 </div>
 <mat-divider vertical></mat-divider>
 <div class="embed">
-  <span class="mat-caption">
+  <span class="mat-caption" cdkOverlayOrigin #embedTrigger="cdkOverlayOrigin">
     Embed Visualization
-    <mat-icon class="material-symbols-rounded info"> info </mat-icon>
+    <mat-icon
+      class="material-symbols-rounded info"
+      (mouseover)="embedInfoOpen = !embedInfoOpen"
+      (mouseout)="embedInfoOpen = !embedInfoOpen"
+    >
+      info
+    </mat-icon>
+    <ng-container>
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'embed-panel']"
+        [cdkConnectedOverlayOrigin]="embedTrigger"
+        [cdkConnectedOverlayOpen]="embedInfoOpen"
+        [cdkConnectedOverlayOffsetY]="10"
+      >
+        <div>
+          Embed the cell distance visualization viewer component on websites by using HRA open-source code and the nodes
+          and edges downloads. View step-by-step instructions on GitHub via the Documentation button.
+        </div>
+      </ng-template>
+    </ng-container>
   </span>
   <button mat-flat-button color="primary" class="mat-caption">
     <mat-icon class="material-symbols-rounded"> download </mat-icon>

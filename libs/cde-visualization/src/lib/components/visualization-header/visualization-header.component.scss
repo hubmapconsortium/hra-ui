@@ -11,6 +11,17 @@ $blue-theme: mat.define-light-theme(
     ),
   )
 );
+
+::ng-deep {
+  .reset-panel {
+    max-width: 32rem;
+  }
+
+  .embed-panel {
+    max-width: 27.5rem;
+  }
+}
+
 :host {
   @include mat.button-color($blue-theme);
 

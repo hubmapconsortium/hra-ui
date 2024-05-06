@@ -1,3 +1,8 @@
+::ng-deep {
+  .metadata-panel {
+    max-width: 27.5rem;
+  }
+}
 :host {
   display: block;
 

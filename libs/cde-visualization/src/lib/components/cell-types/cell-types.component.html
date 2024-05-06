@@ -1,6 +1,28 @@
 <span class="mat-caption cell-types-label"
   >Cell Types
-  <mat-icon class="material-symbols-rounded">info</mat-icon>
+  <mat-icon
+    class="material-symbols-rounded"
+    cdkOverlayOrigin
+    #resetTrigger="cdkOverlayOrigin"
+    (mouseover)="cellTypesInfoOpen = !cellTypesInfoOpen"
+    (mouseout)="cellTypesInfoOpen = !cellTypesInfoOpen"
+    >info</mat-icon
+  >
+  <ng-container>
+    <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'celltypes-panel']"
+      [cdkConnectedOverlayOrigin]="resetTrigger"
+      [cdkConnectedOverlayPositions]="overlayPositions"
+      [cdkConnectedOverlayOpen]="cellTypesInfoOpen"
+      [cdkConnectedOverlayOffsetX]="5"
+    >
+      <div>
+        Show/hide specific cell types in the visualizations by clicking the checkboxes. Update individual cell type
+        visualization colors by clicking the cell type's color legend button.
+      </div>
+    </ng-template>
+  </ng-container>
 </span>
 <button mat-flat-button color="primary" class="mat-caption download-csv">
   <mat-icon class="material-symbols-rounded">download</mat-icon>
