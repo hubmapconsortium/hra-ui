@@ -96,7 +96,7 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
   @Input() highlightId?: string;
 
   /** Emits node id when hovered */
-  @Output() readonly nodeHover = new EventEmitter<T>();
+  @Output() readonly nodeHover = new EventEmitter<T | undefined>();
 
   /** Emits node id when clicked */
   @Output() readonly nodeClick = new EventEmitter<T>();
