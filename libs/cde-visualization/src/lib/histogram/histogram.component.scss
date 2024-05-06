@@ -2,6 +2,8 @@
   ::ng-deep mat-expansion-panel {
     --mat-expansion-container-shape: 0.5rem;
     --mat-expansion-container-background-color: white;
+    letter-spacing: 0.005em;
+    font-family: 'Metropolis';
 
     &.mat-expanded {
       overflow: visible;
@@ -59,8 +61,10 @@
     }
 
     .legend {
-      width: 249px;
+      width: 15.5rem;
       overflow-y: auto;
+      font-size: 12px;
+      font-weight: 400;
 
       .legend-entry {
         display: flex;
@@ -72,6 +76,7 @@
         width: 1.125rem;
         border-radius: 2rem;
         margin: 0.25rem;
+        margin-right: 0.5rem;
       }
 
       .anchor {
@@ -85,6 +90,7 @@
         text-align: center;
         align-content: center;
         background-color: var(--mdc-checkbox-unselected-icon-color);
+        margin-right: 0.5rem;
       }
     }
   }

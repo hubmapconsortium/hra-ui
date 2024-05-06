@@ -190,6 +190,7 @@ export class HistogramComponent implements AfterViewInit {
           title: 'Number of Cells',
           axis: {
             minExtent: 69,
+            tickExtra: false,
           },
         },
         color: {
@@ -205,6 +206,9 @@ export class HistogramComponent implements AfterViewInit {
           labelFontSize: 12,
           titleFontSize: 14,
           titleFontWeight: 'normal',
+          ticks: false,
+          domain: false,
+          labelPadding: 8,
         },
       },
     };
