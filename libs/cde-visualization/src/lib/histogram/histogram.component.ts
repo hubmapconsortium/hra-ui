@@ -5,6 +5,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import moment from 'moment';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
 
 const TEST_DATA: HistogramData[] = [
@@ -85,6 +86,8 @@ export class HistogramComponent implements AfterViewInit {
 
   panelOpen = true;
 
+  view?: View;
+
   colorMap: ColorMap = [
     {
       cell_type: 'a',
@@ -142,7 +145,9 @@ export class HistogramComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.spec = this.createHistogram(this.data);
     if (this.vis) {
-      embed(this.vis.nativeElement, this.spec, { actions: false, renderer: 'svg' });
+      embed(this.vis.nativeElement, this.spec, { actions: false, renderer: 'svg' }).then(
+        (result) => (this.view = result.view),
+      );
     }
   }
 
@@ -172,12 +177,20 @@ export class HistogramComponent implements AfterViewInit {
           field: 'distance',
           type: 'quantitative',
           title: 'Distance (µm)',
-          scale: { zero: true },
+          scale: { zero: true, domainMin: -5 },
+          axis: {
+            minExtent: 25,
+            tickCount: 9,
+            labelFlush: false,
+          },
         },
         y: {
           field: 'numCells',
           type: 'quantitative',
           title: 'Number of Cells',
+          axis: {
+            minExtent: 69,
+          },
         },
         color: {
           field: 'type',
@@ -186,22 +199,29 @@ export class HistogramComponent implements AfterViewInit {
           scale: { range: this.colorMap.map((entry) => this.rgbToHex(entry.cell_color)) },
         },
       },
+      config: {
+        font: 'Metropolis',
+        axis: {
+          labelFontSize: 12,
+          titleFontSize: 14,
+          titleFontWeight: 'normal',
+        },
+      },
     };
   }
 
   download(event: MouseEvent, type: 'svg' | 'png') {
     event.stopPropagation();
-    embed(this.vis?.nativeElement, this.spec).then((result) => {
-      const view = result.view;
-      const dt = moment(new Date()).format('YYYY.MM.DD_hh.mm');
-      const fileName = `cde_${dt}.${type}`;
-      view.toImageURL(type).then((url: string) => {
+    const dt = moment(new Date()).format('YYYY.MM.DD_hh.mm');
+    const fileName = `cde_${dt}.${type}`;
+    if (this.view) {
+      this.view.toImageURL(type).then((url: string) => {
         const link = document.createElement('a');
         link.setAttribute('href', url);
         link.setAttribute('target', '_blank');
         link.setAttribute('download', fileName);
         link.dispatchEvent(new MouseEvent('click'));
       });
-    });
+    }
   }
 }
