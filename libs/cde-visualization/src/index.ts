@@ -16,4 +16,4 @@ import { CdeVisualizationComponent } from './lib/cde-visualization/cde-visualiza
 
 export * from './lib/cde-visualization/cde-visualization.component';
 
-export * from './lib/histogram/histogram.component';
+export * from './lib/components/histogram/histogram.component';

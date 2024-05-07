@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { CellTypeOption, CellTypesComponent } from '../components/cell-types/cell-types.component';
 import { Metadata, MetadataComponent } from '../components/metadata/metadata.component';
 import { VisualizationHeaderComponent } from '../components/visualization-header/visualization-header.component';
-import { HistogramComponent } from '../histogram/histogram.component';
+import { HistogramComponent } from '../components/histogram/histogram.component';
 
 export interface Node {
   x: number;
