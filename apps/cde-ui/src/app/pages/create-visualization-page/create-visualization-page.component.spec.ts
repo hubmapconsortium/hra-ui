@@ -1,21 +1,27 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render, screen, fireEvent } from '@testing-library/angular';
+// import userEvent from '@testing-library/user-event';
 import { CreateVisualizationPageComponent } from './create-visualization-page.component';
 
 describe('CreateVisualizationPageComponent', () => {
-  let component: CreateVisualizationPageComponent;
-  let fixture: ComponentFixture<CreateVisualizationPageComponent>;
+  it('should render the form and allow input', async () => {
+    // const user = userEvent.setup();
+    await render(CreateVisualizationPageComponent);
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [CreateVisualizationPageComponent],
-    }).compileComponents();
+    const inputElements = {
+      title: screen.getByLabelText(/title/i),
+      age: screen.getByLabelText(/age/i),
+      organ: screen.getByLabelText(/organ/i),
+    };
 
-    fixture = TestBed.createComponent(CreateVisualizationPageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fireEvent.input(inputElements.title, { target: { value: 'Example Title' } });
+    expect(inputElements.title).toHaveValue('Example Title');
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    fireEvent.input(inputElements.age, { target: { value: '25' } });
+    expect(inputElements.age).toHaveValue(25);
+
+    fireEvent.change(inputElements.organ, { target: { value: 'Heart' } });
+    expect(inputElements.organ).toHaveValue('Heart');
+
+    fireEvent.click(screen.getByRole('button', { name: /submit/i }));
   });
 });

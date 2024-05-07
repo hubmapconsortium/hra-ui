@@ -2,7 +2,7 @@ import { Injectable, WritableSignal, signal } from '@angular/core';
 import { LocalChunkSize, ParseLocalConfig, parse } from 'papaparse';
 import { FileLoader, FileLoaderOptions } from '../../components/file-upload/file-upload.component';
 
-type CsvObject = Record<string, string | number | boolean>;
+export type CsvObject = Record<string, string | number | boolean>;
 type ReservedParseOptions = 'worker' | 'chunk' | 'complete' | 'error' | 'transform';
 export type CsvLoaderOptions<T> = Omit<ParseLocalConfig, ReservedParseOptions> & {
   transformItem?: (item: CsvObject) => T;

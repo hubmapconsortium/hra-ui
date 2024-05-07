@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, inject, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ColorMap, ColorMapItem, VisualizationSettings } from '../../models/create-visualization-page-types';
-import { CellTypeTableData, FileUploadService, MetadataSelectOption } from '../../services/file-upload-service';
+import { CellTypeTableData, MetadataSelectOption } from '../../services/file-upload-service';
 import { FileUploadComponent } from '../../components/file-upload/file-upload.component';
 import { CsvLoaderService } from '../../services/csv-loader/csv-loader.service';
 import { MatDividerModule } from '@angular/material/divider';
@@ -43,12 +43,9 @@ import { MarkEmptyFormControlDirective } from '../../components/empty-form-contr
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateVisualizationPageComponent {
-  readonly fileUploadService = inject(FileUploadService);
-  readonly formBuilder = inject(FormBuilder);
-
   @Output() readonly visualize = new EventEmitter<VisualizationSettings>();
 
-  @ViewChild('colorMapInput') colorMapInput!: ElementRef<HTMLElement>;
+  private readonly formBuilder = inject(FormBuilder);
 
   visualizationForm = this.formBuilder.nonNullable.group({
     anchorCellType: [''],
@@ -87,12 +84,22 @@ export class CreateVisualizationPageComponent {
       }) as ColorMapItem,
   });
 
-  get anchorCellTypes(): MetadataSelectOption[] {
-    return this.fileUploadService.anchorTypes();
+  anchorCellTypes: MetadataSelectOption[] = [];
+  useDefaultColorMap = true;
+
+  setData(data: CellTypeTableData[]): void {
+    const cellTypes = data.map((item) => item.cellType);
+    const uniqueCellTypes = Array.from(new Set(cellTypes));
+
+    this.data = data;
+    this.anchorCellTypes = uniqueCellTypes.map((type) => ({
+      value: type,
+      viewValue: type,
+    }));
   }
 
   toggleDefaultColorMap(): void {
-    this.fileUploadService.useDefaultColors();
+    this.useDefaultColorMap = !this.useDefaultColorMap;
   }
 
   onSubmit() {
@@ -100,21 +107,8 @@ export class CreateVisualizationPageComponent {
       this.visualize.emit({
         ...this.visualizationForm.getRawValue(),
         data: this.data,
-        colorMap: this.colorMap,
+        colorMap: this.useDefaultColorMap ? undefined : this.colorMap,
       });
     }
-  }
-
-  constructor() {
-    this.visualizationForm
-      .get('metadata')
-      ?.get('title')
-      ?.valueChanges.subscribe((val) => {
-        this.log(val);
-      });
-  }
-
-  log(value: unknown): void {
-    console.log('log:', value);
   }
 }
