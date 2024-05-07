@@ -90,52 +90,52 @@ export class HistogramComponent implements AfterViewInit {
 
   colorMap: ColorMap = [
     {
-      cell_type: 'a',
+      cell_type: 'Endothelial',
       cell_color: [189, 189, 189],
       anchor: true,
     },
     {
-      cell_type: 'b',
+      cell_type: '[cell/node type]',
       cell_color: [93, 102, 127],
     },
     {
-      cell_type: 'b',
+      cell_type: '[cell/node type]',
       cell_color: [93, 102, 127],
     },
     {
-      cell_type: 'b',
+      cell_type: '[cell/node type]',
       cell_color: [93, 102, 127],
     },
     {
-      cell_type: 'b',
+      cell_type: '[cell/node type]',
       cell_color: [93, 102, 127],
     },
     {
-      cell_type: 'b',
+      cell_type: '[cell/node type]',
       cell_color: [93, 102, 127],
     },
     {
-      cell_type: 'b',
+      cell_type: '[cell/node type]',
       cell_color: [93, 102, 127],
     },
     {
-      cell_type: 'b',
+      cell_type: '[cell/node type]',
       cell_color: [93, 102, 127],
     },
     {
-      cell_type: 'b',
+      cell_type: '[cell/node type]',
       cell_color: [93, 102, 127],
     },
     {
-      cell_type: 'b',
+      cell_type: '[cell/node type]',
       cell_color: [93, 102, 127],
     },
     {
-      cell_type: 'b',
+      cell_type: '[cell/node type]',
       cell_color: [93, 102, 127],
     },
     {
-      cell_type: 'b',
+      cell_type: '[cell/node type]',
       cell_color: [93, 102, 127],
     },
   ];
