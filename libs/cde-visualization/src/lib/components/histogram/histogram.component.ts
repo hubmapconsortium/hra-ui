@@ -90,6 +90,8 @@ export class HistogramComponent implements AfterViewInit {
           .map((int) => parseInt(int)),
       };
     });
+    this.colorMap.unshift({ cell_type: 'All Cells', cell_color: [0, 0, 0] });
+    console.warn(this.colorMap);
     return this.colorMap;
   });
 
@@ -98,7 +100,7 @@ export class HistogramComponent implements AfterViewInit {
       this.fetchCsv('assets/edges.csv').then((edgeResults) => {
         const nodeData = nodeResults as NodeData[];
         const edgeData = edgeResults as EdgeData[];
-        const processed = edgeData.map((entry) => {
+        let processed = edgeData.map((entry) => {
           const typeName = nodeData[entry.node_index].type;
           const distance = Math.sqrt(
             this.squaredDistance3D([entry.src_x, entry.src_y, entry.src_z], [entry.tgt_x, entry.tgt_y, entry.tgt_z]),
@@ -108,6 +110,13 @@ export class HistogramComponent implements AfterViewInit {
             distance: distance,
           };
         });
+        const all = processed.map((entry) => {
+          return {
+            ...entry,
+            type: 'All Cells',
+          };
+        });
+        processed = processed.concat(all);
         this.histogramData = processed;
         this.spec = this.createHistogram(this.histogramData);
         if (this.vis) {
@@ -154,6 +163,7 @@ export class HistogramComponent implements AfterViewInit {
   // }
 
   private createHistogram(data: HistogramData[]): VisualizationSpec {
+    console.log(data);
     return {
       $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
       width: 'container',

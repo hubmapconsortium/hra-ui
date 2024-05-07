@@ -21,10 +21,6 @@
     <div class="histogram-container">
       <div class="visualization" #vis></div>
       <div class="legend">
-        <div class="legend-entry">
-          <div class="color-icon" [style.background]="'black'"></div>
-          All Cells
-        </div>
         <div class="legend-entry" *ngFor="let color of colors$() | async">
           <!-- Icon with color picker -->
           <!-- <div
