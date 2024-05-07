@@ -91,7 +91,6 @@ export class HistogramComponent implements AfterViewInit {
       };
     });
     this.colorMap.unshift({ cell_type: 'All Cells', cell_color: [0, 0, 0] });
-    console.warn(this.colorMap);
     return this.colorMap;
   });
 
@@ -163,7 +162,6 @@ export class HistogramComponent implements AfterViewInit {
   // }
 
   private createHistogram(data: HistogramData[]): VisualizationSpec {
-    console.log(data);
     return {
       $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
       width: 'container',
@@ -189,7 +187,9 @@ export class HistogramComponent implements AfterViewInit {
             tickCount: 9,
             labelFlush: false,
           },
-          bin: true,
+          bin: {
+            step: 5,
+          },
         },
         y: {
           aggregate: 'count',
