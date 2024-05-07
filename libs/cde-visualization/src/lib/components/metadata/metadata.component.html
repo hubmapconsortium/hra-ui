@@ -5,7 +5,26 @@
         <mat-icon class="material-symbols-rounded" *ngIf="!panelOpen">add</mat-icon>
         <mat-icon class="material-symbols-rounded" *ngIf="panelOpen">remove</mat-icon>
         Sample Metadata
-        <mat-icon class="material-symbols-rounded">info</mat-icon>
+        <mat-icon
+          class="material-symbols-rounded"
+          cdkOverlayOrigin
+          #resetTrigger="cdkOverlayOrigin"
+          (mouseover)="metadataInfoOpen = !metadataInfoOpen"
+          (mouseout)="metadataInfoOpen = !metadataInfoOpen"
+          >info</mat-icon
+        >
+        <ng-container>
+          <ng-template
+            cdkConnectedOverlay
+            [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'metadata-panel']"
+            [cdkConnectedOverlayPositions]="overlayPositions"
+            [cdkConnectedOverlayOrigin]="resetTrigger"
+            [cdkConnectedOverlayOpen]="metadataInfoOpen"
+            [cdkConnectedOverlayOffsetX]="5"
+          >
+            <div>Visualization metadata for the sample dataset. Sample files may be viewed in Google Sheets.</div>
+          </ng-template>
+        </ng-container>
       </mat-panel-title>
     </mat-expansion-panel-header>
     <div class="mat-caption label">Title</div>

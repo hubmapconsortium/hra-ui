@@ -1,3 +1,32 @@
+::ng-deep {
+  .info-tooltip-panel {
+    background-color: white;
+    box-shadow: 0 0.3125rem 1rem 0 #201e3d3d;
+    border-radius: 0.5rem;
+
+    .break {
+      margin-bottom: 1rem;
+    }
+
+    div,
+    span {
+      font-family: 'Metropolis';
+      font-size: 0.875rem;
+      line-height: 1.3125rem;
+      letter-spacing: 0.005em;
+      font-weight: 400;
+      color: #4b4b5e;
+    }
+
+    div {
+      margin: 1rem;
+
+      span {
+        display: block;
+      }
+    }
+  }
+}
 :host {
   background-color: gray;
   padding: 6px 4px;

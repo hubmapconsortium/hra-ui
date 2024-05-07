@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
 
 /**
  * Interface for metadata
@@ -38,7 +39,7 @@ export interface Metadata {
 @Component({
   selector: 'cde-metadata',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatExpansionModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, MatExpansionModule, OverlayModule],
   templateUrl: './metadata.component.html',
   styleUrl: './metadata.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -48,4 +49,15 @@ export class MetadataComponent {
   panelOpen = true;
   /** Input for metadata */
   data = input.required<Metadata>();
+  /** Flag to check if info tooltip is open */
+  metadataInfoOpen = false;
+  /** Tooltip overlay position */
+  overlayPositions: ConnectionPositionPair[] = [
+    {
+      originX: 'end',
+      overlayX: 'start',
+      originY: 'top',
+      overlayY: 'top',
+    },
+  ];
 }

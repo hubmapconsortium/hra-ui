@@ -20,6 +20,7 @@ export interface ColorMapItem {
 }
 
 const DEFAULT_CELL_TYPE_ANCHOR = 'Endothelial';
+const DEFAULT_CELL_TYPE_COLOR = '#5D667F';
 
 @Component({
   selector: 'cde-visualization',
@@ -170,7 +171,7 @@ export class CdeVisualizationComponent {
   readonly cellTypeOptions = computed(() => {
     const options: Record<string, CellTypeOption> = {};
     for (const { cell_type } of this.nodes()) {
-      options[cell_type] ??= { name: cell_type, count: 0 };
+      options[cell_type] ??= { name: cell_type, count: 0, color: DEFAULT_CELL_TYPE_COLOR };
       options[cell_type].count += 1;
     }
 

@@ -1,4 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
+import { ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, ChangeDetectionStrategy, Component, effect, input, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,6 +16,8 @@ export interface CellTypeOption {
   name: string;
   /** Count of the cell */
   count: number;
+  /** Color of the cell */
+  color?: string;
 }
 
 /**
@@ -32,6 +35,7 @@ export interface CellTypeOption {
     MatCheckboxModule,
     MatSortModule,
     ColorPickerModule,
+    OverlayModule,
   ],
   templateUrl: './cell-types.component.html',
   styleUrl: './cell-types.component.scss',
@@ -50,9 +54,17 @@ export class CellTypesComponent implements AfterViewInit {
   selection = new SelectionModel<CellTypeOption>(true, []);
   /** Total number of cell type rows */
   totalCellTypes = this.dataSource.data.length;
-
-  /** Default cell type color */
-  defaultCellTypeColor = '#5D667F';
+  /** Flag to check if info tooltip is open */
+  cellTypesInfoOpen = false;
+  /** Tooltip overlay position */
+  overlayPositions: ConnectionPositionPair[] = [
+    {
+      originX: 'end',
+      overlayX: 'start',
+      originY: 'top',
+      overlayY: 'top',
+    },
+  ];
 
   /** Sorts the Cell Types table */
   sort = viewChild.required(MatSort);
