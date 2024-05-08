@@ -24,9 +24,6 @@ import {
   EnvironmentInjector,
   Injector,
   NgZone,
-  OnChanges,
-  SimpleChange,
-  SimpleChanges,
   Type,
   createComponent,
   isSignal,
@@ -37,7 +34,7 @@ import { NgElementStrategy, NgElementStrategyEvent, NgElementStrategyFactory } f
 import { Observable, ReplaySubject, isObservable, merge } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { extractProjectableNodes } from './extract-projectable-nodes';
-import { isFunction, scheduler, strictEquals } from './utils';
+import { scheduler, strictEquals } from './utils';
 
 declare type Zone = any;
 declare let Zone: any;
@@ -74,17 +71,8 @@ export class ComponentNgElementStrategy implements NgElementStrategy {
   /** Reference to the component view's `ChangeDetectorRef`. */
   private viewChangeDetectorRef: ChangeDetectorRef | null = null;
 
-  /**
-   * Changes that have been made to component inputs since the last change detection run.
-   * (NOTE: These are only recorded if the component implements the `OnChanges` interface.)
-   */
-  private inputChanges: SimpleChanges | null = null;
-
   /** Whether changes have been made to component inputs since the last change detection run. */
   private hasInputChanges = false;
-
-  /** Whether the created component implements the `OnChanges` interface. */
-  private implementsOnChanges = false;
 
   /** Whether a change detection has been scheduled to run on the component. */
   private scheduledChangeDetectionFn: (() => void) | null = null;
@@ -204,7 +192,6 @@ export class ComponentNgElementStrategy implements NgElementStrategy {
 
       // Record the changed value and update internal state to reflect the fact that this input has
       // changed.
-      this.recordInputChange(property, value);
       this.unchangedInputs.delete(property);
       this.hasInputChanges = true;
 
@@ -229,8 +216,6 @@ export class ComponentNgElementStrategy implements NgElementStrategy {
       hostElement: element,
     });
     this.viewChangeDetectorRef = this.componentRef.injector.get(ChangeDetectorRef);
-
-    this.implementsOnChanges = isFunction((this.componentRef.instance as OnChanges).ngOnChanges);
 
     this.initializeInputs();
     this.initializeOutputs(this.componentRef);
@@ -267,19 +252,6 @@ export class ComponentNgElementStrategy implements NgElementStrategy {
     this.eventEmitters.next(eventEmitters);
   }
 
-  /** Calls ngOnChanges with all the inputs that have changed since the last call. */
-  protected callNgOnChanges(componentRef: ComponentRef<any>): void {
-    if (!this.implementsOnChanges || this.inputChanges === null) {
-      return;
-    }
-
-    // Cache the changes and set inputChanges to null to capture any changes that might occur
-    // during ngOnChanges.
-    const inputChanges = this.inputChanges;
-    this.inputChanges = null;
-    (componentRef.instance as OnChanges).ngOnChanges(inputChanges);
-  }
-
   /**
    * Marks the component view for check, if necessary.
    * (NOTE: This is required when the `ChangeDetectionStrategy` is set to `OnPush`.)
@@ -306,39 +278,12 @@ export class ComponentNgElementStrategy implements NgElementStrategy {
     });
   }
 
-  /**
-   * Records input changes so that the component receives SimpleChanges in its onChanges function.
-   */
-  protected recordInputChange(property: string, currentValue: any): void {
-    // Do not record the change if the component does not implement `OnChanges`.
-    if (!this.implementsOnChanges) {
-      return;
-    }
-
-    if (this.inputChanges === null) {
-      this.inputChanges = {};
-    }
-
-    // If there already is a change, modify the current value to match but leave the values for
-    // `previousValue` and `isFirstChange`.
-    const pendingChange = this.inputChanges[property];
-    if (pendingChange) {
-      pendingChange.currentValue = currentValue;
-      return;
-    }
-
-    const isFirstChange = this.unchangedInputs.has(property);
-    const previousValue = isFirstChange ? undefined : this.getInputValue(property);
-    this.inputChanges[property] = new SimpleChange(previousValue, currentValue, isFirstChange);
-  }
-
   /** Runs change detection on the component. */
   protected detectChanges(): void {
     if (this.componentRef === null) {
       return;
     }
 
-    this.callNgOnChanges(this.componentRef);
     this.markViewForCheck(this.viewChangeDetectorRef as ChangeDetectorRef);
     this.componentRef.changeDetectorRef.detectChanges();
   }
