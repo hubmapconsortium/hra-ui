@@ -52,6 +52,7 @@
     "@rdfjs-elements/formats-pretty": "^0.6.7",
     "@rdfjs/types": "^1.1.0",
     "@swimlane/ngx-charts": "^20.4.1",
+    "@testing-library/jest-dom": "^6.4.5",
     "@webcomponents/webcomponentsjs": "^2.8.0",
     "angular-material-css-vars": "^6.1.1",
     "axios": "1.6.8",
