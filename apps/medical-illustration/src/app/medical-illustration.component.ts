@@ -1,4 +1,5 @@
 /* eslint-disable @angular-eslint/no-output-rename -- Allow rename for custom element events */
+import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
@@ -10,6 +11,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import { InteractiveSvgComponent } from '@hra-ui/components/molecules';
 import { distinctUntilChanged, map, Observable, of, ReplaySubject, share, switchAll, tap } from 'rxjs';
 import {
   CellEntry,
@@ -40,6 +42,8 @@ const DATA_SOURCE_INPUT_PROPERTIES: (keyof MedicalIllustrationComponent)[] = [
  */
 @Component({
   selector: 'hra-medical-illustration-wc',
+  standalone: true,
+  imports: [CommonModule, InteractiveSvgComponent],
   templateUrl: 'medical-illustration.component.html',
   styleUrls: ['medical-illustration.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
