@@ -7,17 +7,7 @@ import { filterNulls } from 'ccf-shared/rxjs-ext/operators';
 import { sortBy } from 'lodash';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { EMPTY, Observable } from 'rxjs';
-import {
-  delay,
-  distinct,
-  distinctUntilChanged,
-  filter,
-  map,
-  skipUntil,
-  switchMap,
-  tap,
-  throttleTime,
-} from 'rxjs/operators';
+import { delay, distinctUntilChanged, filter, map, skipUntil, switchMap, tap, throttleTime } from 'rxjs/operators';
 
 import { ExtractionSet } from '../../models/extraction-set';
 import { VisibilityItem } from '../../models/visibility-item';
@@ -125,79 +115,82 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
   /** Identifier observable */
   readonly id$ = this.state$.pipe(
     map((x) => x?.id),
-    distinct(),
+    distinctUntilChanged(),
   );
   /** Block size observable */
   readonly blockSize$ = this.state$.pipe(
     map((x) => x?.blockSize),
-    distinct(),
+    distinctUntilChanged(),
   );
   /** Rotation observable */
   readonly rotation$ = this.state$.pipe(
     map((x) => x?.rotation),
-    distinct(),
+    distinctUntilChanged(),
   );
   /** Position observable */
   readonly position$ = this.state$.pipe(
     map((x) => x?.position),
-    distinct(),
+    distinctUntilChanged(),
   );
   /** Slice configuration observable */
   readonly slicesConfig$ = this.state$.pipe(
     map((x) => x?.slicesConfig),
-    distinct(),
+    distinctUntilChanged(),
   );
   /** View type observable */
-  readonly viewType$ = this.state$.pipe(map((x) => x?.viewType));
+  readonly viewType$ = this.state$.pipe(
+    map((x) => x?.viewType),
+    distinctUntilChanged(),
+  );
   /** View side observable */
   readonly viewSide$ = this.state$.pipe(
     map((x) => x?.viewSide),
-    distinct(),
+    distinctUntilChanged(),
   );
   /** Organ observable */
   readonly organ$ = this.state$.pipe(
     map((x) => x?.organ),
-    distinct(),
+    distinctUntilChanged(),
   );
   /** Organ IRI observable */
   readonly organIri$ = this.state$.pipe(
     map((x) => x?.organIri),
-    distinct(),
+    distinctUntilChanged(),
   );
   /** Organ IRI observable */
   readonly organDimensions$ = this.state$.pipe(
     map((x) => x?.organDimensions),
-    distinct(),
+    distinctUntilChanged(),
   );
   /** Sex observable */
   readonly sex$ = this.state$.pipe(
     map((x) => x?.sex),
-    distinct(),
+    distinctUntilChanged(),
   );
   /** Side observable */
   readonly side$ = this.state$.pipe(
     map((x) => x?.side),
-    distinct(),
+    distinctUntilChanged(),
   );
   /** Show previous observable */
   readonly showPrevious$ = this.state$.pipe(
     map((x) => x?.showPrevious),
-    distinct(),
+    distinctUntilChanged(),
   );
   /** Extraction sites observable */
   readonly extractionSites$ = this.state$.pipe(
     map((x) => x?.extractionSites),
-    distinct(),
+    distinctUntilChanged(),
   );
   /** Anatomical structures observable */
   readonly anatomicalStructures$ = this.state$.pipe(
     map((x) => x?.anatomicalStructures),
-    distinct(),
+    distinctUntilChanged(),
   );
   /** Extraction sets observable */
   readonly extractionSets$ = this.state$.pipe(
     map((x) => x?.extractionSets),
-    distinct(),
+    distinctUntilChanged(),
   );
 
   @Computed()
