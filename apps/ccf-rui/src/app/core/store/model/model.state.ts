@@ -148,10 +148,7 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
     distinct(),
   );
   /** View type observable */
-  readonly viewType$ = this.state$.pipe(
-    map((x) => x?.viewType),
-    distinct(),
-  );
+  readonly viewType$ = this.state$.pipe(map((x) => x?.viewType));
   /** View side observable */
   readonly viewSide$ = this.state$.pipe(
     map((x) => x?.viewSide),
