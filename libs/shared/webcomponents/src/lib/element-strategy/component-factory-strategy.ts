@@ -63,7 +63,7 @@ export class ComponentNgElementStrategyFactory implements NgElementStrategyFacto
  */
 export class ComponentNgElementStrategy implements NgElementStrategy {
   // Subject of `NgElementStrategyEvent` observables corresponding to the component's outputs.
-  private eventEmitters = new ReplaySubject<Observable<NgElementStrategyEvent>[]>(1);
+  private readonly eventEmitters = new ReplaySubject<Observable<NgElementStrategyEvent>[]>(1);
 
   /** Merged stream of the component's output events. */
   readonly events = this.eventEmitters.pipe(switchMap((emitters) => merge(...emitters)));

@@ -91,7 +91,7 @@ let _matches: (this: any, selector: string) => boolean;
  */
 export function matchesSelector(el: any, selector: string): boolean {
   if (!_matches) {
-    const elProto = <any>Element.prototype;
+    const elProto = Element.prototype as any;
     _matches =
       elProto.matches ||
       elProto.matchesSelector ||
