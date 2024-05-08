@@ -1,5 +1,3 @@
 {
-  "conventionalCommits.scopes": [
-    "webcomponents"
-  ]
+  "conventionalCommits.scopes": ["webcomponents"]
 }
