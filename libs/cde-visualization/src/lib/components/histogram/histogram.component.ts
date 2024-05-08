@@ -63,7 +63,7 @@ export class HistogramComponent implements AfterViewInit {
   /** Visualization element */
   @ViewChild('vis') vis?: ElementRef;
 
-  @Input() anchor = '';
+  @Input() anchor = 'Type 1 Alveolar Epithelial Cell';
 
   /** Vega lite spec for visualization */
   spec: VisualizationSpec = {};
@@ -109,6 +109,7 @@ export class HistogramComponent implements AfterViewInit {
             distance: distance,
           };
         });
+        processed = processed.filter((cell) => cell.type !== this.anchor);
         const all = processed.map((entry) => {
           return {
             ...entry,
@@ -181,14 +182,14 @@ export class HistogramComponent implements AfterViewInit {
         x: {
           field: 'binnedDistance',
           title: 'Distance (µm)',
-          scale: { zero: true, domainMin: -5 },
+          scale: { zero: true, domainMin: -25 },
           axis: {
             minExtent: 25,
-            tickCount: 9,
             labelFlush: false,
+            grid: true,
           },
           bin: {
-            step: 5,
+            step: 50,
           },
         },
         y: {
@@ -197,7 +198,9 @@ export class HistogramComponent implements AfterViewInit {
           axis: {
             minExtent: 69,
             tickExtra: false,
+            tickCount: 5,
           },
+          scale: { type: 'log' },
         },
         color: {
           field: 'type',
