@@ -25,7 +25,7 @@ export interface HistogramData {
 export interface NodeData {
   x: number;
   y: number;
-  type: string;
+  'Cell Type': string;
 }
 
 export interface EdgeData {
@@ -38,18 +38,10 @@ export interface EdgeData {
   tgt_z: number;
 }
 
-export interface ColorMapData {
-  cell_id: number;
-  cell_type: string;
-  cell_color: string;
-}
-
 export interface CellColorData {
   cell_type: string;
   cell_color: number[];
 }
-
-export type ColorMap = CellColorData[];
 
 @Component({
   selector: 'cde-histogram',
@@ -63,7 +55,7 @@ export class HistogramComponent implements AfterViewInit {
   /** Visualization element */
   @ViewChild('vis') vis?: ElementRef;
 
-  @Input() anchor = 'Type 1 Alveolar Epithelial Cell';
+  @Input() anchor = 'Endothelial';
 
   /** Vega lite spec for visualization */
   spec: VisualizationSpec = {};
@@ -72,18 +64,18 @@ export class HistogramComponent implements AfterViewInit {
 
   view?: View;
 
-  colorMap: ColorMap = [];
+  colorMap: CellColorData[] = [];
 
   // currentColor = '';
 
   histogramData: HistogramData[] = [];
 
   colors$ = computed(async () => {
-    const colors = (await this.fetchCsv('assets/color_mapping.csv')) as ColorMapData[];
+    const colors = (await this.fetchCsv('assets/color_mapping.csv')) as Record<string, string>[];
     this.colorMap = colors.map((entry) => {
       return {
-        cell_type: entry.cell_type,
-        cell_color: entry.cell_color
+        cell_type: entry['cell_type'],
+        cell_color: entry['cell_color']
           .replace('[', '')
           .replace(']', '')
           .split(', ')
@@ -95,12 +87,28 @@ export class HistogramComponent implements AfterViewInit {
   });
 
   async ngAfterViewInit() {
-    await this.fetchCsv('assets/nodes.csv').then((nodeResults) => {
-      this.fetchCsv('assets/edges.csv').then((edgeResults) => {
+    await this.fetchCsv(
+      'https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/esophagus-codex-stanford/esophagus-nodes.csv',
+    ).then((nodeResults) => {
+      this.fetchCsv(
+        'https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/esophagus-codex-stanford/esophagus-edges.csv',
+        { header: false },
+      ).then((edgeResults) => {
         const nodeData = nodeResults as NodeData[];
-        const edgeData = edgeResults as EdgeData[];
+        const edgeData = (edgeResults as Record<string, number>[]).map((entry) => {
+          const values = Object.values(entry);
+          return {
+            node_index: values[0],
+            src_x: values[1],
+            src_y: values[2],
+            src_z: values[3],
+            tgt_x: values[4],
+            tgt_y: values[5],
+            tgt_z: values[6],
+          };
+        }) as EdgeData[];
         let processed = edgeData.map((entry) => {
-          const typeName = nodeData[entry.node_index].type;
+          const typeName = nodeData[entry.node_index]['Cell Type'];
           const distance = Math.sqrt(
             this.squaredDistance3D([entry.src_x, entry.src_y, entry.src_z], [entry.tgt_x, entry.tgt_y, entry.tgt_z]),
           );
@@ -163,6 +171,7 @@ export class HistogramComponent implements AfterViewInit {
   // }
 
   private createHistogram(data: HistogramData[]): VisualizationSpec {
+    const maxDistance = Math.max(...data.map((data) => data.distance));
     return {
       $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
       width: 'container',
@@ -170,37 +179,32 @@ export class HistogramComponent implements AfterViewInit {
       data: {
         values: data,
       },
-      mark: 'line',
-      transform: [
-        {
-          bin: true,
-          field: 'distance',
-          as: 'binnedDistance',
-        },
-      ],
+      mark: {
+        type: 'line',
+        interpolate: 'step',
+      },
       encoding: {
         x: {
-          field: 'binnedDistance',
+          field: 'distance',
           title: 'Distance (µm)',
-          scale: { zero: true, domainMin: -25 },
+          bandPosition: 0,
+          scale: { domainMin: -5 },
           axis: {
             minExtent: 25,
             labelFlush: false,
             grid: true,
+            labelAngle: 0,
+            values: this.generateAxisValues(maxDistance, 25),
           },
-          bin: {
-            step: 50,
-          },
+          bin: { step: 5 },
         },
         y: {
           aggregate: 'count',
           title: 'Number of Cells',
           axis: {
             minExtent: 69,
-            tickExtra: false,
             tickCount: 5,
           },
-          scale: { type: 'log' },
         },
         color: {
           field: 'type',
@@ -221,6 +225,17 @@ export class HistogramComponent implements AfterViewInit {
         },
       },
     };
+  }
+
+  generateAxisValues(maxValue: number, interval: number): number[] {
+    const highest = Math.round(maxValue / interval) * interval;
+    let current = -1 * interval;
+    const result = [];
+    while (current <= highest) {
+      result.push(current);
+      current += interval;
+    }
+    return result;
   }
 
   download(event: MouseEvent, type: 'svg' | 'png') {
