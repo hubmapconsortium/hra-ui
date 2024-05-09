@@ -12,20 +12,21 @@ import {
   TissueBlockResult,
 } from 'ccf-database';
 import { DataSourceService } from 'ccf-shared';
-import { ObservableInput, ObservedValueOf, OperatorFunction, ReplaySubject, Subject, combineLatest, defer } from 'rxjs';
+import { combineLatest, defer, ObservableInput, ObservedValueOf, OperatorFunction, ReplaySubject, Subject } from 'rxjs';
 import {
   delay,
-  distinct,
+  distinctUntilChanged,
+  filter as rxjsFilter,
   map,
   publishReplay,
   refCount,
   repeat,
-  filter as rxjsFilter,
   switchMap,
   take,
   takeWhile,
   tap,
 } from 'rxjs/operators';
+
 import { UpdateFilter } from './data.actions';
 
 /** Default values for filters. */
@@ -114,7 +115,7 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
   /** Emits when the database is ready. */
   readonly databaseReady$ = this.state$.pipe(
     map((x) => x?.status),
-    distinct(),
+    distinctUntilChanged(),
     rxjsFilter((status) => status === 'Ready'),
   );
 
@@ -174,21 +175,24 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
   );
 
   /** Current status of queries in the tissueBlockData$ observable. */
-  readonly tissueBlockDataQueryStatus$ = this._tissueBlockDataQueryStatus$.pipe(distinct());
+  readonly tissueBlockDataQueryStatus$ = this._tissueBlockDataQueryStatus$.pipe(distinctUntilChanged());
   /** Current status of queries in the aggregateData$ observable. */
-  readonly aggregateDataQueryStatus$ = this._aggregateDataQueryStatus$.pipe(distinct());
+  readonly aggregateDataQueryStatus$ = this._aggregateDataQueryStatus$.pipe(distinctUntilChanged());
   /** Current status of queries in the ontologyTermOccurrences$ observable. */
-  readonly ontologyTermOccurencesDataQueryStatus$ = this._ontologyTermOccurencesDataQueryStatus$.pipe(distinct());
+  readonly ontologyTermOccurencesDataQueryStatus$ =
+    this._ontologyTermOccurencesDataQueryStatus$.pipe(distinctUntilChanged());
   /** Current status of queries in the cellTypeTermOccurrences$ observable. */
-  readonly cellTypeTermOccurencesDataQueryStatus$ = this._cellTypeTermOccurencesDataQueryStatus$.pipe(distinct());
+  readonly cellTypeTermOccurencesDataQueryStatus$ =
+    this._cellTypeTermOccurencesDataQueryStatus$.pipe(distinctUntilChanged());
 
-  readonly biomarkerTermOccurencesDataQueryStatus$ = this._biomarkerTermOccurencesDataQueryStatus$.pipe(distinct());
+  readonly biomarkerTermOccurencesDataQueryStatus$ =
+    this._biomarkerTermOccurencesDataQueryStatus$.pipe(distinctUntilChanged());
   /** Current status of queries in the sceneData$ observable. */
-  readonly sceneDataQueryStatus$ = this._sceneDataQueryStatus$.pipe(distinct());
+  readonly sceneDataQueryStatus$ = this._sceneDataQueryStatus$.pipe(distinctUntilChanged());
   /** Current status of queries in the technologyFilter$ observable. */
-  readonly technologyFilterQueryStatus$ = this._technologyFilterQueryStatus$.pipe(distinct());
+  readonly technologyFilterQueryStatus$ = this._technologyFilterQueryStatus$.pipe(distinctUntilChanged());
   /** Current status of queries in the providerFilter$ observable. */
-  readonly providerFilterQueryStatus$ = this._providerFilterQueryStatus$.pipe(distinct());
+  readonly providerFilterQueryStatus$ = this._providerFilterQueryStatus$.pipe(distinctUntilChanged());
 
   /** Current status of all queries. */
   readonly queryStatus$ = combineLatest([
@@ -201,7 +205,7 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
     this.providerFilterQueryStatus$,
   ]).pipe(
     map((states) => (allCompleted(states) ? DataQueryState.Completed : DataQueryState.Running)),
-    distinct(),
+    distinctUntilChanged(),
   );
 
   /**
