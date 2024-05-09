@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, output } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -43,7 +43,7 @@ import { MarkEmptyFormControlDirective } from '../../components/empty-form-contr
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateVisualizationPageComponent {
-  @Output() readonly visualize = new EventEmitter<VisualizationSettings>();
+  readonly visualize = output<VisualizationSettings>();
 
   private readonly formBuilder = inject(FormBuilder);
 

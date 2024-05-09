@@ -14,7 +14,12 @@
     <h4 class="subheader-optional-columns">Optional Columns</h4>
     <span class="required-columns">X, Y, and Cell Type</span>
     <span class="optional-columns">Z and Cell Ontology ID</span>
-    <cde-file-upload class="upload-csv" accept="text/csv,.csv" [loader]="loadCsv" (loadCompleted)="data = $event">
+    <cde-file-upload
+      class="upload-csv"
+      accept="text/csv,.csv"
+      [loader]="loadCsv"
+      (loadCompleted)="data = $event; setData($event)"
+    >
     </cde-file-upload>
 
     <mat-divider vertical class="divider"> </mat-divider>
@@ -150,7 +155,7 @@
       Visualize Cell Distance Data
       <span class="material-symbols-rounded info"> info </span>
     </h2>
-    <button type="submit" mat-flat-button class="cta-button visualize-button">
+    <button type="submit" mat-flat-button class="cta-button visualize-button" data-testid="visualize">
       Visualize
       <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
     </button>
