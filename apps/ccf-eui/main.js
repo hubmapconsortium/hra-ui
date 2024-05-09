@@ -1984,7 +1984,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 27165);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ 73481);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs/operators */ 70271);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! rxjs/operators */ 71285);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! rxjs/operators */ 91817);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! rxjs/operators */ 51567);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! rxjs/operators */ 64334);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! rxjs/operators */ 95074);
@@ -2067,7 +2067,7 @@ let DataState = class DataState extends _angular_ru_ngxs_repositories__WEBPACK_I
     super();
     this.source = source;
     /** Emits when the database is ready. */
-    this.databaseReady$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.status), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)(), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_11__.filter)(status => status === 'Ready'));
+    this.databaseReady$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.status), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinctUntilChanged)(), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_11__.filter)(status => status === 'Ready'));
     /** Implementation subject for tissueBlockDataQueryStatus$. */
     this._tissueBlockDataQueryStatus$ = new rxjs__WEBPACK_IMPORTED_MODULE_12__.ReplaySubject(1);
     /** Implementation subject for aggregateDataQueryStatus$. */
@@ -2107,22 +2107,22 @@ let DataState = class DataState extends _angular_ru_ngxs_repositories__WEBPACK_I
     /** Latest provider filter label query data. */
     this.providerFilterData$ = this.filter$.pipe(queryData(this.providerFilterData, sendCompletedTo(this._providerFilterQueryStatus$)));
     /** Current status of queries in the tissueBlockData$ observable. */
-    this.tissueBlockDataQueryStatus$ = this._tissueBlockDataQueryStatus$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.tissueBlockDataQueryStatus$ = this._tissueBlockDataQueryStatus$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinctUntilChanged)());
     /** Current status of queries in the aggregateData$ observable. */
-    this.aggregateDataQueryStatus$ = this._aggregateDataQueryStatus$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.aggregateDataQueryStatus$ = this._aggregateDataQueryStatus$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinctUntilChanged)());
     /** Current status of queries in the ontologyTermOccurrences$ observable. */
-    this.ontologyTermOccurencesDataQueryStatus$ = this._ontologyTermOccurencesDataQueryStatus$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.ontologyTermOccurencesDataQueryStatus$ = this._ontologyTermOccurencesDataQueryStatus$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinctUntilChanged)());
     /** Current status of queries in the cellTypeTermOccurrences$ observable. */
-    this.cellTypeTermOccurencesDataQueryStatus$ = this._cellTypeTermOccurencesDataQueryStatus$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
-    this.biomarkerTermOccurencesDataQueryStatus$ = this._biomarkerTermOccurencesDataQueryStatus$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.cellTypeTermOccurencesDataQueryStatus$ = this._cellTypeTermOccurencesDataQueryStatus$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinctUntilChanged)());
+    this.biomarkerTermOccurencesDataQueryStatus$ = this._biomarkerTermOccurencesDataQueryStatus$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinctUntilChanged)());
     /** Current status of queries in the sceneData$ observable. */
-    this.sceneDataQueryStatus$ = this._sceneDataQueryStatus$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.sceneDataQueryStatus$ = this._sceneDataQueryStatus$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinctUntilChanged)());
     /** Current status of queries in the technologyFilter$ observable. */
-    this.technologyFilterQueryStatus$ = this._technologyFilterQueryStatus$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.technologyFilterQueryStatus$ = this._technologyFilterQueryStatus$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinctUntilChanged)());
     /** Current status of queries in the providerFilter$ observable. */
-    this.providerFilterQueryStatus$ = this._providerFilterQueryStatus$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.providerFilterQueryStatus$ = this._providerFilterQueryStatus$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinctUntilChanged)());
     /** Current status of all queries. */
-    this.queryStatus$ = (0,rxjs__WEBPACK_IMPORTED_MODULE_13__.combineLatest)([this.tissueBlockDataQueryStatus$, this.aggregateDataQueryStatus$, this.ontologyTermOccurencesDataQueryStatus$, this.cellTypeTermOccurencesDataQueryStatus$, this.sceneDataQueryStatus$, this.technologyFilterQueryStatus$, this.providerFilterQueryStatus$]).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(states => allCompleted(states) ? DataQueryState.Completed : DataQueryState.Running), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.queryStatus$ = (0,rxjs__WEBPACK_IMPORTED_MODULE_13__.combineLatest)([this.tissueBlockDataQueryStatus$, this.aggregateDataQueryStatus$, this.ontologyTermOccurencesDataQueryStatus$, this.cellTypeTermOccurencesDataQueryStatus$, this.sceneDataQueryStatus$, this.technologyFilterQueryStatus$, this.providerFilterQueryStatus$]).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(states => allCompleted(states) ? DataQueryState.Completed : DataQueryState.Running), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinctUntilChanged)());
     // Start everything in the completed state
     this._tissueBlockDataQueryStatus$.next(DataQueryState.Completed);
     this._aggregateDataQueryStatus$.next(DataQueryState.Completed);
