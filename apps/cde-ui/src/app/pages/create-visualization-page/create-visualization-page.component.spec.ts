@@ -4,10 +4,18 @@ import { CreateVisualizationPageComponent } from './create-visualization-page.co
 import { CellTypeTableData } from '../../services/file-upload-service';
 import { OutputEmitterRef } from '@angular/core';
 import { VisualizationSettings } from '../../models/create-visualization-page-types';
+import { provideIcons } from '../../services/icon-registry/icon-registry.service';
+import { ICON_DEFINITIONS } from '../../shared/icon-definitions';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('CreateVisualizationPageComponent', () => {
+  const globalProviders = [provideIcons(ICON_DEFINITIONS), provideHttpClient(), provideHttpClientTesting()];
+
   it('should process and update data correctly in setData', async () => {
-    const { fixture } = await render(CreateVisualizationPageComponent);
+    const { fixture } = await render(CreateVisualizationPageComponent, {
+      providers: globalProviders,
+    });
 
     const component = fixture.componentInstance;
     const testInputData = [
@@ -26,7 +34,9 @@ describe('CreateVisualizationPageComponent', () => {
   });
 
   it('can toggle color map selection', async () => {
-    const { fixture } = await render(CreateVisualizationPageComponent);
+    const { fixture } = await render(CreateVisualizationPageComponent, {
+      providers: globalProviders,
+    });
     fixture.componentInstance.toggleDefaultColorMap();
     expect(fixture.componentInstance.useDefaultColorMap).toBe(false);
   });
@@ -48,6 +58,7 @@ describe('CreateVisualizationPageComponent', () => {
           ] as CellTypeTableData[],
           useDefaultColorMap: false,
         },
+        providers: globalProviders,
       });
       await userEvent.click(screen.getByText('Visualize'));
       expect(submitFn).toHaveBeenCalled();
@@ -69,6 +80,7 @@ describe('CreateVisualizationPageComponent', () => {
           ] as CellTypeTableData[],
           useDefaultColorMap: true,
         },
+        providers: globalProviders,
       });
       await userEvent.click(screen.getByText('Visualize'));
       expect(submitFn).toHaveBeenCalled();

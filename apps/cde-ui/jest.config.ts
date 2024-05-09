@@ -2,7 +2,7 @@
 export default {
   displayName: 'cde-ui',
   preset: '../../jest.preset.js',
-  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts', '@testing-library/jest-dom'],
   coverageDirectory: '../../coverage/apps/cde-ui',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
