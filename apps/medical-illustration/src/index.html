@@ -17,10 +17,11 @@
         const illustration = document.getElementById('illustration');
 
         function toggleHighlight(cell) {
-          illustration.highlight = illustration.highlight !== cell ? cell : undefined;
+          const id = cell.representation_of;
+          illustration.highlight = illustration.highlight !== id ? id : undefined;
         }
 
-        illustration.addEventListener('node-click', (event) => {
+        illustration.addEventListener('cell-click', (event) => {
           toggleHighlight(event.detail);
         });
       });

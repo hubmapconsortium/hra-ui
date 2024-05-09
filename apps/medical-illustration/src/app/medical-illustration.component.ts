@@ -62,10 +62,10 @@ export class MedicalIllustrationComponent implements OnChanges {
   @Input() highlight?: string | CellEntry;
 
   /** Emits when the user hover into or out of a cell in the illustration */
-  @Output('node-hover') readonly nodeHover = new EventEmitter<CellEntry | undefined>();
+  @Output('cell-hover') readonly cellHover = new EventEmitter<CellEntry | undefined>();
 
   /** Emits when the user clicks a cell in the illustration */
-  @Output('node-click') readonly nodeClick = new EventEmitter<CellEntry>();
+  @Output('cell-click') readonly cellClick = new EventEmitter<CellEntry>();
 
   /** Get the normalized id for the highlight input */
   get highlightId(): string | undefined {
