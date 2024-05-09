@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   Component,
+  ErrorHandler,
   EventEmitter,
   inject,
   Input,
@@ -12,7 +13,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { InteractiveSvgComponent } from '@hra-ui/components/molecules';
-import { distinctUntilChanged, map, Observable, of, ReplaySubject, share, switchAll, tap } from 'rxjs';
+import { distinctUntilChanged, map, Observable, of, ReplaySubject, shareReplay, switchAll, tap } from 'rxjs';
 import {
   CellEntry,
   CellEntryNode,
@@ -50,7 +51,7 @@ const DATA_SOURCE_INPUT_PROPERTIES: (keyof MedicalIllustrationComponent)[] = [
 })
 export class MedicalIllustrationComponent implements OnChanges {
   /** Displayed illustration or an iri to lookup in either the illustrations or fetch from the remote api */
-  @Input() selectedIllustration: string | Illustration = '';
+  @Input() selectedIllustration: string | Illustration | undefined;
 
   /** Optional set of all illustrations. Used when selectedIllustration is an iri */
   @Input() illustrations?: IllustrationsJsonld;
@@ -81,7 +82,7 @@ export class MedicalIllustrationComponent implements OnChanges {
   private readonly illustration$$ = new ReplaySubject<Observable<Illustration>>(1);
 
   /** Current illustration data */
-  private readonly illustration$ = this.illustration$$.pipe(switchAll(), distinctUntilChanged(), share());
+  private readonly illustration$ = this.illustration$$.pipe(switchAll(), distinctUntilChanged(), shareReplay(1));
 
   /** Url to the illustration svg */
   readonly url$ = this.illustration$.pipe(map(({ illustration_files: files }) => this.findSvgFile(files)));
@@ -91,6 +92,9 @@ export class MedicalIllustrationComponent implements OnChanges {
 
   /** Http client */
   private readonly http = inject(HttpClient);
+
+  /** Error handler */
+  private readonly errorHandler = inject(ErrorHandler);
 
   /** Cached data from remote api requests */
   private cachedRemoteApiData?: IllustrationsJsonld = undefined;
@@ -137,14 +141,14 @@ export class MedicalIllustrationComponent implements OnChanges {
    * @returns Validated jsonld data
    */
   private loadIllustrations(): Observable<IllustrationsJsonld> {
-    const { illustrations, remoteApiEndpoint, cachedRemoteApiData } = this;
+    const { illustrations, remoteApiEndpoint, cachedRemoteApiData, http, errorHandler } = this;
 
     if (illustrations) {
       return of(ILLUSTRATIONS_JSONLD.parse(illustrations));
     } else if (cachedRemoteApiData) {
       return of(cachedRemoteApiData);
     } else if (remoteApiEndpoint) {
-      return this.http.get<IllustrationsJsonld>(remoteApiEndpoint, { responseType: 'json' }).pipe(
+      return http.get<IllustrationsJsonld>(remoteApiEndpoint, { responseType: 'json' }).pipe(
         map((jsonld) => ILLUSTRATIONS_JSONLD.parse(jsonld)),
         tap((data) => {
           if (this.remoteApiEndpoint === remoteApiEndpoint) {
@@ -152,9 +156,11 @@ export class MedicalIllustrationComponent implements OnChanges {
           }
         }),
       );
+    } else {
+      const msg = 'Must set illustrations or remoteApiEndpoint when selectedIllustration is an id';
+      errorHandler.handleError(new Error(msg));
+      return of({ '@graph': [EMPTY_ILLUSTRATION] });
     }
-
-    throw new Error('selectedIllustration is an id but neither illustrations or remoteApiEndpoint is set');
   }
 
   /**
