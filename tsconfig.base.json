@@ -57,6 +57,9 @@
       "@hra-ui/utils/types": [
         "libs/shared/utils/types/src/index.ts"
       ],
+      "@hra-ui/webcomponents": [
+        "libs/shared/webcomponents/src/index.ts"
+      ],
       "ccf-body-ui": [
         "libs/ccf-body-ui/src/public-api.ts"
       ],
