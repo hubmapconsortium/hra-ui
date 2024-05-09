@@ -96,7 +96,7 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
   @Input() highlightId?: string;
 
   /** Emits node id when hovered */
-  @Output() readonly nodeHover = new EventEmitter<T>();
+  @Output() readonly nodeHover = new EventEmitter<T | undefined>();
 
   /** Emits node id when clicked */
   @Output() readonly nodeClick = new EventEmitter<T>();
@@ -146,15 +146,14 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
       return;
     }
 
-    let id = entry.id;
     const encodedId = this.encodeId(entry.id);
-    const element = crosswalkEl.querySelector(`#${id}, #${encodedId}`);
+    const element = crosswalkEl.querySelector(`#${entry.id}, #${encodedId}`);
     if (!element) {
       return;
-    } else if (element.nodeName !== 'g') {
-      id = element.parentElement?.id ?? '';
     }
 
+    const gElement = element.nodeName === 'g' ? element : (element.parentElement as Element);
+    const id = gElement.id;
     const elements = crosswalkEl.querySelectorAll(`#${id} :is(path, polygon, polyline)`);
     this.highlightedElements = Array.from(elements);
     elements.forEach((el) => el.classList.add('click-active'));

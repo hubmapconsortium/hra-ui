@@ -1,7 +1,7 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { provideHttpClient } from '@angular/common/http';
+import { createCustomElement } from '@hra-ui/webcomponents';
+import { MedicalIllustrationComponent } from './app/medical-illustration.component';
 
-import { AppModule } from './app/app.module';
-
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch((err) => console.error(err));
+createCustomElement('hra-illustration-wc', MedicalIllustrationComponent, {
+  providers: [provideHttpClient()],
+});
