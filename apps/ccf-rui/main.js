@@ -1264,27 +1264,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   ModelState: () => (/* binding */ ModelState),
 /* harmony export */   RUI_ORGANS: () => (/* binding */ RUI_ORGANS)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! tslib */ 24398);
-/* harmony import */ var _angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular-ru/ngxs/decorators */ 11884);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! tslib */ 24398);
+/* harmony import */ var _angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular-ru/ngxs/decorators */ 11884);
 /* harmony import */ var _angular_ru_ngxs_repositories__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular-ru/ngxs/repositories */ 48954);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/core */ 37580);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/core */ 37580);
 /* harmony import */ var _ngxs_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngxs/store */ 87911);
 /* harmony import */ var ccf_shared__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ccf-shared */ 85172);
 /* harmony import */ var ccf_shared_rxjs_ext_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ccf-shared/rxjs-ext/operators */ 1346);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ 46227);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var ngx_google_analytics__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ngx-google-analytics */ 42599);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! rxjs */ 59400);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! rxjs */ 43942);
+/* harmony import */ var ngx_google_analytics__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ngx-google-analytics */ 42599);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! rxjs */ 59400);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! rxjs */ 43942);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ 12136);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/operators */ 91817);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs/operators */ 70271);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! rxjs/operators */ 71285);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! rxjs/operators */ 95074);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! rxjs/operators */ 36647);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! rxjs/operators */ 20140);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! rxjs/operators */ 51567);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! rxjs/operators */ 98764);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! rxjs/operators */ 95074);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! rxjs/operators */ 36647);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! rxjs/operators */ 20140);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! rxjs/operators */ 51567);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! rxjs/operators */ 98764);
 /* harmony import */ var _page_page_state__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../page/page.state */ 22281);
 /* harmony import */ var _reference_data_reference_data_state__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../reference-data/reference-data.state */ 30135);
 
@@ -1337,37 +1336,37 @@ let ModelState = class ModelState extends _angular_ru_ngxs_repositories__WEBPACK
     this.injector = injector;
     this.globalConfig = globalConfig;
     /** Identifier observable */
-    this.id$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.id), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.id$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.id), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.distinctUntilChanged)());
     /** Block size observable */
-    this.blockSize$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.blockSize), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.blockSize$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.blockSize), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.distinctUntilChanged)());
     /** Rotation observable */
-    this.rotation$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.rotation), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.rotation$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.rotation), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.distinctUntilChanged)());
     /** Position observable */
-    this.position$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.position), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.position$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.position), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.distinctUntilChanged)());
     /** Slice configuration observable */
-    this.slicesConfig$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.slicesConfig), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.slicesConfig$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.slicesConfig), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.distinctUntilChanged)());
     /** View type observable */
-    this.viewType$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.viewType), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.viewType$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.viewType), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.distinctUntilChanged)());
     /** View side observable */
-    this.viewSide$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.viewSide), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.viewSide$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.viewSide), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.distinctUntilChanged)());
     /** Organ observable */
-    this.organ$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.organ), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.organ$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.organ), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.distinctUntilChanged)());
     /** Organ IRI observable */
-    this.organIri$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.organIri), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.organIri$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.organIri), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.distinctUntilChanged)());
     /** Organ IRI observable */
-    this.organDimensions$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.organDimensions), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.organDimensions$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.organDimensions), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.distinctUntilChanged)());
     /** Sex observable */
-    this.sex$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.sex), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.sex$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.sex), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.distinctUntilChanged)());
     /** Side observable */
-    this.side$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.side), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.side$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.side), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.distinctUntilChanged)());
     /** Show previous observable */
-    this.showPrevious$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.showPrevious), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.showPrevious$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.showPrevious), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.distinctUntilChanged)());
     /** Extraction sites observable */
-    this.extractionSites$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.extractionSites), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.extractionSites$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.extractionSites), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.distinctUntilChanged)());
     /** Anatomical structures observable */
-    this.anatomicalStructures$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.anatomicalStructures), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.anatomicalStructures$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.anatomicalStructures), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.distinctUntilChanged)());
     /** Extraction sets observable */
-    this.extractionSets$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.extractionSets), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.distinct)());
+    this.extractionSets$ = this.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(x => x?.extractionSets), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.distinctUntilChanged)());
   }
   /**
    * Initializes this state service.
@@ -1638,8 +1637,8 @@ let ModelState = class ModelState extends _angular_ru_ngxs_repositories__WEBPACK
     });
   }
   onReferenceDataChange() {
-    this.globalConfig.getOption('organ').pipe((0,ccf_shared_rxjs_ext_operators__WEBPACK_IMPORTED_MODULE_2__.filterNulls)(), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_11__.delay)(0), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_12__.switchMap)(organ => this.onOrganChange(organ))).subscribe();
-    this.modelChanged$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_13__.skipUntil)(this.page.registrationStarted$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_14__.filter)(started => started)))).subscribe(() => this.page.setHasChanges());
+    this.globalConfig.getOption('organ').pipe((0,ccf_shared_rxjs_ext_operators__WEBPACK_IMPORTED_MODULE_2__.filterNulls)(), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.delay)(0), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_11__.switchMap)(organ => this.onOrganChange(organ))).subscribe();
+    this.modelChanged$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_12__.skipUntil)(this.page.registrationStarted$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_13__.filter)(started => started)))).subscribe(() => this.page.setHasChanges());
   }
   onOrganChange(organ) {
     let organInfo;
@@ -1666,35 +1665,35 @@ let ModelState = class ModelState extends _angular_ru_ngxs_repositories__WEBPACK
         sex: organSex,
         side: organInfo?.side?.toLowerCase()
       });
-      return this.referenceData.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_15__.tap)(() => this.onOrganIriChange()));
+      return this.referenceData.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_14__.tap)(() => this.onOrganIriChange()));
     }
-    return rxjs__WEBPACK_IMPORTED_MODULE_16__.EMPTY;
+    return rxjs__WEBPACK_IMPORTED_MODULE_15__.EMPTY;
   }
   static #_ = this.ɵfac = function ModelState_Factory(t) {
-    return new (t || ModelState)(_angular_core__WEBPACK_IMPORTED_MODULE_17__["ɵɵinject"](ngx_google_analytics__WEBPACK_IMPORTED_MODULE_18__.GoogleAnalyticsService), _angular_core__WEBPACK_IMPORTED_MODULE_17__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_17__.Injector), _angular_core__WEBPACK_IMPORTED_MODULE_17__["ɵɵinject"](ccf_shared__WEBPACK_IMPORTED_MODULE_1__.GlobalConfigState));
+    return new (t || ModelState)(_angular_core__WEBPACK_IMPORTED_MODULE_16__["ɵɵinject"](ngx_google_analytics__WEBPACK_IMPORTED_MODULE_17__.GoogleAnalyticsService), _angular_core__WEBPACK_IMPORTED_MODULE_16__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_16__.Injector), _angular_core__WEBPACK_IMPORTED_MODULE_16__["ɵɵinject"](ccf_shared__WEBPACK_IMPORTED_MODULE_1__.GlobalConfigState));
   };
-  static #_2 = this.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_17__["ɵɵdefineInjectable"]({
+  static #_2 = this.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_16__["ɵɵdefineInjectable"]({
     token: ModelState,
     factory: ModelState.ɵfac
   });
 };
-(0,tslib__WEBPACK_IMPORTED_MODULE_19__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_20__.Computed)(), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:type", rxjs__WEBPACK_IMPORTED_MODULE_21__.Observable), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:paramtypes", [])], ModelState.prototype, "modelChanged$", null);
-(0,tslib__WEBPACK_IMPORTED_MODULE_19__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_20__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:paramtypes", [Object]), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setBlockSize", null);
-(0,tslib__WEBPACK_IMPORTED_MODULE_19__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_20__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:paramtypes", [Object]), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setRotation", null);
-(0,tslib__WEBPACK_IMPORTED_MODULE_19__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_20__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:paramtypes", [Object]), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setPosition", null);
-(0,tslib__WEBPACK_IMPORTED_MODULE_19__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_20__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:paramtypes", [Object]), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setSlicesConfig", null);
-(0,tslib__WEBPACK_IMPORTED_MODULE_19__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_20__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:paramtypes", [String]), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setViewType", null);
-(0,tslib__WEBPACK_IMPORTED_MODULE_19__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_20__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:paramtypes", [String]), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setViewSide", null);
-(0,tslib__WEBPACK_IMPORTED_MODULE_19__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_20__.Computed)(), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:type", Object), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:paramtypes", [])], ModelState.prototype, "defaultPosition", null);
-(0,tslib__WEBPACK_IMPORTED_MODULE_19__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_20__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:paramtypes", [Object]), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setOrgan", null);
-(0,tslib__WEBPACK_IMPORTED_MODULE_19__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_20__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:paramtypes", []), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setOrganDefaults", null);
-(0,tslib__WEBPACK_IMPORTED_MODULE_19__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_20__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:paramtypes", [String]), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setSex", null);
-(0,tslib__WEBPACK_IMPORTED_MODULE_19__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_20__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:paramtypes", [String]), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setSide", null);
-(0,tslib__WEBPACK_IMPORTED_MODULE_19__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_20__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:paramtypes", [Boolean]), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setShowPrevious", null);
-(0,tslib__WEBPACK_IMPORTED_MODULE_19__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_20__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:paramtypes", [Array]), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setExtractionSites", null);
-(0,tslib__WEBPACK_IMPORTED_MODULE_19__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_20__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:paramtypes", [Array]), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setAnatomicalStructures", null);
-(0,tslib__WEBPACK_IMPORTED_MODULE_19__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_20__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:paramtypes", [Array]), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setExtractionSets", null);
-ModelState = (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_20__.StateRepository)(), (0,_ngxs_store__WEBPACK_IMPORTED_MODULE_0__.State)({
+(0,tslib__WEBPACK_IMPORTED_MODULE_18__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_19__.Computed)(), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:type", rxjs__WEBPACK_IMPORTED_MODULE_20__.Observable), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:paramtypes", [])], ModelState.prototype, "modelChanged$", null);
+(0,tslib__WEBPACK_IMPORTED_MODULE_18__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_19__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:paramtypes", [Object]), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setBlockSize", null);
+(0,tslib__WEBPACK_IMPORTED_MODULE_18__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_19__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:paramtypes", [Object]), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setRotation", null);
+(0,tslib__WEBPACK_IMPORTED_MODULE_18__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_19__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:paramtypes", [Object]), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setPosition", null);
+(0,tslib__WEBPACK_IMPORTED_MODULE_18__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_19__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:paramtypes", [Object]), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setSlicesConfig", null);
+(0,tslib__WEBPACK_IMPORTED_MODULE_18__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_19__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:paramtypes", [String]), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setViewType", null);
+(0,tslib__WEBPACK_IMPORTED_MODULE_18__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_19__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:paramtypes", [String]), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setViewSide", null);
+(0,tslib__WEBPACK_IMPORTED_MODULE_18__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_19__.Computed)(), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:type", Object), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:paramtypes", [])], ModelState.prototype, "defaultPosition", null);
+(0,tslib__WEBPACK_IMPORTED_MODULE_18__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_19__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:paramtypes", [Object]), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setOrgan", null);
+(0,tslib__WEBPACK_IMPORTED_MODULE_18__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_19__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:paramtypes", []), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setOrganDefaults", null);
+(0,tslib__WEBPACK_IMPORTED_MODULE_18__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_19__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:paramtypes", [String]), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setSex", null);
+(0,tslib__WEBPACK_IMPORTED_MODULE_18__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_19__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:paramtypes", [String]), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setSide", null);
+(0,tslib__WEBPACK_IMPORTED_MODULE_18__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_19__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:paramtypes", [Boolean]), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setShowPrevious", null);
+(0,tslib__WEBPACK_IMPORTED_MODULE_18__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_19__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:paramtypes", [Array]), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setExtractionSites", null);
+(0,tslib__WEBPACK_IMPORTED_MODULE_18__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_19__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:paramtypes", [Array]), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setAnatomicalStructures", null);
+(0,tslib__WEBPACK_IMPORTED_MODULE_18__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_19__.DataAction)(), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:type", Function), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:paramtypes", [Array]), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:returntype", void 0)], ModelState.prototype, "setExtractionSets", null);
+ModelState = (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__decorate)([(0,_angular_ru_ngxs_decorators__WEBPACK_IMPORTED_MODULE_19__.StateRepository)(), (0,_ngxs_store__WEBPACK_IMPORTED_MODULE_0__.State)({
   name: 'model',
   defaults: {
     id: '',
@@ -1737,7 +1736,7 @@ ModelState = (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__decorate)([(0,_angular_ru_
     anatomicalStructures: [],
     extractionSets: []
   }
-}), (0,tslib__WEBPACK_IMPORTED_MODULE_19__.__metadata)("design:paramtypes", [ngx_google_analytics__WEBPACK_IMPORTED_MODULE_18__.GoogleAnalyticsService, _angular_core__WEBPACK_IMPORTED_MODULE_17__.Injector, ccf_shared__WEBPACK_IMPORTED_MODULE_1__.GlobalConfigState])], ModelState);
+}), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:paramtypes", [ngx_google_analytics__WEBPACK_IMPORTED_MODULE_17__.GoogleAnalyticsService, _angular_core__WEBPACK_IMPORTED_MODULE_16__.Injector, ccf_shared__WEBPACK_IMPORTED_MODULE_1__.GlobalConfigState])], ModelState);
 
 
 /***/ }),
