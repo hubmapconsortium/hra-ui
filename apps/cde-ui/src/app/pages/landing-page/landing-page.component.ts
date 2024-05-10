@@ -21,7 +21,7 @@ export class LandingPageComponent {
     {
       image: 'assets/examples/intestine.svg',
       label: 'Explore 2D Intestine Data',
-      route: 'vis-app',
+      route: 'visualize',
       alt: 'Image for Intestine',
     },
     {
@@ -33,7 +33,7 @@ export class LandingPageComponent {
     {
       image: 'assets/examples/tonsil.svg',
       label: 'Create a Visualization',
-      route: 'visualize',
+      route: 'create',
       alt: 'Image for Tonsil',
     },
   ];
