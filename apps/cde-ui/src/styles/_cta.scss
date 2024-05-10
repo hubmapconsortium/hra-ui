@@ -1,0 +1,67 @@
+$corner-width: 0.9375rem;
+$corner-height: 0.8125rem;
+$border-width: 0.25rem;
+$x-multiplier: 0.373;
+$y-multiplier: 0.4566;
+
+@mixin flatDefault() {
+  color: rgba(178, 10, 47, 1);
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+@mixin flatHover() {
+  color: rgba(142, 8, 37, 1);
+}
+
+@mixin flatActive() {
+  color: rgba(106, 6, 28, 1);
+}
+
+@mixin flatFocus() {
+  color: rgba(32, 30, 61, 1);
+  outline: solid 0.25rem rgba(224, 13, 58, 1);
+  background-color: white;
+}
+
+@mixin filledDefault() {
+  position: relative;
+  z-index: 0;
+  background-color: rgba(224, 13, 58, 1);
+  color: white;
+  border: none;
+  clip-path: polygon(
+    /* Bottom left */ 0 100%,
+    /* Top left */ 0 0,
+    /* Top right */ 100% 0%,
+    /* Bottom right y-axis */ 100% calc(100% - $corner-height),
+    /* Bottom right x-axis */ calc(100% - $corner-width) 100%
+  );
+}
+
+@mixin filledHover() {
+  background-color: rgba(178, 10, 47, 1);
+}
+
+@mixin filledActive() {
+  background-color: rgba(142, 8, 37, 1);
+}
+
+@mixin filledFocus() {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  /* approximately tan((90 - theta) / 2) */
+  padding: 0.15625rem 1.5rem;
+  line-height: 2.15625rem;
+  background-color: white;
+  clip-path: polygon(
+    /* Bottom left */ $border-width calc(100% - $border-width),
+    /* Top left */ $border-width $border-width,
+    /* Top right */ calc(100% - $border-width) $border-width,
+    /* Bottom right y-axis */ calc(100% - $border-width) calc(100% - $corner-height - $border-width * $y-multiplier),
+    /* Bottom right x-axis */ calc(100% - $corner-width - $border-width * $x-multiplier) calc(100% - $border-width)
+  );
+}
