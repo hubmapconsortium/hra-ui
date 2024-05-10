@@ -1,3 +1,9 @@
 {
-  "conventionalCommits.scopes": ["molecules", "medical-illustration", "webcomponents", "state"]
+  "conventionalCommits.scopes": [
+    "molecules",
+    "medical-illustration",
+    "webcomponents",
+    "state",
+    "cde-visualization"
+  ]
 }
