@@ -1,5 +1,5 @@
 import { ResourceRegistryActions, ResourceRegistryState } from '@hra-ui/cdk/state';
-import { Meta, Story } from '@storybook/angular';
+import { Meta, StoryFn } from '@storybook/angular';
 
 import { LandingPageContentComponent } from './landing-page-content.component';
 
@@ -14,6 +14,10 @@ export default {
   },
 } as Meta<LandingPageContentComponent>;
 
-const Template: Story<LandingPageContentComponent> = (args) => ({ props: args });
+const Template: StoryFn<LandingPageContentComponent> = (args) => ({
+  props: args,
+});
 
-export const Default = Template.bind({});
+export const Default = {
+  render: Template,
+};

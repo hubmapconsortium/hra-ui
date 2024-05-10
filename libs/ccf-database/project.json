@@ -4,6 +4,7 @@
   "projectType": "library",
   "sourceRoot": "libs/ccf-database/src",
   "prefix": "lib",
+  "tags": ["ccf", "karma-test-runner"],
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
@@ -30,7 +31,7 @@
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": ["libs/ccf-database/**/*.ts", "libs/ccf-database/**/*.html"]
+        "lintFilePatterns": ["{projectRoot}/**/*.ts", "{projectRoot}/**/*.html"]
       }
     },
     "compodoc": {
@@ -51,6 +52,5 @@
         }
       }
     }
-  },
-  "tags": ["ccf", "karma-test-runner"]
+  }
 }

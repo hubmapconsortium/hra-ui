@@ -13,7 +13,6 @@ interface Collision {
   hits: { '@id': string; name: string }[];
 }
 
-/* eslint-disable  */
 export async function doCollisions(scene: SpatialSceneNode[]): Promise<Collision[]> {
   console.log('Starting Collisioning');
   const sourceBoxes = scene
@@ -27,8 +26,8 @@ export async function doCollisions(scene: SpatialSceneNode[]): Promise<Collision
         name: model.tooltip,
         entityId: model.entityId,
         bbox: new AABB({
-          lowerBound: new Vec3(...lowerBound.map((n, i) => Math.min(n, upperBound[i]))),
-          upperBound: new Vec3(...upperBound.map((n, i) => Math.max(n, lowerBound[i]))),
+          lowerBound: new Vec3(...lowerBound.map((n: number, i: number) => Math.min(n, upperBound[i]))),
+          upperBound: new Vec3(...upperBound.map((n: number, i: number) => Math.max(n, lowerBound[i]))),
         }),
       };
     });
@@ -46,8 +45,8 @@ export async function doCollisions(scene: SpatialSceneNode[]): Promise<Collision
       decompress: true,
       postProcess: true,
     });
-    for (const gltfScene of gltf.scenes) {
-      traverseScene(gltfScene, new Matrix4(model.transformMatrix), (node, modelMatrix) => {
+    for (const gltfScene of gltf.scenes ?? []) {
+      traverseScene(gltfScene as never, new Matrix4(model.transformMatrix), (node, modelMatrix) => {
         if (node.mesh && node.mesh.primitives && node.mesh.primitives.length > 0) {
           for (const primitive of node.mesh.primitives) {
             if (primitive.attributes.POSITION && primitive.attributes.POSITION.min) {
@@ -120,4 +119,3 @@ export async function doCollisions(scene: SpatialSceneNode[]): Promise<Collision
 
   return report;
 }
-/* eslint-enable */

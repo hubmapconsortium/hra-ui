@@ -2,6 +2,9 @@
   "name": "ccf-organ-info",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
+  "sourceRoot": "apps/ccf-organ-info/src",
+  "prefix": "app",
+  "tags": ["ccf", "karma-test-runner"],
   "generators": {
     "@schematics/angular:component": {
       "style": "scss"
@@ -10,8 +13,6 @@
       "strict": true
     }
   },
-  "sourceRoot": "apps/ccf-organ-info/src",
-  "prefix": "app",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
@@ -32,6 +33,7 @@
       },
       "configurations": {
         "production": {
+          "baseHref": "/ui/ccf-organ-info/",
           "budgets": [
             {
               "type": "initial",
@@ -53,6 +55,7 @@
           "outputHashing": "none"
         },
         "staging": {
+          "baseHref": "/ui--staging/ccf-organ-info/",
           "budgets": [
             {
               "type": "initial",
@@ -91,7 +94,7 @@
           "namedChunks": true
         }
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": ""
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
@@ -142,7 +145,7 @@
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": ["apps/ccf-organ-info/**/*.ts", "apps/ccf-organ-info/**/*.html"]
+        "lintFilePatterns": ["{projectRoot}/**/*.ts", "{projectRoot}/**/*.html"]
       }
     },
     "build-webcomponent": {
@@ -166,6 +169,5 @@
         }
       }
     }
-  },
-  "tags": ["ccf", "karma-test-runner"]
+  }
 }

@@ -1,5 +1,5 @@
 import { LinkRegistryState } from '@hra-ui/cdk/state';
-import { Meta, Story } from '@storybook/angular';
+import { Meta, StoryFn } from '@storybook/angular';
 import { ScreenSizeNoticeComponent } from './screen-size-notice.component';
 
 export default {
@@ -13,7 +13,7 @@ export default {
   },
 } as Meta<ScreenSizeNoticeComponent>;
 
-const Template: Story<ScreenSizeNoticeComponent> = (args: ScreenSizeNoticeComponent) => ({
+const Template: StoryFn<ScreenSizeNoticeComponent> = (args) => ({
   props: args,
   styles: [
     `
@@ -24,7 +24,10 @@ const Template: Story<ScreenSizeNoticeComponent> = (args: ScreenSizeNoticeCompon
   ],
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
-  content: 'Test test test',
+export const Primary = {
+  render: Template,
+
+  args: {
+    content: 'Test test test',
+  },
 };

@@ -4,6 +4,7 @@
   "projectType": "library",
   "sourceRoot": "libs/triple-store-utils/src",
   "prefix": "lib",
+  "tags": ["ccf", "karma-test-runner"],
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
@@ -30,7 +31,7 @@
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": ["libs/triple-store-utils/**/*.ts", "libs/triple-store-utils/**/*.html"]
+        "lintFilePatterns": ["{projectRoot}/**/*.ts", "{projectRoot}/**/*.html"]
       }
     },
     "compodoc": {
@@ -51,6 +52,5 @@
         }
       }
     }
-  },
-  "tags": ["ccf", "karma-test-runner"]
+  }
 }

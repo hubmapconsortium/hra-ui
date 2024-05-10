@@ -2,13 +2,14 @@
   "name": "ccf-rui",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
+  "sourceRoot": "apps/ccf-rui/src",
+  "prefix": "ccf",
+  "tags": ["ccf", "karma-test-runner"],
   "generators": {
     "@schematics/angular:component": {
       "style": "scss"
     }
   },
-  "sourceRoot": "apps/ccf-rui/src",
-  "prefix": "ccf",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
@@ -34,6 +35,7 @@
       },
       "configurations": {
         "production": {
+          "baseHref": "/ui/ccf-rui/",
           "fileReplacements": [
             {
               "replace": "apps/ccf-rui/src/environments/environment.ts",
@@ -61,6 +63,7 @@
           ]
         },
         "staging": {
+          "baseHref": "/ui--staging/ccf-rui/",
           "fileReplacements": [
             {
               "replace": "apps/ccf-rui/src/environments/environment.ts",
@@ -141,7 +144,7 @@
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": ["apps/ccf-rui/**/*.ts", "apps/ccf-rui/**/*.html"]
+        "lintFilePatterns": ["{projectRoot}/**/*.ts", "{projectRoot}/**/*.html"]
       }
     },
     "build-webcomponent": {
@@ -165,6 +168,5 @@
         }
       }
     }
-  },
-  "tags": ["ccf", "karma-test-runner"]
+  }
 }

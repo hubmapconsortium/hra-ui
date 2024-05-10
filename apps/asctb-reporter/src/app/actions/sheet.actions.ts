@@ -9,7 +9,6 @@ export class FetchSheetData {
 
 export class RefreshData {
   static readonly type = '[FETCH] Refresh';
-  constructor() {}
 }
 
 export class FetchDataFromAssets {
@@ -47,7 +46,6 @@ export class UpdateConfig {
 
 export class ToggleShowAllAS {
   static readonly type = '[SHOW ALL AS]';
-  constructor() {}
 }
 
 export class UpdateReport {
@@ -107,7 +105,6 @@ export class UpdateGetFromCache {
 
 export class FetchValidOmapProtiens {
   static readonly type = '[FETCH] Valid OMAP Protiens Data';
-  constructor() {}
 }
 
 export class UpdateSelectedOrgansBeforeFilter {
