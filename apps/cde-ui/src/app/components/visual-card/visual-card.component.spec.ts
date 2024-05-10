@@ -1,17 +1,25 @@
 import { VisualCardComponent, VisualCard } from './visual-card.component';
 import { render, screen } from '@testing-library/angular';
+import '@testing-library/jest-dom';
 
 describe('VisualCardComponent', () => {
-  it('card data is present on the page', async () => {
-    const testCardData: VisualCard[] = [{ image: 'img.svg', label: 'label', route: 'test route', alt: 'alt text' }];
+  const mockCards: VisualCard[] = [
+    { image: 'path/to/image1.jpg', label: 'Card 1', route: '/route1', alt: 'Image 1' },
+    { image: 'path/to/image2.jpg', label: 'Card 2', route: '/route2', alt: 'Image 2' },
+  ];
+
+  it('should display all cards', async () => {
     await render(VisualCardComponent, {
-      componentInputs: {
-        cardData: testCardData,
-      },
+      componentInputs: { cardData: mockCards },
     });
-    expect(screen.getByText(/img.svg/i)).toBeInTheDocument();
-    expect(screen.getByText(/label/i)).toBeInTheDocument();
-    expect(screen.getByText(/test route/i)).toBeInTheDocument();
-    expect(screen.getByText(/alt text/i)).toBeInTheDocument();
+
+    const cards = screen.getAllByRole('img');
+    expect(cards.length).toEqual(2);
+    expect(screen.getByText('Card 1')).toBeInTheDocument();
+    expect(screen.getByText('Card 2')).toBeInTheDocument();
+    expect(cards[0]).toHaveAttribute('src', 'path/to/image1.jpg');
+    expect(cards[0]).toHaveAttribute('alt', 'Image 1');
+    expect(cards[1]).toHaveAttribute('src', 'path/to/image2.jpg');
+    expect(cards[1]).toHaveAttribute('alt', 'Image 2');
   });
 });
