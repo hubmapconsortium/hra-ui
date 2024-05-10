@@ -8,7 +8,7 @@ import { SpatialPlacementJsonLd, SpatialSceneNode } from 'ccf-body-ui';
 import { ExtractionSet, SpatialEntity } from 'ccf-database';
 import { ALL_ORGANS, GlobalConfigState, GlobalsService, OrganInfo } from 'ccf-shared';
 import { EMPTY, Observable, from } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, switchMap } from 'rxjs/operators';
 
 import { environment } from '../../../../environments/environment';
 import { GlobalConfig } from '../../services/config/config';
@@ -94,8 +94,7 @@ export class ReferenceDataState extends NgxsImmutableDataRepository<ReferenceDat
   }
 
   private getSourceDB(): Observable<ReferenceDataStateModel> {
-    return this.globalConfig.getOption('baseHref').pipe(
-      map((baseHref) => (baseHref ?? '') + 'assets/reference-organ-data.json'),
+    return this.globalConfig.getOption<string>('referenceData').pipe(
       switchMap((url) =>
         from(fetch(url)).pipe(
           switchMap((data) => data.json()),

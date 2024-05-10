@@ -1,14 +1,12 @@
-import { Shallow } from 'shallow-render';
+import { render, screen } from '@testing-library/angular';
 import { LandingPageComponent } from './landing-page.component';
+import '@testing-library/jest-dom';
 
 describe('LandingPageComponent', () => {
-  let shallow: Shallow<LandingPageComponent>;
-
-  beforeEach(async () => {
-    shallow = new Shallow(LandingPageComponent);
-  });
-
   it('should create', async () => {
-    await expect(shallow.render()).resolves.toBeTruthy();
+    await render(LandingPageComponent);
+    expect(screen.getByText('Explore 2D Intestine Data')).toBeInTheDocument();
+    expect(screen.getByText('Explore 3D Skin Data')).toBeInTheDocument();
+    expect(screen.getByText('Create a Visualization')).toBeInTheDocument();
   });
 });
