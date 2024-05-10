@@ -1,5 +1,6 @@
 import { SvgIconDef } from '../services/icon-registry/icon-registry.types';
 
+/** Social Media Icon Definitions */
 export const ICON_DEFINITIONS: SvgIconDef[] = [
   {
     name: 'facebook',
