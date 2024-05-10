@@ -33,7 +33,7 @@ export class LandingPageComponent {
     {
       image: 'assets/examples/tonsil.svg',
       label: 'Create a Visualization',
-      route: 'create',
+      route: 'visualize',
       alt: 'Image for Tonsil',
     },
   ];
