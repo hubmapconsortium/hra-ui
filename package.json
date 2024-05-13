@@ -24,6 +24,7 @@
     "@angular/router": "17.3.4",
     "@angular/youtube-player": "17.3.4",
     "@ccf-openapi/ng-client": "^1.2.2",
+    "@deck.gl/carto": "~8.8.20",
     "@deck.gl/core": "~8.8.20",
     "@deck.gl/geo-layers": "~8.8.20",
     "@deck.gl/layers": "~8.8.20",
