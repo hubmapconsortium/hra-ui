@@ -1,17 +1,5 @@
-import { createApplication } from '@angular/platform-browser';
-import { createCustomElement } from '@angular/elements';
+import { createCustomElement } from '@hra-ui/webcomponents';
 import { CdeVisualizationComponent } from './lib/cde-visualization/cde-visualization.component';
-
-(async () => {
-  const app = await createApplication({
-    providers: [],
-  });
-
-  const visualizationElement = createCustomElement(CdeVisualizationComponent, {
-    injector: app.injector,
-  });
-
-  customElements.define('cde-visualization', visualizationElement);
-})();
-
 export * from './lib/cde-visualization/cde-visualization.component';
+
+export const CdeVisualizationElement = createCustomElement('cde-visualization', CdeVisualizationComponent);

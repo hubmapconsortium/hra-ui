@@ -7,6 +7,7 @@ import { CellTypeOption, CellTypesComponent } from '../components/cell-types/cel
 import { Metadata, MetadataComponent } from '../components/metadata/metadata.component';
 import { VisualizationHeaderComponent } from '../components/visualization-header/visualization-header.component';
 import { HttpClient } from '@angular/common/http';
+import { VisualizationComponent } from '../components/visualization/visualization.component';
 
 export interface Node {
   x: number;
@@ -16,9 +17,14 @@ export interface Node {
   cell_ontology_id?: string;
 }
 
+export interface RawColorMapItem {
+  cell_type: string;
+  cell_color: string | [number, number, number];
+}
+
 export interface ColorMapItem {
   cell_type: string;
-  cell_color: string;
+  cell_color: [number, number, number];
 }
 
 const DEFAULT_CELL_TYPE_ANCHOR = 'Endothelial';
@@ -39,9 +45,9 @@ const EMPTY_METADATA: Metadata = {
 };
 
 @Component({
-  selector: 'cde-visualization',
+  selector: 'cde-visualization-page',
   standalone: true,
-  imports: [CommonModule, VisualizationHeaderComponent, MetadataComponent, CellTypesComponent],
+  imports: [CommonModule, VisualizationHeaderComponent, MetadataComponent, CellTypesComponent, VisualizationComponent],
   templateUrl: './cde-visualization.component.html',
   styleUrl: './cde-visualization.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -51,7 +57,7 @@ export class CdeVisualizationComponent {
 
   readonly cellTypeAnchor = input<string>();
 
-  readonly colorMap = input<string | ColorMapItem[]>();
+  readonly colorMap = input<string | RawColorMapItem[]>('assets/TEMP/colormap.csv');
 
   readonly metadata = input<string | Partial<Metadata>>();
 
@@ -73,11 +79,16 @@ export class CdeVisualizationComponent {
 
   readonly pixelSize = input<number, number | string | undefined>(NaN, { transform: numberAttribute });
 
-  readonly resolvedNodes = this.resolveData(this.nodes, (url) => this.loadCsvFile(url), []);
+  readonly resolvedNodes = this.resolveData(this.nodes, [], (url) => this.loadCsvFile(url));
 
-  readonly resolvedColorMap = this.resolveData(this.colorMap, (url) => this.loadCsvFile(url), []);
+  readonly resolvedColorMap = this.resolveData(
+    this.colorMap,
+    [],
+    (url) => this.loadCsvFile(url),
+    this.normalizeColorMap,
+  );
 
-  readonly resolvedMetadataWithoutOverrides = this.resolveData(this.metadata, (url) => this.loadJsonFile(url), {});
+  readonly resolvedMetadataWithoutOverrides = this.resolveData(this.metadata, {}, (url) => this.loadJsonFile(url));
 
   readonly resolvedMetadata = computed(() => {
     const metadata = {
@@ -105,7 +116,7 @@ export class CdeVisualizationComponent {
     }
 
     const nodes = this.resolvedNodes();
-    if (this.hasDefaultCellType(nodes)) {
+    if (nodes.length === 0 || this.hasDefaultCellType(nodes)) {
       return DEFAULT_CELL_TYPE_ANCHOR;
     }
 
@@ -128,11 +139,23 @@ export class CdeVisualizationComponent {
 
   private resolveData<T>(
     source: Signal<string | T | undefined>,
-    loadFile: (url: string) => Observable<T>,
     defaultValue: T,
-  ): Signal<T> {
+    loadFile: (url: string) => Observable<T>,
+  ): Signal<T>;
+  private resolveData<T, R>(
+    source: Signal<string | T | undefined>,
+    defaultValue: T,
+    loadFile: (url: string) => Observable<T>,
+    processData: (data: T) => R,
+  ): Signal<R>;
+  private resolveData(
+    source: Signal<unknown>,
+    defaultValue: unknown,
+    loadFile: (url: string) => Observable<unknown>,
+    processData = (data: unknown) => data,
+  ): Signal<unknown> {
     const sourceInput$ = toObservable(source);
-    const loadData = (value: string | T | undefined) => {
+    const loadData = (value: unknown) => {
       if (typeof value === 'string') {
         return loadFile(value);
       }
@@ -140,7 +163,7 @@ export class CdeVisualizationComponent {
       return of(value ?? defaultValue);
     };
 
-    const data$ = sourceInput$.pipe(map(loadData), switchAll());
+    const data$ = sourceInput$.pipe(map(loadData), switchAll(), map(processData));
     return toSignal(data$, { initialValue: defaultValue, rejectErrors: true });
   }
 
@@ -216,5 +239,13 @@ export class CdeVisualizationComponent {
 
   private hasDefaultCellType(nodes: Node[]): boolean {
     return nodes.some(({ cell_type }) => cell_type === DEFAULT_CELL_TYPE_ANCHOR);
+  }
+
+  private normalizeColorMap(data: RawColorMapItem[]): ColorMapItem[] {
+    const normalizeColor = (value: RawColorMapItem['cell_color']): ColorMapItem['cell_color'] => {
+      return typeof value === 'string' ? JSON.parse(value) : value;
+    };
+
+    return data.map((item) => ({ ...item, cell_color: normalizeColor(item.cell_color) }));
   }
 }

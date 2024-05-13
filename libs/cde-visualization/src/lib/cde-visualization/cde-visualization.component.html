@@ -6,6 +6,10 @@
   <cde-cell-types [data]="cellTypeOptions()"></cde-cell-types>
 </div>
 <div class="visualizations">
-  <div>Main Visualization Here</div>
+  <cde-visualization
+    [nodes]="resolvedNodes()"
+    [anchor]="resolvedCellTypeAnchor()"
+    [colorMap]="resolvedColorMap()"
+  ></cde-visualization>
   <div>Histogram Here</div>
 </div>
