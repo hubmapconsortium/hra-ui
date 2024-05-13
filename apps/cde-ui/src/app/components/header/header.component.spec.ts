@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/angular';
 import { HeaderComponent } from './header.component';
 import { RouterModule } from '@angular/router';
-import '@testing-library/jest-dom';
 
 describe('HeaderComponent', () => {
   it('should render the logo', async () => {
