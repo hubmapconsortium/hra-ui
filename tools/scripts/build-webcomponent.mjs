@@ -11,11 +11,12 @@ async function build(app_name) {
     `${distDir}/runtime*.js`,
     `${distDir}/polyfills*.js`,
     `${distDir}/scripts*.js`,
+    `${distDir}/vendor*.js`,
     `${distDir}/main*.js`,
   ]);
 
-  if (jsFiles.length !== 4) {
-    console.log('Failed to find all application js files');
+  if (jsFiles.length === 0) {
+    console.log('Failed to find application js files');
     exit(1);
   }
 
