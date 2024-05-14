@@ -7,7 +7,7 @@ import { CellTypeOption, CellTypesComponent } from '../components/cell-types/cel
 import { Metadata, MetadataComponent } from '../components/metadata/metadata.component';
 import { VisualizationHeaderComponent } from '../components/visualization-header/visualization-header.component';
 import { HttpClient } from '@angular/common/http';
-import { VisualizationComponent } from '../components/visualization/visualization.component';
+import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
 
 export interface Node {
   x: number;
@@ -31,33 +31,39 @@ const DEFAULT_CELL_TYPE_ANCHOR = 'Endothelial';
 const DEFAULT_CELL_TYPE_COLOR = '#5D667F';
 
 const EMPTY_METADATA: Metadata = {
-  title: '',
-  sourceData: '',
-  colorMap: '',
-  organ: '',
-  technology: '',
-  sex: '',
+  title: 'N/A',
+  sourceData: 'N/A',
+  colorMap: 'N/A',
+  organ: 'N/A',
+  technology: 'N/A',
+  sex: 'N/A',
   age: Number.NaN,
   thickness: Number.NaN,
   pixelSize: Number.NaN,
-  creationDate: '',
-  creationTime: '',
+  creationDate: 'N/A',
+  creationTime: 'N/A',
 };
 
 @Component({
-  selector: 'cde-visualization-page',
+  selector: 'cde-visualization-root',
   standalone: true,
-  imports: [CommonModule, VisualizationHeaderComponent, MetadataComponent, CellTypesComponent, VisualizationComponent],
+  imports: [
+    CommonModule,
+    VisualizationHeaderComponent,
+    MetadataComponent,
+    CellTypesComponent,
+    NodeDistVisualizationComponent,
+  ],
   templateUrl: './cde-visualization.component.html',
   styleUrl: './cde-visualization.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CdeVisualizationComponent {
-  readonly nodes = input<string | Node[]>('assets/TEMP/nodes.csv');
+  readonly nodes = input<string | Node[]>();
 
   readonly cellTypeAnchor = input<string>();
 
-  readonly colorMap = input<string | RawColorMapItem[]>('assets/TEMP/colormap.csv');
+  readonly colorMap = input<string | RawColorMapItem[]>();
 
   readonly metadata = input<string | Partial<Metadata>>();
 
@@ -104,7 +110,7 @@ export class CdeVisualizationComponent {
     this.applyOverride(metadata, 'thickness', this.thickness());
     this.applyOverride(metadata, 'pixelSize', this.pixelSize());
     this.applyOverride(metadata, 'creationDate', this.creationDate());
-    this.applyOverride(metadata, 'creationDate', this.creationTime());
+    this.applyOverride(metadata, 'creationTime', this.creationTime());
 
     return metadata;
   });

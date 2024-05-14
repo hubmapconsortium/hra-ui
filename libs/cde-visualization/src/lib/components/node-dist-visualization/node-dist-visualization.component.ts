@@ -26,15 +26,15 @@ interface NodeDistVisElement extends HTMLElement {
 }
 
 @Component({
-  selector: 'cde-visualization',
+  selector: 'cde-node-dist-visualization',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './visualization.component.html',
-  styleUrl: './visualization.component.scss',
+  templateUrl: './node-dist-visualization.component.html',
+  styleUrl: './node-dist-visualization.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class VisualizationComponent {
+export class NodeDistVisualizationComponent {
   readonly nodes = input.required<Node[]>();
   readonly anchor = input.required<string>();
   readonly colorMap = input.required<ColorMapItem[]>();
@@ -72,11 +72,6 @@ export class VisualizationComponent {
         el.maxEdgeDistance.value = 100;
         // el.colorCoding.value = this.visColorCoding();
       }
-    });
-    effect(() => {
-      console.log(this.vis());
-      console.log(this.nodes());
-      console.log(this.colorMap());
     });
   }
 }

@@ -1,5 +1,12 @@
 import { createCustomElement } from '@hra-ui/webcomponents';
 import { CdeVisualizationComponent } from './lib/cde-visualization/cde-visualization.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
 export * from './lib/cde-visualization/cde-visualization.component';
 
-export const CdeVisualizationElement = createCustomElement('cde-visualization', CdeVisualizationComponent);
+export type CdeVisualizationElementConstructor = Awaited<typeof CdeVisualizationElement>;
+export type CdeVisualizationElement = InstanceType<CdeVisualizationElementConstructor>;
+
+export const CdeVisualizationElement = createCustomElement('cde-visualization', CdeVisualizationComponent, {
+  providers: [provideHttpClient(), provideAnimations()],
+});
