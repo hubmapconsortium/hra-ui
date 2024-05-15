@@ -26,6 +26,7 @@
       },
       "configurations": {
         "production": {
+          "baseHref": "/ui/ftu-ui-small-wc/",
           "budgets": [
             {
               "type": "initial",
@@ -41,6 +42,19 @@
           "outputHashing": "none"
         },
         "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        },
+        "staging": {
+          "baseHref": "/ui--staging/ftu-ui-small-wc/",
+          "outputHashing": "none"
+        },
+        "preview": {
+          "baseHref": "/apps/ftu-ui-small-wc/",
           "buildOptimizer": false,
           "optimization": false,
           "vendorChunk": true,

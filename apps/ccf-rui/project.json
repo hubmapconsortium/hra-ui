@@ -35,6 +35,7 @@
       },
       "configurations": {
         "production": {
+          "baseHref": "/ui/ccf-rui/",
           "fileReplacements": [
             {
               "replace": "apps/ccf-rui/src/environments/environment.ts",
@@ -62,6 +63,7 @@
           ]
         },
         "staging": {
+          "baseHref": "/ui--staging/ccf-rui/",
           "fileReplacements": [
             {
               "replace": "apps/ccf-rui/src/environments/environment.ts",
