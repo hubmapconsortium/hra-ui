@@ -22,11 +22,11 @@ export interface Metadata {
   /** Sex */
   sex: string;
   /** Age */
-  age: number;
+  age: number | string;
   /** Thickness */
-  thickness: number;
+  thickness: number | string;
   /** Pixel size */
-  pixelSize: number;
+  pixelSize: number | string;
   /** Creation date */
   creationDate: string;
   /** Creation time */

@@ -8,6 +8,9 @@ import { Metadata, MetadataComponent } from '../components/metadata/metadata.com
 import { VisualizationHeaderComponent } from '../components/visualization-header/visualization-header.component';
 import { HttpClient } from '@angular/common/http';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
 
 export interface Node {
   x: number;
@@ -37,9 +40,9 @@ const EMPTY_METADATA: Metadata = {
   organ: 'N/A',
   technology: 'N/A',
   sex: 'N/A',
-  age: Number.NaN,
-  thickness: Number.NaN,
-  pixelSize: Number.NaN,
+  age: 'N/A',
+  thickness: 'N/A',
+  pixelSize: 'N/A',
   creationDate: 'N/A',
   creationTime: 'N/A',
 };
@@ -53,6 +56,9 @@ const EMPTY_METADATA: Metadata = {
     MetadataComponent,
     CellTypesComponent,
     NodeDistVisualizationComponent,
+    MatButtonModule,
+    MatIconModule,
+    OverlayModule,
   ],
   templateUrl: './cde-visualization.component.html',
   styleUrl: './cde-visualization.component.scss',
@@ -65,6 +71,7 @@ export class CdeVisualizationComponent {
   readonly colorMapKey = input<string>('cell_type');
   readonly colorMapValueKey = input<string>('cell_color');
   readonly maxEdgeDistance = input<number, number | string | undefined>(1000, { transform: numberAttribute });
+  visInfoOpen = false;
 
   readonly nodeTargetValue = input<string>();
 
@@ -144,6 +151,15 @@ export class CdeVisualizationComponent {
 
     return Object.values(options);
   });
+
+  overlayPositions: ConnectionPositionPair[] = [
+    {
+      originX: 'end',
+      overlayX: 'start',
+      originY: 'top',
+      overlayY: 'top',
+    },
+  ];
 
   private readonly location = inject(Location);
   private readonly http = inject(HttpClient);
