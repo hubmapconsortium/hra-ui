@@ -1,38 +1,42 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
 import { HoverDirective } from '@hra-ui/cdk';
-import { selectSnapshot, selectQuerySnapshot, dispatch } from '@hra-ui/cdk/injectors';
+import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import {
-  GradientLegendComponent,
-  LabelBoxComponent,
-  SizeLegendComponent,
   EmptyBiomarkerComponent,
+  GradientLegendComponent,
   GradientPoint,
+  LabelBoxComponent,
   SizeLegend,
+  SizeLegendComponent,
 } from '@hra-ui/components/atoms';
 import {
   BiomarkerTableDataCardComponent,
   InteractiveSvgComponent,
   SourceListComponent,
 } from '@hra-ui/components/molecules';
-import { TissueInfo, BiomarkerTableComponent } from '@hra-ui/components/organisms';
+import { BiomarkerTableComponent, DataCell, TissueInfo } from '@hra-ui/components/organisms';
+import { IllustrationMappingItem } from '@hra-ui/services';
 import {
   ActiveFtuSelectors,
-  TissueLibrarySelectors,
-  ScreenModeAction,
+  CellSummaryAggregate,
+  CellSummarySelectors,
   IllustratorActions,
   IllustratorSelectors,
-  CellSummarySelectors,
   ResourceIds as Ids,
   ResourceTypes as RTypes,
+  ScreenModeAction,
+  SourceRefsActions,
   SourceRefsSelectors,
+  TissueLibrarySelectors,
 } from '@hra-ui/state';
-import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
+
+import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
 /**
  * PlaceHolder for Empty Tissue Info
@@ -66,6 +70,11 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BiomarkerDetailsWcComponent {
+  /**
+   * Reference to the biomarker table component
+   */
+  @ViewChild('table') table!: BiomarkerTableComponent<DataCell>;
+
   /**
    * Current illustration url
    */
@@ -106,7 +115,7 @@ export class BiomarkerDetailsWcComponent {
   readonly updateNodeOnClicked = dispatch(IllustratorActions.SetClicked);
 
   /** Table tabs */
-  readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);
+  readonly getTabs = selectSnapshot(CellSummarySelectors.aggregates);
 
   /** Info to be shown on the tooltip for Gradient Legend */
   readonly gradientHoverInfo = selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);
@@ -127,6 +136,7 @@ export class BiomarkerDetailsWcComponent {
 
   /** List of sources with titles and links displayed to the user */
   readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);
+
   /**
    * Gets tissue title from the list of tissues
    */
@@ -141,6 +151,31 @@ export class BiomarkerDetailsWcComponent {
   }
 
   /**
+   * Gets tabs containing cell summary aggregate data
+   */
+  get tabs(): CellSummaryAggregate[] {
+    const tabs = this.getTabs();
+    if (tabs !== this.tabs_ && tabs.length !== 0) {
+      this.tabs_ = tabs;
+    }
+
+    return this.tabs_;
+  }
+
+  /**
+   * Gets ids for cells in the illustration
+   */
+  get illustrationIds(): string[] {
+    const mapping = this.mapping();
+    if (mapping !== this.mapping_) {
+      this.mapping_ = mapping;
+      this.illustrationIds_ = Array.from(new Set(this.mapping().map((data) => data.ontologyId)));
+    }
+
+    return this.illustrationIds_;
+  }
+
+  /**
    * button text of empty biomarker component.
    */
   readonly collaborateText = 'Collaborate with the HRA Team';
@@ -151,6 +186,9 @@ export class BiomarkerDetailsWcComponent {
   readonly message = `We currently do not have cell type data for this biomarker.
 <br><br> Please contact us to discuss your dataset.`;
 
+  /** Sets currently selected sources */
+  readonly setSelectedSources = dispatch(SourceRefsActions.SetSelectedSources);
+
   /** A dispatcher function to set the screen mode */
   private readonly setScreenMode = dispatch(ScreenModeAction.Set);
 
@@ -160,10 +198,26 @@ export class BiomarkerDetailsWcComponent {
   /** Google analytics tracking service */
   private readonly ga = inject(GoogleAnalyticsService);
 
+  /** Mapping item reference */
+  private mapping_: IllustrationMappingItem[] = [];
+  /** Illustration ids reference */
+  private illustrationIds_: string[] = [];
+  /** Tabs reference */
+  private tabs_: CellSummaryAggregate[] = [];
+
+  /** Returns the index number */
+  trackByIndex(index: number): number {
+    return index;
+  }
+
   /** A function that toggles isTableFullScreen and
    * calls the setScreenMode function.
    */
   toggleFullscreen(): void {
+    setTimeout(() => {
+      this.table.checkDisplayedColumns();
+    }, 250);
+
     this.isTableFullScreen = !this.isTableFullScreen;
     this.setScreenMode(this.isTableFullScreen);
   }

@@ -1,9 +1,6 @@
-<hra-label-box class="table-header">
-  Cell Types by Gene Biomarkers
-  <span (click)="toggleFullscreen()" class="end material-symbols-outlined cursor">
-    {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}
-  </span>
-</hra-label-box>
+<span (click)="toggleFullscreen()" class="end material-symbols-outlined cursor">
+  {{ isTableFullScreen ? 'close_fullscreen' : 'open_in_full' }}
+</span>
 
 <mat-tab-group
   class="table"
@@ -11,17 +8,22 @@
   mat-stretch-tabs="true"
   color="accent"
   (selectedTabChange)="logTabChange($event)"
+  disablePagination="true"
+  disableRipple="true"
 >
-  <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="tab.label">
+  <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="'Cell Types by ' + tab.label">
     <hra-biomarker-table
+      #table
       *ngIf="tab.rows.length !== 0"
+      [class.small]="tab.rows.length < 10"
       [data]="$any(tab.rows)"
       [columns]="tab.columns"
       [gradient]="gradients()"
       [sizes]="sizes()"
       [tissueInfo]="tissueInfo"
-      [highlightedCellId]="selectedOnHovered()?.ontologyId ?? ''"
       [illustrationIds]="illustrationIds"
+      [dataSources]="source()"
+      [highlightedCellId]="selectedOnHovered()?.ontologyId ?? ''"
       (rowHover)="highlightCells($event)"
     ></hra-biomarker-table>
     <hra-empty-biomarker
@@ -34,16 +36,16 @@
 </mat-tab-group>
 
 <hra-label-box class="legend-header gradient">
-  Biomarker Expression Mean in FTU
   <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="gradientHoverInfo()">info_outlined</mat-icon>
+  Biomarker Expression Mean in FTU
 </hra-label-box>
 <div class="legend gradient">
   <hra-gradient-legend [gradient]="gradients()" class="content"></hra-gradient-legend>
 </div>
 
 <hra-label-box class="legend-header size">
-  Percentage of Cells in FTU
   <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="sizeHoverInfo()">info_outlined</mat-icon>
+  Percentage of Cells in FTU
 </hra-label-box>
 <div class="legend size">
   <hra-size-legend [sizes]="sizes()" class="content"></hra-size-legend>
@@ -55,6 +57,7 @@
     [message]="message"
     (collaborateClick)="collaborate()"
     [sources]="source()"
+    (selectionChanged)="setSelectedSources($event)"
     class="content"
   ></hra-source-list>
 </div>

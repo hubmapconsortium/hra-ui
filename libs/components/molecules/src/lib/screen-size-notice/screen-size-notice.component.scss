@@ -4,7 +4,7 @@
   border-radius: 0.5rem;
   padding: 1.5rem;
   flex-direction: column;
-  font-family: Inter;
+  max-width: 30rem;
 
   .header-close {
     position: absolute;
@@ -34,7 +34,7 @@
     letter-spacing: 0.5px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 1279px) {
     display: flex;
   }
 }
