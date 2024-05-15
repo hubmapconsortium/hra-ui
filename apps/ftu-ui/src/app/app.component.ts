@@ -41,7 +41,7 @@ import { ReplaySubject, tap } from 'rxjs';
 export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   @HostBinding('class.mat-typography') readonly matTypography = true;
 
-  readonly SMALL_VIEWPORT_THRESHOLD = 1279; // In pixels
+  readonly SMALL_VIEWPORT_THRESHOLD = 480; // In pixels
   readonly WINDOW_RESIZE_THRESHOLD = 1600; // In pixels
   readonly tissues = select$(TissueLibrarySelectors.tissues);
 
