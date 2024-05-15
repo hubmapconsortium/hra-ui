@@ -60,8 +60,13 @@ const EMPTY_METADATA: Metadata = {
 })
 export class CdeVisualizationComponent {
   readonly nodes = input<string | Node[]>();
+  readonly edges = input<unknown>();
+  readonly nodeTargetKey = input<string>('Cell Type');
+  readonly colorMapKey = input<string>('cell_type');
+  readonly colorMapValueKey = input<string>('cell_color');
+  readonly maxEdgeDistance = input<number, number | string | undefined>(1000, { transform: numberAttribute });
 
-  readonly cellTypeAnchor = input<string>();
+  readonly nodeTargetValue = input<string>();
 
   readonly colorMap = input<string | RawColorMapItem[]>();
 
@@ -116,7 +121,7 @@ export class CdeVisualizationComponent {
   });
 
   readonly resolvedCellTypeAnchor = computed(() => {
-    const anchor = this.cellTypeAnchor();
+    const anchor = this.nodeTargetValue();
     if (anchor !== undefined) {
       return anchor;
     }

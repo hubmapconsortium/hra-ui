@@ -36,6 +36,7 @@ interface NodeDistVisElement extends HTMLElement {
 })
 export class NodeDistVisualizationComponent {
   readonly nodes = input.required<Node[]>();
+  readonly edges = input<Node[]>();
   readonly anchor = input.required<string>();
   readonly colorMap = input.required<ColorMapItem[]>();
 
