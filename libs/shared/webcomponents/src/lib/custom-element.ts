@@ -4,7 +4,7 @@ import { createApplication } from '@angular/platform-browser';
 import { ComponentNgElementStrategyFactory } from './element-strategy/component-factory-strategy';
 
 type InputProps<CompT> = {
-  [KeyT in keyof CompT]: CompT[KeyT] extends InputSignal<infer ValueT> ? ValueT : never;
+  -readonly [KeyT in keyof CompT]: CompT[KeyT] extends InputSignal<infer ValueT> ? ValueT : never;
 };
 
 export async function createCustomElement<CompT>(

@@ -1,19 +1,12 @@
-import { createApplication } from '@angular/platform-browser';
-import { createCustomElement } from '@angular/elements';
+import { provideHttpClient } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { createCustomElement } from '@hra-ui/webcomponents';
 import { CdeVisualizationComponent } from './lib/cde-visualization/cde-visualization.component';
-
-(async () => {
-  const app = await createApplication({
-    providers: [],
-  });
-
-  const visualizationElement = createCustomElement(CdeVisualizationComponent, {
-    injector: app.injector,
-  });
-
-  customElements.define('cde-visualization', visualizationElement);
-})();
-
 export * from './lib/cde-visualization/cde-visualization.component';
 
-export * from './lib/components/histogram/histogram.component';
+export type CdeVisualizationElementConstructor = Awaited<typeof CdeVisualizationElement>;
+export type CdeVisualizationElement = InstanceType<CdeVisualizationElementConstructor>;
+
+export const CdeVisualizationElement = createCustomElement('cde-visualization', CdeVisualizationComponent, {
+  providers: [provideHttpClient(), provideAnimations()],
+});

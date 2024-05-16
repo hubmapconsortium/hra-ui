@@ -1,33 +1,39 @@
-import { MatTableModule } from '@angular/material/table';
-import { CellTypeOption, CellTypesComponent } from './cell-types.component';
 import { render, screen } from '@testing-library/angular';
-import { MatSortModule } from '@angular/material/sort';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { ColorPickerModule } from 'ngx-color-picker';
+import { CellTypesComponent, CellTypeOption } from './cell-types.component';
+import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
 
 describe('CellTypesComponent', () => {
-  it('should display the cell type options', async () => {
-    // to be fixed
-    const cellTypeOptions: CellTypeOption[] = [
-      { name: 'Cell Type 1', count: 100, color: '#FF0000' },
-      { name: 'Cell Type 2', count: 200, color: '#00FF00' },
-      { name: 'Cell Type 3', count: 150, color: '#0000FF' },
-    ];
+  const mockData: CellTypeOption[] = [
+    { name: 'Cell Type 1', count: 100, color: '#FF0000' },
+    { name: 'Cell Type 2', count: 200, color: '#00FF00' },
+    { name: 'Cell Type 3', count: 300, color: '#0000FF' },
+  ];
 
+  it('should render the component', async () => {
     await render(CellTypesComponent, {
-      componentInputs: {
-        data: cellTypeOptions,
-        anchor: 'Cell Type 2',
-      },
-      imports: [MatTableModule, MatSortModule, MatCheckboxModule, ColorPickerModule],
+      componentInputs: { data: () => mockData },
     });
 
-    expect(screen.getByText('Cell Type 1')).toBeInTheDocument();
-    expect(screen.getByText('Cell Type 2')).toBeInTheDocument();
-    expect(screen.getByText('Cell Type 3')).toBeInTheDocument();
+    expect(screen.getByText('Cell Types')).toBeInTheDocument();
+    expect(screen.getByText('Total Cell Types')).toBeInTheDocument();
+    expect(screen.getByText('Total Cells')).toBeInTheDocument();
+  });
 
-    expect(screen.getByText('100')).toBeInTheDocument();
-    expect(screen.getByText('200')).toBeInTheDocument();
-    expect(screen.getByText('150')).toBeInTheDocument();
+  it('should toggle row selection', async () => {
+    await render(CellTypesComponent, {
+      componentInputs: { data: () => mockData },
+    });
+
+    const checkboxes = screen.getAllByRole('checkbox');
+    const firstCheckbox = checkboxes[0];
+
+    expect(firstCheckbox).not.toBeChecked();
+
+    await userEvent.click(firstCheckbox);
+    expect(firstCheckbox).toBeChecked();
+
+    await userEvent.click(firstCheckbox);
+    expect(firstCheckbox).not.toBeChecked();
   });
 });

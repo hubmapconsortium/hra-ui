@@ -6,6 +6,58 @@
   <cde-cell-types [data]="cellTypeOptions()"></cde-cell-types>
 </div>
 <div class="visualizations">
-  <div>Main Visualization Here</div>
+  <div class="vis-app">
+    <span>
+      Visualization
+      <mat-icon
+        class="material-symbols-rounded"
+        cdkOverlayOrigin
+        #visTrigger="cdkOverlayOrigin"
+        (mouseover)="visInfoOpen = !visInfoOpen"
+        (mouseout)="visInfoOpen = !visInfoOpen"
+        >info</mat-icon
+      >
+      <ng-container>
+        <ng-template
+          cdkConnectedOverlay
+          [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'metadata-panel']"
+          [cdkConnectedOverlayPositions]="overlayPositions"
+          [cdkConnectedOverlayOrigin]="visTrigger"
+          [cdkConnectedOverlayOpen]="visInfoOpen"
+          [cdkConnectedOverlayOffsetX]="5"
+        >
+          <div>
+            <ul>
+              Zoom Options
+              <li>Mouse pinwheel</li>
+              <li>Trackpad Pinch</li>
+            </ul>
+            <ul>
+              Pan Options
+              <li>CTRL/CMD + mouse drag</li>
+              <li>Right click + mouse drag</li>
+              <li>Keyboard arrows</li>
+            </ul>
+            <ul>
+              Rotation Options for 3D Visualizations
+              <li>Mouse pinwheel</li>
+              <li>Trackpad Pinch</li>
+              <li>CTRL/CMD + keyboard arrows</li>
+              <li>Mouse Drag</li>
+            </ul>
+          </div>
+        </ng-template>
+      </ng-container>
+    </span>
+    <cde-node-dist-visualization
+      [nodes]="resolvedNodes()"
+      [anchor]="resolvedCellTypeAnchor()"
+      [colorMap]="resolvedColorMap()"
+    ></cde-node-dist-visualization>
+    <button mat-flat-button class="download-png">
+      PNG
+      <mat-icon class="material-symbols-rounded">download</mat-icon>
+    </button>
+  </div>
   <cde-histogram [nodes]="resolvedNodes()" [edges]="resolvedEdges2()"></cde-histogram>
 </div>
